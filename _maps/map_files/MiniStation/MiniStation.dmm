@@ -222,15 +222,6 @@
 "abi" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hos)
-"abj" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 9
-	},
-/obj/machinery/computer/security{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "abm" = (
 /obj/effect/turf_decal/trimline/green/filled/corner/lower{
 	dir = 4
@@ -1080,15 +1071,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"afv" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "afw" = (
 /obj/machinery/dna_scannernew,
 /obj/machinery/requests_console{
@@ -4264,6 +4246,21 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"auC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "auD" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 4
@@ -5134,16 +5131,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/science/mixing)
-"azd" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/security/main)
 "aze" = (
 /obj/machinery/computer/prisoner,
 /obj/structure/cable{
@@ -6101,11 +6088,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"aDT" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/obj/machinery/vending/security,
-/turf/open/floor/plasteel,
-/area/security/main)
 "aDX" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
@@ -6254,15 +6236,6 @@
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos)
-"aED" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/machinery/computer/secure_data{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "aEE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -7042,22 +7015,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"aIw" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/rnd/production/techfab/department/security,
-/turf/open/floor/plasteel,
-/area/security/main)
 "aIz" = (
 /obj/effect/turf_decal/tile/bar/opposingcorners,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -8648,12 +8605,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
-"aQr" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "aQt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -10131,15 +10082,6 @@
 	},
 /turf/open/floor/carpet,
 /area/hallway/secondary/service)
-"aWD" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 1
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "aWE" = (
 /obj/structure/closet/bombcloset/security,
 /turf/open/floor/plasteel/showroomfloor,
@@ -11589,6 +11531,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"bEb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/wire_splicing/thirty,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "bEz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -11683,6 +11641,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
+"bHW" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "bId" = (
 /obj/structure/chair/office/dark{
 	dir = 4
@@ -11831,6 +11798,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
+"bMp" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "bNg" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -11950,14 +11922,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"bRl" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "bRr" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -12016,18 +11980,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"bSI" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "bSQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/airalarm{
@@ -12291,6 +12243,16 @@
 "ccn" = (
 /turf/closed/wall/r_wall,
 /area/bridge/meeting_room)
+"ccB" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ccM" = (
 /obj/structure/railing{
 	dir = 4
@@ -12300,18 +12262,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"cdb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "cdo" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 8
@@ -12326,13 +12276,6 @@
 	},
 /turf/open/space/openspace,
 /area/space/nearstation)
-"cdv" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 4;
-	name = "Cooling Loop to Gas"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "cdD" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -12354,9 +12297,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"cfC" = (
-/obj/structure/cable{
-	icon_state = "1-4"
+"cez" = (
+/obj/structure/closet/radiation,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -12621,18 +12565,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"cku" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "ckH" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -12692,6 +12624,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"con" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "coN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -12872,6 +12816,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"ctY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "cui" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -13258,6 +13214,21 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/bridge/meeting_room)
+"cFY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "cGO" = (
 /obj/structure/rack,
 /obj/item/tank/internals/oxygen,
@@ -13289,6 +13260,19 @@
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft/lower)
+"cHn" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "cIg" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -13391,6 +13375,14 @@
 /obj/item/disk/nuclear,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"cKK" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "cKY" = (
 /obj/machinery/telecomms/server/presets/science,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -14257,6 +14249,16 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/storage)
+"dqg" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 4;
+	name = "Cooling Loop to Gas"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "dqY" = (
 /obj/machinery/light{
 	dir = 1
@@ -14695,6 +14697,19 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
+"dOe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "dOh" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -14725,6 +14740,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"dOD" = (
+/turf/template_noop,
+/area/maintenance/port/fore/lower)
 "dOJ" = (
 /obj/machinery/door/airlock/research{
 	name = "Toxins Storage"
@@ -14741,18 +14759,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
-"dPJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "dPO" = (
 /turf/template_noop,
 /area/maintenance/starboard/aft/lower)
@@ -15163,6 +15169,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
+"eey" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "eeB" = (
 /obj/machinery/nuclearbomb/beer,
 /turf/open/floor/plating,
@@ -15608,6 +15623,24 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/cryopods)
+"esh" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Atmos to Loop"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "esO" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1
@@ -15636,6 +15669,10 @@
 "etN" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
+"eue" = (
+/obj/structure/sign/warning/fire,
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
 "euF" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 4
@@ -15665,6 +15702,13 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/starboard)
+"evg" = (
+/obj/structure/closet/radiation,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "evj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/plating,
@@ -16537,12 +16581,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"faI" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "faJ" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -16784,6 +16822,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/main)
+"fka" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "fkk" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -17276,19 +17325,6 @@
 	},
 /turf/open/floor/lowered,
 /area/medical/chemistry)
-"fBJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/spawner/wire_splicing/thirty,
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "fBN" = (
 /obj/machinery/light{
 	dir = 4
@@ -17840,6 +17876,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
+"gai" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "gbb" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -18030,6 +18081,16 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"ges" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "geH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -18323,14 +18384,6 @@
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"gnz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "gnD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -18544,13 +18597,6 @@
 /obj/item/toy/cattoy,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/cmo)
-"gwZ" = (
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/obj/machinery/atmospherics/pipe/layer_manifold/visible{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "gxw" = (
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
 	dir = 1
@@ -18672,12 +18718,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
-"gBD" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "gBF" = (
 /obj/machinery/light{
 	dir = 1
@@ -18787,6 +18827,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
+"gGV" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_x = -9;
+	pixel_y = 24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "gHo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/light{
@@ -19337,6 +19393,24 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"gXv" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "gXw" = (
 /obj/machinery/recharge_station,
 /obj/effect/turf_decal/stripes/line{
@@ -19354,6 +19428,12 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"gXP" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore/lower)
 "gYq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -19450,10 +19530,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/lower)
-"hcf" = (
-/obj/structure/rack,
 /turf/open/floor/plating,
 /area/maintenance/starboard/lower)
 "hco" = (
@@ -19600,6 +19676,9 @@
 /obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"hgO" = (
+/turf/template_noop,
+/area/maintenance/starboard/lower)
 "hgV" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -19773,18 +19852,6 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
-"hmh" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "hmB" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
@@ -20026,6 +20093,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+"hwt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "hwY" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -20561,15 +20640,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"hTD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "hTJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -20610,18 +20680,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
-"hUz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "hUN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/purple,
@@ -20799,6 +20857,15 @@
 /obj/machinery/chem_dispenser/mutagensaltpeter,
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"icj" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "ieg" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 4
@@ -20806,12 +20873,6 @@
 /obj/structure/table/glass,
 /turf/open/floor/plasteel,
 /area/hydroponics)
-"ieF" = (
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ieX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -21367,15 +21428,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage/backroom)
-"iFU" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "iGq" = (
 /turf/template_noop,
 /area/maintenance/port/aft/lower)
@@ -21401,6 +21453,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"iGK" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "iGR" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/landmark/start/roboticist,
@@ -21982,6 +22049,16 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/starboard)
+"jfh" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "jfi" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -22431,6 +22508,15 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
 /area/security/execution/transfer)
+"juA" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/port/fore/lower)
 "juB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -22542,6 +22628,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft/lower)
+"jyv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "jza" = (
 /obj/machinery/light,
 /obj/machinery/disposal/bin,
@@ -22562,6 +22654,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
+"jAc" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "jAd" = (
 /obj/machinery/door/airlock/medical{
 	name = "Operating Theatre"
@@ -22640,6 +22741,19 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
+"jBl" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 8;
+	filter_type = list("n2")
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "jBM" = (
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 9
@@ -22903,20 +23017,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"jLM" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore/lower)
 "jMd" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/three,
@@ -22983,6 +23083,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
+"jQY" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 6
+	},
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/machinery/vending/security,
+/turf/open/floor/plasteel,
+/area/security/main)
 "jRf" = (
 /obj/machinery/power/smes/engineering{
 	charge = 5e+006;
@@ -23109,6 +23221,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"jWU" = (
+/obj/effect/spawner/structure/window/reinforced/shutter,
+/turf/open/floor/plating,
+/area/maintenance/port/fore/lower)
 "jWW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -23508,18 +23624,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/starboard)
-"kpp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "kpD" = (
 /obj/structure/stairs/wide_right,
 /obj/structure/stairs,
@@ -23985,16 +24089,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
-"kJI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "kKT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -24130,6 +24224,15 @@
 	},
 /turf/open/openspace,
 /area/quartermaster/storage)
+"kQI" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/lower)
 "kSG" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -24413,21 +24516,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"lhH" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
+"lhC" = (
+/obj/machinery/atmospherics/components/binary/valve/digital/on{
+	dir = 8;
+	name = "Output Release"
 	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 6
 	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
+/turf/open/floor/engine,
+/area/engine/engineering)
 "lhK" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
@@ -24642,6 +24740,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore/lower)
+"lnt" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "lnG" = (
 /obj/machinery/computer/arcade{
 	dir = 4
@@ -24998,13 +25103,6 @@
 "lAt" = (
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"lAI" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/obj/effect/spawner/structure/window/reinforced/shutter,
-/turf/open/floor/plating/airless,
-/area/engine/engineering)
 "lAL" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -25030,6 +25128,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
+"lBK" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "lBN" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower,
 /obj/machinery/airalarm{
@@ -25671,18 +25778,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"mbb" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 4
-	},
-/obj/machinery/meter,
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/light,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "mbe" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -26094,18 +26189,19 @@
 /mob/living/carbon/monkey/punpun,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"mpa" = (
-/turf/open/space,
-/area/shipbreak)
-"mpr" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
+"moR" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 8;
+	name = "Gas to Cooling Loop"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"mpa" = (
+/turf/open/space,
+/area/shipbreak)
 "mpu" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
@@ -26116,6 +26212,21 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/crew_quarters/bar)
+"mpV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "mqg" = (
 /obj/machinery/computer/rdconsole/production{
 	dir = 4;
@@ -26662,6 +26773,12 @@
 "mFd" = (
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
+"mFy" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "mFM" = (
 /turf/open/openspace,
 /area/quartermaster/storage)
@@ -26943,6 +27060,16 @@
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
+"mRb" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "mRi" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 8
@@ -27138,18 +27265,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"mWO" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore/lower)
 "mXz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -27486,14 +27601,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"ngE" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ngU" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Showers"
@@ -28125,6 +28232,18 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/storage/primary)
+"nAh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "nAN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -28354,6 +28473,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"nIt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "nIU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -28632,14 +28766,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/secondarydatacore)
-"nSD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "nSZ" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/light{
@@ -28930,14 +29056,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"oby" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore/lower)
 "obC" = (
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower{
 	dir = 5
@@ -28961,6 +29079,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"ocn" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "ode" = (
 /obj/machinery/ai_slipper{
 	uses = 10
@@ -29486,16 +29619,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/supermatter)
-"ovD" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ovG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -29927,6 +30050,10 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"oFY" = (
+/obj/effect/landmark/stationroom/maint/threexfive,
+/turf/template_noop,
+/area/maintenance/starboard/lower)
 "oGi" = (
 /obj/machinery/computer/crew{
 	dir = 4
@@ -30095,15 +30222,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"oLZ" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "oMa" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -30232,6 +30350,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+"oOQ" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore/lower)
 "oPe" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -30302,6 +30434,27 @@
 "oSS" = (
 /turf/open/floor/plating,
 /area/maintenance/aft/lower)
+"oSU" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "oUd" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
@@ -30317,10 +30470,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
-"oUF" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating,
-/area/maintenance/starboard/lower)
 "oVl" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -30676,6 +30825,13 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"phD" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/rnd/production/techfab/department/security,
+/turf/open/floor/plasteel,
+/area/security/main)
 "phT" = (
 /turf/closed/wall,
 /area/maintenance/starboard/lower)
@@ -30691,10 +30847,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"pii" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "piO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -31232,6 +31384,15 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"pAa" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "pBc" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 1
@@ -31273,6 +31434,19 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/storage/primary)
+"pEb" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "pEm" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/siding/wood/corner/thin{
@@ -31331,6 +31505,18 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"pIa" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "pIn" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -31454,6 +31640,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"pMQ" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/light,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/delamination_counter{
+	pixel_y = -32
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "pMS" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -31696,6 +31897,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"pWK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "pXa" = (
 /obj/structure/table,
 /obj/machinery/compsci_reciever,
@@ -31763,10 +31975,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/medical/paramedic)
-"pYH" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "pZb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
@@ -32004,12 +32212,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/engine/engineering)
-"qkw" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "qkx" = (
 /obj/structure/cable{
@@ -32329,6 +32531,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"qwa" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "qwD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -32500,6 +32714,15 @@
 	},
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
+"qCS" = (
+/obj/structure/sign/warning/vacuum/external{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "qDo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -33005,6 +33228,17 @@
 /obj/effect/turf_decal/trimline/chemorange/filled/line/lower,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"qVA" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/lower)
 "qVO" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 1
@@ -33219,16 +33453,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
-"rcu" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
-	dir = 8;
-	filter_type = list("n2")
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "rcZ" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/shaker,
@@ -33289,13 +33513,6 @@
 	},
 /turf/open/floor/carpet,
 /area/medical/psych)
-"rfZ" = (
-/obj/machinery/atmospherics/components/binary/valve/digital/on{
-	dir = 8;
-	name = "Output Release"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "rgk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -33778,6 +33995,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
+"rvd" = (
+/obj/structure/sign/warning/electricshock,
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
 "rvA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -34110,6 +34331,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"rJg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "rJQ" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
@@ -34416,6 +34649,15 @@
 /obj/effect/spawner/lootdrop/tanks,
 /turf/open/floor/plating,
 /area/maintenance/aft/lower)
+"rXC" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "rXF" = (
 /obj/structure/frame/machine,
 /turf/open/floor/circuit/green/telecomms,
@@ -34563,6 +34805,10 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
+"sfc" = (
+/obj/machinery/status_display/ai,
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
 "sfr" = (
 /obj/structure/chair/comfy/black,
 /obj/effect/turf_decal/siding/wood/thin{
@@ -34729,21 +34975,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft/lower)
-"slx" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Atmos to Loop"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "slF" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
@@ -34760,11 +34991,37 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"smb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "smc" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
+"smh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "smH" = (
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
@@ -35032,10 +35289,6 @@
 "sAy" = (
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
-"sAX" = (
-/obj/structure/closet/radiation,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "sBx" = (
 /obj/structure/railing{
 	dir = 1
@@ -35094,6 +35347,29 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"sCU" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "sDa" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/stripes/corner{
@@ -35602,6 +35878,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/engine/atmos)
+"sVP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "sWm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -35846,18 +36137,6 @@
 	},
 /turf/open/floor/plating/asteroid,
 /area/engine/atmos)
-"tcs" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "tcz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -36174,9 +36453,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"tqO" = (
-/turf/open/floor/engine,
-/area/engine/engineering)
 "trm" = (
 /obj/structure/table/reinforced,
 /obj/item/deskbell/preset/atmos{
@@ -36323,6 +36599,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"tvo" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "tvW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -36878,17 +37159,6 @@
 /obj/machinery/chem_master/condimaster,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"tVC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "tWd" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko{
@@ -36896,13 +37166,6 @@
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel,
-/area/engine/engineering)
-"tWk" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 8;
-	name = "Gas to Cooling Loop"
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "tWC" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
@@ -37320,18 +37583,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"una" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 5
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "unu" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
@@ -37344,6 +37595,16 @@
 	},
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/secondarydatacore)
+"unF" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "unH" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -37586,10 +37847,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"uvM" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "uvT" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
@@ -37881,26 +38138,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/secondarydatacore)
-"uGJ" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "uGU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -38278,6 +38515,15 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/closed/wall,
 /area/hallway/secondary/exit)
+"uUM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "uUX" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -38309,6 +38555,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"uWl" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "uXm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -38588,6 +38840,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"veI" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "veO" = (
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 1
@@ -38651,21 +38912,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"vhy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "viC" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
@@ -38904,16 +39150,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"voC" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "voT" = (
 /obj/structure/toilet{
 	pixel_y = 8
@@ -38960,21 +39196,6 @@
 "vps" = (
 /turf/open/floor/glass/reinforced,
 /area/crew_quarters/bar)
-"vpJ" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "vqG" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 4
@@ -39110,18 +39331,6 @@
 	dir = 4
 	},
 /turf/open/floor/catwalk_floor,
-/area/engine/engineering)
-"vuu" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/engine,
 /area/engine/engineering)
 "vvI" = (
 /obj/structure/cable{
@@ -39493,6 +39702,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore/lower)
+"vIb" = (
+/obj/structure/sign/warning/radiation,
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
 "vIJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -39603,6 +39816,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"vNt" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "vND" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -40148,18 +40376,6 @@
 /obj/structure/ethernet_cable,
 /turf/open/floor/circuit/telecomms/server,
 /area/ai_monitored/turret_protected/ai)
-"wiM" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 6
-	},
-/obj/machinery/light,
-/obj/machinery/vending/wardrobe/sec_wardrobe,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/turf/open/floor/plasteel,
-/area/security/main)
 "wjm" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L10"
@@ -40467,18 +40683,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"wAt" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "wAB" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
@@ -40695,6 +40899,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
+"wFv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore/lower)
 "wFE" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/bot,
@@ -40903,13 +41122,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/storage)
-"wMm" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = -32
-	},
-/obj/structure/closet/radiation,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "wMq" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -41197,6 +41409,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"wYV" = (
+/obj/effect/landmark/stationroom/maint/threexthree,
+/turf/template_noop,
+/area/maintenance/port/fore/lower)
 "wZs" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -41708,6 +41924,13 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/hallway/primary/central)
+"xpO" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
+	},
+/obj/machinery/vending/wardrobe/sec_wardrobe,
+/turf/open/floor/plasteel,
+/area/security/main)
 "xpX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/machinery/airalarm{
@@ -41732,6 +41955,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"xqK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/fore/lower)
 "xrg" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -41933,6 +42165,24 @@
 	},
 /turf/open/openspace,
 /area/quartermaster/storage)
+"xwE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "xwG" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -42039,6 +42289,15 @@
 	},
 /turf/open/floor/plating/asteroid,
 /area/asteroid)
+"xAE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "xBw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42174,6 +42433,11 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"xGI" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "xGU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -42669,13 +42933,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"xZZ" = (
-/obj/structure/sign/warning/vacuum/external{
-	pixel_x = 32
-	},
-/obj/structure/closet/radiation,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "yaw" = (
 /obj/structure/stairs/wide_left,
 /obj/structure/railing{
@@ -42785,33 +43042,6 @@
 	dir = 8
 	},
 /area/hallway/primary/starboard)
-"yeY" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
-"yfb" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/fore/lower)
 "yfg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -42909,15 +43139,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"yge" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/engine/engineering)
 "ygA" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42933,6 +43154,13 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+"ygL" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/closet/radiation,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "ygO" = (
 /obj/machinery/rnd/production/techfab/department/armory,
 /obj/machinery/camera/autoname{
@@ -42940,6 +43168,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"yhQ" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "yji" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -55960,12 +56201,12 @@ aXT
 ufx
 ufx
 ufx
+jWU
 ufx
 ufx
 ufx
-ufx
-ufx
-ufx
+jWU
+jWU
 ufx
 ufx
 aXT
@@ -56215,7 +56456,7 @@ ufx
 ufx
 ufx
 ufx
-hqg
+ufx
 hqg
 hqg
 hqg
@@ -56469,12 +56710,12 @@ aXT
 aXT
 aXT
 ufx
-hqg
-hqg
+dOD
+dOD
+wYV
+ufx
 hqg
 upp
-mYK
-mYK
 mYK
 hJV
 mYK
@@ -56726,12 +56967,12 @@ aXT
 aXT
 aXT
 ufx
-hqg
-hqg
+dOD
+dOD
+dOD
+juA
 hqg
 tGX
-hqg
-hqg
 hqg
 ufx
 hqg
@@ -56983,12 +57224,12 @@ aXT
 aXT
 aXT
 ufx
-hqg
-hqg
+dOD
+dOD
+dOD
+ufx
 hqg
 tGX
-hqg
-hqg
 rkk
 rkk
 rkk
@@ -57240,12 +57481,12 @@ aXT
 aXT
 aXT
 ufx
-hqg
-hqg
+ufx
+ufx
+ufx
+ufx
 hqg
 tGX
-hqg
-hqg
 rkk
 pso
 fyo
@@ -57500,9 +57741,9 @@ ufx
 hqg
 hqg
 hqg
+hqg
+hqg
 tGX
-hqg
-hqg
 rkk
 cwI
 gze
@@ -57757,9 +57998,9 @@ hqg
 hqg
 hqg
 hqg
-tGX
-hqg
-hqg
+upp
+mYK
+gXP
 rkk
 tXV
 pXq
@@ -58334,13 +58575,13 @@ eWY
 qHI
 hmd
 dah
-dah
-aJt
-aJt
-aJt
-aJt
-aJt
-aJt
+aQW
+aQW
+aQW
+aQW
+aQW
+aQW
+aQW
 aQW
 mHC
 aQW
@@ -58592,20 +58833,20 @@ pTV
 dsw
 qUH
 aQW
-aQW
-aQW
-aQW
-aQW
-aQW
+olr
+olr
+vsm
+qrC
+aEL
 aQW
 aQW
 fDn
 aQW
 aQW
 aQW
-gwZ
+cKK
 aQW
-gwZ
+cKK
 aQW
 aQW
 aQW
@@ -58851,21 +59092,21 @@ xDC
 aQW
 olr
 olr
-vsm
-qrC
-aEL
+aay
+lky
+ugr
 aQW
-wMm
-yge
-qkw
-tqO
-faI
-tWk
-tqO
-cdv
-tqO
-tqO
-sAX
+lBK
+nAh
+jyv
+jfh
+veI
+moR
+xAE
+dqg
+jyv
+jyv
+evg
 aQW
 jlv
 cIW
@@ -59106,23 +59347,23 @@ eIA
 dif
 vzr
 aQW
-olr
-olr
-aay
-lky
-ugr
+aIc
+aIc
+evj
+mvA
+aKI
 aQW
-bSI
+vNt
 goq
-ovD
+eGB
 eGB
 mTh
 lRH
-tXo
+eey
 lPQ
 tXo
 vyQ
-cfC
+lnt
 aQW
 aQW
 aQW
@@ -59365,11 +59606,11 @@ bgr
 aQW
 aIc
 aIc
-evj
-mvA
+aay
+uHH
 aKI
 aQW
-vuu
+iGK
 dWl
 dRA
 dRA
@@ -59379,7 +59620,7 @@ nFd
 fax
 oJc
 niF
-una
+pEb
 kMF
 lwj
 kEZ
@@ -59620,23 +59861,23 @@ kAn
 hjx
 xXG
 aQW
-aIc
-aIc
-aay
-uHH
-aKI
 aQW
-vuu
+aQW
+tso
+lWP
+aQW
+aQW
+iGK
 tYe
 oDU
 mNs
-dHa
+sfc
 ovA
 ovA
 ovA
-dHa
+sfc
 vGD
-yeY
+unF
 aQW
 hse
 hse
@@ -59879,11 +60120,11 @@ gAT
 aQW
 aQW
 aQW
-tso
-lWP
+tsT
+kKT
+rmp
 aQW
-aQW
-vuu
+iGK
 amg
 whb
 mNs
@@ -59893,7 +60134,7 @@ kLZ
 kLZ
 dHa
 vSc
-rcu
+jBl
 hpL
 tqN
 tqN
@@ -60136,13 +60377,13 @@ nyp
 oJE
 dNw
 aQW
-tsT
-kKT
-rmp
-aQW
-vuu
+afT
+ctY
+ygL
+jON
+iGK
 xtI
-dHa
+vIb
 dHa
 gtC
 fiT
@@ -60154,7 +60395,7 @@ lwk
 mIh
 aay
 aay
-aQW
+xGI
 afl
 aXT
 aXT
@@ -60397,7 +60638,7 @@ lLt
 rNA
 sIY
 xEd
-ngE
+fka
 dhu
 tZq
 oyf
@@ -60405,13 +60646,13 @@ gtz
 iii
 iii
 iii
-dHa
+rvd
 gQx
 emT
 klE
 rXS
 rXS
-auV
+xGI
 afl
 aXT
 aXT
@@ -60654,7 +60895,7 @@ qcY
 qSh
 oGT
 jON
-hTD
+hwt
 msR
 kxr
 lAt
@@ -60911,7 +61152,7 @@ otx
 nba
 jdw
 nZF
-slx
+esh
 iZn
 jPs
 dpN
@@ -60919,13 +61160,13 @@ wPr
 ipd
 ipd
 ipd
-dHa
+eue
 pbi
 rPS
 hDr
 nFf
 nFf
-auV
+xGI
 afl
 aXT
 aXT
@@ -61101,12 +61342,12 @@ jiP
 gcl
 fYX
 kun
-nSD
-dPJ
-nSD
-kJI
-voC
-vpJ
+fYX
+cHn
+fYX
+pWK
+kun
+gXv
 hSA
 hSA
 jUU
@@ -61168,10 +61409,10 @@ jcE
 oLe
 uZS
 aQW
-hTD
-mbb
+gGV
+pMQ
 dHa
-dHa
+eue
 xuU
 tOi
 tOi
@@ -61182,7 +61423,7 @@ lwk
 mIh
 aay
 aay
-aQW
+xGI
 afl
 aXT
 aXT
@@ -61363,7 +61604,7 @@ hsr
 aMI
 jwo
 vNJ
-lhH
+xwE
 dYw
 xbR
 dZO
@@ -61423,9 +61664,9 @@ aQW
 aQW
 uiw
 oLe
-pii
-aQW
-hTD
+afT
+jON
+hwt
 mYN
 wGv
 oay
@@ -61435,7 +61676,7 @@ kLZ
 kLZ
 dHa
 hSO
-iFU
+ccB
 suS
 uLT
 rSD
@@ -61620,7 +61861,7 @@ aSr
 aSr
 aSr
 aSr
-uGJ
+sCU
 aSr
 aSr
 aSr
@@ -61679,20 +61920,20 @@ aJt
 aJt
 aQW
 qje
-cku
+ocn
 nfS
 aQW
-afv
+con
 cBA
 wGv
 oay
-dHa
+sfc
 ovA
 ovA
 ovA
-dHa
+sfc
 gVf
-lwk
+ges
 aQW
 hse
 hse
@@ -61877,10 +62118,10 @@ aXT
 ajD
 ajD
 ddV
-yfb
-tVC
-gnz
-wAt
+oSU
+pIa
+uUM
+sVP
 aSr
 aSr
 aSr
@@ -61939,7 +62180,7 @@ aQW
 aQW
 aQW
 aQW
-hTD
+hwt
 uPK
 fTj
 fTj
@@ -61949,7 +62190,7 @@ ovP
 cUn
 eVq
 upg
-oLZ
+mRb
 kMF
 kwO
 rws
@@ -62137,9 +62378,9 @@ ddV
 msb
 xIL
 xME
-cdb
-bRl
-wAt
+cFY
+xqK
+sVP
 xME
 xME
 xME
@@ -62196,7 +62437,7 @@ aJt
 aJt
 aJt
 aQW
-mpr
+qwa
 dfZ
 vaJ
 vaJ
@@ -62206,7 +62447,7 @@ utT
 vsY
 soI
 vVN
-uvM
+bMp
 aQW
 aQW
 aQW
@@ -62396,7 +62637,7 @@ aYB
 aYB
 aYB
 xME
-hmh
+nIt
 xME
 xME
 xME
@@ -62453,17 +62694,17 @@ aJt
 aJt
 aJt
 aQW
-xZZ
-yge
-tqO
-tqO
+qCS
+rJg
+mFy
+uWl
 wIC
 uXZ
 hfY
-pYH
-tqO
-tqO
-rfZ
+tvo
+mFy
+mFy
+lhC
 aQW
 afl
 afl
@@ -62653,7 +62894,7 @@ aYy
 arx
 aYB
 mFT
-vhy
+smh
 xME
 xME
 xME
@@ -62713,14 +62954,14 @@ aQW
 aQW
 aTN
 aQW
-tqO
-ieF
-ieF
-gBD
-gBD
+cez
+jAc
+jAc
+pAa
+icj
 aQW
 aQW
-lAI
+smb
 aQW
 afl
 aXT
@@ -62910,7 +63151,7 @@ abG
 acx
 aYB
 xME
-hmh
+nIt
 xME
 xME
 xME
@@ -62971,9 +63212,9 @@ aQW
 bog
 aQW
 aQW
-auV
-auV
-auV
+xGI
+xGI
+xGI
 aQW
 aQW
 aXT
@@ -63164,15 +63405,15 @@ azD
 abG
 aAo
 aZF
-aRt
+acx
 aYB
 xME
-hUz
-gnz
-gnz
-gnz
-tcs
-kpp
+auC
+uUM
+uUM
+uUM
+dOe
+mpV
 aVW
 aDz
 ndY
@@ -63415,13 +63656,13 @@ aTc
 aFy
 qnw
 aDx
-abj
-aED
+xpO
+phD
 axM
 aAe
 ajn
 abG
-aDT
+aRt
 aYB
 ddV
 ddV
@@ -63429,7 +63670,7 @@ ddV
 ddV
 ddV
 ddV
-hmh
+nIt
 aVW
 aKg
 aKD
@@ -63672,13 +63913,13 @@ aTc
 aDk
 sCi
 aDx
-aWD
+aoP
 arB
 azn
 azn
-aIw
+gai
 azn
-wiM
+jQY
 aYB
 aJt
 aJt
@@ -63686,7 +63927,7 @@ aJt
 aJt
 aJt
 ddV
-hmh
+nIt
 aVW
 aKc
 aBM
@@ -63943,7 +64184,7 @@ aJt
 aJt
 aJt
 ddV
-fBJ
+bEb
 aVW
 alP
 ahb
@@ -64200,7 +64441,7 @@ aJt
 aJt
 aJt
 ddV
-hmh
+nIt
 aVW
 alr
 alr
@@ -64958,7 +65199,7 @@ aXn
 rrE
 ksB
 aYF
-azd
+yhQ
 ahZ
 aYB
 aJt
@@ -65215,7 +65456,7 @@ aih
 gSw
 aes
 aoP
-aQr
+bHW
 aFA
 aYB
 axh
@@ -65241,7 +65482,7 @@ edr
 phT
 phT
 phT
-hcf
+fck
 edr
 avp
 ata
@@ -65472,7 +65713,7 @@ ajF
 afn
 aes
 aaJ
-azn
+rXC
 aqw
 aYB
 axh
@@ -65729,7 +65970,7 @@ aXQ
 aUc
 aes
 aYB
-aYB
+avY
 aYB
 aYB
 axh
@@ -65742,10 +65983,10 @@ aJt
 aJt
 aJt
 sHt
-mWO
-oby
-oby
-jLM
+wFv
+eCJ
+eCJ
+oOQ
 sHt
 phT
 phT
@@ -66018,7 +66259,7 @@ eMo
 edr
 edr
 edr
-edr
+jXf
 edr
 edr
 edr
@@ -66274,7 +66515,7 @@ edr
 phT
 phT
 phT
-uUy
+qVA
 phT
 phT
 phT
@@ -66529,11 +66770,11 @@ edr
 mPF
 edr
 phT
-fck
-edr
-edr
-edr
-edr
+hgO
+hgO
+hgO
+hgO
+oFY
 phT
 edr
 phT
@@ -66786,12 +67027,12 @@ edr
 mPF
 edr
 phT
-edr
-edr
-jXf
-edr
-edr
-uUy
+hgO
+hgO
+hgO
+hgO
+hgO
+kQI
 edr
 fon
 wZt
@@ -67043,12 +67284,12 @@ edr
 mPF
 edr
 phT
-oUF
-edr
-edr
-edr
-edr
-edr
+hgO
+hgO
+hgO
+hgO
+hgO
+phT
 edr
 phT
 kFW
