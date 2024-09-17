@@ -180,7 +180,7 @@
 
 	else if(istype(W, /obj/item/bodypart/r_leg/robot))
 		var/obj/item/bodypart/r_leg/robot/L = W
-		if(L.use_digitigrade != NOT_DIGITIGRADE)
+		if(L.use_digitigrade)
 			to_chat(user, span_warning("You can only install plantigrade legs on [src]!"))
 			return
 		if(src.r_leg)
@@ -194,7 +194,7 @@
 
 	else if(istype(W, /obj/item/bodypart/l_arm/robot))
 		var/obj/item/bodypart/l_leg/robot/L = W
-		if(L.use_digitigrade != NOT_DIGITIGRADE)
+		if(L.use_digitigrade)
 			to_chat(user, span_warning("You can only install plantigrade legs on [src]!"))
 			return
 		if(l_arm)

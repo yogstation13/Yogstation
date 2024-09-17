@@ -127,6 +127,7 @@
 		/obj/structure/flora/ausbushes/ywflowers = 1,
 		/obj/structure/flora/ausbushes/ppflowers = 1,
 		/obj/structure/flora/ausbushes/fullgrass = 1,
+		/obj/structure/herb/lantern = 1,
 	)
 
 	weighted_openfloor_spawn_list = list(
@@ -149,7 +150,8 @@
 		/obj/structure/flora/ausbushes/lavendergrass = 1,
 		/obj/structure/flora/ausbushes/ywflowers = 1,
 		/obj/structure/flora/ausbushes/ppflowers = 1,
-		/obj/structure/flora/ausbushes/fullgrass = 1
+		/obj/structure/flora/ausbushes/fullgrass = 1,
+		/obj/structure/herb/lantern = 1,
 		)
 
 /turf/open/floor/plating/dirt/jungleland/backrooms //fullbright backrooms? in this economy?

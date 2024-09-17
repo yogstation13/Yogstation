@@ -117,10 +117,10 @@
 	shadow_flags = DARKSPAWN_FIGHTER | DARKSPAWN_SCOUT
 
 /datum/psi_web/noslip/on_gain()
-	ADD_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
+	ADD_TRAIT(shadowhuman, TRAIT_NOSLIPALL, type)
 
 /datum/psi_web/noslip/on_loss()
-	REMOVE_TRAIT(shadowhuman, TRAIT_NO_SLIP_ALL, type)
+	REMOVE_TRAIT(shadowhuman, TRAIT_NOSLIPALL, type)
 
 //reduces spell cooldowns
 /datum/psi_web/fast_cooldown

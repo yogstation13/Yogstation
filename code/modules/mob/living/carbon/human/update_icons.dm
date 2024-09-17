@@ -157,12 +157,10 @@ There are several things that need to be remembered:
 		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		var/obj/item/bodypart/chest/chest = get_bodypart(BODY_ZONE_CHEST)
 		uniform.species_fitted = null	
-		if(uniform.adjusted == ALT_STYLE)
+		if(uniform.adjusted)
 			target_overlay = "[target_overlay]_d"
-		else if(uniform.adjusted == DIGITIGRADE_STYLE) // yogs - digitigrade alt sprites
-			target_overlay = "[target_overlay]_l"
-		else if(uniform.adjusted == DIGIALT_STYLE)
-			target_overlay = "[target_overlay]_d_l" // yogs end
+		if((uniform.mutantrace_variation & DIGITIGRADE_VARIATION) && HAS_TRAIT(src, TRAIT_DIGITIGRADE) && !HAS_TRAIT(src, TRAIT_DIGI_SQUISH)) // yogs - digitigrade alt sprites
+			target_overlay = "[target_overlay]_l"  // yogs end
 		//Checks for GAGS
 		if(uniform.greyscale_config && uniform.greyscale_colors)
 			if("GAGS_sprite" in uniform.sprite_sheets)
@@ -387,14 +385,14 @@ There are several things that need to be remembered:
 		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		shoes.species_fitted = null
 		if(istype(shoes, /obj/item/clothing/shoes))
-			var/obj/item/clothing/shoes/S = shoes
-			if(S.adjusted == DIGITIGRADE_STYLE)
+			var/obj/item/clothing/shoes/real_shoes = shoes
+			if((real_shoes.mutantrace_variation & DIGITIGRADE_VARIATION) && HAS_TRAIT(src, TRAIT_DIGITIGRADE) && !HAS_TRAIT(src, TRAIT_DIGI_SQUISH))
 				target_overlay = "[target_overlay]_l"
-			if("GAGS_sprite" in S.sprite_sheets)
-				var/list/GAGS_species = S.sprite_sheets["GAGS_sprite"]
+			if("GAGS_sprite" in real_shoes.sprite_sheets)
+				var/list/GAGS_species = real_shoes.sprite_sheets["GAGS_sprite"]
 				if((l_leg?.species_id == r_leg?.species_id) && (l_leg.species_id in GAGS_species))
 					target_overlay += "_[l_leg.species_id]"
-					S.species_fitted = l_leg.species_id
+					real_shoes.species_fitted = l_leg.species_id
 		shoes.screen_loc = ui_shoes                    //move the item to the appropriate screen loc
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)            //if the inventory is open
@@ -500,26 +498,26 @@ There are several things that need to be remembered:
 
 	if(istype(wear_suit, /obj/item))
 		wear_suit.screen_loc = ui_oclothing
-		var/obj/item/clothing/suit/S = wear_suit
-		var/worn_suit_icon = RESOLVE_ICON_STATE(S)
-		if(S.adjusted == DIGITIGRADE_STYLE)
+		var/obj/item/clothing/suit/suit = wear_suit
+		var/worn_suit_icon = RESOLVE_ICON_STATE(suit)
+		if((suit.mutantrace_variation & DIGITIGRADE_VARIATION) && HAS_TRAIT(src, TRAIT_DIGITIGRADE) && !HAS_TRAIT(src, TRAIT_DIGI_SQUISH))
 			worn_suit_icon = "[wear_suit.icon_state]_l" // Checks for digitgrade version of a suit and forces the alternate if it does
 		if(client && hud_used && hud_used.hud_shown)
 			if(hud_used.inventory_shown)
 				client.screen += wear_suit
 		var/obj/item/bodypart/chest/chest = get_bodypart(BODY_ZONE_CHEST)
 		var/icon_to_use = DEFAULT_SUIT_FILE
-		S.species_fitted = null
+		suit.species_fitted = null
 		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
 		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		if(l_leg?.species_id == r_leg?.species_id == SPECIES_VOX)//for Vox, it's the Vox legs that make regular sprites not fit
-			if(icon_exists(S.sprite_sheets[l_leg.species_id], S.icon_state))
-				icon_to_use = S.sprite_sheets[l_leg.species_id]
-				S.species_fitted = l_leg.species_id
-		else if(chest?.species_id in S.sprite_sheets)
-			if(icon_exists(S.sprite_sheets[chest.species_id], S.icon_state))
-				icon_to_use = S.sprite_sheets[chest.species_id]
-				S.species_fitted = chest.species_id
+			if(icon_exists(suit.sprite_sheets[l_leg.species_id], suit.icon_state))
+				icon_to_use = suit.sprite_sheets[l_leg.species_id]
+				suit.species_fitted = l_leg.species_id
+		else if(chest?.species_id in suit.sprite_sheets)
+			if(icon_exists(suit.sprite_sheets[chest.species_id], suit.icon_state))
+				icon_to_use = suit.sprite_sheets[chest.species_id]
+				suit.species_fitted = chest.species_id
 		overlays_standing[SUIT_LAYER] = wear_suit.build_worn_icon(default_layer = SUIT_LAYER, default_icon_file = icon_to_use, override_state = worn_suit_icon)
 		var/mutable_appearance/suit_overlay = overlays_standing[SUIT_LAYER]
 		if(OFFSET_SUIT in dna.species.offset_features)
@@ -568,9 +566,7 @@ There are several things that need to be remembered:
 	if(wear_mask)
 		var/target_overlay = RESOLVE_ICON_STATE(wear_mask)
 		if("snout" in dna.species.mutant_bodyparts) //checks for snout and uses lizard mask variant
-			if((wear_mask.mutantrace_variation & DIGITIGRADE_VARIATION) && !wear_mask.mask_adjusted) // i know digitigrade isn't the right word here but still
-				target_overlay = "[target_overlay]_l"
-			else if(wear_mask.mutantrace_adjusted & DIGITIGRADE_VARIATION)
+			if((wear_mask.mutantrace_variation & DIGITIGRADE_VARIATION) && (!wear_mask.mask_adjusted || (wear_mask.mutantrace_adjusted & DIGITIGRADE_VARIATION)))
 				target_overlay = "[target_overlay]_l"
 		update_hud_wear_mask(wear_mask)
 		if(!(head && (head.flags_inv & HIDEMASK)))
@@ -803,10 +799,11 @@ generate/load female uniform sprites matching all previously decided variables
 		else
 			. += "-robotic"
 		if(BP.use_digitigrade)
+			var/squished = HAS_TRAIT(src, TRAIT_DIGI_SQUISH)
 			if("[dna.species]" == SPECIES_POLYSMORPH)
-				. += "-pdigitigrade[BP.use_digitigrade]"
+				. += "-pdigitigrade[squished]"
 			else
-				. += "-digitigrade[BP.use_digitigrade]"
+				. += "-digitigrade[squished]"
 		if(BP.dmg_overlay_type)
 			. += "-[BP.dmg_overlay_type]"
 		if(BP.has_static_sprite_part)
