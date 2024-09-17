@@ -1,3 +1,27 @@
+GLOBAL_LIST_INIT(rarity_to_quality, list(
+	TIER_NORMAL = 0,
+	TIER_UNCOMMON = 2,
+	TIER_RARE = 5,
+	TIER_LEGENDARY = 10,
+	TIER_MYTHICAL = 25
+))
+
+GLOBAL_LIST_INIT(rarity_to_color, list(
+	TIER_NORMAL = "#FFFFFF",
+	TIER_UNCOMMON = "#00ff62",
+	TIER_RARE = "#2600ff",
+	TIER_LEGENDARY = "#ff00ff",
+	TIER_MYTHICAL = "#ffd900"
+))
+
+GLOBAL_LIST_INIT(rarity_weights, list(
+		TIER_NORMAL = 55,
+		TIER_UNCOMMON = 30,
+		TIER_RARE = 10,
+		TIER_LEGENDARY = 4,
+		TIER_MYTHICAL = 1
+	))
+
 /datum/component/fantasy
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
@@ -12,13 +36,17 @@
 
 	var/static/list/affixListing
 
+	var/rarity = TIER_NORMAL
+
 /datum/component/fantasy/Initialize(quality, list/affixes = list(), canFail=FALSE, announce=FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	src.quality = quality || randomQuality()
+	// src.quality = quality || randomQuality()
 	src.canFail = canFail
 	src.announce = announce
+	src.rarity = randomRarity()
+	src.quality = GLOB.rarity_to_quality[src.rarity]
 
 	src.affixes = affixes
 	appliedComponents = list()
@@ -39,21 +67,12 @@
 
 /datum/component/fantasy/InheritComponent(datum/component/fantasy/newComp, original, quality, list/affixes, canFail, announce)
 	unmodify()
-	if(newComp)
-		src.quality += newComp.quality
-		src.canFail = newComp.canFail
-		src.announce = newComp.announce
-	else
-		src.quality += quality
-		src.canFail = canFail || canFail
-		src.announce = announce || announce
+	src.rarity = randomRarity()
+	src.quality = GLOB.rarity_to_quality[src.rarity]
 	modify()
 
-/datum/component/fantasy/proc/randomQuality()
-	var/quality = pick(1;15, 2;14, 2;13, 2;12, 3;11, 3;10, 3;9, 4;8, 4;7, 4;6, 5;5, 5;4, 5;3, 6;2, 6;1, 6;0)
-	if(prob(50))
-		quality = -quality
-	return quality
+/datum/component/fantasy/proc/randomRarity()
+	return pickweight(GLOB.rarity_weights)
 
 /datum/component/fantasy/proc/randomAffixes(force)
 	if(!affixListing)
@@ -100,7 +119,12 @@
 		newName = affix.apply(src, newName)
 
 	if(quality != 0)
-		newName = "[newName] [quality > 0 ? "+" : ""][quality]"
+		newName = "[newName][quality > 0 ? "+" : ""][quality]"
+
+	var/rarity_string = rarity == TIER_NORMAL ? "" : "[rarity] "
+	newName = "[rarity_string][newName]"
+
+	master.color = GLOB.rarity_to_color[rarity]
 
 	if(canFail && prob((quality - 9)*10))
 		var/turf/place = get_turf(parent)
@@ -128,6 +152,7 @@
 	master.bare_wound_bonus -= quality
 
 	master.name = originalName
+	master.color = null
 
 /datum/component/fantasy/proc/announce()
 	var/turf/location = get_turf(parent)
