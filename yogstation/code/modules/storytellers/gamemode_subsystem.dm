@@ -469,7 +469,7 @@ SUBSYSTEM_DEF(gamemode)
 /client/proc/forceEvent()
 	set name = "Trigger Event"
 	set category = "Admin.Events"
-	if(!holder ||!check_rights(R_FUN))
+	if(!holder || !(check_rights(R_FUN) || check_rights(R_DEV))) //remove the R_DEV check before full merging
 		return
 	holder.forceEvent(usr)
 
@@ -479,7 +479,7 @@ SUBSYSTEM_DEF(gamemode)
 /client/proc/forceGamemode()
 	set name = "Open Gamemode Panel"
 	set category = "Admin.Events"
-	if(!holder ||!check_rights(R_FUN))
+	if(!holder || !(check_rights(R_FUN) || check_rights(R_DEV))) //remove the R_DEV check before full merging
 		return
 	holder.forceGamemode(usr)
 
