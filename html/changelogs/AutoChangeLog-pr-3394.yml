@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added the medipen refiller to all in-rotation medbay lobbies"
+  - balance: " Moved the medipen reffiler on voidraptor to the medbay lobby"
