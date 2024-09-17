@@ -5515,7 +5515,6 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/security/office)
 "bDp" = (
-/obj/machinery/medipen_refiller,
 /obj/effect/turf_decal/bot,
 /obj/structure/sign/poster/official/random/directional/south,
 /obj/structure/disposalpipe/segment{
@@ -71928,6 +71927,7 @@
 	name = "medbay camera";
 	network = list("ss13","medbay")
 	},
+/obj/machinery/medipen_refiller,
 /turf/open/floor/iron/white/textured_edge,
 /area/station/medical/medbay/lobby)
 "uam" = (

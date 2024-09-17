@@ -109136,6 +109136,11 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/white,
 /area/station/science/explab)
+"vfq" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/medipen_refiller,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/lobby)
 "vfB" = (
 /obj/structure/lattice,
 /turf/open/openspace/airless,
@@ -224783,7 +224788,7 @@ ksY
 vNX
 oYi
 vNX
-bst
+vfq
 bql
 exf
 frF

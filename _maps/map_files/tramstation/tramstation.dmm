@@ -67840,6 +67840,7 @@
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 4
 	},
+/obj/machinery/medipen_refiller,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "uAC" = (

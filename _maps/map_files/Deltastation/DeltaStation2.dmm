@@ -84291,6 +84291,11 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"ucY" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/machinery/medipen_refiller,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/lobby)
 "udb" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -142421,7 +142426,7 @@ mpk
 wTb
 gkI
 fNm
-dnj
+ucY
 pGo
 ntX
 tVM
