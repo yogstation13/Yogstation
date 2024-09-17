@@ -4,8 +4,8 @@
 	orbit_icon = "broom"
 	department_head = list("Labor Lead")
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "everybody"
 
 	outfit = /datum/outfit/job/vortigaunt_slave

@@ -201,9 +201,10 @@
 
 /obj/item/clothing/neck/anti_magic_collar
 	name = "vortessence restrictor"
-	desc = "A contraption which prevents vortigaunts from using the vortessence."
+	desc = "A contraption which prevents vortigaunts from using the vortessence. Alt clicking with a high level identification card may unlock it..."
 	icon_state = "antimagiccollar"
 	resistance_flags = FIRE_PROOF
+	req_access = list(ACCESS_SEC_BASIC) //what access can unlock a restrictor
 	var/inmate_name = "none"
 
 /obj/item/clothing/neck/anti_magic_collar/Initialize(mapload)
@@ -233,8 +234,12 @@
 	SIGNAL_HANDLER
 	return COMPONENT_MAGIC_BLOCKED
 
+/obj/item/clothing/neck/anti_magic_collar/AltClick(mob/user)
+	if (allowed(user))
+		unlock()
+
 /obj/item/clothing/neck/anti_magic_collar/proc/unlock()
-	audible_message(span_danger("You hear a click, the collar unlocks!"))
+	audible_message(span_danger("You hear a click, the restrictor unlocks, and is now removable!"))
 	REMOVE_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
 
 //////////////

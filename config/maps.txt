@@ -16,6 +16,10 @@ endmap
 # Production-level maps.
 
 map city13
+	disabled
+endmap
+
+map city13_small
 	default
 	voteweight 1
 	votable

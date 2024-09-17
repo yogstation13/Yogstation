@@ -1,0 +1,15 @@
+{
+    "map_name": "City 13 - Plaza District",
+    "map_path": "map_files/city13_small",
+    "map_file": "city13_small.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"traits": [{"Up": true}, {"Down": true}],
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "emergency": "emergency_box"
+    }
+	
+}
