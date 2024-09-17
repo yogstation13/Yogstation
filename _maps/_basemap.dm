@@ -5,7 +5,7 @@
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
 		#include "map_files\debug\runtimestation.dmm"
-		#include "map_files\city13\city13.dmm"
+		#include "map_files\city13_small\city13_small.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif

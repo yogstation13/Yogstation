@@ -588,6 +588,8 @@
 	damage_deflection = 15
 	max_integrity = 600
 	armor = list(MELEE = 50, BULLET = 60, LASER = 40, ENERGY = 50, BOMB = 30, BIO = 100, FIRE = 40, ACID = 100)
+	opensound = 'sound/machines/chainlink_door.ogg'
+	closesound = 'sound/machines/chainlink_door.ogg'
 
 /obj/machinery/door/unpowered/halflife/seethrough/fence/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

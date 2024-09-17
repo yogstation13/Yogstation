@@ -30,7 +30,7 @@ If you want to contribute the first thing you'll need to do is [set up Git](http
 
 We have a [list of guides on the wiki](https://wiki.yogstation.net/wiki/Guides#Development_and_Contribution_Guides) that will help you get started contributing to Yogstation with Git and Dream Maker. For beginners, it is recommended you work on small projects like bug fixes at first. If you need help learning to program in BYOND, check out this [repository of resources](http://www.byond.com/developer/articles/resources).
 
-You can of course, as always, ask for help in #coder-public on the [discord](https://discord.gg/0keg6hQH05Ha8OfO). We're just here to have fun and help out, so please don't expect professional support.
+You can of course, as always, ask for help in #coder-public on the [discord](https://discord.gg/CZUBGb3xAX). We're just here to have fun and help out, so please don't expect professional support.
 
 ## Meet the Team
 

@@ -213,7 +213,7 @@
 /datum/supply_pack/security/armory/manhacks
 	name = "Viscerator Crate"
 	desc = "Contains three activatable viscerators. Requires Armory access to open."
-	cost = 400
+	cost = 350
 	contains = list(/obj/item/grenade/spawnergrenade/manhacks,
 					/obj/item/grenade/spawnergrenade/manhacks,
 					/obj/item/grenade/spawnergrenade/manhacks)
@@ -234,7 +234,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/materials
-	group = "Canisters & Materials"
+	group = "Tools & Materials"
 
 /datum/supply_pack/materials/glass50
 	name = "50 Glass Sheets"
@@ -256,6 +256,16 @@
 	cost = 200
 	contains = list(/obj/item/stack/sheet/mineral/wood/fifty)
 	crate_name = "wood planks crate"
+
+/datum/supply_pack/materials/tools
+	name = "Tool Crate"
+	desc = "Contains a handful of wrenches and crowbars."
+	cost = 100
+	contains = list(/obj/item/crowbar/large,
+					/obj/item/crowbar/large,
+					/obj/item/wrench,
+					/obj/item/wrench)
+	crate_name = "tool crate"
 
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Medical /////////////////////////////////////////
@@ -403,6 +413,28 @@
 					/obj/item/storage/box/halflife/loyaltyration)
 	crate_name = "loyalty-grade ration crate"
 
+/datum/supply_pack/organic/alcohol
+	name = "Approved Ethanol Crate"
+	desc = "A crate of five Combine Approved Ethanol Beverages, rated for citizen use." 
+	cost = 50
+	contains = list(/obj/item/reagent_containers/food/drinks/beer/light,
+					/obj/item/reagent_containers/food/drinks/beer/light,
+					/obj/item/reagent_containers/food/drinks/beer/light,
+					/obj/item/reagent_containers/food/drinks/beer/light,
+					/obj/item/reagent_containers/food/drinks/beer/light)
+	crate_name = "approved ethanol crate"
+
+/datum/supply_pack/organic/fancyalcohol
+	name = "Exotic Alcohol Crate"
+	desc = "A crate of five exotic old world alcoholic beverages. Probably too good for the common citizen to have." 
+	cost = 300
+	contains = list(/obj/item/reagent_containers/food/drinks/beer,
+				/obj/item/reagent_containers/food/drinks/bottle/grappa,
+				/obj/item/reagent_containers/food/drinks/bottle/gin,
+				/obj/item/reagent_containers/food/drinks/bottle/hooch,
+				/obj/item/reagent_containers/food/drinks/bottle/vodka)
+	crate_name = "exotic alcohol crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Miscellaneous ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -426,3 +458,35 @@
 	contains = list(/obj/machinery/water_miner)
 	crate_name = "water harvester crate"
 	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/misc/cleanup
+	name = "Cleanup Suits Crate"
+	desc = "Contains two yellow hazardous cleanup suits which protect against radiation and bites alike."
+	cost = 150
+	contains = list(/obj/item/clothing/head/radiation,
+					/obj/item/clothing/head/radiation,
+					/obj/item/clothing/suit/radiation,
+					/obj/item/clothing/suit/radiation)
+	crate_name = "cleanup suits crate"
+	crate_type = /obj/structure/closet/crate/radiation
+
+/datum/supply_pack/misc/headsets
+	name = "Headset Crate"
+	desc = "Contains four radio headsets that will allow easy communication between people."
+	cost = 100
+	contains = list(/obj/item/radio/headset,
+					/obj/item/radio/headset,
+					/obj/item/radio/headset,
+					/obj/item/radio/headset)
+	crate_name = "headset crate"
+
+/datum/supply_pack/misc/tobacco
+	name = "Tobacco Products Crate"
+	desc = "Contains four packs of cigarettes and a case of cigars. Made with combine approved tobacco-like substances."
+	cost = 100
+	contains = list(/obj/item/storage/fancy/cigarettes,
+					/obj/item/storage/fancy/cigarettes,
+					/obj/item/storage/fancy/cigarettes,
+					/obj/item/storage/fancy/cigarettes,
+					/obj/item/storage/fancy/cigarettes/cigars)
+	crate_name = "headset crate"

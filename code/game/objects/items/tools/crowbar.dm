@@ -49,7 +49,7 @@
 /obj/item/crowbar/large
 	name = "crowbar"
 	desc = "It looks like you could pry things Free with this, man."
-	force = 15
+	force = 18
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3

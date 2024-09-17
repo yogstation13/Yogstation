@@ -6,3 +6,6 @@ As a Resistance member, you do not necessarily need to be friends with the citiz
 As the Divisional Lead, your memory and emotions have been modified. You are the least human person in the city aside from visiting OTA troops, so act like it!
 As the Labor Lead, you are technically only a high ranking citizen yet. You cannot order around civil protection, nor should you be carrying guns around.
 As a Citizen, you should look for work and a way to earn credits so you can afford food and hydration.
+As a Citizen, try operating a business! The Labor Lead only sells items in bulk, so you can turn a profit by selling said items to other people with a markup.
+Headcrab meat sells for money on the cargo Dropship. Hunting them may be lucrative.
+Water extractors are expensive upfront, but present a free source of income.

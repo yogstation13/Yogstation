@@ -10,8 +10,8 @@
 	burnmod = 0.75
 	stunmod = 0.8
 	speedmod = 0.33
-	punchdamagelow = 10
-	punchdamagehigh = 12
+	punchdamagelow = 12
+	punchdamagehigh = 15
 	punchstunthreshold = 17
 	special_step_sounds = list('sound/movement/vort/vort_foot1.ogg', 'sound/movement/vort/vort_foot2.ogg', 'sound/movement/vort/vort_foot3.ogg', 'sound/movement/vort/vort_foot4.ogg' )
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_HEAD)

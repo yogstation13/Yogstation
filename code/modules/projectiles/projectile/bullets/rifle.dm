@@ -3,7 +3,7 @@
 /obj/projectile/bullet/a556
 	name = "5.56mm bullet"
 	damage = 25
-	wound_bonus = -30
+	wound_bonus = -5
 
 /obj/projectile/bullet/a556/ap
 	name = "5.56mm armor-piercing bullet"
@@ -99,5 +99,5 @@
 /obj/projectile/bullet/pulse/ar2
 	name = "pulse round"
 	damage = 25
-	wound_bonus = -30
+	wound_bonus = -5
 	armour_penetration = 20

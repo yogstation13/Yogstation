@@ -3,7 +3,7 @@
 /obj/projectile/bullet/c45
 	name = ".45 ACP bullet"
 	damage = 25
-	wound_bonus = -10
+	wound_bonus = 0
 
 /obj/projectile/bullet/c45/ap
 	name = ".45 armor-piercing bullet"
@@ -33,8 +33,8 @@
 /obj/projectile/bullet/c46x30mm
 	name = "4.6x30mm bullet"
 	damage = 12
-	wound_bonus = -5
-	bare_wound_bonus = 5
+	wound_bonus = 15
+	bare_wound_bonus = 10
 
 /obj/projectile/bullet/c46x30mm/ap
 	name = "4.6x30mm armor-piercing bullet"
