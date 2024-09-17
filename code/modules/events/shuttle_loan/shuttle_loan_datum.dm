@@ -25,28 +25,28 @@
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("Unimplemented get_spawned_items() on [src.type].")
 
-// /datum/shuttle_loan_situation/antidote
-// 	sender = "CentCom Research Initiatives"
-// 	announcement_text = "Your station has been chosen for an epidemiological research project. Send us your cargo shuttle to receive your research samples."
-// 	shuttle_transit_text = "Virus samples incoming."
-// 	logging_desc = "Virus shuttle"
+/datum/shuttle_loan_situation/antidote
+	sender = "CentCom Research Initiatives"
+	announcement_text = "Your station has been chosen for an epidemiological research project. Send us your cargo shuttle to receive your research samples."
+	shuttle_transit_text = "Virus samples incoming."
+	logging_desc = "Virus shuttle"
 
-// /datum/shuttle_loan_situation/antidote/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
-// 	var/obj/effect/mob_spawn/corpse/human/assistant/infected_assistant = pick(list(
-// 		/obj/effect/mob_spawn/corpse/human/assistant/beesease_infection,
-// 		/obj/effect/mob_spawn/corpse/human/assistant/brainrot_infection,
-// 		/obj/effect/mob_spawn/corpse/human/assistant/spanishflu_infection,
-// 	))
-// 	for(var/i in 1 to 10)
-// 		if(prob(15))
-// 			spawn_list.Add(/obj/item/reagent_containers/cup/bottle)
-// 		else if(prob(15))
-// 			spawn_list.Add(/obj/item/reagent_containers/syringe)
-// 		else if(prob(25))
-// 			spawn_list.Add(/obj/item/shard)
-// 		var/turf/assistant_turf = pick_n_take(empty_shuttle_turfs)
-// 		new infected_assistant(assistant_turf)
-// 	spawn_list.Add(/obj/structure/closet/crate)
+/datum/shuttle_loan_situation/antidote/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
+	var/obj/effect/mob_spawn/human/corpse/assistant/infected_assistant = pick(/obj/effect/mob_spawn/human/corpse/assistant/beesease_infection, /obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection, /obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection)
+	var/turf/T
+	for(var/i=0, i<10, i++)
+		if(prob(15))
+			spawn_list.Add(/obj/item/reagent_containers/glass/bottle)
+		else if(prob(15))
+			spawn_list.Add(/obj/item/reagent_containers/syringe)
+		else if(prob(25))
+			spawn_list.Add(/obj/item/shard)
+		T = pick_n_take(empty_shuttle_turfs)
+		new infected_assistant(T)
+	spawn_list.Add(/obj/structure/closet/crate)
+	spawn_list.Add(/obj/item/reagent_containers/glass/bottle/pierrot_throat)
+	spawn_list.Add(/obj/item/reagent_containers/glass/bottle/magnitis)
+
 
 /datum/shuttle_loan_situation/department_resupply
 	sender = "CentCom Supply Department"
@@ -93,40 +93,43 @@
 // 	if(prob(50))
 // 		spawn_list.Add(/mob/living/basic/trooper/syndicate/ranged/infiltrator)
 
-// /datum/shuttle_loan_situation/lots_of_bees
-// 	sender = "CentCom Janitorial Division"
-// 	announcement_text = "One of our freighters carrying a bee shipment has been attacked by eco-terrorists. Can you clean up the mess for us?"
-// 	shuttle_transit_text = "Biohazard cleanup incoming."
-// 	bonus_points = 20000 //Toxin bees can be unbeelievably lethal
-// 	logging_desc = "Shuttle full of bees"
 
-// /datum/shuttle_loan_situation/lots_of_bees/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
-// 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/organic/hydroponics/beekeeping_fullkit]
-// 	pack.generate(pick_n_take(empty_shuttle_turfs))
 
-// 	spawn_list.Add(/obj/effect/mob_spawn/corpse/human/bee_terrorist)
-// 	spawn_list.Add(/obj/effect/mob_spawn/corpse/human/cargo_tech)
-// 	spawn_list.Add(/obj/effect/mob_spawn/corpse/human/cargo_tech)
-// 	spawn_list.Add(/obj/effect/mob_spawn/corpse/human/nanotrasensoldier)
-// 	spawn_list.Add(/obj/item/gun/ballistic/automatic/pistol/no_mag)
-// 	spawn_list.Add(/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag)
-// 	spawn_list.Add(/obj/item/honey_frame)
-// 	spawn_list.Add(/obj/item/honey_frame)
-// 	spawn_list.Add(/obj/item/honey_frame)
-// 	spawn_list.Add(/obj/structure/beebox/unwrenched)
-// 	spawn_list.Add(/obj/item/queen_bee/bought)
-// 	spawn_list.Add(/obj/structure/closet/crate/hydroponics)
+/datum/shuttle_loan_situation/lots_of_bees
+	sender = "CentCom Janitorial Division"
+	announcement_text = "One of our freighters carrying a bee shipment has been attacked by eco-terrorists. Can you clean up the mess for us?"
+	shuttle_transit_text = "Biohazard cleanup incoming."
+	bonus_points = 20000 //Toxin bees can be unbeelievably lethal
+	logging_desc = "Shuttle full of bees"
 
-// 	for(var/i in 1 to 8)
-// 		spawn_list.Add(/mob/living/basic/bee/toxin)
+/datum/shuttle_loan_situation/lots_of_bees/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
+	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/organic/hydroponics/beekeeping_fullkit]
+	pack.generate(pick_n_take(empty_shuttle_turfs))
 
-// 	for(var/i in 1 to 5)
-// 		var/decal = pick(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/insectguts)
-// 		new decal(pick_n_take(empty_shuttle_turfs))
+	spawn_list.Add(/obj/effect/mob_spawn/human/corpse/bee_terrorist)
+	spawn_list.Add(/obj/effect/mob_spawn/human/corpse/cargo_tech)
+	spawn_list.Add(/obj/effect/mob_spawn/human/corpse/cargo_tech)
+	spawn_list.Add(/obj/effect/mob_spawn/human/corpse/nanotrasensoldier)
+	spawn_list.Add(/obj/item/gun/ballistic/automatic/pistol/no_mag)
+	spawn_list.Add(/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag)
+	spawn_list.Add(/obj/item/honey_frame)
+	spawn_list.Add(/obj/item/honey_frame)
+	spawn_list.Add(/obj/item/honey_frame)
+	spawn_list.Add(/obj/structure/beebox/unwrenched)
+	spawn_list.Add(/obj/item/queen_bee/bought)
+	spawn_list.Add(/obj/structure/closet/crate/hydroponics)
 
-// 	for(var/i in 1 to 10)
-// 		var/casing = /obj/item/ammo_casing/spent
-// 		new casing(pick_n_take(empty_shuttle_turfs))
+	for(var/i in 1 to 8)
+		spawn_list.Add(/mob/living/simple_animal/hostile/poison/bees/toxin)
+
+	for(var/i in 1 to 5)
+		var/decal = pick(/obj/effect/decal/cleanable/blood, /obj/effect/decal/cleanable/insectguts)
+		new decal(pick_n_take(empty_shuttle_turfs))
+
+	for(var/i in 1 to 10)
+		var/casing = /obj/item/ammo_casing/spent
+		new casing(pick_n_take(empty_shuttle_turfs))
+		
 
 /datum/shuttle_loan_situation/jc_a_bomb
 	sender = "CentCom Security Division"
@@ -168,46 +171,49 @@
 	for(var/i in 1 to 6)
 		spawn_list.Add(pick(prob(5) ? naughtypizza : nicepizza))
 
-// /datum/shuttle_loan_situation/russian_party
-// 	sender = "CentCom Russian Outreach Program"
-// 	announcement_text = "A group of angry Russians want to have a party. Can you send them your cargo shuttle then make them disappear?"
-// 	shuttle_transit_text = "Partying Russians incoming."
-// 	logging_desc = "Russian party squad"
 
-// /datum/shuttle_loan_situation/russian_party/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
-// 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/service/party]
-// 	pack.generate(pick_n_take(empty_shuttle_turfs))
+/datum/shuttle_loan_situation/russian_party
+	sender = "CentCom Russian Outreach Program"
+	announcement_text = "A group of angry Russians want to have a party. Can you send them your cargo shuttle then make them disappear?"
+	shuttle_transit_text = "Partying Russians incoming."
+	logging_desc = "Russian party squad"
 
-// 	spawn_list.Add(/mob/living/basic/trooper/russian)
-// 	spawn_list.Add(/mob/living/basic/trooper/russian/ranged) //drops a mateba
-// 	spawn_list.Add(/mob/living/basic/bear/russian)
-// 	if(prob(75))
-// 		spawn_list.Add(/mob/living/basic/trooper/russian)
-// 	if(prob(50))
-// 		spawn_list.Add(/mob/living/basic/bear/russian)
+/datum/shuttle_loan_situation/russian_party/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
+	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/service/party]
+	pack.generate(pick_n_take(empty_shuttle_turfs))
 
-// /datum/shuttle_loan_situation/spider_gift
-// 	sender = "CentCom Diplomatic Corps"
-// 	announcement_text = "The Spider Clan has sent us a mysterious gift. Can we ship it to you to see what's inside?"
-// 	shuttle_transit_text = "Spider Clan gift incoming."
-// 	logging_desc = "Shuttle full of spiders"
+	spawn_list.Add(/mob/living/simple_animal/hostile/russian)
+	spawn_list.Add(/mob/living/simple_animal/hostile/russian/ranged) //drops a mateba
+	spawn_list.Add(/mob/living/simple_animal/hostile/bear/russian)
+	if(prob(75))
+		spawn_list.Add(/mob/living/simple_animal/hostile/russian)
+	if(prob(50))
+		spawn_list.Add(/mob/living/simple_animal/hostile/bear/russian)
 
-// /datum/shuttle_loan_situation/spider_gift/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
-// 	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/imports/specialops]
-// 	pack.generate(pick_n_take(empty_shuttle_turfs))
 
-// 	spawn_list.Add(/mob/living/basic/spider/giant)
-// 	spawn_list.Add(/mob/living/basic/spider/giant)
-// 	spawn_list.Add(/mob/living/basic/spider/giant/nurse)
-// 	if(prob(50))
-// 		spawn_list.Add(/mob/living/basic/spider/giant/hunter)
 
-// 	var/turf/victim_turf = pick_n_take(empty_shuttle_turfs)
+/datum/shuttle_loan_situation/spider_gift
+	sender = "CentCom Diplomatic Corps"
+	announcement_text = "The Spider Clan has sent us a mysterious gift. Can we ship it to you to see what's inside?"
+	shuttle_transit_text = "Spider Clan gift incoming."
+	logging_desc = "Shuttle full of spiders"
 
-// 	new /obj/effect/decal/remains/human(victim_turf)
-// 	new /obj/item/clothing/shoes/jackboots/fast(victim_turf)
-// 	new /obj/item/clothing/mask/balaclava(victim_turf)
+/datum/shuttle_loan_situation/spider_gift/spawn_items(list/spawn_list, list/empty_shuttle_turfs)
+	var/datum/supply_pack/pack = SSshuttle.supply_packs[/datum/supply_pack/emergency/specialops]
+	pack.generate(pick_n_take(empty_shuttle_turfs))
 
-// 	for(var/i in 1 to 5)
-// 		var/turf/web_turf = pick_n_take(empty_shuttle_turfs)
-// 		new /obj/structure/spider/stickyweb(web_turf)
+	spawn_list.Add(/mob/living/simple_animal/hostile/poison/giant_spider)
+	spawn_list.Add(/mob/living/simple_animal/hostile/poison/giant_spider)
+	spawn_list.Add(/mob/living/simple_animal/hostile/poison/giant_spider/nurse)
+	if(prob(50))
+		spawn_list.Add(/mob/living/simple_animal/hostile/poison/giant_spider/hunter)
+
+	var/turf/victim_turf = pick_n_take(empty_shuttle_turfs)
+
+	new /obj/effect/decal/remains/human(victim_turf)
+	new /obj/item/clothing/shoes/space_ninja(victim_turf)
+	new /obj/item/clothing/mask/balaclava(victim_turf)
+
+	for(var/i in 1 to 5)
+		victim_turf = pick_n_take(empty_shuttle_turfs)
+		new /obj/structure/spider/stickyweb(victim_turf)
