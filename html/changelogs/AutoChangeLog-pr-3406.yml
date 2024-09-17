@@ -1,4 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - bugfix: "Apid hive exits are now anchored"
