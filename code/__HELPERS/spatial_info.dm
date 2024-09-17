@@ -336,7 +336,7 @@
 		get_open_turf_in_dir(center, EAST),
 		get_open_turf_in_dir(center, WEST)
 		)
-	list_clear_nulls(.)
+	listclearnulls(.)
 
 ///Returns a list with all the adjacent areas by getting the adjacent open turfs
 /proc/get_adjacent_open_areas(atom/center)
@@ -371,7 +371,7 @@
 		get_area(get_ranged_target_turf(center, EAST, 1)),
 		get_area(get_ranged_target_turf(center, WEST, 1))
 		)
-	list_clear_nulls(.)
+	listclearnulls(.)
 
 ///Checks if the mob provided (must_be_alone) is alone in an area
 /proc/alone_in_area(area/the_area, mob/must_be_alone, check_type = /mob/living/carbon)

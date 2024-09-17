@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	set_frequency(sanitize_frequency(frequency, freerange))
 	set_on(on)
 
-	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_SELF)
 
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
