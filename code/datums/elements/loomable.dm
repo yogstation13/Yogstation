@@ -76,6 +76,7 @@
 	if(isstack(source))
 		var/obj/item/stack/stack_we_use = source
 		while(stack_we_use.amount >= required_amount)
+			combine_nearby_stacks(user, stack_we_use) // monkestation edit: automatically merge nearby stacks
 			if(!do_after(user, loom_time, target))
 				break
 
