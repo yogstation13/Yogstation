@@ -202,3 +202,6 @@
 	 * Format: list(<mapname> = list(/atom/movable/screen))
 	 */
 	var/list/screen_maps = list()
+
+	var/last_droning_sound
+	var/sound/droning_sound

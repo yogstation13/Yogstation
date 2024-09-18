@@ -102,14 +102,22 @@
 		return
 	. = combat_mode
 	combat_mode = new_mode
+
+	var/mob/living/L
+	if(isliving(src))
+		L = src
+	var/client/client = L.client
+
 	if(hud_used?.action_intent)
 		hud_used.action_intent.update_appearance()
 	if(silent || !(client?.prefs.read_preference(/datum/preference/toggle/sound_combatmode)))
 		return
 	if(combat_mode)
 		playsound_local(src, 'sound/misc/ui_togglecombat.ogg', 25, FALSE, pressure_affected = FALSE) //Sound from interbay!
+		SSdroning.play_combat_music(L.cmode_music, client)
 	else
 		playsound_local(src, 'sound/misc/ui_toggleoffcombat.ogg', 25, FALSE, pressure_affected = FALSE) //Slightly modified version of the above
+		SSdroning.kill_droning(client)
 
 /mob/living/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	return

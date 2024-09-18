@@ -259,3 +259,4 @@
 
 	var/fake_client = FALSE // Currently only used for examines
 
+	var/cmode_music = 'sound/music/combat/abandonedinplace.ogg'
