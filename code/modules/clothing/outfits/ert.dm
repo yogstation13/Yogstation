@@ -405,3 +405,4 @@
 
 /datum/outfit/ert/overwatch/pre_equip(mob/living/carbon/human/H)
 	H.faction += "combine"
+	H.cmode_music = 'sound/music/combat/guarddown.ogg'

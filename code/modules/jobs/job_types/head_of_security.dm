@@ -15,6 +15,8 @@
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 
+	cmode_music = 'sound/music/combat/apprehensionandevasion.ogg'
+
 	outfit = /datum/outfit/job/hos
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 

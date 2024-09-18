@@ -12,6 +12,8 @@
 	exp_requirements = 0
 	exp_type = EXP_TYPE_CREW
 
+	cmode_music = 'sound/music/combat/apprehensionandevasion.ogg'
+
 	outfit = /datum/outfit/job/officer
 
 	added_access = list(ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_DETECTIVE, ACCESS_BRIG_PHYS)

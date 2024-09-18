@@ -11,3 +11,6 @@
 	belt = /obj/item/storage/belt/civilprotection
 
 	l_pocket = /obj/item/flashlight/seclite
+
+/datum/outfit/rebel/pre_equip(mob/living/carbon/human/H)
+	H.cmode_music = 'sound/music/combat/vortalcombat.ogg'

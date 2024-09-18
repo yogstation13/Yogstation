@@ -996,6 +996,13 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
+"qc" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/alien/weeds,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
 "qh" = (
 /obj/effect/turf_decal/siding/thinplating,
 /obj/effect/turf_decal/siding/thinplating/corner{
@@ -1117,6 +1124,13 @@
 /obj/structure/table/halflife/no_smooth/cable_reel,
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
+"sP" = (
+/obj/structure/chair/halflife/metal/folding{
+	dir = 1
+	},
+/obj/structure/alien/weeds,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
 "sT" = (
 /obj/structure/halflife/trash/glass/basic,
 /turf/open/floor/plating/indoor/woodc,
@@ -1752,6 +1766,11 @@
 	},
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors)
+"CN" = (
+/obj/structure/table/halflife/no_smooth/large/wood/stand,
+/obj/structure/alien/weeds,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
 "CT" = (
 /obj/structure/halflife/trash/wood,
 /turf/open/floor/plating/ground/dirt,
@@ -2163,10 +2182,6 @@
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
-"JL" = (
-/obj/structure/table/halflife/no_smooth/large/wood/stand,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/indoors)
 "JS" = (
 /obj/structure/table/halflife/no_smooth/large/metal{
 	dir = 8
@@ -23754,12 +23769,12 @@ JC
 JC
 JC
 oz
-JL
-oA
+CN
+qc
 JC
-JC
-JC
-JC
+EL
+EL
+zo
 oz
 gk
 gk
@@ -23881,12 +23896,12 @@ JC
 Wg
 JC
 oz
+EL
 JC
+EL
 JC
-JC
-JC
-eW
-JC
+sP
+EL
 oz
 gk
 gk
@@ -24010,10 +24025,10 @@ Ln
 oz
 JC
 JC
+EL
 JC
 JC
-JC
-JC
+EL
 oz
 gk
 gk
@@ -24135,11 +24150,11 @@ lv
 JC
 JC
 oz
-JL
+CN
 JC
 JC
 JC
-JC
+EL
 mW
 oz
 gk
@@ -24262,9 +24277,9 @@ JC
 JC
 Yr
 oz
-JC
-JC
-JC
+EL
+zo
+EL
 eW
 Pp
 JC
@@ -24503,26 +24518,26 @@ JC
 JC
 JC
 oz
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
 gk
 gk
 WW
@@ -24630,26 +24645,26 @@ JC
 JC
 JC
 oz
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
-hG
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
+gk
 gk
 gk
 oz

@@ -96,6 +96,9 @@
 	/// Icons to be displayed in the orbit ui. Source: FontAwesome v5.
 	var/orbit_icon
 
+	/// Some jobs have unique combat mode music, because why not?
+	var/cmode_music
+
 	var/datum/species/forced_species
 		/**
 	 * A list of job-specific areas to enable lights for if this job is present at roundstart, whenever minimal access is not in effect.
@@ -162,6 +165,9 @@
 		for(var/trait in liver_traits)
 			ADD_TRAIT(liver, trait, JOB_TRAIT)
 	spawned.mind.add_employee(/datum/corporation/nanotrasen)
+
+	if(cmode_music)
+		spawned.cmode_music = cmode_music
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
