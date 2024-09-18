@@ -794,16 +794,16 @@
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params)
 	//Called when mob user "attacks" it with object O
-	if(istype(O, /obj/item/bio_cube))
+	if(istype(O, /obj/item/stack/biocube))
 		if(bio_boosted)
 			to_chat(user, span_notice("This tray is already bio-boosted please wait until its no longer bio-boosted to apply it again"))
 			return
-		var/obj/item/bio_cube/attacked_cube = O
+		var/obj/item/stack/biocube/attacked_cube = O
 		bio_boosted = TRUE
-		addtimer(CALLBACK(src, PROC_REF(end_boost)), attacked_cube.total_duration)
-		to_chat(user, span_notice("The [attacked_cube.name] dissolves boosting the growth of plants for [attacked_cube.total_duration * 0.1] seconds."))
+		var/boost_time = attacked_cube.boost_time()
+		addtimer(CALLBACK(src, PROC_REF(end_boost)), boost_time)
+		to_chat(user, span_notice("\The [attacked_cube] dissolves boosting the growth of plants for [DisplayTimeText(boost_time)]."))
 		qdel(attacked_cube)
-
 	if(IS_EDIBLE(O) || is_reagent_container(O))  // Syringe stuff (and other reagent containers now too)
 		var/obj/item/reagent_containers/reagent_source = O
 

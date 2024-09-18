@@ -6,8 +6,10 @@
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/composters
 
-	//current biomatter level
+	/// Current level of biomatter in the composter.
 	var/biomatter = 0
+	/// The amount of biomatter needed to make 1 biocube.
+	var/biocube_cost = 40
 
 /obj/machinery/composters/Initialize(mapload)
 	. = ..()
@@ -62,16 +64,16 @@
 
 		add_fingerprint(user)
 
-		if(do_after(user, 80, target = src))
+		if(do_after(user, 8 SECONDS, target = src))
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
 				user.visible_message(span_danger("[user] stuffs [C] into [src]!"))
 				compost(C, allow_carbons = TRUE)
 
-	if(biomatter < 40)
+	if(biomatter < biocube_cost)
 		to_chat(user, span_notice("Not enough biomatter to produce Bio-Cube"))
 		return
-	new /obj/item/bio_cube(drop_location())
-	biomatter -= 40
+	new /obj/item/stack/biocube(drop_location(), 1)
+	biomatter -= biocube_cost
 	update_desc()
 	update_appearance()
 
@@ -113,7 +115,7 @@
 			if(carbon_target.stat != DEAD)
 				continue
 			yucky = TRUE
-			biomatter_added += 40
+			biomatter_added += biocube_cost
 			INVOKE_ASYNC(carbon_target, TYPE_PROC_REF(/mob/living/carbon, gib))
 		CHECK_TICK
 	if(!biomatter_added)
@@ -153,24 +155,36 @@
 	if(istype(dropped) && Adjacent(src_location, over_location))
 		dropped.compost(src_location.contents)
 
-/obj/item/bio_cube
-	name = "Bio Cube"
-	desc = "A cube made of pure biomatter does wonders on plant trays"
+/obj/item/stack/biocube
+	name = "biocube"
+	desc = "A cube made of pure biomatter, it does wonders on plant trays."
 	icon = 'monkestation/icons/obj/misc.dmi'
 	icon_state = "bio_cube"
-	var/total_duration = 1 MINUTES
+	singular_name = "biocube"
+	max_amount = 20
+	item_flags = parent_type::item_flags | NOBLUDGEON
+	w_class = WEIGHT_CLASS_SMALL
+	full_w_class = WEIGHT_CLASS_SMALL
+	merge_type = /obj/item/stack/biocube
+	/// The base amount of time a single biocube boosts for.
+	var/base_time = 1 MINUTES
 
-/obj/item/bio_cube/update_desc()
+/obj/item/stack/biocube/examine(mob/user)
 	. = ..()
-	desc = "A cube made of pure biomatter, it seems to be denser than normal making it last [DisplayTimeText(total_duration)]. Does wonders on plant trays."
+	. += span_info("It will boost plant growth for <b>[DisplayTimeText(boost_time())]</b>.")
 
+/obj/item/stack/biocube/pre_attack(atom/target, mob/living/user, params)
+	if(SEND_SIGNAL(target, COMSIG_ATTEMPT_BIOBOOST, boost_time()))
+		qdel(src)
+		return TRUE
+	return ..()
 
+/// Returns the amount of time (in deciseconds) the applied bio-boost will last for.
+/obj/item/stack/biocube/proc/boost_time()
+	return round(amount * base_time)
 
-/obj/item/bio_cube/attackby(obj/item/attacking_item, mob/living/user)
-	. = ..()
-	if(istype(attacking_item, /obj/item/bio_cube))
-		var/obj/item/bio_cube/attacking_cube = attacking_item
-		total_duration += attacking_cube.total_duration
-		to_chat(user, span_notice("You smash the two bio cubes together, making a denser bio cube that lasts longer."))
-		update_desc()
-		qdel(attacking_cube)
+/obj/item/stack/biocube/five
+	amount = 5
+
+/obj/item/stack/biocube/twenty
+	amount = 20
