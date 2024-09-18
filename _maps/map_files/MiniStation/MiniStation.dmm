@@ -14219,6 +14219,28 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
+"dos" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/robotics/lab";
+	name = "Robotics Lab APC";
+	pixel_y = -23
+	},
+/obj/structure/cable,
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/glasses/welding,
+/obj/item/multitool{
+	pixel_x = 3
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
 "doA" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 1
@@ -27079,36 +27101,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"mNw" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	icon_state = "left";
-	name = "Robotics Desk"
-	},
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/item/pen,
-/obj/item/deskbell/preset/robotics{
-	pixel_x = 9;
-	pixel_y = 8
-	},
-/obj/item/storage/pencil_holder/crew{
-	pixel_x = 8
-	},
-/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/science/robotics/lab)
 "mNJ" = (
 /obj/machinery/rnd/production/circuit_imprinter/department/science{
 	pixel_x = -2;
@@ -28413,6 +28405,40 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"nBd" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/eastright{
+	base_state = "left";
+	icon_state = "left";
+	name = "Robotics Desk"
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/item/pen,
+/obj/item/deskbell/preset/robotics{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/item/storage/pencil_holder/crew{
+	pixel_x = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/any/science/robotics{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "robotics";
+	name = "robotics lab shutters"
+	},
+/turf/open/floor/plating,
+/area/science/robotics/lab)
 "nBh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -37324,29 +37350,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"tRw" = (
-/obj/machinery/power/apc{
-	areastring = "/area/science/robotics/lab";
-	name = "Robotics Lab APC";
-	pixel_y = -23
-	},
-/obj/structure/cable,
-/obj/structure/rack,
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/clothing/head/welding{
-	pixel_x = -3;
-	pixel_y = 5
-	},
-/obj/item/clothing/glasses/welding,
-/obj/item/multitool{
-	pixel_x = 3
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "tSl" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/ethernet_cable{
@@ -69413,7 +69416,7 @@ fqY
 gXw
 aOC
 doc
-mNw
+nBd
 doc
 fsx
 fsx
@@ -70700,7 +70703,7 @@ pJB
 fVu
 kOj
 jhN
-tRw
+dos
 fsx
 xRr
 fZr
