@@ -234,6 +234,21 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mods)
 
+	//yogs edit (stolen from monkestation)
+	///Play a sound to indicate we just spoke
+	if(client && !HAS_TRAIT(src, TRAIT_SIGN_LANG))
+		var/ending = copytext_char(message, -1)
+		var/sound/speak_sound
+		if(SPAN_HELIUM in spans)
+			speak_sound = sound('sound/effects/mousesqueek.ogg')
+		else if(ending == "?")
+			speak_sound = voice_type2sound[voice_type]["?"]
+		else if(ending == "!")
+			speak_sound = voice_type2sound[voice_type]["!"]
+		else
+			speak_sound = voice_type2sound[voice_type][voice_type]
+		playsound(src, speak_sound, 300, 1, SHORT_RANGE_SOUND_EXTRARANGE-2, falloff_exponent = 1, pressure_affected = FALSE, ignore_walls = FALSE, use_reverb = FALSE)
+	//yogs change end
 	
 	return on_say_success(message,message_range,succumbed, spans, language, message_mods)//Yogs
 
