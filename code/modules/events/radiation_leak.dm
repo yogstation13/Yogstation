@@ -142,7 +142,7 @@
 	gross_smoke.chemholder.add_reagent(/datum/reagent/toxin/polonium, 10) // Polonium (it causes radiation)
 	gross_smoke.chemholder.add_reagent(/datum/reagent/toxin/mutagen, 10) // Mutagen (it causes mutations. Also it's green... Primarily because it's green.)
 	gross_smoke.attach(below_where)
-	gross_smoke.set_up(2, holder = where, location = below_where, silent = TRUE)
+	gross_smoke.set_up(2, null, where, below_where, silent = TRUE)
 	gross_smoke.start()
 	playsound(below_where, 'sound/effects/smoke.ogg', 50, vary = TRUE)
 
