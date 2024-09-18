@@ -265,6 +265,7 @@
 	for(var/i in 1 to antag_count)
 		if(!length(candidates))
 			message_admins("A roleset event got fewer antags then its antag_count and may not function correctly.")
+			log_storyteller("A roleset event got fewer antags then its antag_count and may not function correctly.")
 			break
 
 		var/mob/candidate = pick_n_take(candidates)

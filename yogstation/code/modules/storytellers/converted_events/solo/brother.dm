@@ -37,6 +37,7 @@
 	name = "Blood Brothers"
 	roundstart = TRUE
 	earliest_start = 0 SECONDS
+	min_players = 15 //need more people because this always spawns another antag
 	extra_spawned_events = list(
 		/datum/round_event_control/antagonist/solo/traitor/roundstart = 12,
 		/datum/round_event_control/antagonist/solo/bloodsucker/roundstart = 4,
