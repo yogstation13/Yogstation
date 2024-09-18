@@ -240,12 +240,16 @@
 
 	while(length(weighted_candidates) && length(candidates) < antag_count) //we pick_n_take from weighted_candidates so this should be fine
 		var/client/picked_client = pick_n_take_weighted(weighted_candidates)
+
+		if(!picked_client || QDELETED(picked_client) || !istype(picked_client)) //sanity check
+			continue
+
 		var/mob/picked_mob = picked_client.mob
 		
 		if(!picked_mob || QDELETED(picked_mob) || !istype(picked_mob)) //if the mob has somehow died or disappeared while we were prompting a previous player
 			continue
 
-		log_storyteller("[prompted_picking ? "Prompted" : "Picked"] antag event mob: [picked_mob], antag: [antag_flag], current special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
+		log_storyteller("[prompted_picking ? "Prompted" : "Picked"] antag event mob: [picked_mob.name], antag: [antag_flag], current special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 		if(prompted_picking)
 			candidates |= pollCandidates(
 				Question = "Would you like to be a [cast_control.name]?",
