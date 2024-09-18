@@ -638,10 +638,6 @@
 "lg" = (
 /turf/closed/indestructible/rock,
 /area/halflife/indoors/sewer)
-"lh" = (
-/mob/living/simple_animal/hostile/halflife/headcrab/armored,
-/turf/open/floor/plating/indoor/metal/grate,
-/area/halflife/indoors)
 "ll" = (
 /obj/structure/halflife/trash/bricks,
 /turf/open/floor/plating/indoor/metal/grate,
@@ -755,6 +751,10 @@
 /obj/item/defibrillator/loaded,
 /turf/open/floor/plating/indoor/metal/plate,
 /area/halflife/indoors)
+"nX" = (
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
 "od" = (
 /mob/living/simple_animal/hostile/halflife/zombie/fast,
 /turf/open/halflife/water/sewer/medium,
@@ -763,10 +763,6 @@
 /obj/effect/spawner/lootdrop/halflife/loot/ammo,
 /turf/open/halflife/water/sewer/shallow,
 /area/halflife/indoors/sewer)
-"oi" = (
-/mob/living/simple_animal/hostile/halflife/headcrab/armored,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/indoors)
 "on" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/ground/dirt,
@@ -2278,11 +2274,6 @@
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors)
-"Ob" = (
-/obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/halflife/headcrab/armored,
-/turf/open/floor/plating/indoor/concrete/bricks,
-/area/halflife/indoors)
 "Oj" = (
 /obj/item/paper_bin,
 /obj/item/pen,
@@ -2393,6 +2384,11 @@
 "Qu" = (
 /obj/machinery/oven,
 /turf/open/floor/plating/indoor/showroom,
+/area/halflife/indoors)
+"Qx" = (
+/obj/structure/alien/weeds,
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors)
 "QD" = (
 /obj/machinery/door/unpowered/halflife/metal{
@@ -2546,6 +2542,10 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
+"TQ" = (
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/metal/grate,
+/area/halflife/indoors)
 "TR" = (
 /obj/machinery/light{
 	dir = 1
@@ -24803,16 +24803,16 @@ Ec
 (34,1,2) = {"
 Ec
 Gm
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
-yT
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
 yT
 yT
 yT
@@ -24908,7 +24908,7 @@ ai
 JC
 mW
 JC
-oi
+nX
 JC
 JC
 ai
@@ -24929,18 +24929,18 @@ Ec
 "}
 (35,1,2) = {"
 Ec
+Gm
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
+pb
 yT
-yT
-lF
-lF
-lF
-Ty
-lF
-lF
-lF
-yT
-fI
-fI
 yT
 lF
 Ty
@@ -25056,18 +25056,18 @@ Ec
 "}
 (36,1,2) = {"
 Ec
+Gm
+pb
+pb
 yT
-lF
-lF
-lF
-lF
-lF
-lF
-lF
-lF
 yT
-fI
-fI
+yT
+yT
+yT
+yT
+yT
+yT
+yT
 yT
 lF
 lF
@@ -25184,11 +25184,11 @@ Ec
 (37,1,2) = {"
 Ec
 yT
+yT
+yT
+yT
 lF
-lF
-lF
-lF
-lF
+Ty
 lF
 lF
 lF
@@ -25531,7 +25531,7 @@ pb
 oz
 eU
 eU
-Ob
+Qx
 TC
 eU
 zE
@@ -31139,7 +31139,7 @@ ut
 ji
 iY
 iY
-lh
+TQ
 iY
 eU
 ut
@@ -34496,7 +34496,7 @@ pb
 ut
 JC
 JC
-oi
+nX
 JC
 ai
 ut
@@ -35893,7 +35893,7 @@ eY
 ut
 JC
 JC
-oi
+nX
 JC
 JC
 ai
