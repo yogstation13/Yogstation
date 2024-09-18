@@ -242,6 +242,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/candidate_candidates = list() //lol
 
 	for(var/mob/player as anything in GLOB.player_list)
+		if(player?.client?.prefs?.read_preference(/datum/preference/toggle/quiet_mode)) //yogs: make sure to give them quiet mode, don't need to do anything else as the gamemode itself will handle that
+			player.mind.quiet_round = TRUE
 		if(ready_newplayers && isnewplayer(player))
 			var/mob/dead/new_player/new_player = player
 			if(new_player.ready == PLAYER_READY_TO_PLAY && new_player.mind && new_player.check_preferences())
