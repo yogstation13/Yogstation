@@ -64,7 +64,6 @@
 	name = "Labor Lead"
 	jobtype = /datum/job/hop
 
-	id_type = /obj/item/card/id/silver
 
 
 	ears = /obj/item/radio/headset/heads/hop

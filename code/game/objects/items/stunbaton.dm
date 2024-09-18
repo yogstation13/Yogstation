@@ -20,7 +20,7 @@
 	///how long a clown stuns themself for, or someone is stunned for if they are hit to >90 stamina damage
 	var/stunforce = 10 SECONDS
 	///how much stamina damage we deal per hit, this is combatted by energy armor
-	var/stamina_damage = 30
+	var/stamina_damage = 25
 	///are we turned on
 	var/status = FALSE
 	///the cell used by the baton
@@ -230,8 +230,7 @@
 
 	if(current_stamina_damage >= 90)
 		if(!L.IsParalyzed())
-			to_chat(L, span_warning("You muscles seize, making you collapse!"))
-		else
+			to_chat(L, span_warning("Your muscles seize, making you collapse!"))
 			L.Paralyze(stunforce)
 		L.adjust_jitter(20 SECONDS)
 		L.apply_effect(EFFECT_STUTTER, stunforce)

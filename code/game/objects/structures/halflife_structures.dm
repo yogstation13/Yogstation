@@ -5,7 +5,7 @@
 	desc = "sign street is the other way."
 	icon = 'icons/obj/halflife/street_signs.dmi'
 	anchored = TRUE
-	density = TRUE
+	density = FALSE
 	layer = ABOVE_MOB_LAYER
 	max_integrity = 500
 	projectile_passchance = 95

@@ -66,8 +66,6 @@
 	name = "District Administrator"
 	jobtype = /datum/job/captain
 
-	id_type = /obj/item/card/id/gold
-
 	ears = /obj/item/radio/headset/heads/captain/alt
 	uniform =  /obj/item/clothing/under/administrator
 	shoes = /obj/item/clothing/shoes/sneakers/brown

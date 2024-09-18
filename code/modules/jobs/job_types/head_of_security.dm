@@ -56,7 +56,6 @@
 	name = "Divisional Lead"
 	jobtype = /datum/job/hos
 
-	id_type = /obj/item/card/id/silver
 
 	ears = /obj/item/radio/headset/civilprotection/divisional
 	uniform = /obj/item/clothing/under/combine/civilprotection/divisionallead

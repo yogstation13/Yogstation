@@ -56,11 +56,11 @@
 #define DETSCAN_BLOCK "DETSCAN_BLOCK"
 
 /// Wanted statuses
-#define WANTED_ARREST "Arrest"
+#define WANTED_ANTICITIZEN "Anticitizen"
 #define WANTED_DISCHARGED "Discharged"
 #define WANTED_NONE "None"
 #define WANTED_SEARCH "Search"
-#define WANTED_PAROLE "Parole"
+#define WANTED_LOYALIST "Loyalist"
 #define WANTED_PRISONER "Incarcerated"
 #define WANTED_SUSPECT "Suspected"
 
@@ -69,8 +69,7 @@
 	WANTED_NONE, \
 	WANTED_SUSPECT, \
 	WANTED_SEARCH, \
-	WANTED_ARREST, \
+	WANTED_ANTICITIZEN, \
 	WANTED_PRISONER, \
-	WANTED_PAROLE, \
-	WANTED_DISCHARGED, \
+	WANTED_LOYALIST, \
 )

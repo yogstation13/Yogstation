@@ -332,7 +332,7 @@
 
 /obj/item/card/id
 	name = "identification card"
-	desc = "A card used to provide ID and determine access across the station."
+	desc = "A card used to provide ID and determine access across the city."
 	icon_state = "id"
 	item_state = "card-id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
@@ -882,7 +882,6 @@ update_label("John Doe", "Clowny")
 /obj/item/card/id/ert
 	name = "\improper CentCom ID"
 	desc = "An ERT ID card."
-	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
 	originalassignment = "Emergency Response Team Commander"

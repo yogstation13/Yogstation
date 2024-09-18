@@ -98,7 +98,7 @@
 					crime_status = E.fields["criminal"]
 
 			switch(crime_status)
-				if(WANTED_ARREST)
+				if(WANTED_ANTICITIZEN)
 					record["recordColor"] = "#990000"
 					record["recordIcon"] = "fingerprint"
 				if(WANTED_SEARCH)
@@ -110,10 +110,7 @@
 				if(WANTED_SUSPECT)
 					record["recordColor"] = "#CD6500"
 					record["recordIcon"] = "exclamation"
-				if(WANTED_PAROLE)
-					record["recordColor"] = "#046713"
-					record["recordIcon"] = "unlink"
-				if(WANTED_DISCHARGED)
+				if(WANTED_LOYALIST)
 					record["recordColor"] = "#006699"
 					record["recordIcon"] = "dove"
 				if(WANTED_NONE)
@@ -181,7 +178,7 @@
 			record["criminal_status"] = active_security_record.fields["criminal"]
 
 			switch(active_security_record.fields["criminal"])
-				if(WANTED_ARREST)
+				if(WANTED_ANTICITIZEN)
 					record["recordColor"] = "#990000"
 				if(WANTED_SEARCH)
 					record["recordColor"] = "#5C4949"
@@ -189,9 +186,7 @@
 					record["recordColor"] = "#181818"
 				if(WANTED_SUSPECT)
 					record["recordColor"] = "#CD6500"
-				if(WANTED_PAROLE)
-					record["recordColor"] = "#046713"
-				if(WANTED_DISCHARGED)
+				if(WANTED_LOYALIST)
 					record["recordColor"] = "#006699"
 				if(WANTED_NONE)
 					record["recordColor"] = "#740349"
@@ -714,25 +709,23 @@
 
 				if("criminal_status")
 					if(active_security_record)
-						var/crime = tgui_input_list(usr, "Select a status", "Criminal Status Selection", list("None", "Arrest", "Search", "Incarcerated", "Suspected", "Paroled", "Discharged"))
+						var/crime = tgui_input_list(usr, "Select a status", "Criminal Status Selection", list("None", "Anti-citizen", "Search", "Incarcerated", "Suspected", "Loyalist"))
 						if(!crime)
 							crime = "none"
 						var/old_field = active_security_record.fields["criminal"]
 						switch(crime)
 							if("None")
 								active_security_record.fields["criminal"] = WANTED_NONE
-							if("Arrest")
-								active_security_record.fields["criminal"] = WANTED_ARREST
+							if("Anti-citizen")
+								active_security_record.fields["criminal"] = WANTED_ANTICITIZEN
 							if("Search")
 								active_security_record.fields["criminal"] = WANTED_SEARCH
 							if("Incarcerated")
 								active_security_record.fields["criminal"] = WANTED_PRISONER
 							if("Suspected")
 								active_security_record.fields["criminal"] = WANTED_SUSPECT
-							if("Paroled")
-								active_security_record.fields["criminal"] = WANTED_PAROLE
-							if("Discharged")
-								active_security_record.fields["criminal"] = WANTED_DISCHARGED
+							if("Loyalist")
+								active_security_record.fields["criminal"] = WANTED_LOYALIST
 						investigate_log("[active_general_record.fields["name"]] has been set from [old_field] to [active_security_record.fields["criminal"]] by [key_name(usr)].", INVESTIGATE_RECORDS)
 						active_security_record.fields["comments"] |= GLOB.data_core.createCommentEntry("Criminal status set to [active_security_record.fields["criminal"]].", logged_in)
 						for(var/mob/living/carbon/human/H in GLOB.carbon_list)
@@ -849,7 +842,7 @@
 				if(3)
 					R.fields["age"] = rand(5, 85)
 				if(4)
-					R.fields["criminal"] = pick(WANTED_NONE, WANTED_ARREST, WANTED_SEARCH, WANTED_PRISONER, WANTED_SUSPECT, WANTED_PAROLE, WANTED_DISCHARGED)
+					R.fields["criminal"] = pick(WANTED_NONE, WANTED_ANTICITIZEN, WANTED_SEARCH, WANTED_PRISONER, WANTED_SUSPECT, WANTED_LOYALIST)
 				if(5)
 					R.fields["p_stat"] = pick("*Unconscious*", "Active", "Physically Unfit")
 				if(6)
