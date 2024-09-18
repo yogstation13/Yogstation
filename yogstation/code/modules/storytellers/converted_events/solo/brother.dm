@@ -48,6 +48,7 @@
 	name = "Sleeper Agents (Blood Brothers)"
 	prompted_picking = TRUE
 	required_enemies = 2
+	min_players = 15 //need more people because this after something else has already spawned
 
 /datum/round_event/antagonist/solo/brother/add_datum_to_mind(datum/mind/antag_mind)
 	var/datum/team/brother_team/team = new
