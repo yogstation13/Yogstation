@@ -371,12 +371,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/space)
-"hD" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "hJ" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 1
@@ -1071,12 +1065,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/space)
-"up" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "uz" = (
 /obj/docking_port/stationary{
 	dwidth = 3;
@@ -1361,12 +1349,6 @@
 "An" = (
 /obj/structure/transit_tube/curved/flipped,
 /turf/open/floor/plating/dirt/jungleland/deep_sand,
-/area/space)
-"Ao" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/space)
 "Au" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -2665,10 +2647,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
-/area/space)
-"YO" = (
-/obj/structure/railing,
 /turf/open/floor/plasteel/dark,
 /area/space)
 "YS" = (
@@ -221356,7 +221334,7 @@ Vf
 eu
 sx
 Dz
-hD
+tt
 QB
 rl
 eu
@@ -221612,9 +221590,9 @@ Vf
 Vf
 CY
 hJ
-YO
-Ns
-up
+tt
+tt
+tt
 cQ
 dZ
 Vf
@@ -221869,9 +221847,9 @@ Vf
 yw
 hJ
 tt
-YO
-Ns
-up
+tt
+tt
+tt
 tt
 cQ
 Hf
@@ -223925,9 +223903,9 @@ Vf
 tu
 uX
 tt
-YO
-Ns
-up
+tt
+tt
+tt
 tt
 xd
 Gl
@@ -224182,9 +224160,9 @@ Vf
 Vf
 Gr
 uX
-YO
-Ns
-up
+tt
+tt
+tt
 xd
 vB
 Vf
@@ -224440,7 +224418,7 @@ Vf
 eu
 UR
 dl
-Ao
+tt
 TA
 xh
 eu
@@ -225207,10 +225185,10 @@ II
 II
 Ns
 Ns
+Ns
 eu
 eu
 eu
-tt
 tt
 eu
 eu
@@ -225464,10 +225442,10 @@ II
 II
 Ns
 Ns
+Ns
 eu
 Nz
 eu
-ji
 ji
 eu
 PM
@@ -225721,8 +225699,8 @@ II
 II
 II
 II
+II
 FA
-tt
 tt
 tt
 tt
@@ -225978,8 +225956,8 @@ II
 II
 II
 II
+II
 tJ
-tt
 tt
 tt
 tt
@@ -226235,8 +226213,8 @@ II
 II
 II
 II
+II
 FA
-tt
 tt
 tt
 tt
@@ -226492,10 +226470,10 @@ II
 II
 Ns
 Ns
+Ns
 eu
 PM
 eu
-tJ
 tJ
 eu
 Nz
@@ -226749,10 +226727,10 @@ II
 II
 Ns
 Ns
+Ns
 eu
 eu
 eu
-tt
 tt
 eu
 eu
