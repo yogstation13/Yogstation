@@ -4,6 +4,13 @@
 	weight = 15
 	max_occurrences = 4
 	earliest_start = 10 MINUTES
+	category = EVENT_CATEGORY_ENGINEERING
+	description = "The supermatter will increase in power and heat by a random amount, and announce it."
+	min_wizard_trigger_potency = 4
+	max_wizard_trigger_potency = 7
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL)
+	event_group = /datum/event_group/error
 	admin_setup = list(
 		/datum/event_admin_setup/input_number/surge_spiciness,
 	)

@@ -4,6 +4,13 @@
 	weight = 5
 	max_occurrences = 1
 	min_players = 25
+	category = EVENT_CATEGORY_ENTITIES
+	description = "Spawns spider eggs, ready to hatch."
+	min_wizard_trigger_potency = 5
+	max_wizard_trigger_potency = 7
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_EXTERNAL, TAG_ALIEN)
+	checks_antag_cap = TRUE
 
 /datum/round_event/spider_infestation
 	announce_when	= 400
