@@ -639,9 +639,8 @@
 /turf/closed/indestructible/rock,
 /area/halflife/indoors/sewer)
 "lh" = (
-/obj/structure/alien/weeds,
 /mob/living/simple_animal/hostile/halflife/headcrab/armored,
-/turf/open/floor/plating/indoor/concrete/bricks,
+/turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors)
 "ll" = (
 /obj/structure/halflife/trash/bricks,
@@ -764,6 +763,10 @@
 /obj/effect/spawner/lootdrop/halflife/loot/ammo,
 /turf/open/halflife/water/sewer/shallow,
 /area/halflife/indoors/sewer)
+"oi" = (
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
 "on" = (
 /obj/structure/flora/grass/jungle/b,
 /turf/open/floor/plating/ground/dirt,
@@ -1934,10 +1937,6 @@
 /obj/machinery/door/unpowered/halflife/metal,
 /turf/open/floor/plating/indoor/metal/plate,
 /area/halflife/indoors)
-"Hx" = (
-/mob/living/simple_animal/hostile/halflife/headcrab/armored,
-/turf/open/floor/plating/indoor/metal/grate,
-/area/halflife/indoors)
 "HH" = (
 /turf/open/halflife/water/sewer/medium,
 /area/halflife/indoors/sewer)
@@ -2279,6 +2278,11 @@
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors)
+"Ob" = (
+/obj/structure/alien/weeds,
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors)
 "Oj" = (
 /obj/item/paper_bin,
 /obj/item/pen,
@@ -2422,10 +2426,6 @@
 /mob/living/simple_animal/hostile/halflife/zombie/fast,
 /turf/open/halflife/water/sewer/medium,
 /area/halflife/outdoors/sewage_dump)
-"Rf" = (
-/mob/living/simple_animal/hostile/halflife/headcrab/armored,
-/turf/open/floor/plating/indoor/woodc,
-/area/halflife/indoors)
 "Rg" = (
 /obj/structure/bed/halflife/bedframe/wood,
 /obj/structure/bed/halflife/mattress/stained,
@@ -24908,7 +24908,7 @@ ai
 JC
 mW
 JC
-Rf
+oi
 JC
 JC
 ai
@@ -25531,7 +25531,7 @@ pb
 oz
 eU
 eU
-lh
+Ob
 TC
 eU
 zE
@@ -31139,7 +31139,7 @@ ut
 ji
 iY
 iY
-Hx
+lh
 iY
 eU
 ut
@@ -34496,7 +34496,7 @@ pb
 ut
 JC
 JC
-Rf
+oi
 JC
 ai
 ut
@@ -35893,7 +35893,7 @@ eY
 ut
 JC
 JC
-Rf
+oi
 JC
 JC
 ai
