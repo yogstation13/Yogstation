@@ -26,9 +26,9 @@
 	desc = "Called a 'Bouncer' by Combine teams, these are light explosive grenades without much kick, that do not do much environmental damage."
 	icon_state = "smokewhite"
 
-/obj/item/grenade/syndieminibomb/concussion/prime()
+/obj/item/grenade/syndieminibomb/bouncer/prime()
 	update_mob()
-	explosion(src.loc,0,1,4,flame_range = 2)
+	explosion(src.loc,0,2,3,flame_range = 1)
 	qdel(src)
 
 /obj/item/grenade/syndieminibomb/concussion/frag

@@ -2,6 +2,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 
 /mob/living/proc/gib(no_brain, no_organs, no_bodyparts, no_items)
 	var/prev_lying = lying
+	
 	if(stat != DEAD)
 		death(TRUE)
 
@@ -100,6 +101,8 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 
 	if (client)
 		client.move_delay = initial(client.move_delay)
+		SSdroning.kill_droning(client)
+
 
 	for(var/s in ownedSoullinks)
 		var/datum/soullink/S = s

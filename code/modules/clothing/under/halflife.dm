@@ -1,5 +1,6 @@
 /obj/item/clothing/under/combine
 	armor = list(MELEE = 20, BULLET = 20, LASER = 20,ENERGY = 20, BOMB = 20, BIO = 20, RAD = 20, FIRE = 30, ACID = 30, WOUND = 5)
+	max_integrity = 250
 	strip_delay = 50
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
@@ -34,6 +35,7 @@
 	icon_state = "overwatch"
 	item_state = "syndicate-black"
 	has_sensor = LOCKED_SENSORS
+	max_integrity = 400
 	armor = list(MELEE = 25, BULLET = 25, LASER = 25,ENERGY = 25, BOMB = 25, BIO = 30, RAD = 30, FIRE = 30, ACID = 30, WOUND = 10)
 
 /obj/item/clothing/under/combine/overwatch/Initialize(mapload)

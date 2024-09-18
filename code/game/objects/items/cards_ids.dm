@@ -956,6 +956,12 @@ update_label("John Doe", "Clowny")
 	access = get_all_accesses()
 	. = ..()
 
+/obj/item/card/id/ert/overwatch
+	name = "\improper OTA ID"
+	desc = "An Overwatch Transhuman Arm soldier ID card."
+	assignment = "OTA Unit"
+	originalassignment = "OTA Unit"
+
 /obj/item/card/id/ert/clown
 	registered_name = "Clown"
 	assignment = "Clown ERT"

@@ -391,7 +391,7 @@
 
 	glasses = /obj/item/clothing/glasses/hud/security/night/combine
 	mask = /obj/item/clothing/mask/gas/civilprotection/overwatch
-	id = /obj/item/card/id/ert
+	id = /obj/item/card/id/ert/overwatch
 	uniform = /obj/item/clothing/under/combine/overwatch
 	suit = /obj/item/clothing/suit/armor/overwatch
 	suit_store = /obj/item/gun/ballistic/automatic/ar2
@@ -406,3 +406,9 @@
 /datum/outfit/ert/overwatch/pre_equip(mob/living/carbon/human/H)
 	H.faction += "combine"
 	H.cmode_music = 'sound/music/combat/guarddown.ogg'
+	H.skin_tone = "#e3cfbf" 
+	H.facial_hair_style = "Shaved"
+	H.hair_style = "Bald"
+	H.eye_color = "#b9b9b9" 
+	H.update_body()
+	H.update_hair()
