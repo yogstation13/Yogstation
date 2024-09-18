@@ -2,9 +2,13 @@
 	name = "Carp Migration"
 	typepath = /datum/round_event/carp_migration
 	weight = 15
-	min_players = 2
+	min_players = 10
 	earliest_start = 10 MINUTES
-	max_occurrences = 6
+	max_occurrences = 2
+	category = EVENT_CATEGORY_ENTITIES
+	description = "Summons a school of space carp."
+	min_wizard_trigger_potency = 0
+	max_wizard_trigger_potency = 3
 	
 /datum/round_event_control/carp_migration/New()
 	. = ..()

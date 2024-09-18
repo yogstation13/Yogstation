@@ -6,6 +6,10 @@
 	typepath = /datum/round_event/ion_storm
 	weight = 15
 	min_players = 2
+	category = EVENT_CATEGORY_AI
+	description = "Gives the AI a new, randomized law."
+	min_wizard_trigger_potency = 2
+	max_wizard_trigger_potency = 7
 
 /datum/round_event/ion_storm
 	/// Chance a new ion law will be added in addition to other ion effects.

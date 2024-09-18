@@ -2,9 +2,13 @@
 	name = "Communications Blackout"
 	typepath = /datum/round_event/communications_blackout
 	weight = 30
+	category = EVENT_CATEGORY_ENGINEERING
+	description = "Heavily emps all telecommunication machines, blocking all communication for a while."
+	min_wizard_trigger_potency = 0
+	max_wizard_trigger_potency = 3
 
 /datum/round_event/communications_blackout
-	announce_when	= 1
+	announce_when = 1
 
 /datum/round_event/communications_blackout/announce(fake)
 	var/alert = pick(	"Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you*%fj00)`5vc-BZZT", \

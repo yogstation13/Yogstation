@@ -49,21 +49,3 @@
 /datum/round_event/space_dust/major_dust/tick()
 	if(ISMULTIPLE(activeFor, 3))
 		spawn_meteors(5, GLOB.meteors_dust)
-
-
-
-/datum/round_event_control/sandstorm
-	name = "Sandstorm"
-	typepath = /datum/round_event/sandstorm
-	weight = 1
-	max_occurrences = 1
-	earliest_start = 0 MINUTES
-
-/datum/round_event/sandstorm
-	start_when = 1
-	end_when = 150 // ~5 min
-	announce_when = 0
-	fakeable = FALSE
-
-/datum/round_event/sandstorm/tick()
-	spawn_meteors(10, GLOB.meteorsC)

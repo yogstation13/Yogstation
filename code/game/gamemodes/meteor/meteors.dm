@@ -3,19 +3,45 @@ GLOBAL_VAR_INIT(meteor_wave_delay, 625) //minimum wait between waves in tenths o
 //set to at least 100 unless you want evarr ruining every round
 
 //Meteors probability of spawning during a given wave
-GLOBAL_LIST_INIT(meteors_normal, list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3, \
-						  /obj/effect/meteor/flaming=1, /obj/effect/meteor/irradiated=3, /obj/effect/meteor/guardian=0.01)) //for normal meteor event
+GLOBAL_LIST_INIT(meteors_normal, list(
+	/obj/effect/meteor/dust=3, 
+	/obj/effect/meteor/medium=8, 
+	/obj/effect/meteor/big=3,
+	/obj/effect/meteor/flaming=1, 
+	/obj/effect/meteor/irradiated=3, 
+	/obj/effect/meteor/guardian=0.01
+	)) //for normal meteor event
 
-GLOBAL_LIST_INIT(meteors_threatening, list(/obj/effect/meteor/medium=4, /obj/effect/meteor/big=8, \
-						  /obj/effect/meteor/flaming=3, /obj/effect/meteor/irradiated=3, /obj/effect/meteor/guardian=1)) //for threatening meteor event
+GLOBAL_LIST_INIT(meteors_threatening, list(
+	/obj/effect/meteor/medium=4, 
+	/obj/effect/meteor/big=8,
+	/obj/effect/meteor/flaming=3, 
+	/obj/effect/meteor/irradiated=3, 
+	/obj/effect/meteor/guardian=1
+	)) //for threatening meteor event
 
-GLOBAL_LIST_INIT(meteors_catastrophic, list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=75, \
-						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/guardian=2, /obj/effect/meteor/tunguska = 1)) //for catastrophic meteor event
+GLOBAL_LIST_INIT(meteors_catastrophic, list(
+	/obj/effect/meteor/medium=5, 
+	/obj/effect/meteor/big=75,
+	/obj/effect/meteor/flaming=10, 
+	/obj/effect/meteor/irradiated=10, 
+	/obj/effect/meteor/guardian=2, 
+	/obj/effect/meteor/tunguska = 1
+	)) //for catastrophic meteor event
 
-GLOBAL_LIST_INIT(meteorsB, list(/obj/effect/meteor/meaty=5, /obj/effect/meteor/meaty/xeno=1)) //for meaty ore event
+GLOBAL_LIST_INIT(meateors, list(
+	/obj/effect/meteor/meaty=5, 
+	/obj/effect/meteor/meaty/xeno=1
+	)) //for meaty ore event
 
-GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
+GLOBAL_LIST_INIT(meteors_dust, list(
+	/obj/effect/meteor/dust = 1
+	)) //for space dust event
 
+GLOBAL_LIST_INIT(meteors_sandstorm, list(
+	/obj/effect/meteor/sand=45, 
+	/obj/effect/meteor/dust=5
+	)) //for sandstorm event
 
 ///////////////////////////////
 //Meteor spawning global procs
@@ -204,6 +230,8 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		. = ..()
 
 /obj/effect/meteor/proc/make_debris()
+	if(!length(meteordrop))
+		return
 	for(var/throws = dropamt, throws > 0, throws--)
 		var/thing_to_spawn = pick(meteordrop)
 		new thing_to_spawn(get_turf(src))
@@ -241,6 +269,16 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	hitpwr = 3
 	meteorsound = 'sound/weapons/gunshot_smg.ogg'
 	meteordrop = list(/obj/item/stack/ore/glass)
+	threat = 1
+
+/obj/effect/meteor/sand
+	name = "space sand"
+	icon_state = "dust"
+	pass_flags = PASSTABLE | PASSGRILLE
+	hits = 2
+	hitpwr = 1
+	meteorsound = 'sound/items/dodgeball.ogg'
+	meteordrop = list() //nothing
 	threat = 1
 
 //Medium-sized
