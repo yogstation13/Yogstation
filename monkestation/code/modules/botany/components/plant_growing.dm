@@ -45,7 +45,7 @@
 		managed_seeds["[i]"] = null
 
 	///we create reagents using max_reagents, then make it visible and an open container
-	movable_parent.create_reagents(max_reagents, (OPENCONTAINER | AMOUNT_VISIBLE))
+	movable_parent.create_reagents(max_reagents, (REFILLABLE | DRAINABLE)) // We don't use OPENCONTAINER, as there's no need for it to be transparent, we have our own examine info handler
 
 	RegisterSignals(parent, list(COMSIG_TRY_PLANT_SEED, COMSIG_ATOM_ATTACKBY), PROC_REF(try_plant_seed))
 	RegisterSignal(parent, COMSIG_TRY_POLLINATE, PROC_REF(try_pollinate))
