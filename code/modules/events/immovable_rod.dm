@@ -18,6 +18,9 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
 	admin_setup = list(/datum/event_admin_setup/set_location/immovable_rod)
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_EXTERNAL, TAG_MAGICAL)
+	event_group = /datum/event_group/meteors
 
 /// Admins can pick a spot the rod will aim for
 /datum/event_admin_setup/set_location/immovable_rod

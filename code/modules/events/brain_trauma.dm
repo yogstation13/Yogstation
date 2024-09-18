@@ -2,6 +2,12 @@
 	name = "Spontaneous Brain Trauma"
 	typepath = /datum/round_event/brain_trauma
 	weight = 25
+	category = EVENT_CATEGORY_HEALTH
+	description = "A crewmember gains a random trauma."
+	min_wizard_trigger_potency = 2
+	max_wizard_trigger_potency = 6
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_TARGETED, TAG_MAGICAL) //im putting magical on this because I think this can give the magic brain traumas
 
 /datum/round_event/brain_trauma
 	fakeable = FALSE

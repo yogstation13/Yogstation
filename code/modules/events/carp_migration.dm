@@ -9,6 +9,9 @@
 	description = "Summons a school of space carp."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_SPACE, TAG_EXTERNAL, TAG_ALIEN)
+	event_group = /datum/event_group/guests
 	
 /datum/round_event_control/carp_migration/New()
 	. = ..()

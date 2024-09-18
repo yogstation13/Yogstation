@@ -5,6 +5,9 @@
 	min_players = 5
 	weight = 15
 	alert_observers = 0
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_SPOOKY)
+	event_group = /datum/event_group/error
 
 /datum/round_event/electrical_storm
 	var/lightsoutAmount	= 1

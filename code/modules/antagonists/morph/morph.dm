@@ -231,6 +231,13 @@
 	max_occurrences = 1
 	min_players = 25
 	earliest_start = 30 MINUTES
+	category = EVENT_CATEGORY_ENTITIES
+	description = "Spawns a hungry shapeshifting blobby creature."
+	min_wizard_trigger_potency = 4
+	max_wizard_trigger_potency = 7
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_EXTERNAL, TAG_ALIEN)
+	checks_antag_cap = TRUE
 
 /datum/round_event/ghost_role/morph
 	minimum_required = 1

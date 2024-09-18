@@ -2,7 +2,14 @@
 	name = "Grey Tide"
 	typepath = /datum/round_event/grey_tide
 	max_occurrences = 2
-	min_players = 5
+	min_players = 10
+	category = EVENT_CATEGORY_ENGINEERING
+	description = "Bolts open all doors in one or more departments."
+	min_wizard_trigger_potency = 0
+	max_wizard_trigger_potency = 7
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_SPOOKY)
+	event_group = /datum/event_group/error
 
 /datum/round_event/grey_tide
 	announce_when = 50

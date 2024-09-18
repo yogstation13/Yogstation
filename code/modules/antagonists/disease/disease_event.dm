@@ -1,10 +1,16 @@
-
 /datum/round_event_control/sentient_disease
 	name = "Spawn Sentient Disease"
 	typepath = /datum/round_event/ghost_role/sentient_disease
 	weight = 7
 	max_occurrences = 1
 	min_players = 5
+	category = EVENT_CATEGORY_HEALTH
+	description = "Spawns a sentient disease, who wants to infect as many people as possible."
+	min_wizard_trigger_potency = 4
+	max_wizard_trigger_potency = 7
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_EXTERNAL, TAG_ALIEN)
+	checks_antag_cap = TRUE
 
 
 /datum/round_event/ghost_role/sentient_disease

@@ -3,8 +3,14 @@
 	typepath = /datum/round_event/brand_intelligence
 	weight = 5
 
+	category = EVENT_CATEGORY_AI
+	min_wizard_trigger_potency = 2
+	max_wizard_trigger_potency = 6
 	min_players = 15
 	max_occurrences = 1
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL)
+	event_group = /datum/event_group/bsod
 
 /datum/round_event/brand_intelligence
 	announce_when	= 21

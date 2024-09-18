@@ -4,6 +4,11 @@
 	weight = 12
 	max_occurrences = 1
 	min_players = 25
+	category = EVENT_CATEGORY_INVASION
+	description = "One or more abductor teams spawns, and they plan to experiment on the crew."
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_TARGETED, TAG_SPOOKY, TAG_EXTERNAL, TAG_ALIEN)
+	checks_antag_cap = TRUE
 
 /datum/round_event/ghost_role/abductor
 	minimum_required = 2

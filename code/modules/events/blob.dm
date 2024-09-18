@@ -4,7 +4,11 @@
 	weight = 8
 	max_occurrences = 1
 	min_players = 30
-	dynamic_should_hijack = TRUE
+	category = EVENT_CATEGORY_ENTITIES
+	description = "Spawns a new blob overmind."
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_EXTERNAL, TAG_ALIEN)
+	checks_antag_cap = TRUE
 	
 /datum/round_event/ghost_role/blob
 	announce_when	= -1

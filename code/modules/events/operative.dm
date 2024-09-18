@@ -4,7 +4,9 @@
 	weight = 0 //Admin only
 	max_occurrences = 1
 	min_players = 25
-	dynamic_should_hijack = TRUE
+	category = EVENT_CATEGORY_INVASION
+	description = "A single nuclear operative assaults the station."
+	track = EVENT_TRACK_MAJOR //this is a safe guard and does not trigger normally(technically it can but not really) so no tags
 
 /datum/round_event/ghost_role/operative
 	minimum_required = 1

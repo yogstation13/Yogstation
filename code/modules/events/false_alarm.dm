@@ -6,6 +6,9 @@
 	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "Fakes an event announcement."
 	admin_setup = list(/datum/event_admin_setup/listed_options/false_alarm)
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
+	event_group = /datum/event_group/error
 
 /datum/event_admin_setup/listed_options/false_alarm
 	normal_run_option = "Random Fake Event"

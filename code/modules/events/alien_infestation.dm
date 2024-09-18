@@ -2,10 +2,10 @@
 	name = "Alien Infestation"
 	typepath = /datum/round_event/ghost_role/alien_infestation
 	weight = 5
-
 	min_players = 30
-
-	dynamic_should_hijack = TRUE
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_EXTERNAL, TAG_ALIEN)
+	checks_antag_cap = TRUE
 
 /datum/round_event_control/alien_infestation/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()

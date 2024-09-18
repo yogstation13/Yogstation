@@ -4,6 +4,8 @@
 	max_occurrences = 1
 	min_players = 20
 	earliest_start = 30 MINUTES //deadchat sink, lets not even consider it early on.
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_EXTERNAL)
 
 /datum/round_event/ghost_role/fugitives
 	minimum_required = 1

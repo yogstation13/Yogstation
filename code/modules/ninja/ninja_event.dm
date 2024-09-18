@@ -15,7 +15,9 @@ Contents:
 	max_occurrences = 1
 	earliest_start = 40 MINUTES
 	min_players = 15
-	dynamic_should_hijack = TRUE
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_EXTERNAL)
+	checks_antag_cap = TRUE
 
 /datum/round_event/ghost_role/ninja
 	var/success_spawn = 0
