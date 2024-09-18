@@ -470,6 +470,15 @@
 	crate_name = "cleanup suits crate"
 	crate_type = /obj/structure/closet/crate/radiation
 
+/datum/supply_pack/misc/cleanupspray
+	name = "Cleanup Sprayers Crate"
+	desc = "Contains two cleanup solution sprayers, able to quickly get rid of Xenian growths."
+	cost = 200
+	contains = list(/obj/item/watertank/cleanup,
+					/obj/item/watertank/cleanup)
+	crate_name = "cleanup sprayers crate"
+	crate_type = /obj/structure/closet/crate/radiation
+
 /datum/supply_pack/misc/headsets
 	name = "Headset Crate"
 	desc = "Contains four radio headsets that will allow easy communication between people."

@@ -37,10 +37,12 @@
 	harvest_message_high = "You acquire a number of stems from these mushrooms."
 	regrowth_time_low = 3000
 	regrowth_time_high = 6000
+	max_integrity = 200
 
 /obj/structure/flora/xen
 	name = "xen flora base type"
 	icon = 'icons/obj/halflife/xenflora.dmi'
+	max_integrity = 200
 
 /obj/structure/flora/xen/leafy
 	name = "leafy xen plant"

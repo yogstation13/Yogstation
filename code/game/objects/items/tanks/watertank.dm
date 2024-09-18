@@ -7,7 +7,7 @@
 	item_state = "waterbackpack"
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	slowdown = 1
+	slowdown = 0.25
 	actions_types = list(/datum/action/item_action/toggle_mister)
 	max_integrity = 200
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 30)
@@ -166,6 +166,37 @@
 	return new /obj/item/reagent_containers/spray/mister/janitor(src)
 
 /obj/item/reagent_containers/spray/mister/janitor/attack_self(mob/user)
+	amount_per_transfer_from_this = (amount_per_transfer_from_this == 10 ? 5 : 10)
+	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "fix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
+
+
+//CWU cleanup tank
+/obj/item/watertank/cleanup
+	name = "backpack cleaner tank"
+	desc = "A cleaner tank that goes on your back, equipped with a nozzle to spray down and remove xenian infestations."
+	item_state = "waterbackpackatmos"
+	icon_state = "waterbackpackatmos"
+	custom_price = 100
+
+/obj/item/watertank/cleanup/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent(/datum/reagent/toxin/cleanupsolution, 500)
+
+/obj/item/reagent_containers/spray/mister/cleanup
+	name = "cleanup spray nozzle"
+	desc = "A cleanup spray nozzle attached to a back mounted tank. Spray on Xenian growths to get rid of them."
+	icon = 'icons/obj/hydroponics/equipment.dmi'
+	icon_state = "misteratmos"
+	item_state = "misteratmos"
+	lefthand_file = 'icons/mob/inhands/equipment/mister_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/mister_righthand.dmi'
+	amount_per_transfer_from_this = 5
+	possible_transfer_amounts = list()
+
+/obj/item/watertank/cleanup/make_noz()
+	return new /obj/item/reagent_containers/spray/mister/cleanup(src)
+
+/obj/item/reagent_containers/spray/mister/cleanup/attack_self(mob/user)
 	amount_per_transfer_from_this = (amount_per_transfer_from_this == 10 ? 5 : 10)
 	to_chat(user, span_notice("You [amount_per_transfer_from_this == 10 ? "remove" : "fix"] the nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
