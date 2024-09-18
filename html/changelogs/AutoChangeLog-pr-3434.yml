@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - qol: "Looms will now \"refill\" your stack while you're spinning if you have more stacks adjacent to you on the floor."

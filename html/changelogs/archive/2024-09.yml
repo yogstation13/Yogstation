@@ -437,3 +437,13 @@
   - bugfix: Apid hive exits are now anchored
   SirNightKnight:
   - qol: Utility jumpsuits can now be unzipped.
+2024-09-18:
+  Absolucy:
+  - qol: Looms will now "refill" your stack while you're spinning if you have more
+      stacks adjacent to you on the floor.
+  MrBagHead:
+  - qol: The Xenobiology/Science Bag can now hold slime crossbreed extracts, allowing
+      for easier management of all slime extracts.
+  Wisemonster:
+  - rscadd: Added the medipen refiller to all in-rotation medbay lobbies
+  - balance: ' Moved the medipen reffiler on voidraptor to the medbay lobby'
