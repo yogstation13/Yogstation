@@ -351,6 +351,8 @@
 				var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop))
 				//Remove scoop from contents
 				cone_scoop.forceMove(loc)
+				//Increase maximum volume to make room for scoop's chems
+				cone.reagents.maximum_volume += 15
 				//Add scoop's reagents to cone
 				cone_scoop.reagents.trans_to(cone, cone_scoop.reagents.total_volume, transfered_by = user)
 				//Change cone's foodtype to scoop's
@@ -531,6 +533,8 @@
 			//Make variables for scoop and cone for readability
 			var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = src
 			var/obj/item/reagent_containers/food/snacks/cone_scoop = A
+			//Increase maximum volume to make room for scoop's chems
+			cone.reagents.maximum_volume += 15
 			//Add scoop's reagents to cone
 			cone_scoop.reagents.trans_to(cone, cone_scoop.reagents.total_volume, transfered_by = user)
 			//Change cone's foodtype to scoop's
