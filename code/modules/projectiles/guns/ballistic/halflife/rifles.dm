@@ -47,6 +47,7 @@
 	desc = "A handcrafted crossbow that fires heated rods of rebar."
 	icon = 'icons/obj/guns/halflife/projectile.dmi'
 	fire_sound = "sound/weapons/halflife/crossbowfire.ogg"
+	draw_sound = 'sound/weapons/halflife/crossbowbolt_load.ogg'
 	icon_state = "rebarxbow"
 	item_state = "rebarxbow"
 	vary_fire_sound = FALSE

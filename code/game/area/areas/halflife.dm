@@ -25,6 +25,11 @@
 	name = "\improper Sewage Dump"
 	ambient_buzz = 'sound/ambience/toxic_ambience.ogg'
 
+/area/halflife/outdoors/alley
+	name = "\improper Alley Ways"
+	ambient_buzz = 'sound/ambience/tone_alley.ogg'
+
+
 /area/halflife/indoors
 	name = "\improper Indoors"
 	icon_state = "away"

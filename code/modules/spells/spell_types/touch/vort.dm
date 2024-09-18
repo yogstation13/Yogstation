@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/touch/vort_heal
 	name = "Mend"
-	desc = "Use the vortessence and ready your hand to be able to heal someone.."
+	desc = "Use the vortessence and ready your hand to be able to heal someone other than yourself."
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "fleshmend"
 

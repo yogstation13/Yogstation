@@ -37,7 +37,7 @@
 
 	to_chat(owner, "<span class='[bold_telepathy_span]'>You transmit to [cast_on]:</span> [formatted_message]")
 	if(!cast_on.can_block_magic(antimagic_flags, charge_cost = 0)) //hear no evil
-		to_chat(cast_on, "<span class='[bold_telepathy_span]'>You hear something behind you talking...</span> [formatted_message]")
+		to_chat(cast_on, "<span class='[bold_telepathy_span]'>You feel your restrictor blocking something...</span> [formatted_message]")
 
 	for(var/mob/dead/ghost as anything in GLOB.dead_mob_list)
 		if(!isobserver(ghost))
@@ -49,3 +49,6 @@
 		var/to_mob_name = span_name("[cast_on]")
 
 		to_chat(ghost, "[from_link] [from_mob_name] [formatted_message] [to_link] [to_mob_name]")
+
+/datum/action/cooldown/spell/list_target/telepathy/vort
+	desc = "Use the vortessence to telepathically transmit a message to the target."

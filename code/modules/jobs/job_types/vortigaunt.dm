@@ -29,7 +29,8 @@
 	neck = /obj/item/clothing/neck/anti_magic_collar
 	ears = /obj/item/radio/headset //so they can hear orders given to them
 	id_type = null
-
+	uniform = null
+	shoes = null
 
 /datum/job/janitor/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()

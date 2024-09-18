@@ -135,7 +135,7 @@
 /obj/structure/flora/tree/jungle
 	name = "tree"
 	icon_state = "tree"
-	desc = "It's seriously hampering your view of the jungle."
+	desc = "It's seriously hampering your view of the city."
 	icon = 'icons/obj/flora/jungletrees.dmi'
 	pixel_x = -48
 	pixel_y = -20
@@ -402,8 +402,8 @@
 //Jungle grass
 
 /obj/structure/flora/grass/jungle
-	name = "jungle grass"
-	desc = "Thick alien flora."
+	name = "grass"
+	desc = "Thick grass."
 	icon = 'icons/obj/flora/jungleflora.dmi'
 	icon_state = "grassa"
 

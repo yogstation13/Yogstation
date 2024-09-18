@@ -753,7 +753,7 @@
 				/obj/item/flashlight/seclite,
 				/obj/item/kitchen/knife/makeshift,
 				/obj/item/lighter/greyscale,
-				/obj/item/stack/tape = 1,
+				/obj/item/stack/tape,
 				/obj/item/stack/cable_coil/yellow,
 				/obj/item/stack/sheet/cloth,
 				/obj/item/reagent_containers/medspray/sterilizine,
@@ -768,9 +768,9 @@
 
 	loot = list(
 				/obj/item/reagent_containers/food/drinks/soda_cans/breenwater = 2,
-				/obj/item/storage/box/halflife/ration = 2,
+				/obj/item/storage/box/halflife/ration = 3,
 				/obj/item/storage/fancy/cigarettes/cigars,
-				/obj/item/storage/fancy/cigarettes,
+				/obj/item/storage/fancy/cigarettes = 2,
 				/obj/item/reagent_containers/food/snacks/chips,
 				/obj/item/reagent_containers/food/drinks/beer,
 				/obj/item/reagent_containers/food/drinks/bottle/gin,
@@ -790,7 +790,7 @@
 				/obj/item/storage/box/lethalshot,
 				/obj/item/ammo_box/magazine/usp9mm = 2,
 				/obj/item/ammo_box/a357,
-				/obj/item/ammo_casing/reusable/arrow/rebar = 3,
+				/obj/item/ammo_casing/reusable/arrow/rebar = 2,
 				/obj/item/ammo_box/magazine/m4a1,
 				/obj/item/ammo_box/magazine/m45
 				)
@@ -803,11 +803,11 @@
 				/obj/item/crowbar/large,
 				/obj/item/gun/ballistic/automatic/pistol/usp = 4,
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
-				/obj/item/clothing/suit/armor/civilprotection = 4,
+				/obj/item/clothing/suit/armor/civilprotection = 3,
 				/obj/item/radio/off/halflife,
 				/obj/item/gun/ballistic/shotgun/spas12,
 				/obj/item/gun/ballistic/revolver/coltpython,
-				/obj/item/gun/ballistic/bow/crossbow/rebar,
+				/obj/item/gun/ballistic/bow/crossbow/rebar = 2,
 				/obj/item/gun/ballistic/automatic/pistol/m1911,
 				/obj/item/gun/ballistic/automatic/m4a1,
 				/obj/item/clothing/suit/armor/kevlar

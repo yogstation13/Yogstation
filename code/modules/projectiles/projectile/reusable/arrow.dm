@@ -133,7 +133,7 @@
 	name = "rebar"
 	desc = "A piece of rebar. Maybe this can be fired at someone..."
 	icon_state = "rebar"
-	damage = 50
+	damage = 60
 	embed_chance = 0.5
 	armour_penetration = 40
 

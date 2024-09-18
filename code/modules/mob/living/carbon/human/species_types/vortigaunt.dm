@@ -13,6 +13,7 @@
 	punchdamagelow = 12
 	punchdamagehigh = 15
 	punchstunthreshold = 17
+	screamsound = 'sound/voice/vortigaunt/vort_scream.ogg'
 	special_step_sounds = list('sound/movement/vort/vort_foot1.ogg', 'sound/movement/vort/vort_foot2.ogg', 'sound/movement/vort/vort_foot3.ogg', 'sound/movement/vort/vort_foot4.ogg' )
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE, ITEM_SLOT_HEAD)
 	species_traits = list(NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYESPRITES,NOFLASH)
@@ -20,8 +21,10 @@
 							TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_NODISMEMBER,
 							TRAIT_NOCRITDAMAGE, TRAIT_GENELESS, TRAIT_NOSOFTCRIT, TRAIT_HARDLY_WOUNDED)
 	mutanteyes = /obj/item/organ/eyes/alien
+	liked_food = MEAT | RAW 
 	var/datum/action/cooldown/spell/conjure_item/infinite_guns/vort_blast/galunga
 	var/datum/action/cooldown/spell/touch/vort_heal/vortheal
+	var/datum/action/cooldown/spell/list_target/telepathy/vort/vorttelepathy
 
 /datum/species/vortigaunt/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
@@ -35,6 +38,7 @@
 	..()
 	galunga.Remove(C)
 	vortheal.Remove(C)
+	vorttelepathy.Remove(C)
 
 /datum/species/vortigaunt/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -43,3 +47,6 @@
 
 	vortheal = new(C)
 	vortheal.Grant(C)
+
+	vorttelepathy = new(C)
+	vorttelepathy.Grant(C)
