@@ -199,14 +199,14 @@
 /obj/structure/bonfire
 	name = "bonfire"
 	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
-	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "bonfire"
+	icon = 'icons/obj/halflife/fires.dmi'
+	icon_state = "campfire"
 	light_color = LIGHT_COLOR_FIRE
 	density = FALSE
 	anchored = TRUE
 	buckle_lying = 0
 	var/burning = 0
-	var/burn_icon = "bonfire_on_fire" //for a softer more burning embers icon, use "bonfire_warm"
+	var/burn_icon = "campfire_lit" //for a softer more burning embers icon, use "bonfire_warm"
 	var/grill = FALSE
 	var/fire_stack_strength = 5
 
@@ -367,7 +367,7 @@
 		remove_emitter("fire")
 		remove_emitter("fire_spark")
 		remove_emitter("smoke")
-		icon_state = "bonfire"
+		icon_state = "campfire"
 		burning = 0
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)

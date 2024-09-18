@@ -189,7 +189,7 @@
 
 //Weed nodes
 /obj/structure/alien/weeds/node
-	name = "glowing resin"
+	name = "glowing xenian floor"
 	desc = "Mushroom like growths are exuding a haze of spores and a terrible smell."
 	icon = 'icons/obj/smooth_structures/alien/weednode.dmi'
 	icon_state = "weednode-0"

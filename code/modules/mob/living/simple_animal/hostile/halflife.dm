@@ -198,3 +198,12 @@
 	if(revving_charge)
 		return FALSE
 	..()
+
+/mob/living/simple_animal/hostile/halflife/headcrab/armored
+	name = "Armored Headcrab"
+	desc = "A parasitic headcrab with a hardened fungal carapace."
+	icon_state = "armoredheadcrab"
+	icon_living = "armoredheadcrab"
+	icon_dead = "armoredheadcrab_dead"
+	maxHealth = 70
+	health = 70

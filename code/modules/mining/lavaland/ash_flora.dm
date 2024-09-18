@@ -108,23 +108,6 @@
 	regrowth_time_low = 3000
 	regrowth_time_high = 5400
 
-/obj/structure/flora/ash/stem_shroom
-	icon_state = "t_mushroom"
-	name = "numerous mushrooms"
-	desc = "A large number of mushrooms, some of which have long, fleshy stems. They're radiating light!"
-	light_range = 1.5
-	light_power = 2.1
-	harvested_name = "tiny mushrooms"
-	harvested_desc = "A few tiny mushrooms around larger stumps. You can already see them growing back."
-	harvest = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
-	harvest_amount_high = 4
-	harvest_time = 40
-	harvest_message_low = "You pick and slice the cap off a mushroom, leaving the stem."
-	harvest_message_med = "You pick and decapitate several mushrooms for their stems."
-	harvest_message_high = "You acquire a number of stems from these mushrooms."
-	regrowth_time_low = 3000
-	regrowth_time_high = 6000
-
 /obj/structure/flora/ash/cacti
 	icon_state = "cactus"
 	name = "fruiting cacti"
@@ -181,15 +164,6 @@
 	seed = /obj/item/seeds/lavaland/inocybe
 	//distill_reagent = /datum/reagent/consumable/ethanol/inocybeshine
 	grind_results = list(/datum/reagent/cellulase = 0)
-
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
-	name = "mushroom stem"
-	desc = "A long mushroom stem. It's slightly glowing."
-	icon_state = "mushroom_stem"
-	seed = /obj/item/seeds/lavaland/ember
-	can_distill = FALSE
-	distill_reagent = /datum/reagent/consumable/ethanol/embershroomcream
-	grind_results = list(/datum/reagent/toxin/mushroom_powder = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit
 	name = "cactus fruit"
@@ -259,17 +233,6 @@
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/cellulase = 0.06, /datum/reagent/consumable/entpoly = 0.06, /datum/reagent/consumable/nutriment = 0.1)
-
-/obj/item/seeds/lavaland/ember
-	name = "pack of embershroom mycelium"
-	desc = "This mycelium grows into embershrooms, a species of bioluminescent mushrooms native to Lavaland."
-	icon_state = "mycelium-ember"
-	species = "ember"
-	plantname = "Embershroom Mushrooms"
-	product = /obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/glow, /datum/plant_gene/trait/fire_resistance)
-	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/consumable/tinlux = 0.04, /datum/reagent/consumable/nutriment = 0.02, /datum/reagent/drug/space_drugs = 0.02, /datum/reagent/consumable/ashresin = 0.02, /datum/reagent/consumable/nutriment = 0.1)
 
 //CRAFTING
 

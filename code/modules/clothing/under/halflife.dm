@@ -1,5 +1,5 @@
 /obj/item/clothing/under/combine
-	armor = list(MELEE = 20, BULLET = 20, LASER = 20,ENERGY = 20, BOMB = 20, BIO = 20, RAD = 20, FIRE = 30, ACID = 30, WOUND = 10)
+	armor = list(MELEE = 20, BULLET = 20, LASER = 20,ENERGY = 20, BOMB = 20, BIO = 20, RAD = 20, FIRE = 30, ACID = 30, WOUND = 5)
 	strip_delay = 50
 	can_adjust = FALSE
 	sensor_mode = SENSOR_COORDS
@@ -25,7 +25,7 @@
 /obj/item/clothing/under/combine/civilprotection/divisionallead
 	name = "divisional lead jumpsuit"
 	desc = "A version of the standard civil protection suit with slightly more protection, and red highlights."
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25,ENERGY = 25, BOMB = 25, BIO = 30, RAD = 30, FIRE = 30, ACID = 30, WOUND = 15)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25,ENERGY = 25, BOMB = 25, BIO = 30, RAD = 30, FIRE = 30, ACID = 30, WOUND = 5)
 	icon_state = "divisionallead"
 
 /obj/item/clothing/under/combine/overwatch
@@ -34,7 +34,7 @@
 	icon_state = "overwatch"
 	item_state = "syndicate-black"
 	has_sensor = LOCKED_SENSORS
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25,ENERGY = 25, BOMB = 25, BIO = 30, RAD = 30, FIRE = 30, ACID = 30, WOUND = 15)
+	armor = list(MELEE = 25, BULLET = 25, LASER = 25,ENERGY = 25, BOMB = 25, BIO = 30, RAD = 30, FIRE = 30, ACID = 30, WOUND = 10)
 
 /obj/item/clothing/under/combine/overwatch/Initialize(mapload)
 	. = ..()
@@ -57,7 +57,7 @@
 	desc = "Full-body reinforced suit which includes kevlar weaving to provide extra protection."
 	icon_state = "rsecurity"
 	item_state = "r_suit"
-	armor = list(MELEE = 30, BULLET = 30, LASER = 30,ENERGY = 30, BOMB = 30, BIO =40, RAD = 40, FIRE = 40, ACID = 30, WOUND = 15)
+	armor = list(MELEE = 30, BULLET = 30, LASER = 30,ENERGY = 30, BOMB = 30, BIO =40, RAD = 40, FIRE = 40, ACID = 30, WOUND = 10)
 
 /obj/item/clothing/under/citizen
 	name = "citizen jumpsuit"

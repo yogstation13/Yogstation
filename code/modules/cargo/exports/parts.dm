@@ -25,3 +25,9 @@
 	cost = 50
 	unit_name = "water canister"
 	export_types = list(/obj/item/water_canister)
+
+//clearing out xen infestations might be profitable... or even farming them?
+/datum/export/xenshrooms
+	cost = 15
+	unit_name = "xenian mushrooms"
+	export_types = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem)
