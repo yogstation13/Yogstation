@@ -441,6 +441,18 @@
   Absolucy:
   - qol: Looms will now "refill" your stack while you're spinning if you have more
       stacks adjacent to you on the floor.
+  - bugfix: You can now actually see what Craig the Potted Plant is holding!
+  - bugfix: Craig's mini sprite now properly shows up when examining them.
+  - qol: Craig will now automatically pick up an adjacent watering can when loading,
+      if there is one.
+  - qol: You can manually hand Craig a watering can now. You can also swap out a normal
+      can for an advanced one.
+  - bugfix: Fixed Craig's name showing up as "the craig the potted plant" in examines
+      and such.
+  - bugfix: Plant trays no longer have doubled info about contained reagents when
+      examined.
+  - qol: Dexterous basic mobs with inhand sprites will now show what they're holding
+      when examined.
   MrBagHead:
   - qol: The Xenobiology/Science Bag can now hold slime crossbreed extracts, allowing
       for easier management of all slime extracts.
