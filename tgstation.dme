@@ -5869,6 +5869,7 @@
 #include "monkestation\code\datums\wires\particle_accelerator.dm"
 #include "monkestation\code\game\atom.dm"
 #include "monkestation\code\game\sound.dm"
+#include "monkestation\code\game\world.dm"
 #include "monkestation\code\game\area\areas.dm"
 #include "monkestation\code\game\area\areas\station.dm"
 #include "monkestation\code\game\machinery\_machinery.dm"
