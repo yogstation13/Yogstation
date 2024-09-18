@@ -53,6 +53,8 @@
 	desc = "Also known as sweet cream; it still makes for a tasty treat."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_plain"
+	//10u for ice cream chem, 5u for anything injected
+	volume = 15
 	bonus_reagents = list(/datum/reagent/consumable/ice_cream = 2)
 	list_reagents = list(/datum/reagent/consumable/ice_cream = 10)
 	filling_color = "#EDF7DF"
