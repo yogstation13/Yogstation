@@ -84,3 +84,5 @@
 #define COMSIG_STARLIGHT_COLOR_CHANGED "!starlight_color_changed"
 /// Global signal sent when darkspawns ascend: (No arguments)
 #define COMSIG_DARKSPAWN_ASCENSION "!darkspawn_ascension"
+/// Global signal sent when the backrooms finishes initailizing: (No arguments)
+#define COMSIG_BACKROOMS_INITIALIZE "!backrooms_initialize"

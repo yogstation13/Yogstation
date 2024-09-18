@@ -18388,7 +18388,7 @@
 	dir = 8
 	},
 /obj/item/gun/energy/gravity_gun,
-/obj/item/gun/energy/laser/captain/scattershot{
+/obj/item/gun/energy/laser/scattershot{
 	pixel_y = 8
 	},
 /obj/item/gun/energy/wormhole_projector{

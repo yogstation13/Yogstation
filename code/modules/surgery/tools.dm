@@ -460,6 +460,8 @@
 	can_buckle = FALSE
 	bolts = FALSE
 	var/obj/picked_up = /obj/item/surgical_mat
+	buildstacktype = /obj/item/stack/sheet/plastic
+	buildstackamount = 3
 
 /obj/structure/bed/surgical_mat/Initialize(mapload)
 	..()

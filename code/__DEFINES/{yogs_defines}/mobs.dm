@@ -16,3 +16,27 @@
 #define SPECIES_VOX "vox"
 
 #define BUTT_SPRITE_VOX "vox"
+
+
+GLOBAL_REAL_VAR(list/voice_type2sound = list(
+	"1" = list(
+		"1" = sound('goon/sound/speak_1.ogg'),
+		"!" = sound('goon/sound/speak_1_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_1_ask.ogg')
+	),
+	"2" = list(
+		"2" = sound('goon/sound/speak_2.ogg'),
+		"!" = sound('goon/sound/speak_2_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_2_ask.ogg')
+	),
+	"3" = list(
+		"3" = sound('goon/sound/speak_3.ogg'),
+		"!" = sound('goon/sound/speak_3_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_3_ask.ogg')
+	),
+	"4" = list(
+		"4" = sound('goon/sound/speak_4.ogg'),
+		"!" = sound('goon/sound/speak_4_exclaim.ogg'),
+		"?" = sound('goon/sound/speak_4_ask.ogg')
+	),
+))

@@ -34,7 +34,7 @@
 	icon_state = "gauss"
 	damage = 60
 	penetrations = INFINITY //Passes through everything and anything until it reaches the end of its range
-	penetration_flags = PENETRATE_OBJECTS | PENETRATE_MOBS
+	penetration_flags = PENETRATE_OBJECTS | PENETRATE_WALLS | PENETRATE_MOBS
 	dismemberment = 0 //It goes through you cleanly.
 	paralyze = 0
 	shieldbuster = FALSE
