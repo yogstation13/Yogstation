@@ -26,8 +26,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/show_rights,
 	/client/proc/remove_liquid,
 	/client/proc/spawn_liquid,
-	/client/proc/forceEvent,
-	/client/proc/forceGamemode
+	/client/proc/forceEvent, //Move to fun verbs before full merge
+	/client/proc/forceGamemode //Move to fun verbs before full merge
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
