@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - tweak: "Reactor fuel rod crates now need engineering access to open"
