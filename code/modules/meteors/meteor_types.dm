@@ -132,7 +132,7 @@
 				continue
 			var/dist = get_dist(M.loc, src.loc)
 			shake_camera(M, dist > 20 ? 2 : 4, dist > 20 ? 1 : 3)
-			M.playsound_local(src.loc, null, 50, 1, random_frequency, 10, sound_to_use = meteor_sound)
+			M.playsound_local(src.loc, meteor_sound, 50, 1, random_frequency, 10)
 
 /**
  * Handles the meteor's interaction with meteor shields.
@@ -239,7 +239,7 @@
 	..()
 	explosion(src, light_impact_range = 4, flash_range = 3, adminlog = FALSE)
 	new /obj/effect/decal/cleanable/greenglow(get_turf(src))
-	radiation_pulse(src, max_range = 3, threshold = RAD_MEDIUM_INSULATION, chance = 80)
+	radiation_pulse(src, 500)
 
 //Cluster meteor
 /obj/effect/meteor/cluster
