@@ -84,12 +84,31 @@
 /datum/psi_complexus/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PsionicComplexus", "oppa gangnam style")
+		ui = new(user, src, "PsionicComplexus", "Psi Complexus")
 		ui.open()
 
 /datum/psi_complexus/ui_data(mob/user)
 	var/list/data = list()
+	data["faculties"] = list()
+	for(var/faculty_id in ranks)
+		var/list/check_powers = get_powers_by_faculty(faculty_id)
+		if(LAZYLEN(check_powers))
+			var/list/details = list()
+			var/datum/psionic_faculty/faculty = SSpsi.get_faculty(faculty_id)
+			details["name"] += faculty.name
+			details["rank"] += ranks[faculty_id]
+			for(var/datum/psionic_power/power in check_powers)
+				var/list/power_data = list()
+				power_data["name"] = power.name
+				power_data["description"] = power.use_description
+				details["powers"] += list(power_data)
+			data["faculties"] += list(details)
 	return data
+
+/datum/psi_complexus/ui_assets(mob/user)
+    return list(
+        get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
+    )
 
 /datum/psi_complexus/ui_act(action, params)
 	. = ..()
@@ -98,3 +117,9 @@
 
 /datum/psi_complexus/ui_state()
 	return GLOB.always_state
+
+/datum/asset/spritesheet/psi_icons
+    name = "psi_icons"
+
+/datum/asset/spritesheet/psi_icons/create_spritesheets()
+    InsertAll("", 'icons/obj/psychic_powers.dmi')
