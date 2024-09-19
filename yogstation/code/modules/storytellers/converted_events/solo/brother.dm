@@ -46,7 +46,6 @@
 
 /datum/round_event_control/antagonist/solo/brother/midround
 	name = "Sleeper Agents (Blood Brothers)"
-	prompted_picking = TRUE
 	required_enemies = 2
 	min_players = 15 //need more people because this after something else has already spawned
 

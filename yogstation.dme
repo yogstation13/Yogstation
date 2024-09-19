@@ -4628,6 +4628,7 @@
 #include "yogstation\code\modules\storytellers\converted_events\solo\obsessed.dm"
 #include "yogstation\code\modules\storytellers\converted_events\solo\revolutionary.dm"
 #include "yogstation\code\modules\storytellers\converted_events\solo\traitor.dm"
+#include "yogstation\code\modules\storytellers\converted_events\solo\vampire.dm"
 #include "yogstation\code\modules\storytellers\converted_events\solo\wizard.dm"
 #include "yogstation\code\modules\storytellers\converted_events\solo\ghosts\nuclear_operative_ghost.dm"
 #include "yogstation\code\modules\storytellers\converted_events\solo\ghosts\wizard.dm"

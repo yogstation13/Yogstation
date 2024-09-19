@@ -29,4 +29,3 @@
 
 /datum/round_event_control/antagonist/solo/heretic/midround
 	name = "Midround Heretics"
-	prompted_picking = TRUE

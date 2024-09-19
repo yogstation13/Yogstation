@@ -29,9 +29,8 @@
 
 /datum/round_event_control/antagonist/solo/bloodsucker/midround
 	typepath = /datum/round_event/antagonist/solo/bloodsucker
-	antag_flag = ROLE_VAMPIRICACCIDENT
-	name = "Vampiric Accident"
-	prompted_picking = TRUE
+	antag_flag = ROLE_BLOODSUCKERBREAKOUT
+	name = "Bloodsucker Breakout"
 	max_occurrences = 1
 
 /datum/round_event/antagonist/solo/bloodsucker/add_datum_to_mind(datum/mind/antag_mind)
