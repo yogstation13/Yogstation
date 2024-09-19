@@ -5,8 +5,9 @@
 /obj/machinery/computer/secure_data
 	name = "security records console"
 	desc = "Used to view and edit personnel's security records."
-	icon_screen = "security"
-	icon_keyboard = "security_key"
+	icon_state = "sr_console"
+	icon_keyboard = null
+	icon_screen = null
 	req_one_access = list(ACCESS_SECURITY, ACCESS_DETECTIVE)
 	circuit = /obj/item/circuitboard/computer/secure_data
 
