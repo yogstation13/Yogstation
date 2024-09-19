@@ -82,7 +82,7 @@
 
 /datum/round_event_control/antagonist/proc/trim_candidates(list/candidates)
 	for(var/mob/living/player in candidates)
-		if(character?.mind?.quiet_round) //yogs change, quiet mode
+		if(player?.mind?.quiet_round) //yogs change, quiet mode
 			candidates -= player
 			continue
 
