@@ -28,7 +28,6 @@
 	earliest_start = 0 SECONDS
 
 /datum/round_event_control/antagonist/solo/vampire/midround
-	typepath = /datum/round_event/antagonist/solo/vampire
 	antag_flag = ROLE_VAMPIRICACCIDENT
 	name = "Vampiric Accident"
 	max_occurrences = 1
