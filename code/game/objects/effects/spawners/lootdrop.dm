@@ -758,7 +758,7 @@
 				/obj/item/stack/cable_coil/yellow,
 				/obj/item/stack/sheet/cloth,
 				/obj/item/reagent_containers/medspray/sterilizine,
-				/obj/item/storage/firstaid,
+				/obj/item/reagent_containers/pill/patch/medkit = 2,
 				/obj/item/storage/firstaid/toxin
 				)
 

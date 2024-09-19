@@ -3,8 +3,9 @@
 /obj/machinery/computer/security
 	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
-	icon_screen = "cameras"
-	icon_keyboard = "security_key"
+	icon_state = "camera_console"
+	icon_keyboard = null
+	icon_screen = null
 	circuit = /obj/item/circuitboard/computer/security
 	light_color = COLOR_SOFT_RED
 

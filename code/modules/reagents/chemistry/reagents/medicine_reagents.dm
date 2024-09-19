@@ -1893,3 +1893,30 @@
 	if(SEND_SIGNAL(M, COMSIG_HAS_NANITES))
 		SEND_SIGNAL(M, COMSIG_NANITE_ADJUST_VOLUME, nanite_reduction)
 	return ..()
+
+/datum/reagent/medicine/biogel
+	name = "Biogel"
+	description = "Has a 100% chance of instantly healing brute and burn damage. The chemical will heal up to 120 points of damage at 60 units applied. Touch application only."
+	reagent_state = LIQUID
+	color = "#14c40e"
+
+/datum/reagent/medicine/biogel/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if((methods & (PATCH|TOUCH)))
+			for(var/i in C.all_wounds)
+				var/datum/wound/iter_wound = i
+				iter_wound.on_synthflesh(reac_volume)
+			var/datum/reagent/S = M.reagents.get_reagent(/datum/reagent/medicine/biogel)
+			if(!ishuman(M))
+				M.adjustBruteLoss(-1.25 * reac_volume)
+				M.adjustFireLoss(-1.25 * reac_volume)
+			else
+				var/heal_amt = clamp(reac_volume, 0, TOUCH_CHEM_MAX - S?.volume)
+				M.adjustBruteLoss(-2*heal_amt)
+				M.adjustFireLoss(-2*heal_amt)
+				if(methods & TOUCH)
+					M.reagents.add_reagent(/datum/reagent/medicine/biogel, reac_volume) // no permeability modifier because it only works on dead bodies anyway and would just be an inconvenience
+				if(HAS_TRAIT_FROM(M, TRAIT_HUSK, BURN) && (S?.volume + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT && M.getFireLoss() <= UNHUSK_DAMAGE_THRESHOLD) && M.cure_husk(BURN)) //cure husk will return true if it cures the final husking source
+					M.visible_message(span_notice("The biogel soaks into [M]'s burns and they regain their natural color!"))
+	..()

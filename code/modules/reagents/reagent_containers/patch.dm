@@ -48,3 +48,11 @@
 	desc = "Helps with brute and burn injuries."
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 20)
 	icon_state = "bandaid_both"
+
+/obj/item/reagent_containers/pill/patch/medkit
+	name = "medkit"
+	desc = "A medical kit filled with biogel for quickly tending to injuries."
+	list_reagents = list(/datum/reagent/medicine/biogel = 20)
+	icon = 'icons/obj/halflife/medkits.dmi'
+	icon_state = "medkit"
+	

@@ -306,6 +306,18 @@
 	)
 	crate_name = "medipen crate"
 
+/datum/supply_pack/medical/medkit
+	name = "Medkits"
+	desc = "Contains 5 biogel medkits for rapid healing."
+	cost = 150
+	contains = list(/obj/item/reagent_containers/pill/patch/medkit,
+					/obj/item/reagent_containers/pill/patch/medkit,
+					/obj/item/reagent_containers/pill/patch/medkit,
+					/obj/item/reagent_containers/pill/patch/medkit,
+					/obj/item/reagent_containers/pill/patch/medkit,
+	)
+	crate_name = "medkit crate"
+
 /datum/supply_pack/medical/firstaid_single
 	name = "First Aid Kit Single-Pack"
 	desc = "Contains one first aid kit for healing most types of wounds."
