@@ -1,5 +1,6 @@
 import { useBackend } from '../backend';
-import { Section, Stack } from '../components';
+import { Section, Stack, Table, Collapsible } from '../components';
+import { TableCell, TableRow } from '../components/Table';
 import { Window } from '../layouts';
 
 type Data = {
@@ -34,39 +35,21 @@ export const PsionicComplexus = (props, context) => {
   const { faculties = [] } = data;
   return (
     <Window width={620} height={500}>
-      <Window.Content>
-        <Section scrollable fill>
-          <Stack vertical>
-            <Stack.Item textColor="red" fontSize="20px">
-              Summary
-            </Stack.Item>
-            <Stack.Item>
-              <Stack vertical>
-                {faculties.map(faculty => (
-                  <Stack.Item
-                    key={faculty.name}>
-                    <Section title={faculty.name}>
-
-
-                      <Stack vertical>
-
-                        {faculty.powers.map(power => (
-                          <Stack.Item
-                            key={power.name}>
-                            {power.name + ": " + power.description}
-
-                          </Stack.Item>
-
-                        ))}
-
-                      </Stack>
+      <Window.Content scrollable>
+          {faculties.map(faculty => (
+              <Section title={faculty.name} key={faculty.name}>
+                {faculty.powers.map(power => (
+                  <Collapsible
+                    key={power.name}
+                    title={power.name} bold>
+                    <Section>
+                      {power.description}
                     </Section>
-                  </Stack.Item>
+                  </Collapsible>
                 ))}
-              </Stack>
-            </Stack.Item>
-          </Stack>
-        </Section>
+              </Section>
+
+          ))}
       </Window.Content >
     </Window >
   );
