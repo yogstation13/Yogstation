@@ -44,7 +44,7 @@
 			// Is it even a problem?
 			var/area/A = get_area(M)
 			if(spawnArea != A)
-				to_chat(M, span_warner("Your corporeal form gets ripped back!"))
+				to_chat(M, span_warning("Your corporeal form gets ripped back!"))
 				M.loc = loc
 
 /obj/structure/ghostbeacon/attack_ghost(mob/user)
