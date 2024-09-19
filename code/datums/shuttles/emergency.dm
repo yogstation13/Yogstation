@@ -270,6 +270,15 @@
 	admin_notes = "The emergency shuttled created during Round 48641. "
 	credit_cost = 7000
 
+/datum/map_template/shuttle/emergency/fleet
+	suffix = "fleet"
+	name = "Departmental Fleet"
+	description = "This fleet of departmental shuttles employed by Nanotrasen are linked together with a state-of-the-art quantum teleporter network. \
+		It consists of: a lounge/teleporter hub emergency shuttle, a top-security brig shuttle, an ambulance shuttle, a fully stocked cargo shuttle, \
+		an experimental specimin transfer shuttle, a pod mechanic shuttle, three private escape pods, and a luxury command shuttle with its own luxury restroom pod."
+	admin_notes = "Security shuttle comes with turrets that will target anything without the neutral faction (nuke ops, xenos etc, but not pets). Science shuttle is full of retaliative mobs. Emergency shuttle console is accessible without access on multiple shuttles."
+	credit_cost = 100000
+
 /datum/map_template/shuttle/emergency/mafia
 	suffix = "mafia"
 	name = "Droni Fedora"
