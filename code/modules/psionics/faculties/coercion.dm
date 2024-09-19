@@ -297,25 +297,25 @@
 			M.adjust_confusion(10 SECONDS)
 		return TRUE
 
-/datum/psionic_power/coercion/dis_arm
-	name =				"Dis-Arm"
-	cost =				10
-	heat =				10
-	cooldown =			10 SECONDS
-	min_rank =			PSI_RANK_PARAMOUNT
-	icon_state = "coe_disarm"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click your target with combat mode to Psionically rip their arms off."
+// /datum/psionic_power/coercion/dis_arm
+// 	name =				"Dis-Arm"
+// 	cost =				10
+// 	heat =				10
+// 	cooldown =			10 SECONDS
+// 	min_rank =			PSI_RANK_PARAMOUNT
+// 	icon_state = "coe_disarm"
+// 	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click your target with combat mode to Psionically rip their arms off."
 
-/datum/psionic_power/coercion/dis_arm/invoke(mob/living/user, mob/living/target, proximity, parameters)
-	if(!user.combat_mode || user == target)
-		return FALSE
-	. = ..()
-	if(.)
-		user.visible_message(span_danger("\The [user] grows two psionic arms, ripping [target]'s arms off!"))
-		to_chat(user, span_danger("You channel your full mental might into ripping and tearing!"))
-		var/mob/living/carbon/CM = target
-		for(var/obj/item/bodypart/bodypart in CM.bodyparts)
-			if(!(bodypart.body_part & (HEAD|CHEST|LEGS)))
-				if(bodypart.dismemberable)
-					bodypart.dismember()
-		return TRUE
+// /datum/psionic_power/coercion/dis_arm/invoke(mob/living/user, mob/living/target, proximity, parameters)
+// 	if(!user.combat_mode || user == target)
+// 		return FALSE
+// 	. = ..()
+// 	if(.)
+// 		user.visible_message(span_danger("\The [user] grows two psionic arms, ripping [target]'s arms off!"))
+// 		to_chat(user, span_danger("You channel your full mental might into ripping and tearing!"))
+// 		var/mob/living/carbon/CM = target
+// 		for(var/obj/item/bodypart/bodypart in CM.bodyparts)
+// 			if(!(bodypart.body_part & (HEAD|CHEST|LEGS)))
+// 				if(bodypart.dismemberable)
+// 					bodypart.dismember()
+// 		return TRUE
