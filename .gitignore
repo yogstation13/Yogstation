@@ -225,4 +225,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 # Running OpenDream locally
 tgstation.json
-config/secret.txt
