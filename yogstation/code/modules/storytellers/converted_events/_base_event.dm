@@ -81,6 +81,11 @@
 			return TRUE
 
 /datum/round_event_control/antagonist/proc/trim_candidates(list/candidates)
+	for(var/mob/living/player in candidates)
+		if(character?.mind?.quiet_round) //yogs change, quiet mode
+			candidates -= player
+			continue
+
 	return candidates
 
 /// Check if our enemy_roles requirement is met, if return_players is set then we will return the list of enemy players instead
