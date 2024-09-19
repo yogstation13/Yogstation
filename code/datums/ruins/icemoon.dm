@@ -138,4 +138,3 @@
 	id = "alienlab"
 	description = "An abandoned abductor labaratory that reeks of iron."
 	suffix = "icemoon_underground_alien_lab.dmm"
-
