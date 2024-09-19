@@ -13,6 +13,12 @@
 	max_occurrences = 1
 	weight = 1
 	min_players = 30
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_SPOOKY, TAG_MAGICAL)
+	category = EVENT_CATEGORY_ENTITIES
+	description = "plays some flute music."
+
+// to-do rewrite this
 
 //--------------------
 //ROUND EVENT "FLUTES"

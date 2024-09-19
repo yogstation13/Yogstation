@@ -4,6 +4,10 @@
 	max_occurrences = 3
 	weight = 20
 	earliest_start = 10
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
+	category = EVENT_CATEGORY_BUREAUCRATIC
+	description = "provides a high priority cargo bounty."
 
 /datum/round_event/high_priority_bounty/announce(fake)
 	priority_announce("Central Command has issued a high-priority cargo bounty. Details have been sent to all bounty consoles.", "Nanotrasen Bounty Program")

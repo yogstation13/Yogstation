@@ -5,6 +5,10 @@
 	max_occurrences = 1 //Only once okay fam
 	earliest_start = 30 MINUTES
 	min_players = 15
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_ALIEN, TAG_DESTRUCTIVE)
+	category = EVENT_CATEGORY_ENTITIES
+	description = "spawns swamers."
 
 /datum/round_event/spawn_swarmer/announce(fake)
 	priority_announce("Our long-range sensors have detected that your station's defenses have been breached by some sort of alien device. We suggest searching for and destroying it as soon as possible.", "[command_name()] High-Priority Update")

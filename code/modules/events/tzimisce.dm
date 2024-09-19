@@ -4,6 +4,10 @@
 	max_occurrences = 2
 	min_players = 25
 	earliest_start = 45 MINUTES
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_SPOOKY, TAG_MAGICAL, TAG_COMBAT)
+	category = EVENT_CATEGORY_ENTITIES
+	description = "spawns a bloodsucker from ghost roles."
 
 /datum/round_event_control/tzimisce/bloodsucker
 	name = "Spawn Tzimisce - Bloodsucker"

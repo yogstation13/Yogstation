@@ -1,9 +1,12 @@
 /datum/round_event_control/wizard/imposter //Mirror Mania
-	name = "Imposter Wizard"
+	name = "Imposter Wizard" //sussus amogus ^how times change in 10 years
 	weight = 1
 	typepath = /datum/round_event/wizard/imposter
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
+	description = "Spawns a doppelganger of the wizard."
+	min_wizard_trigger_potency = 2
+	max_wizard_trigger_potency = 7
 
 /datum/round_event/wizard/imposter/start()
 	for(var/datum/mind/M in SSticker.mode.wizards)

@@ -4,6 +4,9 @@
 	typepath = /datum/round_event/wizard/magicarp
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
+	description = "Summons a school of carps with magic projectiles."
+	min_wizard_trigger_potency = 4
+	max_wizard_trigger_potency = 6
 
 /datum/round_event/wizard/magicarp
 	announce_when	= 3

@@ -5,6 +5,11 @@
 	weight = 0
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_EXTERNAL)
+	category = EVENT_CATEGORY_INVASION
+	description = "Infiltrators will... infiltrate."
+	map_flags = EVENT_SPACE_ONLY
 
 	min_players = 23
 

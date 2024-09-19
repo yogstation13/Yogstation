@@ -4,6 +4,10 @@
 	max_occurrences = 1
 	min_players = 20
 	weight = 4
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_SPOOKY, TAG_COMBAT)
+	category = EVENT_CATEGORY_ENTITIES
+	description = "spawns a zombie somewhere on the station."
 
 
 /datum/round_event/ghost_role/zombie

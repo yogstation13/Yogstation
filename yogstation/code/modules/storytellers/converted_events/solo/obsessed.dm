@@ -23,7 +23,6 @@
 
 /datum/round_event_control/antagonist/solo/obsessed/midround
 	name = "Compulsive Obsession"
-	prompted_picking = TRUE
 	maximum_antags = 4
 
 /datum/round_event/antagonist/solo/obsessed

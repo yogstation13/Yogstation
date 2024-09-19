@@ -4,6 +4,10 @@
 	max_occurrences = 1
 	min_players = 20
 	weight = 5
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_DESTRUCTIVE, TAG_MAGICAL)
+	category = EVENT_CATEGORY_ENTITIES
+	description = "spawns a shitty wizard."
 
 /datum/round_event/ghost_role/bad_wizard
 	minimum_required = 1
