@@ -1,9 +1,9 @@
 /obj/item/nullspace_crystal
-	name = "dull nullspace crystal"
-	desc = "a pitch black crystal, found in the space between red and blue. This one looks particularly dull."
+	name = "null skull"
+	desc = "a skull of an ancient psionic user, grants a small amount of nulldust when ground up."
 	icon = 'icons/obj/telescience.dmi'
-	icon_state = "nullspace_crystal_dull"
-	///how much nullspace dust does each crystal give when used on the psionic awakener
+	icon_state = "nullskull"
+	///how much nullspace dust does each skull give when used on the psionic awakener
 	var/dust = 5
 	w_class = WEIGHT_CLASS_TINY
 	
@@ -13,32 +13,32 @@
 	if(istype(I, /obj/machinery/psionic_awakener))
 		var/obj/machinery/psionic_awakener/cart = I
 		cart.nullspace_dust += dust
-		to_chat(user, span_notice("You force the [name] into the psionic awakener's crystal port, you can hear a soft grinding sound."))
+		to_chat(user, span_notice("You force the [name] into the psionic awakener's grinding port, crushing it to microscopic pieces."))
 		qdel(src)
 
 /obj/item/nullspace_crystal/brilliant
-	name = "brilliant nullspace crystal"
-	desc = "a slightly less pitch black crystal, found in the space between red and blue. This one looks particularly brilliant."
+	name = "fresh null skull"
+	desc = "a fresh skull of a weak psionic user, grants a fair amount of nulldust when ground up."
 	dust = 10
-	icon_state = "nullspace_crystal_brilliant"
+	icon_state = "fresh_nullskull"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/nullspace_crystal/prismatic
-	name = "prismatic nullspace crystal"
-	desc = "an oddly black crystal, found in the space between red and blue. This one looks particularly prismatic. You know what that means right?"
+	name = "aged null skull"
+	desc = "an older skull of an adept psionic user, grants a lot of nulldust when ground up."
 	dust = 20
-	icon_state = "nullspace_crystal_prismatic"
+	icon_state = "aged_nullskull"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/nullspace_crystal/true
-	name = "true nullspace crystal"
-	desc = "a crystal made of pure condensed nullspace, looking through it is like a kaleidoscope, with different versions of you looking back."
+	name = "living null skull"
+	desc = "a pitch black skull of a powerful psionic user, looking into it's eye sockets make your cerebellum burn. Grants a huge boon of nulldust when ground up."
 	dust = 50
-	icon_state = "nullspace_crystal_true"
+	icon_state = "nullskull"
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/effect/spawner/lootdrop/nullspace_crystal_spawner
-	name = "nullspace crystal spawner"
+	name = "nullskull spawner"
 	lootdoubles = FALSE
 
 	loot = list(
