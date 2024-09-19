@@ -46,8 +46,7 @@
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/Initialize(mapload)
 	starting_files |= list(
-		new /datum/computer_file/program/card_mod,
-		new /datum/computer_file/program/synth_requester
+		new /datum/computer_file/program/card_mod
 	)	
 	. = ..()
 
