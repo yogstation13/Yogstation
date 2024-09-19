@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - refactor: "Biocubes are now proper stacks, and behave as such."
-  - image: "Made the biocube sprite slightly smaller."

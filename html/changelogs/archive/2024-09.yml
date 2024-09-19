@@ -459,3 +459,7 @@
   Wisemonster:
   - rscadd: Added the medipen refiller to all in-rotation medbay lobbies
   - balance: ' Moved the medipen reffiler on voidraptor to the medbay lobby'
+2024-09-19:
+  Absolucy:
+  - refactor: Biocubes are now proper stacks, and behave as such.
+  - image: Made the biocube sprite slightly smaller.
