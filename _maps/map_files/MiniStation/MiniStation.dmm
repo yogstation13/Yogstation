@@ -11898,6 +11898,15 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"bRk" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/stairs/wide_right{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "bRr" = (
 /obj/machinery/airalarm{
 	dir = 1;
@@ -17183,18 +17192,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"fxR" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/stairs/wide_left{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "fyj" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 8
@@ -26605,18 +26602,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"mvJ" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/stairs/wide_right{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/engineering)
 "mwm" = (
 /obj/machinery/computer/ai_overclocking{
 	dir = 1
@@ -42639,6 +42624,15 @@
 /obj/machinery/lapvend,
 /turf/open/floor/plasteel/white,
 /area/hallway/primary/starboard)
+"xAq" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/stairs/wide_left{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "xAA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -61508,7 +61502,7 @@ oiX
 wUt
 akT
 aMj
-fxR
+xAq
 cpt
 vui
 ciX
@@ -61765,7 +61759,7 @@ dNi
 xBw
 rMV
 aMj
-mvJ
+bRk
 sTk
 afT
 aQW
