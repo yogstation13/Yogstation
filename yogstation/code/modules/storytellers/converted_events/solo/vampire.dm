@@ -13,12 +13,13 @@
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
 		JOB_BRIG_PHYSICIAN,
+		JOB_CHAPLAIN
 	)
 	restricted_roles = list(
 		JOB_AI,
 		JOB_CYBORG,
 	)
-	min_players = 20
+	min_players = 15
 	weight = 10
 	maximum_antags = 2
 
