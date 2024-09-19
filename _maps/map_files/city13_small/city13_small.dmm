@@ -1318,6 +1318,10 @@
 /obj/effect/turf_decal/siding/thinplating,
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
+"vD" = (
+/mob/living/simple_animal/hostile/halflife/zombie/fungal,
+/turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
 "vG" = (
 /obj/machinery/computer/cargo{
 	dir = 1
@@ -2767,10 +2771,6 @@
 "TF" = (
 /obj/structure/halflife/trash/glass/cans,
 /turf/open/floor/plating/indoor/tiled10,
-/area/halflife/indoors)
-"TG" = (
-/mob/living/simple_animal/hostile/halflife/zombie,
-/turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
 "TI" = (
 /obj/structure/chair/halflife/metal{
@@ -25648,7 +25648,7 @@ JC
 JC
 JC
 JC
-TG
+vD
 JC
 oz
 CX
@@ -35613,7 +35613,7 @@ eY
 ut
 JC
 JC
-TG
+PC
 JC
 JC
 JC
@@ -36121,8 +36121,8 @@ eY
 ut
 JC
 JC
-PC
 JC
+vD
 JC
 ai
 JC

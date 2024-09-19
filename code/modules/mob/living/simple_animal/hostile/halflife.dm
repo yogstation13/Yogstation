@@ -26,8 +26,10 @@
 	deathsound = 'sound/creatures/halflife/zombiedeath.ogg'
 	var/no_crab_state = "zombie_dead_nocrab"
 	var/crabless_possible = TRUE
+	var/headcrabspawn = /mob/living/simple_animal/hostile/halflife/headcrab
 	var/idle_sound_chance = 50
 	var/sound_vary = TRUE
+	var/fungalheal = FALSE
 	var/aggro_sound = 'sound/creatures/halflife/zombieaggro.ogg'
 	var/idle_sounds = list('sound/creatures/halflife/zombiesound.ogg', 'sound/creatures/halflife/zombiesound2.ogg', 'sound/creatures/halflife/zombiesound3.ogg')
 
@@ -44,12 +46,17 @@
 	if(prob(10))
 		var/chosen_sound = pick(idle_sounds)
 		playsound(src, chosen_sound, 50, sound_vary)
+	//If there is fungal infestation on the ground, and the zombie can heal off of it, do so
+	if(fungalheal)
+		if(locate(/obj/structure/alien/weeds) in src.loc)
+			adjustHealth(-maxHealth*0.05)
+
 
 /mob/living/simple_animal/hostile/halflife/zombie/death(gibbed)
 	if(prob(25) && crabless_possible) //25% chance to spawn a headcrab on death
 		icon_dead = no_crab_state
 		icon_state = no_crab_state
-		new /mob/living/simple_animal/hostile/halflife/headcrab(get_turf(src))
+		new headcrabspawn(get_turf(src))
 	..()
 
 /mob/living/simple_animal/hostile/halflife/zombie/zombine
@@ -131,6 +138,24 @@
 		return FALSE
 	..()
 
+/mob/living/simple_animal/hostile/halflife/zombie/fungal
+	name = "Fungal Zombie"
+	desc = "A shambling human, taken over by a parasitic head crab. This one is covered in a spreading fungal infection."
+	icon_state = "fungalzombie"
+	icon_living = "fungalzombie"
+	icon_dead = "fungalzombie_dead"
+	no_crab_state = "fungalzombie_nocrab"
+	maxHealth = 180
+	health = 180
+	fungalheal = TRUE
+	move_to_delay = 6
+	headcrabspawn = /mob/living/simple_animal/hostile/halflife/headcrab/armored
+	var/datum/action/cooldown/spell/conjure/xenfloor/infest
+
+/mob/living/simple_animal/hostile/halflife/zombie/fungal/Initialize(mapload)
+	. = ..()
+	infest = new(src)
+	infest.Grant(src)
 
 //leaping headcrabs
 /mob/living/simple_animal/hostile/halflife/headcrab

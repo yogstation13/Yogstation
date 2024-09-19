@@ -3738,6 +3738,7 @@
 #include "code\modules\spells\spell_types\conjure\creatures.dm"
 #include "code\modules\spells\spell_types\conjure\cult_turfs.dm"
 #include "code\modules\spells\spell_types\conjure\ed_swarm.dm"
+#include "code\modules\spells\spell_types\conjure\halflife.dm"
 #include "code\modules\spells\spell_types\conjure\invisible_chair.dm"
 #include "code\modules\spells\spell_types\conjure\invisible_wall.dm"
 #include "code\modules\spells\spell_types\conjure\link_worlds.dm"
