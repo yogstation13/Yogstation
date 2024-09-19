@@ -497,6 +497,7 @@
 
 /obj/machinery/computer/shuttle/pod/Initialize(mapload, obj/item/circuitboard/C)
 	AddElement(/datum/element/update_icon_blocker)
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 	return ..()
 
 /obj/machinery/computer/shuttle/pod/proc/update_security_level(_, datum/security_level/new_level)
