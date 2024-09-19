@@ -32,8 +32,3 @@
 	antag_flag = ROLE_VAMPIRICACCIDENT
 	name = "Vampiric Accident"
 	max_occurrences = 1
-
-/datum/round_event/antagonist/solo/vampire/add_datum_to_mind(datum/mind/antag_mind)
-    var/datum/antagonist/vampire/vamp = add_vampire(antag_mind)
-	vamp.total_blood = 100 //bit of a head start since they're midround
-	vamp.usable_blood = 100
