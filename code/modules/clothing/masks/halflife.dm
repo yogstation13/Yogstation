@@ -13,6 +13,8 @@
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
 	modifies_speech = TRUE
+	vchange = 1
+	var/overwatch = FALSE
 
 	///List of sounds that play on death, randomly selected.
 	var/static/list/death_sounds = list(
@@ -57,7 +59,33 @@
 		"Issuing malcompliant citation" = 'sound/voice/cpvoicelines/issuingmalcompliantcitation.ogg',
 		"Apply" = 'sound/voice/cpvoicelines/apply.ogg',
 		"Hehe" = 'sound/voice/cpvoicelines/chuckle.ogg',
+		"CP is compromised" = 'sound/voice/cpvoicelines/cpiscompromised.ogg',
+		"Expired" = 'sound/voice/cpvoicelines/expired.ogg',
+		"He's running" = 'sound/voice/cpvoicelines/hesrunning.ogg',
+		"Infection" = 'sound/voice/cpvoicelines/infection.ogg',
+		"CP is overrun we have no containment" = 'sound/voice/cpvoicelines/cpisoverrunwehavenocontainment.ogg',
+		"CP request all units report in" = 'sound/voice/cpvoicelines/cprequestsallunitsreportin.ogg',
+		"Officer down" = 'sound/voice/cpvoicelines/officerdowniam10-99.ogg',
+		"Officer needs assistance" = 'sound/voice/cpvoicelines/officerneedsassistance.ogg',
+		"Cover me" = 'sound/voice/cpvoicelines/covermegoingin.ogg',
+		"Converging" = 'sound/voice/cpvoicelines/converging.ogg',
+
 	)
+
+	//like CP voicelines, but only for overwatch
+	var/static/list/ota_voicelines = list(
+		"Affirmative" = 'sound/voice/otavoicelines/affirmative.ogg',
+		"Anticitizen" = 'sound/voice/otavoicelines/anticitizenone.ogg',
+		"Administer" = 'sound/voice/otavoicelines/administer.ogg',
+		"Boomer" = 'sound/voice/otavoicelines/boomer.ogg',
+		"Antiseptic" = 'sound/voice/otavoicelines/antiseptic.ogg',
+		"Body pack holding" = 'sound/voice/otavoicelines/bodypackholding.ogg',
+		"Bouncer" = 'sound/voice/otavoicelines/bouncerbouncer.ogg',
+		"Call contact parasitics" = 'sound/voice/otavoicelines/callcontactparasitics.ogg',
+		"Shit" = 'sound/voice/cpvoicelines/shit.ogg',
+		"Take cover" = 'sound/voice/cpvoicelines/takecover.ogg',
+	)
+
 	
 /obj/item/clothing/mask/gas/civilprotection/handle_speech(mob/living/carbon/source, mob/speech_args)
 	if(source.wear_mask == src)
@@ -65,10 +93,16 @@
 		playsound(source, chosen_sound, 50, FALSE)
 
 	var/full_message = speech_args[SPEECH_MESSAGE]
-	for(var/lines in cp_voicelines)
-		if(findtext(full_message, lines))
-			playsound(source, cp_voicelines[lines], 50, FALSE)
-			return // only play the first.
+	if(!overwatch)
+		for(var/lines in cp_voicelines)
+			if(findtext(full_message, lines))
+				playsound(source, cp_voicelines[lines], 50, FALSE)
+				return // only play the first.
+	else
+		for(var/lines in ota_voicelines)
+			if(findtext(full_message, lines))
+				playsound(source, ota_voicelines[lines], 50, FALSE)
+				return // only play the first.	
 
 /obj/item/clothing/mask/gas/civilprotection/on_mob_death()
 	. = ..()
@@ -80,3 +114,4 @@
 	icon_state = "overwatch"
 	item_state = "swat"
 	armor = list(MELEE = 20, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 5)
+	overwatch = TRUE

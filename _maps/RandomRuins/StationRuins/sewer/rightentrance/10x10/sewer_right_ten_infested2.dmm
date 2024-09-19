@@ -1,0 +1,191 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"e" = (
+/obj/structure/alien/weeds/node,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"q" = (
+/obj/structure/halflife/trash/glass/basic,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"u" = (
+/obj/structure/halflife/trash/glass/cans,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"w" = (
+/obj/machinery/door/unpowered/halflife/metal,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"y" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"C" = (
+/mob/living/simple_animal/hostile/halflife/zombie,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"E" = (
+/obj/structure/flora/xen/tinyshrooms,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"H" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"K" = (
+/obj/structure/alien/weeds/node,
+/obj/effect/spawner/lootdrop/halflife/loot,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"L" = (
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"O" = (
+/obj/structure/halflife/trash/glass/plate,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"P" = (
+/obj/structure/flora/xen/leafy,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"S" = (
+/obj/effect/spawner/lootdrop/halflife/loot/ammo,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"T" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"Y" = (
+/obj/effect/spawner/lootdrop/halflife/loot,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"Z" = (
+/obj/effect/spawner/lootdrop/halflife/loot/rare,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+"}
+(2,1,1) = {"
+b
+y
+y
+K
+b
+q
+y
+y
+y
+b
+"}
+(3,1,1) = {"
+b
+y
+E
+y
+w
+H
+y
+E
+L
+b
+"}
+(4,1,1) = {"
+b
+e
+y
+P
+b
+y
+y
+Y
+e
+b
+"}
+(5,1,1) = {"
+b
+Y
+C
+y
+b
+e
+y
+y
+H
+b
+"}
+(6,1,1) = {"
+b
+O
+P
+y
+b
+y
+E
+y
+y
+b
+"}
+(7,1,1) = {"
+b
+E
+y
+S
+b
+y
+y
+y
+u
+b
+"}
+(8,1,1) = {"
+b
+y
+e
+H
+b
+y
+y
+y
+y
+b
+"}
+(9,1,1) = {"
+b
+Z
+L
+y
+b
+y
+y
+y
+y
+b
+"}
+(10,1,1) = {"
+b
+b
+b
+b
+b
+T
+b
+b
+b
+b
+"}

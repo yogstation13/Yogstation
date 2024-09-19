@@ -315,3 +315,13 @@
 	id = "right_ten_headcrabs"
 	suffix = "sewer_right_ten_headcrabs.dmm"
 	name = "sewer right_ten_headcrabs"
+
+/datum/map_template/ruin/station/sewer/rightentrance/tenxten/infested1
+	id = "right_ten_infested1"
+	suffix = "sewer_right_ten_infested1.dmm"
+	name = "sewer right_ten_infested1"
+
+/datum/map_template/ruin/station/sewer/rightentrance/tenxten/infested2
+	id = "right_ten_infested2"
+	suffix = "sewer_right_ten_infested2.dmm"
+	name = "sewer right_ten_infested2"

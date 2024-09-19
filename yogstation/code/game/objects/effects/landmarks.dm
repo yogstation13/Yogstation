@@ -176,7 +176,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	template_names = list("sewer left_ten_box", "sewer left_ten_zombie1", "sewer left_ten_zombine1", "sewer left_ten_medical")
 
 /obj/effect/landmark/stationroom/sewer/rightentrance/tenxten
-	template_names = list("sewer right_ten_box", "sewer right_ten_flooded", "sewer right_ten_headcrabs")
+	template_names = list("sewer right_ten_box", "sewer right_ten_flooded", "sewer right_ten_headcrabs", "sewer right_ten_infested1", "sewer right_ten_infested2")
 
 
 /// Type of landmark that find all others of the same type, and only spawns count number of ruins at them

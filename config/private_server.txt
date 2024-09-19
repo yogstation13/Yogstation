@@ -11,7 +11,7 @@ $include resources_private.txt
 CROSS_COMMS_NAME Main
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Replace 'Space station 13' with the name of your choice.
-SERVERNAME Half-Life 13 13
+SERVERNAME Half-Life 13
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 SERVERSQLNAME yogstation
@@ -32,7 +32,7 @@ PROTECT_LEGACY_RANKS
 # ENABLE_LOCALHOST_RANK
 
 ## set a hosted by name for unix platforms
-HOSTEDBY Yogstation13-Bot
+HOSTEDBY Halflife13-Bot
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
 ## Don't set this to the same server, BYOND will automatically restart players to the server when it has restarted.

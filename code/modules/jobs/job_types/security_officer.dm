@@ -26,6 +26,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 	minimal_character_age = 18 //Just a few months of boot camp, not a whole year
+	var/static/list/used_numbers = list()
 
 	departments_list = list(
 		/datum/job_department/security,
@@ -55,6 +56,14 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 /datum/job/officer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	H.faction += "combine"
+	var/r = rand(100,9000)
+	while (used_numbers.Find(r))
+		r = rand(100,9000)
+	used_numbers += r
+	if(istype(H.wear_id, /obj/item/card/id))
+		var/obj/item/card/id/ID = H.wear_id
+		ID.registered_name = "CP-[used_numbers[used_numbers.len]]"
+		ID.update_label()
 /*
 	// Assign department security
 

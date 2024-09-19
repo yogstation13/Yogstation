@@ -10,6 +10,7 @@
 	var/adjusted_flags = null
 	var/mutantrace_variation = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
 	var/mutantrace_adjusted = NONE //Are there special sprites for specific situations? Don't use this unless you need to.
+	var/vchange = 0 //voice changes?
 
 /obj/item/clothing/mask/attack_self(mob/user)
 	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))

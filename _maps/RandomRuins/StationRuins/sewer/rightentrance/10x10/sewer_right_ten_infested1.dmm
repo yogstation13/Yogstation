@@ -1,0 +1,186 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"d" = (
+/obj/structure/halflife/trash/wood,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"j" = (
+/obj/effect/spawner/lootdrop/halflife/loot,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"l" = (
+/obj/structure/halflife/trash/papers/two,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"s" = (
+/obj/structure/halflife/trash/papers/three,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"t" = (
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"u" = (
+/obj/structure/flora/xen/leafy,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"x" = (
+/turf/closed/wall/halflife/metal,
+/area/halflife/indoors/sewer)
+"z" = (
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"B" = (
+/obj/effect/spawner/lootdrop/halflife/loot/ammo,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"D" = (
+/obj/structure/halflife/trash/cardboard,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"E" = (
+/obj/structure/alien/weeds/node,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"I" = (
+/obj/effect/spawner/lootdrop/halflife/loot/consumables,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"J" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"M" = (
+/obj/structure/flora/xen/tinyshrooms,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"W" = (
+/obj/structure/halflife/trash/papers/one,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+a
+t
+u
+t
+z
+t
+t
+j
+x
+"}
+(3,1,1) = {"
+x
+t
+t
+E
+W
+t
+E
+u
+t
+x
+"}
+(4,1,1) = {"
+x
+E
+t
+t
+t
+t
+t
+t
+l
+x
+"}
+(5,1,1) = {"
+x
+M
+t
+x
+t
+M
+t
+a
+t
+x
+"}
+(6,1,1) = {"
+x
+t
+t
+x
+E
+t
+z
+B
+t
+x
+"}
+(7,1,1) = {"
+x
+t
+t
+x
+t
+t
+t
+E
+t
+x
+"}
+(8,1,1) = {"
+x
+d
+t
+x
+t
+s
+M
+t
+I
+x
+"}
+(9,1,1) = {"
+x
+t
+t
+x
+j
+a
+t
+t
+D
+x
+"}
+(10,1,1) = {"
+x
+x
+J
+x
+x
+x
+x
+x
+x
+x
+"}

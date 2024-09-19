@@ -429,9 +429,6 @@ SUBSYSTEM_DEF(mapping)
 		++space_levels_so_far
 		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 
-	LoadGroup(FailedZs, "Lavaland", "map_files/mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND) //Yogs, yoglavaland
-
-	LoadGroup(FailedZs, "Automated Exploration Hub", "RandomZLevels/VR", "netmin_hub.dmm", default_traits = ZTRAITS_AWAY_SECRET)
 #endif
 
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen

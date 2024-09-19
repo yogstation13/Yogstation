@@ -36,6 +36,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
 	minimal_character_age = 28 //You need some experience on your belt and a little gruffiness; you're still a foot soldier, not quite a tactician commander back at base
+	var/static/list/used_numbers = list()
 
 	departments_list = list(
 		/datum/job_department/security,
@@ -53,6 +54,14 @@
 /datum/job/hos/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	H.faction += "combine"
+	var/r = rand(100,9000)
+	while (used_numbers.Find(r))
+		r = rand(100,9000)
+	used_numbers += r
+	if(istype(H.wear_id, /obj/item/card/id))
+		var/obj/item/card/id/ID = H.wear_id
+		ID.registered_name = "DV-[used_numbers[used_numbers.len]]"
+		ID.update_label()
 
 /datum/outfit/job/hos
 	name = "Divisional Lead"
