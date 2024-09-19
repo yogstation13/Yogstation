@@ -746,6 +746,7 @@
 				/obj/item/crowbar/large = 2,
 				/obj/item/storage/backpack/satchel/leather,
 				/obj/item/storage/backpack/satchel,
+				/obj/item/storage/briefcase,
 				/obj/item/clothing/under/citizen/refugee = 2,
 				/obj/item/clothing/head/beanie/black = 2,
 				/obj/item/radio/off/halflife = 2,

@@ -238,6 +238,11 @@
 	desc = "A old world satchel, useful for carrying stuff. It is in great condition, what a find!"
 	icon_state = "satchel-norm"
 
+/obj/item/storage/backpack/satchel/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 15
+
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
 	desc = "A old world leather satchel. The leather looks a bit weathered, but it still looks great."
