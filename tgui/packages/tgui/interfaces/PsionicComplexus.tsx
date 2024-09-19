@@ -7,6 +7,8 @@ type Data = {
   antag_name: string;
   loud: boolean;
   faculties: Psi_Faculty[];
+  use_rating: string;
+  rating_descriptor: string;
 };
 
 type User = {
@@ -32,11 +34,24 @@ type Psi_Faculty = {
 
 export const PsionicComplexus = (props, context) => {
   const { data } = useBackend<Data>(context);
-  const { faculties = [] } = data;
+  const { faculties = [], use_rating, rating_descriptor } = data;
   return (
     <Window width={620} height={500}>
       <Window.Content scrollable>
-          {faculties.map(faculty => (
+        <Stack vertical>
+          <Stack.Item>
+            <Section>
+              <h1>
+                {
+                  "Psi-Rating: " + use_rating
+                }
+              </h1>
+
+            </Section>
+
+          </Stack.Item>
+          <Stack.Item>
+            {faculties.map(faculty => (
               <Section title={faculty.name} key={faculty.name}>
                 {faculty.powers.map(power => (
                   <Collapsible
@@ -49,7 +64,10 @@ export const PsionicComplexus = (props, context) => {
                 ))}
               </Section>
 
-          ))}
+            ))}
+          </Stack.Item>
+        </Stack>
+
       </Window.Content >
     </Window >
   );

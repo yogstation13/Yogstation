@@ -2,7 +2,7 @@
 	name = "null skull"
 	desc = "a skull of an ancient psionic user, grants a small amount of nulldust when ground up."
 	icon = 'icons/obj/telescience.dmi'
-	icon_state = "nullskull"
+	icon_state = "null_skull"
 	///how much nullspace dust does each skull give when used on the psionic awakener
 	var/dust = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -20,21 +20,21 @@
 	name = "fresh null skull"
 	desc = "a fresh skull of a weak psionic user, grants a fair amount of nulldust when ground up."
 	dust = 10
-	icon_state = "fresh_nullskull"
+	icon_state = "fresh_null_skull"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/nullspace_crystal/prismatic
 	name = "aged null skull"
 	desc = "an older skull of an adept psionic user, grants a lot of nulldust when ground up."
 	dust = 20
-	icon_state = "aged_nullskull"
+	icon_state = "aged_null_skull"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/nullspace_crystal/true
 	name = "living null skull"
 	desc = "a pitch black skull of a powerful psionic user, looking into it's eye sockets make your cerebellum burn. Grants a huge boon of nulldust when ground up."
 	dust = 50
-	icon_state = "nullskull"
+	icon_state = "psionic_null_skull"
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/effect/spawner/lootdrop/nullspace_crystal_spawner

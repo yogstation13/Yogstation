@@ -89,6 +89,34 @@
 
 /datum/psi_complexus/ui_data(mob/user)
 	var/list/data = list()
+	var/use_rating
+	var/effective_rating = rating
+	if(effective_rating > 1 && suppressed)
+		effective_rating = max(0, rating-2)
+	var/rating_descriptor
+	if(!use_rating)
+		switch(effective_rating)
+			if(1)
+				use_rating = "[effective_rating]-Epsilon"
+				rating_descriptor = "This indicates the presence of minor latent psi potential with little or no operant capabilities."
+			if(2)
+				use_rating = "[effective_rating]-Delta"
+				rating_descriptor = "This indicates the presence of minor psi capabilities of the Operant rank or higher."
+			if(3)
+				use_rating = "[effective_rating]-Gamma"
+				rating_descriptor = "This indicates the presence of psi capabilities of the Master rank or higher."
+			if(4)
+				use_rating = "[effective_rating]-Beta"
+				rating_descriptor = "This indicates the presence of significant psi capabilities of the Grandmaster rank or higher."
+			if(5)
+				use_rating = "[effective_rating]-Alpha"
+				rating_descriptor = "This indicates the presence of major psi capabilities of the Paramount rank or higher."
+			else
+				use_rating = "[effective_rating]-Lambda"
+				rating_descriptor = "This indicates the presence of trace latent psi capabilities."
+
+	data["use_rating"] = use_rating
+	data["rating_descriptor"] = rating_descriptor
 	data["faculties"] = list()
 	for(var/faculty_id in ranks)
 		var/list/check_powers = get_powers_by_faculty(faculty_id)
