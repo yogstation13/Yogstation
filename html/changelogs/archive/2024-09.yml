@@ -471,6 +471,32 @@
       healed.
   - qol: Wound tending surgeries can no longer be started on patients who are incapable
       of being healed.
+  - bugfix: Hopefully fix bloodsuckers getting stuck in their coffin after torpor.
+  - bugfix: Abandoned areas in maint (i.e gambling den, garden, etc) are now properly
+      protected from radstorms.
+  - rscadd: Radstorm-proofed some more areas.
+  - bugfix: MOD chameleon modules actually work properly - they disguise when the
+      suit is deactivated, undisguise when its activated, and properly handle modsuits
+      that can be equipped to different slots.
+  Ivniinvi:
+  - spellcheck: Fixed some typos in the cassette system
+  PotatoTomahto:
+  - rscadd: Cooking removes diseases from all reagents.
+  - bugfix: Mice properly transfer their disease to their dead carcass.
+  RafRoq:
+  - rscadd: 'New plant trait: Catalytic Inhibitor Serum.'
+  - rscadd: 'New restricted traitor uplink item: plant data disk with Catalytic Inhibitor
+      Serum gene for 20 TC.'
+  - bugfix: Fixed Dank Vesicles and Densified Chemicals interaction.
+  - rscdel: Removed the Potency Limiter gene.
   ThePooba:
   - rscadd: added maints between supply and top centcom
   - bugfix: fixed retirement air
+  - rscadd: Warden requires 10 sec hours now
+  - rscadd: added security bot "Bigsky" (he big!)
+  - balance: Rust heretics mark doesnt delete 75% of your items now and instead does
+      50 damage to your items
+  - balance: cosmic mark makes you confused for 7 seconds
+  Wisemonster:
+  - balance: Heavily slowed the progression of heart worms
+  - qol: Geysers now have a description explaining how to extract chemicals from them.

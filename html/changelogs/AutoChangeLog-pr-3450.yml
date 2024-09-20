@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "MOD chameleon modules actually work properly - they disguise when the suit is deactivated, undisguise when its activated, and properly handle modsuits that can be equipped to different slots."
