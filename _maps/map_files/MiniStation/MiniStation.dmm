@@ -14141,6 +14141,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"dki" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid,
+/area/asteroid)
 "dkQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -20894,6 +20900,12 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+"hZg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid,
+/area/asteroid)
 "hZC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -27597,6 +27609,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"mZc" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid,
+/area/asteroid)
 "mZe" = (
 /obj/effect/turf_decal/trimline/brown/filled/corner/lower{
 	dir = 1
@@ -32263,6 +32281,12 @@
 /obj/effect/mapping_helpers/mail_sorting/supply/cargo_bay,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+"pVU" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid,
+/area/asteroid)
 "pWq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -34673,6 +34697,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"rAv" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/turf/open/floor/engine/airless,
+/area/asteroid)
 "rAB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -41460,12 +41490,6 @@
 /mob/living/simple_animal/pet/dog/corgi/borgi,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
-"wCh" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/asteroid)
 "wDi" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
@@ -43876,6 +43900,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"yjg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid,
+/area/asteroid)
 "yji" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -126107,8 +126137,8 @@ aZM
 aZM
 aZM
 apj
-axh
-axh
+hZg
+mZc
 axh
 axh
 axh
@@ -126364,8 +126394,8 @@ aOQ
 aoX
 aoX
 aAU
-wCh
-axh
+rAv
+dki
 axh
 axh
 axh
@@ -126621,8 +126651,8 @@ aik
 aZM
 aHX
 apj
-axh
-axh
+yjg
+pVU
 axh
 axh
 axh
