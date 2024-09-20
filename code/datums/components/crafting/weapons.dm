@@ -26,5 +26,5 @@
 	name = "Rebar Bolt"
 	result = /obj/item/ammo_casing/reusable/arrow/rebar
 	reqs = list(/obj/item/stack/rods = 3)
-	time = 20 SECONDS
+	time = 12 SECONDS
 	category = CAT_WEAPON_RANGED

@@ -1,9 +1,10 @@
 /obj/machinery/computer/cargo
 	name = "supply console"
 	desc = "Used to order supplies, approve requests, and control the shuttle."
-	icon_screen = "supply"
+	icon_state = "sr_console"
+	icon_keyboard = null
+	icon_screen = null
 	circuit = /obj/item/circuitboard/computer/cargo
-	light_color = "#E2853D"//orange
 	///Can the supply console send the shuttle back and forth? Used in the UI backend.
 	var/can_send = TRUE
 	///Can this console only send requests?

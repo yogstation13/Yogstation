@@ -10,8 +10,9 @@
 /obj/machinery/computer/communications
 	name = "communications console"
 	desc = "A console used for high-priority announcements and emergencies."
-	icon_screen = "comm"
-	icon_keyboard = "tech_key"
+	icon_state = "sr_console"
+	icon_keyboard = null
+	icon_screen = null
 	req_access = list(ACCESS_COMMAND)
 	circuit = /obj/item/circuitboard/computer/communications
 	light_color = LIGHT_COLOR_BLUE

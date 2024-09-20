@@ -26,11 +26,6 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
 
-/obj/structure/closet/secure_closet/personal/cabinet/PopulateContents()
-	new /obj/item/storage/backpack/satchel/leather/withwallet( src )
-	new /obj/item/instrument/piano_synth(src)
-	new /obj/item/radio/headset(src)
-
 //miner personal closet
 /obj/structure/closet/secure_closet/personal/miner
 	desc = "Its a secure locker for shaft miners. The first card swiped gains control."

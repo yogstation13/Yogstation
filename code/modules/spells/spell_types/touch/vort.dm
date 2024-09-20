@@ -4,7 +4,7 @@
 	button_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "fleshmend"
 
-	cooldown_time = 10 SECONDS
+	cooldown_time = 8 SECONDS
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 	invocation_type = INVOCATION_NONE
 
