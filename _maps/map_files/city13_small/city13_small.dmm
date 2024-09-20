@@ -167,6 +167,10 @@
 /obj/structure/chair/halflife/metal/broken,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"bW" = (
+/obj/structure/flora/xen/leafy,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "bX" = (
 /obj/structure/chair/halflife/metal/blue,
 /obj/effect/decal/cleanable/blood,
@@ -308,6 +312,13 @@
 	},
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
+"dK" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/obj/structure/alien/weeds,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "dQ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -333,6 +344,13 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/human,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
+"eb" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/alien/weeds,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "ei" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -499,6 +517,10 @@
 	dir = 1
 	},
 /area/halflife/indoors)
+"fS" = (
+/obj/structure/flora/xen/tinyshrooms,
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/indoors/sewer)
 "fT" = (
 /obj/structure/flora/ash/stem_shroom,
 /turf/open/floor/plating/indoor/woodc,
@@ -590,6 +612,10 @@
 /area/halflife/outdoors/alley)
 "hp" = (
 /turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
+"hy" = (
+/obj/structure/flora/xen/leafy,
+/turf/open/floor/plating/ground/dirt,
 /area/halflife/indoors/sewer)
 "hz" = (
 /obj/item/stack/sheet/metal,
@@ -683,6 +709,10 @@
 	},
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors)
+"iL" = (
+/obj/structure/flora/xen/tinyshrooms,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "iN" = (
 /obj/structure/halflife/trash/cardboard,
 /turf/open/floor/plating/indoor/woodc,
@@ -953,6 +983,10 @@
 /obj/item/storage/box/lights/tubes,
 /turf/open/floor/plating/indoor/metal/plate,
 /area/halflife/indoors)
+"lP" = (
+/obj/structure/alien/weeds/node,
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/indoors/sewer)
 "lQ" = (
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/plating/ground/dirt,
@@ -1027,6 +1061,9 @@
 /obj/effect/spawner/lootdrop/halflife/loot/consumables,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors)
+"mV" = (
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/indoors/sewer)
 "mW" = (
 /obj/effect/spawner/lootdrop/halflife/loot/consumables,
 /turf/open/floor/plating/indoor/woodc,
@@ -1797,6 +1834,10 @@
 /obj/structure/halflife/trash/wood,
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"yc" = (
+/obj/effect/spawner/lootdrop/halflife/loot,
+/turf/open/halflife/water/sewer/deep,
+/area/halflife/indoors/sewer)
 "yd" = (
 /obj/effect/spawner/lootdrop/halflife/loot/consumables,
 /turf/open/halflife/water/sewer/shallow,
@@ -1847,6 +1888,10 @@
 	},
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"yE" = (
+/obj/structure/alien/weeds/node,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "yI" = (
 /obj/structure/table/halflife/metal/grate,
 /obj/item/stack/tape,
@@ -2182,6 +2227,10 @@
 /obj/structure/halflife/trash/glass/basic,
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
+"Cx" = (
+/mob/living/simple_animal/hostile/halflife/zombie/fungal,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "CB" = (
 /obj/structure/halflife/trash/bricks,
 /turf/open/floor/plating/ground/dirt,
@@ -2288,6 +2337,10 @@
 /obj/item/circular_saw,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors/townhall)
+"DR" = (
+/mob/living/simple_animal/hostile/halflife/zombie/fungal,
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/indoors/sewer)
 "DY" = (
 /obj/machinery/door/unpowered/halflife/wood,
 /turf/open/floor/plating/indoor/tiled10,
@@ -2801,6 +2854,10 @@
 /obj/machinery/vending/breenwater,
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors/townhall)
+"KP" = (
+/obj/effect/spawner/lootdrop/halflife/loot,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "KR" = (
 /obj/structure/halflife/road_barrier/concrete/alt,
 /turf/open/floor/plating/ground/sidewalk,
@@ -3027,6 +3084,10 @@
 /obj/effect/landmark/start/nukeop_leader,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
+"ON" = (
+/obj/effect/spawner/lootdrop/halflife/loot/rare,
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/indoors/sewer)
 "OP" = (
 /obj/machinery/vending/breenwater,
 /obj/machinery/light{
@@ -3034,6 +3095,10 @@
 	},
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
+"OQ" = (
+/obj/effect/spawner/lootdrop/halflife/loot/consumables,
+/turf/open/halflife/water/sewer/deep,
+/area/halflife/indoors/sewer)
 "Pc" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 4
@@ -3377,6 +3442,10 @@
 /obj/structure/halflife/trash/glass/plate,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"Ud" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "Uh" = (
 /mob/living/simple_animal/hostile/halflife/zombie/fungal,
 /turf/open/floor/plating/indoor/woodc,
@@ -3384,6 +3453,10 @@
 "Ur" = (
 /turf/open/halflife/water/sewer/medium,
 /area/halflife/outdoors/sewage_dump)
+"UB" = (
+/obj/structure/alien/weeds,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "UC" = (
 /obj/effect/turf_decal/siding/thinplating/corner,
 /turf/open/floor/plating/ground/sidewalk,
@@ -3445,6 +3518,10 @@
 /obj/effect/landmark/start/citizen,
 /turf/open/floor/plating/indoor/cafeteria,
 /area/halflife/indoors)
+"Vr" = (
+/mob/living/simple_animal/hostile/halflife/headcrab/armored,
+/turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors/sewer)
 "Vx" = (
 /obj/structure/halflife/trash/papers/three,
 /turf/open/floor/plating/ground/sidewalk,
@@ -3568,6 +3645,10 @@
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors/alley)
+"Xx" = (
+/obj/structure/flora/ash/stem_shroom,
+/turf/open/floor/plating/ground/dirt,
+/area/halflife/indoors/sewer)
 "Xz" = (
 /obj/machinery/door/unpowered/halflife/metal{
 	dir = 8
@@ -14048,11 +14129,11 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
+Yy
+Yy
+Yy
+Yy
+Yy
 Yy
 Ts
 gI
@@ -14175,12 +14256,12 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
-Yy
+Ts
+Ts
+vo
+Ts
+Ts
+LM
 Ts
 gI
 Ts
@@ -14302,11 +14383,11 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
+Ts
+Ts
+Ts
+Ts
+Ts
 Yy
 Ts
 gI
@@ -14429,11 +14510,11 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
+MA
+MA
+MA
+MA
+MA
 Yy
 Ts
 gI
@@ -14556,11 +14637,11 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
+MA
+MA
+MA
+MA
+MA
 Yy
 Ts
 gI
@@ -14683,11 +14764,11 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
+MA
+MA
+MA
+MA
+MA
 Yy
 Ts
 gI
@@ -14810,11 +14891,11 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
+MA
+MA
+MA
+MA
+OQ
 Yy
 Ts
 gI
@@ -14937,11 +15018,11 @@ Ts
 gI
 Ts
 Yy
-lg
-lg
-lg
-lg
-lg
+yc
+MA
+MA
+MA
+MA
 Yy
 Ts
 gI
@@ -18239,11 +18320,11 @@ Ts
 gI
 Ts
 Yy
-wu
-wu
-wu
-wu
-wu
+Yy
+Yy
+Yy
+Yy
+Yy
 wu
 wu
 wu
@@ -18365,12 +18446,12 @@ Yy
 Ts
 gI
 Ts
+pu
+hp
+hp
+UB
+hp
 Yy
-wu
-wu
-wu
-wu
-wu
 wu
 wu
 wu
@@ -18493,11 +18574,11 @@ Ts
 gI
 Ts
 Yy
-wu
-wu
-wu
-wu
-wu
+eb
+hp
+hp
+hp
+Yy
 wu
 wu
 wu
@@ -18620,11 +18701,11 @@ Ts
 gI
 Ts
 Yy
-wu
-wu
-wu
-wu
-wu
+KP
+hp
+Vr
+UB
+Yy
 wu
 wu
 wu
@@ -18747,11 +18828,11 @@ Ts
 gI
 Ts
 Yy
-wu
-wu
-wu
-wu
-wu
+hp
+hp
+UB
+UB
+Yy
 wu
 wu
 wu
@@ -18874,14 +18955,14 @@ Ts
 gI
 Ts
 Yy
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
+Yy
+Yy
+Yy
+dK
+Yy
+Yy
+Yy
+Yy
 wu
 wu
 wu
@@ -19001,14 +19082,14 @@ Ts
 gI
 Ts
 Yy
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
+hp
+iL
+hp
+hp
+hp
+KP
+Ud
+Yy
 wu
 wu
 wu
@@ -19128,6 +19209,14 @@ Ts
 gI
 Ts
 Yy
+KP
+hp
+hp
+Cx
+hp
+hp
+yE
+Yy
 wu
 wu
 wu
@@ -19135,17 +19224,9 @@ wu
 wu
 wu
 wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
+Xx
+mV
+mV
 wu
 wu
 wu
@@ -19255,6 +19336,14 @@ Ts
 gI
 Ts
 Yy
+Ud
+yE
+hp
+hp
+hp
+hp
+hp
+Yy
 wu
 wu
 wu
@@ -19262,17 +19351,9 @@ wu
 wu
 wu
 wu
+mV
 wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
+mV
 wu
 wu
 wu
@@ -19382,6 +19463,14 @@ Ts
 gI
 Ts
 Yy
+hp
+hp
+hp
+lS
+hp
+bW
+KP
+Yy
 wu
 wu
 wu
@@ -19389,19 +19478,11 @@ wu
 wu
 wu
 wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
+lP
+mV
+mV
+fS
+mV
 wu
 wu
 wu
@@ -19509,6 +19590,14 @@ Ts
 gI
 Ts
 Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
+Yy
 wu
 wu
 wu
@@ -19516,18 +19605,10 @@ wu
 wu
 wu
 wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
-wu
+mV
+mV
+mV
+mV
 wu
 wu
 wu
@@ -19650,12 +19731,12 @@ wu
 wu
 wu
 wu
-wu
-wu
-wu
-wu
-wu
-wu
+mV
+hy
+mV
+mV
+DR
+mV
 wu
 wu
 wu
@@ -19778,11 +19859,11 @@ wu
 wu
 wu
 wu
-wu
-wu
-wu
-wu
-wu
+mV
+ON
+lP
+Xx
+mV
 wu
 wu
 wu
@@ -19906,9 +19987,9 @@ wu
 wu
 wu
 wu
-wu
-wu
-wu
+mV
+mV
+mV
 wu
 wu
 wu

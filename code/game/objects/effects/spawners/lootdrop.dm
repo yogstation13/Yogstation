@@ -757,8 +757,10 @@
 				/obj/item/stack/tape,
 				/obj/item/stack/cable_coil/yellow,
 				/obj/item/stack/sheet/cloth,
+				/obj/item/stack/sheet/metal/five,
 				/obj/item/reagent_containers/medspray/sterilizine,
-				/obj/item/reagent_containers/pill/patch/medkit = 2,
+				/obj/item/reagent_containers/pill/patch/medkit,
+				/obj/item/reagent_containers/pill/patch/medkit/vial = 2,
 				/obj/item/storage/firstaid/toxin
 				)
 
@@ -801,11 +803,11 @@
 	name = "rare loot"
 
 	loot = list(
-				/obj/item/crowbar/large,
 				/obj/item/gun/ballistic/automatic/pistol/usp = 4,
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
 				/obj/item/clothing/suit/armor/civilprotection = 3,
 				/obj/item/radio/off/halflife,
+				/obj/item/clothing/under/citizen/rebel,
 				/obj/item/gun/ballistic/shotgun/spas12,
 				/obj/item/gun/ballistic/revolver/coltpython,
 				/obj/item/gun/ballistic/bow/crossbow/rebar = 2,
