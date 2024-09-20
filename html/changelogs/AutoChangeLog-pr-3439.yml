@@ -1,0 +1,7 @@
+author: "ThePooba"
+delete-after: True
+changes:
+  - rscadd: "Warden requires 10 sec hours now"
+  - rscadd: "added security bot \"Bigsky\" (he big!)"
+  - balance: "Rust heretics mark doesnt delete 75% of your items now and instead does 50 damage to your items"
+  - balance: "cosmic mark makes you confused for 7 seconds"
