@@ -19,6 +19,7 @@
 
 /datum/round_event/dolphin_migration/setup()
 	start_when = rand(40, 60)
+	setup = TRUE
 
 /datum/round_event/dolphin_migration/announce()
 	priority_announce("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert")
