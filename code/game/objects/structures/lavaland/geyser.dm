@@ -4,6 +4,7 @@
 ///A lavaland geyser that spawns chems and can be mining scanned for points. Made to work with the plumbing pump to extract that sweet rare nectar
 /obj/structure/geyser
 	name = "geyser"
+	desc = "A geyser that contains some form of chemicals inside. A liquid pump can be used to extract it's chemicals." //monkestation addition
 	icon = 'icons/obj/lavaland/terrain.dmi'
 	icon_state = "geyser"
 	anchored = TRUE
@@ -107,7 +108,7 @@
 /obj/structure/geyser/random
 	point_value = 500
 	true_name = "strange geyser"
-	discovery_message = "It's a strange geyser! How does any of this even work?" //it doesnt
+	discovery_message = "It's a strange geyser! Who knows what chemicals are inside?" //it doesnt //monkestation edit: more accurate description
 
 /obj/structure/geyser/random/Initialize(mapload)
 	reagent_id = get_random_reagent_id()
