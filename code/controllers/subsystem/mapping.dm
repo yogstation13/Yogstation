@@ -183,11 +183,15 @@ SUBSYSTEM_DEF(mapping)
 	loading_ruins = FALSE
 	
 	//Load Reebe
+	
 	var/list/errorList = list()
+	/*
 	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
 	if(errorList.len)	// reebe failed to load
 		message_admins("Reebe failed to load!")
 		log_game("Reebe failed to load!")
+	*/
+
 	//Load an Arena
 	errorList = list()
 	SSmapping.LoadGroup(errorList, "Arena", "templates", "arena.dmm", silent = TRUE)
