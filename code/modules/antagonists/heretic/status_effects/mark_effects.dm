@@ -107,15 +107,16 @@
 			ORGAN_SLOT_HEART,
 		)
 
-		// Roughly 75% of their organs will take a bit of damage
+		// Roughly 25% of their organs will take a bit of damage
 		for(var/organ_slot in organs_to_damage)
-			if(prob(75))
+			if(prob(25)) //monkestation edit begin : Changes rust to not be busted as shit
 				carbon_owner.adjustOrganLoss(organ_slot, 20)
 
-		// And roughly 75% of their items will take a smack, too
+		// And roughly 50% of their items will take a smack, too
 		for(var/obj/item/thing in carbon_owner.get_all_gear())
-			if(!QDELETED(thing) && prob(75))
-				thing.take_damage(100)
+			if(!QDELETED(thing) && prob(50))
+				if(!istype(thing, /obj/item/card/id))
+					thing.take_damage(50) //monkestation edit end
 
 	return ..()
 
@@ -235,6 +236,7 @@
 	return ..()
 
 /datum/status_effect/eldritch/cosmic/on_effect()
+	owner.adjust_confusion(7 SECONDS) //monkestation edit
 	new teleport_effect(get_turf(owner))
 	new /obj/effect/forcefield/cosmic_field(get_turf(owner))
 	do_teleport(
