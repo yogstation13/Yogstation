@@ -514,7 +514,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
-	if(!C.voice_type.can_use(id))
+	if(!(C.voice_type?.can_use(id)))
 		C.voice_type = get_random_valid_voice(id)
 
 /datum/species/proc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
