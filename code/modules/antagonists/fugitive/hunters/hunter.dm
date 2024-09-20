@@ -124,7 +124,7 @@
 	else//from here on out, hunters lost because they did not capture any fugitive dead or alive. there are different levels of getting beat though:
 		if(!fugitives_dead)//all fugitives survived
 			return FUGITIVE_RESULT_MAJOR_FUGITIVE
-		else if(fugitives_dead < fugitives_counted)//at least ANY fugitive lived
+		else if(length(fugitives_dead) < length(fugitives_counted))//at least ANY fugitive lived
 			return FUGITIVE_RESULT_FUGITIVE_VICTORY
 		else if(!hunters_dead)//all fugitives died, but none were taken in by the hunters. minor win
 			return FUGITIVE_RESULT_MINOR_FUGITIVE
