@@ -208,7 +208,7 @@
 	for(var/datum/disease/virus as anything in mod.wearer.diseases)
 		var/list/virus_data = list()
 		virus_data["name"] = virus.name
-		virus_data["type"] = virus.spread_text
+		virus_data["type"] = virus.get_spread_string()
 		virus_data["stage"] = virus.stage
 		virus_data["maxstage"] = virus.max_stages
 		virus_data["cure"] = virus.cure_text

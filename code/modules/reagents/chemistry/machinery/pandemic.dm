@@ -307,7 +307,7 @@
 		traits["description"] = disease.desc || "none"
 		traits["index"] = index++
 		traits["name"] = disease.name
-		traits["spread"] = disease.spread_text || "none"
+		traits["spread"] = disease.get_spread_string() || "none"
 		if(istype(disease, /datum/disease/advance)) // Advanced diseases get more info
 			var/datum/disease/advance/adv_disease = disease
 			var/disease_name = SSdisease.get_disease_name(adv_disease.GetDiseaseID())

@@ -50,6 +50,8 @@
 	return r
 
 /datum/disease/proc/get_spread_string()
+	if(spread_text)
+		return spread_text
 	var/dat = ""
 	var/check = 0
 	if (spread_flags & DISEASE_SPREAD_BLOOD)

@@ -448,7 +448,7 @@
 
 	return result
 
-/obj/machinery/disease2/centrifuge/proc/print_dish(var/datum/disease/advanced/D)
+/obj/machinery/disease2/centrifuge/proc/print_dish(datum/disease/advanced/D)
 	special = CENTRIFUGE_LIGHTSPECIAL_BLINKING
 	/*
 	anim(target = src, a_icon = icon, flick_anim = "centrifuge_print", sleeptime = 10)

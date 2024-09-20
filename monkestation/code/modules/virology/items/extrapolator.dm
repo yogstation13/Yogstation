@@ -12,7 +12,7 @@
 	name = "virus extrapolator"
 	icon = 'monkestation/icons/obj/device.dmi'
 	icon_state = "extrapolator_scan"
-	desc = "A scanning device, used to extract genetic material of potential pathogens"
+	desc = "A scanning device, used to extract genetic material of potential pathogens."
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
 	var/using = FALSE
@@ -42,13 +42,13 @@
 			if(!user.transferItemToLoc(W, src))
 				return
 			scanner = W
-			to_chat(user, "<span class='notice'>You install a [scanner.name] in [src].</span>")
+			to_chat(user, span_notice("You install a [scanner.name] in [src]."))
 		else
-			to_chat(user, "<span class='notice'>[src] already has a scanner installed.</span>")
+			to_chat(user, span_notice("[src] already has a scanner installed."))
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(scanner)
-			to_chat(user, "<span class='notice'>You remove the [scanner.name] from \the [src].</span>")
+			to_chat(user, span_notice("You remove the [scanner.name] from \the [src]."))
 			scanner.forceMove(drop_location())
 			scanner = null
 	else
@@ -58,9 +58,9 @@
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		if(!scanner)
-			. += "<span class='notice'>The scanner is missing.</span>"
+			. += span_notice("The scanner is missing.")
 		else
-			. += "<span class='notice'>A class <b>[scanner.rating]</b> scanning module is installed. It is <i>screwed</i> in place.</span>"
+			. += span_notice("A class <b>[scanner.rating]</b> scanning module is installed. It is <i>screwed</i> in place.")
 
 	. += span_notice("List of Stored Varients.")
 	for(var/datum/symptom_varient/varient as anything in stored_varient_types)
@@ -84,12 +84,12 @@
 			switch(target.extrapolator_act(user, src, scan))
 				if(FALSE)
 					if(scan)
-						to_chat(user, "<span class='notice'>the extrapolator fails to return any data</span>")
+						to_chat(user, "<span class='notice'>[src] fails to return any data</span>")
 				if(TRUE)
-					to_chat(user, span_notice("You store [target]'s blood sample in [src]."))
+					to_chat(user, span_notice("You store \the [target]'s blood sample in [src]."))
 
 	else
-		to_chat(user, "<span class='warning'>the extrapolator has no scanner installed</span>")
+		to_chat(user, span_warning("[src] has no scanner installed!"))
 
 /obj/item/extrapolator/attack_self(mob/user)
 	. = ..()
@@ -105,12 +105,11 @@
 	if(scan)
 		icon_state = "extrapolator_sample"
 		scan = FALSE
-		to_chat(user, "<span class='notice'>You remove the probe from the device and set it to inject genes into diseases or symptoms</span>")
+		to_chat(user, span_notice("You remove the probe from \the [src] and set it to inject genes into diseases or symptoms."))
 	else
 		icon_state = "extrapolator_scan"
 		scan = TRUE
-		to_chat(user, "<span class='notice'>You put the probe back in the device and set it to SCAN</span>")
-
+		to_chat(user, span_notice("You put the probe back in \the [src] and set it to scan for diseases."))
 
 /obj/item/extrapolator/proc/try_disease_modification(mob/user, atom/target)
 	if(!isliving(target) && !istype(target, /obj/item/weapon/virusdish))

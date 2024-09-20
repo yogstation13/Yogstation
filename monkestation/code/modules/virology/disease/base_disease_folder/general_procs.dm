@@ -17,7 +17,7 @@
 		L += D.Copy()
 	return L
 
-/datum/disease/proc/makerandom(var/list/str = list(), var/list/rob = list(), var/list/anti = list(), var/list/bad = list(), var/atom/source = null)
+/datum/disease/proc/makerandom(list/str = list(), list/rob = list(), list/anti = list(), list/bad = list(), atom/source = null)
 	//ID
 	uniqueID = rand(0,9999)
 	subID = rand(0,9999)

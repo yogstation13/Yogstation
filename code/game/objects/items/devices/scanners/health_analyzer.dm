@@ -643,7 +643,7 @@
 
 	if(!istype(patient))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
-		to_chat(user, span_notice("\The [src] makes a sad buzz and briefly displays an unhappy face, indicating it can't scan [patient]."))
+		to_chat(user, span_warning("\The [src] makes a sad buzz and briefly displays an unhappy face, indicating it can't scan [patient]."))
 		show_emotion(AI_EMOTION_SAD)
 		return
 
@@ -710,9 +710,9 @@
 	add_fingerprint(user)
 	user.visible_message(span_notice("[user] scans [patient] for diseases."), span_notice("You scan [patient] for diseases."))
 
-	if(!istype(user))
+	if(!istype(patient))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
-		to_chat(user, span_notice("\The [src] makes a sad buzz and briefly displays a frowny face, indicating it can't scan [patient]."))
+		to_chat(user, span_warning("\The [src] makes a sad buzz and briefly displays a frowny face, indicating it can't scan [patient]."))
 		emotion = AID_EMOTION_SAD
 		update_appearance(UPDATE_OVERLAYS)
 		return
@@ -745,14 +745,14 @@
 		if(istype(disease, /datum/disease/advanced))
 			var/datum/disease/advanced/advanced = disease
 			if(!(disease.visibility_flags & HIDDEN_SCANNER))
-				render += "<span class='alert ml-1'><b>Warning: [advanced.origin] detected</b>\n\
-				<div class='ml-2'>Name: [advanced.real_name()].\nType: [disease.spread_text].\nStage: [disease.stage]/[disease.max_stages].</div>\
+				render += "<span class='alert ml-1'><b>Warning: [advanced.origin] disease detected</b>\n\
+				<div class='ml-2'>Name: [advanced.real_name()].\nType: [disease.get_spread_string()].\nStage: [disease.stage]/[disease.max_stages].</div>\
 				</span>"
 
 		else
 			if(!(disease.visibility_flags & HIDDEN_SCANNER))
-				render += "<span class='alert ml-1'><b>Warning: [disease.form] detected</b>\n\
-				<div class='ml-2'>Name: [disease.name].\nType: [disease.spread_text].\nStage: [disease.stage]/[disease.max_stages].\nPossible Cure: [disease.cure_text]</div>\
+				render += "<span class='alert ml-1'><b>Warning: [disease.form] disease detected</b>\n\
+				<div class='ml-2'>Name: [disease.name].\nType: [disease.get_spread_string()].\nStage: [disease.stage]/[disease.max_stages].\nPossible Cure: [disease.cure_text]</div>\
 				</span>"
 
 	if(!length(render))

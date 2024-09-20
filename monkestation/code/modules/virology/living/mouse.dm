@@ -35,7 +35,7 @@
 		disease.log += "<br />[ROUND_TIME()] Infected [src]"
 
 		log_virus("[key_name(src)] was infected by virus: [disease.admin_details()] at [loc_name(loc)]")
-		disease.origin = "Rat"
+		disease.origin = "[capitalize(name)]"
 		disease.AddToGoggleView(src)
 
 /mob/living/basic/mouse/Destroy()

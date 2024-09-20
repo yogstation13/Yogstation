@@ -322,10 +322,14 @@
 	for(var/M in R.parts)
 		partlist[M] = R.parts[M]
 	for(var/part in R.parts)
-		if(istype(part, /datum/reagent))
+		//MONKESTATION EDIT START
+		if(ispath(part, /datum/reagent))
 			var/datum/reagent/RG = locate(part) in Deletion
 			if(RG.volume > partlist[part])
 				RG.volume = partlist[part]
+			if(RG.data?["viruses"]) //Purge diseases from food
+				RG.data["viruses"] = list()
+			//MONKESTATION EDIT END
 			. += RG
 			Deletion -= RG
 			continue
@@ -339,6 +343,12 @@
 		else
 			while(partlist[part] > 0)
 				var/atom/movable/AM = locate(part) in Deletion
+				//MONKESTATION EDIT START
+				var/datum/reagents/reagents = AM.reagents
+				for(var/datum/reagent/reagent as anything in reagents?.reagent_list) //Purge diseases from food
+					if(reagent.data?["viruses"])
+						reagent.data["viruses"] = list()
+				//MONKESTATION EDIT END
 				. += AM
 				Deletion -= AM
 				partlist[part] -= 1

@@ -12,7 +12,7 @@
 		e.chance = rand(1, e.max_chance)
 		return e
 
-/datum/disease/proc/new_random_effect(var/max_badness = 5, var/min_badness = 0, var/stage = 0, var/old_effect)
+/datum/disease/proc/new_random_effect(max_badness = 5, min_badness = 0, stage = 0, old_effect)
 	var/list/datum/symptom/list = list()
 	var/list/to_choose = subtypesof(/datum/symptom)
 	if(old_effect) //So it doesn't just evolve right back into the previous virus type

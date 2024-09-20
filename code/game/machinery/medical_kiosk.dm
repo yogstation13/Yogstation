@@ -218,7 +218,7 @@
 		var/datum/disease/D = thing
 		if(!(D.visibility_flags & HIDDEN_SCANNER))
 			sickness = "Warning: Patient is harboring some form of viral disease. Seek further medical attention."
-			sickness_data = "\nName: [D.name].\nType: [D.spread_text].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure_text]"
+			sickness_data = "\nName: [D.name].\nType: [D.get_spread_string()].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure_text]"
 
 	if(patient.has_dna()) //Blood levels Information
 		if(patient.is_bleeding())

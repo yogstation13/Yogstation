@@ -194,6 +194,7 @@
 			transfer_ingredient_reagents(ingredient, holder)
 			// Delete, it's done
 			qdel(ingredient)
+			continue
 
 		// Everything else will just get fried
 		ingredient.AddElement(/datum/element/fried_item, 30)
@@ -238,7 +239,7 @@
 	ingredient_pool.remove_reagent(/datum/reagent/consumable/nutriment, amount * percentage_of_nutriment_converted)
 	ingredient_pool.remove_reagent(/datum/reagent/consumable/nutriment/vitamin, amount * percentage_of_nutriment_converted)
 	// The other half of the nutriment, and the rest of the reagents, will get put directly into the pot
-	ingredient_pool.trans_to(holder, amount, ingredient_reagent_multiplier, no_react = TRUE)
+	ingredient_pool.trans_to(holder, amount, ingredient_reagent_multiplier, preserve_data = FALSE, no_react = TRUE)
 
 /// Called whenever the soup pot overfills with reagent.
 /datum/chemical_reaction/food/soup/proc/boil_over(datum/reagents/holder)

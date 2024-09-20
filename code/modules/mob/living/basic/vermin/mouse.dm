@@ -36,8 +36,6 @@
 	var/contributes_to_ratcap = TRUE
 	/// Probability that, if we successfully bite a shocked cable, that we will die to it.
 	var/cable_zap_prob = 85
-	/// responsible for disease stuff
-	var/list/ratdisease = list()
 
 	var/chooses_bodycolor = TRUE
 
@@ -112,7 +110,6 @@
 
 // On death, remove the mouse from the ratcap, and turn it into an item if applicable
 /mob/living/basic/mouse/death(gibbed)
-	var/list/data = list("viruses" = ratdisease)
 	SSmobs.cheeserats -= src
 	// Rats with a mind will not turn into a lizard snack on death
 	if(mind)
@@ -125,8 +122,15 @@
 		var/obj/item/food/deadmouse/mouse = new(loc)
 		mouse.name = name
 		mouse.icon_state = icon_dead
+		//MONKESTATION EDIT START
+		var/list/data = list("viruses"=list(),"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"immunity"=list())
+		for(var/datum/disease/D as anything in diseases)
+			var/datum/disease/DA = D.Copy()
+			DA.spread_flags = DISEASE_SPREAD_BLOOD //please stop killing the station with the black death from eating rats
+			data["viruses"] += DA
+		data["immunity"] = immune_system.GetImmunity()
+		//MONKESTATION EDIT END
 		mouse.reagents.add_reagent(/datum/reagent/blood, 2, data)
-		mouse.ratdisease = src.ratdisease
 		if(HAS_TRAIT(src, TRAIT_BEING_SHOCKED))
 			mouse.desc = "They're toast."
 			mouse.add_atom_colour("#3A3A3A", FIXED_COLOUR_PRIORITY)
@@ -307,8 +311,6 @@
 	decomp_req_handle = TRUE
 	ant_attracting = FALSE
 	decomp_type = /obj/item/food/deadmouse/moldy
-	///responsible for holding diseases for dead rat
-	var/list/ratdisease = list()
 	var/body_color = "gray"
 	var/critter_type = /mob/living/basic/mouse
 

@@ -93,7 +93,8 @@
 	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
 
 	var/list/data = list()
-	data["antigen"] = B.data["immunity"]
+	var/list/immunity = B.data["immunity"]
+	if(length(immunity))
+		data["antigen"] = immunity[2]
 
-	product.reagents.add_reagent(/datum/reagent/vaccine , 30, data)
-
+	product.reagents.add_reagent(/datum/reagent/vaccine, 30, data)
