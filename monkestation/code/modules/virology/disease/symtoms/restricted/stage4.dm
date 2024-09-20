@@ -3,8 +3,7 @@
 	desc = "If left untreated the subject will die!"
 	restricted = TRUE
 	max_multiplier = 5
-	chance = 20
-	max_chance = 20
+	chance = 6
 	var/sound = FALSE
 	badness = EFFECT_DANGER_DEADLY
 
