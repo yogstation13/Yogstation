@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(chosen_station_templates)
 	return TRUE
 
 /obj/effect/landmark/stationroom/box/engine
-	template_names = list("Engine SM" = 25, "Engine Singulo And Tesla" = 25, "Engine Nuclear Reactor" = 25, "Engine TEG" = 25,)
+	template_names = list("Engine SM" = 25, "Engine Singulo And Tesla" = 25, "Engine Nuclear Reactor" = 25, "Engine TEG" = 25)
 
 /obj/effect/landmark/stationroom/box/engine/choose()
 	. = ..()
