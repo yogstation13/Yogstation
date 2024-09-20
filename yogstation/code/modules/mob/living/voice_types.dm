@@ -6,6 +6,17 @@ GLOBAL_LIST_INIT(voice_types, generate_voice_types()) //we have a list of all vo
 		var/datum/voice/new_type = new path()
 		.[new_type.name] = new_type
 
+/proc/get_random_valid_voice(species)
+	var/list/valid = list()
+	for(var/i in GLOB.voice_types)
+		var/datum/voice/test = GLOB.voice_types[i]
+		if(test.can_use(species))
+			valid |= i
+			
+	if(length(valid))
+		return pick(valid)
+	return pick(GLOB.voice_types)
+
 /datum/voice
 	var/name = "debug"
 
