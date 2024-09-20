@@ -16,6 +16,9 @@ GLOBAL_LIST_INIT(voice_types, generate_voice_types()) //we have a list of all vo
 	/// list of sounds used for when adding ? at the end
 	var/list/question
 
+	/// set this to false if you don't want people to be able to select it
+	var/selectable = TRUE
+
 	///if this is initialized, a species needs to be on this list to pick it (unused)
 	var/list/species_whitelist
 	///needs to not be on this list to pick it (unused)
@@ -41,6 +44,15 @@ GLOBAL_LIST_INIT(voice_types, generate_voice_types()) //we have a list of all vo
 
 	//otherwise, just pick one of the regular ones
 	return pick(normal)
+
+/datum/voice/proc/can_use(species)
+	if(!selectable)
+		return FALSE
+	if(species_blacklist && (species in species_blacklist))
+		return FALSE
+	if(species_whitelist && !(species in species_whitelist))
+		return FALSE
+	return TRUE
 
 /datum/voice/high
 	name = "High pitched"

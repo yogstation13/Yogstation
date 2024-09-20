@@ -33,11 +33,35 @@
 
 	return data
 
+//this doesn't yet prevent people from taking invalid voices, but it'll stop you from having one to start
+/datum/preference/choiced/voice_type/create_informed_default_value(datum/preferences/preferences)
+	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/species_id = initial(species_type.id)
+
+	var/list/valid = list()
+	for(var/i in GLOB.voice_types)
+		var/datum/voice/test = GLOB.voice_types[i]
+		if(test.can_use(species_id))
+			valid |= i
+			
+	if(length(valid))
+		return pick(valid)
+	return pick(GLOB.voice_types)
+
 /datum/preference/choiced/voice_type/apply_to_human(mob/living/carbon/human/target, value)
 	target.voice_type = GLOB.voice_types[value]
 
 
+/datum/preference/choiced/voice_type/deserialize(input, datum/preferences/preferences)
+	var/datum/species/species_type = preferences.read_preference(/datum/preference/choiced/species)
+	var/species_id = initial(species_type.id)
 
+	var/datum/voice/test = GLOB.voice_types[input]
+
+	if (!test || !test.can_use(species_id))
+		return create_informed_default_value(preferences)
+
+	return ..(input, preferences)
 
 //ty ynot
 // /datum/preference/toggle/tts_hear_radio
