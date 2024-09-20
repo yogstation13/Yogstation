@@ -1,0 +1,6 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Health Analyzers now tell if someone is incapable of being healed."
+  - qol: "Cryotubes will now automatically eject people who are incapable of being healed."
+  - qol: "Wound tending surgeries can no longer be started on patients who are incapable of being healed."
