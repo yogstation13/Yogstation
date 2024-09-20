@@ -266,7 +266,8 @@
 
 /// Helper to set angle, futureproofing in case new behavior like altering the transform of the movable based on angle is needed
 /datum/component/movable_physics/proc/set_angle(new_angle)
-	angle = SIMPLIFY_DEGREES(new_angle)
+	if(!isnull(new_angle))
+		angle = SIMPLIFY_DEGREES(new_angle)
 
 /// We do not EVER want newtonian movement while handling movement ourselves, so block it!
 /datum/component/movable_physics/proc/on_newtonian_move(atom/movable/source, direction, start_delay)

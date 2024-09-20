@@ -421,7 +421,7 @@
  * Helper proc for throwing blood particles around, similar to the spray_blood proc.
  */
 /mob/living/proc/blood_particles(amount = rand(1, 3), angle = rand(0,360), min_deviation = -30, max_deviation = 30, min_pixel_z = 0, max_pixel_z = 6)
-	if(!isturf(loc) || !blood_volume ||HAS_TRAIT(src, TRAIT_NOBLOOD))
+	if(QDELETED(src) || QDELETED(loc) || !isturf(loc) || !blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return
 	for(var/i in 1 to amount)
 		var/obj/effect/decal/cleanable/blood/particle/droplet = new(loc)
