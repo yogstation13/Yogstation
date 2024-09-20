@@ -2,18 +2,82 @@ Any time you make a change to the schema files, remember to increment the databa
 
 Make sure to also update `DB_MAJOR_VERSION` and `DB_MINOR_VERSION`, which can be found in `code/__DEFINES/subsystem.dm`.
 
-The latest database version is 5.24; The query to update the schema revision table is:
+The latest database version is 5.26; The query to update the schema revision table is:
 
 ```sql
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 25);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (5, 26);
 ```
 or
 
 ```sql
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 25);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (5, 26);
 ```
 
 In any query remember to add a prefix to the table names if you use one.
+
+-----------------------------------------------------
+Version 5.26, 20 September 2024, by Absolucy
+Properly added the previously undocumented `metric_data`, `subsystem_metrics`, `subsystem_extra_metrics`, `overwatch_whitelist`, and `overwatch_asn_ban` tables.
+```sql
+CREATE TABLE `metric_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `datetime` datetime NOT NULL,
+  `cpu` decimal(20,10) unsigned DEFAULT NULL,
+  `maptick` decimal(20,10) unsigned DEFAULT NULL,
+  `elapsed_processed` int(15) unsigned DEFAULT NULL,
+  `elapsed_real` int(15) unsigned DEFAULT NULL,
+  `client_count` int(15) unsigned DEFAULT NULL,
+  `round_id` int(15) unsigned DEFAULT NULL,
+  `relational_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `overwatch_asn_ban` (
+	`ip` varchar(21) NOT NULL,
+	`asn` varchar(100) NOT NULL,
+	`a_ckey` varchar(30) NOT NULL,
+	`timestamp` datetime NOT NULL,
+	PRIMARY KEY (`asn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+CREATE TABLE `overwatch_ip_cache` (
+	`ip` varchar(50) NOT NULL DEFAULT '',
+	`response` longtext NOT NULL,
+	PRIMARY KEY (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+CREATE TABLE `overwatch_whitelist` (
+	`ckey` varchar(30) NOT NULL,
+	`a_ckey` varchar(30) NOT NULL,
+	`timestamp` datetime NOT NULL,
+	PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+CREATE TABLE `subsystem_extra_metrics` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`datetime` datetime NOT NULL,
+	`round_id` int(15) unsigned DEFAULT NULL,
+	`ss_id` varchar(255) DEFAULT NULL,
+	`relation_id_SS` varchar(255) DEFAULT NULL,
+	`ss_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+	PRIMARY KEY (`id`) USING BTREE,
+	CONSTRAINT `ss_value` CHECK (json_valid(`ss_value`))
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `subsystem_metrics` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`avg_iter_count` decimal(20,6) NOT NULL DEFAULT 0.000000,
+	`avg_drift` decimal(20,6) NOT NULL DEFAULT 0.000000,
+	`datetime` datetime NOT NULL,
+	`round_id` int(15) unsigned DEFAULT NULL,
+	`ss_id` varchar(255) DEFAULT NULL,
+	`relational_id` varchar(255) DEFAULT NULL,
+	`relation_id_SS` varchar(255) DEFAULT NULL,
+	`cost` decimal(20,6) unsigned DEFAULT NULL,
+	`tick_usage` decimal(20,6) unsigned DEFAULT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
 
 -----------------------------------------------------
 Version 5.25, 8 September 2024, by Absolucy
