@@ -164,6 +164,11 @@
 		else
 			render_list += "<span class='alert ml-1'>Subject has been husked.</span>\n"
 
+	// monkestation edit: no-heal challenge
+	if(HAS_TRAIT(target, TRAIT_NO_HEALS))
+		render_list += "<span class='alert ml-1'><b>Subject cannot be healed by any known methods.</b></span>\n"
+	// monkestation end
+
 	if(target.stamina.loss)
 		if(advanced)
 			render_list += "<span class='alert ml-1'>Fatigue level: [target.stamina.loss]%.</span>\n"

@@ -298,6 +298,15 @@
 			radio.talk_into(src, msg, radio_channel)
 		return
 
+	// monkestation start: kick no-healers out
+	if(HAS_TRAIT(mob_occupant, TRAIT_NO_HEALS))
+		playsound(src, 'sound/machines/cryo_warning.ogg', volume)
+		radio.talk_into(src, "Patient is unable to be healed, ejecting.", radio_channel)
+		set_on(FALSE)
+		open_machine()
+		return
+	// monkerstation end
+
 	patient_dead = FALSE
 
 	if(mob_occupant.get_organic_health() >= mob_occupant.getMaxHealth()) // Don't bother with fully healed people.
