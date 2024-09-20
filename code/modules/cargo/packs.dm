@@ -1234,8 +1234,9 @@
 
 /datum/supply_pack/engine/fuel_rod_basic
 	name = "Uranium-235 Fuel Rods Crate"
-	desc = "Contains 5 Enriched Uranium Control Rods."
+	desc = "Contains 5 Enriched Uranium Control Rods. Requires engineering access to open."
 	cost = 5000
+	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/item/fuel_rod,
 					/obj/item/fuel_rod,
 					/obj/item/fuel_rod,
@@ -1247,8 +1248,9 @@
 
 /datum/supply_pack/engine/fuel_rod_plutonium
 	name = "Plutonium-239 Fuel Rods Crate"
-	desc = "Contains 5 Plutonium-239 Control Rods."
+	desc = "Contains 5 Plutonium-239 Control Rods. Requires engineering access to open."
 	cost = 15000
+	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/item/fuel_rod/plutonium,
 					/obj/item/fuel_rod/plutonium,
 					/obj/item/fuel_rod/plutonium,
