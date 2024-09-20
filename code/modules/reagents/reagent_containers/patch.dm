@@ -56,3 +56,10 @@
 	icon = 'icons/obj/halflife/medkits.dmi'
 	icon_state = "medkit"
 	
+/obj/item/reagent_containers/pill/patch/medkit/vial
+	name = "medvial"
+	desc = "A small vial of biogel. Quick to apply, but doesn't heal much."
+	list_reagents = list(/datum/reagent/medicine/biogel = 10)
+	self_delay = 15
+	icon_state = "medvial"
+	

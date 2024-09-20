@@ -1,8 +1,8 @@
 /obj/machinery/recharger
-	name = "recharger"
+	name = "stunstick recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger"
-	desc = "A charging dock for energy based weaponry."
+	desc = "A charging dock for metropolice stun batons."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
 	active_power_usage = 250

@@ -348,9 +348,9 @@
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/steak/penguin, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) //Add medium rare later maybe?
 
 /obj/item/reagent_containers/food/snacks/meat/slab/chicken
-	name = "chicken meat"
+	name = "meat substitute"
 	icon_state = "birdmeat"
-	desc = "A slab of chicken meat. Tastes like ch....wait..."
+	desc = "A slab of delicious combine authorised meat substitute, designed to taste and look somewhat similar to chicken."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 2) //low fat high nutrition
 	cooked_type = /obj/item/reagent_containers/food/snacks/meat/steak/chicken
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
@@ -468,7 +468,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/steak/chicken
 	slice_path = /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
-	name = "chicken steak"
+	name = "meat substitute steak"
 	icon_state = "birdsteak"
 	tastes = list("chicken" = 1, "antibiotics" = 1)
 
@@ -584,7 +584,7 @@
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meat/cutlet/penguin, rand(35 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken
-	name = "raw chicken cutlet"
+	name = "raw meat substitute cutlet"
 	tastes = list("chicken" = 1, "antibiotics" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/raw_cutlet/chicken/MakeGrillable()
@@ -649,7 +649,7 @@
 	tastes = list("chicken" = 1, "cod fish" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/chicken
-	name = "chicken cutlet"
+	name = "meat substitute cutlet"
 	tastes = list("chicken" = 1, "antibiotics" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/cutlet/axolotl

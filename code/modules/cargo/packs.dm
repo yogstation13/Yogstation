@@ -123,7 +123,7 @@
 /datum/supply_pack/security/armory/ar2
 	name = "OSIPR Crate"
 	desc = "Contains two Overwatch Standard Issue Pulse Rifles, that are only usable by authorised personnel. Requires Armory access to open."
-	cost = 1200
+	cost = 1500
 	contains = list(/obj/item/gun/ballistic/automatic/ar2,
 					/obj/item/gun/ballistic/automatic/ar2)
 	crate_name = "osipr gun crate"
@@ -141,7 +141,7 @@
 /datum/supply_pack/security/armory/mp7
 	name = "MP7 Crate"
 	desc = "Contains two MP7 submachine guns. Requires Armory access to open."
-	cost = 800
+	cost = 900
 	contains = list(/obj/item/gun/ballistic/automatic/mp7,
 					/obj/item/gun/ballistic/automatic/mp7)
 	crate_name = "mp7 gun crate"
@@ -159,7 +159,7 @@
 /datum/supply_pack/security/armory/spas12
 	name = "SPAS-12 Crate"
 	desc = "Contains two SPAS-12 shotguns. Requires Armory access to open."
-	cost = 800
+	cost = 900
 	contains = list(/obj/item/gun/ballistic/shotgun/spas12,
 					/obj/item/gun/ballistic/shotgun/spas12)
 	crate_name = "spas-12 gun crate"
@@ -177,7 +177,7 @@
 /datum/supply_pack/security/armory/coltpython
 	name = "Colt Python Crate"
 	desc = "Contains two Colt Python revolvers. Requires Armory access to open."
-	cost = 800
+	cost = 900
 	contains = list(/obj/item/gun/ballistic/revolver/coltpython,
 					/obj/item/gun/ballistic/revolver/coltpython)
 	crate_name = "colt python gun crate"
@@ -239,21 +239,21 @@
 /datum/supply_pack/materials/glass50
 	name = "50 Glass Sheets"
 	desc = "Let some nice light in with fifty glass sheets!"
-	cost = 200
+	cost = 300
 	contains = list(/obj/item/stack/sheet/glass/fifty)
 	crate_name = "glass sheets crate"
 
 /datum/supply_pack/materials/metal50
 	name = "50 Metal Sheets"
 	desc = "Any construction project begins with a good stack of fifty metal sheets!"
-	cost = 200
+	cost = 300
 	contains = list(/obj/item/stack/sheet/metal/fifty)
 	crate_name = "metal sheets crate"
 
 /datum/supply_pack/materials/wood50
 	name = "50 Wood Planks"
 	desc = "Turn cargo's boring metal groundwork into beautiful panelled flooring and much more with fifty wooden planks!"
-	cost = 200
+	cost = 300
 	contains = list(/obj/item/stack/sheet/mineral/wood/fifty)
 	crate_name = "wood planks crate"
 
@@ -317,6 +317,18 @@
 					/obj/item/reagent_containers/pill/patch/medkit,
 	)
 	crate_name = "medkit crate"
+
+/datum/supply_pack/medical/medvial
+	name = "Medvials"
+	desc = "Contains 5 biogel medvials for rapid healing. Heals less than a medkit, but is applied quicker, and is easier to carry."
+	cost = 120
+	contains = list(/obj/item/reagent_containers/pill/patch/medkit/vial,
+					/obj/item/reagent_containers/pill/patch/medkit/vial,
+					/obj/item/reagent_containers/pill/patch/medkit/vial,
+					/obj/item/reagent_containers/pill/patch/medkit/vial,
+					/obj/item/reagent_containers/pill/patch/medkit/vial,
+	)
+	crate_name = "medvial crate"
 
 /datum/supply_pack/medical/firstaid_single
 	name = "First Aid Kit Single-Pack"
@@ -399,6 +411,8 @@
 					/obj/item/storage/fancy/egg_box,
 					/obj/item/reagent_containers/food/condiment/enzyme,
 					/obj/item/reagent_containers/food/condiment/sugar,
+					/obj/item/reagent_containers/food/snacks/meat/slab/chicken,
+					/obj/item/reagent_containers/food/snacks/meat/slab/chicken,
 					/obj/item/reagent_containers/food/snacks/meat/slab/monkey)
 	crate_name = "food crate"
 

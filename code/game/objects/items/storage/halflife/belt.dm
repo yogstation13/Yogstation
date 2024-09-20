@@ -40,6 +40,7 @@
 		/obj/item/ammo_box/magazine/usp9mm,
 		/obj/item/ammo_box/a357,
 		/obj/item/ammo_box/magazine/ar2,
+		/obj/item/reagent_containers/pill/patch/medkit/vial,
 		/obj/item/barrier_taperoll/police
 		))
 
@@ -49,6 +50,7 @@
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
 	SSwardrobe.provide_type(/obj/item/flashlight/seclite, src)
+	SSwardrobe.provide_type(/obj/item/reagent_containers/pill/patch/medkit/vial, src)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/civilprotection/divisionleadfull/PopulateContents()
@@ -57,6 +59,7 @@
 	SSwardrobe.provide_type(/obj/item/melee/baton/loaded, src)
 	SSwardrobe.provide_type(/obj/item/barrier_taperoll/police, src)
 	SSwardrobe.provide_type(/obj/item/flashlight/seclite, src)
+	SSwardrobe.provide_type(/obj/item/reagent_containers/pill/patch/medkit/vial, src)
 	update_appearance(UPDATE_ICON)
 
 /obj/item/storage/belt/civilprotection/overwatch
