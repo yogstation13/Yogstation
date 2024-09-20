@@ -1,5 +1,0 @@
-author: "ThePooba"
-delete-after: True
-changes:
-  - rscadd: "added maints between supply and top centcom"
-  - bugfix: "fixed retirement air"

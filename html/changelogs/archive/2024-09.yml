@@ -463,3 +463,14 @@
   Absolucy:
   - refactor: Biocubes are now proper stacks, and behave as such.
   - image: Made the biocube sprite slightly smaller.
+2024-09-20:
+  Absolucy:
+  - bugfix: Fix constant errors related to pathology symptom varients.
+  - qol: Health Analyzers now tell if someone is incapable of being healed.
+  - qol: Cryotubes will now automatically eject people who are incapable of being
+      healed.
+  - qol: Wound tending surgeries can no longer be started on patients who are incapable
+      of being healed.
+  ThePooba:
+  - rscadd: added maints between supply and top centcom
+  - bugfix: fixed retirement air
