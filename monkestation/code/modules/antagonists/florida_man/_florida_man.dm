@@ -52,9 +52,7 @@
 	owner.current.playsound_local(get_turf(owner.current), 'monkestation/sound/ambience/antag/floridaman.ogg',100,0, use_reverb = FALSE)
 	to_chat(owner, "<span class='boldannounce'>You are THE Florida Man!\nYou're not quite sure how you got out here in space, but you don't generally bother thinking about things.\n\nYou love methamphetamine!\nYou love wrestling lizards!\nYou love getting drunk!\nYou love sticking it to THE MAN!\nYou don't act with any coherent plan or objective.\nYou don't outright want to destroy the station or murder people, as you have no home to return to.\n\nGo forth, son of Space Florida, and sow chaos!</span>")
 	owner.announce_objectives()
-	if(!prob(1)) // 1% chance to be Tony Brony...because meme references to streams are good!
-		floridan.fully_replace_character_name(newname = "Florida Man")
-	else
+	if(prob(1)) // 1% chance to be Tony Brony...because meme references to streams are good!
 		floridan.fully_replace_character_name(newname = "Tony Brony")
 
 /datum/antagonist/florida_man/antag_token(datum/mind/hosts_mind, mob/spender)
