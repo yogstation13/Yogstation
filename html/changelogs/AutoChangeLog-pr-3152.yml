@@ -1,0 +1,5 @@
+author: "PotatoTomahto"
+delete-after: True
+changes:
+  - rscadd: "Cooking removes diseases from all reagents."
+  - bugfix: "Mice properly transfer their disease to their dead carcass."
