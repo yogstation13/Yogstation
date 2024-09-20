@@ -5,10 +5,10 @@
 	cooldown_time = 15 SECONDS
 
 /datum/symptom_varient/recursive/Destroy(force)
-	. = ..()
 	UnregisterSignal(host_symptom, COMSIG_SYMPTOM_TRIGGER)
+	return ..()
 
-/datum/symptom_varient/recursive/set_disease_parent(datum/disease/attached)
+/datum/symptom_varient/recursive/set_disease_parent(datum/source, datum/disease/attached)
 	. = ..()
 	RegisterSignal(host_symptom, COMSIG_SYMPTOM_TRIGGER, PROC_REF(start_chain))
 

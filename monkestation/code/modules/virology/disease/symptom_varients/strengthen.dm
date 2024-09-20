@@ -8,7 +8,7 @@
 	. = ..()
 	UnregisterSignal(host_symptom, COMSIG_SYMPTOM_TRIGGER)
 
-/datum/symptom_varient/strength/set_disease_parent(datum/disease/attached)
+/datum/symptom_varient/strength/set_disease_parent(datum/source, datum/disease/attached)
 	. = ..()
 	RegisterSignal(host_symptom, COMSIG_SYMPTOM_TRIGGER, PROC_REF(increase_strength))
 

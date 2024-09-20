@@ -9,7 +9,7 @@
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 
-/datum/symptom_varient/routine/set_disease_parent(datum/disease/attached)
+/datum/symptom_varient/routine/set_disease_parent(datum/source, datum/disease/attached)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 

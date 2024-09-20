@@ -7,12 +7,12 @@
 	var/mob/living/host_mob
 
 /datum/symptom_varient/reflexive/Destroy(force)
-	. = ..()
 	if(host_mob)
 		UnregisterSignal(host_mob, COMSIG_CARBON_TAKE_BRUTE_DAMAGE)
 		host_mob = null
+	return ..()
 
-/datum/symptom_varient/reflexive/set_disease_parent(datum/disease/attached)
+/datum/symptom_varient/reflexive/set_disease_parent(datum/source, datum/disease/attached)
 	. = ..()
 	if(attached.return_parent())
 		host_mob = attached.return_parent()

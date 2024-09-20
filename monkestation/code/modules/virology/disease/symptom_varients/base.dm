@@ -20,7 +20,14 @@
 	setup_varient()
 	host_symptom.update_name()
 
-/datum/symptom_varient/proc/set_disease_parent(datum/disease/attached)
+/datum/symptom_varient/Destroy(force)
+	if(host_symptom)
+		UnregisterSignal(host_symptom, list(COMSIG_SYMPTOM_ATTACH, COMSIG_SYMPTOM_DETACH, COMSIG_SYMPTOM_TRIGGER))
+		host_symptom = null
+	host_disease = null
+	return ..()
+
+/datum/symptom_varient/proc/set_disease_parent(datum/source, datum/disease/attached)
 	SIGNAL_HANDLER
 
 	UnregisterSignal(host_symptom, COMSIG_SYMPTOM_ATTACH)
