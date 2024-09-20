@@ -12,7 +12,8 @@
 	if(startDead)
 		death(FALSE)
 	if(!voice_type)
-		voice_type = pick(voice_type2sound) //yogs edit (stolen from monke)
+		voice_type = pick(GLOB.voice_types) //yogs edit, voices
+		voice_type = GLOB.voice_types[voice_type] //actually get the voice_type datum, rather than just the name
 
 /mob/living/prepare_huds()
 	..()
