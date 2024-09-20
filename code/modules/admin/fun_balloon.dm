@@ -44,8 +44,8 @@
 /obj/effect/fun_balloon/sentience
 	name = "sentience fun balloon"
 	desc = "When this pops, things are gonna get more aware around here."
-	var/effect_range = 3
-	var/group_name = "a bunch of giant spiders"
+	var/effect_range = 4
+	var/group_name = "a zombie"
 
 /obj/effect/fun_balloon/sentience/effect()
 	var/list/bodies = list()
