@@ -234,7 +234,8 @@
 			module.on_suit_deactivation()
 		STOP_PROCESSING(SSobj, src)
 	update_speed()
-	update_icon_state()
+	if(!(locate(/obj/item/mod/module/chameleon) in modules)) // monkestation edit: janky bugfix for chameleon modules
+		update_icon_state()
 	wearer.update_clothing(slot_flags)
 
 /// Quickly deploys all the suit parts and if successful, seals them and turns on the suit. Intended mostly for outfits.

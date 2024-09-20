@@ -354,6 +354,7 @@
 		return
 	mod.wearer.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 
+/* monkestation removal: overwritten in [monkestation\code\modules\mod\modules\modules_antag.dm], to fix bugs
 ///Chameleon - lets the suit disguise as any item that would fit on that slot.
 /obj/item/mod/module/chameleon
 	name = "MOD chameleon module"
@@ -425,6 +426,7 @@
 	mod.wearer.update_clothing(mod.slot_flags)
 	current_disguise = null
 	UnregisterSignal(mod, COMSIG_MOD_ACTIVATE)
+monkestation end */
 
 ///Plate Compression - Compresses the suit to normal size
 /obj/item/mod/module/plate_compression
