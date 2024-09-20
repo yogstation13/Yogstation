@@ -1,0 +1,7 @@
+author: "RafRoq"
+delete-after: True
+changes:
+  - rscadd: "New plant trait: Catalytic Inhibitor Serum."
+  - rscadd: "New restricted traitor uplink item: plant data disk with Catalytic Inhibitor Serum gene for 20 TC."
+  - bugfix: "Fixed Dank Vesicles and Densified Chemicals interaction."
+  - rscdel: "Removed the Potency Limiter gene."
