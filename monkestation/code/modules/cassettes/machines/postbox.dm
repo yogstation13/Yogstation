@@ -27,29 +27,29 @@
 		return
 
 	if(attacked_tape.name == "A blank cassette")
-		to_chat(user, span_notice("Please name your tape before submitting it you can't change this later!"))
+		to_chat(user, span_notice("Please name your tape before submitting it, you can't change this later!"))
 		return
 
 	if(attacked_tape.cassette_desc_string == "Generic Desc")
-		to_chat(user, span_notice("Please add a description to your tape before submitting it you can't change this later!"))
+		to_chat(user, span_notice("Please add a description to your tape before submitting it, you can't change this later!"))
 		return
 
 	var/list/side1 = attacked_tape.songs["side1"]
 	var/list/side2 = attacked_tape.songs["side2"]
 
 	if(!length(side1) && !length(side2))
-		to_chat(user, span_notice("Please add some songs to your tape before submitting it you can't change this later!"))
+		to_chat(user, span_notice("Please add some songs to your tape before submitting it, you can't change this later!"))
 		return
 
 	if(attacked_tape.approved_tape)
 		to_chat(user, span_notice("This tape has already been approved by the Board, it would be a waste of money to send it in again."))
 		return
-	var/choice = tgui_alert(user, "Are you sure this Costs 5k Monkecoins", "Mailbox", list("Yes", "No"))
+	var/choice = tgui_alert(user, "Are you sure? This costs 5k Monkecoins", "Mailbox", list("Yes", "No"))
 	if(choice != "Yes")
 		return
 	///these two parts here should be commented out for local testing without a db
 	if(user.client.prefs.metacoins < 5000)
-		to_chat(user, span_notice("Sorry you don't have enough Monkecoins to submit a cassette for review."))
+		to_chat(user, span_notice("Sorry, you don't have enough Monkecoins to submit a cassette for review."))
 		return
 
 	if(!user.client.prefs.adjust_metacoins(user.client.ckey, -5000, donator_multipler = FALSE))

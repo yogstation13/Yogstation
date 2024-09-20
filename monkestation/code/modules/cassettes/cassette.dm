@@ -68,7 +68,7 @@
 	desc = cassette_desc_string
 	desc += "\n"
 	if(!approved_tape)
-		desc += span_warning("It appears to be a bootleg tape, quality is not a guarentee!\n")
+		desc += span_warning("It appears to be a bootleg tape, quality is not a guarantee!\n")
 	if(author_name)
 		desc += span_notice("Mixed by [author_name]\n")
 
