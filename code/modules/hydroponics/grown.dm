@@ -42,6 +42,8 @@
 	var/alt_icon
 	/// Should we pixel offset ourselves at init? for mapping
 	var/offset_at_init = TRUE
+	//This volume can be altered by densified chemicals trait
+	var/volume_rate = 1 //Monkestation Edit
 
 /obj/item/food/grown/Initialize(mapload, obj/item/seeds/new_seed)
 	if(!tastes)
@@ -65,8 +67,13 @@
 	make_dryable()
 
 	// Go through all traits in their genes and call on_new_plant from them.
+	//TODO: We need a priority queue for traits,some of them need to be called first
 	for(var/datum/plant_gene/trait/trait in seed.genes)
 		trait.on_new_plant(src, loc)
+
+	//Needs to be run after traits are called because some of them alter max_volume and volume_rate
+	//Since traits do not know in which order they were run we need to do it here
+	max_volume *= volume_rate //Monkestation Edit
 
 	// Set our default bitesize: bite size = 1 + (potency * 0.05) * (max_volume * 0.01) * modifier
 	// A 100 potency, non-densified plant = 1 + (5 * 1 * modifier) = 6u bite size
@@ -74,7 +81,12 @@
 	bite_consumption = 1 + round(max((seed.potency * BITE_SIZE_POTENCY_MULTIPLIER), 1) * (max_volume * BITE_SIZE_VOLUME_MULTIPLIER) * bite_consumption_mod)
 
 	. = ..() //Only call it here because we want all the genes and shit to be applied before we add edibility. God this code is a mess.
-
+	//Monkestation Edit Begin
+	//We want this trait to run after reagents component is added to the plant
+	var/datum/plant_gene/trait/trait_noreact = seed.get_gene(/datum/plant_gene/trait/noreact)
+	if(trait_noreact)
+		trait_noreact.on_new_plant(src, loc)
+	//Monkestation Edit End
 	seed.prepare_result(src)
 	transform *= TRANSFORM_USING_VARIABLE(seed.potency, 100) + 0.5 //Makes the resulting produce's sprite larger or smaller based on potency!
 

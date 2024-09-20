@@ -429,11 +429,6 @@
 		return
 
 	var/max_potency = MAX_PLANT_YIELD
-	for(var/datum/plant_gene/trait/trait in genes)
-		if(trait.trait_flags & TRAIT_LIMIT_POTENCY)
-			max_potency = 100
-			break
-
 	potency = clamp(potency + adjustamt, 0, max_potency)
 	var/datum/plant_gene/core/C = get_gene(/datum/plant_gene/core/potency)
 	if(C)

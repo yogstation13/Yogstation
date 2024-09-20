@@ -499,7 +499,6 @@
 	. = ..()
 	if(!.)
 		return
-
 	var/obj/item/food/grown/grown_plant = our_plant
 	if(istype(grown_plant))
 		grown_plant.max_volume = new_capcity
