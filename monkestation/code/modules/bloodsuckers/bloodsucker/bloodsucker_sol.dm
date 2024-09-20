@@ -141,6 +141,7 @@
 	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	heal_vampire_organs()
+	owner.current.update_stat()
 	SEND_SIGNAL(src, BLOODSUCKER_EXIT_TORPOR)
 
 /datum/status_effect/bloodsucker_sol
