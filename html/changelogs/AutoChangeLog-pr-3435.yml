@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Abandoned areas in maint (i.e gambling den, garden, etc) are now properly protected from radstorms."
+  - rscadd: "Radstorm-proofed some more areas."
