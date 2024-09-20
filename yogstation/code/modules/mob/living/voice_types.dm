@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(voice_types, generate_voice_types()) //we have a list of all vo
 	/// list of sounds used for when adding ? at the end
 	var/list/question
 
-	///needs to be on this list to pick it (unused)
+	///if this is initialized, a species needs to be on this list to pick it (unused)
 	var/list/species_whitelist
 	///needs to not be on this list to pick it (unused)
 	var/list/species_blacklist
