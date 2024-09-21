@@ -1662,7 +1662,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	optional = TRUE
 
 /datum/objective/gimmick/update_explanation_text()
-	var/selected_department = pick(list( //Select a department for department-based objectives
+	var/departments = list( //Select a department for department-based objectives
 		DEPT_SCIENCE,
 		DEPT_ENGINEERING,
 		DEPT_SECURITY,
@@ -1670,7 +1670,15 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		DEPT_SERVICE,
 		DEPT_SUPPLY,
 		DEPT_COMMAND
-	))
+	)
+
+	var/datum/job/J = SSjob.GetJob(owner.assigned_role)
+
+	for(var/department in J?.departments_list) //don't get departments to mess with that our our own department
+		var/datum/job_department/D = department
+		departments -= initial(D.department_name)
+
+	var/selected_department = pick(departments)
 
 	var/list/gimmick_list = world.file2list(GIMMICK_OBJ_FILE) //gimmick_objectives.txt is for objectives without a specific target/department/etc
 	gimmick_list.Add(world.file2list(DEPT_GIMMICK_OBJ_FILE))
