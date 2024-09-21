@@ -585,19 +585,20 @@
 		if(!W.equip_ready && (W.equip_cooldown < MECHA_MAX_COOLDOWN))
 			return
 	
-	if(!selected && Adjacent(target))
+	if(!selected)
 		default_melee_attack(target)
-		return
-	if(selected.action_checks(target) && selected.action(target, user, params))
+	else if(selected.action_checks(target) && selected.action(target, user, params))
 		selected.start_cooldown()
 
 /obj/mecha/proc/default_melee_attack(atom/target, cooldown_override = 0)
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(oview(1,src))
-	if(!melee_can_hit || !istype(target, /atom))
-		return
+	if(!melee_can_hit || !isatom(target))
+		return FALSE
 	if(equipment_disabled)
-		return
+		return FALSE
+	if(!Adjacent(target))
+		return FALSE
 	target.mech_melee_attack(src, force, TRUE)
 	melee_can_hit = FALSE
 	adjust_overheat(punch_heat_cost)
