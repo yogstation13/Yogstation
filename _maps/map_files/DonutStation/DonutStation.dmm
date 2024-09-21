@@ -18389,6 +18389,7 @@
 	c_tag = "Cargo - Disposals Office";
 	dir = 8
 	},
+/obj/effect/spawner/backrooms_portal,
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "hBq" = (
@@ -54697,6 +54698,7 @@
 /obj/item/melee/sledgehammer,
 /obj/item/storage/bag/trash,
 /obj/item/broom,
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
 "wNb" = (

@@ -646,7 +646,8 @@
 	reagent_type = /datum/reagent/drug/caffeine
 	junkie_warning = "You suddenly feel like you need some caffeine..."
 	var/list/weighted_items = list(
-		/obj/item/reagent_containers/food/drinks/coffee = 200,
+		/obj/item/reagent_containers/food/drinks/soda_cans/icedcoffee = 200,
+		/obj/item/reagent_containers/food/drinks/coffee = 100, //who just carries around a styrofoam cup of coffee in their backpack
 		/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 100,
 		/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy = 100,
 		/obj/item/reagent_containers/food/drinks/mug/tea = 50,

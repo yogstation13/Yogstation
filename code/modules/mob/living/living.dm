@@ -11,6 +11,8 @@
 	GLOB.mob_living_list += src
 	if(startDead)
 		death(FALSE)
+	if(!voice_type)
+		voice_type = pick(voice_type2sound) //yogs edit (stolen from monke)
 
 /mob/living/prepare_huds()
 	..()
@@ -178,7 +180,6 @@
 			return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
-	var/list/mob_details = list()
 	var/list/holding = list()
 	var/len = length(held_items)
 	if(len)
@@ -186,12 +187,10 @@
 			if(!holding.len)
 				holding += "They are holding \a [I]"
 			else if(held_items.Find(I) == len)
-				holding += ", and \a [I]."
+				holding += ", and \a [I]"
 			else
 				holding += ", \a [I]"
-	holding += "."
-	mob_details += "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt":""][holding ? ". [holding.Join("")]":"."]."
-	return mob_details.Join("")
+	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt":""][holding.len ? ". [holding.Join("")].":"."]"
 
 //Called when we bump onto an obj
 /mob/living/proc/ObjBump(obj/O)

@@ -56,11 +56,11 @@
 
 /datum/atom_hud/data/diagnostic/basic
 	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, \
-						DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, NANITE_HUD, DIAG_NANITE_FULL_HUD)
+						DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, NANITE_HUD, DIAG_NANITE_FULL_HUD, DIAG_OVERHEAT_HUD)
 
 /datum/atom_hud/data/diagnostic/advanced
-	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, 
-						DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, DIAG_PATH_HUD, NANITE_HUD, DIAG_NANITE_FULL_HUD)
+	hud_icons = list(DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, \
+						DIAG_AIRLOCK_HUD, DIAG_LAUNCHPAD_HUD, DIAG_PATH_HUD, NANITE_HUD, DIAG_NANITE_FULL_HUD, DIAG_OVERHEAT_HUD)
 
 /datum/atom_hud/data/bot_path
 	// This hud exists so the bot can see itself, that's all
@@ -388,6 +388,13 @@ Diagnostic HUDs!
 		holder.icon_state = "hudnobatt"
 	set_hud_image_active(DIAG_BATT_HUD)
 
+/obj/mecha/proc/diag_hud_set_mechoverheat()
+	var/image/holder = hud_list[DIAG_OVERHEAT_HUD]
+	var/icon/I = icon(icon, icon_state, dir)
+	holder.pixel_y = I.Height() - world.icon_size
+	holder.icon_state = "overheat[round(10 * overheat / OVERHEAT_MAXIMUM)]"
+	set_hud_image_active(DIAG_OVERHEAT_HUD)
+
 /obj/mecha/proc/diag_hud_set_mechstat()
 	var/image/holder = hud_list[DIAG_STAT_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
@@ -395,6 +402,10 @@ Diagnostic HUDs!
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
 		set_hud_image_active(DIAG_STAT_HUD)
+		return
+	else if(HAS_TRAIT(src, TRAIT_MECH_DISABLED))
+		holder.icon_state = "hudoffline"
+		set_hud_image_inactive(DIAG_STAT_HUD)
 		return
 	holder.icon_state = null
 	set_hud_image_inactive(DIAG_STAT_HUD)
