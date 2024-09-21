@@ -9,18 +9,6 @@
 	category = EVENT_CATEGORY_ENTITIES
 	description = "spawns a bloodsucker from ghost roles."
 
-/datum/round_event_control/tzimisce/bloodsucker
-	name = "Spawn Tzimisce - Bloodsucker"
-	max_occurrences = 1
-//	weight = 2000
-	typepath = /datum/round_event/ghost_role/tzimisce/bloodsucker
-	min_players = 25
-	earliest_start = 30 MINUTES
-
-/datum/round_event/ghost_role/tzimisce/bloodsucker
-	fakeable = FALSE
-	var/cancel_me = TRUE
-
 /datum/round_event_control/tzimisce/canSpawnEvent(players_amt, allow_magic, fake_check)
 	. = ..()
 	if(.)
@@ -30,15 +18,9 @@
 		return FALSE
 
 /datum/round_event/ghost_role/tzimisce
-	var/success_spawn = 0
 	minimum_required = 1
 	role_name = "Tzimisce"
 	fakeable = FALSE
-
-/datum/round_event/ghost_role/tzimisce/kill()
-	if(!success_spawn && control)
-		control.occurrences--
-	return ..()
 
 /datum/round_event/ghost_role/tzimisce/spawn_role()
 	//selecting a spawn_loc
