@@ -253,9 +253,9 @@
 					thrown_atom.take_damage(soarobjdam)
 				thrown_atom.Bump(Z)
 				if(istype(thrown_atom, /obj/mecha)) //mechs are probably heavy as hell so stop flying after making contact with resistance
-					thrown -= thrown_atom
+					lobbed -= thrown_atom
 		if(Z.density == TRUE && Z.anchored == FALSE) //if the thing hit isn't anchored it starts flying too
-			thrown |= Z 
+			lobbed |= Z 
 			Z.take_damage(50) 
 		if(Z.density == TRUE && Z.anchored == TRUE)
 			for(var/mob/living/S in lobbed)
@@ -282,7 +282,7 @@
 			for(var/mob/living/S in lobbed)
 				grab(user, S, soarslamdam) 
 				S.Knockdown(1 SECONDS) 
-			thrown |= M 
+			lobbed |= M 
 		for(var/obj/O in lobbed)
 			O.take_damage(soarobjdam) 
 	if(next) // if the next tile wont stop the thrown mass from continuing
@@ -295,7 +295,7 @@
 			if(isspaceturf(next)) //jettison
 				var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
 				K.throw_at(throw_target, 6, 4, user, 3)
-	addtimer(CALLBACK(src, PROC_REF(soar), user, center, endzone, distance-1, thrown), 0.01 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(soar), user, center, endzone, distance-1, lobbed), 0.01 SECONDS)
 	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------
