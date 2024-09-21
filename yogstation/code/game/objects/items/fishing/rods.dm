@@ -1,6 +1,6 @@
 /obj/item/fishingrod
 	name = "fishing rod"
-	desc = "A rod used for fishing. Despite ordinary appearances, fishing has evolved to suit the cosmos with various features, like auto-reeling."
+	desc = "A rod used for fishing."
 	icon = 'yogstation/icons/obj/fishing/fishing.dmi'
 	icon_state = "fishing_rod"
 	lefthand_file = 'yogstation/icons/mob/inhands/equipment/fishing_lefthand.dmi'

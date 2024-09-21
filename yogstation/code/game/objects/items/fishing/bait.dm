@@ -43,7 +43,7 @@
 
 /obj/item/reagent_containers/food/snacks/bait/worm
 	name = "worm bait"
-	desc = "Might be able to catch a lizard with this..."
+	desc = "A gross worm, often found in sewage or other dirty areas."
 	icon_state = "bait_worm"
 	fishing_power = 15
 

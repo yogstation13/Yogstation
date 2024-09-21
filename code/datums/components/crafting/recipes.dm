@@ -174,6 +174,15 @@
 	reqs = list(/obj/item/stack/sheet/cardboard = 1)
 	category = CAT_MISC
 
+/datum/crafting_recipe/fishingrod
+	name = "Fishing Rod"
+	result = /obj/item/fishingrod
+	time = 5 SECONDS 
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+		        /obj/item/stack/sheet/mineral/wood = 4,
+		        /obj/item/stack/tape = 10)
+	category = CAT_MISC
+
 /datum/crafting_recipe/guillotine
 	name = "Guillotine"
 	result = /obj/structure/guillotine

@@ -107,8 +107,8 @@
 	slices_num = 3
 
 /obj/item/reagent_containers/food/snacks/fish/shrimp
-	name = "space shrimp"
-	desc = "He looks a little shrimpy."
+	name = "xenian shrimp"
+	desc = "A large, almost normal looking shrimp."
 	icon_state = "fish_shrimp"
 	min_length = 1
 	max_length = 6
@@ -117,8 +117,8 @@
 	slices_num = null //just eat as is
 
 /obj/item/reagent_containers/food/snacks/fish/squid
-	name = "space squid"
-	desc = "Like the game?"
+	name = "xenian squid"
+	desc = "This has to be alien if it is managing to survive here."
 	icon_state = "fish_squid"
 	min_length = 18
 	max_length = 24

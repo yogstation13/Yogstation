@@ -271,6 +271,9 @@
 	dispensedreagent = /datum/reagent/water/dirty/sewer
 	light_color = "#013b09" 
 
+/turf/open/halflife/water/sewer/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/fishable/sewer)
 
 /turf/open/halflife/water/sewer/deep
 	name = "deep water"

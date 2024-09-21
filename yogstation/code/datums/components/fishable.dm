@@ -37,6 +37,12 @@
 /datum/component/fishable/lava
 	loot = new /datum/fishing_loot/lava
 
+
+//sewage fishing
+
+/datum/component/fishable/sewer
+	loot = new /datum/fishing_loot/sewer
+
 //LOOT TABLES
 /datum/fishing_loot
 	var/list/junk_loot
@@ -115,4 +121,25 @@
 		/obj/item/stack/sheet/mineral/abductor
 		)
 		
+		
+/datum/fishing_loot/sewer
+	junk_loot = list(
+		/obj/item/trash/plate,
+		/obj/item/stack/rods,
+		/obj/item/shard
+	)
+	common_loot = list(
+		/obj/item/reagent_containers/food/drinks/soda_cans/breenwater,
+		/obj/item/reagent_containers/food/snacks/bait/worm/leech
+	)
+	uncommon_loot = list(
+		/obj/item/reagent_containers/food/snacks/fish/shrimp,
+		/obj/item/water_canister,
+		/obj/item/reagent_containers/food/snacks/xenbranch,
+		/obj/item/reagent_containers/food/drinks/beer/light
+	)
+	rare_loot = list(
+		/obj/item/reagent_containers/food/snacks/fish/squid,
+		/mob/living/simple_animal/hostile/halflife/headcrab
+	)
 		
