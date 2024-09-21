@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - bugfix: "quirks will only try to tell you about themselves if they have something to say"
