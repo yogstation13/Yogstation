@@ -80,3 +80,17 @@
 		return
 	var/mob/living/user_mob = user.mob
 	user_mob.set_combat_mode(FALSE, FALSE, FALSE)
+
+// Optional grab mode, because some people have a hard time holding ctrl while also moving and clicking
+/datum/keybinding/living/grab_mode
+	hotkey_keys = list("Unbound")
+	name = "grab_mode"
+	full_name = "Grab Mode"
+	description = "Enables grab mode. Functions the same as combat mode, except you grab instead of punch."
+
+/datum/keybinding/living/grab_mode/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/user_mob = user.mob
+	user_mob.set_combat_mode(GRAB_MODE, FALSE, FALSE)

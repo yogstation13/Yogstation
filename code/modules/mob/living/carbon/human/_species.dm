@@ -1926,6 +1926,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(attacker, COMSIG_MOB_ATTACK_HAND, attacker, defender, attacker_style, modifiers)
 	if(disarming)
 		disarm(attacker, defender, attacker_style)
+	else if(attacker.combat_mode == GRAB_MODE)
+		grab(attacker, defender, attacker_style)
 	else if(attacker.combat_mode)
 		harm(attacker, defender, attacker_style)
 	else

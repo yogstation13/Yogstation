@@ -76,6 +76,9 @@
 /// Proceed with the attack chain, but don't call the normal methods.
 #define SECONDARY_ATTACK_CONTINUE_CHAIN 3
 
+/// Dedicated grab mode. Makes you grab instead of punch.
+#define GRAB_MODE 2
+
 //Bitflags defining which status effects could be or are inflicted on a mob
 #define CANSTUN			(1<<0)
 #define CANKNOCKDOWN	(1<<1)
