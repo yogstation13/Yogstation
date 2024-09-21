@@ -1018,7 +1018,7 @@ SUBSYSTEM_DEF(gamemode)
 	dat += "<td width=5%><b>M.Time</b></td>"
 	dat += "<td width=5%><b>Can Occur</b></td>"
 	dat += "<td width=10%><b>Failure Reason</b></td>"
-	dat += "<td width=14%><b>Weight</b></td>"
+	dat += "<td width=12%><b>Weight</b></td>"
 	dat += "<td width=26%><b>Actions</b></td>"
 	dat += "</tr>"
 	var/even = TRUE
@@ -1061,7 +1061,7 @@ SUBSYSTEM_DEF(gamemode)
 		dat += "<td>[event.earliest_start / (1 MINUTES)] m.</td>" //Minimum time
 		dat += "<td>[assoc_spawn_weight[event] ? "Yes" : "No"]</td>" //Can happen?
 		dat += "<td>[event.return_failure_string(active_players)]</td>" //Why can't happen?
-		var/weight_string = "Modified: [event.calculated_weight]\nOriginal: [event.weight]"
+		var/weight_string = "Modified: [event.calculated_weight] - Original: [event.weight]"
 		if(assoc_spawn_weight[event])
 			var/percent = round((event.calculated_weight / total_weight) * 100)
 			weight_string = "[percent]% - [weight_string]"
