@@ -1012,10 +1012,10 @@ SUBSYSTEM_DEF(gamemode)
 	dat += "<tr style='vertical-align:top'>"
 	dat += "<td width=17%><b>Name</b></td>"
 	dat += "<td width=16%><b>Tags</b></td>"
-	dat += "<td width=8%><b>Occurences</b></td>"
+	dat += "<td width=7%><b>Occurences</b></td>"
 	dat += "<td width=8%><b>Max Occurences</b></td>"
-	dat += "<td width=5%><b>M.Pop</b></td>"
-	dat += "<td width=5%><b>M.Time</b></td>"
+	dat += "<td width=5%><b>Min Pop</b></td>"
+	dat += "<td width=5%><b>Min Time</b></td>"
 	dat += "<td width=5%><b>Can Occur</b></td>"
 	dat += "<td width=10%><b>Failure Reason</b></td>"
 	dat += "<td width=12%><b>Weight</b></td>"
@@ -1049,7 +1049,7 @@ SUBSYSTEM_DEF(gamemode)
 		dat += "<td>[event.name]</td>" //Name
 		dat += "<td>" //Tags
 		for(var/tag in event.tags)
-			dat += "[tag] "
+			dat += "[capitalize(tag)], "
 		dat += "</td>"
 		var/occurence_string = "[event.occurrences]"
 		if(event.shared_occurence_type)
@@ -1058,7 +1058,7 @@ SUBSYSTEM_DEF(gamemode)
 		dat += "<td>[occurence_string]</td>" //Occurences
 		dat += "<td>[max_occurence_string]</td>" //Max Occurences
 		dat += "<td>[event.min_players]</td>" //Minimum pop
-		dat += "<td>[event.earliest_start / (1 MINUTES)] m.</td>" //Minimum time
+		dat += "<td>[event.earliest_start / (1 MINUTES)] mins</td>" //Minimum time
 		dat += "<td>[assoc_spawn_weight[event] ? "Yes" : "No"]</td>" //Can happen?
 		dat += "<td>[event.return_failure_string(active_players)]</td>" //Why can't happen?
 		var/weight_string = "Modified: [event.calculated_weight] - Original: [event.weight]"
