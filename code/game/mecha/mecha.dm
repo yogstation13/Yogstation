@@ -603,7 +603,7 @@
 	melee_can_hit = FALSE
 	adjust_overheat(punch_heat_cost)
 	addtimer(VARSET_CALLBACK(src, melee_can_hit, TRUE), cooldown_override ? cooldown_override : melee_cooldown)
-
+	return TRUE
 
 /obj/mecha/proc/range_action(atom/target)
 	return
