@@ -310,7 +310,7 @@
 
 /datum/reagent/toxin/spore
 	name = "Spore Toxin"
-	description = "A natural toxin produced by blob spores that inhibits vision when ingested."
+	description = "A natural toxin produced by xenian fungus that inhibits vision when ingested."
 	color = "#9ACD32"
 	toxpwr = 1
 

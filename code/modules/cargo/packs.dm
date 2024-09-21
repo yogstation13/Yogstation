@@ -259,10 +259,12 @@
 
 /datum/supply_pack/materials/tools
 	name = "Tool Crate"
-	desc = "Contains a handful of wrenches and crowbars."
-	cost = 100
+	desc = "Contains a collection of tools."
+	cost = 125
 	contains = list(/obj/item/crowbar/large,
 					/obj/item/crowbar/large,
+					/obj/item/weldingtool,
+					/obj/item/screwdriver,
 					/obj/item/wrench,
 					/obj/item/wrench)
 	crate_name = "tool crate"

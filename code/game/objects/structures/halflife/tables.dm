@@ -3,11 +3,7 @@
 /obj/structure/table/halflife
 	name = "table"
 	desc = "Scream at the coders if you see this."
-	buildstack = null
 	custom_materials = null
-	frame = /obj/item/stack/sheet/metal
-	framestack = /obj/item/stack/sheet/metal
-	framestackamount = 2
 
 /obj/structure/table/halflife/deconstruction_hints(mob/user)
 	return span_notice("You could use a <b>screwdriver</b> or a <b>wrench</b> to take apart [src].")

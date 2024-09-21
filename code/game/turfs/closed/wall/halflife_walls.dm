@@ -3,6 +3,7 @@
 	name = "wall"
 	desc = "A sturdy wall."
 	max_integrity = 3000
+	baseturfs = /turf/open/floor/plating/ground/dirt
 
 /turf/closed/wall/halflife/try_decon(obj/item/I, mob/user, turf/T, modifiers)
 	return FALSE

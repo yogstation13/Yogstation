@@ -226,7 +226,7 @@ Slimecrossing Items
 	filling_color = "#964B00"
 	tastes = list("gross water" = 3, "sadness" = 3)
 	foodtype = null //Don't ask what went into them. You're better off not knowing.
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 
 /obj/item/reagent_containers/food/snacks/rationpack/checkLiked(fraction, mob/M)	//Nobody likes rationpacks. Nobody.
 	if(last_check_time + 50 < world.time)
@@ -245,7 +245,7 @@ Slimecrossing Items
 	name = "loyalty-grade nutriment bar"
 	desc = "A 'water' flavored ration nutriment bar. Tastes gross, but at least you won't be hungry. This one is more healthy and filling."
 	icon_state = "loyaltyrationpack"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 3)
 
 
 //Ice stasis block - Chilling Dark Blue

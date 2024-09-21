@@ -56,13 +56,13 @@
 	desc = "A green, leafy looking Xen plant. You may be able to break it for something."
 	icon_state = "leafy"
 	light_range = 1.5
-	light_power = 1
+	light_power = 1.5
 	light_color = "#28533a"
 	breakmats = /obj/item/reagent_containers/food/snacks/xenbranch
 
 /obj/item/reagent_containers/food/snacks/xenbranch
 	name = "xenian branch"
-	desc = "An branch from some xenian plant. It's green, so that might mean it could be possibly used for medicinal purposes."
+	desc = "A branch from some xenian plant. It's green, so that might mean it could be possibly used for medicinal purposes."
 	tastes = list("bitterness" = 1)
 	filling_color = "#0f6e37"
 	bitesize = 5
@@ -73,9 +73,20 @@
 
 /obj/structure/flora/xen/tinyshrooms
 	name = "tiny xen plant"
-	desc = "A small collection of purple mushroom like plants. Doesn't seem very useful, but glows ever so slightly."
+	desc = "A small collection of purple mushroom like plants. Maybe you could break it down for some spores."
 	icon_state = "tinyshrooms"
-	light_range = 1
-	light_power = 0.5
+	light_range = 1.5
+	light_power = 1.5
 	light_color = "#703d68"
+	breakmats = /obj/item/reagent_containers/food/snacks/xenspore
 
+/obj/item/reagent_containers/food/snacks/xenspore
+	name = "xenian spore"
+	desc = "A spore from some xenian plant. It smells kind of funky..."
+	tastes = list("dusty mushrooms" = 1)
+	filling_color = "#580f6e"
+	bitesize = 4
+	list_reagents = list(/datum/reagent/drug/happiness = 4, /datum/reagent/drug/aranesp = 4, /datum/reagent/toxin/spore = 4)
+	foodtype = GROSS
+	icon = 'icons/obj/halflife/xenflora.dmi'
+	icon_state = "spore"
