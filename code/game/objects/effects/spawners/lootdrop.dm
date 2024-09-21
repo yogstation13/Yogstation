@@ -749,6 +749,7 @@
 				/obj/item/storage/briefcase,
 				/obj/item/clothing/under/citizen/refugee = 2,
 				/obj/item/clothing/head/beanie/black = 2,
+				/obj/item/clothing/mask/balaclava,
 				/obj/item/radio/off/halflife = 2,
 				/obj/item/ammo_casing/reusable/arrow/rebar,
 				/obj/item/flashlight/seclite,
