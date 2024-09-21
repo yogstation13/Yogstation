@@ -134,6 +134,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/grab_sound
 	///yogs - audio of a species' scream
 	var/screamsound  //yogs - grabs scream from screamsound list or string
+	var/laughsound
 	var/husk_color = "#A6A6A6"
 	var/creampie_id = "creampie_human"
 	/// The visual effect of the attack.
@@ -2127,7 +2128,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /// Returns the species' laugh sound
 /datum/species/proc/get_laugh_sound(mob/living/carbon/human/human)
-	return
+	if(islist(laughsound))
+		return pick(laughsound)
+	return laughsound
 
 /// Returns the species' sneeze sound.
 /datum/species/proc/get_sneeze_sound(mob/living/carbon/human/human)

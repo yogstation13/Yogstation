@@ -180,7 +180,7 @@
 	time = 5 SECONDS 
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 		        /obj/item/stack/sheet/mineral/wood = 4,
-		        /obj/item/stack/tape = 10)
+		        /obj/item/stack/tape = 1)
 	category = CAT_MISC
 
 /datum/crafting_recipe/guillotine

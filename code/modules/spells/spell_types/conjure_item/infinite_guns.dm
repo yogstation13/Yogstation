@@ -42,7 +42,7 @@
 
 /datum/action/cooldown/spell/conjure_item/infinite_guns/vort_blast
 	name = "Vortal Blast"
-	cooldown_time = 6 SECONDS
+	cooldown_time = 5 SECONDS
 	desc = "Use the vortessence to ready a vortal bolt in your hand."
 	button_icon_state = "vortblast"
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC

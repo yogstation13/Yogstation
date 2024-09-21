@@ -430,7 +430,7 @@
 	damage = 40
 	damage_type = BURN
 	nodamage = FALSE
-	armour_penetration = 30
+	armour_penetration = 20
 	armor_flag = MAGIC 
 	hitsound = 'sound/weapons/halflife/attack_shoot.ogg'
 

@@ -90,35 +90,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
-"ao" = (
-/obj/structure/chair/office/dark{
-	dir = 8;
-	name = "tactical swivel chair"
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/bridge)
 "ap" = (
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/bridge)
-"aq" = (
-/obj/structure/chair/office/dark{
-	dir = 1;
-	name = "tactical swivel chair"
-	},
-/obj/machinery/button/door{
-	id = "syndieshutters";
-	name = "Cockpit View Control";
-	pixel_x = 32;
-	pixel_y = 32;
-	req_access = list("syndicate")
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/bridge)
-"ar" = (
-/obj/structure/chair/office/dark{
-	dir = 4;
-	name = "tactical swivel chair"
-	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/bridge)
 "as" = (
@@ -235,41 +207,7 @@
 "aB" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/airlock)
-"aC" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4;
-	name = "tactical chair"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/hallway)
 "aD" = (
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/hallway)
-"aE" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8;
-	name = "tactical chair"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/hallway)
 "aF" = (
@@ -284,46 +222,6 @@
 	},
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/medical)
-"aH" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4;
-	name = "tactical chair"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/hallway)
-"aI" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 8;
-	name = "tactical chair"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/hallway)
 "aJ" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/shuttle/syndicate/medical)
@@ -442,17 +340,6 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/eva)
-"aX" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 4;
-	name = "tactical chair"
-	},
-/obj/effect/turf_decal/bot_white,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/syndicate/airlock)
 "aY" = (
 /obj/machinery/door/poddoor{
 	id = "smindicate";
@@ -470,10 +357,10 @@
 	dwidth = 12;
 	height = 17;
 	hidden = 1;
-	shuttle_id = "syndicate";
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
 	name = "syndicate infiltrator";
 	port_direction = 4;
+	shuttle_id = "syndicate";
 	width = 23
 	},
 /obj/structure/fans/tiny,
@@ -1391,6 +1278,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/syndicate/airlock)
+"XG" = (
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"XU" = (
+/obj/machinery/button/door{
+	id = "syndieshutters";
+	name = "Cockpit View Control";
+	pixel_x = 32;
+	pixel_y = 32;
+	req_access = list("syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/bridge)
 
 (1,1,1) = {"
 aa
@@ -1545,7 +1449,7 @@ aa
 (7,1,1) = {"
 ae
 ah
-ao
+ap
 at
 ac
 af
@@ -1574,10 +1478,10 @@ ap
 at
 au
 ay
-aC
-aH
-aC
-aC
+az
+bE
+az
+az
 aQ
 az
 az
@@ -1595,7 +1499,7 @@ aa
 (9,1,1) = {"
 ae
 aj
-aq
+XU
 at
 av
 az
@@ -1624,10 +1528,10 @@ ap
 at
 ac
 aA
-aE
-aI
-aE
-aE
+az
+bF
+az
+az
 aQ
 az
 az
@@ -1645,7 +1549,7 @@ aa
 (11,1,1) = {"
 ae
 al
-ar
+ap
 at
 ac
 af
@@ -1678,7 +1582,7 @@ aa
 aB
 aB
 tZ
-aX
+XG
 bc
 Xg
 bm

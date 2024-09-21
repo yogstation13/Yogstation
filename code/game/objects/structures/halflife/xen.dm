@@ -22,7 +22,7 @@
 /obj/structure/flora/ash/stem_shroom
 	icon_state = "t_mushroom"
 	name = "numerous xenian mushrooms"
-	desc = "A large number of xenian mushrooms, some of which have long, fleshy stems, which look harvestable. They're radiating light!"
+	desc = "A large number of xenian mushrooms, some of which have long, fleshy stems, which look harvestable if you have something sharp on hand. They're radiating light!"
 	icon = 'icons/obj/halflife/xenflora.dmi'
 	light_range = 1.5
 	light_power = 1.5
