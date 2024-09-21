@@ -33,6 +33,7 @@
 	required_enemies = 3
 	min_players = 20
 	roundstart = TRUE
+	title_icon = "nukeops"
 	earliest_start = 0 SECONDS
 	weight = 4
 	max_occurrences = 3

@@ -14,6 +14,7 @@
 /datum/round_event_control/antagonist/solo/traitor/roundstart
 	name = "Traitors"
 	roundstart = TRUE
+	title_icon = "traitor"
 	typepath = /datum/round_event/antagonist/solo/traitor //yogs change: uses a different typepath so antag spawning can be treated differently
 	earliest_start = 0 SECONDS
 

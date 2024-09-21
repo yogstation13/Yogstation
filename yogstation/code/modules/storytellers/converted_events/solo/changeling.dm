@@ -25,6 +25,7 @@
 /datum/round_event_control/antagonist/solo/changeling/roundstart
 	name = "Changelings"
 	roundstart = TRUE
+	title_icon = "changeling"
 	earliest_start = 0
 	maximum_antags = 1
 

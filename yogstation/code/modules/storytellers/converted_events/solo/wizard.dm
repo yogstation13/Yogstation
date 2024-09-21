@@ -21,6 +21,7 @@
 	)
 	required_enemies = 1
 	roundstart = TRUE
+	title_icon = "wizard"
 	earliest_start = 0 SECONDS
 	weight = 2
 	min_players = 35

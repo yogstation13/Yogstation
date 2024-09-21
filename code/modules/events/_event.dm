@@ -41,7 +41,13 @@
 	// monkestation start
 	/// The typepath to the event group this event is a part of.
 	var/datum/event_group/event_group = null
+	
+	/// if this can only trigger on roundstart
 	var/roundstart = FALSE
+	
+	/// if this event is roundstart, it will set the roll credits icon to this
+	var/title_icon = null
+
 	var/cost = 1
 	var/reoccurence_penalty_multiplier = 0.75
 	var/shared_occurence_type

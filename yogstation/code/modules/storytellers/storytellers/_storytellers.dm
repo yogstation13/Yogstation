@@ -159,6 +159,7 @@
 	if(bought_event.roundstart)
 		if(!ignores_roundstart)
 			SSgamemode.ran_roundstart = TRUE
+			SSgamemode.title_icon = bought_event.title_icon
 		mode.TriggerEvent(bought_event, forced)
 	else
 		mode.schedule_event(bought_event, 3 MINUTES, total_cost, _forced = forced)

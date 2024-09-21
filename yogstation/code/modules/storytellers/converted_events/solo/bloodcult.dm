@@ -30,6 +30,7 @@
 	maximum_antags = 4
 	min_players = 25
 	roundstart = TRUE
+	title_icon = "cult"
 	earliest_start = 0 SECONDS
 	weight = 4
 	max_occurrences = 1

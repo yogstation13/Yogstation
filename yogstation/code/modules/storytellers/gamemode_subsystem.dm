@@ -11,6 +11,9 @@ SUBSYSTEM_DEF(gamemode)
 	flags = SS_BACKGROUND | SS_KEEP_TIMING
 	wait = 2 SECONDS
 
+	/// The name of the icon shown during credit roll (only set if the roundstart antag has an icon)
+	var/title_icon = null
+
 	/// List of our event tracks for fast access during for loops.
 	var/list/event_tracks = EVENT_TRACKS
 	/// Our storyteller. They progresses our trackboards and picks out events

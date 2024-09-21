@@ -26,6 +26,7 @@
 /datum/round_event_control/antagonist/solo/vampire/roundstart
 	name = "Vampires"
 	roundstart = TRUE
+	title_icon = "vampires"
 	earliest_start = 0 SECONDS
 
 /datum/round_event_control/antagonist/solo/vampire/midround

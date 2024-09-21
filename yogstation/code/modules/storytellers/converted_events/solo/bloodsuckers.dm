@@ -25,6 +25,7 @@
 /datum/round_event_control/antagonist/solo/bloodsucker/roundstart
 	name = "Bloodsuckers"
 	roundstart = TRUE
+	title_icon = "cult"
 	earliest_start = 0 SECONDS
 
 /datum/round_event_control/antagonist/solo/bloodsucker/midround
