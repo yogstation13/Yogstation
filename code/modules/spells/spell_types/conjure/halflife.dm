@@ -8,7 +8,7 @@
 	button_icon_state = "alien_plant"
 
 	school = SCHOOL_CONJURATION
-	cooldown_time = 35 SECONDS
+	cooldown_time = 50 SECONDS
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
 
