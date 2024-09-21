@@ -31,3 +31,9 @@
 	cost = 15
 	unit_name = "xenian mushrooms"
 	export_types = list(/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_stem)
+
+//package and sell medkits for a profit
+/datum/export/medkits
+	cost = 20
+	unit_name = "medkits"
+	export_types = list(/obj/item/reagent_containers/pill/patch/medkit)

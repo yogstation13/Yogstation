@@ -267,8 +267,6 @@
 		var/vol_each_max = reagents.total_volume / amount
 		if (item_type == "pill")
 			vol_each_max = min(15, vol_each_max)
-		else if (item_type == "patch")
-			vol_each_max = min(40, vol_each_max)
 		else if (item_type == "bottle")
 			vol_each_max = min(30, vol_each_max)
 		else if (item_type == "gummy")
@@ -291,7 +289,7 @@
 			return FALSE
 		// Get item name
 		var/name = params["name"]
-		var/name_has_units = item_type == "pill" || item_type == "patch"
+		var/name_has_units = item_type == "pill"
 		if(!name)
 			var/name_default = reagents.get_master_reagent_name()
 			if (name_has_units)
@@ -325,14 +323,6 @@
 					P.icon_state = "pill[chosenPillStyle]"
 				if(P.icon_state == "pill4")
 					P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
-				adjust_item_drop_location(P)
-				reagents.trans_to(P, vol_each, transfered_by = usr)
-			return TRUE
-		if(item_type == "patch")
-			var/obj/item/reagent_containers/pill/patch/P
-			for(var/i = 0; i < amount; i++)
-				P = new/obj/item/reagent_containers/pill/patch(drop_location())
-				P.name = trim("[name] patch")
 				adjust_item_drop_location(P)
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE

@@ -34,25 +34,25 @@
 	message = "cm3 of diamonds"
 
 /datum/export/material/uranium
-	cost = 100
+	cost = 125
 	export_limit = 300 //120k
 	material_id = /datum/material/uranium
 	message = "cm3 of uranium"
 
 /datum/export/material/gold
-	cost = 150
+	cost = 100
 	export_limit = 500 //125k
 	material_id = /datum/material/gold
 	message = "cm3 of gold"
 
 /datum/export/material/silver
-	cost = 75
+	cost = 50
 	export_limit = 500 //50k
 	material_id = /datum/material/silver
 	message = "cm3 of silver"
 
 /datum/export/material/titanium
-	cost = 75
+	cost = 50
 	export_limit = 500 //62.5k
 	material_id = /datum/material/titanium
 	message = "cm3 of titanium"

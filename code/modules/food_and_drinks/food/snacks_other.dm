@@ -83,8 +83,8 @@
 	foodtype = VEGETABLES | DAIRY
 
 /obj/item/reagent_containers/food/snacks/fries
-	name = "space fries"
-	desc = "AKA: French Fries, Freedom Fries, etc."
+	name = "fry substitutes"
+	desc = "Wow, they almost taste like the real thing."
 	icon_state = "fries"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	filling_color = "#FFD700"

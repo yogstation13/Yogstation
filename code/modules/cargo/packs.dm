@@ -294,7 +294,7 @@
 /datum/supply_pack/medical/medipen_variety
 	name = "Medipen Variety-Pak"
 	desc = "Contains eight different medipens in three different varieties, to assist in quickly treating seriously injured patients."
-	cost = 300
+	cost = 400
 	contains = list(/obj/item/reagent_containers/autoinjector/medipen,
 					/obj/item/reagent_containers/autoinjector/medipen,
 					/obj/item/reagent_containers/autoinjector/medipen/ekit,
@@ -309,7 +309,7 @@
 /datum/supply_pack/medical/medkit
 	name = "Medkits"
 	desc = "Contains 5 biogel medkits for rapid healing."
-	cost = 150
+	cost = 225
 	contains = list(/obj/item/reagent_containers/pill/patch/medkit,
 					/obj/item/reagent_containers/pill/patch/medkit,
 					/obj/item/reagent_containers/pill/patch/medkit,
@@ -321,7 +321,7 @@
 /datum/supply_pack/medical/medvial
 	name = "Medvials"
 	desc = "Contains 5 biogel medvials for rapid healing. Heals less than a medkit, but is applied quicker, and is easier to carry."
-	cost = 120
+	cost = 175
 	contains = list(/obj/item/reagent_containers/pill/patch/medkit/vial,
 					/obj/item/reagent_containers/pill/patch/medkit/vial,
 					/obj/item/reagent_containers/pill/patch/medkit/vial,
@@ -333,49 +333,17 @@
 /datum/supply_pack/medical/firstaid_single
 	name = "First Aid Kit Single-Pack"
 	desc = "Contains one first aid kit for healing most types of wounds."
-	cost = 100
+	cost = 250
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/regular)
-	crate_type = /obj/structure/closet/crate/secure/cheap
-
-/datum/supply_pack/medical/firstaidbruises_single
-	name = "Bruise Treatment Kit Single-Pack"
-	desc = "Contains one first aid kit focused on healing bruises and broken bones."
-	cost = 100
-	small_item = TRUE
-	contains = list(/obj/item/storage/firstaid/brute)
-	crate_type = /obj/structure/closet/crate/secure/cheap
-
-/datum/supply_pack/medical/firstaidburns_single
-	name = "Burn Treatment Kit Single-Pack"
-	desc = "Contains one first aid kit focused on healing severe burns."
-	cost = 100
-	small_item = TRUE
-	contains = list(/obj/item/storage/firstaid/fire)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
 /datum/supply_pack/medical/firstaidtoxins_single
 	name = "Toxin Treatment Kit Single-Pack"
 	desc = "Contains one first aid kit focused on healing damage dealt by heavy toxins."
-	cost = 100
+	cost = 200
 	small_item = TRUE
 	contains = list(/obj/item/storage/firstaid/toxin)
-	crate_type = /obj/structure/closet/crate/secure/cheap
-
-/datum/supply_pack/medical/firstaidoxygen_single
-	name = "Oxygen Deprivation Kit Single-Pack"
-	desc = "Contains three first aid kits focused on helping oxygen deprivation victims."
-	cost = 75 //oxygen damage tends to be far rarer and these kits use perf which is objectively bad without any toxin healing
-	small_item = TRUE
-	contains = list(/obj/item/storage/firstaid/o2)
-	crate_type = /obj/structure/closet/crate/secure/cheap
-
-/datum/supply_pack/medical/firstaidadvanced_single
-	name = "Advanced Treatment Kit Single-Pack"
-	desc = "Contains one advanced first aid kit able to heal many advanced ailments."
-	cost = 150
-	small_item = TRUE
-	contains = list(/obj/item/storage/firstaid/advanced)
 	crate_type = /obj/structure/closet/crate/secure/cheap
 
 //////////////////////////////////////////////////////////////////////////////

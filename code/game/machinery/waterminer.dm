@@ -24,6 +24,7 @@
 		new	/obj/item/water_canister(src.loc)
 		to_chat(user, span_notice("You remove the full water canister."))
 		full = FALSE
+		update_icon_state()
 		return
 	if(mining)
 		to_chat(user, span_warning("You stop the mining cycle."))
@@ -44,6 +45,7 @@
 			water_gather_progress = 0
 			full = TRUE
 			mining = FALSE
+			update_icon_state()
 			return PROCESS_KILL
 	else
 		mining = FALSE
@@ -67,6 +69,13 @@
 				"[user] raises \the [src] from the water.", \
 				span_notice("You raise \the [src] out from the water."),
 				span_italics("You hear something rising from the water."))
+
+/obj/machinery/water_miner/update_icon_state()
+	. = ..()
+	if(!full)
+		icon_state = "biogen-empty"
+	else
+		icon_state = "biogen-stand"
 
 /obj/item/water_canister
 	name = "water canister"

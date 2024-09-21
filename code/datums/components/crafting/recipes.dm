@@ -67,6 +67,7 @@
 
 //Normal recipes
 
+/*
 /datum/crafting_recipe/skateboard
 	name = "Skateboard"
 	result = /obj/vehicle/ridden/scooter/skateboard
@@ -82,6 +83,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/rods = 12)
 	category = CAT_MISC
+*/
 
 /datum/crafting_recipe/wheelchair
 	name = "Wheelchair"
@@ -196,6 +198,14 @@
 	result = /obj/item/stack/tape
 	time = 1
 	category = CAT_MISC
+
+/datum/crafting_recipe/medkit
+	name = "medkit"
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				/datum/reagent/medicine/biogel = 20)
+	result = /obj/item/reagent_containers/pill/patch/medkit
+	time = 3 SECONDS
+	category = CAT_MEDICAL
 
 /datum/crafting_recipe/suture
 	name = "Suture"
