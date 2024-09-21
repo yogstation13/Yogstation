@@ -335,8 +335,8 @@
 	var/mob/living/user = hud?.mymob
 	if(!istype(user) || !user.client)
 		return
-	if(user.combat_mode == GRAB_MODE)
-		icon_state = "grab" // grab mode has a special icon
+	if(user.grab_mode)
+		icon_state = "grab" // indicate that you're grabbing instead of whatever else
 	else
 		icon_state = user.combat_mode ? "combat" : "combat_off" //Treats the combat_mode
 

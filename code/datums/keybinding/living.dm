@@ -81,16 +81,37 @@
 	var/mob/living/user_mob = user.mob
 	user_mob.set_combat_mode(FALSE, FALSE, FALSE)
 
-// Optional grab mode, because some people have a hard time holding ctrl while also moving and clicking
-/datum/keybinding/living/grab_mode
-	hotkey_keys = list("Unbound")
-	name = "grab_mode"
-	full_name = "Grab Mode"
-	description = "Enables grab mode. Functions the same as combat mode, except you grab instead of punch."
+// Grab mode, works like holding ctrl but you can bind it to anything you want
+/datum/keybinding/living/grab_mode_hold
+	hotkey_keys = list("Ctrl") // default is ctrl which overrides any other click actions
+	name = "grab_mode_hold"
+	full_name = "Grab Mode (Hold)"
+	description = "Enables grab mode when held."
 
-/datum/keybinding/living/grab_mode/down(client/user)
+/datum/keybinding/living/grab_mode_hold/down(client/user)
 	. = ..()
 	if(.)
 		return
 	var/mob/living/user_mob = user.mob
-	user_mob.set_combat_mode(GRAB_MODE, FALSE, FALSE)
+	user_mob.set_grab_mode(TRUE)
+
+/datum/keybinding/living/grab_mode_hold/up(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/user_mob = user.mob
+	user_mob.set_grab_mode(FALSE)
+
+// Grab mode toggle, works very similar to how grab intent used to
+/datum/keybinding/living/grab_mode_toggle
+	hotkey_keys = list("Unbound")
+	name = "grab_mode_toggle"
+	full_name = "Grab Mode (Toggle)"
+	description = "Toggles grab mode."
+
+/datum/keybinding/living/grab_mode_toggle/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/user_mob = user.mob
+	user_mob.set_grab_mode(!user_mob.grab_mode)
