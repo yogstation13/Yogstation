@@ -12,29 +12,14 @@
 	foodtype = JUNKFOOD | SUGAR | EGG | CHOCOLATE
 
 /obj/item/reagent_containers/food/snacks/egg
-	name = "egg"
-	desc = "An egg!"
+	name = "egg substitute"
+	desc = "Looks like and tastes like an egg, but it is just a artificially flavored gelatinous mass."
 	icon_state = "egg"
-	list_reagents = list(/datum/reagent/consumable/eggyolk = 5, /datum/reagent/growthserum = 1)
+	list_reagents = list(/datum/reagent/consumable/eggyolk = 5)
 	cooked_type = /obj/item/reagent_containers/food/snacks/boiledegg
 	filling_color = "#F0E68C"
 	foodtype = EGG | RAW
 	grind_results = list()
-	var/mob/living/egg_rper
-
-/obj/item/reagent_containers/food/snacks/egg/suicide_act(mob/living/carbon/user)
-	user.visible_message(span_suicide("[user] RPs as [src]!"))
-	if(istype(user) && user.mind)
-		egg_rper = new(src)
-		egg_rper.real_name = name
-		egg_rper.name = name
-		egg_rper.set_stat(CONSCIOUS)
-		user.mind.transfer_to(egg_rper)
-	return BRUTELOSS
-
-/obj/item/reagent_containers/food/snacks/egg/Destroy()
-	qdel(egg_rper)
-	. = ..()
 
 /obj/item/reagent_containers/food/snacks/egg/gland
 	desc = "An egg! It looks weird..."
