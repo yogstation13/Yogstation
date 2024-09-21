@@ -126,3 +126,10 @@
 /obj/machinery/turnstile/brig/halflife/forcefield/medical/nodirectional
 	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
 	directional = FALSE
+
+/obj/machinery/turnstile/brig/halflife/forcefield/cargo
+	req_access = list(ACCESS_CARGO)
+
+/obj/machinery/turnstile/brig/halflife/forcefield/cargo/nodirectional
+	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
+	directional = FALSE

@@ -12,7 +12,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDEGLOVES
-	armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 0, BIO = 100, RAD = 100, FIRE = 50, ACID = 50)
+	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 25, BOMB = 40, BIO = 100, RAD = 100, FIRE = 75, ACID = 75)
 	allowed = list(
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/gun/energy/kinetic_accelerator,

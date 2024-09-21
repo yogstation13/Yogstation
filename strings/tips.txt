@@ -12,3 +12,4 @@ Water extractors are expensive upfront, but present a free source of income.
 You can make rebar crossbows and ammo with scavenged materials. Look around for things like tape, cables, and lighters.
 You can use a container to scoop water out from a tile, such as sewage. Actually drinking said sewage, is not recommended.
 Xenian mushrooms sell for credits on the cargo dropship. Perhaps you could farm them?
+Destroying leafy xen flora will drop their branches, which can be ground into biogel, and turned into a medkit with the crafting menu.
