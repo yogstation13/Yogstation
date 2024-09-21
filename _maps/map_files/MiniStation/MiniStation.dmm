@@ -11359,17 +11359,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"bzC" = (
-/obj/structure/window/reinforced,
-/obj/machinery/porta_turret/ai,
-/obj/machinery/status_display/ai{
-	pixel_y = -32
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "bAq" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -17101,19 +17090,6 @@
 "fsx" = (
 /turf/closed/wall/r_wall,
 /area/science/robotics/lab)
-"ftw" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/porta_turret/ai,
-/obj/machinery/status_display/ai{
-	pixel_y = 32
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "fud" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Airlock"
@@ -24276,6 +24252,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"kDE" = (
+/obj/structure/window/reinforced,
+/obj/machinery/porta_turret/ai,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/status_display/ai{
+	pixel_y = 32
+	},
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "kDK" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -30282,13 +30269,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
-"oDX" = (
-/obj/machinery/ai/server_cabinet,
-/obj/structure/ethernet_cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/catwalk_floor/telecomms,
-/area/ai_monitored/secondarydatacore)
 "oEa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -35463,6 +35443,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
+"sjA" = (
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/ai/server_cabinet/prefilled,
+/turf/open/floor/catwalk_floor/telecomms,
+/area/ai_monitored/secondarydatacore)
 "sjQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -35763,6 +35750,19 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
+"sxl" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/porta_turret/ai,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/status_display/ai{
+	pixel_y = -32
+	},
+/turf/open/floor/circuit/green/telecomms,
+/area/ai_monitored/turret_protected/ai)
 "sxy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	external_pressure_bound = 120;
@@ -72861,7 +72861,7 @@ aJt
 aJt
 vAW
 vAW
-oDX
+sjA
 riG
 rkF
 aZu
@@ -138996,7 +138996,7 @@ mxE
 nPM
 mxE
 mxE
-bzC
+kDE
 rXF
 nVZ
 fGQ
@@ -140542,7 +140542,7 @@ syc
 gzV
 kCs
 rXF
-ftw
+sxl
 mxE
 mxE
 nPM
