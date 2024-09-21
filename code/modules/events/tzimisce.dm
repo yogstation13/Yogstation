@@ -21,16 +21,13 @@
 	fakeable = FALSE
 	var/cancel_me = TRUE
 
-/datum/round_event/ghost_role/tzimisce/bloodsucker/start()
-	for(var/mob/living/carbon/human/all_players in GLOB.player_list)
-		if(IS_BLOODSUCKER(all_players) || IS_MONSTERHUNTER(all_players))
-			message_admins("BLOODSUCKER NOTICE: Tzimisces have found a valid Target.")
-			cancel_me = FALSE
-			break
-	if(cancel_me)
-		kill()
-		return
-	try_spawning()
+/datum/round_event_control/tzimisce/canSpawnEvent(players_amt, allow_magic, fake_check)
+	. = ..()
+	if(.)
+		for(var/mob/living/carbon/human/all_players in GLOB.player_list)
+			if(IS_BLOODSUCKER(all_players) || IS_MONSTERHUNTER(all_players))
+				return TRUE
+		return FALSE
 
 /datum/round_event/ghost_role/tzimisce
 	var/success_spawn = 0
