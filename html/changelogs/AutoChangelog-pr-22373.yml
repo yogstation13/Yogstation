@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - experiment: "Completely reworked sleeping carp, exact details can be found on github or by using \"recall teachings\" in-game."
-  - imageadd: "Added a shield overlay effect to indicate a sleeping carp user's focus level."
