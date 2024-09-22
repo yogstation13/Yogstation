@@ -18,10 +18,6 @@
 	///current thing being targetted for combos, switches if the user hits a different opponent
 	var/current_target
 	var/datum/martial_art/base // The permanent style. This will be null unless the martial art is temporary
-	///chance to deflect bullets
-	var/deflection_chance = 0
-	///check for if deflected bullets should be destroyed (false) or redirected (true)
-	var/reroute_deflection = FALSE
 	///chance for the martial art to block a melee attack when throw is on
 	var/block_chance = 0
 	///used for CQC's restrain combo
@@ -40,6 +36,8 @@
 	var/list/gun_exceptions = list()
 	///list of traits given to the martial art user
 	var/list/martial_traits = list()
+	///the mob that uses this martial art
+	var/mob/living/martial_owner
 
 /**
   * martial art specific disarm attacks
@@ -156,7 +154,7 @@
   * gives the user the martial art, if it's a temporary one  it will only temporarily override an older martial art rather than replacing it
   * unless the current art won't allow a temporary override
   */
-/datum/martial_art/proc/teach(mob/living/carbon/human/H,make_temporary=0)
+/datum/martial_art/proc/teach(mob/living/carbon/human/H, make_temporary=0)
 	if(!istype(H) || !H.mind)
 		return FALSE
 	if(H.mind.martial_art)
@@ -173,6 +171,7 @@
 	if(LAZYLEN(martial_traits))
 		H.add_traits(martial_traits, id)
 	H.mind.martial_art = src
+	martial_owner = H
 	if(no_guns)
 		for(var/mob/living/simple_animal/hostile/guardian/guardian in H.hasparasites())
 			guardian.stats.ranged = FALSE
@@ -201,6 +200,7 @@
 	if(!istype(H) || !H.mind || H.mind.martial_art != src)
 		return
 	on_remove(H)
+	martial_owner = null
 	H.mind.martial_art = null
 	if(base)
 		base.teach(H)

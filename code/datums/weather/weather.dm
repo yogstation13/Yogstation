@@ -1,11 +1,17 @@
-//The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch most unprotected creatures.
+/**
+ * Causes weather to occur on a z level in certain area types
+ *
+ * The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch most unprotected creatures.
+ * Weather always occurs on different z levels at different times, regardless of weather type.
+ * Can have custom durations, targets, and can automatically protect indoor areas.
+ *
+ */
 
 /datum/weather
 	/// name of weather
 	var/name = "space wind"
 	/// description of weather
 	var/desc = "Heavy gusts of wind blanket the area, periodically knocking down anyone caught in the open."
-
 	/// The message displayed in chat to foreshadow the weather's beginning
 	var/telegraph_message = "<span class='warning'>The wind begins to pick up.</span>"
 	/// In deciseconds, how long from the beginning of the telegraph until the weather begins
@@ -55,14 +61,14 @@
 	/// The list of z-levels that this weather is actively affecting
 	var/impacted_z_levels
 
-	/// Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
+	/// Since it's above everything else, this is the layer used by default.
 	var/overlay_layer = AREA_LAYER
 	/// Plane for the overlay
-	var/overlay_plane = AREA_PLANE
+	var/overlay_plane = WEATHER_PLANE
 	/// If the weather has no purpose other than looks
 	var/aesthetic = FALSE
 	/// Used by mobs (or movables containing mobs, such as enviro bags) to prevent them from being affected by the weather.
-	var/immunity_type = WEATHER_STORM
+	var/immunity_type
 	/// If this bit of weather should also draw an overlay that's uneffected by lighting onto the area
 	/// Taken from weather_glow.dmi
 	var/use_glow = TRUE
@@ -82,7 +88,7 @@
 	/// For barometers to know when the next storm will hit
 	var/next_hit_time = 0
 	/// This causes the weather to only end if forced to
-	var/perpetual = FALSE	
+	var/perpetual = FALSE
 
 /datum/weather/New(z_levels)
 	..()
@@ -98,7 +104,7 @@
 /datum/weather/proc/telegraph()
 	if(stage == STARTUP_STAGE)
 		return
-	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_TELEGRAPH(type))
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_TELEGRAPH(type), src)
 	stage = STARTUP_STAGE
 	var/list/affectareas = list()
 	for(var/V in get_areas(area_type))
@@ -128,14 +134,14 @@
 /datum/weather/proc/start()
 	if(stage >= MAIN_STAGE)
 		return
-	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_START(type))
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_START(type), src)
 	stage = MAIN_STAGE
 	update_areas()
 	send_alert(weather_message, weather_sound)
 	if(!perpetual)
 		addtimer(CALLBACK(src, PROC_REF(wind_down)), weather_duration)
 	for(var/area/impacted_area as anything in impacted_areas)
-		SEND_SIGNAL(impacted_area, COMSIG_WEATHER_BEGAN_IN_AREA(type))
+		SEND_SIGNAL(impacted_area, COMSIG_WEATHER_BEGAN_IN_AREA(type), src)
 
 /**
  * Weather enters the winding down phase, stops effects
@@ -147,7 +153,7 @@
 /datum/weather/proc/wind_down()
 	if(stage >= WIND_DOWN_STAGE)
 		return
-	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_WINDDOWN(type))
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_WINDDOWN(type), src)
 	stage = WIND_DOWN_STAGE
 	update_areas()
 	send_alert(end_message, end_sound)
@@ -163,12 +169,12 @@
 /datum/weather/proc/end()
 	if(stage == END_STAGE)
 		return
-	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_END(type))
+	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_END(type), src)
 	stage = END_STAGE
 	SSweather.processing -= src
 	update_areas()
 	for(var/area/impacted_area as anything in impacted_areas)
-		SEND_SIGNAL(impacted_area, COMSIG_WEATHER_ENDED_IN_AREA(type))
+		SEND_SIGNAL(impacted_area, COMSIG_WEATHER_ENDED_IN_AREA(type), src)
 
 // handles sending all alerts
 /datum/weather/proc/send_alert(alert_msg, alert_sfx)
@@ -218,7 +224,11 @@
 
 	return TRUE
 
-/datum/weather/proc/weather_act(mob/living/L) //What effect does this weather have on the hapless mob?
+/**
+ * Affects the mob with whatever the weather does
+ *
+ */
+/datum/weather/proc/weather_act(mob/living/L)
 	return
 
 /**
@@ -259,12 +269,13 @@
 		// This method of applying one overlay per z layer has some minor downsides, in that it could lead to improperly doubled effects if some have alpha
 		// I prefer it to creating 2 extra plane masters however, so it's a cost I'm willing to pay
 		// LU
-		var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, ABOVE_LIGHTING_PLANE, 100, offset_const = offset)
-		glow_overlay.color = weather_color
-		gen_overlay_cache += glow_overlay
+		if(use_glow)
+			var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, WEATHER_GLOW_PLANE, 100, offset_const = offset)
+			glow_overlay.color = weather_color
+			gen_overlay_cache += glow_overlay
 
-		var/mutable_appearance/weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
-		weather_overlay.color = weather_color
-		gen_overlay_cache += weather_overlay
+		var/mutable_appearance/new_weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
+		new_weather_overlay.color = weather_color
+		gen_overlay_cache += new_weather_overlay
 
 	return gen_overlay_cache
