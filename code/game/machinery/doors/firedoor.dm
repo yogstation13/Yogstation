@@ -323,6 +323,15 @@
 	can_atmos_pass = ATMOS_PASS_PROC
 	assemblytype = /obj/structure/firelock_frame/border
 
+/obj/machinery/door/firedoor/border_only/north // No south since it's south by default
+	dir = NORTH
+
+/obj/machinery/door/firedoor/border_only/east
+	dir = EAST
+
+/obj/machinery/door/firedoor/border_only/west
+	dir = WEST
+
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
 	opacity = TRUE
@@ -335,6 +344,15 @@
 	)
 
 	AddElement(/datum/element/connect_loc, loc_connections)
+
+/obj/machinery/door/firedoor/border_only/closed/north
+	dir = NORTH
+
+/obj/machinery/door/firedoor/border_only/closed/east
+	dir = EAST
+
+/obj/machinery/door/firedoor/border_only/closed/west
+	dir = WEST
 
 /obj/machinery/door/firedoor/border_only/close()
 	if(density)

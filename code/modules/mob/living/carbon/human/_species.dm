@@ -459,8 +459,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		C.hud_used.update_locked_slots()
 
 	// this needs to be FIRST because qdel calls update_body which checks if we have DIGITIGRADE legs or not and if not then removes DIGITIGRADE from species_traits
-	if(DIGITIGRADE in species_traits)
-		C.Digitigrade_Leg_Swap(FALSE)
+	if((DIGITIGRADE in species_traits) && !(DIGITIGRADE in old_species.species_traits))
+		C.digitigrade_leg_swap(FALSE)
 
 	C.mob_biotypes = inherent_biotypes
 	C.bubble_icon = bubble_icon
@@ -518,8 +518,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	if(C.dna.species.exotic_bloodtype)
 		C.dna.blood_type = random_blood_type()
-	if(DIGITIGRADE in species_traits)
-		C.Digitigrade_Leg_Swap(TRUE)
+	if((DIGITIGRADE in species_traits) && !(DIGITIGRADE in new_species.species_traits))
+		C.digitigrade_leg_swap(TRUE)
 	if(inherent_biotypes & MOB_ROBOTIC)
 		for(var/obj/item/bodypart/B in C.bodyparts)
 			B.change_bodypart_status(BODYPART_ORGANIC, FALSE, TRUE)
@@ -1026,44 +1026,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		else if ("vox_tail" in mutant_bodyparts)
 			bodyparts_to_add -= "wagging_vox_tail_markings"
 
-	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
-	var/update_needed = FALSE
-	var/not_digitigrade = TRUE
-	for(var/X in H.bodyparts)
-		var/obj/item/bodypart/O = X
-		if(!O.use_digitigrade)
-			continue
-		not_digitigrade = FALSE
-		if(!(DIGITIGRADE in species_traits)) //Someone cut off a digitigrade leg and tacked it on
-			species_traits += DIGITIGRADE
-		var/should_be_squished = FALSE
-		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS))) //Check for snowflake suit
-			var/obj/item/clothing/suit/A = H.wear_suit
-			if(!(A.mutantrace_variation & DIGITIGRADE_VARIATION))
-				should_be_squished = TRUE
-		if(H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)) //Check for snowflake jumpsuit
-			var/obj/item/clothing/under/U = H.w_uniform
-			if(!(U.mutantrace_variation & DIGITIGRADE_VARIATION))
-				should_be_squished = TRUE
-		if(H.shoes)
-			var/obj/item/clothing/shoes/S = H.shoes
-			if(!(S.mutantrace_variation & DIGITIGRADE_VARIATION))
-				should_be_squished = TRUE
-			if(should_be_squished)
-				S.adjusted = NORMAL_STYLE
-			else
-				S.adjusted = DIGITIGRADE_STYLE
-			H.update_inv_shoes()
-		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
-			O.use_digitigrade = SQUISHED_DIGITIGRADE
-			update_needed = TRUE
-		else if(O.use_digitigrade == SQUISHED_DIGITIGRADE && !should_be_squished)
-			O.use_digitigrade = FULL_DIGITIGRADE
-			update_needed = TRUE
-	if(update_needed)
-		H.update_body_parts()
-	if(not_digitigrade && (DIGITIGRADE in species_traits)) //Curse is lifted
-		species_traits -= DIGITIGRADE
 	if(!bodyparts_to_add)
 		return
 
@@ -1347,7 +1309,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(num_legs < 2)
 				return FALSE
 			var/obj/item/clothing/shoes/S = I
-			if(istype(S) && ((!S && (DIGITIGRADE in species_traits)) || ((DIGITIGRADE in species_traits) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT))) // Checks leg compatibilty with shoe digitigrade or not flag
+			if(istype(S) && (HAS_TRAIT(H, TRAIT_DIGITIGRADE) ? S.xenoshoe == NO_DIGIT : S.xenoshoe == YES_DIGIT)) // Checks leg compatibilty with shoe digitigrade or not flag
 				if(!disable_warning)
 					to_chat(H, span_warning("This footwear isn't compatible with your feet!"))
 				return FALSE
@@ -2067,7 +2029,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return TRUE
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
-	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness, attack_direction) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal)
+	if(SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction) & COMPONENT_NO_APPLY_DAMAGE) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal)
+		return FALSE
+
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
 	if(!damage || hit_percent <= 0)
@@ -2117,7 +2081,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
 			var/obj/structure/sitter = H.buckled
 			sitter.take_damage(damage, damagetype)
-	return 1
+	return damage * hit_percent
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	// called when hit by a projectile

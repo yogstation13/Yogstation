@@ -113,3 +113,6 @@
 
 /// From base of area/Exited(): (area/left, direction)
 #define COMSIG_MOVABLE_EXITED_AREA "movable_exited_area"
+
+/// from /datum/thrownthing/tick()
+#define COMSIG_MOVABLE_THROW_TICK "movable_throw_tick"

@@ -254,6 +254,16 @@
 		current = mob_override
 	current.faction -= "heretics"
 
+/datum/antagonist/heretic/on_body_transfer(mob/living/old_body, mob/living/new_body)
+	. = ..()
+	if(old_body == new_body) // if they were using a temporary body
+		return
+
+	for(var/knowledge_index in researched_knowledge)
+		var/datum/eldritch_knowledge/knowledge = researched_knowledge[knowledge_index]
+		knowledge.on_lose(old_body, src)
+		knowledge.on_gain(new_body, src)
+
 /datum/antagonist/heretic/get_admin_commands()
 	. = ..()
 	.["Equip"] = CALLBACK(src, PROC_REF(equip_cultist))
