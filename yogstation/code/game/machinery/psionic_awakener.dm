@@ -215,12 +215,12 @@
 	var/faculty = treatments[active_treatment]
 	var/cost = 0
 	if(faculty)
-		cost = 30 //costs 30 base to unlock a specific faculty
+		cost = 50 //costs 50 base to unlock a specific faculty
 		if(mob_occupant.psi)
 			var/faculty_rank = mob_occupant.psi.get_rank(faculty)
-			cost += max(faculty_rank-1, 0) * 30 //cost 30 more dust per rank beyond that
+			cost += max(faculty_rank-1, 0) * 35 //cost 35 more dust per rank beyond that
 			if(faculty_rank >= PSI_RANK_GRANDMASTER) //could maybe tweak this to be exponential scaling rather than linear
-				cost += 30 //extra 30 to go to paramount (since paramount is fuckin strong)
+				cost += 50 //extra 50 to go to paramount (since paramount is fuckin strong)
 			if(faculty_rank >= PSI_RANK_PARAMOUNT)
 				cost = 9999999
 	return cost

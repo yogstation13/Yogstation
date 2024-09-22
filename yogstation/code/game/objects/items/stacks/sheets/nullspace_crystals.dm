@@ -26,7 +26,7 @@
 /obj/item/nullspace_crystal/prismatic
 	name = "aged null skull"
 	desc = "an older skull of an adept psionic user, grants a lot of nulldust when ground up."
-	dust = 20
+	dust = 15
 	icon_state = "aged_null_skull"
 	w_class = WEIGHT_CLASS_SMALL
 
