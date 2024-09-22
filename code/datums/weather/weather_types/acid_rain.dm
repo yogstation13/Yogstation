@@ -2,11 +2,11 @@
 	name = "rain"
 	desc = "There is a possibility of precipitation."
 
-	telegraph_message = span_boldwarning("Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.")
+	telegraph_message = span_warning("Thunder rumbles far above, as the air grows cold and damp.")
 	telegraph_duration = 30 SECONDS //if you change this i will kill you because the sound file lines up with this
 	telegraph_sound = 'sound/weather/acidrain/acidrain_telegraph.ogg'
 
-	weather_message = span_boldwarning("Rain pours down around you!")
+	weather_message = span_warning("Rain pours down around you.")
 	weather_overlay = "rain"
 	weather_color = "#69b6ff"
 	overlay_plane = HIGHEST_EVER_PLANE + 1 //why does this work, it shouldn't work, this is stupid and i hate it, why is this the ONLY thing that works, why won't it just show up normally, it shows up normally on lavaland, but not on jungleland, i don't understand it doesn't make any sense, this is all wrong

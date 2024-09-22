@@ -20,15 +20,17 @@
 	var/mob/living/carbon/human/boss = user
 	if(slot == ITEM_SLOT_GLOVES)
 		if(!worn) //Literally just in case there's some weirdness so you can't cheese this
-			boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
-			worn = TRUE
+			if(boss.physiology)
+				boss.physiology.do_after_speed *= tacticalspeed //Does channels 10% faster
+				worn = TRUE
 
 /obj/item/clothing/gloves/fingerless/dropped(mob/user)
 	..()
 	var/mob/living/carbon/human/boss = user
 	if(worn) //This way your speed isn't slowed if you never actually put on the gloves
-		boss.physiology.do_after_speed /= tacticalspeed
-		worn = FALSE
+		if(boss.physiology)
+			boss.physiology.do_after_speed /= tacticalspeed
+			worn = FALSE
 
 /obj/item/clothing/gloves/fingerless/bigboss
 	tacticalspeed = 0.66 //Does channels 34% faster

@@ -316,7 +316,7 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 
 /obj/item/clothing/mask/bandana/black
 	name = "black bandana"
-	desc = "A fine black bandana with nanotech lining."
+	desc = "A old black bandana."
 	icon_state = "bandblack"
 	mutantrace_variation = DIGITIGRADE_VARIATION
 

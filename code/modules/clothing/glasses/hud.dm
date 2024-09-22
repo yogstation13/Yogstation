@@ -118,6 +118,12 @@
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	glass_colour_type = null
 
+/obj/item/clothing/glasses/hud/security/civilprotection/medical
+	name = "metropolice medical HUD"
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records, alongside medical status."
+	icon_state = "healthhud"
+	hud_type = DATA_HUD_SECURITY_MEDICAL
+
 /obj/item/clothing/glasses/hud/security/chameleon
 	name = "chameleon security HUD"
 	desc = "A stolen security HUD integrated with Syndicate chameleon technology. Provides flash protection."

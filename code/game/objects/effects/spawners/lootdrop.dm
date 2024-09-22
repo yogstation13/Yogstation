@@ -747,9 +747,7 @@
 				/obj/item/storage/backpack/satchel/leather,
 				/obj/item/storage/backpack/satchel,
 				/obj/item/storage/briefcase,
-				/obj/item/clothing/under/citizen/refugee = 2,
-				/obj/item/clothing/head/beanie/black = 2,
-				/obj/item/clothing/mask/balaclava,
+				/obj/item/clothing/under/citizen/refugee,
 				/obj/item/radio/off/halflife = 2,
 				/obj/item/ammo_casing/reusable/arrow/rebar,
 				/obj/item/flashlight/seclite,
@@ -784,6 +782,19 @@
 				/obj/item/reagent_containers/glass/bottle/morphine
 				)
 
+//only clothing items
+/obj/effect/spawner/lootdrop/halflife/loot/clothing
+	name = "clothing loot"
+	lootcount = 1
+
+	loot = list(
+				/obj/item/clothing/under/citizen/refugee,
+				/obj/item/clothing/head/beanie/black = 2,
+				/obj/item/clothing/mask/balaclava,
+				/obj/item/clothing/gloves/fingerless = 2,
+				/obj/item/clothing/gloves/color/black,
+				/obj/item/clothing/mask/bandana/black
+				)
 
 //ammo
 /obj/effect/spawner/lootdrop/halflife/loot/ammo

@@ -1,6 +1,6 @@
-#define STARTING_PAYCHECKS 3 // Amount of paychecks
+#define STARTING_PAYCHECKS 2 // Amount of paychecks
 #define STARTING_PAYCHECKS_MIN 30 // Minimum roundstart money
-#define STARTING_PAYCHECKS_MAX 80 // Maximum roundstart money
+#define STARTING_PAYCHECKS_MAX 100 // Maximum roundstart money
 /// How much mail the Economy SS will create per minute, regardless of firing time.
 #define MAX_MAIL_PER_MINUTE 6
 /// Chance to generate junk mail compared to generating nothing while packing mail crates.
@@ -14,8 +14,8 @@
 #define PAYCHECK_ASSISTANT 5
 #define PAYCHECK_MINIMAL 5
 #define PAYCHECK_EASY 7
-#define PAYCHECK_MEDIUM 10
-#define PAYCHECK_HARD 12
+#define PAYCHECK_MEDIUM 12
+#define PAYCHECK_HARD 15
 #define PAYCHECK_COMMAND 25
 
 #define STARTING_SEC_BUDGET 750

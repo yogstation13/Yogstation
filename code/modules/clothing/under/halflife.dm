@@ -97,3 +97,9 @@
 	random_sensor = FALSE
 	icon_state = "lawyer_blue"
 	item_state = "lawyer_blue"
+
+/obj/item/clothing/under/administrator/black
+	name = "administrator suit"
+	desc = "A well made black suit, specially designed for the district administrator."
+	icon_state = "lawyer_black"
+	item_state = "lawyer_black"
