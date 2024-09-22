@@ -430,6 +430,8 @@ SUBSYSTEM_DEF(gamemode)
 		active_players++
 		if(player_mob.mind?.assigned_role)
 			var/datum/job/player_role = SSjob.GetJob(player_mob.mind.assigned_role)
+			if(!player_role || !istype(player_role))
+				continue
 			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_COMMAND)
 				head_crew++
 			if(player_role.departments_bitflags & DEPARTMENT_BITFLAG_ENGINEERING)
@@ -1012,12 +1014,12 @@ SUBSYSTEM_DEF(gamemode)
 	dat += "<tr style='vertical-align:top'>"
 	dat += "<td width=17%><b>Name</b></td>"
 	dat += "<td width=16%><b>Tags</b></td>"
-	dat += "<td width=8%><b>Occurences</b></td>"
-	dat += "<td width=8%><b>Max Occurences</b></td>"
-	dat += "<td width=6%><b>Min Pop</b></td>"
-	dat += "<td width=6%><b>Min Time</b></td>"
-	dat += "<td width=6%><b>Can Occur</b></td>"
-	dat += "<td width=11%><b>Failure Reason</b></td>"
+	dat += "<td width=9%><b>Occurences</b></td>"
+	dat += "<td width=9%><b>Max Occurences</b></td>"
+	dat += "<td width=7%><b>Min Pop</b></td>"
+	dat += "<td width=7%><b>Min Time</b></td>"
+	dat += "<td width=7%><b>Can Occur</b></td>"
+	dat += "<td width=12%><b>Failure Reason</b></td>"
 	dat += "<td width=10%><b>Weight</b></td>"
 	dat += "<td width=26%><b>Actions</b></td>"
 	dat += "</tr>"
