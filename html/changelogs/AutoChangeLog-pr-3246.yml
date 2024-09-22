@@ -1,5 +1,0 @@
-author: "Tractor Mann"
-delete-after: True
-changes:
-  - rscadd: "Added a new quirk, Tunnel Vision! (-2) using it will add FOV, preventing you from seeing behind you! You can pick a range of 90-180-270 Degrees to not see people in."
-  - rscdel: "Removed herobrine."

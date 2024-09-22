@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed some major lag that'd occur related to alt-clicking."
-  - server: "Added a failsafe to immediately restart the MC during certain conditions where a subsystem would loop infinitely while queuing."

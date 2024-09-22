@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - balance: "The storyteller now actually still continues to matter after the 85 minute mark."
-  - rscadd: "Added an automatic crew transfer vote - which will first start at the 90 minute mark, and repeat every 30 minutes if it doesn't pass. If it passes, the shuttle will be called (and cannot be recalled). Players cannot manually start transfer votes - only admins or the server itself can."
-  - qol: "Made the vote start/end messages in chat look better and easier to see."
