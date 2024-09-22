@@ -134,7 +134,7 @@
 	/// How many maximum antags can we spawn
 	var/maximum_antags = 3
 	/// For this many players we'll add 1 up to the maximum antag amount
-	var/denominator = 30
+	var/denominator = 25
 	/// The antag flag to be used
 	var/antag_flag
 	/// The antag datum to be applied
