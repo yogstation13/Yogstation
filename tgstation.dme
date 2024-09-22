@@ -6862,6 +6862,7 @@
 #include "monkestation\code\modules\clothing\costumes\henchmen.dm"
 #include "monkestation\code\modules\clothing\glasses\glasses.dm"
 #include "monkestation\code\modules\clothing\gloves\gloves.dm"
+#include "monkestation\code\modules\clothing\gloves\power_gloves.dm"
 #include "monkestation\code\modules\clothing\head\costume.dm"
 #include "monkestation\code\modules\clothing\head\hat.dm"
 #include "monkestation\code\modules\clothing\head\misc.dm"
