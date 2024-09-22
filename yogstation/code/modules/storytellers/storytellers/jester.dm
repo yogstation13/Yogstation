@@ -11,4 +11,5 @@
 		)
 	population_min = 35
 	ignores_roundstart = TRUE
+	roundstart_prob = 50
 	weight = 2

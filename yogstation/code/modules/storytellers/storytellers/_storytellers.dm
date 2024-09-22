@@ -51,7 +51,7 @@
 	///have we done roundstart checks?
 	var/roundstart_checks = FALSE
 	///prob of roundstart antag
-	var/roundstart_prob = 25
+	var/roundstart_prob = 100
 	///do we ignore ran_roundstart
 	var/ignores_roundstart = FALSE
 	///is a storyteller always able to be voted for(also does not count for the amount of storytellers to pick from)

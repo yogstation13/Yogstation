@@ -13,4 +13,5 @@
 	always_votable = TRUE //good for low pop
 	population_max = 45
 	welcome_text = "The day is going slowly."
+	roundstart_prob = 25
 	weight = 1

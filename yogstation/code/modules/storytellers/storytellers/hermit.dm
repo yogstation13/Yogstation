@@ -10,4 +10,5 @@
 		EVENT_TRACK_OBJECTIVES = 1
 		)
 	tag_multipliers = list(TAG_EXTERNAL = 0.2)
+	roundstart_prob = 75
 	weight = 3
