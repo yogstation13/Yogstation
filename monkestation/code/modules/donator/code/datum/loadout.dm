@@ -488,6 +488,25 @@
 	donator_only = TRUE
 	requires_purchase = FALSE
 
+/datum/loadout_item/suit/centcom_jacket
+	name = "Centcom Jacket"
+	item_path = /obj/item/clothing/suit/toggle/centcom_jacket
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+/datum/loadout_item/pocket_items/donator/ghastly_evil_demon
+	name = "Pet Delivery Beacon - Ghastly Evil Demon"
+	item_path = /obj/item/choice_beacon/pet/donator/ghastly_evil_demon
+	donator_only = TRUE
+	requires_purchase = FALSE
+	ckeywhitelist = list("ThePooba")
+
+/datum/loadout_item/effects/ghastly_evil_demon
+	ckeywhitelist = list("ThePooba")
+	name = "Ghastly Evil Demon Transformation"
+	item_path = /obj/item/effect_granter/donator/ghastly_evil_demon
+	requires_purchase = FALSE
+
 //Mr_Sandman02
 /datum/loadout_item/suit/menacing_jacket
 	name = "Menacing Jacket"

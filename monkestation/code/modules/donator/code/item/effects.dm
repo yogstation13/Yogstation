@@ -3,6 +3,7 @@
 	icon = 'monkestation/code/modules/donator/icons/mob/pets.dmi'
 	icon_state = "void_mothroach"
 	var/mob/living/basic/animal_transformation = null
+	var/basic_inhands_y_offset = -6
 
 /obj/item/effect_granter/donator/grant_effect(mob/living/carbon/granter)
 	var/mob/living/basic/animal = src.animal_transformation
@@ -11,7 +12,7 @@
 	var/datum/mind/granters_mind = granter.mind
 	granters_mind.transfer_to(animal)
 	animal.AddElement(/datum/element/dextrous)
-	animal.AddComponent(/datum/component/basic_inhands, y_offset = -6)
+	animal.AddComponent(/datum/component/basic_inhands, y_offset = basic_inhands_y_offset)
 	qdel(granter)
 	. = ..()
 
@@ -110,3 +111,11 @@
 	name = "hypnotoad transformation"
 	icon_state = "hypnotoad"
 	animal_transformation = /mob/living/basic/frog/hypnotoad
+
+//ThePooba
+/obj/item/effect_granter/donator/ghastly_evil_demon
+	name = "ghastly evil demon transformation"
+	icon = 'monkestation/code/modules/donator/icons/mob/pets_32x48.dmi'
+	icon_state = "ghastly_evil_demon"
+	animal_transformation = /mob/living/basic/pet/ghastly_evil_demon
+	basic_inhands_y_offset = 0

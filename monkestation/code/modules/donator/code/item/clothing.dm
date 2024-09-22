@@ -526,3 +526,13 @@
 	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "mothysmantle_hood"
+
+/obj/item/clothing/suit/toggle/centcom_jacket
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
+	icon_state = "centcom_jacket"
+	name = "centcom jacket"
+	desc = "A varsity jacket in design of centcom! It seems well made."
+	body_parts_covered = CHEST|GROIN|ARMS
+	//cold_protection = CHEST|GROIN|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
