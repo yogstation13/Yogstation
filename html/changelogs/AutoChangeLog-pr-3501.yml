@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - admin: "\"Get Server Logs\" can now jump to a specific round ID."
+  - admin: "\"Get Current/Server Logs (Debug)\" can now download profiler logs, as users with the permission to use that can use the profiler anyways."
