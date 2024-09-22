@@ -845,12 +845,6 @@
 "jl" = (
 /turf/open/floor/plating/indoor/metal/pipe/corner,
 /area/halflife/indoors/sewer)
-"jm" = (
-/obj/machinery/turnstile/brig/halflife/forcefield/science{
-	dir = 1
-	},
-/turf/open/floor/plating/indoor/tile,
-/area/halflife/indoors)
 "jn" = (
 /obj/structure/closet/crate,
 /obj/item/vending_refill/ration,
@@ -1025,6 +1019,12 @@
 /obj/structure/chair/office/halflife/blue,
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
+"lf" = (
+/obj/machinery/turnstile/brig/halflife/forcefield/science{
+	dir = 1
+	},
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "lg" = (
 /turf/closed/indestructible/rock,
 /area/halflife/indoors/sewer)
@@ -31255,7 +31255,7 @@ pb
 pb
 ut
 Vv
-jm
+lf
 Vv
 Vv
 Vv
