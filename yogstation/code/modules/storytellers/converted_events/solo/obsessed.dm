@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist/solo/obsessed
 	antag_flag = ROLE_OBSESSED
-	tags = list(TAG_COMBAT)
+	tags = list(TAG_CREW_ANTAG, TAG_TARGETED)
 	antag_datum = /datum/antagonist/obsessed
 	typepath = /datum/round_event/antagonist/solo/obsessed
 	restricted_roles = list(
@@ -18,7 +18,7 @@
 		ROLE_POSIBRAIN,
 	)
 	weight = 6
-	max_occurrences = 3
+	max_occurrences = 1
 	min_players = 5
 
 /datum/round_event_control/antagonist/solo/obsessed/midround

@@ -3,7 +3,9 @@
 GLOBAL_LIST_INIT(monster_hunter_prey_antags, typecacheof(list(
 	/datum/antagonist/bloodsucker,
 	/datum/antagonist/changeling,
-	/datum/antagonist/heretic
+	/datum/antagonist/heretic,
+	/datum/antagonist/vampire,
+	/datum/antagonist/darkspawn
 )))
 
 /proc/is_monster_hunter_prey(datum/mind/victim)
@@ -28,9 +30,9 @@ GLOBAL_LIST_INIT(monster_hunter_prey_antags, typecacheof(list(
 
 /datum/round_event_control/antagonist/solo/monsterhunter
 	name = "Monster Hunters"
-	track = EVENT_TRACK_MAJOR
+	track = EVENT_TRACK_ROLESET
 	antag_flag = ROLE_MONSTERHUNTER
-	tags = list(TAG_MAGICAL, TAG_TARGETED, TAG_COMBAT, TAG_CREW_ANTAG, TAG_DESTRUCTIVE)
+	tags = list(TAG_MAGICAL, TAG_TARGETED, TAG_COMBAT, TAG_CREW_ANTAG)
 	antag_datum = /datum/antagonist/monsterhunter
 	protected_roles = list(
 		JOB_CAPTAIN,
@@ -54,6 +56,7 @@ GLOBAL_LIST_INIT(monster_hunter_prey_antags, typecacheof(list(
 	earliest_start = 35 MINUTES
 	prompted_picking = TRUE
 	max_occurrences = 1
+	checks_antag_cap = FALSE //it literally relies on other antags existing, so it should bypass the cap
 
 /datum/round_event_control/antagonist/solo/monsterhunter/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()

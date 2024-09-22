@@ -52,6 +52,8 @@
 			monsters += carbon_minds
 		if(carbon_minds.has_antag_datum(/datum/antagonist/vampire)) //yogs, still supporting vampires!
 			monsters += carbon_minds
+		if(carbon_minds.has_antag_datum(/datum/antagonist/darkspawn)) //yogs, darkspawns
+			monsters += carbon_minds
 
 	for(var/datum/mind/monster_minds in monsters)
 		if(!monster_minds.current || monster_minds.current == owner) // || !get_turf(M.current) || !get_turf(owner))

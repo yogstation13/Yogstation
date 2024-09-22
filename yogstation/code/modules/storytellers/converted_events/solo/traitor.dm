@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist/solo/traitor
 	antag_flag = ROLE_TRAITOR
-	tags = list(TAG_COMBAT)
+	tags = list(TAG_COMBAT, TAG_CREW_ANTAG)
 	antag_datum = /datum/antagonist/traitor
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Brig Physician")
 	restricted_roles = list("AI", "Cyborg", "Synthetic")

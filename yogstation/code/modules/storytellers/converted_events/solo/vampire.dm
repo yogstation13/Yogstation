@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist/solo/vampire
 	antag_flag = ROLE_VAMPIRE
-	tags = list(TAG_COMBAT, TAG_MAGICAL)
+	tags = list(TAG_COMBAT, TAG_MAGICAL, TAG_CREW_ANTAG)
 	antag_datum = /datum/antagonist/vampire
 	protected_roles = list(
 		JOB_CAPTAIN,
