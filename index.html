@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(918 modules,
-    3220/11187 macros, 28.8%)</aside></h3>
+<aside>(925 modules,
+    3226/11191 macros, 28.8%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -96,7 +96,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/dcs/signals/signals_global.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_global">signals_global</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_global_object.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_global_object">signals_global_object</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_heretic.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_heretic">signals_heretic</a></li>
-    <li><a href="code/__DEFINES/dcs/signals/signals_huds.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_huds">signals_huds</a></li>
+    <li><a href="code/__DEFINES/dcs/signals/signals_hud.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_hud">signals_hud</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_janitor.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_janitor">signals_janitor</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_ladder.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_ladder">signals_ladder</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_lazy_templates.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_lazy_templates">signals_lazy_templates</a></li>
@@ -117,6 +117,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/dcs/signals/signals_moveloop.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_moveloop">signals_moveloop</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_movetype.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_movetype">signals_movetype</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_object.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object">signals_object</a></li>
+    <li><a href="code/__DEFINES/dcs/signals/signals_plane_master_group.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_plane_master_group">signals_plane_master_group</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_song.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_song">signals_song</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_spell.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_spell">signals_spell</a></li>
     <li><a href="code/__DEFINES/dcs/signals/signals_storage.html" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage">signals_storage</a></li>
@@ -309,6 +310,7 @@ These materials call on_applied() on whatever item they are applied to, common e
 SPDX-License-Identifier: MIT</li>
     <li><a href="code/controllers/subsystem/timer.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;timer">timer</a></li>
     <li><a href="code/controllers/subsystem/wardrobe.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;wardrobe">wardrobe</a></li>
+    <li><a href="code/controllers/subsystem/weather.html" title="code&#x2F;controllers&#x2F;subsystem&#x2F;weather">weather</a></li>
     </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;datums">datums</span><ul class="index-tree">
@@ -346,6 +348,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/components/gps.html" title="code&#x2F;datums&#x2F;components&#x2F;gps">gps</a></li>
     <li><a href="code/datums/components/gunpoint.html" title="code&#x2F;datums&#x2F;components&#x2F;gunpoint">gunpoint</a></li>
     <li><a href="code/datums/components/hide_highest_offset.html" title="code&#x2F;datums&#x2F;components&#x2F;hide_highest_offset">hide_highest_offset</a></li>
+    <li><a href="code/datums/components/hide_weather_planes.html" title="code&#x2F;datums&#x2F;components&#x2F;hide_weather_planes">hide_weather_planes</a></li>
     <li><a href="code/datums/components/internal_cam.html" title="code&#x2F;datums&#x2F;components&#x2F;internal_cam">internal_cam</a></li>
     <li><a href="code/datums/components/light_eater.html" title="code&#x2F;datums&#x2F;components&#x2F;light_eater">light_eater</a></li>
     <li><a href="code/datums/components/material_container.html" title="code&#x2F;datums&#x2F;components&#x2F;material_container">material_container</a> - This datum should be used for handling mineral contents of machines and whatever else is supposed to hold minerals and make use of them.</li>
@@ -358,6 +361,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/components/riding.html" title="code&#x2F;datums&#x2F;components&#x2F;riding">riding</a></li>
     <li><a href="code/datums/components/slippery.html" title="code&#x2F;datums&#x2F;components&#x2F;slippery">slippery</a></li>
     <li><a href="code/datums/components/squishable.html" title="code&#x2F;datums&#x2F;components&#x2F;squishable">squishable</a></li>
+    <li><a href="code/datums/components/storm_hating.html" title="code&#x2F;datums&#x2F;components&#x2F;storm_hating">storm_hating</a></li>
     <li><a href="code/datums/components/surgery_bed.html" title="code&#x2F;datums&#x2F;components&#x2F;surgery_bed">surgery_bed</a></li>
     <li><a href="code/datums/components/twohanded.html" title="code&#x2F;datums&#x2F;components&#x2F;twohanded">twohanded</a></li>
     <li><a href="code/datums/components/uplink.html" title="code&#x2F;datums&#x2F;components&#x2F;uplink">uplink</a></li>
@@ -388,6 +392,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/elements/rust.html" title="code&#x2F;datums&#x2F;elements&#x2F;rust">rust</a></li>
     <li><a href="code/datums/elements/squish.html" title="code&#x2F;datums&#x2F;elements&#x2F;squish">squish</a></li>
     <li><a href="code/datums/elements/strippable.html" title="code&#x2F;datums&#x2F;elements&#x2F;strippable">strippable</a></li>
+    <li><a href="code/datums/elements/temporary_atom.html" title="code&#x2F;datums&#x2F;elements&#x2F;temporary_atom">temporary_atom</a></li>
     <li><a href="code/datums/elements/turf_transparency.html" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency">turf_transparency</a></li>
     <li><a href="code/datums/elements/undertile.html" title="code&#x2F;datums&#x2F;elements&#x2F;undertile">undertile</a></li>
     <li><a href="code/datums/elements/update_icon_blocker.html" title="code&#x2F;datums&#x2F;elements&#x2F;update_icon_blocker">update_icon_blocker</a></li>
@@ -419,6 +424,7 @@ SPDX-License-Identifier: MIT</li>
     </ul></li>
     <li class="has-children"><a href="code/datums/martial.html" title="code&#x2F;datums&#x2F;martial">martial</a><ul class="index-tree">
     <li><a href="code/datums/martial/cqc.html" title="code&#x2F;datums&#x2F;martial&#x2F;cqc">cqc</a></li>
+    <li><a href="code/datums/martial/sleeping_carp.html" title="code&#x2F;datums&#x2F;martial&#x2F;sleeping_carp">sleeping_carp</a></li>
     <li><a href="code/datums/martial/ultra_violence.html" title="code&#x2F;datums&#x2F;martial&#x2F;ultra_violence">ultra_violence</a></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;materials">materials</span><ul class="index-tree">
@@ -450,7 +456,10 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/view.html" title="code&#x2F;datums&#x2F;view">view</a></li>
     <li><a href="code/datums/visual_data.html" title="code&#x2F;datums&#x2F;visual_data">visual_data</a></li>
     <li><a href="code/datums/weakrefs.html" title="code&#x2F;datums&#x2F;weakrefs">weakrefs</a></li>
-    <li><span class="no-substance">weather&#x2F;weather_types&#x2F;</span><a href="code/datums/weather/weather_types/acid_rain.html" title="code&#x2F;datums&#x2F;weather&#x2F;weather_types&#x2F;acid_rain">acid_rain</a></li>
+    <li class="has-children"><span title="code&#x2F;datums&#x2F;weather">weather</span><ul class="index-tree">
+    <li><a href="code/datums/weather/weather.html" title="code&#x2F;datums&#x2F;weather&#x2F;weather">weather</a></li>
+    <li><span class="no-substance">weather_types&#x2F;</span><a href="code/datums/weather/weather_types/acid_rain.html" title="code&#x2F;datums&#x2F;weather&#x2F;weather_types&#x2F;acid_rain">acid_rain</a></li>
+    </ul></li>
     <li><a href="code/datums/world_topic.html" title="code&#x2F;datums&#x2F;world_topic">world_topic</a></li>
     <li class="has-children"><span title="code&#x2F;datums&#x2F;wounds">wounds</span><ul class="index-tree">
     <li><a href="code/datums/wounds/bones.html" title="code&#x2F;datums&#x2F;wounds&#x2F;bones">bones</a></li>
@@ -1329,7 +1338,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1315 detailed/2253 documented/31044 total, 7.3%)</aside></h3>
+<aside>(1320 detailed/2259 documented/31049 total, 7.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1850,6 +1859,9 @@ no food found: it bites you and regains some health.</li>
     <li><a href="datum/component/grillable.html" title="&#x2F;datum&#x2F;component&#x2F;grillable">grillable</a></li>
     <li><a href="datum/component/gunpoint.html" title="&#x2F;datum&#x2F;component&#x2F;gunpoint">gunpoint</a></li>
     <li><span class="no-substance">heal_react&#x2F;</span><a href="datum/component/heal_react/boost.html" title="&#x2F;datum&#x2F;component&#x2F;heal_react&#x2F;boost">boost</a></li>
+    <li><a href="datum/component/hide_weather_planes.html" title="&#x2F;datum&#x2F;component&#x2F;hide_weather_planes">hide_weather_planes</a> - Component that manages a list of plane masters that are dependent on weather
+Force hides/shows them depending on the weather activity of their z stack
+Applied to the plane master group that owns them</li>
     <li><a href="datum/component/internal_cam.html" title="&#x2F;datum&#x2F;component&#x2F;internal_cam">internal_cam</a> - Internal camera component, basically a bodycam component, so it's not tied to an item</li>
     <li><a href="datum/component/light_eater.html" title="&#x2F;datum&#x2F;component&#x2F;light_eater">light_eater</a> - Makes anything it attaches to capable of removing something's ability to produce light until it is destroyed</li>
     <li><a href="datum/component/lingering.html" title="&#x2F;datum&#x2F;component&#x2F;lingering">lingering</a></li>
@@ -1880,6 +1892,7 @@ Items with this component that get picked up may give their parent mob the slip 
     <li><a href="datum/component/spawner.html" title="&#x2F;datum&#x2F;component&#x2F;spawner">spawner</a></li>
     <li><a href="datum/component/squashable.html" title="&#x2F;datum&#x2F;component&#x2F;squashable">squashable</a> - This component allows something to be when crossed, for example for cockroaches.</li>
     <li><a href="datum/component/squeak.html" title="&#x2F;datum&#x2F;component&#x2F;squeak">squeak</a></li>
+    <li><a href="datum/component/storm_hating.html" title="&#x2F;datum&#x2F;component&#x2F;storm_hating">storm_hating</a> - The parent of this component will be destroyed if it's on the ground during a storm</li>
     <li><a href="datum/component/surgery_bed.html" title="&#x2F;datum&#x2F;component&#x2F;surgery_bed">surgery_bed</a> - A component for surgery beds and those that act like them, handles patient information, success chance, and available surgeries</li>
     <li><a href="datum/component/two_handed.html" title="&#x2F;datum&#x2F;component&#x2F;two_handed">two_handed</a> - Two Handed Component</li>
     <li class="has-children"><a href="datum/component/uplink.html" title="&#x2F;datum&#x2F;component&#x2F;uplink">syndicate uplink</a> - Uplinks<ul class="index-tree">
@@ -1987,6 +2000,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/controller/subsystem/ticker.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;ticker">Ticker</a></li>
     <li><a href="datum/controller/subsystem/timer.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;timer">Timer</a></li>
     <li><a href="datum/controller/subsystem/wardrobe.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;wardrobe">Wardrobe</a></li>
+    <li><a href="datum/controller/subsystem/weather.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;weather">Weather</a></li>
     </ul></li>
     </ul></li>
     <li class="has-children"><a href="datum/corporation.html" title="&#x2F;datum&#x2F;corporation">Corporations</a> - Companies with employees<ul class="index-tree">
@@ -2227,6 +2241,7 @@ before adding them to non-living movables.</li>
 The overlay can be specified in new as the first paramter; if not set it defaults to rust_overlay's rust_default</li>
     <li><a href="datum/element/squish.html" title="&#x2F;datum&#x2F;element&#x2F;squish">squish</a> - squish.dm</li>
     <li><a href="datum/element/strippable.html" title="&#x2F;datum&#x2F;element&#x2F;strippable">strippable</a> - An element for atoms that, when dragged and dropped onto a mob, opens a strip panel.</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;element&#x2F;temporary_atom">temporary_atom</span> - Deletes the atom with a little fading out animation after a specified time</li>
     <li><a href="datum/element/turf_z_transparency.html" title="&#x2F;datum&#x2F;element&#x2F;turf_z_transparency">turf_z_transparency</a></li>
     <li><a href="datum/element/undertile.html" title="&#x2F;datum&#x2F;element&#x2F;undertile">undertile</a> - Add to an object if you want to be able to be hidden under tiles</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;element&#x2F;update_icon_blocker">update_icon_blocker</span> - Prevents calling anything in update_icon() like update_icon_state() or update_overlays()</li>
@@ -2417,6 +2432,7 @@ but do want to be loaded under certain circumstances. Use this for stuff like th
     <li><a href="datum/martial_art/gardern_warfare.html" title="&#x2F;datum&#x2F;martial_art&#x2F;gardern_warfare">Garden Warfare</a></li>
     <li><a href="datum/martial_art/hunterfu.html" title="&#x2F;datum&#x2F;martial_art&#x2F;hunterfu">Hunter-Fu</a></li>
     <li><a href="datum/martial_art/liquidator.html" title="&#x2F;datum&#x2F;martial_art&#x2F;liquidator">Liquidator</a></li>
+    <li><a href="datum/martial_art/the_sleeping_carp.html" title="&#x2F;datum&#x2F;martial_art&#x2F;the_sleeping_carp">The Sleeping Carp</a></li>
     <li><a href="datum/martial_art/ultra_violence.html" title="&#x2F;datum&#x2F;martial_art&#x2F;ultra_violence">Ultra Violence</a></li>
     <li><a href="datum/martial_art/worldbreaker.html" title="&#x2F;datum&#x2F;martial_art&#x2F;worldbreaker">Worldbreaker</a></li>
     </ul></li>
@@ -3092,7 +3108,8 @@ Accepts a second visual data datum to use as a source of truth for the mob's val
     </ul></li>
     <li><a href="datum/weakref.html" title="&#x2F;datum&#x2F;weakref">weakref</a> - A weakref holds a non-owning reference to a datum.
 The datum can be referenced again using <code>resolve()</code>.</li>
-    <li class="has-children"><a href="datum/weather.html" title="&#x2F;datum&#x2F;weather">space wind</a><ul class="index-tree">
+    <li class="has-children"><a href="datum/weather.html" title="&#x2F;datum&#x2F;weather">space wind</a> - Causes weather to occur on a z level in certain area types<ul class="index-tree">
+    <li><a href="datum/weather/rad_storm.html" title="&#x2F;datum&#x2F;weather&#x2F;rad_storm">radiation storm</a></li>
     <li><span class="no-substance">rain&#x2F;</span><a href="datum/weather/rain/acid.html" title="&#x2F;datum&#x2F;weather&#x2F;rain&#x2F;acid">acid rain</a> - Acid rain also injects toxic metabolites to mobs that can have reagents
 otherwise just does a bit of burn and tox</li>
     <li><a href="datum/weather/void_storm.html" title="&#x2F;datum&#x2F;weather&#x2F;void_storm">void storm</a></li>
@@ -4449,7 +4466,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/25fb6bda91144b1b3bc75079bb8de984a6470cbe">25fb6bd</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/3279195621699281f8d0ebd1ad59e940ba29746d">3279195</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
