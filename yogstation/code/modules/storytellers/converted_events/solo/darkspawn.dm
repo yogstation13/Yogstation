@@ -32,6 +32,7 @@
 	roundstart = TRUE
 	title_icon = "darkspawn"
 	earliest_start = 0 SECONDS
+	denominator = 30 //slightly more people for additional darkspawns
 	weight = 4
 	max_occurrences = 1
 
