@@ -35,6 +35,8 @@ SUBSYSTEM_DEF(metrics)
 			"relation_id_SS" = data["relation_id_SS"], //VARSET
 			"cost" = data["cost"], //DECIMAL
 			"tick_usage" = data["tick_usage"], //DECIMAL
+			"avg_iter_count" = data["avg_iter_count"], //DECIMAL
+			"avg_drift" = data["avg_drift"], //DECIMAL
 			"relational_id" = generic_insert["relational_id"] //VARSET
 		))
 		if(length(data["custom"]))
