@@ -121,8 +121,7 @@
 		UnarmedAttack(A, FALSE, modifiers)
 		return
 	
-	if(grab_mode)
-		pulled(A)
+	if(grab_mode && pulled(A))
 		return
 
 	if(in_throw_mode)
@@ -336,22 +335,20 @@
 */
 
 /mob/proc/CtrlClickOn(atom/A)
-	A.CtrlClick(src)
-	return
+	return A.CtrlClick(src)
 
 /atom/proc/CtrlClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL, user)
-	var/mob/living/ML = user
-	if(istype(ML))
-		ML.pulled(src)
+	return FALSE
 
 /mob/living/carbon/human/pulled(atom/movable/grabbed)
 	if(!ishuman(grabbed) || !Adjacent(grabbed) || incapacitated())
 		return ..()
 	if(world.time < next_move)
-		return FALSE
+		return TRUE
 	dna.species.grab(src, grabbed, mind.martial_art)
 	changeNext_move(CLICK_CD_MELEE)
+	return TRUE
 
 /*
 	Alt click

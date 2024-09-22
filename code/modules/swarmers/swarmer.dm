@@ -137,6 +137,7 @@
 		drone.Goto(clicked_turf, drone.move_to_delay)
 
 /mob/living/simple_animal/hostile/swarmer/CtrlClickOn(atom/A)
+	. = TRUE
 	face_atom(A)
 	if(!isturf(loc))
 		return
