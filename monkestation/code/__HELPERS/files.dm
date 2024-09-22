@@ -1,4 +1,4 @@
-/client/proc/browse_files(root_type = BROWSE_ROOT_ALL_LOGS, max_iterations = 10, list/valid_extensions = list("txt", "log", "htm", "html", "gz", "json"), list/whitelist = null, allow_folder = TRUE)
+/client/proc/browse_files(root_type = BROWSE_ROOT_ALL_LOGS, max_iterations = 10, list/valid_extensions = list("txt", "log", "htm", "html", "gz", "json", "log.json"), list/whitelist = null, allow_folder = TRUE)
 	var/regex/valid_ext_regex = new("\\.(?:[regex_quote_list(valid_extensions)])$", "i")
 	var/regex/whitelist_regex
 	if(whitelist)

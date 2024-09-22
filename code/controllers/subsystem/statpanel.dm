@@ -172,17 +172,18 @@ SUBSYSTEM_DEF(statpanels)
 	for(var/image/target_image as anything in target.images)
 		if(!target_image.loc || target_image.loc.loc != target_mob.listed_turf || !target_image.override)
 			continue
-		overrides += target_image.loc
+		overrides[target_image.loc] = TRUE
 
 	var/list/atoms_to_display = list(target_mob.listed_turf)
+	var/should_check_obscured = (length(target_mob.listed_turf?.contents) < 25)
 	for(var/atom/movable/turf_content as anything in target_mob.listed_turf)
 		if(turf_content.mouse_opacity == MOUSE_OPACITY_TRANSPARENT)
 			continue
 		if(turf_content.invisibility > target_mob.see_invisible)
 			continue
-		if(turf_content in overrides)
+		if(overrides[turf_content])
 			continue
-		if(turf_content.IsObscured())
+		if(should_check_obscured && turf_content.IsObscured())
 			continue
 		atoms_to_display += turf_content
 
