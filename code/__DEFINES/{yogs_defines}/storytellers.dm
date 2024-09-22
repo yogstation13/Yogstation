@@ -56,11 +56,12 @@
 #define OBJECTIVES_POINT_THRESHOLD 170
 
 /// Defines for how much pop do we need to stop applying a pop scalling penalty to event frequency.
-#define MUNDANE_POP_SCALE_THRESHOLD 25
-#define MODERATE_POP_SCALE_THRESHOLD 32
-#define MAJOR_POP_SCALE_THRESHOLD 45
-#define ROLESET_POP_SCALE_THRESHOLD 45
-#define OBJECTIVES_POP_SCALE_THRESHOLD 45
+/// Any pop number below this number reduces the amount of these events by a % based on the defines below
+#define MUNDANE_POP_SCALE_THRESHOLD 15
+#define MODERATE_POP_SCALE_THRESHOLD 25
+#define MAJOR_POP_SCALE_THRESHOLD 35
+#define ROLESET_POP_SCALE_THRESHOLD 40
+#define OBJECTIVES_POP_SCALE_THRESHOLD 40
 
 /// The maximum penalty coming from pop scalling, when we're at the most minimum point, easing into 0 as we reach the SCALE_THRESHOLD. This is treated as a percentage.
 #define MUNDANE_POP_SCALE_PENALTY 35
