@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(vote)
 	var/to_display = current_vote.get_result_text(winners, final_winner, non_voters)
 
 	log_vote(to_display)
-	to_chat(world, span_infoplain(vote_font("\n[to_display]")))
+	to_chat(world, "\n" + examine_block(span_infoplain(vote_font("[to_display]"))) + "\n", type = MESSAGE_TYPE_OOC) // monkestation edit: wrap in examine block, use MESSAGE_TYPE_OOC
 
 	// Finally, doing any effects on vote completion
 	if (final_winner) // if no one voted final_winner will be null
@@ -103,6 +103,10 @@ SUBSYSTEM_DEF(vote)
 		return
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
+	// monkestation start
+	if(!current_vote.can_vote(voter))
+		return
+	// monkestation end
 
 	// If user has already voted, remove their specific vote
 	if(voter.ckey in current_vote.choices_by_ckey)
@@ -133,9 +137,12 @@ SUBSYSTEM_DEF(vote)
 		return
 	if(!voter?.ckey)
 		return
+	// monkestation start
+	if(!current_vote.can_vote(voter))
+		return
+	// monkestation end
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
-
 	else
 		voted += voter.ckey
 
@@ -226,9 +233,9 @@ SUBSYSTEM_DEF(vote)
 	var/to_display = current_vote.initiate_vote(vote_initiator_name, duration)
 
 	log_vote(to_display)
-	to_chat(world, span_infoplain(vote_font("\n[span_bold(to_display)]\n\
+	to_chat(world, "\n" + examine_block(span_infoplain(vote_font("[span_bold(to_display)]\n\
 		Type <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\n\
-		You have [DisplayTimeText(duration)] to vote.")))
+		You have [DisplayTimeText(duration)] to vote."))) + "\n", type = MESSAGE_TYPE_OOC) // monkestation edit: wrap in examine block, use MESSAGE_TYPE_OOC
 
 	// And now that it's going, give everyone a voter action
 	for(var/client/new_voter as anything in GLOB.clients)
@@ -304,6 +311,7 @@ SUBSYSTEM_DEF(vote)
 				"countMethod" = current_vote.count_method,
 				"choices" = choices,
 				"vote" = vote_data,
+				"canVote" = current_vote.can_vote(user), // monkestation edit
 			)
 
 		all_vote_data += list(vote_data)

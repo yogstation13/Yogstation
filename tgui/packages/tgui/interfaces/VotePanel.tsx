@@ -37,6 +37,7 @@ type ActiveVote = {
   timeRemaining: number;
   choices: Option[];
   countMethod: number;
+  canVote?: BooleanLike;
 };
 
 type UserData = {
@@ -192,7 +193,10 @@ const ChoicesPanel = (props) => {
                   buttons={
                     <Button
                       tooltip={choice.desc}
-                      disabled={user.singleSelection === choice.name}
+                      disabled={
+                        !currentVote.canVote ||
+                        user.singleSelection === choice.name
+                      }
                       onClick={() => {
                         act('voteSingle', { voteOption: choice.name });
                       }}
@@ -232,6 +236,7 @@ const ChoicesPanel = (props) => {
                   buttons={
                     <Button
                       tooltip={choice.desc}
+                      disabled={!currentVote.canVote}
                       onClick={() => {
                         act('voteMulti', { voteOption: choice.name });
                       }}
