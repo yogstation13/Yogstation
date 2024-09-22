@@ -40,6 +40,7 @@
 
 /obj/item/clothing/under/combine/overwatch/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, COMBINESUIT_TRAIT)
 	AddComponent(/datum/component/squeak, list('sound/movement/overwatch/gear1.ogg',\
 												'sound/movement/overwatch/gear2.ogg',\
 												'sound/movement/overwatch/gear3.ogg',\

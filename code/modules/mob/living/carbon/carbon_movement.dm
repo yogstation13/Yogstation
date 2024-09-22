@@ -41,7 +41,7 @@
 			set_hydration(HYDRATION_LEVEL_START_MAX - 1)	//just less than feeling vigorous
 		else if(nutrition && stat != DEAD)
 			adjust_nutrition(-(HUNGER_FACTOR/10))
-			adjust_hydration(-(HUNGER_FACTOR/5))
+			adjust_hydration(-(HUNGER_FACTOR/4))
 			if(m_intent == MOVE_INTENT_RUN)
 				adjust_nutrition(-(HUNGER_FACTOR/10))
-				adjust_hydration(-(HUNGER_FACTOR/5))
+				adjust_hydration(-(HUNGER_FACTOR/4))

@@ -394,7 +394,6 @@
 	id = /obj/item/card/id/ert/overwatch
 	uniform = /obj/item/clothing/under/combine/overwatch
 	suit = /obj/item/clothing/suit/armor/overwatch
-	suit_store = /obj/item/gun/ballistic/automatic/ar2
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/civilprotection/divisional/overwatch
@@ -413,3 +412,21 @@
 	H.eye_color = "#b9b9b9" 
 	H.update_body()
 	H.update_hair()
+
+/datum/outfit/ert/overwatch/spas12
+	name = "OTA Shotgun Unit"
+	suit_store = /obj/item/gun/ballistic/shotgun/spas12
+	belt = /obj/item/storage/belt/civilprotection/overwatch/spas12
+
+/datum/outfit/ert/overwatch/mp7
+	name = "OTA SMG Unit"
+	suit_store = /obj/item/gun/ballistic/automatic/mp7
+	belt = /obj/item/storage/belt/civilprotection/overwatch/mp7
+
+/datum/outfit/ert/overwatch/ar2
+	name = "OTA Rifle Unit"
+	suit_store = /obj/item/gun/ballistic/automatic/ar2
+	belt = /obj/item/storage/belt/civilprotection/overwatch/ar2
+
+/datum/outfit/ert/overwatch/ar2/elite
+	name = "OTA Elite Unit"

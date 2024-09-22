@@ -21,8 +21,8 @@
 		polldesc = "a Code [code] Nanotrasen Emergency Response Team"
 
 /datum/ert/overwatch
-	roles = list(/datum/antagonist/ert/overwatch)
-	leader_role = /datum/antagonist/ert/overwatch
+	roles = list(/datum/antagonist/ert/overwatch/ar2, /datum/antagonist/ert/overwatch/mp7, /datum/antagonist/ert/overwatch/spas12)
+	leader_role = /datum/antagonist/ert/overwatch/ar2/elite
 	rename_team = "Overwatch Strike Team"
 	code = "Delta"
 	mission = "Stabilize the city, detain city officials, kill all citizens who do not comply."
