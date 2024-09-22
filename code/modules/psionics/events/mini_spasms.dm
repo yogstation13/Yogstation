@@ -20,10 +20,10 @@
 // 		)
 
 // /datum/round_event/minispasm/announce()
-// 	priority_announce( \
-// 		"PRIORITY ALERT: SIGMA-[rand(50,80)] NON-STANDARD PSIONIC SIGNAL-WAVE TRANSMISSION DETECTED - 97% MATCH, NON-VARIANT \
-// 		SIGNAL SOURCE TRIANGULATED TO DISTANT SITE: All personnel are advised to avoid \
-// 		exposure to active audio transmission equipment including radio headsets and intercoms \
+// 	priority_announce( 
+// 		"PRIORITY ALERT: SIGMA-[rand(50,80)] NON-STANDARD PSIONIC SIGNAL-WAVE TRANSMISSION DETECTED - 97% MATCH, NON-VARIANT 
+// 		SIGNAL SOURCE TRIANGULATED TO DISTANT SITE: All personnel are advised to avoid 
+// 		exposure to active audio transmission equipment including radio headsets and intercoms 
 // 		for the duration of the signal broadcast.", 
 // 		"Central Command Higher Dimensional Affairs")
 
@@ -68,6 +68,6 @@
 // 	victim.psi.check_latency_trigger(100, "a psionic scream")
 
 // /datum/round_event/minispasm/end()
-// 	priority_announce( \
+// 	priority_announce( 
 // 		"PRIORITY ALERT: SIGNAL BROADCAST HAS CEASED. Personnel are cleared to resume use of non-hardened radio transmission equipment. Have a nice day.", 
 // 		"Central Command Higher Dimensional Affairs")
