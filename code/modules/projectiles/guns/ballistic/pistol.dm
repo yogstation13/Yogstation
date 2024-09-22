@@ -144,6 +144,11 @@ GLOBAL_VAR_INIT(does_howard_exist, FALSE)
 	icon_state = "v38s"
 	desc = "A moderately-sized, silver-plated handgun that loads irregular .38 special magazines. Commonly found among Serbian police forces. Its serial number is scratched out and replaced with \"Hauard\"."
 
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal/howard/Destroy()
+	GLOB.does_howard_exist = FALSE //not anymore, goodbye!
+	..()
+	
+
 /obj/item/gun/ballistic/automatic/pistol/boltpistol
 	name = "Imperial Bolt Pistol"
 	desc = "A smaller, sidearm variant of the Bolter. Typically blows people into chunks with every shot. Fires .75 caliber rounds."
