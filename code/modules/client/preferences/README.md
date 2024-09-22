@@ -200,7 +200,7 @@ These do not need a `.ts` file, and will be created in the UI automatically.
 	// This groups together with anything else with the same group
 	group = "medicine"
 	// Optional, if specified the UI will show this name actively
-	// when the player is a medical doctor.
+	// when the player is a union doctor.
 	relevant_job = /datum/job/medical_doctor
 ```
 

@@ -175,14 +175,14 @@
 	id = "engineer_trimmed"
 
 /datum/skillcape/science
-	name = "cape of the scientist"
-	job = "Scientist"
+	name = "cape of the union scientist"
+	job = "Union Scientist"
 	path = /obj/item/clothing/neck/skillcape/science
 	id = "science"
 
 /datum/skillcape/trimmed/science
-	name = "cape of the grand scientist"
-	job = "Scientist"
+	name = "cape of the grand union scientist"
+	job = "Union Scientist"
 	path = /obj/item/clothing/neck/skillcape/trimmed/science
 	id = "science_trimmed"
 
@@ -260,13 +260,13 @@
 
 /datum/skillcape/doctor
 	name = "cape of the doctor"
-	job = "Medical Doctor"
+	job = "Union Doctor"
 	path = /obj/item/clothing/neck/skillcape/doctor
 	id = "doctor"
 
 /datum/skillcape/trimmed/doctor
 	name = "cape of the grand doctor"
-	job = "Medical Doctor"
+	job = "Union Doctor"
 	path = /obj/item/clothing/neck/skillcape/trimmed/doctor
 	id = "doctor_trimmed"
 

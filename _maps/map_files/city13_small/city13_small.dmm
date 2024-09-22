@@ -220,6 +220,12 @@
 /obj/machinery/chem_master,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
+"co" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/carpet/blue,
+/area/halflife/indoors)
 "cp" = (
 /obj/machinery/power/halflife/streetlamp{
 	dir = 8
@@ -458,12 +464,6 @@
 "eU" = (
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors)
-"eV" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/turf/open/floor/plating/indoor/checkered,
-/area/halflife/indoors/townhall)
 "eW" = (
 /obj/structure/chair/halflife/metal/folding{
 	dir = 1
@@ -520,6 +520,15 @@
 	},
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
+"fy" = (
+/obj/structure/table/halflife/no_smooth/large/metal{
+	dir = 4
+	},
+/obj/item/surgicaldrill,
+/obj/item/cautery,
+/obj/item/bonesetter,
+/turf/open/floor/plating/indoor/showroom,
+/area/halflife/indoors)
 "fA" = (
 /obj/structure/sign/poster/halflife/combine/two{
 	pixel_y = 32
@@ -602,6 +611,11 @@
 /obj/effect/turf_decal/siding/thinplating,
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"gt" = (
+/obj/structure/table/halflife/metal/alt,
+/obj/item/storage/box/trackimp,
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "gv" = (
 /obj/structure/table/halflife/metal,
 /obj/item/clothing/head/chefhat,
@@ -764,12 +778,6 @@
 /obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
-"iG" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/turf/open/floor/plating/indoor/showroom,
-/area/halflife/indoors)
 "iI" = (
 /obj/structure/table/halflife/no_smooth/dice,
 /obj/item/dice,
@@ -795,6 +803,12 @@
 	dir = 1
 	},
 /turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors/townhall)
+"iT" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/checkered,
 /area/halflife/indoors/townhall)
 "iY" = (
 /turf/open/floor/plating/indoor/metal/grate,
@@ -851,12 +865,6 @@
 /obj/item/screwdriver,
 /turf/open/floor/plating/indoor/metal/plate,
 /area/halflife/indoors)
-"jo" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors/townhall)
 "jq" = (
 /obj/effect/spawner/lootdrop/halflife/loot/ammo,
 /turf/open/floor/plating/indoor/woodc,
@@ -901,6 +909,13 @@
 /obj/structure/bed/halflife/bedframe/wire,
 /obj/structure/bed/halflife/mattress/dirty,
 /turf/open/floor/plating/indoor/concrete/bricks,
+/area/halflife/indoors)
+"jQ" = (
+/obj/effect/landmark/start/scientist,
+/obj/structure/chair/office/halflife/blue{
+	dir = 4
+	},
+/turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
 "jT" = (
 /obj/machinery/turnstile/brig/halflife/forcefield/cargo/nodirectional{
@@ -1168,6 +1183,12 @@
 /obj/structure/halflife/trash/books/pile,
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors/alley)
+"mN" = (
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/glasses/hud/health,
+/turf/open/floor/plating/indoor/metal/plate,
+/area/halflife/indoors)
 "mO" = (
 /obj/structure/halflife/trash/books/pile,
 /obj/machinery/status_display/supply{
@@ -1741,6 +1762,12 @@
 /obj/item/pen,
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
+"ty" = (
+/obj/machinery/door/unpowered/halflife/metal{
+	dir = 8
+	},
+/turf/open/floor/plating/indoor/showroom,
+/area/halflife/indoors)
 "tD" = (
 /obj/structure/table/halflife/metal/grate,
 /obj/item/restraints/handcuffs/cable,
@@ -1909,6 +1936,12 @@
 /obj/structure/alien/weeds/node,
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors)
+"vZ" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/tiled10,
+/area/halflife/indoors/townhall)
 "wf" = (
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/halflife/water/sewer/shallow,
@@ -1977,11 +2010,6 @@
 /obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors/townhall)
-"xd" = (
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/mask/surgical,
-/turf/open/floor/plating/indoor/metal/plate,
-/area/halflife/indoors)
 "xf" = (
 /turf/open/floor/plating/indoor/metal/plate,
 /area/halflife/indoors)
@@ -2068,6 +2096,12 @@
 /obj/structure/halflife/trash/wood,
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"ya" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors/townhall)
 "yc" = (
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/halflife/water/sewer/deep,
@@ -2216,10 +2250,11 @@
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
 "zt" = (
-/obj/machinery/status_display{
-	pixel_y = 30
+/obj/structure/chair/office/halflife/blue{
+	dir = 8
 	},
-/turf/open/floor/plating/indoor/carpet/blue,
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
 "zu" = (
 /obj/structure/table/halflife/no_smooth/large/wood/square{
@@ -2300,12 +2335,6 @@
 /obj/item/storage/firstaid/emergency,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors)
-"zX" = (
-/obj/structure/chair/office/halflife/blue{
-	dir = 8
-	},
-/turf/open/floor/plating/indoor/tile,
-/area/halflife/indoors)
 "Ac" = (
 /obj/machinery/door/unpowered/halflife/wood,
 /turf/open/floor/plating/indoor/tile,
@@ -2360,6 +2389,12 @@
 /obj/effect/spawner/lootdrop/halflife/loot/consumables,
 /turf/open/halflife/water/sewer/medium,
 /area/halflife/indoors/sewer)
+"AB" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/cafeteria,
+/area/halflife/indoors)
 "AD" = (
 /obj/structure/chair/halflife/metal{
 	dir = 1
@@ -2472,6 +2507,11 @@
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"BI" = (
+/obj/structure/table/halflife/metal/alt,
+/obj/item/clothing/glasses/science,
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "BM" = (
 /obj/machinery/door/unpowered/halflife/metal,
 /turf/open/floor/plating/indoor/tile,
@@ -2780,6 +2820,13 @@
 /obj/effect/landmark/start/civil_protection_officer,
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
+"FD" = (
+/obj/item/scalpel,
+/obj/item/hemostat,
+/obj/item/retractor,
+/obj/item/circular_saw,
+/turf/open/floor/plating/indoor/showroom,
+/area/halflife/indoors)
 "FI" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/reagent_containers/blood/o_minus,
@@ -2797,12 +2844,6 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
-"FP" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/turf/open/floor/plating/indoor/tiled10,
-/area/halflife/indoors/townhall)
 "FQ" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/dirt,
@@ -2879,6 +2920,14 @@
 	},
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
+"GE" = (
+/obj/structure/table/halflife/no_smooth/metal,
+/obj/item/healthanalyzer,
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/showroom,
+/area/halflife/indoors/townhall)
 "GL" = (
 /obj/structure/table/halflife/no_smooth/wood/stand,
 /turf/open/floor/plating/indoor/woodc,
@@ -2922,6 +2971,12 @@
 	},
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
+"Hg" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/showroom,
+/area/halflife/indoors)
 "Hl" = (
 /obj/structure/table/halflife/metal/small,
 /obj/effect/spawner/lootdrop/halflife/loot/consumables,
@@ -3137,14 +3192,12 @@
 /obj/item/storage/box/halflife/ration,
 /turf/open/floor/plating/indoor/metal/plate,
 /area/halflife/indoors)
-"Ko" = (
-/obj/structure/table/halflife/no_smooth/metal,
-/obj/machinery/status_display{
+"Kl" = (
+/obj/machinery/status_display/evac{
 	pixel_y = 30
 	},
-/obj/item/healthanalyzer,
-/turf/open/floor/plating/indoor/showroom,
-/area/halflife/indoors/townhall)
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "Kr" = (
 /obj/effect/spawner/lootdrop/halflife/loot,
 /turf/open/floor/plating/indoor/woodc,
@@ -3214,12 +3267,6 @@
 /obj/structure/halflife/road_barrier/concrete/alt,
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors)
-"KS" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/turf/open/floor/plating/indoor/cafeteria,
-/area/halflife/indoors)
 "KY" = (
 /obj/structure/flora/junglebush,
 /turf/open/floor/plating/ground/dirt,
@@ -3485,6 +3532,11 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
+"OC" = (
+/obj/structure/table/halflife/metal/alt,
+/obj/item/stack/cable_coil,
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "OK" = (
 /obj/effect/landmark/start/nukeop_leader,
 /turf/open/floor/plating/indoor/concrete/bricks,
@@ -3699,6 +3751,12 @@
 	},
 /obj/item/stamp,
 /turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
+"RA" = (
+/obj/structure/table/halflife/metal/alt,
+/obj/item/weldingtool/largetank,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
 "RG" = (
 /obj/structure/closet/crate/bin,
@@ -4290,6 +4348,12 @@
 	},
 /turf/open/floor/plating/indoor/carpet,
 /area/halflife/indoors/townhall)
+"ZZ" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 30
+	},
+/turf/open/floor/plating/indoor/tiled10,
+/area/halflife/indoors)
 
 (1,1,1) = {"
 lg
@@ -25425,7 +25489,7 @@ ut
 JC
 JC
 ut
-nM
+ZZ
 bT
 bT
 gl
@@ -27219,7 +27283,7 @@ db
 hG
 xD
 ut
-zt
+co
 tP
 tP
 tP
@@ -28108,7 +28172,7 @@ db
 hG
 pb
 ut
-nM
+ZZ
 bT
 bT
 bT
@@ -28319,7 +28383,7 @@ lF
 iP
 lF
 yT
-Ko
+GE
 wM
 wM
 US
@@ -29444,7 +29508,7 @@ yT
 xh
 yT
 yT
-jo
+ya
 Jv
 sm
 dV
@@ -29594,7 +29658,7 @@ yT
 yT
 yT
 yT
-FP
+vZ
 Ll
 Ll
 Ll
@@ -29834,7 +29898,7 @@ yT
 fI
 fI
 yT
-jo
+ya
 lF
 lF
 lF
@@ -29968,7 +30032,7 @@ lF
 lF
 lF
 yT
-eV
+iT
 fI
 yT
 OB
@@ -30356,7 +30420,7 @@ yT
 yT
 yT
 yT
-FP
+vZ
 Ll
 Ll
 Ll
@@ -30587,7 +30651,7 @@ yT
 xh
 yT
 yT
-jo
+ya
 lF
 zO
 lF
@@ -31512,7 +31576,7 @@ Vv
 BM
 Vv
 Vv
-zX
+zt
 ut
 Bp
 pb
@@ -31631,7 +31695,7 @@ pb
 oT
 Bp
 ut
-xf
+VF
 xf
 Hu
 Vv
@@ -31871,7 +31935,7 @@ lF
 lF
 lF
 yT
-jo
+ya
 lF
 lF
 lF
@@ -31888,7 +31952,7 @@ ut
 ut
 ut
 ut
-Vv
+Kl
 Vv
 KL
 Vv
@@ -32020,7 +32084,7 @@ Vv
 Vv
 Vv
 Vv
-Oy
+BI
 ut
 ut
 ut
@@ -32142,12 +32206,12 @@ pb
 pb
 pb
 ut
-Oy
+gt
+jQ
 Vv
 Vv
 Vv
-Vv
-Oy
+RA
 ut
 Om
 tX
@@ -32175,7 +32239,7 @@ ut
 ut
 ut
 ut
-KS
+AB
 SW
 SW
 Vq
@@ -32274,7 +32338,7 @@ Oy
 Lj
 Vv
 Vv
-Oy
+OC
 ut
 Om
 tX
@@ -32399,13 +32463,13 @@ ut
 ut
 ut
 ut
+ty
 ut
 ut
 ut
 ut
 ut
-ut
-iG
+Hg
 Sc
 gi
 ut
@@ -32524,10 +32588,10 @@ Dz
 pb
 pb
 pb
-pb
-pb
-xy
-Bp
+ut
+tX
+tX
+tX
 ut
 mA
 PN
@@ -32651,10 +32715,10 @@ pb
 pb
 pb
 pb
-pb
-pb
-xy
-pb
+ut
+gB
+tX
+tX
 ut
 VF
 xf
@@ -32778,12 +32842,12 @@ pb
 pb
 pb
 pb
-Dz
-pb
-xy
-pb
 ut
-xd
+ls
+FD
+fy
+ut
+mN
 th
 ut
 tX
@@ -33012,7 +33076,7 @@ yT
 yT
 pb
 yT
-jo
+ya
 lF
 lF
 bu
@@ -33671,11 +33735,11 @@ pb
 pb
 xy
 pb
+pb
+pb
+pb
+pb
 ut
-ls
-tX
-tX
-Kb
 tX
 tX
 tX
@@ -33798,10 +33862,10 @@ pb
 pb
 xy
 pb
-ut
-IA
-tX
-yN
+pb
+pb
+pb
+pb
 ut
 HF
 Fm
@@ -33924,11 +33988,11 @@ iq
 iq
 ri
 Gm
-Gm
-ut
-xW
-tX
-tX
+pb
+pb
+pb
+pb
+pb
 ut
 ut
 ut
@@ -34052,11 +34116,11 @@ pb
 pb
 pb
 pb
-ut
-ut
-ut
-ut
-ut
+pb
+pb
+pb
+pb
+pb
 pb
 pb
 pb

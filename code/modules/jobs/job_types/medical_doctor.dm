@@ -1,15 +1,14 @@
 /datum/job/doctor
-	title = "Medical Doctor"
-	description = "Operate the medical bay, listening to the labor lead for directions if necessary."
+	title = "Union Doctor"
+	description = "Operate the public hospital, negotiate funding with the labor lead, ask the labor lead to get you nurses and assistants."
 	orbit_icon = "staff-snake"
 	department_head = list("Labor Lead")
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the labor lead"
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
-	alt_titles = list("Physician", "Surgeon", "Nurse")
 
 	outfit = /datum/outfit/job/doctor
 
@@ -30,7 +29,7 @@
 	smells_like = "a hospital"
 
 /datum/outfit/job/doctor
-	name = "Medical Doctor"
+	name = "Union Doctor"
 	jobtype = /datum/job/doctor
 	uniform = /obj/item/clothing/under/citizen
 	accessory = /obj/item/clothing/accessory/armband/medblue

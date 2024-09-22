@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(engineering_lightup_areas,		\
 
 GLOBAL_LIST_INIT(original_medical_positions, list(
 	"Chief Medical Officer",
-	"Medical Doctor",
+	"Union Doctor",
 	"Geneticist",
 	"Virologist",
 	"Chemist",
@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(medical_lightup_areas, 	\
 
 GLOBAL_LIST_INIT(original_science_positions, list(
 	"Research Director",
-	"Scientist",
+	"Union Scientist",
 	"Roboticist"))
 
 GLOBAL_LIST_INIT(science_lightup_areas, 		\
@@ -277,7 +277,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = sec_expand.Replace(job, "Civil Protection Officer")
 	job = engi_expand.Replace(job, "station engineer")
 	job = atmos_expand.Replace(job, "atmospheric technician")
-	job = doc_expand.Replace(job, "medical doctor")
+	job = doc_expand.Replace(job, "union doctor")
 	job = mine_expand.Replace(job, "shaft miner")
 	job = chef_expand.Replace(job, "cook")
 	job = borg_expand.Replace(job, "cyborg")

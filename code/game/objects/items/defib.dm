@@ -550,7 +550,7 @@
 		var/tplus = world.time - H.timeofdeath	//length of time spent dead
 		var/obj/item/organ/heart = H.getorgan(/obj/item/organ/heart)
 		if(do_after(user, 1.5 SECONDS, H))
-			if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
+			if(user.job == "Union Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
 				user.say("Clear!", forced = "defib")
 		if(do_after(user, 0.5 SECONDS, H)) //Counting the delay for "Clear", revive time is 5sec total
 			for(var/obj/item/carried_item in H.contents)

@@ -32,10 +32,10 @@
 	back = /obj/item/storage/backpack/medic
 	belt = /obj/item/storage/belt/medical
 	glasses = /obj/item/clothing/glasses/hud/health
-	short_desc = "You are a SIC medical doctor."
+	short_desc = "You are a SIC union doctor."
 	flavour_text = "You were working on a Sol Interplantery Coalition medical outpost when a bluespace translocation was reported. After a bout of nausea from reality shifting, a glance outside told you that it seems to have moved the station to some strange ashen wasteland. Regardless of the situation, supplies are low and scanners report a variety of unknown lifeforms outside."
 	important_info = "Time to put your expertise to use and see if there's anyone out there who needs help."
-	id_job = "Medical Doctor"
+	id_job = "Union Doctor"
 	id = /obj/item/card/id
 	roundstart = FALSE
 	death = FALSE

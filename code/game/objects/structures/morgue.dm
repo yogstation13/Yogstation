@@ -12,7 +12,7 @@
 		<font color=orange>Yellow lights mean there's non-body objects inside.</font><BR><font size='2'>Probably stuff pried off a \
 		corpse someone grabbed, or if you're lucky it's stashed booze.</font><BR><BR><font color=green>Green lights mean the morgue \
 		system detects the body may be able to be brought back to life.</font></font><BR><font size='2'>I don't know how that works, \
-		but keep it away from the kitchen and go yell at the medical doctors.</font><BR><BR>- CentCom medical inspector"
+		but keep it away from the kitchen and go yell at the union doctors.</font><BR><BR>- CentCom medical inspector"
 
 
 /* Morgue stuff

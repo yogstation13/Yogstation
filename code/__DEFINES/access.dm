@@ -95,7 +95,7 @@
 #define ACCESS_MORGUE "morgue"
 /// Access to the chemistry lab, or the smaller room in medical with the multiple chem dispensers and pill pressers. The Chemist's main position.
 #define ACCESS_CHEMISTRY "chemistry"
-/// Access to the cloning lab, usually adjacent to the genetics lab. Given to Medical Doctors so they can't also enter Genetics.
+/// Access to the cloning lab, usually adjacent to the genetics lab. Given to Union Doctors so they can't also enter Genetics.
 #define ACCESS_CLONING "cloning"
 /// Access to the Virology portion of the medical department, as well as the virology crate.
 #define ACCESS_VIROLOGY "virology"

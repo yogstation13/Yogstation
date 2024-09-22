@@ -113,7 +113,7 @@
 	name = "the source code for Project Bee from the master R&D server mainframe."
 	targetitem = /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
 	difficulty = 10
-	excludefromjob = list("Scientist", "Research Director") //Scientist isn't sus in that room but a gene or robo is. 
+	excludefromjob = list("Union Scientist", "Research Director") //Scientist isn't sus in that room but a gene or robo is. 
 
 /datum/objective_item/steal/hdd_extraction/New()
 	special_equipment += /obj/item/paper/guides/antag/hdd_extraction
@@ -136,7 +136,7 @@
 	name = "28 moles of plasma (full tank)."
 	targetitem = /obj/item/tank
 	difficulty = 3
-	excludefromjob = list("Chief Engineer","Research Director","Station Engineer","Scientist","Atmospheric Technician")
+	excludefromjob = list("Chief Engineer","Research Director","Station Engineer","Union Scientist","Atmospheric Technician")
 
 /datum/objective_item/steal/plasma/check_special_completion()
 	var/target_amount = text2num(name)
@@ -193,7 +193,7 @@
 	name = "an unused sample of slime extract."
 	targetitem = /obj/item/slime_extract
 	difficulty = 3
-	excludefromjob = list("Research Director","Scientist")
+	excludefromjob = list("Research Director","Union Scientist")
 
 /datum/objective_item/steal/slime/check_special_completion(obj/item/slime_extract/E)
 	if(E.Uses > 0)

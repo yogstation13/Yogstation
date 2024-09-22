@@ -197,7 +197,7 @@
 	description = span_nicegreen("I just love my robotic friends!\n")
 	mood_change = 3
 	timeout = 5 MINUTES
-	required_job = list("Research Director", "Scientist", "Roboticist", "Geneticist") // Only for science and science-adjacent jobs.
+	required_job = list("Research Director", "Union Scientist", "Roboticist", "Geneticist") // Only for science and science-adjacent jobs.
 
 /datum/mood_event/nice_tool
 	description = span_nicegreen("I recently used a nice tool.\n")

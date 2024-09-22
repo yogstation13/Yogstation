@@ -1578,7 +1578,7 @@ obj/item/toy/turn_tracker
 	toysay = "One day while..."
 
 /obj/item/toy/figure/md
-	name = "Medical Doctor action figure"
+	name = "Union Doctor action figure"
 	icon_state = "md"
 	toysay = "The patient is already dead!"
 

@@ -85,7 +85,7 @@
 
 /obj/item/clothing/under/rank/medical/doctor
 	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel."
-	name = "medical doctor's jumpsuit"
+	name = "union doctor's jumpsuit"
 	icon_state = "medical"
 	item_state = "w_suit"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 15, RAD = 0, FIRE = 0, ACID = 0)
@@ -110,7 +110,7 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/medical/doctor/skirt
-	name = "medical doctor's jumpskirt"
+	name = "union doctor's jumpskirt"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel."
 	icon_state = "medical_skirt"
 	item_state = "w_suit"

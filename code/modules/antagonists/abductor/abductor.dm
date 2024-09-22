@@ -45,7 +45,7 @@
 
 /datum/antagonist/abductor/scientist
 	name = "Abductor Scientist"
-	sub_role = "Scientist"
+	sub_role = "Union Scientist"
 	outfit = /datum/outfit/abductor/scientist
 	landmark_type = /obj/effect/landmark/abductor/scientist
 	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
@@ -131,7 +131,7 @@
 		to_chat(admin, span_warning("This only works on humans!"))
 		return
 	var/mob/living/carbon/human/H = owner.current
-	var/gear = tgui_alert(admin,"Agent or Scientist Gear","Gear",list("Agent","Scientist"))
+	var/gear = tgui_alert(admin,"Agent or Scientist Gear","Gear",list("Agent","Union Scientist"))
 	if(gear)
 		if(gear=="Agent")
 			H.equipOutfit(/datum/outfit/abductor/agent)

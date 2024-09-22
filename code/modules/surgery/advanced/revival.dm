@@ -67,7 +67,7 @@
 		..()
 
 /datum/surgery_step/revive/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
+	if(user.job == "Union Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
 		user.say("Clear!", forced = "surgery")
 	display_results(user, target, span_notice("You successfully shock [target]'s brain with [tool]..."),
 		"[user] send a powerful shock to [target]'s brain with [tool]...",
@@ -85,7 +85,7 @@
 		return FALSE
 
 /datum/surgery_step/revive/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	if(user.job == "Medical Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
+	if(user.job == "Union Doctor" || user.job == "Paramedic" || user.job == "Chief Medical Officer")
 		user.say("Clear!", forced = "surgery")
 	display_results(user, target, span_notice("You shock [target]'s brain with [tool], but [target.p_they()] doesn't react."),
 		"[user] send a powerful shock to [target]'s brain with [tool], but [target.p_they()] doesn't react.",

@@ -540,6 +540,7 @@ datum/techweb_node/cyber_organs/New()
 
 /datum/techweb_node/cyber_implants
 	id = "cyber_implants"
+	starting_node = TRUE
 	display_name = "Cybernetic Implants"
 	description = "Electronic implants that improve humans."
 	prereq_ids = list("adv_biotech", "datatheory")
