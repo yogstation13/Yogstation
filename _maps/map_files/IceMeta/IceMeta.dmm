@@ -9253,6 +9253,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "cLh" = (
@@ -69979,7 +69980,6 @@
 	pixel_y = -38
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "udI" = (
