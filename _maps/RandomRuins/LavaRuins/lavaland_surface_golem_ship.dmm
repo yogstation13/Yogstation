@@ -39,7 +39,7 @@
 /area/ruin/powered/golem_ship)
 "dQ" = (
 /obj/effect/decal/cleanable/glass,
-/obj/machinery/mecha_part_fabricator/ruin,
+/obj/machinery/combine_fabricator/ruin,
 /turf/open/floor/plating,
 /area/ruin/powered/golem_ship)
 "fy" = (

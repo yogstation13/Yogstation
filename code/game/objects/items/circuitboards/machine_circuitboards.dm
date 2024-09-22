@@ -974,10 +974,10 @@
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/capacitor = 5)
 
-/obj/item/circuitboard/machine/mechfab
-	name = "Exosuit Fabricator (Machine Board)"
+/obj/item/circuitboard/machine/combinefab
+	name = "Combine Fabricator (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	build_path = /obj/machinery/mecha_part_fabricator
+	build_path = /obj/machinery/combine_fabricator
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/manipulator = 1,

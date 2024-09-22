@@ -507,7 +507,7 @@
 /turf/closed/wall/r_wall,
 /area/science)
 "bB" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/combine_fabricator,
 /turf/open/floor/plasteel,
 /area/science)
 "bC" = (

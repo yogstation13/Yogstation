@@ -43,7 +43,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/template_noop)
 "D" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/combine_fabricator,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "E" = (

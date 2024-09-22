@@ -1,7 +1,7 @@
-/obj/machinery/mecha_part_fabricator
+/obj/machinery/combine_fabricator
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
-	name = "exosuit fabricator"
+	name = "combine fabricator"
 	desc = "Nothing is being built."
 	density = TRUE
 	use_power = IDLE_POWER_USE
@@ -15,7 +15,7 @@
 	var/seconds_electrified = MACHINE_NOT_ELECTRIFIED
 
 
-	circuit = /obj/item/circuitboard/machine/mechfab
+	circuit = /obj/item/circuitboard/machine/combinefab
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 	/// Controls whether or not the more dangerous designs have been unlocked by a head's id manually, rather than alert level unlocks
 	var/authorization_override = FALSE
@@ -54,36 +54,23 @@
 	/// A list of categories that valid MECHFAB design datums will broadly categorise themselves under.
 	var/list/part_sets = list(
 								"Cyborg",
-								"Ripley",
-								"Odysseus",
-								"Clarke",
-								"Gygax",
-								"Durand",
-								"H.O.N.K",
-								"Phazon",
-								"Sidewinder",
-								"Exosuit Equipment",
-								"Exosuit Ammunition",
-								"Cyborg Upgrade Modules",
 								"Cybernetics",
 								"Implants",
-								"Control Interfaces",
-								"IPC Components",
 								"Misc"
 								)
 
-/obj/machinery/mecha_part_fabricator/Initialize(mapload)
+/obj/machinery/combine_fabricator/Initialize(mapload)
 	stored_research = SSresearch.science_tech
-	rmat = AddComponent(/datum/component/remote_materials, "mechfab", mapload && link_on_init)
+	rmat = AddComponent(/datum/component/remote_materials, "combinefab", mapload && link_on_init)
 	RefreshParts() //Recalculating local material sizes if the fab isn't linked
-	wires = new /datum/wires/mecha_part_fabricator(src)
+	wires = new /datum/wires/combine_fabricator(src)
 	return ..()
 
-/obj/machinery/mecha_part_fabricator/Destroy()
+/obj/machinery/combine_fabricator/Destroy()
 	QDEL_NULL(wires)
 	return ..()
 	
-/obj/machinery/mecha_part_fabricator/RefreshParts()
+/obj/machinery/combine_fabricator/RefreshParts()
 	var/T = 0
 
 	//maximum stocking amount (default 300000, 600000 at T4)
@@ -113,12 +100,12 @@
 
 	update_static_data(usr)
 
-/obj/machinery/mecha_part_fabricator/examine(mob/user)
+/obj/machinery/combine_fabricator/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Storing up to <b>[rmat.local_size]</b> material units.<br>Material consumption at <b>[component_coeff*100]%</b>.<br>Build time reduced by <b>[100-time_coeff*100]%</b>.")
 
-/obj/machinery/mecha_part_fabricator/attackby(obj/item/I, mob/living/user, params)
+/obj/machinery/combine_fabricator/attackby(obj/item/I, mob/living/user, params)
 	if(panel_open && is_wire_tool(I))
 		wires.interact(user)
 		return TRUE
@@ -143,13 +130,13 @@
  * All the negative wire effects
  * Break wire breaks one limb (Because pain is to be had)
 */
-/obj/machinery/mecha_part_fabricator/_try_interact(mob/user)
+/obj/machinery/combine_fabricator/_try_interact(mob/user)
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))
 			return
 	return ..()
 
-/obj/machinery/mecha_part_fabricator/proc/wire_break(mob/user)
+/obj/machinery/combine_fabricator/proc/wire_break(mob/user)
 	if(stat & (BROKEN|NOPOWER))
 		return FALSE
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -167,7 +154,7 @@
 		to_chat(C,span_userdanger("The manipulator arms attempt to grab one of your limbs, but grapple air instead!"))
 		qdel(break_it)
 
-/obj/machinery/mecha_part_fabricator/proc/reset(wire)
+/obj/machinery/combine_fabricator/proc/reset(wire)
 	switch(wire)
 		if(WIRE_HACK)
 			if(!wires.is_cut(wire))
@@ -182,7 +169,7 @@
   * * user - the user to shock
   * * prb - probability the shock happens
   */
-/obj/machinery/mecha_part_fabricator/proc/shock(mob/user, prb)
+/obj/machinery/combine_fabricator/proc/shock(mob/user, prb)
 	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
 		return FALSE
 	if(!prob(prb))
@@ -200,7 +187,7 @@
   * * D - Design datum to get information on.
   * * categories - Boolean, whether or not to parse snowflake categories into the part information list.
   */
-/obj/machinery/mecha_part_fabricator/proc/output_part_info(datum/design/D, categories = FALSE)
+/obj/machinery/combine_fabricator/proc/output_part_info(datum/design/D, categories = FALSE)
 	var/cost = list()
 	for(var/c in D.materials)
 		var/datum/material/M = c
@@ -275,7 +262,7 @@
   * Returns null if there is no material container available.
   * List format is list(material_name = list(amount = ..., ref = ..., etc.))
   */
-/obj/machinery/mecha_part_fabricator/proc/output_available_resources()
+/obj/machinery/combine_fabricator/proc/output_available_resources()
 	var/datum/component/material_container/materials = rmat.mat_container
 
 	var/list/material_data = list()
@@ -305,7 +292,7 @@
   *
   * Adds the overlay to show the fab working and sets active power usage settings.
   */
-/obj/machinery/mecha_part_fabricator/proc/on_start_printing()
+/obj/machinery/combine_fabricator/proc/on_start_printing()
 	add_overlay("fab-active")
 	use_power = ACTIVE_POWER_USE
 
@@ -314,7 +301,7 @@
   *
   * Removes the overlay to show the fab working and sets idle power usage settings. Additionally resets the description and turns off queue processing.
   */
-/obj/machinery/mecha_part_fabricator/proc/on_finish_printing()
+/obj/machinery/combine_fabricator/proc/on_finish_printing()
 	cut_overlay("fab-active")
 	use_power = IDLE_POWER_USE
 	desc = initial(desc)
@@ -326,7 +313,7 @@
   * Returns a list of k,v resources with their amounts.
   * * D - Design datum to calculate the modified resource cost of.
   */
-/obj/machinery/mecha_part_fabricator/proc/get_resources_w_coeff(datum/design/D)
+/obj/machinery/combine_fabricator/proc/get_resources_w_coeff(datum/design/D)
 	var/list/resources = list()
 	for(var/R in D.materials)
 		var/datum/material/M = R
@@ -340,7 +327,7 @@
   * Returns TRUE if there are sufficient resources to print the item.
   * * D - Design datum to calculate the modified resource cost of.
   */
-/obj/machinery/mecha_part_fabricator/proc/check_resources(datum/design/D)
+/obj/machinery/combine_fabricator/proc/check_resources(datum/design/D)
 	if(length(D.reagents_list)) // No reagents storage - no reagent designs.
 		return FALSE
 	var/datum/component/material_container/materials = rmat.mat_container
@@ -355,7 +342,7 @@
   * Returns TRUE if the next part has started building.
   * * verbose - Whether the machine should use say() procs. Set to FALSE to disable the machine saying reasons for failure to build.
   */
-/obj/machinery/mecha_part_fabricator/proc/build_next_in_queue(verbose = TRUE)
+/obj/machinery/combine_fabricator/proc/build_next_in_queue(verbose = TRUE)
 	if(!length(queue))
 		return FALSE
 
@@ -374,7 +361,7 @@
   * * D - Design datum to attempt to print.
   * * verbose - Whether the machine should use say() procs. Set to FALSE to disable the machine saying reasons for failure to build.
   */
-/obj/machinery/mecha_part_fabricator/proc/build_part(datum/design/D, verbose = TRUE)
+/obj/machinery/combine_fabricator/proc/build_part(datum/design/D, verbose = TRUE)
 	if(!D)
 		return FALSE
 
@@ -404,7 +391,7 @@
 
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/process()
+/obj/machinery/combine_fabricator/process()
 	// Deelectrifies the machine
 	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
 		seconds_electrified--
@@ -444,7 +431,7 @@
   * Return TRUE if the part was successfully dispensed.
   * * D - Design datum to attempt to dispense.
   */
-/obj/machinery/mecha_part_fabricator/proc/dispense_built_part(datum/design/D)
+/obj/machinery/combine_fabricator/proc/dispense_built_part(datum/design/D)
 	var/obj/item/I = new D.build_path(src)
 	//I.set_custom_materials(build_materials)
 	being_built = null
@@ -467,7 +454,7 @@
   * Does final checks for datum IDs and makes sure this machine can build the designs.
   * * part_list - List of datum design ids for designs to add to the queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/add_part_set_to_queue(list/part_list, mob/user)
+/obj/machinery/combine_fabricator/proc/add_part_set_to_queue(list/part_list, mob/user)
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
 		if((D.build_type & MECHFAB) && (D.id in part_list) && (!D.combat_design || combat_parts_allowed(user)))
@@ -479,7 +466,7 @@
   * Returns TRUE if successful and FALSE if the design was not added to the queue.
   * * D - Datum design to add to the queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/add_to_queue(datum/design/D, mob/user)
+/obj/machinery/combine_fabricator/proc/add_to_queue(datum/design/D, mob/user)
 	if(D.combat_design && !combat_parts_allowed(user))
 		return FALSE
 	if(!istype(queue))
@@ -495,7 +482,7 @@
   * Returns TRUE if successful and FALSE if a design was not removed from the queue.
   * * index - Index in the build queue of the element to remove.
   */
-/obj/machinery/mecha_part_fabricator/proc/remove_from_queue(index)
+/obj/machinery/combine_fabricator/proc/remove_from_queue(index)
 	if(!isnum(index) || !ISINTEGER(index) || !istype(queue) || (index<1 || index>length(queue)))
 		return FALSE
 	queue.Cut(index,++index)
@@ -506,7 +493,7 @@
   *
   * Returns a formatted list of lists containing formatted part information for every part in the build queue.
   */
-/obj/machinery/mecha_part_fabricator/proc/list_queue()
+/obj/machinery/combine_fabricator/proc/list_queue()
 	if(!istype(queue) || !length(queue))
 		return null
 
@@ -524,7 +511,7 @@
   * * resource - Material datum reference to the resource to calculate the cost of.
   * * roundto - Rounding value for round() proc
   */
-/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, datum/material/resource, roundto = 1)
+/obj/machinery/combine_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, datum/material/resource, roundto = 1)
 	return round(D.materials[resource]*component_coeff, roundto)
 
 /**
@@ -534,26 +521,26 @@
   * * D - Design datum to calculate the modified build time of.
   * * roundto - Rounding value for round() proc
   */
-/obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(construction_time, roundto = 1) //aran
+/obj/machinery/combine_fabricator/proc/get_construction_time_w_coeff(construction_time, roundto = 1) //aran
 	return round(construction_time*time_coeff, roundto)
 
-/obj/machinery/mecha_part_fabricator/ui_assets(mob/user)
+/obj/machinery/combine_fabricator/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
 	)
 
-/obj/machinery/mecha_part_fabricator/ui_status(mob/user)
+/obj/machinery/combine_fabricator/ui_status(mob/user)
 	if(stat & BROKEN || panel_open)
 		return UI_CLOSE
 	return ..()
 
-/obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/combine_fabricator/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExosuitFabricator")
 		ui.open()
 
-/obj/machinery/mecha_part_fabricator/ui_static_data(mob/user)
+/obj/machinery/combine_fabricator/ui_static_data(mob/user)
 	var/list/data = list()
 
 	var/list/final_sets = part_sets.Copy()
@@ -585,7 +572,7 @@
 
 	return data
 
-/obj/machinery/mecha_part_fabricator/ui_data(mob/user)
+/obj/machinery/combine_fabricator/ui_data(mob/user)
 	var/list/data = list()
 	data["materials"] = output_available_resources()
 
@@ -617,17 +604,17 @@
 	return data
 
 /// Updates the various authorization checks used to determine if combat parts are available to the current user
-/obj/machinery/mecha_part_fabricator/proc/combat_parts_allowed(mob/user)
+/obj/machinery/combine_fabricator/proc/combat_parts_allowed(mob/user)
 	return authorization_override || SSsecurity_level.get_current_level_as_number() >= SEC_LEVEL_RED || head_or_silicon(user)
 
 /// made as a lazy check to allow silicons full access always
-/obj/machinery/mecha_part_fabricator/proc/head_or_silicon(mob/user)
+/obj/machinery/combine_fabricator/proc/head_or_silicon(mob/user)
 	if(issilicon(user))
 		return TRUE
 	id_card = user.get_idcard(hand_first = TRUE)
 	return ACCESS_COMMAND in id_card?.access
 
-/obj/machinery/mecha_part_fabricator/ui_act(action, list/params)
+/obj/machinery/combine_fabricator/ui_act(action, list/params)
 	. = ..()
 	if(.)
 		return
@@ -720,7 +707,7 @@
   * eject_sheet - Byond REF of the material to eject.
   *	eject_amt - Number of sheets to attempt to eject.
   */
-/obj/machinery/mecha_part_fabricator/proc/eject_sheets(eject_sheet, eject_amt)
+/obj/machinery/combine_fabricator/proc/eject_sheets(eject_sheet, eject_amt)
 	var/datum/component/material_container/mat_container = rmat.mat_container
 	if (!mat_container)
 		say("No access to material storage, please contact the quartermaster.")
@@ -734,12 +721,12 @@
 	rmat.silo_log(src, "ejected", -count, "sheets", matlist)
 	return count
 
-/obj/machinery/mecha_part_fabricator/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
+/obj/machinery/combine_fabricator/proc/AfterMaterialInsert(item_inserted, id_inserted, amount_inserted)
 	var/datum/material/M = id_inserted
 	add_overlay("fab-load-[M.name]")
 	addtimer(CALLBACK(src, /atom/proc/cut_overlay, "fab-load-[M.name]"), 10)
 
-/obj/machinery/mecha_part_fabricator/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/combine_fabricator/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(being_built)
@@ -747,7 +734,7 @@
 		return FALSE
 	return default_deconstruction_screwdriver(user, "fab-o", "fab-idle", I)
 
-/obj/machinery/mecha_part_fabricator/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/combine_fabricator/crowbar_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(being_built)
@@ -755,7 +742,7 @@
 		return FALSE
 	return default_deconstruction_crowbar(I)
 
-/obj/machinery/mecha_part_fabricator/proc/is_insertion_ready(mob/user)
+/obj/machinery/combine_fabricator/proc/is_insertion_ready(mob/user)
 	if(panel_open)
 		to_chat(user, span_warning("You can't load [src] while it's panel is opened!"))
 		return FALSE
@@ -764,7 +751,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/emag_act(mob/user, obj/item/card/emag/emag_card)
+/obj/machinery/combine_fabricator/emag_act(mob/user, obj/item/card/emag/emag_card)
 	if(obj_flags & EMAGGED)
 		to_chat(user, span_warning("[src] has no functional safeties to emag."))
 		return FALSE
@@ -776,14 +763,14 @@
 	return TRUE
 	
 
-/obj/machinery/mecha_part_fabricator/maint
+/obj/machinery/combine_fabricator/maint
 	link_on_init = FALSE
 
-/obj/machinery/mecha_part_fabricator/ruin
+/obj/machinery/combine_fabricator/ruin
 	link_on_init = FALSE
 	authorization_override = TRUE
 	hacked = TRUE
 
-/obj/machinery/mecha_part_fabricator/ruin/Initialize(mapload)
+/obj/machinery/combine_fabricator/ruin/Initialize(mapload)
 	. = ..()
 	stored_research = SSresearch.ruin_tech

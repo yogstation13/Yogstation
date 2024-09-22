@@ -3308,7 +3308,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "YA" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/combine_fabricator,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "YB" = (

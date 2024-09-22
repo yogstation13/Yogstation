@@ -867,7 +867,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/shuttle/abandoned)
 "Es" = (
-/obj/machinery/mecha_part_fabricator/ruin,
+/obj/machinery/combine_fabricator/ruin,
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/abandoned)
 "EI" = (

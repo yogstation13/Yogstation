@@ -1562,7 +1562,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
 "jb" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/combine_fabricator,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
 "jd" = (

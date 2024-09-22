@@ -15,7 +15,7 @@
 	var/require_module = FALSE
 	/// Is this upgrade only for (a) specific module(s)? If so, they need to be using one of these modules to gain the upgrade.
 	var/list/module_types = null
-	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
+	///	Bitflags listing module compatibility. Used in the combine fabricator for creating sub-categories.
 	var/list/module_flags = NONE
 	/// Does this upgrade require access to the cyborg's internals?
 	var/requires_internals = TRUE

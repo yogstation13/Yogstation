@@ -13761,7 +13761,7 @@
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/mining_main/robotics)
 "GB" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/combine_fabricator,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},

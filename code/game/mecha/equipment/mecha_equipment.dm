@@ -27,7 +27,7 @@
 	var/harmful = FALSE
 	/// Sound when this module is destroyed
 	var/destroy_sound = 'sound/mecha/critdestr.ogg'
-	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
+	/// Bitflag. Used by combine fabricator to assign sub-categories based on which exosuits can equip this.
 	var/mech_flags = NONE
 	/// Special melee override for melee weapons
 	var/melee_override = FALSE

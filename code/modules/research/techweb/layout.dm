@@ -439,18 +439,6 @@
 	ui_x = -672
 	ui_y = -352
 
-/datum/techweb_node/gygax
-	ui_x = -672
-	ui_y = -160
-
-/datum/techweb_node/phazon
-	ui_x = -736
-	ui_y = -128
-
-/datum/techweb_node/sidewinder
-	ui_x = -736
-	ui_y = -196
-
 /datum/techweb_node/adv_mecha
 	ui_x = -576
 	ui_y = -96
@@ -466,10 +454,6 @@
 /datum/techweb_node/emp_super
 	ui_x = -224
 	ui_y = -128
-
-/datum/techweb_node/mech_ion
-	ui_x = -672
-	ui_y = -256
 
 /datum/techweb_node/spacepod_lasers
 	ui_x = 96

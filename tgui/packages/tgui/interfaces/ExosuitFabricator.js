@@ -146,7 +146,7 @@ export const ExosuitFabricator = (props, context) => {
   return (
     <Window
       resizable
-      title="Exosuit Fabricator"
+      title="Combine Fabricator"
       width={1200} // Yogs: increesed this from 1100 to fit dilithium.
       height={640}>
       <Window.Content

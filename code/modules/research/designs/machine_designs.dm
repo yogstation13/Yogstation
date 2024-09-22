@@ -346,11 +346,11 @@
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
-/datum/design/board/mechfab
-	name = "Machine Design (Exosuit Fabricator Board)"
-	desc = "The circuit board for an Exosuit Fabricator."
-	id = "mechfab"
-	build_path = /obj/item/circuitboard/machine/mechfab
+/datum/design/board/combinefab
+	name = "Machine Design (Combine Fabricator Board)"
+	desc = "The circuit board for an Combine Fabricator."
+	id = "combinefab"
+	build_path = /obj/item/circuitboard/machine/combinefab
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
