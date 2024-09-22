@@ -3,7 +3,7 @@
 	var/regex/whitelist_regex
 	if(whitelist)
 		// try not to look at it too hard. yes i wrote this by hand.
-		whitelist_regex = new("(?:\[\\/\\\\\]$|(?:^|\\\\|\\/)(?:[regex_quote_list(whitelist)])\\.(?:[regex_quote_list(valid_extensions)])$)", "i")
+		whitelist_regex = new("(?:\[\\/\\\\\]$|(?:^|\\\\|\\/)(?:[regex_quote_list(whitelist)]|(?:profiler|sendmaps)-\[0-9\]+)\\.(?:[regex_quote_list(valid_extensions)])$)", "i")
 
 	// wow why was this ever a parameter
 	var/root = "data/logs/"
@@ -15,19 +15,18 @@
 	var/path = root
 
 	for(var/i in 1 to max_iterations)
-		var/list/choices
+		var/list/choices = flist(path)
 		if(whitelist_regex)
-			choices = list()
-			for(var/listed_path in flist(path))
-				if(whitelist_regex.Find(listed_path))
-					choices += listed_path
-		else
-			choices = flist(path)
+			for(var/listed_path in choices)
+				if(!whitelist_regex.Find(listed_path))
+					choices -= listed_path
+		choices = sort_list(choices)
 		if(path != root)
 			choices.Insert(1, "/")
-		choices = sort_list(choices)
 		if(allow_folder)
-			choices += "Download Folder"
+			choices.Insert(1, "Download Folder")
+		if(root_type == BROWSE_ROOT_ALL_LOGS && SSdbcore.IsConnected())
+			choices.Insert(1, "Choose Round ID")
 
 		var/choice = tgui_input_list(src, "Choose a file to access", "Download", choices)
 		if(!choice)
@@ -36,11 +35,35 @@
 			if("/")
 				path = root
 				continue
+			if("Choose Round ID")
+				var/current_round_id = text2num(GLOB.round_id)
+				var/target_round = tgui_input_number(
+					src,
+					message = "Choose which round ID you wish to go to",
+					title = "Download",
+					default = current_round_id,
+					max_value = current_round_id,
+					min_value = 1
+				)
+				if(!target_round)
+					to_chat(src, span_warning("No round ID chosen."), type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+					return
+				var/round_folder = get_log_directory_by_round_id(target_round)
+				if(!round_folder)
+					to_chat(src, span_warning("Could not find log directory for round [target_round]!"), type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+					return
+				path = "[round_folder]/"
+				continue
 			if("Download Folder")
 				if(!allow_folder)
 					return
 				var/list/comp_flist = flist(path)
-				var/confirmation = input(src, "Are you SURE you want to download all the files in this folder? (This will open [length(comp_flist)] prompt[length(comp_flist) == 1 ? "" : "s"])", "Confirmation") in list("Yes", "No")
+				var/confirmation = tgui_input_list(
+					user = src,
+					message = "Are you SURE you want to download all the files in this folder? (This will open [length(comp_flist)] prompt[length(comp_flist) == 1 ? "" : "s"])",
+					title = "Confirmation",
+					items = list("Yes", "No")
+				)
 				if(confirmation != "Yes")
 					continue
 				for(var/file in comp_flist)
@@ -50,7 +73,7 @@
 
 		if(copytext_char(path, -1) != "/") //didn't choose a directory, no need to iterate again
 			break
-	if(!fexists(path) || !valid_ext_regex.Find(path))
+	if(!rustg_file_exists(path) || !valid_ext_regex.Find(path))
 		to_chat(src, "<font color='red'>Error: browse_files(): File not found/Invalid file([path]).</font>")
 		return
 
