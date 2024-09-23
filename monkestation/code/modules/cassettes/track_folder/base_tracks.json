@@ -980,16 +980,6 @@
 	"genre": "Rock"
 	},
 	{
-	"url": "https://files.catbox.moe/a69sg1.m4a",
-	"title": "Talk Dirty To Me",
-	"duration": 2240,
-	"artist": "Poison",
-	"secret": false,
-	"lobby": false,
-	"jukebox": true,
-	"genre": "Rock"
-	},
-	{
 	"url": "https://files.catbox.moe/agtxnz.mp3",
 	"title": "Jump",
 	"duration": 2420,
@@ -1008,16 +998,6 @@
 	"lobby": false,
 	"jukebox": true,
 	"genre": "Hip-Hop and Rap"
-	},
-	{
-	"url": "https://files.catbox.moe/whbte8.m4a",
-	"title": "Just a Gigolo / I Ain't Got Nobody",
-	"duration": 2780,
-	"artist": "David Lee Roth",
-	"secret": false,
-	"lobby": false,
-	"jukebox": true,
-	"genre": "Rock"
 	},
 	{
 	"url": "https://files.catbox.moe/r32v4i.mp3",
@@ -1241,7 +1221,7 @@
 	},
 	{
 	"url": "https://files.catbox.moe/nfxzcn.m4a",
-	"title": "Cum on Feel the Noize",
+	"title": "Come on Feel the Noize",
 	"duration": 2900,
 	"artist": "Quiet Riot",
 	"secret": false,
@@ -1280,16 +1260,6 @@
 	"genre": "Metal"
 	},
 	{
-	"url": "https://files.catbox.moe/ftmgxf.m4a",
-	"title": "Girls, Girls, Girls",
-	"duration": 2700,
-	"artist": "Motley Crue",
-	"secret": false,
-	"lobby": false,
-	"jukebox": true,
-	"genre": "Metal"
-	},
-	{
 	"url": "https://files.catbox.moe/uciolb.m4a",
 	"title": "To Hell with the Devil",
 	"duration": 2440,
@@ -1311,7 +1281,7 @@
 	},
 	{
 	"url": "https://files.catbox.moe/gmgh6w.m4a",
-	"title": "Cumin' Atcha Live",
+	"title": "Comin' Atcha Live",
 	"duration": 2660,
 	"artist": "Tesla",
 	"secret": false,
@@ -3648,16 +3618,6 @@
 	"url": "https://files.catbox.moe/eo59pv.mp3",
 	"title": "Molecular Clouds",
 	"duration": 1560,
-	"artist": "Free Fall & Other Delights",
-	"genre": "Folk and Indie",
-	"secret": false,
-	"lobby": false,
-	"jukebox": true
-	},
-	{
-	"url": "https://files.catbox.moe/227jw9.mp3",
-	"title": "A Reconsideration (Zero-G Sex)",
-	"duration": 2530,
 	"artist": "Free Fall & Other Delights",
 	"genre": "Folk and Indie",
 	"secret": false,
