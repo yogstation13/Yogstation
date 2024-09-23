@@ -103,7 +103,7 @@
 
 /datum/nanite_program/mindshield/enable_passive_effect()
 	. = ..()
-	//won't work if on a rev, to avoid having implanted revs. same applies for hivemind members.
+	//won't work if on a rev, to avoid having implanted revs.
 	if(host_mob.mind.has_antag_datum(/datum/antagonist/rev, TRUE))
 		return
 	if(host_mob.mind.has_antag_datum(/datum/antagonist/brainwashed))
