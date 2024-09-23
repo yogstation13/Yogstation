@@ -19,7 +19,9 @@
 	/// The probability that the ejected reagents will be dangerous
 	var/danger_chance = 1
 	/// Amount of reagents ejected from each scrubber
-	var/reagents_amount = 50
+	var/reagents_amount = 100
+	/// How quickly things evaporate
+	var/evaporation_multiplier = BASE_EVAPORATION_MULTIPLIER
 	/// Probability of an individual scrubber overflowing
 	var/overflow_probability = 50
 	/// Specific reagent to force all scrubbers to use, null for random reagent choice
@@ -121,8 +123,8 @@
 		var/dangerous = prob(danger_chance)
 		var/reagent_type = forced_reagent_type || get_overflowing_reagent(dangerous)
 		if(dangerous)
-			new /mob/living/basic/cockroach(vent_turf)
-			new /mob/living/basic/cockroach(vent_turf)
+			new /mob/living/simple_animal/cockroach(vent_turf)
+			new /mob/living/simple_animal/cockroach(vent_turf)
 		vent_turf.add_liquid(reagent_type, reagents_amount, no_react = TRUE)
 		if(vent_turf.liquids?.liquid_group)
 			vent_turf.liquids.liquid_group.always_evaporates = TRUE
