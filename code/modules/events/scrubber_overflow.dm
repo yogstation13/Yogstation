@@ -196,4 +196,5 @@
 /datum/round_event/scrubber_overflow/beer
 	overflow_probability = 100
 	reagents_amount = 100
+	evaporation_multiplier = BASE_EVAPORATION_MULTIPLIER * 1.5
 	forced_reagent_type = /datum/reagent/consumable/ethanol/beer

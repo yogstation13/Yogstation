@@ -18,6 +18,7 @@
 			if(is_team_darkspawn(applicant))
 				continue
 			candidates += applicant
+	qdel(temp)
 	if(candidates.len)
 		H = pick(candidates)
 		if(H.add_darkspawn())
