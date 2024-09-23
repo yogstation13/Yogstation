@@ -34,17 +34,18 @@
 	var/atom/movable/parent = loc //for ease of access
 	var/t_amount = 0
 	var/list/result = list()
-	var/output_loc = parent.Adjacent(user) ? user.loc : parent.loc //needed for TK
+	var/output_loc = parent.Adjacent(user) ? user.drop_location() : parent.drop_location() //needed for TK
 	var/product_name
 	var/yield_amount = getYield()
+	var/seedless = get_gene(/datum/plant_gene/trait/seedless)
 	if(yield_amount >= 10)
 		yield_amount = 10 + log(1.02) * (getYield() - 1)
 	while(t_amount < yield_amount)
 		var/picked_object = pick(produce_list)
-		if(prob(10))
+		if(!seedless && prob(10))
 			var/obj/item/seeds/seed_prod
-			if(prob(30) && special_mutations.len)
-				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
+			if(prob(30) && length(special_mutations))
+				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation = pick(special_mutations)
 				var/obj/item/seeds/created_seed = picked_mutation.created_seed
 				seed_prod = new created_seed(output_loc)
 			else
@@ -53,8 +54,8 @@
 			t_amount++
 		else
 			var/obj/item/food/grown/t_prod
-			if(prob(10) && special_mutations.len)
-				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation =  pick(special_mutations)
+			if(prob(10) && length(special_mutations))
+				var/datum/hydroponics/plant_mutation/spliced_mutation/picked_mutation = pick(special_mutations)
 				var/obj/item/produced_item = picked_mutation.created_product
 				t_prod = new produced_item(output_loc)
 			else
