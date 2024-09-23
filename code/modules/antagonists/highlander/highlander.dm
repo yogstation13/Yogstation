@@ -14,10 +14,6 @@
 	REMOVE_TRAIT(L, TRAIT_NOGUNS, "highlander")
 
 /datum/antagonist/highlander/proc/forge_objectives()
-	var/datum/objective/steal/steal_objective = new
-	steal_objective.owner = owner
-	steal_objective.set_target(new /datum/objective_item/steal/nukedisc)
-	objectives += steal_objective
 
 	var/datum/objective/hijack/hijack_objective = new
 	hijack_objective.explanation_text = "Escape on the shuttle alone. Ensure that nobody else makes it out."

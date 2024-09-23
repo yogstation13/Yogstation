@@ -7,10 +7,11 @@
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
 	antag_hud_name = "traitor"
-	antag_moodlet = /datum/mood_event/focused
-	preview_outfit = /datum/outfit/traitor
+	antag_moodlet = /datum/mood_event/rebel
+	preview_outfit = /datum/outfit/rebel
+	show_in_antagpanel = TRUE
 	var/special_role = ROLE_TRAITOR
-	var/employer = "The Syndicate"
+	var/employer = "Lambda"
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
@@ -35,7 +36,7 @@
 	if(traitor_kind == TRAITOR_AI)
 		company = /datum/corporation/self
 	else if(!company)
-		company = pick(subtypesof(/datum/corporation/traitor))
+		company = /datum/corporation/traitor/lambda
 	owner.add_employee(company)
 
 	SSticker.mode.traitors += owner
@@ -105,7 +106,7 @@
 
 /datum/antagonist/traitor/proc/forge_human_objectives()
 	var/is_hijacker = FALSE
-	if (GLOB.joined_player_list.len >= 30) // Less murderboning on lowpop thanks
+	if (GLOB.joined_player_list.len >= 50) // Less murderboning on lowpop thanks
 		is_hijacker = prob(10)
 	var/martyr_chance = prob(20)
 	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
@@ -213,18 +214,10 @@
 			kill_objective.find_target()
 			add_objective(kill_objective)
 	else
-		if(prob(50))
-			var/datum/objective/steal/steal_objective = new
-			steal_objective.owner = owner
-			steal_objective.find_target()
-			add_objective(steal_objective)
-		else
-			var/datum/objective/break_machinery/break_objective = new
-			break_objective.owner = owner
-			if(break_objective.finalize())
-				add_objective(break_objective)
-			else
-				forge_single_human_objective()
+		var/datum/objective/steal/steal_objective = new
+		steal_objective.owner = owner
+		steal_objective.find_target()
+		add_objective(steal_objective)
 
 /datum/antagonist/traitor/proc/forge_single_AI_objective()
 	.=1
@@ -262,7 +255,7 @@
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
-	to_chat(owner.current, span_notice("Your employer [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your nanotrasen paycheck."))
+	to_chat(owner.current, span_notice("Your rebel cell, [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your combine stipend."))
 
 /datum/antagonist/traitor/proc/finalize_traitor()
 	switch(traitor_kind)

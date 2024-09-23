@@ -48,6 +48,11 @@ GLOBAL_LIST_EMPTY(corporations)
 	paymodifier = 2
 	instantiate = TRUE
 
+/datum/corporation/traitor/lambda
+	name = "Lambda Cell"
+	paymodifier = 1.5
+	instantiate = TRUE
+
 // Still syndicate, but doesn't send traitors so untill my syndicate rework they'll not be a subtype
 /datum/corporation/bolsynpowell
 	name = "Bosyn-Powell Front"

@@ -66,12 +66,6 @@
 /obj/machinery/status_display/evac,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape/backup)
-"u" = (
-/obj/structure/chair/office/light{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/escape/backup)
 "x" = (
 /obj/machinery/light{
 	dir = 8
@@ -168,7 +162,7 @@ m
 (6,1,1) = {"
 m
 g
-u
+g
 g
 g
 g

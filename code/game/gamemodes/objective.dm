@@ -1318,7 +1318,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   */
 /datum/objective/minor/secrecords
 	name = "Delete your security records."
-	explanation_text = "Delete your Nanotrasen security records."
+	explanation_text = "Delete your Combine security records."
 	/// The security record that needs to be deleted
 	var/datum/data/record/record
 
@@ -1452,7 +1452,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
   */
 /datum/objective/minor/mindshield
 	name = "Get mindshielded."
-	explanation_text = "Extract with an NT mindshield implanted in you."
+	explanation_text = "Extract with an Combine mindshield implanted in you."
 
 /datum/objective/minor/mindshield/finalize()
 	return TRUE
