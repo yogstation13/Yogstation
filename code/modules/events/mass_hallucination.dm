@@ -29,7 +29,6 @@
 												/datum/hallucination/bolts,
 												/datum/hallucination/fake_flood,
 												/datum/hallucination/battle,
-												/datum/hallucination/fire,
 												/datum/hallucination/self_delusion,
 												/datum/hallucination/death,
 												/datum/hallucination/delusion,
