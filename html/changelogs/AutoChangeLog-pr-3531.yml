@@ -1,0 +1,4 @@
+author: "ancient-engineer"
+delete-after: True
+changes:
+  - bugfix: "fixed power gloves dusting you if the power was below 10 GWs instead of greater then or equal to 10 GWs"
