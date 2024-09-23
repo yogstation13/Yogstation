@@ -29,7 +29,6 @@
 #define ROLE_SERVANT_OF_RATVAR	"Servant of Ratvar"
 #define ROLE_BROTHER			"Blood Brother"
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
-#define ROLE_HIVE				"Hivemind Host"
 #define ROLE_OBSESSED			"Obsessed"
 #define ROLE_SENTIENCE			"Sentient Creature"
 #define ROLE_MOUSE				"Mouse"
@@ -100,7 +99,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SINFULDEMON = /datum/antagonist/sinfuldemon,
 	ROLE_NIGHTMARE = /datum/antagonist/nightmare,
 	ROLE_DISEASE = /datum/antagonist/disease,
-	ROLE_HIVE = /datum/antagonist/hivemind,
 	ROLE_PIRATE = /datum/antagonist/pirate,
 	ROLE_SENTIENCE = /datum/antagonist/sentient_creature
 ))

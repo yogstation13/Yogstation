@@ -106,10 +106,6 @@
 	//won't work if on a rev, to avoid having implanted revs. same applies for hivemind members.
 	if(host_mob.mind.has_antag_datum(/datum/antagonist/rev, TRUE))
 		return
-	if(is_hivemember(host_mob))
-		return
-	if(host_mob.is_wokevessel())
-		return
 	if(host_mob.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		return
 	if(is_team_darkspawn(host_mob))
