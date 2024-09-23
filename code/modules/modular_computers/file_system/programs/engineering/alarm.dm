@@ -56,3 +56,7 @@
 /datum/computer_file/program/alarm_monitor/kill_program(forced = FALSE)
 	GLOB.alarmdisplay -= src
 	..()
+
+/datum/computer_file/program/alarm_monitor/Destroy()
+	GLOB.alarmdisplay -= src
+	. = ..()
