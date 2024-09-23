@@ -47,12 +47,11 @@
 
 /datum/round_event/antagonist/solo/clown_operative/setup()
 	. = ..()
-	var/obj/machinery/nuclearbomb/syndicate/syndicate_nuke = locate() in GLOB.nuke_list
-	if(syndicate_nuke)
-		var/turf/nuke_turf = get_turf(syndicate_nuke)
-		if(nuke_turf)
-			new /obj/machinery/nuclearbomb/syndicate/bananium(nuke_turf)
-			qdel(syndicate_nuke)
+	for(var/obj/machinery/nuclearbomb/syndicate/S in GLOB.nuke_list)
+		var/turf/T = get_turf(S)
+		if(T)
+			qdel(S)
+			new /obj/machinery/nuclearbomb/syndicate/bananium(T)
 
 /datum/round_event/antagonist/solo/clown_operative/add_datum_to_mind(datum/mind/antag_mind)
 	var/mob/living/current_mob = antag_mind.current
@@ -70,11 +69,9 @@
 
 	if(!set_leader)
 		set_leader = TRUE
-		var/datum/antagonist/nukeop/leader/leader_antag_datum = new()
+		var/datum/antagonist/nukeop/leader/clownop/leader_antag_datum = new()
 		nuke_team = leader_antag_datum.nuke_team
 		most_experienced.add_antag_datum(leader_antag_datum)
-		var/mob/living/carbon/human/leader = most_experienced.current
-		leader.equipOutfit(/datum/outfit/syndicate/clownop/leader)
 
 	if(antag_mind == most_experienced)
 		return
