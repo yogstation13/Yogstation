@@ -3,39 +3,39 @@
 	desc = "a skull of an ancient psionic user, grants a small amount of nulldust when ground up."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "null_skull"
+	w_class = WEIGHT_CLASS_TINY
 	///how much nullspace dust does each skull give when used on the psionic awakener
 	var/dust = 5
-	w_class = WEIGHT_CLASS_TINY
 	
-
-/obj/item/nullspace_crystal/afterattack(obj/machinery/I, mob/user, proximity)
-	. = ..()
-	if(istype(I, /obj/machinery/psionic_awakener))
-		var/obj/machinery/psionic_awakener/cart = I
+/obj/item/nullspace_crystal/attack_atom(atom/attacked_atom, mob/living/user, params)
+	if(istype(attacked_atom, /obj/machinery/psionic_awakener))
+		var/obj/machinery/psionic_awakener/cart = attacked_atom
 		cart.nullspace_dust += dust
 		to_chat(user, span_notice("You force the [name] into the psionic awakener's grinding port, crushing it to microscopic pieces."))
 		qdel(src)
+		return
+	. = ..()
 
 /obj/item/nullspace_crystal/brilliant
 	name = "fresh null skull"
 	desc = "a fresh skull of a weak psionic user, grants a fair amount of nulldust when ground up."
-	dust = 10
 	icon_state = "fresh_null_skull"
 	w_class = WEIGHT_CLASS_TINY
+	dust = 10
 
 /obj/item/nullspace_crystal/prismatic
 	name = "aged null skull"
 	desc = "an older skull of an adept psionic user, grants a lot of nulldust when ground up."
-	dust = 15
 	icon_state = "aged_null_skull"
 	w_class = WEIGHT_CLASS_SMALL
+	dust = 15
 
 /obj/item/nullspace_crystal/true
 	name = "living null skull"
 	desc = "a pitch black skull of a powerful psionic user, looking into it's eye sockets make your cerebellum burn. Grants a huge boon of nulldust when ground up."
-	dust = 50
 	icon_state = "psionic_null_skull"
 	w_class = WEIGHT_CLASS_NORMAL
+	dust = 50
 
 /obj/effect/spawner/lootdrop/nullspace_crystal_spawner
 	name = "nullskull spawner"
