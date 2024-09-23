@@ -592,10 +592,3 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	ban = randomdevilban()
 	banish = randomdevilbanish()
 	ascendable = prob(25)
-
-/datum/antagonist/devil/get_preview_icon()
-	var/icon/devil_icon = icon('icons/effects/64x64.dmi', "devil")
-
-	devil_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
-
-	return devil_icon

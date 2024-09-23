@@ -575,39 +575,6 @@
 		qdel(thing)
 	old_body.gib(TRUE, TRUE, TRUE)
 
-////////////////////////////////////////////////////////////////////////////////////
-//-------------------------------Preview icon-------------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/darkspawn/get_preview_icon()
-	var/icon/darkspawn_icon = icon('yogstation/icons/mob/human_parts.dmi', "darkspawn_head")
-	darkspawn_icon.Blend(icon('yogstation/icons/mob/human_parts.dmi', "darkspawn_chest"), ICON_OVERLAY)
-	darkspawn_icon.Blend(icon('yogstation/icons/mob/human_parts.dmi', "darkspawn_r_arm"), ICON_OVERLAY)
-	darkspawn_icon.Blend(icon('yogstation/icons/mob/human_parts.dmi', "darkspawn_l_arm"), ICON_OVERLAY)
-	darkspawn_icon.Blend(icon('yogstation/icons/mob/human_parts.dmi', "darkspawn_r_leg"), ICON_OVERLAY)
-	darkspawn_icon.Blend(icon('yogstation/icons/mob/human_parts.dmi', "darkspawn_l_leg"), ICON_OVERLAY)
-
-	var/class_color
-	var/class_icon
-	switch(rand(1,3))
-		if(1)
-			class_color = COLOR_YELLOW
-			class_icon = "scout_sigils"
-		if(2)
-			class_color = COLOR_RED
-			class_icon = "fighter_sigils"
-		if(3)
-			class_color = COLOR_STRONG_VIOLET
-			class_icon = "warlock_sigils"
-		
-	var/icon/eyes = icon('yogstation/icons/mob/darkspawn.dmi', "eyes")
-	eyes.Blend(class_color, ICON_MULTIPLY)
-	darkspawn_icon.Blend(eyes, ICON_OVERLAY)
-
-	var/icon/sigil = icon('yogstation/icons/mob/darkspawn.dmi', class_icon)
-	sigil.Blend(class_color, ICON_MULTIPLY)
-	darkspawn_icon.Blend(sigil, ICON_OVERLAY)
-
-	return finish_preview_icon(darkspawn_icon)
 	
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Admin panel stuff---------------------------------//

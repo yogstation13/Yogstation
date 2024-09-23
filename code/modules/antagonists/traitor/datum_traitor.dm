@@ -172,6 +172,8 @@
 				add_objective(escape_objective)
 			else
 				forge_single_human_objective()
+	// Finally, set up our traitor's backstory!
+	setup_backstories(!is_hijacker && martyr_compatibility, is_hijacker)
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
 	var/objective_count = 0
@@ -188,6 +190,7 @@
 	var/datum/objective/survive/exist/exist_objective = new
 	exist_objective.owner = owner
 	add_objective(exist_objective)
+	setup_backstories()
 
 /datum/antagonist/traitor/proc/forge_single_human_optional() //adds this for if/when soft-tracked objectives are added, so they can be a 50/50
 	var/datum/objective/gimmick/gimmick_objective = new
@@ -247,7 +250,7 @@
 /datum/antagonist/traitor/greet()
 	var/list/msg = list()
 	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role]."))
-	msg += "<span class='alertsyndie'>Use the 'Traitor Info and Backstory' action at the top left in order review your objectives, uplink location, and codewords!</span>"
+	msg += "<span class='alertsyndie'>Use the 'Traitor Info and Backstory' action at the top left in order to select a backstory, review your objectives, uplink location, and codewords!</span>"
 	to_chat(owner.current, EXAMINE_BLOCK(msg.Join("\n")))
 	owner.announce_objectives()
 	if(should_give_codewords)
@@ -473,4 +476,10 @@
 	var/backstory_text = "<b>Traitor Backstory:</b><br>"
 	if(istype(faction))
 		backstory_text += "<b>Faction:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [faction.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[faction.description]</span> \]</span><br>"
+	else
+		backstory_text += "<font color='red'>No faction selected!</font><br>"
+	if(istype(backstory))
+		backstory_text += "<b>Backstory:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [backstory.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[backstory.description]</span> \]</span><br>"
+	else
+		backstory_text += "<font color='red'>No backstory selected!</font><br>"
 	return backstory_text
