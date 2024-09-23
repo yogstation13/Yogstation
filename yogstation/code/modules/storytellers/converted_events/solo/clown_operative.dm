@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/clown_operative
-	name = "Roundstart Clown Operative"
+	name = "Clown Operative"
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_EXTERNAL)
 	antag_flag = ROLE_CLOWNOP
 	antag_datum = /datum/antagonist/nukeop/clownop

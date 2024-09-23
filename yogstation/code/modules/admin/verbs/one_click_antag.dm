@@ -1,10 +1,8 @@
 //Darkspawn
 /datum/admins/proc/makeDarkspawn()
-	var/datum/game_mode/darkspawn/temp = new
-	if(CONFIG_GET(flag/protect_roles_from_antagonist))
-		temp.restricted_jobs += temp.protected_jobs
+	var/datum/round_event_control/antagonist/solo/darkspawn/temp = new
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
-		temp.restricted_jobs += "Assistant"
+		temp.restricted_roles += JOB_ASSISTANT
 	var/list/mob/living/carbon/human/candidates = list()
 	var/mob/living/carbon/human/H
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
@@ -15,7 +13,7 @@
 				continue
 			if(is_banned_from(applicant.ckey, "darkspawn") || is_banned_from(applicant.ckey, "Syndicate"))
 				continue
-			if(!temp.age_check(applicant.client) || (applicant.job in temp.restricted_jobs))
+			if(applicant.job in temp.restricted_roles)
 				continue
 			if(is_team_darkspawn(applicant))
 				continue
