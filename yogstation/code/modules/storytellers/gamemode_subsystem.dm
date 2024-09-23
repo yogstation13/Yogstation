@@ -290,9 +290,9 @@ SUBSYSTEM_DEF(gamemode)
 			if(required_time)
 				time_to_check = required_time
 			else if(inherit_required_time)
-				time_to_check = GLOB.special_roles[be_special]
+				time_to_check = GLOB.special_required_days[be_special]
 
-			if(time_to_check && SSticker.mode.get_remaining_days(candidate.client, time_to_check) > 0)
+			if(time_to_check && candidate.client.get_remaining_days(time_to_check) > 0)
 				continue
 
 		//if(midround_antag_pref)

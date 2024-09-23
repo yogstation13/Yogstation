@@ -42,6 +42,7 @@
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
 #define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_VAMPIRE			"Vampire" // Yogs
+#define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
 #define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"darkspawn" // Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
@@ -49,7 +50,6 @@
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
 #define ROLE_BLOODSUCKER		"Bloodsucker"
-#define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
 #define ROLE_BLOODSUCKERBREAKOUT	"Bloodsucker Breakout"
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
 #define ROLE_SPACE_DRAGON		"Space Dragon"
@@ -107,6 +107,53 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HIVE = /datum/antagonist/hivemind,
 	ROLE_PIRATE = /datum/antagonist/pirate,
 	ROLE_SENTIENCE = /datum/antagonist/sentient_creature
+))
+
+
+
+GLOBAL_LIST_INIT(special_required_days, list(
+	// Roundstart
+	ROLE_BROTHER = 0,
+	ROLE_CHANGELING = 0,
+	ROLE_CLOWN_OPERATIVE = 14,
+	ROLE_CULTIST = 14,
+	ROLE_HERETIC = 0,
+	ROLE_MALF = 0,
+	ROLE_OPERATIVE = 14,
+	ROLE_REV_HEAD = 14,
+	ROLE_TRAITOR = 0,
+	ROLE_WIZARD = 14,
+	ROLE_SERVANT_OF_RATVAR = 14,
+	ROLE_BLOODSUCKER = 0,
+	ROLE_ASSAULT_OPERATIVE = 14,
+
+	// Midround
+	ROLE_ABDUCTOR = 0,
+	ROLE_ALIEN = 0,
+	ROLE_BLOB = 0,
+	ROLE_CHANGELING_MIDROUND = 0,
+	ROLE_CYBER_POLICE = 0,
+	ROLE_FUGITIVE = 0,
+	ROLE_LONE_OPERATIVE = 14,
+	ROLE_MALF_MIDROUND = 0,
+	ROLE_NIGHTMARE = 0,
+	ROLE_NINJA = 0,
+	ROLE_OBSESSED = 0,
+	ROLE_OPERATIVE_MIDROUND = 14,
+	ROLE_REVENANT = 0,
+	ROLE_SENTIENT_DISEASE = 0,
+	ROLE_SLEEPER_AGENT = 0,
+	ROLE_SPACE_DRAGON = 0,
+	ROLE_SPIDER = 0,
+	ROLE_WIZARD_MIDROUND = 14,
+	ROLE_VAMPIRICACCIDENT = 0,
+	ROLE_MONSTERHUNTER = 0,
+
+	// Latejoin
+	ROLE_HERETIC_SMUGGLER = 0,
+	ROLE_PROVOCATEUR = 14,
+	ROLE_SYNDICATE_INFILTRATOR = 0,
+	ROLE_BLOODSUCKERBREAKOUT = 0,
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
