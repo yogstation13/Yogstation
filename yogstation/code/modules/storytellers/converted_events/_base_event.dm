@@ -254,7 +254,7 @@
 		if(!picked_mob || QDELETED(picked_mob) || !istype(picked_mob)) //if the mob has somehow died or disappeared while we were prompting a previous player
 			continue
 
-		log_storyteller("[prompted_picking ? "Prompted" : "Picked"] antag event mob: [(picked_mob.name || picked_mob || picked_client)], antag: [antag_flag], current special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
+		log_storyteller("[prompted_picking ? "Prompted" : "Picked"] antag event ckey: [picked_mob.ckey], antag: [antag_flag], current special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 		if(prompted_picking)
 			candidates |= pollCandidates(
 				Question = "Would you like to be a [cast_control.name]?",
@@ -278,7 +278,7 @@
 			i-- //don't count this as an antag that was picked
 			continue
 
-		log_storyteller("Antag event spawned mob: [(candidate || candidate.name || candidate.ckey)], antag: [antag_flag], current special role: [candidate.mind?.special_role ? candidate.mind.special_role : "none"]")
+		log_storyteller("Antag event spawned ckey: [candidate.ckey], antag: [antag_flag], current special role: [candidate.mind?.special_role ? candidate.mind.special_role : "none"]")
 
 		if(candidate.client) //I hate this
 			SSpersistence.antag_rep -= candidate.client.ckey
