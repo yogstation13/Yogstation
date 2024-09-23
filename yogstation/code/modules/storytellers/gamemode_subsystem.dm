@@ -796,12 +796,12 @@ SUBSYSTEM_DEF(gamemode)
 	point_thresholds[EVENT_TRACK_ROLESET] = CONFIG_GET(number/roleset_point_threshold)
 	point_thresholds[EVENT_TRACK_OBJECTIVES] = CONFIG_GET(number/objectives_point_threshold)
 
-/datum/controller/subsystem/gamemode/proc/handle_picking_stroyteller()
+/datum/controller/subsystem/gamemode/proc/handle_picking_storyteller()
 	if(length(GLOB.clients) > MAX_POP_FOR_STORYTELLER_VOTE)
 		secret_storyteller = TRUE
 		selected_storyteller = pick_weight(get_valid_storytellers(TRUE))
 		return
-	SSvote.initiate_vote("storyteller", null)
+	SSvote.initiate_vote(/datum/vote/storyteller, "pick round storyteller", forced = TRUE)
 
 /datum/controller/subsystem/gamemode/proc/storyteller_vote_choices()
 	var/list/final_choices = list()

@@ -80,6 +80,7 @@
 #define span_inathneq_large(str) ("<span class='inathneq_large'>" + str + "</span>")
 #define span_inathneq_small(str) ("<span class='inathneq_small'>" + str + "</span>")
 #define span_info(str) ("<span class='info'>" + str + "</span>")
+#define span_infoplain(str) ("<span class='infoplain'>" + str + "</span>")
 #define span_interface(str) ("<span class='interface'>" + str + "</span>")
 #define span_italics(str) ("<span class='italics'>" + str + "</span>")
 #define span_large_brass(str) ("<span class='large_brass'>" + str + "</span>")
