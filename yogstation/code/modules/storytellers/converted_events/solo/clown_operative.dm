@@ -46,12 +46,12 @@
 	var/required_role = ROLE_CLOWNOP
 
 /datum/round_event/antagonist/solo/clown_operative/setup()
-	. = ..()
 	for(var/obj/machinery/nuclearbomb/syndicate/S in GLOB.nuke_list)
 		var/turf/T = get_turf(S)
 		if(T)
 			qdel(S)
 			new /obj/machinery/nuclearbomb/syndicate/bananium(T)
+	return ..()
 
 /datum/round_event/antagonist/solo/clown_operative/add_datum_to_mind(datum/mind/antag_mind)
 	var/mob/living/current_mob = antag_mind.current
