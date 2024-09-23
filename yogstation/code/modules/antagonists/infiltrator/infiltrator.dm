@@ -9,7 +9,6 @@
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
 	var/dress_up = TRUE
-	preview_outfit = /datum/outfit/infiltrator
 
 /datum/antagonist/infiltrator/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current

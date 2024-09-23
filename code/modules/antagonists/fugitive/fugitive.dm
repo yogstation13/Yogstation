@@ -8,7 +8,6 @@
 	var/datum/team/fugitive/fugitive_team
 	var/is_captured = FALSE
 	var/backstory = "error"
-	preview_outfit = /datum/outfit/spacepol
 
 /datum/antagonist/fugitive/apply_innate_effects(mob/living/mob_override)
 	add_team_hud(mob_override || owner.current)

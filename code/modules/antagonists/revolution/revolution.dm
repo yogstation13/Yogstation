@@ -154,7 +154,6 @@
 	var/remove_clumsy = FALSE
 	var/give_flash = TRUE
 	var/give_hud = TRUE
-	preview_outfit = /datum/outfit/revolutionary
 
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(Leader)"
@@ -163,37 +162,6 @@
 	if(owner.current)
 		equip_head()
 	return ..()
-
-/datum/antagonist/rev/head/get_preview_icon()
-	var/icon/final_icon = render_preview_outfit(preview_outfit)
-
-	final_icon.Blend(make_assistant_icon("Business Hair"), ICON_UNDERLAY, -8, 0)
-	final_icon.Blend(make_assistant_icon("CIA"), ICON_UNDERLAY, 8, 0)
-
-	// Apply the rev head HUD, but scale up the preview icon a bit beforehand.
-	// Otherwise, the R gets cut off.
-	final_icon.Scale(64, 64)
-
-	var/icon/rev_head_icon = icon('yogstation/icons/mob/antag_hud.dmi', "rev_head")
-	rev_head_icon.Scale(48, 48)
-	rev_head_icon.Crop(1, 1, 64, 64)
-	rev_head_icon.Shift(EAST, 10)
-	rev_head_icon.Shift(NORTH, 16)
-	final_icon.Blend(rev_head_icon, ICON_OVERLAY)
-
-	return finish_preview_icon(final_icon)
-
-/datum/antagonist/rev/head/proc/make_assistant_icon(hairstyle)
-	var/mob/living/carbon/human/dummy/consistent/assistant = new
-	assistant.hair_style = hairstyle
-	assistant.update_hair()
-
-	var/icon/assistant_icon = render_preview_outfit(/datum/outfit/job/citizen/consistent, assistant)
-	assistant_icon.ChangeOpacity(0.5)
-
-	qdel(assistant)
-
-	return assistant_icon
 
 /datum/antagonist/rev/head/proc/equip_head()
 	var/obj/item/book/granter/crafting_recipe/weapons/W = new

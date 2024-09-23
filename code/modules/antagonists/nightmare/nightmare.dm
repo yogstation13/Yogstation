@@ -22,11 +22,3 @@
 /datum/antagonist/nightmare/greet()
 	owner.announce_objectives()
 	SEND_SOUND(owner.current, sound('sound/magic/ethereal_exit.ogg'))
-
-/datum/antagonist/nightmare/get_preview_icon()
-	var/mob/living/carbon/human/dummy/consistent/nightmaredummy = new
-	nightmaredummy.set_species(/datum/species/shadow/nightmare)
-	var/icon/nightmare_icon = render_preview_outfit(null, nightmaredummy)
-	qdel(nightmaredummy)
-
-	return finish_preview_icon(nightmare_icon)

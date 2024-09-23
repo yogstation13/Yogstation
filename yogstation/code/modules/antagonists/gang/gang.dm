@@ -7,7 +7,6 @@
 	antagpanel_category = "Gang"
 	var/message_name = "Gangster"
 	var/datum/team/gang/gang
-	preview_outfit = /datum/outfit/gangster
 
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
 	. = ..()

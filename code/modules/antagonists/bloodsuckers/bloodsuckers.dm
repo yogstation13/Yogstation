@@ -9,7 +9,6 @@
 	show_name_in_check_antagonists = TRUE
 	can_coexist_with_others = FALSE
 	ui_name = "AntagInfoBloodsucker"
-	preview_outfit = /datum/outfit/bloodsucker_outfit
 
 	// TIMERS //
 	///Timer between alerts for Burn messages
@@ -793,12 +792,6 @@
 		return
 	to_chat(owner.current, span_cultboldtalic("You have re-entered the Masquerade."))
 	broke_masquerade = FALSE
-
-/datum/antagonist/bloodsucker/get_preview_icon()
-	var/icon/final_icon = render_preview_outfit(/datum/outfit/bloodsucker_outfit)
-	final_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
-
-	return finish_preview_icon(final_icon)
 
 /datum/outfit/bloodsucker_outfit
 	name = "Bloodsucker outfit (Preview only)"

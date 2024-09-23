@@ -14,7 +14,6 @@
 	var/last_man_standing = FALSE
 	var/list/datum/mind/targets_stolen
 	greentext_achieve = /datum/achievement/greentext/internal
-	preview_outfit = /datum/outfit/assassin
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)

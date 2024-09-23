@@ -44,6 +44,18 @@
 	name = "\improper Town Hall"
 	ambient_buzz = 'sound/ambience/citadel_ambience.ogg'
 
+/area/halflife/indoors/bar
+	name = "\improper Bar"
+
+/area/halflife/indoors/restaurant
+	name = "\improper Restaurant"
+
+/area/halflife/indoors/trainstation
+	name = "\improper Trainstation"
+
+/area/halflife/indoors/slums
+	name = "\improper Slums"
+
 /area/halflife/indoors/sewer
 	name = "\improper Sewer"
 	base_lighting_alpha = 5

@@ -2,7 +2,6 @@
 	name = "Obsessed"
 	show_in_antagpanel = TRUE
 	antagpanel_category = "Other"
-	preview_outfit = /datum/outfit/obsessed
 	job_rank = ROLE_OBSESSED
 	antag_hud_name = "obsessed"
 	show_name_in_check_antagonists = TRUE
@@ -22,26 +21,6 @@
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
 	//PRESTO FUCKIN MAJESTO
 	C.gain_trauma(/datum/brain_trauma/special/obsessed)//ZAP
-
-/datum/antagonist/obsessed/get_preview_icon()
-	var/mob/living/carbon/human/dummy/consistent/victim_dummy = new
-	victim_dummy.hair_color = "#bb9966" // Brown
-	victim_dummy.hair_style = "Messy"
-	victim_dummy.update_hair()
-
-	var/icon/obsessed_icon = render_preview_outfit(preview_outfit)
-	obsessed_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
-
-	var/icon/final_icon = finish_preview_icon(obsessed_icon)
-
-	final_icon.Blend(
-	icon('icons/UI_Icons/antags/obsessed.dmi', "obsession"),
-		ICON_OVERLAY,
-		ANTAGONIST_PREVIEW_ICON_SIZE - 30,
-		20,
-	)
-
-	return final_icon
 
 /datum/outfit/obsessed
 	name = "Obsessed (Preview only)"

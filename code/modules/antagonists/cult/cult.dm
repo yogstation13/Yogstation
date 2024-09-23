@@ -11,7 +11,6 @@
 	var/datum/action/innate/cult/comm/communion = new
 	var/datum/action/innate/cult/mastervote/vote = new
 	var/datum/action/innate/cult/blood_magic/magic = new
-	preview_outfit = /datum/outfit/cultist
 	job_rank = ROLE_CULTIST
 	antag_hud_name = "cult"
 	var/ignore_implant = FALSE
@@ -90,41 +89,6 @@
 
 	return ..()
 
-/*
-/datum/antagonist/cult/get_preview_icon()
-	var/icon/icon = render_preview_outfit(preview_outfit)
-
-	// The longsword is 64x64, but getFlatIcon crunches to 32x32.
-	// So I'm just going to add it in post, screw it.
-
-	// Center the dude, because item icon states start from the center.
-	// This makes the image 64x64.
-	icon.Crop(-15, -15, 48, 48)
-
-	var/obj/item/melee/cultblade/longsword = new
-	icon.Blend(icon(longsword.lefthand_file, longsword.item_state), ICON_OVERLAY)
-	qdel(longsword)
-
-	// Move the guy back to the bottom left, 32x32.
-	icon.Crop(17, 17, 48, 48)
-
-	return finish_preview_icon(icon)
-*/
-/datum/antagonist/cult/get_preview_icon()
-	var/mob/living/carbon/human/dummy/consistent/cult1 = new
-	var/mob/living/carbon/human/dummy/consistent/cult2 = new
-
-	var/icon/final_icon = render_preview_outfit(/datum/outfit/cultist/leader, cult1)
-	var/icon/teammate = render_preview_outfit(/datum/outfit/cultist/follower, cult2)
-	teammate.Blend(rgb(128, 128, 128, 128), ICON_MULTIPLY)
-
-	final_icon.Blend(teammate, ICON_OVERLAY, -world.icon_size / 4, 0)
-	final_icon.Blend(teammate, ICON_OVERLAY, world.icon_size / 4, 0)
-
-	qdel(cult1)
-	qdel(cult2)
-
-	return finish_preview_icon(final_icon)
 
 /datum/outfit/cultist/leader
 	suit = /obj/item/clothing/suit/hooded/cultrobes/berserker

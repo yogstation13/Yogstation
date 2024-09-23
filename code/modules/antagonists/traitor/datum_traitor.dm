@@ -2,9 +2,9 @@
 #define TRAITOR_AI	  "AI"
 
 /datum/antagonist/traitor
-	name = "Traitor"
-	roundend_category = "traitors"
-	antagpanel_category = "Traitor"
+	name = "Rebel Spy"
+	roundend_category = "rebel spies"
+	antagpanel_category = "Rebel Spy"
 	job_rank = ROLE_TRAITOR
 	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/rebel
@@ -172,8 +172,6 @@
 				add_objective(escape_objective)
 			else
 				forge_single_human_objective()
-			// Finally, set up our traitor's backstory!
-	setup_backstories(!is_hijacker && martyr_compatibility, is_hijacker)
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
 	var/objective_count = 0
@@ -190,7 +188,6 @@
 	var/datum/objective/survive/exist/exist_objective = new
 	exist_objective.owner = owner
 	add_objective(exist_objective)
-	setup_backstories()
 
 /datum/antagonist/traitor/proc/forge_single_human_optional() //adds this for if/when soft-tracked objectives are added, so they can be a 50/50
 	var/datum/objective/gimmick/gimmick_objective = new
@@ -250,7 +247,7 @@
 /datum/antagonist/traitor/greet()
 	var/list/msg = list()
 	to_chat(owner.current, span_alertsyndie("You are the [owner.special_role]."))
-	msg += "<span class='alertsyndie'>Use the 'Traitor Info and Backstory' action at the top left in order to select a backstory and review your objectives, uplink location, and codewords!</span>"
+	msg += "<span class='alertsyndie'>Use the 'Traitor Info and Backstory' action at the top left in order review your objectives, uplink location, and codewords!</span>"
 	to_chat(owner.current, EXAMINE_BLOCK(msg.Join("\n")))
 	owner.announce_objectives()
 	if(should_give_codewords)
@@ -275,7 +272,7 @@
 
 		if(TRAITOR_HUMAN)
 			ui_interact(owner.current)
-			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
+			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/particleghost.ogg',40,0)
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
@@ -286,14 +283,14 @@
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
 	var/responses = jointext(GLOB.syndicate_code_response, ", ")
 
-	to_chat(traitor_mob, "<U><B>The Syndicate have provided you with the following codewords to identify fellow agents:</B></U>")
+	to_chat(traitor_mob, "<U><B>Lambda have provided you with the following codewords to identify fellow agents:</B></U>")
 	to_chat(traitor_mob, "<B>Code Phrase</B>: [span_blue("[phrases]")]")
 	to_chat(traitor_mob, "<B>Code Response</B>: [span_red("[responses]")]")
 
 	antag_memory += "<b>Code Phrase</b>: [span_blue("[phrases]")]<br>"
 	antag_memory += "<b>Code Response</b>: [span_red("[responses]")]<br>"
 
-	to_chat(traitor_mob, "Use the codewords during regular conversation to identify other agents. Proceed with caution, however, as everyone is a potential foe.")
+	to_chat(traitor_mob, "Use the codewords during regular conversation to identify other agents. Proceed with caution, however, not every operative is still trusted to work with Lambda.")
 	to_chat(traitor_mob, span_alertwarning("You memorize the codewords, allowing you to recognise them when heard."))
 
 /datum/antagonist/traitor/proc/add_law_zero()
@@ -352,7 +349,7 @@
 	var/equipped_slot = mob.equip_in_one_of_slots(folder, slots)
 	if (equipped_slot)
 		where = "In your [equipped_slot]"
-	to_chat(mob, "<BR><BR><span class='info'>[where] is a folder containing <b>secret documents</b> that another Syndicate group wants. We have set up a meeting with one of their agents on station to make an exchange. Exercise extreme caution as they cannot be trusted and may be hostile.</span><BR>")
+	to_chat(mob, "<BR><BR><span class='info'>[where] is a folder containing <b>secret documents</b> that another Rebel group wants. We have set up a meeting with one of their agents in the city to make an exchange. Exercise extreme caution as they cannot be trusted and may be hostile.</span><BR>")
 
 //TODO Collate
 /datum/antagonist/traitor/roundend_report()
@@ -394,15 +391,6 @@
 		result += uplink_text
 
 	result += objectives_text
-
-	var/backstory_text = "<br>"
-	if(istype(faction))
-		backstory_text += "<b>Faction:</b> <span class='tooltip_container' style=\"font-size: 12px\">\[ [faction.name]<span class='tooltip_hover' style=\"width: 320px; padding: 5px;\">[faction.description]</span> \]</span><br>"
-	if(istype(backstory))
-		backstory_text += "<b>Backstory:</b> <span class='tooltip_container' style=\"font-size: 12px\">\[ [backstory.name]<span class='tooltip_hover' style=\"width: 320px; padding: 5px;\">[backstory.description]</span> \]</span><br>"
-	else
-		backstory_text += "<span class='redtext'>No backstory was selected!</span><br>"
-	result += backstory_text
 
 	var/special_role_text = lowertext(name)
 
@@ -485,10 +473,4 @@
 	var/backstory_text = "<b>Traitor Backstory:</b><br>"
 	if(istype(faction))
 		backstory_text += "<b>Faction:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [faction.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[faction.description]</span> \]</span><br>"
-	else
-		backstory_text += "<font color='red'>No faction selected!</font><br>"
-	if(istype(backstory))
-		backstory_text += "<b>Backstory:</b> <span class='tooltip' style=\"font-size: 12px\">\[ [backstory.name]<span class='tooltiptext' style=\"width: 320px; padding: 5px;\">[backstory.description]</span> \]</span><br>"
-	else
-		backstory_text += "<font color='red'>No backstory selected!</font><br>"
 	return backstory_text

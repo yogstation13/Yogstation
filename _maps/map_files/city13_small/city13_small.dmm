@@ -33,10 +33,6 @@
 /obj/machinery/door/unpowered/halflife/seethrough/metal,
 /turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
-"aw" = (
-/obj/structure/table/halflife/no_smooth/metal,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "aA" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/indoor/metal/grate,
@@ -115,16 +111,6 @@
 	},
 /turf/open/floor/plating/indoor/grooved2,
 /area/halflife/indoors/townhall)
-"bv" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "misclab";
-	name = "test chamber blast door"
-	},
-/obj/structure/window/fulltile{
-	max_integrity = 150
-	},
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "bC" = (
 /obj/structure/chair/halflife/metal/folding{
 	dir = 8
@@ -174,14 +160,6 @@
 /obj/structure/ladder/halflife/manhole/upwards,
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
-"bR" = (
-/obj/machinery/barsign{
-	pixel_x = 0;
-	pixel_y = -30;
-	pixel_z = 0
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/halflife/outdoors)
 "bT" = (
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
@@ -202,6 +180,11 @@
 /obj/machinery/door/unpowered/halflife/wood{
 	dir = 1
 	},
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors/townhall)
+"cd" = (
+/obj/structure/filingcabinet,
+/obj/item/documents/nanotrasen,
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
 "ce" = (
@@ -286,12 +269,6 @@
 "cH" = (
 /obj/machinery/processor,
 /turf/open/floor/plating/indoor/showroom,
-/area/halflife/indoors)
-"cJ" = (
-/obj/structure/sign/poster/halflife/combine{
-	pixel_y = 32
-	},
-/turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
 "cK" = (
 /turf/open/floor/plating/indoor/metal/pipe{
@@ -1609,6 +1586,16 @@
 	},
 /turf/open/floor/plating/indoor/showroom,
 /area/halflife/indoors)
+"qU" = (
+/obj/structure/window/fulltile{
+	max_integrity = 150
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "misclab";
+	name = "test chamber blast door"
+	},
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "rb" = (
 /obj/structure/halflife/trash/papers/one,
 /turf/open/floor/plating/indoor/woodc,
@@ -1716,6 +1703,10 @@
 	},
 /turf/open/floor/plating/indoor/carpet,
 /area/halflife/indoors)
+"sN" = (
+/obj/machinery/papershredder,
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors/townhall)
 "sS" = (
 /obj/structure/table/halflife/no_smooth/large/metal{
 	dir = 8
@@ -1771,17 +1762,6 @@
 /obj/structure/table/halflife/metal/small,
 /obj/item/storage/box/handcuffs,
 /turf/open/floor/plating/indoor/tiled10,
-/area/halflife/indoors)
-"tk" = (
-/obj/structure/table/halflife/metal/alt,
-/obj/machinery/button/door{
-	id = "misclab";
-	name = "Test Chamber Blast Doors";
-	pixel_x = -13;
-	pixel_y = 6;
-	req_access = list("xenobiology")
-	},
-/turf/open/floor/plating/indoor/tile,
 /area/halflife/indoors)
 "tn" = (
 /obj/structure/table/halflife/wood,
@@ -1868,11 +1848,6 @@
 /mob/living/simple_animal/hostile/halflife/zombie,
 /turf/open/halflife/water/sewer/shallow,
 /area/halflife/outdoors/sewage_dump)
-"us" = (
-/obj/structure/chair/office/halflife/blue,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "ut" = (
 /turf/closed/wall/halflife/brick,
 /area/halflife/indoors)
@@ -1900,6 +1875,11 @@
 /obj/item/stack/sheet/metal,
 /turf/open/halflife/water/sewer/medium,
 /area/halflife/indoors/sewer)
+"uW" = (
+/obj/structure/chair/office/halflife/blue,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "uY" = (
 /obj/machinery/door/unpowered/halflife/seethrough/grate{
 	dir = 1
@@ -1926,6 +1906,12 @@
 	},
 /turf/open/floor/plating/ground/road,
 /area/halflife/outdoors)
+"vj" = (
+/obj/structure/sign/poster/halflife/combine{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "vo" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1944,12 +1930,6 @@
 	},
 /turf/open/floor/plating/indoor/metal/grate,
 /area/halflife/indoors/sewer)
-"vz" = (
-/obj/structure/sign/poster/halflife/combine/two{
-	pixel_y = 32
-	},
-/turf/open/floor/plating/indoor/tile,
-/area/halflife/indoors)
 "vA" = (
 /obj/effect/turf_decal/siding/thinplating,
 /turf/open/floor/plating/ground/road,
@@ -2108,11 +2088,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors)
-"xE" = (
-/obj/structure/filingcabinet,
-/obj/item/documents/nanotrasen,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors/townhall)
 "xG" = (
 /obj/machinery/light{
 	dir = 1
@@ -2583,14 +2558,6 @@
 "BZ" = (
 /turf/open/floor/plating/indoor/carpet,
 /area/halflife/indoors/townhall)
-"Cc" = (
-/obj/machinery/door/unpowered/halflife/seethrough/metal,
-/obj/machinery/door/poddoor/preopen{
-	id = "misclab";
-	name = "test chamber blast door"
-	},
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors)
 "Ci" = (
 /obj/structure/table/halflife/no_smooth/wood,
 /turf/open/floor/plating/indoor/carpet,
@@ -2932,6 +2899,10 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
+"Gg" = (
+/obj/machinery/ore_silo,
+/turf/open/floor/plating/indoor/metal/plate,
+/area/halflife/indoors)
 "Gm" = (
 /turf/closed/wall/halflife/brick,
 /area/halflife/outdoors)
@@ -3149,18 +3120,24 @@
 /obj/structure/halflife/trash/papers/one,
 /turf/open/floor/plating/indoor/tiled10,
 /area/halflife/indoors)
-"IG" = (
-/obj/machinery/ore_silo,
-/turf/open/floor/plating/indoor/metal/plate,
-/area/halflife/indoors)
 "IM" = (
 /obj/machinery/jukebox,
 /turf/open/floor/plating/indoor/cafeteria,
 /area/halflife/indoors)
+"IS" = (
+/obj/machinery/photocopier,
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors/townhall)
 "Jb" = (
 /obj/effect/landmark/start/nukeop,
 /turf/open/floor/plating/indoor/concrete/bricks,
 /area/halflife/indoors/sewer)
+"Jf" = (
+/obj/structure/sign/poster/halflife/combine/two{
+	pixel_y = 32
+	},
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "Jg" = (
 /obj/structure/halflife/fence/wire,
 /turf/open/halflife/water/sewer/shallow,
@@ -3500,6 +3477,14 @@
 /obj/structure/halflife/trash/books/pile_alt,
 /turf/open/floor/plating/ground/dirt,
 /area/halflife/outdoors)
+"NM" = (
+/obj/machinery/door/unpowered/halflife/seethrough/metal,
+/obj/machinery/door/poddoor/preopen{
+	id = "misclab";
+	name = "test chamber blast door"
+	},
+/turf/open/floor/plating/indoor/tile/navy,
+/area/halflife/indoors)
 "NO" = (
 /obj/machinery/telecomms/allinone,
 /turf/open/floor/plating/indoor/woodc,
@@ -3983,6 +3968,17 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
+"TN" = (
+/obj/structure/table/halflife/metal/alt,
+/obj/machinery/button/door{
+	id = "misclab";
+	name = "Test Chamber Blast Doors";
+	pixel_x = -13;
+	pixel_y = 6;
+	req_access = list("xenobiology")
+	},
+/turf/open/floor/plating/indoor/tile,
+/area/halflife/indoors)
 "TQ" = (
 /obj/structure/chair/halflife/metal/blue{
 	dir = 4
@@ -4080,10 +4076,6 @@
 "Vg" = (
 /obj/machinery/door/unpowered/halflife/wood,
 /turf/open/floor/plating/indoor/showroom,
-/area/halflife/indoors/townhall)
-"Vh" = (
-/obj/machinery/papershredder,
-/turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
 "Vj" = (
 /obj/structure/chair/halflife/metal/folding{
@@ -4204,6 +4196,10 @@
 /obj/item/reagent_containers/food/drinks/beer/light,
 /turf/open/floor/plating/indoor/woodc,
 /area/halflife/indoors)
+"WR" = (
+/obj/machinery/barsign,
+/turf/closed/wall/halflife/brick,
+/area/halflife/indoors)
 "WS" = (
 /obj/machinery/light{
 	dir = 8
@@ -4292,10 +4288,6 @@
 	},
 /turf/open/floor/plating/indoor/metal/plate,
 /area/halflife/indoors/sewer)
-"Yn" = (
-/obj/machinery/photocopier,
-/turf/open/floor/plating/indoor/tile/navy,
-/area/halflife/indoors/townhall)
 "Yq" = (
 /obj/structure/table/halflife/metal/small,
 /obj/item/storage/firstaid/emergency,
@@ -4304,6 +4296,10 @@
 "Yr" = (
 /obj/structure/halflife/trash/papers/two,
 /turf/open/floor/plating/indoor/woodc,
+/area/halflife/indoors)
+"Ys" = (
+/obj/structure/table/halflife/no_smooth/metal,
+/turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors)
 "Yu" = (
 /obj/effect/landmark/stationroom/sewer/leftentrance/tenxten,
@@ -26689,7 +26685,7 @@ JC
 JC
 Hu
 xf
-IG
+Gg
 Wz
 Zl
 ut
@@ -27600,8 +27596,8 @@ Mw
 Mw
 db
 hG
-bR
-ut
+pb
+WR
 sa
 tP
 tP
@@ -28060,10 +28056,10 @@ fI
 yT
 lF
 lF
-Vh
+sN
 lF
 lF
-Vh
+sN
 lF
 lF
 yT
@@ -28684,7 +28680,7 @@ yT
 xh
 yT
 yT
-xE
+cd
 lF
 lF
 lF
@@ -28695,10 +28691,10 @@ fI
 yT
 zO
 lF
-Vh
+sN
 lF
 lF
-Vh
+sN
 lF
 lF
 yT
@@ -29068,7 +29064,7 @@ yT
 VQ
 yO
 pl
-Yn
+IS
 lF
 yT
 fI
@@ -29957,7 +29953,7 @@ yT
 te
 bL
 wg
-Yn
+IS
 zO
 yT
 fI
@@ -31100,7 +31096,7 @@ yT
 HP
 Zg
 wg
-Yn
+IS
 lF
 yT
 fI
@@ -31510,7 +31506,7 @@ ut
 ut
 ut
 ut
-vz
+Jf
 ut
 ut
 Vv
@@ -31766,7 +31762,7 @@ Hu
 Vv
 Vv
 ut
-cJ
+vj
 Hd
 Vv
 ut
@@ -32143,7 +32139,7 @@ ut
 if
 if
 if
-Cc
+NM
 Vv
 Vv
 Vv
@@ -32267,10 +32263,10 @@ pb
 pb
 pb
 ut
-aw
+Ys
 if
 if
-bv
+qU
 Oy
 jQ
 Vv
@@ -32394,11 +32390,11 @@ pb
 pb
 pb
 ut
-us
+uW
 if
 if
-bv
-tk
+qU
+TN
 gt
 Lj
 Vv

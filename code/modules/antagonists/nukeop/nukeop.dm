@@ -16,7 +16,7 @@
 	preview_outfit = /datum/outfit/rebel
 
 	/// In the preview icon, the nukies who are behind the leader
-	var/preview_outfit_behind = /datum/outfit/rebel
+	//var/preview_outfit_behind = /datum/outfit/rebel
 
 /datum/antagonist/nukeop/apply_innate_effects(mob/living/mob_override)
 	add_team_hud(mob_override || owner.current, /datum/antagonist/nukeop)
@@ -126,6 +126,7 @@
 	else
 		to_chat(admin, span_danger("No valid nuke found!"))
 
+/*
 /datum/antagonist/nukeop/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/captain = new
 	var/icon/final_icon = render_preview_outfit(preview_outfit, captain)
@@ -140,6 +141,7 @@
 	assistant_icon.ChangeOpacity(0.5)
 
 	return assistant_icon
+*/
 
 /datum/outfit/nuclear_operative
 	name = "Nuclear Operative (Preview only)"
@@ -167,7 +169,7 @@
 	always_new_team = TRUE
 	var/title
 	preview_outfit = /datum/outfit/rebel
-	preview_outfit_behind = /datum/outfit/rebel
+	// = /datum/outfit/rebel
 	
 /datum/antagonist/nukeop/leader/memorize_code()
 	..()
