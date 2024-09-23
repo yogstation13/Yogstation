@@ -233,6 +233,8 @@
 				new /datum/hallucination/hudscrew(C, TRUE, hal_details)
 			if("Alert")
 				new /datum/hallucination/fake_alert(C, TRUE, hal_details)
+			if("Fire")
+				new /datum/hallucination/fire(C, TRUE)
 			if("Shock")
 				new /datum/hallucination/shock(C, TRUE)
 			if("Plasma Flood")

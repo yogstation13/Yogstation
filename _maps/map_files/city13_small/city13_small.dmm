@@ -1082,11 +1082,6 @@
 	},
 /turf/open/floor/plating/indoor/tile/navy,
 /area/halflife/indoors/townhall)
-"lH" = (
-/obj/effect/turf_decal/road/horizontalcrossing,
-/obj/effect/landmark/observer_start,
-/turf/open/floor/plating/ground/road,
-/area/halflife/outdoors)
 "lI" = (
 /obj/machinery/vending/breenwater,
 /turf/open/floor/plating/indoor/concrete/bricks,
@@ -3622,13 +3617,6 @@
 /obj/structure/halflife/trash/glass/basic,
 /turf/open/floor/plating/ground/sidewalk,
 /area/halflife/outdoors/alley)
-"PK" = (
-/obj/machinery/mineral/ore_redemption{
-	input_dir = 2;
-	output_dir = 1
-	},
-/turf/open/floor/plating/ground/sidewalk,
-/area/halflife/outdoors)
 "PM" = (
 /obj/structure/table/halflife/metal/alt,
 /turf/open/floor/plating/indoor/metal/plate,
@@ -27640,8 +27628,8 @@ yT
 pb
 pb
 pb
-hG
-PK
+pb
+pb
 hG
 ut
 Qb
@@ -27767,8 +27755,8 @@ yT
 yT
 pb
 Bp
-hG
-hG
+pb
+pb
 hG
 ut
 Qb
@@ -30067,7 +30055,7 @@ hG
 VB
 NB
 NB
-lH
+NB
 NB
 NB
 db
