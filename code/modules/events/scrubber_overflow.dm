@@ -1,3 +1,4 @@
+#define BASE_EVAPORATION_MULTIPLIER 10
 /datum/round_event_control/scrubber_overflow
 	name = "Scrubber Overflow: Normal"
 	typepath = /datum/round_event/scrubber_overflow
@@ -10,6 +11,7 @@
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL)
 	event_group = /datum/event_group/scrubber_overflow
+	shared_occurence_type = SHARED_SCRUBBERS
 
 /datum/round_event/scrubber_overflow
 	announce_when = 1
@@ -109,27 +111,23 @@
 /datum/round_event/scrubber_overflow/proc/get_overflowing_reagent(dangerous)
 	return dangerous ? get_random_reagent_id() : pick(safer_chems)
 
-/* monkestation edit: replaced in [monkestation/code/modules/events/scrubber_overflow.dm]
 /datum/round_event/scrubber_overflow/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/vent as anything in scrubbers)
-		if(!vent.loc)
-			CRASH("SCRUBBER SURGE: [vent] has no loc somehow?")
-
-		var/datum/reagents/dispensed_reagent = new /datum/reagents(reagents_amount)
-		dispensed_reagent.my_atom = vent
-		if (forced_reagent_type)
-			dispensed_reagent.add_reagent(forced_reagent_type, reagents_amount)
-		else if (prob(danger_chance))
-			dispensed_reagent.add_reagent(get_overflowing_reagent(dangerous = TRUE), reagents_amount)
-			new /mob/living/basic/cockroach(get_turf(vent))
-			new /mob/living/basic/cockroach(get_turf(vent))
-		else
-			dispensed_reagent.add_reagent(get_overflowing_reagent(dangerous = FALSE), reagents_amount)
-
-		dispensed_reagent.create_foam(/datum/effect_system/fluid_spread/foam/short, reagents_amount)
-
+		if(QDELETED(vent) || vent.welded) // in case it was welded after setup() but before we got to it here
+			continue
+		var/turf/vent_turf = get_turf(vent)
+		if(!isopenturf(vent_turf) || QDELING(vent_turf))
+			continue
+		var/dangerous = prob(danger_chance)
+		var/reagent_type = forced_reagent_type || get_overflowing_reagent(dangerous)
+		if(dangerous)
+			new /mob/living/basic/cockroach(vent_turf)
+			new /mob/living/basic/cockroach(vent_turf)
+		vent_turf.add_liquid(reagent_type, reagents_amount, no_react = TRUE)
+		if(vent_turf.liquids?.liquid_group)
+			vent_turf.liquids.liquid_group.always_evaporates = TRUE
+			vent_turf.liquids.liquid_group.evaporation_multiplier += evaporation_multiplier
 		CHECK_TICK
-monkestation end */
 
 /datum/round_event_control/scrubber_overflow/threatening
 	name = "Scrubber Overflow: Threatening"
@@ -144,7 +142,8 @@ monkestation end */
 
 /datum/round_event/scrubber_overflow/threatening
 	danger_chance = 10
-	reagents_amount = 100
+	reagents_amount = 150
+	evaporation_multiplier = BASE_EVAPORATION_MULTIPLIER * 1.5
 
 /datum/round_event_control/scrubber_overflow/catastrophic
 	name = "Scrubber Overflow: Catastrophic"
@@ -159,7 +158,8 @@ monkestation end */
 
 /datum/round_event/scrubber_overflow/catastrophic
 	danger_chance = 30
-	reagents_amount = 150
+	reagents_amount = 200
+	evaporation_multiplier = BASE_EVAPORATION_MULTIPLIER * 2
 
 /datum/round_event_control/scrubber_overflow/every_vent
 	name = "Scrubber Overflow: Every Vent"
@@ -170,7 +170,8 @@ monkestation end */
 
 /datum/round_event/scrubber_overflow/every_vent
 	overflow_probability = 100
-	reagents_amount = 100
+	reagents_amount = 150
+	evaporation_multiplier = BASE_EVAPORATION_MULTIPLIER * 1.5
 
 /datum/event_admin_setup/listed_options/scrubber_overflow
 	normal_run_option = "Random Reagents"
@@ -188,6 +189,7 @@ monkestation end */
 /datum/round_event_control/scrubber_overflow/beer // Used when the beer nuke "detonates"
 	name = "Scrubber Overflow: Beer"
 	typepath = /datum/round_event/scrubber_overflow/beer
+	weight = 0
 
 /datum/round_event/scrubber_overflow/beer
 	overflow_probability = 100
