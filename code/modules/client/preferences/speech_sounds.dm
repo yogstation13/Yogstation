@@ -3,7 +3,7 @@
 	savefile_key = "speech_hear"
 	savefile_identifier = PREFERENCE_PLAYER
 
-/// Controls the volume at which the user hears in-person TTS
+/// Controls the volume at which the user hears in-person Speech sounds
 /datum/preference/numeric/speech_volume
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "speech_volume"
@@ -62,22 +62,3 @@
 		return create_informed_default_value(preferences)
 
 	return ..(input, preferences)
-
-//ty ynot
-// /datum/preference/toggle/tts_hear_radio
-// 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-// 	savefile_key = "tts_hear_radio"
-// 	savefile_identifier = PREFERENCE_PLAYER
-
-// /// Controls the volume at which the user hears radio TTS
-// /datum/preference/numeric/tts_volume_radio
-// 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-// 	savefile_identifier = PREFERENCE_PLAYER
-// 	savefile_key = "tts_volume_radio"
-
-// 	minimum = 0
-// 	maximum = 100
-
-// /datum/preference/numeric/tts_volume_radio/create_default_value()
-// 	return DEFAULT_TTS_VOLUME_RADIO
-
