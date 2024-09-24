@@ -1,6 +1,7 @@
 #define FOOTSTEP_WOOD "wood"
 #define FOOTSTEP_FLOOR "floor"
 #define FOOTSTEP_PLATING "plating"
+#define FOOTSTEP_CONCRETE "concrete"
 #define FOOTSTEP_CARPET "carpet"
 #define FOOTSTEP_SAND "sand"
 #define FOOTSTEP_GRASS "grass"
@@ -63,6 +64,13 @@ GLOBAL_LIST_INIT(footstep, list(
 		'sound/effects/footstep/plating3.ogg',
 		'sound/effects/footstep/plating4.ogg',
 		'sound/effects/footstep/plating5.ogg'), 100, 1),
+	FOOTSTEP_CONCRETE = list(list(
+		'sound/effects/footstep/concrete1.ogg',
+		'sound/effects/footstep/concrete2.ogg',
+		'sound/effects/footstep/concrete3.ogg',
+		'sound/effects/footstep/concrete4.ogg',
+		'sound/effects/footstep/concrete5.ogg',
+		'sound/effects/footstep/concrete6.ogg'), 100, 1),
 	FOOTSTEP_CARPET = list(list(
 		'sound/effects/footstep/carpet1.ogg',
 		'sound/effects/footstep/carpet2.ogg',

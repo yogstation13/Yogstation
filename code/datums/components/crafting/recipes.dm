@@ -328,8 +328,8 @@
 	name = "Apprentice Bait"
 	reqs = list(
 		/datum/reagent/water = 2,
-		/datum/reagent/consumable/flour = 5,
-		/obj/item/reagent_containers/food/snacks/grown/corn = 1
+		/datum/reagent/blood = 5,
+		/datum/reagent/water/dirty/sewer = 2,
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/apprentice
 	category = CAT_BAIT
@@ -337,8 +337,8 @@
 /datum/crafting_recipe/journeyman_bait
 	name = "Journeyman Bait"
 	reqs = list(
-		/obj/item/reagent_containers/food/snacks/bait/apprentice = 2,
-		/datum/reagent/blood = 5
+		/obj/item/reagent_containers/food/snacks/bait/apprentice = 1,
+		/obj/item/reagent_containers/food/snacks/xenspore = 2
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/journeyman
 	category = CAT_BAIT
@@ -346,8 +346,8 @@
 /datum/crafting_recipe/master_bait
 	name = "Master Bait"
 	reqs = list(
-		/datum/reagent/toxin/plasma = 5,
-		/obj/item/reagent_containers/food/snacks/bait/journeyman = 2,
+		/obj/item/reagent_containers/food/snacks/xenbranch = 2,
+		/obj/item/reagent_containers/food/snacks/bait/journeyman = 1,
 		/obj/item/reagent_containers/food/snacks/fish/shrimp = 1
 	)
 	result = /obj/item/reagent_containers/food/snacks/bait/master

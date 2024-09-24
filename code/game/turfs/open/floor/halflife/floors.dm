@@ -73,6 +73,7 @@
 	desc = "Concrete slabs."
 	has_alternate_states = TRUE
 	alternate_states = 1
+	footstep = FOOTSTEP_CONCRETE
 
 /turf/open/floor/plating/indoor/concrete/bricks
 	icon_state = "concrete_bricks"

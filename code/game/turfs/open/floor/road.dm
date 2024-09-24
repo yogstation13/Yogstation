@@ -63,6 +63,7 @@
 	icon = 'icons/turf/road_1.dmi'
 	icon_state = "road-255"
 	base_icon_state = "road"
+	footstep = FOOTSTEP_CONCRETE
 
 /turf/open/floor/plating/ground/road/Initialize()
 	. = ..()
@@ -101,6 +102,7 @@
 	icon = 'icons/turf/sidewalk.dmi'
 	icon_state = "sidewalk-255"
 	base_icon_state = "sidewalk"
+	footstep = FOOTSTEP_CONCRETE
 
 
 /turf/open/floor/plating/ground/sidewalk/Initialize()

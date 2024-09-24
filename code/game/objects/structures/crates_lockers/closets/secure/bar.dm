@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/bar
-	name = "booze storage"
+	name = "secure closet"
 	req_access = list(ACCESS_BAR)
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
@@ -8,6 +8,8 @@
 
 /obj/structure/closet/secure_closet/bar/PopulateContents()
 	..()
-	for(var/i in 1 to 10)
-		new /obj/item/reagent_containers/food/drinks/beer( src )
-	new /obj/item/etherealballdeployer(src)
+	var/static/items_inside = list(
+		/obj/item/clothing/accessory/waistcoat = 2,
+		/obj/item/reagent_containers/glass/rag = 2,
+		/obj/item/reagent_containers/food/drinks/beer/light = 4) //now in closet rather than on a table
+	generate_items_inside(items_inside,src)

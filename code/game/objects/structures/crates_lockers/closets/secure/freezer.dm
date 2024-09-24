@@ -1,4 +1,5 @@
 /obj/structure/closet/secure_closet/freezer
+	name = "secure freezer"
 	icon_state = "freezer"
 	var/jones = FALSE
 	door_anim_squish = 0.22

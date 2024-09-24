@@ -97,6 +97,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Union Scientist"
 	icon_state = "Scientist"
 
+/obj/effect/landmark/start/bartender
+	name = "Bartender"
+	icon_state = "Bartender"
+
+/obj/effect/landmark/start/chef
+	name = "Chef"
+	icon_state = "Chef"
+
 //Department Security spawns
 
 /obj/effect/landmark/start/depsec

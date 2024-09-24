@@ -18,14 +18,14 @@
 	name = "journeyman bait"
 	desc = "Advanced bait that only a skilled fisherman can use"
 	icon_state = "bait_2"
-	fishing_power = 20
+	fishing_power = 25
 	custom_price = 15
 
 /obj/item/reagent_containers/food/snacks/bait/master
 	name = "master bait"
 	desc = "A masterfully crafted bait that only a master in fishing can harness"
 	icon_state = "bait_3"
-	fishing_power = 30
+	fishing_power = 35
 	custom_price = 25
 	custom_premium_price = 30
 
