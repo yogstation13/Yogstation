@@ -320,6 +320,13 @@ Works together with spawning an observer, noted above.
 		ghost.alpha = 0 //JUUUUST IN CASE
 		ghost.name = " "
 		ghost.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+	var/recordable_time = world.time
+	var/mob/living/former_mob = ghost.mind?.current
+	if(isliving(former_mob))
+		recordable_time = former_mob.timeofdeath
+
+	ghost.client?.player_details.time_of_death = recordable_time
 	return ghost
 
 /*

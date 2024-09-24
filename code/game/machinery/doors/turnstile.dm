@@ -141,3 +141,9 @@
 	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
 	directional = FALSE
 
+/obj/machinery/turnstile/brig/halflife/forcefield/botany
+	req_access = list(ACCESS_HYDROPONICS)
+
+/obj/machinery/turnstile/brig/halflife/forcefield/botany/nodirectional
+	desc = "A forcefield which only allows those to pass who have proper access. You may be able to turn it off with the proper access."
+	directional = FALSE

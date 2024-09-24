@@ -340,8 +340,8 @@
 	foodtype = FRUIT | ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/bottle/hcider
-	name = "Jian Hard Cider"
-	desc = "Apple juice for adults."
+	name = "Hard Cider"
+	desc = "Spiced alcohol with a high ABV. This old bottle is a delicious rarity."
 	icon_state = "hcider"
 	volume = 50
 	list_reagents = list(/datum/reagent/consumable/ethanol/hcider = 50)
@@ -370,8 +370,8 @@
 		icon_state = "sakebottle_i"
 
 /obj/item/reagent_containers/food/drinks/bottle/fernet
-	name = "Fernet Bronca"
-	desc = "A bottle of pure Fernet Bronca, produced in Cordoba Space Station."
+	name = "Fernet"
+	desc = "A old bottle of fernet spirit. Well preserved, bitter, and tasting of herbs. This is a prize you'll hold onto well."
 	icon_state = "fernetbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 

@@ -389,7 +389,7 @@
 /datum/supply_pack/organic/rations
 	name = "Ration Crate"
 	desc = "A crate of five ration packs, made for easy distribution." 
-	cost = 100
+	cost = 125
 	contains = list(/obj/item/storage/box/halflife/ration,
 					/obj/item/storage/box/halflife/ration,
 					/obj/item/storage/box/halflife/ration,
@@ -401,7 +401,7 @@
 /datum/supply_pack/organic/loyaltyrations
 	name = "Loyalty-grade Ration Crate"
 	desc = "A crate of five loyalty-grade ration packs, made for easy distribution." 
-	cost = 150
+	cost = 175
 	contains = list(/obj/item/storage/box/halflife/loyaltyration,
 					/obj/item/storage/box/halflife/loyaltyration,
 					/obj/item/storage/box/halflife/loyaltyration,

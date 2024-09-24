@@ -46,13 +46,13 @@
 	message = "cm3 of gold"
 
 /datum/export/material/silver
-	cost = 50
+	cost = 40
 	export_limit = 500 //50k
 	material_id = /datum/material/silver
 	message = "cm3 of silver"
 
 /datum/export/material/titanium
-	cost = 40
+	cost = 30
 	export_limit = 500 //62.5k
 	material_id = /datum/material/titanium
 	message = "cm3 of titanium"

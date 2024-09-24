@@ -101,9 +101,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Bartender"
 	icon_state = "Bartender"
 
-/obj/effect/landmark/start/chef
-	name = "Chef"
-	icon_state = "Chef"
+/obj/effect/landmark/start/cook
+	name = "Cook"
+	icon_state = "Cook"
 
 //Department Security spawns
 

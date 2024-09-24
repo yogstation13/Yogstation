@@ -777,9 +777,25 @@
 				/obj/item/reagent_containers/food/drinks/beer,
 				/obj/item/reagent_containers/food/drinks/bottle/gin,
 				/obj/item/reagent_containers/food/drinks/bottle/hooch,
+				/obj/item/reagent_containers/food/drinks/bottle/hcider,
+				/obj/item/reagent_containers/food/drinks/bottle/fernet,
 				/obj/item/reagent_containers/food/drinks/bottle/vodka,
 				/obj/item/storage/pill_bottle/happiness,
 				/obj/item/reagent_containers/glass/bottle/morphine
+				)
+
+//specifically only alcohol
+/obj/effect/spawner/lootdrop/halflife/loot/alcohol
+	name = "alcohol loot"
+	lootcount = 1
+
+	loot = list(
+				/obj/item/reagent_containers/food/drinks/beer,
+				/obj/item/reagent_containers/food/drinks/bottle/gin,
+				/obj/item/reagent_containers/food/drinks/bottle/hooch,
+				/obj/item/reagent_containers/food/drinks/bottle/vodka,
+				/obj/item/reagent_containers/food/drinks/bottle/hcider,
+				/obj/item/reagent_containers/food/drinks/bottle/fernet
 				)
 
 //only clothing items
