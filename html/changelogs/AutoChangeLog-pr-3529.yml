@@ -1,0 +1,5 @@
+author: "Absolucy, Kashargul"
+delete-after: True
+changes:
+  - qol: "Hides the delete button on the main chat tab."
+  - qol: "You can now reorder chat tabs."
