@@ -70,6 +70,11 @@
 	icon = 'icons/obj/chemical.dmi'
 	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 
+/obj/item/reagent_containers/glass/bottle/bleach
+	name = "bleach bottle"
+	desc = "An old bottle with a bleach label. This might help with filtering water, or poisoning people."
+	list_reagents = list(/datum/reagent/space_cleaner/bleach = 30)
+
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
 	desc = "A small bottle of Chloral Hydrate. Mickey's favorite!"

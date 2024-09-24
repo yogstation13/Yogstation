@@ -1024,3 +1024,11 @@
 	results = list(/datum/reagent/consumable/ethanol/fermented_paper = 5, /datum/reagent/consumable/ethanol = 5) //try to seperate the ethanol out...
 	required_reagents = list(/datum/reagent/cellulose = 6, /datum/reagent/cellulase = 4)
 	required_temp = 450
+
+/datum/chemical_reaction/waterpurification
+	name = "Water Purification"
+	id = "water_purification"
+	mix_message = "The bleach helps clean and seperate the dirty water, though floating chunks of sewage are still visible."
+	results = list(/datum/reagent/water = 10, /datum/reagent/toxin/sewage = 3)
+	required_reagents = list(/datum/reagent/water/dirty/sewer = 10, /datum/reagent/space_cleaner/bleach = 1)
+

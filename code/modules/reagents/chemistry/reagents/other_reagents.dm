@@ -1183,6 +1183,12 @@
 	M.adjustToxLoss(toxpwr*REM, 0)
 	..()
 
+/datum/reagent/space_cleaner/bleach
+	name = "bleach"
+	description = "A harsh cleaning chemical. Could be used in water to help purify it."
+	toxpwr = 3
+	taste_description = "bleach"
+
 /datum/reagent/space_cleaner/ez_clean
 	name = "EZ Clean"
 	description = "A powerful, acidic cleaner sold by Waffle Co. Affects organic matter while leaving other objects unaffected."

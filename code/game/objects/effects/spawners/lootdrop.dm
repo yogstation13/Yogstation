@@ -757,6 +757,7 @@
 				/obj/item/stack/cable_coil/yellow,
 				/obj/item/stack/sheet/cloth,
 				/obj/item/stack/sheet/metal/five,
+				/obj/item/reagent_containers/syringe,
 				/obj/item/reagent_containers/medspray/sterilizine,
 				/obj/item/reagent_containers/pill/patch/medkit,
 				/obj/item/reagent_containers/pill/patch/medkit/vial = 2,
@@ -769,18 +770,24 @@
 	lootcount = 1
 
 	loot = list(
-				/obj/item/reagent_containers/food/drinks/soda_cans/breenwater = 2,
-				/obj/item/storage/box/halflife/ration = 3,
+				/obj/item/reagent_containers/food/drinks/soda_cans/breenwater = 3,
+				/obj/item/storage/box/halflife/ration = 2,
+				/obj/item/reagent_containers/food/snacks/rationpack/lowgrade,
 				/obj/item/storage/fancy/cigarettes/cigars,
-				/obj/item/storage/fancy/cigarettes = 2,
+				/obj/item/clothing/mask/cigarette/cigar,
+				/obj/item/storage/fancy/cigarettes,
+				/obj/item/clothing/mask/cigarette/space_cigarette = 2,
 				/obj/item/reagent_containers/food/snacks/chips,
-				/obj/item/reagent_containers/food/drinks/beer,
+				/obj/item/reagent_containers/food/drinks/beer = 2,
 				/obj/item/reagent_containers/food/drinks/bottle/gin,
 				/obj/item/reagent_containers/food/drinks/bottle/hooch,
 				/obj/item/reagent_containers/food/drinks/bottle/hcider,
 				/obj/item/reagent_containers/food/drinks/bottle/fernet,
 				/obj/item/reagent_containers/food/drinks/bottle/vodka,
 				/obj/item/storage/pill_bottle/happiness,
+				/obj/item/reagent_containers/pill/happiness,
+				/obj/item/reagent_containers/pill/lsd,
+				/obj/item/reagent_containers/glass/bottle/bleach,
 				/obj/item/reagent_containers/glass/bottle/morphine
 				)
 

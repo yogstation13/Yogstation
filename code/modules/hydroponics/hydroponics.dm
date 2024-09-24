@@ -536,6 +536,13 @@
 		adjustWater(-round(S.get_reagent_amount(/datum/reagent/chlorine) * 0.5))
 		adjustWeeds(-rand(1,3))
 
+	//bleach is really bad for plants
+	if(S.has_reagent(/datum/reagent/space_cleaner/bleach, 1))
+		adjustHealth(-round(S.get_reagent_amount(/datum/reagent/space_cleaner/bleach) * 1))
+		adjustToxic(round(S.get_reagent_amount(/datum/reagent/space_cleaner/bleach) * 1.5))
+		adjustWater(-round(S.get_reagent_amount(/datum/reagent/space_cleaner/bleach) * 0.5))
+		adjustWeeds(-rand(1,3))
+
 	// White Phosphorous + water -> phosphoric acid. That's not a good thing really.
 	// Phosphoric salts are beneficial though. And even if the plant suffers, in the long run the tray gets some nutrients. The benefit isn't worth that much.
 	if(S.has_reagent(/datum/reagent/phosphorus, 1))
@@ -553,6 +560,16 @@
 	// It is water!
 	if(S.has_reagent(/datum/reagent/water, 1))
 		adjustWater(round(S.get_reagent_amount(/datum/reagent/water) * 1))
+
+	// Gross, dirty water... Still gives water, but is unhealthy.
+	if(S.has_reagent(/datum/reagent/water/dirty, 1))
+		adjustWater(round(S.get_reagent_amount(/datum/reagent/water/dirty) * 1))
+		adjustHealth(-round(S.get_reagent_amount(/datum/reagent/water/dirty) * 1))
+
+	//Cleaned up sewage actually has some level of fertilization, but still slightly hurts the plant.
+	if(S.has_reagent(/datum/reagent/toxin/sewage, 1))
+		adjustNutri(round(S.get_reagent_amount(/datum/reagent/toxin/sewage) * 0.1))
+		adjustHealth(-round(S.get_reagent_amount(/datum/reagent/toxin/sewage) * 0.1))
 
 	// Holy water. Mostly the same as water, it also heals the plant a little with the power of the spirits~
 	if(S.has_reagent(/datum/reagent/water/holywater, 1))

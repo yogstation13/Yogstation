@@ -1054,3 +1054,11 @@
 /datum/reagent/toxin/ambusher_toxin/on_mob_end_metabolize(mob/living/L)
 	L.remove_movespeed_modifier(type)
 	textShown = FALSE
+
+/datum/reagent/toxin/sewage
+	name = "Raw Sewage"
+	description = "Try not to vomit..."
+	reagent_state = SOLID
+	color = "#3d1f13" // rgb: 121, 35, 0
+	toxpwr = 3
+	taste_description = "raw sewage"

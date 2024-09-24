@@ -2693,6 +2693,7 @@
 #include "code\modules\jobs\job_types\ai.dm"
 #include "code\modules\jobs\job_types\assistant.dm"
 #include "code\modules\jobs\job_types\bartender.dm"
+#include "code\modules\jobs\job_types\botanist.dm"
 #include "code\modules\jobs\job_types\captain.dm"
 #include "code\modules\jobs\job_types\centcom.dm"
 #include "code\modules\jobs\job_types\cook.dm"
