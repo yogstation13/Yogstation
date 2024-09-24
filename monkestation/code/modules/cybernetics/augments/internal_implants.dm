@@ -183,8 +183,8 @@
 	var/list/boxed = list(
 		/obj/item/autosurgeon/syndicate/thermal_eyes,
 		/obj/item/autosurgeon/syndicate/xray_eyes,
-		/obj/item/autosurgeon/syndicate/anti_stun,
-		/obj/item/autosurgeon/syndicate/reviver)
+		/obj/item/storage/box/syndie_kit/anti_stun,
+		/obj/item/storage/box/syndie_kit/reviver)
 	var/amount = 5
 
 /obj/item/storage/box/cyber_implants/PopulateContents()

@@ -44,5 +44,5 @@
 /datum/armament_entry/assault_operatives/implants/nodrop
 	name = "Anti-Drop Implant"
 	description = "When activated forces your hand muscles to tightly grip the object you are holding, preventing you from dropping it involuntarily."
-	item_type = /obj/item/autosurgeon/syndicate/nodrop
+	item_type = /obj/item/storage/box/syndie_kit/nodrop
 	cost = 5

@@ -530,6 +530,17 @@
 	new /obj/item/autosurgeon/organ/cyberlink_syndicate(src)
 	new /obj/item/autosurgeon/syndicate/laser_arm (src)
 
+/obj/item/storage/box/syndie_kit/nodrop/PopulateContents()
+	new /obj/item/autosurgeon/organ/cyberlink_nt_high(src)
+	new /obj/item/autosurgeon/syndicate/nodrop(src)
+
+/obj/item/storage/box/syndie_kit/anti_stun/PopulateContents()
+	new /obj/item/autosurgeon/organ/cyberlink_nt_high(src)
+	new /obj/item/autosurgeon/syndicate/anti_stun(src)
+
+/obj/item/storage/box/syndie_kit/reviver/PopulateContents()
+	new /obj/item/autosurgeon/organ/cyberlink_nt_high(src)
+	new /obj/item/autosurgeon/syndicate/reviver(src)
 
 /obj/item/storage/box/syndie_kit/centcom_costume/PopulateContents()
 	new /obj/item/clothing/under/rank/centcom/officer(src)
