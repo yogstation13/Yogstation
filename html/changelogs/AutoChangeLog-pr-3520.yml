@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Adds syndicate boxes for revivers, anti-stun, and anti-drop cybernetics with a cyberlink also."
+  - bugfix: "Fixed the Nuclear and Assault Operatives cybernetics by giving them syndicate box bundles instead"
