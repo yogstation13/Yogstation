@@ -491,7 +491,7 @@
 	// check if we have a valid treatable tool
 	if(potential_treater.tool_behaviour in treatable_tools)
 		return TRUE
-	if(TOOL_CAUTERY in treatable_tools && potential_treater.get_temperature() && user == victim) // allow improvised cauterization on yourself without an aggro grab
+	if((TOOL_CAUTERY in treatable_tools) && potential_treater.get_temperature() && user == victim) // allow improvised cauterization on yourself without an aggro grab
 		return TRUE
 	// failing that, see if we're aggro grabbing them and if we have an item that works for aggro grabs only
 	if(user.pulling == victim && user.grab_state >= GRAB_AGGRESSIVE && check_grab_treatments(potential_treater, user))
@@ -687,7 +687,7 @@
 
 	var/datum/wound_pregen_data/pregen_data = get_pregen_data()
 
-	if (WOUND_BLUNT in pregen_data.required_wounding_types && severity >= WOUND_SEVERITY_CRITICAL)
+	if ((WOUND_BLUNT in pregen_data.required_wounding_types) && severity >= WOUND_SEVERITY_CRITICAL)
 		return WOUND_CRITICAL_BLUNT_DISMEMBER_BONUS // we only require mangled bone (T2 blunt), but if there's a critical blunt, we'll add 15% more
 
 /// Returns our pregen data, which is practically guaranteed to exist, so this proc can safely be used raw.

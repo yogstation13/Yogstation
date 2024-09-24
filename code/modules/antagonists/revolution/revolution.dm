@@ -541,7 +541,7 @@
 		if (!(player_mind.assigned_role.departments_bitflags & (DEPARTMENT_BITFLAG_SECURITY|DEPARTMENT_BITFLAG_COMMAND)))
 			continue
 
-		if (player_mind in ex_revs + ex_headrevs)
+		if (player_mind in (ex_revs + ex_headrevs))
 			continue
 
 		if (!istype(player))
