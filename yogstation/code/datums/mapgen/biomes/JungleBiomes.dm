@@ -194,12 +194,11 @@
 		/obj/structure/flora/tree/jungle = 3, 
 		/obj/structure/flora/junglebush/large = 2, 
 		/obj/structure/flora/rock/pile/largejungle = 2,
-		/obj/structure/flora/rock/jungle = 1, 
 		/obj/structure/flora/junglebush = 1, 
 		/obj/structure/flora/junglebush/b = 1, 
 		/obj/structure/flora/junglebush/c = 1
 		)
-	dense_flora_density = 90
+	dense_flora_density = 70
 
 	loose_flora = list(
 		/obj/structure/flora/grass/jungle = 60,
