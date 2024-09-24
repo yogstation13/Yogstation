@@ -16,7 +16,7 @@
 	/// Amount of reagents ejected from each scrubber
 	var/reagents_amount = 50
 	/// Probability of an individual scrubber overflowing
-	var/overflow_probability = 50
+	var/overflow_probability = 20 //monkestation edit: 20 down from 50
 	/// Specific reagent to force all scrubbers to use, null for random reagent choice
 	var/datum/reagent/forced_reagent_type
 	/// A list of scrubbers that will have reagents ejected from them
