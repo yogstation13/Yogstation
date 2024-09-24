@@ -151,3 +151,4 @@
 	desc = "Hello there."
 	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
 	icon_state = "toadie_wan_kenfrogi"
+

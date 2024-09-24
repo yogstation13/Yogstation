@@ -223,3 +223,8 @@ GLOBAL_LIST_INIT(store_toys, generate_store_items(/datum/store_item/toys))
 	store_desc = "''Behold, Man''"
 	item_path = /obj/item/toy/plush/durrcell
 	item_cost = 6969
+/datum/store_item/toys/Eeble
+	name = "Eeble Plush"
+	store_desc = "Eeble is Eeble"
+	item_path = /obj/item/toy/plush/eeble
+	item_cost = 5000
