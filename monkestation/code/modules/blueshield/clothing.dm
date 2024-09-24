@@ -215,3 +215,12 @@
 /obj/item/radio/headset/headset_bs/alt/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
+
+/obj/item/storage/belt/security/blueshield
+	name = "\improper the blueshields's security belt"
+	desc = "A modified security toolbelt designed to help hold more in exchange for it's baton holster."
+
+/obj/item/storage/belt/security/blueshield/Initialize(mapload)
+	. = ..()
+	atom_storage.max_slots = 7
+	atom_storage.set_holdable(list(), list(/obj/item/melee/baton))
