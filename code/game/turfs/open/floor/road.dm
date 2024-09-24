@@ -8,6 +8,9 @@
 	light_range = 0.25
 	var/border_icon
 
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR
+	canSmoothWith = SMOOTH_GROUP_OPEN_FLOOR
+
 /turf/open/floor/plating/ground/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
 	return
 
@@ -65,6 +68,8 @@
 	base_icon_state = "road"
 	footstep = FOOTSTEP_CONCRETE
 
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+
 /turf/open/floor/plating/ground/road/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 1)
@@ -103,6 +108,8 @@
 	icon_state = "sidewalk-255"
 	base_icon_state = "sidewalk"
 	footstep = FOOTSTEP_CONCRETE
+
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 
 
 /turf/open/floor/plating/ground/sidewalk/Initialize()
