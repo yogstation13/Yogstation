@@ -6,7 +6,7 @@
 	name = "10u Milk"
 	id = "milk"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 20)
+	materials = list(/datum/material/biomass = 30)
 	make_reagents = list(/datum/reagent/consumable/milk = 10)
 	category = list("initial","Kitchen Chemicals")
 
@@ -14,7 +14,7 @@
 	name = "10u Soy Milk"
 	id = "soymilk"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 50)
+	materials = list(/datum/material/biomass = 60)
 	make_reagents = list(/datum/reagent/consumable/soymilk = 10)
 	category = list("initial","Kitchen Chemicals")
 
@@ -62,7 +62,7 @@
 	name = "Flour Sack"
 	id = "flour_sack"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 175)
 	build_path = /obj/item/reagent_containers/food/condiment/flour
 	category = list("initial","Food")
 
@@ -70,7 +70,7 @@
 	name = "Rice Sack"
 	id = "rice_sack"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 300)
+	materials = list(/datum/material/biomass = 325)
 	build_path = /obj/item/reagent_containers/food/condiment/rice
 	category = list("initial","Food")
 
@@ -78,15 +78,23 @@
 	name = "Synthetic Meat"
 	id = "meat"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 150)
+	materials = list(/datum/material/biomass = 175)
 	build_path = /obj/item/reagent_containers/food/snacks/meat/slab
+	category = list("initial","Food")
+
+/datum/design/ration
+	name = "Ration Bar"
+	id = "rationbar"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 175)
+	build_path = /obj/item/reagent_containers/food/snacks/rationpack/manufactured
 	category = list("initial","Food")
 
 /datum/design/egg
 	name = "Synthetic Egg"
 	id = "egg"
 	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass = 100)
+	materials = list(/datum/material/biomass = 125)
 	build_path = /obj/item/reagent_containers/food/snacks/egg
 	category = list("initial","Food")
 

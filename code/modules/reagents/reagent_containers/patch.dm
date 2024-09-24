@@ -55,6 +55,10 @@
 	list_reagents = list(/datum/reagent/medicine/biogel = 20)
 	icon = 'icons/obj/halflife/medkits.dmi'
 	icon_state = "medkit"
+
+/obj/item/reagent_containers/pill/patch/medkit/manufactured
+	name = "new medkit"
+	desc = "A medical kit filled with biogel for quickly tending to injuries. This one looks very new, and recently made. Could be sold."
 	
 /obj/item/reagent_containers/pill/patch/medkit/vial
 	name = "medvial"

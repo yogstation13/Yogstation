@@ -22,7 +22,7 @@
 	export_types = list(/obj/item/reagent_containers/food/snacks/meat/slab/xen)
 
 /datum/export/watercanister
-	cost = 50
+	cost = 30
 	unit_name = "water canister"
 	export_types = list(/obj/item/water_canister)
 
@@ -34,6 +34,12 @@
 
 //package and sell medkits for a profit
 /datum/export/medkits
-	cost = 20
+	cost = 50
 	unit_name = "medkits"
-	export_types = list(/obj/item/reagent_containers/pill/patch/medkit)
+	export_types = list(/obj/item/reagent_containers/pill/patch/medkit/manufactured)
+
+//sell manufactured rations for money
+/datum/export/rations
+	cost = 35
+	unit_name = "rations"
+	export_types = list(/obj/item/reagent_containers/food/snacks/rationpack/manufactured)

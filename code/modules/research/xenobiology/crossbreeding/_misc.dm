@@ -252,6 +252,10 @@ Slimecrossing Items
 	desc = "A 'water' flavored ration nutriment bar. Tastes gross, but at least you won't be hungry. This one is less filling than most."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 
+/obj/item/reagent_containers/food/snacks/rationpack/manufactured
+	name = "manufactured nutriment bar"
+	desc = "A 'water' flavored ration nutriment bar. Tastes gross, but at least you won't be hungry. This one looks freshly made."
+
 
 //Ice stasis block - Chilling Dark Blue
 /obj/structure/ice_stasis

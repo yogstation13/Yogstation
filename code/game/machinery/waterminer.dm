@@ -1,7 +1,7 @@
 
 /obj/machinery/water_miner
 	name = "water harvester"
-	desc = "Automatically harvests water from below, purifies it, and packs it into easily carriable canisters which are often exported by combine cities."
+	desc = "Automatically harvests water from below, and packs it into easily carriable canisters which are often exported by combine cities."
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogen-empty"
 	density = TRUE
@@ -79,7 +79,7 @@
 
 /obj/item/water_canister
 	name = "water canister"
-	desc = "A reinforced canister containing filtered water. This can be sold to the benefactors via the dropship."
+	desc = "A reinforced canister containing unfiltered water. This can be sold to the benefactors via the dropship raw, or first purified to increase it's value."
 	icon_state = "oxygen"
 	force = 10
 	icon = 'yogstation/icons/obj/tank.dmi'

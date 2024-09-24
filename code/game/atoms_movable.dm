@@ -1114,6 +1114,17 @@
 /atom/movable/proc/on_enter_storage(datum/component/storage/concrete/S)
 	return
 
+///Sets the anchored var and returns if it was successfully changed or not.
+/atom/movable/proc/set_anchored(anchorvalue)
+	SHOULD_CALL_PARENT(TRUE)
+	if(anchored == anchorvalue)
+		return
+	. = anchored
+	anchored = anchorvalue
+	if(anchored && pulledby)
+		pulledby.stop_pulling()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_SET_ANCHORED, anchorvalue)
+
 /atom/movable/proc/get_spacemove_backup()
 	var/atom/movable/dense_object_backup
 	for(var/A in orange(1, get_turf(src)))
