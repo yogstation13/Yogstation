@@ -1,7 +1,7 @@
 
 /obj/machinery/water_miner
 	name = "water harvester"
-	desc = "Automatically harvests water from below, and packs it into easily carriable canisters which are often exported by combine cities."
+	desc = "Automatically harvests water from below, filters it, and packs it into easily carriable canisters which are often exported by combine cities."
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogen-empty"
 	density = TRUE
