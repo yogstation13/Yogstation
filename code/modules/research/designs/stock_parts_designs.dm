@@ -27,7 +27,7 @@
 	name = "Basic Capacitor"
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_capacitor"
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
 	build_path = /obj/item/stock_parts/capacitor
 	category = list("Stock Parts","Machinery","initial")
@@ -72,7 +72,7 @@
 	name = "Basic Scanning Module"
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_scanning"
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 50)
 	build_path = /obj/item/stock_parts/scanning_module
 	category = list("Stock Parts","Machinery","initial")
@@ -117,7 +117,7 @@
 	name = "Micro Manipulator"
 	desc = "A stock part used in the construction of various devices."
 	id = "micro_mani"
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100)
 	build_path = /obj/item/stock_parts/manipulator
 	category = list("Stock Parts","Machinery","initial")
@@ -162,7 +162,7 @@
 	name = "Basic Micro-Laser"
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_micro_laser"
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 50)
 	build_path = /obj/item/stock_parts/micro_laser
 	category = list("Stock Parts","Machinery","initial")
@@ -206,7 +206,7 @@
 	name = "Basic Matter Bin"
 	desc = "A stock part used in the construction of various devices."
 	id = "basic_matter_bin"
-	build_type = PROTOLATHE | AUTOLATHE
+	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100)
 	build_path = /obj/item/stock_parts/matter_bin
 	category = list("Stock Parts","Machinery","initial")
