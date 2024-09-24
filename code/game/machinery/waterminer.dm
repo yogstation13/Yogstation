@@ -79,7 +79,7 @@
 
 /obj/item/water_canister
 	name = "water canister"
-	desc = "A reinforced canister containing unfiltered water. This can be sold to the benefactors via the dropship raw, or first purified to increase it's value."
+	desc = "A reinforced canister containing filtered water. This can be sold to the benefactors via the dropship."
 	icon_state = "oxygen"
 	force = 10
 	icon = 'yogstation/icons/obj/tank.dmi'
