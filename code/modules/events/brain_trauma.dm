@@ -6,8 +6,9 @@
 	description = "A crewmember gains a random trauma."
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
+	min_players = 10 // To make your chance of getting help a bit higher.
 	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_TARGETED, TAG_MAGICAL) //im putting magical on this because I think this can give the magic brain traumas
+	tags = list(TAG_TARGETED, TAG_MAGICAL) //magical because it can give magical traumas
 
 /datum/round_event/brain_trauma
 	fakeable = FALSE
