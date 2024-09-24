@@ -18,6 +18,7 @@
 	density = TRUE
 	pixel_x = -16
 	layer = FLY_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	var/log_amount = 10
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
