@@ -6,7 +6,7 @@
 	description = "A crewmember gains a random trauma."
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
-	min_players = 10 // To make your chance of getting help a bit higher.
+	min_players = 15 // To make your chance of getting help a bit higher, since there's a chance you just get quad paralyze
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_TARGETED, TAG_MAGICAL) //magical because it can give magical traumas
 

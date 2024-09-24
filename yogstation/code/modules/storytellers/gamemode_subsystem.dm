@@ -1066,7 +1066,7 @@ SUBSYSTEM_DEF(gamemode)
 		var/weight_string = "Modified: [event.calculated_weight]<br>Original: [event.weight]"
 		if(assoc_spawn_weight[event])
 			var/percent = round((event.calculated_weight / total_weight) * 100)
-			weight_string = "[percent]% - [weight_string]"
+			weight_string = "[percent]%<br>[weight_string]"
 		dat += "<td>[weight_string]</td>" //Weight
 		dat += "<td>[event.get_href_actions()]</td>" //Actions
 		dat += "</tr>"
