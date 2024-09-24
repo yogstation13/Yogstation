@@ -1,0 +1,5 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "Vine Tangle for Venus Human traps works again."
+  - rscadd: "Vine Tangle heals Venus Human Traps."
