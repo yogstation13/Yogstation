@@ -109,14 +109,15 @@
 	if(istype(attacking_item, /obj/item/storage/bag/plants))
 		var/loaded = 0
 		for(var/obj/item/seeds/to_store in attacking_item.contents)
-			if(contents.len >= max_seeds)
+			if(length(contents) >= max_seeds)
 				to_chat(user, span_warning("[src] is full."))
 				break
 			if(!add_seed(to_store, attacking_item))
 				continue
-			loaded += 1
+			loaded = TRUE
 
 		if(loaded)
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/datum, update_static_data_for_all_viewers)) // monkestation edit: lagfixing
 			to_chat(user, span_notice("You put as many seeds from [attacking_item] into [src] as you can."))
 		else
 			to_chat(user, span_warning("There are no seeds in [attacking_item]."))
@@ -127,23 +128,26 @@
 	if(!isnull(generated_seeds))
 		if((user.istate & ISTATE_SECONDARY))
 			//find all seeds lying on the turf and add them to the machine
+			var/loaded = FALSE
 			for(var/obj/item/seeds/seed as anything in generated_seeds)
 				//machine is full
-				if(contents.len >= max_seeds)
+				if(length(contents) >= max_seeds)
 					to_chat(user, span_warning("[src] is full."))
 					break
 				//add seed to machine. second argument is null which means just force move into the machine
-				add_seed(seed)
+				if(add_seed(seed))
+					loaded = TRUE
+			if(loaded)
 				to_chat(user, span_notice("You extract some seeds."))
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/datum, update_static_data_for_all_viewers)) // monkestation edit: lagfixing
 		return TRUE
 
 	else if(istype(attacking_item, /obj/item/seeds))
-		if(contents.len >= max_seeds)
+		if(length(contents) >= max_seeds)
 			to_chat(user, span_warning("[src] is full."))
-
 		else if(add_seed(attacking_item, user))
 			to_chat(user, span_notice("You add [attacking_item] to [src]."))
-
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/datum, update_static_data_for_all_viewers)) // monkestation edit: lagfixing
 		else
 			to_chat(user, span_warning("You can't seem to add [attacking_item] to [src]."))
 		return TRUE
@@ -222,6 +226,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SeedExtractor", name)
+		ui.set_autoupdate(FALSE) // monkestation edit: lagfixing
 		ui.open()
 
 /obj/machinery/seed_extractor/ui_data()
@@ -283,6 +288,7 @@
 				else
 					found_seed.forceMove(drop_location())
 					visible_message(span_notice("[found_seed] falls onto the floor."), null, span_hear("You hear a soft clatter."), COMBAT_MESSAGE_RANGE)
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/datum, update_static_data_for_all_viewers)) // monkestation edit: lagfixing
 				. = TRUE
 
 /obj/machinery/seed_extractor/ui_assets(mob/user)
