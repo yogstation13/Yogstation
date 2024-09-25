@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(925 modules,
-    3226/11191 macros, 28.8%)</aside></h3>
+<aside>(928 modules,
+    3227/11192 macros, 28.8%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -173,6 +173,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/research.html" title="code&#x2F;__DEFINES&#x2F;research">research</a></li>
     <li><a href="code/__DEFINES/robots.html" title="code&#x2F;__DEFINES&#x2F;robots">robots</a></li>
     <li><a href="code/__DEFINES/rust_g.html" title="code&#x2F;__DEFINES&#x2F;rust_g">rust_g</a></li>
+    <li><a href="code/__DEFINES/say.html" title="code&#x2F;__DEFINES&#x2F;say">say</a></li>
     <li><a href="code/__DEFINES/screentips.html" title="code&#x2F;__DEFINES&#x2F;screentips">screentips</a></li>
     <li><a href="code/__DEFINES/security.html" title="code&#x2F;__DEFINES&#x2F;security">security</a></li>
     <li><a href="code/__DEFINES/shuttles.html" title="code&#x2F;__DEFINES&#x2F;shuttles">shuttles</a></li>
@@ -788,6 +789,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/modules/client/preferences/security_department.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;security_department">security_department</a></li>
     <li><a href="code/modules/client/preferences/sounds.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;sounds">sounds</a></li>
     <li><a href="code/modules/client/preferences/species.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;species">species</a></li>
+    <li><a href="code/modules/client/preferences/speech_sounds.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;speech_sounds">speech_sounds</a></li>
     <li><a href="code/modules/client/preferences/tgui.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;tgui">tgui</a></li>
     <li><a href="code/modules/client/preferences/ui_style.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;ui_style">ui_style</a></li>
     <li><a href="code/modules/client/preferences/window_flashing.html" title="code&#x2F;modules&#x2F;client&#x2F;preferences&#x2F;window_flashing">window_flashing</a></li>
@@ -1305,6 +1307,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="yogstation/code/modules/liquids/liquid_interaction.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;liquids&#x2F;liquid_interaction">liquid_interaction</a></li>
     <li><a href="yogstation/code/modules/liquids/liquid_plumbers.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;liquids&#x2F;liquid_plumbers">liquid_plumbers</a></li>
     </ul></li>
+    <li><span class="no-substance">mob&#x2F;living&#x2F;</span><a href="yogstation/code/modules/mob/living/voice_types.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;voice_types">voice_types</a></li>
     <li><span class="no-substance">research&#x2F;designs&#x2F;</span><a href="yogstation/code/modules/research/designs/spacepod_designs.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;research&#x2F;designs&#x2F;spacepod_designs">spacepod_designs</a></li>
     <li><span class="no-substance">ruins&#x2F;</span><a href="yogstation/code/modules/ruins/lavaland_ruin_code.html" title="yogstation&#x2F;code&#x2F;modules&#x2F;ruins&#x2F;lavaland_ruin_code">lavaland_ruin_code</a></li>
     <li class="has-children"><span title="yogstation&#x2F;code&#x2F;modules&#x2F;scripting">scripting</span><ul class="index-tree">
@@ -1338,7 +1341,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1320 detailed/2259 documented/31048 total, 7.3%)</aside></h3>
+<aside>(1322 detailed/2262 documented/31057 total, 7.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -2654,6 +2657,7 @@ Will give the value as 6 hex digits, without a hash.<ul class="index-tree">
     </ul></li>
     <li class="has-children"><a href="datum/preference/numeric.html" title="&#x2F;datum&#x2F;preference&#x2F;numeric">numeric</a> - A numeric preference with a minimum and maximum value<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;numeric&#x2F;multiz_performance">multiz_performance</span> - Boundary for how many z levels down to render properly before we start going cheapo mode</li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;preference&#x2F;numeric&#x2F;speech_volume">speech_volume</span> - Controls the volume at which the user hears in-person Speech sounds</li>
     </ul></li>
     <li><a href="datum/preference/text.html" title="&#x2F;datum&#x2F;preference&#x2F;text">text</a> - A string-based preference accepting arbitrary string values entered by the user, with a maximum length.</li>
     <li class="has-children"><a href="datum/preference/toggle.html" title="&#x2F;datum&#x2F;preference&#x2F;toggle">toggle</a> - A prefernece whose value is always TRUE or FALSE<ul class="index-tree">
@@ -2682,6 +2686,7 @@ they have.</li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference_middleware&#x2F;random">random</span> - Middleware for handling randomization preferences</li>
     <li><a href="datum/preference_middleware/skillcape.html" title="&#x2F;datum&#x2F;preference_middleware&#x2F;skillcape">skillcape</a></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;preference_middleware&#x2F;species">species</span> - Handles the assets for species icons</li>
+    <li><a href="datum/preference_middleware/voice_type.html" title="&#x2F;datum&#x2F;preference_middleware&#x2F;voice_type">voice_type</a></li>
     </ul></li>
     <li><a href="datum/preferences.html" title="&#x2F;datum&#x2F;preferences">preferences</a></li>
     <li><a href="datum/progressbar.html" title="&#x2F;datum&#x2F;progressbar">progressbar</a></li>
@@ -3106,6 +3111,7 @@ Checks that every overlay passed into build_appearance_list exists in the icon</
     <li><a href="datum/visual_data/tracking.html" title="&#x2F;datum&#x2F;visual_data&#x2F;tracking">tracking</a> - Tracks but does not relay updates to someone's visual data
 Accepts a second visual data datum to use as a source of truth for the mob's values</li>
     </ul></li>
+    <li><a href="datum/voice.html" title="&#x2F;datum&#x2F;voice">debug</a></li>
     <li><a href="datum/weakref.html" title="&#x2F;datum&#x2F;weakref">weakref</a> - A weakref holds a non-owning reference to a datum.
 The datum can be referenced again using <code>resolve()</code>.</li>
     <li class="has-children"><a href="datum/weather.html" title="&#x2F;datum&#x2F;weather">space wind</a> - Causes weather to occur on a z level in certain area types<ul class="index-tree">
@@ -4466,7 +4472,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/91a45bfeaa58d4fcbe6f71069643d2cfa3da5cde">91a45bf</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/a066482967bda2ebf65dd62b02fe5e85c35587e2">a066482</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
