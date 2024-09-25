@@ -80,10 +80,10 @@
 	cellular_noise_map_id = LOW_DENSITY
 
 	dense_flora = list(
-		/obj/structure/flora/rock = 5,
+		/obj/structure/flora/rock/pile = 10,
 		/obj/structure/flora/rock/jungle = 5,
-		/obj/structure/flora/rock/pile = 5,
-		/obj/structure/flora/ausbushes/stalkybush = 3,
+		/obj/structure/flora/rock = 5,
+		/obj/structure/flora/ausbushes/stalkybush = 5,
 		/obj/structure/herb/magnus_purpura = 1
 		)
 	dense_flora_density = 10
@@ -93,7 +93,7 @@
 		/obj/structure/flora/rock/jungle = 20,
 		/obj/structure/flora/rock/pile = 20,
 		/obj/structure/flora/stump = 20,
-		/obj/structure/flora/tree/jungle = 10,
+		/obj/structure/flora/tree/jungle/small = 10,
 		/obj/structure/herb/lantern = 2,
 		/obj/structure/herb/cinchona = 1,
 		/obj/structure/flytrap = 1
@@ -121,22 +121,22 @@
 
 	dense_flora = list(
 		/obj/structure/flora/ausbushes/stalkybush = 10,
-		/obj/structure/flora/rock/pile = 3,
+		/obj/structure/flora/ausbushes/reedbush = 10,
 		/obj/structure/herb/magnus_purpura = 1
 		)
-	dense_flora_density = 10
+	dense_flora_density = 15
 
 	loose_flora = list(
-		/obj/structure/flora/ausbushes/stalkybush = 40,
-		/obj/structure/flora/rock = 40,
-		/obj/structure/flora/rock/jungle = 40,
-		/obj/structure/flora/stump = 40,
-		/obj/structure/flora/tree/jungle = 10,
-		/obj/structure/flora/tree/jungle/small = 10,
+		/obj/structure/flora/rock/jungle = 30,
+		/obj/structure/flora/rock = 15,
+		/obj/structure/flora/ausbushes = 10,
+		/obj/structure/flora/ausbushes/fernybush = 10,
 		/obj/structure/herb/liberal_hats = 10,
+		/obj/structure/flora/tree/jungle/small = 5,
 		/obj/structure/herb/lantern = 4,
 		/obj/structure/flytrap = 2,
-		/obj/structure/herb/explosive_shrooms = 1
+		/obj/structure/herb/explosive_shrooms = 1,
+		/obj/structure/flora/tree/jungle = 1
 		)
 	loose_flora_density = 20
 
@@ -162,18 +162,18 @@
 
 	dense_flora = list(
 		/obj/structure/flora/tree/dead/jungle = 8,
-		/obj/structure/flora/stump=4,
 		/obj/structure/flora/tree/jungle/small = 4,
+		/obj/structure/flora/stump=4,
 		/obj/structure/herb/cinchona = 1
 		)
 	dense_flora_density = 90
 
 	loose_flora = list(
-		/obj/structure/flora/rock/jungle = 1,
-		/obj/structure/flora/rock/pile = 1,
+		/obj/structure/flora/rock/jungle = 2,
+		/obj/structure/flora/rock/pile = 2,
 		/obj/structure/flora/rock = 1,
 		)
-	loose_flora_density = 40
+	loose_flora_density = 20
 
 	fauna_types = list(
 		/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad = 60,
@@ -209,8 +209,9 @@
 		/obj/structure/flora/ausbushes/leafybush = 20,
 		/obj/structure/flora/ausbushes/sparsegrass = 20,
 		/obj/structure/flora/ausbushes/fullgrass = 20,
-		/obj/structure/herb/lantern = 4,
-		/obj/structure/herb/fruit = 4,
+		/obj/structure/flora/ausbushes/fernybush = 20,
+		/obj/structure/herb/lantern = 5,
+		/obj/structure/herb/fruit = 5,
 		/obj/structure/flytrap = 2,
 		/obj/structure/herb/explosive_shrooms = 1
 		)
