@@ -148,6 +148,7 @@ const ALTTITLES = {
   'Forensic Technician': BASEICONS['Detective'],
   'Private Investigator': BASEICONS['Detective'],
   'Forensic Scientist': BASEICONS['Detective'],
+  'Paranormal Investigator': BASEICONS['Detective'],
   // Geneticist - dna
   'Mutation Researcher': BASEICONS['Geneticist'],
   // Head of Personnel - dog
@@ -212,6 +213,7 @@ const ALTTITLES = {
   'Biorobotics Director': BASEICONS['Research Director'],
   'Research Supervisor': BASEICONS['Research Director'],
   'Chief Science Officer': BASEICONS['Research Director'],
+  'Chief Artificer': BASEICONS['Research Director'],
   // Roboticist - battery-half
   'Biomechanical Engineer': BASEICONS['Roboticist'],
   'Mechatronic Engineer': BASEICONS['Roboticist'],
@@ -228,6 +230,8 @@ const ALTTITLES = {
   Xenoarchaeologist: BASEICONS['Scientist'],
   'Research Assistant': BASEICONS['Scientist'],
   'Graduate Student': BASEICONS['Scientist'],
+  Artificer: BASEICONS['Scientist'],
+  Cryptozoologist: BASEICONS['Scientist'],
   // Security Officer - shield-halved
   'Security Operative': BASEICONS['Security Officer'],
   Peacekeeper: BASEICONS['Security Officer'],
