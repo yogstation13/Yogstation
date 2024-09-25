@@ -11,8 +11,6 @@
 	GLOB.mob_living_list += src
 	if(startDead)
 		death(FALSE)
-	if(!voice_type)
-		voice_type = pick(voice_type2sound) //yogs edit (stolen from monke)
 
 /mob/living/prepare_huds()
 	..()

@@ -128,3 +128,6 @@
 
 
 #define MAX_FLAVOR_LEN 4096		//double the maximum message length.
+
+/// Default volume of speech sound effects (this is actually multiplied by 5 when used)
+#define DEFAULT_SPEECH_VOLUME 60
