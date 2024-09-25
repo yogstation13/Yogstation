@@ -156,13 +156,7 @@
 /datum/biome/jungleland/dying_forest
 	turf_type = /turf/open/floor/plating/dirt/jungleland/deep_sand
 	closed_turf = /turf/open/floor/plating/dirt/jungleland/shallow_mud
-
-	loose_flora = list(
-		/obj/structure/flora/rock/jungle = 1,
-		/obj/structure/flora/rock/pile = 1,
-		/obj/structure/flora/rock = 1,
-		)
-	loose_flora_density = 50
+	cellular_noise_map_id = LOW_DENSITY
 
 	dense_flora = list(
 		/obj/structure/flora/tree/dead/jungle = 8,
@@ -170,7 +164,14 @@
 		/obj/structure/flora/tree/jungle/small = 4,
 		/obj/structure/herb/cinchona = 1
 		)
-	dense_flora_density = 50
+	dense_flora_density = 90
+
+	loose_flora = list(
+		/obj/structure/flora/rock/jungle = 1,
+		/obj/structure/flora/rock/pile = 1,
+		/obj/structure/flora/rock = 1,
+		)
+	loose_flora_density = 40
 
 	fauna_types = list(
 		/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad = 60,
@@ -190,8 +191,7 @@
 	cellular_noise_map_id = HIGH_DENSITY
 
 	dense_flora = list(
-		/obj/structure/flora/tree/jungle/small = 3,
-		/obj/structure/flora/tree/jungle = 3, 
+		/obj/structure/flora/tree/jungle = 6, 
 		/obj/structure/flora/junglebush/large = 2, 
 		/obj/structure/flora/rock/pile/largejungle = 2,
 		/obj/structure/flora/junglebush = 1, 
