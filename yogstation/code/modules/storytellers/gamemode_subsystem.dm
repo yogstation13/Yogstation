@@ -981,7 +981,7 @@ SUBSYSTEM_DEF(gamemode)
 				dat += "</tr>"
 			dat += "</table>"
 
-	var/datum/browser/popup = new(user, "gamemode_admin_panel", "Gamemode Panel", 670, 650)
+	var/datum/browser/popup = new(user, "gamemode_admin_panel", "Gamemode Panel", 700, 670)
 	popup.set_content(dat.Join())
 	popup.open()
 
