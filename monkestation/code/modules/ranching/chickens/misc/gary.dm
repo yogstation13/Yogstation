@@ -5,7 +5,7 @@
 	desc = "Gary the Crow. An inquisitive, yet cruel barterer."
 	icon_suffix = "crow_gary"
 	icon_state = "crow_gary"
-	pass_flags = parent_type::pass_flags | PASSGRILLE | PASSFLAPS
+	pass_flags = parent_type::pass_flags | PASSGRILLE | PASSFLAPS | PASSDOORS
 	ai_controller = /datum/ai_controller/chicken/gary
 
 	mutation_list = list()
@@ -37,7 +37,6 @@
 		roundend_callback = CALLBACK(src, PROC_REF(Write_Memory))
 		SSticker.OnRoundend(roundend_callback)
 	Read_Memory()
-	AddComponent(/datum/component/simple_access, REGION_ACCESS_ALL_STATION) // gary actually balls
 	AddComponent(/datum/component/regenerator)
 	add_traits(list(TRAIT_SHOCKIMMUNE, TRAIT_GOES_THROUGH_WOODEN_BARRICADES, TRAIT_WATER_BREATHING), INNATE_TRAIT) // gary REALLY balls (also gary making a hideout in a pool is funny)
 	set_home(home)

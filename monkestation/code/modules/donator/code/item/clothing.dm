@@ -534,5 +534,4 @@
 	name = "centcom jacket"
 	desc = "A varsity jacket in design of centcom! It seems well made."
 	body_parts_covered = CHEST|GROIN|ARMS
-	//cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
