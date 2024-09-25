@@ -1971,12 +1971,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"aji" = (
-/obj/structure/table/reinforced,
-/obj/item/healthanalyzer,
-/obj/effect/turf_decal/trimline/blue/filled,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "ajk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/dark,
@@ -14041,6 +14035,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
+"diA" = (
+/obj/structure/table/reinforced,
+/obj/item/healthanalyzer{
+	pixel_x = 2;
+	pixel_y = -6
+	},
+/obj/effect/turf_decal/trimline/blue/filled,
+/obj/item/deskbell/preset/med{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
 "diC" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/cable{
@@ -22146,19 +22153,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"jbg" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/window/northleft{
-	dir = 2;
-	name = "Hydroponics Desk"
-	},
-/obj/effect/mapping_helpers/windoor/access/all/service/hydroponics,
-/turf/open/floor/plating,
-/area/hydroponics)
 "jbk" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
 	dir = 1
@@ -31283,6 +31277,23 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
+"pcR" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Hydroponics Desk"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/hydroponics,
+/obj/item/deskbell/preset/hydroponics{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/plating,
+/area/hydroponics)
 "pdl" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -132587,7 +132598,7 @@ aFY
 cTQ
 aFY
 aOc
-jbg
+pcR
 aUe
 ajl
 kAC
@@ -135411,7 +135422,7 @@ mWq
 mbe
 aMl
 adP
-aji
+diA
 ach
 aFd
 aFd
