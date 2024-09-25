@@ -266,7 +266,7 @@
 		return COMPONENT_HOSTILE_NO_ATTACK
 
 /datum/action/cooldown/process()
-	if(!owner || (next_use_time - world.time) <= 0)
+	if(QDELETED(owner) || (next_use_time - world.time) <= 0)
 		build_all_button_icons(UPDATE_BUTTON_STATUS)
 		STOP_PROCESSING(SSfastprocess, src)
 		return

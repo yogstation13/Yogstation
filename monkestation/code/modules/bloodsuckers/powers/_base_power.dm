@@ -113,7 +113,7 @@
 
 ///Checks if the Power is available to use.
 /datum/action/cooldown/bloodsucker/proc/can_use(mob/living/carbon/user, trigger_flags)
-	if(!owner)
+	if(QDELETED(owner))
 		return FALSE
 	if(!isliving(user))
 		return FALSE
@@ -218,7 +218,7 @@
 
 /// Checks to make sure this power can stay active
 /datum/action/cooldown/bloodsucker/proc/ContinueActive(mob/living/user, mob/living/target)
-	if(!user)
+	if(QDELETED(user))
 		return FALSE
 	if(!constant_bloodcost > 0 || bloodsuckerdatum_power.bloodsucker_blood_volume > 0)
 		return TRUE

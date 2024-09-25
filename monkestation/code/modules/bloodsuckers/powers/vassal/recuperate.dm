@@ -36,7 +36,6 @@
 	. = ..()
 	if(!.)
 		return
-
 	if(!active)
 		return
 	var/mob/living/carbon/user = owner
@@ -44,18 +43,21 @@
 	vassaldatum.master.AddBloodVolume(-1)
 	user.set_timed_status_effect(5 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	user.stamina.adjust(-bloodcost * 1.1)
-	user.adjustBruteLoss(-2.5)
-	user.adjustToxLoss(-2, forced = TRUE)
+	user.heal_overall_damage(brute = 2.5, updating_health = FALSE)
+	user.adjustToxLoss(-2, updating_health = FALSE, forced = TRUE)
 	// Plasmamen won't lose blood, they don't have any, so they don't heal from Burn.
 	if(!HAS_TRAIT(user, TRAIT_NOBLOOD))
 		user.blood_volume -= bloodcost
-		user.adjustFireLoss(-1.5)
+		user.adjustFireLoss(-1.5, updating_health = FALSE)
+	user.updatehealth() // only update health once after we've healed everything we might've
 	// Stop Bleeding
 	if(istype(user) && user.is_bleeding())
 		for(var/obj/item/bodypart/part in user.bodyparts)
 			part.generic_bleedstacks--
 
 /datum/action/cooldown/bloodsucker/recuperate/ContinueActive(mob/living/user, mob/living/target)
+	if(QDELETED(user))
+		return FALSE
 	if(user.stat >= DEAD)
 		return FALSE
 	if(user.incapacitated())
@@ -64,5 +66,5 @@
 	return TRUE
 
 /datum/action/cooldown/bloodsucker/recuperate/DeactivatePower()
-	owner.balloon_alert(owner, "recuperate turned off.")
+	owner?.balloon_alert(owner, "recuperate turned off.")
 	return ..()

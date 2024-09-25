@@ -86,7 +86,7 @@
 	// If we aren't in the dark, anyone watching us will cause us to drop out stuff
 	if(!QDELETED(current_turf?.lighting_object) && current_turf.get_lumcount() >= 0.2)
 		for(var/mob/living/watchers in viewers(world.view, get_turf(owner)) - owner)
-			if(QDELETED(watchers.client))
+			if(QDELETED(watchers.client) || watchers.stat != CONSCIOUS)
 				continue
 			if(watchers.has_unlimited_silicon_privilege)
 				continue
@@ -96,17 +96,11 @@
 				drop_item = TRUE
 				break
 	// Drop all necessary items (handcuffs, legcuffs, items if seen)
-	if(user.handcuffed)
-		var/obj/item/handcuffs = user.handcuffed
-		user.dropItemToGround(handcuffs)
-	if(user.legcuffed)
-		var/obj/item/legcuffs = user.legcuffed
-		user.dropItemToGround(legcuffs)
+	user.uncuff()
 	if(drop_item)
-		for(var/obj/item/literally_everything in owner)
-			owner.dropItemToGround(literally_everything, TRUE)
+		user.unequip_everything()
 
-	playsound(current_turf, 'sound/magic/summon_karp.ogg', 60, 1)
+	playsound(current_turf, 'sound/magic/summon_karp.ogg', vol = 60, vary = TRUE)
 
 	var/datum/effect_system/steam_spread/bloodsucker/puff = new /datum/effect_system/steam_spread/bloodsucker()
 	puff.set_up(3, 0, current_turf)
@@ -120,7 +114,7 @@
 	do_teleport(owner, bloodsuckerdatum_power.coffin, no_effects = TRUE, forced = TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 	bloodsuckerdatum_power.coffin.close(owner)
 	bloodsuckerdatum_power.coffin.take_contents()
-	playsound(bloodsuckerdatum_power.coffin.loc, bloodsuckerdatum_power.coffin.close_sound, 15, 1, -3)
+	playsound(bloodsuckerdatum_power.coffin.loc, bloodsuckerdatum_power.coffin.close_sound, vol = 15, vary = TRUE, extrarange = -3)
 
 	DeactivatePower()
 

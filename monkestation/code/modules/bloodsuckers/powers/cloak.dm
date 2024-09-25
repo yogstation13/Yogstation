@@ -21,7 +21,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	for(var/mob/living/watcher in view(9, owner) - owner)
+	for(var/mob/living/watcher in viewers(9, owner) - owner)
 		if(watcher.stat == DEAD || QDELETED(watcher.client))
 			continue
 		if(IS_BLOODSUCKER(watcher) || IS_VASSAL(watcher))
