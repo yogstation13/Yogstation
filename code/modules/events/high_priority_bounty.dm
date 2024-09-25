@@ -18,7 +18,7 @@
 		B = random_bounty()
 		if(!B)
 			continue
-		B.mark_high_priority(5)
+		B.mark_high_priority(5) //5x the reward
 		if(try_add_bounty(B))
 			break
 
