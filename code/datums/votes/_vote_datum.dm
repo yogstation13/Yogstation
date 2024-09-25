@@ -31,8 +31,6 @@
 	/// The counting method we use for votes.
 	var/count_method = VOTE_COUNT_METHOD_SINGLE
 
-	/// Multipliers donators get for this vote type
-	var/donator_multiplier = 0
 	// can we start this vote by a player
 	var/player_startable = TRUE
 

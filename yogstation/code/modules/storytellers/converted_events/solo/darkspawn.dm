@@ -51,3 +51,7 @@
 /datum/round_event/antagonist/solo/darkspawn/start()
 	. = ..()
 	dark_team.update_objectives()
+
+/datum/round_event_control/antagonist/solo/darkspawn/midround //just for admin spawning
+	weight = 0
+	roundstart = FALSE

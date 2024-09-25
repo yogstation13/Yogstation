@@ -322,15 +322,15 @@ Runs the event
 	if(SSticker.HasRoundStarted())
 		if(roundstart)
 			if(!can_run_post_roundstart)
-				return "<a class='linkOff'>Fire</a> <a class='linkOff'>Schedule</a>"
-			return "<a href='?src=[REF(src)];action=fire'>Fire</a> <a href='?src=[REF(src)];action=schedule'>Schedule</a>"
+				return "<a class='linkOff'>Force Now</a><br><a class='linkOff'>Schedule</a>"
+			return "<a href='?src=[REF(src)];action=force_now'>Force Now</a><br><a href='?src=[REF(src)];action=schedule'>Schedule</a>"
 		else
-			return "<a href='?src=[REF(src)];action=fire'>Fire</a> <a href='?src=[REF(src)];action=schedule'>Schedule</a> <a href='?src=[REF(src)];action=force_next'>Force Next</a>"
+			return "<a href='?src=[REF(src)];action=force_now'>Force Now</a><br><a href='?src=[REF(src)];action=force_next'>Force Next</a><br><a href='?src=[REF(src)];action=schedule'>Schedule</a>"
 	else
 		if(roundstart)
-			return "<a href='?src=[REF(src)];action=schedule'>Add Roundstart</a> <a href='?src=[REF(src)];action=force_next'>Force Roundstart</a>"
+			return "<a href='?src=[REF(src)];action=force_next'>Force Roundstart</a><br><a href='?src=[REF(src)];action=schedule'>Add Roundstart</a>"
 		else
-			return "<a class='linkOff'>Fire</a> <a class='linkOff'>Schedule</a> <a class='linkOff'>Force Next</a>"
+			return "<a class='linkOff'>Force Now</a><br><a class='linkOff'>Force Next</a><br><a class='linkOff'>Schedule</a>"
 
 
 /datum/round_event_control/Topic(href, href_list)
@@ -350,13 +350,13 @@ Runs the event
 			message_admins("[key_name_admin(usr)] forced scheduled event [src.name].")
 			log_admin_private("[key_name(usr)] forced scheduled event [src.name].")
 			SSgamemode.forced_next_events[src.track] = src
-		if("fire")
+		if("force_now")
 			if(length(src.admin_setup))
 				for(var/datum/event_admin_setup/admin_setup_datum in src.admin_setup)
 					if(admin_setup_datum.prompt_admins() == ADMIN_CANCEL_EVENT)
 						return
-			message_admins("[key_name_admin(usr)] fired event [src.name].")
-			log_admin_private("[key_name(usr)] fired event [src.name].")
+			message_admins("[key_name_admin(usr)] forced event [src.name].")
+			log_admin_private("[key_name(usr)] forced event [src.name].")
 			runEvent(random = FALSE, admin_forced = TRUE)
 
 //monkestation addition ends - STORYTELLERS

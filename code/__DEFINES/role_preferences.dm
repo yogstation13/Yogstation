@@ -44,7 +44,7 @@
 #define ROLE_VAMPIRE			"Vampire" // Yogs
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
 #define ROLE_GANG				"gangster" // Yogs
-#define ROLE_DARKSPAWN			"darkspawn" // Yogs
+#define ROLE_DARKSPAWN			"Darkspawn" // Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs

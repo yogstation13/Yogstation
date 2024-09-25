@@ -1020,7 +1020,7 @@ SUBSYSTEM_DEF(gamemode)
 	dat += "<td width=7%><b>Min Time</b></td>"
 	dat += "<td width=7%><b>Can Occur</b></td>"
 	dat += "<td width=12%><b>Failure Reason</b></td>"
-	dat += "<td width=10%><b>Weight</b></td>"
+	dat += "<td width=12%><b>Weight</b></td>"
 	dat += "<td width=26%><b>Actions</b></td>"
 	dat += "</tr>"
 	var/even = TRUE
