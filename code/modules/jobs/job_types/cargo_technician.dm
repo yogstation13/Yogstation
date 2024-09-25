@@ -6,16 +6,16 @@
 	orbit_icon = "box"
 	department_head = list("Head of Personnel")
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 1
+	total_positions = 5
+	spawn_positions = 4
 	supervisors = "the quartermaster and the head of personnel"
 
 	outfit = /datum/outfit/job/cargo_tech
 
 	alt_titles = list("Deliveryperson", "Mail Service", "Exports Handler", "Cargo Trainee", "Crate Pusher", "Courier")
 
-	added_access = list(ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION)
-	base_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
+	added_access = list(ACCESS_QM, ACCESS_MINING, ACCESS_MINING_STATION)
+	base_access = list(ACCESS_CARGO, ACCESS_CARGO_BAY, ACCESS_MAINT_TUNNELS, ACCESS_MECH_MINING)
 	paycheck = PAYCHECK_EASY
 	paycheck_department = ACCOUNT_CAR
 

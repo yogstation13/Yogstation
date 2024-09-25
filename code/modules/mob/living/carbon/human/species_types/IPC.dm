@@ -427,6 +427,8 @@ ipc martial arts stuff
 		TRAIT_NODEFIB,
 		TRAIT_NOHUNGER //nuclear powered or some shit, idk
 		)
+	mutant_bodyparts = list("ipc_antenna", "ipc_chassis") //no screen
+	species_abilities = list() //no screen change
 
 //infiltrators
 /datum/species/ipc/self/insurgent
@@ -514,9 +516,9 @@ ipc martial arts stuff
 	fixed_mut_color = fake_species.fixed_mut_color
 	H.bubble_icon = fake_species.bubble_icon
 	yogs_draw_robot_hair = TRUE
-	var/robotic = (fake_species.inherent_biotypes & MOB_ROBOTIC)
+	
 	for(var/obj/item/bodypart/O in H.bodyparts)
-		O.render_like_organic = robotic //make sure to copy limbs as normal
+		O.render_like_organic = TRUE // Makes limbs render like organic limbs instead of augmented limbs, check bodyparts.dm
 
 	ADD_TRAIT(H, TRAIT_DISGUISED, type)
 	H.update_body_parts()

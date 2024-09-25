@@ -13,18 +13,18 @@
 #define PLANE_SPACE -21
 #define PLANE_SPACE_PARALLAX -20
 
-#define GRAVITY_PULSE_PLANE -12
+#define GRAVITY_PULSE_PLANE -19
 #define GRAVITY_PULSE_RENDER_TARGET "*GRAVPULSE_RENDER_TARGET"
 
-#define RENDER_PLANE_TRANSPARENT -11 //Transparent plane that shows openspace underneath the floor
+#define RENDER_PLANE_TRANSPARENT -18 //Transparent plane that shows openspace underneath the floor
+#define TRANSPARENT_FLOOR_PLANE -13
 
-#define TRANSPARENT_FLOOR_PLANE -10
+#define FLOOR_PLANE -12
+#define FLOOR_PLANE_RENDER_TARGET "*FLOOR_PLANE"
+#define WALL_PLANE -11
+#define GAME_PLANE -10
+#define ABOVE_GAME_PLANE -9
 
-#define FLOOR_PLANE -6
-
-#define WALL_PLANE -5
-#define GAME_PLANE -4
-#define ABOVE_GAME_PLANE -3
 ///Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees
 #define SEETHROUGH_PLANE -2
 
@@ -32,10 +32,12 @@
 
 #define DEFAULT_PLANE 0 //Marks out the default plane, even if we don't use it
 
+#define WEATHER_PLANE 1
 #define AREA_PLANE 2
-#define MASSIVE_OBJ_PLANE 3
-#define GHOST_PLANE 4
-#define POINT_PLANE 5
+
+#define MASSIVE_OBJ_PLANE 6
+#define GHOST_PLANE 7
+#define POINT_PLANE 8
 
 //---------- LIGHTING -------------
 ///Normal 1 per turf dynamic lighting underlays
@@ -64,6 +66,7 @@
 
 ///Things that should render ignoring lighting
 #define ABOVE_LIGHTING_PLANE 17
+#define WEATHER_GLOW_PLANE 18
 
 ///---------------- MISC -----------------------
 
@@ -185,6 +188,7 @@
 #define CLOSED_BLASTDOOR_LAYER 3.13 // ABOVE DOORS
 #define ABOVE_OBJ_LAYER 3.2
 #define ABOVE_WINDOW_LAYER 3.3
+#define WINDOW_HELPER_LAYER 3.31 // Keep above windows/windoors - see mapping_helpers.dm
 #define SIGN_LAYER 3.4
 #define CORGI_ASS_PIN_LAYER 3.41
 #define NOT_HIGH_OBJ_LAYER 3.5

@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 	base_lighting_alpha = 255
 	has_gravity = STANDARD_GRAVITY
-	noteleport = TRUE
+	area_flags = NOTELEPORT
 	unique = FALSE
 	requires_power = FALSE
 	show_on_sensors = FALSE

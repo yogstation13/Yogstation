@@ -95,20 +95,62 @@
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
 
-//airlock helpers
+// Airlock helpers
 /obj/effect/mapping_helpers/airlock
 	layer = DOOR_HELPER_LAYER
+	late = TRUE
 
 /obj/effect/mapping_helpers/airlock/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		log_mapping("[src] spawned outside of mapload!")
 		return
+
 	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
 	if(!airlock)
 		log_mapping("[src] failed to find an airlock at [AREACOORD(src)]")
 	else
 		payload(airlock)
+
+/obj/effect/mapping_helpers/airlock/LateInitialize()
+	. = ..()
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		qdel(src)
+		return
+	if(airlock.cyclelinkedx || airlock.cyclelinkedy)
+		airlock.cyclelinkairlock_target()
+	if(airlock.cyclelinkeddir)
+		airlock.cyclelinkairlock()
+	if(airlock.closeOtherId)
+		airlock.update_other_id()
+	if(airlock.abandoned)
+		var/outcome = rand(1,100)
+		switch(outcome)
+			if(1 to 9)
+				var/turf/here = get_turf(src)
+				for(var/obj/machinery/door/firedoor/FD in here)
+					qdel(FD)
+				for(var/turf/closed/T in range(2, src))
+					here.place_on_top(T.type)
+					qdel(airlock)
+					qdel(src)
+					return
+				here.place_on_top(/turf/closed/wall)
+				qdel(airlock)
+				qdel(src)
+				return
+			if(10 to 11)
+				airlock.lights = FALSE
+				airlock.locked = TRUE
+			if(12 to 15)
+				airlock.locked = TRUE
+			if(16 to 23)
+				airlock.welded = TRUE
+			if(24 to 30)
+				airlock.panel_open = TRUE
+	airlock.update_appearance()
+	qdel(src)
 
 /obj/effect/mapping_helpers/airlock/proc/payload(obj/machinery/door/airlock/payload)
 	return
@@ -150,7 +192,6 @@
 	else
 		airlock.locked = TRUE
 
-
 /obj/effect/mapping_helpers/airlock/unres
 	name = "airlock unresctricted side helper"
 	icon_state = "airlock_unres_helper"
@@ -167,6 +208,54 @@
 		log_mapping("[src] at [AREACOORD(src)] tried to make [airlock] abandoned but it's already abandoned!")
 	else
 		airlock.abandoned = TRUE
+
+/obj/effect/mapping_helpers/airlock/inaccessible
+	name = "airlock inaccessible helper"
+	icon_state = "airlock_inaccessible"
+
+/obj/effect/mapping_helpers/airlock/inaccessible/payload(obj/machinery/door/airlock/airlock)
+	if(airlock.req_one_access != null)
+		log_mapping("[src] at [AREACOORD(src)] tried to set req_access, but req__one_access was already set!")
+	else
+		airlock.req_access += list(ACCESS_INACCESSIBLE)
+
+
+// Windoor helpers
+/obj/effect/mapping_helpers/windoor
+    layer = WINDOW_HELPER_LAYER
+    late = TRUE
+
+/obj/effect/mapping_helpers/windoor/Initialize(mapload)
+    . = ..()
+    if(!mapload)
+        log_mapping("[src] spawned outside of mapload!")
+        return
+    var/success = FALSE
+    var/windoor_present = FALSE
+    for(var/obj/machinery/door/window/windoor in loc)
+        windoor_present = TRUE
+        if(windoor.dir != dir)
+            continue
+        payload(windoor)
+        success = TRUE
+    if(!success)
+        log_mapping("[src] failed to find a windoor at [AREACOORD(src)]")
+    if(windoor_present && !success)
+        log_mapping("[src] attempted to imprint access at [AREACOORD(src)] but found no valid windoors (windoor present but not matching dir)")
+    qdel(src)
+
+/obj/effect/mapping_helpers/windoor/proc/payload(obj/machinery/door/window/payload)
+	return
+
+/obj/effect/mapping_helpers/windoor/inaccessible
+	name = "windoor inaccessible helper"
+	icon_state = "windoor_inaccessible"
+
+/obj/effect/mapping_helpers/windoor/inaccessible/payload(obj/machinery/door/window/windoor)
+	if(windoor.req_one_access != null)
+		log_mapping("[src] at [AREACOORD(src)] tried to set req_access, but req_one_access was already set!")
+	else
+		windoor.req_access += list(ACCESS_INACCESSIBLE)
 
 
 //needs to do its thing before spawn_rivers() is called

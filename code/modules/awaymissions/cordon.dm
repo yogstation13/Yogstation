@@ -54,7 +54,6 @@
 	static_lighting = FALSE
 	base_lighting_alpha = 255
 	unique = TRUE
-	noteleport = TRUE
 	hidden = TRUE 
 	area_flags = NOTELEPORT
 	requires_power = FALSE

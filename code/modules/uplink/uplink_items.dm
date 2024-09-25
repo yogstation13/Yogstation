@@ -334,7 +334,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	from the arm which momentarily keeps victims in place. Due to its unorthodox nature, the box includes 3 monkey cubes to familiarize the user with the arm functions. Users are \
 	warned that the arm renders them unable to wear gloves and sticks out of most outerwear."
 	item = /obj/item/storage/box/syndie_kit/buster
-	player_minimum = 25
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
@@ -2519,6 +2518,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A black and red stylishly armored mech pilot's suit used by Cybersun's elite mecha pilots. Provides potent protection both inside and outside a mech."
 	item = /obj/item/clothing/under/costume/mech_suit/cybersun
 	cost = 4
+	manufacturer = /datum/corporation/traitor/cybersun
+	restricted_roles = list("Research Director", "Scientist", "Roboticist")
+
+/datum/uplink_item/role_restricted/coral_generator
+	name = "IA-C01G AORTA 'Coral' Generator"
+	desc = "An experimental generator that can be attatched to a mech, provides a massive speedboost when active at the cost of greater power consumption."
+	item = /obj/item/mecha_parts/mecha_equipment/coral_generator
+	cost = 10
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
 

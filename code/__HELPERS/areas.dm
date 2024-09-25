@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 		var/area/place = get_area(the_turf)
 		if(blacklisted_areas[place.type])
 			continue
-		if(!place.requires_power || place.noteleport || place.hidden)
+		if(!place.requires_power || (place.area_flags & NOTELEPORT) || place.hidden)
 			continue // No expanding powerless rooms etc
 		if(!TURF_SHARES(the_turf)) // No expanding areas of walls/something blocking this turf because that defeats the whole point of them used to separate areas
 			continue

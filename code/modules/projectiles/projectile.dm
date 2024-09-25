@@ -226,7 +226,7 @@
 
 		W.add_dent(WALL_DENT_SHOT, hitx, hity)
 
-		if((penetration_flags & PENETRATE_OBJECTS) && penetrations > 0)
+		if((penetration_flags & PENETRATE_WALLS) && penetrations > 0)
 			penetrations -= 1
 			return BULLET_ACT_FORCE_PIERCE
 

@@ -70,7 +70,7 @@
 		to_chat(user, span_warning("You don't have an ID."))
 		return
 
-	if(!(ACCESS_HEADS in ID.access))
+	if(!(ACCESS_COMMAND in ID.access))
 		to_chat(user, span_warning("The access level of your card is not high enough."))
 		return
 
@@ -497,6 +497,7 @@
 
 /obj/machinery/computer/shuttle/pod/Initialize(mapload, obj/item/circuitboard/C)
 	AddElement(/datum/element/update_icon_blocker)
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(update_security_level))
 	return ..()
 
 /obj/machinery/computer/shuttle/pod/proc/update_security_level(_, datum/security_level/new_level)

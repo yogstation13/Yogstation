@@ -31,6 +31,12 @@
 	result = /obj/item/reagent_containers/food/snacks/donut
 	category = CAT_PASTRY
 
+/datum/crafting_recipe/food/donut/on_craft_completion(mob/user, atom/result)
+	. = ..()
+	var/obj/item/reagent_containers/food/snacks/donut/donut_result = result
+	if(donut_result.is_frosted)
+		donut_result.reagents.add_reagent(/datum/reagent/consumable/sprinkles, 2)
+
 /datum/crafting_recipe/food/jellydonut
 	name = "Jelly Donut"
 	reqs = list(
@@ -406,7 +412,7 @@ datum/crafting_recipe/food/donut/meat
 	reqs = list(
 		/datum/reagent/consumable/sugar = 5,
 		/obj/item/reagent_containers/food/snacks/pastrybase = 1,
-		/datum/reagent/consumable/coffee = 5
+		/datum/reagent/consumable/coffee/hot = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/sugarcookie/spookycoffin
 	category = CAT_PASTRY

@@ -164,8 +164,7 @@
 	name = "Shuttle turret control";
 	pixel_x = 32;
 	pixel_y = -28;
-	req_access = null;
-	req_access_txt = "150"
+	req_access = list("syndicate")
 	},
 /obj/item/clothing/suit/armor/heavy/juggernaut,
 /obj/item/clothing/head/helmet/juggernaut,
@@ -366,12 +365,6 @@
 /obj/effect/mob_spawn/human/corpse/damaged,
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"cE" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/ruin/unpowered{
-	name = "\improper Russian Bunker";
-	noteleport = 1
-	})
 "cG" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/jawsoflife,
@@ -1050,7 +1043,7 @@ ab
 ac
 ac
 ac
-cE
+ab
 ab
 ab
 ab
@@ -1160,7 +1153,7 @@ aI
 aE
 Ni
 YQ
-pC
+YQ
 ab
 ab
 ab

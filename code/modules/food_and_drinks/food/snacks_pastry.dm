@@ -8,7 +8,7 @@
 	icon_state = "donut1"
 	bitesize = 5
 	bonus_reagents = list(/datum/reagent/consumable/sugar = 1)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/sugar = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 2)
 	filling_color = "#D2691E"
 	tastes = list("donut" = 1)
 	foodtype = JUNKFOOD | GRAIN | FRIED | SUGAR | BREAKFAST
@@ -27,7 +27,7 @@
 	is_frosted = TRUE
 	name = "frosted [name]"
 	icon_state = frosted_icon //delish!
-	reagents.add_reagent(/datum/reagent/consumable/sprinkles, 1)
+	reagents.add_reagent(/datum/reagent/consumable/sprinkles, 2)
 	filling_color = "#FF69B4"
 	return TRUE
 
@@ -579,7 +579,7 @@
 	desc = "Spooky! It's got delicious coffee flavouring!"
 	icon = 'icons/obj/halloween_items.dmi'
 	icon_state = "coffincookie"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/coffee/hot = 3)
 	tastes = list("cookie" = 2, "coffee" = 1, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/chococornet

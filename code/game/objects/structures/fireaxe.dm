@@ -278,6 +278,8 @@
 	desc = "There is a small label that reads \"For Emergency use only\". <BR>There are bolts under it's glass cover for easy disassembly using a wrench."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "spareid"
+
+	req_access = list(ACCESS_CAPTAIN)
 	alert = TRUE
 	armor = list(MELEE = 30, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
 	axe = FALSE

@@ -85,8 +85,7 @@
 "aU" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = null;
-	req_access_txt = "25"
+	req_access = list("bar")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -265,9 +264,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Storage";
-	req_access_txt = "25"
+	name = "Storage"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "jk" = (
@@ -385,8 +384,7 @@
 	pixel_y = 32
 	},
 /obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = null;
-	req_access_txt = "25"
+	req_access = list("bar")
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -455,9 +453,9 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Bedroom";
-	req_access_txt = "25"
+	name = "Bedroom"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "qR" = (
@@ -641,9 +639,9 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Backroom";
-	req_access_txt = "25"
+	name = "Backroom"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "xY" = (
@@ -708,9 +706,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Backroom";
-	req_access_txt = "25"
+	name = "Backroom"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
 "BT" = (
@@ -828,8 +826,7 @@
 /area/ruin/space/has_grav/powered/spacebar)
 "Gk" = (
 /obj/structure/closet/secure_closet/freezer/meat{
-	req_access = null;
-	req_access_txt = "25"
+	req_access = list("bar")
 	},
 /obj/structure/window{
 	dir = 4
@@ -852,9 +849,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)
 "GH" = (
-/obj/structure/closet/secure_closet/bar{
-	req_access_txt = "25"
-	},
+/obj/structure/closet/secure_closet/bar,
 /obj/item/gun/ballistic/revolver/russian,
 /obj/item/storage/box/dishdrive,
 /obj/effect/decal/cleanable/dirt,
@@ -1034,7 +1029,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -32;
-	req_access_txt = "0";
+	req_access = null;
 	use_power = 0
 	},
 /turf/open/floor/plasteel,
@@ -1091,9 +1086,9 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Solars";
-	req_access_txt = "25"
+	name = "Solars"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
 "NQ" = (
@@ -1106,9 +1101,9 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Kitchen";
-	req_access_txt = "25"
+	name = "Kitchen"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plasteel/cafeteria,
 /area/ruin/space/has_grav/powered/spacebar)
 "Ow" = (
@@ -1119,7 +1114,8 @@
 	id = "barshutters";
 	name = "Bar Shutters Control";
 	pixel_x = 25;
-	pixel_y = 24
+	pixel_y = 24;
+	req_access = list("bar")
 	},
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/spacebar)
@@ -1268,9 +1264,8 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
-/obj/machinery/door/airlock/external{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
 "TU" = (
@@ -1399,12 +1394,11 @@
 /turf/template_noop,
 /area/template_noop)
 "YY" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "25"
-	},
+/obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/bar,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/spacebar)
 "Zg" = (

@@ -11,8 +11,6 @@
 	premium = list(	/obj/item/hypospray = 5,
 					/obj/item/reagent_containers/glass/bottle/vial/libital = 10,
 					/obj/item/reagent_containers/glass/bottle/vial/aiuri = 10,
-					/obj/item/reagent_containers/glass/bottle/vial/styptic = 10,
-					/obj/item/reagent_containers/glass/bottle/vial/silver_sulfadiazine = 10,
 					/obj/item/reagent_containers/glass/bottle/vial/charcoal = 10,
 					/obj/item/reagent_containers/glass/bottle/vial/perfluorodecalin = 10,
 					/obj/item/reagent_containers/glass/bottle/vial/epi = 10,

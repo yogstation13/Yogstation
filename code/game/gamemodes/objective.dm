@@ -1573,7 +1573,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/break_machinery/finalize()
 	target_areas = list()
-	var/station_z = SSmapping.levels_by_trait(ZTRAIT_STATION)[1]
+	var/list/station_zs = SSmapping.levels_by_trait(ZTRAIT_STATION)
 	if(!target_obj_type) // Select our target machine if there is none pre-set
 		potential_target_types = list(
 			// SCIENCE
@@ -1597,7 +1597,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		var/iteration = 1
 		while(!target_obj_type && targets_len >= iteration)
 			for(var/obj/machinery/machine as anything in GLOB.machines)
-				if(machine.z == station_z && istype(machine, potential_target_types[iteration]))
+				if((machine.z in station_zs) && istype(machine, potential_target_types[iteration]) && (get_area(machine) in GLOB.the_station_areas))
 					target_obj_type = potential_target_types[iteration]
 					break
 			iteration++
@@ -1612,12 +1612,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	for(var/obj/machinery/machine as anything in GLOB.machines)
 		if(!istype(machine, target_obj_type))
 			continue
-		if(machine.z != station_z)
+		if(!(machine.z in station_zs))
 			continue
-		if(!istype(get_area(machine), /area))
+		if(!(get_area(machine) in GLOB.the_station_areas))
 			continue
-		if(istype(get_area(machine), /area/shuttle))
-			continue //no whiteship machines
 		eligible_machines |= machine
 
 	eligible_machines = shuffle(eligible_machines)
@@ -1664,7 +1662,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	optional = TRUE
 
 /datum/objective/gimmick/update_explanation_text()
-	var/selected_department = pick(list( //Select a department for department-based objectives
+	var/departments = list( //Select a department for department-based objectives
 		DEPT_SCIENCE,
 		DEPT_ENGINEERING,
 		DEPT_SECURITY,
@@ -1672,7 +1670,15 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		DEPT_SERVICE,
 		DEPT_SUPPLY,
 		DEPT_COMMAND
-	))
+	)
+
+	var/datum/job/J = SSjob.GetJob(owner.assigned_role)
+
+	for(var/department in J?.departments_list) //don't get departments to mess with that our our own department
+		var/datum/job_department/D = department
+		departments -= initial(D.department_name)
+
+	var/selected_department = pick(departments)
 
 	var/list/gimmick_list = world.file2list(GIMMICK_OBJ_FILE) //gimmick_objectives.txt is for objectives without a specific target/department/etc
 	gimmick_list.Add(world.file2list(DEPT_GIMMICK_OBJ_FILE))

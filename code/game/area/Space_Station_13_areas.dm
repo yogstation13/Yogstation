@@ -681,6 +681,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	flags_1 = NONE
 	ambience_index = AMBIENCE_ENGI
 	sound_environment = SOUND_AREA_SPACE
+	lights_always_start_on = TRUE
 	minimap_color = "#6b6b6b"
 	airlock_wires = /datum/wires/airlock/engineering
 
@@ -709,9 +710,17 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Starboard Quarter (SE) Solar Array"
 	icon_state = "panelsAS"
 
+/area/solar/starboard/aft/icemoon
+	name = "Southeast (SE) Geothermal Station" // it's a planetary station and not a ship, cardinal directions apply
+	uses_daylight = TRUE
+
 /area/solar/starboard/fore
 	name = "Starboard Bow (NE) Solar Array"
 	icon_state = "panelsFS"
+
+/area/solar/starboard/fore/icemoon
+	name = "Northeast (NE) Geothermal Station"
+	uses_daylight = TRUE
 
 /area/solar/port
 	name = "Port (W) Solar Array"
@@ -721,9 +730,17 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Port Quarter (SW) Solar Array"
 	icon_state = "panelsAP"
 
+/area/solar/port/aft/icemoon
+	name = "Southwest (SW) Geothermal Station"
+	uses_daylight = TRUE
+
 /area/solar/port/fore
 	name = "Port Bow (NW) Solar Array"
 	icon_state = "panelsFP"
+
+/area/solar/port/fore/icemoon
+	name = "Northwest (NW) Geothermal Station"
+	uses_daylight = TRUE
 
 
 //Solar Maint

@@ -27,7 +27,7 @@
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	armor = list(MELEE = 25, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 50, BIO = 100, RAD = 50, FIRE = 50, ACID = 50, WOUND = 10)
 	resistance_flags = FIRE_PROOF
-	var/adjusted = NORMAL_STYLE
+	var/adjusted = FALSE
 
 /obj/item/clothing/suit/hooded/explorer/Initialize(mapload)
 	. = ..()
@@ -42,15 +42,13 @@
 	set name = "Adjust Hood Style"
 	set category = null
 	set src in usr
-	switch(adjusted)
-		if(NORMAL_STYLE)
-			adjusted = ALT_STYLE
-			to_chat(usr, span_notice("You adjust the hood to wear it more casually."))
-			flags_inv &= ~HIDEHAIR
-		if(ALT_STYLE)
-			adjusted = NORMAL_STYLE
-			to_chat(usr, span_notice("You adjust the hood back to normal."))
-			flags_inv |= HIDEHAIR
+	adjusted = !adjusted
+	if(adjusted)
+		to_chat(usr, span_notice("You adjust the hood to wear it more casually."))
+		flags_inv &= ~HIDEHAIR
+	else
+		to_chat(usr, span_notice("You adjust the hood back to normal."))
+		flags_inv |= HIDEHAIR
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		H.update_hair()

@@ -49,8 +49,7 @@
 "dl" = (
 /obj/machinery/door/window{
 	dir = 8;
-	name = "Mass Driver";
-	req_access_txt = "22"
+	name = "Mass Driver"
 	},
 /obj/machinery/mass_driver{
 	dir = 4;
@@ -58,6 +57,9 @@
 	name = "Holy Driver"
 	},
 /obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/chapel_office{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -142,13 +144,13 @@
 /area/chapel/main)
 "gS" = (
 /obj/machinery/door/airlock/public/glass{
-	name = "Chapel Office";
-	req_access_txt = "22"
+	name = "Chapel Office"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "hp" = (
@@ -243,8 +245,7 @@
 /area/chapel/main)
 "mP" = (
 /obj/machinery/door/airlock{
-	name = "Crematorium";
-	req_access_txt = "27"
+	name = "Crematorium"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -261,6 +262,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/service/crematorium,
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "nb" = (
@@ -496,8 +498,10 @@
 "Gl" = (
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
-	name = "Coffin Storage";
-	req_access_txt = "22"
+	name = "Coffin Storage"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/chapel_office{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -567,8 +571,7 @@
 /area/chapel/main)
 "ML" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Crematorium Maintenance";
-	req_access_txt = "27"
+	name = "Crematorium Maintenance"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -579,12 +582,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/service/crematorium,
 /turf/open/floor/plating,
 /area/template_noop)
 "Ny" = (
 /obj/machinery/door/morgue{
 	name = "Confession Booth (Chaplain)";
-	req_access_txt = "22"
+	req_access = list("chapel_office")
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -624,8 +628,7 @@
 /area/chapel/main)
 "PO" = (
 /obj/machinery/door/airlock/maintenance{
-	name = "Chapel Maintenance";
-	req_access_txt = "12"
+	name = "Chapel Maintenance"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -645,14 +648,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/template_noop)
 "Qh" = (
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
 	dir = 8;
-	name = "Coffin Storage";
-	req_access_txt = "22"
+	name = "Coffin Storage"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/chapel_office{
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
@@ -664,7 +670,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "Sa" = (
-/obj/structure/altar_of_gods,
+/obj/structure/table/altar_of_gods,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "Sf" = (
@@ -851,7 +857,8 @@
 	icon_state = "airlock_control_standby";
 	id = "chapelgun";
 	name = "Mass Driver Controller";
-	pixel_x = 24
+	pixel_x = 24;
+	req_access = list("chapel_office")
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
