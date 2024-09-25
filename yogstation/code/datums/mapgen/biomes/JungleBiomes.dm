@@ -131,8 +131,10 @@
 		/obj/structure/flora/rock = 40,
 		/obj/structure/flora/rock/jungle = 40,
 		/obj/structure/flora/stump = 40,
-		/obj/structure/flora/tree/jungle = 20,
+		/obj/structure/flora/tree/jungle = 10,
+		/obj/structure/flora/tree/jungle/small = 10,
 		/obj/structure/herb/liberal_hats = 10,
+		/obj/structure/herb/lantern = 4,
 		/obj/structure/flytrap = 2,
 		/obj/structure/herb/explosive_shrooms = 1
 		)
@@ -207,7 +209,7 @@
 		/obj/structure/flora/ausbushes/leafybush = 20,
 		/obj/structure/flora/ausbushes/sparsegrass = 20,
 		/obj/structure/flora/ausbushes/fullgrass = 20,
-		/obj/structure/herb/lantern = 3,
+		/obj/structure/herb/lantern = 4,
 		/obj/structure/herb/fruit = 4,
 		/obj/structure/flytrap = 2,
 		/obj/structure/herb/explosive_shrooms = 1
