@@ -62,7 +62,7 @@
 	icon_state = "durrcell"
 	squeak_override = list('monkestation/sound/voice/durrcell-squeak.ogg'=1)
 
-/obj/item/toy/plush/eeble
+/obj/item/toy/plush/Eeble
 	name = "Eeble plushie"
 	attack_verb_simple = list("Eeble","prybar")
 	attack_verb_continuous = list("Eebles","prybars")
