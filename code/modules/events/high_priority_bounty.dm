@@ -3,7 +3,7 @@
 	typepath = /datum/round_event/high_priority_bounty
 	max_occurrences = 3
 	weight = 20
-	earliest_start = 10
+	earliest_start = 10 MINUTES
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL)
 	category = EVENT_CATEGORY_BUREAUCRATIC
