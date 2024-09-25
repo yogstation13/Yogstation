@@ -132,7 +132,7 @@
 	icon_state = "ergo_chair"
 	anchored = FALSE
 
-/obj/structure/chair/comfy/halflife/ergo/Moved()
+/obj/structure/chair/comfy/halflife/ergo/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	if(has_gravity())
 		playsound(src, 'sound/effects/roll.ogg', 100, TRUE)
@@ -181,7 +181,7 @@
 
 // Office Chairs //
 
-/obj/structure/chair/office/Moved()
+/obj/structure/chair/office/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	. = ..()
 	if(has_gravity())
 		playsound(src, 'sound/effects/roll.ogg', 100, TRUE)

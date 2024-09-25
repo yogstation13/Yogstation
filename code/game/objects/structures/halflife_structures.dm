@@ -148,7 +148,7 @@
 
 // TG code edit to add a check for blocked ladders //
 
-/obj/structure/ladder/halflife/use(mob/user, is_ghost=FALSE)
+/obj/structure/ladder/halflife/use(mob/user, is_ghost=FALSE, going_up = TRUE)
 	if (!is_ghost && !in_range(src, user))
 		return
 
