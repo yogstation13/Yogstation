@@ -6,7 +6,7 @@ export const darkened_flash: FeatureToggle = {
   category: 'GAMEPLAY',
   description: multiline`
     When toggled, being flashed will show a dark screen rather than a
-    bright one.
+    bright one. This also disables the divine warning visual.
   `,
   component: CheckboxInput,
 };
