@@ -474,17 +474,16 @@
 /datum/strip_menu/ui_status(mob/user, datum/ui_state/state)
 	. = ..()
 
-	if (iscarbon(usr) || iscyborg(usr))
+	if (isliving(user))
 		var/mob/living/living_user = user
 
 		if (
-			user.stat == CONSCIOUS \
-			&& living_user.body_position != LYING_DOWN \
+			. == UI_UPDATE \
+			&& user.stat == CONSCIOUS \
+			&& living_user.body_position == LYING_DOWN \
 			&& user.Adjacent(owner)
 		)
 			return UI_INTERACTIVE
-
-	return min(., UI_UPDATE) // If ..() == UI_INTERACTIVE, return UI_UPDATE
 
 /// Creates an assoc list of keys to /datum/strippable_item
 /proc/create_strippable_list(types)
