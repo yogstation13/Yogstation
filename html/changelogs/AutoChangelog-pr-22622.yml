@@ -1,6 +1,0 @@
-author: "Moltijoe"
-delete-after: true 
-changes: 
-  - rscadd: "Can now mute speech sounds via a preference"
-  - rscadd: "Can now control the volume of speech sounds via a preference"
-  - rscadd: "Can now select the voice a character has"
