@@ -282,6 +282,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 /// Creates an icon from the preview outfit.
 /// Custom implementors of `get_preview_icon` should use this, as the
 /// result of `get_preview_icon` is expected to be the completed version.
+
+
 /datum/antagonist/proc/render_preview_outfit(datum/outfit/outfit, mob/living/carbon/human/dummy)
 	dummy = dummy || new /mob/living/carbon/human/dummy/consistent
 	dummy.equipOutfit(outfit, visualsOnly = TRUE)
@@ -307,12 +309,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	return icon
 
+
 /// Returns the icon to show on the preferences menu.
 /datum/antagonist/proc/get_preview_icon()
 	if (isnull(preview_outfit))
 		return null
 
 	return finish_preview_icon(render_preview_outfit(preview_outfit))
+
+
 
 // List if ["Command"] = CALLBACK(), user will be appeneded to callback arguments on execution
 /datum/antagonist/proc/get_admin_commands()
