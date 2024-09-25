@@ -544,3 +544,25 @@
       greater then or equal to 10 GWs
   flleeppyy:
   - rscdel: qc some jukebox songs
+2024-09-25:
+  Absolucy, Kashargul:
+  - qol: Hides the delete button on the main chat tab.
+  - qol: You can now reorder chat tabs.
+  CannibalHunter:
+  - rscadd: Added new gravestone decor for mappers
+  - rscadd: Added several admin plushies to the monkeshop!
+  Gw0sty:
+  - rscadd: Adds syndicate boxes for revivers, anti-stun, and anti-drop cybernetics
+      with a cyberlink also.
+  - bugfix: Fixed the Nuclear and Assault Operatives cybernetics by giving them syndicate
+      box bundles instead
+  Shoddd:
+  - bugfix: Vine Tangle for Venus Human traps works again.
+  - rscadd: Vine Tangle heals Venus Human Traps.
+  TTNT789:
+  - rscadd: Eeble Plushie
+  Wisemonster:
+  - balance: Replaced the blueshield's security belt with a sligtly larger, empty
+      one that cannot hold batons. Moved their pepperspray to their locker.
+  - balance: rReduced the amount of scrubbers affected by the overflow event down
+      from 50% to 20%

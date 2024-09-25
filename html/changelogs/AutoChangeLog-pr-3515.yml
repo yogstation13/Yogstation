@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "rReduced the amount of scrubbers affected by the overflow event down from 50% to 20%"
