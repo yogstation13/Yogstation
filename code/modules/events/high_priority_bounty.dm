@@ -4,7 +4,7 @@
 	weight = 20
 	earliest_start = 0
 	track = EVENT_TRACK_OBJECTIVES
-	tags = list(TAG_COMMUNAL)
+	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
 	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "provides a high priority cargo bounty."
 

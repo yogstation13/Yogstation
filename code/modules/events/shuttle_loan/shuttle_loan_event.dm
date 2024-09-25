@@ -1,13 +1,15 @@
 
 /datum/round_event_control/shuttle_loan
 	name = "Shuttle Loan"
+	description = "If cargo accepts the offer, fills the shuttle with loot and/or enemies."
 	typepath = /datum/round_event/shuttle_loan
 	max_occurrences = 3
 	earliest_start = 7 MINUTES
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMMUNAL, TAG_EXTERNAL)
 	category = EVENT_CATEGORY_BUREAUCRATIC
-	description = "If cargo accepts the offer, fills the shuttle with loot and/or enemies."
-	///The types of loan events already run (and to be excluded if the event triggers).
 	admin_setup = list(/datum/event_admin_setup/listed_options/shuttle_loan)
+	///The types of loan events already run (and to be excluded if the event triggers).
 	var/list/run_situations = list()
 
 /datum/round_event_control/shuttle_loan/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
