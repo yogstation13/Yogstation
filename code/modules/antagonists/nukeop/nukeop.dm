@@ -130,18 +130,20 @@
 /datum/antagonist/nukeop/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/captain = new
 	var/icon/final_icon = render_preview_outfit(preview_outfit, captain)
-	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, -8, 0)
-	final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, 8, 0)
+	//final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, -8, 0)
+	//final_icon.Blend(make_assistant_icon(), ICON_UNDERLAY, 8, 0)
+	qdel(captain)
 
 	return finish_preview_icon(final_icon)
 
+/*
 /datum/antagonist/nukeop/proc/make_assistant_icon()
 	var/mob/living/carbon/human/dummy/assistant = new
 	var/icon/assistant_icon = render_preview_outfit(preview_outfit_behind, assistant)
 	assistant_icon.ChangeOpacity(0.5)
 
 	return assistant_icon
-
+*/
 
 /datum/outfit/nuclear_operative
 	name = "Nuclear Operative (Preview only)"
