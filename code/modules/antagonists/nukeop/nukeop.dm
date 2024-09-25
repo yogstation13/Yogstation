@@ -126,7 +126,7 @@
 	else
 		to_chat(admin, span_danger("No valid nuke found!"))
 
-
+/*
 /datum/antagonist/nukeop/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/captain = new
 	var/icon/final_icon = render_preview_outfit(preview_outfit, captain)
@@ -136,7 +136,7 @@
 
 	return finish_preview_icon(final_icon)
 
-/*
+
 /datum/antagonist/nukeop/proc/make_assistant_icon()
 	var/mob/living/carbon/human/dummy/assistant = new
 	var/icon/assistant_icon = render_preview_outfit(preview_outfit_behind, assistant)

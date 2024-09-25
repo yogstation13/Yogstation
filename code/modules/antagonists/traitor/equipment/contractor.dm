@@ -7,7 +7,7 @@
 	give_objectives = TRUE /// We give them their own custom objective.
 	show_in_antagpanel = FALSE /// Not a proper/full antag.
 	should_equip = FALSE /// Don't give them an uplink.
-
+	preview_outfit = null
 	var/datum/team/contractor_team/contractor_team
 
 /// Team for storing both the contractor and their support unit - only really for the HUD and admin logging.
