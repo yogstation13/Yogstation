@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/darkspawn
-	name = "Darkspawn"
+	name = "Darkspawns"
 	tags = list(TAG_SPOOKY, TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_MAGICAL)
 	antag_flag = ROLE_DARKSPAWN
 	antag_datum = /datum/antagonist/darkspawn

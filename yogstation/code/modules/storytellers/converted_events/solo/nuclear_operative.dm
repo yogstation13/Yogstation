@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/solo/nuclear_operative
-	name = "Roundstart Nuclear Operative"
+	name = "Nuclear Assault"
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_EXTERNAL)
 	antag_flag = ROLE_OPERATIVE
 	antag_datum = /datum/antagonist/nukeop

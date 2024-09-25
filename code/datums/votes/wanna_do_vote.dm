@@ -13,9 +13,9 @@
 	for(var/datum/round_event_control/antagonist/solo/event as anything in subtypesof(/datum/round_event_control/antagonist/solo))
 		if(!initial(event.roundstart))
 			continue
-		if(!initial(event.antag_flag))
+		if(!initial(event.name))
 			continue
-		default_choices |= initial(event.antag_flag)
+		default_choices |= initial(event.name)
 	
 	sort_list(default_choices, cmp = /proc/cmp_text_dsc)
 
