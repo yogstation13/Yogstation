@@ -47,7 +47,7 @@ GLOBAL_PROTECT(mentor_verbs)
 	for(var/client/C in GLOB.mentors)
 		if(C.holder) 
 			continue
-		if(C?.mentor_datum?.position)
+		if(C.mentor_datum.position)
 			position = C.mentor_datum.position
 		msg += "\t[C] is a [position]"
 
@@ -104,7 +104,7 @@ GLOBAL_PROTECT(mentor_verbs)
 			return
 	mentor_position = mentor_datum.position
 	remove_mentor_verbs()
-	mentor_datum = null
+	QDEL_NULL(mentor_datum)
 	GLOB.mentors -= src
 	add_verb(src, /client/proc/rementor)
 	to_chat(src, span_interface("You are now a normal player."), confidential=TRUE)
