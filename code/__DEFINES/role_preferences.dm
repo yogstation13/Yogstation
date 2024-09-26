@@ -67,7 +67,6 @@
 GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_TRAITOR = /datum/antagonist/traitor,
 	ROLE_REBEL = /datum/antagonist/nukeop,
-	ROLE_CLOWNOP = /datum/antagonist/nukeop/clownop,
 	ROLE_CHANGELING	= /datum/antagonist/changeling,
 	ROLE_WIZARD = /datum/antagonist/wizard,
 	ROLE_RAGINMAGES	= /datum/antagonist/wizard,

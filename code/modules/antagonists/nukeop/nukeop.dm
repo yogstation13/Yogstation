@@ -335,10 +335,7 @@
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
 				var/datum/mind/M = H.mind
 				if(M && M.has_antag_datum(/datum/antagonist/nukeop))
-					if(M.has_antag_datum(/datum/antagonist/nukeop/clownop) || M.has_antag_datum(/datum/antagonist/nukeop/leader/clownop))
-						SSachievements.unlock_achievement(/datum/achievement/greentext/clownop, H.client)
-					else
-						SSachievements.unlock_achievement(/datum/achievement/greentext/nukewin, H.client)
+					SSachievements.unlock_achievement(/datum/achievement/greentext/nukewin, H.client)
 
 
 /datum/team/nuclear/antag_listing_name()

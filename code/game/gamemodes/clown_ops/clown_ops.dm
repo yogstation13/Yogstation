@@ -7,9 +7,6 @@
 	<span class='danger'>Operatives</span>: Secure the nuclear authentication disk and use your bananium fission explosive to HONK the station.\n\
 	<span class='notice'>Crew</span>: Defend the nuclear authentication disk and ensure that it leaves with you on the emergency shuttle."
 
-	operative_antag_datum_type = /datum/antagonist/nukeop/clownop
-	leader_antag_datum_type = /datum/antagonist/nukeop/leader/clownop
-
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
