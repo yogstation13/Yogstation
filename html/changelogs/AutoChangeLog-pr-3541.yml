@@ -1,6 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - rscadd: "Ponys are now orderable from cargo"
-  - rscadd: "The ranger poncho is now purchable in the loadout menu for 5000 monkecoins"
-  - rscadd: "New Revolver and Lever action Rifle now orderable from cargo"

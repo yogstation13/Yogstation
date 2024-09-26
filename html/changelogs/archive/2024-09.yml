@@ -572,12 +572,22 @@
   - rscdel: Changelings can no longer make flesh spiders.
   - rscadd: Instead, changelings can now birth teratomas, monkeylike menaces with
       the goal of fucking everything up!
+  - bugfix: Ensured some of the plant genes had proper icons in the Seed Extractor
+      UI.
   AlbertNanotracen:
   - bugfix: self respiration messages should no longer spam chat as often
+  Shoddd:
+  - rscadd: Ponys are now orderable from cargo
+  - rscadd: The ranger poncho is now purchable in the loadout menu for 5000 monkecoins
+  - rscadd: New Revolver and Lever action Rifle now orderable from cargo
   TTNT789:
   - bugfix: Eeble plushie now adds to loudout when bought (im stupid i know)
   ThePooba:
   - bugfix: gary doesnt get aa anymore
+  Wisemonster:
+  - bugfix: Fixed the doubled blueshields lockers on blueshift
+  - balance: Blueshields are now taken into account for spawning various storyteller
+      antag events.
   flleeppyy:
   - rscadd: If you are the chaplain, or have the Spiritual trait, you will be divinely
       warned that it is almost time to go.
