@@ -194,13 +194,13 @@
 		return
 
 	if(prob(35))
-		var/message = pick(
+		var/list/messages = list(
 			"You feel your life force being drained!", 
 			"It hurts!", 
 			"AAAAAAAAAAAAAAAAAAAAAAAAAAA",
 			"You stare into [A]'s expressionless skull and see only fire and death."
 			)
-		to_chat(D, span_userdanger(message))
+		to_chat(D, span_userdanger(pick(message)))
 	if(prob(25))
 		D.emote("scream")
 
