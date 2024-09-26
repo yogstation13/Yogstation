@@ -80,10 +80,12 @@
 /datum/martial_art/explosive_fist/proc/explosive_disarm(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return
+	D.apply_status_effect(STATUS_EFFECT_EXPLOSION_PRIME)
+
 	var/zone_selected = A.zone_selected
 	var/punch_damage = A.get_punchdamagehigh()
-	damage(D, (punch_damage * 3), 0, 0, zone_selected) //21 burn damage
-	D.Knockdown(((punch_damage * 5)/10) SECONDS)	//3.5 seconds (baseline (7*5)/10 seconds)
+	damage(D, (punch_damage * 2), 0, 0, zone_selected) //14 burn damage
+	D.Knockdown(((punch_damage * 4)/10) SECONDS)	//3.5 seconds (baseline (7*5)/10 seconds)
 
 	playsound(D, get_sfx(SFX_EXPLOSION), 50, TRUE, -1)
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
@@ -159,7 +161,7 @@
 		return
 	if(A.get_item_by_slot(ITEM_SLOT_HEAD)) //Helmet on, head go bonk
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)			//BONK
-		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, TRUE, -1)
+		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
 		var/selected_zone = A.zone_selected
 		var/punch_damage = (A.get_punchdamagehigh() * 2.5) +  7.5
 		damage(D, 0, punch_damage, punch_damage * 2, selected_zone)
@@ -173,7 +175,7 @@
 			D.grabbedby(A, 1)
 		D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), span_userdanger("[A] violently grabs your neck!"))
 		log_combat(A, D, "grabs by the neck(Explosive Fist)")
-		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
+		playsound(get_turf(D), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		A.adjust_fire_stacks(3)
 		D.adjust_fire_stacks(3)
 		A.ignite_mob()
@@ -190,7 +192,12 @@
 	if(!can_suck_life(A, D))
 		return
 	if(prob(35))
-		var/message = pick("You feel your life force being drained!", "It hurts!", "You stare into [A]'s expressionless skull and see only fire and death.")
+		var/message = pick(
+			"You feel your life force being drained!", 
+			"It hurts!", 
+			"AAAAAAAAAAAAAAAAAAAAAAAAAAA",
+			"You stare into [A]'s expressionless skull and see only fire and death."
+			)
 		to_chat(D, span_userdanger(message))
 	if(prob(25))
 		D.emote("scream")
@@ -217,10 +224,10 @@
 
 	combined_msg += "<b><i>You try to remember some basic actions from the explosive fist art.</i></b>"
 
-	combined_msg += span_notice("<b>All Intents</b> Will prime the target with explosive plasma.")
-	combined_msg += span_notice("<b>Harm Intent</b> Will detonate the plasma, creating a fire explosion scaling with how many times the target was primed.")
+	combined_msg += span_notice("<b>All Intents</b> Will <b>prime</b> the target with explosive plasma.")
+	combined_msg += span_notice("<b>Harm Intent</b> Will detonate the plasma, creating a fire explosion scaling with how many times the target was <b>primed</b>.")
 
-	combined_msg += "[span_notice("Explosive disarm")]: Disarm Disarm. Deals damage to your target. Also throws your target away and knocking them down for a short duration."
+	combined_msg += "[span_notice("Explosive disarm")]: Disarm Disarm. Deals damage to your target and applies a stack of <b>primed</b>. Also throws your target away and knocking them down for a short duration."
 	combined_msg += "[span_notice("Life force trade")]: Grab Harm. If wearing headwear, you deal considerable brute and stamina damage to the target. If not wearing headwear, you will instantly grab the target by the neck and start draining life from them."
 	
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
@@ -244,7 +251,7 @@
 	/// How potent this effect is
 	var/level = 0
 
-/datum/status_effect/explosion_prime/initialize()
+/datum/status_effect/explosion_prime/New(list/arguments)
 	. = ..()
 	increase_level()
 
