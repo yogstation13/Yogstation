@@ -13,7 +13,7 @@
 	var/nukeop_outfit = /datum/outfit/rebel
 	can_hijack = HIJACK_HIJACKER //Alternative way to wipe out the station.
 
-	preview_outfit = /datum/outfit/rebel
+	preview_outfit = /datum/outfit/rebel_preview
 
 	/// In the preview icon, the nukies who are behind the leader
 	//var/preview_outfit_behind = /datum/outfit/rebel
@@ -144,6 +144,14 @@
 
 	return assistant_icon
 */
+
+/datum/outfit/rebel_preview
+	name = "Rebel (Preview only)"
+
+	uniform = /obj/item/clothing/under/citizen/rebel
+	suit = /obj/item/clothing/suit/armor/civilprotection
+	head = /obj/item/clothing/head/beanie/black
+	gloves = /obj/item/clothing/gloves/fingerless
 
 /datum/outfit/nuclear_operative
 	name = "Nuclear Operative (Preview only)"
