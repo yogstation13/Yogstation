@@ -248,7 +248,7 @@
 /atom/movable/screen/alert/status_effect/explosion_prime
 	name = "Primed"
 	desc = "You've been primed to explode."
-	icon_state = "slime_clonedecay"
+	icon_state = "overheating"
 
 /datum/status_effect/explosion_prime
 	status_type = STATUS_EFFECT_REFRESH
