@@ -85,7 +85,6 @@
 	to_chat(A, span_warning("You stab [D] with a hidden blade!"))
 	to_chat(D, span_userdanger("You are suddenly stabbed with a blade!"))
 	A.playsound_local(A, 'sound/weapons/batonextend.ogg', 35, TRUE) //sound only to you as audio feedback that you stabbed them
-	A.playsound_local(D, 'sound/weapons/bladeslice.ogg', 25, TRUE)
 
 /*---------------------------------------------------------------
 
