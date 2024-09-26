@@ -272,7 +272,7 @@
 /**
   * Generates a list of resources / materials available to this Exosuit Fab
   *
-  * Returns null if there is no material container available.B
+  * Returns null if there is no material container available.
   * List format is list(material_name = list(amount = ..., ref = ..., etc.))
   */
 /obj/machinery/mecha_part_fabricator/proc/output_available_resources()
