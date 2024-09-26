@@ -8,7 +8,6 @@
 	job_rank = ROLE_TRAITOR
 	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/rebel
-	preview_outfit = /datum/outfit/rebel
 	show_in_antagpanel = TRUE
 	var/special_role = ROLE_TRAITOR
 	var/employer = "Lambda"
