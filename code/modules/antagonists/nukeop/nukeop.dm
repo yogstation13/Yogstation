@@ -170,7 +170,6 @@
 	nukeop_outfit = /datum/outfit/rebel
 	always_new_team = TRUE
 	var/title
-	preview_outfit = null
 	// = /datum/outfit/rebel
 	
 /datum/antagonist/nukeop/leader/memorize_code()
@@ -226,27 +225,6 @@
 /datum/outfit/nuclear_operative/leader
 	name = "Nuclear Operative Leader (Preview only)"
 	neck = /obj/item/clothing/neck/cloak/nukie
-
-/datum/antagonist/nukeop/lone
-	name = "Lone Operative"
-	always_new_team = TRUE
-	send_to_spawnpoint = FALSE //Handled by event
-	nukeop_outfit = /datum/outfit/syndicate/full
-	preview_outfit = null
-
-/datum/antagonist/nukeop/lone/assign_nuke()
-	if(nuke_team && !nuke_team.tracked_nuke)
-		nuke_team.memorized_code = random_nukecode()
-		var/obj/machinery/nuclearbomb/selfdestruct/nuke = locate() in GLOB.nuke_list
-		if(nuke)
-			nuke_team.tracked_nuke = nuke
-			if(nuke.r_code == "ADMIN")
-				nuke.r_code = nuke_team.memorized_code
-			else //Already set by admins/something else?
-				nuke_team.memorized_code = nuke.r_code
-		else
-			stack_trace("Station self destruct not found during lone op team creation.")
-			nuke_team.memorized_code = null
 
 /datum/antagonist/nukeop/reinforcement
 	send_to_spawnpoint = FALSE

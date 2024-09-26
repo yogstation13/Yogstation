@@ -115,7 +115,6 @@
 /datum/asset/spritesheet/antagonists/create_spritesheets()
 	// Antagonists that don't have a dynamic ruleset, but do have a preference
 	var/static/list/non_ruleset_antagonists = list(
-		ROLE_LONE_OPERATIVE = /datum/antagonist/nukeop/lone,
 	)
 	
 	var/list/antagonists = GLOB.special_roles.Copy()
