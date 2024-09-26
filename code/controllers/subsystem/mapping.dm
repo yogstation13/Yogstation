@@ -128,7 +128,6 @@ SUBSYSTEM_DEF(mapping)
 	render_offset_blacklist = list()
 	critical_planes = list()
 	create_plane_offsets(0, 0)
-	initialize_biomes()
 	loadWorld()
 	require_area_resort()
 	process_teleport_locs()			//Sets up the wizard teleport locations
@@ -760,12 +759,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	unused_turfs.Cut()
 	used_turfs.Cut()
 	reserve_turfs(clearing, await = TRUE)
-
-///Initialize all biomes, assoc as type || instance
-/datum/controller/subsystem/mapping/proc/initialize_biomes()
-	for(var/biome_path in subtypesof(/datum/biome))
-		var/datum/biome/biome_instance = new biome_path()
-		biomes[biome_path] += biome_instance
 
 /datum/controller/subsystem/mapping/proc/build_minimaps()
 	to_chat(world, span_boldannounce("Building minimaps..."))
