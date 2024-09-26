@@ -10,7 +10,7 @@
 	id =  MARTIALART_EXPLOSIVEFIST
 	help_verb = /mob/living/carbon/human/proc/explosive_fist_help
 	martial_traits = list(TRAIT_RESISTHEAT, TRAIT_IGNOREDAMAGESLOWDOWN)
-	var/succ_damage = 4	//Our life suck damage. Increases the longer it's held.
+	var/succ_damage = 2	//Our life suck damage. Increases the longer it's held.
 
 /datum/martial_art/explosive_fist/can_use(mob/living/carbon/human/H)
 	if(!H.combat_mode) //gotta be combat mode
@@ -85,10 +85,10 @@
 	var/zone_selected = A.zone_selected
 	var/punch_damage = A.get_punchdamagehigh()
 	damage(D, (punch_damage * 2), 0, 0, zone_selected) //14 burn damage
-	D.Knockdown(((punch_damage * 4)/10) SECONDS)	//3.5 seconds (baseline (7*5)/10 seconds)
+	D.Knockdown(((punch_damage * 4)/10) SECONDS)	//2.8 seconds (baseline (7*4)/10 seconds)
 
 	playsound(D, get_sfx(SFX_EXPLOSION), 50, TRUE, -1)
-	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
+	A.do_attack_animation(D, ATTACK_EFFECT_MECHFIRE)
 	log_combat(A, D, "blasts(Explosive Fist)")
 	D.visible_message(span_danger("[A] blasts [D]!"), span_userdanger("[A] blasts you!"))
 
@@ -111,7 +111,7 @@
 	var/level = status.level
 	qdel(status) //we're done with it now, get rid of it so they can't use it again
 
-	A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
+	A.do_attack_animation(D, ATTACK_EFFECT_MECHFIRE)
 	var/punch_damage = A.get_punchdamagehigh() + level
 
 	var/turf/center = get_turf(D)
@@ -175,6 +175,7 @@
 			D.grabbedby(A, 1)
 		D.visible_message(span_danger("[A] violently grabs [D]'s neck!"), span_userdanger("[A] violently grabs your neck!"))
 		log_combat(A, D, "grabs by the neck(Explosive Fist)")
+		playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 		playsound(get_turf(D), 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		A.adjust_fire_stacks(3)
 		D.adjust_fire_stacks(3)
@@ -191,6 +192,7 @@
 		return
 	if(!can_suck_life(A, D))
 		return
+
 	if(prob(35))
 		var/message = pick(
 			"You feel your life force being drained!", 
@@ -201,11 +203,15 @@
 		to_chat(D, span_userdanger(message))
 	if(prob(25))
 		D.emote("scream")
+
+	playsound(get_turf(D), 'yogstation/sound/magic/devour_will_form.ogg', 10, TRUE)
+	to_chat(A, span_notice("You drain lifeforce from [D]"))
+
 	D.apply_status_effect(STATUS_EFFECT_EXPLOSION_PRIME) //prime them for big boom
 	D.adjustFireLoss(succ_damage / 2) //doesn't do much damage, more of a healing tool
-	D.adjustStaminaLoss(succ_damage * 2)		//YOU ARE HELPLESS TO RESIST THE SPOOKY SKELETON
+	D.adjustStaminaLoss(succ_damage * 2) //YOU ARE HELPLESS TO RESIST THE SPOOKY SKELETON
+
 	A.heal_ordered_damage(succ_damage, list(BURN, BRUTE, STAMINA, OXY), BODYPART_ANY)
-	to_chat(A, span_notice("You drain lifeforce from [D]"))
 	succ_damage *= 1.5	//50% increased damage per succ
 	proceed_lifeforce_trade(A, D)
 
