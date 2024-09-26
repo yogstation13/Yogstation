@@ -10,7 +10,6 @@
 	min_ambience_cooldown = 20 SECONDS
 	max_ambience_cooldown = 35 SECONDS
 
-	map_generator = /datum/map_generator/dungeon_generator/maintenance
 
 /area/procedurally_generated/maintenance/department/chapel
 	name = "Chapel Maintenance"
@@ -169,5 +168,4 @@
 /area/procedurally_generated/maintenance/the_backrooms
 	name = "The Backrooms"
 	requires_power = FALSE
-	map_generator = /datum/map_generator/dungeon_generator/maintenance/backrooms
 	
