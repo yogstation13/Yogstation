@@ -197,6 +197,8 @@
 
 #define STATUS_EFFECT_MASQUERADE /datum/status_effect/masquerade
 
+#define STATUS_EFFECT_EXPLOSION_PRIME /datum/status_effect/explosion_prime
+
 /////////////
 //  SLIME  //
 /////////////
