@@ -111,6 +111,8 @@
 /obj/item/ammo_box/magazine/m10mm/martial
 	max_ammo = 1
 
+/obj/item/gun/ballistic/automatic/pistol/martial/afterattack()
+
 /obj/item/gun/ballistic/automatic/pistol/martial/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	return FALSE
 
