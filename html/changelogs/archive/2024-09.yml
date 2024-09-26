@@ -569,6 +569,11 @@
 2024-09-26:
   Absolucy:
   - bugfix: Fixed some minor errors and bugs with bloodsuckers.
+  - rscdel: Changelings can no longer make flesh spiders.
+  - rscadd: Instead, changelings can now birth teratomas, monkeylike menaces with
+      the goal of fucking everything up!
+  AlbertNanotracen:
+  - bugfix: self respiration messages should no longer spam chat as often
   TTNT789:
   - bugfix: Eeble plushie now adds to loudout when bought (im stupid i know)
   ThePooba:
