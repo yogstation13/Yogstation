@@ -111,6 +111,10 @@
 /obj/item/ammo_box/magazine/m10mm/martial
 	max_ammo = 1
 
+/obj/item/gun/ballistic/automatic/pistol/martial/pre_attack(atom/target, mob/living/user, params)
+	afterattack(target, user, FALSE, params) //call afterattack so the gun still shoots
+	return TRUE //prevent the regular attack
+
 /obj/item/gun/ballistic/automatic/pistol/martial/eject_magazine(mob/user, display_message = TRUE, obj/item/ammo_box/magazine/tac_load = null)
 	return FALSE
 
@@ -156,16 +160,13 @@
 	combined_msg += "[span_notice("Finger gun")]: Harm Grab. Briefly paralyse your target and place a stealthy version of a stechkin in your hand."
 
 	combined_msg += "[span_notice("Injection")]: Your disarm intent will inject chemicals in a determined order."
-	combined_msg += span_notice("The chemicals that will be injected in this order are:")
+	combined_msg += "<i>A chemical will only be injected if the target has under half the amount of injected units in them.</i>"
 	for(var/datum/reagent/chemical as anything in helper.injection_chems)
-		combined_msg += span_notice("[helper.injection_chems[chemical]]u of [initial(chemical.name)]. But only if there is less than [helper.injection_chems[chemical]/2]u in the target already.")
+		combined_msg += span_notice("[initial(chemical.name)]: [helper.injection_chems[chemical]]u.")
 	combined_msg += span_notice("If none of the above chemicals are injected, you will default to [helper.injection_chems[helper.default_chem]]u of [initial(helper.default_chem.name)].")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
 	qdel(helper)
 
-#undef PRE_DAGGER_COMBO
 #undef DAGGER_COMBO 
-#undef PRE_INJECTION_COMBO 
-#undef INJECTION_COMBO 
 #undef FINGERGUN_COMBO 
