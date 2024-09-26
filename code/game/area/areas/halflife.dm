@@ -13,6 +13,7 @@
 	static_lighting = TRUE
 	outdoors = TRUE
 	uses_daylight = TRUE
+	daylight_multiplier = 0.7
 	base_lighting_alpha = 0
 	sound_environment = SOUND_ENVIRONMENT_CITY
 	light_power = 0.1
