@@ -7100,6 +7100,7 @@
 #include "monkestation\code\modules\jobs\job_types\security_assistant.dm"
 #include "monkestation\code\modules\jobs\job_types\skeleton.dm"
 #include "monkestation\code\modules\jobs\job_types\yellowclown.dm"
+#include "monkestation\code\modules\library\bookcase.dm"
 #include "monkestation\code\modules\library\skill_learning\job_skillchips\shaft_miner.dm"
 #include "monkestation\code\modules\liquids\drains.dm"
 #include "monkestation\code\modules\liquids\height_floors.dm"

@@ -452,7 +452,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/seedvault)
 "bj" = (

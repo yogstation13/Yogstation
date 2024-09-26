@@ -1,26 +1,23 @@
-/obj/item/chicken_book
+/obj/item/book/manual/chicken_encyclopedia
 	name = "chicken encyclopedia"
-	desc = "The exciting sequel to the encyclopedia of twenty first century trains!"
+	desc = "The exciting sequel to the encyclopedia of 21st century trains!"
 	icon = 'monkestation/icons/obj/ranching.dmi'
 	icon_state = "chicken_book"
+	unique = TRUE
 
-/obj/item/chicken_book/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/book/manual/chicken_encyclopedia/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RanchingEncyclopedia")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/obj/item/chicken_book/ui_act(action, list/params)
-	if(..())
-		return
-
-/obj/item/chicken_book/ui_assets(mob/user)
+/obj/item/book/manual/chicken_encyclopedia/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/chicken_book),
 	)
 
-/obj/item/chicken_book/ui_static_data(mob/user)
+/obj/item/book/manual/chicken_encyclopedia/ui_static_data(mob/user)
 	var/list/data = list()
 	var/list/chicken_list = list()
 	for(var/datum/mutation/ranching/chicken/chicken as anything in subtypesof(/datum/mutation/ranching/chicken))

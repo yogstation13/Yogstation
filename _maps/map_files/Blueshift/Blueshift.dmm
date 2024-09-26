@@ -93,8 +93,8 @@
 	dir = 9
 	},
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/botanical_lexicon,
-/obj/item/chicken_book,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/chicken_encyclopedia,
 /turf/open/floor/iron/dark/herringbone,
 /area/station/common/night_club/back_stage)
 "abG" = (
@@ -1995,10 +1995,10 @@
 /obj/effect/turf_decal/trimline/green/filled/corner{
 	dir = 8
 	},
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -13469,7 +13469,7 @@
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/machinery/light/directional/west,
 /obj/structure/disposalpipe/segment,
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "cCM" = (
@@ -28434,7 +28434,7 @@
 "fuX" = (
 /obj/structure/window/spawner/directional/south,
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "fuY" = (
@@ -41549,7 +41549,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "hZP" = (
@@ -65653,8 +65653,8 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
 	},
-/obj/item/botanical_lexicon,
-/obj/item/chicken_book,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/chicken_encyclopedia,
 /turf/open/floor/iron/dark/herringbone,
 /area/station/common/night_club/back_stage)
 "mKX" = (
@@ -72671,7 +72671,7 @@
 /area/station/security/checkpoint/supply)
 "ofS" = (
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "ofT" = (
@@ -78596,8 +78596,8 @@
 	dir = 10
 	},
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/botanical_lexicon,
-/obj/item/chicken_book,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/chicken_encyclopedia,
 /turf/open/floor/iron/dark/herringbone,
 /area/station/common/night_club/back_stage)
 "pmq" = (
@@ -83799,8 +83799,8 @@
 "qoo" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/north,
 /obj/structure/closet/secure_closet/hydroponics,
-/obj/item/botanical_lexicon,
-/obj/item/chicken_book,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/chicken_encyclopedia,
 /turf/open/floor/iron/dark/herringbone,
 /area/station/common/night_club/back_stage)
 "qow" = (
@@ -84644,10 +84644,10 @@
 	name = "hallway camera"
 	},
 /obj/machinery/feed_machine,
-/obj/item/chicken_book,
-/obj/item/chicken_book,
-/obj/item/chicken_book,
-/obj/item/chicken_book,
+/obj/item/book/manual/chicken_encyclopedia,
+/obj/item/book/manual/chicken_encyclopedia,
+/obj/item/book/manual/chicken_encyclopedia,
+/obj/item/book/manual/chicken_encyclopedia,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},

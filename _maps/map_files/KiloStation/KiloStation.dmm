@@ -12091,7 +12091,7 @@
 /obj/item/seeds/onion,
 /obj/item/paper/guides/jobs/hydroponics,
 /obj/item/seeds/tree,
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark,
 /area/station/security/prison/garden)
 "dRF" = (
@@ -17655,7 +17655,7 @@
 /obj/effect/turf_decal/trimline/green/end{
 	dir = 8
 	},
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "fBt" = (
@@ -30629,11 +30629,11 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/item/toy/figure/botanist,
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
+/obj/item/book/manual/botanical_lexicon,
 /obj/machinery/plantgenes,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
@@ -40489,10 +40489,10 @@
 "mFm" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
 /obj/structure/table/glass,
-/obj/item/chicken_book,
-/obj/item/chicken_book,
-/obj/item/chicken_book,
-/obj/item/chicken_book,
+/obj/item/book/manual/chicken_encyclopedia,
+/obj/item/book/manual/chicken_encyclopedia,
+/obj/item/book/manual/chicken_encyclopedia,
+/obj/item/book/manual/chicken_encyclopedia,
 /obj/item/chicken_scanner{
 	pixel_x = 6
 	},

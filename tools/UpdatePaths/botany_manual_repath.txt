@@ -1,0 +1,2 @@
+/obj/item/botanical_lexicon : /obj/item/book/manual/botanical_lexicon{@OLD}
+/obj/item/chicken_book : /obj/item/book/manual/chicken_encyclopedia{@OLD}

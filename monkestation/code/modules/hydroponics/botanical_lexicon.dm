@@ -1,26 +1,23 @@
-/obj/item/botanical_lexicon
+/obj/item/book/manual/botanical_lexicon
 	name = "Botanical Lexicon"
-	desc = "A transcribed list of all known plant mutations and how to aquire them"
+	desc = "A transcribed list of all known plant mutations and how to acquire them"
 	icon = 'monkestation/icons/obj/ranching.dmi'
 	icon_state = "chicken_book"
+	unique = TRUE
 
-/obj/item/botanical_lexicon/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/book/manual/botanical_lexicon/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BotanicalLexicon")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/obj/item/botanical_lexicon/ui_act(action, list/params)
-	if(..())
-		return
-
-/obj/item/botanical_lexicon/ui_assets(mob/user)
+/obj/item/book/manual/botanical_lexicon/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/botanical_lexicon),
 	)
 
-/obj/item/botanical_lexicon/ui_static_data(mob/user)
+/obj/item/book/manual/botanical_lexicon/ui_static_data(mob/user)
 	var/list/data = list()
 	var/list/plant_list = list()
 	for(var/datum/hydroponics/plant_mutation/mutation as anything in (subtypesof(/datum/hydroponics/plant_mutation) - /datum/hydroponics/plant_mutation/spliced_mutation - /datum/hydroponics/plant_mutation/infusion))
