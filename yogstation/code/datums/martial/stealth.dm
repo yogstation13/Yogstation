@@ -245,7 +245,7 @@
 
 	combined_msg += "<b><i>You try to remember some basic actions from your covert combat module.</i></b>"
 
-	combined_msg += "[span_notice("Hidden Blade")]: Harm Harm. You bump into the target, shoving them while stabbing with with a concealed blade, dealing considerable brute damage. Can infinitely combo with itself."
+	combined_msg += "[span_notice("Hidden Blade")]: Harm Harm. You shove the target while stabbing them with a concealed blade, dealing considerable brute damage. Can infinitely combo with itself."
 	combined_msg += "[span_notice("Finger gun")]: Harm Grab. Briefly stun your target and place a stealthy version of a stechkin in your hand."
 
 	combined_msg += "[span_notice("Injection")]: Your disarm intent will inject chemicals in a determined order."
