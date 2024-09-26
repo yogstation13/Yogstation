@@ -1,28 +1,4 @@
-/// Support unit gets it's own very basic antag datum for admin logging.
-/datum/antagonist/traitor/contractor_support
-	name = "Contractor Support Unit"
-	antag_moodlet = /datum/mood_event/focused
 
-	show_in_roundend = FALSE /// We're already adding them in to the contractor's roundend.
-	give_objectives = TRUE /// We give them their own custom objective.
-	show_in_antagpanel = FALSE /// Not a proper/full antag.
-	should_equip = FALSE /// Don't give them an uplink.
-	preview_outfit = null
-	var/datum/team/contractor_team/contractor_team
-
-/// Team for storing both the contractor and their support unit - only really for the HUD and admin logging.
-/datum/team/contractor_team
-	show_roundend_report = FALSE
-
-/datum/antagonist/traitor/contractor_support/forge_traitor_objectives()
-	var/datum/objective/generic_objective = new
-
-	generic_objective.name = "Follow Contractor's Orders"
-	generic_objective.explanation_text = "Follow your orders. Assist agents in this mission area."
-
-	generic_objective.completed = TRUE
-
-	add_objective(generic_objective)
 
 /datum/contractor_hub
 	var/contract_rep = 0
@@ -222,8 +198,6 @@
 	partner.ckey = key
 	/// We give a reference to the mind that'll be the support unit
 	partner_mind = partner.mind
-
-	partner_mind.make_Contractor_Support()
 
 	// flavour text
 	to_chat(partner_mind.current, "\n[span_alertwarning("[user.real_name] is your superior. Follow any, and all orders given by them. You're here to support their mission only.")]")

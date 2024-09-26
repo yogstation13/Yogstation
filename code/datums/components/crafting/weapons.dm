@@ -11,6 +11,34 @@
 	time = 1.5 SECONDS
 	category = CAT_WEAPON_RANGED
 
+/datum/crafting_recipe/molotov
+	name = "Molotov"
+	result = /obj/item/reagent_containers/food/drinks/bottle/molotov
+	reqs = list(/obj/item/reagent_containers/glass/rag = 1,
+				/obj/item/reagent_containers/food/drinks/bottle = 1)
+	parts = list(/obj/item/reagent_containers/food/drinks/bottle = 1)
+	time = 4 SECONDS
+	category = CAT_WEAPON_RANGED
+
+// Shank - Makeshift weapon that can embed on throw
+/datum/crafting_recipe/shank
+	name = "Shank"
+	reqs = list(/obj/item/shard = 1,
+				/obj/item/stack/rods = 1,
+				/obj/item/stack/cable_coil = 10)
+	result = /obj/item/kitchen/knife/shank
+	time = 1 SECONDS
+	category = CAT_WEAPON_MELEE
+
+/datum/crafting_recipe/improvisedslug
+	name = "Improvised Shotgun Shell"
+	result = /obj/item/ammo_casing/shotgun/improvised
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				/obj/item/stack/cable_coil = 1,
+				/datum/reagent/fuel = 5)
+	tool_behaviors = list(TOOL_SCREWDRIVER)
+	time = 0.5 SECONDS
+	category = CAT_WEAPON_AMMO
 
 /datum/crafting_recipe/crossbow
 	name = "Rebar Crossbow"
