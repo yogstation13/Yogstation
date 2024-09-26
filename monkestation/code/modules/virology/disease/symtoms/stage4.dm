@@ -447,7 +447,8 @@
 	mob.losebreath = max(0, mob.losebreath - multiplier)
 	mob.adjustOxyLoss(-2 * multiplier)
 	if(multiplier >= 4)
-		to_chat(mob, span_notice("[pick("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.")]"))
+		if(prob(2.5))
+			to_chat(mob, span_notice("[pick("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.")]"))
 		if(breathing)
 			breathing = FALSE
 			ADD_TRAIT(mob, TRAIT_NOBREATH, type)
