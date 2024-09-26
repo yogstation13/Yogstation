@@ -1,0 +1,4 @@
+author: "AlbertNanotracen"
+delete-after: True
+changes:
+  - bugfix: "self respiration messages should no longer spam chat as often"
