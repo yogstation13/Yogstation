@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed malkavian bloodsuckers not getting an objective when another bloodsucker breaks the masquerade."
