@@ -52,10 +52,10 @@
 	name = "collapsing cave entrance"
 	desc = "Get clear!"
 	icon = 'icons/mob/nest.dmi'
-	icon_state = 'hole'
+	icon_state = "hole"
 	anchored = TRUE
 
-/obj/effect/collapse/Initialize(mapload)
+/obj/effect/cavein/Initialize(mapload)
 	. = ..()
 	emitted_light = new(loc)
 	visible_message(span_boldannounce("You hear the screams of creatures as the entrance to the cave crumbles and begins to cave in! Get back!"))
@@ -63,7 +63,7 @@
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, 1, 1)
 	addtimer(CALLBACK(src, PROC_REF(cavein)), 50)
 
-	/obj/effect/collapse/proc/cavein()
+/obj/effect/cavein/proc/cavein()
 	for(var/mob/M in range(7,src))
 		shake_camera(M, 15, 1)
 	playsound(get_turf(src),'sound/effects/explosionfar.ogg', 200, 1)
