@@ -1,6 +1,7 @@
 SUBSYSTEM_DEF(daylight)
 	name = "Daylight"
 	wait = 2 SECONDS
+	flags = SS_NO_INIT
 	/// Time required to complete a full day-night cycle
 	var/daylight_time = 24 MINUTES
 	/// All areas that should update their lighting based on time of day
