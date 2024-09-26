@@ -287,8 +287,6 @@
 	crate_type = /obj/structure/closet/crate/secure/engineering
 	dangerous = TRUE
 
-
-
 /datum/supply_pack/engine/collector
 	name = "Radiation Collector Crate"
 	desc = "Contains three radiation collectors. Useful for collecting energy off nearby Supermatter Crystals, Singularities or Teslas!"
@@ -298,3 +296,11 @@
 					/obj/machinery/power/rad_collector)
 	crate_name = "collector crate"
 
+/datum/supply_pack/engineering/portagrav
+	name = "Portable Gravity Unit Crate"
+	desc = "Contains a portable gravity unit, to make the clown float into the ceiling."
+	cost = CARGO_CRATE_VALUE * 4
+	access_view = ACCESS_ENGINEERING
+	contains = list(/obj/machinery/power/portagrav = 1)
+	crate_name = "portable gravity unit crate"
+	crate_type = /obj/structure/closet/crate/engineering
