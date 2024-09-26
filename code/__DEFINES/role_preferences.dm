@@ -8,7 +8,7 @@
 //then you MUST update the database!
 #define ROLE_SYNDICATE			"Syndicate"
 #define ROLE_TRAITOR			"Traitor"
-#define ROLE_REBEL		"Rebel"
+#define ROLE_REBEL				"Rebel"
 #define ROLE_CLOWNOP			"Clown Operative"
 #define ROLE_CHANGELING			"Changeling"
 #define ROLE_WIZARD				"Wizard"
