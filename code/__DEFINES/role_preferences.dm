@@ -84,7 +84,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_REVENANT = /datum/antagonist/revenant,
 	ROLE_DEVIL = /datum/antagonist/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/antagonist/clockcult,
-	ROLE_BROTHER = /datum/antagonist/brother,
 	ROLE_BRAINWASHED = /datum/antagonist/brainwashed,
 	ROLE_OBSESSED = /datum/antagonist/obsessed,
 	ROLE_FUGITIVE = /datum/antagonist/fugitive,

@@ -16,7 +16,7 @@
 	preview_outfit = /datum/outfit/rebel
 
 	/// In the preview icon, the nukies who are behind the leader
-	var/preview_outfit_behind = /datum/outfit/rebel
+	//var/preview_outfit_behind = /datum/outfit/rebel
 
 /datum/antagonist/nukeop/apply_innate_effects(mob/living/mob_override)
 	add_team_hud(mob_override || owner.current, /datum/antagonist/nukeop)
