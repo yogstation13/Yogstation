@@ -245,13 +245,13 @@
 
 	combined_msg += "<b><i>You try to remember some basic actions from your covert combat module.</i></b>"
 
-	combined_msg += "[span_notice("Hidden Blade")]: Harm Harm. You stab the target with a hidden blade, dealing considerable brute damage."
-	combined_msg += "[span_notice("Finger gun")]: Harm Grab. Briefly paralyse your target and place a stealthy version of a stechkin in your hand."
+	combined_msg += "[span_notice("Hidden Blade")]: Harm Harm. You bump into the target, shoving them while stabbing with with a concealed blade, dealing considerable brute damage. Can infinitely combo with itself."
+	combined_msg += "[span_notice("Finger gun")]: Harm Grab. Briefly stun your target and place a stealthy version of a stechkin in your hand."
 
 	combined_msg += "[span_notice("Injection")]: Your disarm intent will inject chemicals in a determined order."
-	combined_msg += "<i>A chemical will only be injected if the target has under half the amount of injected units in them.</i>"
+	combined_msg += span_notice("<i>A chemical will only be injected if the target has under half the amount of injected units in them.</i>")
 	for(var/datum/reagent/chemical as anything in helper.injection_chems)
-		combined_msg += span_notice("[initial(chemical.name)]: [helper.injection_chems[chemical]]u.")
+		combined_msg += "[initial(chemical.name)]: [helper.injection_chems[chemical]]u."
 	combined_msg += span_notice("If none of the above chemicals are injected, you will default to [helper.injection_chems[helper.default_chem]]u of [initial(helper.default_chem.name)].")
 
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
