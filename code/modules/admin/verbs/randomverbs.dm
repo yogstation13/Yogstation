@@ -1505,7 +1505,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Admin Cryo"
 	if(!check_rights(R_ADMIN))
 		return
-	var/confirm = alert(usr, "Are you Sure you want to cryo them?", "Are you Sure", "Yes", "No")
+	var/confirm = alert(usr, "Are you sure you want to cryo them?", "Admin Cryo", "Yes", "No")
 	if(confirm == "No")
 		return
 	var/offer = alert(usr, "Do you want to offer control of their mob to ghosts?", "Offer Control", "Yes", "No")
