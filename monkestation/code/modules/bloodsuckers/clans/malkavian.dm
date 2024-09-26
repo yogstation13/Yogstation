@@ -55,8 +55,10 @@
 	INVOKE_ASYNC(stone, TYPE_PROC_REF(/obj/item/soulstone/bloodsucker, capture_soul), bloodsuckerdatum.owner.current, forced = TRUE, bloodsuckerdatum = bloodsuckerdatum)
 	return DONT_DUST
 
-/datum/bloodsucker_clan/malkavian/proc/on_bloodsucker_broke_masquerade(datum/antagonist/bloodsucker/masquerade_breaker)
+/datum/bloodsucker_clan/malkavian/proc/on_bloodsucker_broke_masquerade(datum/source, datum/antagonist/bloodsucker/masquerade_breaker)
 	SIGNAL_HANDLER
+	if(masquerade_breaker == bloodsuckerdatum)
+		return
 	to_chat(bloodsuckerdatum.owner.current, span_userdanger("[masquerade_breaker.owner.current] has broken the Masquerade! Ensure [masquerade_breaker.owner.current.p_they()] [masquerade_breaker.owner.current.p_are()] eliminated at all costs!"))
 	var/datum/objective/assassinate/masquerade_objective = new()
 	masquerade_objective.target = masquerade_breaker.owner.current
