@@ -55,12 +55,12 @@
 	if(findtext(streak, DAGGER_COMBO))
 		hidden_knife(A,D)
 		streak = ""
-		return FALSE
+		return
 		
 	if(findtext(streak, FINGERGUN_COMBO))
 		fingergun(A,D)
 		streak = ""
-		return FALSE
+		return TRUE //don't upgrade the grab
 
 /datum/martial_art/liquidator/proc/hidden_knife(mob/living/carbon/human/A, mob/living/carbon/human/D)	if(findtext(streak, DAGGER_COMBO))
 	var/selected_zone = A.zone_selected
@@ -68,8 +68,8 @@
 	D.apply_damage(A.get_punchdamagehigh() * 4, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//28 damage
 	to_chat(A, span_warning("You stab [D] with a hidden blade!"))
 	to_chat(D, span_userdanger("You are suddenly stabbed with a blade!"))
-	A.playsound_local(src, 'sound/weapons/batonextend.ogg', 15, TRUE) //sound only to you as audio feedback that you stabbed them
-	A.playsound_local(src, 'sound/weapons/bladeslice.ogg', 15, TRUE)
+	A.playsound_local(src, 'sound/weapons/batonextend.ogg', 25, TRUE) //sound only to you as audio feedback that you stabbed them
+	A.playsound_local(src, 'sound/weapons/bladeslice.ogg', 25, TRUE)
 
 /datum/martial_art/liquidator/proc/injection(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	var/datum/reagent/picked_chem = default_chem
@@ -161,6 +161,7 @@
 		combined_msg += span_notice("[helper.injection_chems[chemical]]u of [initial(chemical.name)]. But only if there is less than [helper.injection_chems[chemical]/2]u in the target already.")
 	combined_msg += span_notice("If none of the above chemicals are injected, you will default to [helper.injection_chems[helper.default_chem]]u of [initial(helper.default_chem.name)].")
 
+	to_chat(usr, examine_block(combined_msg.Join("\n")))
 	qdel(helper)
 
 #undef PRE_DAGGER_COMBO
