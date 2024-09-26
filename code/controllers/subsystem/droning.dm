@@ -4,7 +4,8 @@
 
 SUBSYSTEM_DEF(droning)
 	name = "Droning"
-	flags = SS_NO_INIT|SS_NO_FIRE
+	flags = SS_NO_INIT|SS_NO_FIRE|SS_BACKGROUND
+	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 
 /datum/controller/subsystem/droning/proc/play_combat_music(music = null, client/dreamer)
