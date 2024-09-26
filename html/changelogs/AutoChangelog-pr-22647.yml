@@ -1,0 +1,7 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed being unable to strip/put items on monkeys"
+  - bugfix: "Fixed being unable to strip corgi's hats"
+  - bugfix: "Fixed stripping TGUI windows duplicating"
+  - bugfix: "Fixed being unable to enable internals on someone with a space helmet and no mask"
