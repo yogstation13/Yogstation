@@ -56,6 +56,12 @@ SUBSYSTEM_DEF(garbage)
 	#endif
 	#endif
 
+	// monkestation start: disabling hard deletes
+	/// Toggle for enabling/disabling hard deletes. Objects that don't explicitly request hard deletion with this disabled will leak.
+	var/enable_hard_deletes = FALSE
+	var/list/failed_hard_deletes = list()
+	// monkestation end
+
 
 /datum/controller/subsystem/garbage/PreInit()
 	InitQueues()
@@ -244,7 +250,8 @@ SUBSYSTEM_DEF(garbage)
 					#endif
 					continue
 			if (GC_QUEUE_HARDDELETE)
-				HardDelete(D)
+				if(!HardDelete(D))
+					D = null
 				if (MC_TICK_CHECK)
 					return
 				continue
@@ -279,7 +286,14 @@ SUBSYSTEM_DEF(garbage)
 	queue[++queue.len] = list(queue_time, D, D.gc_destroyed) // not += for byond reasons
 
 //this is mainly to separate things profile wise.
-/datum/controller/subsystem/garbage/proc/HardDelete(datum/D)
+/datum/controller/subsystem/garbage/proc/HardDelete(datum/D, override = FALSE)
+	// monkestation start: disable hard deletes
+	if(!D)
+		return
+	if(!enable_hard_deletes)
+		failed_hard_deletes |= D
+		return
+	// monkestation end
 	++delslasttick
 	++totaldels
 	var/type = D.type
@@ -406,10 +420,10 @@ SUBSYSTEM_DEF(garbage)
 			SSgarbage.Queue(to_delete, GC_QUEUE_HARDDELETE)
 		if (QDEL_HINT_HARDDEL_NOW) //qdel should assume this object won't gc, and hard del it post haste.
 			SSdemo.mark_destroyed(to_delete) // monkestation edit: replays
-			SSgarbage.HardDelete(to_delete)
+			SSgarbage.HardDelete(to_delete, override = TRUE)
 		#ifdef REFERENCE_TRACKING
 		if (QDEL_HINT_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled, display all references to this object, then queue the object for deletion.
-			SSgarbage.Queue(to_delete)
+			SSgarbage.HardDelete(to_delete, override = TRUE) // Need to override enable_hard_deletes, stuff like /client uses this
 			INVOKE_ASYNC(to_delete, TYPE_PROC_REF(/datum, find_references))
 		if (QDEL_HINT_IFFAIL_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled and the object fails to collect, display all references to this object.
 			SSgarbage.Queue(to_delete)
