@@ -142,8 +142,13 @@ GLOBAL_LIST_INIT(loadout_necks, generate_loadout_items(/datum/loadout_item/neck)
 	item_path = /obj/item/clothing/neck/tie/bunnytie/tied
 
 /datum/loadout_item/neck/boatcloak
+
 	name = "Boat cloak"
 	item_path = /obj/item/clothing/neck/boatcloak
+
+/datum/loadout_item/neck/ranger_poncho
+	name = "Ranger Poncho"
+	item_path = /obj/item/clothing/neck/ranger_poncho
 
 /datum/loadout_item/neck/polycloak
 	name = "Poly cloak"

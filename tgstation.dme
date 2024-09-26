@@ -4341,6 +4341,7 @@
 #include "code\modules\mob\living\basic\drone\visuals_icons.dm"
 #include "code\modules\mob\living\basic\farm_animals\deer.dm"
 #include "code\modules\mob\living\basic\farm_animals\pig.dm"
+#include "code\modules\mob\living\basic\farm_animals\pony.dm"
 #include "code\modules\mob\living\basic\farm_animals\rabbit.dm"
 #include "code\modules\mob\living\basic\farm_animals\sheep.dm"
 #include "code\modules\mob\living\basic\farm_animals\bee\_bee.dm"

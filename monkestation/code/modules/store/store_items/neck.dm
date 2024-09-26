@@ -78,6 +78,10 @@ GLOBAL_LIST_INIT(store_neck, generate_store_items(/datum/store_item/neck))
 	name = "Boat cloak"
 	item_path = /obj/item/clothing/neck/boatcloak
 	item_cost = 7500
+/datum/store_item/neck/ranger_poncho
+	name = "Ranger Poncho"
+	item_path = /obj/item/clothing/neck/ranger_poncho
+	item_cost = 5000
 
 /datum/store_item/neck/polycloak
 	name = "Poly cloak"
