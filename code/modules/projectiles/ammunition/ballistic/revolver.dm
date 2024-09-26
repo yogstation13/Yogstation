@@ -62,10 +62,11 @@
 /obj/item/ammo_casing/g45l
 	name = ".45 Long bullet casing "
 	desc = "A .45 Long bullet casing."
+	caliber = CALIBER_45L
 	projectile_type = /obj/projectile/bullet/g45l
 
 /obj/item/ammo_casing/g45l/rubber
 	name = ".45 Long rubber bullet casing"
 	desc = "A .45 Long rubber bullet casing."
-	caliber = ".45l"
+	caliber = CALIBER_45L
 	projectile_type = /obj/projectile/bullet/g45l/rubber
