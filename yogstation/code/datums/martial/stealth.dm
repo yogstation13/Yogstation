@@ -78,7 +78,7 @@
 //------------------------------Hidden knife------------------------------------//
 //////////////////////////////////////////////////////////////////////////////////
 /datum/martial_art/liquidator/proc/hidden_knife(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	var/selected_zone = D.get_bodypart(A.zone_selected) ? A.zone_selected || BODY_ZONE_CHEST //check if the zone exists, if not, default to chest
+	var/selected_zone = D.get_bodypart(A.zone_selected) ? A.zone_selected : BODY_ZONE_CHEST //check if the zone exists, if not, default to chest
 
 	var/armor_block = D.run_armor_check(selected_zone, MELEE, armour_penetration = 40)
 	D.apply_damage(A.get_punchdamagehigh() * 4, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//28 damage by default
