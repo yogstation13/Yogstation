@@ -21,3 +21,4 @@ const Traitor: Antagonist = {
 };
 
 export default Traitor;
+
