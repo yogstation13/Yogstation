@@ -13,6 +13,8 @@
 	var/nukeop_outfit = /datum/outfit/rebel
 	can_hijack = HIJACK_HIJACKER //Alternative way to wipe out the station.
 
+	preview_outfit = /datum/outfit/rebel
+
 	/// In the preview icon, the nukies who are behind the leader
 	//var/preview_outfit_behind = /datum/outfit/rebel
 
