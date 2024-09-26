@@ -185,7 +185,7 @@
 /obj/item/kitchen/knife/combat
 	name = "combat knife"
 	icon_state = "buckknife"
-	desc = "A military combat utility survival knife."
+	desc = "A old world military combat utility survival knife."
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 65, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
 	force = 20
 	throwforce = 20
