@@ -1,0 +1,5 @@
+author: "PotatoTomahto"
+delete-after: True
+changes:
+  - rscadd: "Portable gravity machine added as circuit and cargo order."
+  - bugfix: "Fields, such as gravity, work now."
