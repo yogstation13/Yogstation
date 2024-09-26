@@ -102,7 +102,7 @@ GLOBAL_VAR_INIT(permadeath, FALSE)
 	if (client)
 		client.move_delay = initial(client.move_delay)
 		client.player_details.time_of_death = timeofdeath
-		SSdroning.kill_droning(client)
+		SSambience.kill_droning(client)
 
 
 	for(var/s in ownedSoullinks)

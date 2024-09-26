@@ -422,7 +422,6 @@
 #include "code\controllers\subsystem\demo.dm"
 #include "code\controllers\subsystem\discord.dm"
 #include "code\controllers\subsystem\disease.dm"
-#include "code\controllers\subsystem\droning.dm"
 #include "code\controllers\subsystem\early_assets.dm"
 #include "code\controllers\subsystem\echelon.dm"
 #include "code\controllers\subsystem\economy.dm"
