@@ -318,7 +318,7 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mods)
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mods)
-			if(speak_sound && ismob(AM))
+			if(speak_sound && ismob(AM) && (!(the_dead[AM]) || (get_dist(source, AM) <= message_range)))
 				var/mob/hearing_mob = AM
 				if(hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/speech_hear) && hearing_mob.has_language(message_language))
 					var/volume = hearing_mob.client?.prefs?.read_preference(/datum/preference/numeric/speech_volume) || DEFAULT_SPEECH_VOLUME
