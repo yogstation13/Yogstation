@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscdel: "Changelings can no longer make flesh spiders."
+  - rscadd: "Instead, changelings can now birth teratomas, monkeylike menaces with the goal of fucking everything up!"
