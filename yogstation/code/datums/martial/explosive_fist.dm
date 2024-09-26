@@ -200,7 +200,7 @@
 			"AAAAAAAAAAAAAAAAAAAAAAAAAAA",
 			"You stare into [A]'s expressionless skull and see only fire and death."
 			)
-		to_chat(D, span_userdanger(pick(message)))
+		to_chat(D, span_userdanger(pick(messages)))
 	if(prob(25))
 		D.emote("scream")
 
