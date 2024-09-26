@@ -10,9 +10,7 @@
 
 /datum/round_event/disease_outbreak
 	announce_when	= 15
-
 	var/virus_type
-
 	var/max_severity = 3
 
 
@@ -21,7 +19,7 @@
 
 /datum/round_event/disease_outbreak/setup()
 	announce_when = rand(15, 30)
-
+	setup = TRUE //storytellers
 
 /datum/round_event/disease_outbreak/start()
 	var/advanced_virus = FALSE

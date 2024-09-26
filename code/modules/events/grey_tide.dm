@@ -33,7 +33,7 @@
 		for(var/area/A as anything in GLOB.areas)
 			if(istype(A, picked_area))
 				areasToOpen += A
-
+	setup = TRUE //storytellers
 
 /datum/round_event/grey_tide/announce(fake)
 	if(areasToOpen && areasToOpen.len > 0)

@@ -31,6 +31,7 @@
 	announce_when = rand(announce_when, announce_when + 50)
 	if(prob(50))
 		spawncount++
+	setup = TRUE //storytellers
 
 /datum/round_event/ghost_role/alien_infestation/announce(fake)
 	var/living_aliens = FALSE

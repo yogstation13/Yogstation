@@ -30,6 +30,7 @@ Contents:
 
 /datum/round_event/ghost_role/ninja/setup()
 	helping_station = rand(0,1)
+	setup = TRUE //storytellers
 
 /datum/round_event/ghost_role/ninja/kill()
 	if(!success_spawn && control)

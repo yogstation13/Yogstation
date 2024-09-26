@@ -17,9 +17,6 @@
 	var/list/filters  = list()
 	var/randomProbability = 25
 	var/reagentsAmount = 50
-	var/list/saferChems = list(/datum/reagent/water,/datum/reagent/carbon,/datum/reagent/consumable/flour,/datum/reagent/space_cleaner,/datum/reagent/consumable/nutriment,/datum/reagent/consumable/condensedcapsaicin,/datum/reagent/drug/mushroomhallucinogen,/datum/reagent/lube,/datum/reagent/glitter/pink,/datum/reagent/cryptobiolin,
-						 /datum/reagent/toxin/plantbgone,/datum/reagent/blood,/datum/reagent/medicine/charcoal,/datum/reagent/drug/space_drugs,/datum/reagent/medicine/morphine,/datum/reagent/water/holywater,/datum/reagent/consumable/ethanol,/datum/reagent/consumable/hot_coco,/datum/reagent/toxin/acid,/datum/reagent/toxin/mindbreaker,/datum/reagent/toxin/rotatium,/datum/reagent/bluespace,
-						 /datum/reagent/pax,/datum/reagent/consumable/laughter,/datum/reagent/concentrated_barbers_aid,/datum/reagent/colorful_reagent,/datum/reagent/peaceborg/confuse,/datum/reagent/peaceborg/tire,/datum/reagent/consumable/sodiumchloride,/datum/reagent/consumable/ethanol/beer,/datum/reagent/hair_dye,/datum/reagent/consumable/sugar,/datum/reagent/glitter/white,/datum/reagent/growthserum)
 	//needs to be chemid unit checked at some point
 
 /datum/round_event/chem_spill/announce()
@@ -33,6 +30,7 @@
 			filters += filter
 	if(!filters.len)
 		return kill()
+	setup = TRUE //storytellers
 
 /datum/round_event/chem_spill/start()
 	for(var/obj/machinery/pool_filter/filter in filters)
@@ -41,7 +39,7 @@
 			if (prob(randomProbability))
 				R.add_reagent(get_random_reagent_id(), reagentsAmount)
 			else
-				R.add_reagent(pick(saferChems), reagentsAmount)
+				R.add_reagent(get_random_safe_chem(), reagentsAmount)
 		CHECK_TICK
 
 /datum/round_event_control/chem_spill/threatening

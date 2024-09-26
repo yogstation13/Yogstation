@@ -33,6 +33,7 @@
 	var/start = pick(strings(PIRATE_NAMES_FILE, "ship_name_start"))
 	var/end = pick(strings(PIRATE_NAMES_FILE, "ship_name_end"))
 	ship_name = "[the][start] [end]"
+	setup = TRUE //storytellers
 
 /datum/round_event/pirates/announce(fake)
 	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())

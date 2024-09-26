@@ -1,4 +1,46 @@
 #define BASE_EVAPORATION_MULTIPLIER 10
+
+/// List of chems deemed "safer" for random generation, used by scrubber_overflow.dm and chem_spill.dm
+/proc/get_random_safe_chem()
+	var/list/chems = list(
+	/datum/reagent/water,
+	/datum/reagent/carbon,
+	/datum/reagent/consumable/flour,
+	/datum/reagent/space_cleaner,
+	/datum/reagent/consumable/nutriment,
+	/datum/reagent/consumable/condensedcapsaicin,
+	/datum/reagent/drug/mushroomhallucinogen,
+	/datum/reagent/lube,
+	/datum/reagent/glitter/pink,
+	/datum/reagent/cryptobiolin,
+	/datum/reagent/toxin/plantbgone,
+	/datum/reagent/blood,
+	/datum/reagent/medicine/charcoal,
+	/datum/reagent/drug/space_drugs,
+	/datum/reagent/medicine/morphine,
+	/datum/reagent/water/holywater,
+	/datum/reagent/consumable/ethanol,
+	/datum/reagent/consumable/hot_coco,
+	/datum/reagent/toxin/acid,
+	/datum/reagent/toxin/mindbreaker,
+	/datum/reagent/toxin/rotatium,
+	/datum/reagent/bluespace,
+	/datum/reagent/pax,
+	/datum/reagent/consumable/laughter,
+	/datum/reagent/concentrated_barbers_aid,
+	/datum/reagent/baldium,
+	/datum/reagent/colorful_reagent,
+	/datum/reagent/peaceborg/confuse,
+	/datum/reagent/peaceborg/tire,
+	/datum/reagent/consumable/sodiumchloride,
+	/datum/reagent/consumable/ethanol/beer,
+	/datum/reagent/hair_dye,
+	/datum/reagent/consumable/sugar,
+	/datum/reagent/glitter/white,
+	/datum/reagent/growthserum
+	)
+	return pick(chems)
+
 /datum/round_event_control/scrubber_overflow
 	name = "Scrubber Overflow: Normal"
 	typepath = /datum/round_event/scrubber_overflow
@@ -28,45 +70,6 @@
 	var/datum/reagent/forced_reagent_type
 	/// A list of scrubbers that will have reagents ejected from them
 	var/list/scrubbers = list()
-	/// The list of chems that scrubbers can produce
-	var/list/safer_chems = list(
-		/datum/reagent/water,
-		/datum/reagent/carbon,
-		/datum/reagent/consumable/flour,
-		/datum/reagent/space_cleaner,
-		/datum/reagent/consumable/nutriment,
-		/datum/reagent/consumable/condensedcapsaicin,
-		/datum/reagent/drug/mushroomhallucinogen,
-		/datum/reagent/lube,
-		/datum/reagent/glitter/pink,
-		/datum/reagent/cryptobiolin,
-		/datum/reagent/toxin/plantbgone,
-		/datum/reagent/blood,
-		/datum/reagent/medicine/charcoal,
-		/datum/reagent/drug/space_drugs,
-		/datum/reagent/medicine/morphine,
-		/datum/reagent/water/holywater,
-		/datum/reagent/consumable/ethanol,
-		/datum/reagent/consumable/hot_coco,
-		/datum/reagent/toxin/acid,
-		/datum/reagent/toxin/mindbreaker,
-		/datum/reagent/toxin/rotatium,
-		/datum/reagent/bluespace,
-		/datum/reagent/pax,
-		/datum/reagent/consumable/laughter,
-		/datum/reagent/concentrated_barbers_aid,
-		/datum/reagent/baldium,
-		/datum/reagent/colorful_reagent,
-		/datum/reagent/peaceborg/confuse,
-		/datum/reagent/peaceborg/tire,
-		/datum/reagent/consumable/sodiumchloride,
-		/datum/reagent/consumable/ethanol/beer,
-		/datum/reagent/hair_dye,
-		/datum/reagent/consumable/sugar,
-		/datum/reagent/glitter/white,
-		/datum/reagent/growthserum
-	)
-	//needs to be chemid unit checked at some point
 
 /datum/round_event/scrubber_overflow/announce_deadchat(random, cause)
 	if(!forced_reagent_type)
@@ -111,7 +114,7 @@
 
 /// proc that will run the prob check of the event and return a safe or dangerous reagent based off of that.
 /datum/round_event/scrubber_overflow/proc/get_overflowing_reagent(dangerous)
-	return dangerous ? get_random_reagent_id() : pick(safer_chems)
+	return dangerous ? get_random_reagent_id() : get_random_safe_chem()
 
 /datum/round_event/scrubber_overflow/start()
 	for(var/obj/machinery/atmospherics/components/unary/vent_scrubber/vent as anything in scrubbers)
