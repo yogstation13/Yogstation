@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Blueshields are now taken into account for spawning various storyteller antag events."
