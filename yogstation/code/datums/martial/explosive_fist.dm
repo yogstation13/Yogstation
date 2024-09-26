@@ -233,7 +233,7 @@
 	combined_msg += span_notice("<b>All Intents</b> Will <b>prime</b> the target with explosive plasma.")
 	combined_msg += span_notice("<b>Harm Intent</b> Will detonate the plasma, creating a fire explosion scaling with how many times the target was <b>primed</b>.")
 
-	combined_msg += "[span_notice("Explosive disarm")]: Disarm Disarm. Deals damage to your target and applies an additional stack of <b>primed</b>. Also throws your target away and knocking them down for a short duration."
+	combined_msg += "[span_notice("Explosive disarm")]: Disarm Disarm. Deals damage to your target and applies an additional stack of <b>primed</b>. Also throws your target away and knocks them down for a short duration."
 	combined_msg += "[span_notice("Life force trade")]: Grab Harm. If wearing headwear, you deal considerable brute and stamina damage to the target. If not wearing headwear, you will instantly grab the target by the neck and start draining life from them."
 	
 	to_chat(usr, examine_block(combined_msg.Join("\n")))
