@@ -22,6 +22,19 @@
 		return FALSE
 	return TRUE
 
+/datum/martial_art/liquidator/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(!can_use(A))
+		return
+	if(findtext(streak, DAGGER_COMBO))
+		hidden_knife(A,D)
+		streak = ""
+		return TRUE
+		
+	if(findtext(streak, FINGERGUN_COMBO))
+		fingergun(A,D)
+		streak = ""
+		return TRUE //don't upgrade the grab
+
 /datum/martial_art/liquidator/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -41,37 +54,10 @@
 	check_streak(A,D)
 	return FALSE  ///We need it work like a generic, non martial art attack at all times
 
-
 /datum/martial_art/liquidator/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!(can_use(A)))
 		return FALSE
 
-	injection(A, D)
-	return FALSE //always looks like a generic push
-
-/datum/martial_art/liquidator/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_use(A))
-		return
-	if(findtext(streak, DAGGER_COMBO))
-		hidden_knife(A,D)
-		streak = ""
-		return
-		
-	if(findtext(streak, FINGERGUN_COMBO))
-		fingergun(A,D)
-		streak = ""
-		return TRUE //don't upgrade the grab
-
-/datum/martial_art/liquidator/proc/hidden_knife(mob/living/carbon/human/A, mob/living/carbon/human/D)	if(findtext(streak, DAGGER_COMBO))
-	var/selected_zone = A.zone_selected
-	var/armor_block = D.run_armor_check(selected_zone, MELEE, armour_penetration = 40)
-	D.apply_damage(A.get_punchdamagehigh() * 4, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//28 damage
-	to_chat(A, span_warning("You stab [D] with a hidden blade!"))
-	to_chat(D, span_userdanger("You are suddenly stabbed with a blade!"))
-	A.playsound_local(src, 'sound/weapons/batonextend.ogg', 25, TRUE) //sound only to you as audio feedback that you stabbed them
-	A.playsound_local(src, 'sound/weapons/bladeslice.ogg', 25, TRUE)
-
-/datum/martial_art/liquidator/proc/injection(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	var/datum/reagent/picked_chem = default_chem
 	var/amount = injection_chems[picked_chem]
 
@@ -86,6 +72,21 @@
 	to_chat(A, span_warning("You inject [initial(picked_chem.name)] into [D]!"))
 	to_chat(D, span_notice("You feel a tiny prick."))
 
+	return FALSE //always looks like a generic push
+
+//////////////////////////////////////////////////////////////////////////////////
+//------------------------------Hidden knife------------------------------------//
+//////////////////////////////////////////////////////////////////////////////////
+/datum/martial_art/liquidator/proc/hidden_knife(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	var/selected_zone = D.get_bodypart(A.zone_selected) ? A.zone_selected || BODY_ZONE_CHEST //check if the zone exists, if not, default to chest
+
+	var/armor_block = D.run_armor_check(selected_zone, MELEE, armour_penetration = 40)
+	D.apply_damage(A.get_punchdamagehigh() * 4, BRUTE, selected_zone, armor_block, sharpness = SHARP_EDGED) 	//28 damage by default
+	to_chat(A, span_warning("You stab [D] with a hidden blade!"))
+	to_chat(D, span_userdanger("You are suddenly stabbed with a blade!"))
+	A.playsound_local(A, 'sound/weapons/batonextend.ogg', 35, TRUE) //sound only to you as audio feedback that you stabbed them
+	A.playsound_local(D, 'sound/weapons/bladeslice.ogg', 25, TRUE)
+
 /*---------------------------------------------------------------
 
 	start of fingergun section
@@ -95,9 +96,9 @@
 	var/obj/item/gun/ballistic/automatic/pistol/martial/gun = new /obj/item/gun/ballistic/automatic/pistol/martial (A)   ///I don't check does the user have an item in a hand, because it is a martial art action, and to use it... you need to have a empty hand
 	gun.gun_owner = A
 	A.put_in_hands(gun)
-	A.playsound_local(A, 'sound/items/change_jaws.ogg', 10, TRUE) //sound only to you as audio feedback that you pulled out a gun
+	A.playsound_local(A, 'sound/items/change_jaws.ogg', 15, TRUE) //sound only to you as audio feedback that you pulled out a gun
 	to_chat(A, span_notice("You extract a hidden gun from your hand."))	
-	D.Paralyze(1 SECONDS)
+	D.Stun(1 SECONDS)
 
 /obj/item/gun/ballistic/automatic/pistol/martial
 	desc = "A concelated version of a stechkin APS pistol, that comes with special Preternis upgrade modules."
@@ -111,7 +112,7 @@
 /obj/item/ammo_box/magazine/m10mm/martial
 	max_ammo = 1
 
-/obj/item/gun/ballistic/automatic/pistol/martial/pre_attack(atom/target, mob/living/user, params)
+/obj/item/gun/ballistic/automatic/pistol/martial/pre_attack(atom/target, mob/living/user, params) //prevents using this as a melee weapon, and allows its use in point blank while in combat mode
 	afterattack(target, user, FALSE, params) //call afterattack so the gun still shoots
 	return TRUE //prevent the regular attack
 
@@ -127,6 +128,10 @@
 	install_suppressor(S)
 	ADD_TRAIT(src, TRAIT_NODROP, "martial")
 	RegisterSignal(src, COMSIG_ITEM_PREDROPPED, PROC_REF(on_drop))
+
+/obj/item/gun/ballistic/automatic/pistol/martial/Destroy()
+	UnregisterSignal(src, COMSIG_ITEM_PREDROPPED)
+	return ..()
 
 /obj/item/gun/ballistic/automatic/pistol/martial/attack_self(mob/living/user)
 	on_drop()
