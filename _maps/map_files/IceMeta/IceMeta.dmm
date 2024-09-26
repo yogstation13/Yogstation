@@ -2225,9 +2225,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aHc" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_right{
 	dir = 1
 	},
@@ -13107,9 +13104,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "dRf" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_left{
 	dir = 1
 	},
@@ -32364,9 +32358,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "jvC" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_right{
 	dir = 1
 	},
@@ -45515,9 +45506,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "ncA" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_left{
 	dir = 1
 	},
@@ -78108,9 +78096,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
 "wop" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_mid{
 	dir = 1
 	},
@@ -79406,9 +79391,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "wHy" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_mid{
 	dir = 1
 	},
