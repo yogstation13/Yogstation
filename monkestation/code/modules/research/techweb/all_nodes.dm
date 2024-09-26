@@ -223,3 +223,15 @@
 		"ipc_leg_right"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+
+
+
+/datum/techweb_node/bomb_actualizer
+	id = "bomb_actualizer"
+	display_name = "Bomb Actualization Technology"
+	description = "Using bluespace technology we can increase the actual yield of ordinance to their theoretical maximum on station... to disasterous effect."
+	prereq_ids = list("micro_bluespace", "bluespace_storage", "practical_bluespace")
+	design_ids = list(
+		"bomb_actualizer",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 20000)

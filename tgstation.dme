@@ -5882,6 +5882,7 @@
 #include "monkestation\code\game\area\areas\station.dm"
 #include "monkestation\code\game\machinery\_machinery.dm"
 #include "monkestation\code\game\machinery\announcement_system.dm"
+#include "monkestation\code\game\machinery\bomb_actualizer.dm"
 #include "monkestation\code\game\machinery\cloning.dm"
 #include "monkestation\code\game\machinery\deployable.dm"
 #include "monkestation\code\game\machinery\exp_cloner.dm"

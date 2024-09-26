@@ -11,3 +11,14 @@
 		var/completion = round(C.get_completion())
 		return completion
 
+
+
+/obj/effect/countdown/bomb_actualizer
+	name = "bomb actualizer countdown"
+	color = "#ff9100"
+/obj/effect/countdown/bomb_actualizer/get_value()
+	var/obj/machinery/bomb_actualizer/Bomb_Countdown = attached_to
+	if(!istype(Bomb_Countdown))
+		return
+	else if(Bomb_Countdown.active)
+		return Bomb_Countdown.seconds_remaining()
