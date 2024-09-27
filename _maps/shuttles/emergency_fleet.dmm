@@ -21,9 +21,9 @@
 	},
 /obj/effect/custom_portal{
 	mech_sized = 1;
-	portal_id = "fleetesc2com";
-	linked_to = "fleetcom";
-	name = "Portal to Cargo Shuttle";
+	portal_id = "fleettoi";
+	linked_to = "fleetcom2toi";
+	name = "Portal to Luxury Command Shuttle";
 	color = null
 	},
 /turf/open/floor/light,
@@ -54,6 +54,18 @@
 /obj/structure/mopbucket,
 /obj/item/mop,
 /turf/open/floor/plasteel/freezer,
+/area/shuttle/escape)
+"bs" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Pod Repair Shuttle"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "bJ" = (
 /obj/effect/turf_decal/box/white/corners{
@@ -106,10 +118,6 @@
 "cG" = (
 /obj/machinery/shuttle_manipulator,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shuttle/escape)
-"cP" = (
-/obj/item/pool/rubber_ring,
-/turf/open/indestructible/sound/pool/end,
 /area/shuttle/escape)
 "cT" = (
 /obj/effect/turf_decal/tile/brown/full,
@@ -239,6 +247,16 @@
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"ej" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod 3"
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "el" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/reagent_dispensers/watertank,
@@ -283,23 +301,25 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"eG" = (
-/obj/structure/sign/nanotrasen,
-/turf/closed/wall/mineral/titanium/nodiagonal,
+"eE" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/structure/closet/secure_closet{
+	name = "Plasmaman Supplies Locker";
+	req_access_txt = "5"
+	},
+/obj/item/clothing/under/plasmaman,
+/obj/item/clothing/head/helmet/space/plasmaman,
+/obj/item/tank/internals/plasmaman,
+/obj/machinery/status_display/evac{
+	pixel_y = -32
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"eN" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
+"eG" = (
+/obj/machinery/status_display/evac{
+	pixel_y = -32
 	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetpod2";
-	linked_to = "fleetesc2pod2";
-	name = "Portal to Escape Lounge Shuttle";
-	color = null
-	},
-/turf/open/floor/light,
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "eX" = (
 /obj/machinery/door/firedoor/border_only{
@@ -312,7 +332,10 @@
 /turf/open/indestructible/sound/pool/end,
 /area/shuttle/escape)
 "fd" = (
-/turf/open/indestructible/sound/pool/end,
+/obj/machinery/door/airlock/external/glass{
+	name = s
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "fg" = (
 /obj/machinery/modular_computer/console/preset/engineering,
@@ -328,23 +351,6 @@
 	pixel_x = -12
 	},
 /turf/open/floor/carpet/royalblack,
-/area/shuttle/escape)
-"fs" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetesc2pod1";
-	linked_to = "fleetpod1";
-	name = "Portal to Escape Pod 1";
-	color = null
-	},
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/turf/open/floor/light,
 /area/shuttle/escape)
 "fw" = (
 /obj/effect/turf_decal/tile/brown/full,
@@ -423,16 +429,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"ga" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/window{
-	dir = 4
-	},
-/obj/structure/window{
-	dir = 1
-	},
-/turf/open/floor/grass,
 /area/shuttle/escape)
 "gz" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
@@ -529,48 +525,20 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/noslip,
 /area/shuttle/escape)
-"hu" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleeteng";
-	linked_to = "fleetesc2eng";
-	name = "Portal to Escape Lounge Shuttle";
-	color = null
-	},
-/turf/open/floor/light,
-/area/shuttle/escape)
 "hv" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"hw" = (
+"hx" = (
 /obj/structure/sign/directions/evac{
 	dir = 2;
 	pixel_y = 13
 	},
 /obj/effect/custom_portal{
 	mech_sized = 1;
-	portal_id = "fleetesc2pod2";
-	linked_to = "fleetpod2";
-	name = "Portal to Escape Pod 2";
-	color = null
-	},
-/turf/open/floor/light,
-/area/shuttle/escape)
-"hO" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetsci";
-	linked_to = "fleetesc2sci";
+	portal_id = "fleetmed";
+	linked_to = "fleetesc2med";
 	name = "Portal to Escape Lounge Shuttle";
 	color = null
 	},
@@ -586,20 +554,6 @@
 	dir = 4
 	},
 /turf/open/floor/circuit/telecomms/server,
-/area/shuttle/escape)
-"hS" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetcom";
-	linked_to = "fleetesc2com";
-	name = "Portal to Escape Lounge Shuttle";
-	color = null
-	},
-/turf/open/floor/light,
 /area/shuttle/escape)
 "ie" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -661,16 +615,6 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
-"iB" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 3"
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "iF" = (
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/stairs/goon/white_stairs_middle{
@@ -726,6 +670,16 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/escape)
+"jj" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod 2"
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "js" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -784,6 +738,18 @@
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"jS" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Cargo Shuttle"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "jW" = (
 /obj/effect/turf_decal/box/white/corners,
 /obj/machinery/portable_atmospherics/canister/air,
@@ -796,6 +762,16 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/indestructible/carpet/blue,
+/area/shuttle/escape)
+"ke" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod 1"
+	},
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "ki" = (
 /obj/effect/turf_decal/tile/darkblue{
@@ -831,9 +807,37 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
+"kp" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleeteng";
+	linked_to = "fleetesc2eng";
+	name = "Portal to Escape Lounge Shuttle";
+	color = null
+	},
+/turf/open/floor/light,
+/area/shuttle/escape)
 "kt" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"ky" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetpod3";
+	linked_to = "fleetesc2pod3";
+	name = "Portal to Escape Lounge Shuttle";
+	color = null
+	},
+/turf/open/floor/light,
 /area/shuttle/escape)
 "kC" = (
 /obj/machinery/light,
@@ -934,9 +938,37 @@
 /obj/item/pool/rubber_ring,
 /turf/open/indestructible/sound/pool,
 /area/shuttle/escape)
+"lh" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetcom";
+	linked_to = "fleetesc2com";
+	name = "Portal to Escape Lounge Shuttle";
+	color = null
+	},
+/turf/open/floor/light,
+/area/shuttle/escape)
 "ll" = (
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"lm" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetsup";
+	linked_to = "fleetesc2sup";
+	name = "Portal to Escape Lounge Shuttle";
+	color = null
+	},
+/turf/open/floor/light,
 /area/shuttle/escape)
 "lp" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -961,10 +993,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"lF" = (
-/obj/machinery/suit_storage_unit/command,
-/turf/open/indestructible/carpet/blue,
-/area/shuttle/escape)
 "lO" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/reagent_dispensers/fueltank,
@@ -972,6 +1000,19 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"lU" = (
+/obj/structure/sign/directions/command{
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetesc2com";
+	linked_to = "fleetcom";
+	name = "Portal to Luxury Command Shuttle";
+	color = null
+	},
+/turf/open/floor/light,
 /area/shuttle/escape)
 "lW" = (
 /obj/structure/chair/comfy/shuttle,
@@ -995,20 +1036,22 @@
 /obj/structure/closet/wardrobe/white,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"mh" = (
-/obj/effect/turf_decal{
-	dir = 1
+"mp" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetesc2pod1";
+	linked_to = "fleetpod1";
+	name = "Portal to Escape Pod 1";
+	color = null
 	},
-/obj/machinery/button/door{
-	id = "fleetengshutters2";
-	name = "Shutters Control";
-	pixel_x = 24;
-	pixel_y = -22
+/obj/machinery/status_display/evac{
+	pixel_y = 32
 	},
-/turf/open/floor/plating,
+/turf/open/floor/light,
 /area/shuttle/escape)
 "mx" = (
 /obj/structure/window/reinforced{
@@ -1078,6 +1121,17 @@
 	dir = 1
 	},
 /turf/open/indestructible/grass/jungle,
+/area/shuttle/escape)
+"mP" = (
+/obj/structure/table/reinforced,
+/obj/item/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)"
+	},
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "mX" = (
 /obj/machinery/computer/station_alert,
@@ -1226,26 +1280,9 @@
 	},
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
-"oJ" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 1"
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "oK" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"oL" = (
-/obj/machinery/suit_storage_unit/command,
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
 "pa" = (
 /obj/structure/chair/comfy/shuttle{
@@ -1269,18 +1306,8 @@
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "pi" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetesc2pod3";
-	linked_to = "fleetpod3";
-	name = "Portal to Escape Pod 3";
-	color = null
-	},
-/turf/open/floor/light,
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "pn" = (
 /obj/effect/turf_decal/tile/brown/full,
@@ -1300,6 +1327,18 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
+"pK" = (
+/obj/machinery/door/airlock/titanium{
+	name = s
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "pM" = (
 /turf/closed/wall/mineral/plastitanium,
@@ -1669,7 +1708,7 @@
 /area/shuttle/escape)
 "ug" = (
 /obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Lounges"
+	name = "Escape Lounge Shuttle"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -1762,18 +1801,7 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "va" = (
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/structure/closet/secure_closet{
-	name = "Plasmaman Supplies Locker";
-	req_access_txt = "5"
-	},
-/obj/item/clothing/under/plasmaman,
-/obj/item/clothing/head/helmet/space/plasmaman,
-/obj/item/tank/internals/plasmaman,
-/obj/machinery/status_display/evac{
-	pixel_y = -32
-	},
-/turf/open/floor/mineral/titanium/white,
+/turf/open/indestructible/sound/pool/end,
 /area/shuttle/escape)
 "vl" = (
 /obj/structure/shuttle/engine/heater,
@@ -2144,30 +2172,9 @@
 	},
 /turf/open/floor/light,
 /area/shuttle/escape)
-"zR" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
-/obj/machinery/door/airlock/security/glass{
-	name = "Cell 2"
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
 "Ak" = (
 /obj/structure/chair/office/dark,
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
-"Ap" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 2"
-	},
-/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "Ar" = (
 /obj/effect/spawner/structure/window/shuttle,
@@ -2214,19 +2221,9 @@
 	},
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
-"AY" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetpod3";
-	linked_to = "fleetesc2pod3";
-	name = "Portal to Escape Lounge Shuttle";
-	color = null
-	},
-/turf/open/floor/light,
+"AZ" = (
+/obj/item/pool/rubber_ring,
+/turf/open/indestructible/sound/pool/end,
 /area/shuttle/escape)
 "Bb" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -2242,19 +2239,25 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"Be" = (
+"Bc" = (
 /obj/structure/sign/directions/evac{
 	dir = 2;
 	pixel_y = 13
 	},
 /obj/effect/custom_portal{
 	mech_sized = 1;
-	portal_id = "fleetsup";
-	linked_to = "fleetesc2sup";
+	portal_id = "fleetpod2";
+	linked_to = "fleetesc2pod2";
 	name = "Portal to Escape Lounge Shuttle";
 	color = null
 	},
 /turf/open/floor/light,
+/area/shuttle/escape)
+"Bn" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/royalblack,
 /area/shuttle/escape)
 "Bp" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -2302,7 +2305,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/window{
-	id = "fleetengshutters1"
+	id = "fleetengshutters2"
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
@@ -2377,12 +2380,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"CO" = (
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/royalblack,
-/area/shuttle/escape)
 "CS" = (
 /obj/effect/turf_decal/tile/darkblue{
 	dir = 8
@@ -2426,7 +2423,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/mapping_helpers/airlock/access/all/security/basic,
 /obj/machinery/door/airlock/security/glass{
-	name = "Cell 1"
+	name = "Cell 2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
@@ -2455,7 +2452,7 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 1"
+	name = "Escape Pod 2"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -2555,7 +2552,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/titanium/glass{
-	name = "Clown Specimens"
+	name = "Goat Specimens"
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -2616,20 +2613,19 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "Fp" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
+/obj/effect/turf_decal{
 	dir = 1
 	},
-/obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/machinery/door/firedoor/border_only{
-	dir = 4
+	dir = 1
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
+/obj/machinery/button/door{
+	id = "fleetengshutters1";
+	name = "Shutters Control";
+	pixel_x = -24;
+	pixel_y = -22
 	},
-/obj/machinery/door/airlock/titanium/glass{
-	name = "Goat Specimens"
-	},
-/turf/open/floor/mineral/titanium/white,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "FF" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -2814,39 +2810,12 @@
 	},
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
-"Hk" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Cargo Shuttle"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "Hu" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"Hw" = (
-/obj/effect/turf_decal{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/button/door{
-	id = "fleetengshutters1";
-	name = "Shutters Control";
-	pixel_x = -24;
-	pixel_y = -22
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "Hy" = (
 /obj/structure/table/reinforced,
@@ -2899,18 +2868,6 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
-"Ij" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/airlock/titanium{
-	name = "Cargo Shuttle"
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "IF" = (
 /obj/structure/statue/diamond/captain,
 /obj/machinery/light/floor,
@@ -2942,22 +2899,37 @@
 /obj/structure/closet/athletic_mixed,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
+"IU" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetpod1";
+	linked_to = "fleetesc2pod1";
+	name = "Portal to Escape Lounge Shuttle";
+	color = null
+	},
+/turf/open/floor/light,
+/area/shuttle/escape)
 "IW" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Jc" = (
-/obj/structure/fans/tiny,
-/obj/effect/turf_decal{
-	dir = 4
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
 	},
-/obj/effect/turf_decal{
-	dir = 8
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetsci";
+	linked_to = "fleetesc2sci";
+	name = "Portal to Escape Lounge Shuttle";
+	color = null
 	},
-/obj/machinery/door/poddoor/shutters/window{
-	id = "fleetengshutters2"
-	},
-/turf/open/floor/plating,
+/turf/open/floor/light,
 /area/shuttle/escape)
 "Je" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -2976,16 +2948,6 @@
 /area/shuttle/escape)
 "Js" = (
 /turf/open/indestructible/carpet/blue,
-/area/shuttle/escape)
-"Jt" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 2"
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "JA" = (
 /obj/structure/table/reinforced,
@@ -3146,6 +3108,20 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"Mj" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetesc2pod3";
+	linked_to = "fleetpod3";
+	name = "Portal to Escape Pod 3";
+	color = null
+	},
+/turf/open/floor/light,
+/area/shuttle/escape)
 "Ms" = (
 /obj/effect/turf_decal/tile/brown/full,
 /obj/machinery/computer/shuttle/mining,
@@ -3154,6 +3130,16 @@
 "Mu" = (
 /obj/structure/closet/crate/solarpanel_small,
 /turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"Mv" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/window{
+	dir = 1
+	},
+/turf/open/floor/grass,
 /area/shuttle/escape)
 "MC" = (
 /obj/machinery/computer/emergency_shuttle,
@@ -3174,18 +3160,24 @@
 /obj/machinery/door/airlock/vault,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
+"MP" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "MX" = (
-/obj/structure/sign/directions/command{
-	pixel_y = 13
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal{
+	dir = 4
 	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleettoi";
-	linked_to = "fleetcom2toi";
-	name = "Portal to Luxury Command Shuttle";
-	color = null
+/obj/effect/turf_decal{
+	dir = 8
 	},
-/turf/open/floor/light,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "fleetengshutters1"
+	},
+/turf/open/floor/plating,
 /area/shuttle/escape)
 "MZ" = (
 /obj/effect/turf_decal/tile/brown/full,
@@ -3232,7 +3224,8 @@
 	mech_sized = 1;
 	portal_id = "fleetesc2sup";
 	linked_to = "fleetsup";
-	color = null
+	color = null;
+	name = "Portal to Cargo Shuttle"
 	},
 /turf/open/floor/light,
 /area/shuttle/escape)
@@ -3325,20 +3318,6 @@
 /obj/machinery/vending/security,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
-"OR" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetmed";
-	linked_to = "fleetesc2med";
-	name = "Portal to Escape Lounge Shuttle";
-	color = null
-	},
-/turf/open/floor/light,
-/area/shuttle/escape)
 "OV" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -3427,6 +3406,17 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
+"PK" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/machinery/door/airlock/security/glass{
+	name = "Cell 1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/escape)
 "PM" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/window{
@@ -3474,17 +3464,6 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"Qj" = (
-/obj/structure/table/reinforced,
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom (General)"
-	},
-/obj/machinery/status_display/evac{
-	pixel_y = 32
-	},
-/turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "QB" = (
 /obj/structure/chair/comfy/shuttle{
@@ -3554,6 +3533,20 @@
 /obj/structure/closet/wardrobe/mixed,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
+"Rm" = (
+/obj/structure/sign/directions/evac{
+	dir = 2;
+	pixel_y = 13
+	},
+/obj/effect/custom_portal{
+	mech_sized = 1;
+	portal_id = "fleetesc2pod2";
+	linked_to = "fleetpod2";
+	name = "Portal to Escape Pod 2";
+	color = null
+	},
+/turf/open/floor/light,
+/area/shuttle/escape)
 "Rn" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/firedoor/border_only{
@@ -3585,18 +3578,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/silver,
-/area/shuttle/escape)
-"Ru" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Lounge Shuttle"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "Rx" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -3663,18 +3644,6 @@
 	},
 /obj/machinery/computer/emergency_shuttle,
 /turf/open/floor/mineral/titanium/white,
-/area/shuttle/escape)
-"Sr" = (
-/obj/machinery/door/airlock/titanium{
-	name = s
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/shuttle/escape)
 "Sy" = (
 /obj/effect/turf_decal/box/white/corners{
@@ -3802,6 +3771,16 @@
 /obj/item/stack/sheet/cardboard/fifty,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
+"TT" = (
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/window{
+	dir = 8
+	},
+/obj/structure/window{
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/shuttle/escape)
 "TX" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -3825,28 +3804,6 @@
 /obj/structure/closet/crate/secure/owned/gear,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"Ui" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Pod Repair Shuttle"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"Un" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/window{
-	dir = 8
-	},
-/obj/structure/window{
-	dir = 1
-	},
-/turf/open/floor/grass,
-/area/shuttle/escape)
 "Uo" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3867,6 +3824,10 @@
 	},
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
+"UD" = (
+/obj/machinery/suit_storage_unit/command,
+/turf/open/indestructible/carpet/blue,
+/area/shuttle/escape)
 "UI" = (
 /obj/machinery/stasis{
 	dir = 8
@@ -3880,23 +3841,24 @@
 /obj/machinery/suit_storage_unit/ce,
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
+"UN" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "fleetengshutters2";
+	name = "Shutters Control";
+	pixel_x = 24;
+	pixel_y = -22
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "Va" = (
 /obj/structure/closet/crate/secure/plasma,
 /turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"Ve" = (
-/obj/structure/sign/directions/evac{
-	dir = 2;
-	pixel_y = 13
-	},
-/obj/effect/custom_portal{
-	mech_sized = 1;
-	portal_id = "fleetpod1";
-	linked_to = "fleetesc2pod1";
-	name = "Portal to Escape Lounge Shuttle";
-	color = null
-	},
-/turf/open/floor/light,
 /area/shuttle/escape)
 "Vn" = (
 /obj/structure/mopbucket,
@@ -4036,12 +3998,6 @@
 /obj/structure/closet/wardrobe/pjs,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"Xr" = (
-/obj/machinery/door/airlock/external/glass{
-	name = s
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "Xt" = (
 /obj/effect/turf_decal/tile/brown/full,
 /obj/machinery/computer/security/qm,
@@ -4067,6 +4023,18 @@
 /obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
+"XS" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/titanium{
+	name = "Cargo Shuttle"
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "Yg" = (
 /obj/structure/window{
 	dir = 8;
@@ -4075,12 +4043,38 @@
 /obj/machinery/computer/card,
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
+"Yj" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod 1"
+	},
+/turf/open/floor/plating,
+/area/shuttle/escape)
 "Yo" = (
 /obj/effect/spawner/structure/window/plastitanium,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/shuttle/escape)
+"Yt" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/titanium/glass{
+	name = "Clown Specimens"
+	},
+/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Yz" = (
 /turf/open/floor/mineral/titanium/white,
@@ -4195,7 +4189,7 @@ YQ
 RE
 ug
 cr
-Ru
+ug
 cr
 cr
 cr
@@ -4221,9 +4215,9 @@ YQ
 Rn
 Er
 TX
-Ds
-Ve
-oJ
+ke
+IU
+Yj
 YQ
 qN
 RL
@@ -4277,7 +4271,7 @@ YQ
 px
 Gm
 Qb
-Dg
+PK
 tY
 tY
 tY
@@ -4466,14 +4460,14 @@ YQ
 cr
 Wy
 wb
-MX
+ap
 hv
 YQ
 YQ
 px
 Gm
 Qb
-zR
+Dg
 tY
 tY
 tY
@@ -4494,7 +4488,7 @@ GK
 Uv
 Ox
 tb
-fd
+va
 Ri
 Ri
 lb
@@ -4507,13 +4501,13 @@ gz
 nv
 IW
 Hu
-OR
+hx
 Lk
 YQ
 "}
 (8,1,1) = {"
 cr
-CO
+Bn
 BN
 xo
 Nj
@@ -4584,7 +4578,7 @@ ot
 oK
 YQ
 Rn
-ap
+lU
 rH
 Uv
 Uv
@@ -4641,7 +4635,7 @@ Nh
 Uv
 Ox
 tb
-fd
+va
 Ri
 KL
 Ri
@@ -4663,11 +4657,11 @@ YQ
 RE
 cr
 hi
-Ij
+XS
 cr
 cr
 hi
-Hk
+jS
 cr
 cr
 cr
@@ -4683,14 +4677,14 @@ YH
 YQ
 RE
 cr
-fs
-hw
-pi
+mp
+Rm
+Mj
 bZ
 Uv
 wp
 EQ
-cP
+AZ
 Ri
 Ri
 Ri
@@ -4715,7 +4709,7 @@ cT
 VB
 fw
 cr
-Be
+lm
 Lw
 lO
 KG
@@ -4751,7 +4745,7 @@ cr
 cg
 Yz
 Yz
-va
+eE
 cr
 YQ
 YQ
@@ -4938,7 +4932,7 @@ YQ
 YQ
 RE
 ZM
-Sr
+pK
 cr
 RE
 YQ
@@ -5038,7 +5032,7 @@ hR
 vU
 vU
 Lv
-hu
+kp
 vl
 ep
 YH
@@ -5095,9 +5089,9 @@ YQ
 Rn
 Er
 TX
-Ap
-eN
-Jt
+Ds
+Bc
+jj
 "}
 (20,1,1) = {"
 YQ
@@ -5199,9 +5193,9 @@ YQ
 "}
 (22,1,1) = {"
 RE
-eG
-lF
-ga
+pi
+UD
+Mv
 Rx
 Rx
 Rx
@@ -5213,7 +5207,7 @@ Rx
 Rx
 Rx
 Rx
-eG
+pi
 cr
 YQ
 YQ
@@ -5238,11 +5232,11 @@ cr
 cr
 cr
 cr
-BP
-BP
-BP
-BP
-BP
+MX
+MX
+MX
+MX
+MX
 cr
 RE
 "}
@@ -5272,7 +5266,7 @@ RE
 cr
 cr
 kt
-Ew
+Yt
 kt
 cr
 cr
@@ -5284,14 +5278,14 @@ vU
 vU
 vU
 vU
-Xr
+fd
 ch
 ED
 WO
 Zx
 Zx
 Zx
-Hw
+Fp
 RV
 cr
 "}
@@ -5323,7 +5317,7 @@ Bb
 MF
 fV
 dt
-hO
+Jc
 cr
 YQ
 RE
@@ -5507,7 +5501,7 @@ kO
 iF
 Yz
 Yz
-Yz
+eG
 cr
 yv
 KY
@@ -5517,7 +5511,7 @@ RE
 cr
 cr
 kt
-Fp
+Ew
 kt
 cr
 cr
@@ -5559,7 +5553,7 @@ pO
 Yz
 Kl
 Ej
-hS
+lh
 iN
 YQ
 YQ
@@ -5573,7 +5567,7 @@ cr
 YQ
 RE
 cr
-Qj
+mP
 vU
 vU
 vU
@@ -5607,7 +5601,7 @@ Yz
 Yz
 Yz
 cr
-yv
+MP
 Ke
 iN
 YQ
@@ -5634,7 +5628,7 @@ WO
 Zx
 Zx
 Zx
-mh
+UN
 EF
 cr
 "}
@@ -5679,11 +5673,11 @@ cr
 cr
 cr
 cr
-Jc
-Jc
-Jc
-Jc
-Jc
+BP
+BP
+BP
+BP
+BP
 cr
 RE
 "}
@@ -5830,8 +5824,8 @@ YQ
 Rn
 Er
 TX
-iB
-AY
+ej
+ky
 ii
 "}
 (35,1,1) = {"
@@ -5885,9 +5879,9 @@ oK
 "}
 (36,1,1) = {"
 RE
-cr
-oL
-Un
+pi
+UD
+TT
 PM
 PM
 PM
@@ -5899,7 +5893,7 @@ PM
 PM
 PM
 PM
-eG
+pi
 cr
 YQ
 YQ
@@ -5967,7 +5961,7 @@ YQ
 YQ
 RE
 ZM
-Ui
+bs
 cr
 RE
 YQ
