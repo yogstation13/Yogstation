@@ -135,7 +135,6 @@
 				hijack_objective.owner = owner
 				add_objective(hijack_objective)
 			SSticker.mode.has_hijackers = TRUE
-			return
 		//End of yogstation change.
 
 	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
@@ -148,30 +147,29 @@
 		var/datum/objective/martyr/martyr_objective = new
 		martyr_objective.owner = owner
 		add_objective(martyr_objective)
-		return
 
-	else
-		if(prob(50))
-			//Give them a minor flavour objective
-			var/list/datum/objective/minor/minorObjectives = subtypesof(/datum/objective/minor)
-			var/datum/objective/minor/minorObjective
-			while(!minorObjective && minorObjectives.len)
-				var/typePath = pick_n_take(minorObjectives)
-				minorObjective = new typePath
-				minorObjective.owner = owner
-				if(!minorObjective.finalize())
-					qdel(minorObjective)
-					minorObjective = null
-			if(minorObjective)
-				add_objective(minorObjective)
-		if(!(locate(/datum/objective/escape) in objectives))
-			if(prob(50)) //doesn't always need to escape
-				var/datum/objective/escape/escape_objective = new
-				escape_objective.owner = owner
-				add_objective(escape_objective)
-			else
-				forge_single_human_objective()
-			// Finally, set up our traitor's backstory!
+
+	if(prob(50))
+		//Give them a minor flavour objective
+		var/list/datum/objective/minor/minorObjectives = subtypesof(/datum/objective/minor)
+		var/datum/objective/minor/minorObjective
+		while(!minorObjective && minorObjectives.len)
+			var/typePath = pick_n_take(minorObjectives)
+			minorObjective = new typePath
+			minorObjective.owner = owner
+			if(!minorObjective.finalize())
+				qdel(minorObjective)
+				minorObjective = null
+		if(minorObjective)
+			add_objective(minorObjective)
+	if(!(locate(/datum/objective/escape) in objectives))
+		if(prob(50)) //doesn't always need to escape
+			var/datum/objective/escape/escape_objective = new
+			escape_objective.owner = owner
+			add_objective(escape_objective)
+		else
+			forge_single_human_objective()
+		// Finally, set up our traitor's backstory!
 	setup_backstories(!is_hijacker && martyr_compatibility, is_hijacker)
 
 /datum/antagonist/traitor/proc/forge_ai_objectives()
