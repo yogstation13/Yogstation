@@ -7,6 +7,7 @@
 	name = "\improper Enemy of the Revolution"
 	show_in_antagpanel = FALSE
 	suicide_cry = "FOR NANOTRASEN, NOW AND FOREVER!!"
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_IGNORE // monkestation addition
 
 /datum/antagonist/enemy_of_the_revolution/forge_objectives()
 	var/datum/objective/survive/survive = new

@@ -38,6 +38,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	antag_hud_name = "apprentice"
 	show_in_roundend = FALSE
 	show_name_in_check_antagonists = TRUE
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_IGNORE // monkestation addition
 	/// The wizard team this wizard minion is part of.
 	var/datum/team/wizard/wiz_team
 

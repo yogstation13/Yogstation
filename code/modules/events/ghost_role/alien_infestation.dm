@@ -87,25 +87,26 @@
 			if(temp_vent_parent.other_atmos_machines.len > 20)
 				vents += temp_vent
 
-	if(!vents.len)
+	if(!length(vents))
 		message_admins("An event attempted to spawn an alien but no suitable vents were found. Shutting down.")
 		return MAP_ERROR
 
-	for(var/i in 1 to antag_count)
-		if(!length(candidates))
-			break
-
-		var/client/mob_client = pick_n_take_weighted(weighted_candidates)
-		var/mob/candidate = mob_client.mob
-		if(candidate.client) //I hate this
-			candidate.client.prefs.reset_antag_rep()
+	var/selected_count = 0
+	while(length(weighted_candidates) && selected_count < antag_count)
+		var/client/candidate_ckey = pick_n_take_weighted(weighted_candidates)
+		var/client/candidate_client = GLOB.directory[candidate_ckey]
+		if(QDELETED(candidate_client) || QDELETED(candidate_client.mob))
+			continue
+		var/mob/candidate = candidate_client.mob
+		candidate_client.prefs?.reset_antag_rep()
 		if(!candidate.mind)
 			candidate.mind = new /datum/mind(candidate.key)
 
 		var/obj/vent = pick_n_take(vents)
 		var/mob/living/carbon/alien/larva/new_xeno = new(vent.loc)
-		new_xeno.key = candidate.key
+		new_xeno.ckey = candidate_ckey
 		new_xeno.move_into_vent(vent)
+		selected_count++
 
 		message_admins("[ADMIN_LOOKUPFLW(new_xeno)] has been made into an alien by an event.")
 		new_xeno.log_message("was spawned as an alien by an event.", LOG_GAME)

@@ -4,6 +4,7 @@
 	show_name_in_check_antagonists = TRUE
 	hijack_speed = 2 //You literally are here to do nothing else. Might as well be fast about it.
 	suicide_cry = "HAHAHAHAHA!!"
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_IGNORE // monkestation addition
 
 /datum/antagonist/wishgranter/forge_objectives()
 	var/datum/objective/hijack/hijack = new

@@ -12,6 +12,7 @@
 	silent = TRUE
 	ui_name = FALSE
 	hud_icon = 'monkestation/icons/bloodsuckers/bloodsucker_icons.dmi'
+	antag_flags = FLAG_ANTAG_CAP_IGNORE
 
 	///The revenge vassal that brought us into the fold.
 	var/datum/antagonist/vassal/revenge/revenge_vassal

@@ -66,6 +66,7 @@
 			return
 		captive_team = new
 		captive_team.progenitor = owner
+		antag_flags |= FLAG_ANTAG_CAP_IGNORE // monkestation edit: first captive xeno does not count against cap
 	else
 		if(!istype(new_team))
 			CRASH("Wrong xeno team type provided to create_team")

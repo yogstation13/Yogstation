@@ -240,9 +240,12 @@
 
 	var/list/weighted_candidates = return_antag_rep_weight(possible_candidates)
 
-	while(length(possible_candidates) && length(candidates) < antag_count) //both of these pick_n_take from possible_candidates so this should be fine
+	while(length(weighted_candidates) && length(candidates) < antag_count) //both of these pick_n_take from weighted_candidates so this should be fine
 		if(prompted_picking)
-			var/client/picked_client = pick_n_take_weighted(weighted_candidates)
+			var/picked_ckey = pick_n_take_weighted(weighted_candidates)
+			var/client/picked_client = GLOB.directory[picked_ckey]
+			if(QDELETED(picked_client))
+				continue
 			var/mob/picked_mob = picked_client.mob
 			log_storyteller("Prompted antag event mob: [picked_mob], special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 			if(picked_mob)
@@ -258,9 +261,10 @@
 					show_candidate_amount = FALSE,
 				)
 		else
-			if(!length(weighted_candidates))
-				break
-			var/client/picked_client = pick_n_take_weighted(weighted_candidates)
+			var/picked_ckey = pick_n_take_weighted(weighted_candidates)
+			var/client/picked_client = GLOB.directory[picked_ckey]
+			if(QDELETED(picked_client))
+				continue
 			var/mob/picked_mob = picked_client.mob
 			log_storyteller("Picked antag event mob: [picked_mob], special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 			candidates |= picked_mob
@@ -353,22 +357,21 @@
 		)
 
 	var/list/weighted_candidates = return_antag_rep_weight(candidates)
+	var/selected_count = 0
+	while(length(weighted_candidates) && selected_count < antag_count)
+		var/candidate_ckey = pick_n_take_weighted(weighted_candidates)
+		var/client/candidate_client = GLOB.directory[candidate_ckey]
+		if(QDELETED(candidate_client) || QDELETED(candidate_client.mob))
+			continue
+		var/mob/candidate = candidate_client.mob
 
-	for(var/i in 1 to antag_count)
-		if(!length(weighted_candidates))
-			break
-
-		var/client/mob_client = pick_n_take_weighted(weighted_candidates)
-		var/mob/candidate = mob_client.mob
-
-		if(candidate.client) //I hate this
-			candidate.client.prefs.reset_antag_rep()
+		candidate_client.prefs?.reset_antag_rep()
 
 		if(!candidate.mind)
 			candidate.mind = new /datum/mind(candidate.key)
-
 		var/mob/living/carbon/human/new_human = make_body(candidate)
 		new_human.mind.special_role = antag_flag
 		new_human.mind.restricted_roles = restricted_roles
 		setup_minds += new_human.mind
+		selected_count++
 	setup = TRUE

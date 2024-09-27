@@ -44,8 +44,9 @@
 				affected_mob.mind.transfer_to(new_mob)
 			else
 				new_mob.key = affected_mob.key
-		if(transformed_antag_datum)
-			new_mob.mind.add_antag_datum(transformed_antag_datum)
+		if(transformed_antag_datum && !QDELETED(new_mob.mind))
+			var/datum/antagonist/given_antag = new_mob.mind.has_antag_datum(transformed_antag_datum) || new_mob.mind.add_antag_datum(transformed_antag_datum)
+			given_antag?.antag_flags |= FLAG_ANTAG_CAP_IGNORE // ensure they don't count against storyteller cap
 		new_mob.name = affected_mob.real_name
 		new_mob.real_name = new_mob.name
 		new_mob.update_name_tag()
@@ -78,6 +79,7 @@
 	name = "Xenomorph Transformation"
 	new_form = /mob/living/carbon/alien/adult/hunter
 	bantype = ROLE_ALIEN
+	transformed_antag_datum = /datum/antagonist/xeno
 
 /datum/symptom/transformation/slime
 	name = "Advanced Mutation Transformation"

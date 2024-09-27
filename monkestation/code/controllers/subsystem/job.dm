@@ -65,9 +65,10 @@
 		mass_adjust_antag_rep(cliented_list, 1)
 
 	var/list/weighted_candidates = return_antag_rep_weight(candidates)
-
 	var/antag_selection_loops = SSgamemode.current_roundstart_event.get_antag_amount()
-	for(var/i in 1 to antag_selection_loops)
+	var/iter = 0
+	while(iter < antag_selection_loops)
+		iter++
 		if(antag_selection_loops >= 100)
 			log_storyteller("h_r_a failed, antag_selection_loops went over 100")
 			return FALSE
@@ -78,7 +79,11 @@
 				log_storyteller("h_r_a failed, below required candidates for selected roundstart event")
 				return FALSE
 			break
-		var/client/dead_client = pick_n_take_weighted(weighted_candidates)
+		var/candidate_ckey = pick_n_take_weighted(weighted_candidates)
+		var/client/dead_client = GLOB.directory[candidate_ckey]
+		if(QDELETED(dead_client))
+			antag_selection_loops++
+			continue
 		var/mob/dead/new_player/candidate = dead_client.mob
 		if(!candidate.mind || !istype(candidate))
 			antag_selection_loops++
@@ -105,12 +110,16 @@
 				continue
 			var/mob/dead/new_player/candidate
 			var/sanity = 0
-			while(!candidate && length(weighted_candidates) && !sanity >= 100)
+			while(QDELETED(candidate) && length(weighted_candidates) && sanity < 100)
 				sanity++
-				candidate = pick_n_take_weighted(weighted_candidates)
-				if(!candidate.mind || !istype(candidate))
+				var/candidate_ckey = pick_n_take_weighted(weighted_candidates)
+				var/client/candidate_client = GLOB.directory[candidate_ckey]
+				if(QDELETED(candidate_client))
+					continue
+				candidate = candidate_client.mob
+				if(!isnewplayer(candidate) || QDELING(candidate) || QDELETED(candidate.mind))
 					candidate = null
-			if(!candidate)
+			if(QDELETED(candidate))
 				if(length(SSgamemode.roundstart_antag_minds) < SSgamemode.current_roundstart_event.base_antags)
 					log_storyteller("h_r_a failed, removing unassigned antag player put us below current event minimum candidates and we were unable to find a replacement")
 					return FALSE

@@ -10,6 +10,7 @@
 	show_to_ghosts = TRUE
 	suicide_cry = "ALT F4!"
 	ui_name = "AntagInfoCyberAuth"
+	antag_flags = FLAG_ANTAG_CAP_IGNORE // monkestation addition
 
 /datum/antagonist/cyber_police/greet()
 	. = ..()

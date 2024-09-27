@@ -8,6 +8,7 @@
 	ui_name = "AntagInfoBrother"
 	suicide_cry = "FOR MY BROTHER!!"
 	antag_moodlet = /datum/mood_event/focused
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_TEAM // monkestation addition
 	VAR_PRIVATE
 		datum/team/brother_team/team
 

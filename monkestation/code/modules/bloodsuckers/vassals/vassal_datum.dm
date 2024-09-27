@@ -8,6 +8,7 @@
 	roundend_category = "vassals"
 	antagpanel_category = "Bloodsucker"
 	job_rank = ROLE_BLOODSUCKER
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_IGNORE
 	antag_hud_name = "vassal"
 	show_in_roundend = FALSE
 	hud_icon = 'monkestation/icons/bloodsuckers/bloodsucker_icons.dmi'

@@ -37,27 +37,21 @@ GLOBAL_LIST_INIT(blessed_ckeys, list(
 ///give it a list of clients and the value aswell if it should be affected by multipliers and let er rip
 /proc/mass_adjust_antag_rep(list/clients, value, mulitplier = TRUE)
 	for(var/client/listed_client as anything in clients)
-		if(!listed_client.prefs || !IS_CLIENT_OR_MOCK(listed_client))
+		if(!IS_CLIENT_OR_MOCK(listed_client) || QDELETED(listed_client) || QDELETED(listed_client.prefs))
 			continue
 		listed_client.prefs.adjust_antag_rep(value, mulitplier)
 
 /proc/return_antag_rep_weight(list/candidates)
-	var/list/returning_list = list()
+	. = list()
 	for(var/anything in candidates)
 		var/client/client_source
 		if(ismob(anything))
 			var/mob/mob = anything
 			client_source = mob.client
-		if(IS_CLIENT_OR_MOCK(anything))
+		else if(IS_CLIENT_OR_MOCK(anything))
 			client_source = anything
-		if(!client_source)
+		if(QDELETED(client_source) || !client_source.ckey)
 			continue
+		.[client_source.ckey] = client_source.prefs?.antag_rep || 10
 
-		returning_list += client_source
-		var/return_value = 10
-		if(client_source.prefs?.antag_rep)
-			return_value = client_source.prefs.antag_rep
-		returning_list[client_source] = return_value
-
-	log_antag_rep("Returned Weighted List of [length(returning_list)]", list("before_weight" = candidates, "after_weight" = returning_list))
-	return returning_list
+	log_antag_rep("Returned Weighted List of [length(.)]", list("before_weight" = candidates, "after_weight" = .))

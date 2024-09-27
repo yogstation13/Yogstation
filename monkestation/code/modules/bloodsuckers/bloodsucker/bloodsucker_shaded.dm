@@ -5,6 +5,7 @@
 	show_in_roundend = FALSE
 	job_rank = ROLE_BLOODSUCKER
 	antag_hud_name = "bloodsucker"
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_IGNORE
 
 /obj/item/soulstone/bloodsucker
 	theme = THEME_WIZARD

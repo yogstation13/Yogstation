@@ -4,6 +4,7 @@
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	show_in_antagpanel = FALSE
+	antag_flags = FLAG_ANTAG_CAP_IGNORE // monkestation addition
 	/// The blob core that this minion is attached to
 	var/datum/weakref/overmind
 

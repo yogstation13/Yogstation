@@ -157,8 +157,6 @@ SUBSYSTEM_DEF(gamemode)
 	var/ran_roundstart = FALSE
 	var/list/triggered_round_events = list()
 
-	var/total_valid_antags = 0
-
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
 	// Populate event pools
 	for(var/track in event_tracks)
@@ -233,20 +231,29 @@ SUBSYSTEM_DEF(gamemode)
 	var/cap = FLOOR((total_number / ANTAG_CAP_DENOMINATOR), 1) + ANTAG_CAP_FLAT
 	return cap
 
+/datum/controller/subsystem/gamemode/proc/get_antag_count()
+	. = 0
+	var/list/already_counted = list() // Never count the same mind twice
+	for(var/datum/antagonist/antag as anything in GLOB.antagonists)
+		if(QDELETED(antag) || QDELETED(antag.owner) || already_counted[antag.owner])
+			continue
+		if(!antag.count_against_dynamic_roll_chance || (antag.antag_flags & (FLAG_FAKE_ANTAG | FLAG_ANTAG_CAP_IGNORE)))
+			continue
+		if(antag.antag_flags & FLAG_ANTAG_CAP_TEAM)
+			var/datum/team/antag_team = antag.get_team()
+			if(antag_team)
+				if(already_counted[antag_team])
+					continue
+				already_counted[antag_team] = TRUE
+		var/mob/antag_mob = antag.owner.current
+		if(QDELETED(antag_mob) || !antag_mob.key || antag_mob.stat == DEAD || antag_mob.client?.is_afk())
+			continue
+		already_counted[antag.owner] = TRUE
+		.++
+
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
-	total_valid_antags = 0
-	for(var/mob/checked_mob in GLOB.mob_list)
-		if(!checked_mob.mind)
-			continue
-		if(!checked_mob.mind.special_role)
-			continue
-		if(checked_mob.stat == DEAD)
-			continue
-		total_valid_antags++
-
-
-	return (get_antag_cap() > total_valid_antags)
+	return (get_antag_cap() > get_antag_count())
 
 /// Gets candidates for antagonist roles.
 /datum/controller/subsystem/gamemode/proc/get_candidates(be_special, job_ban, observers, ready_newplayers, living_players, required_time, inherit_required_time = TRUE, midround_antag_pref, no_antags = TRUE, list/restricted_roles, list/required_roles)
@@ -798,7 +805,9 @@ SUBSYSTEM_DEF(gamemode)
 	point_thresholds[EVENT_TRACK_ROLESET] = CONFIG_GET(number/roleset_point_threshold)
 	point_thresholds[EVENT_TRACK_OBJECTIVES] = CONFIG_GET(number/objectives_point_threshold)
 
-/datum/controller/subsystem/gamemode/proc/handle_picking_stroyteller()
+/datum/controller/subsystem/gamemode/proc/handle_picking_storyteller()
+	if(CONFIG_GET(flag/disable_storyteller))
+		return
 	if(length(GLOB.clients) > MAX_POP_FOR_STORYTELLER_VOTE)
 		secret_storyteller = TRUE
 		selected_storyteller = pick_weight(get_valid_storytellers(TRUE))
@@ -867,23 +876,13 @@ SUBSYSTEM_DEF(gamemode)
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
 	update_crew_infos()
-	total_valid_antags = 0
-	for(var/mob/checked_mob in GLOB.mob_list)
-		if(!checked_mob.mind)
-			continue
-		if(!checked_mob.mind.special_role)
-			continue
-		if(checked_mob.stat == DEAD)
-			continue
-		total_valid_antags++
-
 	var/round_started = SSticker.HasRoundStarted()
 	var/list/dat = list()
 	dat += "Storyteller: [storyteller ? "[storyteller.name]" : "None"] "
 	dat += " <a href='?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='?src=[REF(src)];panel=main'>Refresh</a>"
 	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
 	dat += "<BR>Active Players: [active_players]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew])"
-	dat += "<BR>Antagonist Count vs Maximum: [total_valid_antags] / [get_antag_cap()]"
+	dat += "<BR>Antagonist Count vs Maximum: [get_antag_count()] / [get_antag_cap()]"
 	dat += "<HR>"
 	dat += "<a href='?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_MAIN]' [panel_page == GAMEMODE_PANEL_MAIN ? "class='linkOn'" : ""]>Main</a>"
 	dat += " <a href='?src=[REF(src)];panel=main;action=tab;tab=[GAMEMODE_PANEL_VARIABLES]' [panel_page == GAMEMODE_PANEL_VARIABLES ? "class='linkOn'" : ""]>Variables</a>"

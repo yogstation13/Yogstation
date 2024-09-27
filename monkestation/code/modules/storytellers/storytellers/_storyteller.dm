@@ -122,7 +122,7 @@
 		var/list/valid_events = list()
 		// Determine which events are valid to pick
 		for(var/datum/round_event_control/event as anything in mode.event_pools[track])
-			var/players_amt = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
+			var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 			if(event.can_spawn_event(players_amt))
 				if(QDELETED(event))
 					message_admins("[event.name] was deleted!")

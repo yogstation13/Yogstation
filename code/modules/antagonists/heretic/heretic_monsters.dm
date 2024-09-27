@@ -8,6 +8,7 @@
 	antag_hud_name = "heretic_beast"
 	suicide_cry = "MY MASTER SMILES UPON ME!!"
 	show_in_antagpanel = FALSE
+	antag_flags = parent_type::antag_flags | FLAG_ANTAG_CAP_IGNORE // monkestation addition
 	/// Our master (a heretic)'s mind.
 	var/datum/mind/master
 
