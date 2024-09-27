@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed some logic relating to antag selection (roundstart, midround, and ghost roles), hopefully reducing hard deletes and potential issues."
