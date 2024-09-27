@@ -1,6 +1,0 @@
-author: "KnigTheThrasher"
-delete-after: True
-changes:
-  - rscadd: "Added layer adapters to atmos"
-  - bugfix: "Added cmo spawner to kilo"
-  - bugfix: "Connected rest of areas to distro"

@@ -591,3 +591,21 @@
   flleeppyy:
   - rscadd: If you are the chaplain, or have the Spiritual trait, you will be divinely
       warned that it is almost time to go.
+2024-09-27:
+  Absolucy:
+  - bugfix: Fixed malkavian bloodsuckers not getting an objective when another bloodsucker
+      breaks the masquerade.
+  KnigTheThrasher:
+  - rscadd: Added layer adapters to atmos
+  - bugfix: Added cmo spawner to kilo
+  - bugfix: Connected rest of areas to distro
+  PotatoTomahto:
+  - rscadd: Portable gravity machine added as circuit and cargo order.
+  - bugfix: Fields, such as gravity, work now.
+  Shoddd:
+  - bugfix: Long Revolver and Levergun are now loadable
+  ThePooba:
+  - rscadd: Bomb Actualizer machine, available from illegal tech, pop in a ttv and
+      watch it explode bigger and bettert than before
+  Wisemonster:
+  - balance: Added a telescopic baton to the blueshield's locker
