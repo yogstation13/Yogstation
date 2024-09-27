@@ -235,6 +235,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous
 	category = "Conspicuous Weapons"
 
+/datum/uplink_item/dangerous/combatknife
+	name = "Combat Knife"
+	desc = "A sharp, well maintained, and deadly combat knife from the old world. Slices through bone and flesh with ease."
+	item = /obj/item/kitchen/knife/combat
+	cost = 5
+
 /datum/uplink_item/dangerous/crossbow
 	name = "Rebar Crossbow"
 	desc = "A heated rebar crossbow. Pretty good for being jury rigged, it has accurate and high damage single shots, with ammo you can hand craft."
@@ -256,7 +262,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/dangerous/m4a1
 	name = "M4A1 Rifle"
-	desc = "A old but still working service rifle with firepower, accuracy, and armor penetration to boot."
+	desc = "A old but still working service rifle with firepower, accuracy, and armor penetration to boot. Ammo may be difficult to find."
 	item = /obj/item/gun/ballistic/automatic/m4a1
 	cost = 20
 
@@ -338,6 +344,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This device will disrupt any nearby outgoing radio communication when activated. Blocks suit sensors, but does not affect binary chat."
 	item = /obj/item/jammer
 	cost = 5
+
+/datum/uplink_item/stealthy_tools/lockpick
+	name = "Lockpick"
+	desc = "A simple metal lockpick, which can unlock normal, locked doors given enough time."
+	item = /obj/item/lockpick
+	cost = 2
 
 /datum/uplink_item/misc
 	category = UPLINK_CATEGORY_MISC

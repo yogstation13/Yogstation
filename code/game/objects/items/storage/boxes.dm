@@ -1513,7 +1513,10 @@
 
 
 
-
+/obj/item/storage/box/halflife/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 4
 
 /obj/item/storage/box/halflife/ration
 	name = "ration pack"

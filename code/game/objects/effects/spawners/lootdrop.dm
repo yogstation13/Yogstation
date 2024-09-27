@@ -744,10 +744,12 @@
 
 	loot = list(
 				/obj/item/crowbar/large = 2,
+				/obj/item/screwdriver,
 				/obj/item/storage/backpack/satchel/leather,
 				/obj/item/storage/backpack/satchel,
 				/obj/item/storage/backpack/satchel/flat,
 				/obj/item/storage/belt/fannypack/black,
+				/obj/item/storage/belt/pouch,
 				/obj/item/storage/briefcase,
 				/obj/item/lockpick,
 				/obj/item/clothing/under/citizen/refugee,

@@ -269,6 +269,17 @@
 					/obj/item/wrench)
 	crate_name = "tool crate"
 
+/datum/supply_pack/materials/flashlights
+	name = "Flashlight Crate"
+	desc = "Contains five quality flashlights."
+	cost = 150
+	contains = list(/obj/item/flashlight/seclite,
+					/obj/item/flashlight/seclite,
+					/obj/item/flashlight/seclite,
+					/obj/item/flashlight/seclite,
+					/obj/item/flashlight/seclite)
+	crate_name = "flashlight crate"
+
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////// Medical /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
@@ -495,3 +506,13 @@
 					/obj/item/storage/fancy/cigarettes,
 					/obj/item/storage/fancy/cigarettes/cigars)
 	crate_name = "headset crate"
+
+/datum/supply_pack/misc/pouches
+	name = "Pouch Crate"
+	desc = "Contains four pouches for helping with carrying small items."
+	cost = 200
+	contains = list(/obj/item/storage/belt/pouch,
+					/obj/item/storage/belt/pouch,
+					/obj/item/storage/belt/pouch,
+					/obj/item/storage/belt/pouch)
+	crate_name = "pouch crate"

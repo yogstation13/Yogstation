@@ -57,6 +57,7 @@
 	icon_state = "crowbar_large"
 	item_state = "crowbar"
 	toolspeed = 0.7
+	wound_bonus = 10
 
 /obj/item/crowbar/large/Initialize(mapload)
 	. = ..()

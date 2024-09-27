@@ -28,6 +28,22 @@
 	. = ..()
 	update_appearance(UPDATE_ICON)
 
+/obj/item/storage/belt/pouch
+	name = "pouch"
+	desc = "A old world pouch. Can hold a little bit of stuff."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "pouch"
+	item_state = "pouch"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/storage/belt/pouch/Initialize(mapload)
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		STR.max_combined_w_class = 3
+		STR.max_w_class = WEIGHT_CLASS_SMALL
+		STR.max_items = 3
+
 /obj/item/storage/belt/utility
 	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Holds tools."
