@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - bugfix: "Fix Delta's hydroponics railings to be on a lower layer than the machines"
