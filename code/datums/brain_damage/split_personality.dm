@@ -25,10 +25,12 @@
 	stranger_backseat = new(owner, src)
 	var/datum/action/cooldown/spell/personality_commune/stranger_spell = new(src)
 	stranger_spell.Grant(stranger_backseat)
+	stranger_backseat.copy_languages(owner)
 
 	owner_backseat = new(owner, src)
 	var/datum/action/cooldown/spell/personality_commune/owner_spell = new(src)
 	owner_spell.Grant(owner_backseat)
+	owner_backseat.copy_languages(owner)
 
 
 /datum/brain_trauma/severe/split_personality/proc/get_ghost()
