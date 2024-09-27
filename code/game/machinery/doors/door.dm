@@ -300,9 +300,6 @@
 	else if(I.tool_behaviour == TOOL_WELDER)
 		try_to_weld(I, user, modifiers)
 		return TRUE
-	else if(!(I.item_flags & NOBLUDGEON) && !user.combat_mode)
-		try_to_activate_door(user)
-		return TRUE
 	return ..()
 
 /obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration = 0)

@@ -24,6 +24,9 @@
 	var/has_damage_overlay = TRUE
 	//used for mirrored overlays
 	var/mirrored = FALSE
+	var/keylock = FALSE
+	var/lockhash = 0
+	var/lockid = null
 
 /obj/machinery/door/unpowered/halflife/Initialize()
 	. = ..()
@@ -42,6 +45,24 @@
 		pixel_x = -28
 		pixel_y = 1
 		add_overlay(image(icon,icon_state="[frametype]_frame_vertical_overlay", layer = ABOVE_ALL_MOB_LAYER))
+
+	if(lockhash)
+		GLOB.lockhashes += lockhash
+	else if(locked)
+		if(lockid)
+			if(GLOB.lockids[lockid])
+				lockhash = GLOB.lockids[lockid]
+			else
+				lockhash = rand(1000,9999)
+				while(lockhash in GLOB.lockhashes)
+					lockhash = rand(1000,9999)
+				GLOB.lockhashes += lockhash
+				GLOB.lockids[lockid] = lockhash
+		else
+			lockhash = rand(1000,9999)
+			while(lockhash in GLOB.lockhashes)
+				lockhash = rand(1000,9999)
+			GLOB.lockhashes += lockhash
 
 /obj/machinery/door/unpowered/halflife/update_overlays()
 	. = ..()
@@ -197,17 +218,43 @@
 
 /obj/machinery/door/unpowered/halflife/attackby(obj/item/I, mob/living/M, params)
 	. = ..()
+	if(istype(I, /obj/item/hl2key))
+		trykeylock(I, M)
 	if(locked && !(M.combat_mode))
 		to_chat(M, "<span class='warning'> The [name] is locked.</span>")
 		playsound(src, 'sound/halflifesounds/halflifeeffects/door_locked.ogg', 50, TRUE)
 		return
+		/*
 	if(!(I.item_flags & NOBLUDGEON || LOCKING_ITEM) && !(M.combat_mode) && do_after(M, 1.5 SECONDS, interaction_key = DOAFTER_SOURCE_DOORS))
 		open = TRUE
 		try_to_activate_door(M)
 		return TRUE
+		*/
 	if(!open)
 		update_appearance()
 		return ((obj_flags & CAN_BE_HIT) && I.attack_atom(src, M, params))
+
+/obj/machinery/door/unpowered/halflife/proc/trykeylock(obj/item/I, mob/user)
+	if(!keylock)
+		return
+	user.changeNext_move(CLICK_CD_MELEE)
+	var/obj/item/hl2key/K = I
+	if(K.lockhash == lockhash)
+		lock_toggle(user)
+		return
+	return
+
+/obj/machinery/door/unpowered/halflife/proc/lock_toggle(mob/user)
+	if(open)
+		return
+	if(locked)
+		user.visible_message("<span class='warning'>[user] unlocks [src].</span>", \
+			"<span class='notice'>I unlock [src].</span>")
+		locked = 0
+	else
+		user.visible_message("<span class='warning'>[user] locks [src].</span>", \
+			"<span class='notice'>I lock [src].</span>")
+		locked = 1
 
 /obj/machinery/door/unpowered/halflife/do_animate(animation)
 	return
