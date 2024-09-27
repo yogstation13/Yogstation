@@ -17,13 +17,14 @@
 		JOB_CYBORG,
 		ROLE_POSIBRAIN,
 	)
-	weight = 4
-	max_occurrences = 2
+	weight = 1
+	max_occurrences = 3
 	min_players = 5
+	checks_antag_cap = FALSE
 
 /datum/round_event_control/antagonist/solo/obsessed/midround
 	name = "Compulsive Obsession"
-	maximum_antags = 2
+	maximum_antags = 1
 
 /datum/round_event/antagonist/solo/obsessed
 
