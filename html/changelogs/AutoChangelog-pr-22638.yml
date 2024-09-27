@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "Fixed a maintenance door in box having wrong access type set"
