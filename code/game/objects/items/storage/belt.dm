@@ -1093,7 +1093,7 @@
 
 /obj/item/storage/belt/fannypack
 	name = "fannypack"
-	desc = "A dorky fannypack for keeping small items in."
+	desc = "A old world fanny pack for storing a few small items. Not very fashionable, but storage capacity is always at a premium."
 	icon_state = "fannypack_leather"
 	item_state = "fannypack_leather"
 	dying_key = DYE_REGISTRY_FANNYPACK

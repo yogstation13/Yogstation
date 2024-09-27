@@ -1345,73 +1345,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	record = old_obj.record
 
 /**
-  * # Kill Pet
-  *
-  * Kill Pet
-  */
-/datum/objective/minor/pet
-	name = "assasinate-pet"
-	explanation_text = "Assassinate the HoP's assistant, Ian."
-	/// Pet
-	var/mob/living/pet
-	var/list/pets = list(/mob/living/simple_animal/pet/dog/corgi/Ian,
-						 /mob/living/simple_animal/pet/cat/Runtime,
-						 /mob/living/simple_animal/pet/penguin/emperor/shamebrero,
-						 /mob/living/carbon/monkey/punpun,
-						 /mob/living/simple_animal/parrot/Poly,
-						 /mob/living/simple_animal/pet/fox/Renault,
-						 /mob/living/simple_animal/pet/fox/fennec/Autumn)
-
-/**
-  * Chooses and finds pet.area
-  *
-  * Choices are: Ian, Runtime, Anadear, Pun pun, Poly, Renault, Autumn.
-  */
-/datum/objective/minor/pet/finalize()
-	var/list/possible_pets = list()
-	for(var/P in pets)
-		var/mob/A = locate(P) in GLOB.mob_living_list
-		if(A && is_station_level(A.z))
-			possible_pets += P
-	if(!possible_pets)
-		return
-	var/chosen_pet = rand(1, possible_pets.len)
-	pet = locate(possible_pets[chosen_pet]) in GLOB.mob_living_list
-	name = "Kill [pet.name]"
-	explanation_text = "Assassinate the important animal, [pet.name]."
-	return pet
-
-/datum/objective/minor/pet/admin_edit(mob/admin)
-	var/list/possible_targets = list()
-	for(var/P in pets)
-		var/A = locate(P) in GLOB.mob_living_list
-		if(A)
-			possible_targets += A
-	if(possible_targets.len)
-		var/selected_pet = input(admin,"Select target:", "Objective target") as null|anything in possible_targets
-		if(!selected_pet)
-			return
-		pet = selected_pet
-	else
-		to_chat(admin, span_warning("No living pets!"))
-	update_explanation_text()
-
-/datum/objective/minor/pet/update_explanation_text()
-	explanation_text = "Assassinate the important animal, [pet.name]"
-
-/datum/objective/minor/pet/copy_target(datum/objective/minor/pet/old_obj)
-	. = ..()
-	pet = old_obj.pet
-
-/**
-  * Check whether Pet is dead
-  */
-/datum/objective/minor/pet/check_completion()
-	if(..())
-		return TRUE
-	return (!pet || pet.stat == DEAD)
-
-/**
   * # Take a picture of your target's dead body
   *
   * Escape with a picture of their dead body
@@ -1524,7 +1457,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/nuclear,
 		/datum/objective/capture,
 		/datum/objective/absorb,
-		/datum/objective/minor/pet,
 		/datum/objective/custom,
 		/datum/objective/gimmick //bee port
 	)

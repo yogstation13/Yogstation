@@ -317,7 +317,7 @@
 
 /obj/item/storage/backpack/satchel/flat
 	name = "smuggler's satchel"
-	desc = "A very slim satchel that can easily fit into tight spaces."
+	desc = "A very slim old world satchel that can easily fit into tight spaces."
 	icon_state = "satchel-flat"
 	w_class = WEIGHT_CLASS_NORMAL //Can fit in backpacks itself.
 
@@ -325,7 +325,7 @@
 	. = ..()
 	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE, INVISIBILITY_OBSERVER, use_anchor = TRUE)
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_combined_w_class = 15
+	STR.max_combined_w_class = 9
 	STR.set_holdable(null, list(/obj/item/storage/backpack/satchel/flat)) //muh recursive backpacks)
 
 /obj/item/storage/backpack/satchel/flat/with_tools/PopulateContents()

@@ -208,7 +208,7 @@
 			destroy_objective.find_target()
 			add_objective(destroy_objective)
 		else
-			var/N = pick(/datum/objective/assassinate/cloned, /datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon, /datum/objective/maroon_organ)
+			var/N = pick(/datum/objective/assassinate/once, /datum/objective/assassinate, /datum/objective/maroon)
 			var/datum/objective/kill_objective = new N
 			kill_objective.owner = owner
 			kill_objective.find_target()

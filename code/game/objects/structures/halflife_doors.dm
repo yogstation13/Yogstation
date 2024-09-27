@@ -27,6 +27,7 @@
 	var/keylock = FALSE
 	var/lockhash = 0
 	var/lockid = null
+	var/masterkey = TRUE //if masterkey can open this regardless
 
 /obj/machinery/door/unpowered/halflife/Initialize()
 	. = ..()
@@ -220,6 +221,8 @@
 	. = ..()
 	if(istype(I, /obj/item/hl2key))
 		trykeylock(I, M)
+	if(istype(I, /obj/item/lockpick))
+		trypicklock(I, M)
 	if(locked && !(M.combat_mode))
 		to_chat(M, "<span class='warning'> The [name] is locked.</span>")
 		playsound(src, 'sound/halflifesounds/halflifeeffects/door_locked.ogg', 50, TRUE)
@@ -243,6 +246,47 @@
 		lock_toggle(user)
 		return
 	return
+
+/obj/machinery/door/unpowered/halflife/proc/trypicklock(obj/item/I, mob/user)
+	if(open)
+		to_chat(user, "<span class='warning'>This cannot be picked while it is open.</span>")
+		return
+	if(!keylock)
+		return
+	else
+		var/lockprogress = 0
+		var/locktreshold = 100
+
+		var/obj/item/lockpick/P = I
+		
+		var/picktime = 50
+		var/pickchance = 60
+		var/moveup = 10
+
+		pickchance *= P.picklvl
+		pickchance = clamp(pickchance, 1, 95)
+
+
+
+		while(!QDELETED(I) &&(lockprogress < locktreshold))
+			if(!do_after(user, picktime, target = src))
+				break
+			if(prob(pickchance))
+				lockprogress += moveup
+				playsound(src.loc, pick('sound/items/pickgood1.ogg','sound/items/pickgood2.ogg'), 5, TRUE)
+				to_chat(user, "<span class='warning'>Click...</span>")
+				if(lockprogress >= locktreshold)
+					to_chat(user, "<span class='deadsay'>The locking mechanism gives.</span>")
+					lock_toggle(user)
+					break
+				else
+					continue
+			else
+				playsound(loc, 'sound/items/pickbad.ogg', 40, TRUE)
+				I.take_damage(1, BRUTE, "melee")
+				to_chat(user, "<span class='warning'>Clack.</span>")
+				continue
+		return
 
 /obj/machinery/door/unpowered/halflife/proc/lock_toggle(mob/user)
 	if(open)

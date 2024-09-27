@@ -20,6 +20,37 @@
 			GLOB.lockhashes += lockhash
 			GLOB.lockids[lockid] = lockhash
 
+/obj/item/lockpick
+	name = "lockpick"
+	desc = "A small, sharp piece of metal to aid opening locks in the absence of a key."
+	icon_state = "lockpick"
+	icon = 'icons/obj/halflife/keys.dmi'
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 0
+	max_integrity = 10
+	var/picklvl = 1
+
+/obj/item/lockpick/combine
+	name = "combine lockpick"
+	desc = "A combine-grade lockpick, able to pick locks more easily than your standard lockpick."
+	picklvl = 1.25
+
+/obj/item/hl2key/master
+	name = "master key"
+	desc = "The district administrator's master key."
+	lockid = "administrator"
+
+/obj/item/hl2key/master/pre_attack(target, user, params)
+	. = ..()
+	if(istype(target, /obj/machinery/door/unpowered/halflife))
+		var/obj/machinery/door/unpowered/halflife/D = target
+		if(D.masterkey)
+			lockhash = D.lockhash
+
+/obj/item/hl2key/master/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	lockhash = GLOB.lockids[lockid]
+
 /obj/item/hl2key/townhall
 	name = "townhall key"
 	desc = "This key will open doors in the townhall."
