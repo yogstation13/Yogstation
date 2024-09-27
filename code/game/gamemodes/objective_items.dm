@@ -32,9 +32,16 @@
 	difficulty = 5
 	excludefromjob = list("Divisional Lead", "Warden")
 
+/datum/objective_item/steal/mask
+	name = "a civil protection mask."
+	targetitem = /obj/item/clothing/mask/gas/civilprotection
+	difficulty = 4
+	excludefromjob = list("Divisional Lead", "Warden")
+
 /datum/objective_item/steal/documents
 	name = "the administrator's secret documents."
 	targetitem = /obj/item/documents //Any set of secret documents. Doesn't have to be NT's
+	difficulty = 6
 
 //Unique Objectives
 /datum/objective_item/unique/docs_red

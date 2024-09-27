@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 #define UPLINK_CATEGORY_EXOSUITS "Exosuits"
 #define UPLINK_CATEGORY_CQC "Close Quarters Combat"
 #define UPLINK_CATEGORY_NT_SUPPORT "Support"
-#define UPLINK_CATEGORY_HARDSUITS "Armor & Hardsuits"
+#define UPLINK_CATEGORY_HARDSUITS "Armor"
 #define UPLINK_CATEGORY_OTHER "Other Gear"
 /**
  * Uplinks

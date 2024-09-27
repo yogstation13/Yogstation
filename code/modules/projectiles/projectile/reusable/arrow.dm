@@ -133,9 +133,9 @@
 	name = "rebar"
 	desc = "A piece of rebar. Maybe this can be fired at someone..."
 	icon_state = "rebar"
-	damage = 60
+	damage = 50
 	embed_chance = 0.5
-	armour_penetration = 40
+	armour_penetration = 30
 
 /obj/projectile/bullet/reusable/arrow/magic
 	name = "magic arrow"

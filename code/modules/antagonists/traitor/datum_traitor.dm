@@ -255,7 +255,7 @@
 	owner.announce_objectives()
 	if(should_give_codewords)
 		give_codewords()
-	to_chat(owner.current, span_notice("Your rebel cell, [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your combine stipend."))
+	to_chat(owner.current, span_notice("Your organization, [initial(company.name)] will be paying you an extra [initial(company.paymodifier)]x your combine stipend."))
 
 /datum/antagonist/traitor/proc/finalize_traitor()
 	switch(traitor_kind)

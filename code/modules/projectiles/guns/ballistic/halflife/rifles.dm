@@ -53,5 +53,4 @@
 	vary_fire_sound = FALSE
 	force = 12
 	spread = 0
-	draw_time = 3 SECONDS
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/rebar

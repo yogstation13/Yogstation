@@ -14,11 +14,11 @@
 	cryo_preserve = TRUE
 
 /obj/item/documents/nanotrasen
-	desc = "\"Top Secret\" Nanotrasen documents, filled with complex diagrams and lists of names, dates and coordinates."
+	desc = "\"Top Secret\" Combine documents, filled with complex diagrams and lists of names, dates and coordinates."
 	icon_state = "docs_verified"
 
 /obj/item/documents/syndicate
-	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence."
+	desc = "\"Top Secret\" documents detailing sensitive Rebel operational intelligence."
 
 /obj/item/documents/syndicate/red
 	name = "red secret documents"

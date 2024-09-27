@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		if (gamemode == /datum/game_mode/nuclear) 					// uplink code kind of needs a redesign
 			nuclear_team = locate() in GLOB.antagonist_teams	// the team discounts could be a in a GLOB with this design but it would make sense for them to be team specific...
 		if (!nuclear_team)
-			create_uplink_sales(3, "Discounted Gear", 1, sale_items, filtered_uplink_items)
+			create_uplink_sales(2, "Discounted Gear", 1, sale_items, filtered_uplink_items)
 		else
 			if (!nuclear_team.team_discounts)
 				// create 5 unlimited stock discounts
@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/datum/corporation/manufacturer
 
 /datum/uplink_item/proc/get_discount()
-	return pick(4;0.75,2;0.5,1;0.25)
+	return pick(4;0.9,2;0.8,1;0.75)
 
 /datum/uplink_item/proc/purchase(mob/user, datum/component/uplink/U)
 	var/atom/A = spawn_item(item, user, U)
@@ -235,19 +235,51 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous
 	category = "Conspicuous Weapons"
 
+/datum/uplink_item/dangerous/crossbow
+	name = "Rebar Crossbow"
+	desc = "A heated rebar crossbow. Pretty good for being jury rigged, it has accurate and high damage single shots, with ammo you can hand craft."
+	item = /obj/item/gun/ballistic/bow/crossbow/rebar
+	cost = 7
+
 /datum/uplink_item/dangerous/pistol
 	name = "USP Match"
 	desc = "A common 9mm pistol, easy to conceal and use."
 	item = /obj/item/gun/ballistic/automatic/pistol/usp
-	cost = 7
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	cost = 8
 
 /datum/uplink_item/dangerous/smg
 	name = "MP7 SMG"
 	desc = "A SMG which packs a bunch with it's large bursts."
 	item = /obj/item/gun/ballistic/automatic/mp7
-	cost = 14
+	cost = 16
 	surplus = 50
+
+/datum/uplink_item/dangerous/m4a1
+	name = "M4A1 Rifle"
+	desc = "A old but still working service rifle with firepower, accuracy, and armor penetration to boot."
+	item = /obj/item/gun/ballistic/automatic/m4a1
+	cost = 20
+
+/datum/uplink_item/armor
+	category = UPLINK_CATEGORY_HARDSUITS
+
+/datum/uplink_item/armor/civilprotectionvest
+	name = "Civil Protection vest"
+	desc = "A light and protective vest taken from combine civilprotection."
+	item = /obj/item/clothing/suit/armor/civilprotection
+	cost = 4
+
+/datum/uplink_item/armor/rebeluniform
+	name = "Rebel Uniform"
+	desc = "A somewhat protective uniform with no tracking sensors, which is also decently low profile."
+	item = /obj/item/clothing/under/citizen/rebel
+	cost = 4
+
+/datum/uplink_item/armor/hev
+	name = "HEV Suit"
+	desc = "A well preserved and incredibly rare suit retrieved from Black Mesa."
+	item = /obj/item/clothing/suit/armor/nerd
+	cost = 40
 
 /datum/uplink_item/stealthy_weapons
 	category = UPLINK_CATEGORY_STEALTH_WEAPONS
@@ -256,8 +288,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Poison Kit"
 	desc = "An assortment of deadly and illegal chemicals packed into a compact box. Comes prepackaged in large syringes for more precise application."
 	item = /obj/item/storage/box/syndie_kit/chemical
-	manufacturer = /datum/corporation/traitor/vahlen
-	cost = 5
+	cost = 7
 	surplus = 50
 
 /datum/uplink_item/ammo
@@ -268,8 +299,19 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "9mm Handgun Magazine"
 	desc = "An additional 18-round 9mm magazine, compatible with the USP Match pistol."
 	item = /obj/item/ammo_box/magazine/usp9mm
-	cost = 3
-	include_modes = list(/datum/game_mode/nuclear)
+	cost = 4
+
+/datum/uplink_item/ammo/smg
+	name = "4.6x30mm SMG Magazine"
+	desc = "A large capacity 45 round magazine for use with the MP7 SMG."
+	item = /obj/item/ammo_box/magazine/mp7
+	cost = 5
+
+/datum/uplink_item/ammo/rebar
+	name = "Rebar Bolt"
+	desc = "A simple piece of sharpened rebar for use with the crossbow."
+	item = /obj/item/ammo_casing/reusable/arrow/rebar
+	cost = 1
 
 /datum/uplink_item/explosives/c4
 	name = "Composition C-4"
@@ -277,17 +319,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			an assembly to it in order to alter the way it detonates. It can be attached to almost all objects and has a modifiable timer with a \
 			minimum setting of 10 seconds."
 	item = /obj/item/grenade/plastic/c4
-	cost = 1
+	cost = 2
 
 /datum/uplink_item/explosives
 	category = UPLINK_CATEGORY_EXPLOSIVES
 
 /datum/uplink_item/explosives/frag_grenade
-	name = "Frag Grenade"
-	desc = "Simple, but lethal. Anything adjacent when it explodes will be heavily damaged. Likely to cause a small hull breach."
+	name = "Grenade"
+	desc = "Simple, but lethal. Anything adjacent when it explodes will be heavily damaged."
 	item = /obj/item/grenade/syndieminibomb/bouncer
-	cost = 4
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	cost = 5
 
 /datum/uplink_item/stealthy_tools
 	category = UPLINK_CATEGORY_STEALTH_GADGETS
@@ -297,44 +338,27 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "This device will disrupt any nearby outgoing radio communication when activated. Blocks suit sensors, but does not affect binary chat."
 	item = /obj/item/jammer
 	cost = 5
-	manufacturer = /datum/corporation/traitor/cybersun
 
-/datum/uplink_item/stealthy_tools/smugglersatchel
-	name = "Smuggler's Satchel"
-	desc = "This satchel is thin enough to be hidden in the gap between plating and tiling; great for stashing \
-			your stolen goods. Comes with a crowbar, a floor tile and some contraband inside."
-	item = /obj/item/storage/backpack/satchel/flat/with_tools
+/datum/uplink_item/misc
+	category = UPLINK_CATEGORY_MISC
+
+/datum/uplink_item/misc/medvial
+	name = "Medvial"
+	desc = "Easy to store, and use, this medvial can quickly provide a small amount of healing."
+	item = /obj/item/reagent_containers/pill/patch/medkit/vial
 	cost = 1
-	surplus = 30
 
+/datum/uplink_item/misc/medvial
+	name = "Civil Protection Belt"
+	desc = "A belt for easily carrying more things such as ammo."
+	item = /obj/item/storage/belt/civilprotection
+	cost = 4
 
-
-
-
-
-//Infiltrator shit
-/datum/uplink_item/infiltration
-	category = UPLINK_CATEGORY_INFILTRATION
-	include_modes = list(/datum/game_mode/infiltration)
-	surplus = 0
-
-/datum/uplink_item/infiltration/extra_stealthsuit
-	name = "Extra Chameleon Hardsuit"
-	desc = "An infiltration hardsuit, capable of changing it's appearance instantly."
-	item = /obj/item/clothing/suit/space/hardsuit/infiltration
-	cost = 10
-
-/datum/uplink_item/infiltration/access_kit
-	name = "Access Kit"
-	desc = "A secret device, reverse engineered by gear retrieved from previous Nanotrasen infiltration missions. Allows you to spoof an ID card to have the assignment and access of a single low-level job."
-	item = /obj/item/access_kit/syndicate
-	limited_stock = 1
-	cost = 5
-
-
-
-
-
+/datum/uplink_item/misc/ration
+	name = "Ration"
+	desc = "A basic ration with food and water."
+	item = /obj/item/storage/box/halflife/ration
+	cost = 2
 
 /// NT Uplink items
 /datum/uplink_item/nt

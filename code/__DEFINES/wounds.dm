@@ -1,7 +1,7 @@
 
 // ~wound damage/rolling defines
 /// the cornerstone of the wound threshold system, your base wound roll for any attack is rand(1, damage^this), after armor reduces said damage. See [/obj/item/bodypart/proc/check_wounding]
-#define WOUND_DAMAGE_EXPONENT	1.4
+#define WOUND_DAMAGE_EXPONENT	1.5
 
 /// any damage dealt over this is ignored for damage rolls unless the target has the frail quirk (35^1.4=145, for reference)
 #define WOUND_MAX_CONSIDERED_DAMAGE	35
