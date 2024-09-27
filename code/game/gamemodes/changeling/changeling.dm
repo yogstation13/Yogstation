@@ -86,11 +86,6 @@ GLOBAL_VAR(changeling_team_objective_type)
 	recommended_enemies = 4
 	reroll_friendly = 1
 
-	announce_span = "green"
-	announce_text = "Alien changelings have infiltrated the crew!\n\
-	<span class='green'>Changelings</span>: Accomplish the objectives assigned to you.\n\
-	<span class='notice'>Crew</span>: Root out and eliminate the changeling menace."
-
 	title_icon = "changeling"
 	var/const/changeling_amount = 4 //hard limit on changelings if scaling is turned off
 	var/list/changelings = list()

@@ -236,10 +236,6 @@ SUBSYSTEM_DEF(ticker)
 		message_admins(span_notice("DEBUG: Bypassing prestart checks..."))
 
 	CHECK_TICK
-	if(hide_mode)
-		to_chat(world, "<b>The gamemode is: secret!</b>") // yogs - removed possible gamemodes list
-	else
-		mode.announce()
 
 	if(!CONFIG_GET(flag/ooc_during_round))
 		toggle_ooc(FALSE) // Turn it off

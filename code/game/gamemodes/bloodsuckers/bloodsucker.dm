@@ -16,11 +16,6 @@
 	reroll_friendly = 1
 	round_ends_with_antag_death = FALSE
 
-	announce_span = "green"
-	announce_text = "Filthy, bloodsucking vampires are crawling around disguised as crewmembers!\n\
-	<span class='danger'>Bloodsuckers</span>: Claim a coffin and grow strength, turn the crew into your slaves.\n\
-	<span class='notice'>Crew</span>: Put an end to the undead menace and resist their brainwashing!"
-
 	///List of all Bloodsuckers, used for assigning
 	var/list/bloodsuckers = list()
 

@@ -37,9 +37,6 @@
 	var/continuous_sanity_checked	//Catches some cases where config options could be used to suggest that modes without antagonists should end when all antagonists die
 	var/enemy_minimum_age = 7 //How many days must players have been playing before they can play this antagonist
 
-	var/announce_span = "warning" //The gamemode's name will be in this span during announcement.
-	var/announce_text = "This gamemode forgot to set a descriptive text! Uh oh!" //Used to describe a gamemode when it's announced.
-
 	// title_icon and title_icon_state are used for the credits that roll at the end
 	var/title_icon
 
@@ -57,11 +54,6 @@
 	var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
 
 	var/time_required = 0 // Framework for future setting of required time for antag roles
-
-/// Shows the gamemode's name and a fast description.
-/datum/game_mode/proc/announce()
-	to_chat(world, "<b>The gamemode is: <span class='[announce_span]'>[name]</span>!</b>")
-	to_chat(world, "<b>[announce_text]</b>")
 
 /datum/game_mode/proc/admin_panel()
 	return

@@ -11,11 +11,6 @@
 	title_icon = "ss13"
 	time_required = 600
 
-	announce_span = "danger"
-	announce_text = "The station's Artificial Intelligence is rogue!\n\
-	<span class='danger'>AI</span>: Destroy the station.\n\
-	<span class='notice'>Crew</span>: Do not let the AI succeed!"
-
 /datum/game_mode/malf/get_players_for_role(role)
 	.=..()
 	var/datum/job/ai/job = SSjob.GetJob("AI")

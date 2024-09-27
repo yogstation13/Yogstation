@@ -15,9 +15,6 @@
 
 	restricted_jobs = list("Cyborg", "AI", "Synthetic")
 
-	announce_span = "Monkey"
-	announce_text = "One or more crewmembers have been infected with Jungle Fever! Crew: Contain the outbreak. None of the infected monkeys may escape alive to CentCom. Monkeys: Ensure that your kind lives on! Rise up against your captors!"
-
 	var/carriers_to_make = 1
 	var/list/carriers = list()
 

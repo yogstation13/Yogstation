@@ -19,11 +19,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	recommended_enemies = 3
 	enemy_minimum_age = 14
 
-	announce_span = "zombie"
-	announce_text = "Some crew members have been infected with a zombie virus!\n\
-	<span class='danger'>Zombies</span>: Take over the station!.\n\
-	<span class='notice'>Crew</span>: Kill the zombies and escape!."
-
 	var/list/people_to_infect = list() //the zombies we'll infect at roundstart
 
 	var/datum/team/zombie/main_team

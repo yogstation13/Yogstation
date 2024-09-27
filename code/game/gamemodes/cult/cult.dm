@@ -47,11 +47,6 @@
 	enemy_minimum_age = 14
 	title_icon = "cult"
 
-	announce_span = "cult"
-	announce_text = "Some crew members are trying to start a cult to Nar'sie!\n\
-	<span class='cult'>Cultists</span>: Carry out Nar'sie's will.\n\
-	<span class='notice'>Crew</span>: Prevent the cult from expanding and drive it out."
-
 	var/finished = 0
 
 	var/acolytes_needed = 10 //for the survive objective

@@ -21,10 +21,6 @@
 	enemy_minimum_age = 0
 	title_icon = "vampires"
 
-	announce_text = "There are vampires onboard the station!\n\
-		+	<span class='danger'>Vampires</span>: Suck the blood of the crew and complete your objectives!\n\
-		+	<span class='notice'>Crew</span>: Kill the unholy vampires!"
-
 	var/vampires_possible = 4 //hard limit on vampires if scaling is turned off
 	var/num_modifier = 0
 	var/list/datum/mind/pre_vamps = list()

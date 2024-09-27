@@ -8,11 +8,6 @@
 	enemy_minimum_age = 21
 	antag_flag = ROLE_INFILTRATOR
 
-	announce_span = "danger"
-	announce_text = "Syndicate infiltrators are attempting to board the station!\n\
-	<span class='danger'>Infiltrators</span>: Board the station stealthfully and complete your objectives!\n\
-	<span class='notice'>Crew</span>: Prevent the infiltrators from completing their objectives!"
-
 	var/agents_possible = 5
 	var/agents_left = 1
 	var/list/pre_sit = list()

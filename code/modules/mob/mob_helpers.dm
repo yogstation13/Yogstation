@@ -310,7 +310,7 @@
 				if(M.mind.has_antag_datum(/datum/antagonist/changeling,TRUE))
 					return 2
 			if("wizard")
-				if(iswizard(M))
+				if(IS_WIZARD(M))
 					return 2
 			if("apprentice")
 				if(M.mind in SSticker.mode.apprentices)

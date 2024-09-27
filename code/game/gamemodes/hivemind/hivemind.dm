@@ -12,11 +12,6 @@
 	reroll_friendly = 1
 	enemy_minimum_age = 0
 
-	announce_span = "danger"
-	announce_text = "The hosts of several psionic hiveminds have infiltrated the station and are looking to assimilate the crew!\n\
-	<span class='danger'>Hosts</span>: Expand your hivemind and complete your objectives at all costs!\n\
-	<span class='notice'>Crew</span>: Prevent the hosts from getting into your mind!"
-
 	var/list/hosts = list()
 
 /proc/is_hivehost(mob/living/M)

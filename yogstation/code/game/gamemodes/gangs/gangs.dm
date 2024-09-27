@@ -13,11 +13,6 @@ GLOBAL_LIST_EMPTY(gangs)
 	enemy_minimum_age = 14
 	title_icon = "gang"
 
-	announce_span = "danger"
-	announce_text = "A violent turf war has erupted on the station!\n\
-	<span class='danger'>Gangsters</span>: Take over the station with a dominator.\n\
-	<span class='notice'>Crew</span>: Prevent the gangs from expanding and initiating takeover."
-
 	var/list/datum/mind/gangboss_candidates = list()
 
 /datum/game_mode/gang/pre_setup()
