@@ -44,7 +44,7 @@
 
 /obj/structure/spawner/ice_moon/deconstruct(disassembled)
 	new /obj/effect/cavein(loc)
-	new /obj/structure/closet/crate/necropolis/tendril(loc)
+	new /obj/structure/closet/crate/necropolis/tendril/icemoon(loc)
 	return ..()
 
 
@@ -62,9 +62,6 @@
 	visible_message(span_warning("Something is shoved out of the cave by debris!"))
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, 1, 1)
 	addtimer(CALLBACK(src, PROC_REF(cavein)), 50)
-
-/obj/effect/cavein/Destroy()
-	return ..()
 
 /obj/effect/cavein/proc/cavein()
 	for(var/mob/M in range(7,src))
