@@ -128,7 +128,7 @@
 			continue
 		if(player == owner)
 			continue
-		if(!SSjob.GetJob(Player.mind.assigned_role))
+		if(!SSjob.GetJob(player.mind.assigned_role))
 			continue
 		if(player.mind.quiet_round)
 			continue
