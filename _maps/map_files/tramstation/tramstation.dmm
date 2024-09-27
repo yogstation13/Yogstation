@@ -2526,6 +2526,11 @@
 "ajF" = (
 /turf/open/floor/iron,
 /area/station/engineering/gravity_generator)
+"ajG" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/iron/dark,
+/area/station/science/explab)
 "ajI" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -6708,6 +6713,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"bax" = (
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/glass/reinforced,
+/area/station/science/research)
 "bay" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -7863,6 +7872,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
+/obj/effect/landmark/start/roboticist,
 /turf/open/floor/iron,
 /area/station/science/robotics/lab)
 "buQ" = (
@@ -16035,6 +16045,7 @@
 	},
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/item/radio/intercom/directional/south,
+/obj/effect/landmark/start/depsec/science,
 /turf/open/floor/iron,
 /area/station/security/checkpoint/science)
 "eal" = (
@@ -26974,6 +26985,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron/cafeteria,
 /area/station/science/breakroom)
 "hFJ" = (
@@ -29737,6 +29749,7 @@
 /obj/structure/chair/office,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron,
 /area/station/science/lower)
 "iyi" = (
@@ -33425,6 +33438,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/hallway/primary/tram/left)
+"jFW" = (
+/obj/effect/landmark/start/roboticist,
+/turf/open/floor/iron/white,
+/area/station/science/robotics/lab)
 "jGa" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
@@ -35771,6 +35788,10 @@
 	},
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
+"ksh" = (
+/obj/effect/landmark/start/scientist,
+/turf/open/floor/iron/white,
+/area/station/science/ordnance)
 "ksq" = (
 /obj/effect/mapping_helpers/airlock/access/all/service/general,
 /obj/effect/turf_decal/trimline/neutral/filled/line,
@@ -43617,6 +43638,7 @@
 /obj/structure/chair/office/light{
 	dir = 8
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/testlab)
 "mQa" = (
@@ -43907,6 +43929,7 @@
 "mWe" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/landmark/start/roboticist,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "mWj" = (
@@ -46231,6 +46254,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/landmark/start/depsec/science,
 /turf/open/floor/iron,
 /area/station/security/checkpoint/science)
 "nHW" = (
@@ -47704,6 +47728,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/effect/landmark/start/roboticist,
 /turf/open/floor/iron,
 /area/station/science/robotics/mechbay)
 "ogp" = (
@@ -56384,6 +56409,7 @@
 /obj/structure/chair/office/light{
 	dir = 1
 	},
+/obj/effect/landmark/start/research_director,
 /turf/open/floor/glass/reinforced,
 /area/station/command/heads_quarters/rd)
 "qUF" = (
@@ -62792,6 +62818,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/effect/landmark/start/depsec/science,
 /turf/open/floor/iron,
 /area/station/security/checkpoint/science)
 "sVV" = (
@@ -77539,6 +77566,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start/scientist,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/office)
 "xBD" = (
@@ -78996,6 +79024,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
+/obj/effect/landmark/start/depsec/science,
 /turf/open/floor/iron,
 /area/station/security/checkpoint/science)
 "ybX" = (
@@ -131564,7 +131593,7 @@ lkK
 aeg
 gPB
 qOo
-qOo
+ksh
 jGx
 aej
 oAn
@@ -132848,7 +132877,7 @@ dWM
 frV
 frV
 rsQ
-rmr
+ajG
 xLN
 tho
 sQZ
@@ -187578,7 +187607,7 @@ dzu
 doK
 uJH
 uJH
-uJH
+jFW
 ukS
 soq
 rsL
@@ -191690,7 +191719,7 @@ cli
 oPf
 jRy
 odC
-dzx
+bax
 tqA
 rBb
 rrL
