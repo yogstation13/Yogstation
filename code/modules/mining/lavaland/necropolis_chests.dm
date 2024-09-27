@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 /obj/structure/closet/crate/necropolis/tendril/icemoon
 	name = "icy chest"
 	desc = "A mysterious chest that seems to be watching you.. It's cool to the touch."
-	icon_state = "necrocrate_ice"
+	icon_state = "necrocrateice"
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
 	var/loot = rand(1,23)
