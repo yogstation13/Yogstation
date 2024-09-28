@@ -123,11 +123,6 @@
 	// else if(href_list["editrights"])
 	// 	edit_rights_topic(href_list)
 
-	else if(href_list["gamemode_panel"])
-		if(!check_rights(R_ADMIN))
-			return
-		SSgamemode.admin_panel()
-
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -489,45 +484,6 @@
 		if(!check_rights(R_ADMIN))
 			return
 		cmd_admin_mute(href_list["mute"], text2num(href_list["mute_type"]))
-
-	else if(href_list["c_mode"])
-		return HandleCMode()
-
-	else if(href_list["f_secret"])
-		return HandleFSecret()
-	
-
-	else if(href_list["c_mode2"])
-		if(!check_rights(R_ADMIN|R_SERVER))
-			return
-
-		if (SSticker.HasRoundStarted())
-			if (tgui_alert(usr, "The game has already started. Would you like to save this as the default mode effective next round?", "Save mode", list("Yes", "Cancel"), timeout = 0) == "Yes")
-				SSticker.save_mode(href_list["c_mode2"])
-			HandleCMode()
-			return
-		GLOB.master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [GLOB.master_mode].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] set the mode as [GLOB.master_mode]."))
-		to_chat(world, span_adminnotice("<b>The mode is now: [GLOB.master_mode]</b>"))
-		Game() // updates the main game menu
-		if (tgui_alert(usr, "Would you like to save this as the default mode for the server?", "Save mode", list("Yes", "No"), timeout = 0) == "Yes")
-			SSticker.save_mode(GLOB.master_mode)
-		HandleCMode()
-
-	else if(href_list["f_secret2"])
-		if(!check_rights(R_ADMIN|R_SERVER))
-			return
-
-		if(SSticker.HasRoundStarted())
-			return alert(usr, "The game has already started.", null, null, null, null)
-		if(GLOB.master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		GLOB.secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [GLOB.secret_force_mode].")
-		message_admins(span_adminnotice("[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode]."))
-		Game() // updates the main game menu
-		HandleFSecret()
 
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))
@@ -1907,31 +1863,3 @@
 
 	for(var/obj/machinery/photocopier/faxmachine/fax in GLOB.allfaxes)
 		INVOKE_ASYNC(fax, TYPE_PROC_REF(/obj/machinery/photocopier/faxmachine, recieve_admin_fax), customname, T)
-
-/datum/admins/proc/HandleCMode()
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/dat = {"<B>What mode do you wish to play?</B><HR>"}
-	for(var/mode in config.modes)
-		dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=random'>Random</A><br>"}
-	dat += {"Now: [GLOB.master_mode]"}
-	usr << browse(dat, "window=c_mode")
-
-/datum/admins/proc/HandleFSecret()
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(SSticker.HasRoundStarted())
-		return alert(usr, "The game has already started.", null, null, null, null)
-	if(GLOB.master_mode != "secret")
-		return alert(usr, "The game mode has to be secret!", null, null, null, null)
-	var/dat = {"<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY><B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
-	for(var/mode in config.modes)
-		dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
-	dat += {"Now: [GLOB.secret_force_mode]"}
-	dat += "</BODY></HTML>"
-	usr << browse(dat, "window=f_secret")
