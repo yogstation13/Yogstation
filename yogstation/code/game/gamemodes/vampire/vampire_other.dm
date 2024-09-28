@@ -42,7 +42,7 @@
 	return ..()
 		
 /obj/item/clothing/suit/draculacoat/proc/dodge(mob/living/carbon/human/user, atom/movable/incoming, damage, attack_text)
-	if(user.incapacitated() || !COOLDOWN_FINISHED(src, dodge_cooldown) || !is_vampire(user))
+	if(user.incapacitated() || !COOLDOWN_FINISHED(src, dodge_cooldown) || !IS_VAMPIRE(user))
 		return NONE
 	COOLDOWN_START(src, dodge_cooldown, dodge_delay)
 
@@ -53,16 +53,16 @@
 
 /obj/item/clothing/suit/draculacoat/process()
 	var/mob/living/carbon/human/user = src.loc
-	if(user && ishuman(user) && is_vampire(user) && (user.wear_suit == src))
+	if(user && ishuman(user) && IS_VAMPIRE(user) && (user.wear_suit == src))
 		if(COOLDOWN_FINISHED(src, regen_cooldown))
 			COOLDOWN_START(src, regen_cooldown, blood_regen_delay)
-			var/datum/antagonist/vampire/vampire = is_vampire(user)
+			var/datum/antagonist/vampire/vampire = IS_VAMPIRE(user)
 			if (vampire.total_blood >= 5 && vampire.usable_blood < vampire.total_blood)
 				vampire.usable_blood = min(vampire.usable_blood + 5, vampire.total_blood) // 5 units every 10 seconds
 
 /obj/item/storage/book/bible/attack(mob/living/M, mob/living/carbon/human/user, heal_mode = TRUE)
 	. = ..()
-	if(!(user.mind && user.mind.holy_role) && is_vampire(user))
+	if(!(user.mind && user.mind.holy_role) && IS_VAMPIRE(user))
 		to_chat(user, span_danger("[deity_name] channels through \the [src] and sets you ablaze for your blasphemy!"))
 		user.adjust_fire_stacks(5)
 		user.ignite_mob()

@@ -37,8 +37,10 @@
 
 /mob/living/simple_animal/hostile/vampire_bat/CanAttack(atom/the_target)
 	. = ..()
-	if(isliving(the_target) && is_vampire(the_target))
-		return FALSE
+	if(isliving(the_target))
+		var/mob/living/check = the_target
+		if(IS_VAMPIRE(check))
+			return FALSE
 
 /mob/living/simple_animal/hostile/vampire_bat/death()
 	if(isliving(controller))

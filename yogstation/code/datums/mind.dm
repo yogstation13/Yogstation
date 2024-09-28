@@ -8,7 +8,7 @@
 	if(SSticker.mode.config_tag == "vampire")
 		text = uppertext(text)
 	text = "<i><b>[text]</b></i>: "
-	if(is_vampire(current))
+	if(IS_VAMPIRE(current))
 		text += "<b>VAMPIRE</b> | <a href='?src=\ref[src];vampire=clear'>human</a> | <a href='?src=\ref[src];vampire=full'>full-power</a>"
 	else
 		text += "<a href='?src=\ref[src];vampire=vampire'>vampire</a> | <b>HUMAN</b> | <a href='?src=\ref[src];vampire=full'>full-power</a>"
@@ -25,7 +25,7 @@
 			message_admins("[key_name_admin(usr)] has de-vampired [current].")
 			log_admin("[key_name(usr)] has de-vampired [current].")
 		if("vampire")
-			if(!is_vampire(current))
+			if(!IS_VAMPIRE(current))
 				message_admins("[key_name_admin(usr)] has vampired [current].")
 				log_admin("[key_name(usr)] has vampired [current].")
 				add_vampire(current)
@@ -34,7 +34,7 @@
 		if("full")
 			message_admins("[key_name_admin(usr)] has full-vampired [current].")
 			log_admin("[key_name(usr)] has full-vampired [current].")
-			if(!is_vampire(current))
+			if(!IS_VAMPIRE(current))
 				add_vampire(current)
 				var/datum/antagonist/vampire/V = has_antag_datum(ANTAG_DATUM_VAMPIRE)
 				if(V)

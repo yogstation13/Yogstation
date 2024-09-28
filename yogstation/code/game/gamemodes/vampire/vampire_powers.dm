@@ -4,7 +4,7 @@
 
 /datum/action/cooldown/spell/can_cast_spell(feedback = TRUE)
 	if(vamp_req)
-		if(!is_vampire(owner))
+		if(!IS_VAMPIRE(owner))
 			return FALSE
 	return ..()
 
@@ -16,12 +16,12 @@
 /datum/action/cooldown/spell/before_cast(atom/cast_on)
 	if(vamp_req)
 		// sanity check before we cast
-		if(!is_vampire(owner))
+		if(!IS_VAMPIRE(owner))
 			return
 	return ..()
 
 /datum/action/cooldown/spell/is_valid_target(mob/living/target)
-	if(vamp_req && !is_vampire(target))
+	if(vamp_req && !IS_VAMPIRE(target))
 		return FALSE
 	return ..()
 
@@ -233,7 +233,7 @@
 
 /datum/action/cooldown/spell/cloak/proc/update_name()
 	var/mob/living/user = owner
-	if(!ishuman(user) || !is_vampire(user))
+	if(!ishuman(user) || !IS_VAMPIRE(user))
 		return
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	name = "[initial(name)] ([V.iscloaking ? "Deactivate" : "Activate"])"
@@ -267,7 +267,7 @@
 
 /datum/action/cooldown/spell/revive/cast(mob/living/user)
 	. = ..()
-	if(!is_vampire(user) || !isliving(user))
+	if(!IS_VAMPIRE(user) || !isliving(user))
 		return
 	if(user.stat != DEAD)
 		to_chat(user, span_notice("We aren't dead enough to do that yet!"))
@@ -287,7 +287,7 @@
 
 /datum/action/cooldown/spell/revive/proc/revive(mob/living/user)
 	if(istype(get_area(user.loc), /area/chapel))
-		var/datum/antagonist/vampire/V = is_vampire(user)
+		var/datum/antagonist/vampire/V = IS_VAMPIRE(user)
 		if(V && V.get_ability(/datum/vampire_passive/full)) //full blooded vampire doesn't get dusted if they try to res, it still doesn't work though
 			to_chat(user, span_danger("The holy energies of this place prevent our revival!"))
 			return
@@ -345,7 +345,7 @@
 		W.take_damage(75)
 
 /datum/action/cooldown/spell/aoe/screech/cast_on_thing_in_aoe(mob/living/target, mob/living/carbon/user)
-	if(!target == user  || !is_vampire(target))
+	if(!target == user  || !IS_VAMPIRE(target))
 		if(ishuman(target) && target.soundbang_act(1, 0))
 			var/mob/living/carbon/human/human_target = target
 			to_chat(target, span_warning("<font size='3'><b>You hear a ear piercing shriek and your senses dull!</font></b>"))
@@ -420,7 +420,7 @@
 		return
 	var/mob/living/carbon/target = target_atom
 	var/datum/antagonist/vampire/vamp = user.mind.has_antag_datum(/datum/antagonist/vampire)
-	if(is_vampire(target))
+	if(IS_VAMPIRE(target))
 		to_chat(user, span_warning("They're already a vampire!"))
 		SEND_SIGNAL(user.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, list(ANTAG_RESOURCE_VAMPIRE = -300)) // Refund cost
 		return FALSE
@@ -478,7 +478,7 @@
 
 /datum/action/cooldown/spell/summon_coat/cast(mob/living/user)
 	. = ..()
-	if(!is_vampire(user) || !isliving(user))
+	if(!IS_VAMPIRE(user) || !isliving(user))
 		return
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V)

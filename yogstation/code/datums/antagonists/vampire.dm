@@ -320,7 +320,7 @@
 	else
 		H.LAssailant = WEAKREF(O)
 	while(do_after(O, 5 SECONDS, H))
-		if(!is_vampire(O))
+		if(!IS_VAMPIRE(O))
 			to_chat(O, span_warning("Your fangs have disappeared!"))
 			return
 		if(blood_to_take > BLOOD_SUCK_BASE && (!(O.pulling == H) || O.grab_state < GRAB_NECK))//smooth movement from aggressive suck to normal suck
@@ -476,7 +476,7 @@
 
 //non antag stuff
 /proc/add_vampire(mob/living/L, full_vampire = TRUE)
-    if(!L || !L.mind || is_vampire(L))
+    if(!L || !L.mind || IS_VAMPIRE(L))
         return FALSE
     var/datum/antagonist/vampire/vamp
     if(full_vampire == TRUE)
@@ -486,7 +486,7 @@
     return vamp
 
 /proc/remove_vampire(mob/living/L)
-	if(!L || !L.mind || !is_vampire(L))
+	if(!L || !L.mind || !IS_VAMPIRE(L))
 		return FALSE
 	var/datum/antagonist/vamp = L.mind.has_antag_datum(/datum/antagonist/vampire)
 	vamp.on_removal()
