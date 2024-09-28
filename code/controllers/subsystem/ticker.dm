@@ -195,10 +195,9 @@ SUBSYSTEM_DEF(ticker)
 				SEND_SIGNAL(src, COMSIG_TICKER_ERROR_SETTING_UP)
 
 		if(GAME_STATE_PLAYING)
-			mode.process(wait * 0.1)
 			check_queue()
 
-			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
+			if(force_ending)
 				current_state = GAME_STATE_FINISHED
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
@@ -220,13 +219,12 @@ SUBSYSTEM_DEF(ticker)
 	var/can_continue = 0
 	can_continue = SSgamemode.pre_setup()		//Choose antagonists
 	CHECK_TICK
-	can_continue = can_continue && SSjob.DivideOccupations(mode.required_jobs) 				//Distribute jobs
+	can_continue = can_continue && SSjob.DivideOccupations() 				//Distribute jobs
 	CHECK_TICK
 
 	if(!GLOB.Debug2)
 		if(!can_continue)
-			log_game("[mode.name] failed pre_setup, cause: [mode.setup_error]")
-			QDEL_NULL(mode)
+			log_game("failed pre_setup, cause: storytellers stuff or ssjob maybe, good luck")
 			to_chat(world, "<B>Error setting up [GLOB.master_mode].</B> Reverting to pre-game lobby.")
 			SSjob.ResetOccupations()
 			return 0
@@ -324,13 +322,12 @@ SUBSYSTEM_DEF(ticker)
 	set waitfor = FALSE
 	SSgamemode.storyteller.process(STORYTELLER_WAIT_TIME * 0.1) // we want this asap
 	SSgamemode.storyteller.round_started = TRUE
-	mode.post_setup()
 	GLOB.start_state = new /datum/station_state()
 	GLOB.start_state.count()
 
 	var/list/adm = get_admin_counts()
 	var/list/allmins = adm["present"]
-	send2irc("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]:" : "of"] [SSgamemode.storyteller ? SSgamemode.storyteller : mode.name] has started[allmins.len ? ".":" with no active admins online!"]")
+	send2irc("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]:" : "of"] [SSgamemode.storyteller ? SSgamemode.storyteller : "error no storyteller"] has started[allmins.len ? ".":" with no active admins online!"]")
 	setup_done = TRUE
 
 	for(var/i in GLOB.start_landmarks_list)

@@ -247,9 +247,11 @@
 	log_admin("[key_name(admin)] has cult'ed [key_name(new_owner)].")
 
 /datum/antagonist/cult/admin_remove(mob/user)
+	if(!owner.current)
+		return
 	message_admins("[key_name_admin(user)] has decult'ed [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has decult'ed [key_name(owner)].")
-	SSgamemode.remove_cultist(owner,silent=TRUE) //disgusting
+	owner.current.remove_cultist(silent=TRUE)
 
 /datum/antagonist/cult/get_admin_commands()
 	. = ..()

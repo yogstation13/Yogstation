@@ -281,7 +281,7 @@
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
 			if(iscultist(M))
-				SSgamemode.remove_cultist(M.mind, FALSE, TRUE)
+				M.remove_cultist(FALSE, TRUE)
 			else if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M)
 			M.remove_status_effect(/datum/status_effect/jitter)

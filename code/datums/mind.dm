@@ -263,62 +263,6 @@
 		else if(A.type == datum_type)
 			return A
 
-/*
-	Removes antag type's references from a mind.
-	objectives, uplinks, powers etc are all handled.
-*/
-
-/datum/mind/proc/remove_changeling()
-	var/datum/antagonist/changeling/C = has_antag_datum(/datum/antagonist/changeling)
-	if(C)
-		remove_antag_datum(/datum/antagonist/changeling)
-		special_role = null
-
-/datum/mind/proc/remove_traitor()
-	remove_antag_datum(/datum/antagonist/traitor)
-
-/datum/mind/proc/remove_brother()
-	if(src in SSgamemode.brothers)
-		remove_antag_datum(/datum/antagonist/brother)
-
-/datum/mind/proc/remove_nukeop()
-	var/datum/antagonist/nukeop/nuke = has_antag_datum(/datum/antagonist/nukeop,TRUE)
-	if(nuke)
-		remove_antag_datum(nuke.type)
-		special_role = null
-
-/datum/mind/proc/remove_wizard()
-	remove_antag_datum(/datum/antagonist/wizard)
-	special_role = null
-
-/datum/mind/proc/remove_cultist()
-	if(src in SSgamemode.cult)
-		SSgamemode.remove_cultist(src, 0, 0)
-	special_role = null
-	remove_antag_equip()
-
-/datum/mind/proc/remove_rev()
-	var/datum/antagonist/rev/rev = has_antag_datum(/datum/antagonist/rev)
-	if(rev)
-		remove_antag_datum(rev.type)
-		special_role = null
-
-
-/datum/mind/proc/remove_antag_equip()
-	var/list/Mob_Contents = current.get_contents()
-	for(var/obj/item/I in Mob_Contents)
-		var/datum/component/uplink/O = I.GetComponent(/datum/component/uplink) //Todo make this reset signal
-		if(O)
-			O.unlock_code = null
-
-/datum/mind/proc/remove_all_antag() //For the Lazy amongst us.
-	remove_changeling()
-	remove_traitor()
-	remove_nukeop()
-	remove_wizard()
-	remove_cultist()
-	remove_rev()
-
 /datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
 	if(!current)
 		return

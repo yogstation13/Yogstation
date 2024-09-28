@@ -196,7 +196,6 @@
 	CHECK_TICK
 
 	//Set news report and mode result
-	mode.set_round_result()
 	SSgamemode.round_end_report()
 	SSgamemode.store_roundend_data() // store data on roundend for next round
 
@@ -249,7 +248,7 @@
 	CHECK_TICK
 	SSdbcore.SetRoundEnd()
 	//Collects persistence features
-	if(mode.allow_persistence_save)
+	if(SSgamemode.allow_persistence_save)
 		SSpersistence.CollectData()
 
 	//stop collecting feedback during grifftime
@@ -304,7 +303,7 @@
 
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
-		if(mode.station_was_nuked)
+		if(SSgamemode.station_was_nuked)
 			Reboot("Station destroyed by Nuclear Device.", "nuke")
 		else
 			Reboot("Round ended.", "proper completion")
@@ -314,11 +313,6 @@
 //Common part of the report
 /datum/controller/subsystem/ticker/proc/build_roundend_report()
 	var/list/parts = list()
-
-	//Gamemode specific things. Should be empty most of the time.
-	parts += mode.special_report()
-
-	CHECK_TICK
 
 	//AI laws
 	parts += law_report()
@@ -364,7 +358,7 @@
 		parts += "[GLOB.TAB]Round ID: <b>[info]</b>"
 	parts += "[GLOB.TAB]Gamemode: <B>[SSgamemode.name]</B>"
 	parts += "[GLOB.TAB]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
+	parts += "[GLOB.TAB]Station Integrity: <B>[SSgamemode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
 		parts+= "[GLOB.TAB]Total Population: <B>[total_players]</B>"

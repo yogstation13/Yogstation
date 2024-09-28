@@ -352,7 +352,7 @@ SUBSYSTEM_DEF(job)
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
  **/
-/datum/controller/subsystem/job/proc/DivideOccupations(list/required_jobs)
+/datum/controller/subsystem/job/proc/DivideOccupations()
 	//Setup new player list and get the jobs list
 	JobDebug("Running DO")
 
@@ -371,7 +371,7 @@ SUBSYSTEM_DEF(job)
 	JobDebug("DO, Len: [unassigned.len]")
 	GLOB.event_role_manager.setup_event_positions()
 	if(unassigned.len == 0)
-		return validate_required_jobs(required_jobs)
+		return TRUE
 
 	//Scale number of open security officer slots to population
 	setup_officer_positions()
@@ -483,25 +483,7 @@ SUBSYSTEM_DEF(job)
 			if(!AssignRole(player, SSjob.overflow_role)) //If everything is already filled, make them an assistant
 				return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
 
-	return validate_required_jobs(required_jobs)
-
-/datum/controller/subsystem/job/proc/validate_required_jobs(list/required_jobs)
-	if(!required_jobs.len)
-		return TRUE
-	for(var/required_group in required_jobs)
-		var/group_ok = TRUE
-		for(var/rank in required_group)
-			var/datum/job/J = GetJob(rank)
-			if(!J)
-				SSgamemode.setup_error = "Invalid job [rank] in gamemode required jobs."
-				return FALSE
-			if(J.current_positions < required_group[rank])
-				group_ok = FALSE
-				break
-		if(group_ok)
-			return TRUE
-	SSgamemode.setup_error = "Required jobs not present."
-	return FALSE
+	return TRUE
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/dead/new_player/player)

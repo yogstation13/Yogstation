@@ -48,7 +48,7 @@
 	for(var/datum/round_event_control/E in SSgamemode.control)
 		if(istype(E, /datum/round_event_control/falsealarm))
 			continue
-		if(!E.can_spawn_event(players_amt))
+		if(!E.canSpawnEvent(players_amt))
 			continue
 
 		var/datum/round_event/event = E.typepath
