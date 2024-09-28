@@ -135,7 +135,7 @@
 	owner.Stun(living_transformation_time)
 
 
-	if(!isinfected(owner)) //Makes them the *actual* antag, instead of just a zombie.
+	if(!IS_INFECTED(owner)) //Makes them the *actual* antag, instead of just a zombie.
 		var/datum/game_mode/zombie/GM = SSticker.mode
 		if(!istype(GM))
 			return

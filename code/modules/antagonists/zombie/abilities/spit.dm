@@ -20,7 +20,7 @@
 /obj/effect/proc_holder/zombie/spit/InterceptClickOn(mob/living/caller, params, atom/target)
 	if(..())
 		return FALSE
-	if(!isinfected(owner) || owner.stat != CONSCIOUS)
+	if(!IS_INFECTED(owner) || owner.stat != CONSCIOUS)
 		remove_ranged_ability()
 		return FALSE
 
@@ -53,7 +53,7 @@
 	paralyze = 50
 
 /obj/projectile/bullet/neurotoxin/spitter/on_hit(atom/target, blocked = FALSE)
-	if(isinfected(target))
+	if(IS_INFECTED(target))
 		paralyze = 0
 		nodamage = TRUE
 	return ..()

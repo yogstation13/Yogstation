@@ -406,7 +406,7 @@
 	switch(get_result())
 		if(NUKE_RESULT_FLUKE)
 			for(var/mob/living/carbon/human/H in GLOB.player_list) //if you observe, too bad
-				if(!is_nuclear_operative(H))
+				if(!IS_NUKE_OP(H))
 					SSachievements.unlock_achievement(/datum/achievement/flukeops, H.client)
 		if(NUKE_RESULT_NUKE_WIN, NUKE_RESULT_DISK_LOST)
 			for(var/mob/living/carbon/human/H in GLOB.player_list)

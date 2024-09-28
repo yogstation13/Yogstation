@@ -36,7 +36,7 @@
 /mob/living/carbon/proc/spitter_zombie_acid(O as obj|turf in oview(1)) // right click menu verb ugh
 	set name = "Corrosive Acid"
 
-	if(!isinfected(usr))
+	if(!IS_INFECTED(usr))
 		return
 	var/mob/living/carbon/user = usr
 	var/obj/effect/proc_holder/zombie/acid/A = locate() in user.actions

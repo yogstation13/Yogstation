@@ -2,10 +2,6 @@
 
 GLOBAL_LIST_EMPTY(zombies)
 
-/proc/isinfected(mob/living/M)
-	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/zombie)
-
-
 /datum/game_mode/zombie
 	name = "zombie"
 	config_tag = "zombie"

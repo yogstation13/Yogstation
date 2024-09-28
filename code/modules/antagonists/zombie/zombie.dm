@@ -151,7 +151,7 @@
 
 /datum/team/zombie/proc/zombies_on_shuttle()
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-		if(isinfected(H) && (H.onCentCom() || H.onSyndieBase()))
+		if(IS_INFECTED(H) && (H.onCentCom() || H.onSyndieBase()))
 			return TRUE
 	return FALSE
 
@@ -176,7 +176,7 @@
 	check_flags = AB_CHECK_HANDS_BLOCKED| AB_CHECK_IMMOBILE|AB_CHECK_CONSCIOUS
 
 /datum/action/innate/zombie/IsAvailable(feedback = FALSE)
-	if(!isinfected(owner))
+	if(!IS_INFECTED(owner))
 		return FALSE
 	return ..()
 
@@ -230,7 +230,7 @@
 	my_message = "<span class='[span]'><b>\[[title]] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
-		if(isinfected(M))
+		if(IS_INFECTED(M))
 			to_chat(M, my_message)
 		else if(M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, user)
@@ -248,12 +248,12 @@
 	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Runner", "Juggernaut", "Spitter")
 	if(!selected || !IsAvailable(feedback = FALSE))
 		return
-	if(!isinfectedzombie(owner))
+	if(!IS_INFECTEDzombie(owner))
 		return
 	evolve(selected)
 
 /datum/action/innate/zombie/choose_class/IsAvailable(forced = FALSE)
-	if(!isinfected(owner))
+	if(!IS_INFECTED(owner))
 		return
 	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
 
@@ -264,7 +264,7 @@
 /datum/action/innate/zombie/choose_class/proc/evolve(class)
 	var/mob/living/carbon/human/H = owner
 	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
-	if(!isinfected(H))
+	if(!IS_INFECTED(H))
 		return
 	switch(class)
 		if("Runner")
@@ -298,7 +298,7 @@
 	button_icon_state = "cultfist"
 
 /datum/action/innate/zombie/choose_class/tier2/IsAvailable(feedback = FALSE)
-	if(!isinfected(owner))
+	if(!IS_INFECTED(owner))
 		return
 	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
 
@@ -313,7 +313,7 @@
 	var/selected = input(usr, "Choose a class to evolve into", "Evolution") as null|anything in list("Necromancer")
 	if(!selected || !IsAvailable(feedback = FALSE))
 		return
-	if(!isinfectedzombie(owner))
+	if(!IS_INFECTEDzombie(owner))
 		return
 
 	var/datum/game_mode/zombie/mode = SSticker.mode
@@ -325,7 +325,7 @@
 /datum/action/innate/zombie/choose_class/tier2/evolve(class)
 	var/mob/living/carbon/human/H = owner
 	var/datum/antagonist/zombie/Z = locate() in owner.mind.antag_datums
-	if(!isinfected(H))
+	if(!IS_INFECTED(H))
 		return
 	switch(class)
 		if("Necromancer")
@@ -396,7 +396,7 @@
 		return "[(cooldown_ends - world.time) / 10] seconds"
 
 /obj/effect/proc_holder/zombie/proc/can_cast(mob/living/carbon/user)
-	if(!isinfected(user))
+	if(!IS_INFECTED(user))
 		return FALSE
 
 	if(user.stat)

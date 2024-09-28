@@ -440,7 +440,7 @@
 	else if(is_servant_of_ratvar(creator))
 		add_servant_of_ratvar(current)
 
-	else if(is_nuclear_operative(creator))
+	else if(IS_NUKE_OP(creator))
 		var/datum/antagonist/nukeop/converter = creator.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE)
 		var/datum/antagonist/nukeop/N = new()
 		N.send_to_spawnpoint = FALSE
