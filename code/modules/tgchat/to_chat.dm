@@ -66,7 +66,7 @@
 	confidential = FALSE
 )
 	if(isnull(Master) || !Master.current_runlevel || !MC_RUNNING(SSchat.init_stage))
-		to_chat_immediate(target, html, type, text, avoid_highlighting, allow_linkify)
+		to_chat_immediate(target, html, type, text, avoid_highlighting, allow_linkify, handle_whitespace, trailing_newline, confidential)
 		return
 	
 	// Useful where the integer 0 is the entire message. Use case is enabling to_chat(target, some_boolean) while preventing to_chat(target, "")

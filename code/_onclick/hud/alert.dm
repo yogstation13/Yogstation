@@ -308,11 +308,14 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	add_overlay(receiving)
 	src.receiving = receiving
 	src.giver = giver
+	// if any of these move the alert should go away
+	RegisterSignal(receiving, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/alert/give, removeAlert))
+	RegisterSignal(giver, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/alert/give, removeAlert))
 	RegisterSignal(taker, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/alert/give, removeAlert))
 
 /atom/movable/screen/alert/give/proc/removeAlert()
 	to_chat(mob_viewer, span_warning("You moved out of range of [giver]!"))
-	mob_viewer.clear_alert("[giver]")
+	mob_viewer.clear_alert("[REF(giver)]-[REF(receiving)]")
 
 /atom/movable/screen/alert/give/Click(location, control, params)
 	. = ..()

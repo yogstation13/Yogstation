@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "Admin Cryo verb functions more clearly and actually lets admins offer control of the mob"
