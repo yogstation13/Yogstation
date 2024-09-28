@@ -4109,7 +4109,6 @@
 #include "yogstation\code\game\gamemodes\clown_ops\bananium_bomb.dm"
 #include "yogstation\code\game\gamemodes\darkspawn\darkspawn_hud.dm"
 #include "yogstation\code\game\gamemodes\infiltration\infiltration.dm"
-#include "yogstation\code\game\gamemodes\vampire\vampire.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire_bat.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire_bite.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire_hud.dm"

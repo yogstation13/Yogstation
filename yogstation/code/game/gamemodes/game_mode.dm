@@ -32,3 +32,6 @@
 	// iaa
 	var/list/target_list = list()
 	var/list/late_joining_list = list()
+
+	//vampire
+	var/list/datum/mind/vampires = list()

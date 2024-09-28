@@ -298,7 +298,7 @@
 	if(M.mind?.special_role)//If they have a mind and special role, they are some type of traitor or antagonist.
 		switch(SSticker.mode.config_tag)
 			if("revolution")
-				if(is_revolutionary(M))
+				if(IS_REVOLUTIONARY(M))
 					return 2
 			if("cult")
 				if(M.mind in SSticker.mode.cult)

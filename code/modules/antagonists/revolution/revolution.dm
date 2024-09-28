@@ -374,7 +374,7 @@
 		if(survivor.ckey)
 			num_survivors++
 			if(survivor.mind)
-				if(is_revolutionary(survivor))
+				if(IS_REVOLUTIONARY(survivor))
 					num_revs++
 	if(num_survivors)
 		result += "Command's Approval Rating: <B>[100 - round((num_revs/num_survivors)*100, 0.1)]%</B><br>"

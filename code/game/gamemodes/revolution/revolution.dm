@@ -184,15 +184,6 @@
 	else
 		return ..()
 
-///////////////////////////////////////////////////
-//Deals with converting players to the revolution//
-///////////////////////////////////////////////////
-/proc/is_revolutionary(mob/M)
-	return M?.mind?.has_antag_datum(/datum/antagonist/rev)
-
-/proc/is_head_revolutionary(mob/M)
-	return M?.mind?.has_antag_datum(/datum/antagonist/rev/head)
-
 //////////////////////////
 //Checks for rev victory//
 //////////////////////////

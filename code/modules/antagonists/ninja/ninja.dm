@@ -119,9 +119,6 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	datum.on_removal()
 	return TRUE
 
-/proc/is_ninja(mob/living/M)
-	return M?.mind?.has_antag_datum(/datum/antagonist/ninja)
-
 
 /datum/antagonist/ninja/greet()
 	SEND_SOUND(owner.current, sound('sound/effects/ninja_greeting.ogg'))

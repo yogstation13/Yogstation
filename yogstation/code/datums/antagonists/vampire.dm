@@ -471,3 +471,30 @@
 	vampire_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 
 	return vampire_icon
+
+
+
+//non antag stuff
+/proc/add_vampire(mob/living/L, full_vampire = TRUE)
+    if(!L || !L.mind || is_vampire(L))
+        return FALSE
+    var/datum/antagonist/vampire/vamp
+    if(full_vampire == TRUE)
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
+    else
+        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire/new_blood)
+    return vamp
+
+/proc/remove_vampire(mob/living/L)
+	if(!L || !L.mind || !is_vampire(L))
+		return FALSE
+	var/datum/antagonist/vamp = L.mind.has_antag_datum(/datum/antagonist/vampire)
+	vamp.on_removal()
+	return TRUE
+
+/mob/living/carbon/human/get_status_tab_items()
+	. = ..()
+	var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
+	if(vamp)
+		. += "Total Blood: [vamp.total_blood]"
+		. += "Usable Blood: [vamp.usable_blood]"

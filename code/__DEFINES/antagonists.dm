@@ -199,6 +199,12 @@
 /// Checks if the given mob is infected.
 #define IS_INFECTED(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/zombie))
 
+/// Checks if the given mob is a changeling
+#define IS_CHANGELING(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/changeling))
+
+/// Checks if the given mob is a vampire
+#define IS_VAMPIRE(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vampire))
+
 // Antag resource defines
 #define ANTAG_RESOURCE_DARKSPAWN "psi"
 #define ANTAG_RESOURCE_VAMPIRE "blood"
