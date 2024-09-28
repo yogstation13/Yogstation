@@ -1119,7 +1119,7 @@
 /turf/closed/mineral/glacite/gets_drilled(mob/user, triggered_by_explosion = FALSE)
 	if(!triggered_by_explosion)
 		mineralAmt = 0
-		to_chat(user, span_danger("The structure of the plasma magmite crumbles to dust from the vibration! Maybe it could withstand an explosion..?"))
+		to_chat(user, span_danger("The structure of the plasma glacite crumbles to dust from the vibration! Maybe it could withstand an explosion..?"))
 	..(user,triggered_by_explosion,TRUE)
 
 /turf/closed/mineral/gem
