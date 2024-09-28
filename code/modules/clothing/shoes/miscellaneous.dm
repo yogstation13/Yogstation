@@ -125,6 +125,12 @@
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 0, ACID = 0)
 	force = 1
 
+/obj/item/clothing/shoes/jackboots/civilprotection
+	name = "jackboots"
+	desc = "Snug and secure black boots worn by civil protection forces."
+	icon_state = "civilprotection"
+	item_state = "jackboots"
+
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
 

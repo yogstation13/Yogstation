@@ -659,7 +659,7 @@
 	icon_state = "cmwindow-0"
 	base_icon_state = "cmwindow"
 	dir = FULLTILE_WINDOW_DIR
-	max_integrity = 50
+	max_integrity = 100
 	fulltile = TRUE
 	flags_1 = PREVENT_CLICK_UNDER_1
 	smoothing_flags = SMOOTH_BITMASK

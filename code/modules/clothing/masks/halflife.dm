@@ -108,6 +108,13 @@
 	. = ..()
 	playsound(loc, pick(death_sounds), 50, 0) //lost biosignal for protection team unit 4, remaining units contain.
 
+/obj/item/clothing/mask/gas/civilprotection/divisional
+	name = "civil protection mask"
+	desc = "Heavy duty white mask for civil protection units. Provides some protection to the face. This one is reinforced."
+	icon_state = "dv_mask"
+	item_state = "swat"
+	armor = list(MELEE = 20, BULLET = 30, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 80, RAD = 80, FIRE = 80, ACID = 80, WOUND = 5)
+
 /obj/item/clothing/mask/gas/civilprotection/overwatch
 	name = "overwatch soldier mask"
 	desc = "Heavy duty armored mask for the overwatch transhuman team."

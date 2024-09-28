@@ -204,7 +204,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				species = "Zombie"
 			if (issnail(tracked_mob))
 				species = "Snail"
-			if (isabductor(tracked_mob))
+			if (isvortigaunt(tracked_mob))
 				species = "Alien"
 
 			for(var/obj/item/bodypart/part in tracked_mob.bodyparts)

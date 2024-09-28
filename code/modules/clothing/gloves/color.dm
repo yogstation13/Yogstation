@@ -147,6 +147,18 @@
 	icon_state = "brown"
 	item_state = "browngloves"
 
+/obj/item/clothing/gloves/color/civilprotection
+	name = "civil protection gloves"
+	desc = "Heavy duty gloves, made to fit well with a stun baton in the palm."
+	icon_state = "civilprotection"
+	item_state = "blackgloves"
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE
+	strip_delay = 40
+
 /obj/item/clothing/gloves/color/captain
 	desc = "Regal blue gloves, with a nice gold trim, a diamond anti-shock coating, and an integrated thermal barrier. Swanky."
 	name = "captain's gloves"

@@ -4,6 +4,12 @@
 	icon_state = "civilprotection"
 	item_state = "armoralt"
 
+/obj/item/clothing/suit/armor/civilprotection/divisional
+	name = "divisional lead vest"
+	desc = "Kevlar weave protective vest. Provides a good level of protection to the chest."
+	icon_state = "dv_vest"
+	item_state = "armoralt"
+
 /obj/item/clothing/suit/armor/overwatch
 	name = "overwatch chestpiece"
 	desc = "Sturdy kevlar weave surrounding a ceramic plated core. Provides excellent chest protection, but somewhat slows you down."

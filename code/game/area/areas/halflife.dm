@@ -57,8 +57,26 @@
 /area/halflife/indoors/slums
 	name = "\improper Slums"
 
+/area/halflife/indoors/hospital
+	name = "\improper Hospital"
+
+/area/halflife/indoors/scienceunion
+	name = "\improper Science Union"
+
+/area/halflife/indoors/laborunion
+	name = "\improper Labor Union"
+
+/area/halflife/indoors/distributioncenter
+	name = "\improper Distribution Center"
+
+/area/halflife/indoors/hydroponics
+	name = "\improper Hydroponics"
+
+/area/halflife/indoors/productioncenter
+	name = "\improper Production Center"
+
 /area/halflife/indoors/sewer
-	name = "\improper Sewer"
+	name = "\improper Sewers"
 	base_lighting_alpha = 5
 	max_ambience_cooldown = 90 SECONDS
 	icon_state = "away"
@@ -68,3 +86,6 @@
 	ambient_buzz_vol = 7
 	mood_bonus = -2
 	mood_message = "<span class='warning'>This place smells terrible.</span>\n"
+
+/area/halflife/indoors/sewer/tunnel
+	name = "\improper Tunnels"
