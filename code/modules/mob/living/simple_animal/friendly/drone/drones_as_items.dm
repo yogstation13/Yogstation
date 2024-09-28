@@ -54,9 +54,7 @@
 		if(user.client.player_age < DRONE_MINIMUM_AGE)
 			to_chat(user, span_danger("You're too new to play as a drone! Please try again in [DRONE_MINIMUM_AGE - user.client.player_age] days."))
 			return
-	if(!SSticker.mode)
-		to_chat(user, "Can't become a drone before the game has started.")
-		return
+	// I removed a line that prevented players from becoming a drone before the gamemode starts, because i removed gamemodes
 	var/be_drone = alert("Become a drone? (Warning, You can no longer be cloned!)",,"Yes","No")
 	if(be_drone == "No" || QDELETED(src) || !isobserver(user))
 		return

@@ -74,7 +74,7 @@
 /datum/round_event_control/antagonist/proc/check_required()
 	if(!length(exclusive_roles))
 		return TRUE
-	for (var/mob/M in SSticker.mode.current_players[CURRENT_LIVING_PLAYERS])
+	for (var/mob/M in SSgamemode.current_players[CURRENT_LIVING_PLAYERS])
 		if (M.stat == DEAD)
 			continue // Dead players cannot count as passing requirements
 		if(M.mind && (M.mind.assigned_role in exclusive_roles))
@@ -103,7 +103,7 @@
 	// 			enemy_players += SSjob.assigned_players_by_job[enemy_job.type]
 
 	if (!roundstart)
-		for(var/mob/M in SSticker.mode.current_players[CURRENT_LIVING_PLAYERS])
+		for(var/mob/M in SSgamemode.current_players[CURRENT_LIVING_PLAYERS])
 			if (M.stat == DEAD)
 				continue // Dead players cannot count as opponents
 			if (M.mind && (M.mind.assigned_role in enemy_roles))

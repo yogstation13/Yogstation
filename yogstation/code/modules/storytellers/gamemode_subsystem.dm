@@ -608,7 +608,7 @@ SUBSYSTEM_DEF(gamemode)
 		return FALSE
 	if(SSshuttle.emergency && (SSshuttle.emergency.mode == SHUTTLE_ENDGAME))
 		return TRUE
-	if(SSticker.mode.station_was_nuked)
+	if(SSgamemode.station_was_nuked)
 		return TRUE
 	if(force_ending)
 		return TRUE
@@ -619,10 +619,10 @@ SUBSYSTEM_DEF(gamemode)
  * Returns a formatted string all station goals that are available to the station.
  */
 /datum/controller/subsystem/gamemode/proc/generate_station_goal_report()
-	if(!SSticker.mode.station_goals.len)
+	if(!SSgamemode.station_goals.len)
 		return
 	. = "<hr><b>Special Orders for [station_name()]:</b><BR>"
-	for(var/datum/station_goal/station_goal as anything in SSticker.mode.station_goals)
+	for(var/datum/station_goal/station_goal as anything in SSgamemode.station_goals)
 		station_goal.on_report()
 		. += station_goal.get_report()
 	return
@@ -725,12 +725,12 @@ SUBSYSTEM_DEF(gamemode)
 	while(possible.len && goal_weights < 1) // station goal budget is 1
 		var/datum/station_goal/picked = pick_n_take(possible)
 		goal_weights += initial(picked.weight)
-		SSticker.mode.station_goals += new picked
+		station_goals += new picked
 
 //Set result and news report here
 /datum/controller/subsystem/gamemode/proc/set_round_result()
 	SSticker.mode_result = "undefined"
-	if(SSticker.mode.station_was_nuked)
+	if(SSgamemode.station_was_nuked)
 		SSticker.news_report = STATION_DESTROYED_NUKE
 	if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 		SSticker.news_report = STATION_EVACUATED

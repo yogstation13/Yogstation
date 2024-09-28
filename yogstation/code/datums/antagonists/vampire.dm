@@ -74,7 +74,7 @@
 	log_admin("[key_name(admin)] set [owner.current]'s total blood to [total_blood], and usable blood to [usable_blood].")
 
 /datum/antagonist/vampire/on_gain()
-	SSticker.mode.vampires += owner
+	SSgamemode.vampires += owner
 	give_objectives()
 	check_vampire_upgrade()
 	owner.special_role = "vampire"
@@ -93,7 +93,7 @@
 /datum/antagonist/vampire/on_removal()
 	remove_vampire_powers()
 	owner.current.faction -= "vampire"
-	SSticker.mode.vampires -= owner
+	SSgamemode.vampires -= owner
 	owner.special_role = null
 	UnregisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE)
 	UnregisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE)

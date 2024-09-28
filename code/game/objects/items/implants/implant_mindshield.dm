@@ -49,7 +49,7 @@
 		if(rev)
 			rev.remove_revolutionary(FALSE, user)
 		if(!silent)
-			if(target.mind in SSticker.mode.cult)
+			if(target.mind in SSgamemode.cult)
 				to_chat(target, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 			else
 				to_chat(target, span_notice("You feel a sense of peace and security. You are now protected from brainwashing."))

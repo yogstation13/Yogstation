@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/bundles_TC/surplus/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	. = ..()
 	var/obj/structure/closet/crate/spawned_crate = .
-	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null, FALSE)
+	var/list/uplink_items = get_uplink_items(null, FALSE)
 	var/crate_value = starting_crate_value
 	while(crate_value)
 		var/category = pick(uplink_items)

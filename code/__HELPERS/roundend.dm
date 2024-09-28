@@ -232,7 +232,7 @@
 				continue
 			if(SSpersistence.antag_rep_change[M.ckey] < 0) // don't want to punish antags for being alive hehe
 				continue
-			else if(M.onCentCom() || SSticker.force_ending || SSticker.mode.station_was_nuked)
+			else if(M.onCentCom() || SSticker.force_ending || SSgamemode.station_was_nuked)
 				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
 			else
 				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
@@ -362,7 +362,7 @@
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[GLOB.TAB]Round ID: <b>[info]</b>"
-	parts += "[GLOB.TAB]Gamemode: <B>[SSticker.mode.name]</B>"
+	parts += "[GLOB.TAB]Gamemode: <B>[SSgamemode.name]</B>"
 	parts += "[GLOB.TAB]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
 	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
@@ -486,8 +486,8 @@
 
 /datum/controller/subsystem/ticker/proc/station_goal_report()
 	var/list/parts = list()
-	if(mode.station_goals.len)
-		for(var/V in mode.station_goals)
+	if(SSgamemode.station_goals.len)
+		for(var/V in SSgamemode.station_goals)
 			var/datum/station_goal/G = V
 			parts += G.get_result()
 		return "<div class='panel stationborder'><ul>[parts.Join()]</ul></div>"

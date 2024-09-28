@@ -322,8 +322,8 @@
 	var/evacuation = EMERGENCY_ESCAPED_OR_ENDGAMED
 	var/disk_rescued = disk_rescued()
 	var/syndies_didnt_escape = !syndies_escaped()
-	var/station_was_nuked = SSticker.mode.station_was_nuked
-	var/nuke_off_station = SSticker.mode.nuke_off_station
+	var/station_was_nuked = SSgamemode.station_was_nuked
+	var/nuke_off_station = SSgamemode.nuke_off_station
 
 	if(nuke_off_station == NUKE_SYNDICATE_BASE)
 		return NUKE_RESULT_FLUKE
@@ -395,7 +395,7 @@
 	text += printplayerlist(members)
 	text += "<br>"
 	text += "(Syndicates used [TC_uses] TC) [purchases]"
-	if(TC_uses == 0 && SSticker.mode.station_was_nuked && !operatives_dead())
+	if(TC_uses == 0 && SSgamemode.station_was_nuked && !operatives_dead())
 		text += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
 
 	parts += text
@@ -444,4 +444,4 @@
 	return common_part + disk_report
 
 /datum/team/nuclear/is_gamemode_hero()
-	return SSticker.mode.name == "nuclear emergency"
+	return SSgamemode.name == "nuclear emergency"

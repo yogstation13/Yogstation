@@ -278,7 +278,7 @@
 	remove_antag_datum(/datum/antagonist/traitor)
 
 /datum/mind/proc/remove_brother()
-	if(src in SSticker.mode.brothers)
+	if(src in SSgamemode.brothers)
 		remove_antag_datum(/datum/antagonist/brother)
 
 /datum/mind/proc/remove_nukeop()
@@ -292,8 +292,8 @@
 	special_role = null
 
 /datum/mind/proc/remove_cultist()
-	if(src in SSticker.mode.cult)
-		SSticker.mode.remove_cultist(src, 0, 0)
+	if(src in SSgamemode.cult)
+		SSgamemode.remove_cultist(src, 0, 0)
 	special_role = null
 	remove_antag_equip()
 
@@ -431,7 +431,7 @@
 	RegisterSignal(creator.mind, COMSIG_ANTAGONIST_REMOVED, PROC_REF(remove_creator_antag)) //remove enslavement to the antag
 
 	if(iscultist(creator))
-		SSticker.mode.add_cultist(src)
+		current.add_cultist()
 
 	else if(IS_REVOLUTIONARY(creator))
 		var/datum/antagonist/rev/converter = creator.mind.has_antag_datum(/datum/antagonist/rev,TRUE)
@@ -750,8 +750,10 @@
 	if(quiet_round)
 		return
 	// yogs end
+	if(!current)
+		return
 	if(!has_antag_datum(/datum/antagonist/cult,TRUE))
-		SSticker.mode.add_cultist(src,FALSE,equip=TRUE)
+		current.add_cultist(FALSE, equip=TRUE)
 		special_role = ROLE_CULTIST
 		to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar'sie, The Geometer of Blood. You now see how flimsy your world is, you see that it should be open to the knowledge of Nar'sie.</b></i></font>")
 		to_chat(current, "<font color=\"purple\"><b><i>Assist your new brethren in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")

@@ -241,9 +241,9 @@
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/angelic, A, user, 0, T.loc)
 							else
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/noncult, A, user, 0, T.loc)
-				for(var/datum/mind/B in SSticker.mode.cult)
+				for(var/datum/mind/B in SSgamemode.cult)
 					if(B == A.mind)
-						SSticker.mode.cult -= A.mind
+						SSgamemode.cult -= A.mind
 				qdel(T)
 				qdel(src)
 			else
@@ -264,8 +264,8 @@
 	else
 		newstruct.key = target.key
 	var/atom/movable/screen/alert/bloodsense/BS
-	if(newstruct.mind && ((stoner && iscultist(stoner)) || cultoverride) && SSticker && SSticker.mode)
-		SSticker.mode.add_cultist(newstruct.mind, 0)
+	if(newstruct.mind && ((stoner && iscultist(stoner)) || cultoverride))
+		newstruct.add_cultist()
 	if(iscultist(stoner) || cultoverride)
 		to_chat(newstruct, "<b>You are still bound to serve the cult[stoner ? " and [stoner]":""], follow [stoner ? stoner.p_their() : "their"] orders and help [stoner ? stoner.p_them() : "them"] complete [stoner ? stoner.p_their() : "their"] goals at all costs.</b>")
 	else if(stoner)
@@ -295,7 +295,7 @@
 	if(U)
 		S.faction |= "[REF(U)]" //Add the master as a faction, allowing inter-mob cooperation
 	if(U && iscultist(U))
-		SSticker.mode.add_cultist(S.mind, 0)
+		S.add_cultist()
 	S.cancel_camera()
 	name = "soulstone: Shade of [T.real_name]"
 	if(purified)

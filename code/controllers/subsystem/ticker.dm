@@ -15,7 +15,6 @@ SUBSYSTEM_DEF(ticker)
 	var/setup_done = FALSE //All game setup done including mode post setup and
 
 	var/hide_mode = 0
-	var/datum/game_mode/mode = null
 
 	var/login_music							//music played in pregame lobby
 	var/login_music_data
@@ -214,7 +213,6 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 
-	mode = new /datum/game_mode/extended //always secret extended LOL!
 	SSgamemode.init_storyteller() //monkestation addition
 
 	CHECK_TICK
@@ -526,7 +524,6 @@ SUBSYSTEM_DEF(ticker)
 	current_state = SSticker.current_state
 	force_ending = SSticker.force_ending
 	hide_mode = SSticker.hide_mode
-	mode = SSticker.mode
 
 	login_music = SSticker.login_music
 	round_end_sound = SSticker.round_end_sound

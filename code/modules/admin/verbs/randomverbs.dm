@@ -1087,7 +1087,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /datum/admins/proc/modify_goals()
 	var/dat = "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
-	for(var/datum/station_goal/S in SSticker.mode.station_goals)
+	for(var/datum/station_goal/S in SSgamemode.station_goals)
 		dat += "[S.name] - <a href='?src=[REF(S)];[HrefToken()];announce=1'>Announce</a> | <a href='?src=[REF(S)];[HrefToken()];remove=1'>Remove</a><br>"
 	dat += "<br><a href='?src=[REF(src)];[HrefToken()];add_station_goal=1'>Add New Goal</a>"
 	dat += "</BODY></HTML>"

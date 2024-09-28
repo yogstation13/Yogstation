@@ -114,11 +114,6 @@
 				var/cooldown_finished = COOLDOWN_FINISHED(eth_heart, crystalize_cooldown)
 				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] seconds left"]"
 
-		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
-		if(zombie)
-			if((zombie.evolutionTime - world.time) > 0)
-				. += "Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds"
-
 
 	//NINJACODE
 	if(istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)) //Only display if actually a ninja.

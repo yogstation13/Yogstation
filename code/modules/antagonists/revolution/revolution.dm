@@ -461,7 +461,7 @@
 	return common_part + heads_report
 
 /datum/team/revolution/is_gamemode_hero()
-	return SSticker.mode.name == "revolution"
+	return SSgamemode.name == "revolution"
 
 /datum/outfit/revolutionary
 	name = "Revolutionary (Preview only)"

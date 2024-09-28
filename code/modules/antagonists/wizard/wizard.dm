@@ -31,10 +31,10 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 		rename_wizard()
 
 /datum/antagonist/wizard/proc/register()
-	SSticker.mode.wizards |= owner
+	SSgamemode.wizards |= owner
 
 /datum/antagonist/wizard/proc/unregister()
-	SSticker.mode.wizards -= src
+	SSgamemode.wizards -= src
 
 /datum/antagonist/wizard/create_team(datum/team/wizard/new_team)
 	if(!new_team)
@@ -188,10 +188,10 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	owner.announce_objectives()
 
 /datum/antagonist/wizard/apprentice/register()
-	SSticker.mode.apprentices |= owner
+	SSgamemode.apprentices |= owner
 
 /datum/antagonist/wizard/apprentice/unregister()
-	SSticker.mode.apprentices -= owner
+	SSgamemode.apprentices -= owner
 
 /datum/antagonist/wizard/apprentice/equip_wizard()
 	. = ..()

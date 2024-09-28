@@ -70,13 +70,11 @@
 	//ui_style = "syndicate" // actually the nuke op bomb is a stole nt bomb
 
 /obj/machinery/nuclearbomb/syndicate/get_cinematic_type(off_station)
-	var/datum/game_mode/nuclear/NM = SSticker.mode
 	switch(off_station)
 		if(0)
-			if(istype(NM) && !NM.nuke_team.syndies_escaped())
-				return CINEMATIC_ANNIHILATION
-			else
-				return CINEMATIC_NUKE_WIN
+			// if(istype(NM) && !NM.nuke_team.syndies_escaped())
+			// 	return CINEMATIC_ANNIHILATION
+			return CINEMATIC_NUKE_WIN
 		if(1)
 			return CINEMATIC_NUKE_MISS
 		if(2)
@@ -444,7 +442,7 @@
 	safety = TRUE
 	update_appearance(UPDATE_ICON)
 	sound_to_playing_players('sound/machines/alarm.ogg')
-	if(SSticker && SSticker.mode)
+	if(SSticker)
 		SSticker.roundend_check_paused = TRUE
 	addtimer(CALLBACK(src, PROC_REF(actually_explode)), 100)
 
@@ -477,7 +475,7 @@
 		SSshuttle.lockdown = TRUE
 
 	//Cinematic
-	SSticker.mode.OnNukeExplosion(off_station)
+	SSgamemode.OnNukeExplosion(off_station)
 	really_actually_explode(off_station)
 	SSticker.roundend_check_paused = FALSE
 

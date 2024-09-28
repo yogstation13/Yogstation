@@ -59,8 +59,8 @@
 /datum/preference_middleware/antags/proc/get_antag_bans()
 	var/list/antag_bans = list()
 
-	for (var/datum/game_mode/gamemode as anything in subtypesof(/datum/game_mode))
-		var/antag_flag = initial(gamemode.antag_flag)
+	for(var/datum/round_event_control/antagonist/solo/event as anything in subtypesof(/datum/round_event_control/antagonist/solo))
+		var/antag_flag = initial(event.antag_flag)
 
 		if (isnull(antag_flag))
 			continue
@@ -76,8 +76,8 @@
 
 	var/list/antag_days_left = list()
 
-	for (var/datum/game_mode/gamemode as anything in subtypesof(/datum/game_mode))
-		var/antag_flag = initial(gamemode.antag_flag)
+	for(var/datum/round_event_control/antagonist/solo/event as anything in subtypesof(/datum/round_event_control/antagonist/solo))
+		var/antag_flag = initial(event.antag_flag)
 
 		if (isnull(antag_flag))
 			continue

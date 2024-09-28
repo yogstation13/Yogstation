@@ -5,8 +5,6 @@
 
 /datum/mind/proc/vampire_hook()
 	var/text = "vampire"
-	if(SSticker.mode.config_tag == "vampire")
-		text = uppertext(text)
 	text = "<i><b>[text]</b></i>: "
 	if(IS_VAMPIRE(current))
 		text += "<b>VAMPIRE</b> | <a href='?src=\ref[src];vampire=clear'>human</a> | <a href='?src=\ref[src];vampire=full'>full-power</a>"

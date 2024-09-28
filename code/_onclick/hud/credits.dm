@@ -8,7 +8,7 @@ GLOBAL_LIST(end_titles)
 /proc/RollCredits()
 	set waitfor = FALSE
 	if(!GLOB.end_titles)
-		GLOB.end_titles = SSticker.mode.generate_credit_text()
+		GLOB.end_titles = SSgamemode.generate_credit_text()
 		GLOB.end_titles += "<br>"
 		GLOB.end_titles += "<br>"
 

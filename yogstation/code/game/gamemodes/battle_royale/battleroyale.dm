@@ -121,14 +121,14 @@ GLOBAL_VAR(final_zone)
 // 	GLOB.battleroyale_players = royalers //replace the old list with the new list
 
 // 	if(!LAZYLEN(GLOB.battleroyale_players))
-// 		SSticker.mode.check_finished(TRUE)
+// 		SSgamemode.check_finished(TRUE)
 // 		SSticker.force_ending = 1
 // 		to_chat(world, "<span_class='ratvar'>L. Nobody wins!</span>")
 // 		SEND_SOUND(world, 'yogstation/sound/effects/battleroyale/L.ogg')
 // 		finished = TRUE
 // 		return
 // 	if(LAZYLEN(GLOB.battleroyale_players) == 1) //We have a wiener!
-// 		SSticker.mode.check_finished(TRUE)
+// 		SSgamemode.check_finished(TRUE)
 // 		SSticker.force_ending = 1
 // 		winner = pick(GLOB.battleroyale_players)
 // 		to_chat(world, "<img src='https://cdn.discordapp.com/attachments/351367327184584704/539903688857092106/victoryroyale.png'>")

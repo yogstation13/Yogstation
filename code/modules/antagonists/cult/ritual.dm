@@ -92,13 +92,13 @@ This file contains the cult dagger and rune list code
 		if(sac_objective && !sac_objective.check_completion())
 			to_chat(user, span_warning("The sacrifice is not complete. The portal would lack the power to open if you tried!"))
 			return
-		if(SSticker.mode.bloodstone_cooldown)
+		if(SSgamemode.bloodstone_cooldown)
 			to_chat(user, span_warning("The summoning was recently disrupted! you will need to wait before the cult can manage another attempt!"))
 			return
 		if(summon_objective.check_completion())
 			to_chat(user, span_cultlarge("\"I am already here. There is no need to try to summon me now.\""))
 			return
-		if(SSticker.mode.bloodstone_list.len)
+		if(SSgamemode.bloodstone_list.len)
 			to_chat(user, span_cultlarge("\"The summoning has already begun! Protect the bloodstones with your life!\""))
 			return
 		if(!(A in summon_objective.summon_spots))

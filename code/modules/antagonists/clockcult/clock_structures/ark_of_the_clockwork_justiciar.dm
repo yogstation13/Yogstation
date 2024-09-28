@@ -95,7 +95,7 @@
 	not a drill.[grace_period ? " Estimated time of appearance: [grace_period] seconds. Use this time to prepare for an attack on [station_name()]." : ""]", \
 	"Central Command Higher Dimensional Affairs", 'sound/magic/clockwork/ark_activation.ogg')
 	SSsecurity_level.set_level(SEC_LEVEL_GAMMA)
-	for(var/V in SSticker.mode.servants_of_ratvar)
+	for(var/V in SSgamemode.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
 			continue
@@ -135,7 +135,7 @@
 	addtimer(CALLBACK(src, PROC_REF(mass_recall)), 100)
 
 /obj/structure/destructible/clockwork/massive/celestial_gateway/proc/mass_recall()
-	for(var/V in SSticker.mode.servants_of_ratvar)
+	for(var/V in SSgamemode.servants_of_ratvar)
 		var/datum/mind/M = V
 		if(!M || !M.current)
 			continue
@@ -158,7 +158,7 @@
 	if(!purpose_fulfilled)
 		hierophant_message("<span class='bold large_brass'>The Ark has fallen!</span>")
 		sound_to_playing_players(null, channel = CHANNEL_JUSTICIAR_ARK)
-		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
+		if(SSgamemode.servants_of_ratvar.len)
 			SSticker.force_ending = TRUE //rip
 	if(glow)
 		qdel(glow)

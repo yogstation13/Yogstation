@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		return FALSE
 	if(M.force_escaped)
 		return TRUE
-	if(SSticker.force_ending || SSticker.mode.station_was_nuked) // Just let them win.
+	if(SSticker.force_ending || SSgamemode.station_was_nuked) // Just let them win.
 		return TRUE
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
 		return FALSE
@@ -653,7 +653,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/nuclear/check_completion()
 	if(..())
 		return TRUE
-	if(SSticker && SSticker.mode && SSticker.mode.station_was_nuked)
+	if(SSgamemode?.station_was_nuked)
 		return TRUE
 	return FALSE
 
