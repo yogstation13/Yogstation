@@ -200,7 +200,7 @@
 #define IS_INFECTED(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/zombie))
 
 /// Checks if the given mob is a clockcultist.
-#define IS_CLOCK_CULTIST(mob) (isliving(mob) && mob?.mind?.has_antag_datum(/datum/antagonist/clockcult))
+#define IS_CLOCK_CULTIST(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/clockcult))
 
 /// Checks if the given mob is infected.
 #define IS_CHANGELING(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/changeling))
