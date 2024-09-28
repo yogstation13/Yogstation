@@ -366,7 +366,7 @@
 	hardness = 2
 	
 	mineralSpawnChanceList = list(
-		/turf/closed/mineral/uranium/ice/hard = 5, /turf/closed/mineral/diamond/ice/hard = 1, /turf/closed/mineral/gold/ice/hard = 10, /turf/closed/mineral/titanium/ice/hard = 11, /turf/closed/mineral/glacite/ice/hard = 0.5, 
+		/turf/closed/mineral/uranium/ice/hard = 5, /turf/closed/mineral/diamond/ice/hard = 1, /turf/closed/mineral/gold/ice/hard = 10, /turf/closed/mineral/titanium/ice/hard = 11, /turf/closed/mineral/glacite/ice/hard = 1, 
 		/turf/closed/mineral/silver/ice/hard = 12, /turf/closed/mineral/plasma/ice/hard = 20, /turf/closed/mineral/iron/ice/hard = 20, /turf/closed/mineral/dilithium/ice/hard = 2, /turf/closed/mineral/gibtonite/ice/hard = 4, /turf/closed/mineral/bscrystal/ice/hard = 2)
 
 /turf/closed/mineral/random/labormineral/volcanic
