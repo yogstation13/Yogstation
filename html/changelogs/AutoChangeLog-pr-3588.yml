@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - server: "Profiler logs now sort by overtime and have a proper timestamp in the filename."
