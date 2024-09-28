@@ -1,5 +1,7 @@
 #define TIER_2_TIME 4500
 
+GLOBAL_LIST_EMPTY(zombies)
+
 /datum/antagonist/zombie
 	name = "Zombie"
 	roundend_category = "zombies"
