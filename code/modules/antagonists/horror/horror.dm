@@ -742,7 +742,7 @@
 /mob/living/simple_animal/horror/proc/assume_control()
 	if(!victim || !src || controlling || victim.stat == DEAD)
 		return
-	if(is_servant_of_ratvar(victim) || iscultist(victim))
+	if(IS_CLOCK_CULTIST(victim) || iscultist(victim))
 		to_chat(src, span_warning("[victim]'s mind seems to be blocked by some unknown force!"))
 		bonding = FALSE
 		return

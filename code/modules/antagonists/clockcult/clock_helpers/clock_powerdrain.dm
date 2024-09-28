@@ -41,13 +41,13 @@
 		update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/robot/power_drain(clockcult_user)
-	if((!clockcult_user || !is_servant_of_ratvar(src)) && cell && cell.charge)
+	if((!clockcult_user || !IS_CLOCK_CULTIST(src)) && cell && cell.charge)
 		. = min(cell.charge, MIN_CLOCKCULT_POWER*4)
 		cell.use(.)
 		spark_system.start()
 
 /obj/mecha/power_drain(clockcult_user)
-	if((!clockcult_user || (occupant && !is_servant_of_ratvar(occupant))) && cell && cell.charge)
+	if((!clockcult_user || (occupant && !IS_CLOCK_CULTIST(occupant))) && cell && cell.charge)
 		. = min(cell.charge, MIN_CLOCKCULT_POWER*4)
 		cell.use(.)
 		spark_system.start()

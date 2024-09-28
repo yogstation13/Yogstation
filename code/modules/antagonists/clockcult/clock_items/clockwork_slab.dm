@@ -38,7 +38,7 @@
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clockwork/slab/debug/attack_hand(mob/living/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_CLOCK_CULTIST(user))
 		add_servant_of_ratvar(user)
 	return ..()
 
@@ -129,7 +129,7 @@
 
 /obj/item/clockwork/slab/examine(mob/user)
 	. = ..()
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_CLOCK_CULTIST(user) || isobserver(user))
 		if(LAZYLEN(quickbound))
 			for(var/i in 1 to quickbound.len)
 				if(!quickbound[i])
@@ -155,7 +155,7 @@
 		user.apply_damage(5, BURN, BODY_ZONE_L_ARM)
 		user.apply_damage(5, BURN, BODY_ZONE_R_ARM)
 		return 0
-	if(!is_servant_of_ratvar(user))
+	if(!IS_CLOCK_CULTIST(user))
 		to_chat(user, span_warning("The information on [src]'s display shifts rapidly. After a moment, your head begins to pound, and you tear your eyes away."))
 		user.adjust_confusion(5 SECONDS)
 		user.adjust_dizzy(5 SECONDS)
@@ -169,12 +169,12 @@
 	access_display(user)
 
 /obj/item/clockwork/slab/AltClick(mob/living/user)
-	if(is_servant_of_ratvar(user) && linking && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+	if(IS_CLOCK_CULTIST(user) && linking && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		linking = null
 		to_chat(user, span_notice("Object link canceled."))
 
 /obj/item/clockwork/slab/proc/access_display(mob/living/user)
-	if(!is_servant_of_ratvar(user))
+	if(!IS_CLOCK_CULTIST(user))
 		return FALSE
 	ui_interact(user)
 	return TRUE
@@ -518,7 +518,7 @@
 		actions_to_elim = actions
 	else
 		var/mob/living/user = mob_override || loc
-		if(!is_servant_of_ratvar(user))
+		if(!IS_CLOCK_CULTIST(user))
 			return
 		actions_to_elim = user.actions
 	for(var/datum/action/item_action/clock/quickbind/existing_binds in actions_to_elim)

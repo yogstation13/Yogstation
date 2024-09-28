@@ -10,7 +10,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!is_servant_of_ratvar(user))
+	if(!IS_CLOCK_CULTIST(user))
 		return
 	if(!(datum_flags & DF_ISPROCESSING))
 		START_PROCESSING(SSprocessing, src)

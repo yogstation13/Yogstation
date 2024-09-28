@@ -55,7 +55,7 @@
 			for(var/V in GLOB.player_list)
 				var/mob/M = V
 				var/turf/T = get_turf(M)
-				if((T && T.z == z) || is_servant_of_ratvar(M) || isobserver(M))
+				if((T && T.z == z) || IS_CLOCK_CULTIST(M) || isobserver(M))
 					M.playsound_local(M, 'sound/machines/clockcult/ark_scream.ogg', 100, FALSE, pressure_affected = FALSE)
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
@@ -82,7 +82,7 @@
 	hierophant_message("<span class='bold large_brass'>The Ark is activating! You will be transported there soon!</span>")
 	for(var/mob/M in GLOB.player_list)
 		var/turf/T = get_turf(M)
-		if(is_servant_of_ratvar(M) || isobserver(M) || (T && T.z == z))
+		if(IS_CLOCK_CULTIST(M) || isobserver(M) || (T && T.z == z))
 			M.playsound_local(M, 'sound/magic/clockwork/ark_activation_sequence.ogg', 30, FALSE, pressure_affected = FALSE)
 	addtimer(CALLBACK(src, PROC_REF(let_slip_the_dogs)), 300)
 
@@ -193,7 +193,7 @@
 			sound_to_playing_players(volume = 25, channel = CHANNEL_JUSTICIAR_ARK, S = sound('sound/effects/clockcult_gateway_disrupted.ogg'))
 			for(var/mob/M in GLOB.player_list)
 				var/turf/T = get_turf(M)
-				if((T && T.z == z) || is_servant_of_ratvar(M))
+				if((T && T.z == z) || IS_CLOCK_CULTIST(M))
 					M.playsound_local(M, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, FALSE, pressure_affected = FALSE)
 			make_glow()
 			glow.icon_state = "clockwork_gateway_disrupted"
@@ -240,7 +240,7 @@
 	icon_state = "spatial_gateway" //cheat wildly by pretending to have an icon
 	..()
 	icon_state = initial(icon_state)
-	if(is_servant_of_ratvar(user) || isobserver(user))
+	if(IS_CLOCK_CULTIST(user) || isobserver(user))
 		if(!active)
 			to_chat(user, span_big("<b>Time until the Ark's activation:</b> [DisplayTimeText(get_arrival_time())]"))
 		else
@@ -303,7 +303,7 @@
 	for(var/V in GLOB.player_list)
 		var/mob/M = V
 		var/turf/T = get_turf(M)
-		if(is_servant_of_ratvar(M) && (!T || T.z != z))
+		if(IS_CLOCK_CULTIST(M) && (!T || T.z != z))
 			M.forceMove(get_step(src, SOUTH))
 			M.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash)
 			M.clear_fullscreen("flash", 5)

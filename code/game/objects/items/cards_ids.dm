@@ -269,7 +269,7 @@
 		charges--
 
 		// Copy and paste of emag checks.
-		if(is_servant_of_ratvar(cyborg))
+		if(IS_CLOCK_CULTIST(cyborg))
 			to_chat(cyborg, "[span_nezbere("\"[text2ratvar("You will serve Engine above all else")]!\"")]\n\
 			[span_danger("ALERT: Subversion attempt denied.")]")
 			log_game("[key_name(user)] attempted to cmag cyborg [key_name(cyborg)], but they serve only Ratvar.")

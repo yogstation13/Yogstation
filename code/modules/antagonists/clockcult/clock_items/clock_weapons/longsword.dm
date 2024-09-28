@@ -18,7 +18,7 @@
 
 /obj/item/clockwork/weapon/brass_sword/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
-	if(world.time > emp_cooldown && !is_servant_of_ratvar(target))
+	if(world.time > emp_cooldown && !IS_CLOCK_CULTIST(target))
 		target.emp_act(emp_severity)
 		emp_cooldown = world.time + cooldown_duration
 		addtimer(CALLBACK(src, PROC_REF(send_message)), cooldown_duration)

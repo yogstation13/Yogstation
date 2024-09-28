@@ -9,7 +9,7 @@
 				to_chat(M, "[link] [message]")
 			else
 				to_chat(M, message)
-		else if(is_servant_of_ratvar(M))
+		else if(IS_CLOCK_CULTIST(M))
 			to_chat(M, message)
 	return TRUE
 
@@ -36,7 +36,7 @@
 	var/span_for_message = "brass"
 
 /datum/action/innate/hierophant/IsAvailable(feedback = FALSE)
-	if(!is_servant_of_ratvar(owner))
+	if(!IS_CLOCK_CULTIST(owner))
 		return FALSE
 	return ..()
 

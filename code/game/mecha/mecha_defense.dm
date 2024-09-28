@@ -453,7 +453,7 @@
 
 /obj/mecha/ratvar_act()
 	if((GLOB.ratvar_awakens || GLOB.clockwork_gateway_activated) && occupant)
-		if(is_servant_of_ratvar(occupant)) //reward the minion that got a mech by repairing it
+		if(IS_CLOCK_CULTIST(occupant)) //reward the minion that got a mech by repairing it
 			full_repair(TRUE)
 		else
 			var/mob/living/L = occupant

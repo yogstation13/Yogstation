@@ -453,7 +453,7 @@
 					var/mob/living/carbon/C = L
 					C.cultslurring += 10
 					C.adjust_jitter(15 SECONDS)
-				if(is_servant_of_ratvar(L))
+				if(IS_CLOCK_CULTIST(L))
 					L.adjustBruteLoss(30)
 			else if(cult.cult_risen)
 				to_chat(user, span_cultitalic("In a dull flash of red, [L] falls to the ground!"))
@@ -468,7 +468,7 @@
 					C.adjust_stutter(7 SECONDS)
 					C.cultslurring += 7
 					C.adjust_jitter(7 SECONDS)
-				if(is_servant_of_ratvar(L))
+				if(IS_CLOCK_CULTIST(L))
 					L.adjustBruteLoss(20)
 			else
 				to_chat(user, span_cultitalic("In a brilliant flash of red, [L] falls to the ground!"))
@@ -483,7 +483,7 @@
 					C.adjust_stutter(15 SECONDS)
 					C.cultslurring += 15
 					C.adjust_jitter(15 SECONDS)
-				if(is_servant_of_ratvar(L))
+				if(IS_CLOCK_CULTIST(L))
 					L.adjustBruteLoss(15)
 		else
 			target.visible_message("<span class='warning'>[target] winces slightly as a red flash eminates from [user]'s hand</span>", \

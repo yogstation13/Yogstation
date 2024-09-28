@@ -38,7 +38,7 @@
 
 /obj/item/clothing/head/helmet/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == ITEM_SLOT_HEAD && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_HEAD && !IS_CLOCK_CULTIST(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] head!"), span_warning("The helmet flickers off your head, leaving only nausea!"))
@@ -54,7 +54,7 @@
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, dropItemToGround), src, TRUE), 1) //equipped happens before putting stuff on(but not before picking items up), 1). thus, we need to wait for it to be on before forcing it off.
 
 /obj/item/clothing/head/helmet/clockwork/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if(equipper && !is_servant_of_ratvar(equipper))
+	if(equipper && !IS_CLOCK_CULTIST(equipper))
 		return 0
 	return ..()
 
@@ -98,13 +98,13 @@
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
 
 /obj/item/clothing/suit/armor/clockwork/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if(equipper && !is_servant_of_ratvar(equipper))
+	if(equipper && !IS_CLOCK_CULTIST(equipper))
 		return 0
 	return ..()
 
 /obj/item/clothing/suit/armor/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == ITEM_SLOT_OCLOTHING && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_OCLOTHING && !IS_CLOCK_CULTIST(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] body!"), span_warning("The cuirass flickers off your body, leaving only nausea!"))
@@ -161,13 +161,13 @@
 		min_cold_protection_temperature = initial(min_cold_protection_temperature)
 
 /obj/item/clothing/gloves/clockwork/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if(equipper && !is_servant_of_ratvar(equipper))
+	if(equipper && !IS_CLOCK_CULTIST(equipper))
 		return 0
 	return ..()
 
 /obj/item/clothing/gloves/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == ITEM_SLOT_GLOVES && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_GLOVES && !IS_CLOCK_CULTIST(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] arms!"), span_warning("The gauntlets flicker off your arms, leaving only nausea!"))
@@ -211,13 +211,13 @@
 		clothing_flags &= ~NOSLIP
 
 /obj/item/clothing/shoes/clockwork/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if(equipper && !is_servant_of_ratvar(equipper))
+	if(equipper && !IS_CLOCK_CULTIST(equipper))
 		return 0
 	return ..()
 
 /obj/item/clothing/shoes/clockwork/equipped(mob/living/user, slot)
 	..()
-	if(slot == ITEM_SLOT_FEET && !is_servant_of_ratvar(user))
+	if(slot == ITEM_SLOT_FEET && !IS_CLOCK_CULTIST(user))
 		if(!iscultist(user))
 			to_chat(user, "[span_heavy_brass("\"Now now, this is for my servants, not you.\"")]")
 			user.visible_message(span_warning("As [user] puts [src] on, it flickers off [user.p_their()] feet!"), span_warning("The treads flicker off your feet, leaving only nausea!"))

@@ -22,7 +22,7 @@
 			return FALSE
 	else
 		return FALSE
-	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M) || !M.client)
+	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || IS_CLOCK_CULTIST(M) || !M.client)
 		return FALSE //can't convert machines, shielded, braindead, mice, or ratvar's dogs
 	return TRUE
 

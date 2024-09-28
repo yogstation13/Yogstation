@@ -441,7 +441,7 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
 
 /obj/machinery/door/window/clockwork/allowed(mob/M)
-	if(is_servant_of_ratvar(M))
+	if(IS_CLOCK_CULTIST(M))
 		return 1
 	return 0
 

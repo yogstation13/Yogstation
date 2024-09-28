@@ -16,6 +16,6 @@
 
 /obj/item/clockwork/weapon/brass_battlehammer/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
-	if(!is_servant_of_ratvar(target))
+	if(!IS_CLOCK_CULTIST(target))
 		var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 		target.throw_at(throw_target, 1, 4)
