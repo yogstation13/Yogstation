@@ -1,4 +1,0 @@
-author: "N3D6"
-delete-after: true 
-changes: 
-  - mapping: "Fixed gulag office apc not being hooked up to power"
