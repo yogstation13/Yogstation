@@ -43,7 +43,7 @@
 		for(var/datum/disease/D in diseases)
 			if(D.spread_flags & (DISEASE_SPREAD_BLOOD))
 				src.diseases |= D
-				
+
 	AddElement(/datum/element/beauty, beauty)
 
 	var/turf/T = get_turf(src)
@@ -82,16 +82,14 @@
 	if(W.get_temperature()) //todo: make heating a reagent holder proc
 		if(istype(W, /obj/item/clothing/mask/cigarette))
 			return
-		else
-			var/hotness = W.get_temperature()
-			reagents.expose_temperature(hotness)
-			to_chat(user, span_notice("You heat [name] with [W]!"))
+		var/hotness = W.get_temperature()
+		reagents?.expose_temperature(hotness)
+		to_chat(user, span_notice("You heat [name] with [W]!"))
 	else
 		return ..()
 
 /obj/effect/decal/cleanable/fire_act(exposed_temperature, exposed_volume)
-	if(reagents)
-		reagents.expose_temperature(exposed_temperature)
+	reagents?.expose_temperature(exposed_temperature)
 	..()
 
 

@@ -459,8 +459,8 @@
 	badness = EFFECT_DANGER_HELPFUL
 
 /datum/symptom/antitox/activate(mob/living/mob)
-	to_chat(mob, "<span class = 'notice'>You feel your toxins being purged!</span>")
-	mob.adjustToxLoss(-4)
+	to_chat(mob, span_notice("You feel your toxins being purged!"))
+	mob?.adjustToxLoss(-4)
 
 /datum/symptom/cult_vomit
 	name = "Hemoptysis"

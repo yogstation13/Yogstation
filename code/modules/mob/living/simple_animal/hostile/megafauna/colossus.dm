@@ -591,6 +591,7 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/closet/stasis/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
 	if(isliving(arrived) && holder_animal)
 		var/mob/living/possessor = arrived
 		possessor.add_traits(list(TRAIT_UNDENSE, TRAIT_NO_TRANSFORM), STASIS_MUTE)
