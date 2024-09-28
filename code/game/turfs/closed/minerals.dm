@@ -1056,10 +1056,11 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/gibtonite/ice/hard
-	icon = MAP_SWITCH('icons/turf/smoothrocks_hard.dmi', 'icons/turf/mining.dmi')
-	base_icon_state = "smoothrocks_hard"
-	color = "#7ca9cf"
+	name = "hardened ice"
+	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
+	base_icon_state = "mountain_wall"
 	hardness = 2
+	color = "#7ca9cf"
 
 /turf/closed/mineral/gibtonite/ice/icemoon
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice/icemoon
@@ -1109,10 +1110,11 @@
 	base_icon_state = "icerock_wall"
 
 /turf/closed/mineral/glacite/ice/hard
-	icon = MAP_SWITCH('icons/turf/smoothrocks_hard.dmi', 'icons/turf/mining.dmi')
-	base_icon_state = "smoothrocks_hard"
-	color = "#7ca9cf"
+	name = "hardened ice"
+	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
+	base_icon_state = "mountain_wall"
 	hardness = 2
+	color = "#7ca9cf"
 
 /turf/closed/mineral/glacite/gets_drilled(mob/user, triggered_by_explosion = FALSE)
 	if(!triggered_by_explosion)
