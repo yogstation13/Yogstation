@@ -23,14 +23,12 @@
 #define ROLE_HERETIC			"Heretic"
 #define ROLE_BLOB				"Blob"
 #define ROLE_NINJA				"Space Ninja"
-#define ROLE_MONKEY				"Monkey"
 #define ROLE_ABDUCTOR			"Abductor"
 #define ROLE_REVENANT			"Revenant"
 #define ROLE_DEVIL				"Devil"
 #define ROLE_SERVANT_OF_RATVAR	"Servant of Ratvar"
 #define ROLE_BROTHER			"Blood Brother"
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
-#define ROLE_HIVE				"Hivemind Host"
 #define ROLE_OBSESSED			"Obsessed"
 #define ROLE_SENTIENCE			"Sentient Creature"
 #define ROLE_MOUSE				"Mouse"
@@ -43,7 +41,6 @@
 #define ROLE_FUGITIVE           "Fugitive"
 #define ROLE_VAMPIRE			"Vampire" // Yogs
 #define ROLE_VAMPIRICACCIDENT	"Vampiric Accident"
-#define ROLE_GANG				"gangster" // Yogs
 #define ROLE_DARKSPAWN			"Darkspawn" // Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
@@ -80,7 +77,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HERETIC = /datum/antagonist/heretic,
 	ROLE_BLOB = /datum/antagonist/blob,
 	ROLE_NINJA = /datum/antagonist/ninja,
-	ROLE_MONKEY	= /datum/antagonist/monkey,
 	ROLE_ABDUCTOR = /datum/antagonist/abductor,
 	ROLE_REVENANT = /datum/antagonist/revenant,
 	ROLE_DEVIL = /datum/antagonist/devil,
@@ -91,7 +87,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_INTERNAL_AFFAIRS = /datum/antagonist/traitor/internal_affairs,
 	ROLE_FUGITIVE = /datum/antagonist/fugitive,
 	ROLE_VAMPIRE = /datum/antagonist/vampire, // Yogs
-	ROLE_GANG = /datum/antagonist/gang, // Yogs
 	ROLE_DARKSPAWN = /datum/antagonist/darkspawn, // Yogs
 	ROLE_HOLOPARASITE = /datum/antagonist/guardian, // Yogs
 	ROLE_HORROR = /datum/antagonist/horror, // Yogs
@@ -104,7 +99,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SINFULDEMON = /datum/antagonist/sinfuldemon,
 	ROLE_NIGHTMARE = /datum/antagonist/nightmare,
 	ROLE_DISEASE = /datum/antagonist/disease,
-	ROLE_HIVE = /datum/antagonist/hivemind,
 	ROLE_PIRATE = /datum/antagonist/pirate,
 	ROLE_SENTIENCE = /datum/antagonist/sentient_creature
 ))

@@ -91,11 +91,6 @@
 		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
 		. += "Lumens Count: [round(lumens, 0.01)]"
 
-	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
-	if(hivemind)
-		. += ""
-		. += "Hivemind Vessels: [hivemind.hive_size] (+[hivemind.size_mod])"
-		. += "Psychic Link Duration: [(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds"
 	var/mob/living/simple_animal/horror/H = has_horror_inside()
 	if(H && H.controlling)
 		. += ""

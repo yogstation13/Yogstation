@@ -88,11 +88,6 @@
 		log_game("[key_name(src)] has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()]) ([AREACOORD(src)])")
 	if(IS_DEVIL(src))
 		INVOKE_ASYNC(IS_DEVIL(src), TYPE_PROC_REF(/datum/antagonist/devil, beginResurrectionCheck), src)
-	if(is_hivemember(src))
-		remove_hivemember(src)
-	if(is_hivehost(src))
-		var/datum/antagonist/hivemind/hive = mind.has_antag_datum(/datum/antagonist/hivemind)
-		hive.destroy_hive()
 
 	if(client)
 		SSachievements.unlock_achievement(/datum/achievement/death, client)
