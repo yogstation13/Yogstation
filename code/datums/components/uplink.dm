@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/list/previous_attempts
 	var/nt_uplink_type = null //for NT uplinks to enforce team variety.
 
-/datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, _antagonist, starting_tc = TELECRYSTALS_DEFAULT)
+/datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, _antagonist = ROLE_TRAITOR, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
