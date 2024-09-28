@@ -838,7 +838,7 @@
 		to_chat(usr, "<b>No Devils located</b>" , confidential=TRUE)
 
 /datum/admins/proc/output_devil_info(mob/living/M)
-	if(is_devil(M))
+	if(IS_DEVIL(M))
 		var/datum/antagonist/devil/devil = M.mind.has_antag_datum(/datum/antagonist/devil)
 		to_chat(usr, devil.printdevilinfo(), confidential=TRUE)
 	else

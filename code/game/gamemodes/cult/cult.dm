@@ -1,12 +1,5 @@
 #define CULT_SCALING_COEFFICIENT 8.3 //Roughly one new cultist at roundstart per this many players
 
-/datum/game_mode
-	var/list/datum/mind/cult = list()
-	var/list/bloodstone_list = list()
-	var/anchor_bloodstone
-	var/anchor_time2kill = 5 MINUTES
-	var/bloodstone_cooldown = FALSE
-
 /proc/iscultist(mob/living/M)
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return TRUE

@@ -128,11 +128,6 @@ Credit where due:
 ///////////////
 // GAME MODE //
 ///////////////
-
-/datum/game_mode
-	var/list/servants_of_ratvar = list() //The Enlightened servants of Ratvar
-	var/clockwork_explanation = "Defend the Ark of the Clockwork Justiciar and free Ratvar." //The description of the current objective
-
 /datum/game_mode/clockwork_cult
 	name = "clockwork cult"
 	config_tag = "clockwork_cult"
