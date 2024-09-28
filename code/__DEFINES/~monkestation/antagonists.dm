@@ -26,6 +26,12 @@
 /// is something a worm
 #define iscorticalborer(A) (istype(A, /mob/living/basic/cortical_borer))
 
+/// Is the mob a blood brother
+#define IS_BROTHER(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/brother))
+
+/// Whether the mob can convert others through innate flash shielding like IPCs (head revolutionaries and blood brothers)
+#define CAN_BYPASS_INNATE_FLASH_RESISTANCE(mob) (IS_BROTHER(mob) || IS_HEAD_REVOLUTIONARY(mob))
+
 // Borer evolution defines
 // The three primary paths that eventually diverge
 #define BORER_EVOLUTION_SYMBIOTE "Symbiote"

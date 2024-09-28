@@ -164,6 +164,9 @@
 	if(deviation == DEVIATION_FULL)
 		return
 
+	if(CAN_BYPASS_INNATE_FLASH_RESISTANCE(user)) // MONKESTATION EDIT: Make IPCs not resistant to bb and rev conversions.
+		ADD_TRAIT(flashed, TRAIT_CONVERSION_FLASHED, TRAIT_GENERIC)
+
 	if(targeted)
 		if(flashed.flash_act(1, 1))
 			flashed.set_confusion_if_lower(confusion_duration * CONFUSION_STACK_MAX_MULTIPLIER)
@@ -184,6 +187,8 @@
 	else
 		if(flashed.flash_act())
 			flashed.set_confusion_if_lower(confusion_duration * CONFUSION_STACK_MAX_MULTIPLIER)
+
+	REMOVE_TRAIT(flashed, TRAIT_CONVERSION_FLASHED, TRAIT_GENERIC) // MONKESTATION EDIT: Make IPCs not resistant to bb and rev conversions.
 
 /**
  * Handles the directionality of the attack

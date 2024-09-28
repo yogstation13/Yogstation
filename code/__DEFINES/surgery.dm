@@ -17,6 +17,8 @@
 #define ORGAN_HIDDEN (1<<7)
 /// Synthetic organ granted by a species (for use for organ replacements between species)
 #define ORGAN_SYNTHETIC_FROM_SPECIES (1<<8)
+/// This organ has no impact on conversion via flash, such as revs or bbs. Doesn't affect hypnosis and whatnot, though. MONKESTATION EDIT
+#define ORGAN_DOESNT_PROTECT_AGAINST_CONVERSION (1<<9)
 
 // Flags for the bodypart_flags var on /obj/item/bodypart
 /// Bodypart cannot be dismembered or amputated

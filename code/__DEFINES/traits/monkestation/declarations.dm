@@ -53,6 +53,8 @@
 #define TRAIT_REVIVES_BY_HEALING "trait_revives_by_healing"
 /// This mob is a ghost critter.
 #define TRAIT_GHOST_CRITTER "ghost_critter"
+/// This mob is *currently* being flashed by someone with CAN_BYPASS_INNATE_FLASH_RESISTANCE returning TRUE. Used to make IPCs not immune to rev and bb conversions.
+#define TRAIT_CONVERSION_FLASHED "conversion_flashed"
 
 // /datum/mind + /mob/living
 /// Prevents the user from casting spells using sign language. Works on both /datum/mind and /mob/living.
