@@ -18,6 +18,13 @@
 	icon_state = "upgrade_parts"
 	w_class = WEIGHT_CLASS_NORMAL
 	var/inert = FALSE
+	var/glacite = FALSE
+
+/obj/item/magmite_parts/glacite
+	name = "plasma glacite upgrade parts"
+	desc = "Forged on the legendary Moon Anvil, these parts can be used to ugprade many kinds of mining equipment."
+	icon_state = "glacite_parts"
+	glacite = TRUE
 
 /obj/item/magmite_parts/Initialize(mapload)
 	. = ..()
@@ -26,20 +33,18 @@
 /obj/item/magmite_parts/proc/go_inert()
 	if(inert)
 		return
-	visible_message(span_warning("The [src] loses it's glow!"))
-	inert = TRUE
-	name = "inert plasma magmite upgrade parts"
-	icon_state = "upgrade_parts_inert"
-	desc += "It appears to have lost its magma-like glow."
-
-/obj/item/magmite_parts/glacite/proc/go_inert()
-	if(inert)
-		return
-	visible_message(span_warning("The [src] loses it's glow!"))
-	inert = TRUE
-	name = "inert plasma glacite upgrade parts"
-	icon_state = "glacite_parts_inert"
-	desc += "It appears to have lost its icy glow."
+	if(glacite)
+		visible_message(span_warning("The [src] loses it's glow!"))
+		inert = TRUE
+		name = "inert plasma glacite upgrade parts"
+		icon_state = "glacite_parts_inert"
+		desc += "It appears to have lost its icy glow."
+	else if(!glacite)
+		visible_message(span_warning("The [src] loses it's glow!"))
+		inert = TRUE
+		name = "inert plasma magmite upgrade parts"
+		icon_state = "upgrade_parts_inert"
+		desc += "It appears to have lost its magma-like glow."
 
 /obj/item/magmite_parts/proc/restore()
 	if(!inert)

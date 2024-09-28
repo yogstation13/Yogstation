@@ -73,6 +73,12 @@
 				qdel(I)
 				to_chat(user, "You carefully forge the rough plasma magmite into plasma magmite upgrade parts.")
 				success = TRUE
+		if(/obj/item/magmite/glacite)
+			if(do_after(user, 10 SECONDS, src))
+				new /obj/item/magmite_parts/glacite(get_turf(src))
+				qdel(I)
+				to_chat(user, "You carefully forge the rough plasma glacite into plasma glacite upgrade parts.")
+				success = TRUE
 		if(/obj/item/magmite_parts)
 			var/obj/item/magmite_parts/parts = I
 			if(!parts.inert)
@@ -81,6 +87,14 @@
 			if(do_after(user, 5 SECONDS, src))
 				parts.restore()
 				to_chat(user, "You successfully reheat the magmite upgrade parts. They are now glowing and usable again.")
+		if(/obj/item/magmite_parts/glacite)
+			var/obj/item/magmite_parts/glacite/parts = I
+			if(!parts.inert)
+				to_chat(user,"The glacite upgrade parts are already glowing and usable!")
+				return
+			if(do_after(user, 5 SECONDS, src))
+				parts.restore()
+				to_chat(user, "You successfully reheat the glacite upgrade parts. They are now glowing and usable again.")
 	if(!success)
 		return
 	forge_charges--
