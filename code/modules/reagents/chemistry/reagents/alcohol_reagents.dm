@@ -2500,7 +2500,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/ratvarnac/on_mob_life(mob/living/carbon/M)
 	M.emote("spin")
-	if(IS_CLOCK_CULTIST(M))
+	if(is_servant_of_ratvar(M))
 		M.heal_overall_damage(0.5, 0.5)
 	return ..()
 

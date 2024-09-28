@@ -138,7 +138,7 @@
 	if(!forced_span)
 		if(iscultist(user))
 			span_list = list("narsiesmall")
-		else if (IS_CLOCK_CULTIST(user))
+		else if (is_servant_of_ratvar(user))
 			span_list = list("ratvar")
 	if(!span_list || !span_list.len)
 		span_list = list()
@@ -178,7 +178,7 @@
 			power_multiplier *= 0.5
 
 	//Cultists are closer to their gods and are more powerful, but they'll give themselves away
-	if(iscultist(user) || IS_CLOCK_CULTIST(user) || IS_HERETIC(user))
+	if(iscultist(user) || is_servant_of_ratvar(user) || IS_HERETIC(user))
 		power_multiplier *= 2
 
 	//Try to check if the speaker specified a name or a job to focus on
@@ -269,17 +269,17 @@
 			var/mob/living/L = V
 			if(iscultist(L))
 				L.heal_overall_damage(10 * power_multiplier, 10 * power_multiplier)
-			if(IS_CLOCK_CULTIST(L) && ishuman(L))
+			if(is_servant_of_ratvar(L) && ishuman(L))
 				var/mob/living/carbon/human/H = L
 				var/obj/item/bodypart/BP = pick(H.bodyparts)
 				BP.generic_bleedstacks += 5 * power_multiplier
 
 	//HAIL RATVAR
-	else if(findtext(message, narsian_words) && IS_CLOCK_CULTIST(user))
+	else if(findtext(message, narsian_words) && is_servant_of_ratvar(user))
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			if(IS_CLOCK_CULTIST(L))
+			if(is_servant_of_ratvar(L))
 				L.heal_overall_damage(10 * power_multiplier, 10 * power_multiplier)
 			if(iscultist(L))
 				L.adjust_fire_stacks(1 * power_multiplier)

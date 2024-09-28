@@ -37,7 +37,7 @@
 				return
 			if(blind_cultist(H))
 				return
-			if(IS_CLOCK_CULTIST(H))
+			if(is_servant_of_ratvar(H))
 				to_chat(H, "[span_heavy_brass("You push the spectacles down, and all is revealed to you.[GLOB.ratvar_awakens ? "" : " Your eyes begin to itch - you cannot do this for long."]")]")
 				var/datum/status_effect/wraith_spectacles/WS = H.has_status_effect(STATUS_EFFECT_WRAITHSPECS)
 				if(WS)
@@ -61,7 +61,7 @@
 	tint = 0
 	vision_flags = NONE
 	if(!up)
-		if(IS_CLOCK_CULTIST(loc))
+		if(is_servant_of_ratvar(loc))
 			vision_flags = SEE_MOBS | SEE_TURFS | SEE_OBJS
 		else
 			tint = 3
@@ -79,7 +79,7 @@
 	if(blind_cultist(user)) //Cultists instantly go blind
 		return
 	set_vision_vars(TRUE)
-	if(IS_CLOCK_CULTIST(user))
+	if(is_servant_of_ratvar(user))
 		to_chat(user, "[span_heavy_brass("As you put on the spectacles, all is revealed to you.[GLOB.ratvar_awakens || GLOB.ratvar_approaches ? "" : " Your eyes begin to itch - you cannot do this for long."]")]")
 		var/datum/status_effect/wraith_spectacles/WS = user.has_status_effect(STATUS_EFFECT_WRAITHSPECS)
 		if(WS)

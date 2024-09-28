@@ -4,7 +4,7 @@
 	buttontooltipstyle = "clockcult"
 
 /datum/action/item_action/clock/IsAvailable(feedback = FALSE)
-	if(!IS_CLOCK_CULTIST(owner))
+	if(!is_servant_of_ratvar(owner))
 		return FALSE
 	return ..()
 

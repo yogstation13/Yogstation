@@ -590,7 +590,7 @@
 		open()
 
 /obj/machinery/door/airlock/clockwork/canAIControl(mob/user)
-	return (IS_CLOCK_CULTIST(user) && !isAllPowerCut())
+	return (is_servant_of_ratvar(user) && !isAllPowerCut())
 
 /obj/machinery/door/airlock/clockwork/ratvar_act()
 	return 0
@@ -608,7 +608,7 @@
 		return ..()
 
 /obj/machinery/door/airlock/clockwork/allowed(mob/M)
-	if(IS_CLOCK_CULTIST(M))
+	if(is_servant_of_ratvar(M))
 		return 1
 	return 0
 

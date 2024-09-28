@@ -109,7 +109,7 @@
 /obj/structure/destructible/clockwork/ocular_warden/proc/acquire_nearby_targets()
 	. = list()
 	for(var/mob/living/L in viewers(sight_range, src)) //Doesn't attack the blind
-		if(IS_CLOCK_CULTIST(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND))
+		if(is_servant_of_ratvar(L) || (HAS_TRAIT(L, TRAIT_BLIND)) || L.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND))
 			continue
 		var/obj/item/storage/book/bible/B = L.bible_check()
 		if(B)
@@ -143,7 +143,7 @@
 	var/list/viewcache = list()
 	for(var/N in GLOB.mechas_list)
 		var/obj/mecha/M = N
-		if(get_dist(M, src) <= sight_range && M.occupant && !IS_CLOCK_CULTIST(M.occupant))
+		if(get_dist(M, src) <= sight_range && M.occupant && !is_servant_of_ratvar(M.occupant))
 			if(!length(viewcache))
 				for (var/obj/Z in view(sight_range, src))
 					viewcache += Z

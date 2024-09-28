@@ -80,7 +80,7 @@
 /obj/item/melee/cultblade/pickup(mob/living/user)
 	..()
 	if(!iscultist(user))
-		if(!IS_CLOCK_CULTIST(user))
+		if(!is_servant_of_ratvar(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 		else
 			to_chat(user, span_cultlarge("\"One of Ratvar's toys is trying to play with things [user.p_they()] shouldn't. Cute.\""))
@@ -149,7 +149,7 @@
 /obj/item/melee/cult_bastard/pickup(mob/living/user)
 	. = ..()
 	if(!iscultist(user))
-		if(!IS_CLOCK_CULTIST(user))
+		if(!is_servant_of_ratvar(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			force = 5
 			return
@@ -399,7 +399,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield/equipped(mob/living/user, slot)
 	..()
 	if(!iscultist(user))
-		if(!IS_CLOCK_CULTIST(user))
+		if(!is_servant_of_ratvar(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
@@ -467,7 +467,7 @@
 /obj/item/clothing/suit/hooded/cultrobes/berserker/equipped(mob/living/user, slot)
 	..()
 	if(!iscultist(user))
-		if(!IS_CLOCK_CULTIST(user))
+		if(!is_servant_of_ratvar(user))
 			to_chat(user, span_cultlarge("\"I wouldn't advise that.\""))
 			to_chat(user, span_warning("An overwhelming sense of nausea overpowers you!"))
 			user.dropItemToGround(src, TRUE)
@@ -721,7 +721,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 	if(.)
 		return
 	if(!L.can_block_magic())
-		if(IS_CLOCK_CULTIST(L))
+		if(is_servant_of_ratvar(L))
 			L.Paralyze(20)
 		else
 			L.Paralyze(10)
@@ -1012,7 +1012,7 @@ GLOBAL_VAR_INIT(curselimit, 0)
 				if(L.buckled)
 					L.buckled.unbuckle_mob(L)
 
-				if(IS_CLOCK_CULTIST(L))
+				if(is_servant_of_ratvar(L))
 					L.Knockdown(60)
 				else
 					L.Knockdown(30)

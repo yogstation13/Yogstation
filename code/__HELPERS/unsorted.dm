@@ -1066,7 +1066,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/servants_and_ghosts()
 	. = list()
 	for(var/V in GLOB.player_list)
-		if(IS_CLOCK_CULTIST(V) || isobserver(V))
+		if(is_servant_of_ratvar(V) || isobserver(V))
 			. += V
 
 #define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)

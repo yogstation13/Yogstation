@@ -362,7 +362,7 @@
 	eyeobj.icon_state = "generic_camera"
 
 /obj/machinery/computer/camera_advanced/ratvar/can_use(mob/living/user)
-	if(!IS_CLOCK_CULTIST(user))
+	if(!is_servant_of_ratvar(user))
 		to_chat(user, span_warning("[src]'s keys are in a language foreign to you, and you don't understand anything on its screen."))
 		return
 	if(clockwork_ark_active())

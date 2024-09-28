@@ -40,19 +40,19 @@
 		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 0.8 SECONDS)
 
 /obj/structure/destructible/clockwork/examine(mob/user)
-	var/can_see_clockwork = IS_CLOCK_CULTIST(user) || isobserver(user)
+	var/can_see_clockwork = is_servant_of_ratvar(user) || isobserver(user)
 	if(can_see_clockwork && clockwork_desc)
 		desc = clockwork_desc
 	. = ..()
 	desc = initial(desc)
-	if(IS_CLOCK_CULTIST(user) || isobserver(user))
+	if(is_servant_of_ratvar(user) || isobserver(user))
 		var/heavily_damaged = (atom_integrity < max_integrity * 0.5)
 		. += "<span class='[heavily_damaged ? "alloy":"brass"]'>[p_they(TRUE)] [p_are()] at <b>[atom_integrity]/[max_integrity]</b> integrity[heavily_damaged ? "!":"."]</span>"
 	if(unanchored_icon)
 		. += span_notice("[src] is [anchored ? "":"not "]secured to the floor.")
 
 /obj/structure/destructible/clockwork/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(IS_CLOCK_CULTIST(user) && immune_to_servant_attacks)
+	if(is_servant_of_ratvar(user) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
@@ -60,12 +60,12 @@
 	return 20
 
 /obj/structure/destructible/clockwork/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
-	if(IS_CLOCK_CULTIST(user) && immune_to_servant_attacks)
+	if(is_servant_of_ratvar(user) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
 /obj/structure/destructible/clockwork/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)
-	if(M.occupant && IS_CLOCK_CULTIST(M.occupant) && immune_to_servant_attacks)
+	if(M.occupant && is_servant_of_ratvar(M.occupant) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
@@ -76,25 +76,25 @@
 	. = round(., 0.01)
 
 /obj/structure/destructible/clockwork/attack_ai(mob/user)
-	if(IS_CLOCK_CULTIST(user))
+	if(is_servant_of_ratvar(user))
 		return attack_hand(user)
 
 /obj/structure/destructible/clockwork/attack_animal(mob/living/simple_animal/M)
-	if(IS_CLOCK_CULTIST(M))
+	if(is_servant_of_ratvar(M))
 		attack_hand(M)
 		return FALSE
 	else
 		return ..()
 
 /obj/structure/destructible/clockwork/attackby(obj/item/I, mob/user, params)
-	if(IS_CLOCK_CULTIST(user) && I.tool_behaviour == TOOL_WRENCH && unanchored_icon)
+	if(is_servant_of_ratvar(user) && I.tool_behaviour == TOOL_WRENCH && unanchored_icon)
 		if(default_unfasten_wrench(user, I, 50) == SUCCESSFUL_UNFASTEN)
 			update_anchored(user)
 		return 1
 	return ..()
 
 /obj/structure/destructible/clockwork/attacked_by(obj/item/I, mob/living/user)
-	if(IS_CLOCK_CULTIST(user) && immune_to_servant_attacks)
+	if(is_servant_of_ratvar(user) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
@@ -148,7 +148,7 @@
 
 /obj/structure/destructible/clockwork/powered/examine(mob/user)
 	. = ..()
-	if(IS_CLOCK_CULTIST(user) || isobserver(user))
+	if(is_servant_of_ratvar(user) || isobserver(user))
 		if(!can_access_clockwork_power(src))
 			. += span_alloy("It has no access to the power network! Create a sigil of transmission nearby.")
 		else
@@ -172,7 +172,7 @@
 
 /obj/structure/destructible/clockwork/powered/proc/toggle(fast_process, mob/living/user)
 	if(user)
-		if(!IS_CLOCK_CULTIST(user))
+		if(!is_servant_of_ratvar(user))
 			return FALSE
 		if(!anchored && !active)
 			to_chat(user, span_warning("[src] needs to be secured to the floor before it can be activated!"))

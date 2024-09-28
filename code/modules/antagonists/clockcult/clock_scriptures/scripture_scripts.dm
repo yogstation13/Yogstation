@@ -163,7 +163,7 @@
 	/obj/item/clothing/shoes/magboots)) //replace this only if ratvar is up
 
 /datum/action/innate/clockwork_armaments/IsAvailable(feedback = FALSE)
-	if(!IS_CLOCK_CULTIST(owner))
+	if(!is_servant_of_ratvar(owner))
 		qdel(src)
 		return
 	if(cooldown > world.time)
@@ -250,7 +250,7 @@
 		return FALSE
 	var/other_servants = 0
 	for(var/mob/living/L in GLOB.alive_mob_list)
-		if(IS_CLOCK_CULTIST(L) && !L.stat && L != invoker)
+		if(is_servant_of_ratvar(L) && !L.stat && L != invoker)
 			other_servants++
 	for(var/obj/structure/destructible/clockwork/powered/clockwork_obelisk/O in GLOB.all_clockwork_objects)
 		if(O.anchored)
@@ -264,7 +264,7 @@
 	var/portal_uses = 0
 	var/duration = 0
 	for(var/mob/living/L in range(1, invoker))
-		if(!L.stat && IS_CLOCK_CULTIST(L))
+		if(!L.stat && is_servant_of_ratvar(L))
 			portal_uses++
 			duration += 40 //4 seconds
 	if(GLOB.ratvar_awakens)

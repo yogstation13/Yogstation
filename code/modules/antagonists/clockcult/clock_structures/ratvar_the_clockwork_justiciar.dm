@@ -72,7 +72,7 @@
 	var/dir_to_step_in = pick(GLOB.cardinals)
 	var/list/meals = list()
 	for(var/mob/living/L in GLOB.alive_mob_list) //we want to know who's alive so we don't lose and retarget a single person
-		if(L.z == z && !IS_CLOCK_CULTIST(L) && L.mind)
+		if(L.z == z && !is_servant_of_ratvar(L) && L.mind)
 			meals += L
 	if(GLOB.cult_narsie && GLOB.cult_narsie.z == z)
 		meals = list(GLOB.cult_narsie) //if you're in the way, handy for him, but ratvar only cares about Nar'sie!
@@ -89,7 +89,7 @@
 			L.playsound_local(prey, 'sound/effects/ratvar_reveal.ogg', 100, FALSE, pressure_affected = FALSE)
 	else
 		if((!istype(prey, /obj/singularity/narsie) && prob(10) && LAZYLEN(meals) > 1) || prey.z != z || !(prey in meals))
-			if(IS_CLOCK_CULTIST(prey))
+			if(is_servant_of_ratvar(prey))
 				to_chat(prey, "<span class='heavy_brass'><font size=5>\"Serve me well.\"</font></span>\n\
 				[span_big_brass("You feel great joy as your god turns His eye to another heretic...")]")
 			else

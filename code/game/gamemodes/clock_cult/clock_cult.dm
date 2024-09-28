@@ -43,6 +43,12 @@ Credit where due:
 ///////////
 // PROCS //
 ///////////
+
+/proc/is_servant_of_ratvar(mob/M)
+	if(!istype(M))
+		return FALSE
+	return M?.mind?.has_antag_datum(/datum/antagonist/clockcult)
+
 /proc/is_eligible_servant(mob/M)
 	if(!istype(M))
 		return FALSE
@@ -346,7 +352,7 @@ Credit where due:
 
 /obj/item/paper/servant_primer/examine(mob/user)
 	. = ..()
-	if(!IS_CLOCK_CULTIST(user) && !isobserver(user))
+	if(!is_servant_of_ratvar(user) && !isobserver(user))
 		. += span_danger("You can't understand any of the words on [src].")
 
 /obj/item/paper/servant_primer/infirmarypaper

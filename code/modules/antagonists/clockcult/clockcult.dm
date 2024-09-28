@@ -67,7 +67,7 @@
 	if(issilicon(current))
 		if(iscyborg(current) && !silent)
 			var/mob/living/silicon/robot/R = current
-			if(R.connected_ai && !IS_CLOCK_CULTIST(R.connected_ai))
+			if(R.connected_ai && !is_servant_of_ratvar(R.connected_ai))
 				to_chat(R, "<span class='boldwarning'>You have been desynced from your master AI.<br>\
 				In addition, your onboard camera is no longer active and you have gained additional equipment, including a limited clockwork slab.</span>")
 			else

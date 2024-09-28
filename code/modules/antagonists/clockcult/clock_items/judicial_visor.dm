@@ -38,7 +38,7 @@
 		if(blaster.owner)
 			blaster.unset_click_ability(blaster.owner)
 		return 0
-	if(IS_CLOCK_CULTIST(user))
+	if(is_servant_of_ratvar(user))
 		update_status(TRUE)
 	else
 		update_status(FALSE)
@@ -60,7 +60,7 @@
 			blaster.unset_click_ability(user)
 
 /obj/item/clothing/glasses/judicial_visor/attack_self(mob/user)
-	if(IS_CLOCK_CULTIST(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
+	if(is_servant_of_ratvar(user) && src == user.get_item_by_slot(ITEM_SLOT_EYES))
 		blaster.Trigger()
 
 /obj/item/clothing/glasses/judicial_visor/proc/update_status(change_to)
@@ -74,7 +74,7 @@
 	icon_state = "judicial_visor_[active]"
 	L.update_mob_action_buttons()
 	L.update_inv_glasses()
-	if(!IS_CLOCK_CULTIST(L) || L.stat)
+	if(!is_servant_of_ratvar(L) || L.stat)
 		return 0
 	switch(active)
 		if(TRUE)
@@ -113,7 +113,7 @@
 	visor = Target
 
 /datum/action/cooldown/judicial_visor/IsAvailable(feedback = FALSE)
-	if(!IS_CLOCK_CULTIST(owner))
+	if(!is_servant_of_ratvar(owner))
 		return FALSE
 	if(visor.recharging)
 		return FALSE
@@ -189,7 +189,7 @@
 	playsound(src, 'sound/effects/explosion_distant.ogg', 100, 1, 1, 1)
 	set_light(0)
 	for(var/mob/living/L in range(1, src))
-		if(IS_CLOCK_CULTIST(L))
+		if(is_servant_of_ratvar(L))
 			continue
 		var/atom/I = L.can_block_magic()
 		if(I)

@@ -23,7 +23,7 @@
 	AddElement(/datum/element/connect_loc, loc_connections)
 
 /obj/structure/destructible/clockwork/trap/trigger/pressure_sensor/proc/on_entered(datum/source, atom/movable/AM, ...)
-	if(isliving(AM) && !IS_CLOCK_CULTIST(AM))
+	if(isliving(AM) && !is_servant_of_ratvar(AM))
 		var/mob/living/L = AM
 		if(L.stat || L.m_intent == MOVE_INTENT_WALK || !(L.mobility_flags & MOBILITY_STAND))
 			return

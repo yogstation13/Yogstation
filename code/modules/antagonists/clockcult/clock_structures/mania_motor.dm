@@ -18,7 +18,7 @@
 
 /obj/structure/destructible/clockwork/powered/mania_motor/examine(mob/user)
 	. = ..()
-	if(IS_CLOCK_CULTIST(user) || isobserver(user))
+	if(is_servant_of_ratvar(user) || isobserver(user))
 		. += span_sevtug_small("It requires <b>[DisplayEnergy(mania_cost)]</b> to run.")
 
 /obj/structure/destructible/clockwork/powered/mania_motor/forced_disable(bad_effects)
@@ -34,7 +34,7 @@
 	. = ..()
 	if(.)
 		return
-	if(user.canUseTopic(src, !issilicon(user), NO_DEXTERITY) && IS_CLOCK_CULTIST(user))
+	if(user.canUseTopic(src, !issilicon(user), NO_DEXTERITY) && is_servant_of_ratvar(user))
 		if(!can_access_clockwork_power(src, mania_cost))
 			to_chat(user, span_warning("[src] needs more power to function!"))
 			return 0
@@ -53,7 +53,7 @@
 		return
 	var/efficiency = get_efficiency_mod()
 	for(var/mob/living/carbon/human/H in viewers(7, src))
-		if(IS_CLOCK_CULTIST(H))
+		if(is_servant_of_ratvar(H))
 			continue
 		var/list/effects = H.has_status_effect_list(STATUS_EFFECT_MANIAMOTOR)
 		var/datum/status_effect/maniamotor/M

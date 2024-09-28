@@ -437,7 +437,7 @@
 		var/datum/antagonist/rev/converter = creator.mind.has_antag_datum(/datum/antagonist/rev,TRUE)
 		converter.add_revolutionary(src,FALSE)
 
-	else if(IS_CLOCK_CULTIST(creator))
+	else if(is_servant_of_ratvar(creator))
 		add_servant_of_ratvar(current)
 
 	else if(IS_NUKE_OP(creator))

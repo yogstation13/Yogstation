@@ -199,9 +199,6 @@
 /// Checks if the given mob is infected.
 #define IS_INFECTED(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/zombie))
 
-/// Checks if the given mob is infected.
-#define IS_CLOCK_CULTIST(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/clockcult))
-
 // Antag resource defines
 #define ANTAG_RESOURCE_DARKSPAWN "psi"
 #define ANTAG_RESOURCE_VAMPIRE "blood"

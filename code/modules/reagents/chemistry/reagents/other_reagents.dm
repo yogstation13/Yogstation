@@ -243,7 +243,7 @@
 	..()
 
 /datum/reagent/water/holywater/reaction_mob(mob/living/M, methods=TOUCH, reac_volume, show_message = TRUE, permeability = 1)
-	if(IS_CLOCK_CULTIST(M))
+	if(is_servant_of_ratvar(M))
 		to_chat(M, span_userdanger("A darkness begins to spread its unholy tendrils through your mind, purging the Justiciar's influence!"))
 	..()
 
@@ -269,7 +269,7 @@
 				M.Unconscious(120)
 				to_chat(M, "<span class='cultlarge'>[pick("Your blood is your bond - you are nothing without it", "Do not forget your place", \
 				"All that power, and you still fail?", "If you cannot scour this poison, I shall scour your meager life!")].</span>")
-		else if(IS_CLOCK_CULTIST(M) && prob(8))
+		else if(is_servant_of_ratvar(M) && prob(8))
 			switch(pick("speech", "message", "emote"))
 				if("speech")
 					clockwork_say(M, "...[text2ratvar(pick("Engine... your light grows dark...", "Where are you, master?", "He lies rusting in Error...", "Purge all untruths and... and... something..."))]")
@@ -279,10 +279,10 @@
 				if("emote")
 					M.visible_message(span_warning("[M] [pick("whimpers quietly", "shivers as though cold", "glances around in paranoia")]."))
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
-		if(iscultist(M) || IS_CLOCK_CULTIST(M))
+		if(iscultist(M) || is_servant_of_ratvar(M))
 			if(iscultist(M))
 				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
-			else if(IS_CLOCK_CULTIST(M))
+			else if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M)
 			M.remove_status_effect(/datum/status_effect/jitter)
 			M.remove_status_effect(/datum/status_effect/speech/stutter)

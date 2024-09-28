@@ -17,7 +17,7 @@
 
 /obj/structure/destructible/clockwork/trap/examine(mob/user)
 	. = ..()
-	if(IS_CLOCK_CULTIST(user) || isobserver(user))
+	if(is_servant_of_ratvar(user) || isobserver(user))
 		. += "It's wired to:"
 		if(!wired_to.len)
 			. += "Nothing."
@@ -28,7 +28,7 @@
 				. += "[O] ([distance == 0 ? "same tile" : "[distance] tiles [dir2text(get_dir(src, O))]"])"
 
 /obj/structure/destructible/clockwork/trap/wrench_act(mob/living/user, obj/item/I)
-	if(!IS_CLOCK_CULTIST(user))
+	if(!is_servant_of_ratvar(user))
 		return ..()
 	to_chat(user, span_notice("You break down the delicate components of [src] into brass."))
 	I.play_tool_sound(src)
@@ -37,7 +37,7 @@
 	return TRUE
 
 /obj/structure/destructible/clockwork/trap/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/clockwork/slab) && IS_CLOCK_CULTIST(user))
+	if(istype(I, /obj/item/clockwork/slab) && is_servant_of_ratvar(user))
 		var/obj/item/clockwork/slab/F = I
 		if(!F.linking)
 			to_chat(user, span_notice("Beginning link. Alt-click the slab to cancel, or use it on another trap object to link the two."))
@@ -57,7 +57,7 @@
 	..()
 
 /obj/structure/destructible/clockwork/trap/wirecutter_act(mob/living/user, obj/item/I)
-	if(!IS_CLOCK_CULTIST(user))
+	if(!is_servant_of_ratvar(user))
 		return
 	if(!wired_to.len)
 		to_chat(user, span_warning("[src] has no connections!"))

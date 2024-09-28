@@ -29,14 +29,14 @@
 
 /obj/item/clockwork/weapon/ratvarian_spear/examine(mob/user)
 	. = ..()
-	if(IS_CLOCK_CULTIST(user) || isobserver(user))
+	if(is_servant_of_ratvar(user) || isobserver(user))
 		. += span_inathneq_small("Attacks on living non-Servants will generate <b>[bonus_burn]</b> units of vitality.")
 		if(!iscyborg(user))
 			. += span_brass("Throwing the spear will do massive damage, break the spear, and knock down the target.")
 
 /obj/item/clockwork/weapon/ratvarian_spear/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
-	if(!QDELETED(target) && target.stat != DEAD && !target.can_block_magic(charge_cost = 0) && !IS_CLOCK_CULTIST(target)) //we do bonus damage on attacks unless they're a servant, have a null rod, or are dead
+	if(!QDELETED(target) && target.stat != DEAD && !target.can_block_magic(charge_cost = 0) && !is_servant_of_ratvar(target)) //we do bonus damage on attacks unless they're a servant, have a null rod, or are dead
 		var/bonus_damage = bonus_burn //normally a total of 20 damage, 30 with ratvar
 		if(issilicon(target))
 			target.visible_message(span_warning("[target] shudders violently at [src]'s touch!"), span_userdanger("ERROR: Temperature rising!"))
@@ -50,7 +50,7 @@
 	var/turf/T = get_turf(hit_atom)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
-		if(IS_CLOCK_CULTIST(L))
+		if(is_servant_of_ratvar(L))
 			if(L.put_in_active_hand(src))
 				L.visible_message(span_warning("[L] catches [src] out of the air!"))
 			else

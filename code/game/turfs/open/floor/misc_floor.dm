@@ -208,7 +208,7 @@
 		if(L.stat == DEAD)
 			continue
 		. = 1
-		if(!IS_CLOCK_CULTIST(L) || !L.toxloss)
+		if(!is_servant_of_ratvar(L) || !L.toxloss)
 			continue
 
 		var/image/I = new('icons/effects/effects.dmi', src, "heal", ABOVE_MOB_LAYER) //fake a healing glow for servants
@@ -218,7 +218,7 @@
 		I.pixel_y = rand(-9, 0)
 		var/list/viewing = list()
 		for(var/mob/M in viewers(src))
-			if(M.client && (IS_CLOCK_CULTIST(M) || isobserver(M) || M.stat == DEAD))
+			if(M.client && (is_servant_of_ratvar(M) || isobserver(M) || M.stat == DEAD))
 				viewing += M.client
 		flick_overlay_global(I, viewing, 8)
 		L.adjustToxLoss(-3, TRUE, TRUE)

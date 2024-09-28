@@ -237,7 +237,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/oldcolor = color
 	color = RUNE_COLOR_DARKRED
 	var/mob/living/L = pick(myriad_targets)
-	var/is_clock = IS_CLOCK_CULTIST(L)
+	var/is_clock = is_servant_of_ratvar(L)
 
 	var/mob/living/F = invokers[1]
 	var/datum/antagonist/cult/C = F.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
@@ -853,7 +853,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 					to_chat(L, span_userdanger("[I] suddenly burns hotly before returning to normal!"))
 				continue
 			to_chat(L, span_cultlarge("Your blood boils in your veins!"))
-			if(IS_CLOCK_CULTIST(L))
+			if(is_servant_of_ratvar(L))
 				to_chat(L, span_userdanger("You feel an unholy darkness dimming the Justiciar's light!"))
 	animate(src, color = "#FCB56D", time = 0.4 SECONDS)
 	sleep(0.4 SECONDS)
@@ -880,7 +880,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			if(L.can_block_magic(charge_cost = 0))
 				continue
 			L.take_overall_damage(0, tick_damage*multiplier) //yogs: only burn damage since these like all runes can be placed and activated near freely
-			if(IS_CLOCK_CULTIST(L))
+			if(is_servant_of_ratvar(L))
 				L.adjustStaminaLoss(tick_damage*multiplier*1.5)
 				L.clear_stamina_regen()
 
