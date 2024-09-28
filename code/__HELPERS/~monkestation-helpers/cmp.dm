@@ -8,3 +8,7 @@
 /// Use when you want a list of most to least severe wounds.
 /proc/cmp_wound_severity_dsc(datum/wound/a, datum/wound/b)
 	return cmp_numeric_dsc(a.severity, b.severity)
+
+/// Used to sort overtime in profiling data.
+/proc/sort_overtime_dsc(list/a, list/b)
+	return b["over"] - a["over"]

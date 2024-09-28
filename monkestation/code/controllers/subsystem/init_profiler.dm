@@ -1,4 +1,3 @@
-/* monkestation edit: reimplemented in [monkestation\code\controllers\subsystem\init_profiler.dm]
 #define INIT_PROFILE_NAME "init_profiler.json"
 
 ///Subsystem exists so we can separately log init time costs from the costs of general operation
@@ -12,19 +11,18 @@ SUBSYSTEM_DEF(init_profiler)
 /datum/controller/subsystem/init_profiler/Initialize()
 	if(CONFIG_GET(flag/auto_profile))
 		write_init_profile()
-	return SS_INIT_SUCCESS
+		return SS_INIT_SUCCESS
+	return SS_INIT_NO_NEED
 
 /datum/controller/subsystem/init_profiler/proc/write_init_profile()
-	var/current_profile_data = world.Profile(PROFILE_REFRESH, format = "json")
+	var/list/current_profile_data = world.Profile(PROFILE_REFRESH, format = "json")
+	current_profile_data = json_decode(current_profile_data) // yes this is stupid but this gets us a list in a non-awful format
 	CHECK_TICK
+	sortTim(current_profile_data, GLOBAL_PROC_REF(sort_overtime_dsc))
 
 	if(!length(current_profile_data)) //Would be nice to have explicit proc to check this
 		stack_trace("Warning, profiling stopped manually before dump.")
-	var/prof_file = file("[GLOB.log_directory]/[INIT_PROFILE_NAME]")
-	if(fexists(prof_file))
-		fdel(prof_file)
-	WRITE_FILE(prof_file, current_profile_data)
+	rustg_file_write(json_encode(current_profile_data), "[GLOB.log_directory]/[INIT_PROFILE_NAME]")
 	world.Profile(PROFILE_CLEAR) //Now that we're written this data out, dump it. We don't want it getting mixed up with our current round data
 
 #undef INIT_PROFILE_NAME
-monkestation end */

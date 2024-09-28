@@ -6,10 +6,12 @@ SUBSYSTEM_DEF(profiler)
 	var/fetch_cost = 0
 	var/write_cost = 0
 
+/* monkestation edit: reimplemented in [monkestation\code\controllers\subsystem\profiler.dm]
 /datum/controller/subsystem/profiler/stat_entry(msg)
 	msg += "F:[round(fetch_cost,1)]ms"
 	msg += "|W:[round(write_cost,1)]ms"
 	return msg
+monkestation end */
 
 /datum/controller/subsystem/profiler/Initialize()
 	if(CONFIG_GET(flag/auto_profile))
@@ -37,6 +39,7 @@ SUBSYSTEM_DEF(profiler)
 	world.Profile(PROFILE_STOP, type = "sendmaps")
 
 
+/* monkestation edit: reimplemented in [monkestation\code\controllers\subsystem\profiler.dm]
 /datum/controller/subsystem/profiler/proc/DumpFile()
 	var/timer = TICK_USAGE_REAL
 	var/current_profile_data = world.Profile(PROFILE_REFRESH, format = "json")
@@ -59,4 +62,4 @@ SUBSYSTEM_DEF(profiler)
 	WRITE_FILE(prof_file, current_profile_data)
 	WRITE_FILE(sendmaps_file, current_sendmaps_data)
 	write_cost = MC_AVERAGE(write_cost, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-
+monkestation end */
