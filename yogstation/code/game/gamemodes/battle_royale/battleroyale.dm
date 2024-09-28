@@ -12,10 +12,7 @@ GLOBAL_VAR(final_zone)
 	recommended_enemies = 1
 	enemy_minimum_age = 0
 	// announce_span = "warning"
-	// announce_text = "Attention ALL space station 13 crewmembers,\n\
-	// <span class='danger'><b>John Wick</b></span> is in grave danger and he NEEDS your help to wipe all the squads in the tilted towers. To do this, he'll need\n\
-	// <span class='notice'><i>your credit card number, the three numbers on the back and the expiration month <b> AND </b> year</i></span>. But you gotta be <b>quick</b>, so that John can secure the bag and achieve the epic victory ROYAL.\n\
-	// <i>Be the last man standing at the end of the game to win.</i>"
+	// announce_text = "Attention ALL space station 13 crewmembers,\n <span class='danger'><b>John Wick</b></span> is in grave danger and he NEEDS your help to wipe all the squads in the tilted towers. To do this, he'll need\n<span class='notice'><i>your credit card number, the three numbers on the back and the expiration month <b> AND </b> year</i></span>. But you gotta be <b>quick</b>, so that John can secure the bag and achieve the epic victory ROYAL.\n<i>Be the last man standing at the end of the game to win.</i>"
 	var/antag_datum_type = /datum/antagonist/battleroyale
 	var/list/queued = list() //Who is queued to enter?
 	var/list/roundstart_traits = list(TRAIT_XRAY_VISION, TRAIT_NOHUNGER, TRAIT_NOBREATH, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_SAFEWELD, TRAIT_HARDLY_WOUNDED)
