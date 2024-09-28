@@ -4123,7 +4123,6 @@
 #include "yogstation\code\game\gamemodes\gangs\gangs.dm"
 #include "yogstation\code\game\gamemodes\gangs\gangtool.dm"
 #include "yogstation\code\game\gamemodes\infiltration\infiltration.dm"
-#include "yogstation\code\game\gamemodes\traitor\internal_affairs.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire_bat.dm"
 #include "yogstation\code\game\gamemodes\vampire\vampire_bite.dm"
