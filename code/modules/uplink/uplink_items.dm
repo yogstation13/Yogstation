@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
-/proc/get_uplink_items(datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
+/proc/get_uplink_items(antagonist = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
@@ -11,14 +11,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		if(I.include_uplinks.len && !(uplink_type in I.include_uplinks))
 			continue
 		if(I.include_antags.len)
-			if(!gamemode && SSticker.mode && !(SSticker.mode.type in I.include_antags))
-				continue
-			if(gamemode && !(gamemode in I.include_antags))
+			if(antagonist && !(antagonist in I.include_antags))
 				continue
 		if(I.exclude_antags.len)
-			if(!gamemode && SSticker.mode && (SSticker.mode.type in I.exclude_antags))
-				continue
-			if(gamemode && (gamemode in I.exclude_antags))
+			if(antagonist && (antagonist in I.exclude_antags))
 				continue
 		if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len)
 			continue
