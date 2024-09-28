@@ -1,0 +1,473 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"b" = (
+/obj/structure/stone_tile/cracked{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"d" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"e" = (
+/obj/structure/stone_tile,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"g" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"h" = (
+/obj/structure/stone_tile/surrounding,
+/obj/structure/stone_tile/center,
+/obj/structure/world_anvil/moonanvil,
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/underground)
+"i" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"j" = (
+/obj/structure/stone_tile{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"k" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"n" = (
+/obj/structure/stone_tile/cracked{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"p" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/center,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"q" = (
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"s" = (
+/turf/closed/indestructible/riveted/boss,
+/area/icemoon/underground)
+"u" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"y" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"z" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"A" = (
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/center/cracked,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"B" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"C" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"E" = (
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/underground)
+"G" = (
+/obj/structure/stone_tile/cracked{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"I" = (
+/obj/structure/stone_tile{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"J" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile/block/cracked{
+	dir = 1
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/underground)
+"L" = (
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/obj/structure/stone_tile/block{
+	dir = 8
+	},
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/underground)
+"M" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/block,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"O" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/obj/structure/stone_tile/block/cracked,
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/underground)
+"R" = (
+/obj/structure/stone_tile/block/cracked{
+	dir = 8
+	},
+/obj/structure/stone_tile/block{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"U" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 8
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/center/burnt,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"X" = (
+/obj/structure/stone_tile/block,
+/obj/structure/stone_tile{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+"Z" = (
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 4
+	},
+/obj/structure/stone_tile/surrounding_tile{
+	dir = 1
+	},
+/obj/structure/stone_tile/surrounding_tile,
+/obj/structure/stone_tile/center,
+/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/area/icemoon/underground)
+
+(1,1,1) = {"
+a
+a
+u
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+u
+a
+"}
+(2,1,1) = {"
+a
+y
+a
+a
+a
+a
+a
+G
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+s
+s
+s
+a
+a
+a
+a
+a
+s
+s
+s
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+s
+a
+a
+a
+a
+n
+a
+a
+a
+a
+s
+y
+a
+"}
+(5,1,1) = {"
+a
+a
+s
+a
+a
+a
+j
+d
+I
+a
+a
+a
+s
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+s
+s
+L
+s
+s
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+j
+s
+A
+B
+Z
+s
+I
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+G
+a
+b
+q
+z
+O
+i
+h
+M
+J
+X
+q
+a
+k
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+q
+s
+p
+R
+U
+s
+e
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+s
+s
+E
+s
+s
+a
+a
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+s
+a
+a
+a
+q
+g
+e
+a
+a
+a
+s
+a
+a
+"}
+(12,1,1) = {"
+u
+a
+s
+a
+a
+a
+a
+C
+a
+a
+a
+a
+s
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+s
+s
+s
+a
+a
+a
+a
+a
+s
+s
+s
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+a
+y
+a
+a
+a
+a
+a
+a
+a
+u
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+j
+a
+a
+a
+a
+a
+a
+a
+"}

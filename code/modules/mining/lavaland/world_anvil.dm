@@ -12,6 +12,12 @@
 	var/forge_charges = 0
 	var/obj/item/gps/internal //so we can find it!
 
+/obj/structure/world_anvil/moonanvil
+	name = "Moon Anvil"
+	desc = "An anvil that is connected through plasma reservoirs to the core of icemoon. It's cool to the touch, and seems like it was once used by someone powerful."
+	icon = 'icons/obj/ice_moon/moonanvil.dmi'
+	icon_state = "moonanvil"
+
 /obj/item/gps/internal/world_anvil
 	icon_state = null
 	gpstag = "Tempered Signal"
@@ -34,6 +40,15 @@
 		set_light(4,1,LIGHT_COLOR_ORANGE)
 	else
 		set_light(0)
+
+/obj/structure/world_anvil/moonanvil/update_icon(updates=ALL)
+	. = ..()
+	icon_state = forge_charges > 0 ? "moonanvil_a" : "moonanvil"
+	if(forge_charges > 0)
+		set_light(4,1,LIGHT_COLOR_BLUE)
+	else
+		set_light(0)
+
 
 /obj/structure/world_anvil/examine(mob/user)
 	. = ..()
