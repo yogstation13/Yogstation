@@ -6,6 +6,11 @@
 	icon_state = "Magmite ore"
 	w_class = WEIGHT_CLASS_NORMAL
 
+/obj/item/magmite/glacite
+	name = "plasma glacite"
+	desc = "A chunk of plasma glacite, crystalized deep within the plasma reserves."
+	icon_state = "Glacite ore"
+
 /obj/item/magmite_parts
 	name = "plasma magmite upgrade parts"
 	desc = "Forged on the legendary World Anvil, these parts can be used to upgrade many kinds of mining equipment."
@@ -26,6 +31,15 @@
 	name = "inert plasma magmite upgrade parts"
 	icon_state = "upgrade_parts_inert"
 	desc += "It appears to have lost its magma-like glow."
+
+/obj/item/magmite_parts/glacite/proc/go_inert()
+	if(inert)
+		return
+	visible_message(span_warning("The [src] loses it's glow!"))
+	inert = TRUE
+	name = "inert plasma glacite upgrade parts"
+	icon_state = "glacite_parts_inert"
+	desc += "It appears to have lost its icy glow."
 
 /obj/item/magmite_parts/proc/restore()
 	if(!inert)
