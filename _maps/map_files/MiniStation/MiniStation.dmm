@@ -23361,6 +23361,13 @@
 	},
 /turf/open/space/openspace,
 /area/space/nearstation)
+"jFP" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "jFQ" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -25471,6 +25478,16 @@
 	},
 /turf/open/floor/catwalk_floor,
 /area/engine/engineering)
+"lsc" = (
+/obj/machinery/camera{
+	c_tag = "Telecomms Server Room";
+	dir = 5;
+	network = list("ss13","tcomms");
+	pixel_x = 0
+	},
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "lsK" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only{
@@ -30017,16 +30034,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"okJ" = (
-/obj/machinery/telecomms/processor/preset_two,
-/obj/machinery/camera{
-	c_tag = "Telecomms Server Room";
-	dir = 5;
-	network = list("ss13","tcomms");
-	pixel_x = 0
-	},
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/tcommsat/server)
 "okU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -30982,16 +30989,6 @@
 "oMh" = (
 /turf/open/space/openspace,
 /area/space)
-"oMF" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing,
-/turf/closed/wall/r_wall,
-/area/ai_monitored/turret_protected/ai_upload_foyer)
 "oMJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -31838,6 +31835,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
+"pmB" = (
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "pmG" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -33461,6 +33462,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"qxb" = (
+/obj/structure/stairs{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing,
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/ai_upload_foyer)
 "qxv" = (
 /obj/machinery/door/airlock/medical/glass{
 	id_tag = "MedbayFoyer";
@@ -33594,13 +33605,6 @@
 /obj/effect/landmark/start/atmospheric_technician,
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
-"qCz" = (
-/obj/machinery/telecomms/receiver/preset_left,
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/tcommsat/server)
 "qCS" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
@@ -34494,10 +34498,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft/lower)
-"rhA" = (
-/obj/machinery/telecomms/bus/preset_four,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/tcommsat/server)
 "rhZ" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 5
@@ -37324,10 +37324,6 @@
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating,
 /area/maintenance/port/fore/lower)
-"teW" = (
-/obj/machinery/telecomms/receiver/preset_right,
-/turf/open/floor/circuit/green/telecomms/mainframe,
-/area/tcommsat/server)
 "tfK" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/bot,
@@ -39211,6 +39207,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"uzS" = (
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/green/telecomms/mainframe,
+/area/tcommsat/server)
 "uAb" = (
 /obj/machinery/door/airlock{
 	name = "Bar Access"
@@ -62312,7 +62312,7 @@ nTy
 pRG
 nTy
 toH
-oMF
+qxb
 toH
 aSr
 tar
@@ -63340,7 +63340,7 @@ nTy
 oJL
 nTy
 toH
-oMF
+qxb
 toH
 lhL
 jFQ
@@ -133843,11 +133843,11 @@ aJt
 aJt
 bKk
 bKk
-jdC
-qCz
+giK
+jFP
 nmf
-teW
-okJ
+uzS
+lsc
 bKk
 bKk
 eNL
@@ -135127,13 +135127,13 @@ aJt
 aJt
 aJt
 bKk
-ouf
+igy
 iqZ
-giK
-csf
-bow
-exa
 eTV
+csf
+pmB
+exa
+bow
 bKk
 eNL
 oMh
@@ -135641,13 +135641,13 @@ xAA
 aJt
 aJt
 bKk
-rhA
+ouf
 iTz
 jti
 ghc
 bYm
 dRi
-igy
+jdC
 bKk
 eNL
 eNL
