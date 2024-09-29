@@ -1,0 +1,6 @@
+author: "Thunder12345, AMyriad"
+delete-after: true 
+changes: 
+  - imageadd: "Resprited door remotes"
+  - soundadd: "Added SFX to door remotes"
+  - spellcheck: "Added more info to door remote descriptions"
