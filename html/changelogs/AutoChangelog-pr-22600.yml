@@ -1,8 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "Coral engine now causes overheating while active and moving"
-  - tweak: "Coral engine now allows bump-attack melee while active"
-  - bugfix: "Fixed bump melee attacks not adding overheat"
-  - bugfix: "Fixed clarke and other utility mechs not gaining speed bonus from coral engine"
-  - bugfix: "Fixed overheat slowdown not working"
