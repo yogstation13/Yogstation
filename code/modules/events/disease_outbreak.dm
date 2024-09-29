@@ -22,10 +22,10 @@
 /datum/round_event_control/disease_outbreak
 	name = "Disease Outbreak: Classic"
 	typepath = /datum/round_event/disease_outbreak
-	max_occurrences = 1
+	max_occurrences = 2
 	min_players = 10
 	weight = 0
-	track = EVENT_TRACK_MAJOR
+	track = EVENT_TRACK_MAJOR //monkie edit
 	earliest_start = 55 MINUTES
 	category = EVENT_CATEGORY_HEALTH
 	description = "A 'classic' virus will infect some members of the crew."

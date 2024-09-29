@@ -4,7 +4,7 @@
 	weight = 15
 	min_players = 20 //monkie edit: 12 to 20
 	earliest_start = 40 MINUTES //monkie edit: 10 to 40
-	max_occurrences = 2 //monkie edit: 6 to 2
+	max_occurrences = 3 //monkie edit: 6 to 2
 	category = EVENT_CATEGORY_ENTITIES
 	description = "Summons a school of space carp."
 	min_wizard_trigger_potency = 0

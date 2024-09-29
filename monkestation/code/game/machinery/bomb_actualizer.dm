@@ -220,6 +220,15 @@
 		if(light > 12)
 			capped_light = (GLOB.MAX_EX_LIGHT_RANGE + (light * actualizer_multiplier))
 
+		if(capped_light > 200)
+			capped_light = 200
+
+		if(capped_medium > 120)
+			capped_medium = 120
+
+		if(capped_heavy > 60)
+			capped_heavy = 60
+
 		SSexplosions.explode(location, capped_heavy, capped_medium, capped_light, flame, flash, TRUE, TRUE, FALSE, FALSE)
 		exploded = TRUE
 		return COMSIG_CANCEL_EXPLOSION
