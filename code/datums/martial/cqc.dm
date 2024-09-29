@@ -24,7 +24,7 @@
 	name = "CQC"
 	id = MARTIALART_CQC
 	help_verb = /mob/living/carbon/human/proc/CQC_help
-	block_chance = 90 //Don't get into melee with someone specifically trained for melee and prepared for your attacks
+	block_chance = 75 //Don't get into melee with someone specifically trained for melee and prepared for your attacks
 	nonlethal = TRUE //all attacks deal solely stamina damage or knock out before dealing lethal amounts of damage
 	///used to stop a chokehold attack from stacking
 	var/chokehold_active = FALSE
@@ -82,7 +82,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------Harm intent-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-///CQC harm intent, deals 15 stamina damage and immobilizes for 1 seconds, if the attacker is prone, they knock the defender down and stand up
+///CQC harm intent, deals 12 stamina damage, if the attacker is prone, they knock the defender down and stand up
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -98,14 +98,13 @@
 		attack_verb = "leg sweeps"
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 
-		D.Knockdown(3 SECONDS)
+		D.Knockdown(2 SECONDS)
 		A.set_resting(FALSE)
 		A.SetKnockdown(0)
 	else
-		var/bonus_damage = A.get_punchdamagehigh() * 1.5 //15 damage
+		var/bonus_damage = A.get_punchdamagehigh() * 1.2 //12 damage
 		stamina_harm(A, D, bonus_damage)
 
-	D.Immobilize(0.5 SECONDS)
 
 	playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	D.visible_message(span_danger("[A] [attack_verb] [D]!"), span_userdanger("[A] [attack_verb] you!"))
@@ -172,7 +171,7 @@
 /**
   * CQC slam combo attack
   *
-  * Basic counter that causes 20 stamina damage with an 8 second knockdown
+  * Basic counter that causes 20 stamina damage with an 3 second knockdown
   */
 /datum/martial_art/cqc/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(D.mobility_flags & MOBILITY_STAND)
@@ -181,7 +180,7 @@
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1) //using hit_kick because for some stupid reason slam.ogg is delayed
 		A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
 		stamina_harm(A, D, A.get_punchdamagehigh() * 2) //20 damage
-		D.Knockdown(80)
+		D.Knockdown(30)
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -191,7 +190,7 @@
   * CQC kick combo attack
   *
   * attack that deals 15 stamina and pushes the target away if they are standing
-  * or 40 stamina damage with a ~8 second mute if they aren't
+  * or 30 stamina damage aren't
   */
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.do_attack_animation(D, ATTACK_EFFECT_KICK)
@@ -207,11 +206,10 @@
 		log_combat(A, D, "prone-kicked(CQC)")
 		D.visible_message(span_warning("[A] firmly kicks [D] in the abdomen!"), span_userdanger("[A] kicks you in the abdomen!"))
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
-		var/kickdamage = A.get_punchdamagehigh() * 4	//40 damage
+		var/kickdamage = A.get_punchdamagehigh() * 3	//30 damage
 		stamina_harm(A, D, kickdamage)
 		D.clear_stamina_regen() //used for keeping people down, so reset that regen timer
 		D.Stun(1 SECONDS)
-		D.silent += 2
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -251,7 +249,7 @@
 /**
   * CQC consecutive attack
   *
-  * Attack that causes 50 stamina damage and confuses
+  * Attack that causes 30 stamina damage and confuses
   */
 /datum/martial_art/cqc/proc/Consecutive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
@@ -260,9 +258,9 @@
 	log_combat(A, D, "consecutive CQC'd (CQC)")
 	D.visible_message(span_warning("[A] delivers a firm blow to [D]'s head!"), span_userdanger("[A] delivers a firm blow to your head!"))
 	playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, 1, -1)
-	var/consecutivedamage = A.get_punchdamagehigh() * 5 //50 damage
+	var/consecutivedamage = A.get_punchdamagehigh() * 3 //30 damage
 	D.apply_damage(consecutivedamage, STAMINA)
-	D.adjust_confusion_up_to(4 SECONDS, 8 SECONDS)
+	D.adjust_confusion_up_to(2 SECONDS, 4 SECONDS)
 	return TRUE
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -329,7 +327,7 @@
 		var/hand = user.get_inactive_hand_index()
 		if(!user.put_in_hand(I, hand))
 			I.forceMove(get_turf(attacker))
-	attacker.Knockdown(60)
+	attacker.Knockdown(40)
 	user.adjustStaminaLoss(10)	//Can't block forever. Really, if this becomes a problem you're already screwed.
 
 /**

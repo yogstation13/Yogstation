@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "MP7 SMG"
 	desc = "A SMG which packs a bunch with it's large bursts."
 	item = /obj/item/gun/ballistic/automatic/mp7
-	cost = 16
+	cost = 15
 	surplus = 50
 
 /datum/uplink_item/dangerous/m4a1
@@ -294,7 +294,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Poison Kit"
 	desc = "An assortment of deadly and illegal chemicals packed into a compact box. Comes prepackaged in large syringes for more precise application."
 	item = /obj/item/storage/box/syndie_kit/chemical
-	cost = 7
+	cost = 5
+	surplus = 50
+
+/datum/uplink_item/stealthy_weapons/cyanidepill
+	name = "Cyanide Pill"
+	desc = "A singular cyanide pill. For cheaper poisoning, or if you want a way out, should things go bad."
+	item = /obj/item/reagent_containers/pill/cyanide
+	cost = 1
 	surplus = 50
 
 /datum/uplink_item/ammo
@@ -336,6 +343,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/syndieminibomb/bouncer
 	cost = 5
 
+/datum/uplink_item/explosives/pipe_bomb
+	name = "Pipe Bomb"
+	desc = "A home-made explosive with a attached mouse trap. When activated, you can put it into a container, and it will explode when opened."
+	item = /obj/item/grenade/pipebomb
+	cost = 4
+
+	/obj/item/grenade/pipebomb
+
 /datum/uplink_item/stealthy_tools
 	category = UPLINK_CATEGORY_STEALTH_GADGETS
 
@@ -360,11 +375,24 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/pill/patch/medkit/vial
 	cost = 1
 
-/datum/uplink_item/misc/medvial
+/datum/uplink_item/misc/firstaid
+	name = "Firstaid Kit"
+	desc = "A kit of advanced medical items, including a scanner, sutures, and more."
+	item = /obj/item/storage/firstaid/regular
+	cost = 5
+
+/datum/uplink_item/misc/belt
 	name = "Civil Protection Belt"
 	desc = "A belt for easily carrying more things such as ammo."
 	item = /obj/item/storage/belt/civilprotection
 	cost = 4
+
+/datum/uplink_item/misc/smugglersatchel
+	name = "Smuggler's Satchel"
+	desc = "A thin satchel that is easy to hide. Good for storing a little bit more, and can even be put inside backpacks."
+	item = /obj/item/storage/backpack/satchel/flat
+	cost = 3
+	surplus = 30
 
 /datum/uplink_item/misc/ration
 	name = "Ration"

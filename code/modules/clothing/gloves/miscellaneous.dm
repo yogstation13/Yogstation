@@ -73,6 +73,11 @@
 	resistance_flags = NONE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 60, RAD = 0, FIRE = 80, ACID = 50, ELECTRIC = 100)
 
+/obj/item/clothing/gloves/combat/overwatch
+	name = "combat gloves"
+	desc = "These tactical gloves are fireproof and shock resistant."
+	icon_state = "overwatch"
+
 /obj/item/clothing/gloves/bracer
 	name = "bone bracers"
 	desc = "For when you're expecting to get slapped on the wrist. Offers modest protection to your arms."

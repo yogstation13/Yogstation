@@ -131,6 +131,11 @@
 	icon_state = "civilprotection"
 	item_state = "jackboots"
 
+/obj/item/clothing/shoes/jackboots/civilprotection/overwatch
+	name = "jackboots"
+	desc = "Snug and secure black boots worn by overwatch forces."
+	icon_state = "overwatch"
+
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
 

@@ -573,7 +573,7 @@
 	reagent_state = LIQUID
 	color = "#00B4FF"
 	metabolization_rate = 0.125 * REAGENTS_METABOLISM
-	toxpwr = 1.25
+	toxpwr = 1.5
 
 /datum/reagent/toxin/cyanide/reaction_turf(turf/T, reac_volume)
 	if(istype(T, /turf/open/floor/carpet))

@@ -394,8 +394,8 @@
 	id = /obj/item/card/id/ert/overwatch
 	uniform = /obj/item/clothing/under/combine/overwatch
 	suit = /obj/item/clothing/suit/armor/overwatch
-	shoes = /obj/item/clothing/shoes/combat/swat
-	gloves = /obj/item/clothing/gloves/combat
+	shoes = /obj/item/clothing/shoes/jackboots/civilprotection/overwatch
+	gloves = /obj/item/clothing/gloves/combat/overwatch
 	ears = /obj/item/radio/headset/civilprotection/divisional/overwatch
 	belt = /obj/item/storage/belt/civilprotection/overwatch
 	l_pocket = /obj/item/reagent_containers/pill/patch/medkit
@@ -430,3 +430,10 @@
 
 /datum/outfit/ert/overwatch/ar2/elite
 	name = "OTA Elite Unit"
+
+/datum/outfit/ert/overwatch/ar2/elite/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	if(visualsOnly)
+		return
+	var/datum/martial_art/cqc/elitecqc = new
+	elitecqc.teach(H)
