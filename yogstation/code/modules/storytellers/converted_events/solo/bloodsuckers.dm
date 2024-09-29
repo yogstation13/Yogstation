@@ -30,7 +30,6 @@
 
 /datum/round_event_control/antagonist/solo/bloodsucker/midround
 	typepath = /datum/round_event/antagonist/solo/bloodsucker
-	antag_flag = ROLE_BLOODSUCKERBREAKOUT
 	name = "Bloodsucker Breakout"
 	max_occurrences = 1
 

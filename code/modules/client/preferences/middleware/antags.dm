@@ -65,7 +65,7 @@
 		if (isnull(antag_flag))
 			continue
 
-		if (is_banned_from(preferences.parent.ckey, list(antag_flag, ROLE_SYNDICATE)))
+		if (is_banned_from(preferences.parent.ckey, list(antag_flag, ROLE_ANTAG)))
 			antag_bans += serialize_antag_name(antag_flag)
 
 	return antag_bans

@@ -606,10 +606,11 @@
 			if(!(M.client.prefs) || !(be_special_flag in M.client.prefs.be_special))
 				continue
 		if(antagonist_role)
-			if(M.client.get_remaining_days(GLOB.special_required_days[antagonist_role]))
+			var/datum/antagonist/age_check = GLOB.special_roles[antagonist_role]
+			if(M.client.get_remaining_days(initial(age_check.min_account_age)))
 				continue
 		if(jobbanType)
-			if(is_banned_from(M.ckey, list(jobbanType, ROLE_SYNDICATE)) || QDELETED(M))
+			if(is_banned_from(M.ckey, list(jobbanType, ROLE_ANTAG)) || QDELETED(M))
 				continue
 
 		showCandidatePollWindow(M, poll_time, Question, result, ignore_category, time_passed, flashwindow)

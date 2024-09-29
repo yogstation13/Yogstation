@@ -29,7 +29,7 @@
 	U.implant(H)
 	var/obj/item/implant/radio/syndicate/S = new/obj/item/implant/radio/syndicate(H)
 	S.implant(H)
-	H.faction |= ROLE_SYNDICATE
+	H.faction |= ROLE_ANTAG
 	H.update_icons()
 
 	var/obj/item/card/id/card = H.wear_id

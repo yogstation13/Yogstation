@@ -34,17 +34,11 @@
 			log_admin("[key_name(usr)] has full-vampired [current].")
 			if(!IS_VAMPIRE(current))
 				add_vampire(current)
-				var/datum/antagonist/vampire/V = has_antag_datum(ANTAG_DATUM_VAMPIRE)
-				if(V)
-					V.total_blood = 1500
-					V.usable_blood = 1500
-					V.check_vampire_upgrade()
-			else
-				var/datum/antagonist/vampire/V = has_antag_datum(ANTAG_DATUM_VAMPIRE)
-				if(V)
-					V.total_blood = 1500
-					V.usable_blood = 1500
-					V.check_vampire_upgrade()
+			var/datum/antagonist/vampire/V = has_antag_datum(ANTAG_DATUM_VAMPIRE)
+			if(V)
+				V.total_blood = 1500
+				V.usable_blood = 1500
+				V.check_vampire_upgrade()
 
 /datum/mind/proc/handle_speech(datum/source, mob/speech_args)
 	var/static/list/accents_name2regexes // Key is the name of the accent, value is a length-2 list of lists.

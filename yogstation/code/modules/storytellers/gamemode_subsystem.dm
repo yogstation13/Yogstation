@@ -290,7 +290,8 @@ SUBSYSTEM_DEF(gamemode)
 			if(required_time)
 				time_to_check = required_time
 			else if(inherit_required_time)
-				time_to_check = GLOB.special_required_days[be_special]
+				var/datum/antagonist/age_check = GLOB.special_roles[be_special]
+				time_to_check = initial(age_check.min_account_age)
 
 			if(time_to_check && candidate.client.get_remaining_days(time_to_check) > 0)
 				continue
@@ -298,7 +299,7 @@ SUBSYSTEM_DEF(gamemode)
 		//if(midround_antag_pref)
 			//continue
 
-		if(job_ban && is_banned_from(candidate.ckey, list(job_ban, ROLE_SYNDICATE)))
+		if(job_ban && is_banned_from(candidate.ckey, list(job_ban, ROLE_ANTAG)))
 			continue
 		candidates += candidate
 	return candidates
