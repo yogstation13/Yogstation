@@ -97,7 +97,7 @@
 			to_chat(user,"Harsh tendrils wrap around the kinetic crusher, merging the parts and cutter to form a mega kinetic crusher.")
 			qdel(src)
 
-/obj/item/magmite_parts/glacite_parts/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/magmite_parts/glacite/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(inert)
 		to_chat(span_warning("[src] appears inert! Perhaps the World Anvil can restore it!"))
 	switch(target.type)
