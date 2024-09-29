@@ -86,6 +86,14 @@
 			candidates -= player
 			continue
 
+		if(!player?.mind?.assigned_role) //don't antag ghost roles that don't have an assigned role
+			candidates -= player
+			continue
+
+		if(!(player.mind.assigned_role in GLOB.crew_positions)) //don't antag non crewmembers
+			candidates -= player
+			continue
+
 	return candidates
 
 /// Check if our enemy_roles requirement is met, if return_players is set then we will return the list of enemy players instead
@@ -122,6 +130,9 @@
 /datum/round_event_control/antagonist/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()
 	if(!check_required())
+		return FALSE
+
+	if(!EMERGENCY_IDLE_OR_RECALLED) //no spawning antags if the rounds about to end, don't wanna take antag rep only to give them like 10 minutes at best
 		return FALSE
 
 	if(!.)

@@ -7,7 +7,7 @@
 	track = EVENT_TRACK_ROLESET
 	tags = list(TAG_SPOOKY, TAG_MAGICAL, TAG_COMBAT)
 	category = EVENT_CATEGORY_ENTITIES
-	description = "spawns a bloodsucker from ghost roles."
+	description = "spawns a tzimisce bloodsucker from ghost roles."
 
 /datum/round_event_control/tzimisce/canSpawnEvent(players_amt, allow_magic, fake_check)
 	. = ..()
