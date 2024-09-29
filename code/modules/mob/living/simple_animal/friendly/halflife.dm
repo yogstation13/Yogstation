@@ -1,11 +1,11 @@
-/mob/living/simple_animal/hl2bot
+/mob/living/simple_animal/hostile/hl2bot
 	var/radio_key = null //which channels can the bot listen to
 	var/radio_channel = RADIO_CHANNEL_COMMON //The bot's default radio channel
 	var/obj/item/radio/Radio //The bot's radio, for speaking to people.
 	var/data_hud_type
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BOT_HUD, DIAG_HUD, DIAG_PATH_HUD = HUD_LIST_LIST) //Diagnostic HUD views
 
-/mob/living/simple_animal/hl2bot/Initialize(mapload)
+/mob/living/simple_animal/hostile/hl2bot/Initialize(mapload)
 	. = ..()
 	access_card = new /obj/item/card/id(src)
 	access_card.access += ACCESS_SEC_BASIC
@@ -21,12 +21,12 @@
 		var/datum/atom_hud/datahud = GLOB.huds[data_hud_type]
 		datahud.show_to(src)
 
-/mob/living/simple_animal/hl2bot/Destroy()
+/mob/living/simple_animal/hostile/hl2bot/Destroy()
 	qdel(Radio)
 	qdel(access_card)
 	return ..()
 
-/mob/living/simple_animal/hl2bot/radio(message, list/message_mods = list(), list/spans, language)
+/mob/living/simple_animal/hostile/hl2bot/radio(message, list/message_mods = list(), list/spans, language)
 	. = ..()
 	if(. != 0)
 		return
@@ -41,7 +41,7 @@
 		Radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 		return REDUCE_RANGE
 
-/mob/living/simple_animal/hl2bot/cityscanner
+/mob/living/simple_animal/hostile/hl2bot/cityscanner
 	name = "City Scanner"
 	desc = "A flying machine built to scan the city for malcompliants."
 	icon = 'icons/mob/halflife.dmi'
@@ -67,13 +67,17 @@
 	data_hud_type = DATA_HUD_SECURITY_ADVANCED
 	faction = list("neutral","silicon","combine")
 	deathsound = 'sound/creatures/cityscanner/cbot_energyexplosion1.ogg'
+	ranged = 1 //for flashing
 	var/idle_sound_chance = 100
 	var/idle_sounds = list('sound/creatures/cityscanner/cbot_fly_loop.ogg', 'sound/creatures/cityscanner/scanner_scan_loop1.ogg')
 
-/mob/living/simple_animal/hl2bot/cityscanner/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/simple_animal/hostile/hl2bot/cityscanner/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	..()
 	if(stat)
 		return
 	if(prob(idle_sound_chance))
 		var/chosen_sound = pick(idle_sounds)
 		playsound(src, chosen_sound, 50, FALSE)
+
+/mob/living/simple_animal/hostile/hl2bot/cityscanner/OpenFire()
+	playsound(src, 'sound/creatures/cityscanner/scanner_photo1.ogg', 40, FALSE)
