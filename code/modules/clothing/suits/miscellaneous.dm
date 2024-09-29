@@ -425,7 +425,7 @@
 
 /obj/item/clothing/suit/jacket
 	name = "bomber jacket"
-	desc = "Aviators not included."
+	desc = "A old bomber jacket in pretty good condition. Snazzy..."
 	icon_state = "bomberjacket"
 	item_state = "brownjsuit"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/radio)
@@ -467,7 +467,7 @@
 
 /obj/item/clothing/suit/jacket/miljacket
 	name = "military jacket"
-	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
+	desc = "A old american military jacket from before the war. How'd this get here? Either way, what a find!"
 	icon_state = "militaryjacket"
 	item_state = "militaryjacket"
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/tank/internals/ipc_coolant, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/radio)

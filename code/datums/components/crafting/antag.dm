@@ -67,7 +67,7 @@
 	reqs = list(/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/stack/sheet/metal = 4,
 				/obj/item/stack/rods = 2,
-           		/obj/item/stack/tape = 3)
+           		/obj/item/stack/tape = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
 	time = 12 SECONDS
 	category = CAT_WEAPON_RANGED

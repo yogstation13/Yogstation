@@ -369,6 +369,26 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/misc
 	category = UPLINK_CATEGORY_MISC
 
+/*
+/datum/uplink_item/misc/makeshift
+	name = "Makeshift Equipment Manual"
+	desc = "A book detailing recipes for crafting various makeshift tools and weapons."
+	item = /obj/item/book/granter/crafting_recipe/weapons
+	cost = 5
+*/
+
+/datum/uplink_item/misc/beartrap
+	name = "Bear Trap"
+	desc = "Bears may not exist anymore, but you can still trap and ambush traitorous loyalists and other combine with this. A wrench will be needed to make them effective."
+	item = /obj/item/restraints/legcuffs/beartrap
+	cost = 2
+
+/datum/uplink_item/misc/toolbox
+	name = "Full Toolbox"
+	desc = "A full toolbox, which also doubles as a dangerous weapon, and can fit inside backpacks."
+	item = /obj/item/storage/toolbox/syndicate
+	cost = 4
+
 /datum/uplink_item/misc/medvial
 	name = "Medvial"
 	desc = "Easy to store, and use, this medvial can quickly provide a small amount of healing."

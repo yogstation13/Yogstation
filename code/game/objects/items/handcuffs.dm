@@ -251,7 +251,7 @@
 	throw_speed = 1
 	throw_range = 1
 	icon_state = "beartrap"
-	desc = "A trap used to catch bears and other legged creatures."
+	desc = "A old beartrap. There's probably not any bears left in the world, but you could use this on a person at least. Needs to be wrenched down to be properly effective."
 	break_strength = 4
 	var/armed = 0
 	var/trap_damage = 20

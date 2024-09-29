@@ -794,6 +794,7 @@
 				/obj/item/reagent_containers/pill/happiness,
 				/obj/item/reagent_containers/pill/lsd,
 				/obj/item/reagent_containers/glass/bottle/bleach,
+				/obj/item/reagent_containers/glass/bottle/welding_fuel,
 				/obj/item/reagent_containers/glass/bottle/morphine
 				)
 
@@ -822,6 +823,11 @@
 				/obj/item/clothing/mask/balaclava,
 				/obj/item/clothing/gloves/fingerless = 2,
 				/obj/item/clothing/gloves/color/black,
+				/obj/item/clothing/head/beret/vintage,
+				/obj/item/clothing/head/soft/black,
+				/obj/item/clothing/glasses/eyepatch,
+				/obj/item/clothing/suit/jacket,
+				/obj/item/clothing/suit/jacket/miljacket,
 				/obj/item/clothing/mask/bandana/black
 				)
 
@@ -855,6 +861,7 @@
 				/obj/item/gun/ballistic/bow/crossbow/rebar = 2,
 				/obj/item/gun/ballistic/automatic/pistol/m1911,
 				/obj/item/gun/ballistic/automatic/m4a1,
+				/obj/item/grenade/syndieminibomb/bouncer,
 				/obj/item/kitchen/knife/combat,
 				/obj/item/clothing/suit/armor/kevlar
 				)
