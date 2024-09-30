@@ -1,4 +1,5 @@
 /datum/round_event_control/antagonist/solo/obsessed
+	name = "Compulsive Obsession"
 	antag_flag = ROLE_OBSESSED
 	tags = list(TAG_CREW_ANTAG, TAG_TARGETED)
 	antag_datum = /datum/antagonist/obsessed
@@ -17,14 +18,11 @@
 		JOB_CYBORG,
 		ROLE_POSIBRAIN,
 	)
-	weight = 1
-	max_occurrences = 3
-	min_players = 5
-	checks_antag_cap = FALSE
-
-/datum/round_event_control/antagonist/solo/obsessed/midround
-	name = "Compulsive Obsession"
 	maximum_antags = 1
+	weight = 1
+	max_occurrences = 2
+	min_players = 5
+	prompted_picking = TRUE
 
 /datum/round_event/antagonist/solo/obsessed
 

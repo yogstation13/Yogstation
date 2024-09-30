@@ -22,7 +22,6 @@
 	weight = 2
 	min_players = 35
 	max_occurrences = 1
-	prompted_picking = TRUE
 
 /datum/round_event_control/antagonist/solo/from_ghosts/wizard/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()

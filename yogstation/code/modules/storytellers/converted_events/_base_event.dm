@@ -156,6 +156,9 @@
 	/// Can either be normal list or a weighted list.
 	var/list/extra_spawned_events
 
+/datum/round_event_control/antagonist/solo/from_ghosts
+	prompted_picking = TRUE // We literally HAVE to prompt pick the antag, otherwise it'll pick random ghosts, which we don't want
+
 /datum/round_event_control/antagonist/solo/from_ghosts/get_candidates()
 	var/round_started = SSticker.HasRoundStarted()
 	var/midround_antag_pref_arg = round_started ? FALSE : TRUE
