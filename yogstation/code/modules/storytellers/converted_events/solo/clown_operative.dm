@@ -47,6 +47,8 @@
 
 /datum/round_event/antagonist/solo/clown_operative/setup()
 	for(var/obj/machinery/nuclearbomb/syndicate/S in GLOB.nuke_list)
+		if(istype(S, /obj/machinery/nuclearbomb/syndicate/bananium))
+			continue
 		var/turf/T = get_turf(S)
 		if(T)
 			qdel(S)

@@ -1168,4 +1168,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!isnum(days_needed))
 		return 0
 
+	if(player_age < 0) //local host stuff
+		return 0
+
 	return max(0, days_needed - player_age)

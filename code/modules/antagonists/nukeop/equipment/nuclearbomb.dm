@@ -72,9 +72,11 @@
 /obj/machinery/nuclearbomb/syndicate/get_cinematic_type(off_station)
 	switch(off_station)
 		if(0)
-			// if(istype(NM) && !NM.nuke_team.syndies_escaped())
-			// 	return CINEMATIC_ANNIHILATION
-			return CINEMATIC_NUKE_WIN
+			var/datum/team/nuclear/NM = locate() in GLOB.antagonist_teams
+			if(istype(NM) && !NM.syndies_escaped())
+				return CINEMATIC_ANNIHILATION
+			else
+				return CINEMATIC_NUKE_WIN
 		if(1)
 			return CINEMATIC_NUKE_MISS
 		if(2)
