@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added an auto lathe, morgue, and plasteel to Blueshift's robotics"
