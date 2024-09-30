@@ -58,12 +58,12 @@
 	if(istype(I,/obj/item/melee/gibtonite))
 		var/obj/item/melee/gibtonite/placed_ore = I
 		forge_charges = forge_charges + placed_ore.quality
-		to_chat(user,"You place down the gibtonite on the World Anvil, and watch as the gibtonite melts into it. The World Anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
+		to_chat(user,"You place down the gibtonite on the [src], and watch as the gibtonite melts into it. The World Anvil is now heated enough for [forge_charges] forge[forge_charges > 1 ? "s" : ""].")
 		qdel(placed_ore)
 		update_appearance(UPDATE_ICON)
 		return
 	if(forge_charges <= 0)
-		to_chat(user,"The World Anvil is not hot enough to be usable!")
+		to_chat(user,"The [src] is not hot enough to be usable!")
 		return
 	var/success = FALSE
 	switch(I.type)
@@ -101,6 +101,6 @@
 	if(forge_charges <= 0)
 		visible_message("The World Anvil cools down.")
 		update_appearance(UPDATE_ICON)
-		
-			
+
+
 
