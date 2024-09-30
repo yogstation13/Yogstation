@@ -319,6 +319,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	name = "Syndicate Tome"
 	desc = "A very ominous tome resembling a bible."
 	icon_state ="ebook"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	item_flags = NO_BLOOD_ON_ITEM
 	throw_speed = 2
 	throw_range = 7
