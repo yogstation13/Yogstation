@@ -427,6 +427,7 @@
 
 /turf/closed/mineral/iron/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -482,6 +483,7 @@
 
 /turf/closed/mineral/uranium/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -537,6 +539,7 @@
 
 /turf/closed/mineral/diamond/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -592,6 +595,7 @@
 
 /turf/closed/mineral/gold/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -647,6 +651,7 @@
 
 /turf/closed/mineral/silver/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -702,6 +707,7 @@
 
 /turf/closed/mineral/titanium/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -757,6 +763,7 @@
 
 /turf/closed/mineral/plasma/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -796,6 +803,7 @@
 
 /turf/closed/mineral/bananium/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -864,6 +872,7 @@
 
 /turf/closed/mineral/bscrystal/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -1101,6 +1110,7 @@
 
 /turf/closed/mineral/gibtonite/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
@@ -1154,7 +1164,7 @@
 	scan_state = "rock_Glacite"
 
 /turf/closed/mineral/glacite/ice
-	icon_state = "icerock"
+	icon_state = "mountainrock"
 	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "mountain_wall"
 	initial_gas_mix = FROZEN_ATMOS
@@ -1164,6 +1174,7 @@
 
 /turf/closed/mineral/glacite/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
