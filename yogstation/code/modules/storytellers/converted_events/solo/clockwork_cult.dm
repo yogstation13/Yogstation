@@ -4,7 +4,6 @@
 	antag_flag = ROLE_SERVANT_OF_RATVAR
 	antag_datum = /datum/antagonist/clockcult
 	typepath = /datum/round_event/antagonist/solo/clockcult
-	shared_occurence_type = SHARED_HIGH_THREAT
 	restricted_roles = list(
 		JOB_AI,
 		JOB_CAPTAIN,
@@ -33,7 +32,8 @@
 	title_icon = "clockcult"
 	earliest_start = 0 SECONDS
 	weight = 4
-	max_occurrences = 0
+	shared_occurence_type = SHARED_HIGH_THREAT
+	max_occurrences = 1
 
 /datum/round_event/antagonist/solo/clockcult
 	end_when = 60000

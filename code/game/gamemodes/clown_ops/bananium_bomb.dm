@@ -50,6 +50,8 @@
 		var/turf/T = get_turf(H)
 		if(!T || T.z != z)
 			continue
+		if(H?.dna?.check_mutation(CLOWNMUT)) //don't clown already clowned clowns
+			continue
 		H.Stun(10)
 		var/obj/item/clothing/C
 		if(!H.w_uniform || H.dropItemToGround(H.w_uniform))
