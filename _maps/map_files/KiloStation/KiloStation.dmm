@@ -17666,7 +17666,6 @@
 /obj/effect/turf_decal/trimline/green/end{
 	dir = 8
 	},
-/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "fBt" = (
@@ -26967,6 +26966,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/smartfridge/disks{
+	pixel_x = -4;
+	pixel_y = 16
+	},
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "ipq" = (
@@ -30635,9 +30638,6 @@
 /area/station/security/execution/transfer)
 "jrr" = (
 /obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people{
-	pixel_y = 4
-	},
 /obj/item/paper/guides/jobs/hydroponics,
 /obj/item/reagent_containers/dropper,
 /obj/effect/turf_decal/tile/green{
@@ -30648,11 +30648,6 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/item/toy/figure/botanist,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /obj/machinery/plantgenes,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
@@ -40519,10 +40514,6 @@
 "mFm" = (
 /obj/structure/flora/bush/sparsegrass/style_random,
 /obj/structure/table/glass,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
 /obj/item/chicken_scanner{
 	pixel_x = 6
 	},
@@ -46530,15 +46521,18 @@
 /turf/open/floor/carpet/green,
 /area/station/maintenance/port/greater)
 "oFC" = (
-/obj/structure/table,
 /obj/item/storage/box/syringes{
-	pixel_y = 2
+	pixel_y = 23;
+	pixel_x = -7
 	},
 /obj/item/storage/box/beakers{
-	pixel_x = 4;
-	pixel_y = 6
+	pixel_x = -1;
+	pixel_y = 22
 	},
-/obj/item/hand_labeler,
+/obj/item/hand_labeler{
+	pixel_x = 7;
+	pixel_y = 17
+	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -46551,6 +46545,7 @@
 	name = "hydroponics camera"
 	},
 /obj/effect/turf_decal/bot,
+/obj/structure/bookcase/manuals/botany,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "oGo" = (
@@ -64837,6 +64832,10 @@
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
+	},
+/obj/machinery/smartfridge/disks{
+	pixel_x = -7;
+	pixel_y = 15
 	},
 /turf/open/floor/iron/dark,
 /area/station/medical/pathology)

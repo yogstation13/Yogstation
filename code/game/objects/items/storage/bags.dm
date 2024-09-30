@@ -483,6 +483,7 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/weapon/virusdish,//Monkestation Addition
 		/obj/item/food/monkeycube/mouse,//Monkestation Addition
+		/obj/item/disk/disease,
 		))
 
 /*

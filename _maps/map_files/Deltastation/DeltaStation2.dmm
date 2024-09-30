@@ -51878,11 +51878,6 @@
 /area/station/commons/storage/tools)
 "mnA" = (
 /obj/structure/table/glass,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
@@ -59760,6 +59755,7 @@
 "oiZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/structure/bookcase/manuals/botany,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "ojb" = (
@@ -66389,6 +66385,7 @@
 	dir = 9
 	},
 /obj/machinery/light/small/directional/west,
+/obj/item/paper_bin,
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/iron/white,
@@ -72453,6 +72450,7 @@
 /obj/item/radio/intercom/directional/south,
 /obj/structure/table/glass,
 /obj/item/food/grown/poppy/geranium,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "rlQ" = (
@@ -80914,11 +80912,6 @@
 /obj/machinery/light_switch/directional/south{
 	pixel_x = 8
 	},
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/checker,
 /area/station/service/hydroponics)
 "tpE" = (
@@ -101123,9 +101116,9 @@
 	},
 /obj/machinery/status_display/evac/directional/east,
 /obj/structure/table/glass,
-/obj/item/paper_bin,
 /obj/item/folder/white,
 /obj/item/pen/red,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron,
 /area/station/medical/pathology)
 "yeZ" = (

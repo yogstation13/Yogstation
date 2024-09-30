@@ -5055,11 +5055,6 @@
 /obj/item/storage/bag/egg,
 /obj/item/storage/bag/egg,
 /obj/item/storage/bag/egg,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
 /turf/open/floor/wood,
 /area/station/service/hydroponics/upper)
 "bwv" = (
@@ -18952,6 +18947,10 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/carpet/stellar,
 /area/station/service/chapel/funeral)
+"fyh" = (
+/obj/structure/bookcase/manuals/botany,
+/turf/open/floor/wood,
+/area/station/service/hydroponics/upper)
 "fys" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 1
@@ -37013,9 +37012,15 @@
 /obj/structure/table/glass,
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
 /obj/item/stack/sheet/mineral/plasma{
-	amount = 5
+	amount = 5;
+	pixel_x = 11;
+	pixel_y = 0
 	},
-/obj/item/stack/sheet/mineral/uranium/five,
+/obj/item/stack/sheet/mineral/uranium/five{
+	pixel_x = 15;
+	pixel_y = 0
+	},
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron/white/textured_edge{
 	dir = 1
 	},
@@ -53816,10 +53821,6 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
 	},
-/obj/item/book/manual/hydroponics_pod_people{
-	pixel_x = 7;
-	pixel_y = 3
-	},
 /obj/effect/turf_decal/bot,
 /obj/item/pen{
 	pixel_x = -6;
@@ -61075,7 +61076,11 @@
 /obj/machinery/smartfridge,
 /obj/machinery/splicer{
 	pixel_y = 12;
-	pixel_x = -6
+	pixel_x = -8
+	},
+/obj/machinery/smartfridge/disks{
+	pixel_x = 9;
+	pixel_y = 14
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/service/hydroponics)
@@ -63966,11 +63971,6 @@
 	name = "service camera"
 	},
 /obj/effect/turf_decal/bot,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/edge{
 	dir = 8
 	},
@@ -126417,7 +126417,7 @@ cqI
 xiF
 kVo
 fYs
-eKx
+fyh
 jpR
 uKN
 kAB

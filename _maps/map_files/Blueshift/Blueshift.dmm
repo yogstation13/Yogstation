@@ -1989,16 +1989,13 @@
 /area/station/hallway/primary/central)
 "auS" = (
 /obj/structure/table,
+/obj/machinery/smartfridge/disks,
 /obj/item/stack/package_wrap,
 /obj/item/hand_labeler,
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/trimline/green/filled/corner{
 	dir = 8
 	},
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -3959,6 +3956,10 @@
 /obj/structure/reagent_dispensers/wall/virusfood/directional/east,
 /obj/effect/turf_decal/trimline/green/filled/end{
 	dir = 4
+	},
+/obj/machinery/smartfridge/disks{
+	pixel_x = 8;
+	pixel_y = 14
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
@@ -6306,8 +6307,18 @@
 /area/station/medical/medbay/lobby)
 "bmD" = (
 /obj/structure/table/glass,
-/obj/item/storage/bag/plants/portaseeder,
 /obj/machinery/light/directional/east,
+/obj/item/seeds/grape{
+	pixel_x = -6
+	},
+/obj/item/seeds/lime{
+	pixel_x = 6
+	},
+/obj/item/seeds/watermelon,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/watermelon,
+/obj/item/food/grown/banana,
+/obj/item/storage/bag/plants/portaseeder,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
@@ -28103,18 +28114,8 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
 "fqR" = (
-/obj/structure/table/glass,
-/obj/item/seeds/lime{
-	pixel_x = 6
-	},
-/obj/item/seeds/grape{
-	pixel_x = -6
-	},
-/obj/item/seeds/watermelon,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/watermelon,
-/obj/item/food/grown/banana,
 /obj/structure/extinguisher_cabinet/directional/south,
+/obj/structure/bookcase/manuals/botany,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},

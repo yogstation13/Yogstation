@@ -5918,6 +5918,7 @@
 /obj/structure/table,
 /obj/item/radio/intercom/directional/east,
 /obj/effect/turf_decal/tile/green/full,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/pathology)
 "bPP" = (
@@ -19222,6 +19223,7 @@
 	},
 /obj/machinery/light/directional/north,
 /obj/structure/table/glass,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "gbH" = (
@@ -30879,11 +30881,6 @@
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
@@ -45145,17 +45142,13 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 5
 	},
+/obj/item/watertank,
 /obj/item/cultivator,
 /obj/item/plant_analyzer,
 /obj/effect/turf_decal/tile/green/opposingcorners{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue/opposingcorners,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "opu" = (
@@ -61088,9 +61081,7 @@
 /turf/open/misc/asteroid/snow/icemoon,
 /area/icemoon/surface/outdoors/nospawn)
 "tCs" = (
-/obj/structure/table,
-/obj/item/book/manual/hydroponics_pod_people,
-/obj/item/watertank,
+/obj/structure/bookcase/manuals/botany,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "tCx" = (

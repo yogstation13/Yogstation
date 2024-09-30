@@ -8658,6 +8658,10 @@
 	},
 /obj/structure/table,
 /obj/item/stack/sheet/cardboard,
+/obj/item/paper{
+	default_raw_text = "buy more donk pockets";
+	name = "To-Do List"
+	},
 /obj/item/food/donkpocket/pizza,
 /obj/machinery/camera/directional/east{
 	c_tag = "Medical - Virology Break Room";
@@ -14786,11 +14790,14 @@
 /area/station/security/checkpoint/supply)
 "dGd" = (
 /obj/structure/table/glass,
-/obj/item/chicken_feed,
-/obj/item/chicken_feed,
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 6
 	},
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "dGh" = (
@@ -17349,11 +17356,6 @@
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
 /obj/item/chicken_scanner,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
 /obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
@@ -34703,6 +34705,8 @@
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment,
+/obj/item/chicken_feed,
+/obj/item/chicken_feed,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "kaD" = (
@@ -41636,10 +41640,7 @@
 	},
 /obj/structure/table,
 /obj/item/radio/intercom/directional/east,
-/obj/item/paper{
-	default_raw_text = "buy more donk pockets";
-	name = "To-Do List"
-	},
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron/dark,
 /area/station/medical/pathology)
 "miE" = (
@@ -43224,11 +43225,6 @@
 	},
 /obj/effect/turf_decal/tile/green/fourcorners,
 /obj/machinery/plantgenes,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "mJh" = (
@@ -49305,6 +49301,8 @@
 /obj/machinery/light/directional/north,
 /obj/structure/sign/clock/directional/north,
 /obj/structure/cable,
+/obj/structure/table,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "oIo" = (
@@ -75786,12 +75784,7 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 5
 	},
-/obj/structure/table/glass,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
+/obj/structure/bookcase/manuals/botany,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "wUL" = (

@@ -14845,11 +14845,6 @@
 /obj/item/clothing/suit/apron,
 /obj/item/clothing/accessory/armband/hydro,
 /obj/item/wrench,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/iron/dark/side{
 	dir = 9
@@ -26733,6 +26728,7 @@
 	pixel_y = 13;
 	pixel_x = -9
 	},
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron/white,
 /area/station/medical/virology)
 "iQd" = (
@@ -44145,6 +44141,7 @@
 	pixel_y = 10;
 	pixel_x = -5
 	},
+/obj/machinery/feed_machine,
 /turf/open/floor/iron/dark/side,
 /area/station/service/hydroponics)
 "oMG" = (
@@ -45455,22 +45452,7 @@
 /obj/effect/turf_decal/tile/green/half/contrasted{
 	dir = 1
 	},
-/obj/structure/table,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/obj/item/chicken_scanner,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
+/obj/structure/bookcase/manuals/botany,
 /turf/open/floor/iron/dark/side,
 /area/station/service/hydroponics)
 "pmr" = (
@@ -65933,9 +65915,16 @@
 /obj/machinery/camera/autoname/directional/south,
 /obj/item/radio/intercom/directional/south,
 /obj/structure/table,
-/obj/machinery/feed_machine{
-	pixel_y = 4
-	},
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
+/obj/item/chicken_scanner,
 /turf/open/floor/iron/dark/side,
 /area/station/service/hydroponics)
 "wbA" = (

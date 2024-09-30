@@ -23481,17 +23481,22 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/book/manual/hydroponics_pod_people{
-	pixel_x = -6
+/obj/item/reagent_containers/spray/plantbgone{
+	pixel_x = -3;
+	pixel_y = 11
 	},
 /obj/item/reagent_containers/spray/plantbgone{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/item/hand_labeler{
 	pixel_x = 4;
-	pixel_y = 6
+	pixel_y = 5
 	},
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 7;
-	pixel_y = 2
-	},
+/obj/item/stack/package_wrap,
+/obj/item/stack/package_wrap,
+/obj/item/stack/package_wrap,
+/obj/item/stack/package_wrap,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/service/hydroponics)
 "hao" = (
@@ -39207,6 +39212,7 @@
 /area/station/cargo/drone_bay)
 "lBs" = (
 /obj/structure/table,
+/obj/item/watertank,
 /obj/item/wrench,
 /obj/item/crowbar,
 /turf/open/floor/iron/large,
@@ -41783,11 +41789,11 @@
 /turf/open/floor/engine,
 /area/station/engineering/atmos/hfr_room)
 "mmM" = (
-/obj/item/watertank,
 /obj/structure/table,
 /obj/item/radio/intercom/directional/north,
 /obj/machinery/light/directional/north,
 /obj/machinery/light_switch/directional/west,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/iron/large,
 /area/station/service/hydroponics)
 "mmP" = (
@@ -43913,17 +43919,12 @@
 /turf/open/floor/wood,
 /area/station/commons/dorms)
 "mRw" = (
-/obj/structure/table/glass,
 /obj/effect/turf_decal/trimline/green/filled/warning{
 	dir = 1
 	},
-/obj/item/stack/package_wrap,
-/obj/item/stack/package_wrap,
-/obj/item/stack/package_wrap,
-/obj/item/stack/package_wrap,
-/obj/item/hand_labeler,
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/light/directional/west,
+/obj/structure/bookcase/manuals/botany,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/station/service/hydroponics)
 "mRD" = (
@@ -69965,12 +69966,6 @@
 /obj/machinery/light/directional/west,
 /mob/living/basic/pet/bumbles,
 /obj/item/chicken_feed,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/chicken_encyclopedia,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
-/obj/item/book/manual/botanical_lexicon,
 /turf/open/openspace,
 /area/station/service/hydroponics/upper)
 "uKn" = (
@@ -79020,6 +79015,10 @@
 /area/station/medical/surgery/theatre)
 "xoS" = (
 /obj/machinery/disease2/incubator,
+/obj/machinery/smartfridge/disks{
+	pixel_x = -4;
+	pixel_y = 14
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/virology)
 "xoT" = (

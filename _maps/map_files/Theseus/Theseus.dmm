@@ -12896,17 +12896,9 @@
 /turf/open/floor/grass,
 /area/space/nearstation)
 "dRD" = (
-/obj/structure/table/glass,
-/obj/item/food/grown/pumpkin{
-	pixel_y = 5
-	},
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/wheat,
-/obj/item/food/grown/carrot,
-/obj/item/grown/corncob,
-/obj/item/seeds/potato,
-/obj/item/seeds/wheat,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/table/glass,
+/obj/machinery/smartfridge/disks,
 /turf/open/floor/grass,
 /area/station/service/hydroponics)
 "dRL" = (
@@ -18324,7 +18316,6 @@
 /obj/structure/flora/bush/grassy/style_random,
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/hydroponics,
-/obj/item/botanical_lexicon,
 /obj/item/secateurs,
 /obj/item/secateurs,
 /obj/item/plant_analyzer,
@@ -18340,6 +18331,7 @@
 /obj/item/seeds/ambrosia,
 /obj/item/seeds/wheat,
 /obj/item/seeds/pumpkin,
+/obj/item/book/manual/botanical_lexicon,
 /turf/open/floor/grass,
 /area/station/security/prison/garden)
 "fAt" = (
@@ -64436,6 +64428,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/machinery/smartfridge/disks{
+	pixel_x = -1;
+	pixel_y = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/medical/pathology)
 "tjt" = (
@@ -70087,8 +70083,8 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/tile/green,
+/obj/structure/bookcase/manuals/botany,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
@@ -80714,21 +80710,21 @@
 	pixel_x = 5
 	},
 /obj/structure/table/glass,
-/obj/item/botanical_lexicon,
-/obj/item/botanical_lexicon{
-	pixel_y = 5;
-	pixel_x = -4
-	},
 /obj/item/toy/figure/botanist{
 	pixel_y = 14;
 	pixel_x = 5
 	},
-/obj/item/botanical_lexicon{
-	pixel_y = 3;
-	pixel_x = 3
-	},
 /obj/item/radio/intercom/directional/east,
 /obj/machinery/light/directional/east,
+/obj/item/food/grown/pumpkin{
+	pixel_y = 5
+	},
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/carrot,
+/obj/item/grown/corncob,
+/obj/item/seeds/potato,
+/obj/item/seeds/wheat,
 /turf/open/floor/grass,
 /area/station/service/hydroponics)
 "xUS" = (
