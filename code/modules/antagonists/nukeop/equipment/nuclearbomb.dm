@@ -477,6 +477,7 @@
 		SSshuttle.lockdown = TRUE
 
 	//Cinematic
+	SSgamemode.OnNukeExplosion(off_station)
 	really_actually_explode(off_station)
 	SSticker.roundend_check_paused = FALSE
 
