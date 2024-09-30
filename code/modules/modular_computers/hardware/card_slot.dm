@@ -58,6 +58,12 @@
 /obj/item/computer_hardware/card_slot/try_insert(obj/item/I, mob/living/user = null)
 	if(!holder)
 		return FALSE
+	if(istype(I, /obj/item/paicard) && !pai)
+		if(expansion_hw)
+			if(!user.transferItemToLoc(I, src))
+				return
+		else
+			to_chat(user, span_warning("You cannot insert \the [I] into the primary [src]!"))
 
 	if(!istype(I, /obj/item/card/id))
 		return FALSE
