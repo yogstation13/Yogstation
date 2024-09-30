@@ -64,6 +64,7 @@
 		qdel(item)
 
 	antag_mind.special_role = ROLE_CLOWNOP
+	antag_mind.assigned_role = ROLE_CLOWNOP
 
 	var/datum/mind/most_experienced = get_most_experienced(setup_minds, required_role)
 	if(!most_experienced)
