@@ -8,6 +8,7 @@ GLOBAL_LIST_EMPTY(wizard_spellbook_purchases_by_key)
 	job_rank = ROLE_WIZARD
 	antag_hud_name = "wizard"
 	antag_moodlet = /datum/mood_event/focused
+	count_towards_antag_cap = TRUE
 	var/give_objectives = TRUE
 	var/strip = TRUE //strip before equipping
 	var/allow_rename = TRUE

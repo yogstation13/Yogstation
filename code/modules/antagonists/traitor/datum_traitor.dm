@@ -9,6 +9,7 @@
 	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/focused
 	preview_outfit = /datum/outfit/traitor
+	count_towards_antag_cap = TRUE
 	var/special_role = ROLE_TRAITOR
 	var/employer = "The Syndicate"
 	var/give_objectives = TRUE

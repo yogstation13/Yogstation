@@ -8,6 +8,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	count_towards_antag_cap = TRUE
 	var/helping_station = FALSE
 	var/give_objectives = TRUE
 	var/give_equipment = TRUE

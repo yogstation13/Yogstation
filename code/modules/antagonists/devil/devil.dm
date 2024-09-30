@@ -95,6 +95,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	job_rank = ROLE_DEVIL
 	antag_hud_name = "devil"
 	show_to_ghosts = TRUE
+	count_towards_antag_cap = TRUE
 	var/obligation
 	var/ban
 	var/bane

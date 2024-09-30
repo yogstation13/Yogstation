@@ -10,6 +10,7 @@
 	antag_hud_name = "vampire"
 
 	ui_name = "AntagInfoVampire"
+	count_towards_antag_cap = TRUE
 
 	var/usable_blood = 0
 	var/total_blood = 0

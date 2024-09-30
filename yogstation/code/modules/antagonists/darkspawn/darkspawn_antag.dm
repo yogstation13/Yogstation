@@ -8,6 +8,7 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 	antag_hud_name = "darkspawn"
 	ui_name = "AntagInfoDarkspawn"
 	antag_moodlet = /datum/mood_event/sling
+	count_towards_antag_cap = TRUE
 
 	//team used for all the darkspawns, thralls, and the objective
 	var/datum/team/darkspawn/team

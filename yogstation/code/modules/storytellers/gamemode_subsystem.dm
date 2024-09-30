@@ -227,15 +227,16 @@ SUBSYSTEM_DEF(gamemode)
 /// Whether events can inject more antagonists into the round
 /datum/controller/subsystem/gamemode/proc/can_inject_antags()
 	total_valid_antags = 0
-	for(var/mob/checked_mob in GLOB.mob_list)
-		if(!checked_mob.mind)
+	for(var/datum/antagonist/antag in GLOB.antagonists)
+		if(!antag.count_towards_antag_cap) //some antags don't count towards the cap
 			continue
-		if(!checked_mob.mind.special_role)
+		if(!antag.owner) //if the datum doesn't have an owner
 			continue
-		if(checked_mob.stat == DEAD)
+		if(!antag.owner.current) //if the datum owner doesn't have a body
+			continue
+		if(antag.owner.current.stat == DEAD) //if the datum owner's body is dead
 			continue
 		total_valid_antags++
-
 
 	return (get_antag_cap() > total_valid_antags)
 

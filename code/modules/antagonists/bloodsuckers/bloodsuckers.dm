@@ -10,6 +10,7 @@
 	can_coexist_with_others = FALSE
 	ui_name = "AntagInfoBloodsucker"
 	preview_outfit = /datum/outfit/bloodsucker_outfit
+	count_towards_antag_cap = TRUE
 
 	// TIMERS //
 	///Timer between alerts for Burn messages

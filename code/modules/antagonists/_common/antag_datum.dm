@@ -49,6 +49,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	/// Minimum account age in days to be valid for picking by this antag
 	var/min_account_age = 14
 
+	/// Does this antag count towards the storytellers antag cap (False by default, but set to true for any antag of suitable size)
+	var/count_towards_antag_cap = FALSE
+
 
 /datum/antagonist/New()
 	GLOB.antagonists += src

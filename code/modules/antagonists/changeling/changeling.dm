@@ -88,6 +88,7 @@ GLOBAL_VAR(changeling_team_objective_type)
 	antag_hud_name = "changeling"
 	antag_moodlet = /datum/mood_event/changeling
 	ui_name = "AntagInfoChangeling"
+	count_towards_antag_cap = TRUE
 
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
