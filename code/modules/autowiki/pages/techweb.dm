@@ -3,8 +3,10 @@
 
 /datum/autowiki/techweb/generate()
 	var/output = ""
+	// should be the the item icon we are trying to upload
 	var/datum/asset/spritesheet/research = get_asset_datum(/datum/asset/spritesheet/research_designs)
-	var/filename = SANITIZE_FILENAME(escape_value(format_text(research)))
+	// filenames is the name of the icon file 
+	var/filename = "researchables"
 	for (var/node_id in sort_list(SSresearch.techweb_nodes, GLOBAL_PROC_REF(sort_research_nodes)))
 		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
 		if (!node.show_on_wiki)
