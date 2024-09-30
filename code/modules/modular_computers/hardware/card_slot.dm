@@ -58,7 +58,7 @@
 /obj/item/computer_hardware/card_slot/try_insert(obj/item/I, mob/living/user = null)
 	if(!holder)
 		return FALSE
-	if(istype(I, /obj/item/paicard) && !pai)
+	if(istype(I, /obj/item/paicard))
 		if(expansion_hw)
 			if(!user.transferItemToLoc(I, src))
 				return
