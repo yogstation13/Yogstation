@@ -9,7 +9,6 @@
 	weather_message = span_boldwarning("Rain pours down around you!")
 	weather_overlay = "rain"
 	weather_color = "#69b6ff"
-	overlay_plane = HIGHEST_EVER_PLANE + 1 //why does this work, it shouldn't work, this is stupid and i hate it, why is this the ONLY thing that works, why won't it just show up normally, it shows up normally on lavaland, but not on jungleland, i don't understand it doesn't make any sense, this is all wrong
 	
 	//lasts shorter
 	weather_duration_lower = 30 SECONDS

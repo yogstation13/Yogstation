@@ -15040,19 +15040,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"euO" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/obj/machinery/power/apc/auto_name{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/laborcamp/security)
 "euQ" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -37195,22 +37182,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"kNr" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/laborcamp/security)
 "kNz" = (
 /obj/machinery/light{
 	dir = 4
@@ -60257,10 +60228,6 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"rts" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
-/turf/closed/wall,
-/area/security/brig)
 "rtz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -68515,6 +68482,22 @@
 /obj/item/clothing/under/suit/burgundy,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
+"tIc" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/laborcamp/security)
 "tIm" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -69979,7 +69962,6 @@
 	pixel_y = -38
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "udI" = (
@@ -78310,6 +78292,25 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"wqV" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/laborcamp/security)
 "wqW" = (
 /obj/item/radio/intercom{
 	frequency = 1485;
@@ -88300,8 +88301,8 @@ bIx
 bIx
 bIx
 qJA
-euO
-kNr
+tIc
+wqV
 erb
 dfX
 hyK
@@ -245187,7 +245188,7 @@ xvh
 iSo
 gNR
 udn
-rts
+ulr
 ulr
 ulr
 qin

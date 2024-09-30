@@ -111,7 +111,7 @@
 	var/music_component = null
 	var/music_path = null
 
-	
+
 
 /mob/living/simple_animal/Initialize(mapload)
 	. = ..()
@@ -340,7 +340,7 @@
 		del_on_death = FALSE
 		qdel(src)
 		return
-	
+
 	health = 0
 	icon_state = icon_dead
 	if(flip_on_death)
@@ -426,18 +426,6 @@
 		to_chat(src, span_warning("You don't have the dexterity to do this!"))
 		return FALSE
 	return TRUE
-
-/mob/living/simple_animal/stripPanelUnequip(obj/item/what, mob/who, where)
-	if(!canUseTopic(who, BE_CLOSE))
-		return
-	else
-		..()
-
-/mob/living/simple_animal/stripPanelEquip(obj/item/what, mob/who, where)
-	if(!canUseTopic(who, BE_CLOSE))
-		return
-	else
-		..()
 
 /mob/living/simple_animal/update_mobility(value_otherwise = TRUE)
 	if(IsUnconscious() || IsParalyzed() || IsStun() || IsKnockdown() || IsParalyzed() || stat || resting)

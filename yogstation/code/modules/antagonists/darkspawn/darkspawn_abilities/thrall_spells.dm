@@ -374,7 +374,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/pointed/elucidate
 	name = "Elucidate"
-	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost."
+	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost. Able to revive any ally in close range."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'

@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	department_head = list("AI")
 	faction = "Station"
 	total_positions = 0
-	spawn_positions = 0
+	spawn_positions = 1
 	supervisors = "the AI"
 	minimal_player_age = 30
 	exp_requirements = 900
@@ -47,6 +47,9 @@ GLOBAL_LIST_EMPTY(synthetic_added_access)
 	alt_titles = list()
 
 	forced_species = /datum/species/wy_synth
+
+/datum/job/synthetic/config_check() //disabled for the time being
+	return FALSE
 
 /datum/job/synthetic/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	. = ..()
