@@ -7,6 +7,7 @@
 	device_type = MC_CARD
 
 	var/obj/item/card/id/stored_card
+	var/inserted_pai
 
 ///What happens when the ID card is removed (or deleted) from the module, through try_eject() or not.
 /obj/item/computer_hardware/card_slot/Exited(atom/A, atom/newloc)
@@ -61,12 +62,14 @@
 	if(istype(I, /obj/item/paicard))
 		if(expansion_hw)
 			if(!user.transferItemToLoc(I, src))
-				return
-			else
-				to_chat(user, "You insert \the [I] into \the secondary [src].")
-				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
+				I.forceMove(src)
+			inserted_pai = !inserted_pai
+			to_chat(user, "<span class='notice'>You insert \the [I] into \the [src].</span>")
+			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
+			return TRUE
 		else
-			to_chat(user, span_warning("You cannot insert \the [I] into \the primary [src]!"))
+			if (!stored_card)
+				to_chat(user, span_warning("You cannot insert \the [I] into \the primary [src]!"))
 
 	if(!istype(I, /obj/item/card/id))
 		return FALSE
@@ -80,6 +83,7 @@
 		I.forceMove(src)
 
 	stored_card = I
+	to_chat(user, stored_card)
 	holder.update_label()
 	to_chat(user, "<span class='notice'>You insert \the [I] into \the [expansion_hw ? "secondary":"primary"] [src].</span>")
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
