@@ -25979,6 +25979,10 @@
 	dir = 4
 	},
 /area/station/security/prison/safe)
+"eWk" = (
+/obj/machinery/smartfridge/organ,
+/turf/open/floor/iron/dark,
+/area/station/science/robotics)
 "eWl" = (
 /turf/closed/wall,
 /area/station/maintenance/disposal)
@@ -32444,14 +32448,15 @@
 /area/station/common/night_club/changing_room)
 "gme" = (
 /obj/structure/table,
+/obj/item/wrench,
+/obj/item/crowbar,
+/obj/item/stack/sheet/plasteel/twenty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/sheet/glass/fifty,
-/obj/item/wrench,
-/obj/item/crowbar,
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/station/science/robotics/lab)
@@ -80724,7 +80729,7 @@
 /area/station/maintenance/starboard/fore)
 "pHX" = (
 /obj/effect/turf_decal/bot_red,
-/obj/structure/frame/machine,
+/obj/machinery/autolathe,
 /turf/open/floor/mineral/plastitanium,
 /area/station/science/robotics/lab)
 "pHY" = (
@@ -99770,8 +99775,10 @@
 /turf/open/floor/iron/freezer,
 /area/station/commons/dorms/room3)
 "tpV" = (
-/obj/machinery/smartfridge/organ,
 /obj/machinery/firealarm/directional/north,
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
 /turf/open/floor/iron,
 /area/station/science/robotics)
 "tqc" = (
@@ -219653,7 +219660,7 @@ kky
 aXQ
 rlz
 sXt
-hbU
+eWk
 vXP
 bDH
 uor
