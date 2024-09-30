@@ -19,7 +19,7 @@
 		JOB_AI,
 		JOB_CYBORG,
 	)
-	weight = 6
+	weight = 10
 	min_players = 15
 
 /datum/round_event_control/antagonist/solo/heretic/roundstart
