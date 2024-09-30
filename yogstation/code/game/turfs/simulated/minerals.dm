@@ -38,7 +38,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/dilithium/ice/hard/icemoon
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice/icemoon

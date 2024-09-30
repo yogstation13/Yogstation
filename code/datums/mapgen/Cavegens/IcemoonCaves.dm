@@ -17,7 +17,7 @@
 	var/basalt_smoothing_interations = 100
 	var/basalt_birth_limit = 4
 	var/basalt_death_limit = 3
-	var/basalt_turf = /turf/closed/mineral/random/snow/hard
+	var/basalt_turf = /turf/closed/mineral/random/snow/hard/icemoon
 
 	var/big_node_min = 25
 	var/big_node_max = 55

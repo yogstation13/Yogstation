@@ -358,7 +358,7 @@
 
 /turf/closed/mineral/random/snow/hard
 	name = "hardened ice"
-	color = "#7ca9cf"
+	color = "#98c6eb"
 	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
@@ -430,7 +430,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/iron/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -485,7 +485,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/uranium/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -540,7 +540,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/diamond/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -595,7 +595,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/gold/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -650,7 +650,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/silver/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -705,7 +705,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/titanium/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -760,7 +760,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/plasma/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -799,7 +799,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/bananium/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -867,7 +867,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/bscrystal/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -1104,7 +1104,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/gibtonite/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
@@ -1167,7 +1167,7 @@
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
-	color = "#7ca9cf"
+	color = "#98c6eb"
 
 /turf/closed/mineral/glacite/ice/hard/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
