@@ -40,4 +40,5 @@
 
 /datum/round_event/antagonist/solo/clockcult/add_datum_to_mind(datum/mind/antag_mind)
 	antag_mind.special_role = ROLE_SERVANT_OF_RATVAR
+	antag_mind.assigned_role = ROLE_SERVANT_OF_RATVAR
 	antag_mind.add_antag_datum(antag_datum)
