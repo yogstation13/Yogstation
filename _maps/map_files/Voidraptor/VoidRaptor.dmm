@@ -51842,6 +51842,7 @@
 /obj/item/mmi{
 	pixel_y = -5
 	},
+/obj/item/healthanalyzer,
 /turf/open/floor/iron/dark/textured,
 /area/station/science/robotics/lab)
 "oEk" = (

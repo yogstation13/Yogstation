@@ -67933,11 +67933,10 @@
 /area/station/security/detectives_office)
 "qgR" = (
 /obj/structure/table/reinforced,
-/obj/item/retractor,
-/obj/item/hemostat,
 /obj/structure/window/reinforced/spawner/directional/north{
 	pixel_y = 2
 	},
+/obj/item/healthanalyzer,
 /turf/open/floor/iron,
 /area/station/science/robotics/lab)
 "qgU" = (
@@ -86713,14 +86712,10 @@
 /area/station/security/lockers)
 "uHW" = (
 /obj/structure/table/reinforced,
-/obj/item/scalpel{
-	pixel_y = 8
-	},
-/obj/item/circular_saw,
-/obj/item/cautery,
 /obj/structure/sign/departments/medbay/alt/directional/south,
 /obj/machinery/light/cold/directional/east,
 /obj/machinery/status_display/evac/directional/east,
+/obj/item/surgery_tray,
 /turf/open/floor/iron,
 /area/station/science/robotics/lab)
 "uHZ" = (

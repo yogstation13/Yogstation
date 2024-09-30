@@ -55979,6 +55979,10 @@
 	dir = 4
 	},
 /obj/structure/table,
+/obj/item/healthanalyzer{
+	pixel_x = -1;
+	pixel_y = 6
+	},
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/iron/white,
 /area/station/science/robotics/lab)

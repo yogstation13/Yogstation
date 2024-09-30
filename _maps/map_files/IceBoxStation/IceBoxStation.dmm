@@ -1372,11 +1372,8 @@
 /area/station/hallway/primary/port)
 "awK" = (
 /obj/structure/table,
-/obj/item/hemostat,
-/obj/item/cautery{
-	pixel_x = 4
-	},
 /obj/item/radio/intercom/directional/north,
+/obj/item/razor,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "axc" = (
@@ -27114,11 +27111,8 @@
 /area/station/hallway/primary/central)
 "iII" = (
 /obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
 /obj/machinery/light/directional/north,
+/obj/item/surgery_tray,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "iIW" = (
@@ -33060,7 +33054,7 @@
 /area/mine/laborcamp)
 "kBT" = (
 /obj/structure/table,
-/obj/item/retractor,
+/obj/item/healthanalyzer,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "kBV" = (
@@ -67991,8 +67985,6 @@
 "vPE" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/latex,
-/obj/item/surgical_drapes,
-/obj/item/razor,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)

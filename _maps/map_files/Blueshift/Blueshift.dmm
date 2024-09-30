@@ -16930,24 +16930,11 @@
 /area/station/commons/dorms/room8)
 "djt" = (
 /obj/structure/table,
-/obj/item/surgical_drapes{
-	pixel_x = 7;
-	pixel_y = -2
-	},
-/obj/item/circular_saw{
-	pixel_y = 12
-	},
-/obj/item/healthanalyzer{
-	pixel_x = -4;
-	pixel_y = -3
-	},
-/obj/item/scalpel{
-	pixel_y = 19
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 10
 	},
 /obj/item/radio/intercom/directional/west,
+/obj/item/surgery_tray,
 /turf/open/floor/iron/white,
 /area/station/science/robotics)
 "djv" = (
@@ -119740,21 +119727,16 @@
 /area/station/cargo/warehouse)
 "xej" = (
 /obj/structure/table,
-/obj/item/retractor,
-/obj/item/hemostat{
-	pixel_x = -9;
-	pixel_y = -2
-	},
-/obj/item/cautery{
-	pixel_x = -5;
-	pixel_y = 3
-	},
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 9
 	},
 /obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 14;
-	pixel_y = -1
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/healthanalyzer{
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /turf/open/floor/iron/white,
 /area/station/science/robotics)

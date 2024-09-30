@@ -25369,11 +25369,8 @@
 /area/station/commons/fitness/recreation)
 "iYO" = (
 /obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 16
-	},
 /obj/effect/turf_decal/tile/purple/half/contrasted,
+/obj/item/surgery_tray,
 /turf/open/floor/iron/white,
 /area/station/science/robotics/lab)
 "iYP" = (
@@ -47028,8 +47025,6 @@
 "qBr" = (
 /obj/structure/window/spawner/directional/west,
 /obj/structure/table,
-/obj/item/surgical_drapes,
-/obj/item/cautery,
 /obj/effect/turf_decal/tile/purple/half/contrasted,
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -68591,10 +68586,6 @@
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "yeS" = (
-/obj/item/retractor,
-/obj/item/hemostat{
-	pixel_x = -10
-	},
 /obj/machinery/light/small/directional/south,
 /obj/structure/table,
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted,

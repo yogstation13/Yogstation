@@ -31710,12 +31710,10 @@
 /turf/open/floor/wood,
 /area/station/maintenance/port/fore)
 "jJW" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-18"
-	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
+/obj/machinery/medipen_refiller,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/medbay/lobby)
 "jKj" = (
@@ -42292,9 +42290,6 @@
 /area/space/nearstation)
 "nij" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/latex,
-/obj/item/clothing/suit/apron/surgical,
-/obj/item/clothing/mask/surgical,
 /obj/item/mmi,
 /obj/item/mmi,
 /obj/item/mmi,
@@ -46098,9 +46093,6 @@
 /area/station/security/courtroom)
 "oyX" = (
 /obj/structure/table,
-/obj/item/surgical_drapes,
-/obj/item/retractor,
-/obj/item/cautery,
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/north{
 	pixel_y = 1
@@ -46108,6 +46100,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
+/obj/item/surgery_tray,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "oyY" = (
@@ -75230,17 +75223,16 @@
 /area/station/medical/medbay/central)
 "xvh" = (
 /obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 16
-	},
-/obj/item/hemostat,
 /obj/structure/window/reinforced/spawner/directional/north{
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
 	dir = 1
 	},
+/obj/item/clothing/gloves/latex,
+/obj/item/healthanalyzer,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/suit/apron/surgical,
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "xvj" = (
