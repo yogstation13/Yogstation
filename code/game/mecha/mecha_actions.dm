@@ -198,12 +198,10 @@
 	if(chassis.leg_overload_mode)
 		chassis.leg_overload_mode = 1
 		chassis.bumpsmash = 1
-		chassis.step_in = min(1, round(chassis.step_in/2))
 		chassis.occupant_message(span_danger("You enable leg actuators overload."))
 	else
 		chassis.leg_overload_mode = 0
 		chassis.bumpsmash = initial(chassis.bumpsmash)
-		chassis.step_in = initial(chassis.step_in)
 		chassis.occupant_message(span_notice("You disable leg actuators overload."))
 	build_all_button_icons()
 
