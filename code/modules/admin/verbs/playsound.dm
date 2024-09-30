@@ -107,7 +107,8 @@
 		if (duration > 10 MINUTES)
 			if((tgui_alert(user, "This song is over 10 minutes long. Are you sure you want to play it?", "Length Warning!", list("No", "Yes", "Cancel")) != "Yes"))
 				return
-		var/res = tgui_alert(user, "Show the title of and link to this song to the players?\n[title]", "Show Info?", list("Yes", "No", "Cancel"))
+		// MONKESTATION EDIT ORIGINAL: var/res = tgui_alert(user, "Show the title of and link to this song to the players?\n[title]", "Show Info?", list("Yes", "No", "Cancel"))
+		var/res = tgui_input_list(user, "Show the title of and link to this song to the players?\n[title]", "Show Info?", list("Yes", "No", "Custom Title", "Cancel")) // MONKESTATION EDIT - Custom title
 		switch(res)
 			if("Yes")
 				music_extra_data["title"] = data["title"]
@@ -117,6 +118,14 @@
 				music_extra_data["artist"] = "Song Artist Hidden"
 				music_extra_data["upload_date"] = "Song Upload Date Hidden"
 				music_extra_data["album"] = "Song Album Hidden"
+			// MONKESTATION EDIT START - Custom title
+			if("Custom Title")
+				var/custom_title = tgui_input_text(user, "Enter the title to show to players", "Custom sound info", null)
+				if (!length(custom_title))
+					tgui_alert(user, "No title specified, using default.", "Custom sound info", list("Okay"))
+				else
+					music_extra_data["title"] = custom_title
+			// MONKESTATION EDIT END
 			if("Cancel", null)
 				return
 		var/anon = tgui_alert(user, "Display who played the song?", "Credit Yourself?", list("Yes", "No", "Cancel"))
