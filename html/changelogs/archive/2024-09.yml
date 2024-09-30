@@ -636,5 +636,16 @@
 2024-09-30:
   Gw0sty:
   - bugfix: Removed the second windoor on delta botany.
+  - rscadd: adds missing medipen refiller to Kilo
+  - qol: Ensures all surgical tools in robotics are in a container of some sort.
+  - rscadd: Added disk compartmentalizers to most stations virology and hydroponics.
+  - qol: Made Bio bags able to hold GNA disks. (Disease disks)
+  - qol: Moves botany and chicken lexicons into a single bookshelf
+  - rscadd: Added an auto lathe, morgue, and plasteel to Blueshift's robotics
+  KnigTheThrasher:
+  - rscadd: Added a shower to kilo engi
+  - rscadd: Added a windoor to medbay storage on kilo
   Shoddd:
   - balance: syndicate bible can now provide anti-magic from pocket and belt
+  t-toasted:
+  - rscadd: Theseus
