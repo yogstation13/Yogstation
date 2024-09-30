@@ -100817,9 +100817,6 @@
 /obj/machinery/door/window/left/directional/west{
 	name = "Hydroponics Center"
 	},
-/obj/machinery/door/window/left/directional/west{
-	name = "Hydroponics Center"
-	},
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "ybb" = (
