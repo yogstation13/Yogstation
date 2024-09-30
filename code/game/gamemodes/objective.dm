@@ -206,6 +206,9 @@ GLOBAL_LIST_EMPTY(objectives)
 	target_amount = old_obj.target_amount
 	explanation_text = old_obj.explanation_text
 
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Assassinate--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/assassinate
 	name = "assassinate"
 	var/target_role_type=FALSE
@@ -287,6 +290,9 @@ GLOBAL_LIST_EMPTY(objectives)
 		return TRUE
 	return !considered_alive(target)
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/mutiny
 	name = "mutiny"
 	var/target_role_type=FALSE
@@ -312,6 +318,9 @@ GLOBAL_LIST_EMPTY(objectives)
 	else
 		explanation_text = "Free Objective"
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/maroon
 	name = "maroon"
 	var/target_role_type=FALSE
@@ -340,6 +349,9 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/maroon/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/debrain
 	name = "debrain"
 	var/target_role_type=0
@@ -376,6 +388,9 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/debrain/admin_edit(mob/admin)
 	admin_simple_target_pick(admin)
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/protect//The opposite of killing a dude.
 	name = "protect"
 	martyr_compatible = 1
@@ -407,6 +422,9 @@ GLOBAL_LIST_EMPTY(objectives)
 	name = "protect nonhuman"
 	human_check = FALSE
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/assist
 	name = "assist"
 	var/target_role_type
@@ -543,6 +561,9 @@ GLOBAL_LIST_EMPTY(objectives)
 				counter++
 	return counter >= number_of_borgs
 
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Escape-----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/escape
 	name = "escape"
 	explanation_text = "Escape on the shuttle or an escape pod alive and without being in custody."
@@ -640,6 +661,9 @@ GLOBAL_LIST_EMPTY(objectives)
 	target_real_name = old_obj.target_real_name
 	target_missing_id = old_obj.target_missing_id
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/survive
 	name = "survive"
 	explanation_text = "Stay alive until the end."
@@ -665,6 +689,9 @@ GLOBAL_LIST_EMPTY(objectives)
 			return FALSE
 	return TRUE
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/martyr
 	name = "martyr"
 	explanation_text = "Die a glorious death."
@@ -680,6 +707,9 @@ GLOBAL_LIST_EMPTY(objectives)
 			return FALSE
 	return TRUE
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/nuclear
 	name = "nuclear"
 	explanation_text = "Destroy the station with a nuclear device."
@@ -691,7 +721,10 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(SSgamemode?.station_was_nuked)
 		return TRUE
 	return FALSE
-	
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Steal-------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 GLOBAL_LIST_INIT(infiltrator_objective_areas, typecacheof(list(/area/yogs/infiltrator_base, /area/centcom/syndicate_mothership, /area/shuttle/yogs/stealthcruiser)))
 GLOBAL_LIST_EMPTY(possible_items)
 /datum/objective/steal
@@ -849,6 +882,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	explanation_text = "Do not give up or lose [targetinfo.name]."
 	steal_target = targetinfo.targetitem
 
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Capture----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/capture
 	name = "capture"
 
@@ -904,6 +940,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	. = ..()
 	explanation_text = "Capture [target_amount] sapient lifeform\s with an energy net. Only living specimens count."
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/protect_object
 	name = "protect object"
 	var/obj/protect_target
@@ -924,8 +963,10 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		return TRUE
 	return !QDELETED(protect_target)
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 //Changeling Objectives
-
 /datum/objective/absorb
 	name = "absorb"
 
@@ -1017,7 +1058,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 	return FALSE
 
 //End Changeling Objectives
-
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/destroy
 	name = "destroy AI"
 
@@ -1054,6 +1097,9 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 /datum/objective/destroy/internal
 	var/stolen = FALSE 		//Have we already eliminated this target?
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/steal_n_of_type
 	name = "steal five of"
 	explanation_text = "Steal some items!"
@@ -1146,10 +1192,15 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 				stolen_count++
 	return stolen_count >= amount
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/research_secrets
 	explanation_text = "Use your gloves on a research & development server to sabotage research efforts.  Note that the AI will be alerted once you begin!"
 
-
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 //Created by admin tools
 /datum/objective/custom
 	name = "custom"
