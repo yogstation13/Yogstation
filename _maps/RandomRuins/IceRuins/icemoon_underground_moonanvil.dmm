@@ -79,13 +79,11 @@
 /turf/closed/indestructible/riveted/boss,
 /area/icemoon/underground)
 "u" = (
-/obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
+/turf/open/lava/plasma/ice_moon,
 /area/icemoon/underground)
 "y" = (
-/obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/icemoon/do_not_chasm,
-/area/icemoon/underground)
+/turf/template_noop,
+/area/template_noop)
 "z" = (
 /obj/structure/stone_tile/block{
 	dir = 1
@@ -217,59 +215,59 @@
 /area/icemoon/underground)
 
 (1,1,1) = {"
-a
-a
+y
+y
+y
+y
 u
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-u
-a
-"}
-(2,1,1) = {"
-a
 y
 a
 a
-a
-a
+y
+y
+u
+u
+y
+u
+y
+"}
+(2,1,1) = {"
+y
+u
+u
+y
+u
+u
 a
 G
 a
-a
-a
-a
-a
-a
-a
+u
+u
+u
+u
+u
+u
 "}
 (3,1,1) = {"
-a
-a
+u
+u
 s
 s
 s
+u
 a
 a
 a
-a
-a
+u
 s
 s
 s
-a
-a
+u
+y
 "}
 (4,1,1) = {"
-a
-a
+u
+u
 s
 a
 a
@@ -281,12 +279,12 @@ a
 a
 a
 s
-y
-a
+u
+u
 "}
 (5,1,1) = {"
-a
-a
+u
+u
 s
 a
 a
@@ -298,13 +296,13 @@ a
 a
 a
 s
-a
-a
+u
+u
 "}
 (6,1,1) = {"
-a
-a
-a
+y
+u
+u
 a
 a
 s
@@ -314,12 +312,12 @@ s
 s
 a
 a
+u
 a
-a
-a
+y
 "}
 (7,1,1) = {"
-a
+y
 a
 a
 a
@@ -336,7 +334,7 @@ a
 a
 "}
 (8,1,1) = {"
-G
+a
 a
 b
 q
@@ -353,7 +351,7 @@ k
 a
 "}
 (9,1,1) = {"
-a
+y
 a
 a
 a
@@ -370,9 +368,9 @@ a
 a
 "}
 (10,1,1) = {"
-a
-a
-a
+u
+u
+u
 a
 a
 s
@@ -383,12 +381,12 @@ s
 a
 a
 a
-a
-a
+u
+y
 "}
 (11,1,1) = {"
-a
-a
+y
+u
 s
 a
 a
@@ -400,12 +398,12 @@ a
 a
 a
 s
-a
-a
+u
+y
 "}
 (12,1,1) = {"
 u
-a
+u
 s
 a
 a
@@ -417,57 +415,57 @@ a
 a
 a
 s
-a
-a
+u
+u
 "}
 (13,1,1) = {"
-a
-a
+u
+u
 s
 s
 s
+u
 a
 a
 a
-a
-a
+u
 s
 s
 s
-a
-a
+u
+y
 "}
 (14,1,1) = {"
-a
-a
-a
-a
-a
-a
 y
-a
-a
-a
+u
+u
+u
+u
+u
 a
 a
 a
 a
 u
+u
+u
+u
+u
 "}
 (15,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
+y
+y
+u
+y
+u
+y
+y
 j
-a
-a
-a
-a
-a
-a
-a
+y
+y
+y
+u
+y
+u
+y
 "}
