@@ -39,6 +39,7 @@
 	weight = 4
 
 /datum/round_event/antagonist/solo/nuclear_operative
+	end_when = 60000
 	excute_round_end_reports = TRUE
 	var/static/datum/team/nuclear/nuke_team
 	var/set_leader = FALSE

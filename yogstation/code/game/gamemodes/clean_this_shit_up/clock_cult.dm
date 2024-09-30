@@ -12,6 +12,12 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 	if(!M || !ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/L = M
+
+	var/list/items = L.get_equipped_items(TRUE)
+	L.unequip_everything()
+	for(var/obj/item/item as anything in items)
+		qdel(item)
+
 	L.equipOutfit(/datum/outfit/servant_of_ratvar)
 	var/obj/item/clockwork/slab/S = new
 	var/slot = "At your feet"
@@ -32,6 +38,20 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 		return TRUE
 	return FALSE
 
+
+/datum/controller/subsystem/gamemode/proc/greet_servant(mob/M, ark_time) //Description of their role
+	if(!M)
+		return 0
+	to_chat(M, "<span class='bold large_brass'>You are a servant of Ratvar, the Clockwork Justiciar!</span>")
+	to_chat(M, span_brass("He came to you in a dream, whispering softly in your ear, showing you visions of a majestic city, covered in brass. You were not the first to be reached out to by him, and you will not be the last."))
+	to_chat(M, span_brass("However, you are one of the few worthy enough to have found his home, hidden among the stars, and as such you shall be rewarded for your dedication. One last trial remains."))
+	to_chat(M, span_brass("Start the ark to weaken the veil and ensure the return of your lord; but beware, as there are those that seek to hinder you. They are unenlightened, show them Ratvars light to help them gain understanding and join your cause."))
+	to_chat(M, span_brass("You have approximately <b>[ark_time]</b> minutes until the Ark activates."))
+	to_chat(M, span_brass("Unlock <b>Script</b> scripture by converting a new servant."))
+	to_chat(M, span_brass("<b>Application</b> scripture will be unlocked halfway until the Ark's activation."))
+	to_chat(M, span_brass("Soon, Ratvar shall create a new City of Cogs, and forge a golden age for all sentient beings."))
+	M.playsound_local(get_turf(M), 'sound/ambience/antag/clockcultalr.ogg', 100, FALSE, pressure_affected = FALSE)
+	return 1
 
 /proc/is_servant_of_ratvar(mob/M)
 	if(!istype(M))
