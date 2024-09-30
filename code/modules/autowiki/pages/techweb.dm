@@ -3,19 +3,22 @@
 
 /datum/autowiki/techweb/generate()
 	var/output = ""
-
+	var/datum/asset/spritesheet/research = get_asset_datum(/datum/asset/spritesheet/research_designs)
+	var/filename = SANITIZE_FILENAME(escape_value(format_text(research)))
 	for (var/node_id in sort_list(SSresearch.techweb_nodes, GLOBAL_PROC_REF(sort_research_nodes)))
 		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
 		if (!node.show_on_wiki)
 			continue
 
 		output += "\n\n" + include_template("Autowiki/TechwebEntry", list(
+			"icon" = (filename),
 			"name" = escape_value(node.display_name),
 			"description" = escape_value(node.description),
 			"prerequisites" = generate_prerequisites(node.prereq_ids),
 			"designs" = generate_designs(node.design_ids),
 		))
 
+	upload_icon(getFlatIcon(research, no_anim = TRUE), filename)
 	return output
 
 /datum/autowiki/techweb/proc/generate_designs(list/design_ids)
