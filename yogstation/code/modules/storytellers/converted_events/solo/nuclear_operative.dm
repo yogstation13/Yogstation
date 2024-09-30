@@ -5,6 +5,7 @@
 	antag_datum = /datum/antagonist/nukeop
 	typepath = /datum/round_event/antagonist/solo/nuclear_operative
 	shared_occurence_type = SHARED_HIGH_THREAT
+	max_occurrences = 1
 	restricted_roles = list(
 		JOB_AI,
 		JOB_CAPTAIN,
@@ -36,7 +37,6 @@
 	title_icon = "nukeops"
 	earliest_start = 0 SECONDS
 	weight = 4
-	max_occurrences = 3
 
 /datum/round_event/antagonist/solo/nuclear_operative
 	excute_round_end_reports = TRUE
@@ -44,10 +44,12 @@
 	var/set_leader = FALSE
 	var/required_role = ROLE_OPERATIVE
 	var/datum/mind/most_experienced
+	var/boss_type = /datum/antagonist/nukeop/leader
 
 /datum/round_event/antagonist/solo/nuclear_operative/add_datum_to_mind(datum/mind/antag_mind)
 	if(most_experienced == antag_mind)
 		return
+
 	var/mob/living/current_mob = antag_mind.current
 	SSjob.FreeRole(antag_mind.assigned_role)
 	var/list/items = current_mob.get_equipped_items(TRUE)
@@ -70,14 +72,16 @@
 			leader_mob.unequip_everything()
 			for(var/obj/item/item as anything in leader_items)
 				qdel(item)
-		most_experienced.special_role = ROLE_OPERATIVE
-		var/datum/antagonist/nukeop/leader/leader_antag_datum = most_experienced.add_antag_datum(/datum/antagonist/nukeop/leader)
+		most_experienced.special_role = required_role
+		most_experienced.assigned_role = required_role
+		var/datum/antagonist/nukeop/leader/leader_antag_datum = most_experienced.add_antag_datum(boss_type)
 		nuke_team = leader_antag_datum.nuke_team
 
 	if(antag_mind == most_experienced)
 		return
 
-	antag_mind.special_role = ROLE_OPERATIVE
+	antag_mind.special_role = required_role
+	antag_mind.assigned_role = required_role
 
 	var/datum/antagonist/nukeop/new_op = new antag_datum()
 	antag_mind.add_antag_datum(new_op)

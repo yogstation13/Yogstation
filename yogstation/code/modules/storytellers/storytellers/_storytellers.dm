@@ -141,7 +141,7 @@
 			else
 				message_admins("WARNING: Storyteller picked a null from event pool. Aborting event roll.")
 				stack_trace("WARNING: Storyteller picked a null from event pool.")
-				SSgamemode.event_track_points[track] = 0
+				mode.event_track_points[track] = 0
 				return
 	buy_event(picked_event, track, are_forced)
 	. = TRUE
@@ -156,14 +156,17 @@
 	mode.event_track_points[track] = max(mode.event_track_points[track] - total_cost, 0)
 	message_admins("Storyteller purchased and [bought_event.roundstart ? "triggered" : "scheduled"] [bought_event] event, on [track] track, for [total_cost] cost.")
 	log_storyteller("Storyteller purchased and [bought_event.roundstart ? "triggered" : "scheduled"] [bought_event] event, on [track] track, for [total_cost] cost.")
+
 	if(bought_event.roundstart)
 		if(!ignores_roundstart)
-			SSgamemode.ran_roundstart = TRUE
-			SSgamemode.title_icon = bought_event.title_icon
+			mode.ran_roundstart = TRUE
 		mode.TriggerEvent(bought_event, forced)
 	else
 		mode.schedule_event(bought_event, 3 MINUTES, total_cost, _forced = forced)
-	SSgamemode.triggered_round_events |= bought_event.name
+	mode.triggered_round_events |= bought_event.name
+
+	if(!mode.title_icon && bought_event.title_icon) //first come first served to the title icon
+		mode.title_icon = bought_event.title_icon
 
 /// Calculates the weights of the events from a passed track.
 /datum/storyteller/proc/calculate_weights(track)
