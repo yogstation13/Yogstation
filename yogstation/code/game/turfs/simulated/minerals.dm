@@ -25,7 +25,8 @@
 
 /turf/closed/mineral/dilithium/ice
 	environment_type = "snow_cavern"
-	icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
+	icon_state = "mountainrock"	
+icon = MAP_SWITCH('icons/turf/walls/mountain_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "mountain_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	turf_type = /turf/open/floor/plating/asteroid/snow/ice
@@ -35,6 +36,7 @@
 
 /turf/closed/mineral/dilithium/ice/hard
 	name = "hardened ice"
+	icon_state = "icerock"
 	icon = MAP_SWITCH('icons/turf/walls/icerock_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "icerock_wall"
 	hardness = 2
