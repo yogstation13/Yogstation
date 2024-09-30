@@ -10,12 +10,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			continue
 		if(I.include_uplinks.len && !(uplink_type in I.include_uplinks))
 			continue
-		if(I.include_antags.len)
-			if(antagonist && !(antagonist in I.include_antags))
-				continue
-		if(I.exclude_antags.len)
-			if(antagonist && (antagonist in I.exclude_antags))
-				continue
+		if(antagonist)
+			if(I.include_antags.len)
+				if(!(antagonist in I.include_antags))
+					continue
+			if(I.exclude_antags.len)
+				if(antagonist in I.exclude_antags)
+					continue
 		if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len)
 			continue
 		if (I.restricted && !allow_restricted)
