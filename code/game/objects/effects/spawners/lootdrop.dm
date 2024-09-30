@@ -850,8 +850,8 @@
 	name = "rare loot"
 
 	loot = list(
-				/obj/item/gun/ballistic/automatic/pistol/usp = 3,
-				/obj/item/gun/ballistic/automatic/pistol/usp/no_mag,
+				/obj/item/gun/ballistic/automatic/pistol/usp = 2,
+				/obj/item/gun/ballistic/automatic/pistol/usp/no_mag = 2,
 				/obj/item/gun/ballistic/automatic/mp7 = 3,
 				/obj/item/clothing/suit/armor/civilprotection = 3,
 				/obj/item/radio/off/halflife,
@@ -862,6 +862,6 @@
 				/obj/item/gun/ballistic/automatic/pistol/m1911,
 				/obj/item/gun/ballistic/automatic/m4a1,
 				/obj/item/grenade/syndieminibomb/bouncer,
-				/obj/item/kitchen/knife/combat,
-				/obj/item/clothing/suit/armor/kevlar
+				/obj/item/kitchen/knife/combat = 2,
+				/obj/item/clothing/suit/armor/kevlar = 2
 				)
