@@ -62,6 +62,9 @@
 		if(expansion_hw)
 			if(!user.transferItemToLoc(I, src))
 				return
+			else
+				to_chat(user, "You insert \the [I] into \the secondary [src].")
+				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 		else
 			to_chat(user, span_warning("You cannot insert \the [I] into \the primary [src]!"))
 
