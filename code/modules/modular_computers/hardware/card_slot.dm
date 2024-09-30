@@ -63,7 +63,7 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 		else
-			to_chat(user, span_warning("You cannot insert \the [I] into the primary [src]!"))
+			to_chat(user, span_warning("You cannot insert \the [I] into \the primary [src]!"))
 
 	if(!istype(I, /obj/item/card/id))
 		return FALSE
