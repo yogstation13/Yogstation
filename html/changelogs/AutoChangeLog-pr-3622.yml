@@ -1,0 +1,4 @@
+author: "flleeppyy"
+delete-after: True
+changes:
+  - admin: "\"Play Internet Sound\" now has a \"Custom Title\" option"
