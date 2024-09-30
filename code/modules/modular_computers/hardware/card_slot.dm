@@ -7,7 +7,6 @@
 	device_type = MC_CARD
 
 	var/obj/item/card/id/stored_card
-	var/inserted_pai
 
 ///What happens when the ID card is removed (or deleted) from the module, through try_eject() or not.
 /obj/item/computer_hardware/card_slot/Exited(atom/A, atom/newloc)
@@ -59,17 +58,6 @@
 /obj/item/computer_hardware/card_slot/try_insert(obj/item/I, mob/living/user = null)
 	if(!holder)
 		return FALSE
-	if(istype(I, /obj/item/paicard))
-		if(expansion_hw)
-			if(!user.transferItemToLoc(I, src))
-				I.forceMove(src)
-			inserted_pai = !inserted_pai
-			to_chat(user, "<span class='notice'>You insert \the [I] into \the [src].</span>")
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
-			return TRUE
-		else
-			if (!stored_card)
-				to_chat(user, span_warning("You cannot insert \the [I] into \the primary [src]!"))
 
 	if(!istype(I, /obj/item/card/id))
 		return FALSE
