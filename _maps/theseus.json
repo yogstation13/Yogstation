@@ -1,0 +1,24 @@
+{
+	"version": 1,
+	"map_name": "Theseus",
+	"map_path": "map_files/Theseus",
+	"map_file": "Theseus.dmm",
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_meta",
+		"emergency": "emergency_meta"
+	},
+	"traits": [
+		{
+			"Linkage": "Cross",
+			"Bombcap Multiplier": 0.8
+		}
+	],
+	"orbit_shift_replacement": "Attention crew, it appears your station orbit has breached the containment area of an unstable sector. Be aware, and act accordingly.",
+	"job_changes": {
+		"Cook": {
+			"additional_cqc_areas": ["/area/station/service/cafeteria", "/area/station/service/bar"]
+		}
+	}
+}
