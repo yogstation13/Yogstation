@@ -10993,6 +10993,13 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
+"bsn" = (
+/obj/structure/closet/secure_closet/brig{
+	id = "Cell 1";
+	name = "Cell 1 Locker"
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
 "bsv" = (
 /obj/structure/cloth_curtain{
 	color = "#99ccff";
@@ -131721,7 +131728,7 @@ akh
 ajL
 xEJ
 aZY
-akh
+bsn
 amf
 aZU
 aYa
