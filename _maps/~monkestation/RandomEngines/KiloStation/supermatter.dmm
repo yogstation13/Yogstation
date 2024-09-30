@@ -486,21 +486,14 @@
 /obj/structure/cable,
 /turf/open/floor/circuit/red,
 /area/station/engineering/supermatter/room)
-"sz" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter/room)
 "sF" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
 "sG" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "th" = (
@@ -609,6 +602,16 @@
 "vD" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
+/area/station/engineering/supermatter/room)
+"vH" = (
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/iron/dark/textured,
 /area/station/engineering/supermatter/room)
 "vL" = (
 /obj/machinery/light/directional/east,
@@ -839,6 +842,16 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
+"Ew" = (
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/iron/dark/textured,
+/area/station/engineering/supermatter/room)
 "EA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1462,6 +1475,14 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"Xz" = (
+/mob/living/basic/pet/poppy,
+/obj/structure/bed/dogbed/ian{
+	name = "Poppy's Bed"
+	},
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/iron/dark/textured,
+/area/station/engineering/supermatter/room)
 "XE" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/effect/turf_decal/stripes/corner{
@@ -1483,7 +1504,15 @@
 /turf/closed/wall/r_wall,
 /area/station/engineering/supermatter)
 "Yu" = (
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/structure/tank_holder/extinguisher/advanced,
+/turf/open/floor/iron/dark/textured,
 /area/station/engineering/supermatter/room)
 "YC" = (
 /obj/effect/turf_decal/delivery,
@@ -1741,7 +1770,7 @@ aK
 fN
 BL
 sG
-Yu
+vH
 Yu
 pk
 FB
@@ -1763,9 +1792,9 @@ aK
 (10,1,1) = {"
 BM
 Qj
-sz
-Yu
-Yu
+sG
+Ew
+Xz
 ZC
 wk
 EA

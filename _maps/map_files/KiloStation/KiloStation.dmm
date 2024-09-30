@@ -992,7 +992,6 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/machinery/incident_display/delam/directional/north,
-/mob/living/basic/pet/poppy,
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
 "amy" = (
@@ -4338,10 +4337,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/xenobiology)
-"bwr" = (
-/obj/structure/flora/rock/pile/style_random,
-/turf/open/misc/asteroid/airless,
-/area/space)
 "bwA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -5780,15 +5775,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"bUN" = (
-/turf/open/floor/plating/airless,
-/area/space)
 "bUO" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/space)
+/area/space/nearstation)
 "bVh" = (
 /obj/structure/urinal/directional/west,
 /obj/effect/decal/remains/human,
@@ -6836,12 +6828,6 @@
 /obj/structure/cable/layer3,
 /turf/closed/wall/rust,
 /area/station/ai_monitored/turret_protected/aisat_interior)
-"cic" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plating/airless,
-/area/space)
 "cij" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -7353,7 +7339,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/space)
+/area/space/nearstation)
 "cov" = (
 /obj/structure/disposaloutlet{
 	dir = 8
@@ -7539,7 +7525,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/space)
+/area/space/nearstation)
 "crR" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -10463,6 +10449,10 @@
 	pixel_x = 10;
 	pixel_y = 15
 	},
+/obj/machinery/door/window/left/directional/west{
+	name = "Medbay Storage"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
 "dqw" = (
@@ -11693,7 +11683,6 @@
 	},
 /area/station/service/chapel)
 "dKz" = (
-/obj/structure/rack,
 /obj/effect/turf_decal/bot,
 /obj/item/storage/belt/utility{
 	pixel_x = 5;
@@ -11714,6 +11703,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/structure/table,
+/obj/machinery/cell_charger_multi,
+/obj/item/stock_parts/cell/high,
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage_shared)
 "dKJ" = (
@@ -21331,9 +21323,8 @@
 "gIY" = (
 /obj/structure/sign/poster/random/directional/south,
 /obj/machinery/shower/directional/north,
-/obj/effect/turf_decal/box,
-/obj/effect/turf_decal/tile/neutral/half/contrasted,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/noslip,
 /area/station/medical/treatment_center)
 "gJc" = (
 /obj/structure/railing{
@@ -23848,6 +23839,7 @@
 	pixel_y = -3
 	},
 /obj/machinery/light/directional/north,
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/storage)
 "hxi" = (
@@ -24742,7 +24734,7 @@
 "hJY" = (
 /obj/machinery/door/airlock/medical/glass{
 	id_tag = "medbay_front_door";
-	name = "Medbay"
+	name = "Medbay Storage"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /obj/machinery/door/firedoor,
@@ -29251,6 +29243,7 @@
 	pixel_y = 3
 	},
 /obj/item/defibrillator/loaded,
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/storage)
 "iUF" = (
@@ -38016,7 +38009,7 @@
 	width = 7
 	},
 /turf/open/floor/plating/airless,
-/area/space)
+/area/space/nearstation)
 "lOA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -54740,10 +54733,9 @@
 /area/station/maintenance/port/fore)
 "rhl" = (
 /obj/machinery/shower/directional/north,
-/obj/effect/turf_decal/box,
-/obj/effect/turf_decal/tile/neutral/half/contrasted,
 /obj/machinery/station_map/engineering/directional/south,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/box/red,
+/turf/open/floor/noslip,
 /area/station/medical/treatment_center)
 "rhv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -59430,9 +59422,6 @@
 	},
 /turf/open/floor/grass,
 /area/station/security/prison/garden)
-"sFf" = (
-/turf/open/misc/asteroid/airless,
-/area/space)
 "sFg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -59883,12 +59872,10 @@
 /turf/open/floor/iron,
 /area/station/service/janitor)
 "sLU" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
 /obj/machinery/light/small/directional/north,
 /obj/structure/sign/warning/electric_shock/directional/north,
 /obj/structure/cable,
+/obj/machinery/power/smes/full,
 /turf/open/floor/circuit/red/telecomms,
 /area/station/tcommsat/server)
 "sLW" = (
@@ -66004,6 +65991,7 @@
 	name = "medical camera";
 	network = list("ss13","medical")
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/storage)
 "uIs" = (
@@ -69720,14 +69708,10 @@
 /turf/open/floor/iron,
 /area/station/security/courtroom)
 "vNt" = (
-/obj/structure/table,
-/obj/item/stock_parts/cell/high,
 /obj/item/radio/intercom/directional/south,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/cell_charger_multi,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/box/red,
+/obj/machinery/shower/directional/north,
+/turf/open/floor/noslip,
 /area/station/engineering/storage_shared)
 "vNB" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -70480,6 +70464,7 @@
 	pixel_y = 3
 	},
 /obj/machinery/light/directional/north,
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/storage)
 "vXp" = (
@@ -71478,6 +71463,7 @@
 	department = "Medbay";
 	name = "Medbay Requests Console"
 	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
 /turf/open/floor/iron/showroomfloor,
 /area/station/medical/storage)
 "wlO" = (
@@ -84998,7 +84984,7 @@ aaa
 aaa
 aaB
 aaa
-sFf
+aeU
 aeu
 aeu
 dWG
@@ -85254,8 +85240,8 @@ aaa
 aaa
 aaa
 aaa
-sFf
-sFf
+aeU
+aeU
 aeu
 aeu
 aeu
@@ -85511,11 +85497,11 @@ aaa
 aaa
 aaa
 aaa
-bwr
-sFf
-sFf
-sFf
-sFf
+aUz
+aeU
+aeU
+aeU
+aeU
 aaa
 aaa
 acm
@@ -85768,10 +85754,10 @@ aaa
 aaa
 aaa
 aaa
-sFf
-sFf
-sFf
-sFf
+aeU
+aeU
+aeU
+aeU
 aaa
 aaa
 aaa
@@ -86025,10 +86011,10 @@ aeU
 aeu
 aeu
 aeU
-sFf
-sFf
-bwr
-sFf
+aeU
+aeU
+aUz
+aeU
 aaa
 aaa
 aaa
@@ -86285,7 +86271,7 @@ aeU
 aeU
 aeU
 aeU
-sFf
+aeU
 aaa
 aaa
 aaa
@@ -116641,13 +116627,13 @@ hGX
 mkk
 aeu
 bPP
-bUN
-bUN
-bUN
+cko
+cko
+cko
 lOt
-bUN
-bUN
-bUN
+cko
+cko
+cko
 bUd
 aeu
 aeu
@@ -116898,13 +116884,13 @@ itC
 rCi
 aeu
 fIn
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUe
 aeu
 aeu
@@ -117155,13 +117141,13 @@ cvM
 mkk
 rCi
 jEK
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUk
 bUE
 aeu
@@ -117412,13 +117398,13 @@ wSM
 tbE
 rFN
 gJj
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUp
 aUz
 aeu
@@ -117669,13 +117655,13 @@ owX
 lAB
 lAB
 lAB
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 cHu
 eob
 rCi
@@ -117926,13 +117912,13 @@ lMo
 rrm
 lAB
 bPR
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUk
 aeu
 aeu
@@ -118183,13 +118169,13 @@ wGe
 srf
 rCi
 fIn
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 lWC
 rCi
 rCi
@@ -118440,13 +118426,13 @@ pZj
 nuh
 lAB
 bPX
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUd
 aeu
 aeu
@@ -118697,13 +118683,13 @@ tla
 lAB
 lAB
 lAB
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 cHu
 eob
 rCi
@@ -118954,13 +118940,13 @@ xbx
 cOT
 wNr
 gJj
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUy
 aeu
 aeu
@@ -119211,13 +119197,13 @@ mkk
 rCi
 mkk
 jEK
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUe
 bUF
 aeu
@@ -119468,13 +119454,13 @@ vOW
 aeu
 aeu
 vFc
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUk
 ctu
 aeu
@@ -119725,13 +119711,13 @@ sMh
 aeu
 bPK
 bPZ
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
+cko
+cko
 bUC
 aeU
 aeu
@@ -119983,11 +119969,11 @@ aeu
 aeu
 bTT
 bUO
-bUN
-bUN
-bUN
-bUN
-bUN
+cko
+cko
+cko
+cko
+cko
 crK
 bUD
 aeu
@@ -120239,13 +120225,13 @@ vOW
 aeu
 aeu
 vJm
-cic
-cic
-cic
+aeZ
+aeZ
+aeZ
 cos
-cic
-cic
-cic
+aeZ
+aeZ
+aeZ
 nZG
 aeu
 aeu
