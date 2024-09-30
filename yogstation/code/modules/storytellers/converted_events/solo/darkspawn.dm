@@ -33,7 +33,7 @@
 	title_icon = "darkspawn"
 	earliest_start = 0 SECONDS
 	denominator = 30 //slightly more people for additional darkspawns
-	weight = 4
+	weight = 8
 	max_occurrences = 1
 
 /datum/round_event/antagonist/solo/darkspawn
@@ -51,7 +51,3 @@
 /datum/round_event/antagonist/solo/darkspawn/start()
 	. = ..()
 	dark_team.update_objectives()
-
-/datum/round_event_control/antagonist/solo/darkspawn/midround //just for admin spawning
-	weight = 0
-	roundstart = FALSE

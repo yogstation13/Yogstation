@@ -124,7 +124,7 @@
 		return FALSE
 	if(allowed_storytellers && ((islist(allowed_storytellers) && !is_type_in_list(SSgamemode.storyteller, allowed_storytellers)) || SSgamemode.storyteller.type != allowed_storytellers))
 		return FALSE
-	if(SSgamemode.storyteller.disable_distribution || SSgamemode.halted_storyteller)
+	if(SSgamemode.storyteller?.disable_distribution || SSgamemode.halted_storyteller)
 		return FALSE
 // monkestation end
 
