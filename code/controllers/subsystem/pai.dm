@@ -11,10 +11,10 @@ SUBSYSTEM_DEF(pai)
 /datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"]) in candidates
-		var/obj/item/paicard/card = locate(href_list["device"]) in paicard_list
+		var/obj/item/computer_hardware/paicard/card = locate(href_list["device"]) in paicard_list
 		if(card.pai)
 			return
-		if(istype(card, /obj/item/paicard) && istype(candidate, /datum/paiCandidate))
+		if(istype(card, /obj/item/computer_hardware/paicard) && istype(candidate, /datum/paiCandidate))
 			if(check_ready(candidate) != candidate)
 				return FALSE
 			var/mob/living/silicon/pai/pai = new(card)
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(pai)
 			if("submit")
 				if(candidate)
 					candidate.ready = 1
-					for(var/obj/item/paicard/p in paicard_list)
+					for(var/obj/item/computer_hardware/paicard/p in paicard_list)
 						if(!p.pai)
 							p.alertUpdate()
 				usr << browse(null, "window=paiRecruit")
@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(pai)
 			return C
 	return FALSE
 
-/datum/controller/subsystem/pai/proc/findPAI(obj/item/paicard/p, mob/user)
+/datum/controller/subsystem/pai/proc/findPAI(obj/item/computer_hardware/paicard/p, mob/user)
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
 		to_chat(user, span_warning("Due to growing incidents of SELF corrupted independent artificial intelligences, freeform personality devices have been temporarily banned in this sector."))
 		return

@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/obj/item/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null //related to above
 
-	var/obj/item/paicard/pai = null	// A slot for a personal AI device
+	var/obj/item/computer_hardware/paicard/pai = null	// A slot for a personal AI device
 
 	var/datum/picture/picture //Scanned photo
 
@@ -1025,7 +1025,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
-	else if(istype(C, /obj/item/paicard) && !pai)
+	else if(istype(C, /obj/item/computer_hardware/paicard) && !pai)
 		if(!user.transferItemToLoc(C, src))
 			return
 		pai = C

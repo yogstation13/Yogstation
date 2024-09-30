@@ -320,7 +320,7 @@
 "aff" = (
 /obj/structure/table/wood,
 /obj/item/pizzabox/vegetable,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -8325,7 +8325,7 @@
 /area/space)
 "awV" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/wood,
 /area/centcom/syndicate_mothership/control)
 "awW" = (

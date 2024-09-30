@@ -19745,7 +19745,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "iiD" = (
@@ -31982,7 +31982,7 @@
 /area/maintenance/port/fore)
 "nlA" = (
 /obj/structure/closet/crate,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "nlC" = (
@@ -44974,7 +44974,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /obj/effect/turf_decal/stripes/line{

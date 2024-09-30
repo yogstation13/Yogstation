@@ -134,7 +134,7 @@
 /obj/item/laser_pointer/blue,
 /obj/item/lighter/greyscale,
 /obj/structure/closet/crate,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/clothing/glasses/yogs/eyepatch,
 /turf/open/floor/plating,

@@ -26,7 +26,7 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/computer_hardware/paicard/card	// The card we inhabit
 	var/hacking = FALSE		//Are we hacking a door?
 
 	var/speakStatement = "states"
@@ -102,13 +102,13 @@
 	return ..()
 
 /mob/living/silicon/pai/Initialize(mapload)
-	var/obj/item/paicard/P = loc
+	var/obj/item/computer_hardware/paicard/P = loc
 	START_PROCESSING(SSfastprocess, src)
 	GLOB.pai_list += src
 	make_laws()
 	if(!istype(P)) //when manually spawning a pai, we create a card to put it into.
 		var/newcardloc = P
-		P = new /obj/item/paicard(newcardloc)
+		P = new /obj/item/computer_hardware/paicard(newcardloc)
 		P.setPersonality(src)
 	forceMove(P)
 	card = P
@@ -193,7 +193,7 @@
 	return TRUE
 
 /mob/proc/makePAI(delold)
-	var/obj/item/paicard/card = new /obj/item/paicard(get_turf(src))
+	var/obj/item/computer_hardware/paicard/card = new /obj/item/computer_hardware/paicard(get_turf(src))
 	var/mob/living/silicon/pai/pai = new /mob/living/silicon/pai(card)
 	pai.key = key
 	pai.name = name
@@ -298,7 +298,7 @@
 /mob/living/silicon/pai/process(delta_time)
 	emitterhealth = clamp((emitterhealth + (emitter_regen_per_second * delta_time)), -50, emittermaxhealth)
 
-/obj/item/paicard/attackby(obj/item/W, mob/user, params)
+/obj/item/computer_hardware/paicard/attackby(obj/item/W, mob/user, params)
 	..()
 	user.set_machine(src)
 	if(pai.encryptmod == TRUE)

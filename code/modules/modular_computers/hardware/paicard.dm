@@ -1,4 +1,4 @@
-/obj/item/paicard
+/obj/item/computer_hardware/paicard
 	name = "personal AI device"
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "pai"
@@ -10,24 +10,25 @@
 	cryo_preserve = TRUE
 	var/mob/living/silicon/pai/pai
 	resistance_flags = FIRE_PROOF | ACID_PROOF | INDESTRUCTIBLE
+	device_type = MC_PAI
 
-/obj/item/paicard/suicide_act(mob/living/user)
+/obj/item/computer_hardware/paicard/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] is staring sadly at [src]! [user.p_they()] can't keep living without real human intimacy!"))
 	return OXYLOSS
 
-/obj/item/paicard/Initialize(mapload)
+/obj/item/computer_hardware/paicard/Initialize(mapload)
 	SSpai.paicard_list += src
 	add_overlay("pai-off")
 	return ..()
 
-/obj/item/paicard/Destroy()
+/obj/item/computer_hardware/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
 	SSpai.paicard_list -= src
 	if (!QDELETED(pai))
 		QDEL_NULL(pai)
 	return ..()
 
-/obj/item/paicard/attack_self(mob/user)
+/obj/item/computer_hardware/paicard/attack_self(mob/user)
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
@@ -67,7 +68,7 @@
 	onclose(user, "paicard")
 	return
 
-/obj/item/paicard/Topic(href, href_list)
+/obj/item/computer_hardware/paicard/Topic(href, href_list)
 
 	if(!usr || usr.stat)
 		return
@@ -129,14 +130,14 @@
 //		WIRE_RECEIVE = 2
 //		WIRE_TRANSMIT = 4
 
-/obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
+/obj/item/computer_hardware/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
 	src.add_overlay("pai-null")
 
 	playsound(loc, 'sound/effects/pai_boot.ogg', 50, TRUE, -1)
 	audible_message("\The [src] plays a cheerful startup noise!")
 
-/obj/item/paicard/proc/setEmotion(emotion)
+/obj/item/computer_hardware/paicard/proc/setEmotion(emotion)
 	if(pai)
 		src.cut_overlays()
 		switch(emotion)
@@ -163,10 +164,10 @@
 			if(11)
 				src.add_overlay("pai-sunglasses")
 
-/obj/item/paicard/proc/alertUpdate()
+/obj/item/computer_hardware/paicard/proc/alertUpdate()
 	audible_message(span_info("[src] flashes a message across its screen, \"Additional personalities available for download.\""), span_notice("[src] vibrates with an alert."))
 
-/obj/item/paicard/emp_act(severity)
+/obj/item/computer_hardware/paicard/emp_act(severity)
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
