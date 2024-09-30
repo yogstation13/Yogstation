@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added disk compartmentalizers to most stations virology and hydroponics."
+  - qol: "Made Bio bags able to hold GNA disks. (Disease disks)"
+  - qol: "Moves botany and chicken lexicons into a single bookshelf"
