@@ -433,11 +433,9 @@
 	var/dat = {"
 		<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=[REF(src)];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
 
 	dat += {"
-		<BR>
 		<A href='?src=[REF(src)];[HrefToken()];create_object=1'>Create Object</A><br>
 		<A href='?src=[REF(src)];[HrefToken()];quick_create_object=1'>Quick Create Object</A><br>
 		<A href='?src=[REF(src)];[HrefToken()];create_turf=1'>Create Turf</A><br>
