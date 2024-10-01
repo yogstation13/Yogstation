@@ -1,4 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed changelog changes not word wrapping, which made the window horizontally cut off"
