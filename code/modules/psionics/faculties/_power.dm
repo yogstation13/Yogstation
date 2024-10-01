@@ -58,6 +58,3 @@
 		log_attack("[user] Used psipower ([name]) on [target]")
 	if(use_sound)
 		playsound(user.loc, use_sound, 75)
-
-/datum/psionic_power/proc/on_select(mob/living/user)
-	return TRUE

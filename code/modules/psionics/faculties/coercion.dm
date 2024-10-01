@@ -24,7 +24,7 @@
 	cooldown =			5 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_commune"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on a creature on to psionically send them a message."
+	use_description =	"Click on a creature on to psionically send them a message."
 
 /datum/psionic_power/coercion/commune/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || user == target)
@@ -68,7 +68,7 @@
 	cooldown =			5 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_assay"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
+	use_description =	"Click on a target in order to perform a deep coercive-redactive probe of their psionic potential."
 
 /datum/psionic_power/coercion/assay/invoke(mob/living/user,  mob/living/target, proximity, parameters)
 	if(!istype(target) || user == target)
@@ -160,7 +160,7 @@
 	cooldown =			2 SECONDS
 	min_rank =			PSI_RANK_OPERANT
 	icon_state = "coe_agony"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, attack someone while in combat mode to deal minor stamina damage. Higher psi levels augment the damage done."
+	use_description =	"Attack someone while in combat mode to deal minor stamina damage. Higher psi levels augment the damage done."
 
 /datum/psionic_power/coercion/agony/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || !proximity || user == target || !user.combat_mode)
@@ -180,7 +180,7 @@
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_spasm"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then target a creature to use a ranged attack that may rip the weapons away from the target."
+	use_description =	"Target a creature to use a ranged attack that may rip the weapons away from the target."
 
 /datum/psionic_power/coercion/spasm/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
 	if(!istype(target) || user == target || !user.combat_mode)
@@ -204,7 +204,7 @@
 	cooldown =			8 SECONDS
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_focus"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on someone in order to cure ailments of the mind."
+	use_description =	"Click on someone in order to cure ailments of the mind."
 
 /datum/psionic_power/coercion/focus/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || !proximity || user == target)
@@ -243,7 +243,7 @@
 	cooldown =			25 SECONDS //It should take a WHILE to be able to use this again.
 	min_rank =			PSI_RANK_MASTER
 	icon_state = "coe_mindread"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click on someone in melee range to attempt to read a surface level thought."
+	use_description =	"Click on someone in melee range to attempt to read a surface level thought."
 
 /datum/psionic_power/coercion/mindread/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!istype(target) || target == user || !proximity)
@@ -280,7 +280,7 @@
 	cooldown =			10 SECONDS
 	min_rank =			PSI_RANK_GRANDMASTER
 	icon_state = "coe_blindstrike"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
+	use_description =	"Click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
 
 /datum/psionic_power/coercion/blindstrike/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	. = ..()
@@ -304,7 +304,7 @@
 	cooldown =			100 SECONDS
 	min_rank =			PSI_RANK_PARAMOUNT
 	icon_state = "coe_disarm"
-	use_description =	"Activate the power with the 'use' key (initially bound to Z) in an empty hand, then click your target with combat mode to Psionically rip their arms off."
+	use_description =	"Click your target with combat mode to Psionically rip their arms off."
 
 /datum/psionic_power/coercion/dis_arm/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(!user.combat_mode || user == target)

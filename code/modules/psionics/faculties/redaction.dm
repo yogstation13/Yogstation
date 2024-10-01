@@ -29,7 +29,7 @@
 	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "redac_skinsight"
-	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, then target the mob you wish to scan with combat mode off. Higher psi levels provide more information."
+	use_description = "Target the mob you wish to scan with combat mode off. Higher psi levels provide more information."
 
 /datum/psionic_power/redaction/skinsight/invoke(mob/living/user, mob/living/target, proximity, parameters)
 	if(user.combat_mode || !istype(target) || !proximity)
@@ -47,7 +47,7 @@
 	cooldown =        5 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "redac_mend"
-	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, then target the mob you wish to heal with combat mode off. Higher psi levels provide further healing."
+	use_description = "Target the mob you wish to heal with combat mode off. Higher psi levels provide further healing."
 
 /datum/psionic_power/redaction/mend/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
 	if(user.combat_mode || !istype(target) || !proximity || !..())
@@ -124,7 +124,7 @@
 	min_rank =        PSI_RANK_OPERANT
 	faculty =         PSI_REDACTION
 	icon_state = "redac_revive"
-	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, then target the mob you wish to revive with combat mode off. Has several limiting factors. Higher psi levels upgrade the revive."
+	use_description = "Target the mob you wish to revive with combat mode off. Has several limiting factors. Higher psi levels upgrade the revive."
 	admin_log = FALSE
 
 /datum/psionic_power/revive/invoke(mob/living/user, mob/living/target, proximity, parameters)
@@ -162,7 +162,7 @@
 	cooldown =        6 SECONDS
 	min_rank =        PSI_RANK_MASTER
 	icon_state = "redac_cleanse"
-	use_description = "Activate the power with the 'use' key (initially bound to Z) in an empty hand, then target the mob you wish cleanse with combat mode off. Cleanses radiation, clone damage, and toxins. Higher psi levels provide further cleansing."
+	use_description = "Target the mob you wish cleanse with combat mode off. Cleanses radiation, clone damage, and toxins. Higher psi levels provide further cleansing."
 
 /datum/psionic_power/redaction/cleanse/invoke(mob/living/user, mob/living/carbon/human/target, proximity, parameters)
 	if(user.combat_mode || !istype(target) || !proximity)

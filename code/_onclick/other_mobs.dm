@@ -50,10 +50,6 @@
 
 	A.attack_hand(src, modifiers)
 
-/mob/living/carbon/human/attack_empty_hand()
-	if(psi)
-		SEND_SIGNAL(src, COMSIG_PSI_SELECTION)
-
 /mob/living/carbon/human/RangedAttack(atom/A, params)
 	if(psi)
 		SEND_SIGNAL(src, COMSIG_PSI_INVOKE, A, FALSE, params)
