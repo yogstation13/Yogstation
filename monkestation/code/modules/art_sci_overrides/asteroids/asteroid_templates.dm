@@ -142,3 +142,23 @@
 	size = 3
 
 	asteroid_weight = 10
+
+/datum/map_template/asteroid/room
+	name = "Asteroid"
+	suffix = "room.dmm"
+	size = 4
+
+	asteroid_weight = 25
+
+/datum/map_template/asteroid/legion_mod
+	name = "Medium Asteroid"
+	suffix = "medium_doom.dmm"
+	size = 5
+
+	asteroid_weight = 20
+/datum/map_template/asteroid/itsastone
+	name = "Large Oblong Asteroid"
+	suffix = "football.dmm"
+	size = 7
+
+	asteroid_weight = 10
