@@ -1384,7 +1384,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Suicide Vest"
 	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
 	item = /obj/item/clothing/suit/unalivevest
-	cost = 3
+	cost = 7
 	manufacturer = /datum/corporation/traitor/donkco
 
 //Support and Mechs

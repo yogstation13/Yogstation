@@ -612,9 +612,9 @@
 	var/active = FALSE
 
 	//explosion control vars
-	var/weak = 2
-	var/medium = 0.8
-	var/heavy = 0.4
+	var/weak = 4
+	var/medium = 2
+	var/heavy = 1
 
 /obj/item/clothing/suit/unalivevest/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
