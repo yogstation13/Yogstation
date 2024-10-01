@@ -122,7 +122,11 @@
 	if(!..())
 		return
 	var/mob/living/silicon/pai/pAI = usr
-	pAI.cmd_send_pdamesg(usr)
+	message_admins(pAI.loc)
+	if(pAI)
+		pAI.cmd_send_pdamesg(usr)
+	else
+		pAI.cmd_mc_send_pdamesg(usr)
 
 /atom/movable/screen/pai/pda_msg_show
 	name = "PDA - Show Message Log"

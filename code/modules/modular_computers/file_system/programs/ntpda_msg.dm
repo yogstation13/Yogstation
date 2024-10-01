@@ -465,3 +465,32 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		data["all_messages"] = list()
 
 	return data
+
+//pAI verb and proc for sending PDA messages.
+/mob/living/silicon/pai/proc/cmd_mc_send_pdamesg(mob/user)
+	var/list/plist = list()
+	var/list/namecounts = list()
+	var/list/data = list()
+	if(aiPDA.toff)
+		to_chat(user, "Turn on your receiver in order to send messages.")
+		return
+	data = ui_data(user)
+	for(var/obj/item/modular_computer/P in data["pdas"])
+		if(P == src)
+			continue
+		else if(P == aiPDA)
+			continue
+		plist[avoid_assoc_duplicate_keys(data["username"], namecounts)] = P
+
+	var/c = input(user, "Please select a recipient") as null|anything in sortList(plist)
+
+	if(!c)
+		return
+
+	var/selected = plist[c]
+
+	if(incapacitated())
+		return
+
+	to_chat(user, "Success, cmd_mc_send_pdamesg ran")
+	to_chat(user, plist[c])
