@@ -606,6 +606,7 @@
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
+	flags_1 = HEAR_1
 	var/listening = FALSE
 	var/activation_phrase = ""
 	var/active = FALSE
@@ -636,12 +637,17 @@
 		if(activation_phrase && findtext(raw_message, activation_phrase))
 			Explode()
 
+/obj/item/clothing/suit/unalivevest/mob_can_equip(mob/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	if(listening || !activation_phrase)
+		to_chat(equipper, span_warning("Set the activation phrase first!"))
+		return FALSE
+	return ..()
+
 /obj/item/clothing/suit/unalivevest/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if((slot & slot_flags))
 		to_chat(user, span_danger("You hear the vest click as it locks around your torso!"))
 		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
-		return
 
 /obj/item/clothing/suit/unalivevest/proc/Explode()
 	if(active)
