@@ -1,5 +1,6 @@
 /datum/round_event_control/chem_spill
 	name = "Chemical Spill: Normal"
+	description = "The pool will be filled with random chemicals."
 	typepath = /datum/round_event/chem_spill
 	weight = 20
 	max_occurrences = 3
@@ -7,7 +8,6 @@
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL)
 	category = EVENT_CATEGORY_HEALTH
-	description = "a floor cluwne will spawn to seek out victims."
 
 /datum/round_event/chem_spill
 	announce_when	= 1
