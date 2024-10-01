@@ -598,3 +598,57 @@
 	icon_state = "pocketcat"
 	item_state = "pocketcat"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+
+/obj/item/clothing/suit/unalivevest
+	name = "extremely obvious suicide vest"
+	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
+	icon = 'icons/obj/clothing/suits/suits.dmi'
+	icon_state = "reactiveoff"
+	item_state = "reactiveoff"
+	blood_overlay_type = "armor"
+	var/listening = FALSE
+	var/activation_phrase = ""
+	var/active = FALSE
+
+	//explosion control vars
+	var/weak = 2
+	var/medium = 0.8
+	var/heavy = 0.4
+
+/obj/item/clothing/suit/unalivevest/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(activation_phrase)
+		say("Activation phrase already set.")
+		return
+	say("Now recording.")
+	listening = TRUE
+
+/obj/item/clothing/suit/unalivevest/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods)
+	. = ..()
+	if(speaker == src)
+		return
+	if(listening)
+		activation_phrase = raw_message
+		listening = FALSE
+		say("Activation message is '[activation_phrase]'.", message_language)
+	else
+		if(activation_phrase && findtext(raw_message, activation_phrase))
+			Explode()
+
+/obj/item/clothing/suit/unalivevest/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if((slot & slot_flags))
+		to_chat(user, span_danger("You hear the vest click as it locks around your torso!"))
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+		return
+
+/obj/item/clothing/suit/unalivevest/proc/Explode()
+	if(active)
+		return
+	active = TRUE
+	explosion(src, heavy, medium, weak, weak, flame_range = weak)
+	if(isliving(loc))
+		var/mob/living/L = loc
+		L.gib(no_brain = TRUE, no_items = TRUE)
+	qdel(src)
