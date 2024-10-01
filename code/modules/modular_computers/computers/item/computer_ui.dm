@@ -76,6 +76,8 @@
 	var/obj/item/computer_hardware/card_slot/secondarycardholder = all_components[MC_CARD2]
 	if(secondarycardholder?.stored_card)
 		data["removable_media"] += "secondary RFID card"
+	if(all_components[MC_PAI])
+		data["removable_media"] += "personal AI device"
 
 	data["programs"] = list()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]

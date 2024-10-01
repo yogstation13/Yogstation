@@ -1,5 +1,6 @@
 /obj/item/computer_hardware/paicard
 	name = "personal AI device"
+	desc = ""
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "pai"
 	item_state = "electronic"
@@ -27,6 +28,12 @@
 	if (!QDELETED(pai))
 		QDEL_NULL(pai)
 	return ..()
+
+/obj/item/computer_hardware/paicard/try_eject(mob/living/user = null, forced = FALSE)
+	if(user && user.CanReach(src))
+		user.put_in_hands(pai)
+	else
+		pai.forceMove(drop_location())
 
 /obj/item/computer_hardware/paicard/attack_self(mob/user)
 	if (!in_range(src, user))
