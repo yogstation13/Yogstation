@@ -223,6 +223,13 @@
 						return
 					cardholder.try_eject(user)
 					playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
+				if("personal AI device")
+					var/obj/item/computer_hardware/paicard/paicard = all_components[MC_PAI]
+					if(!paicard)
+						return
+					if(uninstall_component(paicard, usr))
+						user.put_in_hands(paicard)
+						playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
 
 
 		else
