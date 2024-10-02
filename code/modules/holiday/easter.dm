@@ -7,7 +7,6 @@
 	earliest_start = 0 MINUTES
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
-	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "does literally nothing aside from announce easter."
 
 /datum/round_event/easter/announce(fake)
@@ -22,7 +21,6 @@
 	max_occurrences = 10
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
-	category = EVENT_CATEGORY_ENTITIES
 	description = "spawns some rabbits."
 
 /datum/round_event/rabbitrelease/announce(fake)

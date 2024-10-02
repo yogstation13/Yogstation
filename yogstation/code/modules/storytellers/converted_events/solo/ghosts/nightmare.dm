@@ -6,7 +6,6 @@
 	antag_datum = /datum/antagonist/nightmare
 
 	track = EVENT_TRACK_ROLESET
-	category = EVENT_CATEGORY_ENTITIES
 	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_EXTERNAL, TAG_ALIEN)
 
 	max_occurrences = 1

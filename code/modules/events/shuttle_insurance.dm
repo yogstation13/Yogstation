@@ -2,7 +2,6 @@
 	name = "Shuttle Insurance"
 	typepath = /datum/round_event/shuttle_insurance
 	max_occurrences = 1
-	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "A sketchy but legit insurance offer."
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL)

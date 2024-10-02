@@ -5,7 +5,6 @@
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 20 MINUTES
-	category = EVENT_CATEGORY_SPACE
 	description = "Throw a random meteor somewhere near the station."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7

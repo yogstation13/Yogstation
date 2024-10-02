@@ -13,7 +13,6 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	min_players = 18
 	max_occurrences = 3
 	earliest_start = 20 MINUTES
-	category = EVENT_CATEGORY_SPACE
 	description = "The station passes through an immovable rod."
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7

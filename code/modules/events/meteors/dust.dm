@@ -5,7 +5,6 @@
 	max_occurrences = 10
 	earliest_start = 0 MINUTES
 	alert_observers = FALSE
-	category = EVENT_CATEGORY_SPACE
 	description = "A single space dust is hurled at the station."
 	map_flags = EVENT_SPACE_ONLY
 	track = EVENT_TRACK_MUNDANE
@@ -27,7 +26,6 @@
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 25 MINUTES
-	category = EVENT_CATEGORY_SPACE
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7
 

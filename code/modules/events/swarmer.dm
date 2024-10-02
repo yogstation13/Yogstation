@@ -7,7 +7,6 @@
 	min_players = 15
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_ALIEN, TAG_DESTRUCTIVE)
-	category = EVENT_CATEGORY_ENTITIES
 	description = "spawns swamers."
 
 /datum/round_event/spawn_swarmer/announce(fake)

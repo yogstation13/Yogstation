@@ -5,7 +5,6 @@
 	max_occurrences = 1
 	min_players = 25
 	earliest_start = 30 MINUTES
-	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a hungry shapeshifting blobby creature."
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7

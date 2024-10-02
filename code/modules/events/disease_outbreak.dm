@@ -4,7 +4,6 @@
 	max_occurrences = 1
 	min_players = 10
 	weight = 5
-	category = EVENT_CATEGORY_HEALTH
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_TARGETED, TAG_COMMUNAL, TAG_EXTERNAL, TAG_ALIEN, TAG_MAGICAL)
 

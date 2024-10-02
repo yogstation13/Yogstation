@@ -4,7 +4,6 @@
 // 	weight = 25
 // 	max_occurrences = 3
 // 	earliest_start = 5 MINUTES
-// 	category = EVENT_CATEGORY_JANITORIAL
 // 	description = "Harmless mobs climb out of a scrubber."
 // 	track = EVENT_TRACK_MUNDANE
 // 	tags = list(TAG_COMMUNAL, TAG_ALIEN, TAG_MAGICAL)

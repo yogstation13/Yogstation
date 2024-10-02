@@ -3,7 +3,6 @@
 //this singleton datum is used by the events controller to dictate how it selects events
 /datum/round_event_control
 	var/name //The human-readable name of the event
-	var/category //The category of the event
 	var/description //The description of the event
 	var/typepath //The typepath of the event datum /datum/round_event
 
@@ -75,7 +74,6 @@
 		admin_setup += new admin_setup_type(src)
 
 /datum/round_event_control/wizard
-	category = EVENT_CATEGORY_WIZARD
 	wizardevent = TRUE
 
 /// Returns true if event can run in current map

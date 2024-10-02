@@ -4,7 +4,6 @@
 	weight = 15
 	max_occurrences = 4
 	earliest_start = 10 MINUTES
-	category = EVENT_CATEGORY_ENGINEERING
 	description = "The supermatter will increase in power and heat by a random amount, and announce it."
 	min_wizard_trigger_potency = 4
 	max_wizard_trigger_potency = 7

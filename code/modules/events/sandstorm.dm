@@ -11,9 +11,8 @@
 	name = "Sandstorm: Directional"
 	typepath = /datum/round_event/sandstorm
 	max_occurrences = 3
-	min_players = 30
+	min_players = 20
 	earliest_start = 35 MINUTES
-	category = EVENT_CATEGORY_SPACE
 	description = "A wave of space dust continually grinds down a side of the station."
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7
@@ -77,7 +76,6 @@
 	weight = 0
 	max_occurrences = 0
 	earliest_start = 0 MINUTES
-	category = EVENT_CATEGORY_SPACE
 	description = "The station is pelted by an extreme amount of dust, from all sides, for several minutes. Very destructive and likely to cause lag. Use at own risk."
 	map_flags = EVENT_SPACE_ONLY
 

@@ -6,7 +6,6 @@
 	earliest_start = 20 MINUTES
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_SPOOKY, TAG_ALIEN, TAG_MAGICAL)
-	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a horror antag."
 
 /datum/round_event/ghost_role/horror

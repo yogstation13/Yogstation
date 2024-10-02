@@ -5,7 +5,6 @@
 	max_occurrences = 1
 	min_players = 20
 	earliest_start = 60 MINUTES
-	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a space dragon, which will try to take over the station."
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7

@@ -7,7 +7,6 @@
 	min_players = 10
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL)
-	category = EVENT_CATEGORY_HEALTH
 
 /datum/round_event/chem_spill
 	announce_when	= 1

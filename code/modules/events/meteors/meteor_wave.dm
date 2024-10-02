@@ -7,7 +7,6 @@
 	min_players = 15
 	max_occurrences = 3
 	earliest_start = 25 MINUTES
-	category = EVENT_CATEGORY_SPACE
 	description = "A regular meteor wave."
 	map_flags = EVENT_SPACE_ONLY
 	track = EVENT_TRACK_MAJOR

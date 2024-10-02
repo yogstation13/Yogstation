@@ -2,7 +2,6 @@
 	name = "Fake Virus"
 	typepath = /datum/round_event/fake_virus
 	weight = 15
-	category = EVENT_CATEGORY_HEALTH
 	earliest_start = 10 MINUTES
 	description = "Some crewmembers suffer from temporary hypochondria."
 	track = EVENT_TRACK_MUNDANE

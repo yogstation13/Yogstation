@@ -47,7 +47,6 @@
 	weight = 10
 	max_occurrences = 3
 	min_players = 10
-	category = EVENT_CATEGORY_JANITORIAL
 	description = "The scrubbers release a tide of mostly harmless froth."
 	admin_setup = list(/datum/event_admin_setup/listed_options/scrubber_overflow)
 	track = EVENT_TRACK_MODERATE

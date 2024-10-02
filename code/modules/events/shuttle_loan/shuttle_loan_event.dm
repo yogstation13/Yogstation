@@ -7,7 +7,6 @@
 	earliest_start = 7 MINUTES
 	track = EVENT_TRACK_MODERATE
 	tags = list(TAG_COMMUNAL, TAG_EXTERNAL)
-	category = EVENT_CATEGORY_BUREAUCRATIC
 	admin_setup = list(/datum/event_admin_setup/listed_options/shuttle_loan)
 	///The types of loan events already run (and to be excluded if the event triggers).
 	var/list/run_situations = list()

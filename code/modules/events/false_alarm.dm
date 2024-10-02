@@ -3,7 +3,6 @@
 	typepath 		= /datum/round_event/falsealarm
 	weight			= 20
 	max_occurrences = 5
-	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "Fakes an event announcement."
 	admin_setup = list(/datum/event_admin_setup/listed_options/false_alarm)
 	track = EVENT_TRACK_MUNDANE

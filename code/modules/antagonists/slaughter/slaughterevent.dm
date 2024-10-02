@@ -5,7 +5,6 @@
 	max_occurrences = 1
 	earliest_start = 1 HOURS
 	min_players = 20
-	category = EVENT_CATEGORY_ENTITIES
 	description = "Spawns a slaughter demon, to hunt by travelling through pools of blood."
 	min_wizard_trigger_potency = 6
 	max_wizard_trigger_potency = 7

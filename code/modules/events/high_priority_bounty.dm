@@ -7,7 +7,6 @@
 	earliest_start = 0
 	track = EVENT_TRACK_OBJECTIVES
 	tags = list(TAG_COMMUNAL, TAG_POSITIVE)
-	category = EVENT_CATEGORY_BUREAUCRATIC
 
 /datum/round_event/high_priority_bounty/announce(fake)
 	priority_announce("Central Command has issued a high-priority cargo bounty. Details have been sent to all bounty consoles.", "Nanotrasen Bounty Program")

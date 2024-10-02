@@ -5,7 +5,6 @@
 	max_occurrences = 2
 	min_players = 20
 	earliest_start = 30 MINUTES
-	category = EVENT_CATEGORY_INVASION
 	description = "The crew will either pay up, or face a pirate assault."
 	// admin_setup = list(/datum/event_admin_setup/listed_options/pirates)
 	map_flags = EVENT_SPACE_ONLY

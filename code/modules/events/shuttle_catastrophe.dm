@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/shuttle_catastrophe
 	weight = 10
 	max_occurrences = 1
-	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "Replaces the emergency shuttle with a random one."
 	admin_setup = list(/datum/event_admin_setup/warn_admin/shuttle_catastrophe, /datum/event_admin_setup/listed_options/shuttle_catastrophe)
 	track = EVENT_TRACK_MODERATE

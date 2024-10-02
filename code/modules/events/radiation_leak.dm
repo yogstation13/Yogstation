@@ -5,7 +5,6 @@
 	typepath = /datum/round_event/radiation_leak
 	weight = 15
 	max_occurrences = 3
-	category = EVENT_CATEGORY_ENGINEERING
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
 	track = EVENT_TRACK_MODERATE

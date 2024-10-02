@@ -15,7 +15,6 @@
 	min_players = 20
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_SPOOKY, TAG_MAGICAL)
-	category = EVENT_CATEGORY_HEALTH
 	description = "plays some flute music."
 
 //--------------------

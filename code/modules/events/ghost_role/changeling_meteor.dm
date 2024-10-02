@@ -11,7 +11,6 @@
 // 	weight = 8
 // 	max_occurrences = 3
 // 	min_players = 20
-// 	category = EVENT_CATEGORY_ENTITIES
 // 	description = "A meteor containing a changeling is summoned and thrown at the exterior of the station."
 // 	track = EVENT_TRACK_MAJOR
 // 	tags = list(TAG_COMBAT, TAG_SPACE, TAG_EXTERNAL, TAG_ALIEN)

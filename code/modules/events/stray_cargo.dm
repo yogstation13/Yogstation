@@ -5,7 +5,6 @@
 	weight = 20
 	max_occurrences = 4
 	earliest_start = 10 MINUTES
-	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "A pod containing a random supply crate lands on the station."
 	admin_setup = list(/datum/event_admin_setup/set_location/stray_cargo, /datum/event_admin_setup/listed_options/stray_cargo)
 	track = EVENT_TRACK_MUNDANE

@@ -2,7 +2,6 @@
 	name = "Radiation Storm"
 	typepath = /datum/round_event/radiation_storm
 	max_occurrences = 2 //monkestation edit - STORYTELLERS 1 ==> 2
-	category = EVENT_CATEGORY_SPACE
 	description = "Radiation storm affects the station, forcing the crew to escape to maintenance."
 	min_wizard_trigger_potency = 3
 	max_wizard_trigger_potency = 7
@@ -10,7 +9,6 @@
 	tags = list(TAG_COMMUNAL)
 
 /datum/round_event/radiation_storm
-
 
 /datum/round_event/radiation_storm/setup()
 	start_when = 3

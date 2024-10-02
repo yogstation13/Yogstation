@@ -2,7 +2,6 @@
 	name = "Mice Migration"
 	typepath = /datum/round_event/mice_migration
 	weight = 10
-	category = EVENT_CATEGORY_ENTITIES
 	description = "A horde of mice arrives, and perhaps even the Rat King themselves."
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_DESTRUCTIVE, TAG_ALIEN) //not really alien but rat lords kind of are

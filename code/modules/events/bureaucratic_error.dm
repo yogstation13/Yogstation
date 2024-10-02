@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/bureaucratic_error
 	max_occurrences = 1
 	weight = 2
-	category = EVENT_CATEGORY_BUREAUCRATIC
 	description = "Randomly changes the overflow role."
 	track = EVENT_TRACK_MAJOR // if you've ever dealt with 10 mimes you understand why.
 	tags = list(TAG_COMMUNAL)

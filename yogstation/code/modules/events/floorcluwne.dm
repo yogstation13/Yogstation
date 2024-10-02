@@ -6,7 +6,6 @@
 	weight = 5
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_SPOOKY, TAG_ALIEN, TAG_MAGICAL)
-	category = EVENT_CATEGORY_ENTITIES
 	description = "a floor cluwne will spawn to seek out victims."
 
 /datum/round_event/floor_cluwne/start()

@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/brand_intelligence
 	weight = 5
 
-	category = EVENT_CATEGORY_AI
 	min_wizard_trigger_potency = 2
 	max_wizard_trigger_potency = 6
 	min_players = 15

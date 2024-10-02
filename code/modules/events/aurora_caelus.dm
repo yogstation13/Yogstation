@@ -4,7 +4,6 @@
 	max_occurrences = 1
 	weight = 1
 	earliest_start = 5 MINUTES
-	category = EVENT_CATEGORY_FRIENDLY
 	description = "A colourful display can be seen through select windows. And the kitchen."
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_COMMUNAL, TAG_POSITIVE, TAG_SPACE)

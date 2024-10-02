@@ -2,7 +2,6 @@
 	name = "Probabilistic Anomaly"
 	typepath = /datum/round_event/prob_anomaly
 	weight = 10
-	category = EVENT_CATEGORY_ANOMALIES
 	description = "Sets rng seed for a duration."
 	min_wizard_trigger_potency = 0
 	max_wizard_trigger_potency = 3
