@@ -17,36 +17,38 @@
 	var/alcohol_tolerance = ALCOHOL_RATE
 	/// modifier to toxpwr for liver and toxin damage taken
 	var/toxLethality = LIVER_DEFAULT_TOX_LETHALITY 
+	/// cached list of the toxinpower of toxins
+	var/list/cached_toxpower = list()
+	/// whether or not the toxin process can provide a message
+	var/provide_pain_message = FALSE
+
+/obj/item/organ/liver/Insert(mob/living/carbon/M, special, drop_if_replaced, special_zone)
+	. = ..()
+	RegisterSignal(M, COMSIG_CARBON_UPDATE_TOXINS, PROC_REF(update_toxin_cache))
+
+/obj/item/organ/liver/Remove(mob/living/carbon/M, special)
+	UnregisterSignal(M, COMSIG_CARBON_UPDATE_TOXINS)
+	return ..()
+
+/obj/item/organ/liver/proc/update_toxin_cache()
+	var/mob/living/carbon/C = owner
+	if(!istype(C))
+		return
+
+	provide_pain_message = FALSE
+	cached_toxpower = list()
+
+	for(var/datum/reagent/toxin/T in C.reagents.reagent_list)
+		cached_toxpower += T.toxpwr
+		provide_pain_message = provide_pain_message || !T.silent_toxin
+			
+	sort_list(cached_toxpower,  cmp = /proc/cmp_numeric_dsc) //sort all toxpowers scaling from highest to lowest
 
 /obj/item/organ/liver/on_life()
 	var/mob/living/carbon/C = owner
 	..()	//perform general on_life()
 	if(istype(C))
-		if(!(organ_flags & ORGAN_FAILING))//can't process reagents with a failing liver
-
-			var/provide_pain_message = FALSE
-			var/damage_multiplier = 1 //reduced for every toxin
-			var/list/toxpwr = list()
-
-			for(var/datum/reagent/toxin/T in C.reagents.reagent_list)
-				toxpwr += T.toxpwr
-				provide_pain_message = provide_pain_message || !T.silent_toxin
-					
-			sort_list(toxpwr,  cmp = /proc/cmp_numeric_dsc) //sort all toxpowers scaling from highest to lowest
-
-			for(var/dmg in toxpwr)
-				var/real_damage = dmg * toxLethality * damage_multiplier
-				damage_multiplier *= 0.5 //reduce the damage dealt for every subsequent toxin
-				C.adjustToxLoss(real_damage)
-				if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER)) //don't hurt the liver if they like toxins
-					damage += (real_damage / 2)
-
-			//metabolize reagents
-			C.reagents.metabolize(C, can_overdose=TRUE)
-
-			if(provide_pain_message && damage > 10 && !HAS_TRAIT(owner, TRAIT_TOXINLOVER) && prob(damage/3))//the higher the damage the higher the probability
-				to_chat(C, span_warning("You feel a dull pain in your abdomen."))
-		else	//for when our liver's failing
+		if(organ_flags & ORGAN_FAILING)//for when our liver's failing
 			C.reagents.end_metabolization(C, keep_liverless = TRUE) //Stops trait-based effects on reagents, to prevent permanent buffs
 			C.reagents.metabolize(C, can_overdose=FALSE, liverless = TRUE)
 			if(HAS_TRAIT(C, TRAIT_STABLELIVER))
@@ -54,6 +56,23 @@
 			C.adjustToxLoss(4, TRUE,  TRUE)
 			if(prob(30))
 				to_chat(C, span_warning("You feel a stabbing pain in your abdomen!"))
+					
+		else 
+			if(length(cached_toxpower)) //deal with toxins
+				var/damage_multiplier = 1 //reduced for every subsequent toxin
+				
+				for(var/dmg in cached_toxpower)
+					var/real_damage = dmg * toxLethality * damage_multiplier
+					damage_multiplier *= 0.5 //reduce the damage dealt for every subsequent toxin
+					C.adjustToxLoss(real_damage)
+					if(!HAS_TRAIT(owner, TRAIT_TOXINLOVER)) //don't hurt the liver if they like toxins
+						damage += (real_damage / 2)
+
+			//metabolize reagents
+			C.reagents.metabolize(C, can_overdose=TRUE)
+
+			if(provide_pain_message && damage > 10 && !HAS_TRAIT(owner, TRAIT_TOXINLOVER) && prob(damage/3))//the higher the damage the higher the probability
+				to_chat(C, span_warning("You feel a dull pain in your abdomen."))
 
 	if(damage > maxHealth)//cap liver damage
 		damage = maxHealth

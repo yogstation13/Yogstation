@@ -12,6 +12,14 @@
 	var/toxpwr = 1.5
 	var/silent_toxin = FALSE //won't produce a pain message when processed by liver/Life(seconds_per_tick = SSMOBS_DT, times_fired) if there isn't another non-silent toxin present.
 
+/datum/reagent/toxin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	SEND_SIGNAL(L, COMSIG_CARBON_UPDATE_TOXINS)
+
+/datum/reagent/toxin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	SEND_SIGNAL(L, COMSIG_CARBON_UPDATE_TOXINS)
+	
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
