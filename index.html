@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(928 modules,
-    3227/11192 macros, 28.8%)</aside></h3>
+<aside>(930 modules,
+    3234/11199 macros, 28.9%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -243,6 +243,7 @@ General Public License version 3.
     <li><a href="code/__HELPERS/priority_announce.html" title="code&#x2F;__HELPERS&#x2F;priority_announce">priority_announce</a></li>
     <li><a href="code/__HELPERS/sanitize_values.html" title="code&#x2F;__HELPERS&#x2F;sanitize_values">sanitize_values</a></li>
     <li><a href="code/__HELPERS/screen_objs.html" title="code&#x2F;__HELPERS&#x2F;screen_objs">screen_objs</a></li>
+    <li><a href="code/__HELPERS/see_through_maps.html" title="code&#x2F;__HELPERS&#x2F;see_through_maps">see_through_maps</a></li>
     <li><a href="code/__HELPERS/text.html" title="code&#x2F;__HELPERS&#x2F;text">text</a></li>
     <li><a href="code/__HELPERS/traits.html" title="code&#x2F;__HELPERS&#x2F;traits">traits</a></li>
     <li><a href="code/__HELPERS/turfs.html" title="code&#x2F;__HELPERS&#x2F;turfs">turfs</a></li>
@@ -360,6 +361,7 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/components/refundable.html" title="code&#x2F;datums&#x2F;components&#x2F;refundable">refundable</a></li>
     <li><a href="code/datums/components/religious_tool.html" title="code&#x2F;datums&#x2F;components&#x2F;religious_tool">religious_tool</a></li>
     <li><a href="code/datums/components/riding.html" title="code&#x2F;datums&#x2F;components&#x2F;riding">riding</a></li>
+    <li><a href="code/datums/components/seethrough.html" title="code&#x2F;datums&#x2F;components&#x2F;seethrough">seethrough</a></li>
     <li><a href="code/datums/components/slippery.html" title="code&#x2F;datums&#x2F;components&#x2F;slippery">slippery</a></li>
     <li><a href="code/datums/components/squishable.html" title="code&#x2F;datums&#x2F;components&#x2F;squishable">squishable</a></li>
     <li><a href="code/datums/components/storm_hating.html" title="code&#x2F;datums&#x2F;components&#x2F;storm_hating">storm_hating</a></li>
@@ -1341,7 +1343,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1322 detailed/2262 documented/31058 total, 7.3%)</aside></h3>
+<aside>(1324 detailed/2264 documented/31063 total, 7.3%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1888,6 +1890,7 @@ in the last X seconds. Taking any damage will reset this cooldown.</li>
     <li class="has-children"><a href="datum/component/riding.html" title="&#x2F;datum&#x2F;component&#x2F;riding">riding</a> - This is the riding component, which is applied to a movable atom by the <a href="datum/element.html" title="/datum/element">ridable element</a> when a mob is successfully buckled to said movable.<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;component&#x2F;riding&#x2F;human">human</span> - Yes, I said humans. No, this won't end well...</li>
     </ul></li>
+    <li><a href="datum/component/seethrough.html" title="&#x2F;datum&#x2F;component&#x2F;seethrough">seethrough</a> - A component that lets you turn an object invisible when you're standing on certain relative turfs to it, like behind a tree</li>
     <li><a href="datum/component/shadowlands.html" title="&#x2F;datum&#x2F;component&#x2F;shadowlands">shadowlands</a></li>
     <li><a href="datum/component/shielded.html" title="&#x2F;datum&#x2F;component&#x2F;shielded">shielded</a></li>
     <li><a href="datum/component/slippery.html" title="&#x2F;datum&#x2F;component&#x2F;slippery">Slip behaviour component</a> - Add this component to an object to make it a slippery object, slippery objects make mobs that cross them fall over.
@@ -4349,6 +4352,7 @@ Chance to give Bat form, or turn them into a bat.</li>
     <li class="has-children"><a href="obj/structure/filingcabinet.html" title="&#x2F;obj&#x2F;structure&#x2F;filingcabinet">filing cabinet</a><ul class="index-tree">
     <li><a href="obj/structure/filingcabinet/colored.html" title="&#x2F;obj&#x2F;structure&#x2F;filingcabinet&#x2F;colored">colored cabinet</a></li>
     </ul></li>
+    <li><span class="no-substance">flora&#x2F;</span><a href="obj/structure/flora/tree.html" title="&#x2F;obj&#x2F;structure&#x2F;flora&#x2F;tree">tree</a></li>
     <li class="has-children"><a href="obj/structure/foamedmetal.html" title="&#x2F;obj&#x2F;structure&#x2F;foamedmetal">foamed metal</a> - FOAM STRUCTURE. Formed by metal foams. Dense and opaque, but easy to break<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;foamedmetal&#x2F;iron">iron</span> - A variant of metal foam walls with higher durability.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;foamedmetal&#x2F;resin">ATMOS Resin</span> - Atmos Backpack Resin, transparent, prevents atmos and filters the air</li>
@@ -4472,7 +4476,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/7cab4305fcf3f74045acdf5fc11ab40bfe51fd70">7cab430</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/2ca3e8597a464efb27eb786b45c42dedeff8c815">2ca3e85</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
