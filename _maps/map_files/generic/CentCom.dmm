@@ -5486,10 +5486,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/machinery/fax{
-	fax_name = "Cargo Office";
-	name = "Central Command Logistics Office Fax Machine"
-	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supply)
 "aoN" = (
@@ -20171,10 +20167,6 @@
 /area/centcom/central_command_areas/admin)
 "flN" = (
 /obj/structure/table/reinforced/titaniumglass,
-/obj/machinery/fax{
-	name = "NT Helpdesk Fax Machine";
-	fax_name = "NT Helpdesk"
-	},
 /obj/machinery/light/directional/west,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/adminroom)
@@ -23244,11 +23236,9 @@
 /turf/open/floor/wood/parquet,
 /area/centcom/central_command_areas/admin)
 "vDH" = (
-/obj/machinery/door/airlock/security/glass{
+/turf/closed/indestructible/fakedoor/glass_airlock{
 	name = "SuperJail Cell"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
-/turf/open/floor/carpet,
 /area/centcom/central_command_areas/prison)
 "vEF" = (
 /obj/structure/fence,
