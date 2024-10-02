@@ -670,7 +670,7 @@ Difficulty: Very Hard
 
 /mob/living/simple_animal/hostile/lightgeist/healing/Initialize(mapload)
 	. = ..()
-	remove_verb(src, /mob/living/verb/pulled)
+	remove_verb(src, /mob/verb/pulled)
 	remove_verb(src, /mob/verb/me_verb)
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.show_to(src)
@@ -841,7 +841,7 @@ Difficulty: Very Hard
 		L.mind.transfer_to(holder_animal)
 		var/datum/action/exit_possession/escape = new(holder_animal)
 		escape.Grant(holder_animal)
-		remove_verb(holder_animal, /mob/living/verb/pulled)
+		remove_verb(holder_animal, /mob/verb/pulled)
 
 /obj/structure/closet/stasis/dump_contents(kill = TRUE)
 	STOP_PROCESSING(SSobj, src)

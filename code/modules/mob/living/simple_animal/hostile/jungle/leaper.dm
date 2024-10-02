@@ -132,9 +132,10 @@
 
 /mob/living/simple_animal/hostile/jungle/leaper/Initialize(mapload)
 	. = ..()
-	remove_verb(src, /mob/living/verb/pulled)
+	remove_verb(src, /mob/verb/pulled)
 
 /mob/living/simple_animal/hostile/jungle/leaper/CtrlClickOn(atom/A)
+	. = TRUE
 	face_atom(A)
 	target = A
 	if(!isturf(loc))
