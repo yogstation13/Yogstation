@@ -1,0 +1,5 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - imageadd: "Staircases are now always shaded properly (see: IceMeta)"
+  - mapping: "Touched up on a lot of maps using ramp shadows, replaced all old stair sprites with new ones"
