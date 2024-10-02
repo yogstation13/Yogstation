@@ -32,7 +32,7 @@
 	melee_damage_upper = 25
 	ranged = TRUE 
 	ranged_cooldown = 5 SECONDS
-	projectiletype = /obj/projectile/jungle/meduracha_spit
+	projectiletype = /obj/projectile/reagent/meduracha_spit
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)
 	
