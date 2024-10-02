@@ -306,6 +306,9 @@
 /obj/machinery/light_switch{
 	pixel_x = 24
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet)
 "afo" = (
@@ -2306,9 +2309,6 @@
 /area/engine/atmos)
 "aSn" = (
 /obj/structure/railing,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 4
 	},
@@ -12722,7 +12722,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "ffF" = (
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle,
 /area/library)
 "ffQ" = (
@@ -13047,6 +13046,7 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin,
+/obj/effect/turf_decal/ramp_corner,
 /turf/open/floor/wood,
 /area/tcommsat/computer)
 "foy" = (
@@ -13606,6 +13606,9 @@
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/tcommsat/computer)
 "fAi" = (
@@ -13897,9 +13900,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle{
@@ -16696,6 +16696,9 @@
 /obj/machinery/light_switch{
 	pixel_x = -24
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/tcommsat/computer)
 "gPN" = (
@@ -17118,9 +17121,6 @@
 "gZc" = (
 /obj/structure/railing{
 	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 4
@@ -22723,6 +22723,9 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet)
 "jwl" = (
@@ -28062,7 +28065,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide,
 /area/library)
 "lJg" = (
@@ -42142,7 +42144,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2,
 /area/library)
 "rAT" = (
@@ -42556,6 +42557,9 @@
 /obj/effect/turf_decal/stripes,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/tcommsat/computer)
@@ -48631,7 +48635,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle,
 /area/library)
 "ung" = (
@@ -55720,6 +55723,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet)

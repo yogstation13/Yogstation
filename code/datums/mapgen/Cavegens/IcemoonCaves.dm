@@ -13,6 +13,53 @@
 	///Note that this spawn list is also in the lavaland generator
 	weighted_feature_spawn_list = null
 
+	var/initial_basalt_chance = 40
+	var/basalt_smoothing_interations = 100
+	var/basalt_birth_limit = 4
+	var/basalt_death_limit = 3
+	var/basalt_turf = /turf/closed/mineral/random/snow/hard/icemoon
+
+	var/big_node_min = 25
+	var/big_node_max = 55
+
+	var/min_offset = 0
+	var/max_offset = 5
+
+/datum/map_generator/cave_generator/icemoon/generate_terrain(list/turfs) //literally just the lavaland one before it had granite i'll add something for granite later
+	. = ..()
+	var/start_time = REALTIMEOFDAY
+	var/node_amount = rand(6,10)
+
+	var/list/possible_turfs = turfs.Copy()
+	for(var/node=1 to node_amount)
+		var/turf/picked_turf = pick_n_take(possible_turfs)
+		if(!picked_turf)
+			continue
+		//time for bounds
+		var/size_x = rand(big_node_min,big_node_max)
+		var/size_y = rand(big_node_min,big_node_max)
+
+		//time for noise
+		var/node_gen = rustg_cnoise_generate("[initial_basalt_chance]", "[basalt_smoothing_interations]", "[basalt_birth_limit]", "[basalt_death_limit]", "[size_x + 1]", "[size_y + 1]")
+		var/list/changing_turfs = block(locate(picked_turf.x - round(size_x/2),picked_turf.y - round(size_y/2),picked_turf.z),locate(picked_turf.x + round(size_x/2),picked_turf.y + round(size_y/2),picked_turf.z))
+		for(var/turf/T in changing_turfs) //ccopy and pasted shitcode
+			if(!ismineralturf(T))
+				continue
+			var/index = changing_turfs.Find(T)
+			var/hardened = text2num(node_gen[index])
+			if(!hardened)
+				continue
+			var/hard_path = text2path("[T.type]/hard")
+			if(!ispath(hard_path)) //erm what the shit we dont have a hard type
+				continue
+			var/turf/new_turf = hard_path
+			new_turf = T.ChangeTurf(new_turf, initial(new_turf.baseturfs), CHANGETURF_DEFER_CHANGE)
+
+	var/message = "IceMoon Auxiliary generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
+	to_chat(world, span_boldannounce("[message]"))
+	log_world(message)
+
+
 /datum/map_generator/cave_generator/icemoon/surface
 	flora_spawn_chance = 4
 	weighted_mob_spawn_list = list(/mob/living/simple_animal/hostile/asteroid/wolf = 50, /obj/structure/spawner/ice_moon = 3, \

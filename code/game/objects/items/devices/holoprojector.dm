@@ -176,9 +176,11 @@
 	qdel(src)
 
 /obj/effect/dummy/hologram/CtrlClick(mob/user)
-	if(get_dist(src, user) > 1) return
+	if(get_dist(src, user) > 1)
+		return FALSE
 	to_chat(user, "<span class='danger'>You pass through [src] as you try to grab it!</span>")
 	qdel(src)
+	return TRUE
 
 /obj/item/device/holoprojector/debug
 	name = "debug holoprojector"

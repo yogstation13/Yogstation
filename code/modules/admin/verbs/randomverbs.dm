@@ -1505,9 +1505,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Admin Cryo"
 	if(!check_rights(R_ADMIN))
 		return
-	var/confirm = alert(usr, "Are you Sure you want to offer them?", "Are you Sure", "Yes", "No")
+	var/confirm = alert(usr, "Are you sure you want to cryo them?", "Admin Cryo", "Yes", "No")
 	if(confirm == "No")
 		return
+	var/offer = alert(usr, "Do you want to offer control of their mob to ghosts?", "Offer Control", "Yes", "No")
 	for(var/obj/machinery/cryopod/cryopod in GLOB.cryopods)
 		if(cryopod.occupant)
 			continue
@@ -1519,7 +1520,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins(msg)
 		log_admin(msg)
 		new /obj/effect/particle_effect/sparks/quantum(get_turf(target))
-		cryopod.close_machine(target)
+		if(offer == "Yes")
+			cryopod.close_machine(target, admin_forced = TRUE)
+			offer_control(target)
+		else
+			cryopod.close_machine(target)
 		return
 
 /datum/admins/proc/cmd_create_centcom()

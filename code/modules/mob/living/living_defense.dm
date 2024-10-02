@@ -111,6 +111,14 @@
 	else
 		playsound_local(src, 'sound/misc/ui_toggleoffcombat.ogg', 25, FALSE, pressure_affected = FALSE) //Slightly modified version of the above
 
+/mob/living/proc/set_grab_mode(new_mode)
+	if(grab_mode == new_mode)
+		return
+	. = grab_mode
+	grab_mode = new_mode
+	if(hud_used?.action_intent)
+		hud_used.action_intent.update_appearance()
+
 /mob/living/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	return
 

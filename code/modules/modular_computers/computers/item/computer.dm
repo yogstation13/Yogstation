@@ -232,7 +232,7 @@
 	if(ishuman(usr) && usr.CanReach(src) && usr.canUseTopic(src))
 		return attack_self(M)
 	else
-		..()
+		return ..()
 
 /obj/item/modular_computer/attack_hand(mob/living/user, modifiers)
 	if(modifiers?[RIGHT_CLICK])
