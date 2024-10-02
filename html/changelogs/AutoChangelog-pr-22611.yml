@@ -1,0 +1,6 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - rscadd: "Added hand scooping, multiscooping, and scooping failure"
+  - tweak: "Tweaked info_tab, scoop flavortypes, and made vat upgradable"
+  - imageadd: "Added sprites for cone box and service hatch for vat"
