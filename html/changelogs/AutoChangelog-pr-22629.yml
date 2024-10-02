@@ -1,5 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - rscadd: "Makes grabbing a keybind that can be changed to something other than ctrl."
-  - rscadd: "Grabbing can now be toggled on and off with a separate keybind."
