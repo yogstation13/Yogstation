@@ -1,0 +1,5 @@
+author: "Mqiib"
+delete-after: true 
+changes: 
+  - tweak: "Caltrops now only slow if the damage is below 5"
+  - tweak: "Digitigrade legs are slightly more resistant to caltrops (75%)"
