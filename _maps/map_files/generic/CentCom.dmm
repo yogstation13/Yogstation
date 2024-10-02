@@ -12696,10 +12696,16 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/centcom/holding)
 "aFX" = (
-/turf/open/floor/plasteel/stairs,
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone{
+	dir = 1
+	},
 /area/centcom/holding)
 "aFY" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -15327,6 +15333,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/centcom/holding)
 "aKV" = (
@@ -22198,6 +22205,15 @@
 "jkt" = (
 /turf/closed/indestructible/opsglass,
 /area/centcom/syndicate_mothership)
+"jok" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/centcom/holding)
 "jqy" = (
 /turf/open/indestructible/wiki/info{
 	icon_state = "info22"
@@ -22427,6 +22443,12 @@
 	name = "Shoe Storage"
 	},
 /area/yogs/infiltrator_base/jail)
+"lqR" = (
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/centcom/holding)
 "lsj" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/syndicate_mothership)
@@ -22601,6 +22623,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ctf)
+"mNB" = (
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/wood,
+/area/centcom/holding)
 "mVV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -50808,7 +50834,7 @@ aNd
 aMR
 aSd
 aFW
-aXk
+lqR
 aXk
 aSd
 aSd
@@ -51065,7 +51091,7 @@ aNd
 aNd
 aSd
 aFX
-aXk
+mNB
 aXk
 aXk
 aXk
@@ -51322,7 +51348,7 @@ aNd
 aNd
 aNd
 aNd
-aGs
+jok
 aXk
 aXM
 aTu

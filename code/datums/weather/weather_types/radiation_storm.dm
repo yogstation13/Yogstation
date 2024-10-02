@@ -18,33 +18,47 @@
 
 	area_type = /area
 	protected_areas = list(/area/maintenance, /area/ai_monitored/turret_protected/ai_upload, /area/ai_monitored/turret_protected/ai_upload_foyer,
-	/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, /area/shuttle, /area/ai_monitored/storage/satellite, /area/security/prison)
+							/area/ai_monitored/turret_protected/ai, /area/storage/emergency/starboard, /area/storage/emergency/port, 
+							/area/shuttle, /area/ai_monitored/storage/satellite, /area/security/prison, /area/icemoon/underground)
+	
 	target_trait = ZTRAIT_STATION
 
 	immunity_type = WEATHER_RAD
+	/// Chance we get a negative mutation, if we fail we get a positive one
+	var/negative_mutation_chance = 90
+	/// Chance we mutate
+	var/mutate_chance = 40
 
 /datum/weather/rad_storm/telegraph()
 	..()
 	status_alarm(TRUE)
 
-
 /datum/weather/rad_storm/weather_act(mob/living/L)
 	var/resist = L.getarmor(null, RAD)
-	if(prob(40))
-		if(ishuman(L))
-			if (!HAS_TRAIT(L,TRAIT_RADIMMUNE)) //if they dont have radimmune, continue
-				var/mob/living/carbon/human/H = L
-				if(H.dna && !HAS_TRAIT(H, TRAIT_GENELESS))
-					if(prob(max(0,100-resist)))
-						H.random_mutate_unique_identity()
-						H.random_mutate_unique_features()
-						if(prob(50))
-							if(prob(90))
-								H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
-							else
-								H.easy_random_mutate(POSITIVE)
-							H.domutcheck()
-		L.rad_act(20)
+	if(!prob(mutate_chance))
+		return
+	
+	if(!ishuman(L))
+		return
+	
+	var/mob/living/carbon/human/H = L
+	if(!H.can_mutate() || H.status_flags & GODMODE)
+		return
+	
+	if(HAS_TRAIT(H, TRAIT_RADIMMUNE))
+		return
+
+	if(prob(max(0,100-resist)))
+		H.random_mutate_unique_identity()
+		H.random_mutate_unique_features()
+		if(prob(50))
+			if(prob(negative_mutation_chance))
+				H.easy_random_mutate(NEGATIVE+MINOR_NEGATIVE)
+			else
+				H.easy_random_mutate(POSITIVE)
+			H.domutcheck()
+	
+	H.rad_act(20)
 
 /datum/weather/rad_storm/start()
 	if(..())
@@ -58,9 +72,10 @@
 		return
 	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert")
 	status_alarm(FALSE)
-	sleep(1 MINUTES) // Want to give them time to get out of maintenance.
+	//sleep(1 MINUTES) // Want to give them time to get out of maintenance.
 	if(GLOB.emergency_access)
-		revoke_maint_all_access()
+		addtimer(CALLBACK(src, GLOBAL_PROC_REF(revoke_maint_all_access)), 1 MINUTES)
+		//revoke_maint_all_access()
 
 /datum/weather/rad_storm/proc/status_alarm(active)	//Makes the status displays show the radiation warning for those who missed the announcement.
 	var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)

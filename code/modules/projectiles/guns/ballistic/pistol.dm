@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(does_howard_exist, FALSE)
+
 /obj/item/gun/ballistic/automatic/pistol
 	name = "stechkin pistol"
 	desc = "A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors."
@@ -129,6 +131,23 @@
 
 /obj/item/gun/ballistic/automatic/pistol/v38/less_lethal
 	starting_mag_type = /obj/item/ammo_box/magazine/v38/rubber
+
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal/Initialize(mapload)
+	if(GLOB.does_howard_exist || prob(90))
+		return ..()
+	GLOB.does_howard_exist = TRUE
+	new/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal/howard(loc)
+	qdel(src)
+
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal/howard
+	name = "\improper Vatra M38 \"Hauard\" Pistol"
+	icon_state = "v38s"
+	desc = "A moderately-sized, silver-plated handgun that loads irregular .38 special magazines. Commonly found among Serbian police forces. Its serial number is scratched out and replaced with \"Hauard\"."
+
+/obj/item/gun/ballistic/automatic/pistol/v38/less_lethal/howard/Destroy()
+	GLOB.does_howard_exist = FALSE //not anymore, goodbye!
+	..()
+	
 
 /obj/item/gun/ballistic/automatic/pistol/boltpistol
 	name = "Imperial Bolt Pistol"

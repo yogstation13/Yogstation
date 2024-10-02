@@ -165,11 +165,12 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 
 	var/mob/living/carbon/carbon_source = source
 
-	var/obj/item/clothing/mask = carbon_source.wear_mask
-	if (!istype(mask))
-		return
+	var/obj/item/clothing/head = carbon_source.head
+	if (istype(head) && (head.clothing_flags & HEADINTERNALS) && istype(item, /obj/item/tank))
+		return isnull(carbon_source.internal) ? "enable_internals" : "disable_internals"
 
-	if ((mask.clothing_flags & MASKINTERNALS) && istype(item, /obj/item/tank))
+	var/obj/item/clothing/mask = carbon_source.wear_mask
+	if (istype(mask) && (mask.clothing_flags & MASKINTERNALS) && istype(item, /obj/item/tank))
 		return isnull(carbon_source.internal) ? "enable_internals" : "disable_internals"
 
 /proc/strippable_alternate_action_internals(obj/item/item, atom/source, mob/user)

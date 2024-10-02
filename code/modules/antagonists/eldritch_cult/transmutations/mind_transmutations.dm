@@ -17,7 +17,26 @@
 
 /datum/martial_art/Absolute_Spacial_Domination
 	id = MARTIALART_SPACIALLDOMINANCE
-	deflection_chance = 100
+
+/datum/martial_art/Absolute_Spacial_Domination/teach(mob/living/carbon/human/user, make_temporary)
+	. = ..()
+	RegisterSignal(user, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
+
+/datum/martial_art/Absolute_Spacial_Domination/remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_ATOM_BULLET_ACT)
+	return ..()
+
+/datum/martial_art/Absolute_Spacial_Domination/proc/on_bullet_act(mob/living/carbon/human/defender, obj/projectile/incoming, def_zone)
+	if(!(defender.mobility_flags & MOBILITY_USE))
+		return NONE
+	if(defender.dna?.check_mutation(HULK))
+		return NONE
+	defender.visible_message(
+		span_danger("[defender] deflects the projectile; [defender.p_they()] can't be hit with ranged weapons!"),
+		span_userdanger("You deflect the projectile!"),
+	)
+	playsound(defender, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
+	return BULLET_ACT_BLOCK
 
 /datum/eldritch_transmutation/final/mind_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	var/mob/living/carbon/human/H = user
