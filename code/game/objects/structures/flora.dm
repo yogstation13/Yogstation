@@ -18,6 +18,7 @@
 	density = TRUE
 	pixel_x = -16
 	layer = FLY_LAYER
+	plane = MASSIVE_OBJ_PLANE
 	var/log_amount = 10
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
@@ -40,6 +41,14 @@
 	else
 		return ..()
 
+/obj/structure/flora/tree/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/seethrough, get_seethrough_map())
+
+///Return a see_through_map, examples in seethrough.dm
+/obj/structure/flora/tree/proc/get_seethrough_map()
+	return SEE_THROUGH_MAP_DEFAULT
+
 /obj/structure/flora/stump
 	name = "stump"
 	desc = "This represents our promise to the crew, and the station itself, to cut down as many trees as possible." //running naked through the trees
@@ -54,6 +63,9 @@
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 	var/list/icon_states = list("pine_1", "pine_2", "pine_3")
+
+/obj/structure/flora/tree/pine/get_seethrough_map()
+	return SEE_THROUGH_MAP_DEFAULT_TWO_TALL
 
 /obj/structure/flora/tree/pine/Initialize(mapload)
 	. = ..()
@@ -140,6 +152,9 @@
 	pixel_x = -48
 	pixel_y = -20
 
+/obj/structure/flora/tree/jungle/get_seethrough_map()
+	return SEE_THROUGH_MAP_THREE_X_THREE
+
 /obj/structure/flora/tree/jungle/Initialize(mapload)
 	icon_state = "[icon_state][rand(1, 6)]"
 	. = ..()
@@ -149,6 +164,9 @@
 	pixel_x = -32
 	icon = 'icons/obj/flora/jungletreesmall.dmi'
 
+/obj/structure/flora/tree/jungle/small/get_seethrough_map()
+	return SEE_THROUGH_MAP_THREE_X_TWO
+	
 //grass
 /obj/structure/flora/grass
 	name = "grass"
@@ -453,6 +471,10 @@
 	pixel_x = -16
 	pixel_y = -12
 	layer = ABOVE_ALL_MOB_LAYER
+
+/obj/structure/flora/junglebush/large/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_DEFAULT)
 
 /obj/structure/flora/rock/pile/largejungle
 	name = "rocks"

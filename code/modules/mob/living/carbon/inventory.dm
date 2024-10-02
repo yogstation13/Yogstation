@@ -338,7 +338,7 @@
 	for(var/mob/living/carbon/C in orange(1, src))
 		if(!CanReach(C))
 			return
-		var/atom/movable/screen/alert/give/G = C.throw_alert("[src]", /atom/movable/screen/alert/give)
+		var/atom/movable/screen/alert/give/G = C.throw_alert("[REF(src)]-[REF(receiving)]", /atom/movable/screen/alert/give)
 		if(!G)
 			return
 		G.setup(C, src, receiving)

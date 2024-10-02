@@ -50,7 +50,7 @@
 	if (!isnull(should_strip_proc_path) && !call(source, should_strip_proc_path)(user))
 		return
 
-	var/datum/strip_menu/strip_menu
+	var/datum/strip_menu/strip_menu = LAZYACCESS(strip_menus, source)
 
 	if (isnull(strip_menu))
 		strip_menu = new(source, src)
@@ -268,6 +268,7 @@
 
 /// A utility function for `/datum/strippable_item`s to start unequipping an item from a mob.
 /proc/start_unequip_mob(obj/item/item, mob/source, mob/user, strip_delay)
+	SEND_SIGNAL(item, COMSIG_ITEM_PRESTRIP, user)
 	if (!do_after(user, strip_delay || item.strip_delay, source, interaction_key = REF(item)))
 		return FALSE
 

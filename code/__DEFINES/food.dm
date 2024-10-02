@@ -19,6 +19,7 @@
 #define SEAFOOD		(1<<18)
 #define MICE		(1<<19) //disliked/liked by anything that dislikes/likes any of RAW, MEAT, or GROSS, except felinids
 #define NUTS 		(1<<20)
+#define COFFEE 		(1<<21)
 
 /// A list of food type names, in order of their flags
 #define FOOD_FLAGS list( \

@@ -1,9 +1,4 @@
-#define STARTUP_STAGE 1
-#define MAIN_STAGE 2
-#define WIND_DOWN_STAGE 3
-#define END_STAGE 4
-
-//Used for all kinds of weather, ex. lavaland ash storms.
+/// Used for all kinds of weather, ex. lavaland ash storms.
 SUBSYSTEM_DEF(weather)
 	name = "Weather"
 	flags = SS_BACKGROUND
@@ -16,25 +11,23 @@ SUBSYSTEM_DEF(weather)
 /datum/controller/subsystem/weather/fire()
 	// process active weather
 	for(var/V in processing)
-		var/datum/weather/W = V
-		if(W.aesthetic || W.stage != MAIN_STAGE)
+		var/datum/weather/our_event = V
+		if(our_event.aesthetic || our_event.stage != MAIN_STAGE)
 			continue
-		for(var/i in GLOB.mob_living_list)
-			var/mob/living/L = i
-			if(W.can_weather_act(L))
-				W.weather_act(L)
+		for(var/mob/act_on as anything in GLOB.mob_living_list)
+			if(our_event.can_weather_act(act_on))
+				our_event.weather_act(act_on)
 
 	// start random weather on relevant levels
 	for(var/z in eligible_zlevels)
 		var/possible_weather = eligible_zlevels[z]
-		var/datum/weather/W = pickweight(possible_weather)
-		run_weather(W, list(text2num(z)))
+		var/datum/weather/our_event = pick_weight(possible_weather)
+		run_weather(our_event, list(text2num(z)))
 		eligible_zlevels -= z
-		var/randTime = rand(W.cooldown_lower, W.cooldown_higher)
-		addtimer(CALLBACK(src, PROC_REF(make_eligible), z, possible_weather), randTime + initial(W.weather_duration_upper), TIMER_UNIQUE) //Around 5-10 minutes between weathers
-		next_hit_by_zlevel["[z]"] = world.time + randTime + initial(W.telegraph_duration)
+		var/randTime = rand(our_event.cooldown_lower, our_event.cooldown_higher)
+		next_hit_by_zlevel["[z]"] = addtimer(CALLBACK(src, PROC_REF(make_eligible), z, possible_weather), randTime + initial(our_event.weather_duration_upper), TIMER_UNIQUE|TIMER_STOPPABLE) //Around 5-10 minutes between weathers
 
-/datum/controller/subsystem/weather/Initialize(start_timeofday)
+/datum/controller/subsystem/weather/Initialize()
 	for(var/V in subtypesof(/datum/weather))
 		var/datum/weather/W = V
 		var/probability = initial(W.probability)
@@ -75,17 +68,28 @@ SUBSYSTEM_DEF(weather)
 
 	var/datum/weather/W = new weather_datum_type(z_levels)
 	W.telegraph()
-	return W
 
 /datum/controller/subsystem/weather/proc/make_eligible(z, possible_weather)
 	eligible_zlevels[z] = possible_weather
 	next_hit_by_zlevel["[z]"] = null
 
 /datum/controller/subsystem/weather/proc/get_weather(z, area/active_area)
-    var/datum/weather/A
-    for(var/V in processing)
-        var/datum/weather/W = V
-        if((z in W.impacted_z_levels) && istype(active_area, W.area_type))
-            A = W
-            break
-    return A
+	var/datum/weather/A
+	for(var/V in processing)
+		var/datum/weather/W = V
+		if((z in W.impacted_z_levels) && W.area_type == active_area.type)
+			A = W
+			break
+	return A
+
+///Returns an active storm by its type
+/datum/controller/subsystem/weather/proc/get_weather_by_type(type)
+	return locate(type) in processing
+
+// ADMIN_VERB(stop_weather, R_DEBUG|R_ADMIN, "Stop All Active Weather", "Stop all currently active weather.", ADMIN_CATEGORY_DEBUG)
+// 	log_admin("[key_name(user)] stopped all currently active weather.")
+// 	message_admins("[key_name_admin(user)] stopped all currently active weather.")
+// 	for(var/datum/weather/current_weather as anything in SSweather.processing)
+// 		if(current_weather in SSweather.processing)
+// 			current_weather.end()
+// 	BLACKBOX_LOG_ADMIN_VERB("Stop All Active Weather")

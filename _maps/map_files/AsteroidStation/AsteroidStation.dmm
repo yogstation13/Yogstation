@@ -891,15 +891,15 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ahZ" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
 	c_tag = "Prison Cafeteria";
 	dir = 4;
 	network = list("ss13","prison")
 	},
 /obj/structure/closet/secure_closet/freezer/fridge/open,
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
@@ -6192,8 +6192,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "bgo" = (
-/turf/open/floor/plasteel/stairs/right{
-	dir = 8
+/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
+	dir = 4
 	},
 /area/ruin/powered)
 "bgy" = (
@@ -7420,6 +7420,7 @@
 	name = "CE's Junction";
 	sortType = 5
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "bDK" = (
@@ -11652,9 +11653,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 8
 	},
@@ -12477,6 +12475,9 @@
 /area/maintenance/starboard/aft)
 "dfi" = (
 /obj/machinery/light,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/grass,
 /area/hallway/secondary/exit)
 "dft" = (
@@ -12718,6 +12719,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -12834,7 +12838,9 @@
 /obj/structure/table,
 /obj/machinery/microwave,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/ramp_corner,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "dlw" = (
@@ -14439,9 +14445,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 8
 	},
@@ -14791,10 +14794,21 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "dSg" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/ramp_corner,
-/turf/open/floor/plasteel/cafeteria,
-/area/security/prison)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "dSi" = (
 /obj/structure/chair/comfy/brown,
 /obj/structure/chair/comfy/brown,
@@ -22510,8 +22524,8 @@
 /turf/open/floor/grass,
 /area/hallway/secondary/exit)
 "gkb" = (
-/turf/open/floor/plasteel/stairs/left{
-	dir = 8
+/turf/open/floor/plasteel/stairs/goon/stairs_wide{
+	dir = 4
 	},
 /area/ruin/powered)
 "gkg" = (
@@ -25349,6 +25363,7 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 4
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "hdk" = (
@@ -26509,9 +26524,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle{
 	dir = 8
@@ -29563,6 +29575,9 @@
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "itc" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg1"
 	},
@@ -33632,6 +33647,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/grass,
 /area/hallway/secondary/exit)
 "jDl" = (
@@ -34854,6 +34872,7 @@
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "jXS" = (
@@ -35311,6 +35330,9 @@
 /obj/structure/bed,
 /obj/machinery/light/broken{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg3"
@@ -39492,6 +39514,9 @@
 /obj/machinery/door/poddoor/shutters{
 	id = "HippieVan"
 	},
+/obj/effect/turf_decal/ramp_corner{
+	dir = 1
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
 "lAu" = (
@@ -42350,9 +42375,11 @@
 	pixel_x = -22
 	},
 /obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs_alone,
 /area/escapepodbay)
 "msX" = (
 /obj/structure/flora/ausbushes/ywflowers,
@@ -45622,6 +45649,9 @@
 "npM" = (
 /obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
 /obj/item/lighter,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg2"
 	},
@@ -51608,7 +51638,9 @@
 /area/engine/engineering)
 "piD" = (
 /obj/effect/turf_decal/siding/wideplating,
-/obj/effect/turf_decal/ramp_corner,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/grass,
 /area/hallway/secondary/exit)
 "piF" = (
@@ -56967,7 +56999,6 @@
 	},
 /area/maintenance/port/aft)
 "qQp" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -56977,6 +57008,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
@@ -57997,6 +58029,9 @@
 	},
 /obj/machinery/light/broken{
 	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/powered)
@@ -62662,7 +62697,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs_middle,
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 1
+	},
 /area/engine/engineering)
 "swA" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -67278,6 +67315,9 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/ce,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "tPL" = (
@@ -67339,6 +67379,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"tQe" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/hallway/secondary/exit)
 "tQj" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -70733,8 +70779,8 @@
 	dir = 1
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/hallway/secondary/exit)
@@ -72115,6 +72161,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 8
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "vtE" = (
@@ -73106,9 +73153,6 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
@@ -75091,7 +75135,6 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -75100,9 +75143,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 8
@@ -75365,10 +75405,13 @@
 /obj/structure/closet/secure_closet/freezer/kitchen/maintenance{
 	name = "refrigerator"
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 8;
 	light_color = "#e8eaff"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
@@ -76634,7 +76677,6 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "wKg" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -76644,6 +76686,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
@@ -117689,7 +117732,7 @@ wKg
 ofo
 ahZ
 wtQ
-dSg
+hyg
 qQp
 hyg
 arQ
@@ -124468,7 +124511,7 @@ tac
 rHy
 xeC
 die
-xeC
+dSg
 vVe
 tur
 sJB
@@ -126222,13 +126265,13 @@ acb
 acb
 aNY
 jDk
-eIN
+tQe
 piD
 azt
 lLn
 azt
 uVe
-eIN
+tQe
 dfi
 aNY
 anj
