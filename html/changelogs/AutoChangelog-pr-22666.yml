@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - mapping: "Some tiles outside the underground alien lab on icemoon will no longer protect from snow storm"
