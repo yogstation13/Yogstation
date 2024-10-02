@@ -24,7 +24,7 @@
 
 /obj/item/organ/liver/Insert(mob/living/carbon/M, special, drop_if_replaced, special_zone)
 	. = ..()
-	RegisterSignal(M, COMSIG_CARBON_UPDATE_TOXINS, PROC_REF(update_toxin_cache))
+	RegisterSignal(M, COMSIG_CARBON_UPDATE_TOXINS, PROC_REF(update_toxin_cache), override = TRUE)
 
 /obj/item/organ/liver/Remove(mob/living/carbon/M, special)
 	UnregisterSignal(M, COMSIG_CARBON_UPDATE_TOXINS)
