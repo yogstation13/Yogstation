@@ -1,0 +1,4 @@
+author: "ven1883"
+delete-after: True
+changes:
+  - rscdel: "Removes bunnywand from wiz item selection"
