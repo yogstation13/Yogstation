@@ -122,8 +122,7 @@
 	if(!..())
 		return
 	var/mob/living/silicon/pai/pAI = usr
-	message_admins(pAI.loc)
-	if(pAI)
+	if(get(pAI, /obj/item/pda))
 		pAI.cmd_send_pdamesg(usr)
 	else
 		pAI.cmd_mc_send_pdamesg(usr)

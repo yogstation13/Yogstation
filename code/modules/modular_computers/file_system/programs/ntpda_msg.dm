@@ -471,9 +471,11 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 	var/list/plist = list()
 	var/list/namecounts = list()
 	var/list/data = list()
+	message_admins("cmd_mc_send_pdamesg called")
 	if(aiPDA.toff)
 		to_chat(user, "Turn on your receiver in order to send messages.")
 		return
+	message_admins("transceiver checked")
 	data = ui_data(user)
 	for(var/obj/item/modular_computer/P in data["pdas"])
 		if(P == src)
@@ -482,7 +484,11 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 			continue
 		plist[avoid_assoc_duplicate_keys(data["username"], namecounts)] = P
 
+	message_admins("for loop completed")
+
+	//Something is wrong with this part, isn't giving the input
 	var/c = input(user, "Please select a recipient") as null|anything in sortList(plist)
+	message_admins("input completed")
 
 	if(!c)
 		return
@@ -493,4 +499,4 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		return
 
 	to_chat(user, "Success, cmd_mc_send_pdamesg ran")
-	to_chat(user, plist[c])
+	to_chat(user, selected)
