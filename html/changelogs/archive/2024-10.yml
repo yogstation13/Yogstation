@@ -8,6 +8,8 @@
   Absolucy:
   - bugfix: Fixes sentient slimes getting taken over by AI when splitting/vaccumed.
   - qol: Malkavian bloodsucker ramblings now have a proper cooldown.
+  - qol: Moved the plant dna disk design from Botanical Engineering to roundstart
+      tech.
   Absolucy, ancient-engineer:
   - rscadd: Added signboards, player craftable signs that display text above them
       in the world that everyone can see!
