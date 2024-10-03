@@ -300,17 +300,11 @@
 #define COMSIG_IMPLANT_EXISTING_UPLINK "implant_uplink_exists"
 	//This uses all return values of COMSIG_IMPLANT_OTHER
 
-// /obj/item/pda signals
-
-///called on pda when the user changes the ringtone: (mob/living/user, new_ringtone)
-#define COMSIG_TABLET_CHANGE_ID "comsig_tablet_change_id"
-	#define COMPONENT_STOP_RINGTONE_CHANGE (1<<0)
-#define COMSIG_TABLET_CHECK_DETONATE "pda_check_detonate"
-	#define COMPONENT_TABLET_NO_DETONATE (1<<0)
-
 // /obj/item/modular_computer signals
 #define COMSIG_NTOS_CHANGE_RINGTONE "ntos_change_ringtone"
-#define COMPONENT_NTOS_STOP_RINGTONE_CHANGE 1
+	#define COMPONENT_STOP_RINGTONE_CHANGE 1
+#define COMSIG_TABLET_CHECK_DETONATE "pda_check_detonate"
+	#define COMPONENT_TABLET_NO_DETONATE (1<<0)
 
 // /obj/item/radio signals
 

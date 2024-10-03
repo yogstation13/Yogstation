@@ -45,7 +45,6 @@
 	var/interaction_range = 7			//wireless control range
 	///The reference to the built-in tablet that borgs carry.
 	var/obj/item/modular_computer/tablet/integrated/modularInterface
-	var/obj/item/pda/aiPDA
 
 /mob/living/silicon/Initialize(mapload)
 	. = ..()
