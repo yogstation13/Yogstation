@@ -411,8 +411,7 @@
 	if(istype(spewed, /mob/living/basic/slime))
 		var/mob/living/basic/slime/slime = spewed
 		slime.slime_flags &= ~STORED_SLIME
-		if(slime.ai_controller)
-			slime.ai_controller.set_ai_status(AI_STATUS_ON)
+		slime.ai_controller?.reset_ai_status()
 		if(VACUUM_PACK_UPGRADE_STASIS in pack.upgrades)
 			REMOVE_TRAIT(slime, TRAIT_SLIME_STASIS, "vacuum_pack_stasis")
 

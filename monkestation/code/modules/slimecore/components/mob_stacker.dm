@@ -40,7 +40,7 @@
 	for(var/mob/living/dude as anything in stacked_mobs)
 		if(isbasicmob(dude))
 			var/mob/living/basic/basic = dude
-			basic.ai_controller?.set_ai_status(AI_STATUS_ON)
+			basic.ai_controller?.reset_ai_status()
 		REMOVE_TRAIT(dude, TRAIT_IN_STACK, "mob_stack")
 		UnregisterSignal(dude, COMSIG_ATOM_JOIN_STACK)
 		UnregisterSignal(dude, COMSIG_LIVING_SET_BUCKLED)
