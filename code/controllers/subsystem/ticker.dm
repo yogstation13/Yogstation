@@ -320,6 +320,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
 	set waitfor = FALSE
+	SSgamemode.post_setup()
 	SSgamemode.storyteller.process(STORYTELLER_WAIT_TIME * 0.1) // we want this asap
 	SSgamemode.storyteller.round_started = TRUE
 	GLOB.start_state = new /datum/station_state()
