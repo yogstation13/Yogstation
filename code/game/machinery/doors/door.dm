@@ -483,25 +483,29 @@
 		open()
 
 /obj/machinery/door/proc/crush()
-	for(var/mob/living/L in get_turf(src))
-		L.visible_message(span_warning("[src] closes on [L], crushing [L.p_them()]!"), span_userdanger("[src] closes on you and crushes you!"))
-		SEND_SIGNAL(L, COMSIG_LIVING_DOORCRUSHED, src)
-		if(isalien(L))  //For xenos
-			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE * 1.5) //Xenos go into crit after aproximately the same amount of crushes as humans.
-			L.emote("roar")
-		else if(ishuman(L)) //For humans
-			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
-			L.emote("scream")
-			L.Paralyze(100)
+	for(var/mob/living/future_pancake in get_turf(src))
+		future_pancake.visible_message(span_warning("[src] closes on [future_pancake], crushing [future_pancake.p_them()]!"), span_userdanger("[src] closes on you and crushes you!"))
+		SEND_SIGNAL(future_pancake, COMSIG_LIVING_DOORCRUSHED, src)
+		if(isalien(future_pancake))  //For xenos
+			future_pancake.adjustBruteLoss(DOOR_CRUSH_DAMAGE * 1.5) //Xenos go into crit after aproximately the same amount of crushes as humans.
+			future_pancake.emote("roar")
+		else if(ismonkey(future_pancake))
+			future_pancake.emote("screech")
+			future_pancake.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
+			future_pancake.Paralyze(100)
+		else if(ishuman(future_pancake)) //For humans
+			future_pancake.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
+			future_pancake.emote("scream")
+			future_pancake.Paralyze(100)
 		else //for simple_animals & borgs
-			L.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
+			future_pancake.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
 		var/turf/location = get_turf(src)
 		//add_blood doesn't work for borgs/xenos, but add_blood_floor does.
-		L.add_splatter_floor(location)
-		log_combat(src, L, "crushed")
-	for(var/obj/vehicle/sealed/mecha/M in get_turf(src))
-		M.take_damage(DOOR_CRUSH_DAMAGE)
-		log_combat(src, M, "crushed")
+		future_pancake.add_splatter_floor(location)
+		log_combat(src, future_pancake, "crushed")
+	for(var/obj/vehicle/sealed/mecha/mech in get_turf(src))
+		mech.take_damage(DOOR_CRUSH_DAMAGE)
+		log_combat(src, mech, "crushed")
 
 /obj/machinery/door/proc/autoclose()
 	if(!QDELETED(src) && !density && !operating && !locked && !welded && autoclose)

@@ -19375,12 +19375,13 @@
 /turf/open/floor/sandy_dirt,
 /area/centcom/central_command_areas/admin)
 "blr" = (
-/obj/effect/mapping_helpers/airlock/access/any/admin/captain,
-/obj/machinery/door/airlock/wood/glass{
-	name = "Pooba's Bedroom"
+/obj/machinery/door/airlock/centcom{
+	name = "CentCom Supply"
 	},
-/turf/open/floor/carpet/orange,
-/area/centcom/central_command_areas/adminroom)
+/obj/effect/mapping_helpers/airlock/access/any/supply/general,
+/obj/effect/mapping_helpers/airlock/access/any/admin/general,
+/turf/open/indestructible/plating,
+/area/centcom/central_command_areas/admin)
 "blD" = (
 /obj/effect/mapping_helpers/airlock/access/any/admin/captain,
 /obj/machinery/door/airlock/sandstone{
@@ -19561,6 +19562,14 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/admin)
+"ccF" = (
+/obj/machinery/door/airlock/centcom{
+	name = "CentCom Supply"
+	},
+/obj/effect/mapping_helpers/airlock/access/any/supply/general,
+/obj/effect/mapping_helpers/airlock/access/any/admin/general,
+/turf/open/indestructible/plating,
+/area/centcom/central_command_areas/supply)
 "cdN" = (
 /obj/machinery/light/directional/east{
 	dir = 1
@@ -19613,7 +19622,7 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/evacuation)
 "cxr" = (
-/turf/open/misc/dirt,
+/turf/open/misc/dirt/station,
 /area/centcom/central_command_areas/retirement_yard)
 "cyj" = (
 /obj/machinery/suit_storage_unit/industrial/assault_operative,
@@ -19731,11 +19740,12 @@
 /turf/open/floor/carpet/donk,
 /area/centcom/central_command_areas/adminroom)
 "cSL" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 4
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/fax{
+	name = "Pooba's Fax Machine"
 	},
-/turf/open/misc/dirt,
-/area/centcom/central_command_areas/retirement_yard)
+/turf/open/floor/carpet/donk,
+/area/centcom/central_command_areas/adminroom)
 "cTB" = (
 /obj/structure/flora/bush/style_3,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -19899,6 +19909,15 @@
 /area/centcom/central_command_areas/adminroom)
 "dQc" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/coffeemaker/impressa,
+/obj/item/storage/box/coffeepack/robusta{
+	pixel_y = -2;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/cup/coffeepot/bluespace{
+	pixel_y = 9;
+	pixel_x = 5
+	},
 /turf/open/floor/carpet/donk,
 /area/centcom/central_command_areas/adminroom)
 "dRD" = (
@@ -20068,11 +20087,9 @@
 	},
 /area/centcom/central_command_areas/adminroom)
 "eNq" = (
-/obj/structure/railing{
-	dir = 8;
-	layer = 4.1
-	},
-/turf/open/floor/carpet/donk,
+/obj/machinery/door/airlock/vault,
+/obj/effect/mapping_helpers/airlock/access/any/admin/captain,
+/turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/adminroom)
 "eNY" = (
 /turf/open/floor/lowered/iron/pool/cobble/side{
@@ -20130,7 +20147,7 @@
 /area/centcom/central_command_areas/evacuation)
 "fan" = (
 /obj/machinery/light/floor/has_bulb,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/adminroom)
 "fcP" = (
 /obj/machinery/light/neon_lining{
@@ -20413,11 +20430,7 @@
 /area/centcom/central_command_areas/prison)
 "gzU" = (
 /obj/effect/decal/cleanable/blood/innards,
-/obj/effect/decal/cleanable/blood/particle,
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/decal/cleanable/blood/hitsplatter{
-	dir = 8
-	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/misc/asteroid,
 /area/centcom/central_command_areas/admin)
@@ -20617,6 +20630,14 @@
 	},
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/adminroom)
+"hlg" = (
+/obj/machinery/button/door/directional/north{
+	name = "Emergency Assistants Fuck Off Button";
+	id = "donutstealthisid";
+	req_access = "cent_captain"
+	},
+/turf/open/floor/carpet/orange,
+/area/centcom/central_command_areas/adminroom)
 "hnC" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4;
@@ -20692,6 +20713,13 @@
 /area/cruiser_dock)
 "hAP" = (
 /obj/machinery/light/directional/west,
+/obj/structure/closet/secure_closet/freezer/fridge/all_access,
+/obj/item/food/burger/cheese,
+/obj/item/food/cheese/firm_cheese,
+/obj/item/food/ready_donk/mac_n_cheese,
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/sunset_sarsaparilla,
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/sunset_sarsaparilla,
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/sunset_sarsaparilla,
 /turf/open/floor/carpet/orange,
 /area/centcom/central_command_areas/adminroom)
 "hAS" = (
@@ -21170,7 +21198,7 @@
 /area/centcom/central_command_areas/admin)
 "jUj" = (
 /obj/structure/fake_stairs/wood/directional/north,
-/turf/open/misc/dirt,
+/turf/open/misc/dirt/station,
 /area/centcom/central_command_areas/retirement_yard)
 "jVm" = (
 /obj/effect/turf_decal/weather/dirt{
@@ -21202,9 +21230,10 @@
 /obj/item/storage/fancy/cigarettes/cigpack_syndicate,
 /obj/item/lighter/skull,
 /obj/item/storage/box/donkpockets/donkpocketteriyaki,
-/obj/item/radio/headset/syndicate/alt/leader,
 /obj/item/clothing/under/costume/syndie_pajamas,
 /obj/item/storage/backpack/duffelbag/syndie,
+/obj/item/clothing/mask/breath/poob_mask,
+/obj/item/mod/control/pre_equipped/elite/flamethrower,
 /turf/open/floor/carpet/orange,
 /area/centcom/central_command_areas/adminroom)
 "kcm" = (
@@ -21530,11 +21559,8 @@
 /turf/open/floor/sandy_dirt,
 /area/centcom/central_command_areas/admin)
 "mkj" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/floor/carpet/donk,
-/area/centcom/central_command_areas/adminroom)
+/turf/open/indestructible/plating,
+/area/centcom/central_command_areas/admin)
 "mkD" = (
 /obj/structure/flora/bush/fullgrass/style_random,
 /obj/structure/flora/rock/pile/jungle/large/style_random,
@@ -21631,9 +21657,8 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/centcom/central_command_areas/admin)
 "nbv" = (
-/obj/effect/turf_decal/siding/white,
-/turf/open/misc/dirt,
-/area/centcom/central_command_areas/retirement_yard)
+/turf/open/floor/iron/dark/herringbone,
+/area/centcom/central_command_areas/adminroom)
 "ncQ" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner,
 /turf/open/floor/iron/smooth,
@@ -21806,8 +21831,9 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/evacuation)
 "odD" = (
-/obj/structure/railing,
-/obj/structure/chair/office/tactical,
+/obj/structure/chair/office/tactical{
+	dir = 1
+	},
 /turf/open/floor/carpet/donk,
 /area/centcom/central_command_areas/adminroom)
 "ofy" = (
@@ -21992,6 +22018,11 @@
 	id = "donutstealthisid1"
 	},
 /turf/open/floor/wood/large,
+/area/centcom/central_command_areas/adminroom)
+"oYA" = (
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/microwave,
+/turf/open/floor/carpet/orange,
 /area/centcom/central_command_areas/adminroom)
 "oZB" = (
 /obj/machinery/door/airlock/centcom{
@@ -22269,11 +22300,11 @@
 /turf/open/floor/glass/plasma,
 /area/centcom/central_command_areas/evacuation)
 "qzu" = (
-/obj/effect/mapping_helpers/airlock/access/any/admin/captain,
 /obj/machinery/door/airlock/vault{
-	name = "Pooba's Lair"
+	name = "Pooba's Office"
 	},
-/turf/open/floor/carpet/orange,
+/obj/effect/mapping_helpers/airlock/access/any/admin/captain,
+/turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/adminroom)
 "qCL" = (
 /obj/structure/closet/crate/cardboard,
@@ -22651,9 +22682,12 @@
 /turf/open/water,
 /area/centcom/central_command_areas/admin)
 "sxY" = (
-/turf/open/chasm{
-	name = "Pooba's Hole of Dead Body Storage +1"
-	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/paper/monitorkey,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/clothing/mask/chameleon,
+/obj/item/radio/headset/syndicate/alt/leader,
+/turf/open/floor/carpet/donk,
 /area/centcom/central_command_areas/adminroom)
 "syU" = (
 /obj/effect/turf_decal/sand/plating,
@@ -22756,7 +22790,6 @@
 /area/centcom/central_command_areas/adminroom)
 "tiz" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/clothing/mask/breath/poob_mask,
 /obj/machinery/light/directional/east,
 /turf/open/floor/carpet/orange,
 /area/centcom/central_command_areas/adminroom)
@@ -22961,7 +22994,7 @@
 /obj/machinery/door/airlock/hatch{
 	name = "Pooba's Observatory"
 	},
-/turf/open/floor/carpet/donk,
+/turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/adminroom)
 "tYX" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -23528,9 +23561,8 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/admin)
 "xkv" = (
-/obj/structure/railing{
-	dir = 4;
-	layer = 4.1
+/obj/machinery/computer/message_monitor{
+	dir = 1
 	},
 /turf/open/floor/carpet/donk,
 /area/centcom/central_command_areas/adminroom)
@@ -23587,9 +23619,6 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/retirement_yard)
 "xGe" = (
-/obj/effect/decal/cleanable/blood/hitsplatter{
-	dir = 8
-	},
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/decal/cleanable/piss_stain,
 /turf/open/misc/sandy_dirt,
@@ -50533,7 +50562,7 @@ kpH
 cQL
 aaW
 xkv
-jAA
+cSL
 kpH
 aaa
 aiF
@@ -50790,7 +50819,7 @@ kpH
 dQc
 odD
 sxY
-mkj
+jAA
 kpH
 aaa
 aiF
@@ -51046,7 +51075,7 @@ iOc
 kpH
 aKc
 jth
-eNq
+jAA
 jAA
 kpH
 aaa
@@ -51559,8 +51588,8 @@ yhF
 yhF
 qzu
 fan
-ayR
-ayR
+eNq
+nbv
 fan
 kpH
 aaa
@@ -51818,7 +51847,7 @@ kpH
 kpH
 kpH
 kpH
-blr
+tYn
 kpH
 aaa
 aiF
@@ -52074,7 +52103,7 @@ egP
 kpH
 rYm
 hAP
-ayR
+oYA
 ayR
 kpH
 aaa
@@ -52329,7 +52358,7 @@ mUv
 yhF
 dtE
 kpH
-ayR
+hlg
 ayR
 ayR
 ayR
@@ -52848,9 +52877,9 @@ kpH
 kpH
 kpH
 kpH
-aaa
+aOn
 aiF
-aiF
+ccF
 aiN
 aiF
 aiF
@@ -53103,12 +53132,12 @@ kjO
 erK
 erK
 erK
+blr
+mkj
+mkj
+mkj
+mkj
 aOn
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -53879,8 +53908,8 @@ acd
 acd
 bjH
 dwU
-cSL
-cSL
+cxr
+cxr
 azQ
 hxZ
 azQ
@@ -56464,7 +56493,7 @@ aox
 aSy
 ayI
 cxr
-nbv
+cxr
 aYr
 acv
 aYr

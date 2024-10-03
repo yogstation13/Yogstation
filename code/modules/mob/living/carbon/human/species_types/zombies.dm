@@ -92,7 +92,7 @@
 	mutanttongue = /obj/item/organ/internal/tongue/zombie
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 	/// The rate the zombies regenerate at
-	var/heal_rate = 0.5
+	var/heal_rate = 0.6
 	/// The cooldown before the zombie can start regenerating
 	COOLDOWN_DECLARE(regen_cooldown)
 
@@ -112,6 +112,7 @@
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_RESISTLOWPRESSURE,
 		TRAIT_TOXIMMUNE,
+		TRAIT_NO_PAIN_EFFECTS,
 		// INFECTIOUS UNIQUE
 		TRAIT_STABLEHEART, // Replacement for noblood. Infectious zombies can bleed but don't need their heart.
 		TRAIT_STABLELIVER, // Not necessary but for consistency with above

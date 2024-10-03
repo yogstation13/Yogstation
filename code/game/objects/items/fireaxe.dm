@@ -85,7 +85,7 @@
 	name = "metallic hydrogen axe"
 	desc = "A lightweight crowbar with an extreme sharp fire axe head attached. It trades it's hefty as a weapon by making it easier to carry around when holstered to suits without having to sacrifice your backpack."
 	force_unwielded = 5
-	force_wielded = 15
+	force_wielded = 20
 	demolition_mod = 2
 	tool_behaviour = TOOL_CROWBAR
 	toolspeed = 1

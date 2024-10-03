@@ -535,12 +535,12 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /datum/armor/helmet_elder_atmosian
-	melee = 25
-	bullet = 20
+	melee = 30
+	bullet = 30
 	laser = 30
 	energy = 30
 	bomb = 85
 	bio = 10
-	fire = 65
+	fire = 100
 	acid = 40
 	wound = 15

@@ -55,7 +55,7 @@
 	switch(picked_smite) //subtype vars moment, I really want a better way to do this
 		if(/datum/smite/bad_luck)
 			var/datum/smite/bad_luck/luck_smite = new picked_smite
-			luck_smite.permanent = TRUE
+			luck_smite.incidents = 0
 			do_smite(luck_smite, cast_on)
 		if(/datum/smite/berforate)
 			var/datum/smite/berforate/shoot_smite = new picked_smite
