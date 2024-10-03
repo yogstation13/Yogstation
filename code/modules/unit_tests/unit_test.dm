@@ -254,6 +254,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		/obj/machinery/ocean_elevator,
 		/atom/movable/outdoor_effect,
 		/turf/closed/mineral/random/regrowth,
+		/obj/effect/abstract/signboard_holder, // monkestation addition: shouldn't exist outside of signboards
 	)
 	//Say it with me now, type template
 	ignore += typesof(/obj/effect/mapping_helpers)

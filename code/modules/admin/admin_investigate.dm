@@ -35,6 +35,7 @@
 		INVESTIGATE_RESEARCH,
 		INVESTIGATE_WIRES,
 		INVESTIGATE_NANITES,
+		INVESTIGATE_SIGNBOARD, // monkestation addition
 	)
 
 	var/list/logs_present = list("notes, memos, watchlist")

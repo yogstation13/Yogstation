@@ -24,6 +24,7 @@
 #define INVESTIGATE_WIRES "wires"
 #define INVESTIGATE_NANITES "nanites"
 #define INVESTIGATE_ARTIFACT "artifact"
+#define INVESTIGATE_SIGNBOARD "signboard" // monkestation addition
 
 // Logging types for log_message()
 #define LOG_ATTACK (1 << 0)
