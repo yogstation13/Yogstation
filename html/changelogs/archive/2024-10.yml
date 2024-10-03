@@ -10,6 +10,7 @@
   - qol: Malkavian bloodsucker ramblings now have a proper cooldown.
   - qol: Moved the plant dna disk design from Botanical Engineering to roundstart
       tech.
+  - bugfix: Fix the icebox magbar being spaced roundstart.
   Absolucy, ancient-engineer:
   - rscadd: Added signboards, player craftable signs that display text above them
       in the world that everyone can see!
@@ -30,6 +31,8 @@
   - bugfix: frontier modsuit helmet now airtight
   SirNightKnight:
   - rscadd: Frying pans and flyswatters can be sharpened.
+  Veth-s:
+  - rscadd: ITS VETH'S BIRTHDAY HECK YES
   manray:
   - rscadd: atmos holofan to engiborg's default toolkit
   ven1883:
