@@ -177,10 +177,17 @@
 	w_class = WEIGHT_CLASS_TINY
 	custom_price = 15
 
+/obj/item/computer_hardware/hard_drive/small/integrated
+	//does not come with an ntnet store.
+	default_programs = list(
+		/datum/computer_file/program/computerconfig,
+		/datum/computer_file/program/filemanager,
+	)
+
 // For silicon integrated tablets.
 /obj/item/computer_hardware/hard_drive/small/integrated/install_default_programs()
 	..()
-	var/datum/computer_file/program/pdamessager/P = store_file(new/datum/computer_file/program/pdamessager(src))
+	var/datum/computer_file/program/pdamessager/P = store_file(new /datum/computer_file/program/pdamessager(src))
 	var/obj/item/modular_computer/stored = holder
 	if(!stored && istype(loc, /obj/item/modular_computer))
 		stored = loc
