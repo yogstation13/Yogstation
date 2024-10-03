@@ -10071,18 +10071,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"aZd" = (
-/obj/machinery/door/window{
-	dir = 8;
-	name = "Theatre Stage"
-	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone{
-	dir = 4
-	},
-/area/crew_quarters/theatre)
 "aZg" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
@@ -11075,27 +11063,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore/lower)
-"bHO" = (
-/obj/structure/sign/departments/minsky/command/hop{
-	pixel_x = -32
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/machinery/ministile/hop,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/turf/open/floor/plasteel/stairs/goon/stairs_alone{
-	dir = 1
-	},
-/area/hallway/primary/fore)
 "bHW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -12497,6 +12464,24 @@
 /obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"cwg" = (
+/obj/structure/sign/departments/minsky/command/hop{
+	pixel_x = -32
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/ministile/hop,
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
+	dir = 1
+	},
+/area/hallway/primary/fore)
 "cws" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -15889,6 +15874,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
+"eIK" = (
+/obj/machinery/door/window{
+	dir = 8;
+	name = "Theatre Stage"
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone{
+	dir = 4
+	},
+/area/crew_quarters/theatre)
 "eIV" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -25034,21 +25028,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"lbu" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/machinery/ministile/hop{
-	dir = 8
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
-/turf/open/floor/plasteel/stairs/goon/stairs_alone{
-	dir = 8
-	},
-/area/hallway/primary/fore)
 "lcq" = (
 /obj/structure/table/reinforced,
 /obj/item/deskbell/preset/atmos{
@@ -29480,14 +29459,6 @@
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"nJo" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
-	dir = 4
-	},
-/area/engine/engineering)
 "nJv" = (
 /turf/open/floor/plasteel,
 /area/engine/atmos/storage)
@@ -33967,6 +33938,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/paramedic)
+"qEy" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_wide{
+	dir = 4
+	},
+/area/engine/engineering)
 "qED" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
 /obj/item/book/manual/wiki/security_space_law,
@@ -38168,20 +38150,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft/lower)
-"tpP" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/turf/open/floor/plasteel/stairs/goon/stairs_wide{
-	dir = 4
-	},
-/area/engine/engineering)
 "tqu" = (
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
@@ -42495,6 +42463,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"whE" = (
+/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
+	dir = 4
+	},
+/area/engine/engineering)
 "whJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -44007,6 +43980,18 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/science/storage)
+"xiD" = (
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/ministile/hop{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
+	dir = 8
+	},
+/area/hallway/primary/fore)
 "xiP" = (
 /obj/structure/closet/cardboard,
 /turf/open/floor/plasteel,
@@ -66015,7 +66000,7 @@ avp
 alb
 arN
 aGK
-aZd
+eIK
 avp
 apy
 aqY
@@ -126942,8 +126927,8 @@ bnP
 pvj
 tMO
 sgk
-tpP
-nJo
+qEy
+whE
 wfm
 qpt
 pbu
@@ -128691,7 +128676,7 @@ asD
 asD
 jrX
 ixG
-bHO
+cwg
 ddQ
 rqV
 xZi
@@ -128946,7 +128931,7 @@ iyr
 fnK
 nuZ
 xsI
-lbu
+xiD
 bAl
 ipc
 vwX
