@@ -120,9 +120,7 @@
 /area/shuttle/escape)
 "cU" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/inverted{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/inverted,
 /obj/machinery/door/window/northleft{
 	dir = 8;
 	name = "Containment Pen"
@@ -137,9 +135,7 @@
 	pixel_y = -3
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/twisted{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/twisted,
 /obj/machinery/door/window/northleft{
 	dir = 8;
 	name = "Containment Pen"
@@ -192,8 +188,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /mob/living/simple_animal/hostile/retaliate/goat/confetti{
 	name = "Sprinkles Goat";
-	desc = "You can feel your teeth getting numb.";
-	mob_size = 1
+	desc = "You can feel your teeth getting numb."
 	},
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
@@ -364,9 +359,16 @@
 /obj/effect/turf_decal/tile/darkblue,
 /obj/structure/table/glass,
 /obj/effect/spawner/lootdrop/three_course_meal,
-/obj/item/kitchen/fork,
-/obj/item/reagent_containers/food/drinks/drinkingglass/filled{
-	list_reagents = list(/datum/reagent/consumable/wine = 50)
+/obj/item/kitchen/fork{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 16;
+	pixel_x = -8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_y = 20;
+	pixel_x = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -446,9 +448,7 @@
 	pixel_x = 3;
 	req_access_txt = "55"
 	},
-/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/mutant/blob,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
@@ -695,9 +695,7 @@
 	dir = 1;
 	pixel_y = 4
 	},
-/mob/living/simple_animal/hostile/retaliate/clown/lube{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/lube,
 /obj/machinery/door/window/northleft{
 	dir = 4;
 	name = "Containment Pen"
@@ -848,9 +846,7 @@
 /area/shuttle/escape)
 "kU" = (
 /obj/machinery/shuttle_manipulator{
-	layer = 3.3;
-	pixel_x = 1;
-	pixel_y = 12
+	layer = 3.3
 	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 1
@@ -875,9 +871,7 @@
 /obj/structure/window/reinforced{
 	pixel_y = -3
 	},
-/mob/living/simple_animal/hostile/retaliate/clown/banana{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/banana,
 /obj/machinery/door/window/northleft{
 	dir = 4;
 	name = "Containment Pen"
@@ -950,9 +944,7 @@
 	dir = 8;
 	pixel_x = -4
 	},
-/mob/living/simple_animal/hostile/retaliate/clown/mutant{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/mutant,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -1035,9 +1027,7 @@
 	pixel_x = 3
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/ras{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/ras,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -1056,9 +1046,7 @@
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
 "ni" = (
-/mob/living/simple_animal/hostile/retaliate/clown{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown,
 /obj/machinery/door/window/northleft{
 	dir = 4;
 	name = "Containment Pen"
@@ -1074,9 +1062,7 @@
 	pixel_x = 3
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/tiny{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/tiny,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
@@ -1140,9 +1126,7 @@
 	pixel_y = 4
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/goatgoat{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/goatgoat,
 /obj/machinery/door/window/northleft{
 	dir = 8;
 	name = "Containment Pen"
@@ -1164,9 +1148,7 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "nY" = (
-/mob/living/simple_animal/hostile/retaliate/clown/honkling{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/honkling,
 /obj/machinery/door/window/northleft{
 	dir = 4;
 	name = "Containment Pen"
@@ -1403,9 +1385,7 @@
 	pixel_x = -4
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/huge{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/huge,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
@@ -1470,9 +1450,7 @@
 /turf/open/floor/light,
 /area/shuttle/escape)
 "sj" = (
-/mob/living/simple_animal/hostile/retaliate/clown/fleshclown{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/fleshclown,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -1573,9 +1551,12 @@
 "tz" = (
 /obj/structure/table/glass,
 /obj/effect/spawner/lootdrop/three_course_meal,
-/obj/item/kitchen/fork,
-/obj/item/reagent_containers/food/drinks/drinkingglass/filled{
-	list_reagents = list(/datum/reagent/consumable/wine = 50)
+/obj/item/kitchen/fork{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 16;
+	pixel_x = -8
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -1658,8 +1639,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /mob/living/simple_animal/hostile/retaliate/goat{
 	desc = "Suspiciously normal...";
-	name = "Normal Goat";
-	mob_size = 1
+	name = "Normal Goat"
 	},
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
@@ -1851,9 +1831,7 @@
 /area/shuttle/escape)
 "wa" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/star{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/star,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -1993,9 +1971,7 @@
 /area/shuttle/escape)
 "xk" = (
 /obj/structure/statue/sandstone/venus{
-	dir = 8;
-	pixel_x = -1;
-	pixel_y = 9
+	dir = 8
 	},
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/blue,
@@ -2072,9 +2048,7 @@
 	pixel_x = 3
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/glowing{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/glowing,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -2092,7 +2066,21 @@
 /area/shuttle/escape)
 "xT" = (
 /obj/structure/table/reinforced,
-/obj/item/pet_carrier,
+/obj/item/pet_carrier{
+	max_occupant_weight = 3;
+	name = "bluespace pet carrier";
+	desc = "A bigger-on-the-inside white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute manmade horrors around."
+	},
+/obj/item/pet_carrier{
+	max_occupant_weight = 3;
+	name = "bluespace pet carrier";
+	desc = "A bigger-on-the-inside white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute manmade horrors around."
+	},
+/obj/item/pet_carrier{
+	max_occupant_weight = 3;
+	name = "bluespace pet carrier";
+	desc = "A bigger-on-the-inside white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute manmade horrors around."
+	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "yc" = (
@@ -2172,9 +2160,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "zd" = (
-/obj/structure/statue/sandstone/venus{
-	pixel_y = 9
-	},
+/obj/structure/statue/sandstone/venus,
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/blue,
 /area/shuttle/escape)
@@ -2243,8 +2229,7 @@
 	pixel_x = 3
 	},
 /mob/living/simple_animal/hostile/retaliate/clown/thin{
-	dir = 4;
-	mob_size = 1
+	dir = 4
 	},
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
@@ -2284,8 +2269,7 @@
 "Bp" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/conveyor_switch{
-	id = "EmFleet1";
-	pixel_y = 14
+	id = "EmFleet1"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -2486,9 +2470,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "DC" = (
-/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
@@ -2617,9 +2599,7 @@
 /area/shuttle/escape)
 "EA" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/suspicious{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/suspicious,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -2685,9 +2665,7 @@
 /area/shuttle/escape)
 "FF" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/cottoncandy,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
@@ -2759,9 +2737,12 @@
 /obj/effect/turf_decal/tile/darkblue,
 /obj/structure/table/glass,
 /obj/effect/spawner/lootdrop/three_course_meal,
-/obj/item/kitchen/fork,
-/obj/item/reagent_containers/food/drinks/drinkingglass/filled{
-	list_reagents = list(/datum/reagent/consumable/wine = 50)
+/obj/item/kitchen/fork{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = 16;
+	pixel_x = -8
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
@@ -2776,8 +2757,7 @@
 "Gq" = (
 /mob/living/simple_animal/hostile/retaliate/clown{
 	desc = "Suspiciously normal...";
-	name = "Normal Clown";
-	mob_size = 1
+	name = "Normal Clown"
 	},
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
@@ -2814,9 +2794,7 @@
 	pixel_x = -4
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/legitgoat{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/legitgoat,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -3107,9 +3085,7 @@
 	pixel_x = -4
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/rainbow{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/rainbow,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -3144,8 +3120,7 @@
 "Lr" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/conveyor_switch{
-	id = "EmFleet3";
-	pixel_y = 14
+	id = "EmFleet3"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -3345,8 +3320,7 @@
 "OG" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/conveyor_switch{
-	id = "EmFleet2";
-	pixel_y = 14
+	id = "EmFleet2"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -3430,9 +3404,7 @@
 /area/shuttle/escape)
 "PF" = (
 /obj/machinery/shuttle_manipulator{
-	layer = 3.3;
-	pixel_x = 1;
-	pixel_y = 12
+	layer = 3.3
 	},
 /obj/effect/turf_decal/ramp_corner,
 /obj/effect/turf_decal/ramp_middle{
@@ -3470,9 +3442,7 @@
 	dir = 4;
 	pixel_x = 3
 	},
-/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen"
 	},
@@ -3595,9 +3565,7 @@
 /area/shuttle/escape)
 "Rs" = (
 /obj/machinery/shuttle_manipulator{
-	layer = 3.3;
-	pixel_x = 1;
-	pixel_y = 12
+	layer = 3.3
 	},
 /obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/ramp_middle{
@@ -3631,9 +3599,7 @@
 	pixel_x = 3
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat/chocolate{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat/chocolate,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
@@ -3794,9 +3760,7 @@
 /area/shuttle/escape)
 "TD" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_animal/hostile/retaliate/goat{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/goat,
 /obj/machinery/door/window/northleft{
 	dir = 8;
 	name = "Containment Pen"
@@ -3941,10 +3905,12 @@
 /area/shuttle/escape)
 "VQ" = (
 /obj/machinery/portable_atmospherics/canister/plasma,
-/obj/machinery/door/window/brigdoor/southright{
-	req_access_txt = "24"
-	},
 /obj/effect/turf_decal/delivery/red,
+/obj/machinery/door/window/westleft{
+	name = "Atmospherics Canister Storage";
+	dir = 2
+	},
+/obj/effect/mapping_helpers/windoor/access/all/engineering/atmos,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "We" = (
@@ -3971,9 +3937,7 @@
 /area/shuttle/escape)
 "Wu" = (
 /obj/machinery/shuttle_manipulator{
-	layer = 3.3;
-	pixel_x = 1;
-	pixel_y = 12
+	layer = 3.3
 	},
 /obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/mineral/silver,
@@ -4017,9 +3981,7 @@
 	dir = 8;
 	pixel_x = -4
 	},
-/mob/living/simple_animal/hostile/retaliate/clown/clownhulk{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/clownhulk,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
@@ -4142,9 +4104,7 @@
 	dir = 8;
 	pixel_x = -4
 	},
-/mob/living/simple_animal/hostile/retaliate/clown/longface{
-	mob_size = 1
-	},
+/mob/living/simple_animal/hostile/retaliate/clown/longface,
 /obj/machinery/door/window/northleft{
 	name = "Containment Pen";
 	dir = 2
