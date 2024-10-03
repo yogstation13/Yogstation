@@ -229,11 +229,7 @@ const ItemList = (props) => {
         <Button
           fluid
           align="right"
-          content={
-            parseFloat(
-              ((item.cost * item.amount) / props.efficiency).toFixed(2),
-            ) + ' BIO'
-          }
+          content={parseFloat((item.cost * item.amount).toFixed(2)) + ' BIO'}
           disabled={item.disabled}
           onClick={() =>
             act('create', {
