@@ -57,9 +57,9 @@
 
 ///Check if the multitool has an item in it's data buffer
 /atom/proc/multitool_check_buffer(user, obj/item/tool, silent = FALSE)
-	if(istype(tool, /obj/item/multitool))
-		return TRUE
-	if(istype(tool, /obj/item/holotool))
+	if(isnull(tool))
+		return FALSE
+	if(tool.tool_behaviour == TOOL_MULTITOOL)
 		return TRUE
 	if(user && !silent)
 		to_chat(user, span_warning("[tool] has no data buffer!"))

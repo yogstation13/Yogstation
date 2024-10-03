@@ -50,7 +50,7 @@
 
 /datum/action/cooldown/spell/toggle/dark_staff/Enable()
 	owner.balloon_alert(owner, "Shhouna")
-	owner.visible_message(span_warning("[owner] knits shadows together into a staff!"), span_velvet("You summon your staff."))
+	owner.visible_message(span_warning("[owner] knits shadows together into a staff!"), span_velvet("You summon your staff. Examine it to see what it does."))
 	playsound(owner, 'yogstation/sound/magic/pass_create.ogg', 50, 1)
 	if(!staff)
 		staff = new (owner)

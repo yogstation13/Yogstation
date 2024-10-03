@@ -130,7 +130,7 @@
 #define COMSIG_ITEM_DROPPED "item_drop"
 ///from base of mob/dropItemToGround(): (mob/user)
 #define COMSIG_ITEM_PREDROPPED "item_predrop"
-///from base of /mob/living/stripPanelUnequip(): (obj/item/what, mob/who, where)
+///from base of /start_unequip_mob(): (obj/item/what, mob/who, where)
 #define COMSIG_ITEM_PRESTRIP "item_prestrip"
 
 ///from base of obj/item/pickup(): (/mob/taker)
@@ -144,25 +144,25 @@
 ///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"
 
-/// from /datum/component/cleave_attack/perform_sweep(): (atom/target, obj/item/item, mob/living/user, params) 
+/// from /datum/component/cleave_attack/perform_sweep(): (atom/target, obj/item/item, mob/living/user, params)
 #define COMSIG_ATOM_CLEAVE_ATTACK "atom_cleave_attack"
 	// allows cleave attack to hit things it normally wouldn't
 	#define ATOM_ALLOW_CLEAVE_ATTACK (1<<0)
 
 /// Called before an item is embedded (mob/living/carbon/target = carbon that it is getting embedded into)
-#define COMSIG_ITEM_EMBEDDED "mob_carbon_embedded" 
+#define COMSIG_ITEM_EMBEDDED "mob_carbon_embedded"
 	// Prevents the embed
 	#define COMSIG_ITEM_BLOCK_EMBED (1 << 0)
 
 /// Called before an item is removed from being embedded (mob/living/carbon/embedded = carbon that is currently embedded)
-#define COMSIG_ITEM_EMBED_REMOVAL "mob_carbon_embed_removal" 
+#define COMSIG_ITEM_EMBED_REMOVAL "mob_carbon_embed_removal"
 	// Prevents the removal of the embed
 	#define COMSIG_ITEM_BLOCK_EMBED_REMOVAL (1 << 0)
 	// Qdels the object when it is removed instead of droping it
 	#define COMSIG_ITEM_QDEL_EMBED_REMOVAL (1 << 1)
 
 /// Called every life tick for the embedded mob when the item is embedded (mob/living/carbon/embedded = carbon that is currently embedded)
-#define COMSIG_ITEM_EMBED_TICK "mob_carbon_embed_tick" 
+#define COMSIG_ITEM_EMBED_TICK "mob_carbon_embed_tick"
 	// Prevents the rest of the tick logic for the item from proccessing
 	#define COMSIG_ITEM_BLOCK_EMBED_TICK (1 << 0)
 

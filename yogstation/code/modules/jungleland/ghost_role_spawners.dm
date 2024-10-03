@@ -91,7 +91,7 @@
 /obj/item/clothing/gloves/sec_maga/syndicate //syndicate jungle ghostrole version, only works on base
 	name = "combat gloves plus"
 	desc = "These tactical gloves are fireproof and shock resistant, and using nanochip technology it teaches you the powers of krav maga. Anti-theft measures prevent these gloves from being used outside the base."
-	icon_state = "black"
+	icon_state = "combat"
 	item_state = "blackglovesplus"
 	strip_delay = 80
 	cold_protection = HANDS

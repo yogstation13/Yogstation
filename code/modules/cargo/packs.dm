@@ -1234,8 +1234,9 @@
 
 /datum/supply_pack/engine/fuel_rod_basic
 	name = "Uranium-235 Fuel Rods Crate"
-	desc = "Contains 5 Enriched Uranium Control Rods."
+	desc = "Contains 5 Enriched Uranium Control Rods. Requires engineering access to open."
 	cost = 5000
+	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/item/fuel_rod,
 					/obj/item/fuel_rod,
 					/obj/item/fuel_rod,
@@ -1247,8 +1248,9 @@
 
 /datum/supply_pack/engine/fuel_rod_plutonium
 	name = "Plutonium-239 Fuel Rods Crate"
-	desc = "Contains 5 Plutonium-239 Control Rods."
+	desc = "Contains 5 Plutonium-239 Control Rods. Requires engineering access to open."
 	cost = 15000
+	access_view = ACCESS_ENGINEERING
 	contains = list(/obj/item/fuel_rod/plutonium,
 					/obj/item/fuel_rod/plutonium,
 					/obj/item/fuel_rod/plutonium,
@@ -2417,23 +2419,51 @@
 					/obj/item/reagent_containers/food/snacks/grown/cucumber)
 	crate_name = "food crate"
 
-/datum/supply_pack/organic/ice_cream
-	name = "Big Top Ice Cream Crate"
-	desc = "A crate with a carton of every flavor of Big Top brand ice cream."
-	cost = 2500
-	contains = list(/obj/item/storage/box/ice_cream_carton,
-					/obj/item/storage/box/ice_cream_carton/vanilla,
+/datum/supply_pack/organic/classic_ice_cream
+	name = "Big Top Ice Cream Classics Crate"
+	desc = "A crate with the classic flavors of vanilla, chocolate, and strawberry."
+	cost = 600
+	contains = list(/obj/item/storage/box/ice_cream_carton/vanilla,
 					/obj/item/storage/box/ice_cream_carton/chocolate,
-					/obj/item/storage/box/ice_cream_carton/strawberry,
-					/obj/item/storage/box/ice_cream_carton/blue,
-					/obj/item/storage/box/ice_cream_carton/lemon_sorbet,
-					/obj/item/storage/box/ice_cream_carton/caramel,
-					/obj/item/storage/box/ice_cream_carton/banana,
-					/obj/item/storage/box/ice_cream_carton/orange_creamsicle,
+					/obj/item/storage/box/ice_cream_carton/strawberry)
+	crate_name = "classic ice cream crate"
+
+/datum/supply_pack/organic/fruity_ice_cream
+	name = "Big Top Ice Cream Fruity Crate"
+	desc = "A crate with the fruity flavors of banana, peach, and cherry chocolate."
+	cost = 600
+	contains = list(/obj/item/storage/box/ice_cream_carton/banana,
 					/obj/item/storage/box/ice_cream_carton/peach,
-					/obj/item/storage/box/ice_cream_carton/cherry_chocolate,
+					/obj/item/storage/box/ice_cream_carton/cherry_chocolate)
+	crate_name = "fruity ice cream crate"
+
+/datum/supply_pack/organic/sweet_ice_cream
+	name = "Big Top Ice Cream Sweets Crate"
+	desc = "A crate with the sweet flavors of caramel, orange creamsicle, and plain ice cream."
+	cost = 600
+	contains = list(/obj/item/storage/box/ice_cream_carton/caramel,
+					/obj/item/storage/box/ice_cream_carton/orange_creamsicle,
+					/obj/item/storage/box/ice_cream_carton)
+	crate_name = "sweet ice cream crate"
+
+/datum/supply_pack/organic/special_ice_cream
+	name = "Big Top Ice Cream Special Crate"
+	desc = "A crate with the special flavors of blue, lemon, and meat."
+	cost = 600
+	contains = list(/obj/item/storage/box/ice_cream_carton/blue,
+					/obj/item/storage/box/ice_cream_carton/lemon_sorbet,
 					/obj/item/storage/box/ice_cream_carton/meat)
-	crate_name = "ice cream crate"
+	crate_name = "special ice cream crate"
+
+/datum/supply_pack/organic/ice_cream_cones
+	name = "Big Top Ice Cream Cones Crate"
+	desc = "A crate with two cake and chocolate cone boxes each."
+	cost = 600
+	contains = list(/obj/item/storage/box/ice_cream_carton/cone,
+					/obj/item/storage/box/ice_cream_carton/cone,
+					/obj/item/storage/box/ice_cream_carton/cone/chocolate,
+					/obj/item/storage/box/ice_cream_carton/cone/chocolate)
+	crate_name = "ice cream cone crate"
 
 /datum/supply_pack/organic/vending/hydro_refills
 	name = "Hydroponics Vending Machines Refills"

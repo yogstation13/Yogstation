@@ -208,7 +208,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 	return control_computer != null
 
-/obj/machinery/cryopod/close_machine(mob/user, waking = FALSE)
+/obj/machinery/cryopod/close_machine(mob/user, waking = FALSE, admin_forced = FALSE)
 	if(!control_computer)
 		find_control_computer(TRUE)
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			to_chat(occupant, span_boldnotice("You feel cool air surround you. You go numb as your senses turn inward."))
 		if(!occupant) //Check they still exist
 			return
-		if(mob_occupant.client)//if they're logged in
+		if(mob_occupant.client && !admin_forced) //if they're logged in, admin forcing will handle this stuff anyway
 			despawn_timer = addtimer(VARSET_CALLBACK(src, ready, TRUE), time_till_despawn_online, TIMER_STOPPABLE)
 			if(tgui_alert(mob_occupant, "Do you want to offer yourself to ghosts?", "Ghost Offer", list("Yes", "No")) != "No")
 				deltimer(despawn_timer) //Player wants to offer, cancel the timer
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 			if((O.type in subtypesof(/datum/objective/assassinate)) && O.check_completion()) //kill once/kill+clone objective that's already been completed, don't give a new objective
 				continue
 			O.target = null
-			O.find_target()
+			O.find_target(blacklist = list(mob_occupant.mind)) // don't pick the same person again, they're about to be deleted
 			O.update_explanation_text()
 
 			var/list/owners = O.get_owners()

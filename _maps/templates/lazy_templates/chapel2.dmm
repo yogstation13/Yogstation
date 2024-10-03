@@ -4,7 +4,6 @@
 /turf/open/floor/carpet/red,
 /area/chapel/office)
 "as" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 1
 	},
@@ -12,15 +11,14 @@
 /turf/open/floor/carpet/black,
 /area/chapel/main)
 "aH" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 1
 	},
-/obj/effect/turf_decal/ramp_middle,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/carpet/black,
 /area/chapel/main)
 "aW" = (
@@ -140,13 +138,12 @@
 /turf/open/floor/carpet/black,
 /area/chapel/office)
 "gB" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide,
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
+	dir = 1
+	},
 /area/chapel/main)
 "gJ" = (
 /obj/machinery/door/airlock/maintenance{
@@ -171,7 +168,6 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "hp" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 1
 	},
@@ -194,9 +190,6 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "iO" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
 	dir = 4
 	},
@@ -206,9 +199,6 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "iZ" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
@@ -317,9 +307,6 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/chapel{
 	dir = 1
@@ -331,9 +318,6 @@
 	},
 /area/chapel/main)
 "qZ" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
@@ -424,10 +408,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
-/obj/effect/turf_decal/ramp_middle{
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_middle{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_middle,
 /area/chapel/main)
 "za" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -438,9 +421,6 @@
 	},
 /area/chapel/main)
 "zf" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /obj/effect/turf_decal/ramp_middle{
 	dir = 4
 	},
@@ -600,9 +580,6 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "FB" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_middle{
 	dir = 4
 	},
@@ -657,10 +634,9 @@
 /obj/effect/turf_decal/ramp_middle{
 	dir = 8
 	},
-/obj/effect/turf_decal/ramp_middle{
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_middle{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_middle,
 /area/chapel/main)
 "Ia" = (
 /obj/structure/table/wood/fancy/black,
@@ -670,9 +646,6 @@
 /turf/open/floor/carpet/black,
 /area/chapel/main)
 "Im" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /obj/machinery/camera{
 	c_tag = "Testing Lab East";
 	network = list("ss13","rd")
@@ -893,13 +866,12 @@
 	},
 /area/chapel/main)
 "Tc" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2,
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
+	dir = 1
+	},
 /area/chapel/main)
 "Te" = (
 /obj/structure/disposalpipe/segment{
@@ -938,7 +910,6 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "UA" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/effect/turf_decal/siding/wideplating{
 	dir = 1
 	},

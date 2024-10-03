@@ -555,6 +555,7 @@
 	if(drawing)
 		to_chat(user, span_notice("You can't fold \the [src] while drawing the bowstring."))
 	toggle_folded(!folded, user)
+	return TRUE
 
 /obj/item/gun/ballistic/bow/energy/proc/toggle_folded(new_folded, mob/living/user)
 	if(!can_fold)

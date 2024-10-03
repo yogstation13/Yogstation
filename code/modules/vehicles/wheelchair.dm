@@ -108,8 +108,8 @@
 
 /obj/vehicle/ridden/wheelchair/CtrlClick(mob/user)
 	if(has_buckled_mobs() && pick(buckled_mobs) == user)
-		return
-	. = ..()
+		return FALSE
+	return ..()
 
 /obj/vehicle/ridden/wheelchair/post_buckle_mob(mob/living/L)
 	if(L.pulling && src.pulledby == L)

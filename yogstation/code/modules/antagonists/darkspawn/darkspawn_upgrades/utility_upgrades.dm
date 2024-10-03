@@ -139,7 +139,7 @@
 	
 /datum/psi_web/elucidate
 	name = "Elucidate"
-	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost."
+	desc = "Channel significant power through an ally, greatly healing them, cleansing all CC and providing a speed boost. Able to revive any ally in close range."
 	lore_description = ""
 	icon_state = "elucidate"
 	willpower_cost = 2

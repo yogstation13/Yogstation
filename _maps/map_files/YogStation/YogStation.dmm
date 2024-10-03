@@ -7722,12 +7722,6 @@
 /turf/closed/wall,
 /area/medical/chemistry)
 "bfI" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
 "bfK" = (
@@ -7742,9 +7736,6 @@
 	},
 /obj/machinery/light{
 	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
@@ -7974,9 +7965,6 @@
 "bhy" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -8460,9 +8448,6 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -10127,6 +10112,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bAj" = (
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
 "bAo" = (
@@ -14084,9 +14070,6 @@
 	pixel_x = -6;
 	pixel_y = 24
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
 "cpL" = (
@@ -15314,13 +15297,7 @@
 "cHN" = (
 /obj/machinery/holopad,
 /obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -19352,6 +19329,9 @@
 	name = "Mech Bay APC";
 	pixel_x = -25
 	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics/mechbay)
 "edT" = (
@@ -22655,7 +22635,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "fiz" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/machinery/door/window/northleft{
 	dir = 2;
 	name = "Captain's Desk Door"
@@ -26820,7 +26799,6 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "gJD" = (
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide,
 /area/crew_quarters/fitness)
 "gJM" = (
@@ -33208,9 +33186,6 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "iNY" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
@@ -36032,7 +36007,6 @@
 "jRb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle,
 /obj/machinery/door/window{
 	base_state = "right";
 	icon_state = "right";
@@ -40372,9 +40346,6 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "lzS" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
 	dir = 1
 	},
@@ -41338,7 +41309,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "lUW" = (
@@ -44865,7 +44836,7 @@
 /area/maintenance/port)
 "ndK" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "2-8"
 	},
 /turf/open/floor/circuit,
 /area/science/robotics/mechbay)
@@ -55680,7 +55651,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/stairs_wide,
 /area/crew_quarters/fitness)
 "rdi" = (
@@ -57162,9 +57132,6 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "rFH" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 8
 	},
@@ -57214,6 +57181,11 @@
 /obj/machinery/teleport/station,
 /turf/open/floor/plating,
 /area/teleporter)
+"rGx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/backrooms_portal,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "rHf" = (
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos/mix)
@@ -61933,7 +61905,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/ramp_middle{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_alone{
 	dir = 1
@@ -62739,9 +62711,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "tHB" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide{
 	dir = 1
 	},
@@ -63529,9 +63498,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
 	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2{
 	dir = 1
@@ -68769,9 +68735,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "vOT" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 4
 	},
@@ -96610,7 +96573,7 @@ aTD
 aPG
 bbq
 gjl
-baS
+rGx
 hFo
 baS
 baS
@@ -119489,9 +119452,9 @@ baT
 baT
 eHW
 uJu
-bhM
 biJ
 bhM
+biJ
 biO
 blA
 sHM
@@ -120003,9 +119966,9 @@ aYV
 aYV
 xyG
 iQL
-bhM
 biJ
-bhM
+biJ
+biJ
 btw
 blA
 iEY

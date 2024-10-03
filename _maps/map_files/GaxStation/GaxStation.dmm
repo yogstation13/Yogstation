@@ -5520,9 +5520,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cES" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
 	dir = 4
 	},
@@ -11752,9 +11749,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "fyD" = (
@@ -11821,6 +11815,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
+"fzv" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/rack,
+/obj/item/tank/internals/oxygen,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/bag/sheetsnatcher,
+/obj/item/melee/sledgehammer,
+/obj/item/storage/bag/trash,
+/obj/item/broom,
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
+/turf/open/floor/plasteel/dark,
+/area/escapepodbay)
 "fzA" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room"
@@ -14680,9 +14686,6 @@
 	},
 /obj/effect/turf_decal/trimline/red/arrow_ccw{
 	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
 	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
 	dir = 1
@@ -17645,9 +17648,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "imX" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -20323,9 +20323,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/door/airlock/research{
 	name = "Mech Bay"
 	},
@@ -21112,9 +21109,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle{
 	dir = 1
 	},
@@ -21356,9 +21350,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -22873,9 +22864,6 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "kVA" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -23365,9 +23353,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -24686,9 +24671,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "lMp" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
 	dir = 4
 	},
@@ -25409,9 +25391,6 @@
 /turf/open/floor/plasteel/broken/two,
 /area/science/mixing)
 "mfl" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
@@ -26724,7 +26703,6 @@
 /area/maintenance/department/science/central)
 "mMm" = (
 /obj/machinery/mech_bay_recharge_port,
-/obj/structure/cable,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -24
@@ -27623,9 +27601,6 @@
 "nlP" = (
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
 	dir = 4
@@ -29155,12 +29130,6 @@
 "nXH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
@@ -33370,6 +33339,7 @@
 "qcV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small,
+/obj/effect/spawner/backrooms_portal,
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "qcW" = (
@@ -34758,9 +34728,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle{
 	dir = 1
 	},
@@ -34882,9 +34849,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "qSn" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -35891,15 +35855,6 @@
 "rpM" = (
 /turf/open/floor/wood,
 /area/hallway/primary/central)
-"rpU" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/science/robotics/lab)
 "rpY" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -40126,9 +40081,6 @@
 "trI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -43275,9 +43227,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "uYJ" = (
@@ -45238,9 +45187,6 @@
 	persistence_id = "public";
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -46313,9 +46259,6 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/trimline/red/arrow_ccw{
 	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
 	dir = 4
@@ -48449,9 +48392,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "xus" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -89533,7 +89473,7 @@ sOU
 tqI
 kYl
 cXu
-rpU
+nXH
 cJd
 fgW
 gqK
@@ -96177,7 +96117,7 @@ mfB
 vTL
 tkQ
 faP
-xRw
+fzv
 iLQ
 dYL
 dYL
