@@ -26,5 +26,9 @@
       been upgraded, as they no longer visually apply the efficiency discount twice.
   Shoddd:
   - bugfix: frontier modsuit helmet now airtight
+  SirNightKnight:
+  - rscadd: Frying pans and flyswatters can be sharpened.
   manray:
   - rscadd: atmos holofan to engiborg's default toolkit
+  ven1883:
+  - rscdel: Removes bunnywand from wiz item selection
