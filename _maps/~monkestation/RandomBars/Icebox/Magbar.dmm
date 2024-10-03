@@ -941,7 +941,7 @@
 /obj/machinery/vending/boozeomat{
 	layer = 3.1
 	},
-/turf/open/space/basic,
+/turf/open/floor/pod,
 /area/station/service/bar)
 "Gt" = (
 /obj/machinery/door/airlock/maintenance,
