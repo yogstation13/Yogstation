@@ -139,6 +139,7 @@
 		"universal_scanner",
 		"voice_analyzer",
 		"watering_can",
+		"diskplantgene", // monkestation edit: move to roundstart tech
 	)
 
 /datum/techweb_node/mmi
@@ -1507,7 +1508,7 @@
 	description = "Botanical tools"
 	prereq_ids = list("biotech")
 	design_ids = list(
-		"diskplantgene",
+		/* "diskplantgene", */ // monkestation edit: move to roundstart tech
 		"biogenerator",
 		"flora_gun",
 		"gene_shears",
