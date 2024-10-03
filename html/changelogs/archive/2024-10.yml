@@ -5,5 +5,26 @@
   dravo:
   - rscadd: Expanded CC with additional office space and a more useful fishing spot
 2024-10-03:
+  Absolucy:
+  - bugfix: Fixes sentient slimes getting taken over by AI when splitting/vaccumed.
+  - qol: Malkavian bloodsucker ramblings now have a proper cooldown.
+  Absolucy, ancient-engineer:
+  - rscadd: Added signboards, player craftable signs that display text above them
+      in the world that everyone can see!
+  - rscadd: Wooden signboards can be crafted with 5 wooden planks, but need a pen
+      to edit/clear.
+  - rscadd: Holographic signboards can be crafted with 5 iron, 5 cables, and 1 micro-laser,
+      and can change color, alongside allowing you to lock it to your ID, so that
+      only you can edit or clear it. An emag will permanently break the lock, tho!
+  - image: Signboard sprites by @ancient-engineer.
+  - admin: Admins can see logs about signboard edits/changes via the "Signboards"
+      investigate log category.
   DexeeXI:
   - admin: corrected exploitive issues on CC.
+  GoldenAlpharex:
+  - bugfix: Biogenerators now display the accurate price of their products after having
+      been upgraded, as they no longer visually apply the efficiency discount twice.
+  Shoddd:
+  - bugfix: frontier modsuit helmet now airtight
+  manray:
+  - rscadd: atmos holofan to engiborg's default toolkit

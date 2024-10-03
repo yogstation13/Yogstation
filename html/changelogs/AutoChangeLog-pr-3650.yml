@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixes sentient slimes getting taken over by AI when splitting/vaccumed."

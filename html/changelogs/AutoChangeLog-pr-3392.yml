@@ -1,8 +1,0 @@
-author: "Absolucy, ancient-engineer"
-delete-after: True
-changes:
-  - rscadd: "Added signboards, player craftable signs that display text above them in the world that everyone can see!"
-  - rscadd: "Wooden signboards can be crafted with 5 wooden planks, but need a pen to edit/clear."
-  - rscadd: "Holographic signboards can be crafted with 5 iron, 5 cables, and 1 micro-laser, and can change color, alongside allowing you to lock it to your ID, so that only you can edit or clear it. An emag will permanently break the lock, tho!"
-  - image: "Signboard sprites by @ancient-engineer."
-  - admin: "Admins can see logs about signboard edits/changes via the \"Signboards\" investigate log category."
