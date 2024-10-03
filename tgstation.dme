@@ -5832,6 +5832,7 @@
 #include "monkestation\code\datums\ai_laws\laws_monke.dm"
 #include "monkestation\code\datums\announcers\dagoth.dm"
 #include "monkestation\code\datums\announcers\duke.dm"
+#include "monkestation\code\datums\announcers\vethday.dm"
 #include "monkestation\code\datums\armor\_armor.dm"
 #include "monkestation\code\datums\brain_damage\magic.dm"
 #include "monkestation\code\datums\brain_damage\phobia.dm"
