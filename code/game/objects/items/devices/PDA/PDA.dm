@@ -908,13 +908,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		remove_pen()
 
-/obj/item/pda/CtrlClick()
-	..()
+/obj/item/pda/CtrlClick(mob/user)
+	. = ..()
 
 	if(isturf(loc)) //stops the user from dragging the PDA by ctrl-clicking it.
-		return
+		return FALSE
 
 	remove_pen()
+	return FALSE
 
 /obj/item/pda/verb/verb_toggle_light()
 	set category = "Object"

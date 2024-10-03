@@ -196,6 +196,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	return FALSE
 
 /mob/living/simple_animal/mouse/CtrlClickOn(atom/A)
+	. = TRUE
 	face_atom(A)
 	if(!isturf(loc))
 		return
