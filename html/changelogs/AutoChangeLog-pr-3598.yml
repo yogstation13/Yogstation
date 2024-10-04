@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Blueshield's headset and Blueshield's bowman headset added to their private locker"
+  - bugfix: "Changed the Blueshield alt head set name to a bowman headset and added descriptions to both."
+  - qol: "Cleaned the locker a bit by moving all the items that can fit into blueshields belt into the belt."
