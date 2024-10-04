@@ -1,0 +1,11 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - rscadd: "Added emergency EVA suits to emergency closets."
+  - rscadd: "Implemented oxygen candles, they can be found in emergency toolboxes."
+  - rscadd: "Added the Emergency EVA crate and Liquid Pump crate to Cargo"
+  - qol: "Made emergency closet contents more consistent."
+  - qol: "Oxygen candles are more potent."
+  - qol: "Hazard vests can hold large oxygen tanks."
+  - balance: "Cybersun Juggernaut Suit now has shove protection akin to riot armour."
+  - bugfix: "Helmets no longer have the flammable quality."
