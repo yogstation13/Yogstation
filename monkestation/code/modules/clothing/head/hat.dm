@@ -10,3 +10,4 @@
 	worn_icon = 'monkestation/icons/mob/clothing/head_32x48.dmi'
 	icon_state = "tophat_wiz"
 	dog_fashion = null
+

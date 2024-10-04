@@ -70,7 +70,7 @@
 
 /obj/item/toy/plush/gumball_goblin
 	name = "gumball goblin plush"
-	desc = "A plush of a Gumball Goblin. He was abducted while pondering his gumballs.  Help. ~Handcrafted lovingly for elliethedarksun"
+	desc = "A plush of a Gumball Goblin. He was abducted while pondering his gumballs. Help. ~Handcrafted lovingly for elliethedarksun"
 	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
 	icon_state = "gumball_goblin"
 
@@ -142,7 +142,7 @@
 
 /obj/item/toy/plush/pooba_bee_plush
 	name = "bumbliest bee plushie"
-	desc = "God damn thats a cute bee."
+	desc = "God damn that's a cute bee."
 	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
 	icon_state = "poba_fat_bee"
 

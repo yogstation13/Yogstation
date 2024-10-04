@@ -505,6 +505,7 @@
 	if(P && istype(P.loc, /turf/open) && !P.clash_target && !clashing)
 		P.clash_of_the_plushies(src)
 
+// Worn sprite taken from Space Station 14. Bee hat sprite drawn by Ubaser.
 /obj/item/toy/plush/lizard_plushie
 	name = "lizard plushie"
 	desc = "An adorable stuffed toy that resembles a lizardperson."
@@ -513,6 +514,10 @@
 	attack_verb_continuous = list("claws", "hisses", "tail slaps")
 	attack_verb_simple = list("claw", "hiss", "tail slap")
 	squeak_override = list('monkestation/sound/voice/weh.ogg' = 1) // Monkestation Edit
+	worn_icon = 'monkestation/icons/mob/clothing/head.dmi'
+	worn_icon_state = "map_plushie_lizard"
+	slot_flags = ITEM_SLOT_HEAD // Monkestation Edit
+	body_parts_covered = HEAD // Monkestation Edit
 
 /obj/item/toy/plush/lizard_plushie/Initialize(mapload)
 	. = ..()
@@ -637,6 +642,7 @@
 		say(pick(cry_still_messages))
 	playsound(src, 'sound/items/intents/Help.ogg', 50, FALSE)
 
+// Worn sprite taken from Space Station 14. Lizard hat sprite made by Cinder.
 /obj/item/toy/plush/beeplushie
 	name = "bee plushie"
 	desc = "A cute toy that resembles an even cuter bee."
@@ -646,6 +652,10 @@
 	attack_verb_simple = list("sting")
 	gender = FEMALE
 	squeak_override = list('sound/voice/moth/scream_moth.ogg'=1)
+	worn_icon = 'monkestation/icons/mob/clothing/head.dmi'
+	worn_icon_state = "plushie_h"
+	slot_flags = ITEM_SLOT_HEAD // Monkestation Edit
+	body_parts_covered = HEAD // Monkestation Edit
 
 /obj/item/toy/plush/goatplushie
 	name = "strange goat plushie"
