@@ -1,0 +1,4 @@
+author: "Meowosers"
+delete-after: True
+changes:
+  - bugfix: "Satchel Medical kits and First Responder Surgical kits have their intended storages now (For better or worse)."
