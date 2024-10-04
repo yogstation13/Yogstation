@@ -97,11 +97,11 @@
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/kahraman/storage_equipment/satchel
-	item_type = /obj/item/storage/backpack/industrial/frontier_colonist/satchel
+	item_type = /obj/item/storage/backpack/satchel/eng/frontier_colonist
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/kahraman/storage_equipment/messenger
-	item_type = /obj/item/storage/backpack/industrial/frontier_colonist/messenger
+	item_type = /obj/item/storage/backpack/satchel/eng/frontier_colonist/messenger
 	cost = PAYCHECK_CREW
 
 /datum/armament_entry/company_import/kahraman/storage_equipment/belt

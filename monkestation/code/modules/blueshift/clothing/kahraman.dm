@@ -14,13 +14,21 @@
 	. = ..()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
 
-/obj/item/storage/backpack/industrial/frontier_colonist/satchel
+/obj/item/storage/backpack/satchel/eng/frontier_colonist
 	name = "frontier satchel"
 	desc = "A rugged satchel often used by settlers and explorers. Holds less of your equipment than a backpack will."
+	icon = 'monkestation/code/modules/blueshift/icons/clothes/clothing.dmi'
 	icon_state = "satchel"
+	worn_icon = 'monkestation/code/modules/blueshift/icons/clothes/clothing_worn.dmi'
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	worn_icon_state = "satchel"
+	inhand_icon_state = "backpack"
 
-/obj/item/storage/backpack/industrial/frontier_colonist/messenger
+/obj/item/storage/backpack/satchel/eng/frontier_colonist/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/manufacturer_examine, COMPANY_KAHRAMAN)
+
+/obj/item/storage/backpack/satchel/eng/frontier_colonist/messenger
 	name = "frontier messenger bag"
 	desc = "A rugged messenger bag often used by settlers and explorers. Holds less of your equipment than a backpack will."
 	icon_state = "messenger"
