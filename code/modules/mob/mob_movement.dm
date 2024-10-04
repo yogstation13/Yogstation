@@ -526,10 +526,15 @@
 			to_chat(src, span_warning("You are not Superman."))
 		return
 	balloon_alert(src, "moving up...")
-	if(!do_after(src, 1 SECONDS))
-		return
-	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
-		to_chat(src, span_notice("You move upwards."))
+	var/move_time = isobserver(src) ? 0 : 1 SECONDS
+	if(hud_used?.move_up && move_time)
+		hud_used.move_up.icon_state = "move_up_using"
+	if(do_after(src, move_time))
+		if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
+			to_chat(src, span_notice("You move upwards."))
+	if(hud_used?.move_up)
+		hud_used.move_up.icon_state = initial(hud_used.move_up.icon_state)
+	
 
 ///Moves a mob down a z level
 /mob/verb/down()
@@ -552,11 +557,14 @@
 
 	var/ventcrawling_flag = HAS_TRAIT(src, TRAIT_MOVE_VENTCRAWLING) ? ZMOVE_VENTCRAWLING : 0
 	balloon_alert(src, "moving down...")
-	if(!do_after(src, 1 SECONDS))
-		return
-	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
-		to_chat(src, span_notice("You move down."))
-	return FALSE
+	var/move_time = isobserver(src) ? 0 : 1 SECONDS
+	if(hud_used?.move_down && move_time)
+		hud_used.move_down.icon_state = "move_down_using"
+	if(do_after(src, move_time))
+		if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK|ventcrawling_flag))
+			to_chat(src, span_notice("You move down."))
+	if(hud_used?.move_down)
+		hud_used.move_down.icon_state = initial(hud_used.move_down.icon_state)
 
 /mob/abstract_move(atom/destination)
 	var/turf/new_turf = get_turf(destination)
