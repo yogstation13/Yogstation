@@ -230,7 +230,8 @@
 /obj/item/modular_computer/CtrlClick()
 	var/mob/M = usr
 	if(ishuman(usr) && usr.CanReach(src) && usr.canUseTopic(src))
-		return attack_self(M)
+		attack_self(M)
+		return TRUE
 	else
 		return ..()
 
