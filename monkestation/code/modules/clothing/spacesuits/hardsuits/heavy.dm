@@ -43,6 +43,7 @@
 	worn_icon_digitigrade = 'monkestation/icons/mob/clothing/species/suit_digi.dmi'
 	icon_state = "hardsuit-juggernaut"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
+	clothing_flags = BLOCKS_SHOVE_KNOCKDOWN | STOPSPRESSUREDAMAGE | THICKMATERIAL //you are a walking wall you can't shove a wall down!
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
 	allowed = list(
 		/obj/item/ammo_box,
@@ -73,10 +74,10 @@
 	. = ..()
 	AddElement(/datum/element/radiation_protected_clothing)
 
-/obj/item/clothing/suit/space/hardsuit
+/obj/item/clothing/suit/space/hardsuit/juggernaut
 	var/on = FALSE
 
-/obj/item/clothing/suit/space/hardsuit/ui_action_click(mob/user, actiontype)
+/obj/item/clothing/suit/space/hardsuit/juggernaut/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_suit_flashlight))
 		on = !on
 		set_light_on(on)

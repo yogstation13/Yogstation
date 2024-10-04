@@ -1,4 +1,4 @@
-#define OXY_CANDLE_RELEASE_TEMP (T20C + 10) // 30 celsius, it's hot. Will be even hotter with hotspot expose
+#define OXY_CANDLE_RELEASE_TEMP (T20C + 20) // 40 celsius, it's hot. Will be even hotter with hotspot expose
 
 /obj/item/oxygen_candle
 	name = "oxygen candle"
@@ -9,7 +9,7 @@
 	light_color = LIGHT_COLOR_LAVA // Very warm chemical burn
 	var/pulled = FALSE
 	var/processing = FALSE
-	var/processes_left = 40
+	var/processes_left = 50
 
 /obj/item/oxygen_candle/attack_self(mob/user)
 	if(!pulled)
@@ -26,7 +26,7 @@
 	if(!pos)
 		return
 	pos.hotspot_expose(500, 100)
-	pos.atmos_spawn_air("o2=5;TEMP=[OXY_CANDLE_RELEASE_TEMP]")
+	pos.atmos_spawn_air("o2=10;TEMP=[OXY_CANDLE_RELEASE_TEMP]")
 	processes_left--
 	if(processes_left <= 0)
 		set_light(0)

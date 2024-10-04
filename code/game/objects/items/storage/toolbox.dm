@@ -63,6 +63,7 @@
 		if(3)
 			new /obj/item/flashlight/flare(src)
 	new /obj/item/radio/off(src)
+	new /obj/item/oxygen_candle(src) //monkestation edit
 
 /obj/item/storage/toolbox/emergency/old
 	name = "rusty red toolbox"

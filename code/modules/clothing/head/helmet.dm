@@ -15,6 +15,7 @@
 	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEHAIR
 	supports_variations_flags = CLOTHING_SNOUTED_VARIATION
+	resistance_flags = FIRE_PROOF // monkestation edit so helmets don't burn, not sure how tf that happened
 
 	dog_fashion = /datum/dog_fashion/head/helmet
 

@@ -64,14 +64,32 @@
 	qdel(attacked_with)
 	qdel(src)
 
-	//Emergency suit
+	//Emergency suit with many MONKESTATION EDITS to make it crappy
 /obj/item/clothing/head/helmet/space/fragile
 	name = "emergency space helmet"
 	desc = "A bulky, air-tight helmet meant to protect the user during emergency situations. It doesn't look very durable."
+	var/torn = FALSE
 	icon_state = "syndicate-helm-orange"
 	inhand_icon_state = "syndicate-helm-orange" //resprite?
 	armor_type = /datum/armor/space_fragile
 	strip_delay = 65
+	flash_protect = FLASH_PROTECTION_NONE //no free flash protect
+
+//now to make it crap against facehuggers :)
+/obj/item/clothing/head/helmet/space/fragile/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(!torn && prob(10))
+		to_chat(owner, span_warning("[src] tears from the damage, snapping the visor plate!"))
+		clothing_flags &= ~STOPSPRESSUREDAMAGE
+		clothing_flags &= ~HEADINTERNALS
+		flags_cover &= ~HEADCOVERSEYES      //there has to be a better way to do this but i'm stupid
+		flags_cover &= ~HEADCOVERSMOUTH
+		flags_cover &= ~PEPPERPROOF
+		name = "torn emergency space helmet"
+		desc = "A bulky, air-tight helmet meant to protect the user during emergency situations, at least until someone snapped the visor plate."
+		torn = TRUE
+		playsound(loc, 'sound/weapons/slashmiss.ogg', 50, TRUE)
+		playsound(loc, 'sound/effects/snap.ogg', 50, TRUE)
+
 
 /obj/item/clothing/suit/space/fragile
 	name = "emergency space suit"
@@ -82,16 +100,18 @@
 	slowdown = 2
 	armor_type = /datum/armor/space_fragile
 	strip_delay = 65
+	cell = /obj/item/stock_parts/cell/crap //might wanna actually increase this to a better cell, currently it runs out in a minute of use
 
 /datum/armor/space_fragile
 	melee = 5
 
 /obj/item/clothing/suit/space/fragile/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!torn && prob(50))
+	if(!torn && prob(10))
 		to_chat(owner, span_warning("[src] tears from the damage, breaking the air-tight seal!"))
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
-		name = "torn [src]."
+		name = "torn emergency space suit"
 		desc = "A bulky suit meant to protect the user during emergency situations, at least until someone tore a hole in the suit."
 		torn = TRUE
 		playsound(loc, 'sound/weapons/slashmiss.ogg', 50, TRUE)
 		playsound(loc, 'sound/effects/refill.ogg', 50, TRUE)
+		playsound(loc, 'sound/effects/alert.ogg', 20, TRUE) //scare them
