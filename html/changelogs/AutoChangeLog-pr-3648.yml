@@ -1,0 +1,5 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - balance: "AIs can no longer track nearly fully invisible people"
+  - bugfix: "AIs can no longer track people in vents or objects such as lockers"
