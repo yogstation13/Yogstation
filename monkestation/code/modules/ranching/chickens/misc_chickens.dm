@@ -5,6 +5,7 @@
 	icon_state = "turkey_plain"
 	icon_living = "turkey_plain"
 	icon_dead = "turkey_plain_dead"
+	worn_slot_flags = null
 	speak_emote = list("clucks","gobbles")
 	density = FALSE
 	health = 15

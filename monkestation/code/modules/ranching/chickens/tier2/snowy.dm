@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/snowy
 	icon_suffix = "snowy"
+	worn_slot_flags = null
 
 	breed_name = "Snow"
 	egg_type = /obj/item/food/egg/snowy

@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/pigeon
 	icon_suffix = "pigeon"
+	worn_slot_flags = null
 
 	breed_name_male = "Pigeon"
 	breed_name_female = "Pigeon"

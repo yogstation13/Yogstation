@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/sword
 	icon_suffix = "sword"
+	worn_slot_flags = null
 
 	maxHealth = 300
 	melee_damage_lower = 2 //weak damage but strong health

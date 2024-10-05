@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/cockatrice
 	icon_suffix = "cockatrice"
+	worn_slot_flags = null
 
 	breed_name_male = "Cockatrice"
 	breed_name_female = "Cockatrice"
@@ -25,6 +26,7 @@
 	egg_type = /obj/item/food/egg/cockatrice
 
 	book_desc = "Part lizard, part chicken, part bat. The Males of this species are capable of spitting a venom that will petrify you temporarily, and are very hostile."
+
 /obj/item/food/egg/cockatrice
 	name = "Petrifying Egg"
 	icon_state = "cockatrice"

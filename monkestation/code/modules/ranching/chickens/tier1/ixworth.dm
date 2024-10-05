@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/ixworth
 	icon_suffix = "ixworth"
+	worn_slot_flags = null
 
 	breed_name = "Ixworth"
 	egg_type = /obj/item/food/egg/ixworth
@@ -7,6 +8,7 @@
 	liked_foods = list(/obj/item/food/grown/tomato = 2)
 
 	book_desc = "A very stylish breed."
+
 /obj/item/food/egg/ixworth
 	name = "Ixworth Egg"
 	icon_state = "ixworth"

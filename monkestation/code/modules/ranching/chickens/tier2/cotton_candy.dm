@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/cotton_candy
 	icon_suffix = "cotton_candy"
+	worn_slot_flags = null
 
 	breed_name = "Cotton Candy"
 	egg_type = /obj/item/food/egg/cotton_candy

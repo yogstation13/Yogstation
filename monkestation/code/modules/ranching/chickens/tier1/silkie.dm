@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/silkie
 	icon_suffix = "silkie"
+	worn_slot_flags = null
 
 	breed_name = "Selkie"
 	egg_type = /obj/item/food/egg/silkie

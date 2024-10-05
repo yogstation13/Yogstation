@@ -1,5 +1,6 @@
 ///gary is gonna have nothing to do with other crows because of how much unique code it has
 /mob/living/basic/chicken/gary
+	worn_slot_flags = null
 	breed_name_male = "Gary"
 	breed_name_female = "Gary"
 	desc = "Gary the Crow. An inquisitive, yet cruel barterer."

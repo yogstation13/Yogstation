@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/clown
 	icon_suffix = "clown"
+	worn_slot_flags = null
 
 	breed_name_female = "Henk"
 	breed_name_male = "Henkster"
@@ -14,6 +15,7 @@
 	targeted_ability = /datum/action/cooldown/mob_cooldown/chicken/honk
 
 	book_desc = "Tries very hard to be funny and occasionally honks."
+
 /obj/item/food/egg/clown
 	name = "Clown Egg?"
 	food_reagents = list(/datum/reagent/water = 50)

@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/golden
 	icon_suffix = "gold"
+	worn_slot_flags = null
 
 	breed_name = "Golden"
 	egg_type = /obj/item/food/egg/golden

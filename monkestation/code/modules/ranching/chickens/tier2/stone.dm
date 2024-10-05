@@ -1,6 +1,7 @@
 #define MINIMUM_BREAK_FORCE 10
 /mob/living/basic/chicken/stone
 	icon_suffix = "stone"
+	worn_slot_flags = null
 
 	breed_name = "Stone"
 	egg_type = /obj/item/food/egg/stone

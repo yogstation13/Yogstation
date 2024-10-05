@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/glass
 	icon_suffix = "glass"
+	worn_slot_flags = null
 
 	breed_name = "Glass"
 	egg_type = /obj/item/food/egg/glass
@@ -7,6 +8,7 @@
 	liked_foods = list(/obj/item/food/grown/rice = 2)
 
 	book_desc = "Fragile as glass, but produces the chemical injected into its egg overtime."
+
 /obj/item/food/egg/glass
 	name = "Glass Egg"
 	food_reagents = list()

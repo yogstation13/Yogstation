@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/robot
 	icon_suffix = "robot"
+	worn_slot_flags = null
 
 	breed_name = "Robotic"
 

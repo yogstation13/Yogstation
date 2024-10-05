@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/dream
 	icon_suffix = "dreaming"
+	worn_slot_flags = null
 
 	breed_name = "Dream"
 	egg_type = /obj/item/food/egg/dream

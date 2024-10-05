@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/clown_sad
 	icon_suffix = "sad_clown"
+	worn_slot_flags = null
 
 	breed_name_male = "huOnkHoNkHoeNK"
 	breed_name_female = "huOnkHoNkHoeNK"

@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/void
 	icon_suffix = "void"
+	worn_slot_flags = null
 
 	breed_name = "Void"
 	egg_type = /obj/item/food/egg/void

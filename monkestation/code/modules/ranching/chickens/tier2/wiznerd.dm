@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/wiznerd //No matter what you say Zanden this is staying as wiznerd
 	icon_suffix = "wiznerd"
+	worn_slot_flags = null
 
 	maxHealth = 150
 	melee_damage_upper = 7

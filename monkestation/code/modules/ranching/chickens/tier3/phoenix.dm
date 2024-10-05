@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/phoenix
 	icon_suffix = "spicy"
+	worn_slot_flags = null
 
 	breed_name = "Phoenix"
 	egg_type = /obj/item/food/egg/phoenix

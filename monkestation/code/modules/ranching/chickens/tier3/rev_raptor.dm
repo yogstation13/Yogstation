@@ -1,5 +1,6 @@
 /mob/living/basic/chicken/rev_raptor
 	icon_suffix = "rev_raptor"
+	worn_slot_flags = null
 
 	breed_name = "Revolutionary Raptor"
 	breed_name_male = "Revolutionary Tiercel"
