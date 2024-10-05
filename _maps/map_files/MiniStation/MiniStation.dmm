@@ -23481,34 +23481,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/science/storage)
-"jQt" = (
-/obj/effect/turf_decal/trimline/blue/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 9
-	},
-/obj/machinery/power/apc{
-	areastring = "/area/medical/storage/backroom";
-	dir = 4;
-	name = "Medical Backrooms APC";
-	pixel_x = 24
-	},
-/obj/structure/rack,
-/obj/item/borg/sight/hud/med{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/borg/sight/hud/med{
-	pixel_y = 1
-	},
-/obj/item/borg/sight/hud/med{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/storage/backroom)
 "jQu" = (
 /obj/machinery/advanced_airlock_controller{
 	dir = 4;
@@ -35568,6 +35540,35 @@
 /obj/item/toy/plush/nukeplushie,
 /turf/open/floor/plating,
 /area/maintenance/starboard/lower)
+"ryo" = (
+/obj/effect/turf_decal/trimline/blue/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/medical/storage/backroom";
+	dir = 4;
+	name = "Medical Backrooms APC";
+	pixel_x = 24
+	},
+/obj/structure/rack,
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/item/clothing/glasses/hud/health{
+	pixel_x = 3;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage/backroom)
 "ryz" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner/lower{
 	dir = 4
@@ -74205,7 +74206,7 @@ dgO
 qkx
 hkr
 wAB
-jQt
+ryo
 fHY
 anC
 oKd
