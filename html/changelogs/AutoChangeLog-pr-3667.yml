@@ -1,6 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Ported Joint Torsion Ratchet module"
-  - rscadd: "Made mirage grenade module researchable."
-  - rscadd: "Made mirage grenade modules useable while mod suit is depowered"

@@ -37,3 +37,42 @@
   - rscadd: atmos holofan to engiborg's default toolkit
   ven1883:
   - rscdel: Removes bunnywand from wiz item selection
+2024-10-05:
+  Gw0sty:
+  - rscadd: Blueshield's headset and Blueshield's bowman headset added to their private
+      locker
+  - bugfix: Changed the Blueshield alt head set name to a bowman headset and added
+      descriptions to both.
+  - qol: Cleaned the locker a bit by moving all the items that can fit into blueshields
+      belt into the belt.
+  - rscadd: Made frontier satchels and messenger bags actual satchel types
+  - rscadd: Ported Joint Torsion Ratchet module
+  - rscadd: Made mirage grenade module researchable.
+  - rscadd: Made mirage grenade modules useable while mod suit is depowered
+  - bugfix: Makes ablative trench coat properly hide hair and ears.
+  Meowosers:
+  - rscadd: Space Cleaner can now be made with Urine and Water
+  - bugfix: Satchel Medical kits and First Responder Surgical kits have their intended
+      storages now (For better or worse).
+  PotatoTomahto:
+  - rscadd: The lizard and bee plushies can now be worn in the head slot.
+  Shoddd:
+  - image: New sprites for Godslayer, Beserker, Ash drake, and adamantine armor
+  - balance: AIs can no longer track nearly fully invisible people
+  - bugfix: AIs can no longer track people in vents or objects such as lockers
+  SirNightKnight:
+  - rscadd: Added emergency EVA suits to emergency closets.
+  - rscadd: Implemented oxygen candles, they can be found in emergency toolboxes.
+  - rscadd: Added the Emergency EVA crate and Liquid Pump crate to Cargo
+  - qol: Made emergency closet contents more consistent.
+  - qol: Oxygen candles are more potent.
+  - qol: Hazard vests can hold large oxygen tanks.
+  - balance: Cybersun Juggernaut Suit now has shove protection akin to riot armour.
+  - bugfix: Helmets no longer have the flammable quality.
+  necromanceranne, SapphicOverload:
+  - bugfix: Restores a lost feature, Clarkes and Odysseus mechs once again can pivot
+      on a dime and step in the same button press.
+  - qol: Mechs universally have diagonal movement as to avoid unresponsive movement,
+      as block diagonal movement was having unintended side effects and was actually
+      intended for pivot step mechs.
+  - bugfix: You can once again use alt to turn while strafing in a mech
