@@ -66,7 +66,7 @@
 	if(!length(hunter?.rabbits))
 		return
 	var/obj/effect/selected_bunny
-	for(var/obj/effect/located as anything in hunter.rabbits)
+	for(var/obj/effect/bnnuy/located as anything in hunter.rabbits)
 		if(get_dist(user, located) < dist)
 			dist = get_dist(user, located)
 			selected_bunny = located

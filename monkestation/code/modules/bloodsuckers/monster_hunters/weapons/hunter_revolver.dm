@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/revolver/hunter_revolver
 	name = "\improper Hunter's Revolver"
-	desc = "Does minimal damage but slows down the enemy."
+	desc = "While doing minimal physical damage, the bullets will force a monster to carry the weight of their impure sins for a short while, greatly slowing them down."
 	icon_state = "revolver"
 	icon = 'monkestation/icons/bloodsuckers/weapons.dmi'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/bloodsilver
@@ -26,15 +26,33 @@
 	caliber = CALIBER_BLOODSILVER
 
 /obj/projectile/bullet/bloodsilver
-	name = "Bloodsilver bullet"
+	name = "bloodsilver bullet"
 	damage = 3
 	ricochets_max = 4
 
-/obj/projectile/bullet/bloodsilver/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
+/obj/projectile/bullet/bloodsilver/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
-	if(!iscarbon(target) || QDELING(target) || target.has_movespeed_modifier(/datum/movespeed_modifier/silver_bullet) || !is_monster_hunter_prey(target))
+	if(!isliving(target) || QDELING(target) || !is_monster_hunter_prey(target))
 		return
-	target.add_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)
-	if(!(target.has_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)))
-		return
-	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/silver_bullet), 8 SECONDS)
+	target.apply_status_effect(/datum/status_effect/silver_bullet)
+
+/datum/status_effect/silver_bullet
+	id = "silver_bullet"
+	duration = 8 SECONDS
+	tick_interval = -1
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = /atom/movable/screen/alert/status_effect/silver_bullet
+
+/datum/status_effect/silver_bullet/on_apply()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)
+	to_chat(owner, span_userdanger("Your body suddenly feels impossibly heavy, you can barely move!"), type = MESSAGE_TYPE_COMBAT)
+	return TRUE
+
+/datum/status_effect/silver_bullet/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/silver_bullet)
+	to_chat(owner, span_notice("The impossible weight fades away, allowing you to move normally once more."), type = MESSAGE_TYPE_COMBAT)
+
+/atom/movable/screen/alert/status_effect/silver_bullet
+	name = "Bloodsilver Curse"
+	desc = "You can feel your sins crawling on your back, weighing you down immensely."
+	icon_state = "weaken"

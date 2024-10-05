@@ -13,7 +13,7 @@
 	///how many rabbits have we found
 	var/rabbits_spotted = 0
 	///the list of white rabbits
-	var/list/obj/effect/client_image_holder/white_rabbit/rabbits = list()
+	var/list/obj/effect/bnnuy/rabbits = list()
 	///the red card tied to this trauma if any
 	var/obj/item/rabbit_locator/locator
 	///have we triggered the apocalypse
@@ -44,13 +44,16 @@
 	current_mob.add_traits(granted_traits, HUNTER_TRAIT)
 	current_mob.update_sight()
 	current_mob.faction |= FACTION_RABBITS
+	RegisterSignal(current_mob, COMSIG_MOB_LOGIN, PROC_REF(setup_bnuuy_images))
+	RegisterSignal(current_mob, COMSIG_MOVABLE_MOVED, PROC_REF(update_bnnuy_visibility))
 
 /datum/antagonist/monsterhunter/remove_innate_effects(mob/living/mob_override)
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
-	REMOVE_TRAITS_IN(current_mob, HUNTER_TRAIT)
+	current_mob.remove_traits(granted_traits, HUNTER_TRAIT)
 	current_mob.faction -= FACTION_RABBITS
 	current_mob.update_sight()
+	UnregisterSignal(current_mob, list(COMSIG_MOB_LOGIN, COMSIG_MOVABLE_MOVED))
 
 /datum/antagonist/monsterhunter/on_gain()
 	//Give Hunter Objective
@@ -80,15 +83,27 @@
 	RegisterSignal(src, COMSIG_BEASTIFY, PROC_REF(turn_beast))
 	for(var/i in 1 to 5)
 		var/turf/rabbit_hole = get_safe_random_station_turf()
-		var/obj/effect/client_image_holder/white_rabbit/cretin =  new(rabbit_hole, owner.current)
-		cretin.hunter = src
-		rabbits += cretin
-	var/obj/effect/client_image_holder/white_rabbit/gun_holder = pick(rabbits)
+		rabbits += new /obj/effect/bnnuy(rabbit_hole, src)
+	var/obj/effect/bnnuy/gun_holder = pick(rabbits)
 	gun_holder.drop_gun = TRUE
 	var/datum/action/cooldown/spell/track_monster/track = new
 	track.Grant(owner.current)
 
 	return ..()
+
+/datum/antagonist/monsterhunter/proc/setup_bnuuy_images()
+	SIGNAL_HANDLER
+	for(var/obj/effect/bnnuy/bnnuy as anything in rabbits)
+		if(QDELETED(bnnuy))
+			continue
+		owner.current?.client?.images |= bnnuy.hunter_image
+
+/datum/antagonist/monsterhunter/proc/update_bnnuy_visibility(mob/living/source, atom/old_loc, dir, forced, list/old_locs)
+	SIGNAL_HANDLER
+	for(var/obj/effect/bnnuy/bnnuy as anything in rabbits)
+		if(QDELETED(bnnuy))
+			continue
+		bnnuy.update_mouse_opacity(source)
 
 /datum/antagonist/monsterhunter/proc/grant_drop_ability(obj/item/tool)
 	var/datum/action/droppod_item/summon_contract = new(tool)
@@ -101,14 +116,10 @@
 	summon_contract.Grant(owner.current)
 
 /datum/antagonist/monsterhunter/on_removal()
-	UnregisterSignal(src, COMSIG_GAIN_INSIGHT)
-	UnregisterSignal(src, COMSIG_BEASTIFY)
-	REMOVE_TRAITS_IN(owner, HUNTER_TRAIT)
-	for(var/obj/effect/client_image_holder/white_rabbit/white as anything in rabbits)
-		rabbits -= white
-		qdel(white)
-	if(locator)
-		locator.hunter = null
+	UnregisterSignal(src, list(COMSIG_GAIN_INSIGHT, COMSIG_BEASTIFY))
+	owner.remove_traits(mind_traits, HUNTER_TRAIT)
+	QDEL_LIST(rabbits)
+	locator?.hunter = null
 	locator = null
 	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
 	return ..()
