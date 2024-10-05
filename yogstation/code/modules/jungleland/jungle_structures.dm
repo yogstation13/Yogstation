@@ -180,6 +180,7 @@
 	desc = "A might pillar of ivory, untouched by time and corrosion. There is a large hole on the top, it's missing a key ingredient..."
 	icon = 'yogstation/icons/obj/jungle32x48.dmi'
 	icon_state = "tar_altar"
+	move_resist = INFINITY // tar king kept moving it
 	speech_span = SPAN_COLOSSUS
 	layer = ABOVE_ALL_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
