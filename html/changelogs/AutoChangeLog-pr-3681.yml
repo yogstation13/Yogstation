@@ -1,4 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - bugfix: "falling in a chasm no longer breaks your ghost"

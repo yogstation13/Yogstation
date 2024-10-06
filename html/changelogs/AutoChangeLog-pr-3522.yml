@@ -1,7 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - qol: "Monster Hunters can now see rabbits through walls."
-  - qol: "Monster Hunters interacting with a rabbit will now automatically pickup the loot if they have room in their hands."
-  - refactor: "Made the rabbit code a bit less shit (in exchange for some annoyingly necessary jank)"
-  - qol: "The slowdown from bloodsilver bullets is now a status effect, and will be refreshed if another bullet hits before it finishes."
