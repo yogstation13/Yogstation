@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "(Hopefully) fixed runtimes related to NIF persistence."
