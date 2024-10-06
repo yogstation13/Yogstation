@@ -464,10 +464,7 @@
 			else
 				spawn_points_not_picked += spawn_point
 
-	var/obj/effect/landmark/start/picked = pick(spawn_points_not_picked)
-
-	if(!picked)
-		picked = pick(spawn_points_picked)
+	var/obj/effect/landmark/start/picked = length(spawn_points_not_picked) ? pick(spawn_points_not_picked) : pick(spawn_points_picked)
 
 	. = picked
 	picked.used = TRUE
