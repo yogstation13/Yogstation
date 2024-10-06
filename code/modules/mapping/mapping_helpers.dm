@@ -350,6 +350,7 @@
 		var/area/area = get_area(target)
 		log_mapping("[src] at [AREACOORD(src)] [(area.type)] tried to adjust [target]'s access to engine_access but it's already changed!")
 	target.engine_access = TRUE
+	target.stop_ac() // monkestation addition: prevents the air conditioning from heating up the SM
 
 /obj/effect/mapping_helpers/airalarm/mixingchamber_access
 	name = "airalarm mixingchamber access helper"
