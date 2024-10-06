@@ -290,7 +290,7 @@ SUBSYSTEM_DEF(garbage)
 	// monkestation start: disable hard deletes
 	if(!D)
 		return
-	if(!enable_hard_deletes)
+	if(!enable_hard_deletes && !override)
 		failed_hard_deletes |= D
 		return
 	// monkestation end
