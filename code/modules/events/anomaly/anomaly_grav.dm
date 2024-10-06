@@ -12,3 +12,6 @@
 	start_when = ANOMALY_START_HARMFUL_TIME
 	announce_when = ANOMALY_ANNOUNCE_HARMFUL_TIME
 	anomaly_path = /obj/effect/anomaly/grav
+
+/datum/round_event/anomaly/anomaly_grav/announce(fake)
+	priority_announce("Localized high-intensity gravitational anomaly detected on [ANOMALY_ANNOUNCE_DANGEROUS_TEXT] [impact_area.name]", "Anomaly Alert")
