@@ -219,7 +219,7 @@
 
 /datum/action/innate/pai/software/Trigger()
 	..()
-	P.paiInterface()
+	P.ui_interact(usr)
 
 /datum/action/innate/pai/shell
 	name = "Toggle Holoform"

@@ -21,7 +21,7 @@
 	if(!..())
 		return
 	var/mob/living/silicon/pai/pAI = usr
-	pAI.paiInterface()
+	pAI.ui_interact(usr)
 
 /atom/movable/screen/pai/shell
 	name = "Toggle Holoform"
@@ -122,10 +122,7 @@
 	if(!..())
 		return
 	var/mob/living/silicon/pai/pAI = usr
-	if(get(pAI, /obj/item/pda))
-		pAI.cmd_send_pdamesg(usr)
-	else
-		pAI.cmd_mc_send_pdamesg(usr)
+	pAI.cmd_send_pdamesg(usr)
 
 /atom/movable/screen/pai/pda_msg_show
 	name = "PDA - Show Message Log"
