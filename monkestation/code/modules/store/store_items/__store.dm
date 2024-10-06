@@ -96,6 +96,11 @@ GLOBAL_LIST_EMPTY(all_store_datums)
 
 	return TRUE
 
+/datum/store_manager/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/loadout_store),
+	)
+
 /// Select [path] item to [category_slot] slot.
 /datum/store_manager/proc/select_item(datum/store_item/selected_item)
 	if(selected_item.item_path in owner.prefs.inventory)
@@ -178,30 +183,20 @@ GLOBAL_LIST_EMPTY(all_store_datums)
 		if(item.hidden)
 			formatted_list.len--
 			continue
-		var/atom/new_item = new item.item_path
-		var/list/formatted_item = list()
-		formatted_item["name"] = item.name
-		formatted_item["path"] = item.item_path
-		formatted_item["cost"] = item.item_cost
-		formatted_item["desc"] = new_item.desc
-		formatted_item["item_path"] = new_item.type
-		formatted_item["job_restricted"] = null
+		var/list/formatted_item = list(
+			"name" = item.name,
+			"path" = item.item_path,
+			"cost" = item.item_cost,
+			"desc" = item.item_path::desc,
+			"icon" = sanitize_css_class_name("[item.item_path]"),
+			"job_restricted" = null,
+		)
 
-		var/datum/loadout_item/selected = GLOB.all_loadout_datums[new_item.type]
-		if(selected)
-			if(length(selected.restricted_roles))
-				formatted_item["job_restricted"] = selected.restricted_roles.Join(", ")
+		var/datum/loadout_item/selected = GLOB.all_loadout_datums[item.item_path]
+		if(length(selected?.restricted_roles))
+			formatted_item["job_restricted"] = selected.restricted_roles.Join(", ")
 
-
-		var/icon/icon = getFlatIcon(new_item)
-		var/md5 = md5(fcopy_rsc(icon))
-		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
-			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", icon)
-		SSassets.transport.send_assets(usr, list("photo_[md5]_[item.name]_icon.png" = icon))
-
-		formatted_item["icon"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 		formatted_list[array_index++] = formatted_item
-		qdel(new_item)
 
 	return formatted_list
 
