@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(flavor_texts)
 
 	if(shorten && length(found_text) > EXAMINE_FLAVOR_MAX_DISPLAYED)
 		found_text = TextPreview(found_text, EXAMINE_FLAVOR_MAX_DISPLAYED)
-		found_text += " <a href='?src=[REF(src)];flavor_text=1'>\[More\]</a>"
+		found_text += " <a href='byond://?src=[REF(src)];flavor_text=1'>\[More\]</a>"
 
 	if(found_text)
 		found_text += "\n"
@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(flavor_texts)
 				continue
 			if(final_text)
 				final_text += "\n"
-			final_text += "<a href='?src=[REF(src)];exploitable_info=1'>\[Exploitable Info\]</a>\n"
+			final_text += "<a href='byond://?src=[REF(src)];exploitable_info=1'>\[Exploitable Info\]</a>\n"
 			break
 
 	return final_text

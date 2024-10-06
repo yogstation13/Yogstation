@@ -105,7 +105,7 @@
 	opfor_entry += "<a href='?priv_msg=[ckey(mind_reference.key)]'>PM</a> "
 	if(mind_reference.current)
 		opfor_entry += "<a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(mind_reference?.current)]'>FLW</a> "
-	opfor_entry += "<a href='?src=[REF(src)];admin_pref=show_panel'>Show OPFOR Panel</a>"
+	opfor_entry += "<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show OPFOR Panel</a>"
 	return opfor_entry.Join()
 
 /datum/opposing_force/ui_interact(mob/user, datum/tgui/ui)
@@ -711,7 +711,7 @@
 	log_admin(msg)
 
 /datum/opposing_force/proc/send_admins_opfor_message(message)
-	message = "[span_pink("OPFOR:")] [span_admin("[message] (<a href='?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")]"
+	message = "[span_pink("OPFOR:")] [span_admin("[message] (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")]"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = message,
@@ -845,7 +845,7 @@
 		send_system_message("ERROR: You are muted.")
 		return
 	if(user.ckey != handling_admin && GLOB.directory[handling_admin])
-		to_chat(GLOB.directory[handling_admin], span_pink("OPFOR: [user] has pinged their OPFOR admin chat! (<a href='?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)"))
+		to_chat(GLOB.directory[handling_admin], span_pink("OPFOR: [user] has pinged their OPFOR admin chat! (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)"))
 		SEND_SOUND(GLOB.directory[handling_admin], sound('sound/misc/bloop.ogg'))
 		send_system_message("Handling admin pinged.")
 		COOLDOWN_START(src, ping_cooldown, OPFOR_PING_COOLDOWN)

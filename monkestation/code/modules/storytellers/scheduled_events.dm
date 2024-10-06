@@ -40,9 +40,9 @@
 /datum/scheduled_event/proc/get_href_actions()
 	var/round_started = SSticker.HasRoundStarted()
 	if(round_started)
-		return "<a href='?src=[REF(src)];action=fire'>Fire</a> <a href='?src=[REF(src)];action=reschedule'>Reschedule</a> <a href='?src=[REF(src)];action=cancel'>Cancel</a> <a href='?src=[REF(src)];action=refund'>Refund</a></td>"
+		return "<a href='byond://?src=[REF(src)];action=fire'>Fire</a> <a href='byond://?src=[REF(src)];action=reschedule'>Reschedule</a> <a href='byond://?src=[REF(src)];action=cancel'>Cancel</a> <a href='byond://?src=[REF(src)];action=refund'>Refund</a></td>"
 	else
-		return "<a href='?src=[REF(src)];action=cancel'>Cancel</a>"
+		return "<a href='byond://?src=[REF(src)];action=cancel'>Cancel</a>"
 
 /// Try and fire off the scheduled event
 /datum/scheduled_event/proc/try_fire()

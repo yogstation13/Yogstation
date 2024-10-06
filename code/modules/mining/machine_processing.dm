@@ -185,7 +185,7 @@
 		if (selected_material == all_materials)
 			dat += " <i>Smelting</i>"
 		else
-			dat += " <A href='?src=[REF(mineral_machine)];material=[REF(all_materials)]'><b>Not Smelting</b></A> "
+			dat += " <A href='byond://?src=[REF(mineral_machine)];material=[REF(all_materials)]'><b>Not Smelting</b></A> "
 		dat += "<br>"
 
 	dat += "<br><br>"
@@ -197,16 +197,16 @@
 		if (selected_alloy == designs.id)
 			dat += " <i>Smelting</i>"
 		else
-			dat += " <A href='?src=[REF(mineral_machine)];alloy=[designs.id]'><b>Not Smelting</b></A> "
+			dat += " <A href='byond://?src=[REF(mineral_machine)];alloy=[designs.id]'><b>Not Smelting</b></A> "
 		dat += "<br>"
 
 	dat += "<br><br>"
 	//On or off
 	dat += "Machine is currently "
 	if (on)
-		dat += "<A href='?src=[REF(mineral_machine)];set_on=off'>On</A> "
+		dat += "<A href='byond://?src=[REF(mineral_machine)];set_on=off'>On</A> "
 	else
-		dat += "<A href='?src=[REF(mineral_machine)];set_on=on'>Off</A> "
+		dat += "<A href='byond://?src=[REF(mineral_machine)];set_on=on'>Off</A> "
 
 	return dat
 

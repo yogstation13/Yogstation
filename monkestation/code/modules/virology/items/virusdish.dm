@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 	else
 		desc += "\nIts lid is closed!"
 	if(info)
-		desc += "\nThere is a sticker with some printed information on it. <a href ='?src=\ref[src];examine=1'>(Read it)</a>"
+		desc += "\nThere is a sticker with some printed information on it. <a href='byond://?src=\ref[src];examine=1'>(Read it)</a>"
 
 
 /obj/item/weapon/virusdish/Topic(href, href_list)

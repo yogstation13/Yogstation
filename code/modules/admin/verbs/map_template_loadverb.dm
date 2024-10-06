@@ -68,8 +68,8 @@
 	var/report_link
 	if(report)
 		report.show_to(src)
-		report_link = " - <a href='?src=[REF(report)];[HrefToken(forceGlobal = TRUE)];show=1'>validation report</a>"
-		to_chat(src, span_warning("Map template '[map]' <a href='?src=[REF(report)];[HrefToken()];show=1'>failed validation</a>."), confidential = TRUE)
+		report_link = " - <a href='byond://?src=[REF(report)];[HrefToken(forceGlobal = TRUE)];show=1'>validation report</a>"
+		to_chat(src, span_warning("Map template '[map]' <a href='byond://?src=[REF(report)];[HrefToken()];show=1'>failed validation</a>."), confidential = TRUE)
 		if(report.loadable)
 			var/response = tgui_alert(usr, "The map failed validation, would you like to load it anyways?", "Map Errors", list("Cancel", "Upload Anyways"))
 			if(response != "Upload Anyways")

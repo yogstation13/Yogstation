@@ -294,7 +294,7 @@
 			continue
 
 		var/custom_link = enter_link ? " [enter_link]" : ""
-		var/link = " <a href='?src=[REF(ghost)];[action]=[REF(source)]'>([capitalize(action)])</a>"
+		var/link = " <a href='byond://?src=[REF(ghost)];[action]=[REF(source)]'>([capitalize(action)])</a>"
 
 		to_chat(ghost, span_ghostalert("[message][custom_link][link]"))
 

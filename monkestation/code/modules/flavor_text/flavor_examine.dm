@@ -57,9 +57,9 @@
 		var/admin_line = ""
 
 		if(linked_flavor.flavor_text)
-			admin_line += "<a href='?src=[REF(linked_flavor)];flavor_text=1'>\[FLA\]</a>"
+			admin_line += "<a href='byond://?src=[REF(linked_flavor)];flavor_text=1'>\[FLA\]</a>"
 		if(linked_flavor.expl_info)
-			admin_line += "<a href='?src=[REF(linked_flavor)];exploitable_info=1'>\[EXP\]</a>"
+			admin_line += "<a href='byond://?src=[REF(linked_flavor)];exploitable_info=1'>\[EXP\]</a>"
 		if(known_identity != linked_flavor)
 			admin_line += "\nThey are currently [isnull(known_identity) ? "disguised and have no visible flavor":"visible as the flavor text of [known_identity.name]"]."
 

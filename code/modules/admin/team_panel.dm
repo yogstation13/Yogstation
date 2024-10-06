@@ -7,7 +7,7 @@
 		content += "<a href='?_src_=holder;[HrefToken()];team_command=delete_team;team=[REF(T)]'>Delete</a>"
 		content += "<a href='?_src_=holder;[HrefToken()];team_command=communicate;team=[REF(T)]'>Communicate</a>"
 		for(var/command in T.get_admin_commands())
-			content += "<a href='?src=[REF(T)];command=[command]'>[command]</a>"
+			content += "<a href='byond://?src=[REF(T)];command=[command]'>[command]</a>"
 		content += "<br>"
 		content += "Objectives:<br><ol>"
 		for(var/datum/objective/O in T.objectives)
