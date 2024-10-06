@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	WRITE_FILE(json_file, json_encode(json))
 
 /// Saves the persistence data for the owner.
-/mob/living/carbon/human/proc/save_individual_persistence(var/ckey)
+/mob/living/carbon/human/proc/save_individual_persistence(ckey)
 	var/obj/item/organ/internal/brain/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 
-	return brain?.modular_persistence?.save_data(ckey)
+	return brain?.modular_persistence?.save_data(ckey || src.ckey || brain?.brainmob?.ckey || ckey(mind?.key) || mind?.get_ghost(TRUE)?.ckey)

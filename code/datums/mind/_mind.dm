@@ -519,7 +519,8 @@
 		return martial_art
 	return FALSE
 
-/datum/mind/proc/get_ghost(even_if_they_cant_reenter, ghosts_with_clients)
+/datum/mind/proc/get_ghost(even_if_they_cant_reenter, ghosts_with_clients) as /mob/dead/observer
+	RETURN_TYPE(/mob/dead/observer)
 	for(var/mob/dead/observer/G in (ghosts_with_clients ? GLOB.player_list : GLOB.dead_mob_list))
 		if(G.mind == src)
 			if(G.can_reenter_corpse || even_if_they_cant_reenter)
