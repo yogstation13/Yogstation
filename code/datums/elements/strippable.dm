@@ -531,7 +531,11 @@
 	if (!istype(living_source))
 		return
 
-	to_chat(user, span_notice("You try to pull something out of [living_source]'s [storage_item]."))
+	if (istype(storage_item, /obj/item/storage/backpack/duffelbag))
+		to_chat(user, span_notice("You try to unzip [living_source]'s [storage_item]. Hopefully they don't notice."))
+		playsound(living_source, 'sound/items/zip.ogg', 100, TRUE) // obnoxiously loud
+	else
+		to_chat(user, span_notice("You try to pull something out of [living_source]'s [storage_item]."))
 
 	var/log_message = "[key_name(living_source)] is being pickpocketed by [key_name(user)] ([storage_item])"
 	living_source.log_message(log_message, LOG_ATTACK, color="red")
