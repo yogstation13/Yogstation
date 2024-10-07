@@ -94,3 +94,19 @@
   - rscadd: Vault at CC
   Shoddd:
   - bugfix: falling in a chasm no longer breaks your ghost
+2024-10-07:
+  Absolucy:
+  - bugfix: Reworks the loadout store UI to use a spritesheet, fixing a major source
+      of lag.
+  - bugfix: Fixed some errors related to picking roundstart spawn points.
+  - bugfix: (Hopefully) fixed runtimes related to NIF persistence.
+  Gw0sty:
+  - rscadd: Adds borer cages as a medical express order.
+  - bugfix: fixed A/S maintenance APC being unconnected on Theseus.
+  Shoddd:
+  - qol: Report Issues is now Report bugs
+  ThePooba:
+  - rscadd: added Kams office back to centcom and Fortunes office
+  Wisemonster:
+  - balance: Turned off telecomms and SM air conditioning, and lowered the cold room
+      air conditioning temperature to prevent the rooms from heating up too much.

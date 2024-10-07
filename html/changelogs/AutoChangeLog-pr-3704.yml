@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Reworks the loadout store UI to use a spritesheet, fixing a major source of lag."
