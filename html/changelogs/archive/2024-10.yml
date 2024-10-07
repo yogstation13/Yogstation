@@ -105,6 +105,11 @@
   - bugfix: fixed A/S maintenance APC being unconnected on Theseus.
   Shoddd:
   - qol: Report Issues is now Report bugs
+  - rscadd: Gives hos a gun beacon, choose from multiphase, law bringer, or a combat
+      shotgun
+  - rscadd: Gives multiphase a bigger battery and tase option
+  - rscadd: Compact combat shotgun from TG
+  - balance: Beanbags and rubbershot now account for 250 stamina
   ThePooba:
   - rscadd: added Kams office back to centcom and Fortunes office
   Wisemonster:

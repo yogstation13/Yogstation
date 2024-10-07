@@ -1,7 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - rscadd: "Gives hos a gun beacon, choose from multiphase, law bringer, or a combat shotgun"
-  - rscadd: "Gives multiphase a bigger battery and tase option"
-  - rscadd: "Compact combat shotgun from TG"
-  - balance: "Beanbags and rubbershot now account for 250 stamina"
