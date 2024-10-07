@@ -127,8 +127,8 @@
 	credit_cost = 5000 // While the shuttle is rusted and poorly maintained, trained bears are costly.
 	emag_only = TRUE
 
-/datum/map_template/shuttle/emergency/amongushuttle
-	suffix = "amongushuttle"
+/datum/map_template/shuttle/emergency/amogushuttle
+	suffix = "amogushuttle"
 	name = "Suspicious Shuttle"
 	description = "A highly sus shuttle."
 	credit_cost = 15000 // mostly due to the guns which can be accessed if someone is really cracked at safecracking
