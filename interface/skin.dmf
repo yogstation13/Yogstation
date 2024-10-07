@@ -211,7 +211,7 @@ window "infowindow"
 		anchor1 = 71,0
 		anchor2 = 85,0
 		saved-params = "is-checked"
-		text = "Report Issue"
+		text = "Report Bugs"
 		command = "report-issue"
 	elem "fullscreen-toggle"
 		type = BUTTON
