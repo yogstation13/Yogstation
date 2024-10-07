@@ -913,7 +913,6 @@
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
-	var/carrydelay = 50 //if you have latex you are faster at grabbing
 	var/skills_space = null // Changes depending on glove type
 
 	var/nanochips = FALSE
@@ -927,15 +926,13 @@
 	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))
 		effective_skill += EXP_LOW
 
+	var/carrydelay = (25 / (5 + effective_skill)) SECONDS //if you have latex you are faster at grabbing
 	switch(effective_skill)
 		if(EXP_MASTER to INFINITY)
-			carrydelay = 25
 			skills_space = "masterfully"
 		if(EXP_MID to EXP_MASTER)
-			carrydelay = 30
 			skills_space = "expertly"
 		if(EXP_LOW to EXP_MID)
-			carrydelay = 40
 			skills_space = "quickly"
 
 	if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE))

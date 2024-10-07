@@ -36,10 +36,10 @@
 		SKILL_PHYSIOLOGY = EXP_MID,
 		SKILL_MECHANICAL = EXP_NONE,
 		SKILL_TECHNICAL = EXP_NONE,
-		SKILL_SCIENCE = EXP_MID,
+		SKILL_SCIENCE = EXP_LOW,
 		SKILL_FITNESS = EXP_LOW,
 	)
-	skill_points = 3
+	skill_points = 4
 
 	departments_list = list(
 		/datum/job_department/medical,

@@ -37,7 +37,7 @@
 		SKILL_SCIENCE = EXP_NONE,
 		SKILL_FITNESS = EXP_MID,
 	)
-	skill_points = 2
+	skill_points = 4
 
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
