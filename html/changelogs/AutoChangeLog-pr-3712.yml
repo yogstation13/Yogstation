@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - qol: "Report Issues is now Report bugs"
