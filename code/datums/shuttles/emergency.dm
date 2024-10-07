@@ -134,7 +134,6 @@
 	credit_cost = 15000 // mostly due to the guns which can be accessed if someone is really cracked at safecracking
 	emag_only = TRUE
 
-
 /datum/map_template/shuttle/emergency/meteor
 	suffix = "meteor"
 	name = "Asteroid With Engines Strapped To It"
