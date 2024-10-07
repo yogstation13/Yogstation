@@ -44,6 +44,7 @@
 	var/list/data = list()
 	data["section_title"] = "pAI interface"
 	data["modules"] = list()
+	data["modules_tabs"] = list()
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
