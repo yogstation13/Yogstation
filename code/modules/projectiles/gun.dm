@@ -368,10 +368,10 @@
 		return
 
 	var/sprd = 0
-	var/randomized_gun_spread = EXP_GENIUS - user.get_skill(SKILL_FITNESS)
+	var/randomized_gun_spread = 0
 	var/rand_spr = rand()
 	if(spread > 0)
-		randomized_gun_spread += rand(0,spread)
+		randomized_gun_spread += rand(0,spread) * (8 - user.get_skill(SKILL_FITNESS)) / 5
 	if(ishuman(user)) //nice shootin' tex
 		var/mob/living/carbon/human/H = user
 		bonus_spread += H.dna.species.aiminginaccuracy

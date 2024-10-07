@@ -190,6 +190,14 @@
 	var/has_owner = FALSE
 	var/can_transfer = TRUE //if golems can switch bodies to this new shell
 	var/mob/living/owner = null //golem's owner if it has one
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_GENIUS
 	short_desc = "You are a Free Golem. Your family worships The Liberator."
 	flavour_text = "In his infinite and divine wisdom, he set your clan free to \
 	travel the stars with a single declaration: \"Yeah go do whatever.\" Though you are bound to the one who created you, it is customary in your society to repeat those same words to newborn \
@@ -298,6 +306,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	icon = 'icons/obj/lavaland/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/hermit
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_MASTER
 	roundstart = FALSE
 	death = FALSE
 	random = TRUE
@@ -317,22 +333,26 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 			only one pod left when you got to the escape bay. You took it and launched it alone, and the crowd of terrified faces crowding at the airlock door as your pod's engines burst to \
 			life and sent you to this hell are forever branded into your memory."
 			outfit.uniform = /obj/item/clothing/under/rank/civilian/assistantformal
+			base_skills[SKILL_MECHANICAL] = EXP_MID
 		if(2)
 			flavour_text += "you're an exile from the Tiger Cooperative. Their technological fanaticism drove you to question the power and beliefs of the Exolitics, and they saw you as a \
 			heretic and subjected you to hours of horrible torture. You were hours away from execution when a high-ranking friend of yours in the Cooperative managed to secure you a pod, \
 			scrambled its destination's coordinates, and launched it. You awoke from stasis when you landed and have been surviving - barely - ever since."
 			outfit.uniform = /obj/item/clothing/under/rank/prisoner
 			outfit.shoes = /obj/item/clothing/shoes/sneakers/orange
+			base_skills[SKILL_TECHNICAL] = EXP_MID
 		if(3)
 			flavour_text += "you were a doctor on one of Nanotrasen's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell \
 			to a literal one, you find yourself nonetheless missing the recycled air and warm floors of what you left behind... but you'd still rather be here than there."
 			outfit.uniform = /obj/item/clothing/under/rank/medical
 			outfit.suit = /obj/item/clothing/suit/toggle/labcoat
 			outfit.back = /obj/item/storage/backpack/medic
+			base_skills[SKILL_PHYSIOLOGY] = EXP_MID
 		if(4)
 			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour \
 			at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed \
 			it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now."
+			base_skills[SKILL_FITNESS] = EXP_MID
 
 /obj/effect/mob_spawn/human/hermit/Destroy()
 	new/obj/structure/fluff/empty_cryostasis_sleeper(get_turf(src))
@@ -356,6 +376,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	everyone's gone. One of the cats scratched you just a few minutes ago. That's why you were in the pod - to heal the scratch. The scabs are still fresh; you see them right now. So where is \
 	everyone? Where did they go? What happened to the hospital? And is that smoke you smell? You need to find someone else. Maybe they can tell you what happened."
 	assignedrole = "Translocated Vet"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_MASTER
 
 /obj/effect/mob_spawn/human/doctor/alive/lavaland/Destroy()
 	var/obj/structure/fluff/empty_sleeper/S = new(drop_location())

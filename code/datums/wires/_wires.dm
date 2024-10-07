@@ -4,7 +4,7 @@
 	if(!I)
 		return
 
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.tool_behaviour == TOOL_MULTITOOL)
+	if(I.tool_behaviour == TOOL_WIRECUTTER || I.tool_behaviour == TOOL_MULTITOOL || I.tool_behaviour == TOOL_WIRING)
 		return TRUE
 	if(istype(I, /obj/item/assembly))
 		var/obj/item/assembly/A = I
@@ -308,7 +308,7 @@
 	var/obj/item/I
 	switch(action)
 		if("cut")
-			I = L.is_holding_tool_quality(TOOL_WIRECUTTER)
+			I = (L.is_holding_tool_quality(TOOL_WIRECUTTER) || (L.is_holding_tool_quality(TOOL_WIRING) && is_cut(target_wire)))
 			if(I || IsAdminGhost(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)
