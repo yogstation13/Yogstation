@@ -21,7 +21,7 @@ export const PaiInterface = (props, context) => {
   const winWidth = Math.min(450, window.screen.availWidth * 0.5);
   const winHeight = Math.min(500, window.screen.availHeight * 0.8);
   return (
-    <Window width={winWidth} height={winHeight} theme="">
+    <Window width={450} height={500} theme="">
       <Window.Content>
         <Flex>
           <Flex.Item grow={1}>
@@ -38,6 +38,7 @@ export const PaiInterface = (props, context) => {
                 <Tabs.Tab>
                   Download software
                 </Tabs.Tab>
+
               </Tabs>
             </Section>
           </Flex.Item>
