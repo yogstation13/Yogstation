@@ -55,7 +55,7 @@
 /turf/open/floor/plasteel/white,
 /area/template_noop)
 "h" = (
-/obj/effect/turf_decal/trimline/blue/corner/lower{
+/obj/effect/turf_decal/trimline/blue/corner{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line,
