@@ -322,6 +322,74 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	var/mob/living/carbon/C = mob_viewer
 	C.take(giver, receiving)
 
+//SKILLS
+
+/atom/movable/screen/alert/skill_up
+	name = "Allocate Skill Points"
+	desc = "You have unspent skill points! Click here to allocate them."
+	var/list/allocated_skills = list(
+		SKILL_PHYSIOLOGY = 0,
+		SKILL_MECHANICAL = 0,
+		SKILL_TECHNICAL = 0,
+		SKILL_SCIENCE = 0,
+		SKILL_FITNESS = 0,
+	)
+	var/allocated_points = 0
+
+/atom/movable/screen/alert/skill_up/Click(location, control, params)
+	. = ..()
+	ui_interact(mob_viewer)
+
+/atom/movable/screen/alert/skill_up/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "SkillMenu", "Allocate Skill Points")
+		ui.open()
+
+/atom/movable/screen/alert/skill_up/ui_data(mob/user)
+	var/list/data = list()
+	var/list/skill_data = list()
+	for(var/skill in user.mind.skills)
+		skill_data.Add(list(list(
+			"base" = user.get_skill(skill),
+			"allocated" = allocated_skills[skill],
+		)))
+	data["skills"] = skill_data
+	data["skill_points"] = user.mind.skill_points
+	data["allocated_points"] = allocated_points
+	data["exceptional_skill"] = HAS_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)
+	return data
+
+/atom/movable/screen/alert/skill_up/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = usr
+	if(!user.mind)
+		CRASH("User ([user]) without a mind attempted to allocate skill points!")
+	switch(action)
+		if("confirm")
+			for(var/skill in user.mind.skills)
+				user.adjust_skill(skill, allocated_skills[skill], max_skill = EXP_GENIUS)
+				allocated_skills[skill] = 0
+			user.mind.skill_points -= allocated_points
+			allocated_points = 0
+			if(!user.mind.skill_points)
+				user.clear_alert("skill points")
+			return TRUE
+		if("allocate")
+			allocated_skills[params["skill"]] += params["amount"]
+			allocated_points += params["amount"]
+			return TRUE
+
+/atom/movable/screen/alert/skill_up/ui_status(mob/user)
+	if(!user.mind)
+		return UI_CLOSE
+	return UI_INTERACTIVE
+
+/atom/movable/screen/alert/skill_up/ui_state(mob/user)
+	return GLOB.always_state
+
 //ALIENS
 
 /atom/movable/screen/alert/alien_tox

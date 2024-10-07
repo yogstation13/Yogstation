@@ -32,6 +32,9 @@
 	H.set_species(/datum/species/human) //Plasamen burn up otherwise, and lizards are vulnerable to asimov AIs
 
 	H.equipOutfit(nukeop_outfit)
+
+	H.add_skill_points(EXP_GENIUS) // 5 skill points to allocate, you can put it all into fitness or specialize as a medic or pilot
+	ADD_TRAIT(H, TRAIT_EXCEPTIONAL_SKILL, ROLE_OPERATIVE) // allowed to allocate 5 points into a single skill
 	return TRUE
 
 /datum/antagonist/nukeop/greet()

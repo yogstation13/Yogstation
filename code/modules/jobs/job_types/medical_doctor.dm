@@ -28,6 +28,14 @@
 		/datum/job_department/medical,
 	)
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_HIGH,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_NONE,
+	)
+
 	mail_goodies = list(
 		/obj/item/healthanalyzer/advanced = 15,
 		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 6,

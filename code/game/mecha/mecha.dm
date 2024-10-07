@@ -1038,7 +1038,7 @@
 
 	visible_message("[user] starts to climb into [name].")
 
-	if(do_after(user, enter_delay, src))
+	if(do_after(user, round(enter_delay * (check_eva()**2)), src, skill_check = null))
 		if(atom_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
@@ -1372,18 +1372,9 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(QDELETED(I))
 			return
 
-// Checks the pilot and their clothing for mech speed buffs
+// Check the pilot for mech piloting skill
 /obj/mecha/proc/check_eva()
-	var/evaNum = 1
-	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant //if the person is skilled
-		var/datum/component/mech_pilot/skill = H.GetComponent(/datum/component/mech_pilot)
-		if(skill)
-			evaNum *= skill.piloting_speed
-
-		var/obj/item/clothing/under/clothes = H.get_item_by_slot(ITEM_SLOT_ICLOTHING) //if the jumpsuit directly assists the pilot
-		if(clothes)
-			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
-			if(MP)
-				evaNum *= MP.piloting_speed
-	return evaNum
+	var/effective_skill = occupant.get_skill(SKILL_TECHNICAL)
+	if(effective_skill < EXP_MASTER && HAS_TRAIT(occupant, TRAIT_SKILLED_PILOT))
+		effective_skill += EXP_LOW // mech pilot suit adds extra pilot skill, up to EXP_MASTER
+	return (12 - effective_skill) / 10

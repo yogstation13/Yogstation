@@ -37,6 +37,28 @@
 	var/list/colors = list()
 	/// List of attached assemblies.
 	var/list/assemblies = list()
+	/// Skill required to identify each wire, EXP_GENIUS if not specified here.
+	var/static/list/wire_difficulty = list(
+		WIRE_SHOCK = EXP_MID,
+		WIRE_RESET_MODULE = EXP_MID,
+		WIRE_ZAP = EXP_MID,
+		WIRE_ZAP1 = EXP_HIGH,
+		WIRE_ZAP2 = EXP_HIGH,
+		WIRE_LOCKDOWN = EXP_HIGH,
+		WIRE_CAMERA = EXP_HIGH,
+		WIRE_POWER = EXP_HIGH,
+		WIRE_POWER1 = EXP_MASTER,
+		WIRE_POWER2 = EXP_MASTER,
+		WIRE_IDSCAN = EXP_MASTER,
+		WIRE_UNBOLT = EXP_MASTER,
+		WIRE_BACKUP1 = EXP_MASTER,
+		WIRE_BACKUP2 = EXP_MASTER,
+		WIRE_LAWSYNC = EXP_MASTER,
+		WIRE_PANIC = EXP_MASTER,
+		WIRE_OPEN = EXP_MASTER,
+		WIRE_HACK = EXP_MASTER,
+		WIRE_AI = EXP_MASTER,
+	)
 
 	/// If every instance of these wires should be random. Prevents wires from showing up in station blueprints.
 	var/randomize = FALSE
@@ -139,6 +161,29 @@
 /datum/wires/proc/is_dud_color(color)
 	return is_dud(get_wire(color))
 
+/datum/wires/proc/is_revealed(color, mob/user)
+	// Admin ghost can see a purpose of each wire.
+	if(IsAdminGhost(user))
+		return TRUE
+
+	// Same for anyone with an abductor multitool.
+	else if(user.is_holding_item_of_type(/obj/item/multitool/abductor))
+		return TRUE
+
+	// Station blueprints do that too, but only if the wires are not randomized.
+	else if(!randomize)
+		if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints))
+			return TRUE
+		else if(user.is_holding_item_of_type(/obj/item/photo))
+			var/obj/item/photo/P = user.is_holding_item_of_type(/obj/item/photo)
+			if(P.picture.has_blueprints)	//if the blueprints are in frame
+				return TRUE
+
+	var/skill_required = wire_difficulty[get_wire(color)]
+	if(skill_required && user.skill_check(SKILL_TECHNICAL, skill_required))
+		return TRUE
+	return FALSE
+
 /datum/wires/proc/cut(wire)
 	if(is_cut(wire))
 		cut_wires -= wire
@@ -240,30 +285,12 @@
 /datum/wires/ui_data(mob/user)
 	var/list/data = list()
 	var/list/payload = list()
-	var/reveal_wires = FALSE
-
-	// Admin ghost can see a purpose of each wire.
-	if(IsAdminGhost(user))
-		reveal_wires = TRUE
-
-	// Same for anyone with an abductor multitool.
-	else if(user.is_holding_item_of_type(/obj/item/multitool/abductor))
-		reveal_wires = TRUE
-
-	// Station blueprints do that too, but only if the wires are not randomized.
-	else if(!randomize)
-		if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints))
-			reveal_wires = TRUE
-		else if(user.is_holding_item_of_type(/obj/item/photo))
-			var/obj/item/photo/P = user.is_holding_item_of_type(/obj/item/photo)
-			if(P.picture.has_blueprints)	//if the blueprints are in frame
-				reveal_wires = TRUE
 
 	var/colorblind = HAS_TRAIT(user, TRAIT_COLORBLIND)
 	for(var/color in colors)
 		payload.Add(list(list(
 			"color" = color,
-			"wire" = ((reveal_wires && !is_dud_color(color) && !colorblind) ? get_wire(color) : null),
+			"wire" = (!colorblind && !is_dud_color(color) && is_revealed(color, user)) ? get_wire(color) : null,
 			"cut" = is_color_cut(color),
 			"attached" = is_attached(color)
 		)))

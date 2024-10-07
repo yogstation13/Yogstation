@@ -357,8 +357,9 @@
 
 	. = TRUE
 
-	add_fingerprint(usr)
-	usr.set_machine(src)
+	var/mob/user = usr
+	add_fingerprint(user)
+	user.set_machine(src)
 
 	switch(action)
 		// Connect this DNA Console to a nearby DNA Scanner
@@ -373,7 +374,7 @@
 			if(!scanner_operational())
 				return
 
-			connected_scanner.toggle_open(usr)
+			connected_scanner.toggle_open(user)
 			return
 
 		// Toggle the door bolts on the attached DNA Scanner
@@ -395,7 +396,7 @@
 
 			scanner_occupant.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA))
 			scanner_occupant.dna.generate_dna_blocks()
-			scrambleready = world.time + SCRAMBLE_TIMEOUT
+			scrambleready = world.time + SCRAMBLE_TIMEOUT * (10 - user.get_skill(SKILL_SCIENCE)) / 10
 			to_chat(usr,span_notice("DNA scrambled."))
 			scanner_occupant.radiation += RADIATION_STRENGTH_MULTIPLIER*50/(connected_scanner.damage_coeff ** 2)
 			return
@@ -494,7 +495,7 @@
 			if((newgene == "J") && (jokerready < world.time))
 				var/truegenes = GET_SEQUENCE(path)
 				newgene = truegenes[genepos]
-				jokerready = world.time + JOKER_TIMEOUT - (JOKER_UPGRADE * (connected_scanner.precision_coeff-1))
+				jokerready = world.time + JOKER_TIMEOUT - (JOKER_UPGRADE * (connected_scanner.precision_coeff + user.get_skill(SKILL_SCIENCE) - 1))
 
 			// If the gene is an X, we want to update the default genes with the new
 			//  X to allow highlighting logic to work on the tgui interface.
@@ -624,9 +625,9 @@
 				//  to improve our injector's radiation generation
 				if(scanner_operational())
 					I.damage_coeff = connected_scanner.damage_coeff*4
-					injectorready = world.time + INJECTOR_TIMEOUT * (1 - 0.1 * connected_scanner.precision_coeff)
+					injectorready = world.time + INJECTOR_TIMEOUT * (1 - (connected_scanner.precision_coeff + user.get_skill(SKILL_SCIENCE)) / 10)
 				else
-					injectorready = world.time + INJECTOR_TIMEOUT
+					injectorready = world.time + INJECTOR_TIMEOUT * (1 - user.get_skill(SKILL_SCIENCE) / 10)
 			else
 				I.name = "[HM.name] mutator"
 				I.doitanyway = TRUE
@@ -634,9 +635,9 @@
 				//  to improve our injector's radiation generation
 				if(scanner_operational())
 					I.damage_coeff = connected_scanner.damage_coeff
-					injectorready = world.time + INJECTOR_TIMEOUT * 5 * (1 - 0.1 * connected_scanner.precision_coeff)
+					injectorready = world.time + INJECTOR_TIMEOUT * 5 * (1 - (connected_scanner.precision_coeff + user.get_skill(SKILL_SCIENCE)) / 10)
 				else
-					injectorready = world.time + INJECTOR_TIMEOUT * 5
+					injectorready = world.time + INJECTOR_TIMEOUT * 5 * (1 - user.get_skill(SKILL_SCIENCE) / 10)
 
 			return
 
@@ -1159,7 +1160,7 @@
 			// If we successfully created an injector, don't forget to set the new
 			//  ready timer.
 			if(I)
-				injectorready = world.time + INJECTOR_TIMEOUT
+				injectorready = world.time + INJECTOR_TIMEOUT * (1 - user.get_skill(SKILL_SCIENCE) / 10)
 
 			return
 
@@ -1256,7 +1257,7 @@
 					len = length(scanner_occupant.dna.unique_identity)
 				if("uf")
 					len = length(scanner_occupant.dna.unique_features)
-			rad_pulse_timer = world.time + (radduration*10)
+			rad_pulse_timer = world.time + (radduration * (10 - user.get_skill(SKILL_SCIENCE)))
 			rad_pulse_index = WRAP(text2num(params["index"]), 1, len+1)
 			begin_processing()
 			return
@@ -1346,9 +1347,9 @@
 			//  to improve our injector's radiation generation
 			if(scanner_operational())
 				I.damage_coeff = connected_scanner.damage_coeff
-				injectorready = world.time + INJECTOR_TIMEOUT * 8 * (1 - 0.1 * connected_scanner.precision_coeff)
+				injectorready = world.time + INJECTOR_TIMEOUT * 8 * (1 - (connected_scanner.precision_coeff + user.get_skill(SKILL_SCIENCE)) / 10)
 			else
-				injectorready = world.time + INJECTOR_TIMEOUT * 8
+				injectorready = world.time + INJECTOR_TIMEOUT * 8 * (1 - user.get_skill(SKILL_SCIENCE) / 10)
 
 			return
 

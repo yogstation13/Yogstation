@@ -48,6 +48,14 @@
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
 	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest."
 	assignedrole = "Ash Walker"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = EXP_HIGH
 	var/datum/team/ashwalkers/team
 
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
@@ -73,6 +81,14 @@
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. You and your people have become one with the tendril and its land. \
 	You have seen lights in the distance and from the skies: outsiders that come with greed in their hearts. Fresh sacrifices for your nest."
 	assignedrole = "Ash Walker Shaman"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_HIGH,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_LOW
 
 /datum/outfit/ashwalker
 	name = "Ashwalker"
@@ -608,6 +624,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base
 	assignedrole = "Icemoon Syndicate"
+	skill_points = EXP_GENIUS // 5 skill points
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/special(mob/living/new_spawn) //oops!
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
@@ -901,3 +918,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
+	H.adjust_skill(SKILL_MECHANICAL, EXP_MID)
+	H.adjust_skill(SKILL_TECHNICAL, EXP_MID)
+	H.add_skill_points(EXP_MID)

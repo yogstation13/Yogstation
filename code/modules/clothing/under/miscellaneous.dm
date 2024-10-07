@@ -804,43 +804,6 @@
 	armor = list(MELEE = 10, BULLET = 0, LASER = 10, ENERGY = 0, BOMB = 5, BIO = 0, RAD = 0, FIRE = 40, ACID = 10, WOUND= 5)
 	mutantrace_variation = MUTANTRACE_VARIATION
 
-/obj/item/clothing/under/mech_suit
-	name = "red mech pilot's suit"
-	desc = "A red mech pilot's suit. Might make your butt look big."
-	icon_state = "red_mech_suit"
-	item_state = "red_mech_suit"
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	fitted = NO_FEMALE_UNIFORM
-	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
-	can_adjust = FALSE
-
-/obj/item/clothing/under/mech_suit/Initialize(mapload)
-	..()
-	AddComponent(/datum/component/mech_pilot, 0.9)
-
-/obj/item/clothing/under/mech_suit/white
-	name = "white mech pilot's suit"
-	desc = "A white mech pilot's suit. Very fetching."
-	icon_state = "white_mech_suit"
-	item_state = "white_mech_suit"
-	mutantrace_variation = MUTANTRACE_VARIATION
-
-/obj/item/clothing/under/mech_suit/blue
-	name = "blue mech pilot's suit"
-	desc = "A blue mech pilot's suit. For the more reluctant mech pilots."
-	icon_state = "blue_mech_suit"
-	item_state = "blue_mech_suit"
-	mutantrace_variation = MUTANTRACE_VARIATION
-
-/obj/item/clothing/under/mech_suit/cybersun
-	name = "Cybersun mech pilot's suit"
-	desc = "An armored mech pilot suit, used exclusively by Cybersun mech agents."
-	icon_state = "black_mech_suit"
-	item_state = "black_mech_suit"
-	armor = list(MELEE = 15, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 50, BIO = 50, RAD = 20, FIRE = 50, ACID = 50, WOUND = 5)
-	mutantrace_variation = MUTANTRACE_VARIATION
-
 /obj/item/clothing/under/lampskirt
 	name = "lamp dress"
 	desc = "A peculier garment woven in silk; under the lower dress appears to be a lamp and a switch."

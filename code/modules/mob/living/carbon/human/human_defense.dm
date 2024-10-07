@@ -26,6 +26,8 @@
 		else if(bodypart_flag & cover.body_parts_partial_covered)
 			protection += cover.armor.getRating(armor_flag) * 0.5
 	protection += physiology.armor.getRating(armor_flag)
+	if(armor_flag == MELEE)
+		protection += get_skill(SKILL_FITNESS)
 	return protection
 
 ///Get all the clothing on a specific body part

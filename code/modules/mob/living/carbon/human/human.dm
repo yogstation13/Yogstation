@@ -915,19 +915,33 @@
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	var/carrydelay = 50 //if you have latex you are faster at grabbing
 	var/skills_space = null // Changes depending on glove type
+
+	var/nanochips = FALSE
+	var/effective_skill = get_skill(SKILL_FITNESS)
 	if(HAS_TRAIT(src, TRAIT_QUICKEST_CARRY))
-		carrydelay = 25
-		skills_space = "masterfully"
+		effective_skill += EXP_HIGH
+		nanochips = TRUE
 	else if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
-		carrydelay = 30
-		skills_space = "expertly"
+		effective_skill += EXP_MID
+		nanochips = TRUE
 	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))
-		carrydelay = 40
-		skills_space = "quickly"
+		effective_skill += EXP_LOW
+
+	switch(effective_skill)
+		if(EXP_MASTER to INFINITY)
+			carrydelay = 25
+			skills_space = "masterfully"
+		if(EXP_MID to EXP_MASTER)
+			carrydelay = 30
+			skills_space = "expertly"
+		if(EXP_LOW to EXP_MID)
+			carrydelay = 40
+			skills_space = "quickly"
+
 	if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE))
 		visible_message(span_notice("[src] starts [skills_space] lifting [target] onto their back.."),
 		//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
-		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space ? "[skills_space] " : ""]start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
+		span_notice("[nanochips ? "Using your gloves' nanochips, you" : "You"] [skills_space ? "[skills_space] " : ""]start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
 		//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
 		if(do_after(src, carrydelay, target))
 			//Second check to make sure they're still valid to be carried
@@ -1070,6 +1084,10 @@
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
+
+/mob/living/carbon/human/handle_skills(delta_time)
+	if(IS_SCIENCE(src)) // scientists give a small boost to science points based on science skill, more if they're the RD
+		SSresearch.science_tech.research_points[TECHWEB_POINT_TYPE_DEFAULT] += get_skill(SKILL_SCIENCE) * (IS_COMMAND(src) ? 2 : 1)
 
 /mob/living/carbon/human/species
 	var/race = null
