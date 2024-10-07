@@ -175,3 +175,4 @@
 	GLOB.holy_armor_type = choice_path
 	return ..()
 
+

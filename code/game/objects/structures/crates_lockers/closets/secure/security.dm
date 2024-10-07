@@ -65,7 +65,6 @@
 	new /obj/item/storage/belt/security/full(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/hos(src)
-	new /obj/item/gun/ballistic/automatic/pistol/paco(src) //monkestation edit: paco sec
 	new /obj/item/ammo_box/magazine/m35(src) //monkestation edit: paco sec
 	new /obj/item/bodycam_upgrade(src) //monkestation edit: Security Liability Act
 
@@ -73,7 +72,7 @@
 	. = ..()
 
 	// Traitor steal objectives
-	//new /obj/item/gun/energy/e_gun/hos(src) monkestation removal
+	new /obj/item/choice_beacon/hos(src) //monkestation edit
 	new /obj/item/pinpointer/nuke(src)
 
 /obj/structure/closet/secure_closet/warden

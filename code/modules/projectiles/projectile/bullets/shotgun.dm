@@ -19,7 +19,7 @@
 	name = "beanbag slug"
 	icon_state = "pellet"
 	damage = 10
-	stamina = 55
+	stamina = 145 //monkestation edit
 	wound_bonus = 20
 	sharpness = NONE
 	embedding = null
@@ -84,7 +84,7 @@
 /obj/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubber shot pellet"
 	damage = 3
-	stamina = 11
+	stamina = 30 //monkestation edit
 	sharpness = NONE
 	embedding = null
 	speed = 1.2
