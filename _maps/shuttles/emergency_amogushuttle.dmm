@@ -267,6 +267,20 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
+"kX" = (
+/obj/machinery/door/airlock/titanium/glass{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/docking_port/mobile/emergency{
+	dir = 1;
+	name = "Suspicious emergency shuttle"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape)
 "lA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
@@ -473,6 +487,14 @@
 /area/shuttle/escape)
 "uo" = (
 /obj/machinery/light/floor,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape)
+"uA" = (
+/obj/machinery/light,
+/obj/structure/chair/comfy/shuttle{
+	color = "red";
+	dir = 1
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "uB" = (
@@ -1017,16 +1039,6 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"TF" = (
-/obj/machinery/door/airlock/titanium/glass{
-	name = "Emergency Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
 "Uu" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/mineral/plastitanium/red,
@@ -1502,7 +1514,7 @@ iV
 fl
 SE
 SE
-TF
+kX
 "}
 (15,1,1) = {"
 Gs
@@ -1604,9 +1616,9 @@ rE
 ji
 Fs
 SE
-SE
-SE
-TF
+kt
+vP
+Gs
 "}
 (19,1,1) = {"
 Gs
@@ -1630,7 +1642,7 @@ rE
 xp
 Fs
 SE
-hP
+uA
 vP
 Gs
 "}
@@ -1656,7 +1668,7 @@ Ok
 wi
 hy
 SE
-SE
+kt
 vP
 Gs
 "}
@@ -1682,7 +1694,7 @@ fA
 Tu
 SE
 SE
-SE
+kt
 vP
 Gs
 "}
@@ -1705,9 +1717,9 @@ SE
 Mw
 SE
 Gm
-SE
-SE
-SE
+ww
+ww
+ww
 vP
 vP
 Gs
