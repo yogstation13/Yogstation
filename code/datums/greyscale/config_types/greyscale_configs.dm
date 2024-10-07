@@ -1299,3 +1299,13 @@
 	name = "Manipulator Hand"
 	icon_file = 'monkestation/code/modules/factory_type_beat/icons/big_manipulator_hand.dmi'
 	json_config = 'code/datums/greyscale/json_configs/manipulator_hand.json'
+
+/datum/greyscale_config/linjacket
+	name = "Tassled Jacket"
+	icon_file = 'monkestation/icons/obj/clothing/necks.dmi'
+	json_config = 'code/datums/greyscale/json_configs/linjacket.json'
+
+/datum/greyscale_config/linjacket_worn
+	name = "Worn Tassled Jacket"
+	icon_file = 'monkestation/icons/mob/clothing/neck.dmi'
+	json_config = 'code/datums/greyscale/json_configs/linjacket_worn.json'

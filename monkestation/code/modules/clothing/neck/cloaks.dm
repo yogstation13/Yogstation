@@ -163,3 +163,24 @@
 	name = "Helldiver Cape"
 	item_path = /obj/item/clothing/neck/helldivercape
 	item_cost = 20000
+
+/obj/item/clothing/neck/linjacket
+	name = "oranate coat"
+	desc = "You'll hold this weight."
+	icon = 'monkestation/icons/obj/clothing/necks.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/neck.dmi'
+	icon_state = "linjacket"
+	worn_icon_state = "linjacket"
+	greyscale_config = /datum/greyscale_config/linjacket
+	greyscale_config_worn = /datum/greyscale_config/linjacket_worn
+	greyscale_colors = "#283c55#c4c36d"
+	flags_1 = IS_PLAYER_COLORABLE_1
+
+/datum/loadout_item/neck/linjacket
+	name = "Ornate Coat"
+	item_path = /obj/item/clothing/neck/linjacket
+
+/datum/store_item/neck/linjacket
+	name = "Ornate Coat"
+	item_path = /obj/item/clothing/neck/linjacket
+	item_cost = 5000
