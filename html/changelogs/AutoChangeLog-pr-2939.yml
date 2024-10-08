@@ -1,0 +1,7 @@
+author: "Yarinoi"
+delete-after: True
+changes:
+  - rscdel: "Removes degeneracy from the bunny wand."
+  - rscadd: "Adds silly easter costumes to the bunny wand."
+  - rscadd: "Adds silly easter costume to the autodrobe."
+  - balance: "Plasmamen can now remove the bunny costumes added by the bunny wand because i dont really feel like making easter bunny envirosuits"
