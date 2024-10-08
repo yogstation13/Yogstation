@@ -1,0 +1,5 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - rscadd: "Added the C.C.M.S dual wielding implant available on the black market and traitor uplinks."
+  - spellcheck: "There are now better descriptions for some traitor uplink implant bundles."
