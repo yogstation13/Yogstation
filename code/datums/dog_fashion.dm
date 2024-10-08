@@ -244,3 +244,10 @@
 	speak = list("RAAARGH!", "Grrrrrr!")
 	emote_see = list("bares his fangs", "practices his warcry")
 	emote_hear = list("plans the demise of his owner.")
+
+/datum/dog_fashion/head/eyepatch
+	name = "Punished %REAL_NAME%"
+	desc = "%REAL_NAME% has really been going through it today."
+	obj_icon_state = "eyepatch"
+	emote_hear = list("sighs gruffly.", "groans.")
+	emote_see = list("considers their own mortality.", "stares bleakly into the middle distance.", "ponders the horrors of warfare.")
