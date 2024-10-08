@@ -14,6 +14,9 @@
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "BLUESHIELD"
 
+	allow_bureaucratic_error = FALSE
+	allow_overflow = FALSE
+
 	outfit = /datum/outfit/job/blueshield
 	plasmaman_outfit = /datum/outfit/plasmaman/blueshield
 
@@ -41,8 +44,7 @@
 	rpg_title = "Guard"
 	job_flags = JOB_ANNOUNCE_ARRIVAL | JOB_CREW_MANIFEST | JOB_EQUIP_RANK | JOB_CREW_MEMBER | JOB_NEW_PLAYER_JOINABLE | JOB_REOPEN_ON_ROUNDSTART_LOSS | JOB_ASSIGN_QUIRKS | JOB_CAN_BE_INTERN
 
-	alt_titles = list(
-	)
+	alt_titles = list()
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"

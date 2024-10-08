@@ -111,11 +111,13 @@
 /datum/station_trait/overflow_job_bureaucracy/get_report()
 	return "[name] - It seems for some reason we put out the wrong job-listing for the overflow role this shift...I hope you like [chosen_job_name]s."
 
+/* monkestation removal: reimplemented in [monkestation\code\datums\station_traits\negative_traits.dm]
 /datum/station_trait/overflow_job_bureaucracy/proc/set_overflow_job_override(datum/source)
 	SIGNAL_HANDLER
 	var/datum/job/picked_job = pick(SSjob.joinable_occupations)
 	chosen_job_name = lowertext(picked_job.title) // like Chief Engineers vs like chief engineers
 	SSjob.set_overflow_role(picked_job.type)
+monkestation end */
 
 /datum/station_trait/slow_shuttle
 	name = "Slow Shuttle"
