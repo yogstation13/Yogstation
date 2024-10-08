@@ -24,7 +24,7 @@
 		SKILL_SCIENCE = EXP_LOW,
 		SKILL_FITNESS = EXP_NONE,
 	)
-	skill_points = 3 // lots of different skills required
+	skill_points = 4 // lots of different skills required
 
 	outfit = /datum/outfit/job/ce
 

@@ -24,6 +24,6 @@
 #define EXP_GENIUS 5
 
 /// Experience required to increase your skills by one level. Increases exponentially the higher your level already is.
-#define EXPERIENCE_PER_LEVEL 200
+#define EXPERIENCE_PER_LEVEL 500
 
 #define SKILL_TO_ACTION_SPEED(skill_level) ((12 - skill_level) / 10)

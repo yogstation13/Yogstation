@@ -27,7 +27,7 @@
 			protection += cover.armor.getRating(armor_flag) * 0.5
 	protection += physiology.armor.getRating(armor_flag)
 	if(armor_flag == MELEE)
-		protection += get_skill(SKILL_FITNESS)
+		protection = 100 - ((100 - protection) * (20 - get_skill(SKILL_FITNESS)) / 20) // 16% multiplicative armor at EXP_MASTER
 	return protection
 
 ///Get all the clothing on a specific body part

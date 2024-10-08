@@ -926,7 +926,7 @@
 	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))
 		effective_skill += EXP_LOW
 
-	var/carrydelay = (25 / (5 + effective_skill)) SECONDS //if you have latex you are faster at grabbing
+	var/carrydelay = (25 / (5 + effective_skill)) SECONDS
 	switch(effective_skill)
 		if(EXP_MASTER to INFINITY)
 			skills_space = "masterfully"
