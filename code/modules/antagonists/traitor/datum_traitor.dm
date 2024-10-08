@@ -135,6 +135,8 @@
 				hijack_objective.owner = owner
 				add_objective(hijack_objective)
 			SSticker.mode.has_hijackers = TRUE
+			setup_backstories()
+			return
 		//End of yogstation change.
 
 	var/martyr_compatibility = 1 //You can't succeed in stealing if you're dead.
@@ -147,6 +149,8 @@
 		var/datum/objective/martyr/martyr_objective = new
 		martyr_objective.owner = owner
 		add_objective(martyr_objective)
+		setup_backstories()
+		return
 
 
 	if(prob(50))
