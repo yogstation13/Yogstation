@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "The job overflow station trait no longer affects the Head of Security or Blueshield."
+  - balance: "The bureaucratic error event will no longer affect Blueshield slots."
