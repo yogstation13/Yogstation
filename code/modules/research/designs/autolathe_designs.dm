@@ -1107,6 +1107,20 @@
 	build_path = /obj/item/ammo_box/no_direct/a357/wallstake
 	category = list ("Security")
 
+/datum/design/box_a38
+	name = "Ammo Box (.38 Special)"
+	id = "box_a38"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 40000)
+	build_path = /obj/item/ammo_box/no_direct/a38
+	category = list("hacked", "Security")
+
+/datum/design/box_a38/rubber
+	name = "Ammo Box (.38 Rubber)"
+	id = "box_a38_rubber"
+	build_path = /obj/item/ammo_box/no_direct/a38/rubber
+	category = list("Security")
+
 /datum/design/cleaver
 	name = "Butcher's Cleaver"
 	id = "cleaver"

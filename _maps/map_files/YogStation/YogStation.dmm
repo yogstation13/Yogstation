@@ -22636,7 +22636,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "fiz" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/machinery/door/window/northleft{
 	dir = 2;
 	name = "Captain's Desk Door"
@@ -26801,7 +26800,6 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "gJD" = (
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide,
 /area/crew_quarters/fitness)
 "gJM" = (
@@ -33189,9 +33187,6 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "iNY" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
@@ -36013,7 +36008,6 @@
 "jRb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle,
 /obj/machinery/door/window{
 	base_state = "right";
 	icon_state = "right";
@@ -40353,9 +40347,6 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "lzS" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
 	dir = 1
 	},
@@ -41319,7 +41310,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "lUW" = (
@@ -55661,7 +55652,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/stairs_wide,
 /area/crew_quarters/fitness)
 "rdi" = (
@@ -57143,9 +57133,6 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "rFH" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 8
 	},
@@ -61919,7 +61906,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/ramp_middle{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_alone{
 	dir = 1
@@ -62725,9 +62712,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "tHB" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide{
 	dir = 1
 	},
@@ -63515,9 +63499,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
 	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2{
 	dir = 1
@@ -68755,9 +68736,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "vOT" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 4
 	},

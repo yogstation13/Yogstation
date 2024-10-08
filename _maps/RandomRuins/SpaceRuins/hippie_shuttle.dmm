@@ -19,6 +19,7 @@
 /obj/machinery/light/broken{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/space/has_grav/powered)
 "e" = (
@@ -62,6 +63,7 @@
 /obj/machinery/light/broken{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/space/has_grav/powered)
 "o" = (
@@ -101,7 +103,9 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/space/has_grav/powered)
 "x" = (
-/turf/open/floor/plasteel/stairs/left,
+/turf/open/floor/plasteel/stairs/goon/stairs_wide{
+	dir = 1
+	},
 /area/ruin/space/has_grav/powered)
 "y" = (
 /obj/item/reagent_containers/syringe,
@@ -113,10 +117,26 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/powered)
 "A" = (
-/turf/open/floor/plasteel/stairs/right,
+/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
+	dir = 1
+	},
+/area/ruin/space/has_grav/powered)
+"B" = (
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/mineral/titanium/yellow,
 /area/ruin/space/has_grav/powered)
 "D" = (
 /obj/item/reagent_containers/syringe,
+/turf/open/floor/mineral/titanium/yellow,
+/area/ruin/space/has_grav/powered)
+"F" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "HippieVan"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/space/has_grav/powered)
 "J" = (
@@ -135,6 +155,7 @@
 "P" = (
 /obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
 /obj/item/lighter,
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/mineral/titanium/yellow,
 /area/ruin/space/has_grav/powered)
 "R" = (
@@ -246,7 +267,7 @@ o
 o
 J
 e
-b
+F
 b
 b
 o
@@ -278,7 +299,7 @@ m
 z
 V
 x
-k
+B
 k
 D
 k

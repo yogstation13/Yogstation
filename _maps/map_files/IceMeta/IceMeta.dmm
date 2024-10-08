@@ -2225,9 +2225,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aHc" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_right{
 	dir = 1
 	},
@@ -13107,9 +13104,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "dRf" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_left{
 	dir = 1
 	},
@@ -15040,19 +15034,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"euO" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/obj/machinery/power/apc/auto_name{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/laborcamp/security)
 "euQ" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -32364,9 +32345,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "jvC" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_right{
 	dir = 1
 	},
@@ -37195,22 +37173,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"kNr" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/laborcamp/security)
 "kNz" = (
 /obj/machinery/light{
 	dir = 4
@@ -45515,9 +45477,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "ncA" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_left{
 	dir = 1
 	},
@@ -68511,6 +68470,22 @@
 /obj/item/clothing/under/suit/burgundy,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
+"tIc" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/laborcamp/security)
 "tIm" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -78103,9 +78078,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
 "wop" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_mid{
 	dir = 1
 	},
@@ -78305,6 +78277,25 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"wqV" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/laborcamp/security)
 "wqW" = (
 /obj/item/radio/intercom{
 	frequency = 1485;
@@ -79401,9 +79392,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "wHy" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_mid{
 	dir = 1
 	},
@@ -88295,8 +88283,8 @@ bIx
 bIx
 bIx
 qJA
-euO
-kNr
+tIc
+wqV
 erb
 dfX
 hyK
