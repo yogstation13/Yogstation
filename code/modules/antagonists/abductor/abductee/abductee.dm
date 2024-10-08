@@ -17,7 +17,7 @@
 
 /datum/antagonist/abductee/greet()
 	to_chat(owner, span_warning("<b>Your mind snaps!</b>"))
-	to_chat(owner, "<big>[span_warning("<b>You can't remember how you got here...</b>")]</big>")
+	to_chat(owner, "<big>[span_warning("<b>You will not remember being on the alien ship at all. You will not remember the aliens at all.</b>")]</big>")
 	owner.announce_objectives()
 
 /datum/antagonist/abductee/proc/give_objective()
