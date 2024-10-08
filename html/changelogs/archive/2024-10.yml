@@ -120,3 +120,8 @@
   - bugfix: Fixed several issues on theseus, including mismatched IDs on buttons and
       access issues on doors. Also fixes the engine gas filter to filter nitrogen.
       AI Upload turrets now function properly.
+  Syndicat-Meow:
+  - rscadd: Many kinds of mobs can now be brought back to life through revival surgery.
+  - rscadd: Dogs can wear eyepatches.
+  Veth-s:
+  - rscadd: Added Veth's Plantery to the Admin Offices.
