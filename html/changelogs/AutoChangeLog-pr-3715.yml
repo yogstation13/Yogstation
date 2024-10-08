@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Gives all the blueshield's head options which didnt have armor, armor."
