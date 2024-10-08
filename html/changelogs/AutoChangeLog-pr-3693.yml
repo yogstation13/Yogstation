@@ -1,0 +1,4 @@
+author: "MomoBerri"
+delete-after: True
+changes:
+  - bugfix: "Fixed several issues on theseus, including mismatched IDs on buttons and access issues on doors. Also fixes the engine gas filter to filter nitrogen. AI Upload turrets now function properly."
