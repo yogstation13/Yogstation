@@ -24,6 +24,15 @@
 			highest_faculty = faculty
 			highest_rank = check_rank
 
+	
+	var/datum/action/complexus_info/info_button = info_button_ref?.resolve()
+	if(info_button && istype(info_button))
+		if(highest_rank >= PSI_RANK_OPERANT)
+			info_button.Grant(owner)
+		else
+			info_button.Remove(owner)
+		
+
 	UNSETEMPTY(latencies)
 	var/rank_count = max(1, LAZYLEN(ranks))
 	rebuild_power_cache = TRUE

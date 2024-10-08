@@ -16,5 +16,4 @@
 #define PSI_IMPLANT_LOG        "Log Incident"
 #define PSI_IMPLANT_DISABLED   "Disabled"
 
-#define COMSIG_PSI_SELECTION "select action"
 #define COMSIG_PSI_INVOKE "invoke selected"
