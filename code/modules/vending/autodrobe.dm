@@ -194,6 +194,8 @@
 				/obj/item/clothing/mask/animal/cowmask = 1,
 				/obj/item/clothing/mask/animal/horsehead = 1,
 				/obj/item/clothing/head/lizard = 1,
+				/obj/item/clothing/head/costume/bunnyhead/regular = 1,	
+				/obj/item/clothing/suit/costume/bunnysuit/regular = 1,
 			),
 		),
 		list(

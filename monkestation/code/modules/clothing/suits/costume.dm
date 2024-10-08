@@ -33,6 +33,10 @@
 	worn_icon_state = "gorilla"
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 
+/obj/item/clothing/suit/costume/bunnysuit/regular
+	slowdown = 0
+	desc = "Hop Hop Hop! It looks old."
+
 /obj/item/clothing/suit/shipwreckedsuit
 	name = "shipwrecked captain suit"
 	desc = "DISCLAIMER:Not Space Proof. Wearing this suit gives you the luck of a true space captain! Just avoid the space rocks..."

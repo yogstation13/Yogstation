@@ -1,6 +1,6 @@
 /obj/item/gun/magic/staff/bunny
 	name = "staff of bunnies"
-	desc = "An artefact that spits bolts of lagomorphic energy which cause the target's appearence and clothing to change."
+	desc = "An artefact that spits bolts of lagomorphic energy which cause the target's clothing to change."
 	icon = 'monkestation/icons/obj/guns/magic.dmi'
 	worn_icon = 'monkestation/icons/mob/clothing/back.dmi'
 	lefthand_file = 'monkestation/icons/mob/inhands/weapons/staves_lefthand.dmi'
@@ -53,7 +53,7 @@
 
 /datum/spellbook_entry/item/wandbunny
 	name = "Wand of Bunnies"
-	desc = "An artefact that spits bolts of lagomorphic energy which cause the target's appearence and clothing to change. Unlike most wands, it is able to recharge its own power. This magic doesn't effect machines or animals."
+	desc = "An artefact that spits bolts of lagomorphic energy which cause the target's clothing to change. Unlike most wands, it is able to recharge its own power. This magic doesn't effect machines or animals."
 	item_path = /obj/item/gun/magic/wand/bunny
 	category = "Offensive"
 
@@ -66,45 +66,12 @@
 
 	unequip_everything()
 	to_chat(src, span_notice("Your clothing falls to the floor and you seem to be wearing something different!"))
-	src.physique = FEMALE
-	update_body(is_creating = TRUE) //actually update your body sprite
 	if(IS_WIZARD(src))
 		equipOutfit(/datum/outfit/cursed_bunny/magician)
 		return
 	if(isplasmaman(src))
 		equipOutfit(/datum/outfit/plasmaman/cursed_bunny)
 		return
-	var/bunny_theme = pick_weight(list(
-	"Color" = 43,
-	 pick(list(
-		"British",
-		"Communist",
-		"USA",
-	)) = 30,
-	"Black" = 16,
-	"Centcomm" = 2,
-	"Syndicate" = 2,
-	))
-
-	switch(bunny_theme)
-		if("Color")
-			equipOutfit(/datum/outfit/cursed_bunny/color)
-			return
-		if("British")
-			equipOutfit(/datum/outfit/cursed_bunny/british)
-			return
-		if("Communist")
-			equipOutfit(/datum/outfit/cursed_bunny/communist)
-			return
-		if("USA")
-			equipOutfit(/datum/outfit/cursed_bunny/usa)
-			return
-		if("Black")
-			equipOutfit(/datum/outfit/cursed_bunny)
-			return
-		if("Syndicate")
-			equipOutfit(/datum/outfit/cursed_bunny/syndicate)
-			return
-		if("Centcomm")
-			equipOutfit(/datum/outfit/cursed_bunny/centcom)
-			return
+	else
+		equipOutfit(/datum/outfit/cursed_bunny/costume)
+		return
