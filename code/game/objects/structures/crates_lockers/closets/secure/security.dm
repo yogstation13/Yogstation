@@ -101,6 +101,9 @@
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/storage/box/bodycamera(src) //monkestation edit: Security Liability Act
+	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src) //undoing ancient removal
+	new /obj/item/ammo_box/advanced/s12gauge/rubber(src) //he can have some rubber ammo too
+
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"
