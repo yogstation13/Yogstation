@@ -50,14 +50,13 @@ export const SkillMenu = (props, context) => {
           <Button
             fluid
             bold
-            //icon="syringe"
             mt="8px"
             content=" Confirm"
             color="green"
             textAlign="center"
             fontSize="24px"
             lineHeight="30px"
-            disabled = {allocated_points == 0}
+            disabled={allocated_points === 0}
             onClick={() => act('confirm')}
           />
         </Section>
@@ -70,7 +69,7 @@ const AdjustSkill = (props, context) => {
   const { act, data } = useBackend(context);
   const { skill, name, index, tooltip } = props;
   const { skills, skill_points, allocated_points, exceptional_skill } = data;
-  const { base, allocated } = skills[index]
+  const { base, allocated } = skills[index];
 
   return (
     <LabeledList.Item label={name}>
