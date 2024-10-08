@@ -29,8 +29,8 @@ SUBSYSTEM_DEF(statpanels)
 		if(SSgamemode.storyteller)
 			storyteller = SSgamemode.storyteller.name
 		if(SSgamemode.selected_storyteller)
-			var/datum/storyteller/check = storytellers[SSgamemode.selected_storyteller]
-			if(istype(check))
+			var/datum/storyteller/check = SSgamemode.storytellers[SSgamemode.selected_storyteller]
+			if(check && istype(check))
 				storyteller = check.name
 		if(SSgamemode.secret_storyteller)
 			storyteller = "Secret"
