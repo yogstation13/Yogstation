@@ -38,6 +38,15 @@
 	price_min = CARGO_CRATE_VALUE * 5
 	price_max = CARGO_CRATE_VALUE * 7
 
+/datum/market_item/auction/shoddy_implant/chest/dualwield
+	name = "refurbished C.C.M.S implant"
+	desc = "A refurbished dual wielding implant. It's old and might misfire, but it's still functional."
+	item = /obj/item/organ/internal/cyberimp/chest/dualwield/refurbished
+	auction_weight = 1 // It practically doubles your damage.
+
+	price_min = CARGO_CRATE_VALUE * 6
+	price_max = CARGO_CRATE_VALUE * 8
+
 /datum/market_item/auction/shoddy_implant/arm
 	category = "Arm Implants"
 

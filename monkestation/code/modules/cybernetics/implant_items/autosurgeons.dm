@@ -19,6 +19,9 @@
 /obj/item/autosurgeon/organ/syndicate/sandy
 	starting_organ = /obj/item/organ/internal/cyberimp/chest/sandevistan
 
+/obj/item/autosurgeon/organ/syndicate/dualwield
+	starting_organ = /obj/item/organ/internal/cyberimp/chest/dualwield
+
 /obj/item/autosurgeon/skillchip
 	name = "skillchip autosurgeon"
 	desc = "A device that automatically inserts a skillchip into the user's brain without the hassle of extensive surgery. \

@@ -38,8 +38,7 @@
 	if(!istype(some_item,type))
 		return
 
-	user.do_attack_animation(M,null,some_item)
-	some_item.attack(M,user)
+	some_item.attack(M, user)
 
 
 /obj/item/mantis_blade/chromata
@@ -96,4 +95,4 @@
 		var/mob/living/living = user
 		living.stamina?.adjust(-30) // cost of a lunge
 
-	attack(target,user)
+	attack(target, user)

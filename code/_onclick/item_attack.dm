@@ -223,7 +223,7 @@
 	if(signal_return & COMPONENT_SKIP_ATTACK)
 		return
 
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, target_mob, user, params)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, target_mob, user, params, src) // monkestation edit
 
 	if(item_flags & NOBLUDGEON)
 		return
@@ -243,7 +243,7 @@
 	if(force && target_mob == user && user.client)
 		user.client.give_award(/datum/award/achievement/misc/selfouch, user)
 
-	user.do_attack_animation(target_mob)
+	user.do_attack_animation(target_mob, used_item = src) // MONKESTATION EDIT: Okay so why the FUCK was an attack proc on *item* not passing the fucking *item* to this? WHY?!
 	target_mob.attacked_by(src, user)
 
 	log_combat(user, target_mob, "attacked", src.name, "(ISTATE: [user.log_istate()]) (DAMTYPE: [uppertext(damtype)])")
@@ -265,7 +265,7 @@
 	if(signal_return & COMPONENT_SKIP_ATTACK)
 		return
 
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, target_mob, user, params)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, target_mob, user, params, src) // monkestation edit
 
 	if(item_flags & NOBLUDGEON)
 		return
