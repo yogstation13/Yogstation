@@ -12,7 +12,8 @@
 		cust["gcr"] = 0
 	else
 		cust["gcr"] = (gcedlasttick / (delslasttick + gcedlasttick))
-	cust["total_harddels"] = totaldels
+	cust["total_harddels"] = totaldels + length(failed_hard_deletes)
+	cust["total_failed_harddels"] = length(failed_hard_deletes)
 	cust["total_softdels"] = totalgcs
 	var/i = 0
 	for(var/list/L in queues)
