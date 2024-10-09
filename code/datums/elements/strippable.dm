@@ -177,6 +177,31 @@
 	/// The ITEM_SLOT_* to equip to.
 	var/item_slot
 
+/datum/strippable_item/mob_item_slot/get_alternate_action(atom/source, mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	if (.)
+		return
+
+	var/obj/item/worn_thing = get_item(source)
+	if (!istype(worn_thing))
+		return null
+	return worn_thing.GetComponent(/datum/component/storage/concrete) ? "pickpocket_storage" : null
+
+/datum/strippable_item/mob_item_slot/alternate_action(atom/source, mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	if (.)
+		return
+
+	var/obj/item/worn_thing = get_item(source)
+	if (!istype(worn_thing))
+		return null
+	if (worn_thing.GetComponent(/datum/component/storage/concrete))
+		return pickpocket_storage_item(worn_thing, source, user)
+	else
+		return null
+
 /datum/strippable_item/mob_item_slot/get_item(atom/source)
 	if (!ismob(source))
 		return null
@@ -494,3 +519,46 @@
 		strippable_items[strippable_item.key] = strippable_item
 
 	return strippable_items
+
+/// Like pickpocketing pockets, but takes out a random item from a storage item
+/proc/pickpocket_storage_item(obj/item/storage_item, atom/source, mob/user)
+	. = TRUE // blocks children from using alternate actions
+	var/datum/component/storage/concrete/storage = storage_item.GetComponent(/datum/component/storage/concrete)
+	if (!istype(storage_item) || !storage)
+		return
+
+	var/mob/living/living_source = source
+	if (!istype(living_source))
+		return
+
+	if (istype(storage_item, /obj/item/storage/backpack/duffelbag))
+		to_chat(user, span_notice("You try to unzip [living_source]'s [storage_item]. Hopefully they don't notice."))
+		playsound(living_source, 'sound/items/zip.ogg', 100, TRUE) // obnoxiously loud
+	else
+		to_chat(user, span_notice("You try to pull something out of [living_source]'s [storage_item]."))
+
+	var/log_message = "[key_name(living_source)] is being pickpocketed by [key_name(user)] ([storage_item])"
+	living_source.log_message(log_message, LOG_ATTACK, color="red")
+	user.log_message(log_message, LOG_ATTACK, color="red", log_globally=FALSE)
+	storage_item.add_fingerprint(user)
+
+	if (!do_after(user, POCKET_STRIP_DELAY, living_source, interaction_key = REF(storage_item)))
+		to_chat(living_source, span_warning("You feel your [storage_item] being fumbled with!"))
+		return
+
+	var/list/atom/lootables = storage.contents()
+	if (lootables.len == 0)
+		to_chat(user, span_notice("You couldn't find anything inside [living_source]'s [storage_item]."))
+		return
+
+	var/obj/item/loot = pick(lootables)
+	if (!istype(loot))
+		to_chat(user, span_notice("You found \a [loot] inside [living_source]'s [storage_item] but couldn't pull it out."))
+		return
+
+	var/log_message_success = "[key_name(living_source)]'s [loot] was successfully pickpocketed by [key_name(user)] ([storage_item])"
+	living_source.log_message(log_message_success, LOG_ATTACK, color="red")
+	user.log_message(log_message_success, LOG_ATTACK, color="red", log_globally=FALSE)
+	loot.add_fingerprint(user)
+
+	living_source.dropItemToGround(loot)

@@ -51,6 +51,11 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     icon: "tshirt",
     text: "Adjust jumpsuit",
   },
+
+  pickpocket_storage: {
+    icon: "hand",
+    text: "Steal random item",
+  },
 };
 
 const SLOTS: Record<
