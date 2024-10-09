@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "playsound() will runtime if you try to pass a list into it"
