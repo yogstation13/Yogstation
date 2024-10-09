@@ -1,4 +1,0 @@
-author: "ktlwjec"
-delete-after: true 
-changes: 
-  - bugfix: "Peacekeeping ERTs will stop arriving to the station naked."

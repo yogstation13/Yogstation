@@ -1,7 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - rscadd: "Added storage-item pickpocketing. You can now pickpocket backpacks and other storage items by clicking the hand in the stripping menu"
-  - rscadd: "Duffel bags make obnoxiously loud zipping noises when someone tries to pickpocket them"
-  - bugfix: "Fixed not being able to set internals on a back-slotted tank"
-  - bugfix: "Fixed pickpocketing not applying fingerprints correctly"
