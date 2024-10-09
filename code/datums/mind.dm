@@ -855,7 +855,7 @@
 	mind.skills[skill] = clamp(mind.skills[skill] + amount, min_skill, max_skill)
 
 /// Checks if the mob's skill level meets a given threshold.
-/mob/proc/skill_check(skill, amount, inclusive = FALSE)
+/mob/proc/skill_check(skill, amount)
 	if(!mind)
 		return FALSE
 	return (mind.skills[skill] >= amount)

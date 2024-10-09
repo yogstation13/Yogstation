@@ -423,7 +423,7 @@
 			if(!(scanner_occupant == connected_scanner.occupant))
 				return
 
-			check_discovery(params["alias"])
+			check_discovery(params["alias"], usr)
 			return
 
 		// Check all mutations of the occupant and check if any are discovered.
@@ -445,7 +445,7 @@
 			// Go over all standard mutations and check if they've been discovered.
 			for(var/mutation_type in scanner_occupant.dna.mutation_index)
 				var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(mutation_type)
-				check_discovery(HM.alias)
+				check_discovery(HM.alias, usr)
 
 			return
 
@@ -521,7 +521,7 @@
 				return
 
 			// Check if we cracked a mutation
-			check_discovery(alias)
+			check_discovery(alias, usr)
 
 			return
 
@@ -1908,7 +1908,7 @@
 	* Arguments:
   * * alias - Alias of the mutation to check (ie "Mutation 51" or "Mutation 12")
   */
-/obj/machinery/computer/scan_consolenew/proc/check_discovery(alias)
+/obj/machinery/computer/scan_consolenew/proc/check_discovery(alias, mob/user)
 	// Note - All code paths that call this have already done checks on the
 	//  current occupant to prevent cheese and other abuses. If you call this
 	//  proc please also do the following checks first:
@@ -1933,6 +1933,7 @@
 		var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(path)
 		stored_research.discovered_mutations += path
 		say("Successfully discovered [HM.name].")
+		user.add_exp(SKILL_SCIENCE, EXPERIENCE_PER_LEVEL / 2)
 		return TRUE
 
 	return FALSE
