@@ -151,7 +151,7 @@
 	return TRUE
 
 /// The proc that unequips the item from the source. This should not yield.
-/datum/strippable_item/proc/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/proc/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 
 /// Returns a STRIPPABLE_OBSCURING_* define to report on whether or not this is obscured.
 /datum/strippable_item/proc/get_obscuring(atom/source)
@@ -277,7 +277,7 @@
 
 	return start_unequip_mob(get_item(source), source, user)
 
-/datum/strippable_item/mob_item_slot/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/mob_item_slot/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/obj/item/item = get_item(source)
 	if (isnull(item))
 		return FALSE
@@ -285,7 +285,7 @@
 	if (!ismob(source))
 		return FALSE
 
-	return finish_unequip_mob(item, source, user)
+	return finish_unequip_mob(item, source, user, place_in_hand)
 
 /// Returns the delay of equipping this item to a mob
 /datum/strippable_item/mob_item_slot/proc/get_equip_delay(obj/item/equipping)
@@ -300,8 +300,11 @@
 	return TRUE
 
 /// A utility function for `/datum/strippable_item`s to finish unequipping an item from a mob.
-/proc/finish_unequip_mob(obj/item/item, mob/source, mob/user)
-	if (!item.doStrip(user, source))
+/proc/finish_unequip_mob(obj/item/item, mob/source, mob/user, place_in_hand = FALSE)
+	if (place_in_hand && (!source.temporarilyRemoveItemFromInventory(item) || !user.put_in_hands(item, no_sound = TRUE)))
+		place_in_hand = FALSE // drop to ground if we cant put it in hands
+
+	if (!place_in_hand && !item.doStrip(user, source))
 		return FALSE
 
 	source.log_message("[key_name(source)] has been stripped of [item] by [key_name(user)]", LOG_ATTACK, color="red")
@@ -562,3 +565,5 @@
 	loot.add_fingerprint(user)
 
 	living_source.dropItemToGround(loot)
+
+	finish_unequip_mob(loot, living_source, user, TRUE)

@@ -529,7 +529,7 @@
 		if(H)
 			H.update_appearance(UPDATE_ICON)
 
-/mob/living/simple_animal/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE)
+/mob/living/simple_animal/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE, no_sound = FALSE)
 	. = ..(I, del_on_fail, merge_stacks)
 	update_inv_hands()
 

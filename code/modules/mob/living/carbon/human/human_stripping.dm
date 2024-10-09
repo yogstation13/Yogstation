@@ -159,6 +159,9 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	if (!.)
 		warn_owner(source)
 
+/datum/strippable_item/mob_item_slot/pocket/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
+	. = ..(source, user, TRUE)
+
 /datum/strippable_item/mob_item_slot/pocket/start_unequip(atom/source, mob/user)
 	var/obj/item/item = get_item(source)
 	if (isnull(item))
