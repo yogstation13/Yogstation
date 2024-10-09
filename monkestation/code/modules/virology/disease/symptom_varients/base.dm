@@ -45,7 +45,7 @@
 	return TRUE
 
 /datum/symptom_varient/proc/trigger_symptom()
-	if(!host_disease)
+	if(QDELETED(host_disease) || QDELETED(host_disease.affected_mob))
 		return FALSE
 	if(!COOLDOWN_FINISHED(src, host_cooldown))
 		return FALSE
