@@ -53,7 +53,7 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 		CRASH("playsound(): source is an area")
 
 	if(islist(soundin))
-		CRASH("playsound(): soundin attempted to pass a list! Consider using pick()")
+		CRASH("playsound(): soundin attempted to pass a list! Consider using pick() source: [source.name]")
 
 	var/turf/turf_source = get_turf(source)
 
