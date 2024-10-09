@@ -1,0 +1,4 @@
+author: "@LemonInTheDark, @Chubbygummibear"
+delete-after: true 
+changes: 
+  - tweak: "Planes are hidden when no weather is active, and some plane values change. Nothing is changing that's player facing"
