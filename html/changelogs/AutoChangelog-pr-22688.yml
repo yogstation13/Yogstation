@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: true 
+changes: 
+  - rscadd: "Admins who are currently controlling a silicon will have Law Manager appear as if they were not an admin."
