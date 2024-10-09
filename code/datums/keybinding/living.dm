@@ -54,6 +54,7 @@
 		return
 	var/mob/living/user_mob = user.mob
 	user_mob.set_combat_mode(!user_mob.combat_mode, FALSE, FALSE)
+	user_mob.set_grab_mode(FALSE)
 
 /datum/keybinding/living/enable_combat_mode
 	hotkey_keys = list("4")
@@ -67,6 +68,7 @@
 		return
 	var/mob/living/user_mob = user.mob
 	user_mob.set_combat_mode(TRUE, FALSE, FALSE)
+	user_mob.set_grab_mode(FALSE)
 
 /datum/keybinding/living/disable_combat_mode
 	hotkey_keys = list("1")
@@ -80,6 +82,7 @@
 		return
 	var/mob/living/user_mob = user.mob
 	user_mob.set_combat_mode(FALSE, FALSE, FALSE)
+	user_mob.set_grab_mode(FALSE)
 
 // Grab mode, works like holding ctrl but you can bind it to anything you want
 /datum/keybinding/living/grab_mode_hold
