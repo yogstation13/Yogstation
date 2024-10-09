@@ -105,7 +105,7 @@
 /area/template_noop)
 "Q" = (
 /obj/structure/table,
-/obj/item/clothing/under/soviet,
+/obj/item/clothing/under/costume/soviet,
 /obj/item/clothing/head/ushanka{
 	pixel_y = 10
 	},
