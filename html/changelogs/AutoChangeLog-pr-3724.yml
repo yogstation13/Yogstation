@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Experimental fix for the numerous pathology symptom-related errors."
