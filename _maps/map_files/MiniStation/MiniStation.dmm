@@ -32478,21 +32478,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"pwK" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
-	dir = 8
-	},
-/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
-/turf/open/floor/plasteel/dark{
-	pixel_y = 1
-	},
-/area/bridge)
 "pxq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -44464,6 +44449,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
+"xmT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
+/turf/open/floor/plasteel/dark,
+/area/bridge)
 "xnu" = (
 /obj/machinery/light{
 	dir = 8;
@@ -129635,7 +129633,7 @@ fcW
 kAP
 kAP
 eDy
-pwK
+xmT
 tDE
 tRY
 nXo
