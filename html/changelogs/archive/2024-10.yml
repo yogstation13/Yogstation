@@ -125,3 +125,25 @@
   - rscadd: Dogs can wear eyepatches.
   Veth-s:
   - rscadd: Added Veth's Plantery to the Admin Offices.
+2024-10-09:
+  Absolucy:
+  - bugfix: Experimental fix for the numerous pathology symptom-related errors.
+  - balance: The job overflow station trait no longer affects the Head of Security
+      or Blueshield.
+  - balance: The bureaucratic error event will no longer affect Blueshield slots.
+  Gw0sty:
+  - rscadd: Gives all the blueshield's head options which didnt have armor, armor.
+  RikuTheKiller:
+  - rscadd: Added the C.C.M.S dual wielding implant available on the black market
+      and traitor uplinks.
+  - spellcheck: There are now better descriptions for some traitor uplink implant
+      bundles.
+  ThePooba:
+  - rscadd: floridaman now randomizes character and name
+  - bugfix: abductee now has very clear instructions to not remember aliens at all
+  Yarinoi:
+  - rscdel: Removes degeneracy from the bunny wand.
+  - rscadd: Adds silly easter costumes to the bunny wand.
+  - rscadd: Adds silly easter costume to the autodrobe.
+  - balance: Plasmamen can now remove the bunny costumes added by the bunny wand because
+      i dont really feel like making easter bunny envirosuits
