@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - bugfix: "properly disables demonic ice miner and reenables a mistakenly removed ruin"
