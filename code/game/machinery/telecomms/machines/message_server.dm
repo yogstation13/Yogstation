@@ -129,13 +129,7 @@
 	if(!istype(signal) || !signal.data["message"] || !on || calibrating)
 		return
 
-	// log the signal
-	if(istype(signal, /datum/signal/subspace/messaging/pda))
-		var/datum/signal/subspace/messaging/pda/PDAsignal = signal
-		var/datum/data_pda_msg/M = new(PDAsignal.format_target(), "[PDAsignal.data["name"]] ([PDAsignal.data["job"]])", PDAsignal.data["message"], PDAsignal.data["photo"])
-		pda_msgs += M
-		signal.logged = M
-	else if(istype(signal, /datum/signal/subspace/messaging/ntospda))
+	if(istype(signal, /datum/signal/subspace/messaging/ntospda))
 		var/datum/computer_file/program/pdamessager/recipient = signal.data["targets"][1]
 		var/datum/computer_file/program/pdamessager/sender = signal.data["program"]
 		GLOB.NTPDAMessages += list(list(sender.username, recipient.username, signal.data["message"]))
@@ -186,35 +180,6 @@
 	copy.original = src
 	copy.levels = levels
 	return copy
-
-// PDA signal datum
-/datum/signal/subspace/messaging/pda
-	var/datum/language/lang // Stores what language the message was written in.
-
-/datum/signal/subspace/messaging/pda/New(init_source,init_data)
-	..()
-	lang = data["language"] || /datum/language/common
-
-/datum/signal/subspace/messaging/pda/proc/format_target()
-	if (length(data["targets"]) > 1)
-		return "Everyone"
-	return data["targets"][1]
-
-/datum/signal/subspace/messaging/pda/proc/format_message(mob/living/listener)
-	var/msg = data["message"]
-	if(istype(listener) && !listener.has_language(lang))
-		var/datum/language/langue = GLOB.language_datum_instances[lang]
-		msg = langue.scramble(msg)
-	if (logged && data["photo"])
-		return "\"[msg]\" (<a href='byond://?src=[REF(logged)];photo=1'>Photo</a>)"
-	return "\"[msg]\""
-
-/datum/signal/subspace/messaging/pda/broadcast()
-	if (!logged)  // Can only go through if a message server logs it
-		return
-	for (var/obj/item/pda/P in GLOB.PDAs)
-		if ("[P.owner] ([P.ownjob])" in data["targets"])
-			P.receive_message(src)
 
 // NTOS PDA signal datum
 /datum/signal/subspace/messaging/ntospda

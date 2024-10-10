@@ -100,6 +100,7 @@
   * * message - Can be either "ded", "new", or "complet". Will output either that the objective has been deleted, created, or completed.
   */
 /datum/department_goal/proc/message_players(message)
+/* //does nothing until someone sets it to work with new PDAs.
 	var/string = "Your department's goals have been updated, please have another look at them."
 	switch(message)
 		if("ded")
@@ -108,25 +109,12 @@
 			string = "Your department now has the goal: " + name
 		if("complet")
 			string = "Your department completed the goal: " + name
-			
+
 	var/list/occupationsToSendTo = list()
 	for(var/datum/job/j in SSjob.occupations)
 		if(j.paycheck_department == account)
 			occupationsToSendTo += j.title
-
-	for(var/obj/item/pda/p in GLOB.PDAs)
-		if(p.ownjob in occupationsToSendTo)
-			var/datum/signal/subspace/messaging/pda/signal = new(src, list(
-				"name" = "Central Command",
-				"job" = "Central Command",
-				"message" = string,
-				"language" = /datum/language/common, // NT only uses galactic common.
-				"targets" = list("[p.owner] ([p.ownjob])")
-			))
-			var/obj/machinery/telecomms/message_server/linkedServer
-			for(var/obj/machinery/telecomms/message_server/S in GLOB.telecomms_list)
-				linkedServer = S
-			linkedServer.receive_information(signal, null)
+*/
 
 /**
   * If the goal is continuous, this will set the timer to now + how-ever-long-the-timer-is

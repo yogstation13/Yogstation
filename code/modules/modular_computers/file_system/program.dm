@@ -197,6 +197,10 @@
 		generate_network_log("Connection to [network_destination] closed.")
 	return TRUE
 
+/datum/computer_file/program/ui_state(mob/user)
+	if(ispAI(user))
+		return GLOB.deep_inventory_state
+	return ..()
 
 /datum/computer_file/program/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

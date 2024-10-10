@@ -93,33 +93,17 @@
 					/obj/item/flashlight/flare/signal = 1,
 					/obj/item/storage/toolbox/mechanical = 1,
 					/obj/item/stack/cable_coil/random = 4,
-					/obj/item/pda = 8, //Keeping these so the clerk can still sell their amazing "antique PDAs"
-					/obj/item/cartridge/engineering = 2,
-					/obj/item/cartridge/atmos = 2,
-					/obj/item/cartridge/medical = 2,
-					/obj/item/cartridge/chemistry = 2,
-					/obj/item/cartridge/janitor = 2,
-					/obj/item/cartridge/lawyer = 2,
-					/obj/item/cartridge/curator = 2,
-					/obj/item/cartridge/roboticist = 2,
-					/obj/item/cartridge/quartermaster = 2)
-	contraband = list(/obj/item/clothing/under/yogs/psyche = 1,
-					  /obj/item/instrument/violin/golden = 1,
-					  /obj/item/clothing/gloves/color/fyellow = 1,
-					  /obj/item/airlock_painter = 1,
-					  /obj/item/cartridge/security = 2,
-					  /obj/item/cartridge/detective = 2,
-					  /obj/item/cartridge/quartermaster = 2,
-					  /obj/item/cartridge/head = 2,
-					  /obj/item/cartridge/hop = 2,
-					  /obj/item/cartridge/hos = 2,
-					  /obj/item/cartridge/ce = 2,
-					  /obj/item/cartridge/cmo = 2,
-					  /obj/item/cartridge/rd = 2,
-					  /obj/item/cartridge/captain = 1)
-	premium = list(/obj/item/multitool = 1,
-				   /obj/item/clothing/head/soft/fishfear = 4,
-				   /obj/item/pda/clear = 1)
+				)
+	contraband = list(
+		/obj/item/clothing/under/yogs/psyche = 1,
+		/obj/item/instrument/violin/golden = 1,
+		/obj/item/clothing/gloves/color/fyellow = 1,
+		/obj/item/airlock_painter = 1,
+	)
+	premium = list(
+		/obj/item/multitool = 1,
+		/obj/item/clothing/head/soft/fishfear = 4,
+	)
 
 	default_price = 50
 	extra_price = 75

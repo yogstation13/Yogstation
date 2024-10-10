@@ -772,38 +772,6 @@
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
-/obj/item/pda/chameleon
-	name = "PDA"
-	var/datum/action/item_action/chameleon/change/chameleon_action
-
-/obj/item/pda/chameleon/syndicate
-	syndicate = TRUE
-
-/obj/item/pda/chameleon/Initialize(mapload)
-	. = ..()
-	chameleon_action = new(src)
-	if(syndicate)
-		chameleon_action.syndicate = TRUE
-	chameleon_action.chameleon_type = /obj/item/pda
-	chameleon_action.chameleon_name = "PDA"
-	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/pda/heads, /obj/item/pda/ai, /obj/item/pda/ai/pai), only_root_path = TRUE)
-	chameleon_action.initialize_disguises()
-	add_item_action(chameleon_action)
-
-/obj/item/pda/chameleon/emp_act(severity)
-	. = ..()
-	if(. & EMP_PROTECT_SELF)
-		return
-	chameleon_action.emp_randomise()
-
-/obj/item/pda/chameleon/broken/Initialize(mapload)
-	. = ..()
-	chameleon_action.emp_randomise(INFINITY)
-
-/obj/item/pda/chameleon/on_chameleon_change()
-	. = ..()
-	update_label()
-
 /obj/item/stamp/chameleon
 	var/datum/action/item_action/chameleon/change/chameleon_action
 

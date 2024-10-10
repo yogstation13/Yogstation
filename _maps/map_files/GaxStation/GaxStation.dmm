@@ -28181,7 +28181,6 @@
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "nzI" = (
-/obj/machinery/pdapainter,
 /obj/machinery/light{
 	dir = 1
 	},

@@ -684,18 +684,6 @@
 						if(!valid_record_change(usr, name, null, active_security_record))
 							return
 						var/crime = GLOB.data_core.createCrimeEntry(name, "", logged_in, station_time_timestamp(), fine)
-						for (var/obj/item/pda/P in GLOB.PDAs)
-							if(P.owner == active_general_record.fields["name"])
-								var/message = "You have been fined [fine] credits for '[name]'. Fines may be paid at security."
-								var/datum/signal/subspace/messaging/pda/signal = new(src, list(
-									"name" = "Security Citation",
-									"job" = "Citation Server",
-									"message" = message,
-									"targets" = list("[P.owner] ([P.ownjob])"),
-									"automated" = 1
-								))
-								signal.send_to_receivers()
-								usr.log_message("(PDA: Citation Server) sent \"[message]\" to [signal.format_target()]", LOG_PDA)
 						GLOB.data_core.addCitation(active_general_record.fields["id"], crime)
 						investigate_log("New Citation: <strong>[name]</strong> Fine: [fine] | Added to [active_general_record.fields["name"]] by [key_name(usr)]", INVESTIGATE_RECORDS)
 				if("citation_delete")
