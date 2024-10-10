@@ -404,6 +404,11 @@ GLOBAL_LIST_INIT(store_suits, generate_store_items(/datum/store_item/suit))
 	item_path = /obj/item/clothing/suit/mothcoat
 	item_cost = 5000
 
+/datum/store_item/suit/gothcoat
+	name = "Gothic Coat"
+	item_path = /obj/item/clothing/suit/costume/gothcoat
+	item_cost = 5000
+
 /*
 *	VARSITY JACKET
 */

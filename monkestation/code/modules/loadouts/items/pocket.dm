@@ -166,6 +166,13 @@ GLOBAL_LIST_INIT(loadout_pocket_items, generate_loadout_items(/datum/loadout_ite
 	name = "Cannabis Rollie"
 	item_path = /obj/item/clothing/mask/cigarette/rollie/cannabis
 
+/datum/loadout_item/pocket_items/brush
+	name = "Hairbrush"
+	item_path = /obj/item/hairbrush
+
+/datum/loadout_item/pocket_items/comb
+	name = "Comb"
+	item_path = /obj/item/hairbrush/comb
 /*
 *	DONATOR
 */

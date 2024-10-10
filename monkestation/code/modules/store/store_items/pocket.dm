@@ -118,3 +118,13 @@ GLOBAL_LIST_INIT(store_pockets, generate_store_items(/datum/store_item/pocket))
 /datum/store_item/pocket/pet_beacon
 	name = "Pet Delivery Beacon"
 	item_path = /obj/item/choice_beacon/pet
+
+/datum/store_item/pocket/brush
+	name = "Hairbrush"
+	item_path = /obj/item/hairbrush
+	item_cost = 5000
+
+/datum/store_item/pocket/comb
+	name = "Comb"
+	item_path = /obj/item/hairbrush/comb
+	item_cost = 5000

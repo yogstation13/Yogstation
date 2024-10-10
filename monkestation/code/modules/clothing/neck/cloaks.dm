@@ -165,7 +165,7 @@
 	item_cost = 20000
 
 /obj/item/clothing/neck/linjacket
-	name = "oranate coat"
+	name = "ornate coat"
 	desc = "You'll hold this weight."
 	icon = 'monkestation/icons/obj/clothing/necks.dmi'
 	worn_icon = 'monkestation/icons/mob/clothing/neck.dmi'
