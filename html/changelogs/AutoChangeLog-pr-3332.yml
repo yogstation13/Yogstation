@@ -1,4 +1,0 @@
-author: "catmanpop"
-delete-after: True
-changes:
-  - bugfix: "fixed a mapping issue in void raptor regarding an area of maints and the prison not having rad storm protection"

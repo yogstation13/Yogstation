@@ -170,3 +170,6 @@
   - bugfix: Fixed some of the doors in CC showing as "Veth's Plantery" (against my
       will).
   - bugfix: Fixed Fortune's CC office.
+  catmanpop:
+  - bugfix: fixed a mapping issue in void raptor regarding an area of maints and the
+      prison not having rad storm protection
