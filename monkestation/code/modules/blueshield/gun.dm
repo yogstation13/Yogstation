@@ -13,7 +13,42 @@
 	desc = "A lightly overtuned version of NT's Hellfire Laser rifle, scratches showing its age and the fact it has definitely been owned before. This one is more energy efficient without sacrificing damage."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire/blueshield)
+// Blueshields custom takbok revolver.
+/obj/item/gun/ballistic/revolver/takbok/blueshield
+	name = "unmarked takbok revolver" //Give it a unique prefix compared hellfire's 'modified' to stand out
+	desc = "A modified revolver resembling that of Trappiste's signature Takbok, notabley lacking any of the company's orginal markings or tracablable identifaction. The custom modifactions allows it to shoot the five .585 Trappiste rounds in its cylinder quicker and with more consistancy."
 
+	//In comparasion to the orginal's fire_delay = 1 second, recoil = 3, and wield_recoil =1.
+	fire_delay = 0.8 SECONDS
+	recoil = 1.6
+	wield_recoil = 0.8
+
+/obj/item/gun/ballistic/revolver/takbok/blueshield/give_manufacturer_examine()
+	RemoveElement(/datum/element/manufacturer_examine, COMPANY_TRAPPISTE)
+	AddElement(/datum/element/manufacturer_examine, COMPANY_REMOVED)
+
+/obj/item/gun/ballistic/revolver/takbok/blueshield/examine_more(mob/user)
+	. = ..()
+    //Basically, it is a short continuation story of the original takbok about fans continuing their passion for an idea or project. Still, the original company stopped them despite the innovations they brought. And the ‘C’ is a callback to their inspirational figure ‘Cawgo’
+	. += ""
+	. += "After the production run of the original Takbok \
+		ended in 2523 alongside its popularity, enthusiasts of the sidearm continued\
+		to tinker with the make of the weapon to keep it with modern standards for \
+		firearms, despite Trappiste's license on the design. This unusual passion \
+		for the weapon led to variations with few to no identifying marks besides \
+		the occasional 'C' carved into the hilt of the gun. As a consequence of its \
+		production methods, it is unable to be distributed through conventional means \
+		despite the typical assessment of most being an improved model."
+	return .
+
+// Gunset for the custom Takbok Revolver
+
+/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/takbok/blueshield
+	name = "Unmarked 'Takbok' gunset"
+
+	weapon_to_spawn = /obj/item/gun/ballistic/revolver/takbok/blueshield
+
+//Weapon beacon
 /obj/item/choice_beacon/blueshield
 	name = "gunset beacon"
 	desc = "A single use beacon to deliver a gunset of your choice. Please only call this in your office"
@@ -22,7 +57,7 @@
 
 /obj/item/choice_beacon/blueshield/generate_display_names()
 	var/static/list/selectable_gun_types = list(
-		"Takbok Revolver Set" = /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/takbok,
+		"Unmarked Takbok Revolver Set" = /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/takbok/blueshield,
 		"Custom Hellfire Laser Rifle" = /obj/item/gun/energy/laser/hellgun/blueshield,
 		"Bogseo Submachinegun Gunset" = /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo,
 		"Tech-9" = /obj/item/storage/toolbox/guncase/skyrat/pistol/tech_9,
