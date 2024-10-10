@@ -1,0 +1,27 @@
+"a" = (/obj/structure/chair/comfy/shuttle{dir = 8},/obj/structure/extinguisher_cabinet{pixel_y = 30; pixel_x = 5},/obj/machinery/light/small{dir = 4},/turf/open/floor/pod/dark,/area/shuttle/arrival/diver_a)
+"b" = (/obj/machinery/door/firedoor/border_only{dir = 4},/obj/machinery/door/firedoor/border_only{dir = 8},/obj/machinery/door/airlock/survival_pod/glass{name = "D.I.V.E.R. A"},/turf/open/floor/pod,/area/shuttle/arrival/diver_a)
+"d" = (/obj/structure/window/reinforced/survival_pod{dir = 6},/turf/open/floor/pod/light,/area/shuttle/arrival/diver_a)
+"e" = (/obj/machinery/door/firedoor/window,/obj/structure/window/shuttle/survival_pod/spawner,/turf/closed/wall/mineral/titanium/survival/pod,/area/shuttle/arrival/diver_a)
+"g" = (/obj/structure/chair/comfy/shuttle{dir = 4},/obj/machinery/light/small{brightness = 3; dir = 8},/turf/open/floor/pod/dark,/area/shuttle/arrival/diver_a)
+"h" = (/obj/machinery/door/firedoor/border_only,/obj/machinery/door/firedoor/border_only{dir = 1},/obj/machinery/door/airlock/survival_pod/glass{name = "D.I.V.E.R. A"},/turf/open/floor/pod,/area/shuttle/arrival/diver_a)
+"k" = (/obj/structure/chair/comfy/shuttle{dir = 4},/turf/open/floor/pod/dark,/area/shuttle/arrival/diver_a)
+"w" = (/turf/closed/wall/mineral/titanium/survival/pod,/area/shuttle/arrival/diver_a)
+"x" = (/obj/structure/window/reinforced/survival_pod{dir = 9},/turf/open/floor/pod/light,/area/shuttle/arrival/diver_a)
+"z" = (/obj/machinery/light/floor,/obj/machinery/computer/shuttle/diver_a,/obj/effect/turf_decal/box,/turf/open/floor/pod/dark,/area/shuttle/arrival/diver_a)
+"A" = (/obj/structure/window/reinforced/survival_pod,/turf/open/floor/pod/light,/area/shuttle/arrival/diver_a)
+"C" = (/obj/structure/window/reinforced/survival_pod{dir = 5},/turf/open/floor/pod/light,/area/shuttle/arrival/diver_a)
+"E" = (/obj/structure/chair/comfy/shuttle{dir = 8},/obj/machinery/light/small{dir = 4},/turf/open/floor/pod/dark,/area/shuttle/arrival/diver_a)
+"H" = (/obj/machinery/door/firedoor/window,/obj/structure/window/shuttle/survival_pod/spawner,/turf/open/floor/plating,/area/shuttle/arrival/diver_a)
+"R" = (/obj/structure/window/reinforced/survival_pod{dir = 10},/turf/open/floor/pod/light,/area/shuttle/arrival/diver_a)
+"W" = (/obj/structure/chair/comfy/shuttle{dir = 8},/turf/open/floor/pod/dark,/area/shuttle/arrival/diver_a)
+"Z" = (/turf/open/floor/pod/light,/area/shuttle/arrival/diver_a)
+
+(1,1,1) = {"
+wwHhHww
+wgZZZaw
+HkdARWH
+bZCzxZb
+ekZZZWH
+wgZZZEw
+wwHhHww
+"}

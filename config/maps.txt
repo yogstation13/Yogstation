@@ -40,6 +40,10 @@ map donutstation
 	votable
 endmap
 
+map undergruvstation
+	votable
+endmap
+
 # Debug-only maps.
 
 map multiz_debug

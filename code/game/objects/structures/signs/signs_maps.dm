@@ -83,3 +83,35 @@
 	name = "command department"
 	desc = "A direction sign, pointing out which way the Command department is."
 	icon_state = "minskydirection_bridge"
+
+
+// Z-level deck signs
+/obj/structure/sign/deck/one
+	name = "deck 1"
+	desc = "A sign designating this floor as the station's first deck."
+	icon_state = "deck_1"
+
+/obj/structure/sign/deck/two
+	name = "deck 2"
+	desc = "A sign designating this floor as the station's second deck."
+	icon_state = "deck_2"
+
+/obj/structure/sign/deck/three
+	name = "deck 3"
+	desc = "A sign designating this floor as the station's third deck."
+	icon_state = "deck_3"
+
+/obj/structure/sign/deck/four
+	name = "deck 4"
+	desc = "A sign designating this floor as the station's fourth deck."
+	icon_state = "deck_4"
+
+/obj/structure/sign/deck/five
+	name = "deck 5"
+	desc = "A sign designating this floor as the station's fifth deck." // Because what madman would make map with 6 z-levels
+	icon_state = "deck_5"
+
+/obj/structure/sign/deck/nice
+	name = "dick 69"
+	desc = "Nice."
+	icon_state = "deck_nice"
