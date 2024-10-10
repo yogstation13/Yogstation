@@ -35,6 +35,8 @@
 		var/mutable_appearance/bloody_uniform = mutable_appearance('icons/effects/blood.dmi', "uniformblood")
 		if(species_fitted && icon_exists(bloody_uniform.icon, "uniformblood_[species_fitted]")) 
 			bloody_uniform.icon_state = "uniformblood_[species_fitted]"
+		else if(HAS_TRAIT(loc, TRAIT_DIGITIGRADE) && !HAS_TRAIT(loc, TRAIT_DIGI_SQUISH))
+			bloody_uniform.icon_state = "uniformblood_digi" // not using species_id because other digi legs exist
 		bloody_uniform.color = get_blood_dna_color(return_blood_DNA())
 		. += bloody_uniform
 	if(accessory_overlay)

@@ -238,9 +238,10 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 	if(ishuman(wielder))// Monkeys get no bloody feet :(
 		var/obj/item/bodypart/l_leg/left_leg = wielder.get_bodypart(BODY_ZONE_L_LEG)
 		var/obj/item/bodypart/r_leg/right_leg = wielder.get_bodypart(BODY_ZONE_R_LEG)
-		if(left_leg?.species_id == right_leg?.species_id)
-			if(icon_exists(bloody_feet.icon, "shoeblood_[left_leg.species_id]"))
-				bloody_feet.icon_state = "shoeblood_[left_leg.species_id]"
+		if(left_leg?.species_id == right_leg?.species_id && icon_exists(bloody_feet.icon, "shoeblood_[left_leg.species_id]"))
+			bloody_feet.icon_state = "shoeblood_[left_leg.species_id]"
+		else if(HAS_TRAIT(wielder, TRAIT_DIGITIGRADE) && !HAS_TRAIT(wielder, TRAIT_DIGI_SQUISH))
+			bloody_feet.icon_state = "shoeblood_digi"
 		if(HAS_BLOOD_DNA(wielder))
 			bloody_feet.color = get_blood_dna_color(wielder.return_blood_DNA())
 			. += bloody_feet
