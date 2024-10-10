@@ -156,7 +156,7 @@
 	icon = 'monkestation/code/modules/blueshift/icons/obj/clothing/neck.dmi'
 	worn_icon = 'monkestation/code/modules/blueshift/icons/mob/clothing/neck.dmi'
 	icon_state = "cowboy_poncho"
-	heat_protection = CHEST
+
 
 /obj/item/clothing/neck/cowboylea/Initialize(mapload)
 	. = ..()
@@ -171,7 +171,7 @@
 	greyscale_config_worn = /datum/greyscale_config/ranger_poncho/worn
 	greyscale_colors = "#917A57#858585"	//Roughly the same color as the original non-greyscale item was
 	flags_1 = IS_PLAYER_COLORABLE_1
-	heat_protection = CHEST
+
 
 /obj/item/clothing/neck/ranger_poncho/Initialize(mapload)
 	. = ..()

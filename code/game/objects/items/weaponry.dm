@@ -493,6 +493,21 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	custom_materials = list(/datum/material/iron= SMALL_MATERIAL_AMOUNT * 0.5)
 	attack_verb_continuous = list("bludgeons", "whacks", "disciplines", "thrashes")
 	attack_verb_simple = list("bludgeon", "whack", "discipline", "thrash")
+	/// Only exists so the white cane doesn't spawn with its "effects" while unextended
+	var/start_with_effects = TRUE
+
+/obj/item/cane/Initialize(mapload)
+	. = ..()
+	if(start_with_effects)
+		add_effects()
+
+/obj/item/cane/proc/add_effects()
+	ADD_TRAIT(src, TRAIT_BLIND_TOOL, INNATE_TRAIT)
+	AddComponent(/datum/component/limbless_aid)
+
+/obj/item/cane/proc/remove_effects()
+	REMOVE_TRAIT(src, TRAIT_BLIND_TOOL, INNATE_TRAIT)
+	qdel(GetComponent(/datum/component/limbless_aid))
 
 /obj/item/cane/white
 	name = "white cane"
@@ -504,6 +519,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	force = 1
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 6)
+	start_with_effects = FALSE
 
 /obj/item/cane/white/Initialize(mapload)
 	. = ..()
@@ -526,6 +542,11 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
  */
 /obj/item/cane/white/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
+
+	if(active)
+		add_effects()
+	else
+		remove_effects()
 
 	if(user)
 		balloon_alert(user, active ? "extended" : "collapsed")

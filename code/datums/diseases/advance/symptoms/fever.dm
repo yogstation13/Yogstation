@@ -26,6 +26,7 @@
 		"Resistance 5" = "Increases fever intensity, fever can overheat and harm the host.",
 		"Resistance 10" = "Further increases fever intensity.",
 	)
+	var/heat_cap = 6 KELVIN
 
 /datum/symptom/fever/Start(datum/disease/advance/A)
 	. = ..()
@@ -57,12 +58,9 @@
  * * datum/disease/advance/A The disease applying the symptom
  */
 /datum/symptom/fever/proc/set_body_temp(mob/living/M, datum/disease/advance/A)
-	if(unsafe) // when unsafe the fever can cause heat damage
-		M.add_body_temperature_change(FEVER_CHANGE, 6 * power * A.stage)
-	else
-		// Get the max amount of change allowed before going over heat damage limit, then cap the maximum allowed temperature change from a safe fever to 5 under the heat damage limit
-		var/change_limit = max(M.get_body_temp_heat_damage_limit() - 5 - M.get_body_temp_normal(apply_change=FALSE), 0)
-		M.add_body_temperature_change(FEVER_CHANGE, min(6 * power * A.stage, change_limit))
+	var/mob/living/affected = M
+	var/new_level = affected.standard_body_temperature + (heat_cap * power * A.stage)
+	affected.add_homeostasis_level(type, new_level, 0.25 KELVIN * power)
 
 /// Update the body temp change based on the new stage
 /datum/symptom/fever/on_stage_change(datum/disease/advance/A)
@@ -74,6 +72,6 @@
 /datum/symptom/fever/End(datum/disease/advance/A)
 	var/mob/living/carbon/M = A.affected_mob
 	if(M)
-		M.remove_body_temperature_change(FEVER_CHANGE)
+		M.remove_homeostasis_level(type)
 
 #undef FEVER_CHANGE

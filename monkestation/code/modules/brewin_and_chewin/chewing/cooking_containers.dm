@@ -374,8 +374,8 @@
 	appliancetype = GRILL
 
 /obj/item/reagent_containers/cooking_container/bowl
-	name = "cooking bowl"
-	shortname = "cooking bowl"
+	name = "mixing bowl"
+	shortname = "mixing bowl"
 	desc = "A bowl."
 
 	icon_state = "bowl"

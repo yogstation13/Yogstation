@@ -67,13 +67,14 @@
 	return FALSE
 
 /obj/add_blood_DNA(list/blood_DNA_to_add)
-	. = ..()
 	if (isnull(blood_DNA_to_add))
-		return .
+		return FALSE
 	if (forensics)
 		forensics.inherit_new(blood_DNA = blood_DNA_to_add)
 	else
 		forensics = new(src, blood_DNA = blood_DNA_to_add)
+	cached_blood_dna_color = null
+	update_appearance()
 	return TRUE
 
 /obj/item/add_blood_DNA(list/blood_DNA_to_add)
@@ -82,8 +83,10 @@
 	return ..()
 
 /obj/item/clothing/gloves/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
-	transfer_blood = rand(2, 4)
-	return ..()
+	. = ..()
+	if(.)
+		transfer_blood = rand(2, 4)
+	return .
 
 /turf/add_blood_DNA(list/blood_dna, list/datum/disease/diseases)
 	var/obj/effect/decal/cleanable/blood/splatter/blood_splatter = locate() in src
@@ -109,6 +112,7 @@
 			forensics = new(src)
 		forensics.inherit_new(blood_DNA = blood_DNA_to_add)
 		blood_in_hands = rand(2, 4)
+	cached_blood_dna_color = null
 	update_worn_gloves()
 	return TRUE
 

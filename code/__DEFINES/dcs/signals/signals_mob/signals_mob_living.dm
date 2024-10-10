@@ -221,3 +221,11 @@
 #define COMSIG_MOB_LOST_CHAIN_TAIL "living_detached_chain_tail"
 /// Sent from a 'contract chain' button on a mob chain
 #define COMSIG_MOB_CHAIN_CONTRACT "living_chain_contracted"
+
+#define COMSIG_LIVING_BODY_TEMPERATURE_CHANGE "living_body_temperature_change"
+
+#define COMSIG_LIVING_HOMEOSTASIS "living_homeostasis"
+	/// Return to do no homeostasis at all
+	#define HOMEOSTASIS_HANDLED (1<<0)
+	/// Return to not reduce hunger at all
+	#define HOMEOSTASIS_NO_HUNGER (1<<1)

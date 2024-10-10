@@ -11,7 +11,7 @@
 
 	return ..()
 
-/mob/living/brain/gib()
+/mob/living/brain/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	if(container)
 		qdel(container)//Gets rid of the MMI if there is one
 	if(loc)

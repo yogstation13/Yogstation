@@ -2,6 +2,7 @@ import { classes } from 'common/react';
 import { useBackend } from '../../backend';
 import {
   Box,
+  BlockQuote,
   Button,
   Divider,
   Icon,
@@ -323,6 +324,23 @@ const SpeciesPageInner = (props: {
                     />
                   </Stack.Item>
                 </Stack>
+              </Box>
+              <Box mt={1}>
+                <Section title="Lore">
+                  <BlockQuote>
+                    {currentSpecies.lore.map((text, index) => (
+                      <Box key={index} maxWidth="100%">
+                        {text}
+                        {index !== currentSpecies.lore.length - 1 && (
+                          <>
+                            <br />
+                            <br />
+                          </>
+                        )}
+                      </Box>
+                    ))}
+                  </BlockQuote>
+                </Section>
               </Box>
             </Box>
           </Stack.Item>

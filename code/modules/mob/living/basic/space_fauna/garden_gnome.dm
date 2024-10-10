@@ -22,8 +22,8 @@
 	speak_emote = list("announces")
 
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 500
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = 500
 
 	faction = list(FACTION_GNOME)
 	mob_size = MOB_SIZE_SMALL

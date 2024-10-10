@@ -120,8 +120,7 @@
 	burn_heal = 1
 
 /datum/reagent/consumable/nutriment/vitamin/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
-	if(M.satiety < MAX_SATIETY)
-		M.satiety += 30 * REM * seconds_per_tick
+	M.adjust_satiety(30 * REM * seconds_per_tick)
 	. = ..()
 
 /// The basic resource of vat growing.
@@ -281,28 +280,21 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
+	. = ..()
+	holder.remove_reagent(/datum/reagent/cryostylane, 5 * REM * seconds_per_tick)
+
 	var/heating = 0
 	switch(current_cycle)
 		if(1 to 15)
-			heating = 5
-			if(holder.has_reagent(/datum/reagent/cryostylane))
-				holder.remove_reagent(/datum/reagent/cryostylane, 5 * REM * seconds_per_tick)
-			if(isslime(M))
-				heating = rand(5, 20)
+			heating = 0.1 KELVIN
 		if(15 to 25)
-			heating = 10
-			if(isslime(M))
-				heating = rand(10, 20)
+			heating = 0.33 KELVIN
 		if(25 to 35)
-			heating = 15
-			if(isslime(M))
-				heating = rand(15, 20)
+			heating = 0.66 KELVIN
 		if(35 to INFINITY)
-			heating = 20
-			if(isslime(M))
-				heating = rand(20, 25)
-	M.adjust_bodytemperature(heating * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick)
-	..()
+			heating = 1.2 KELVIN
+
+	M.adjust_bodytemperature(heating * REM * seconds_per_tick, max_temp = CELCIUS_TO_KELVIN(39 CELCIUS))
 
 /datum/reagent/consumable/frostoil
 	name = "Frost Oil"
@@ -318,32 +310,25 @@
 	turf_exposure = TRUE
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
+	. = ..()
+	holder.remove_reagent(/datum/reagent/consumable/capsaicin, 5 * REM * seconds_per_tick)
+
 	var/cooling = 0
 	switch(current_cycle)
 		if(1 to 15)
-			cooling = -10
-			if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
-				holder.remove_reagent(/datum/reagent/consumable/capsaicin, 5 * REM * seconds_per_tick)
-			if(isslime(M))
-				cooling = -rand(5, 20)
+			cooling = -0.1 KELVIN
 		if(15 to 25)
-			cooling = -20
-			if(isslime(M))
-				cooling = -rand(10, 20)
+			cooling = -0.5 KELVIN
 		if(25 to 35)
-			cooling = -30
+			cooling = -1 KELVIN
 			if(prob(1))
 				M.emote("shiver")
-			if(isslime(M))
-				cooling = -rand(15, 20)
 		if(35 to INFINITY)
-			cooling = -40
+			cooling = -2 KELVIN
 			if(prob(5))
 				M.emote("shiver")
-			if(isslime(M))
-				cooling = -rand(20, 25)
-	M.adjust_bodytemperature(cooling * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, 50)
-	..()
+
+	M.adjust_bodytemperature(cooling * REM * seconds_per_tick, min_temp = M.bodytemp_cold_damage_limit - 15 KELVIN)
 
 /datum/reagent/consumable/frostoil/expose_turf(turf/exposed_turf, reac_volume)
 	. = ..()
@@ -590,7 +575,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/hot_ramen/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
-	M.adjust_bodytemperature(10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, 0, M.get_body_temp_normal())
+	M.adjust_bodytemperature(0.2 KELVIN * REM * seconds_per_tick, 0, M.standard_body_temperature)
 	..()
 
 /datum/reagent/consumable/hell_ramen
@@ -602,7 +587,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/consumable/hell_ramen/on_mob_life(mob/living/carbon/target_mob, seconds_per_tick, times_fired)
-	target_mob.adjust_bodytemperature(10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick)
+	target_mob.adjust_bodytemperature(WARM_DRINK KELVIN * REM * seconds_per_tick, max_temp = CELCIUS_TO_KELVIN(45 CELCIUS))
 	..()
 
 /datum/reagent/consumable/flour

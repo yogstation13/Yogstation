@@ -78,8 +78,10 @@
 			take_bodypart_damage(10 + 5 * extra_speed, check_armor = TRUE, wound_bonus = extra_speed * 5)
 			victim.Paralyze(2 SECONDS)
 			Paralyze(2 SECONDS)
-			visible_message(span_danger("[src] crashes into [victim][extra_speed ? " really hard" : ""], knocking them both over!"),\
-				span_userdanger("You violently crash into [victim][extra_speed ? " extra hard" : ""]!"))
+			visible_message(
+				span_danger("[src] crashes into [hit_atom][extra_speed ? " really hard" : ""]!"),
+				span_userdanger("You[extra_speed ? " violently" : ""] crash into [hit_atom][extra_speed ? " extra hard" : ""]!"),
+			)
 		playsound(src,'sound/weapons/punch1.ogg',50,TRUE)
 		log_combat(src, victim, "crashed into")
 
@@ -183,6 +185,14 @@
 		if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
 			return
 		SEND_SIGNAL(src, COMSIG_CARBON_EMBED_RIP, I, L)
+		return
+
+	if(href_list["gauze_limb"])
+		var/obj/item/bodypart/gauzed = locate(href_list["gauze_limb"]) in bodyparts
+		if(isnull(gauzed?.current_gauze))
+			return
+		// rest of the sanity is handled in the proc itself
+		gauzed.help_remove_gauze(usr)
 		return
 
 	if(href_list["show_paper_note"])
@@ -884,7 +894,7 @@
 		return FALSE
 
 	// And we can't heal them if they're missing their liver
-	if(!HAS_TRAIT(src, TRAIT_NOMETABOLISM) && !isnull(dna?.species.mutantliver) && !get_organ_slot(ORGAN_SLOT_LIVER))
+	if(!HAS_TRAIT(src, TRAIT_LIVERLESS_METABOLISM) && !isnull(dna?.species.mutantliver) && !get_organ_slot(ORGAN_SLOT_LIVER))
 		return FALSE
 
 	return ..()
@@ -993,6 +1003,7 @@
 		var/obj/item/bodypart/bodypart_instance = new real_body_part_path()
 		bodypart_instance.set_owner(src)
 		bodyparts.Remove(bodypart_path)
+		bodypart_instance.check_adding_composition(src)
 		add_bodypart(bodypart_instance)
 		switch(bodypart_instance.body_part)
 			if(ARM_LEFT)
@@ -1038,6 +1049,13 @@
 			if(!old_bodypart.bodypart_disabled)
 				set_usable_hands(usable_hands - 1)
 
+
+///Updates the bodypart speed modifier based on our bodyparts.
+/mob/living/carbon/proc/update_bodypart_speed_modifier()
+	var/final_modification = 0
+	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
+		final_modification += bodypart.speed_modifier
+	add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/bodypart, TRUE, final_modification)
 
 /mob/living/carbon/proc/create_internal_organs()
 	for(var/obj/item/organ/internal/internal_organ in organs)
@@ -1224,12 +1242,16 @@
 
 /// if any of our bodyparts are bleeding
 /mob/living/carbon/proc/is_bleeding()
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return FALSE
 	for(var/obj/item/bodypart/part as anything in bodyparts)
 		if(part.get_modified_bleed_rate())
 			return TRUE
 
 /// get our total bleedrate
 /mob/living/carbon/proc/get_total_bleed_rate()
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return 0
 	var/total_bleed_rate = 0
 	for(var/obj/item/bodypart/part as anything in bodyparts)
 		total_bleed_rate += part.get_modified_bleed_rate()

@@ -6,7 +6,7 @@
 	strip_delay = 40
 	equip_delay_other = 20
 	body_parts_covered = ARMS
-	cold_protection = ARMS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE

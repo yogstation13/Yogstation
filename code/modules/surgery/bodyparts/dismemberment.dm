@@ -77,6 +77,8 @@
 	//limb is out and about, it can't really be considered an implant
 	bodypart_flags &= ~BODYPART_IMPLANTED
 	owner.remove_bodypart(src)
+	if(speed_modifier)
+		owner.update_bodypart_speed_modifier()
 
 	for(var/datum/wound/wound as anything in wounds)
 		wound.remove_wound(TRUE)
@@ -253,6 +255,15 @@
 		arm_owner.dropItemToGround(arm_owner.gloves, TRUE, violent = violent)
 	arm_owner.update_worn_gloves() //to remove the bloody hands overlay
 
+/obj/item/bodypart/arm/try_attach_limb(mob/living/carbon/new_arm_owner, special = FALSE)
+	. = ..()
+
+	if(!.)
+		return
+
+	new_arm_owner.update_worn_gloves()
+
+
 /obj/item/bodypart/leg/drop_limb(special, dismembered, violent)
 	if(owner && !special)
 		if(owner.legcuffed)
@@ -331,6 +342,9 @@
 			if(hand)
 				hand.update_appearance()
 		new_limb_owner.update_worn_gloves()
+
+		if(speed_modifier)
+			new_limb_owner.update_bodypart_speed_modifier()
 
 	LAZYREMOVE(new_limb_owner.body_zone_dismembered_by, body_zone)
 

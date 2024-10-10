@@ -7,8 +7,8 @@
 
 /obj/item/clothing/suit/chaplainsuit/armor
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+
+
 	armor_type = /datum/armor/chaplainsuit_armor
 	clothing_flags = BLOCKS_SHOVE_KNOCKDOWN
 	strip_delay = 80

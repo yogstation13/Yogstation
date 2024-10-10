@@ -15,7 +15,7 @@
 	health = 170
 	loot = list(/obj/effect/gibspawner/human)
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatecommando
 
 /mob/living/basic/trooper/syndicate/space/Initialize(mapload)
@@ -51,7 +51,7 @@
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatecommando
 
 /mob/living/basic/trooper/syndicate/melee/space/Initialize(mapload)
@@ -84,7 +84,7 @@
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 	projectile_deflect_chance = 50
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatecommando
 
@@ -135,7 +135,7 @@
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatecommando
 
 /mob/living/basic/trooper/syndicate/ranged/space/Initialize(mapload)
@@ -167,7 +167,7 @@
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatecommando
 
 /mob/living/basic/trooper/syndicate/ranged/smg/space/Initialize(mapload)
@@ -193,7 +193,7 @@
 	maxHealth = 170
 	health = 170
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 	speed = 1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatecommando
 
@@ -220,8 +220,8 @@
 	mob_biotypes = MOB_ROBOTIC
 	basic_mob_flags = DEL_ON_DEATH
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 700
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = 700
 	unsuitable_cold_damage = 0
 	health = 25
 	maxHealth = 25

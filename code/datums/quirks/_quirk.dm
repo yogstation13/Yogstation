@@ -32,7 +32,7 @@
 	/// A list of items people can receive from mail who have this quirk enabled
 	/// The base weight for the each quirk's mail goodies list to be selected is 5
 	/// then the item selected is determined by pick(selected_quirk.mail_goodies)
-	var/mail_goodies = list()
+	var/list/mail_goodies = list() //Monkestation Edit BLOOD_DATUM: Why? this is already a list all this does is mess confuse us.
 
 /datum/quirk/Destroy()
 	if(quirk_holder)
@@ -147,7 +147,7 @@
 /// Otherwise, it runs once on the next COMSIG_MOB_LOGIN.
 /datum/quirk/proc/post_add()
 	return
- 
+
 /// return additional data that should be remembered by cloning
 /datum/quirk/proc/clone_data()
 	return
@@ -155,7 +155,7 @@
 /// create the quirk from clone data
 /datum/quirk/proc/on_clone(data)
 	return
-	
+
 /// Subtype quirk that has some bonus logic to spawn items for the player.
 /datum/quirk/item_quirk
 	/// Lazylist of strings describing where all the quirk items have been spawned.

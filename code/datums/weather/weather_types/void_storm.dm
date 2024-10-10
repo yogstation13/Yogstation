@@ -36,7 +36,7 @@
 	victim.adjustFireLoss(1)
 	victim.adjustOxyLoss(rand(1, 3))
 	victim.adjust_eye_blur(rand(0 SECONDS, 2 SECONDS))
-	victim.adjust_bodytemperature(-30 * TEMPERATURE_DAMAGE_COEFFICIENT)
+	victim.adjust_bodytemperature(-4 KELVIN)
 
 // Goes through former_impacted_areas and sets the overlay of each back to the telegraph overlay, to indicate the ascended heretic is no longer in that area.
 /datum/weather/void_storm/update_areas()

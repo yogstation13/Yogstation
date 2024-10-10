@@ -57,7 +57,7 @@
 /mob/living/simple_animal/hostile/pirate/melee/space
 	name = "Space Pirate Swashbuckler"
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
+	bodytemp_cold_damage_limit = -1
 	speed = 1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/pirate/melee/space
 
@@ -81,7 +81,7 @@
 /mob/living/simple_animal/hostile/pirate/ranged/space
 	name = "Space Pirate Gunner"
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
+	bodytemp_cold_damage_limit = -1
 	speed = 1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/pirate/ranged/space
 	held_item = /obj/item/gun/energy/e_gun/lethal

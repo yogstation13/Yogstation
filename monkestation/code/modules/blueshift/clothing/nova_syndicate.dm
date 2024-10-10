@@ -199,7 +199,7 @@
 	name = "insulated tactical turtleneck skirt"
 	desc = "A non-descript and slightly suspicious looking skirtleneck. The interior has been padded with special insulation for both warmth and protection."
 	armor_type = /datum/armor/clothing_under/syndicate/coldres
-	cold_protection = CHEST|GROIN|ARMS|LEGS
+
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 
@@ -248,7 +248,7 @@
 	worn_icon = 'monkestation/code/modules/blueshift/icons/worn.dmi'
 	icon_state = "syndievest_winter"
 	body_parts_covered = CHEST|GROIN
-	cold_protection = CHEST|GROIN|ARMS
+
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 

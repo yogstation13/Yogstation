@@ -22,10 +22,14 @@
 	/// Amount of shock building up from higher levels of pain
 	/// When greater than current health, we go into shock
 	var/shock_buildup = 0
+	/// Tracks how many successful heart attack rolls in a row
+	VAR_FINAL/heart_attack_counter = 0
 	/// Cooldown to track the last time we lost pain.
 	COOLDOWN_DECLARE(time_since_last_pain_loss)
 	/// Cooldown to track last time we sent a pain message.
 	COOLDOWN_DECLARE(time_since_last_pain_message)
+	/// Cooldown to track last time heart attack counter went up.
+	COOLDOWN_DECLARE(time_since_last_heart_attack_counter)
 
 #ifdef TESTING
 	/// For testing. Does this pain datum print testing messages when it happens?
@@ -84,11 +88,10 @@
 	RegisterSignal(parent, COMSIG_LIVING_POST_FULLY_HEAL, PROC_REF(remove_all_pain))
 	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(add_damage_pain))
 	RegisterSignal(parent, COMSIG_MOB_STATCHANGE, PROC_REF(on_parent_statchance))
-	RegisterSignals(parent, list(COMSIG_LIVING_SET_BODY_POSITION, COMSIG_LIVING_SET_BUCKLED), PROC_REF(check_lying_pain_modifier))
 	RegisterSignals(parent, list(SIGNAL_ADDTRAIT(TRAIT_NO_PAIN_EFFECTS), SIGNAL_REMOVETRAIT(TRAIT_NO_PAIN_EFFECTS)), PROC_REF(refresh_pain_attributes))
-
-	if(ishuman(parent))
-		RegisterSignal(parent, COMSIG_HUMAN_BURNING, PROC_REF(on_burn_tick))
+	RegisterSignal(parent, COMSIG_LIVING_TREAT_MESSAGE, PROC_REF(handle_message))
+	RegisterSignal(parent, COMSIG_MOB_FIRED_GUN, PROC_REF(on_mob_fired_gun))
+	RegisterSignal(parent, COMSIG_LIVING_REVIVE, PROC_REF(revived))
 
 /**
  * Unregister all of our signals from our parent when we're done, if we have signals to unregister.
@@ -99,12 +102,12 @@
 		COMSIG_CARBON_GAIN_WOUND,
 		COMSIG_CARBON_LOSE_WOUND,
 		COMSIG_CARBON_REMOVE_LIMB,
-		COMSIG_HUMAN_BURNING,
 		COMSIG_LIVING_HEALTHSCAN,
 		COMSIG_LIVING_POST_FULLY_HEAL,
-		COMSIG_LIVING_SET_BODY_POSITION,
-		COMSIG_LIVING_SET_BUCKLED,
+		COMSIG_LIVING_REVIVE,
+		COMSIG_LIVING_TREAT_MESSAGE,
 		COMSIG_MOB_APPLY_DAMAGE,
+		COMSIG_MOB_FIRED_GUN,
 		COMSIG_MOB_STATCHANGE,
 		SIGNAL_ADDTRAIT(TRAIT_NO_PAIN_EFFECTS),
 		SIGNAL_REMOVETRAIT(TRAIT_NO_PAIN_EFFECTS),
@@ -218,6 +221,14 @@
 	pain_modifier = 1
 	for(var/mod in pain_mods)
 		pain_modifier *= pain_mods[mod]
+	// Throw alert if a drug specifically is numbing us
+	if(pain_modifier < 0.75)
+		for(var/datum/reagent/med as anything in parent.reagents.reagent_list)
+			if(med.pain_modifier <= 0.5)
+				parent.throw_alert("numbed", /atom/movable/screen/alert/numbed)
+				break
+	else
+		parent.clear_alert("numbed")
 	return old_pain_mod != pain_modifier
 
 /**
@@ -234,9 +245,9 @@
 
 	// No pain at all
 	if(amount == 0)
-		return
+		return FALSE
 	if(amount > 0 && (parent.status_flags & GODMODE))
-		return
+		return FALSE
 
 	for(var/zone in shuffle(def_zones))
 		var/adjusted_amount = round(amount, 0.01)
@@ -244,18 +255,22 @@
 		if(isnull(adjusted_bodypart)) // it's valid - for if we're passed a zone we don't have
 			continue
 
+		var/current_amount = adjusted_bodypart.pain
+
 		// Pain is negative (healing)
 		if(adjusted_amount < 0)
 			// Pain is negative and we're at min pain
-			if(adjusted_bodypart.pain <= adjusted_bodypart.min_pain)
+			if(current_amount <= adjusted_bodypart.min_pain)
 				continue
 			// Pain is negative and we're above soft cap, incraese the healing amount greatly
-			if(adjusted_bodypart.pain >= adjusted_bodypart.soft_max_pain)
-				adjusted_amount *= 3
+			if(current_amount >= adjusted_bodypart.soft_max_pain)
+				adjusted_amount *= 2 * (current_amount / adjusted_bodypart.soft_max_pain)
 
 		// Pain is positive (dealing)
 		else
-			// Adjust incoming dealt pain by modifiers
+			// Pain is positive and we're at the soft cap, reduce the incoming pain
+			if(current_amount >= adjusted_bodypart.soft_max_pain)
+				adjusted_amount *= 0.75 * (adjusted_bodypart.soft_max_pain / current_amount)
 			adjusted_amount = round(adjusted_amount * pain_modifier * adjusted_bodypart.bodypart_pain_modifier, 0.01)
 			// Pain modifiers results in us taking 0 pain
 			// (If someone adds a negative pain mod and causes "inverse pain" (which you shouldn't) this needs to go)
@@ -271,7 +286,7 @@
 #endif
 
 		// Actually do the pain addition / subtraction here
-		adjusted_bodypart.pain = max(adjusted_bodypart.pain + adjusted_amount, adjusted_bodypart.min_pain)
+		adjusted_bodypart.pain = max(current_amount + adjusted_amount, adjusted_bodypart.min_pain)
 
 		if(adjusted_amount > 0)
 			INVOKE_ASYNC(src, PROC_REF(on_pain_gain), adjusted_bodypart, amount, dam_type)
@@ -316,16 +331,18 @@
  * affected_part - the bodypart that gained the pain
  * amount - amount of pain that was gained, post-[pain_modifier] applied
  */
-/datum/pain/proc/on_pain_gain(obj/item/bodypart/affected_part, amount, type)
-	affected_part.on_gain_pain_effects(amount)
+/datum/pain/proc/on_pain_gain(obj/item/bodypart/affected_part, amount, dam_type)
+	affected_part.on_gain_pain_effects(amount, dam_type)
 	refresh_pain_attributes()
-	SEND_SIGNAL(parent, COMSIG_CARBON_PAIN_GAINED, affected_part, amount, type)
-	COOLDOWN_START(src, time_since_last_pain_loss, 30 SECONDS)
+	SEND_SIGNAL(parent, COMSIG_CARBON_PAIN_GAINED, affected_part, amount, dam_type)
+	COOLDOWN_START(src, time_since_last_pain_loss, 60 SECONDS)
+	if(amount > PAIN_LIMB_MAX * 0.25)
+		parent.pain_emote("scream", 5 SECONDS)
+		parent.flash_pain_overlay(2)
 
-	if(amount > 12 && prob(25))
-		do_pain_emote("scream", 5 SECONDS)
-	else if(amount > 6 && prob(10))
-		do_pain_emote()
+	else if(amount > PAIN_LIMB_MAX * 0.1)
+		parent.pain_emote(pick("wince", "gasp", "grimace", "inhale_s", "exhale_s", "flinch"), 3 SECONDS)
+		parent.flash_pain_overlay(1)
 
 /**
  * Called when pain is lost, if the mob did not lose pain in the last 60 seconds.
@@ -363,7 +380,7 @@
 
 	SIGNAL_HANDLER
 
-	if(damage <= 0 || (parent.status_flags & GODMODE))
+	if(damage <= 2.5 || (parent.status_flags & GODMODE))
 		return
 	if(isbodypart(def_zone))
 		var/obj/item/bodypart/targeted_part = def_zone
@@ -375,12 +392,12 @@
 	// Attacks with a wound bonus add additional pain (usually, like 2-5)
 	// (Note that if they also succeed in applying a wound, more pain comes from that)
 	// Also, sharp attacks apply a smidge extra pain
-	var/pain = (2 * damage) + (0.1 * max(wound_bonus + bare_wound_bonus, 1)) * (sharpness ? 1.2 : 1)
+	var/pain = ((100 - blocked) / 100) * ((10 * damage) ** 0.66 + (0.2 * max(wound_bonus + bare_wound_bonus - parent.getarmor(def_zone, WOUND), 0))) * (sharpness ? 1.2 : 1)
 	switch(damagetype)
 		// Brute pain is dealt to the target zone
 		// pain is just divided by a random number, for variance
 		if(BRUTE)
-			pain *= (rand(60, 80) / 100)
+			pain *= pick(0.6, 0.7, 0.8)
 
 		// Burn pain is dealt to the target zone
 		// pain is lower for weaker burns, but scales up for more damaging burns
@@ -442,33 +459,12 @@
 		//
 		// Note: 99% of sources of oxydamage is done through adjustoxyloss, and as such doesn't go through this
 		if(OXY)
-			if(HAS_TRAIT(parent, TRAIT_NOBREATH))
-				return
-			def_zone = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST)
-			var/obj/item/organ/internal/lungs/our_lungs = source.get_organ_slot(ORGAN_SLOT_LUNGS)
-			if(our_lungs)
-				switch(our_lungs.damage)
-					if(20 to 50)
-						pain += 1
-					if(50 to 80)
-						pain += 2
-					if(80 to INFINITY)
-						pain += 3
-			else
-				pain += 5
-
-			switch(parent.getOxyLoss())
-				if(0 to 20)
-					pain = 0
-				if(20 to 50)
-					pain += 1
-				if(50 to INFINITY)
-					pain += 3
+			return
 
 		// No pain from stamina loss
 		// In the future stamina can probably cause very sharp pain and replace stamcrit,
 		// but the system will require much finer tuning before then
-		if(STAMINA)
+		if(STAMINA, PAIN)
 			return
 
 		// Head pain causes brain damage, so brain damage causes no pain (to prevent death spirals)
@@ -547,105 +543,159 @@
 			if(checked_bodypart.pain_feedback(seconds_per_tick, no_recent_pain))
 				COOLDOWN_START(src, time_since_last_pain_message, 12 SECONDS)
 
-		if(!has_pain)
+		if(!has_pain && (shock_buildup <= -30) && !HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINSHOCK))
 			// no-op if none of our bodyparts are in pain
 			return
 
-		var/curr_pain = get_average_pain()
-		switch(curr_pain)
-			if(-INFINITY to 10)
-				shock_buildup = max(shock_buildup - 3, -30) // staying out of pain for a while gives you a small resiliency to shock (~1 minute)
+		var/shock_mod = max(pain_modifier, 0.33)
+		if(HAS_TRAIT(parent, TRAIT_ABATES_SHOCK))
+			shock_mod *= 0.5
+		if(parent.health > 0)
+			shock_mod *= 0.25
+		if(parent.health <= parent.maxHealth * -2 || (!HAS_TRAIT(parent, TRAIT_NOBLOOD) && parent.blood_volume < BLOOD_VOLUME_BAD))
+			shock_mod *= 1.5
+		if(parent.health <= parent.maxHealth * -4 || (!HAS_TRAIT(parent, TRAIT_NOBLOOD) && parent.blood_volume < BLOOD_VOLUME_SURVIVE))
+			shock_mod *= 2 // stacks with above
+		var/curr_pain = get_total_pain()
+		if(curr_pain < PAIN_LIMB_MAX * 0.5)
+			parent.adjust_pain_shock(-3 * seconds_per_tick) // staying out of pain for a while gives you a small resiliency to shock (~1 minute)
+		else if(curr_pain < PAIN_LIMB_MAX)
+			parent.adjust_pain_shock(-1 * seconds_per_tick)
+		else if(curr_pain < PAIN_LIMB_MAX * 2)
+			if(shock_buildup <= 30)
+				parent.adjust_pain_shock(0.5 * shock_mod * seconds_per_tick)
+		else if(curr_pain < PAIN_LIMB_MAX * 4)
+			if(shock_buildup <= 65)
+				parent.adjust_pain_shock(1 * shock_mod * seconds_per_tick)
+			if(SPT_PROB(2, seconds_per_tick))
+				do_pain_message(span_userdanger(pick("It hurts.")))
+		else
+			parent.adjust_pain_shock(clamp(round(0.5 * (curr_pain / PAIN_LIMB_MAX), 0.1), 1.5, 8) * shock_mod * seconds_per_tick)
+			if(SPT_PROB(2, seconds_per_tick))
+				do_pain_message(span_userdanger(pick("Stop the pain!", "It hurts!")))
 
-			if(10 to 25)
-				shock_buildup = max(shock_buildup - 1, -30)
-
-			if(25 to 40)
+		switch(shock_buildup)
+			if(10 to 60)
+				parent.adjust_bodytemperature(-5 * seconds_per_tick, min_temp = parent.bodytemp_cold_damage_limit + 5)
+			if(60 to 120)
 				if(SPT_PROB(2, seconds_per_tick))
-					do_pain_message(span_danger(pick("Everything aches.", "Everything feels sore.")))
-
-			if(40 to 70)
-				if(!HAS_TRAIT(parent, TRAIT_NO_SHOCK_BUILDUP))
-					shock_buildup += 1
+					do_pain_message(span_bolddanger(pick("It hurts.", "You really need some painkillers.")))
+				if(SPT_PROB(4, seconds_per_tick))
+					do_pain_message(span_warning(pick("You feel cold!", "You feel sweaty!")))
+					parent.pain_emote("shiver", 3 SECONDS)
+				parent.adjust_bodytemperature(-10 * seconds_per_tick, min_temp = parent.bodytemp_cold_damage_limit - 5)
+			if(120 to 180)
 				if(SPT_PROB(2, seconds_per_tick))
-					do_pain_message(span_bolddanger(pick("Everything hurts.", "Everything feels very sore.", "It hurts.")))
+					do_pain_message(span_userdanger(pick("Stop the pain!", "It hurts!", "You need painkillers now!")))
+				if(SPT_PROB(4, seconds_per_tick))
+					do_pain_message(span_warning("You feel freezing!"))
+					parent.pain_emote("shiver", 3 SECONDS)
+				parent.adjust_bodytemperature(-20 * seconds_per_tick, min_temp = parent.bodytemp_cold_damage_limit - 20)
 
-			if(70 to INFINITY)
-				if(!HAS_TRAIT(parent, TRAIT_NO_SHOCK_BUILDUP))
-					shock_buildup += 3
-				if(SPT_PROB(2, seconds_per_tick))
-					do_pain_message(span_userdanger(pick("Stop the pain!", "Everything hurts!")))
+		if((shock_buildup >= 20 || curr_pain >= PAIN_LIMB_MAX) && !just_cant_feel_anything)
+			if(SPT_PROB(min(curr_pain / 5, 24), seconds_per_tick))
+				parent.adjust_jitter_up_to(5 SECONDS * pain_modifier, 30 SECONDS)
+			if(SPT_PROB(min(curr_pain / 10, 12), seconds_per_tick))
+				parent.adjust_dizzy_up_to(5 SECONDS * pain_modifier, 30 SECONDS)
+			if(SPT_PROB(min(curr_pain / 20, 6), seconds_per_tick)) // pain applies its own stutter
+				parent.adjust_stutter_up_to(5 SECONDS * pain_modifier, 30 SECONDS)
 
-		// If shock buildup exceeds our health + 30 ticks then well, we enter shock
-		// This means at 100 health you can be in moderate pain for 130 ticks / 260 seconds / ~4 minutes before falling into shock
-		if(shock_buildup >= (parent.health + 30) \
-			&& curr_pain >= 50 \
-			&& !HAS_TRAIT(parent, TRAIT_NO_SHOCK_BUILDUP) \
-			&& !is_undergoing_shock() \
-			&& !parent.undergoing_cardiac_arrest() \
-		)
-			parent.infect_disease_predefined(DISEASE_SHOCK, TRUE, "[ROUND_TIME()] Inflicted with Pain Shock [key_name(parent)]")
-			to_chat(parent, span_userdanger("You feel your body start to shut down!"))
-			if(parent.stat == CONSCIOUS && !parent.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB) && !HAS_TRAIT(parent, TRAIT_NO_PAIN_EFFECTS))
-				parent.visible_message(span_danger("[parent] grabs at their chest and stares into the distance as they go into shock!"), ignored_mobs = parent)
-			shock_buildup = -200 // requires another 200 ticks / 400 seconds / ~6 minutes of pain to go into shock again
-			return
+		if(shock_buildup >= 40 && parent.stat != HARD_CRIT)
+			if(SPT_PROB(shock_buildup / 60, seconds_per_tick))
+				//parent.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = 7.5)
+				parent.Knockdown(rand(3 SECONDS, 6 SECONDS))
 
-		var/standard_effect_prob = (curr_pain * 0.05) - 0.75 // starts at 15, caps at 4.5
-		var/rare_effect_prob =  (curr_pain * 0.04) - 1.5 // starts at 40
-		var/very_rare_effect_prob =  (curr_pain * 0.03) - 2.25 // starts at 70
+		if(shock_buildup >= 60 || curr_pain >= PAIN_CHEST_MAX)
+			if(SPT_PROB(shock_buildup / 20, seconds_per_tick) && !parent.IsParalyzed() && parent.Paralyze(rand(2 SECONDS, 8 SECONDS)))
+				parent.visible_message(
+					span_warning("[parent]'s body falls limp!"),
+					span_warning("Your body [just_cant_feel_anything ? "goes" : "falls"] limp!"),
 
-		if(standard_effect_prob > 0)
-			if(!just_cant_feel_anything)
-				if(SPT_PROB(standard_effect_prob, seconds_per_tick))
-					parent.adjust_stutter_up_to(10 SECONDS * pain_modifier, 30 SECONDS)
-				if(SPT_PROB(standard_effect_prob, seconds_per_tick))
-					parent.adjust_jitter_up_to(20 SECONDS * pain_modifier, 60 SECONDS)
-				if(SPT_PROB(standard_effect_prob, seconds_per_tick))
-					parent.adjust_dizzy_up_to(10 SECONDS * pain_modifier, 30 SECONDS)
-					if(curr_pain >= 70)
-						parent.adjust_confusion_up_to(8 SECONDS * pain_modifier, 24 SECONDS)
-			if(SPT_PROB(standard_effect_prob * 1.2, seconds_per_tick) && parent.stamina?.loss <= 80)
-				var/stam_taken = round((0.2 * curr_pain + 8) * pain_modifier) // 10 = 10, 100 = 28, good enough
-				if(just_cant_feel_anything)
-					parent.apply_damage(stam_taken * 1.2, STAMINA)
-				// First we apply damage, if that succeeds ->
-				// Check how much damage, if above a threshold ->
-				// Run a pain emote, if the pain emote succeeds as well ->
-				else if(parent.apply_damage(stam_taken, STAMINA) && stam_taken >= 15 && do_pain_emote(pick("wince", "gasp")))
-					parent.visible_message(span_warning("[parent] doubles over in pain!"))
+				)
+			if(SPT_PROB(shock_buildup / 20, seconds_per_tick))
+				parent.adjust_confusion_up_to(8 SECONDS * pain_modifier, 24 SECONDS)
 
-		if(rare_effect_prob > 0)
-			if(SPT_PROB(rare_effect_prob * 2, seconds_per_tick))
-				var/list/options = list("wince", "whimper")
-				if(curr_pain >= 70)
-					options.Add("cry", "scream")
-				do_pain_emote(pick(options), 5 SECONDS)
-			if(SPT_PROB(rare_effect_prob, seconds_per_tick) && parent.body_position != LYING_DOWN && !just_cant_feel_anything)
-				parent.Knockdown(2 SECONDS * pain_modifier)
-				parent.visible_message(span_warning("[parent] collapses from pain!"))
-			if(SPT_PROB(rare_effect_prob, seconds_per_tick))
-				var/obj/item/held_item = parent.get_active_held_item()
-				var/obj/item/bodypart/active_hand = parent.get_active_hand()
-				if(held_item && active_hand && parent.dropItemToGround(held_item))
-					if(active_hand.bodytype & BODYTYPE_ROBOTIC)
-						to_chat(parent, span_danger("Your hand malfunctions, causing you to drop [held_item]!"))
-						parent.visible_message(span_warning("[parent]'s hand malfunctions, causing them to drop [held_item]!"), ignored_mobs = parent)
-						do_sparks(number = 1, source = parent)
-					else if(just_cant_feel_anything)
-						to_chat(parent, span_danger("Your hand spams and you drop [held_item]!"))
-					else
-						to_chat(parent, span_danger("Your fumble though the pain and drop [held_item]!"))
-						parent.visible_message(span_warning("[parent] fumbles around and drops [held_item]!"), ignored_mobs = parent)
-						do_pain_emote("gasp")
+		if((shock_buildup >= 120 || curr_pain >= PAIN_CHEST_MAX * 2) && SPT_PROB(shock_buildup / 40, seconds_per_tick) && parent.stat != HARD_CRIT)
+			if(!parent.IsUnconscious() && parent.Unconscious(rand(4 SECONDS, 16 SECONDS)))
+				parent.visible_message(
+					span_warning("[parent] falls unconscious!"),
+					span_warning(pick("You black out!", "You feel like you're about to die!", "You lose consciousness!")),
 
-		if(very_rare_effect_prob > 0)
-			if(SPT_PROB(very_rare_effect_prob, seconds_per_tick))
-				parent.vomit(50)
-			if(SPT_PROB(very_rare_effect_prob, seconds_per_tick) && !just_cant_feel_anything)
-				parent.adjust_confusion_up_to(8 SECONDS, 24 SECONDS)
+				)
+
+		// This is death
+		if(shock_buildup >= 120 && !parent.undergoing_cardiac_arrest())
+			var/heart_attack_prob = 0
+			if(parent.health <= parent.maxHealth * -1)
+				heart_attack_prob += abs(parent.health + parent.maxHealth) * 0.1
+			if(shock_buildup >= 180)
+				heart_attack_prob += (shock_buildup * 0.1)
+			if(SPT_PROB(min(20, heart_attack_prob), seconds_per_tick))
+				if(!COOLDOWN_FINISHED(src, time_since_last_heart_attack_counter))
+					parent.losebreath += 1
+				else if(!parent.can_heartattack())
+					parent.losebreath += 4
+				else if(heart_attack_counter >= 3)
+					to_chat(parent, span_userdanger("Your heart stops!"))
+					if(!parent.incapacitated())
+						parent.visible_message(span_danger("[parent] grabs at [parent.p_their()] chest!"), ignored_mobs = parent)
+					parent.set_heartattack(TRUE)
+					heart_attack_counter = -2
+				else
+					COOLDOWN_START(src, time_since_last_heart_attack_counter, 6 SECONDS)
+					parent.losebreath += 1
+					heart_attack_counter += 1
+					switch(heart_attack_counter)
+						if(-INFINITY to 0)
+							pass()
+						if(1)
+							to_chat(parent, span_userdanger("You feel your heart beat irregularly."))
+						if(2)
+							to_chat(parent, span_userdanger("You feel your heart skip a beat."))
+						else
+							to_chat(parent, span_userdanger("You feel your body shutting down!"))
+		else
+			heart_attack_counter = 0
+
+		// This is where "soft crit" is now
+		if(shock_buildup >= 90)
+			if(!HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINSHOCK))
+				ADD_TRAIT(parent, TRAIT_LABOURED_BREATHING, PAINSHOCK)
+				set_pain_modifier(PAINSHOCK, 1.2)
+				parent.apply_status_effect(/datum/status_effect/low_blood_pressure)
+				parent.add_traits(list(TRAIT_LABOURED_BREATHING), PAINSHOCK)
+
+		else
+			if(HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINSHOCK))
+				unset_pain_modifier(PAINSHOCK)
+				parent.remove_status_effect(/datum/status_effect/low_blood_pressure)
+				parent.remove_traits(list(TRAIT_LABOURED_BREATHING), PAINSHOCK)
+
+		// This is "pain crit", it's where stamcrit has moved and is also applied by extreme shock
+		if(curr_pain >= PAIN_LIMB_MAX * 3 || shock_buildup >= 150)
+			parent.adjust_jitter_up_to(5 SECONDS * pain_modifier, 60 SECONDS)
+			if(!HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINCRIT))
+				var/is_standing = parent.body_position == STANDING_UP
+				parent.add_traits(list(TRAIT_LABOURED_BREATHING, TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), PAINCRIT)
+				if(is_standing && parent.body_position != STANDING_UP)
+					parent.visible_message(
+						span_warning("[parent] collapses!"),
+						span_userdanger("You collapse, unable to stand!"),
+
+					)
+				else
+					parent.visible_message(
+						span_warning("[parent] slumps against the ground!"),
+						span_userdanger("You go limp, unable to get up!"),
+
+					)
+
+		else if(HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINCRIT))
+			parent.Paralyze(2 SECONDS)
+			parent.remove_traits(list(TRAIT_LABOURED_BREATHING, TRAIT_INCAPACITATED, TRAIT_IMMOBILIZED, TRAIT_FLOORED, TRAIT_HANDS_BLOCKED), PAINCRIT)
 
 	// Finally, handle pain decay over time
-	if(HAS_TRAIT(parent, TRAIT_STASIS) || parent.on_fire || parent.stat == DEAD)
+	if(parent.on_fire || parent.stat == DEAD)
 		return
 
 	// Decay every 3 ticks / 6 seconds, or 1 ticks / 2 seconds if "sleeping"
@@ -684,62 +734,72 @@
 	else
 		unset_pain_modifier(PAIN_MOD_LYING)
 
-/**
- * While actively burning, cause pain
- */
-/datum/pain/proc/on_burn_tick(datum/source)
+/// Affect accuracy of fired guns while in pain.
+/datum/pain/proc/on_mob_fired_gun(mob/living/carbon/human/user, obj/item/gun/gun_fired, target, params, zone_override, list/bonus_spread_values)
 	SIGNAL_HANDLER
+	var/obj/item/bodypart/shooting_with = user.get_active_hand()
+	var/obj/item/bodypart/chest = user.get_bodypart(BODY_ZONE_CHEST)
+	var/obj/item/bodypart/head = user.get_bodypart(BODY_ZONE_HEAD)
 
-	var/mob/living/carbon/human/human_parent = parent
-	if(human_parent.get_thermal_protection() >= FIRE_SUIT_MAX_TEMP_PROTECT)
-		return
+	var/penalty = 0
+	// Basically averaging the pain of the shooting hand, chest, and head, with the hand being weighted more
+	penalty += shooting_with?.get_modified_pain()
+	penalty += chest?.get_modified_pain() * 0.5
+	penalty += head?.get_modified_pain() * 0.5
+	penalty /= 3
+	// Then actually making it into the final value
+	penalty = floor(penalty / 5)
+	// Applying min and max
+	/*
+	bonus_spread_values[MIN_BONUS_SPREAD_INDEX] += penalty
+	bonus_spread_values[MAX_BONUS_SPREAD_INDEX] += penalty * 3
+	*/
 
-	// The more firestacks, the more pain we apply per burn tick, up to 2 per tick per bodypart.
-	// We can be liberal with this because when they're extinguished most of it will go away.
-	parent.apply_status_effect(/datum/status_effect/pain_from_fire, clamp(parent.fire_stacks * 0.2, 0, 2))
-
-/**
- * Apply or remove pain various modifiers from pain (mood, action speed, movement speed) based on the [average_pain].
- */
+/// Apply or remove pain various modifiers from pain (mood, action speed, movement speed) based on the [average_pain].
 /datum/pain/proc/refresh_pain_attributes(...)
 	SIGNAL_HANDLER
 
-	if(!parent.can_feel_pain())
-		clear_pain_attributes()
-		return
+	var/avg_pain = get_average_pain()
 
-	switch(get_average_pain())
+	// Pain is halved if you can't feel pain (but ignore pain modifier for now)
+	if(avg_pain && parent.stat != DEAD && !parent.can_feel_pain(TRUE))
+		avg_pain *= 0.5
+
+	// Pain is set to 0 fully if you can't feel pain OR pain modifier <= 0.5 (numbness threshold)
+	if(avg_pain && (parent.stat == DEAD || !parent.can_feel_pain(FALSE)))
+		avg_pain = 0
+
+	switch(avg_pain)
 		if(-INFINITY to 20)
-			clear_pain_attributes()
+			parent.mob_surgery_speed_mod = initial(parent.mob_surgery_speed_mod)
+			parent.outgoing_damage_mod = initial(parent.outgoing_damage_mod)
+			parent.remove_movespeed_modifier(MOVESPEED_ID_PAIN)
+			parent.remove_actionspeed_modifier(ACTIONSPEED_ID_PAIN)
+			parent.clear_mood_event(PAIN)
 		if(20 to 40)
 			parent.mob_surgery_speed_mod = 0.9
+			parent.outgoing_damage_mod = 0.9
 			parent.add_movespeed_modifier(/datum/movespeed_modifier/pain/light)
 			parent.add_actionspeed_modifier(/datum/actionspeed_modifier/pain/light)
-			parent.add_mood_event("pain", /datum/mood_event/light_pain)
+			parent.add_mood_event(PAIN, /datum/mood_event/light_pain)
 		if(40 to 60)
 			parent.mob_surgery_speed_mod = 0.75
+			parent.outgoing_damage_mod = 0.75
 			parent.add_movespeed_modifier(/datum/movespeed_modifier/pain/medium)
 			parent.add_actionspeed_modifier(/datum/actionspeed_modifier/pain/medium)
-			parent.add_mood_event("pain", /datum/mood_event/med_pain)
+			parent.add_mood_event(PAIN, /datum/mood_event/med_pain)
 		if(60 to 80)
 			parent.mob_surgery_speed_mod = 0.6
+			parent.outgoing_damage_mod = 0.6
 			parent.add_movespeed_modifier(/datum/movespeed_modifier/pain/heavy)
 			parent.add_actionspeed_modifier(/datum/actionspeed_modifier/pain/heavy)
-			parent.add_mood_event("pain", /datum/mood_event/heavy_pain)
+			parent.add_mood_event(PAIN, /datum/mood_event/heavy_pain)
 		if(80 to INFINITY)
 			parent.mob_surgery_speed_mod = 0.5
+			parent.outgoing_damage_mod = 0.5
 			parent.add_movespeed_modifier(/datum/movespeed_modifier/pain/crippling)
 			parent.add_actionspeed_modifier(/datum/actionspeed_modifier/pain/crippling)
-			parent.add_mood_event("pain", /datum/mood_event/crippling_pain)
-
-/**
- * Clears all pain related attributes
- */
-/datum/pain/proc/clear_pain_attributes()
-	parent.mob_surgery_speed_mod = initial(parent.mob_surgery_speed_mod)
-	parent.remove_movespeed_modifier(MOVESPEED_ID_PAIN)
-	parent.remove_actionspeed_modifier(ACTIONSPEED_ID_PAIN)
-	parent.clear_mood_event("pain")
+			parent.add_mood_event(PAIN, /datum/mood_event/crippling_pain)
 
 /**
  * Run a pain related emote, if a few checks are successful.
@@ -758,7 +818,7 @@
 	if(parent.stat >= UNCONSCIOUS || parent.incapacitated(IGNORE_RESTRAINTS|IGNORE_GRAB))
 		return FALSE
 
-	parent.emote(emote)
+	INVOKE_ASYNC(parent, TYPE_PROC_REF(/mob, emote), emote)
 	COOLDOWN_START(src, time_since_last_pain_message, cooldown)
 	return TRUE
 
@@ -803,13 +863,50 @@
 		total_pain += adjusted_bodypart.pain
 		max_total_pain += adjusted_bodypart.soft_max_pain
 
-	return 100 * total_pain / max_total_pain
+	return round(100 * total_pain / max_total_pain, 0.01)
 
-/**
- * Returns a disease datum (Truthy value) if we are undergoing shock.
- */
-/datum/pain/proc/is_undergoing_shock()
-	return locate(/datum/disease/advanced/premade/shock) in parent.diseases
+/// Get the total pain of all bodyparts.
+/datum/pain/proc/get_total_pain()
+	var/total_pain = 0
+	for(var/zone in body_zones)
+		var/obj/item/bodypart/adjusted_bodypart = body_zones[zone]
+		total_pain += adjusted_bodypart.pain
+
+	return total_pain
+
+/// Adds a custom stammer to people under the effects of pain.
+/datum/pain/proc/handle_message(datum/source, list/message_args)
+	SIGNAL_HANDLER
+
+	var/phrase = html_decode(message_args[TREAT_MESSAGE_MESSAGE])
+	if(!length(phrase))
+		return
+
+	var/num_repeats = get_average_pain() * pain_modifier
+	if(HAS_TRAIT(parent, TRAIT_NO_PAIN_EFFECTS) && shock_buildup < 90)
+		num_repeats *= 0.5
+
+	num_repeats = floor(num_repeats / 20)
+	if(num_repeats <= 1)
+		return
+	var/static/regex/no_stammer = regex(@@[ ""''()[\]{}.!?,:;_`~-]@)
+	var/static/regex/half_stammer = regex(@@[aeiouAEIOU]@)
+	var/final_phrase = ""
+	var/original_char = ""
+	for(var/i = 1, i <= length(phrase), i += length(original_char))
+		original_char = phrase[i]
+		if(no_stammer.Find(original_char))
+			final_phrase += original_char
+			continue
+		if(half_stammer.Find(original_char))
+			if(num_repeats <= 2)
+				final_phrase += original_char
+				continue
+			final_phrase += repeat_string(ceil(num_repeats / 2), original_char)
+			continue
+		final_phrase += repeat_string(num_repeats, original_char)
+
+	message_args[TREAT_MESSAGE_MESSAGE] = sanitize(final_phrase)
 
 /**
  * Remove all pain, pain paralysis, side effects, etc. from our mob after we're fully healed by something (like an adminheal)
@@ -844,6 +941,33 @@
 	else
 		START_PROCESSING(SSpain, src)
 
+/// When we are revived, reduced shock
+/datum/pain/proc/revived(...)
+	SIGNAL_HANDLER
+
+	shock_buildup /= 3
+
+/// Used to get the effect of pain on the parent's heart rate.
+/datum/pain/proc/get_heartrate_modifier()
+	var/base_amount = 0
+	switch(get_average_pain()) // pain raises it a bit
+		if(25 to 50)
+			base_amount += 5
+		if(50 to 75)
+			base_amount += 10
+		if(75 to INFINITY)
+			base_amount += 15
+
+	switch(pain_modifier) // numbness lowers it a bit
+		if(0.25 to 0.5)
+			base_amount -= 15
+		if(0.5 to 0.75)
+			base_amount -= 10
+		if(0.75 to 1)
+			base_amount -= 5
+
+	return base_amount
+
 /**
  * Signal proc for [COMSIG_LIVING_HEALTHSCAN]
  * Reports how much pain [parent] is sustaining to [user].
@@ -853,14 +977,18 @@
  * the patient is encouraged to elaborate on which bodyparts hurt the most, and how much they hurt.
  * (To encourage a bit more interaction between the doctors.)
  */
-/datum/pain/proc/on_analyzed(datum/source, list/render_list, advanced, mob/user, mode)
+/datum/pain/proc/on_analyzed(datum/source, list/render_list, advanced, mob/user, mode, tochat)
 	SIGNAL_HANDLER
+
+	if(parent.stat == DEAD)
+		return
+
+	var/in_shock = HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINSHOCK)
 
 	var/amount = ""
 	var/tip = ""
-	var/in_shock = !!is_undergoing_shock()
-	if(in_shock)
-		tip += span_bold("Neurogenic shock has begun and should be treated urgently. ")
+	var/amount_text = ""
+	var/shock_text = ""
 
 	switch(get_average_pain())
 		if(5 to 15)
@@ -883,11 +1011,24 @@
 				tip += span_bold("Alert: High potential of neurogenic shock. ")
 			tip += "Treat wounds and abate pain with long rest, cryogenics, and heavy painkilling medication."
 
-	if(amount && tip)
-		render_list += "<span class='alert ml-1'>"
-		render_list += span_bold("Subject is experiencing [amount] pain. ")
-		render_list += tip
-		render_list += "</span>\n"
+	if(!amount)
+		return
+
+	amount_text = span_danger("Subject is experiencing [amount] pain.")
+	if(tochat && tip)
+		amount_text = span_tooltip(tip, amount_text)
+
+	if(in_shock)
+		shock_text = span_bold("Neurogenic shock has begun and should be treated urgently.")
+	if(shock_text && tochat)
+		shock_text = span_tooltip("Provide immediate pain relief, epinephrine, and moderate body temperature. \
+			[in_shock ? "Monitor closely for worsening condition or cardiac arrest. " : ""]Cryogenics may also aid in recovery.", shock_text)
+
+	render_list += "<span class='alert ml-1'>"
+	if(shock_text)
+		render_list += "[shock_text] / "
+	render_list += amount_text
+	render_list += "</span>\n"
 
 #ifdef TESTING
 	debug_print_pain()
@@ -940,3 +1081,13 @@
 
 	amount = clamp(amount, -200, 200)
 	adjust_bodypart_pain(zone, amount)
+
+
+/**
+ * Clears all pain related attributes
+ */
+/datum/pain/proc/clear_pain_attributes()
+	parent.mob_surgery_speed_mod = initial(parent.mob_surgery_speed_mod)
+	parent.remove_movespeed_modifier(MOVESPEED_ID_PAIN)
+	parent.remove_actionspeed_modifier(ACTIONSPEED_ID_PAIN)
+	parent.clear_mood_event("pain")

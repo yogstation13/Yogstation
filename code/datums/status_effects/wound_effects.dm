@@ -1,29 +1,102 @@
 
 // The shattered remnants of your broken limbs fill you with determination!
-/atom/movable/screen/alert/status_effect/determined
+/atom/movable/screen/alert/determined
 	name = "Determined"
 	desc = "The serious wounds you've sustained have put your body into fight-or-flight mode! Now's the time to look for an exit!"
 	icon_state = "wounded"
 
+/// While someone has determination in their system, their bleed rate is slightly reduced
+#define WOUND_DETERMINATION_BLEED_MOD 0.85
+
 /datum/status_effect/determined
 	id = "determined"
-	alert_type = /atom/movable/screen/alert/status_effect/determined
 	remove_on_fullheal = TRUE
+	tick_interval = 2 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	/// World.time when the status effect was applied
+	var/start_time = 0
+
+/datum/status_effect/determined/on_creation(mob/living/new_owner, set_duration = 5 SECONDS)
+	src.duration = min(WOUND_DETERMINATION_MAX, set_duration)
+	start_time = world.time
+	return ..()
+
+/datum/status_effect/determined/refresh(mob/living/new_owner, set_duration = 5 SECONDS)
+	duration = min(duration + set_duration, start_time + WOUND_DETERMINATION_MAX)
+	if(set_duration >= WOUND_DETERMINATION_SEVERE)
+		owner.throw_alert(id, /atom/movable/screen/alert/determined)
 
 /datum/status_effect/determined/on_apply()
-	. = ..()
-	owner.visible_message(span_danger("[owner]'s body tenses up noticeably, gritting against [owner.p_their()] pain!"), span_notice("<b>Your senses sharpen as your body tenses up from the wounds you've sustained!</b>"), \
-		vision_distance=COMBAT_MESSAGE_RANGE)
+	if(owner.stat == DEAD)
+		return FALSE
+	owner.visible_message(
+		span_danger("[owner]'s body tenses up noticeably, gritting against [owner.p_their()] pain!"),
+		span_boldnotice("Your senses sharpen as your body tenses up from the wounds you've sustained!"),
+		vision_distance = COMBAT_MESSAGE_RANGE,
+	)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.bleed_mod *= WOUND_DETERMINATION_BLEED_MOD
+		human_owner.set_pain_mod(id, 0.625) // 0.625 * 0.8 = 0.5 = numbness
+	ADD_TRAIT(owner, TRAIT_NO_PAIN_EFFECTS, TRAIT_STATUS_EFFECT(id))
+	ADD_TRAIT(owner, TRAIT_ABATES_SHOCK, TRAIT_STATUS_EFFECT(id))
+	if(duration >= WOUND_DETERMINATION_SEVERE)
+		owner.throw_alert(id, /atom/movable/screen/alert/determined)
+	return TRUE
 
 /datum/status_effect/determined/on_remove()
-	owner.visible_message(span_danger("[owner]'s body slackens noticeably!"), span_warning("<b>Your adrenaline rush dies off, and the pain from your wounds come aching back in...</b>"), vision_distance=COMBAT_MESSAGE_RANGE)
+	if(QDELING(owner))
+		return
+
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.bleed_mod /= WOUND_DETERMINATION_BLEED_MOD
-	return ..()
+		human_owner.unset_pain_mod(id)
+	REMOVE_TRAIT(owner, TRAIT_NO_PAIN_EFFECTS, TRAIT_STATUS_EFFECT(id))
+	REMOVE_TRAIT(owner, TRAIT_ABATES_SHOCK, TRAIT_STATUS_EFFECT(id))
+	owner.clear_alert(id)
+	owner.apply_status_effect(/datum/status_effect/determination_crash)
+
+/datum/status_effect/determined/tick(seconds_between_ticks)
+	if(HAS_TRAIT(owner, TRAIT_STASIS) || owner.stat == DEAD || !iscarbon(owner))
+		return
+
+	var/mob/living/carbon/carbowner = owner
+	for(var/datum/wound/wound as anything in carbowner.all_wounds)
+		wound.limb?.heal_damage(0.2 * seconds_between_ticks, 0.2 * seconds_between_ticks)
+
+#undef WOUND_DETERMINATION_BLEED_MOD
+
+/datum/status_effect/determination_crash
+	id = "determination_crash"
+	alert_type = null
+	remove_on_fullheal = TRUE
+	tick_interval = -1
+	duration = 10 SECONDS
+
+/datum/status_effect/determination_crash/on_apply()
+	if(owner.stat == DEAD)
+		return FALSE
+
+	owner.visible_message(
+		span_danger("[owner]'s body slackens noticeably!"),
+		span_boldwarning("Your adrenaline rush dies off, and the pain from your wounds come aching back in..."),
+		vision_distance = COMBAT_MESSAGE_RANGE,
+	)
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/determination_crash)
+	owner.add_actionspeed_modifier(/datum/actionspeed_modifier/determination_crash)
+	return TRUE
+
+/datum/status_effect/determination_crash/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/determination_crash)
+	owner.remove_actionspeed_modifier(/datum/actionspeed_modifier/determination_crash)
+
+/datum/movespeed_modifier/determination_crash
+	multiplicative_slowdown = 0.1
+
+/datum/actionspeed_modifier/determination_crash
+	multiplicative_slowdown = 0.1
 
 /datum/status_effect/limp
 	id = "limp"
@@ -71,8 +144,11 @@
 	if(!owner.client || owner.body_position == LYING_DOWN || !owner.has_gravity() || (owner.movement_type & FLYING) || forced || owner.buckled)
 		return
 
+	if(SEND_SIGNAL(owner, COMSIG_CARBON_LIMPING, (next_leg || right || left)) & COMPONENT_CANCEL_LIMP)
+		return
+
 	// less limping while we have determination still
-	var/determined_mod = owner.has_status_effect(/datum/status_effect/determined) ? 0.5 : 1
+	var/determined_mod = owner.can_feel_pain(TRUE) ? 1 : 0.5
 
 	if(next_leg == left)
 		if(prob(limp_chance_left * determined_mod))
@@ -187,6 +263,8 @@
 /datum/status_effect/wound/blunt/bone
 
 // blunt
+/datum/status_effect/wound/blunt/bone/rib_break
+	id = "rib_break"
 /datum/status_effect/wound/blunt/bone/moderate
 	id = "disjoint"
 /datum/status_effect/wound/blunt/bone/severe

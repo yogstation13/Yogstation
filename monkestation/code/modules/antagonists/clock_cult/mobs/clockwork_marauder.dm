@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(clockwork_marauders)
 	mob_size = MOB_SIZE_LARGE
 	move_resist = MOVE_FORCE_OVERPOWERING
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 	obj_damage = 80
 	faction = list(FACTION_CLOCK)
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)

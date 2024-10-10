@@ -1042,20 +1042,19 @@
 
 ///returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
 /mob/living/proc/get_blood_dna_list()
-	if(get_blood_id() != /datum/reagent/blood)
-		return
-	return list("ANIMAL DNA" = "Y-")
+	var/datum/blood_type/blood = get_blood_type()
+	if(!isnull(blood))
+		return list("UNKNOWN DNA" = blood.type)
+	return null
 
 ///Get the mobs dna list
 /mob/living/carbon/get_blood_dna_list()
-	if(get_blood_id() != /datum/reagent/blood)
-		return
-	var/list/blood_dna = list()
-	if(dna)
-		blood_dna[dna.unique_enzymes] = dna.blood_type
-	else
-		blood_dna["UNKNOWN DNA"] = "X*"
-	return blood_dna
+	if(isnull(dna)) // Xenos
+		return ..()
+	var/datum/blood_type/blood = get_blood_type()
+	if(isnull(blood)) // Skeletons?
+		return null
+	return list("[dna.unique_enzymes]" = blood.type)
 
 /mob/living/carbon/alien/get_blood_dna_list()
 	return list("UNKNOWN DNA" = "X*")

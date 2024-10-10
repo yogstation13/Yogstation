@@ -48,16 +48,13 @@ GLOBAL_LIST_INIT(wound_severities_chronological, list(
 
 
 // ~determination second wind defines
-// How much determination reagent to add each time someone gains a new wound in [/datum/wound/proc/second_wind]
-#define WOUND_DETERMINATION_MODERATE 1
-#define WOUND_DETERMINATION_SEVERE 2.5
-#define WOUND_DETERMINATION_CRITICAL 5
-#define WOUND_DETERMINATION_LOSS 7.5
+// How much determination to add each time someone gains a new wound in [/datum/wound/proc/second_wind]
+#define WOUND_DETERMINATION_MODERATE (5 SECONDS)
+#define WOUND_DETERMINATION_SEVERE (10 SECONDS)
+#define WOUND_DETERMINATION_CRITICAL (20 SECONDS)
+#define WOUND_DETERMINATION_LOSS (30 SECONDS)
 /// the max amount of determination you can have
-#define WOUND_DETERMINATION_MAX 10
-
-/// While someone has determination in their system, their bleed rate is slightly reduced
-#define WOUND_DETERMINATION_BLEED_MOD 0.85
+#define WOUND_DETERMINATION_MAX (1 MINUTES)
 
 /// Wounds using this competition mode will remove any wounds of a greater severity than itself in a random wound roll. In most cases, you dont want to use this.
 #define WOUND_COMPETITION_OVERPOWER_GREATERS "wound_submit"

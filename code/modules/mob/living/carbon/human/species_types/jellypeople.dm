@@ -1,33 +1,20 @@
-///The rate at which slimes regenerate their jelly normally
-#define JELLY_REGEN_RATE 1.5
-///The rate at which slimes regenerate their jelly when they completely run out of it and start taking damage, usually after having cannibalized all their limbs already
-#define JELLY_REGEN_RATE_EMPTY 2.5
-///The blood volume at which slimes begin to start losing nutrition -- so that IV drips can work for blood deficient slimes
-#define BLOOD_VOLUME_LOSE_NUTRITION 550
-
 /datum/species/jelly
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
 	name = "\improper Jellyperson"
 	plural_form = "Jellypeople"
 	id = SPECIES_JELLYPERSON
-	species_traits = list(
-		MUTCOLORS,
-	)
 	inherent_traits = list(
-		TRAIT_CAN_USE_FLIGHT_POTION,
-		TRAIT_TOXINLOVER,
-		TRAIT_NOBLOOD,
+		TRAIT_MUTANT_COLORS,
 	)
 	mutanttongue = /obj/item/organ/internal/tongue/jelly
 	mutantlungs = /obj/item/organ/internal/lungs/slime
 	mutanteyes = /obj/item/organ/internal/eyes/jelly
-	mutantheart = null
+	mutantheart = /obj/item/organ/internal/heart/slime
+	mutantliver = /obj/item/organ/internal/liver/slime
+
 	meat = /obj/item/food/meat/slab/human/mutant/slime
-	exotic_blood = /datum/reagent/toxin/slimejelly
-	blood_deficiency_drain_rate = JELLY_REGEN_RATE + BLOOD_DEFICIENCY_MODIFIER
-	var/datum/action/innate/regenerate_limbs/regenerate_limbs
-	liked_food = MEAT | BUGS
-	toxic_food = NONE
+	exotic_bloodtype = /datum/blood_type/slime
+	blood_deficiency_drain_rate = 1.5 + BLOOD_DEFICIENCY_MODIFIER
 	coldmod = 6   // = 3x cold damage
 	heatmod = 0.5 // = 1/4x heat damage
 	burnmod = 0.5 // = 1/2x generic burn damage
@@ -35,9 +22,7 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_factions = list(FACTION_SLIME)
 	species_language_holder = /datum/language_holder/jelly
-	ass_image = 'icons/ass/assslime.png'
-	wing_types = list(/obj/item/organ/external/wings/functional/slime)
-	hair_color = "mutcolor"
+	hair_color = "mutant_color"
 	hair_alpha = 150
 	facial_hair_alpha = 150
 
@@ -50,73 +35,6 @@
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/jelly,
 	)
 
-/datum/species/jelly/on_species_gain(mob/living/carbon/new_jellyperson, datum/species/old_species, pref_load)
-	. = ..()
-	if(ishuman(new_jellyperson))
-		regenerate_limbs = new
-		regenerate_limbs.Grant(new_jellyperson)
-		update_mail_goodies(new_jellyperson)
-	new_jellyperson.AddElement(/datum/element/soft_landing)
-
-/datum/species/jelly/on_species_loss(mob/living/carbon/former_jellyperson, datum/species/new_species, pref_load)
-	if(regenerate_limbs)
-		regenerate_limbs.Remove(former_jellyperson)
-	former_jellyperson.RemoveElement(/datum/element/soft_landing)
-
-	return ..()
-
-/datum/species/jelly/update_quirk_mail_goodies(mob/living/carbon/human/recipient, datum/quirk/quirk, list/mail_goodies = list())
-	if(istype(quirk, /datum/quirk/blooddeficiency))
-		mail_goodies += list(
-			/obj/item/reagent_containers/blood/toxin
-		)
-	return ..()
-
-/datum/species/jelly/spec_life(mob/living/carbon/human/H, seconds_per_tick, times_fired)
-	if(H.stat == DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
-		return
-
-	if(!H.blood_volume)
-		H.blood_volume += JELLY_REGEN_RATE_EMPTY * seconds_per_tick
-		H.adjustBruteLoss(2.5 * seconds_per_tick)
-		to_chat(H, span_danger("You feel empty!"))
-
-	if(H.blood_volume < BLOOD_VOLUME_NORMAL)
-		if(H.nutrition >= NUTRITION_LEVEL_STARVING)
-			H.blood_volume += JELLY_REGEN_RATE * seconds_per_tick
-			if(H.blood_volume <= BLOOD_VOLUME_LOSE_NUTRITION) // don't lose nutrition if we are above a certain threshold, otherwise slimes on IV drips will still lose nutrition
-				H.adjust_nutrition(-1.25 * seconds_per_tick)
-
-	// we call lose_blood() here rather than quirk/process() to make sure that the blood loss happens in sync with life()
-	if(HAS_TRAIT(H, TRAIT_BLOOD_DEFICIENCY))
-		var/datum/quirk/blooddeficiency/blooddeficiency = H.get_quirk(/datum/quirk/blooddeficiency)
-		if(!isnull(blooddeficiency))
-			blooddeficiency.lose_blood(seconds_per_tick)
-
-	if(H.blood_volume < BLOOD_VOLUME_OKAY)
-		if(SPT_PROB(2.5, seconds_per_tick))
-			to_chat(H, span_danger("You feel drained!"))
-
-	if(H.blood_volume < BLOOD_VOLUME_BAD)
-		Cannibalize_Body(H)
-
-	if(regenerate_limbs)
-		regenerate_limbs.build_all_button_icons()
-
-/datum/species/jelly/proc/Cannibalize_Body(mob/living/carbon/human/H)
-	var/list/limbs_to_consume = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG) - H.get_missing_limbs()
-	var/obj/item/bodypart/consumed_limb
-	if(!length(limbs_to_consume))
-		H.losebreath++
-		return
-	if(H.num_legs) //Legs go before arms
-		limbs_to_consume -= list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM)
-	consumed_limb = H.get_bodypart(pick(limbs_to_consume))
-	consumed_limb.drop_limb()
-	to_chat(H, span_userdanger("Your [consumed_limb] is drawn back into your body, unable to maintain its shape!"))
-	qdel(consumed_limb)
-	H.blood_volume += 20
-
 // Slimes have both TRAIT_NOBLOOD and an exotic bloodtype set, so they need to be handled uniquely here.
 // They may not be roundstart but in the unlikely event they become one might as well not leave a glaring issue open.
 /datum/species/jelly/create_pref_blood_perks()
@@ -126,52 +44,11 @@
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "tint",
 		SPECIES_PERK_NAME = "Jelly Blood",
-		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic [initial(exotic_blood.name)]! \
+		SPECIES_PERK_DESC = "[plural_form] don't have blood, but instead have toxic-to-humans Jelly! \
 			Jelly is extremely important, as losing it will cause you to lose limbs. Having low jelly will make medical treatment very difficult.",
 	))
 
 	return to_add
-
-/datum/action/innate/regenerate_limbs
-	name = "Regenerate Limbs"
-	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "slimeheal"
-	button_icon = 'icons/mob/actions/actions_slime.dmi'
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-
-/datum/action/innate/regenerate_limbs/IsAvailable(feedback = FALSE)
-	. = ..()
-	if(!.)
-		return
-	var/mob/living/carbon/human/H = owner
-	var/list/limbs_to_heal = H.get_missing_limbs()
-	if(!length(limbs_to_heal))
-		return FALSE
-	if(H.blood_volume >= BLOOD_VOLUME_OKAY+40)
-		return TRUE
-
-/datum/action/innate/regenerate_limbs/Activate()
-	var/mob/living/carbon/human/H = owner
-	var/list/limbs_to_heal = H.get_missing_limbs()
-	if(!length(limbs_to_heal))
-		to_chat(H, span_notice("You feel intact enough as it is."))
-		return
-	to_chat(H, span_notice("You focus intently on your missing [length(limbs_to_heal) >= 2 ? "limbs" : "limb"]..."))
-	if(H.blood_volume >= 40*length(limbs_to_heal)+BLOOD_VOLUME_OKAY)
-		H.regenerate_limbs()
-		H.blood_volume -= 40*length(limbs_to_heal)
-		to_chat(H, span_notice("...and after a moment you finish reforming!"))
-		return
-	else if(H.blood_volume >= 40)//We can partially heal some limbs
-		while(H.blood_volume >= BLOOD_VOLUME_OKAY+40)
-			var/healed_limb = pick(limbs_to_heal)
-			H.regenerate_limb(healed_limb)
-			limbs_to_heal -= healed_limb
-			H.blood_volume -= 40
-		to_chat(H, span_warning("...but there is not enough of you to fix everything! You must attain more mass to heal completely!"))
-		return
-	to_chat(H, span_warning("...but there is not enough of you to go around! You must attain more mass to heal!"))
 
 ////////////////////////////////////////////////////////SLIMEPEOPLE///////////////////////////////////////////////////////////////////
 
@@ -181,7 +58,9 @@
 	name = "\improper Slimeperson"
 	plural_form = "Slimepeople"
 	id = SPECIES_SLIMEPERSON
-	species_traits = list(MUTCOLORS,)
+	inherent_traits = list(
+		TRAIT_MUTANT_COLORS,
+	)
 	hair_color = "mutcolor"
 	hair_alpha = 150
 	facial_hair_alpha = 150
@@ -250,7 +129,7 @@
 
 	else if(H.nutrition >= NUTRITION_LEVEL_WELL_FED)
 		H.blood_volume += 1.5 * seconds_per_tick
-		if(H.blood_volume <= BLOOD_VOLUME_LOSE_NUTRITION)
+		if(H.blood_volume <= 550)
 			H.adjust_nutrition(-1.25 * seconds_per_tick)
 
 	..()
@@ -302,8 +181,8 @@
 
 	spare.underwear = "Nude"
 	H.dna.transfer_identity(spare, transfer_SE=1)
-	spare.dna.features["mcolor"] = "#[pick("7F", "FF")][pick("7F", "FF")][pick("7F", "FF")]"
-	spare.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
+	var/datum/color_palette/generic_colors/palette = spare.dna.color_palettes[/datum/color_palette/generic_colors]
+	palette.mutant_color = "#[pick("7F", "FF")][pick("7F", "FF")][pick("7F", "FF")]"
 	spare.real_name = spare.dna.real_name
 	spare.name = spare.dna.real_name
 	spare.updateappearance(mutcolor_update=1)
@@ -377,7 +256,8 @@
 			continue
 
 		var/list/L = list()
-		L["htmlcolor"] = body.dna.features["mcolor"]
+		var/datum/color_palette/generic_colors/palette = body.dna.color_palettes[/datum/color_palette/generic_colors]
+		L["htmlcolor"] = palette?.mutant_color
 		L["area"] = get_area_name(body, TRUE)
 		var/stat = "error"
 		switch(body.stat)
@@ -546,7 +426,8 @@
 /datum/species/jelly/luminescent/proc/update_glow(mob/living/carbon/human/glowie, intensity)
 	if(intensity)
 		glow_intensity = intensity
-	glow.set_light_range_power_color(glow_intensity, glow_intensity, glowie.dna.features["mcolor"])
+	var/datum/color_palette/generic_colors/palette = glowie.dna.color_palettes[/datum/color_palette/generic_colors]
+	glow.set_light_range_power_color(glow_intensity, glow_intensity, palette.return_color(MUTANT_COLOR))
 
 /datum/action/innate/integrate_extract
 	name = "Integrate Extract"
@@ -810,7 +691,3 @@
 		return FALSE
 
 	return TRUE
-
-#undef JELLY_REGEN_RATE
-#undef JELLY_REGEN_RATE_EMPTY
-#undef BLOOD_VOLUME_LOSE_NUTRITION

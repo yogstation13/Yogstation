@@ -43,6 +43,9 @@
 	/// How many zones (body parts, not precise) we have disabled so far, for naming purposes
 	var/zones_disabled
 
+	/// If supplied, this is what overlay is used when applying blood effects when worn
+	var/blood_overlay_type = ""
+
 	/// A lazily initiated "food" version of the clothing for moths.
 	// This intentionally does not use the edible component, for a few reasons.
 	// 1. Effectively everything that wants something edible, from now and into the future,
@@ -591,3 +594,20 @@ BLIND     // can't see anything
 /obj/item/clothing/remove_fantasy_bonuses(bonus)
 	set_armor(get_armor().generate_new_with_modifiers(list(ARMOR_ALL = -bonus)))
 	return ..()
+
+/obj/item/clothing/proc/appears_bloody()
+	return GET_ATOM_BLOOD_DNA_LENGTH(src) && can_be_bloody && !(item_flags & NO_BLOOD_ON_ITEM)
+
+/obj/item/clothing/worn_overlays(mutable_appearance/standing, isinhands, icon_file)
+	. = ..()
+	if(isinhands)
+		return
+
+	if(blood_overlay_type && appears_bloody())
+		var/mutable_appearance/blood_overlay
+		if(clothing_flags & LARGE_WORN_ICON)
+			blood_overlay = mutable_appearance('icons/effects/64x64.dmi', "[blood_overlay_type]blood_large")
+		else
+			blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
+		blood_overlay.color = get_blood_dna_color()
+		. += blood_overlay

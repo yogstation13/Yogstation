@@ -114,12 +114,3 @@
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.unset_pain_mod(id)
 	return ..()
-
-// Reacting to all cases of gaining knocked out rather than just sleeping
-/mob/living/on_knockedout_trait_gain(datum/source)
-	. = ..()
-	set_pain_mod(PAIN_MOD_KOD, 0.8)
-
-/mob/living/on_knockedout_trait_loss(datum/source)
-	. = ..()
-	unset_pain_mod(PAIN_MOD_KOD)

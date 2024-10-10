@@ -74,9 +74,9 @@
 	dog_fashion = null
 	name = "firefighter helmet"
 	clothing_flags = STOPSPRESSUREDAMAGE | PLASMAMAN_HELMET_EXEMPT
-	heat_protection = HEAD
+
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/head/utility/hardhat/red/upgraded
@@ -94,9 +94,9 @@
 	inhand_icon_state = null
 	hat_type = "white"
 	clothing_flags = STOPSPRESSUREDAMAGE | PLASMAMAN_HELMET_EXEMPT
-	heat_protection = HEAD
+
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	dog_fashion = /datum/dog_fashion/head
 
@@ -167,9 +167,9 @@
 	light_outer_range = 4 //Boss always takes the best stuff
 	hat_type = "white"
 	clothing_flags = STOPSPRESSUREDAMAGE | PLASMAMAN_HELMET_EXEMPT
-	heat_protection = HEAD
+
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/head/utility/hardhat/welding/dblue
@@ -185,9 +185,9 @@
 	name = "atmospheric firefighter helmet"
 	desc = "A firefighter's helmet, able to keep the user cool in any situation. Comes with a light and a welding visor."
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT | PLASMAMAN_HELMET_EXEMPT | HEADINTERNALS
-	heat_protection = HEAD
+
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
 	visor_flags_cover = NONE

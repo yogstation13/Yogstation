@@ -5,85 +5,84 @@
 	icon_state = "bloodpack"
 	volume = 200
 	var/blood_type = null
-	var/unique_blood = null
 	var/labelled = FALSE
 	fill_icon_thresholds = list(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 
 /obj/item/reagent_containers/blood/Initialize(mapload, vol)
 	. = ..()
-	if(blood_type != null)
-		reagents.add_reagent(unique_blood ? unique_blood : /datum/reagent/blood, 200, list("viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null,"trace_chem"=null))
+	if(!isnull(blood_type))
+		var/datum/blood_type/blood = GLOB.blood_types[blood_type]
+		reagents.add_reagent(blood.reagent_type, 200, list("viruses" = null,"blood_DNA" = null,"blood_type" = blood_type, "resistances" = null, "trace_chem" = null))
 		update_appearance()
 
 /// Handles updating the container when the reagents change.
 /obj/item/reagent_containers/blood/on_reagent_change(datum/reagents/holder, ...)
-	var/datum/reagent/blood/new_reagent = holder.has_reagent(/datum/reagent/blood)
-	if(new_reagent && new_reagent.data && new_reagent.data["blood_type"])
-		blood_type = new_reagent.data["blood_type"]
-	else if(holder.has_reagent(/datum/reagent/consumable/liquidelectricity))
-		blood_type = "LE"
-	else if(holder.has_reagent(/datum/reagent/lube))
-		blood_type = "S"
-	else if(holder.has_reagent(/datum/reagent/water))
-		blood_type = "H2O"
-	else if(holder.has_reagent(/datum/reagent/toxin/slimejelly))
-		blood_type = "TOX"
-	else if(holder.has_reagent(/datum/reagent/toxin/slimeooze))
-		blood_type = "OOZE"
+	blood_type = null
+
+	var/datum/reagent/master_reagent = holder.get_master_reagent()
+	if(istype(master_reagent, /datum/reagent/blood))
+		blood_type = master_reagent.data?["blood_type"]
+
 	else
-		blood_type = null
+		for(var/blood_type in GLOB.blood_types)
+			var/datum/blood_type/blood = GLOB.blood_types[blood_type]
+			if(blood.reagent_type == master_reagent.type)
+				blood_type = blood_type
+				break
+
 	return ..()
 
 /obj/item/reagent_containers/blood/update_name(updates)
 	. = ..()
 	if(labelled)
 		return
-	name = "blood pack[blood_type ? " - [blood_type]" : null]"
+	var/datum/blood_type/blood = GLOB.blood_types[blood_type]
+	name = "blood pack[blood ? " - [blood.name]" : null]"
 
 /obj/item/reagent_containers/blood/random
 	icon_state = "random_bloodpack"
 
 /obj/item/reagent_containers/blood/random/Initialize(mapload, vol)
 	icon_state = "bloodpack"
-	blood_type = pick("A+", "A-", "B+", "B-", "O+", "O-", "L")
+	blood_type = pick(subtypesof(/datum/blood_type/crew) - /datum/blood_type/crew/human)
 	return ..()
 
 /obj/item/reagent_containers/blood/a_plus
-	blood_type = "A+"
+	blood_type = /datum/blood_type/crew/human/a_plus
 
 /obj/item/reagent_containers/blood/a_minus
-	blood_type = "A-"
+	blood_type = /datum/blood_type/crew/human/a_minus
 
 /obj/item/reagent_containers/blood/b_plus
-	blood_type = "B+"
+	blood_type = /datum/blood_type/crew/human/b_plus
 
 /obj/item/reagent_containers/blood/b_minus
-	blood_type = "B-"
+	blood_type = /datum/blood_type/crew/human/b_minus
 
 /obj/item/reagent_containers/blood/o_plus
-	blood_type = "O+"
+	blood_type = /datum/blood_type/crew/human/o_plus
 
 /obj/item/reagent_containers/blood/o_minus
-	blood_type = "O-"
+	blood_type = /datum/blood_type/crew/human/o_minus
 
 /obj/item/reagent_containers/blood/lizard
-	blood_type = "L"
+	blood_type = /datum/blood_type/crew/lizard
 
 /obj/item/reagent_containers/blood/ethereal
-	blood_type = "LE"
-	unique_blood = /datum/reagent/consumable/liquidelectricity
+	blood_type = /datum/blood_type/crew/ethereal
+
+/obj/item/reagent_containers/blood/skrell
+	blood_type = /datum/blood_type/crew/skrell
 
 /obj/item/reagent_containers/blood/snail
-	blood_type = "S"
-	unique_blood = /datum/reagent/lube
+	blood_type = /datum/blood_type/snail
 
 /obj/item/reagent_containers/blood/snail/examine()
 	. = ..()
 	. += span_notice("It's a bit slimy... The label indicates that this is meant for snails.")
 
 /obj/item/reagent_containers/blood/podperson
-	blood_type = "H2O"
-	unique_blood = /datum/reagent/water
+	blood_type = /datum/blood_type/water
 
 /obj/item/reagent_containers/blood/podperson/examine()
 	. = ..()
@@ -91,15 +90,14 @@
 
 // for slimepeople
 /obj/item/reagent_containers/blood/toxin
-	blood_type = "TOX"
-	unique_blood = /datum/reagent/toxin/slimejelly
+	blood_type = /datum/blood_type/slime
 
 /obj/item/reagent_containers/blood/toxin/examine()
 	. = ..()
 	. += span_notice("There is a toxin warning on the label. This is for slimepeople.")
 
 /obj/item/reagent_containers/blood/universal
-	blood_type = "U"
+	blood_type = /datum/blood_type/universal
 
 /obj/item/reagent_containers/blood/attackby(obj/item/tool, mob/user, params)
 	if (istype(tool, /obj/item/pen) || istype(tool, /obj/item/toy/crayon))

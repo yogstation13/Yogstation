@@ -16,6 +16,8 @@
 	///The bodytype(s) allowed to attach to this chest.
 	var/acceptable_bodytype = BODYTYPE_HUMANOID
 
+	var/icon/ass_image
+	var/list/wing_types = list(/obj/item/organ/external/wings/functional/angel)
 	var/obj/item/cavity_item
 
 /obj/item/bodypart/chest/can_dismember(obj/item/item)
@@ -72,101 +74,6 @@
 	bodytype = BODYTYPE_LARVA_PLACEHOLDER | BODYTYPE_ORGANIC
 	acceptable_bodytype = BODYTYPE_LARVA_PLACEHOLDER
 
-/// Parent Type for arms, should not appear in game.
-/obj/item/bodypart/arm
-	name = "arm"
-	desc = "Hey buddy give me a HAND and report this to the github because you shouldn't be seeing this."
-	attack_verb_continuous = list("slaps", "punches")
-	attack_verb_simple = list("slap", "punch")
-	max_damage = 50
-	aux_layer = BODYPARTS_HIGH_LAYER
-	body_damage_coeff = 0.75
-	can_be_disabled = TRUE
-	unarmed_attack_verb = "punch" /// The classic punch, wonderfully classic and completely random
-	unarmed_damage_low = 5
-	unarmed_damage_high = 5
-	unarmed_stun_threshold = 10
-	body_zone = BODY_ZONE_L_ARM
-
-	biological_state = BIO_STANDARD_JOINTED
-
-/obj/item/bodypart/arm/Destroy()
-	return ..()
-
-/obj/item/bodypart/arm/left
-	name = "left arm"
-	desc = "Did you know that the word 'sinister' stems originally from the \
-		Latin 'sinestra' (left hand), because the left hand was supposed to \
-		be possessed by the devil? This arm appears to be possessed by no \
-		one though."
-	icon_state = "default_human_l_arm"
-	body_zone = BODY_ZONE_L_ARM
-	body_part = ARM_LEFT
-	plaintext_zone = "left arm"
-	aux_zone = BODY_ZONE_PRECISE_L_HAND
-	held_index = 1
-	px_x = -6
-	px_y = 0
-	bodypart_trait_source = LEFT_ARM_TRAIT
-
-
-/obj/item/bodypart/arm/left/set_owner(new_owner)
-	. = ..()
-	if(. == FALSE)
-		return
-	if(owner)
-		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
-			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_loss))
-		else
-			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_gain))
-	if(.)
-		var/mob/living/carbon/old_owner = .
-		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_L_ARM))
-			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM))
-			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
-				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
-		else
-			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM))
-
-
-///Proc to react to the owner gaining the TRAIT_PARALYSIS_L_ARM trait.
-/obj/item/bodypart/arm/left/proc/on_owner_paralysis_gain(mob/living/carbon/source)
-	SIGNAL_HANDLER
-	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
-	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_loss))
-
-
-///Proc to react to the owner losing the TRAIT_PARALYSIS_L_ARM trait.
-/obj/item/bodypart/arm/left/proc/on_owner_paralysis_loss(mob/living/carbon/source)
-	SIGNAL_HANDLER
-	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
-	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_gain))
-
-
-/obj/item/bodypart/arm/left/set_disabled(new_disabled)
-	. = ..()
-	if(isnull(.) || !owner)
-		return
-
-	if(!.)
-		if(bodypart_disabled)
-			owner.set_usable_hands(owner.usable_hands - 1)
-			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, span_userdanger("You lose control of your [name]!"))
-			if(held_index)
-				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
-	else if(!bodypart_disabled)
-		owner.set_usable_hands(owner.usable_hands + 1)
-
-	if(owner.hud_used)
-		var/atom/movable/screen/inventory/hand/hand_screen_object = owner.hud_used.hand_slots["[held_index]"]
-		hand_screen_object?.update_appearance()
-
-
 /obj/item/bodypart/arm/left/monkey
 	icon = 'icons/mob/species/monkey/bodyparts.dmi'
 	icon_static = 'icons/mob/species/monkey/bodyparts.dmi'
@@ -196,78 +103,6 @@
 	can_be_disabled = FALSE
 	max_damage = 100
 	should_draw_greyscale = FALSE
-
-
-/obj/item/bodypart/arm/right
-	name = "right arm"
-	desc = "Over 87% of humans are right handed. That figure is much lower \
-		among humans missing their right arm."
-	body_zone = BODY_ZONE_R_ARM
-	body_part = ARM_RIGHT
-	icon_state = "default_human_r_arm"
-	plaintext_zone = "right arm"
-	aux_zone = BODY_ZONE_PRECISE_R_HAND
-	aux_layer = BODYPARTS_HIGH_LAYER
-	held_index = 2
-	px_x = 6
-	px_y = 0
-	bodypart_trait_source = RIGHT_ARM_TRAIT
-
-/obj/item/bodypart/arm/right/set_owner(new_owner)
-	. = ..()
-	if(. == FALSE)
-		return
-	if(owner)
-		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
-			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_loss))
-		else
-			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_gain))
-	if(.)
-		var/mob/living/carbon/old_owner = .
-		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_R_ARM))
-			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM))
-			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
-				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
-		else
-			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM))
-
-
-///Proc to react to the owner gaining the TRAIT_PARALYSIS_R_ARM trait.
-/obj/item/bodypart/arm/right/proc/on_owner_paralysis_gain(mob/living/carbon/source)
-	SIGNAL_HANDLER
-	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
-	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_loss))
-
-
-///Proc to react to the owner losing the TRAIT_PARALYSIS_R_ARM trait.
-/obj/item/bodypart/arm/right/proc/on_owner_paralysis_loss(mob/living/carbon/source)
-	SIGNAL_HANDLER
-	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
-	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_gain))
-
-
-/obj/item/bodypart/arm/right/set_disabled(new_disabled)
-	. = ..()
-	if(isnull(.) || !owner)
-		return
-
-	if(!.)
-		if(bodypart_disabled)
-			owner.set_usable_hands(owner.usable_hands - 1)
-			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, span_userdanger("You lose control of your [name]!"))
-			if(held_index)
-				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
-	else if(!bodypart_disabled)
-		owner.set_usable_hands(owner.usable_hands + 1)
-
-	if(owner.hud_used)
-		var/atom/movable/screen/inventory/hand/hand_screen_object = owner.hud_used.hand_slots["[held_index]"]
-		hand_screen_object?.update_appearance()
 
 
 /obj/item/bodypart/arm/right/monkey
@@ -325,6 +160,8 @@
 	var/old_limb_id
 	/// Used by the bloodysoles component to make footprints
 	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
+	///our step sound
+	var/list/step_sounds
 	biological_state = BIO_STANDARD_JOINTED
 
 /obj/item/bodypart/leg/Destroy()

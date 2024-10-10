@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(blackbox)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	init_order = INIT_ORDER_BLACKBOX
 
-	var/list/feedback_list = list() //list of datum/feedback_variable
+	var/list/datum/feedback_variable/feedback_list = list() //list of datum/feedback_variable
 	var/list/first_death = list() //the first death of this round, assoc. vars keep track of different things
 	var/triggertime = 0
 	var/sealed = FALSE //time to stop tracking stats?

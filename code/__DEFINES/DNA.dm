@@ -40,7 +40,7 @@
 #define DNA_UNI_IDENTITY_BLOCKS 7
 
 /// This number needs to equal the total number of DNA blocks
-#define DNA_FEATURE_BLOCKS 16
+#define DNA_FEATURE_BLOCKS 20
 
 #define DNA_MUTANT_COLOR_BLOCK 1
 #define DNA_ETHEREAL_COLOR_BLOCK 2
@@ -58,6 +58,10 @@
 #define DNA_MUSHROOM_CAPS_BLOCK 14
 #define DNA_POD_HAIR_BLOCK 15
 #define DNA_MUTANT_COLOR_SECONDARY 16
+#define DNA_ARM_WINGS_BLOCK 17 // NON-MODULE CHANGE
+#define DNA_AVIAN_EARS_BLOCK 18 // NON-MODULE CHANGE
+#define DNA_AVIAN_TAIL_BLOCK 19 // NON-MODULE CHANGE
+#define DNA_FEATHER_COLOR_BLOCK 20 // NON-MODULE CHANGE
 
 #define DNA_SEQUENCE_LENGTH 4
 #define DNA_MUTATION_BLOCKS 8
@@ -66,37 +70,19 @@
 #define CLONER_FRESH_CLONE "fresh"
 #define CLONER_MATURE_CLONE "mature"
 
-
-
-//species traits for mutantraces
-#define MUTCOLORS 1
-#define NOTRANSSTING 2
-#define NOZOMBIE 3
-#define NO_UNDERWEAR 4
-#define NO_DNA_COPY 5
-#define DRINKSBLOOD 6
-#define ANIME 7
-#define MUTCOLORS_SECONDARY 8
-#define SPECIES_FUR 9
-#define SKINTONES 10
-
 /// Use this if you want to change the race's color without the player being able to pick their own color. AKA special color shifting
 #define DYNCOLORS 7
 #define AGENDER 8
-/// Do not draw eyes or eyeless overlay
-#define NOEYESPRITES 9
 ///If we have a limb-specific overlay sprite
-#define HAS_MARKINGS 10
+#define HAS_MARKINGS 9
 /// Do not draw blood overlay
-#define NOBLOODOVERLAY 11
+#define NOBLOODOVERLAY 10
 ///No augments, for monkeys in specific because they will turn into fucking freakazoids https://cdn.discordapp.com/attachments/326831214667235328/791313258912153640/102707682-fa7cad80-4294-11eb-8f13-8c689468aeb0.png
-#define NOAUGMENTS 12
+#define NOAUGMENTS 11
 ///will be assigned a universal vampire themed last name shared by their department. this is preferenced!
-#define BLOOD_CLANS 13
+#define BLOOD_CLANS 12
 
-#define REVIVESBYHEALING 14
-#define NOHUSK 15
-#define NOMOUTH 16
+#define REVIVESBYHEALING 13
 
 //organ slots
 #define ORGAN_SLOT_ADAMANTINE_RESONATOR "adamantine_resonator"
@@ -145,6 +131,7 @@
 #define ORGAN_SLOT_EXTERNAL_ANIME_BOTTOM "anime_bottom"
 #define ORGAN_SLOT_EXTERNAL_FLORAN_LEAVES "floran_leaves"
 #define ORGAN_SLOT_EXTERNAL_FLUFF "fluff"
+#define ORGAN_SLOT_EXTERNAL_FEATHERS "feathers"
 
 /// Xenomorph organ slots
 #define ORGAN_SLOT_XENO_ACIDGLAND "acid_gland"

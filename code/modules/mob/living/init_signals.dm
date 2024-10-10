@@ -1,7 +1,6 @@
 /// Called on [/mob/living/Initialize(mapload)], for the mob to register to relevant signals.
 /mob/living/proc/register_init_signals()
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), PROC_REF(on_knockedout_trait_gain))
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), PROC_REF(on_knockedout_trait_loss))
+	RegisterSignals(src, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT)), PROC_REF(on_knockedout_trait))
 
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_DEATHCOMA), PROC_REF(on_deathcoma_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_DEATHCOMA), PROC_REF(on_deathcoma_trait_loss))
@@ -63,17 +62,20 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
-/// Called when [TRAIT_KNOCKEDOUT] is added to the mob.
-/mob/living/proc/on_knockedout_trait_gain(datum/source)
+/// Called when [TRAIT_KNOCKEDOUT] is added or removed from the mob.
+/mob/living/proc/on_knockedout_trait(datum/source)
 	SIGNAL_HANDLER
-	if(stat < UNCONSCIOUS)
-		set_stat(UNCONSCIOUS)
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT))
+		become_blind(UNCONSCIOUS_TRAIT)
+		set_pain_mod(PAIN_MOD_KOD, 0.8)
+		add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_KNOCKEDOUT)
+		update_body() // Update eyelids
 
-/// Called when [TRAIT_KNOCKEDOUT] is removed from the mob.
-/mob/living/proc/on_knockedout_trait_loss(datum/source)
-	SIGNAL_HANDLER
-	if(stat <= UNCONSCIOUS)
-		update_stat()
+	else
+		cure_blind(UNCONSCIOUS_TRAIT)
+		unset_pain_mod(PAIN_MOD_KOD)
+		remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILIZED, TRAIT_INCAPACITATED, TRAIT_FLOORED), TRAIT_KNOCKEDOUT)
+		update_body() // Update eyelids
 
 /// Called when [TRAIT_DEATHCOMA] is added to the mob.
 /mob/living/proc/on_deathcoma_trait_gain(datum/source)

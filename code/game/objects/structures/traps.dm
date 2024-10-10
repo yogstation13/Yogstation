@@ -202,7 +202,7 @@
 /obj/structure/trap/chill/trap_effect(mob/living/victim)
 	to_chat(victim, span_bolddanger("You're frozen solid!"))
 	victim.Paralyze(2 SECONDS)
-	victim.adjust_bodytemperature(-300)
+	victim.adjust_bodytemperature(-T0C, use_insulation = TRUE)
 	victim.apply_status_effect(/datum/status_effect/freon)
 
 

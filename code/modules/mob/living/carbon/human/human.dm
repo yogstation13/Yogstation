@@ -48,6 +48,8 @@
 	become_blind(NO_EYES)
 	// Mobs cannot taste anything without a tongue; the tongue organ removes this on Insert
 	ADD_TRAIT(src, TRAIT_AGEUSIA, NO_TONGUE_TRAIT)
+	// No lungs until you get lungs
+	apply_status_effect(/datum/status_effect/lungless)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -713,11 +715,6 @@
 		for(var/datum/mutation/human/existing_mutation in dna.mutations)
 			if(existing_mutation.quality != POSITIVE)
 				dna.remove_mutation(existing_mutation.name)
-
-	if(heal_flags & HEAL_TEMP)
-		set_coretemperature(get_body_temp_normal(apply_change = FALSE))
-		heat_exposure_stacks = 0
-
 	return ..()
 
 /mob/living/carbon/human/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, vomit_type = VOMIT_TOXIC, harm = TRUE, force = FALSE, purge_ratio = 0.1)
@@ -898,24 +895,30 @@
 
 	return ..()
 
+
+/mob/living/carbon/human/reagent_check(datum/reagent/chem, seconds_per_tick, times_fired)
+	. = ..()
+	if(. & COMSIG_MOB_STOP_REAGENT_CHECK)
+		return
+	return dna.species.handle_chemical(chem, src, seconds_per_tick, times_fired)
+
 /mob/living/carbon/human/updatehealth()
 	. = ..()
 	dna?.species.spec_updatehealth(src)
-	if(HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
-		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
-		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
-		return
+	update_damage_movespeed()
+
+/mob/living/carbon/human/proc/update_damage_movespeed()
 	var/health_deficiency = max((maxHealth - health), staminaloss)
 	if(health_deficiency >= 40)
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_deficiency / 75)
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_deficiency / 25)
-	else
+	else if(LAZYACCESS(movespeed_modification, "[/datum/movespeed_modifier/damage_slowdown]"))
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 
 /mob/living/carbon/human/pre_stamina_change(diff as num, forced)
 	if(diff < 0) //Taking damage, not healing
-		return diff * physiology.stamina_mod
+		return diff * physiology.stamina_mod * physiology.temp_stamina_mod
 	return diff
 
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
@@ -925,16 +928,6 @@
 
 /mob/living/carbon/human/set_nutrition(change) //Seriously fuck you oldcoders.
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
-		return FALSE
-	return ..()
-
-/mob/living/carbon/human/is_bleeding()
-	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
-		return FALSE
-	return ..()
-
-/mob/living/carbon/human/get_total_bleed_rate()
-	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return FALSE
 	return ..()
 

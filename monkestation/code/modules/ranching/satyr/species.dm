@@ -3,36 +3,22 @@
 	plural_form = "Satyrs"
 	id = SPECIES_SATYR
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
-	no_equip_flags = ITEM_SLOT_FEET
 	sexes = TRUE
-	species_traits = list(
-		NO_UNDERWEAR,
-	)
 	inherent_traits = list(
-		TRAIT_ALCOHOL_TOLERANCE,
-		TRAIT_HARD_SOLES
-	)
-	special_step_sounds = list(
-		'sound/effects/footstep/hardclaw1.ogg',
-		'sound/effects/footstep/hardclaw2.ogg',
-		'sound/effects/footstep/hardclaw3.ogg',
-		'sound/effects/footstep/hardclaw4.ogg',
-		'sound/effects/footstep/hardclaw1.ogg',
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_USES_SKINTONES,
 	)
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
-	use_skintones = TRUE
 	external_organs = list(
 		/obj/item/organ/external/satyr_fluff = "normal",
 		/obj/item/organ/external/satyr_tail = "short",
 		/obj/item/organ/external/satyr_horns = "back",
 	)
 	meat = /obj/item/food/meat/steak
-	liked_food = GROSS | VEGETABLES | FRUIT
-	disliked_food = MEAT | DAIRY
+	mutanttongue = /obj/item/organ/internal/tongue/satyr
+	mutantliver = /obj/item/organ/internal/liver/satyr
 	maxhealthmod = 0.8
 	stunmod = 1.2
-	//speedmod = 1
-	payday_modifier = 1
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/satyr,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/satyr,
@@ -41,8 +27,6 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/satyr,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/satyr,
 	)
-
-	var/datum/action/cooldown/mob_cooldown/dash/headbutt/headbutt
 
 /datum/species/satyr/get_species_description()
 	return "Mythical goat-people. The clacking of hooves and smell of beer follow them around."
@@ -80,20 +64,30 @@
 
 	return to_add
 
-/datum/species/satyr/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
-	. = ..()
-	ADD_TRAIT(C, TRAIT_TIN_EATER, INNATE_TRAIT)
-	C.AddComponent(/datum/component/living_drunk)
+/obj/item/organ/internal/tongue/satyr
+	name = "satyr tongue"
 
-	headbutt = new
-	headbutt.Grant(C)
+	liked_foodtypes = GROSS | VEGETABLES | FRUIT
+	disliked_foodtypes = MEAT | DAIRY
 
-/datum/species/satyr/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+/obj/item/organ/internal/tongue/satyr/Insert(mob/living/carbon/tongue_owner, special, drop_if_replaced)
 	. = ..()
-	REMOVE_TRAIT(C, TRAIT_TIN_EATER, INNATE_TRAIT)
-	var/datum/component/living_drunk/drunk = C.GetComponent(/datum/component/living_drunk)
+	ADD_TRAIT(tongue_owner, TRAIT_TIN_EATER, ORGAN_TRAIT)
+
+/obj/item/organ/internal/tongue/satyr/Remove(mob/living/carbon/tongue_owner, special)
+	. = ..()
+	REMOVE_TRAIT(tongue_owner, TRAIT_TIN_EATER, ORGAN_TRAIT)
+
+/obj/item/organ/internal/liver/satyr
+	name = "satyr liver"
+	organ_traits = list(TRAIT_ALCOHOL_TOLERANCE)
+
+
+/obj/item/organ/internal/liver/satyr/Insert(mob/living/carbon/receiver, special, drop_if_replaced)
+	. = ..()
+	receiver.AddComponent(/datum/component/living_drunk)
+
+/obj/item/organ/internal/liver/satyr/Remove(mob/living/carbon/organ_owner, special)
+	. = ..()
+	var/datum/component/living_drunk/drunk = organ_owner.GetComponent(/datum/component/living_drunk)
 	qdel(drunk)
-
-	if(headbutt)
-		headbutt.Remove(C)
-		qdel(headbutt)

@@ -9,10 +9,6 @@
 	wound_flags = (ACCEPTS_GAUZE)
 
 	processes = TRUE
-	/// How much do we need to regen. Will regen faster if we're splinted and or laying down
-	var/regen_ticks_needed
-	/// Our current counter for healing
-	var/regen_ticks_current = 0
 
 	can_scar = FALSE
 
@@ -69,13 +65,6 @@
 
 	if(limb.current_gauze)
 		regen_ticks_current += (1-limb.current_gauze.splint_factor)
-
-	if(regen_ticks_current > regen_ticks_needed)
-		if(!victim || !limb)
-			qdel(src)
-			return
-		to_chat(victim, span_green("Your [parse_zone(limb.body_zone)] has regenerated its muscle!"))
-		remove_wound()
 
 /// If we're a human who's punching something with a broken arm, we might hurt ourselves doing so
 /datum/wound/muscle/proc/attack_with_hurt_hand(mob/M, atom/target, proximity)

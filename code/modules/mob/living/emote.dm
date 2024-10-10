@@ -288,7 +288,8 @@
 	if(user.alternative_laughs.len)
 		return pick(user.alternative_laughs)
 
-	return user.dna.species.get_laugh_sound(user)
+	var/obj/item/organ/internal/tongue/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
+	return tongue?.get_laugh_sound(user)
 // MonkeStation Edit End
 
 /datum/emote/living/look

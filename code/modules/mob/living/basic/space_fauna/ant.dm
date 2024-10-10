@@ -30,8 +30,8 @@
 	health = 100
 	maxHealth = 100
 	light_outer_range = 1.5 // Bioluminescence!
-	minimum_survivable_temperature = T20C - 100
-	maximum_survivable_temperature = T20C + 120
+	bodytemp_cold_damage_limit = T20C - 100
+	bodytemp_heat_damage_limit = T20C + 120
 	light_color = "#d43229" // The ants that comprise the giant ant still glow red despite the sludge.
 
 	ai_controller = /datum/ai_controller/basic_controller/ant

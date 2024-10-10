@@ -262,7 +262,7 @@
 	alert_drones(DRONE_NET_DISCONNECT)
 
 
-/mob/living/basic/drone/gib()
+/mob/living/basic/drone/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	dust()
 
 /mob/living/basic/drone/examine(mob/user)

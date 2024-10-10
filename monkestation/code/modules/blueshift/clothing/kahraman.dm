@@ -285,9 +285,9 @@
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	worn_icon_state = "flak"
 	body_parts_covered = CHEST
-	cold_protection = CHEST|GROIN
+
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	heat_protection = CHEST|GROIN
+
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	armor_type = /datum/armor/colonist_armor
 	resistance_flags = NONE
@@ -369,9 +369,9 @@
 	worn_icon_state = "gloves"
 	greyscale_colors = "#3a373e"
 	siemens_coefficient = 0.25 // Doesn't insulate you entirely, but makes you a little more resistant
-	cold_protection = HANDS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
+
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	clothing_traits = list(TRAIT_QUICK_CARRY)

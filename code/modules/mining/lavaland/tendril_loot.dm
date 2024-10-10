@@ -543,7 +543,7 @@
 	if(!ishuman(exposed_mob) || exposed_mob.stat == DEAD)
 		return
 	var/mob/living/carbon/human/exposed_human = exposed_mob
-	if(!HAS_TRAIT(exposed_human, TRAIT_CAN_USE_FLIGHT_POTION) || reac_volume < 5 || !exposed_human.dna)
+	if(reac_volume < 5 || !exposed_human.dna)
 		if((methods & INGEST) && show_message)
 			to_chat(exposed_human, span_notice("<i>You feel nothing but a terrible aftertaste.</i>"))
 		return
@@ -560,7 +560,8 @@
 	exposed_human.emote("scream")
 
 /datum/reagent/flightpotion/proc/get_wing_choice(mob/living/carbon/human/needs_wings)
-	var/list/wing_types = needs_wings.dna.species.wing_types.Copy()
+	var/obj/item/bodypart/chest/chest = needs_wings.get_bodypart(BODY_ZONE_CHEST)
+	var/list/wing_types = chest.wing_types.Copy()
 	if(wing_types.len == 1 || !needs_wings.client)
 		return wing_types[1]
 	var/list/radial_wings = list()
@@ -615,9 +616,9 @@
 	toolspeed = 0.1
 	strip_delay = 40
 	equip_delay_other = 20
-	cold_protection = HANDS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
+
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = LAVA_PROOF | FIRE_PROOF //they are from lavaland after all
 	armor_type = /datum/armor/gloves_gauntlets
@@ -664,9 +665,9 @@
 	worn_icon = 'icons/mob/clothing/suits/armor.dmi'
 	hoodtype = /obj/item/clothing/head/hooded/berserker
 	armor_type = /datum/armor/hooded_berserker
-	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	resistance_flags = FIRE_PROOF
@@ -711,9 +712,9 @@
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	armor_type = /datum/armor/hooded_berserker
 	actions_types = list(/datum/action/item_action/berserk_mode)
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
-	heat_protection = HEAD
+
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 	clothing_flags = SNUG_FIT|THICKMATERIAL

@@ -13,6 +13,7 @@
 	armor_type = /datum/armor/clothing_shoes
 	slowdown = SHOES_SLOWDOWN
 	strip_delay = 1 SECONDS
+	blood_overlay_type = "shoe"
 	var/offset = 0
 	var/equipped_before_drop = FALSE
 	///Whether these shoes have laces that can be tied/untied
@@ -53,11 +54,6 @@
 
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
-	if(GET_ATOM_BLOOD_DNA_LENGTH(src))
-		if(clothing_flags & LARGE_WORN_ICON)
-			. += mutable_appearance('icons/effects/64x64.dmi', "shoeblood_large")
-		else
-			. += mutable_appearance('icons/effects/blood.dmi', "shoeblood")
 
 /obj/item/clothing/shoes/examine(mob/user)
 	. = ..()

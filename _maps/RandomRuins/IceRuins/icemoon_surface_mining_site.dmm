@@ -82,7 +82,6 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "s" = (
-/obj/effect/decal/cleanable/trail_holder,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "t" = (

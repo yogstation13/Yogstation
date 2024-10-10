@@ -55,7 +55,7 @@
 	. += mutable_appearance(icon, "[collar_icon_state][stat_tag]collar")
 	. += mutable_appearance(icon, "[collar_icon_state][stat_tag]tag")
 
-/mob/living/simple_animal/pet/gib()
+/mob/living/simple_animal/pet/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	. = ..()
 
 	if(access_card)

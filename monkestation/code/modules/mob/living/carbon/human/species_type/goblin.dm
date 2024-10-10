@@ -4,10 +4,8 @@
 	id = SPECIES_GOBLIN
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 	sexes = TRUE
-	species_traits = list(
-		MUTCOLORS,
-	)
 	inherent_traits = list(
+		TRAIT_MUTANT_COLORS,
 		TRAIT_DWARF,
 		TRAIT_QUICK_BUILD,
 		TRAIT_EASILY_WOUNDED,
@@ -19,12 +17,10 @@
 		/obj/item/organ/external/goblin_ears = "long",
 		)
 	meat = /obj/item/food/meat/steak
-	disliked_food = VEGETABLES
-	liked_food = GORE | MEAT | GROSS
+	mutanttongue = /obj/item/organ/internal/tongue/goblin
 	species_language_holder = /datum/language_holder/goblin
 	maxhealthmod = 0.75
 	stunmod = 1.2
-	speedmod = -0.25
 	payday_modifier = 1
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/goblin,
@@ -37,33 +33,6 @@
 
 /mob/living/carbon/human/species/goblin
     race = /datum/species/goblin
-
-/datum/species/goblin/get_scream_sound(mob/living/carbon/human/human)
-	if(human.gender == MALE)
-		if(prob(1))
-			return 'sound/voice/human/wilhelm_scream.ogg'
-		return pick(
-			'sound/voice/human/malescream_1.ogg',
-			'sound/voice/human/malescream_2.ogg',
-			'sound/voice/human/malescream_3.ogg',
-			'sound/voice/human/malescream_4.ogg',
-			'sound/voice/human/malescream_5.ogg',
-			'sound/voice/human/malescream_6.ogg',
-		)
-
-	return pick(
-		'sound/voice/human/femalescream_1.ogg',
-		'sound/voice/human/femalescream_2.ogg',
-		'sound/voice/human/femalescream_3.ogg',
-		'sound/voice/human/femalescream_4.ogg',
-		'sound/voice/human/femalescream_5.ogg',
-	)
-
-/datum/species/goblin/get_laugh_sound(mob/living/carbon/human/human)
-	if(human.gender == MALE)
-		return pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg')
-	else
-		return 'sound/voice/human/womanlaugh.ogg'
 
 /datum/language_holder/goblin
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
@@ -140,24 +109,43 @@
 	icon_greyscale = 'monkestation/icons/mob/species/goblin/bodyparts.dmi'
 	limb_id = SPECIES_GOBLIN
 	is_dimorphic = FALSE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /obj/item/bodypart/chest/goblin
 	icon_greyscale = 'monkestation/icons/mob/species/goblin/bodyparts.dmi'
 	limb_id = SPECIES_GOBLIN
 	is_dimorphic = TRUE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /obj/item/bodypart/arm/left/goblin
 	icon_greyscale = 'monkestation/icons/mob/species/goblin/bodyparts.dmi'
 	limb_id = SPECIES_GOBLIN
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /obj/item/bodypart/arm/right/goblin
 	icon_greyscale = 'monkestation/icons/mob/species/goblin/bodyparts.dmi'
 	limb_id = SPECIES_GOBLIN
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /obj/item/bodypart/leg/left/goblin
 	icon_greyscale = 'monkestation/icons/mob/species/goblin/bodyparts.dmi'
 	limb_id = SPECIES_GOBLIN
+	speed_modifier = -0.125
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /obj/item/bodypart/leg/right/goblin
 	icon_greyscale = 'monkestation/icons/mob/species/goblin/bodyparts.dmi'
 	limb_id = SPECIES_GOBLIN
+	speed_modifier = -0.125
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
+
+/obj/item/organ/internal/tongue/goblin
+	name = "goblin tongue"
+	disliked_foodtypes = VEGETABLES
+	liked_foodtypes = GORE | MEAT | GROSS

@@ -139,7 +139,7 @@
 	obj_damage = 60
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	minimum_survivable_temperature = 100
+	bodytemp_cold_damage_limit = 100
 	istate = ISTATE_HARM|ISTATE_BLOCKING
 	basic_mob_flags = DEL_ON_DEATH
 	death_message = "collapses into bits of plant matter."

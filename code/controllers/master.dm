@@ -234,6 +234,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 		// Initialize subsystems.
 		for (var/datum/controller/subsystem/subsystem in stage_sorted_subsystems[current_init_stage])
 			init_subsystem(subsystem)
+			#ifndef OPENDREAM
 			if(world.system_type == MS_WINDOWS)
 				var/ss_name = "[subsystem.name]"
 				var/memory_summary = call_ext("memorystats", "get_memory_stats")()
@@ -241,6 +242,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 
 				var/string = "[ss_name] [memory_summary]"
 				WRITE_FILE(file, string)
+			#endif
 
 			CHECK_TICK
 		current_initializing_subsystem = null

@@ -1,9 +1,10 @@
 /obj/machinery/health_scanner_floor
-	name = "floor scanner"
+	name = "Vitals Scanning Pad"
 	desc = "Gives patients a brief medical overview by stepping on it."
 
 	icon_state = "floor_scanner"
 	icon = 'monkestation/code/modules/virology/icons/virology.dmi'
+	circuit = /obj/item/circuitboard/machine/vital_floor_scanner
 
 	density = FALSE
 	anchored = TRUE
@@ -26,7 +27,9 @@
 	vis_contents += maptext_obj
 
 	var/static/list/connections = list(
+		COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON = PROC_REF(on_entered),
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
+		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddElement(/datum/element/elevation, 4)
@@ -51,9 +54,16 @@
 
 	arrived.visual_masked_scan()
 	maptext_obj.maptext = generate_maptext(arrived)
+	set_occupant(arrived)
 	animate(maptext_obj, 0.25 SECONDS, maptext_y = 32, easing = BOUNCE_EASING)
 
 	addtimer(CALLBACK(src, PROC_REF(clear_maptext)), 3 SECONDS)
+
+/obj/machinery/health_scanner_floor/proc/on_exited(datum/source, atom/movable/departed)
+	SIGNAL_HANDLER
+	if(occupant != departed)
+		return
+	set_occupant(null)
 
 /obj/machinery/health_scanner_floor/proc/clear_maptext()
 	maptext_obj.maptext = null

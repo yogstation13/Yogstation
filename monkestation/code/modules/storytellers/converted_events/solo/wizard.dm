@@ -26,6 +26,7 @@
 	weight = 2
 	min_players = 35
 	max_occurrences = 1
+	event_icon_state = "wizard"
 
 /datum/round_event_control/antagonist/solo/wizard/can_spawn_event(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()

@@ -5,7 +5,9 @@
 	var/list/external_slots = list()
 
 /datum/sprite_accessory/body_markings
-	color_src = MUTCOLORS_SECONDARY
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR_SECONDARY
+	fallback_key = MUTANT_COLOR
 
 /datum/sprite_accessory/body_markings/light_belly
 	name = "Light Belly"

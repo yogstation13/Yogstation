@@ -356,6 +356,12 @@ Difficulty: Hard
 
 /obj/effect/decal/cleanable/blood/bubblegum
 	bloodiness = 0
+	base_name = ""
+	can_dry = FALSE
+
+/obj/effect/decal/cleanable/blood/bubblegum/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	add_blood_DNA(list("DEMON BLOOD" = /datum/blood_type/animal))
 
 /obj/effect/decal/cleanable/blood/bubblegum/can_bloodcrawl_in()
 	return TRUE
@@ -365,6 +371,12 @@ Difficulty: Hard
 	desc = "Thick, splattered blood."
 	random_icon_states = list("gib3", "gib5", "gib6")
 	bloodiness = 20
+	base_name = ""
+	can_dry = FALSE
+
+/obj/effect/decal/cleanable/blood/gibs/bubblegum/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	add_blood_DNA(list("DEMON BLOOD" = /datum/blood_type/animal))
 
 /obj/effect/decal/cleanable/blood/gibs/bubblegum/can_bloodcrawl_in()
 	return TRUE

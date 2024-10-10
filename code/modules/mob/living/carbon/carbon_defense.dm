@@ -140,15 +140,13 @@
 		var/exterior_ready_to_dismember = (!has_exterior || ((mangled_state & BODYPART_MANGLED_EXTERIOR)))
 		var/interior_ready_to_dismember = (!has_interior || ((mangled_state & BODYPART_MANGLED_INTERIOR)))
 
-		var/dismemberable = ((hit_bodypart.dismemberable_by_wound()) || hit_bodypart.dismemberable_by_total_damage())
+		var/dismemberable = hit_bodypart.dismemberable_by_wound() || hit_bodypart.dismemberable_by_total_damage()
 		if (dismemberable)
-			extra_wound_details = ", threatening to sever it entirely"
-		else if((has_interior && (has_exterior && exterior_ready_to_dismember) && I.get_sharpness()))
-			var/bone_text = hit_bodypart.get_internal_description()
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the [bone_text]"
-		else if(has_exterior && ((has_interior && interior_ready_to_dismember) && I.get_sharpness()))
-			var/tissue_text = hit_bodypart.get_external_description()
-			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] at the remaining [tissue_text]"
+			extra_wound_details = hit_bodypart.get_soon_dismember_message()
+		else if(has_interior && (has_exterior && exterior_ready_to_dismember) && I.get_sharpness())
+			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] through to the [hit_bodypart.get_internal_description()]"
+		else if(has_exterior && (has_interior && interior_ready_to_dismember) && I.get_sharpness())
+			extra_wound_details = ", [I.get_sharpness() == SHARP_EDGED ? "slicing" : "piercing"] at the remaining [hit_bodypart.get_external_description()]"
 
 	var/message_hit_area = ""
 	if(hit_area)
@@ -167,6 +165,18 @@
 		to_chat(user, span_danger("[attack_message_attacker]"))
 	return TRUE
 
+/mob/living/carbon/attack_animal(mob/living/simple_animal/user, list/modifiers)
+	. = ..()
+	if(. <= 0)
+		return
+	if(user.wound_bonus != CANT_WOUND)
+		return
+	// Snowflake mcsnowflake but mobs which can't wound should still capable of causing IB
+	var/obj/item/bodypart/affecting = get_bodypart(user.zone_selected) || get_bodypart(BODY_ZONE_CHEST)
+	var/ib_prob = . + rand(-10, 40) - getarmor(affecting, WOUND)
+	if(ib_prob < 45)
+		return
+	affecting.force_wound_upwards(/datum/wound/bleed_internal, wound_source = user)
 
 /mob/living/carbon/attack_drone(mob/living/basic/drone/user)
 	return //so we don't call the carbon's attack_hand().
@@ -520,14 +530,14 @@
 				add_mood_event("hug", /datum/mood_event/bad_touch_bear_hug)
 
 		// Let people know if they hugged someone really warm or really cold
-		if(helper.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT || helper.has_status_effect(/datum/status_effect/bloodsucker_sol)) // monkestation edit: bloodsucker sol
+		if(helper.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTHEAT))
 			to_chat(src, span_warning("It feels like [helper] is over heating as [helper.p_they()] hug[helper.p_s()] you."))
-		else if(helper.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
+		else if(helper.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTCOLD))
 			to_chat(src, span_warning("It feels like [helper] is freezing as [helper.p_they()] hug[helper.p_s()] you."))
 
-		if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT || has_status_effect(/datum/status_effect/bloodsucker_sol)) // monkestation edit: bloodsucker sol
+		if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTHEAT))
 			to_chat(helper, span_warning("It feels like [src] is over heating as you hug [p_them()]."))
-		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
+		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT && !HAS_TRAIT(src, TRAIT_RESISTCOLD))
 			to_chat(helper, span_warning("It feels like [src] is freezing as you hug [p_them()]."))
 
 		if(HAS_TRAIT(helper, TRAIT_FRIENDLY))

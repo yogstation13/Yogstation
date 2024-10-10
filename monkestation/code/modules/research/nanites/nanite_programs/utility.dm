@@ -108,7 +108,7 @@
 
 	update_research_speed()
 
-	host_mob.add_body_temperature_change(NANITE_RESEARCH_CHANGE, research_speed * 15)
+	host_mob.add_homeostasis_level(NANITE_RESEARCH_CHANGE, host_mob.standard_body_temperature + research_speed * 15, 0.25 KELVIN)
 	use_rate = initial(use_rate) * research_speed
 	current_research_bonus = use_rate
 	SSresearch.science_tech.nanite_bonus += current_research_bonus
@@ -120,7 +120,7 @@
 /datum/nanite_program/research/disable_passive_effect()
 	. = ..()
 	SSresearch.science_tech.nanite_bonus -= current_research_bonus
-	host_mob.remove_body_temperature_change(NANITE_RESEARCH_CHANGE)
+	host_mob.remove_homeostasis_level(NANITE_RESEARCH_CHANGE)
 
 /datum/nanite_program/research/set_extra_setting(setting, value)
 	. = ..()

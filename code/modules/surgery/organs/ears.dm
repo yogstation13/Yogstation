@@ -28,6 +28,21 @@
 	// Multiplier for both long term and short term ear damage
 	var/damage_multiplier = 1
 
+/obj/item/organ/internal/ears/get_status_appendix(advanced, add_tooltips)
+	if(owner.stat == DEAD)
+		return
+	if(advanced)
+		if(HAS_TRAIT_FROM(owner, TRAIT_DEAF, GENETIC_MUTATION))
+			return "Subject is genetically deaf."
+		if(HAS_TRAIT_FROM(owner, TRAIT_DEAF, EAR_DAMAGE))
+			return "Subject is [(organ_flags & ORGAN_FAILING) ? "permanently": "temporarily"] deaf from ear damage."
+	if(HAS_TRAIT(owner, TRAIT_DEAF))
+		return "Subject is deaf."
+
+/obj/item/organ/internal/ears/show_on_condensed_scans()
+	// Always show if we have an appendix
+	return ..() || (owner.stat != DEAD && HAS_TRAIT(owner, TRAIT_DEAF))
+
 /obj/item/organ/internal/ears/on_life(seconds_per_tick, times_fired)
 	// only inform when things got worse, needs to happen before we heal
 	if((damage > low_threshold && prev_damage < low_threshold) || (damage > high_threshold && prev_damage < high_threshold))

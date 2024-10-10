@@ -303,8 +303,8 @@
 		stop_backfire_effect()
 		return
 
-	our_mob.adjust_bodytemperature(7.5 * TEMPERATURE_DAMAGE_COEFFICIENT * seconds_per_tick)
-	if(SPT_PROB(5, seconds_per_tick))
+	our_mob.adjust_bodytemperature(0.5 KELVIN * seconds_per_tick)
+	if(!HAS_TRAIT(our_mob, TRAIT_RESISTHEAT) && SPT_PROB(5, seconds_per_tick))
 		to_chat(our_mob, span_warning("Your hand holding [our_plant] burns!"))
 
 /// Bluespace Tomato squashing on the user on backfire
@@ -433,7 +433,7 @@
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	var/mob/living/spawned_mob = new killer_plant(our_plant.drop_location())
 	var/health_mid_point = 150
-	var/health_max_value = 40 
+	var/health_max_value = 40
 	spawned_mob.maxHealth += qp_sigmoid(health_mid_point, health_max_value, our_seed.endurance)
 	spawned_mob.health = spawned_mob.maxHealth
 	if(ishostile(spawned_mob))

@@ -7,22 +7,19 @@
 /datum/species/vampire
 	name = "Vampire"
 	id = SPECIES_VAMPIRE
-	species_traits = list(
-		DRINKSBLOOD,
-		BLOOD_CLANS,
-	)
 	inherent_traits = list(
+		TRAIT_DRINKS_BLOOD,
+		TRAIT_BLOOD_CLANS,
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
 		TRAIT_NO_MIRROR_REFLECTION,
-		/*TRAIT_USES_SKINTONES,*/ //monkestation temp removal, we dont have this refactor yet
+		TRAIT_USES_SKINTONES
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutant_bodyparts = list("wings" = "None")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
-	exotic_bloodtype = "U"
+	exotic_bloodtype = /datum/blood_type/universal
 	blood_deficiency_drain_rate = BLOOD_DEFICIENCY_MODIFIER // vampires already passively lose blood, so this just makes them lose it slightly more quickly when they have blood deficiency.
-	use_skintones = TRUE
 	mutantheart = /obj/item/organ/internal/heart/vampire
 	mutanttongue = /obj/item/organ/internal/tongue/vampire
 	mutantstomach = null
@@ -165,8 +162,8 @@
 			if(victim.stat == DEAD)
 				to_chat(H, span_warning("You need a living victim!"))
 				return
-			if(!victim.blood_volume || (victim.dna && (HAS_TRAIT(victim, TRAIT_NOBLOOD) || victim.dna.species.exotic_blood)))
-				to_chat(H, span_warning("[victim] doesn't have blood!"))
+			if(!istype(victim.get_blood_type(), /datum/blood_type/crew/human))
+				to_chat(H, span_warning("[victim] doesn't have valid blood!"))
 				return
 			COOLDOWN_START(V, drain_cooldown, 3 SECONDS)
 			if(victim.can_block_magic(MAGIC_RESISTANCE_HOLY, charge_cost = 0))
@@ -186,7 +183,7 @@
 			playsound(H, 'sound/items/drink.ogg', 30, TRUE, -2)
 			victim.blood_volume = clamp(victim.blood_volume - drained_blood, 0, BLOOD_VOLUME_MAXIMUM)
 			H.blood_volume = clamp(H.blood_volume + drained_blood, 0, BLOOD_VOLUME_MAXIMUM)
-			if(!victim.blood_volume)
+			if(victim.blood_volume <= 0)
 				to_chat(H, span_notice("You finish off [victim]'s blood supply."))
 
 /obj/item/organ/internal/heart/vampire

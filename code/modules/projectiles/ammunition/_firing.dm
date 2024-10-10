@@ -1,3 +1,16 @@
+
+/**
+ * Fires the bullet in this casing
+ *
+ * * target - what was clicked on (where the bullet will go)
+ * * user - who is firing the bullet
+ * * params - click params. like x, y, shift, etc
+ * * distro - how much the bullet will spread
+ * * quiet - if the bullet is suppressed
+ * * zone_override - optional, the zone the bullet will aim for. if not supplied, uses the user's selected zone
+ * * spread - how much the bullet will spread
+ * * fired_from - the object that fired the bullet
+ */
 /obj/item/ammo_casing/proc/fire_casing(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from)
 	distro += variance
 	var/targloc = get_turf(target)
@@ -44,10 +57,7 @@
 	loaded_projectile.firer = user
 	loaded_projectile.fired_from = fired_from
 	loaded_projectile.hit_prone_targets = (user.istate & ISTATE_HARM)
-	if (zone_override)
-		loaded_projectile.def_zone = zone_override
-	else
-		loaded_projectile.def_zone = user.zone_selected
+	loaded_projectile.def_zone = zone_override || user.zone_selected
 	loaded_projectile.suppressed = quiet
 
 	if(isgun(fired_from))

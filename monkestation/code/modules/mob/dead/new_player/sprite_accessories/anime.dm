@@ -1,11 +1,11 @@
 ///ANIME ACCESSORIES GO HERE
 /datum/sprite_accessory/anime_head
 	icon = 'monkestation/icons/mob/anime/anime_head.dmi'
-	color_src = ANIME
+	color_src = ANIME_COLOR
 
 /datum/sprite_accessory/anime_head/none
 	name = "None"
-	icon_state = "None"
+	icon_state = "none"
 
 /datum/sprite_accessory/anime_head/pony
 	name = "Pony Ears"
@@ -70,7 +70,7 @@
 
 /datum/sprite_accessory/anime_middle
 	icon = 'monkestation/icons/mob/anime/anime_middle.dmi'
-	color_src = ANIME
+	color_src = ANIME_COLOR
 
 /datum/sprite_accessory/anime_middle/none
 	name = "None"
@@ -106,7 +106,7 @@
 
 /datum/sprite_accessory/anime_bottom
 	icon = 'monkestation/icons/mob/anime/anime_bottom.dmi'
-	color_src = ANIME
+	color_src = ANIME_COLOR
 
 /datum/sprite_accessory/anime_bottom/none
 	name = "None"

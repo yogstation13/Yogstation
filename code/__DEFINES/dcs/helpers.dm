@@ -15,7 +15,7 @@
 #define AddElement(arguments...) _AddElement(list(##arguments))
 /// A wrapper for _RemoveElement that allows us to pretend we're using normal named arguments
 #define RemoveElement(arguments...) _RemoveElement(list(##arguments))
-
+#define HasElement(source, type) _HasElement(source, type)
 /// A wrapper for _AddComponent that allows us to pretend we're using normal named arguments
 #define AddComponent(arguments...) _AddComponent(list(##arguments))
 

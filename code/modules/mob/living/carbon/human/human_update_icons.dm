@@ -177,7 +177,8 @@ There are several things that need to be remembered:
 	if(isnull(gloves))
 		if(blood_in_hands && num_hands > 0)
 			// When byond gives us filters that respect dirs we can just use an alpha mask for this but until then, two icons weeeee
-			var/mutable_appearance/hands_combined = mutable_appearance(layer = -GLOVES_LAYER, appearance_flags = KEEP_TOGETHER)
+			var/mutable_appearance/hands_combined = mutable_appearance(layer = -GLOVES_LAYER)
+			hands_combined.color = get_blood_dna_color()
 			if(has_left_hand(check_disabled = FALSE))
 				hands_combined.overlays += mutable_appearance('icons/effects/blood.dmi', "bloodyhands_left")
 			if(has_right_hand(check_disabled = FALSE))

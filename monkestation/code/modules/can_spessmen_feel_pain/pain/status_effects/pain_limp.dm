@@ -40,7 +40,7 @@
 		)
 
 /datum/status_effect/limp/pain/update_limp()
-	if(QDELING(owner))
+	if(QDELETED(owner))
 		return
 	var/mob/living/carbon/human/limping_human = owner
 

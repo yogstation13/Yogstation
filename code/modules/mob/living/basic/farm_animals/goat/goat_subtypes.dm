@@ -10,3 +10,18 @@
 
 /mob/living/basic/goat/pete/add_udder()
 	return //no thank you
+
+/mob/living/basic/goat/pete/icebox
+	name = "Snowy Pete"
+	desc = parent_type::desc + " This one seems a bit more hardy to the cold."
+	bodytemp_cold_damage_limit = ICEBOX_MIN_TEMPERATURE - 5 KELVIN
+	habitable_atmos = list(
+		"min_oxy" = 1,
+		"max_oxy"= 0,
+		"min_plas" = 0,
+		"max_plas" = 1,
+		"min_co2" = 0,
+		"max_co2" = 5,
+		"min_n2" = 0,
+		"max_n2" = 0,
+	)

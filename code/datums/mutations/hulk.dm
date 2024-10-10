@@ -15,7 +15,6 @@
 	var/list/mutation_traits = list(
 		TRAIT_CHUNKYFINGERS,
 		TRAIT_HULK,
-		TRAIT_IGNOREDAMAGESLOWDOWN,
 		TRAIT_PUSHIMMUNE,
 		TRAIT_STUNIMMUNE,
 	)
@@ -29,9 +28,13 @@
 		part.variable_color = "#00aa00"
 	owner.update_body_parts()
 	owner.add_mood_event("hulk", /datum/mood_event/hulk)
+	owner.physiology?.cold_mod *= HULK_COLD_DAMAGE_MOD
+	owner.bodytemp_cold_damage_limit += BODYTEMP_HULK_COLD_DAMAGE_LIMIT_MODIFIER
 	RegisterSignal(owner, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(on_attack_hand))
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(check_swing))
+	RegisterSignal(owner, COMSIG_MOB_STATCHANGE, PROC_REF(statchange))
+	owner.add_movespeed_mod_immunities("hulk", /datum/movespeed_modifier/damage_slowdown)
 
 /datum/mutation/human/hulk/proc/on_attack_hand(mob/living/carbon/human/source, atom/target, proximity, modifiers)
 	SIGNAL_HANDLER
@@ -77,8 +80,9 @@
 
 	owner.cause_wound_of_type_and_severity(WOUND_BLUNT, arm, severity, wound_source = "hulk smashing")
 
-/datum/mutation/human/hulk/on_life(seconds_per_tick, times_fired)
-	if(owner.health < owner.crit_threshold)
+/datum/mutation/human/hulk/proc/statchange(mob/living/carbon/human/owner, stat, old_stat)
+	SIGNAL_HANDLER
+	if(stat >= UNCONSCIOUS)
 		on_losing(owner)
 		to_chat(owner, span_danger("You suddenly feel very weak."))
 		qdel(src)
@@ -91,9 +95,13 @@
 		part.variable_color = null
 	owner.update_body_parts()
 	owner.clear_mood_event("hulk")
+	owner.physiology?.cold_mod /= HULK_COLD_DAMAGE_MOD
+	owner.bodytemp_cold_damage_limit -= BODYTEMP_HULK_COLD_DAMAGE_LIMIT_MODIFIER
 	UnregisterSignal(owner, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
 	UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+	UnregisterSignal(owner, COMSIG_MOB_STATCHANGE)
+	owner.remove_movespeed_mod_immunities("hulk", /datum/movespeed_modifier/damage_slowdown)
 
 /datum/mutation/human/hulk/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
@@ -264,6 +272,7 @@
 	log_combat(the_hulk, yeeted_person, "has thrown by tail")
 
 /datum/mutation/human/hulk/wizardly
+	name = "Hulk (Magic)"
 	species_allowed = null //yes skeleton/lizard hulk - note that species that dont have skintone changing (like skellies) get custom handling
 	health_req = 0
 	instability = 0
@@ -271,7 +280,6 @@
 	/// List of traits to add/remove when someone gets this mutation.
 	mutation_traits = list(
 		TRAIT_HULK,
-		TRAIT_IGNOREDAMAGESLOWDOWN,
 		TRAIT_PUSHIMMUNE,
 		TRAIT_STUNIMMUNE,
 	) // no chunk

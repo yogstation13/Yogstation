@@ -115,10 +115,11 @@
 		updateDialog(usr) // make sure updates when complete
 
 /datum/song/Topic(href, href_list)
-	if(!usr.can_perform_action(parent, ALLOW_RESTING))
-		usr << browse(null, "window=instrument")
-		usr.unset_machine()
-		return
+	if(cares_about_distance)
+		if(!usr.can_perform_action(parent, ALLOW_RESTING))
+			usr << browse(null, "window=instrument")
+			usr.unset_machine()
+			return
 
 	parent.add_fingerprint(usr)
 
@@ -131,7 +132,7 @@
 		var/t = ""
 		do
 			t = html_encode(input(usr, "Please paste the entire song, formatted:", text("[]", name), t)  as message)
-			if(!in_range(parent, usr))
+			if(!in_range(parent, usr) && cares_about_distance)
 				return
 
 			if(length_char(t) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
@@ -158,7 +159,7 @@
 
 	else if(href_list["newline"])
 		var/newline = tgui_input_text(usr, "Enter your line ", parent.name)
-		if(!newline || !in_range(parent, usr))
+		if(!newline || (!in_range(parent, usr) && cares_about_distance))
 			return
 		if(lines.len > MUSIC_MAXLINES)
 			return
@@ -175,7 +176,7 @@
 	else if(href_list["modifyline"])
 		var/num = round(text2num(href_list["modifyline"]),1)
 		var/content = tgui_input_text(usr, "Enter your line ", parent.name, lines[num], MUSIC_MAXLINECHARS)
-		if(!content || !in_range(parent, usr))
+		if(!content || (!in_range(parent, usr) && cares_about_distance))
 			return
 		if(num > lines.len || num < 1)
 			return

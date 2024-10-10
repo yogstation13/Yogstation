@@ -14,6 +14,8 @@
 /datum/bodypart_overlay/mutant/ethereal_horns
 	layers = EXTERNAL_FRONT|EXTERNAL_ADJACENT
 	feature_key = "ethereal_horns"
+	palette = /datum/color_palette/generic_colors
+	palette_key = "ethereal_color"
 
 /datum/bodypart_overlay/mutant/ethereal_horns/get_global_feature_list()
 	return GLOB.ethereal_horns_list
@@ -38,6 +40,8 @@
 /datum/bodypart_overlay/mutant/tail/ethereal
 	layers = EXTERNAL_FRONT|EXTERNAL_BEHIND
 	feature_key = "ethereal_tail"
+	palette = /datum/color_palette/generic_colors
+	palette_key = "ethereal_color"
 
 /datum/bodypart_overlay/mutant/tail/ethereal/get_global_feature_list()
 	return GLOB.ethereal_tail_list

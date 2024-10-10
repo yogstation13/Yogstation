@@ -41,7 +41,7 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	inhand_icon_state = "blahaj_costume"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
-	cold_protection = CHEST|GROIN|ARMS
+
 	allowed = list(/obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/gun/ballistic/rifle/boltaction/harpoon)
 	hoodtype = /obj/item/clothing/head/hooded/shark_hood
 	inhand_icon_state = null
@@ -53,7 +53,7 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "blahaj_hood"
 	body_parts_covered = HEAD
-	cold_protection = HEAD
+
 	flags_inv = HIDEHAIR|HIDEEARS
 	inhand_icon_state = null
 
@@ -168,7 +168,7 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "aotcloak"
 	body_parts_covered = CHEST|ARMS
-	cold_protection = CHEST|ARMS
+
 	allowed = list()
 	armor_type = /datum/armor/hooded_wintercoat
 	hoodtype = /obj/item/clothing/head/hooded/aotcloak
@@ -206,7 +206,7 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "aotcloak_hood"
 	body_parts_covered = HEAD
-	cold_protection = HEAD
+
 	flags_inv = HIDEHAIR|HIDEEARS
 	armor_type = /datum/armor/hooded_winterhood
 
@@ -251,7 +251,7 @@
 	icon_state = "coat_quilark"
 	toggle_noun = "zipper"
 	body_parts_covered = CHEST|GROIN|ARMS
-	cold_protection = CHEST|GROIN|ARMS
+
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 /obj/item/clothing/suit/toggle/quilark/Initialize(mapload)
@@ -283,7 +283,7 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "lambcloak"
 	body_parts_covered = CHEST|ARMS
-	cold_protection = CHEST|ARMS
+
 	layer = NECK_LAYER
 
 /obj/item/clothing/suit/hooded/org_thirteen
@@ -294,7 +294,7 @@
 	icon_state = "org_thirteen"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|ARMS
-	cold_protection = CHEST|ARMS
+
 	allowed = list()
 	armor_type = /datum/armor/hooded_wintercoat
 	hoodtype = /obj/item/clothing/head/hooded/org_thirteen
@@ -321,7 +321,7 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "org_thirteen_hood"
 	body_parts_covered = HEAD
-	cold_protection = HEAD
+
 	flags_inv = HIDEHAIR|HIDEEARS
 	armor_type = /datum/armor/hooded_winterhood
 
@@ -424,7 +424,7 @@
 	name = "menacing jacket"
 	desc = "There can only be one dragon."
 	body_parts_covered = CHEST|GROIN|ARMS
-	cold_protection = CHEST|GROIN|ARMS
+
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 /obj/item/clothing/mask/gas/bluedragon66_trenchbiomask
@@ -485,7 +485,7 @@
 	name = "rainbow coat"
 	desc = "Woah, it's a RAINBOW coat. How's it doing that?"
 	body_parts_covered = CHEST|GROIN|ARMS
-	cold_protection = CHEST|GROIN|ARMS
+
 	armor_type = /datum/armor/hooded_wintercoat
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 /obj/item/clothing/suit/toggle/ophaq_rainbowcoat/Initialize(mapload)

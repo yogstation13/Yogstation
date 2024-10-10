@@ -7,3 +7,9 @@
 #define FACIAL_HAIR_COLOR "facial_hair_color"
 /// Color of the sprite accessory will match the owner's (left) eye color
 #define EYE_COLOR "eye_color"
+
+#define SKIN_COLOR "skin_color"
+
+#define MUTANT_COLOR_SECONDARY "mutant_color_secondary"
+
+#define ANIME_COLOR "anime_color"

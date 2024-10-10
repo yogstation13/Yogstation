@@ -54,7 +54,7 @@
 	. += mutable_appearance(icon, "[collar_icon_state][stat_tag]collar")
 	. += mutable_appearance(icon, "[collar_icon_state][stat_tag]tag")
 
-/mob/living/basic/pet/gib()
+/mob/living/basic/pet/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	remove_collar(drop_location(), update_visuals = FALSE)
 	return ..()
 

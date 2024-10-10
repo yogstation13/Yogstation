@@ -18,6 +18,7 @@
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
 	dmg_overlay_type = null
+	ass_image = 'icons/ass/assplasma.png'
 
 /obj/item/bodypart/arm/left/plasmaman
 	icon = 'icons/mob/species/plasmaman/bodyparts.dmi'

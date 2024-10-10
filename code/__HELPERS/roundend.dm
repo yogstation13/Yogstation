@@ -1,6 +1,7 @@
 #define POPCOUNT_SURVIVORS "survivors" //Not dead at roundend
 #define POPCOUNT_ESCAPEES "escapees" //Not dead and on centcom/shuttles marked as escaped
 #define POPCOUNT_SHUTTLE_ESCAPEES "shuttle_escapees" //Emergency shuttle only.
+#define POPCOUNT_ESCAPEES_HUMANONLY "human_escapees"
 #define PERSONAL_LAST_ROUND "personal last round"
 #define SERVER_LAST_ROUND "server last round"
 #define DISCORD_SUPPRESS_NOTIFICATIONS (1 << 12) // monke edit: discord flag for silent messages
@@ -17,7 +18,10 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 	var/list/file_data = list("escapees" = list("humans" = list(), "silicons" = list(), "others" = list(), "npcs" = list()), "abandoned" = list("humans" = list(), "silicons" = list(), "others" = list(), "npcs" = list()), "ghosts" = list(), "additional data" = list())
 	var/num_survivors = 0 //Count of non-brain non-camera mobs with mind that are alive
 	var/num_escapees = 0 //Above and on centcom z
+	var/num_human_escapees = 0 //Above but humans only
 	var/num_shuttle_escapees = 0 //Above and on escape shuttle
+	var/list/list_of_human_escapees = list() //References to all escaped humans
+	var/list/list_of_mobs_on_shuttle = list()
 	var/list/area/shuttle_areas
 	if(SSshuttle?.emergency)
 		shuttle_areas = SSshuttle.emergency.shuttle_areas
@@ -35,6 +39,8 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 		if(M.mind)
 			count_only = FALSE
 			mob_data["ckey"] = M.mind.key
+			if(M.onCentCom())
+				list_of_mobs_on_shuttle += M
 			if(M.stat != DEAD && !isbrain(M) && !iscameramob(M))
 				num_survivors++
 				if(EMERGENCY_ESCAPED_OR_ENDGAMED && (M.onCentCom() || M.onSyndieBase()))
@@ -42,6 +48,9 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 					escape_status = "escapees"
 					if(shuttle_areas[get_area(M)])
 						num_shuttle_escapees++
+						if(ishuman(M))
+							num_human_escapees++
+							list_of_human_escapees += M
 			if(isliving(M))
 				var/mob/living/L = M
 				mob_data["location"] = get_area(L)
@@ -105,7 +114,10 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 	. = list()
 	.[POPCOUNT_SURVIVORS] = num_survivors
 	.[POPCOUNT_ESCAPEES] = num_escapees
+	.[POPCOUNT_ESCAPEES_HUMANONLY] = num_human_escapees
 	.[POPCOUNT_SHUTTLE_ESCAPEES] = num_shuttle_escapees
+	.["all_mobs_on_shuttle"] = list_of_mobs_on_shuttle
+	.["human_escapees_list"] = list_of_human_escapees
 	.["station_integrity"] = station_integrity
 
 /datum/controller/subsystem/ticker/proc/gather_antag_data()
@@ -221,7 +233,7 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 			C?.give_award(/datum/award/achievement/misc/speed_round, C?.mob)
 		HandleRandomHardcoreScore(C)
 
-	var/popcount = gather_roundend_feedback()
+	popcount = gather_roundend_feedback()
 	display_report(popcount)
 
 	CHECK_TICK

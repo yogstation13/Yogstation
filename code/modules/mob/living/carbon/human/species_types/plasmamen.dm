@@ -4,24 +4,23 @@
 	id = SPECIES_PLASMAMAN
 	sexes = 0
 	meat = /obj/item/stack/sheet/mineral/plasma
-	species_traits = list(
-		NOTRANSSTING,
-	)
 	// plasmemes get hard to wound since they only need a severe bone wound to dismember, but unlike skellies, they can't pop their bones back into place
 	inherent_traits = list(
+		TRAIT_NO_TRANSFORMATION_STING,
 		TRAIT_GENELESS,
 		TRAIT_HARDLY_WOUNDED,
 		TRAIT_RADIMMUNE,
 		TRAIT_RESISTCOLD,
 		TRAIT_NOBLOOD,
 		TRAIT_NO_DNA_COPY,
+		TRAIT_RESISTLOWPRESSURE,
 	)
 
 	inherent_biotypes = MOB_HUMANOID|MOB_MINERAL
 	inherent_respiration_type = RESPIRATION_PLASMA
 	mutantlungs = /obj/item/organ/internal/lungs/plasmaman
 	mutanttongue = /obj/item/organ/internal/tongue/bone/plasmaman
-	mutantliver = /obj/item/organ/internal/liver/plasmaman
+	mutantliver = /obj/item/organ/internal/liver/bone/plasmaman
 	mutantstomach = /obj/item/organ/internal/stomach/bone/plasmaman
 	mutantappendix = null
 	mutantheart = null
@@ -30,8 +29,6 @@
 	brutemod = 1.5
 	payday_modifier = 0.75
 	breathid = "plas"
-	disliked_food = FRUIT | CLOTH
-	liked_food = VEGETABLES
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
 	species_cookie = /obj/item/reagent_containers/condiment/milk
 	outfit_important_for_life = /datum/outfit/plasmaman
@@ -49,13 +46,11 @@
 	// Body temperature for Plasmen is much lower human as they can handle colder environments
 	bodytemp_normal = (BODYTEMP_NORMAL - 40)
 	// The minimum amount they stabilize per tick is reduced making hot areas harder to deal with
-	bodytemp_autorecovery_min = 2
+	temperature_normalization_speed = /mob/living/carbon/human::temperature_normalization_speed * 0.5
 	// They are hurt at hot temps faster as it is harder to hold their form
 	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT - 20) // about 40C
 	// This effects how fast body temp stabilizes, also if cold resit is lost on the mob
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 50) // about -50c
-
-	ass_image = 'icons/ass/assplasma.png'
 
 	outfit_override_registry = list(
 		/datum/outfit/syndicate = /datum/outfit/syndicate/plasmaman,
@@ -72,6 +67,7 @@
 	C.set_safe_hunger_level()
 
 /datum/species/plasmaman/spec_life(mob/living/carbon/human/H, seconds_per_tick, times_fired)
+	. = ..()
 	var/atmos_sealed = TRUE
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
 		atmos_sealed = FALSE
@@ -121,10 +117,18 @@
 
 	H.update_appearance(UPDATE_OVERLAYS)
 
-/datum/species/plasmaman/handle_fire(mob/living/carbon/human/H, seconds_per_tick, times_fired, no_protection = FALSE)
-	if(internal_fire)
-		no_protection = TRUE
+/datum/species/plasmaman/proc/handle_fire(mob/living/carbon/human/H, seconds_per_tick)
+	SIGNAL_HANDLER
+
+	return internal_fire ? BURNING_SKIP_PROTECTION : NONE
+
+/datum/species/plasmaman/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
+	RegisterSignal(C, COMSIG_HUMAN_BURNING, PROC_REF(handle_fire))
+
+/datum/species/plasmaman/on_species_loss(mob/living/carbon/C, datum/species/new_species, pref_save)
+	. = ..()
+	UnregisterSignal(C, COMSIG_HUMAN_BURNING)
 
 /datum/species/plasmaman/pre_equip_species_outfit(datum/job/job, mob/living/carbon/human/equipping, visuals_only = FALSE)
 	if(job?.plasmaman_outfit)
@@ -142,54 +146,6 @@
 		randname += " [lastname]"
 
 	return randname
-
-/datum/species/plasmaman/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H, seconds_per_tick, times_fired)
-	. = ..()
-	if(istype(chem, /datum/reagent/toxin/plasma) || istype(chem, /datum/reagent/toxin/hot_ice))
-		for(var/i in H.all_wounds)
-			var/datum/wound/iter_wound = i
-			iter_wound.on_xadone(4 * REM * seconds_per_tick) // plasmamen use plasma to reform their bones or whatever
-		return FALSE // do normal metabolism
-
-	if(istype(chem, /datum/reagent/toxin/bonehurtingjuice))
-		H.stamina.adjust(-7.5 * REM * seconds_per_tick, 0)
-		H.adjustBruteLoss(0.5 * REM * seconds_per_tick, 0)
-		if(SPT_PROB(10, seconds_per_tick))
-			switch(rand(1, 3))
-				if(1)
-					H.say(pick("oof.", "ouch.", "my bones.", "oof ouch.", "oof ouch my bones."), forced = /datum/reagent/toxin/bonehurtingjuice)
-				if(2)
-					H.manual_emote(pick("oofs silently.", "looks like [H.p_their()] bones hurt.", "grimaces, as though [H.p_their()] bones hurt."))
-				if(3)
-					to_chat(H, span_warning("Your bones hurt!"))
-		if(chem.overdosed)
-			if(SPT_PROB(2, seconds_per_tick) && iscarbon(H)) //big oof
-				var/selected_part = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG) //God help you if the same limb gets picked twice quickly.
-				var/obj/item/bodypart/bp = H.get_bodypart(selected_part) //We're so sorry skeletons, you're so misunderstood
-				if(bp)
-					playsound(H, get_sfx(SFX_DESECRATION), 50, TRUE, -1) //You just want to socialize
-					H.visible_message(span_warning("[H] rattles loudly and flails around!!"), span_danger("Your bones hurt so much that your missing muscles spasm!!"))
-					H.say("OOF!!", forced=/datum/reagent/toxin/bonehurtingjuice)
-					bp.receive_damage(200, 0, 0) //But I don't think we should
-				else
-					to_chat(H, span_warning("Your missing arm aches from wherever you left it."))
-					H.emote("sigh")
-		H.reagents.remove_reagent(chem.type, chem.metabolization_rate * seconds_per_tick)
-		return TRUE
-
-	if(istype(chem, /datum/reagent/gunpowder))
-		H.set_timed_status_effect(15 SECONDS * seconds_per_tick, /datum/status_effect/drugginess)
-		if(H.get_timed_status_effect_duration(/datum/status_effect/hallucination) / 10 < chem.volume)
-			H.adjust_hallucinations(2.5 SECONDS * seconds_per_tick)
-		// Do normal metabolism
-		return FALSE
-
-/datum/species/plasmaman/get_scream_sound(mob/living/carbon/human)
-	return pick(
-		'sound/voice/plasmaman/plasmeme_scream_1.ogg',
-		'sound/voice/plasmaman/plasmeme_scream_2.ogg',
-		'sound/voice/plasmaman/plasmeme_scream_3.ogg',
-	)
 
 /datum/species/plasmaman/get_species_description()
 	return "Found on the Icemoon of Freyja, plasmamen consist of colonial \

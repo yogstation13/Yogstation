@@ -191,8 +191,9 @@
 		podman.ckey = ckey_holder
 	podman.gender = blood_gender
 	podman.faction |= factions
-	if(!features["mcolor"])
-		features["mcolor"] = "#59CE00"
+	var/datum/color_palette/generic_colors/palette = podman.dna.color_palettes[/datum/color_palette/generic_colors]
+	if(!palette.mutant_color)
+		palette.mutant_color = "#59CE00"
 	if(!features["pod_hair"])
 		features["pod_hair"] = pick(GLOB.pod_hair_list)
 
@@ -208,6 +209,6 @@
 			most_plentiful_reagent.Cut()
 			most_plentiful_reagent[reagent] = reagents_add[reagent]
 
-	podman.dna.species.exotic_blood = most_plentiful_reagent[1]
+	//podman.dna.species.exotic_blood = most_plentiful_reagent[1] //Monkestation edit BLOOD_DATUM: This needs to be looked into
 	investigate_log("[key_name(mind)] cloned as a podman via [src] in [parent]", INVESTIGATE_BOTANY)
 	return result

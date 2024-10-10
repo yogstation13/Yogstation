@@ -98,7 +98,8 @@
 
 	if(istype(new_chicken, /mob/living/basic/chicken/glass))
 		for(var/list_item in glass_egg_reagent)
-			new_chicken.glass_egg_reagents.Add(list_item)
+			new_chicken.glass_egg_reagents |= list_item
+			new_chicken.glass_egg_reagents[list_item] = glass_egg_reagent[list_item]
 
 	if(istype(new_chicken, /mob/living/basic/chicken/stone))
 		if(production_type)

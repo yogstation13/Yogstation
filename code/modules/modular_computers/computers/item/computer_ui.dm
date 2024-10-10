@@ -122,7 +122,7 @@
 
 	if(ishuman(usr) && !allow_chunky)
 		var/mob/living/carbon/human/human_user = usr
-		if(human_user.check_chunky_fingers())
+		if(HAS_TRAIT(human_user, TRAIT_CHUNKYFINGERS))
 			balloon_alert(human_user, "fingers are too big!")
 			return TRUE
 

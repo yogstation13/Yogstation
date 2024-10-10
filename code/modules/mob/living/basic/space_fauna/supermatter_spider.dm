@@ -20,8 +20,8 @@
 
 	maxHealth = 10
 	health = 10
-	minimum_survivable_temperature = TCMB
-	maximum_survivable_temperature = T0C + 1250
+	bodytemp_cold_damage_limit = TCMB
+	bodytemp_heat_damage_limit = T0C + 1250
 	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	death_message = "falls to the ground, its shard dulling to a miserable grey!"
 

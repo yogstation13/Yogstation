@@ -168,7 +168,7 @@
 	desc = "On the first day of christmas my employer gave to me!"
 	icon_state = "santahatnorm"
 	inhand_icon_state = "that"
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	dog_fashion = /datum/dog_fashion/head/santa
 
@@ -272,7 +272,7 @@
 	icon_state = "ushankadown"
 	inhand_icon_state = null
 	flags_inv = HIDEEARS|HIDEHAIR
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	dog_fashion = /datum/dog_fashion/head/ushanka
 	var/earflaps = TRUE

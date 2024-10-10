@@ -5,18 +5,14 @@
 
 	bodytype = BODYTYPE_CUSTOM
 
-	species_traits = list(
-		NO_UNDERWEAR,
-		SPECIES_FUR,
-		SKINTONES,
-		)
 	inherent_traits = list(
+		TRAIT_FUR_COLORS,
+		TRAIT_MUTANT_COLORS,
+		TRAIT_NO_UNDERWEAR,
 		TRAIT_VAULTING,
 		TRAIT_KLEPTOMANIAC,
 		TRAIT_MONKEYFRIEND
 		)
-
-	use_skintones = FALSE
 
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
 
@@ -24,14 +20,10 @@
 	changesource_flags = MIRROR_BADMIN | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 	meat = /obj/item/food/meat/slab/monkey
 	skinned_type = /obj/item/stack/sheet/animalhide/monkey
-	disliked_food = GROSS
-	liked_food = FRUIT | MEAT
-	uses_fur = TRUE
 	//deathsound = 'monkestation/sound/voice/simian/deathsound.ogg'
 	species_language_holder = /datum/language_holder/monkey
 	maxhealthmod = 0.85 //small = weak
 	stunmod = 1.3
-	speedmod = -0.1 //lil bit faster
 
 	custom_worn_icons = list(
 		LOADOUT_ITEM_SUIT = SIMIAN_SUIT_ICON,
@@ -59,20 +51,6 @@
 	external_organs = list(
 		/obj/item/organ/external/tail/simian = "Chimp"
 	)
-
-/datum/species/simian/get_scream_sound(mob/living/carbon/human/human)
-	return pick(
-		'sound/creatures/monkey/monkey_screech_1.ogg',
-		'sound/creatures/monkey/monkey_screech_2.ogg',
-		'sound/creatures/monkey/monkey_screech_3.ogg',
-		'sound/creatures/monkey/monkey_screech_4.ogg',
-		'sound/creatures/monkey/monkey_screech_5.ogg',
-		'sound/creatures/monkey/monkey_screech_6.ogg',
-		'sound/creatures/monkey/monkey_screech_7.ogg',
-	)
-
-/datum/species/simian/get_laugh_sound(mob/living/carbon/human/human)
-	return 'monkestation/sound/voice/laugh/simian/monkey_laugh_1.ogg'
 
 /datum/species/simian/get_species_description()
 	return "Monke."

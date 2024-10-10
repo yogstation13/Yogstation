@@ -34,8 +34,8 @@
 	unsuitable_atmos_damage = 0
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0) //I don't know how you'd apply those, but revenants no-sell them anyway.
 	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = INFINITY
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = INFINITY
 
 	status_flags = NONE
 	density = FALSE
@@ -256,7 +256,7 @@
 /mob/living/basic/revenant/dust(just_ash, drop_items, force)
 	death()
 
-/mob/living/basic/revenant/gib()
+/mob/living/basic/revenant/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	death()
 
 /mob/living/basic/revenant/can_perform_action(atom/movable/target, action_bitflags)

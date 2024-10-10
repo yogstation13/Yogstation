@@ -717,7 +717,7 @@
 		user.visible_message(span_suicide("[user] is beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
 		return BRUTELOSS
 	user.visible_message(span_suicide("[user] is putting [user.p_their()] head inside the [src], it looks like [user.p_theyre()] trying to commit suicide!"))
-	user.adjust_bodytemperature(-300)
+	user.adjust_bodytemperature(-INFINITY, min_temp = CELCIUS_TO_KELVIN(10 CELCIUS))
 	user.apply_status_effect(/datum/status_effect/freon)
 	return FIRELOSS
 

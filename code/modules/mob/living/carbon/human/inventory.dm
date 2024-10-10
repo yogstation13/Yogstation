@@ -1,7 +1,9 @@
 /mob/living/carbon/human/can_equip(obj/item/equip_target, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE, ignore_equipped = FALSE)
 	if(SEND_SIGNAL(src, COMSIG_HUMAN_EQUIPPING_ITEM, equip_target, slot) == COMPONENT_BLOCK_EQUIP)
 		return FALSE
-
+	if((slot & ITEM_SLOT_FEET) && HAS_TRAIT(src, TRAIT_NON_IMPORTANT_SHOE_BLOCK))
+		if(!istype(equip_target, /obj/item/clothing/shoes/mod))
+			return FALSE
 	return dna.species.can_equip(equip_target, slot, disable_warning, src, bypass_equip_delay_self, ignore_equipped)
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)

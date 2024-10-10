@@ -208,75 +208,43 @@
 		return
 
 	var/list/requirements = chosen_recipe.reqs
-	var/list/Deletion = list()
-	var/list/stored_parts = list()
-	var/data
-	var/amt
-	var/insanity = 500
-	main_loop:
-		insanity--
-		if(insanity <= 0)
-			return
-		for(var/path_key in requirements)
-			amt = chosen_recipe.reqs?[path_key]
-			if(!amt)//since machinery & structures can have 0 aka CRAFTING_MACHINERY_USE - i.e. use it, don't consume it!
-				continue main_loop
-			if(ispath(path_key, /obj/item/stack))
-				var/obj/item/stack/S
-				var/obj/item/stack/SD
-				while(amt > 0)
-					S = locate(path_key) in crafting_inventory
-					if(S.amount >= amt)
-						if(!locate(S.type) in Deletion)
-							SD = new S.type()
-							Deletion += SD
-						S.use(amt)
-						SD = locate(S.type) in Deletion
-						SD.amount += amt
-						continue main_loop
-					else
-						amt -= S.amount
-						if(!locate(S.type) in Deletion)
-							Deletion += S
-						else
-							data = S.amount
-							S = locate(S.type) in Deletion
-							S.add(data)
-						crafting_inventory -= S
+	var/list/parts = list()
+
+	for(var/obj/item/req as anything in requirements)
+		for(var/obj/item/item as anything in crafting_inventory)
+			if(!istype(item, req))
+				continue
+			if(isstack(item))
+				var/obj/item/stack/stack = item
+				if(stack.amount == requirements[stack.merge_type])
+					var/failed = TRUE
+					crafting_inventory -= item
+					for(var/obj/item/part as anything in chosen_recipe.parts)
+						if(!istype(item, part))
+							continue
+						parts += item
+						failed = FALSE
+					if(failed)
+						qdel(item)
+				else if(stack.amount > requirements[item.type])
+					for(var/obj/item/part as anything in chosen_recipe.parts)
+						if(!istype(item, part))
+							continue
+						var/obj/item/stack/new_stack = new item
+						new_stack.amount = requirements[item.type]
+						parts += new_stack
+					stack.amount -= requirements[stack.merge_type]
 			else
-				var/atom/movable/I
-				while(amt > 0)
-					I = locate(path_key) in crafting_inventory
-					Deletion += I
-					crafting_inventory -= I
-					amt--
-	var/list/partlist = list(chosen_recipe.parts.len)
-	for(var/M in chosen_recipe.parts)
-		partlist[M] = chosen_recipe.parts[M]
-	for(var/part in chosen_recipe.parts)
-		if(isstack(part))
-			var/obj/item/stack/ST = locate(part) in Deletion
-			if(ST.amount > partlist[part])
-				ST.amount = partlist[part]
-			stored_parts += ST
-			Deletion -= ST
-			continue
-		else
-			while(partlist[part] > 0)
-				var/atom/movable/AM = locate(part) in Deletion
-				stored_parts += AM
-				Deletion -= AM
-				partlist[part] -= 1
-	while(Deletion.len)
-		var/DL = Deletion[Deletion.len]
-		Deletion.Cut(Deletion.len)
-		if(istype(DL, /obj/item/storage))
-			var/obj/item/storage/container = DL
-			container.emptyStorage()
-		else if(isstructure(DL))
-			var/obj/structure/structure = DL
-			structure.dump_contents(structure.drop_location())
-		qdel(DL)
+				var/failed = TRUE
+				crafting_inventory -= item
+				for(var/obj/item/part as anything in chosen_recipe.parts)
+					if(!istype(item, part))
+						continue
+					parts += item
+					failed = FALSE
+
+				if(failed)
+					qdel(item)
 
 	var/atom/movable/I
 	if(ispath(chosen_recipe.result, /obj/item/stack))
@@ -288,7 +256,7 @@
 		if(I.atom_storage && chosen_recipe.delete_contents)
 			for(var/obj/item/thing in I)
 				qdel(thing)
-	I.CheckParts(stored_parts, chosen_recipe)
+	I.CheckParts(parts, chosen_recipe)
 	I.forceMove(drop_location())
 
 	crafting = FALSE

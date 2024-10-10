@@ -26,14 +26,8 @@
 		/datum/surgery_step/close,
 	)
 
-/datum/surgery/repair_puncture/can_start(mob/living/user, mob/living/carbon/target)
-	if(!istype(target))
-		return FALSE
-	. = ..()
-	if(.)
-		var/obj/item/bodypart/targeted_bodypart = target.get_bodypart(user.zone_selected)
-		var/datum/wound/burn/flesh/pierce_wound = targeted_bodypart.get_wound_type(targetable_wound)
-		return(pierce_wound && pierce_wound.blood_flow > 0)
+/datum/surgery/repair_puncture/is_valid_wound(datum/wound/wound)
+	return ..() && wound.blood_flow > 0
 
 //SURGERY STEPS
 

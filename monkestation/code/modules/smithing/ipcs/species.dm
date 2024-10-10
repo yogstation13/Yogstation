@@ -19,16 +19,11 @@
 		TRAIT_TOXIMMUNE,
 		TRAIT_GENELESS,
 		TRAIT_STABLEHEART,
-		TRAIT_LIMBATTACHMENT,
 		TRAIT_LITERATE,
 		TRAIT_REVIVES_BY_HEALING,
 		TRAIT_NO_DNA_COPY,
-	)
-
-	species_traits = list(
-		NO_DNA_COPY,
-		NOTRANSSTING,
-		NOHUSK
+		TRAIT_NO_TRANSFORMATION_STING,
+		TRAIT_NO_HUSK,
 	)
 
 	mutant_organs = list(
@@ -48,7 +43,6 @@
 	payday_modifier = 1.0 // Matches the rest of the pay penalties the non-human crew have
 
 	species_language_holder = /datum/language_holder/synthetic
-	special_step_sounds = list('sound/effects/servostep.ogg')
 
 	mutantbrain = /obj/item/organ/internal/brain/synth
 	mutantstomach = /obj/item/organ/internal/stomach/synth
@@ -59,7 +53,7 @@
 	mutantheart = /obj/item/organ/internal/heart/synth
 	mutantliver = /obj/item/organ/internal/liver/synth
 	mutantappendix = null
-	exotic_blood = /datum/reagent/fuel/oil
+	exotic_bloodtype = /datum/blood_type/oil
 
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/robot/ipc,
@@ -69,6 +63,9 @@
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/robot/ipc,
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/robot/ipc,
 	)
+
+	bodytemp_heat_damage_limit = CELCIUS_TO_KELVIN(450)
+	bodytemp_cold_damage_limit = CELCIUS_TO_KELVIN(-260) //they are practically immune to cold
 
 	brutemod = 1.5
 	coldmod = 1.2
@@ -82,16 +79,6 @@
 	var/will_it_blend_timer
 	COOLDOWN_DECLARE(blend_cd)
 	var/blending
-
-/datum/species/ipc/get_scream_sound(mob/living/carbon/human/human)
-	return 'monkestation/sound/voice/screams/silicon/scream_silicon.ogg'
-
-/datum/species/ipc/get_laugh_sound(mob/living/carbon/human/human)
-	return pick(
-		'monkestation/sound/voice/laugh/silicon/laugh_siliconE1M0.ogg',
-		'monkestation/sound/voice/laugh/silicon/laugh_siliconE1M1.ogg',
-		'monkestation/sound/voice/laugh/silicon/laugh_siliconM2.ogg',
-	)
 
 /datum/species/ipc/get_species_description()
 	return "Integrated Positronic Chassis - or IPC for short - \
@@ -120,6 +107,18 @@
 
 	RegisterSignal(C, COMSIG_LIVING_DEATH, PROC_REF(bsod_death)) // screen displays bsod on death, if they have one
 	RegisterSignal(C.reagents, COMSIG_REAGENTS_ADD_REAGENT, PROC_REF(will_it_blend))
+	RegisterSignal(C, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(blood_handled))
+
+/datum/species/ipc/proc/blood_handled(mob/living/carbon/human/slime, seconds_per_tick, times_fired)
+	SIGNAL_HANDLER
+
+	if(slime.stat == DEAD)
+		return NONE
+
+	if(slime.blood_volume < BLOOD_VOLUME_OKAY)
+		return NONE
+
+	slime.adjustOxyLoss(-3)
 
 /datum/species/ipc/proc/will_it_blend(datum/reagents/holder, ...)
 	var/mob/living/carbon/carbon = holder.my_atom
@@ -218,7 +217,7 @@
 		BP.limb_id = chassis_of_choice.icon_state
 		BP.name = "\improper[chassis_of_choice.name] [parse_zone(BP.body_zone)]"
 		BP.update_limb()
-		if(chassis_of_choice.color_src == MUTCOLORS)
+		if(chassis_of_choice.color_src == MUTANT_COLOR)
 			BP.should_draw_greyscale = TRUE
 
 /**

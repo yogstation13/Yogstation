@@ -93,10 +93,10 @@
 	hazard_max = HAZARD_HIGH_PRESSURE
 
 /datum/tlv/temperature
-	warning_min = BODYTEMP_COLD_WARNING_1+10
-	hazard_min = BODYTEMP_COLD_WARNING_1
-	warning_max = BODYTEMP_HEAT_WARNING_1-27
-	hazard_max = BODYTEMP_HEAT_WARNING_1
+	warning_min = BODYTEMP_COLD_DAMAGE_LIMIT - 10 CELCIUS // some leeway as most humans sit comfortable above area temp
+	hazard_min = BODYTEMP_COLD_DAMAGE_LIMIT - 40 CELCIUS
+	warning_max = BODYTEMP_HEAT_DAMAGE_LIMIT + 5 CELCIUS // same
+	hazard_max = BODYTEMP_HEAT_DAMAGE_LIMIT + 20 CELCIUS
 
 /datum/tlv/cold_room_pressure
 	warning_min = ONE_ATMOSPHERE * 0.9

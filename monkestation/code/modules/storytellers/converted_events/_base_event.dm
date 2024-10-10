@@ -70,6 +70,12 @@
 	var/list/protected_roles
 	/// Restricted roles from the antag roll
 	var/list/restricted_roles
+	var/event_icon_state
+
+/datum/round_event_control/proc/generate_image(list/mobs)
+	return
+/datum/round_event_control/antagonist/generate_image(list/mobs)
+	SScredits.generate_major_icon(mobs, event_icon_state)
 
 /datum/round_event_control/antagonist/proc/check_required()
 	if(!length(exclusive_roles))
@@ -269,7 +275,7 @@
 			log_storyteller("Picked antag event mob: [picked_mob], special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 			candidates |= picked_mob
 
-
+	var/list/picked_mobs = list()
 	for(var/i in 1 to antag_count)
 		if(!length(candidates))
 			message_admins("A roleset event got fewer antags then its antag_count and may not function correctly.")
@@ -286,8 +292,10 @@
 		setup_minds += candidate.mind
 		candidate.mind.special_role = antag_flag
 		candidate.mind.restricted_roles = restricted_roles
+		picked_mobs += WEAKREF(candidate.client)
 
 	setup = TRUE
+	control.generate_image(picked_mobs)
 	if(LAZYLEN(extra_spawned_events))
 		var/event_type = pick_weight(extra_spawned_events)
 		if(!event_type)

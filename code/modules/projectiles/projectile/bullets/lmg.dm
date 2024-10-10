@@ -1,27 +1,33 @@
 // C3D (Borgs)
 
 /obj/projectile/bullet/c3d
+	generic_name = "bullet"
 	damage = 20
 
 // Mech LMG
 
 /obj/projectile/bullet/lmg
+	generic_name = "bullet"
 	damage = 20
 
 // Mech FNX-99
 
 /obj/projectile/bullet/incendiary/fnx99
+	generic_name = "bullet"
 	damage = 20
 
 // Turrets
 
 /obj/projectile/bullet/manned_turret
+	generic_name = "bullet"
 	damage = 20
 
 /obj/projectile/bullet/manned_turret/hmg
+	generic_name = "bullet"
 	icon_state = "redtrac"
 
 /obj/projectile/bullet/syndicate_turret
+	generic_name = "bullet"
 	damage = 20
 
 // 7.12x82mm (SAW)

@@ -12,7 +12,6 @@
 		/mob/living/basic/pet/spider/dancing,
 		/mob/living/basic/butterfly/void,
 		/mob/living/basic/crab/plant,
-		/mob/living/basic/pet/quilmaid,
 	)
 
 	if(is_admin(src))

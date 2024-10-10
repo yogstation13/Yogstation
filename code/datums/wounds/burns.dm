@@ -6,8 +6,18 @@
 // TODO: well, a lot really, but specifically I want to add potential fusing of clothing/equipment on the affected area, and limb infections, though those may go in body part code
 /datum/wound/burn
 	name = "Burn Wound"
+	undiagnosed_name = "Burns"
 	a_or_from = "from"
 	sound_effect = 'sound/effects/wounds/sizzle1.ogg'
+
+/datum/wound/burn/wound_injury(datum/wound/old_wound, attack_direction)
+	if(!old_wound && limb.current_gauze && (wound_flags & ACCEPTS_GAUZE))
+		qdel(limb.remove_gauze())
+		// oops your existing gauze got burned, need a new one now
+		var/obj/effect/decal/cleanable/ash/ash = new(limb.drop_location())
+		ash.desc += " It looks like it used to be some kind of bandage."
+
+	return ..()
 
 /datum/wound/burn/flesh
 	name = "Burn (Flesh) Wound"
@@ -34,6 +44,11 @@
 
 	/// Once we reach infestation beyond WOUND_INFESTATION_SEPSIS, we get this many warnings before the limb is completely paralyzed (you'd have to ignore a really bad burn for a really long time for this to happen)
 	var/strikes_to_lose_limb = 3
+
+/datum/wound/burn/flesh/severity_text(simple = FALSE)
+	if(infestation > WOUND_INFECTION_MODERATE)
+		return "Infected, [..()]"
+	return ..()
 
 /datum/wound/burn/flesh/handle_process(seconds_per_tick, times_fired)
 
@@ -278,7 +293,8 @@
 /datum/wound/burn/flesh/moderate
 	name = "Second Degree Burns"
 	desc = "Patient is suffering considerable burns with mild skin penetration, weakening limb integrity and increased burning sensations."
-	treat_text = "Recommended application of topical ointment or regenerative mesh to affected region."
+	treat_text = "Apply topical ointment or regenerative mesh to the wound."
+	treat_text_short = "Apply healing aid such as regenerative mesh."
 	examine_desc = "is badly burned and breaking out in blisters"
 	occur_text = "breaks out with violent red burns"
 	severity = WOUND_SEVERITY_MODERATE
@@ -302,7 +318,10 @@
 /datum/wound/burn/flesh/severe
 	name = "Third Degree Burns"
 	desc = "Patient is suffering extreme burns with full skin penetration, creating serious risk of infection and greatly reduced limb integrity."
-	treat_text = "Recommended immediate disinfection and excision of any infected skin, followed by bandaging and ointment."
+	treat_text = "Swiftly apply healing aids such as Synthflesh or regenerative mesh to the wound. \
+		Disinfect the wound and surgically debride any infected skin, and wrap in clean gauze / use ointment to prevent further infection. \
+		If the limb has locked up, it must be amputated, augmented or treated with cryogenics."
+	treat_text_short = "Apply healing aid such as regenerative mesh or Synthflesh and disinfect / debride."
 	examine_desc = "appears seriously charred, with aggressive red splotches"
 	occur_text = "chars rapidly, exposing ruined tissue and spreading angry red burns"
 	severity = WOUND_SEVERITY_SEVERE
@@ -328,7 +347,10 @@
 /datum/wound/burn/flesh/critical
 	name = "Catastrophic Burns"
 	desc = "Patient is suffering near complete loss of tissue and significantly charred muscle and bone, creating life-threatening risk of infection and negligible limb integrity."
-	treat_text = "Immediate surgical debriding of any infected skin, followed by potent tissue regeneration formula and bandaging."
+	treat_text = "Immediately apply healing aids such as Synthflesh or regenerative mesh to the wound. \
+		Disinfect the wound and surgically debride any infected skin, and wrap in clean gauze / use ointment to prevent further infection. \
+		If the limb has locked up, it must be amputated, augmented or treated with cryogenics."
+	treat_text_short = "Apply healing aid such as regenerative mesh or Synthflesh and disinfect / debride."
 	examine_desc = "is a ruined mess of blanched bone, melted fat, and charred tissue"
 	occur_text = "vaporizes as flesh, bone, and fat melt together in a horrifying mess"
 	severity = WOUND_SEVERITY_CRITICAL

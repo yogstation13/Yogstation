@@ -30,8 +30,7 @@
 	var/new_colour = pick(/datum/slime_color/red, /datum/slime_color/orange)
 	var/mob/living/basic/slime/pyro = new(tile, new_colour)
 	ADD_TRAIT(pyro, TRAIT_SLIME_RABID, "pyro")
-	pyro.maximum_survivable_temperature = INFINITY
-	pyro.apply_temperature_requirements()
+	pyro.bodytemp_heat_damage_limit = INFINITY
 
 	var/mob/chosen_one = SSpolling.poll_ghosts_for_target(check_jobban = ROLE_SENTIENCE, poll_time = 10 SECONDS, checked_target = pyro, ignore_category = POLL_IGNORE_PYROSLIME, alert_pic = pyro, role_name_text = "pyroclastic anomaly slime")
 	if(isnull(chosen_one))

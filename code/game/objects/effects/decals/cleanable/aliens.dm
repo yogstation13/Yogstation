@@ -7,13 +7,14 @@
 	icon_state = "xfloor1"
 	random_icon_states = list("xfloor1", "xfloor2", "xfloor3", "xfloor4", "xfloor5", "xfloor6", "xfloor7")
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
-	blood_state = BLOOD_STATE_XENO
 	beauty = -250
 	clean_type = CLEAN_TYPE_BLOOD
+	decal_reagent = /datum/blood_type/xenomorph::reagent_type
+	reagent_amount = 15
 
 /obj/effect/decal/cleanable/xenoblood/Initialize(mapload)
 	. = ..()
-	add_blood_DNA(list("UNKNOWN DNA" = "X*"))
+	add_blood_DNA(list("UNKNOWN DNA" = /datum/blood_type/xenomorph))
 
 /obj/effect/decal/cleanable/xenoblood/xsplatter
 	random_icon_states = list("xgibbl1", "xgibbl2", "xgibbl3", "xgibbl4", "xgibbl5")
@@ -100,10 +101,6 @@
 	icon_state = "xgiblarvatorso"
 	random_icon_states = list("xgiblarvahead", "xgiblarvatorso")
 
-/obj/effect/decal/cleanable/blood/xtracks
+/obj/effect/decal/cleanable/xenoblood/xtracks
 	icon_state = "xtracks"
 	random_icon_states = null
-
-/obj/effect/decal/cleanable/blood/xtracks/Initialize(mapload)
-	. = ..()
-	add_blood_DNA(list("Unknown DNA" = "X*"))

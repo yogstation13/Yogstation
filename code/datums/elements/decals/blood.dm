@@ -38,6 +38,10 @@
 		blood_splatter_appearances[index] = pic
 	return TRUE
 
+/datum/element/decal/blood/apply_overlay(obj/item/source, list/overlay_list)
+	pic.color = source.get_blood_dna_color() || COLOR_BLOOD
+	return ..()
+
 /datum/element/decal/blood/proc/get_examine_name(datum/source, mob/user, list/override)
 	SIGNAL_HANDLER
 

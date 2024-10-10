@@ -245,10 +245,7 @@
 	metabolization_rate = 0.25 * REM//faster consumption when alive
 	if(affected_mob.reagents.has_reagent(/datum/reagent/oxygen))
 		affected_mob.reagents.remove_reagent(/datum/reagent/oxygen, 0.5 * REM * seconds_per_tick)
-		affected_mob.adjust_bodytemperature(-15 * REM * seconds_per_tick)
-		if(ishuman(affected_mob))
-			var/mob/living/carbon/human/humi = affected_mob
-			humi.adjust_coretemperature(-15 * REM * seconds_per_tick)
+		affected_mob.adjust_bodytemperature(-1 KELVIN * REM * seconds_per_tick)
 	..()
 
 /datum/reagent/cryostylane/expose_turf(turf/exposed_turf, reac_volume)
@@ -275,10 +272,7 @@
 /datum/reagent/pyrosium/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	if(holder.has_reagent(/datum/reagent/oxygen))
 		holder.remove_reagent(/datum/reagent/oxygen, 0.5 * REM * seconds_per_tick)
-		affected_mob.adjust_bodytemperature(15 * REM * seconds_per_tick)
-		if(ishuman(affected_mob))
-			var/mob/living/carbon/human/humi = affected_mob
-			humi.adjust_coretemperature(15 * REM * seconds_per_tick)
+		affected_mob.adjust_bodytemperature(1 KELVIN * REM * seconds_per_tick)
 	..()
 
 /datum/reagent/pyrosium/burn(datum/reagents/holder)

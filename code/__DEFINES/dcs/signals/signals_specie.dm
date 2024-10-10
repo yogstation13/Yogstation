@@ -5,3 +5,6 @@
 #define COMSIG_SPECIES_LOSS "species_loss"
 ///from datum/species/on_species_gain(): (datum/species/new_species, datum/species/old_species) called before anything is done to ensure passing of data
 #define COMSIG_SPECIES_GAIN_PRE "species_gain_pre"
+///from datum/species/handle_chemical(): (datum/reagent/chem, mob/living/carbon/human/affected, seconds_per_tick, times_fired)
+#define COMSIG_SPECIES_HANDLE_CHEMICAL "species_handle_chemicals"
+	// same return values as COMSIG_MOB_STOP_REAGENT_CHECK

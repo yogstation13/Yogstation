@@ -6,8 +6,8 @@
 	mob_biotypes = MOB_MINERAL
 	faction = list(FACTION_CULT)
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = INFINITY
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = INFINITY
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pressure_resistance = 100
 	speed = 0

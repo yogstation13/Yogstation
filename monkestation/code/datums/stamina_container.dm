@@ -75,11 +75,13 @@
 	COOLDOWN_START(src, stamina_grace_period, time)
 
 ///Adjust stamina by an amount.
-/datum/stamina_container/proc/adjust(amt as num, forced)
+/datum/stamina_container/proc/adjust(amt as num, forced, base_modify = FALSE)
 	if((!amt || !COOLDOWN_FINISHED(src, stamina_grace_period)) && !forced)
 		return
 	///Our parent might want to fuck with these numbers
 	var/modify = parent.pre_stamina_change(amt, forced)
+	if(base_modify)
+		modify = amt
 	current = round(clamp(current + modify, 0, maximum), DAMAGE_PRECISION)
 	update(1)
 	if((amt < 0) && is_regenerating)

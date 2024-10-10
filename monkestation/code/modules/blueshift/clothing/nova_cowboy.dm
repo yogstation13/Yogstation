@@ -42,7 +42,7 @@
 	greyscale_colors = "#c26934#8f89ae#774B2D"
 	greyscale_config = /datum/greyscale_config/cowboy_flat_cowl
 	greyscale_config_worn = /datum/greyscale_config/cowboy_flat_cowl/worn
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	flags_inv = HIDEHAIR
 

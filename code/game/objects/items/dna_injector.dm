@@ -57,7 +57,7 @@
 			target.real_name = fields["name"]
 			target.dna.unique_enzymes = fields["UE"]
 			target.name = target.real_name
-			target.dna.blood_type = fields["blood_type"]
+			target.dna.human_blood_type = blood_name_to_blood_type(fields["blood_type"])
 		if(fields["UI"]) //UI+UE
 			target.dna.unique_identity = merge_text(target.dna.unique_identity, fields["UI"])
 		if(fields["UF"])
@@ -131,11 +131,11 @@
 			if(!target.dna.previous["UE"])
 				target.dna.previous["UE"] = target.dna.unique_enzymes
 			if(!target.dna.previous["blood_type"])
-				target.dna.previous["blood_type"] = target.dna.blood_type
+				target.dna.previous["blood_type"] = "[initial(target.dna.human_blood_type.name)]"
 			target.real_name = fields["name"]
 			target.dna.unique_enzymes = fields["UE"]
 			target.name = target.real_name
-			target.dna.blood_type = fields["blood_type"]
+			target.dna.human_blood_type = blood_name_to_blood_type(fields["blood_type"])
 			target.dna.temporary_mutations[UE_CHANGED] = endtime
 		if(fields["UI"]) //UI+UE
 			if(!target.dna.previous["UI"])

@@ -88,8 +88,8 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	armor_type = /datum/armor/toggle_deckard
-	cold_protection = CHEST|GROIN|LEGS|ARMS
-	heat_protection = CHEST|GROIN|LEGS|ARMS
+
+
 
 /datum/armor/toggle_deckard
 	melee = 25
@@ -145,8 +145,8 @@
 	desc = "<i>\"You look like a good Joe.\"</i>"
 	icon_state = "bladerunner_neue"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS
-	cold_protection = CHEST|GROIN|ARMS|LEGS
-	heat_protection = CHEST|ARMS|GROIN|LEGS
+
+
 	icon = 'monkestation/code/modules/blueshift/icons/obj/clothing/suits.dmi'
 	worn_icon = 'monkestation/code/modules/blueshift/icons/mob/clothing/suit.dmi'
 	blood_overlay_type = "coat"
@@ -158,7 +158,7 @@
 	icon = 'monkestation/code/modules/blueshift/icons/obj/clothing/suits/jacket.dmi'
 	worn_icon = 'monkestation/code/modules/blueshift/icons/mob/clothing/suits/jacket.dmi'
 	body_parts_covered = CHEST|ARMS
-	cold_protection = CHEST|ARMS
+
 	greyscale_config = /datum/greyscale_config/croptop
 	greyscale_config_worn = /datum/greyscale_config/croptop/worn
 	greyscale_colors = "#1d1b1b"
@@ -229,7 +229,7 @@
 	greyscale_config_worn = /datum/greyscale_config/warm_coat/worn
 	greyscale_colors = "#7a5f4f#d9cec7"
 	flags_1 = IS_PLAYER_COLORABLE_1
-	cold_protection = CHEST|GROIN|ARMS
+
 	body_parts_covered = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON

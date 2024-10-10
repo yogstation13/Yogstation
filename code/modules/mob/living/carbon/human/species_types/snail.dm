@@ -1,24 +1,21 @@
 /datum/species/snail
 	name = "Snailperson"
 	id = SPECIES_SNAIL
-	species_traits = list(
-		MUTCOLORS,
-		NO_UNDERWEAR,
-	)
 	inherent_traits = list(
+		TRAIT_MUTANT_COLORS,
+		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_SLIP_ALL,
 	)
 
 	coldmod = 0.5 //snails only come out when its cold and wet
 	burnmod = 2
-	speedmod = 6
 	siemens_coeff = 2 //snails are mostly water
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP
 	sexes = FALSE //snails are hermaphrodites
 
 	mutanteyes = /obj/item/organ/internal/eyes/snail
 	mutanttongue = /obj/item/organ/internal/tongue/snail
-	exotic_blood = /datum/reagent/lube
+	exotic_bloodtype = /datum/blood_type/snail
 
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/snail,
@@ -29,13 +26,15 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/snail
 	)
 
-/datum/species/snail/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H, seconds_per_tick, times_fired)
+/datum/species/snail/handle_chemical(datum/reagent/chem, mob/living/carbon/human/affected, seconds_per_tick, times_fired)
 	. = ..()
+	if(. & COMSIG_MOB_STOP_REAGENT_CHECK)
+		return
 	if(istype(chem,/datum/reagent/consumable/salt))
-		H.adjustFireLoss(2 * REM * seconds_per_tick)
-		playsound(H, 'sound/weapons/sear.ogg', 30, TRUE)
-		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * seconds_per_tick)
-		return TRUE
+		//playsound(affected, SFX_SEAR, 30, TRUE)
+		affected.adjustFireLoss(2 * REM * seconds_per_tick)
+		affected.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * seconds_per_tick)
+		return COMSIG_MOB_STOP_REAGENT_CHECK
 
 /datum/species/snail/on_species_gain(mob/living/carbon/new_snailperson, datum/species/old_species, pref_load)
 	. = ..()
@@ -44,8 +43,6 @@
 		if(new_snailperson.dropItemToGround(bag)) //returns TRUE even if its null
 			new_snailperson.equip_to_slot_or_del(new /obj/item/storage/backpack/snail(new_snailperson), ITEM_SLOT_BACK)
 	new_snailperson.AddElement(/datum/element/snailcrawl)
-	if(ishuman(new_snailperson))
-		update_mail_goodies(new_snailperson)
 
 /datum/species/snail/on_species_loss(mob/living/carbon/former_snailperson, datum/species/new_species, pref_load)
 	. = ..()
@@ -55,13 +52,6 @@
 		bag.emptyStorage()
 		former_snailperson.temporarilyRemoveItemFromInventory(bag, TRUE)
 		qdel(bag)
-
-/datum/species/snail/update_quirk_mail_goodies(mob/living/carbon/human/recipient, datum/quirk/quirk, list/mail_goodies = list())
-	if(istype(quirk, /datum/quirk/blooddeficiency))
-		mail_goodies += list(
-			/obj/item/reagent_containers/blood/snail
-		)
-	return ..()
 
 /obj/item/storage/backpack/snail
 	name = "snail shell"

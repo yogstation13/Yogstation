@@ -4,7 +4,7 @@
 
 	breed_name_male = "huOnkHoNkHoeNK"
 	breed_name_female = "huOnkHoNkHoeNK"
-	minimum_survivable_temperature = 0
+	bodytemp_cold_damage_limit = -1
 
 	targeted_ability_planning_tree = /datum/ai_planning_subtree/targeted_mob_ability/min_range/chicken/clown
 

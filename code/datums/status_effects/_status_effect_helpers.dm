@@ -56,7 +56,7 @@
 
 	. = FALSE
 	for(var/datum/status_effect/existing_effect as anything in status_effects)
-		if(existing_effect.id == initial(removed_effect.id) && existing_effect.before_remove(arguments))
+		if(existing_effect.id == initial(removed_effect.id) && existing_effect.before_remove(arglist(arguments)))
 			qdel(existing_effect)
 			. = TRUE
 

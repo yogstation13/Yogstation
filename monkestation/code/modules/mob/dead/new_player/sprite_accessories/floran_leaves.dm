@@ -1,6 +1,8 @@
 /datum/sprite_accessory/floran_leaves
 	icon = 'monkestation/icons/mob/species/floran/floran_leaves.dmi'
-	color_src = MUTCOLORS_SECONDARY
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR_SECONDARY
+	fallback_key = MUTANT_COLOR
 	//Should be MUTCOLORS_SECONDARY, but while its not working it will be the inverse of MUTCOLORS
 
 /datum/sprite_accessory/floran_leaves/furnivour

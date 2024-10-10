@@ -26,7 +26,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	faction = list(ROLE_ALIEN)
 	status_flags = CANPUSH
-	minbodytemp = 0
+	bodytemp_cold_damage_limit = -1
 	unsuitable_heat_damage = 20
 	// Going for a dark purple here
 	lighting_cutoff_red = 30

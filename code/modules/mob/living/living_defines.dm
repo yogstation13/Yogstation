@@ -21,6 +21,9 @@
 	///Stamina damage, or exhaustion. You recover it slowly naturally, and are knocked down if it gets too high. Holodeck and hallucinations deal this.
 	var/staminaloss = 0
 
+	/// Modified applied to attacks with items or fists
+	var/outgoing_damage_mod = 1
+
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
 	///Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
 	var/bruteloss = 0
@@ -115,6 +118,8 @@
 	var/num_legs = 2
 	///How many usable legs this mob currently has. Should only be changed through set_usable_legs()
 	var/usable_legs = 2
+	///what leg we step with
+	var/step_leg = 1
 
 	///How many hands does this mob have by default. This shouldn't change at runtime.
 	var/default_num_hands = 2
@@ -185,9 +190,6 @@
 	///Whether the mob is slowed down when dragging another prone mob
 	var/slowed_by_drag = TRUE
 
-	/// List of changes to body temperature, used by desease symtoms like fever
-	var/list/body_temp_changes = list()
-
 	//this stuff is here to make it simple for admins to mess with custom held sprites
 	///left hand icon for holding mobs
 	var/icon/held_lh = 'icons/mob/inhands/pets_held_lh.dmi'
@@ -226,3 +228,30 @@
 	var/datum/stamina_container/stamina
 	/// What our current gravity state is. Used to avoid duplicate animates and such
 	var/gravity_state = null
+
+	/// Body temp we homeostasize to
+	var/standard_body_temperature = BODYTEMP_NORMAL
+	/// Temperature of our insides
+	var/bodytemperature = BODYTEMP_NORMAL
+	/// Lazylist of targets we homeostasize to
+	/// This allows multiple effects to add a different target to the list, which is averaged
+	/// (So you can have both a fever and a cold at the same time)
+	/// If empty just defaults to standard_body_temperature
+	var/list/homeostasis_targets
+
+	/// How cold to start sustaining cold damage
+	var/bodytemp_cold_damage_limit = -1 // -1 = no cold damage ever
+	/// How hot to start sustaining heat damage
+	var/bodytemp_heat_damage_limit = INFINITY // INFINITY = no heat damage ever
+
+	/// How fast the mob's temperature normalizes to their environment
+	var/temperature_normalization_speed = 0.1
+	/// How fast the mob's temperature normalizes to their homeostasis
+	/// Also gets multiplied by metabolism_efficiency.
+	/// Note that more of this = more nutrition is consumed every life tick.
+	var/temperature_homeostasis_speed = 0.5
+	/// Protection (insulation) from temperature changes, max 1
+	var/temperature_insulation = 0
+
+	/// Whether we currently have temp alerts, minor optimization
+	VAR_PRIVATE/temp_alerts = FALSE

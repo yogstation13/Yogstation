@@ -9,6 +9,7 @@ import { useBackend, useLocalState } from '../backend';
 import {
   Autofocus,
   Box,
+  Button,
   Flex,
   Section,
   Stack,
@@ -45,7 +46,7 @@ type ColorPickerData = {
 };
 
 export const ColorPickerModal = (_) => {
-  const { data } = useBackend<ColorPickerData>();
+  const { act, data } = useBackend<ColorPickerData>();
   const {
     timeout,
     message,
@@ -84,6 +85,7 @@ export const ColorPickerModal = (_) => {
           </Stack.Item>
           <Stack.Item>
             <InputButtons input={hsvaToHex(selectedColor)} />
+            <Button onClick={() => act('null')}>Null</Button>
           </Stack.Item>
         </Stack>
       </Window.Content>

@@ -12,21 +12,17 @@
 	skinned_type = /obj/item/stack/sheet/animalhide/monkey
 	meat = /obj/item/food/meat/slab/monkey
 	knife_butcher_results = list(/obj/item/food/meat/slab/monkey = 5, /obj/item/stack/sheet/animalhide/monkey = 1)
-	species_traits = list(
-		NO_UNDERWEAR,
-		NOBLOODOVERLAY,
-		NOTRANSSTING,
-		NOAUGMENTS,
-	)
 	inherent_traits = list(
+		TRAIT_NO_UNDERWEAR,
+		TRAIT_NO_BLOOD_OVERLAY,
+		TRAIT_NO_TRANSFORMATION_STING,
+		TRAIT_NO_AUGMENTS,
 		TRAIT_GUN_NATURAL,
 		TRAIT_VENTCRAWLER_NUDE,
 		TRAIT_WEAK_SOUL,
 	)
 	no_equip_flags = ITEM_SLOT_OCLOTHING | ITEM_SLOT_GLOVES | ITEM_SLOT_FEET | ITEM_SLOT_SUITSTORE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | ERT_SPAWN | SLIME_EXTRACT
-	liked_food = MEAT | FRUIT | BUGS
-	disliked_food = CLOTH
 	sexes = FALSE
 	species_language_holder = /datum/language_holder/monkey
 
@@ -129,17 +125,6 @@
 	if(check_holidays(MONKEYDAY))
 		return TRUE
 	return ..()
-
-/datum/species/monkey/get_scream_sound(mob/living/carbon/human/monkey)
-	return pick(
-		'sound/creatures/monkey/monkey_screech_1.ogg',
-		'sound/creatures/monkey/monkey_screech_2.ogg',
-		'sound/creatures/monkey/monkey_screech_3.ogg',
-		'sound/creatures/monkey/monkey_screech_4.ogg',
-		'sound/creatures/monkey/monkey_screech_5.ogg',
-		'sound/creatures/monkey/monkey_screech_6.ogg',
-		'sound/creatures/monkey/monkey_screech_7.ogg',
-	)
 
 /datum/species/monkey/get_species_description()
 	return "Monkeys are a type of primate that exist between humans and animals on the evolutionary chain. \

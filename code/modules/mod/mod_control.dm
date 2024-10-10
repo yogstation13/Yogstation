@@ -125,8 +125,6 @@
 		part.set_armor(theme.armor_type)
 		part.resistance_flags = theme.resistance_flags
 		part.flags_1 |= theme.atom_flags //flags like initialization or admin spawning are here, so we cant set, have to add
-		part.heat_protection = NONE
-		part.cold_protection = NONE
 		part.max_heat_protection_temperature = theme.max_heat_protection_temperature
 		part.min_cold_protection_temperature = theme.min_cold_protection_temperature
 		part.siemens_coefficient = theme.siemens_coefficient
@@ -655,12 +653,6 @@
 		part.visor_flags_cover = category[SEALED_COVER] || NONE
 		part.alternate_worn_layer = category[UNSEALED_LAYER]
 		mod_parts[part] = part.alternate_worn_layer
-		if(!category[CAN_OVERSLOT])
-			if(overslotting_parts[part])
-				var/obj/item/overslot = overslotting_parts[part]
-				overslot.forceMove(drop_location())
-			overslotting_parts -= part
-			continue
 		overslotting_parts |= part
 	wearer?.regenerate_icons()
 

@@ -163,7 +163,7 @@
 	/// The type of alert given to people when offered, in case you need to override some behavior (like for high-fives)
 	var/give_alert_type = /atom/movable/screen/alert/give
 
-/datum/status_effect/offering/on_creation(mob/living/new_owner, obj/item/offer, give_alert_override, mob/living/carbon/offered)
+/datum/status_effect/offering/on_creation(mob/living/new_owner, obj/item/offer, give_alert_override, mob/living/offered)
 	. = ..()
 	if(!.)
 		return
@@ -171,11 +171,11 @@
 	if(give_alert_override)
 		give_alert_type = give_alert_override
 
-	if(offered && is_taker_elligible(offered))
+	if(offered && is_taker_elligible(offered, offer))
 		register_candidate(offered)
 	else
-		for(var/mob/living/carbon/possible_taker in orange(1, owner))
-			if(!is_taker_elligible(possible_taker))
+		for(var/mob/living/possible_taker in orange(1, owner))
+			if(!is_taker_elligible(possible_taker, offer))
 				continue
 
 			register_candidate(possible_taker)
@@ -202,6 +202,7 @@
 	LAZYADD(possible_takers, possible_candidate)
 	RegisterSignal(possible_candidate, COMSIG_MOVABLE_MOVED, PROC_REF(check_taker_in_range))
 	G.setup(possible_candidate, src)
+	SEND_SIGNAL(possible_candidate, COMSIG_LIVING_GIVE_ITEM_CHECK, G, offered_item)
 
 /// Remove the alert and signals for the specified carbon mob. Automatically removes the status effect when we lost the last taker
 /datum/status_effect/offering/proc/remove_candidate(mob/living/carbon/removed_candidate)
@@ -239,8 +240,8 @@
  *
  * Returns `TRUE` if the taker is valid as a target for the offering.
  */
-/datum/status_effect/offering/proc/is_taker_elligible(mob/living/carbon/taker)
-	return owner.CanReach(taker) && !IS_DEAD_OR_INCAP(taker) && additional_taker_check(taker)
+/datum/status_effect/offering/proc/is_taker_elligible(mob/living/carbon/taker, obj/item/offer)
+	return (owner.CanReach(taker) && !IS_DEAD_OR_INCAP(taker) && additional_taker_check(taker)) || SEND_SIGNAL(taker, COMSIG_LIVING_ITEM_OFFERED_PRECHECK, offer)
 
 /**
  * Additional checks added to `CanReach()` and `IS_DEAD_OR_INCAP()` in `is_taker_elligible()`.

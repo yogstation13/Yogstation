@@ -357,6 +357,7 @@ ROUNDSTART_RACES simian
 ROUNDSTART_RACES arachnid
 ROUNDSTART_RACES apid
 ROUNDSTART_RACES satyr
+ROUNDSTART_RACES ornithid
 
 ## Races that are better than humans in some ways, but worse in others
 ROUNDSTART_RACES ethereal

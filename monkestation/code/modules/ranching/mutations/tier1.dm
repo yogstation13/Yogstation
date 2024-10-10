@@ -58,6 +58,6 @@
 /datum/mutation/ranching/chicken/clown
 	chicken_type = /mob/living/basic/chicken/clown
 	egg_type = /obj/item/food/egg/clown
-	player_job = "Clown"
+	food_requirements = list(/obj/item/food/grown/banana)
 
 	can_come_from_string = "White Chicken"

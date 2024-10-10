@@ -4,24 +4,21 @@
 	// 1spooky
 	name = "High-Functioning Zombie"
 	id = SPECIES_ZOMBIE
-	sexes = 0
+	sexes = FALSE
 	meat = /obj/item/food/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/internal/tongue/zombie
-	species_traits = list(
-		NOZOMBIE,
-		NOTRANSSTING,
-	)
 	inherent_traits = list(
 		// SHARED WITH ALL ZOMBIES
+		TRAIT_NO_ZOMBIFY,
+		TRAIT_NO_TRANSFORMATION_STING,
 		TRAIT_EASILY_WOUNDED,
 		TRAIT_EASYDISMEMBER,
 		TRAIT_FAKEDEATH,
-		TRAIT_LIMBATTACHMENT,
 		TRAIT_NOBREATH,
 		TRAIT_NOCLONELOSS,
 		TRAIT_NODEATH,
 		TRAIT_NOHUNGER,
-		TRAIT_NOMETABOLISM,
+		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_RADIMMUNE,
 		TRAIT_RESISTCOLD,
 		TRAIT_RESISTHIGHPRESSURE,
@@ -38,25 +35,20 @@
 	mutantlungs = null
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	var/static/list/spooks = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
-	disliked_food = NONE
-	liked_food = GROSS | MEAT | RAW | GORE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | ERT_SPAWN
 	bodytemp_normal = T0C // They have no natural body heat, the environment regulates body temp
 	bodytemp_heat_damage_limit = FIRE_MINIMUM_TEMPERATURE_TO_EXIST // Take damage at fire temp
 	bodytemp_cold_damage_limit = MINIMUM_TEMPERATURE_TO_MOVE // take damage below minimum movement temp
 
+	// Infectious zombies have slow legs
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/zombie,
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zombie,
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zombie,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/zombie,
 		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/zombie,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zombie
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zombie,
 	)
-
-/// Zombies do not stabilize body temperature they are the walking dead and are cold blooded
-/datum/species/zombie/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
-	return
 
 /datum/species/zombie/check_roundstart_eligible()
 	if(check_holidays(HALLOWEEN))
@@ -87,7 +79,6 @@
 	id = SPECIES_ZOMBIE_INFECTIOUS
 	examine_limb_id = SPECIES_ZOMBIE
 	armor = 20 // 120 damage to KO a zombie, which kills it
-	speedmod = 1.6
 	mutanteyes = /obj/item/organ/internal/eyes/zombie
 	mutantbrain = /obj/item/organ/internal/brain/zombie
 	mutanttongue = /obj/item/organ/internal/tongue/zombie
@@ -102,12 +93,11 @@
 		TRAIT_EASILY_WOUNDED,
 		TRAIT_EASYDISMEMBER,
 		TRAIT_FAKEDEATH,
-		TRAIT_LIMBATTACHMENT,
 		TRAIT_NOBREATH,
 		TRAIT_NOCLONELOSS,
 		TRAIT_NODEATH,
 		TRAIT_NOHUNGER,
-		TRAIT_NOMETABOLISM,
+		TRAIT_LIVERLESS_METABOLISM,
 		TRAIT_RADIMMUNE,
 		TRAIT_RESISTCOLD,
 		TRAIT_RESISTHIGHPRESSURE,
@@ -118,6 +108,15 @@
 		TRAIT_STABLEHEART, // Replacement for noblood. Infectious zombies can bleed but don't need their heart.
 		TRAIT_STABLELIVER, // Not necessary but for consistency with above
 	)
+	bodypart_overrides = list(
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/zombie,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/zombie,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/zombie,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/zombie,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/zombie/infectious,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/zombie/infectious,
+	)
+
 
 /datum/species/zombie/infectious/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

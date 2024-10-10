@@ -303,7 +303,7 @@
 		span_cult("You [cultist.blood_volume ? "slice open your arm and ":""]begin drawing a sigil of the Geometer.")
 		)
 
-	if(cultist.blood_volume)
+	if(!HAS_TRAIT(cultist, TRAIT_NOBLOOD)) // Monkestation Edit: BLOOD_DATUM
 		cultist.apply_damage(initial(rune_to_scribe.scribe_damage), BRUTE, pick(GLOB.arm_zones), wound_bonus = CANT_WOUND) // *cuts arm* *bone explodes* ever have one of those days?
 
 	var/scribe_mod = initial(rune_to_scribe.scribe_delay)

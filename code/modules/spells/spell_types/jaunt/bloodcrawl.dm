@@ -144,7 +144,7 @@
 
 	// Make the mob have the color of the blood pool it came out of
 	var/obj/effect/decal/cleanable/came_from = locate() in landing_turf
-	var/new_color = came_from?.get_blood_color()
+	var/new_color = came_from?.get_blood_dna_color()
 	if(!new_color)
 		return
 

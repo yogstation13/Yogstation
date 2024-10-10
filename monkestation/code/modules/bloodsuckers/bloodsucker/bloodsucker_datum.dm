@@ -95,7 +95,7 @@
 		TRAIT_NOSOFTCRIT,
 		TRAIT_NOHARDCRIT,
 		TRAIT_AGEUSIA,
-		TRAIT_COLDBLOODED,
+		TRAIT_COLD_BLOODED,
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
@@ -246,7 +246,7 @@
 	if(old_body && ishuman(old_body))
 		var/mob/living/carbon/human/old_user = old_body
 		var/datum/species/old_species = old_user.dna.species
-		old_species.species_traits -= DRINKSBLOOD
+		old_species.inherent_traits -= TRAIT_DRINKS_BLOOD
 		//Keep track of what they were
 		old_left_arm_unarmed_damage_low = old_left_arm.unarmed_damage_low
 		old_left_arm_unarmed_damage_high = old_left_arm.unarmed_damage_high
@@ -260,7 +260,7 @@
 	if(ishuman(new_body))
 		var/mob/living/carbon/human/new_user = new_body
 		var/datum/species/new_species = new_user.dna.species
-		new_species.species_traits += DRINKSBLOOD
+		new_species.inherent_traits += TRAIT_DRINKS_BLOOD
 		var/obj/item/bodypart/new_left_arm
 		var/obj/item/bodypart/new_right_arm
 		//Give old punch damage values
@@ -408,7 +408,7 @@
 		var/datum/species/user_species = user.dna.species
 		var/obj/item/bodypart/user_left_arm = user.get_bodypart(BODY_ZONE_L_ARM)
 		var/obj/item/bodypart/user_right_arm = user.get_bodypart(BODY_ZONE_R_ARM)
-		user_species.species_traits += DRINKSBLOOD
+		user_species.inherent_traits += TRAIT_DRINKS_BLOOD
 		user.dna?.remove_all_mutations()
 		user_left_arm.unarmed_damage_low += 1 //lowest possible punch damage - 0
 		user_left_arm.unarmed_damage_high += 1 //highest possible punch damage - 9
@@ -450,7 +450,7 @@
 	if(ishuman(owner.current))
 		var/mob/living/carbon/human/user = owner.current
 		var/datum/species/user_species = user.dna.species
-		user_species.species_traits -= DRINKSBLOOD
+		user_species.inherent_traits -= TRAIT_DRINKS_BLOOD
 	// Remove all bloodsucker traits
 	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 	// Update Health

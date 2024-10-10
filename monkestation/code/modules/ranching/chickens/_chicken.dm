@@ -272,7 +272,9 @@
 	for(var/mob/living/basic/animals in view(1, src))
 		animal_count ++
 	if(animal_count >= overcrowding)
-		adjust_happiness(-1)
+		eggs_fertile = FALSE
+	else
+		eggs_fertile = TRUE
 
 	if(!stat && prob(3) && current_feed_amount > 0)
 		current_feed_amount--

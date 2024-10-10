@@ -132,7 +132,7 @@
 /turf/open/floor/iron/smooth_edge,
 /area/ruin/space/has_grav/derelictsulaco)
 "eF" = (
-/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/xenoblood/xtracks,
 /turf/open/floor/plating/airless,
 /area/ruin/space)
 "eU" = (
@@ -165,7 +165,7 @@
 /area/ruin/space/has_grav/derelictsulaco)
 "fI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -663,7 +663,7 @@
 /area/ruin/space/has_grav/derelictsulaco)
 "vl" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -708,7 +708,7 @@
 /area/ruin/space/has_grav/derelictsulaco)
 "wR" = (
 /obj/effect/mapping_helpers/burnt_floor,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1017,7 +1017,7 @@
 /area/ruin/space)
 "Ie" = (
 /obj/effect/mapping_helpers/burnt_floor,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1322,7 +1322,7 @@
 /area/ruin/space/has_grav/derelictsulaco)
 "QR" = (
 /obj/structure/alien/weeds,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 5
 	},
 /obj/item/trash/flare,
@@ -1433,7 +1433,7 @@
 /area/ruin/space/has_grav/derelictsulaco)
 "TL" = (
 /obj/structure/alien/weeds,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1645,7 +1645,7 @@
 /area/template_noop)
 "ZA" = (
 /obj/effect/mapping_helpers/broken_floor,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,

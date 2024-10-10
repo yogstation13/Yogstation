@@ -162,7 +162,7 @@
 
 /datum/martial_art/the_sleeping_carp/proc/can_deflect(mob/living/carp_user)
 	if(!COOLDOWN_FINISHED(src, block_cooldown))
-		if(prob(70))
+		if(prob(50))
 			return FALSE
 	if(!can_use(carp_user))
 		return FALSE
@@ -191,7 +191,7 @@
 	)
 	COOLDOWN_START(src, block_cooldown, 3 SECONDS)
 	playsound(carp_user, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), vol = 75, vary = TRUE)
-	carp_user.stamina?.adjust(-50)
+	carp_user.stamina?.adjust(-15)
 	hitting_projectile.firer = carp_user
 	hitting_projectile.set_angle(rand(0, 360))//SHING
 	return COMPONENT_BULLET_PIERCED

@@ -148,10 +148,12 @@
 /obj/item/bodypart/arm/left/lizard/ashwalker
 	brute_modifier = ASHWALKER_BRUTE_MODIFIER
 	burn_modifier = ASHWALKER_BURN_MODIFIER
+	hand_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/arm/right/lizard/ashwalker
 	brute_modifier = ASHWALKER_BRUTE_MODIFIER
 	burn_modifier = ASHWALKER_BURN_MODIFIER
+	hand_traits = list(TRAIT_CHUNKYFINGERS)
 
 /obj/item/bodypart/leg/left/lizard/ashwalker
 	brute_modifier = ASHWALKER_BRUTE_MODIFIER

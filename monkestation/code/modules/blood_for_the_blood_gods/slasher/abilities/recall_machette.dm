@@ -67,11 +67,6 @@
 			user.emote("scream")
 			living_user.adjustBruteLoss(force)
 			to_chat(user, span_warning("You scream out in pain as you hold the [src]!"))
-			if(ishuman(user))
-				var/mob/living/carbon/human/human = user
-				var/turf/turf = get_turf(user)
-				var/list/blood_drop = list(human.get_blood_id() = 3)
-				turf.add_liquid_list(blood_drop, FALSE, 300)
 			return FALSE
 	. = ..()
 
@@ -83,10 +78,5 @@
 			user.emote("scream")
 			living_user.adjustBruteLoss(force)
 			to_chat(user, span_warning("You scream out in pain as you hold the [src]!"))
-			if(ishuman(user))
-				var/mob/living/carbon/human/human = user
-				var/turf/turf = get_turf(user)
-				var/list/blood_drop = list(human.get_blood_id() = 3)
-				turf.add_liquid_list(blood_drop, FALSE, 300)
 			return FALSE
 	. = ..()

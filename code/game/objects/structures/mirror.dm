@@ -212,22 +212,22 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror, 28)
 			var/datum/species/newrace = selectable_races[racechoice]
 			amazed_human.set_species(newrace, icon_update = FALSE)
 
-			if(amazed_human.dna.species.use_skintones)
+			if(HAS_TRAIT(amazed_human, TRAIT_USES_SKINTONES))
 				var/new_s_tone = tgui_input_list(user, "Choose your skin tone", "Race change", GLOB.skin_tones)
 				if(new_s_tone)
 					amazed_human.skin_tone = new_s_tone
 					amazed_human.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
 
-			if(MUTCOLORS in amazed_human.dna.species.species_traits)
-				var/new_mutantcolor = tgui_color_picker(user, "Choose your skin color:", "Race change", amazed_human.dna.features["mcolor"])
+			else if(HAS_TRAIT(amazed_human, TRAIT_MUTANT_COLORS) && !HAS_TRAIT(amazed_human, TRAIT_FIXED_MUTANT_COLORS))
+				var/datum/color_palette/generic_colors/palette = amazed_human.dna.color_palettes[/datum/color_palette/generic_colors]
+				var/new_mutantcolor = tgui_color_picker(user, "Choose your skin color:", "Race change", palette.mutant_color)
 				if(!user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
 					return TRUE
 				if(new_mutantcolor)
 					var/temp_hsv = RGBtoHSV(new_mutantcolor)
 
 					if(ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright
-						amazed_human.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
-						amazed_human.dna.update_uf_block(DNA_MUTANT_COLOR_BLOCK)
+						palette.mutant_color = sanitize_hexcolor(new_mutantcolor)
 
 					else
 						to_chat(amazed_human, span_notice("Invalid color. Your color is not bright enough."))

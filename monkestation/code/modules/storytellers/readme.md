@@ -40,5 +40,6 @@ This PR adds adds on to the current dynamic system by having events be guided by
 <!-- Here go the credits to you, dear coder, and in case of collaborative work or ports, credits to the original source of the code -->
 <!-- Orignal Coders -->
 Made by Unknown Coders on Horizon (Horizon's Repo atleast as of 10/14/2023 no longer exists if this changes please let me know on discord #Borbop)
+https://github.com/sebdaz/HorizonSS13
 <!-- Orignal Coders -->
 Ported by Dwasint

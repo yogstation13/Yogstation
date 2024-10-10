@@ -140,9 +140,9 @@
 		player_one.client.prefs.adjust_metacoins(player_one.ckey, payout, "Opponent left, reimbursed.")
 		return
 
-	var/turf/player_one_spot = locate(148, 34, SSmapping.levels_by_trait(ZTRAIT_CENTCOM)[1])
+	var/turf/player_one_spot = locate(138, 131, SSmapping.levels_by_trait(ZTRAIT_CENTCOM)[1])
 	prep_player(player_one, player_one_spot)
-	var/turf/player_two_spot = locate(164, 34, SSmapping.levels_by_trait(ZTRAIT_CENTCOM)[1])
+	var/turf/player_two_spot = locate(154, 131, SSmapping.levels_by_trait(ZTRAIT_CENTCOM)[1])
 	prep_player(player_two, player_two_spot)
 
 /obj/structure/fight_button/proc/prep_player(mob/living/carbon/human/ghost/player, turf/move_to)

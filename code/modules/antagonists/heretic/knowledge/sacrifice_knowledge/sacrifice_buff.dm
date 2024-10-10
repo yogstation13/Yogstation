@@ -20,10 +20,12 @@
 
 /datum/status_effect/unholy_determination/on_apply()
 	owner.add_traits(list(TRAIT_COAGULATING, TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT), type)
+	owner.add_homeostasis_level(id, owner.standard_body_temperature, 10 KELVIN)
 	return TRUE
 
 /datum/status_effect/unholy_determination/on_remove()
 	owner.remove_traits(list(TRAIT_COAGULATING, TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT), type)
+	owner.remove_homeostasis_level(id)
 
 /datum/status_effect/unholy_determination/tick()
 	// The amount we heal of each damage type per tick. If we're missing legs we heal better because we can't dodge.
@@ -49,7 +51,6 @@
 		playsound(owner, pick(GLOB.creepy_ambience), 50, TRUE)
 
 	adjust_all_damages(healing_amount)
-	adjust_temperature()
 	adjust_bleed_wounds()
 
 /*
@@ -66,27 +67,10 @@
 	owner.adjustFireLoss(-amount)
 
 /*
- * Adjust the owner's temperature up or down to standard body temperatures.
- */
-/datum/status_effect/unholy_determination/proc/adjust_temperature()
-	var/target_temp = owner.get_body_temp_normal(apply_change = FALSE)
-	if(owner.bodytemperature > target_temp)
-		owner.adjust_bodytemperature(-50 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
-	else if(owner.bodytemperature < (target_temp + 1))
-		owner.adjust_bodytemperature(50 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
-
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human_owner = owner
-		if(human_owner.coretemperature > target_temp)
-			human_owner.adjust_coretemperature(-50 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
-		else if(human_owner.coretemperature < (target_temp + 1))
-			human_owner.adjust_coretemperature(50 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, target_temp)
-
-/*
  * Slow and stop any blood loss the owner's experiencing.
  */
 /datum/status_effect/unholy_determination/proc/adjust_bleed_wounds()
-	if(!iscarbon(owner) || !owner.blood_volume)
+	if(HAS_TRAIT(owner, TRAIT_NOBLOOD))
 		return
 
 	if(owner.blood_volume < BLOOD_VOLUME_NORMAL)

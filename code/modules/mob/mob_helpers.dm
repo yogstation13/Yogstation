@@ -240,11 +240,6 @@
 	// Else, return FALSE.
 	return (faker && allow_fake_antags)
 
-
-/mob/proc/reagent_check(datum/reagent/R, seconds_per_tick, times_fired) // utilized in the species code
-	return TRUE
-
-
 /**
  * Fancy notifications for ghosts
  *

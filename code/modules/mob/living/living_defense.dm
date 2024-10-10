@@ -100,21 +100,49 @@
 
 	// we need a second, silent armor check to actually know how much to reduce damage taken, as opposed to
 	// on [/atom/proc/bullet_act] where it's just to pass it to the projectile's on_hit().
-	var/armor_check = check_projectile_armor(def_zone, hitting_projectile, is_silent = TRUE)
+	var/armor_check = min(ARMOR_MAX_BLOCK, check_projectile_armor(def_zone, hitting_projectile, is_silent = TRUE))
 
-	apply_damage(
+	var/damage_done = apply_damage(
 		damage = hitting_projectile.damage,
 		damagetype = hitting_projectile.damage_type,
 		def_zone = def_zone,
-		blocked = min(ARMOR_MAX_BLOCK, armor_check),  //cap damage reduction at 90%
+		blocked = armor_check,
 		wound_bonus = hitting_projectile.wound_bonus,
 		bare_wound_bonus = hitting_projectile.bare_wound_bonus,
 		sharpness = hitting_projectile.sharpness,
-		attack_direction = get_dir(hitting_projectile.starting, src),
+		attack_direction = hitting_projectile.dir,
 	)
+	if(hitting_projectile.stamina)
+		apply_damage(
+			damage = hitting_projectile.stamina,
+			damagetype = STAMINA,
+			def_zone = def_zone,
+			blocked = armor_check,
+			attack_direction = hitting_projectile.dir,
+		)
+	if(hitting_projectile.pain)
+		apply_damage(
+			damage = hitting_projectile.pain,
+			damagetype = PAIN,
+			def_zone = def_zone,
+			// blocked = armor_check, // Batons don't factor in armor, soooo we shouldn't?
+			attack_direction = hitting_projectile.dir,
+		)
+
+	var/extra_paralyze = 0 SECONDS
+	var/extra_knockdown = 0 SECONDS
+	if(hitting_projectile.damage_type == BRUTE && !hitting_projectile.grazing && (pain_controller?.get_average_pain() > 50))
+		if(damage_done >= 60)
+			if(!IsParalyzed() && prob(damage_done))
+				extra_paralyze += 0.8 SECONDS
+				extra_knockdown += 1.2 SECONDS
+		else if(damage_done >= 20)
+			if(!IsKnockdown() && prob(damage_done * 2))
+				extra_knockdown += 0.8 SECONDS
+
 	apply_effects(
 		stun = hitting_projectile.stun,
-		knockdown = hitting_projectile.knockdown,
+		knockdown = hitting_projectile.knockdown + extra_knockdown,
 		unconscious = hitting_projectile.unconscious,
 		slur = (mob_biotypes & MOB_ROBOTIC) ? 0 SECONDS : hitting_projectile.slur, // Don't want your cyborgs to slur from being ebow'd
 		stutter = (mob_biotypes & MOB_ROBOTIC) ? 0 SECONDS : hitting_projectile.stutter, // Don't want your cyborgs to stutter from being tazed
@@ -123,7 +151,7 @@
 		blocked = armor_check,
 		stamina = hitting_projectile.stamina,
 		jitter = (mob_biotypes & MOB_ROBOTIC) ? 0 SECONDS : hitting_projectile.jitter, // Cyborgs can jitter but not from being shot
-		paralyze = hitting_projectile.paralyze,
+		paralyze = hitting_projectile.paralyze + extra_paralyze,
 		immobilize = hitting_projectile.immobilize,
 	)
 	if(hitting_projectile.dismemberment)
@@ -131,7 +159,16 @@
 	return BULLET_ACT_HIT
 
 /mob/living/check_projectile_armor(def_zone, obj/projectile/impacting_projectile, is_silent)
-	return run_armor_check(def_zone, impacting_projectile.armor_flag, "","",impacting_projectile.armour_penetration, "", is_silent, impacting_projectile.weak_against_armour)
+	. = run_armor_check(
+		def_zone = def_zone,
+		attack_flag = impacting_projectile.armor_flag,
+		armour_penetration = impacting_projectile.armour_penetration,
+		silent = is_silent,
+		weak_against_armour = impacting_projectile.weak_against_armour,
+	)
+	if(impacting_projectile.grazing)
+		. += 50
+	return .
 
 /mob/living/proc/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	return 0

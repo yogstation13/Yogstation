@@ -357,6 +357,8 @@
 	Heal(mob, effectiveness)
 
 /datum/symptom/water_heal/proc/CanHeal(mob/living/M)
+	if(!M)
+		return 1
 	var/base = 0
 	if(M.fire_stacks < 0)
 		M.adjust_fire_stacks(min(absorption_coeff, -M.fire_stacks))
@@ -476,13 +478,13 @@
 	if(prob(5))
 		to_chat(M, span_notice("You feel yourself absorbing plasma inside and around you..."))
 
-	var/target_temp = M.get_body_temp_normal()
+	var/target_temp = M.standard_body_temperature
 	if(M.bodytemperature > target_temp)
-		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+		M.adjust_bodytemperature(-2 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 		if(prob(5))
 			to_chat(M, span_notice("You feel less hot."))
-	else if(M.bodytemperature < (M.get_body_temp_normal() + 1))
-		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT, 0, target_temp)
+	else if(M.bodytemperature < (M.standard_body_temperature + 1))
+		M.adjust_bodytemperature(2 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT, 0, target_temp)
 		if(prob(5))
 			to_chat(M, span_notice("You feel warmer."))
 

@@ -543,8 +543,8 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	armor_type = /datum/armor/armor_changeling
 	flags_inv = HIDEJUMPSUIT
-	cold_protection = 0
-	heat_protection = 0
+	max_heat_protection_temperature = null
+	min_cold_protection_temperature = null
 	resistance_flags = FLAMMABLE //MONKESTATION ADDITION
 
 /datum/armor/armor_changeling

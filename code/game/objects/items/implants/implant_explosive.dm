@@ -58,7 +58,7 @@
 		explosion(src, devastation_range = heavy, heavy_impact_range = medium, light_impact_range = weak, flame_range = weak, flash_range = weak, explosion_cause = src)
 		if(imp_in)
 			imp_in.investigate_log("has been gibbed by an explosive implant.", INVESTIGATE_DEATHS)
-			imp_in.gib(TRUE)
+			imp_in.gib(TRUE, safe_gib = FALSE)
 		qdel(src)
 		return
 	timed_explosion()

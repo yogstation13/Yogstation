@@ -53,6 +53,8 @@
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
+	if(bloodiness)
+		update_appearance()
 
 /obj/effect/decal/cleanable/Destroy()
 	var/turf/T = get_turf(src)
@@ -97,7 +99,7 @@
 //This is on /cleanable because fuck this ancient mess
 /obj/effect/decal/cleanable/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
-	if(iscarbon(AM) && blood_state && bloodiness >= 40)
+	if(iscarbon(AM) && bloodiness >= 40)
 		SEND_SIGNAL(AM, COMSIG_STEP_ON_BLOOD, src)
 		update_appearance()
 
@@ -112,27 +114,35 @@
  * Checks if this decal is a valid decal that can be blood crawled in.
  */
 /obj/effect/decal/cleanable/proc/can_bloodcrawl_in()
-	if((blood_state != BLOOD_STATE_OIL) && (blood_state != BLOOD_STATE_NOT_BLOODY))
-		return bloodiness
-
-	return FALSE
-
-/**
- * Gets the color associated with the any blood present on this decal. If there is no blood, returns null.
- */
-/obj/effect/decal/cleanable/proc/get_blood_color()
-	switch(blood_state)
-		if(BLOOD_STATE_HUMAN)
-			return rgb(149, 10, 10)
-		if(BLOOD_STATE_XENO)
-			return rgb(43, 186, 0)
-		if(BLOOD_STATE_OIL)
-			return rgb(22, 22, 22)
-
-	return null
+	return decal_reagent == /datum/reagent/blood
 
 /obj/effect/decal/cleanable/proc/handle_merge_decal(obj/effect/decal/cleanable/merger)
 	if(!merger)
 		return
 	if(merger.reagents && reagents)
 		reagents.trans_to(merger, reagents.total_volume)
+
+/// Increments or decrements the bloodiness value
+/obj/effect/decal/cleanable/proc/adjust_bloodiness(by_amount)
+	if(by_amount == 0)
+		return FALSE
+	if(QDELING(src))
+		return FALSE
+
+	bloodiness = clamp((bloodiness + by_amount), 0, BLOOD_POOL_MAX)
+	update_appearance()
+	return TRUE
+
+/// Called before attempting to scoop up reagents from this decal to only load reagents when necessary
+/obj/effect/decal/cleanable/proc/lazy_init_reagents()
+	return
+
+#ifdef TESTING
+/obj/effect/decal/cleanable/update_overlays()
+	. = ..()
+	if(bloodiness)
+		var/mutable_appearance/blah_text = new()
+		blah_text.maptext = MAPTEXT_TINY_UNICODE("[bloodiness]")
+		blah_text.appearance_flags |= (KEEP_APART|RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM)
+		. += blah_text
+#endif

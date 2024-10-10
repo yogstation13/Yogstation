@@ -36,25 +36,30 @@
 	var/list/msg = list("<span class='warning'>")
 	var/list/missing = list(BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
 	var/list/disabled = list()
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/BP = X
-		if(BP.bodypart_disabled)
-			disabled += BP
-		missing -= BP.body_zone
-		for(var/obj/item/I in BP.embedded_objects)
-			if(I.isEmbedHarmless())
-				msg += "<B>[t_He] [t_has] [icon2html(I, user)] \a [I] stuck to [t_his] [BP.name]!</B>\n"
-			else
-				msg += "<B>[t_He] [t_has] [icon2html(I, user)] \a [I] embedded in [t_his] [BP.name]!</B>\n"
-		for(var/i in BP.wounds)
-			var/datum/wound/W = i
-			msg += "[W.get_examine_description(user)]\n"
+	var/adjacent = user.Adjacent(src)
+	for(var/obj/item/bodypart/body_part as anything in bodyparts)
+		if(body_part.bodypart_disabled)
+			disabled += body_part
+		missing -= body_part.body_zone
+		for(var/obj/item/leftover in body_part.embedded_objects)
+			var/stuck_or_embedded = "embedded in"
+			if(leftover.isEmbedHarmless())
+				stuck_or_embedded = "stuck to"
+			msg += "<b>[t_He] [t_has] [icon2html(leftover, user)] \a [leftover] [stuck_or_embedded] [t_his] [body_part.plaintext_zone]!</b>\n"
 
-	for(var/X in disabled)
-		var/obj/item/bodypart/BP = X
+		if(body_part.current_gauze)
+			var/gauze_href = body_part.current_gauze.name
+			if(adjacent && isliving(user)) // only shows the href if we're adjacent
+				gauze_href = "<a href='?src=[REF(src)];gauze_limb=[REF(body_part)]'>[gauze_href]</a>"
+			msg += span_notice("There is some [icon2html(body_part.current_gauze, user)] [gauze_href] wrapped around [t_his] [body_part.plaintext_zone].\n")
+
+		for(var/datum/wound/iter_wound as anything in body_part.wounds)
+			msg += "[iter_wound.get_examine_description(user)]\n"
+
+	for(var/obj/item/bodypart/body_part as anything in disabled)
 		var/damage_text
-		damage_text = (BP.brute_dam >= BP.burn_dam) ? BP.heavy_brute_msg : BP.heavy_burn_msg
-		msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
+		damage_text = (body_part.brute_dam >= body_part.burn_dam) ? body_part.heavy_brute_msg : body_part.heavy_burn_msg
+		msg += "<B>[capitalize(t_his)] [body_part.name] is [damage_text]!</B>\n"
 
 	for(var/t in missing)
 		if(t == BODY_ZONE_HEAD)

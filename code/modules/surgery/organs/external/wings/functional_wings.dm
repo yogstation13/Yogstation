@@ -105,11 +105,13 @@
 	if(!HAS_TRAIT_FROM(human, TRAIT_MOVE_FLYING, SPECIES_FLIGHT_TRAIT))
 		human.physiology.stun_mod *= 2
 		human.add_traits(list(TRAIT_NO_FLOATING_ANIM, TRAIT_MOVE_FLYING), SPECIES_FLIGHT_TRAIT)
+		DO_FLOATING_ANIM(human)
 		passtable_on(human, SPECIES_TRAIT)
 		open_wings()
 	else
 		human.physiology.stun_mod *= 0.5
 		human.remove_traits(list(TRAIT_NO_FLOATING_ANIM, TRAIT_MOVE_FLYING), SPECIES_FLIGHT_TRAIT)
+		STOP_FLOATING_ANIM(human)
 		passtable_off(human, SPECIES_TRAIT)
 		close_wings()
 	human.update_body_parts()

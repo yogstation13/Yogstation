@@ -21,7 +21,7 @@
 	/// The duration of the blind on our target
 	var/blind_duration = 4 SECONDS
 	/// The amount of temperature we take from our target
-	var/amount_to_cool = 200
+	var/amount_to_cool = CELCIUS_TO_KELVIN(10 CELCIUS)
 
 /datum/action/cooldown/spell/pointed/abyssal_gaze/is_valid_target(atom/cast_on)
 	return iscarbon(cast_on)
@@ -37,7 +37,4 @@
 	cast_on.playsound_local(get_turf(cast_on), 'sound/hallucinations/i_see_you1.ogg', 50, 1)
 	owner.playsound_local(get_turf(owner), 'sound/effects/ghost2.ogg', 50, 1)
 	cast_on.adjust_temp_blindness(blind_duration)
-	if(ishuman(cast_on))
-		var/mob/living/carbon/human/human_cast_on = cast_on
-		human_cast_on.adjust_coretemperature(-amount_to_cool)
 	cast_on.adjust_bodytemperature(-amount_to_cool)

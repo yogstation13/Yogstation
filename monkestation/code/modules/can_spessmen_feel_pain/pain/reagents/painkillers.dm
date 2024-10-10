@@ -179,7 +179,7 @@
 	M.cause_pain(BODY_ZONES_LIMBS, -0.16 * REM * seconds_per_tick)
 	M.cause_pain(BODY_ZONE_CHEST, -0.32 * REM * seconds_per_tick)
 	// Okay at fevers.
-	M.adjust_bodytemperature(-15 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, M.get_body_temp_normal())
+	M.adjust_bodytemperature(-0.1 KELVIN * REM * seconds_per_tick, M.standard_body_temperature)
 	if(M.disgust < DISGUST_LEVEL_VERYGROSS && SPT_PROB(66 * max(1 - creation_purity, 0.5), seconds_per_tick))
 		M.adjust_disgust(1.5 * REM * seconds_per_tick)
 
@@ -191,7 +191,7 @@
 		return
 
 	// On overdose, heat up the body...
-	M.adjust_bodytemperature(30 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick)
+	M.adjust_bodytemperature(0.5 KELVIN * REM * seconds_per_tick, max_temp = HYPERTHERMIA - 1 KELVIN)
 	// Causes sickness...
 	M.apply_damage(1 * REM * seconds_per_tick, TOX)
 	if(M.disgust < 100 && SPT_PROB(100 * max(1 - creation_purity, 0.5), seconds_per_tick))
@@ -229,7 +229,7 @@
 	M.adjustToxLoss(-0.05 * REM * seconds_per_tick, FALSE)
 	M.cause_pain(BODY_ZONES_ALL, -0.2 * REM * seconds_per_tick)
 	// Not very good at treating fevers.
-	M.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, M.get_body_temp_normal())
+	M.adjust_bodytemperature(-0.05 KELVIN * REM * seconds_per_tick, M.standard_body_temperature)
 	// Causes liver damage - higher dosages causes more liver damage.
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, volume / 30 * REM * seconds_per_tick)
 	if(M.disgust < DISGUST_LEVEL_VERYGROSS && SPT_PROB(66 * max(1 - creation_purity, 0.5), seconds_per_tick))
@@ -273,7 +273,7 @@
 	// Causes flat liver damage.
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.25 * REM * seconds_per_tick)
 	// Really good at treating fevers.
-	M.adjust_bodytemperature(-25 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, M.get_body_temp_normal())
+	M.adjust_bodytemperature(-0.5 KELVIN * REM * seconds_per_tick, M.standard_body_temperature)
 	// Causes more disgust the longer it's in someone...
 	if(M.disgust < DISGUST_LEVEL_VERYGROSS && SPT_PROB(66 * max(1 - creation_purity, 0.5), seconds_per_tick))
 		M.adjust_disgust(min(current_cycle * 0.02, 2.4) * REM * seconds_per_tick)

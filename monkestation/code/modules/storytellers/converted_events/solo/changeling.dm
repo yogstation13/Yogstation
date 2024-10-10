@@ -24,6 +24,7 @@
 	min_players = 20
 	weight = 9
 	shared_occurence_type = SHARED_CHANGELING
+	event_icon_state = "changeling"
 
 /datum/round_event_control/antagonist/solo/changeling/roundstart
 	name = "Changelings"

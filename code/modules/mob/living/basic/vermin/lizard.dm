@@ -71,8 +71,8 @@
 	icon_state = "lizard_space"
 	icon_living = "lizard_space"
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = TCMB
-	maximum_survivable_temperature = T0C + 40
+	bodytemp_cold_damage_limit = TCMB
+	bodytemp_heat_damage_limit = T0C + 40
 
 /// Janitor's pet lizard.
 /mob/living/basic/lizard/wags_his_tail

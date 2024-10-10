@@ -280,29 +280,21 @@ Basically, we fill the time between now and 2s from now with hands based off the
 /datum/reagent/inverse/hercuri/on_mob_life(mob/living/carbon/owner, seconds_per_tick, times_fired)
 	. = ..()
 	var/heating = rand(5, 25) * creation_purity * REM * seconds_per_tick
-	owner.reagents?.chem_temp += heating
-	owner.adjust_bodytemperature(heating * TEMPERATURE_DAMAGE_COEFFICIENT)
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/human = owner
-	human.adjust_coretemperature(heating * TEMPERATURE_DAMAGE_COEFFICIENT)
+	owner.reagents?.expose_temperature(owner.reagents.chem_temp + heating, 1)
+	owner.adjust_bodytemperature(heating * 0.2 KELVIN)
 
 /datum/reagent/inverse/hercuri/expose_mob(mob/living/carbon/exposed_mob, methods=VAPOR, reac_volume)
 	. = ..()
 	if(!(methods & VAPOR))
 		return
 
-	exposed_mob.adjust_bodytemperature(reac_volume * TEMPERATURE_DAMAGE_COEFFICIENT)
+	exposed_mob.adjust_bodytemperature(reac_volume * 0.33 KELVIN, use_insulation = TRUE)
 	exposed_mob.adjust_fire_stacks(reac_volume / 2)
 
 /datum/reagent/inverse/hercuri/overdose_process(mob/living/carbon/owner, seconds_per_tick, times_fired)
 	. = ..()
 	owner.adjustOrganLoss(ORGAN_SLOT_LIVER, 2 * REM * seconds_per_tick, required_organtype = affected_organtype) //Makes it so you can't abuse it with pyroxadone very easily (liver dies from 25u unless it's fully upgraded)
-	var/heating = 10 * creation_purity * REM * seconds_per_tick * TEMPERATURE_DAMAGE_COEFFICIENT
-	owner.adjust_bodytemperature(heating) //hot hot
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human = owner
-		human.adjust_coretemperature(heating)
+	owner.adjust_bodytemperature(0.5 KELVIN * creation_purity * REM * seconds_per_tick) //hot hot
 
 /datum/reagent/inverse/healing/tirimol
 	name = "Super Melatonin"//It's melatonin, but super!
@@ -383,20 +375,20 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	apply_lung_levels(lungs)
 
 /datum/reagent/inverse/healing/convermol/proc/apply_lung_levels(obj/item/organ/internal/lungs/lungs)
-	cached_heat_level_1 = lungs.heat_level_1_threshold
-	cached_heat_level_2 = lungs.heat_level_2_threshold
-	cached_heat_level_3 = lungs.heat_level_3_threshold
-	cached_cold_level_1 = lungs.cold_level_1_threshold
-	cached_cold_level_2 = lungs.cold_level_2_threshold
-	cached_cold_level_3 = lungs.cold_level_3_threshold
+	cached_heat_level_1 = lungs.heat_level_warning_threshold
+	cached_heat_level_2 = lungs.heat_level_hazard_threshold
+	cached_heat_level_3 = lungs.heat_level_danger_threshold
+	cached_cold_level_1 = lungs.cold_level_warning_threshold
+	cached_cold_level_2 = lungs.cold_level_hazard_threshold
+	cached_cold_level_3 = lungs.cold_level_danger_threshold
 	//Heat threshold is increased
-	lungs.heat_level_1_threshold *= creation_purity * 1.5
-	lungs.heat_level_2_threshold *= creation_purity * 1.5
-	lungs.heat_level_3_threshold *= creation_purity * 1.5
+	lungs.heat_level_warning_threshold *= creation_purity * 1.5
+	lungs.heat_level_hazard_threshold *= creation_purity * 1.5
+	lungs.heat_level_danger_threshold *= creation_purity * 1.5
 	//Cold threshold is decreased
-	lungs.cold_level_1_threshold *= creation_purity * 0.5
-	lungs.cold_level_2_threshold *= creation_purity * 0.5
-	lungs.cold_level_3_threshold *= creation_purity * 0.5
+	lungs.cold_level_warning_threshold *= creation_purity * 0.5
+	lungs.cold_level_hazard_threshold *= creation_purity * 0.5
+	lungs.cold_level_danger_threshold *= creation_purity * 0.5
 
 /datum/reagent/inverse/healing/convermol/proc/on_removed_organ(mob/prev_owner, obj/item/organ/organ)
 	SIGNAL_HANDLER
@@ -406,12 +398,12 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	restore_lung_levels(lungs)
 
 /datum/reagent/inverse/healing/convermol/proc/restore_lung_levels(obj/item/organ/internal/lungs/lungs)
-	lungs.heat_level_1_threshold = cached_heat_level_1
-	lungs.heat_level_2_threshold = cached_heat_level_2
-	lungs.heat_level_3_threshold = cached_heat_level_3
-	lungs.cold_level_1_threshold = cached_cold_level_1
-	lungs.cold_level_2_threshold = cached_cold_level_2
-	lungs.cold_level_3_threshold = cached_cold_level_3
+	lungs.heat_level_warning_threshold = cached_heat_level_1
+	lungs.heat_level_hazard_threshold = cached_heat_level_2
+	lungs.heat_level_danger_threshold = cached_heat_level_3
+	lungs.cold_level_warning_threshold = cached_cold_level_1
+	lungs.cold_level_hazard_threshold = cached_cold_level_2
+	lungs.cold_level_danger_threshold = cached_cold_level_3
 
 /datum/reagent/inverse/healing/convermol/on_mob_delete(mob/living/owner)
 	. = ..()

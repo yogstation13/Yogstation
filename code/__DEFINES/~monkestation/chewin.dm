@@ -64,20 +64,17 @@
 #define PLATE 			"plate"
 #define CUTTING_BOARD	"cutting board"
 #define PAN				"pan"
-#define POT				"pot"
-#define BOWL			"bowl"
+#define POT				"cooking pot"
+#define BOWL			"mixing bowl"
 #define DF_BASKET		"deep fryer basket"
 #define AF_BASKET		"air fryer basket"
 #define OVEN			"oven"
-#define GRILL			"grill"
+#define GRILL			"grill grate"
 
 //Stove temp settings.
 #define J_LO "Low"
 #define J_MED "Medium"
 #define J_HI "High"
-
-//Just a catalog for the cooking catalog
-#define CATALOG_COOKING "cooking"
 
 //Burn times for cooking things on a stove.
 //Anything put on a stove for this long becomes a burned mess.

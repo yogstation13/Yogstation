@@ -415,18 +415,34 @@ INITIALIZE_IMMEDIATE(/obj/item/organ)
 		replacement.set_organ_damage(damage)
 
 /// Called by medical scanners to get a simple summary of how healthy the organ is. Returns an empty string if things are fine.
-/obj/item/organ/proc/get_status_text()
-	var/status = ""
-	if(owner.has_reagent(/datum/reagent/inverse/technetium))
-		status = "<font color='#E42426'> organ is [round((damage/maxHealth)*100, 1)]% damaged.</font>"
-	else if(organ_flags & ORGAN_FAILING)
-		status = "<font color='#cc3333'>Non-Functional</font>"
-	else if(damage > high_threshold)
-		status = "<font color='#ff9933'>Severely Damaged</font>"
-	else if (damage > low_threshold)
-		status = "<font color='#ffcc33'>Mildly Damaged</font>"
+/obj/item/organ/proc/get_status_text(advanced, add_tooltips)
+	if(organ_flags & ORGAN_FAILING)
+		. = "<font color='#cc3333'>Non-Functional</font>"
+		if(add_tooltips)
+			. = span_tooltip("Repair or replace surgically.", .)
+		return .
 
-	return status
+	if(owner.has_reagent(/datum/reagent/inverse/technetium))
+		return "<font color='#E42426'>[round((damage/maxHealth)*100, 1)]% damaged</font>"
+	if(damage > high_threshold)
+		. = "<font color='#ff9933'>Severely Damaged</font>"
+		if(add_tooltips && owner.stat != DEAD)
+			. = span_tooltip("[healing_factor ? "Treat with rest or use specialty medication." : "Repair surgically or use specialty medication."]", .)
+		return .
+	if(damage > low_threshold)
+		. = "<font color='#ffcc33'>Mildly Damaged</font>"
+		if(add_tooltips && owner.stat != DEAD)
+			. = span_tooltip("[healing_factor ? "Treat with rest." : "Use specialty medication."]", .)
+		return .
+
+/// Determines if this organ is shown when a user has condensed scans enabled
+/obj/item/organ/proc/show_on_condensed_scans()
+	// We don't need to show *most* damaged organs as they have no effects associated
+	return (organ_flags & (ORGAN_FAILING|ORGAN_VITAL))
+
+/// Similar to get_status_text, but appends the text after the damage report, for additional status info
+/obj/item/organ/proc/get_status_appendix(advanced, add_tooltips)
+	return
 
 /// Tries to replace the existing organ on the passed mob with this one, with special handling for replacing a brain without ghosting target
 /obj/item/organ/proc/replace_into(mob/living/carbon/new_owner)

@@ -29,13 +29,13 @@
 /// kPa
 #define ONE_ATMOSPHERE 101.325
 /// -270.3degC
-#define TCMB 2.7
+#define TCMB CELCIUS_TO_KELVIN(-270.3 CELCIUS)
 /// 0degC
-#define T0C 273.15
+#define T0C CELCIUS_TO_KELVIN(0 CELCIUS)
 /// 20degC
-#define T20C 293.15
+#define T20C CELCIUS_TO_KELVIN(20 CELCIUS)
 /// -14C - Temperature used for kitchen cold room, medical freezer, etc.
-#define COLD_ROOM_TEMP 259.15
+#define COLD_ROOM_TEMP CELCIUS_TO_KELVIN(-14 CELCIUS)
 
 /**
  *I feel the need to document what happens here. Basically this is used
@@ -128,11 +128,11 @@
 
 //FIRE
 ///Minimum temperature for fire to move to the next turf (150 °C or 433 K)
-#define FIRE_MINIMUM_TEMPERATURE_TO_SPREAD (150+T0C)
+#define FIRE_MINIMUM_TEMPERATURE_TO_SPREAD CELCIUS_TO_KELVIN(150 CELCIUS)
 ///Minimum temperature for fire to exist on a turf (100 °C or 373 K)
-#define FIRE_MINIMUM_TEMPERATURE_TO_EXIST (100+T0C)
+#define FIRE_MINIMUM_TEMPERATURE_TO_EXIST CELCIUS_TO_KELVIN(100 CELCIUS)
 ///Minimum temperature for items on fire
-#define BURNING_ITEM_MINIMUM_TEMPERATURE (150+T0C)
+#define BURNING_ITEM_MINIMUM_TEMPERATURE CELCIUS_TO_KELVIN(150 CELCIUS)
 ///Multiplier for the temperature shared to other turfs
 #define FIRE_SPREAD_RADIOSITY_SCALE 0.85
 ///Helper for small fires to grow

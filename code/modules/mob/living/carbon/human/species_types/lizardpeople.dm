@@ -4,11 +4,10 @@
 	plural_form = "Lizardfolk"
 	id = SPECIES_LIZARD
 	visual_gender = FALSE
-	species_traits = list(
-		MUTCOLORS,
-		MUTCOLORS_SECONDARY,
-	)
 	inherent_traits = list(
+		TRAIT_MUTANT_COLORS,
+		TRAIT_MUTANT_COLORS_SECONDARY,
+		TRAIT_NO_UNDERWEAR,
 		TRAIT_CAN_USE_FLIGHT_POTION,
 		TRAIT_TACKLING_TAILED_DEFENDER,
 	)
@@ -22,6 +21,8 @@
 		/obj/item/organ/external/tail/lizard = "Smooth",
 	)
 	mutanttongue = /obj/item/organ/internal/tongue/lizard
+	mutantstomach = /obj/item/organ/internal/stomach/lizard
+	mutantheart = /obj/item/organ/internal/heart/lizard
 	coldmod = 1.5
 	heatmod = 0.67
 	payday_modifier = 0.75
@@ -29,21 +30,17 @@
 	species_cookie = /obj/item/food/meat/slab
 	meat = /obj/item/food/meat/slab/human/mutant/lizard
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
-	exotic_bloodtype = "L"
-	disliked_food = GRAIN | DAIRY | CLOTH | GROSS
-	liked_food = GORE | MEAT | SEAFOOD | NUTS | BUGS
+	exotic_bloodtype = /datum/blood_type/crew/lizard
 	inert_mutation = /datum/mutation/human/firebreath
 	death_sound = 'sound/voice/lizard/deathsound.ogg'
-	wing_types = list(/obj/item/organ/external/wings/functional/dragon)
 	species_language_holder = /datum/language_holder/lizard
 	digitigrade_customization = DIGITIGRADE_FORCED //Monkestation Edit: OPTIONAL > FORCED
 
 	mutanteyes = /obj/item/organ/internal/eyes/lizard
 	// Lizards are coldblooded and can stand a greater temperature range than humans
-	bodytemp_heat_damage_limit = (BODYTEMP_HEAT_DAMAGE_LIMIT + 20) // This puts lizards 10 above lavaland max heat for ash lizards.
+	bodytemp_normal = (BODYTEMP_NORMAL - 7.5)
+	bodytemp_heat_damage_limit = BODYTEMP_HEAT_LAVALAND_SAFE + 5 KELVIN // This puts lizards 10 above lavaland max heat for ash lizards.
 	bodytemp_cold_damage_limit = (BODYTEMP_COLD_DAMAGE_LIMIT - 10)
-
-	ass_image = 'icons/ass/asslizard.png'
 
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/lizard,
@@ -54,21 +51,12 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/lizard,
 	)
 
-/datum/species/lizard/on_species_gain(mob/living/carbon/new_lizard, datum/species/old_species, pref_load)
+/datum/species/lizard/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
-	if(ishuman(new_lizard))
-		update_mail_goodies(new_lizard)
-
-/datum/species/lizard/update_quirk_mail_goodies(mob/living/carbon/human/recipient, datum/quirk/quirk, list/mail_goodies = list())
-	if(istype(quirk, /datum/quirk/blooddeficiency))
-		mail_goodies += list(
-			/obj/item/reagent_containers/blood/lizard
-		)
-	return ..()
-
-/// Lizards are cold blooded and do not stabilize body temperature naturally
-/datum/species/lizard/body_temperature_core(mob/living/carbon/human/humi, seconds_per_tick, times_fired)
-	return
+	// melbert todo : temp / integrate this into the coldblooded trait
+	// if you spawn on station is is expected you have already acclimated to the room temp (20c) (but give a little bit of leeway)
+	if(is_station_level(C.z))
+		C.bodytemperature = CELCIUS_TO_KELVIN(22.5 CELCIUS)
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)
@@ -85,13 +73,6 @@
 /datum/species/lizard/randomize_features(mob/living/carbon/human/human_mob)
 	human_mob.dna.features["body_markings"] = pick(GLOB.body_markings_list)
 	randomize_external_organs(human_mob)
-
-/datum/species/lizard/get_scream_sound(mob/living/carbon/human/lizard)
-	return pick(
-		'sound/voice/lizard/lizard_scream_1.ogg',
-		'sound/voice/lizard/lizard_scream_2.ogg',
-		'sound/voice/lizard/lizard_scream_3.ogg',
-	)
 
 /datum/species/lizard/get_species_description()
 	return "The militaristic Lizardpeople hail originally from Tizira, but have grown \
@@ -122,16 +103,12 @@ Lizard subspecies: ASHWALKERS
 	id = SPECIES_LIZARD_ASH
 	mutantlungs = /obj/item/organ/internal/lungs/lavaland
 	mutantbrain = /obj/item/organ/internal/brain/primitive
-	wing_types = list(/obj/item/organ/external/wings/functional/dragon)
-	species_traits = list(
-		MUTCOLORS,
-		MUTCOLORS_SECONDARY,
-		NO_UNDERWEAR, //MONKESTATION ADDITION: no more flesh clothes lol
-	)
 	inherent_traits = list(
+		TRAIT_MUTANT_COLORS,
+		TRAIT_MUTANT_COLORS_SECONDARY,
+		TRAIT_NO_UNDERWEAR,
 		//TRAIT_LITERATE,
 		TRAIT_VIRUSIMMUNE,
-		TRAIT_HARD_SOLES, //MONKESTATION ADDITION
 		TRAIT_CAN_USE_FLIGHT_POTION,
 	)
 	species_language_holder = /datum/language_holder/lizard/ash
@@ -142,8 +119,8 @@ Lizard subspecies: ASHWALKERS
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/lizard,
 		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/lizard/ashwalker,
 		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/lizard/ashwalker,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/lizard,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/lizard,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/lizard/ashwalker,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/lizard/ashwalker,
 	)
 
 /*
@@ -165,6 +142,7 @@ Lizard subspecies: SILVER SCALED
 	mutantlungs = null
 	species_language_holder = /datum/language_holder/lizard/silver
 	mutanttongue = /obj/item/organ/internal/tongue/lizard/silver
+	exotic_bloodtype = /datum/blood_type/crew/lizard/silver
 	armor = 10 //very light silvery scales soften blows
 	changesource_flags = MIRROR_BADMIN | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 	examine_limb_id = SPECIES_LIZARD
@@ -177,10 +155,11 @@ Lizard subspecies: SILVER SCALED
 
 /datum/species/lizard/silverscale/on_species_gain(mob/living/carbon/new_silverscale, datum/species/old_species, pref_load)
 	var/mob/living/carbon/human/silverscale = new_silverscale
-	old_mutcolor = new_silverscale.dna.features["mcolor"]
+	var/datum/color_palette/generic_colors/palette = new_silverscale.dna.color_palettes[/datum/color_palette/generic_colors]
+	old_mutcolor = palette.return_color(MUTANT_COLOR)
 	old_eye_color_left = silverscale.eye_color_left
 	old_eye_color_right = silverscale.eye_color_right
-	new_silverscale.dna.features["mcolor"] = "#eeeeee"
+	palette.mutant_color = "#eeeeee"
 	silverscale.eye_color_left = "#0000a0"
 	silverscale.eye_color_right = "#0000a0"
 	..()
@@ -188,7 +167,8 @@ Lizard subspecies: SILVER SCALED
 
 /datum/species/lizard/silverscale/on_species_loss(mob/living/carbon/old_silverscale, datum/species/new_species, pref_load)
 	var/mob/living/carbon/human/was_silverscale = old_silverscale
-	was_silverscale.dna.features["mcolor"] = old_mutcolor
+	var/datum/color_palette/generic_colors/palette = was_silverscale.dna.color_palettes[/datum/color_palette/generic_colors]
+	palette.mutant_color = old_mutcolor
 	was_silverscale.eye_color_left = old_eye_color_left
 	was_silverscale.eye_color_right = old_eye_color_right
 

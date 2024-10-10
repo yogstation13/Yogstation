@@ -9,7 +9,7 @@
 	return possible_values_for_sprite_accessory_list_for_body_part(
 		GLOB.ethereal_horns_list,
 		"ethereal_horns",
-		list("ADJ", "FRONT"),
+		list("FRONT"),
 	)
 
 /datum/preference/choiced/ethereal_horns/apply_to_human(mob/living/carbon/human/target, value)
@@ -26,7 +26,7 @@
 	return possible_values_for_sprite_accessory_list_for_body_part(
 		GLOB.ethereal_tail_list,
 		"ethereal_tail",
-		list("BEHIND", "FRONT"),
+		list("BEHIND"),
 	)
 
 /datum/preference/choiced/ethereal_tail/apply_to_human(mob/living/carbon/human/target, value)

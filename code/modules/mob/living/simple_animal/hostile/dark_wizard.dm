@@ -27,8 +27,8 @@
 	faction = list(ROLE_WIZARD)
 	footstep_type = FOOTSTEP_MOB_SHOE
 	weather_immunities = list(TRAIT_LAVA_IMMUNE, TRAIT_ASHSTORM_IMMUNE)
-	minbodytemp = 0
-	maxbodytemp = INFINITY
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = INFINITY
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	loot = list(/obj/effect/decal/remains/human)
 	del_on_death = TRUE

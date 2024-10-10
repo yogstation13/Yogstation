@@ -360,9 +360,9 @@
 	icon_state = "crusader"
 	desc = "They're like gloves, but made of metal."
 	siemens_coefficient = 0
-	cold_protection = HANDS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
+
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 
 /obj/item/clothing/gloves/plate/red
@@ -378,9 +378,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	armor_type = /datum/armor/shoes_plate
 	clothing_traits = list(TRAIT_NO_SLIP_WATER)
-	cold_protection = FEET
+
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
-	heat_protection = FEET
+
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 
 /datum/armor/shoes_plate

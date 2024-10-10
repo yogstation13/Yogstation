@@ -3,15 +3,14 @@
 	name = "\improper Podperson"
 	plural_form = "Podpeople"
 	id = SPECIES_PODPERSON
-	species_traits = list(
-		MUTCOLORS,
-	)
 	inherent_traits = list(
-		TRAIT_PLANT_SAFE,
+		TRAIT_MUTANT_COLORS,
 	)
 	external_organs = list(
 		/obj/item/organ/external/pod_hair = "None",
 	)
+	mutanttongue = /obj/item/organ/internal/tongue/pod
+	mutantheart = /obj/item/organ/internal/heart/pod
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID | MOB_PLANT
 	inherent_factions = list(FACTION_PLANTS, FACTION_VINES)
 
@@ -19,9 +18,7 @@
 	heatmod = 1.5
 	payday_modifier = 0.75
 	meat = /obj/item/food/meat/slab/human/mutant/plant
-	exotic_blood = /datum/reagent/water
-	disliked_food = MEAT | DAIRY | SEAFOOD | BUGS
-	liked_food = VEGETABLES | FRUIT | GRAIN
+	exotic_bloodtype = /datum/blood_type/water
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/plant
 
@@ -34,21 +31,8 @@
 		BODY_ZONE_CHEST = /obj/item/bodypart/chest/pod,
 	)
 
-	ass_image = 'icons/ass/asspodperson.png'
-
-/datum/species/pod/on_species_gain(mob/living/carbon/new_podperson, datum/species/old_species, pref_load)
-	. = ..()
-	if(ishuman(new_podperson))
-		update_mail_goodies(new_podperson)
-
-/datum/species/pod/update_quirk_mail_goodies(mob/living/carbon/human/recipient, datum/quirk/quirk, list/mail_goodies = list())
-	if(istype(quirk, /datum/quirk/blooddeficiency))
-		mail_goodies += list(
-			/obj/item/reagent_containers/blood/podperson
-		)
-	return ..()
-
 /datum/species/pod/spec_life(mob/living/carbon/human/H, seconds_per_tick, times_fired)
+	. = ..()
 	if(H.stat == DEAD)
 		return
 
@@ -69,7 +53,7 @@
 		H.take_overall_damage(brute = 1 * seconds_per_tick, required_bodytype = BODYTYPE_ORGANIC)
 	..()
 
-/datum/species/pod/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H, seconds_per_tick, times_fired)
+/datum/species/pod/handle_chemical(datum/reagent/chem, mob/living/carbon/human/H, seconds_per_tick, times_fired)
 	if(chem.type == /datum/reagent/toxin/plantbgone)
 		H.adjustToxLoss(3 * REM * seconds_per_tick)
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * seconds_per_tick)

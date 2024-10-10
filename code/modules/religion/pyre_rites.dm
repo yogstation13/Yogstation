@@ -3,7 +3,6 @@
 /datum/religion_rites/fireproof/proc/apply_fireproof(obj/item/clothing/fireproofed)
 	fireproofed.name = "unmelting [fireproofed.name]"
 	fireproofed.max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	fireproofed.heat_protection = chosen_clothing.body_parts_covered
 	fireproofed.resistance_flags |= FIRE_PROOF
 
 /datum/religion_rites/fireproof

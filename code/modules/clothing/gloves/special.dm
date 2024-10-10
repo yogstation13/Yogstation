@@ -81,9 +81,9 @@
 	inhand_icon_state = null
 	greyscale_colors = null
 	siemens_coefficient = 0
-	cold_protection = HANDS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
+
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	strip_delay = 60
 	armor_type = /datum/armor/captain_gloves
@@ -139,9 +139,9 @@
 	name = "atmospheric extrication gloves"
 	desc = "Heavy duty gloves for firefighters. These are thick, non-flammable and let you carry people faster."
 	icon_state = "atmos"
-	cold_protection = HANDS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
+
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
 	siemens_coefficient = 0.3

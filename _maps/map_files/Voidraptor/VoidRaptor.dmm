@@ -5047,16 +5047,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/pathology)
-"bws" = (
-/obj/structure/table,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/obj/item/storage/bag/egg,
-/turf/open/floor/wood,
-/area/station/service/hydroponics/upper)
 "bwv" = (
 /obj/effect/spawner/random/structure/crate,
 /obj/effect/decal/cleanable/dirt,
@@ -7086,15 +7076,6 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/engine,
 /area/station/science/ordnance/storage)
-"cfa" = (
-/obj/effect/decal/cleanable/blood/xtracks,
-/obj/machinery/door/window/brigdoor/left/directional/south{
-	name = "Secure Creature Pen";
-	req_access = list("xenobiology")
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/station/science/xenobiology)
 "cfm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -16281,6 +16262,24 @@
 	},
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
+"eIc" = (
+/obj/structure/table/glass,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/pen{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/station/service/hydroponics)
 "eId" = (
 /turf/closed/wall,
 /area/station/hallway/primary/central/fore)
@@ -18261,6 +18260,30 @@
 	},
 /turf/open/floor/iron/textured,
 /area/station/cargo/lobby)
+"fnq" = (
+/obj/structure/table,
+/obj/machinery/button/door/directional/east{
+	id = "roboticssurgery";
+	name = "Robotics Surgery Privacy";
+	pixel_y = -4;
+	req_access = list("robotics")
+	},
+/obj/structure/window/reinforced/spawner/directional/north,
+/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
+	dir = 4
+	},
+/obj/item/mmi{
+	pixel_y = -14
+	},
+/obj/item/mmi{
+	pixel_y = -10
+	},
+/obj/item/mmi{
+	pixel_y = -5
+	},
+/obj/item/healthanalyzer,
+/turf/open/floor/iron/dark/textured,
+/area/station/science/robotics/lab)
 "fnt" = (
 /obj/structure/drain,
 /obj/effect/turf_decal/stripes/line{
@@ -18947,16 +18970,27 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/carpet/stellar,
 /area/station/service/chapel/funeral)
-"fyh" = (
-/obj/structure/bookcase/manuals/botany,
-/turf/open/floor/wood,
-/area/station/service/hydroponics/upper)
 "fys" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 1
 	},
 /turf/open/floor/iron/white/side,
 /area/station/science/lab)
+"fyu" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "Xtestlab";
+	name = "Test Chamber Blast Door"
+	},
+/obj/item/toy/toy_xeno,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/window/brigdoor/left/directional/north{
+	name = "Secure Creature Pen";
+	req_access = list("xenobiology")
+	},
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "fyy" = (
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/door/airlock/maintenance{
@@ -27037,6 +27071,28 @@
 	dir = 1
 	},
 /area/station/security/checkpoint/engineering)
+"hPg" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/hooded/ablative{
+	pixel_y = 7
+	},
+/obj/item/gun/energy/temperature/security{
+	pixel_y = 5
+	},
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/east{
+	layer = 2.9;
+	pixel_x = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/delivery,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/turf/open/floor/iron/dark/textured_large,
+/area/station/ai_monitored/security/armory)
 "hPi" = (
 /turf/open/floor/iron/textured_large,
 /area/station/command/cc_dock)
@@ -28376,6 +28432,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
+"iju" = (
+/obj/structure/bookcase/manuals/botany,
+/turf/open/floor/wood,
+/area/station/service/hydroponics/upper)
 "ijw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -37008,23 +37068,6 @@
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/iron/textured,
 /area/station/service/hydroponics/garden/abandoned)
-"kzj" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/trimline/dark_green/filled/line,
-/obj/item/stack/sheet/mineral/plasma{
-	amount = 5;
-	pixel_x = 11;
-	pixel_y = 0
-	},
-/obj/item/stack/sheet/mineral/uranium/five{
-	pixel_x = 15;
-	pixel_y = 0
-	},
-/obj/machinery/smartfridge/disks,
-/turf/open/floor/iron/white/textured_edge{
-	dir = 1
-	},
-/area/station/medical/pathology)
 "kzk" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -43818,6 +43861,16 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/commons/fitness/recreation/entertainment)
+"mpV" = (
+/obj/structure/table,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/obj/item/storage/bag/egg,
+/turf/open/floor/wood,
+/area/station/service/hydroponics/upper)
 "mqd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/structure/closet_empty,
@@ -44333,6 +44386,18 @@
 	},
 /turf/open/floor/plating/airless,
 /area/station/science/ordnance/bomb)
+"mzH" = (
+/obj/machinery/smartfridge,
+/obj/machinery/splicer{
+	pixel_y = 12;
+	pixel_x = -8
+	},
+/obj/machinery/smartfridge/disks{
+	pixel_x = 9;
+	pixel_y = 14
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/station/service/hydroponics)
 "mAj" = (
 /obj/machinery/power/shuttle_engine/huge{
 	dir = 4
@@ -44928,10 +44993,6 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/station/security/courtroom)
-"mIH" = (
-/obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor/engine,
-/area/station/science/xenobiology)
 "mII" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 10
@@ -51821,30 +51882,6 @@
 	dir = 4
 	},
 /area/station/medical/surgery)
-"oEc" = (
-/obj/structure/table,
-/obj/machinery/button/door/directional/east{
-	id = "roboticssurgery";
-	name = "Robotics Surgery Privacy";
-	pixel_y = -4;
-	req_access = list("robotics")
-	},
-/obj/structure/window/reinforced/spawner/directional/north,
-/obj/effect/turf_decal/tile/dark_red/anticorner/contrasted{
-	dir = 4
-	},
-/obj/item/mmi{
-	pixel_y = -14
-	},
-/obj/item/mmi{
-	pixel_y = -10
-	},
-/obj/item/mmi{
-	pixel_y = -5
-	},
-/obj/item/healthanalyzer,
-/turf/open/floor/iron/dark/textured,
-/area/station/science/robotics/lab)
 "oEk" = (
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/light/small/directional/east,
@@ -53813,24 +53850,6 @@
 /obj/item/folder/white,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/medical/morgue)
-"pep" = (
-/obj/structure/table/glass,
-/obj/item/paper_bin{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
-/obj/item/pen{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/turf/open/floor/iron/edge{
-	dir = 4
-	},
-/area/station/service/hydroponics)
 "pev" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -54425,6 +54444,28 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/dark/textured,
 /area/station/service/hydroponics/garden)
+"pmi" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/syringes{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 4
+	},
+/obj/item/clothing/accessory/armband/hydro,
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/machinery/camera/directional/east{
+	c_tag = "Service - Hydroponics Back";
+	dir = 6;
+	name = "service camera"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/edge{
+	dir = 8
+	},
+/area/station/service/hydroponics)
 "pmk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -59294,25 +59335,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
-"qBO" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/hooded/ablative{
-	pixel_y = 7
-	},
-/obj/item/gun/energy/temperature/security{
-	pixel_y = 5
-	},
-/obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/window/reinforced/spawner/directional/east{
-	layer = 2.9;
-	pixel_x = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/iron/dark/textured_large,
-/area/station/ai_monitored/security/armory)
 "qBR" = (
 /obj/structure/transit_tube,
 /obj/structure/lattice,
@@ -61073,18 +61095,6 @@
 	},
 /turf/open/floor/iron/textured_large,
 /area/station/engineering/atmos)
-"qZN" = (
-/obj/machinery/smartfridge,
-/obj/machinery/splicer{
-	pixel_y = 12;
-	pixel_x = -8
-	},
-/obj/machinery/smartfridge/disks{
-	pixel_x = 9;
-	pixel_y = 14
-	},
-/turf/open/floor/iron/dark/textured_large,
-/area/station/service/hydroponics)
 "qZQ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -62919,22 +62929,6 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/wood/large,
 /area/station/service/library)
-"rCy" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "Xtestlab";
-	name = "Test Chamber Blast Door"
-	},
-/obj/effect/decal/cleanable/blood/xtracks,
-/obj/item/toy/toy_xeno,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/window/brigdoor/left/directional/north{
-	name = "Secure Creature Pen";
-	req_access = list("xenobiology")
-	},
-/turf/open/floor/engine,
-/area/station/science/xenobiology)
 "rCB" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
@@ -63954,28 +63948,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/port)
-"rSW" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/beakers,
-/obj/item/storage/box/syringes{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 4
-	},
-/obj/item/clothing/accessory/armband/hydro,
-/obj/structure/extinguisher_cabinet/directional/east,
-/obj/machinery/camera/directional/east{
-	c_tag = "Service - Hydroponics Back";
-	dir = 6;
-	name = "service camera"
-	},
-/obj/effect/turf_decal/bot,
-/turf/open/floor/iron/edge{
-	dir = 8
-	},
-/area/station/service/hydroponics)
 "rSX" = (
 /obj/structure/table,
 /obj/item/reagent_containers/condiment/saltshaker{
@@ -79857,6 +79829,23 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/iron/grimy,
 /area/station/security/detectives_office)
+"wjt" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/trimline/dark_green/filled/line,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 5;
+	pixel_x = 11;
+	pixel_y = 0
+	},
+/obj/item/stack/sheet/mineral/uranium/five{
+	pixel_x = 15;
+	pixel_y = 0
+	},
+/obj/machinery/smartfridge/disks,
+/turf/open/floor/iron/white/textured_edge{
+	dir = 1
+	},
+/area/station/medical/pathology)
 "wjA" = (
 /obj/effect/turf_decal/tile/dark_red/fourcorners,
 /obj/effect/turf_decal/loading_area,
@@ -84870,6 +84859,14 @@
 	dir = 4
 	},
 /area/station/cargo/miningdock)
+"xGd" = (
+/obj/machinery/door/window/brigdoor/left/directional/south{
+	name = "Secure Creature Pen";
+	req_access = list("xenobiology")
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/engine,
+/area/station/science/xenobiology)
 "xGe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -104867,7 +104864,7 @@ vMv
 sqo
 bGR
 sqo
-kzj
+wjt
 qbX
 ttw
 ttw
@@ -105303,9 +105300,9 @@ kVR
 jRP
 abP
 nlj
-mIH
-rCy
-cfa
+uiw
+fyu
+xGd
 sYn
 vBO
 ktF
@@ -117653,7 +117650,7 @@ kJi
 lTr
 jbi
 rlk
-oEc
+fnq
 gKY
 tlq
 bmt
@@ -122299,7 +122296,7 @@ bPZ
 fLp
 gsl
 hhJ
-pep
+eIc
 udR
 cuJ
 bDA
@@ -123587,7 +123584,7 @@ jru
 qKf
 nGh
 bYk
-qZN
+mzH
 mKb
 fLp
 ePt
@@ -124868,7 +124865,7 @@ rMB
 fLp
 dyf
 eKj
-rSW
+pmi
 rGQ
 jGY
 xsd
@@ -126418,7 +126415,7 @@ cqI
 xiF
 kVo
 fYs
-fyh
+iju
 jpR
 uKN
 kAB
@@ -126891,7 +126888,7 @@ vwn
 ewC
 ybu
 cDc
-qBO
+hPg
 pKY
 nRV
 iqx
@@ -127189,7 +127186,7 @@ jpR
 muX
 eKx
 vxA
-bws
+mpV
 ykh
 aqi
 yep

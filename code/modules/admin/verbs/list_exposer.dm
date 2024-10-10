@@ -33,7 +33,7 @@
 	for(var/entry in GLOB.human_list)
 		var/mob/living/carbon/human/subject = entry
 		if(subject.ckey)
-			data += "<tr><td>[subject]</td><td>[subject.dna.unique_enzymes]</td><td>[subject.dna.blood_type]</td></tr>"
+			data += "<tr><td>[subject]</td><td>[subject.dna.unique_enzymes]</td><td>[subject.get_blood_type()]</td></tr>"
 	data += "</table>"
 	usr << browse(data, "window=DNA;size=440x410")
 

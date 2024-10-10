@@ -219,14 +219,14 @@
 	. = ..()
 	if(!check_compatibility())
 		return
-	var/amt = BODYTEMP_NORMAL - owner.get_body_temp_normal()
+	var/amt = BODYTEMP_NORMAL - owner.standard_body_temperature
 	if(amt == 0)
 		return
-	owner.add_body_temperature_change("dermal_cooler_[zone]",clamp(amt,-1,0))
+	owner.add_homeostasis_level(type, amt, 0.25 KELVIN)
 
 /obj/item/organ/internal/cyberimp/arm/cooler/Remove(mob/living/carbon/M, special)
 	. = ..()
-	owner.remove_body_temperature_change("dermal_cooler_[zone]")
+	owner.remove_homeostasis_level(type)
 
 /obj/item/organ/internal/cyberimp/arm/heater
 	name = "sub-dermal heater implant"
@@ -241,11 +241,11 @@
 	. = ..()
 	if(!check_compatibility())
 		return
-	var/amt = BODYTEMP_NORMAL - owner.get_body_temp_normal()
+	var/amt = BODYTEMP_NORMAL - owner.standard_body_temperature
 	if(amt == 0)
 		return
-	owner.add_body_temperature_change("dermal_heater_[zone]",clamp(amt,0,1))
+	owner.add_homeostasis_level(type, amt, 0.25 KELVIN)
 
 /obj/item/organ/internal/cyberimp/arm/heater/Remove(mob/living/carbon/M, special)
 	. = ..()
-	owner.remove_body_temperature_change("dermal_heater_[zone]")
+	owner.remove_homeostasis_level(type)

@@ -95,7 +95,7 @@
 	else
 		target.throw_at(get_edge_target_turf(target, dir), range = rand(1, 2), speed = 7, thrower = src)
 
-/mob/living/basic/gorilla/gib()
+/mob/living/basic/gorilla/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	var/mob/living/brain/gorilla_brain = new(drop_location())
 	gorilla_brain.name = real_name
 	gorilla_brain.real_name = real_name

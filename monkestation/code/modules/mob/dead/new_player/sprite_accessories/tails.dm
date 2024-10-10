@@ -1,6 +1,6 @@
 /datum/sprite_accessory/tails/monkey
 	icon = 'monkestation/icons/mob/species/simian/tails.dmi'
-	color_src = SKINTONES
+	color_src = SKIN_COLOR
 
 /datum/sprite_accessory/tails/monkey/none
 	name = "None"

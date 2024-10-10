@@ -4,9 +4,9 @@
 	icon_state = "leather"
 	inhand_icon_state = null
 	greyscale_colors = null
-	cold_protection = HANDS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
+
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	clothing_traits = list(TRAIT_PLANT_SAFE)

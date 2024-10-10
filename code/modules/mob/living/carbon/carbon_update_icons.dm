@@ -277,13 +277,13 @@
 	return hands
 
 /mob/living/carbon/get_fire_overlay(stacks, on_fire)
-	var/fire_icon = "[dna?.species.fire_overlay || "human"]_[stacks > MOB_BIG_FIRE_STACK_THRESHOLD ? "big_fire" : "small_fire"]"
+	var/fire_icon = "[dna?.species?.fire_overlay || "human"]_[stacks > MOB_BIG_FIRE_STACK_THRESHOLD ? "big_fire" : "small_fire"]"
 
 	if(!GLOB.fire_appearances[fire_icon])
 		GLOB.fire_appearances[fire_icon] = mutable_appearance(
-			'icons/mob/effects/onfire.dmi',
-			fire_icon,
-			-HIGHEST_LAYER,
+			icon = dna?.species?.fire_dmi || 'icons/mob/effects/onfire.dmi',
+			icon_state = fire_icon,
+			layer = -HIGHEST_LAYER,
 			appearance_flags = RESET_COLOR,
 		)
 
@@ -294,14 +294,12 @@
 
 	var/mutable_appearance/damage_overlay
 	for(var/obj/item/bodypart/iter_part as anything in bodyparts)
-		if(!iter_part.dmg_overlay_type)
+		var/list/part_overlays = iter_part.get_bodypart_damage_state()
+		if(!LAZYLEN(part_overlays))
 			continue
-		if(isnull(damage_overlay) && (iter_part.brutestate || iter_part.burnstate))
-			damage_overlay = mutable_appearance('icons/mob/effects/dam_mob.dmi', "blank", -DAMAGE_LAYER, appearance_flags = KEEP_TOGETHER)
-		if(iter_part.brutestate)
-			damage_overlay.add_overlay("[iter_part.dmg_overlay_type]_[iter_part.body_zone]_[iter_part.brutestate]0") //we're adding icon_states of the base image as overlays
-		if(iter_part.burnstate)
-			damage_overlay.add_overlay("[iter_part.dmg_overlay_type]_[iter_part.body_zone]_0[iter_part.burnstate]")
+
+		damage_overlay ||= mutable_appearance(layer = -DAMAGE_LAYER)
+		damage_overlay.overlays += part_overlays
 
 	if(isnull(damage_overlay))
 		return

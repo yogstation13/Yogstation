@@ -20,7 +20,6 @@ GLOBAL_LIST_INIT(identity_block_lengths, list(
  * (commonly abbreviated with uf) and its blocks. Both ui and uf have a standard block length of 3 ASCII characters.
  */
 GLOBAL_LIST_INIT(features_block_lengths, list(
-		"[DNA_MUTANT_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 		"[DNA_ETHEREAL_COLOR_BLOCK]" = DNA_BLOCK_SIZE_COLOR,
 	))
 
@@ -53,7 +52,10 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	var/unique_enzymes
 	///Stores the hashed values of traits such as skin tones, hair style, and gender
 	var/unique_identity
-	var/blood_type
+	/// So humans have a variety of blood types while other species do not
+	/// This tracks JUST human blood type. Might seem a bit bias but everyone is a human under their scales and feathers.
+	/// Essentially only exists so humans have their same blood type swapping from human -> non-human -> human.
+	var/datum/blood_type/crew/human/human_blood_type
 	///The type of mutant race the player is if applicable (i.e. potato-man)
 	var/datum/species/species = new /datum/species/human
 	///first value is mutant color
@@ -103,11 +105,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		return
 	destination.dna.unique_enzymes = unique_enzymes
 	destination.dna.unique_identity = unique_identity
-	destination.dna.blood_type = blood_type
+	destination.dna.human_blood_type = human_blood_type
 	destination.dna.unique_features = unique_features
 	destination.dna.features = features.Copy()
 	destination.dna.real_name = real_name
 	destination.dna.temporary_mutations = temporary_mutations.Copy()
+	destination.dna.color_palettes = color_palettes.Copy()
 	if(transfer_SE)
 		destination.dna.mutation_index = mutation_index
 		destination.dna.default_mutation_genes = default_mutation_genes
@@ -120,8 +123,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	new_dna.default_mutation_genes = default_mutation_genes
 	new_dna.unique_identity = unique_identity
 	new_dna.unique_features = unique_features
-	new_dna.blood_type = blood_type
+	new_dna.human_blood_type = human_blood_type
 	new_dna.features = features.Copy()
+	new_dna.color_palettes = color_palettes.Copy()
 	//if the new DNA has a holder, transform them immediately, otherwise save it
 	if(new_dna.holder)
 		new_dna.holder.set_species(species.type, icon_update = 0)
@@ -194,12 +198,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	. = ""
 	var/list/L = new /list(DNA_FEATURE_BLOCKS)
 
-	if(features["mcolor"])
-		L[DNA_MUTANT_COLOR_BLOCK] = sanitize_hexcolor(features["mcolor"], include_crunch = FALSE)
-	if(features["mcolor_secondary"])
-		L[DNA_MUTANT_COLOR_SECONDARY] = sanitize_hexcolor(features["mcolor_secondary"], include_crunch = FALSE)
-	if(features["ethcolor"])
-		L[DNA_ETHEREAL_COLOR_BLOCK] = sanitize_hexcolor(features["ethcolor"], include_crunch = FALSE)
 	if(features["body_markings"])
 		L[DNA_LIZARD_MARKINGS_BLOCK] = construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len)
 	if(features["tail_cat"])
@@ -226,7 +224,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_MUSHROOM_CAPS_BLOCK] = construct_block(GLOB.caps_list.Find(features["caps"]), GLOB.caps_list.len)
 	if(features["pod_hair"])
 		L[DNA_POD_HAIR_BLOCK] = construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len)
-
+	if(features["arm_wings"]) // NON-MODULE CHANGE
+		L[DNA_ARM_WINGS_BLOCK] = construct_block(GLOB.arm_wings_list.Find(features["arm_wings"]), GLOB.arm_wings_list.len)
+	if(features["tail_avian"]) // NON-MODULE CHANGE
+		L[DNA_AVIAN_TAIL_BLOCK] = construct_block(GLOB.tails_list_avian.Find(features["tail_avian"]), GLOB.tails_list_avian.len)
+	if(features["ears_avian"]) // NON-MODULE CHANGE
+		L[DNA_AVIAN_EARS_BLOCK] = construct_block(GLOB.avian_ears_list.Find(features["ears_avian"]), GLOB.avian_ears_list.len)
 	for(var/blocknum in 1 to DNA_FEATURE_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
 
@@ -330,12 +333,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(!ishuman(holder))
 		CRASH("Non-human mobs shouldn't have DNA")
 	switch(blocknumber)
-		if(DNA_MUTANT_COLOR_BLOCK)
-			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["mcolor"], include_crunch = FALSE))
-		if(DNA_MUTANT_COLOR_SECONDARY)
-			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["mcolor_secondary"], include_crunch = FALSE))
-		if(DNA_ETHEREAL_COLOR_BLOCK)
-			set_uni_feature_block(blocknumber, sanitize_hexcolor(features["ethcolor"], include_crunch = FALSE))
 		if(DNA_LIZARD_MARKINGS_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.body_markings_list.Find(features["body_markings"]), GLOB.body_markings_list.len))
 		if(DNA_TAIL_BLOCK)
@@ -360,7 +357,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_feature_block(blocknumber, construct_block(GLOB.caps_list.Find(features["caps"]), GLOB.caps_list.len))
 		if(DNA_POD_HAIR_BLOCK)
 			set_uni_feature_block(blocknumber, construct_block(GLOB.pod_hair_list.Find(features["pod_hair"]), GLOB.pod_hair_list.len))
-
+		if(DNA_ARM_WINGS_BLOCK) // NON-MODULE CHANGE
+			set_uni_feature_block(blocknumber, construct_block(GLOB.arm_wings_list.Find(features["arm_wings"]), GLOB.arm_wings_list.len))
+		if(DNA_AVIAN_TAIL_BLOCK) // NON-MODULE CHANGE
+			set_uni_feature_block(blocknumber, construct_block(GLOB.tails_list_avian.Find(features["tail_avian"]), GLOB.tails_list_avian.len))
+		if(DNA_AVIAN_EARS_BLOCK) // NON-MODULE CHANGE
+			set_uni_feature_block(blocknumber, construct_block(GLOB.avian_ears_list.Find(features["ears_avian"]), GLOB.avian_ears_list.len))
 //Please use add_mutation or activate_mutation instead
 /datum/dna/proc/force_give(datum/mutation/human/human_mutation)
 	if(holder && human_mutation)
@@ -393,7 +395,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		&& real_name == target_dna.real_name \
 		&& species.type == target_dna.species.type \
 		&& compare_list(features, target_dna.features) \
-		&& blood_type == target_dna.blood_type \
+		&& human_blood_type == target_dna.human_blood_type \
 	)
 		return TRUE
 
@@ -431,9 +433,9 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	unique_enzymes = generate_unique_enzymes()
 	unique_features = generate_unique_features()
 
-/datum/dna/proc/initialize_dna(newblood_type, skip_index = FALSE)
+/datum/dna/proc/initialize_dna(newblood_type = random_human_blood_type(), skip_index = FALSE)
 	if(newblood_type)
-		blood_type = newblood_type
+		human_blood_type = newblood_type
 	unique_enzymes = generate_unique_enzymes()
 	unique_identity = generate_unique_identity()
 	if(!skip_index) //I hate this
@@ -543,7 +545,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.generate_unique_enzymes()
 
 	if(newblood_type)
-		dna.blood_type = newblood_type
+		dna.human_blood_type = newblood_type
 
 	if(unique_identity)
 		dna.unique_identity = unique_identity
@@ -576,6 +578,11 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	if(!has_dna())
 		return
 
+	//Always plural gender if agender
+	if(HAS_TRAIT(src, TRAIT_AGENDER))
+		gender = PLURAL
+		return
+
 	switch(deconstruct_block(get_uni_identity_block(dna.unique_identity, DNA_GENDER_BLOCK), 3))
 		if(G_MALE)
 			gender = MALE
@@ -601,12 +608,6 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	else
 		hairstyle = GLOB.hairstyles_list[deconstruct_block(get_uni_identity_block(structure, DNA_HAIRSTYLE_BLOCK), GLOB.hairstyles_list.len)]
 	var/features = dna.unique_features
-	if(dna.features["mcolor"])
-		dna.features["mcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_BLOCK))
-	if(dna.features["mcolor_secondary"])
-		dna.features["mcolor_secondary"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_MUTANT_COLOR_SECONDARY))
-	if(dna.features["ethcolor"])
-		dna.features["ethcolor"] = sanitize_hexcolor(get_uni_feature_block(features, DNA_ETHEREAL_COLOR_BLOCK))
 	if(dna.features["body_markings"])
 		dna.features["body_markings"] = GLOB.body_markings_list[deconstruct_block(get_uni_feature_block(features, DNA_LIZARD_MARKINGS_BLOCK), GLOB.body_markings_list.len)]
 	if(dna.features["snout"])
@@ -637,6 +638,12 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		dna.features["caps"] = GLOB.caps_list[deconstruct_block(get_uni_feature_block(features, DNA_MUSHROOM_CAPS_BLOCK), GLOB.caps_list.len)]
 	if(dna.features["pod_hair"])
 		dna.features["pod_hair"] = GLOB.pod_hair_list[deconstruct_block(get_uni_feature_block(features, DNA_POD_HAIR_BLOCK), GLOB.pod_hair_list.len)]
+	if(dna.features["arm_wings"]) // NON-MODULE CHANGE
+		dna.features["arm_wings"] = GLOB.arm_wings_list[deconstruct_block(get_uni_feature_block(features, DNA_ARM_WINGS_BLOCK), GLOB.arm_wings_list.len)]
+	if(dna.features["tail_avian"]) // NON-MODULE CHANGE
+		dna.features["tail_avian"] = GLOB.tails_list_avian[deconstruct_block(get_uni_feature_block(features, DNA_AVIAN_TAIL_BLOCK), GLOB.tails_list_avian.len)]
+	if(dna.features["ears_avian"]) // NON-MODULE CHANGE
+		dna.features["ears_avian"] = GLOB.avian_ears_list[deconstruct_block(get_uni_feature_block(features, DNA_AVIAN_EARS_BLOCK), GLOB.avian_ears_list.len)]
 
 	for(var/obj/item/organ/external/external_organ in organs)
 		external_organ.mutate_feature(features, src)

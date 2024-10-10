@@ -647,6 +647,43 @@ const FoodtypeContent = (props) => {
 
 const RecipeContentCompact = ({ item, craftable, busy, mode }) => {
   const { act, data } = useBackend<Data>();
+
+  // Function to handle pushing steps (unchanged)
+  const specialSteps = [
+    'Optional Steps',
+    'End Optional Steps',
+    'Exclusive Optional Steps',
+    'End Exclusive Optional Steps',
+    'Optional Step',
+    'End Optional Step',
+  ];
+
+  const groupedSteps: string[] = [];
+  let previousStep = '';
+  let duplicateCount = 0;
+
+  const pushStep = (step: string, count: number) => {
+    const stepText = count > 1 ? `${step} x${count}` : step;
+    groupedSteps.push(stepText);
+  };
+
+  item.steps?.forEach((step) => {
+    const trimmedStep = step.trim();
+    if (trimmedStep === previousStep) {
+      duplicateCount++;
+    } else {
+      if (duplicateCount > 0) {
+        pushStep(previousStep, duplicateCount);
+      }
+      previousStep = trimmedStep;
+      duplicateCount = 1;
+    }
+  });
+
+  if (duplicateCount > 0) {
+    pushStep(previousStep, duplicateCount);
+  }
+
   return (
     <Section>
       <Stack my={-0.75}>
@@ -665,27 +702,31 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }) => {
                 {item.name}
               </Box>
               <Box style={{ 'text-transform': 'capitalize' }} color={'gray'}>
-                {Array.from(
-                  Object.keys(item.reqs).map((atom_id) => {
-                    const name = data.atom_data[(atom_id as any) - 1]?.name;
-                    const is_reagent =
-                      data.atom_data[(atom_id as any) - 1]?.is_reagent;
-                    const amount = item.reqs[atom_id];
-                    return is_reagent
-                      ? `${name}\xa0${amount}u`
-                      : amount > 1
-                        ? `${name}\xa0${amount}x`
-                        : name;
-                  }),
-                ).join(', ')}
+                {Array.isArray(item.reqs) &&
+                  Object.keys(item.reqs).length > 0 &&
+                  Object.keys(item.reqs)
+                    .map((atom_id) => {
+                      const name = data.atom_data?.[(atom_id as any) - 1]?.name;
+                      const is_reagent =
+                        data.atom_data?.[(atom_id as any) - 1]?.is_reagent;
+                      const amount = item.reqs[atom_id];
+                      return is_reagent
+                        ? `${name}\xa0${amount}u`
+                        : amount > 1
+                          ? `${name}\xa0${amount}x`
+                          : name;
+                    })
+                    .join(', ')}
 
                 {item.chem_catalysts &&
+                  Object.keys(item.chem_catalysts).length > 0 &&
                   ', ' +
                     Object.keys(item.chem_catalysts)
                       .map((atom_id) => {
-                        const name = data.atom_data[(atom_id as any) - 1]?.name;
+                        const name =
+                          data.atom_data?.[(atom_id as any) - 1]?.name;
                         const is_reagent =
-                          data.atom_data[(atom_id as any) - 1]?.is_reagent;
+                          data.atom_data?.[(atom_id as any) - 1]?.is_reagent;
                         const amount = item.chem_catalysts[atom_id];
                         return is_reagent
                           ? `${name}\xa0${amount}u`
@@ -696,19 +737,24 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }) => {
                       .join(', ')}
 
                 {item.tool_paths &&
+                  item.tool_paths.length > 0 &&
                   ', ' +
                     item.tool_paths
-                      .map((item) => data.atom_data[(item as any) - 1]?.name)
+                      .map((item) => data.atom_data?.[(item as any) - 1]?.name)
                       .join(', ')}
+
                 {item.machinery &&
+                  item.machinery.length > 0 &&
                   ', ' +
                     item.machinery
-                      .map((item) => data.atom_data[(item as any) - 1]?.name)
+                      .map((item) => data.atom_data?.[(item as any) - 1]?.name)
                       .join(', ')}
+
                 {item.structures &&
+                  item.structures.length > 0 &&
                   ', ' +
                     item.structures
-                      .map((item) => data.atom_data[(item as any) - 1]?.name)
+                      .map((item) => data.atom_data?.[(item as any) - 1]?.name)
                       .join(', ')}
               </Box>
             </Stack.Item>
@@ -746,8 +792,8 @@ const RecipeContentCompact = ({ item, craftable, busy, mode }) => {
               ) : (
                 item.steps && (
                   <Tooltip
-                    content={item.steps.map((step) => (
-                      <Box key={step}>{step}</Box>
+                    content={groupedSteps.map((step, index) => (
+                      <Box key={index}>{step}</Box>
                     ))}
                   >
                     <Box fontSize={1.5} p={1}>

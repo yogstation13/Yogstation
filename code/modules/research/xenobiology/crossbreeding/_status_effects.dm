@@ -213,13 +213,12 @@
 	return ..()
 
 /datum/status_effect/bonechill/tick()
-	if(prob(50))
-		owner.adjustFireLoss(1)
-		owner.set_jitter_if_lower(6 SECONDS)
-		owner.adjust_bodytemperature(-10)
-		if(ishuman(owner))
-			var/mob/living/carbon/human/humi = owner
-			humi.adjust_coretemperature(-10)
+	if(!prob(50))
+		return
+
+	owner.adjustFireLoss(1)
+	owner.set_jitter_if_lower(6 SECONDS)
+	owner.adjust_bodytemperature(-1 KELVIN)
 
 /datum/status_effect/bonechill/on_remove()
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/status_effect/bonechill)
@@ -234,7 +233,7 @@
 	alert_type = null
 
 /datum/status_effect/rebreathing/tick()
-	owner.adjustOxyLoss(-6, 0) //Just a bit more than normal breathing.
+	owner.adjustOxyLoss(-6) //Just a bit more than normal breathing.
 
 ///////////////////////////////////////////////////////
 //////////////////CONSUMING EXTRACTS///////////////////
@@ -247,12 +246,12 @@
 	duration = 100
 
 /datum/status_effect/firecookie/on_apply()
-	ADD_TRAIT(owner, TRAIT_RESISTCOLD,"firecookie")
-	owner.adjust_bodytemperature(110)
+	ADD_TRAIT(owner, TRAIT_RESISTCOLD, id)
+	owner.adjust_bodytemperature(20 KELVIN)
 	return ..()
 
 /datum/status_effect/firecookie/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_RESISTCOLD,"firecookie")
+	REMOVE_TRAIT(owner, TRAIT_RESISTCOLD, id)
 
 /datum/status_effect/watercookie
 	id = "watercookie"
@@ -488,21 +487,12 @@
 	colour = "orange"
 
 /datum/status_effect/stabilized/orange/tick()
-	var/body_temp_target = owner.get_body_temp_normal(apply_change = FALSE)
+	owner.update_homeostasis_level(id, owner.standard_body_temperature, 0.5 KELVIN)
 
-	var/body_temp_actual = owner.bodytemperature
-	var/body_temp_offset = body_temp_target - body_temp_actual
-	body_temp_offset = clamp(body_temp_offset, -5, 5)
-	owner.adjust_bodytemperature(body_temp_offset)
 
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human = owner
-		var/core_temp_actual = human.coretemperature
-		var/core_temp_offset = body_temp_target - core_temp_actual
-		core_temp_offset = clamp(core_temp_offset, -5, 5)
-		human.adjust_coretemperature(core_temp_offset)
-
-	return ..()
+/datum/status_effect/stabilized/orange/on_remove()
+	. = ..()
+	owner.remove_homeostasis_level(id)
 
 /datum/status_effect/stabilized/purple
 	id = "stabilizedpurple"

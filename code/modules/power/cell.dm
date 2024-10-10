@@ -251,7 +251,7 @@
 			if(charge < CELL_POWER_DRAIN)
 				to_chat(H, span_warning("[src] doesn't have enough power!"))
 				return
-			if(stomach.crystal_charge > charge_limit)
+			if(H.blood_volume > charge_limit)
 				to_chat(H, span_warning("Your charge is full!"))
 				return
 			to_chat(H, span_notice("You begin clumsily channeling power from [src] into your body."))

@@ -53,7 +53,7 @@
 
 	var/list/viable_conversions = list()
 	for(var/mob/living/basic/chicken/found_chicken in view(4, living_pawn.loc))
-		if(!istype(found_chicken, /mob/living/basic/chicken/rev_raptor) || !istype(found_chicken, /mob/living/basic/chicken/raptor) || !istype(found_chicken, /mob/living/basic/chicken/rev_raptor))
+		if(!istype(found_chicken, /mob/living/basic/chicken/rev_raptor) && !istype(found_chicken, /mob/living/basic/chicken/raptor) && !istype(found_chicken, /mob/living/basic/chicken/rev_raptor))
 			viable_conversions |= found_chicken
 	if(!length(viable_conversions))
 		return

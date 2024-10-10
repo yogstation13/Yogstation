@@ -22,6 +22,7 @@
 		JOB_CYBORG,
 	)
 	weight = 15
+	event_icon_state = "traitor"
 
 /datum/round_event_control/antagonist/solo/traitor/roundstart
 	name = "Traitors"

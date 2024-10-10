@@ -183,9 +183,7 @@
 	desc = "These gloves can teach you to perform Krav Maga using nanochips."
 	icon_state = "fightgloves"
 	greyscale_colors = "#c41e0d"
-	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 
@@ -196,9 +194,7 @@
 	greyscale_colors = "#2f2e31"
 	siemens_coefficient = 0
 	strip_delay = 80
-	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	armor_type = /datum/armor/krav_maga_combatglovesplus

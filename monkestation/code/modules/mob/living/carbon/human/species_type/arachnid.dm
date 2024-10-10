@@ -4,20 +4,19 @@
 	id = SPECIES_ARACHNIDS
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 	visual_gender = FALSE
-	species_traits = list(
-		MUTCOLORS,
+	inherent_traits = list(
+		TRAIT_MUTANT_COLORS,
 	)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	external_organs = list(
 		/obj/item/organ/external/arachnid_appendages = "long",
 		/obj/item/organ/external/chelicerae = "basic")
 	meat = /obj/item/food/meat/slab/spider
-	disliked_food = NONE // Okay listen, i don't actually know what irl spiders don't like to eat and i'm pretty tired of looking for answers.
-	liked_food = GORE | MEAT | BUGS | GROSS
 	species_language_holder = /datum/language_holder/fly
 	mutanttongue = /obj/item/organ/internal/tongue/arachnid
 	mutanteyes = /obj/item/organ/internal/eyes/night_vision/arachnid
-	speedmod = -0.1
+	mutantheart = /obj/item/organ/internal/heart/spider
+	exotic_bloodtype = /datum/blood_type/spider
 	inherent_factions = list(FACTION_SPIDER)
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/arachnid,
@@ -28,7 +27,7 @@
 		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/arachnid,
 	)
 
-/datum/species/arachnid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H, seconds_per_tick, times_fired)
+/datum/species/arachnid/handle_chemical(datum/reagent/chem, mob/living/carbon/human/H, seconds_per_tick, times_fired)
 	if(chem.type == /datum/reagent/toxin/pestkiller)
 		H.adjustToxLoss(3 * REM * seconds_per_tick)
 		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * seconds_per_tick)
@@ -48,12 +47,6 @@
 
 	if(istype(attacking_item, /obj/item/melee/flyswatter))
 		damage_mods += 30 // Yes, a 30x damage modifier
-
-/datum/species/arachnid/get_scream_sound(mob/living/carbon/human/human)
-	return 'monkestation/sound/voice/screams/arachnid/arachnid_scream.ogg'
-
-/datum/species/arachnid/get_laugh_sound(mob/living/carbon/human/human)
-	return 'monkestation/sound/voice/laugh/arachnid/arachnid_laugh.ogg'
 
 /datum/species/arachnid/get_species_description()
 	return "Arachnids are a species of humanoid spiders employed by Nanotrasen in recent years." // Allan please add details

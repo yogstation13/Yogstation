@@ -24,17 +24,17 @@
 	M.Scale(1.8, 1.2)
 	animate(src, time = 40, transform = M, easing = SINE_EASING)
 
-/mob/living/carbon/gib(no_brain, no_organs, no_bodyparts, safe_gib = FALSE)
+/mob/living/carbon/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	add_memory_in_range(src, 7, /datum/memory/witness_gib, protagonist = src)
-	// if(safe_gib) // If you want to keep all the mob's items and not have them deleted MONKESTATION EDIT
-	for(var/obj/item/W in src)
-		dropItemToGround(W, violent = TRUE)
-		if(prob(50))
-			step(W, pick(GLOB.alldirs))
-	var/atom/Tsec = drop_location()
-	for(var/mob/M in src)
-		M.forceMove(Tsec)
-		visible_message(span_danger("[M] bursts out of [src]!"))
+	if(safe_gib) // If you want to keep all the mob's items and not have them deleted MONKESTATION EDIT
+		for(var/obj/item/W in src)
+			dropItemToGround(W, violent = TRUE)
+			if(prob(50))
+				step(W, pick(GLOB.alldirs))
+		var/atom/Tsec = drop_location()
+		for(var/mob/M in src)
+			M.forceMove(Tsec)
+			visible_message(span_danger("[M] bursts out of [src]!"))
 	return ..()
 
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)
@@ -45,27 +45,27 @@
 				if(no_brain || !istype(organ, /obj/item/organ/internal/brain))
 					qdel(organ)
 		else //we're going to drop all bodyparts except chest, so the only organs that needs spilling are those inside it.
-			for(var/obj/item/organ/organs as anything in organs)
-				if(no_brain && istype(organs, /obj/item/organ/internal/brain))
-					qdel(organs) //so the brain isn't transfered to the head when the head drops.
+			for(var/obj/item/organ/organ as anything in organs)
+				if(no_brain && istype(organ, /obj/item/organ/internal/brain))
+					qdel(organ) //so the brain isn't transfered to the head when the head drops.
 					continue
-				var/org_zone = check_zone(organs.zone) //both groin and chest organs.
+				var/org_zone = check_zone(organ.zone) //both groin and chest organs.
 				if(org_zone != BODY_ZONE_CHEST)
 					continue
-				organs.Remove(src)
-				organs.forceMove(Tsec)
-				organs.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
+				organs.Remove(organ)
+				organ.forceMove(Tsec)
+				organ.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
 	else
-		for(var/obj/item/organ/organs as anything in organs)
-			if(no_brain && istype(organs, /obj/item/organ/internal/brain))
-				qdel(organs)
+		for(var/obj/item/organ/organ as anything in organs)
+			if(no_brain && istype(organ, /obj/item/organ/internal/brain))
+				qdel(organ)
 				continue
-			if(no_organs && !istype(organs, /obj/item/organ/internal/brain))
-				qdel(organs)
+			if(no_organs && !istype(organ, /obj/item/organ/internal/brain))
+				qdel(organ)
 				continue
-			organs.Remove(src)
-			organs.forceMove(Tsec)
-			organs.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
+			organs.Remove(organ)
+			organ.forceMove(Tsec)
+			organ.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
 
 /// Launches all bodyparts away from the mob. skip_head will keep the head attached.
 /mob/living/carbon/spread_bodyparts(skip_head = FALSE, skip_organ = FALSE, violent = FALSE)

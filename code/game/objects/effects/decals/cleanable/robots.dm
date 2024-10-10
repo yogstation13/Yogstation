@@ -7,7 +7,6 @@
 	icon_state = "gib1"
 	layer = LOW_OBJ_LAYER
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gib7")
-	blood_state = BLOOD_STATE_OIL
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
 	mergeable_decal = FALSE
 	beauty = -50
@@ -16,6 +15,7 @@
 /obj/effect/decal/cleanable/robot_debris/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_PIPE_EJECTING, PROC_REF(on_pipe_eject))
+	add_blood_DNA(list("UNKNOWN DNA" = /datum/blood_type/oil))
 
 /obj/effect/decal/cleanable/robot_debris/proc/streak(list/directions, mapload=FALSE)
 	var/direction = pick(directions)
@@ -76,29 +76,16 @@
 	icon = 'icons/mob/silicon/robots.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
-	blood_state = BLOOD_STATE_OIL
-	bloodiness = BLOOD_AMOUNT_PER_DECAL
+	bloodiness = BLOOD_AMOUNT_PER_DECAL * 2
 	beauty = -100
 	clean_type = CLEAN_TYPE_BLOOD
 	decal_reagent = /datum/reagent/fuel/oil
 	reagent_amount = 30
 
-/obj/effect/decal/cleanable/oil/attackby(obj/item/I, mob/living/user)
-	var/attacked_by_hot_thing = I.get_temperature()
-	if(attacked_by_hot_thing)
-		user.visible_message(span_warning("[user] tries to ignite [src] with [I]!"), span_warning("You try to ignite [src] with [I]."))
-		log_combat(user, src, (attacked_by_hot_thing < 480) ? "tried to ignite" : "ignited", I)
-		fire_act(attacked_by_hot_thing)
-		return
-	return ..()
-
-/obj/effect/decal/cleanable/oil/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature < 480)
-		return
-	visible_message(span_danger("[src] catches fire!"))
-	var/turf/T = get_turf(src)
-	qdel(src)
-	new /obj/effect/hotspot(T)
+/obj/effect/decal/cleanable/oil/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	AddElement(/datum/element/easy_ignite)
+	add_blood_DNA(list("UNKNOWN DNA" = /datum/blood_type/oil))
 
 /obj/effect/decal/cleanable/oil/streak
 	icon_state = "streak1"

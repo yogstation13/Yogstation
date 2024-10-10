@@ -7,46 +7,53 @@
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood(seconds_per_tick, times_fired)
 
-	if(HAS_TRAIT(src, TRAIT_NOBLOOD) || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD) || HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		return
 
-	if(bodytemperature < BLOOD_STOP_TEMP || (HAS_TRAIT(src, TRAIT_HUSK))) //cold or husked people do not pump the blood.
+	if(bodytemperature < BLOOD_STOP_TEMP || HAS_TRAIT(src, TRAIT_HUSK)) //cold or husked people do not pump the blood.
 		return
 
-	//Blood regeneration if there is some space
-	if(blood_volume < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER))
-		var/nutrition_ratio = 0
-		switch(nutrition)
-			if(0 to NUTRITION_LEVEL_STARVING)
-				nutrition_ratio = 0.2
-			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
-				nutrition_ratio = 0.4
-			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
-				nutrition_ratio = 0.6
-			if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
-				nutrition_ratio = 0.8
-			else
-				nutrition_ratio = 1
-		if(satiety > 80)
-			nutrition_ratio *= 1.25
-		adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR * seconds_per_tick)
-		blood_volume = min(blood_volume + (BLOOD_REGEN_FACTOR * nutrition_ratio * seconds_per_tick), BLOOD_VOLUME_NORMAL)
+	var/sigreturn = SEND_SIGNAL(src, COMSIG_HUMAN_ON_HANDLE_BLOOD, seconds_per_tick, times_fired)
+	if(sigreturn & HANDLE_BLOOD_HANDLED)
+		return
 
-	// we call lose_blood() here rather than quirk/process() to make sure that the blood loss happens in sync with life()
-	if(HAS_TRAIT(src, TRAIT_BLOOD_DEFICIENCY))
-		var/datum/quirk/blooddeficiency/blooddeficiency = get_quirk(/datum/quirk/blooddeficiency)
-		if(!isnull(blooddeficiency))
-			blooddeficiency.lose_blood(seconds_per_tick)
+	if(!(sigreturn & HANDLE_BLOOD_NO_NUTRITION_DRAIN))
+		if(blood_volume < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER))
+			var/nutrition_ratio = 0
+			switch(nutrition)
+				if(0 to NUTRITION_LEVEL_STARVING)
+					nutrition_ratio = 0.2
+				if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+					nutrition_ratio = 0.4
+				if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+					nutrition_ratio = 0.6
+				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
+					nutrition_ratio = 0.8
+				else
+					nutrition_ratio = 1
+			if(satiety > 80)
+				nutrition_ratio *= 1.25
+			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR * seconds_per_tick)
+			blood_volume = min(blood_volume + (BLOOD_REGEN_FACTOR * nutrition_ratio * seconds_per_tick), BLOOD_VOLUME_NORMAL)
+
+	// // we call lose_blood() here rather than quirk/process() to make sure that the blood loss happens in sync with life()
+	// if(HAS_TRAIT(src, TRAIT_BLOOD_DEFICIENCY))
+	// 	var/datum/quirk/blooddeficiency/blooddeficiency = get_quirk(/datum/quirk/blooddeficiency)
+	// 	if(!isnull(blooddeficiency))
+	// 		blooddeficiency.lose_blood(seconds_per_tick)
 
 	//Effects of bloodloss
-	var/word = pick("dizzy","woozy","faint")
-	if(!HAS_TRAIT(src, TRAIT_NO_BLOODLOSS_DAMAGE)) //monkestation addition
+	if(!(sigreturn & HANDLE_BLOOD_NO_EFFECTS))
+		var/word = pick("dizzy","woozy","faint")
 		switch(blood_volume)
-			if(BLOOD_VOLUME_EXCESS to BLOOD_VOLUME_MAX_LETHAL)
+			if(BLOOD_VOLUME_MAX_LETHAL to INFINITY)
 				if(SPT_PROB(7.5, seconds_per_tick))
 					to_chat(src, span_userdanger("Blood starts to tear your skin apart. You're going to burst!"))
 					investigate_log("has been gibbed by having too much blood.", INVESTIGATE_DEATHS)
 					inflate_gib()
+			if(BLOOD_VOLUME_EXCESS to BLOOD_VOLUME_MAX_LETHAL)
+				if(SPT_PROB(5, seconds_per_tick))
+					to_chat(src, span_warning("You feel your skin swelling."))
 			if(BLOOD_VOLUME_MAXIMUM to BLOOD_VOLUME_EXCESS)
 				if(SPT_PROB(5, seconds_per_tick))
 					to_chat(src, span_warning("You feel terribly bloated."))
@@ -93,7 +100,7 @@
 
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/proc/bleed(amt, no_visual = FALSE)
-	if(!blood_volume || (status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_NOBLOOD))
+	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return
 	blood_volume = max(blood_volume - amt, 0)
 
@@ -107,7 +114,7 @@
 
 /// A helper to see how much blood we're losing per tick
 /mob/living/carbon/proc/get_bleed_rate()
-	if(!blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return 0
 	var/bleed_amt = 0
 	for(var/X in bodyparts)
@@ -116,7 +123,8 @@
 	return bleed_amt
 
 /mob/living/carbon/human/get_bleed_rate()
-	return ..() * physiology.bleed_mod
+	. = ..()
+	. *= physiology.bleed_mod
 
 /**
  * bleed_warn() is used to for carbons with an active client to occasionally receive messages warning them about their bleeding status (if applicable)
@@ -126,7 +134,7 @@
  * * forced-
  */
 /mob/living/carbon/proc/bleed_warn(bleed_amt = 0, forced = FALSE)
-	if(!blood_volume || !client)
+	if(!client || HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return
 	if(!COOLDOWN_FINISHED(src, bleeding_message_cd) && !forced)
 		return
@@ -177,10 +185,6 @@
 	to_chat(src, span_warning("[bleeding_severity][rate_of_change]"))
 	COOLDOWN_START(src, bleeding_message_cd, next_cooldown)
 
-/mob/living/carbon/human/bleed_warn(bleed_amt = 0, forced = FALSE)
-	if(!HAS_TRAIT(src, TRAIT_NOBLOOD))
-		return ..()
-
 /mob/living/proc/restore_blood()
 	blood_volume = initial(blood_volume)
 
@@ -196,7 +200,8 @@
 
 //Gets blood from mob to a container or other mob, preserving all data in it.
 /mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)
-	if(!blood_volume || !AM.reagents)
+	var/datum/blood_type/blood = get_blood_type()
+	if(isnull(blood) || !AM.reagents)
 		return FALSE
 	if(blood_volume < BLOOD_VOLUME_BAD && !forced)
 		return FALSE
@@ -204,35 +209,12 @@
 	if(blood_volume < amount)
 		amount = blood_volume
 
-	var/blood_id = get_blood_id()
-	if(!blood_id)
-		return FALSE
-
 	blood_volume -= amount
 
-	var/list/blood_data = get_blood_data(blood_id)
-
-	if(iscarbon(AM))
-		var/mob/living/carbon/C = AM
-		if(blood_id == C.get_blood_id())//both mobs have the same blood substance
-			if(blood_id == /datum/reagent/blood) //normal blood
-				if(blood_data["viruses"])
-					for(var/thing in blood_data["viruses"])
-						var/datum/disease/advanced/D = thing
-						if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
-							continue
-						C.infect_disease(D, TRUE, "Infected [key_name(C)] (Infected Blood 100% Infection)")
-				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.blood_type)))
-					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
-					return TRUE
-
-			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAX_LETHAL)
-			return TRUE
-
-	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
+	AM.reagents.add_reagent(blood.reagent_type, amount, blood.get_blood_data(src), bodytemperature)
 	return TRUE
 
-
+/*
 /mob/living/proc/get_blood_data(blood_id)
 	return
 
@@ -276,129 +258,46 @@
 		var/datum/quirk/T = V
 		blood_data["quirks"] += T.type
 	return blood_data
+*/
 
-//get the id of the substance this mob use as blood.
-/mob/proc/get_blood_id()
-	return
+/mob/living/proc/get_blood_type()
+	RETURN_TYPE(/datum/blood_type)
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return null
+	return GLOB.blood_types[/datum/blood_type/animal]
 
-/mob/living/simple_animal/get_blood_id()
-	if(blood_volume)
-		return /datum/reagent/blood
+/mob/living/silicon/get_blood_type()
+	return GLOB.blood_types[/datum/blood_type/oil]
 
-/mob/living/carbon/human/get_blood_id()
-	if(HAS_TRAIT(src, TRAIT_HUSK))
-		return
+/mob/living/simple_animal/bot/get_blood_type()
+	return GLOB.blood_types[/datum/blood_type/oil]
+
+/mob/living/basic/bot/get_blood_type()
+	return GLOB.blood_types[/datum/blood_type/oil]
+
+/mob/living/carbon/alien/get_blood_type()
+	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return null
+	return GLOB.blood_types[/datum/blood_type/xenomorph]
+
+/mob/living/carbon/human/get_blood_type()
+	if(HAS_TRAIT(src, TRAIT_HUSK) || isnull(dna) || HAS_TRAIT(src, TRAIT_NOBLOOD))
+		return null
 	if(check_holidays(APRIL_FOOLS) && is_clown_job(mind?.assigned_role))
-		return /datum/reagent/colorful_reagent
-	if(dna.species.exotic_blood)
-		return dna.species.exotic_blood
-	else if(HAS_TRAIT(src, TRAIT_NOBLOOD))
-		return
-	return /datum/reagent/blood
-
-// This is has more potential uses, and is probably faster than the old proc.
-/proc/get_safe_blood(bloodtype)
-	. = list()
-	if(!bloodtype)
-		return
-
-	var/static/list/bloodtypes_safe = list(
-		"A-" = list("A-", "O-"),
-		"A+" = list("A-", "A+", "O-", "O+"),
-		"B-" = list("B-", "O-"),
-		"B+" = list("B-", "B+", "O-", "O+"),
-		"AB-" = list("A-", "B-", "O-", "AB-"),
-		"AB+" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+"),
-		"O-" = list("O-"),
-		"O+" = list("O-", "O+"),
-		"L" = list("L"),
-		"U" = list("A-", "A+", "B-", "B+", "O-", "O+", "AB-", "AB+", "L", "U")
-	)
-
-	var/safe = bloodtypes_safe[bloodtype]
-	if(safe)
-		. = safe
+		return GLOB.blood_types[/datum/blood_type/clown]
+	if(dna.species.exotic_bloodtype)
+		return GLOB.blood_types[dna.species.exotic_bloodtype]
+	return GLOB.blood_types[dna.human_blood_type]
 
 //to add a splatter of blood or other mob liquid.
-/mob/living/proc/add_splatter_floor(turf/splattered, small_drip)
-	if((get_blood_id() != /datum/reagent/blood) || HAS_TRAIT(src, TRAIT_NOBLOOD))
-		return
-	if(!splattered)
-		splattered = get_turf(src)
-	if(isclosedturf(splattered) || (isgroundlessturf(splattered) && !GET_TURF_BELOW(splattered)))
-		return
-
-	var/datum/reagent/blood_type = get_blood_id()
-	var/list/temp_blood_DNA
-	if(small_drip)
-		if(!QDELETED(splattered.liquids))
-			var/list/blood_drop = list(get_blood_id() = 0.1)
-			splattered.add_liquid_list(blood_drop, FALSE, 300)
-			return
-		// Only a certain number of drips (or one large splatter) can be on a given turf.
-		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in splattered
-		if(drop)
-			if(drop.drips < 5)
-				splattered?.pollute_turf(/datum/pollutant/metallic_scent, 5)
-				drop.drips++
-				drop.add_overlay(pick(drop.random_icon_states))
-				drop.transfer_mob_blood_dna(src)
-				return
-			else
-				temp_blood_DNA = GET_ATOM_BLOOD_DNA(drop) //we transfer the dna from the drip to the splatter
-				qdel(drop)//the drip is replaced by a bigger splatter
-		else
-			splattered?.pollute_turf(/datum/pollutant/metallic_scent, 5)
-			drop = new(splattered, get_static_viruses())
-			drop.transfer_mob_blood_dna(src)
-			return
-
+/mob/living/proc/add_splatter_floor(turf/blood_turf = get_turf(src), small_drip)
 	// Create a bit of metallic pollution, as that's how blood smells
-	splattered.pollute_turf(/datum/pollutant/metallic_scent, 30)
+	blood_turf?.pollute_turf(/datum/pollutant/metallic_scent, 30) // TODO Move to blood_datum
+	return get_blood_type()?.make_blood_splatter(src, blood_turf, small_drip)
 
-	// Find a blood decal or create a new one.
-	var/obj/effect/decal/cleanable/blood/B = locate() in splattered
-	if(!B)
-		B = new /obj/effect/decal/cleanable/blood/splatter(splattered, get_static_viruses())
-	if(QDELETED(B)) //Give it up
-		return
-	B.bloodiness = min((B.bloodiness + BLOOD_AMOUNT_PER_DECAL), BLOOD_POOL_MAX)
-	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
-	if(temp_blood_DNA)
-		B.add_blood_DNA(temp_blood_DNA)
-
-	if(B.count < 10 )
-		if(blood_type)
-			B.color = initial(blood_type.color)
-		B.count ++
-		B.transfer_mob_blood_dna(src)
-	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
-	if(temp_blood_DNA)
-		B.add_blood_DNA(temp_blood_DNA)
-
-	if(B.count > 9)
-		qdel(B)
-		var/list/blood_large = list(get_blood_id() = 20)
-		splattered.add_liquid_list(blood_large, FALSE, 300)
-
-/mob/living/carbon/human/add_splatter_floor(turf/T, small_drip)
-	if(!HAS_TRAIT(src, TRAIT_NOBLOOD))
-		..()
-
-/mob/living/carbon/alien/add_splatter_floor(turf/T, small_drip)
-	if(!T)
-		T = get_turf(src)
-	var/obj/effect/decal/cleanable/xenoblood/B = locate() in T.contents
-	if(!B)
-		B = new(T)
-	B.add_blood_DNA(list("UNKNOWN DNA" = "X*"))
-
-/mob/living/silicon/robot/add_splatter_floor(turf/T, small_drip)
-	if(!T)
-		T = get_turf(src)
-	var/obj/effect/decal/cleanable/oil/B = locate() in T.contents
-	if(!B)
-		B = new(T)
+/mob/living/proc/do_splatter_effect(splat_dir = pick(GLOB.cardinals))
+	var/obj/effect/temp_visual/dir_setting/bloodsplatter/splatter = new(get_turf(src), splat_dir, get_blood_type()?.color)
+	splatter.color = get_blood_type()?.color
 
 /**
  * This proc is a helper for spraying blood for things like slashing/piercing wounds and dismemberment.
@@ -410,10 +309,12 @@
  * * splatter_strength: How many tiles it can go, and how many items it can pass over and dirty
  */
 /mob/living/proc/spray_blood(splatter_direction, splatter_strength = 3)
-	if(!isturf(loc) || !blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
+	if(QDELETED(src) || !isturf(loc) || QDELING(loc) || !blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return
 	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
-	our_splatter.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
+	if(QDELETED(our_splatter))
+		return
+	our_splatter.add_mob_blood(src)
 	var/turf/targ = get_ranged_target_turf(src, splatter_direction, splatter_strength)
 	our_splatter.fly_towards(targ, splatter_strength)
 
@@ -421,11 +322,14 @@
  * Helper proc for throwing blood particles around, similar to the spray_blood proc.
  */
 /mob/living/proc/blood_particles(amount = rand(1, 3), angle = rand(0,360), min_deviation = -30, max_deviation = 30, min_pixel_z = 0, max_pixel_z = 6)
-	if(QDELETED(src) || QDELETED(loc) || !isturf(loc) || !blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
+	if(QDELETED(src) || !isturf(loc) || QDELING(loc) || !blood_volume || HAS_TRAIT(src, TRAIT_NOBLOOD))
 		return
 	for(var/i in 1 to amount)
 		var/obj/effect/decal/cleanable/blood/particle/droplet = new(loc)
-		droplet.add_blood_DNA(GET_ATOM_BLOOD_DNA(src))
+		if(QDELETED(droplet)) // if they're deleting upon init, let's not waste any more time, any others will prolly just do the same thing
+			return
+		droplet.color = get_blood_type()?.color
+		droplet.add_mob_blood(src)
 		droplet.pixel_z = rand(min_pixel_z, max_pixel_z)
 		droplet.start_movement(angle + rand(min_deviation, max_deviation))
 

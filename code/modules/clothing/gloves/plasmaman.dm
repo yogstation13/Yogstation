@@ -3,9 +3,9 @@
 	name = "plasma envirogloves"
 	icon_state = "plasmaman"
 	greyscale_colors = "#913b00"
-	cold_protection = HANDS
+
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
-	heat_protection = HANDS
+
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	resistance_flags = NONE
 	armor_type = /datum/armor/color_plasmaman

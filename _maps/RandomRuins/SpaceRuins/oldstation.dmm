@@ -3429,7 +3429,7 @@
 /obj/machinery/door/airlock/highsecurity,
 /obj/structure/alien/weeds,
 /obj/structure/cable,
-/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/xenoblood/xtracks,
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "oldstation-aisat"
@@ -4613,7 +4613,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/hall)
 "rC" = (
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/glass,
@@ -4892,7 +4892,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 6
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted,
@@ -7247,7 +7247,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/ancientstation/beta/supermatter)
 "Np" = (
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 10
 	},
 /turf/open/floor/engine,
@@ -8194,7 +8194,7 @@
 /turf/open/floor/engine,
 /area/ruin/space/ancientstation/delta/biolab)
 "Wd" = (
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 5
 	},
 /turf/open/floor/engine,

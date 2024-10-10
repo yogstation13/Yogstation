@@ -1,6 +1,5 @@
 /obj/item/reagent_containers/blood/slime
-	blood_type = "OOZE"
-	unique_blood = /datum/reagent/toxin/slimeooze
+	blood_type = /datum/blood_type/slime
 
 /obj/item/reagent_containers/blood/slime/examine()
 	.= ..()

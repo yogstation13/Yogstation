@@ -195,16 +195,16 @@
 		part.clothing_flags |= part.visor_flags
 		part.flags_inv |= part.visor_flags_inv
 		part.flags_cover |= part.visor_flags_cover
-		part.heat_protection = initial(part.heat_protection)
-		part.cold_protection = initial(part.cold_protection)
+		part.min_cold_protection_temperature = theme.min_cold_protection_temperature
+		part.max_heat_protection_temperature = theme.max_heat_protection_temperature
 		part.alternate_worn_layer = null
 	else
 		part.icon_state = "[skin]-[part.base_icon_state]"
 		part.flags_cover &= ~part.visor_flags_cover
 		part.flags_inv &= ~part.visor_flags_inv
 		part.clothing_flags &= ~part.visor_flags
-		part.heat_protection = NONE
-		part.cold_protection = NONE
+		part.min_cold_protection_temperature = null
+		part.max_heat_protection_temperature = null
 		part.alternate_worn_layer = mod_parts[part]
 	if(part == boots)
 		wearer.update_worn_shoes()

@@ -24,6 +24,7 @@
 	min_players = 20
 	weight = 10
 	maximum_antags = 2
+	event_icon_state = "vampires"
 
 /datum/round_event_control/antagonist/solo/bloodsucker/roundstart
 	name = "Bloodsuckers"

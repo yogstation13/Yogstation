@@ -41,51 +41,95 @@
 /// This is used in handle_temperature_damage() for humans, and in reagents that affect body temperature. Temperature damage is multiplied by this amount.
 #define TEMPERATURE_DAMAGE_COEFFICIENT 1.5
 
+// Defines the cap on fast your body normalizes to the environment
+/// Max negative change in temperature during natural body temperature stabilization
+#define BODYTEMP_ENVIRONMENT_COOLING_MAX -30 KELVIN // needs to be relatively high, as otherwise you will make space not deadly
+/// Max positive change in temperature during natural body temperature stabilization
+#define BODYTEMP_ENVIRONMENT_HEATING_MAX 20 KELVIN // should not be too high, as otherwise atmos meme fires will be extremely deadly
+
+/// Default maximum body temperature mobs can exist in before taking damage
+#define NPC_DEFAULT_MAX_TEMP CELCIUS_TO_KELVIN(76.85 CELCIUS)// 350 KELVIN
+/// Default minimum body temperature mobs can exist in before taking damage
+#define NPC_DEFAULT_MIN_TEMP CELCIUS_TO_KELVIN(-23.15 CELCIUS)// 250 KELVIN
+
+// Helpers for temperature conversion
+#define FAHRENHEIT_TO_KELVIN(x) (((x) + 459.67) * 5 / 9)
+#define KELVIN_TO_FAHRENHEIT(x) (((x) * 9 / 5) - 459.67)
+#define CELCIUS_TO_KELVIN(x) ((x) + 273.15)
+#define KELVIN_TO_CELCIUS(x) ((x) - 273.15)
+#define CELCIUS_TO_FAHRENHEIT(x) (((x) * 9 / 5) + 32)
+#define FAHRENHEIT_TO_CELSIUS(x) (((x) - 32) * 5 / 9)
+
+// These defines do nothing but can be used to make the code more readable by indicating temperature units
+#define CELCIUS * 1
+#define FAHRENHEIT * 1
+#define KELVIN * 1
+
+/// Max change in temperature during natural body temperature stabilization
+#define BODYTEMP_HOMEOSTASIS_COOLING_MAX (BODYTEMP_ENVIRONMENT_COOLING_MAX / 10)
+/// Max change in temperature during natural body temperature stabilization
+#define BODYTEMP_HOMEOSTASIS_HEATING_MAX (BODYTEMP_ENVIRONMENT_HEATING_MAX / 8)
+
+// These defines are DEFAULTS for most mobs
+// Mobs can override these to have whatever they want
+// That means in a lot of situations (namely mob code) you should not directly use these,
+// and instead use the relevant mob vars UNLESS you intentionally are using defaults over reality
+
 /// The natural temperature for a body
-#define BODYTEMP_NORMAL 310.15
-/// This is the divisor which handles how much of the temperature difference between the current body temperature and 310.15K (optimal temperature) humans auto-regenerate each tick. The higher the number, the slower the recovery. This is applied each tick, so long as the mob is alive.
-#define BODYTEMP_AUTORECOVERY_DIVISOR 28
-/// Minimum amount of kelvin moved toward 310K per tick. So long as abs(310.15 - bodytemp) is more than 50.
-#define BODYTEMP_AUTORECOVERY_MINIMUM 3
-///Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is lower than their body temperature. Make it lower to lose bodytemp faster.
-#define BODYTEMP_COLD_DIVISOR 15
-/// Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is higher than their body temperature. Make it lower to gain bodytemp faster.
-#define BODYTEMP_HEAT_DIVISOR 15
-/// The maximum number of degrees that your body can cool in 1 tick, due to the environment, when in a cold area.
-#define BODYTEMP_COOLING_MAX -30
-/// The maximum number of degrees that your body can heat up in 1 tick, due to the environment, when in a hot area.
-#define BODYTEMP_HEATING_MAX 30
+#define BODYTEMP_NORMAL CELCIUS_TO_KELVIN(37 CELCIUS)
+/// Beyond this point a mob is considered hyperthermic
+#define HYPERTHERMIA (BODYTEMP_NORMAL + 10 CELCIUS)
+/// Beyond this point a mob is considered hypothermic
+#define HYPOTHERMIA (BODYTEMP_NORMAL - 10 CELCIUS)
+
 /// The body temperature limit the human body can take before it starts taking damage from heat.
 /// This also affects how fast the body normalises it's temperature when hot.
-/// 340k is about 66c, and rather high for a human.
-#define BODYTEMP_HEAT_DAMAGE_LIMIT (BODYTEMP_NORMAL + 30)
+#define BODYTEMP_HEAT_DAMAGE_LIMIT CELCIUS_TO_KELVIN(45 CELCIUS)
 /// The body temperature limit the human body can take before it starts taking damage from cold.
 /// This also affects how fast the body normalises it's temperature when cold.
-/// 270k is about -3c, that is below freezing and would hurt over time.
-#define BODYTEMP_COLD_DAMAGE_LIMIT (BODYTEMP_NORMAL - 40)
-/// The body temperature limit the human body can take before it will take wound damage.
-#define BODYTEMP_HEAT_WOUND_LIMIT (BODYTEMP_NORMAL + 90) // 400.5 k
+#define BODYTEMP_COLD_DAMAGE_LIMIT CELCIUS_TO_KELVIN(-0.5 CELCIUS)
+
+/// The maximum temperature of Lavaland
+#define LAVALAND_MAX_TEMPERATURE CELCIUS_TO_KELVIN(76.85 CELCIUS)// 350 KELVIN
+#define ICEBOX_MIN_TEMPERATURE CELCIUS_TO_KELVIN(-93.15 CELCIUS)
+
+/// A temperature limit which is above the maximum lavaland temperature
+#define BODYTEMP_HEAT_LAVALAND_SAFE (LAVALAND_MAX_TEMPERATURE + 5 KELVIN)
+/// A temperature limit which is above the minimum icebox temperature
+#define BODYTEMP_COLD_ICEBOX_SAFE (ICEBOX_MIN_TEMPERATURE - 5 KELVIN)
+
+/// The temperature the red icon is displayed.
+#define BODYTEMP_HEAT_WARNING_3 (BODYTEMP_NORMAL + 23 CELCIUS) // CELCIUS_TO_KELVIN(60 CELCIUS)
+/// The temperature the orange icon is displayed.
+#define BODYTEMP_HEAT_WARNING_2 (BODYTEMP_NORMAL + 13 CELCIUS) // CELCIUS_TO_KELVIN(50 CELCIUS)
+/// The temperature the yellow icon is displayed.
+#define BODYTEMP_HEAT_WARNING_1 (BODYTEMP_NORMAL + 3 CELCIUS) // CELCIUS_TO_KELVIN(40 CELCIUS)
+/// The temperature the light green icon is displayed.
+#define BODYTEMP_COLD_WARNING_1 (BODYTEMP_NORMAL - 7 CELCIUS) // CELCIUS_TO_KELVIN(30 CELCIUS)
+/// The temperature the cyan icon is displayed.
+#define BODYTEMP_COLD_WARNING_2 (BODYTEMP_NORMAL - 17 CELCIUS) // CELCIUS_TO_KELVIN(20 CELCIUS)
+/// The temperature the blue icon is displayed.
+#define BODYTEMP_COLD_WARNING_3 (BODYTEMP_NORMAL - 27 CELCIUS) // CELCIUS_TO_KELVIN(10 CELCIUS)
+
+// Ok defaults over
+
+/// Beyond this body temperature, being on fire will increase body temperature by less and less
+#define BODYTEMP_FIRE_TEMP_SOFTCAP 600 KELVIN
+
+/// Amount of heating applied per fire stack per tick while on fire
+#define HEAT_PER_FIRE_STACK 0.075 KELVIN
+/// Amount of direct damage applied per fire stack per tick while on fire
+#define BURN_DAMAGE_PER_FIRE_STACK 0.1
+
+/// A warm drink will increase body temperature by this much
+#define WARM_DRINK 0.25 KELVIN
+/// A cold drink will decrease body temperature by this much
+#define COLD_DRINK -0.25 KELVIN
+
 /// The modifier on cold damage limit hulks get ontop of their regular limit
-#define BODYTEMP_HULK_COLD_DAMAGE_LIMIT_MODIFIER 25
+#define BODYTEMP_HULK_COLD_DAMAGE_LIMIT_MODIFIER 25 KELVIN
 /// The modifier on cold damage hulks get.
 #define HULK_COLD_DAMAGE_MOD 2
-
-// Body temperature warning icons
-/// The temperature the red icon is displayed.
-#define BODYTEMP_HEAT_WARNING_3 (BODYTEMP_HEAT_DAMAGE_LIMIT + 360) //+700k
-/// The temperature the orange icon is displayed.
-#define BODYTEMP_HEAT_WARNING_2 (BODYTEMP_HEAT_DAMAGE_LIMIT + 120) //460K
-/// The temperature the yellow icon is displayed.
-#define BODYTEMP_HEAT_WARNING_1 (BODYTEMP_HEAT_DAMAGE_LIMIT) //340K
-/// The temperature the light green icon is displayed.
-#define BODYTEMP_COLD_WARNING_1 (BODYTEMP_COLD_DAMAGE_LIMIT) //270k
-/// The temperature the cyan icon is displayed.
-#define BODYTEMP_COLD_WARNING_2 (BODYTEMP_COLD_DAMAGE_LIMIT - 70) //200k
-/// The temperature the blue icon is displayed.
-#define BODYTEMP_COLD_WARNING_3 (BODYTEMP_COLD_DAMAGE_LIMIT - 150) //120k
-
-/// Beyond this temperature, being on fire will increase body temperature by less and less
-#define BODYTEMP_FIRE_TEMP_SOFTCAP 1200
 
 /// The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
 #define PRESSURE_DAMAGE_COEFFICIENT 2
@@ -100,41 +144,41 @@
 //CLOTHES
 
 /// what min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.
-#define SPACE_HELM_MIN_TEMP_PROTECT 2.0
+#define SPACE_HELM_MIN_TEMP_PROTECT 2.0 KELVIN
 /// Thermal insulation works both ways /Malkevin
-#define SPACE_HELM_MAX_TEMP_PROTECT 1500
+#define SPACE_HELM_MAX_TEMP_PROTECT 1500 KELVIN
 /// what min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.
-#define SPACE_SUIT_MIN_TEMP_PROTECT 2.0
+#define SPACE_SUIT_MIN_TEMP_PROTECT 2.0 KELVIN
 /// The min cold protection of a space suit without the heater active
-#define SPACE_SUIT_MIN_TEMP_PROTECT_OFF 72
-#define SPACE_SUIT_MAX_TEMP_PROTECT 1500
+#define SPACE_SUIT_MIN_TEMP_PROTECT_OFF 72 KELVIN
+#define SPACE_SUIT_MAX_TEMP_PROTECT 1500 KELVIN
 
 /// Cold protection for firesuits
-#define FIRE_SUIT_MIN_TEMP_PROTECT 60
+#define FIRE_SUIT_MIN_TEMP_PROTECT 60 KELVIN
 /// what max_heat_protection_temperature is set to for firesuit quality suits. MUST NOT BE 0.
-#define FIRE_SUIT_MAX_TEMP_PROTECT 30000
+#define FIRE_SUIT_MAX_TEMP_PROTECT 30000 KELVIN
 /// Cold protection for fire helmets
-#define FIRE_HELM_MIN_TEMP_PROTECT 60
+#define FIRE_HELM_MIN_TEMP_PROTECT 60 KELVIN
 /// for fire helmet quality items (red and white hardhats)
-#define FIRE_HELM_MAX_TEMP_PROTECT 30000
+#define FIRE_HELM_MAX_TEMP_PROTECT 30000 KELVIN
 
 /// what max_heat_protection_temperature is set to for firesuit quality suits and helmets. MUST NOT BE 0.
-#define FIRE_IMMUNITY_MAX_TEMP_PROTECT 35000
+#define FIRE_IMMUNITY_MAX_TEMP_PROTECT 35000 KELVIN
 
 /// For normal helmets
-#define HELMET_MIN_TEMP_PROTECT 160
+#define HELMET_MIN_TEMP_PROTECT 160 KELVIN
 /// For normal helmets
-#define HELMET_MAX_TEMP_PROTECT 600
+#define HELMET_MAX_TEMP_PROTECT 600 KELVIN
 /// For armor
-#define ARMOR_MIN_TEMP_PROTECT 160
+#define ARMOR_MIN_TEMP_PROTECT 160 KELVIN
 /// For armor
-#define ARMOR_MAX_TEMP_PROTECT 600
+#define ARMOR_MAX_TEMP_PROTECT 600 KELVIN
 
 /// For some gloves (black and)
-#define GLOVES_MIN_TEMP_PROTECT 2.0
+#define GLOVES_MIN_TEMP_PROTECT 2.0 KELVIN
 /// For some gloves
-#define GLOVES_MAX_TEMP_PROTECT 1500
+#define GLOVES_MAX_TEMP_PROTECT 1500 KELVIN
 /// For gloves
-#define SHOES_MIN_TEMP_PROTECT 2.0
+#define SHOES_MIN_TEMP_PROTECT 2.0 KELVIN
 /// For gloves
-#define SHOES_MAX_TEMP_PROTECT 1500
+#define SHOES_MAX_TEMP_PROTECT 1500 KELVIN

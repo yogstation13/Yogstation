@@ -57,6 +57,10 @@
 	if(ele.Attach(arglist(arguments)) == ELEMENT_INCOMPATIBLE)
 		CRASH("Incompatible element [ele.type] was assigned to a [type]! args: [json_encode(args)]")
 
+/// Finds the element and checks if the source is currently part of the element
+/datum/proc/_HasElement(datum/source, datum/element/type)
+	return SSdcs._Has_Element(source, type)
+
 /**
  * Finds the singleton for the element type given and detaches it from src
  * You only need additional arguments beyond the type if you're using [ELEMENT_BESPOKE]

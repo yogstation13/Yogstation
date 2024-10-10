@@ -81,6 +81,11 @@
 	/// Should this sprite block emissives?
 	var/em_block = FALSE
 
+	var/datum/color_palette/palette
+	var/palette_key
+	var/fallback_key
+	var/list/layers
+
 /datum/sprite_accessory/blank
 	name = "None"
 	icon_state = "None"
@@ -1780,7 +1785,8 @@ MONKESTATION EDIT
 	name = "Cat"
 	icon = 'icons/mob/species/human/cat_features.dmi'
 	icon_state = "default"
-	color_src = HAIR_COLOR
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/tails/monkey
 	name = "Monkey"
@@ -1891,15 +1897,17 @@ MONKESTATION EDIT
 	name = "Cat"
 	icon_state = "cat"
 	hasinner = TRUE
-	color_src = HAIR_COLOR
+	palette = /datum/color_palette/generic_colors
+	palette_key = HAIR_COLOR
 
 /datum/sprite_accessory/ears/fox
 	icon = 'icons/mob/species/human/fox_features.dmi'
 	name = "Fox"
 	icon_state = "fox"
 	hasinner = TRUE
-	color_src = HAIR_COLOR
 	locked = TRUE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/wings/none
 	name = "None"
@@ -2092,8 +2100,9 @@ MONKESTATION EDIT
 
 /datum/sprite_accessory/caps
 	icon = 'icons/mob/species/mush_cap.dmi'
-	color_src = HAIR_COLOR
 	em_block = TRUE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/caps/round
 	name = "Round"

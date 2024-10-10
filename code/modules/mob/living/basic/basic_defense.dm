@@ -128,7 +128,7 @@
 		return TRUE
 
 /mob/living/basic/check_projectile_armor(def_zone, obj/projectile/impacting_projectile, is_silent)
-	return 0
+	return impacting_projectile.grazing ? 50 : 0
 
 /mob/living/basic/ex_act(severity, target, origin)
 	. = ..()

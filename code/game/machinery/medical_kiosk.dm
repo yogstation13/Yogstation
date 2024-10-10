@@ -211,7 +211,7 @@
 	var/bleed_status = "Patient is not currently bleeding."
 	var/blood_status = " Patient either has no blood, or does not require it to function."
 	var/blood_percent = round((patient.blood_volume / BLOOD_VOLUME_NORMAL)*100)
-	var/blood_type = patient.dna.blood_type
+	var/blood_type = "[patient.get_blood_type() || "None"]"
 	var/blood_warning = " "
 
 	for(var/thing in patient.diseases) //Disease Information

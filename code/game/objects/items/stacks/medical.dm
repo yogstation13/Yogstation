@@ -15,6 +15,8 @@
 	cost = 250
 	source = /datum/robot_energy_storage/medical
 	merge_type = /obj/item/stack/medical
+	/// Sound played when heal doafter begins
+	var/heal_sound
 	/// How long it takes to apply it to yourself
 	var/self_delay = 5 SECONDS
 	/// How long it takes to apply it to someone else
@@ -62,6 +64,8 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/patient, mob/user, silent = FALSE)
 	if(!patient.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 		return
+	if(heal_sound)
+		playsound(patient, heal_sound, 33, FALSE)
 	if(patient == user)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply [src] on [user.p_them()]self..."), span_notice("You begin applying [src] on yourself..."))
@@ -162,6 +166,48 @@
 	splint_factor = 0.7
 	burn_cleanliness_bonus = 0.35
 	merge_type = /obj/item/stack/medical/gauze
+	/// tracks how many times we've been scrubbed thoroughly
+	var/times_cleaned = 0
+
+/obj/item/stack/medical/gauze/update_name(updates)
+	. = ..()
+	var/base_cap = initial(absorption_capacity)
+	if(!base_cap)
+		return
+
+	if(absorption_capacity <= 0)
+		name = "used [initial(name)]"
+	else if(absorption_capacity <= base_cap * 0.2)
+		name = "dirty [initial(name)]"
+	else if(absorption_capacity <= base_cap * 0.8)
+		name = "worn [initial(name)]"
+	else
+		name = initial(name)
+
+/obj/item/stack/medical/gauze/can_merge(obj/item/stack/medical/gauze/check, inhand)
+	. = ..()
+	if(!.)
+		return .
+	// need to be in +- 0.5 dirtiness of each other
+	// otherwise you can merge a completely used bandage with a brand new one, which would magically unuse it
+	if(check.absorption_capacity < absorption_capacity - 0.25 || check.absorption_capacity > absorption_capacity + 0.25)
+		return FALSE
+	return .
+
+/obj/item/stack/medical/gauze/wash(clean_types)
+	. = ..()
+	if(.)
+		return .
+	if(!(clean_types & CLEAN_TYPE_HARD_DECAL)) // gotta scrub realllly hard to clean gauze
+		return .
+	times_cleaned += 1
+	var/clean_to = initial(absorption_capacity) * (3 / (times_cleaned + 3))
+	if(absorption_capacity < clean_to)
+		absorption_capacity = clean_to
+		update_appearance(UPDATE_NAME)
+		. = TRUE
+
+	return .
 
 // gauze is only relevant for wounds, which are handled in the wounds themselves
 /obj/item/stack/medical/gauze/try_heal(mob/living/patient, mob/user, silent)
@@ -170,40 +216,62 @@
 
 	var/obj/item/bodypart/limb = patient.get_bodypart(check_zone(user.zone_selected))
 	if(!limb)
-		patient.balloon_alert(user, "missing limb!")
-		return
-	if(!LAZYLEN(limb.wounds))
-		patient.balloon_alert(user, "no wounds!") // good problem to have imo
-		return
-
-	var/gauzeable_wound = FALSE
-	var/datum/wound/woundies
-	for(var/i in limb.wounds)
-		woundies = i
-		if(woundies.wound_flags & ACCEPTS_GAUZE)
-			gauzeable_wound = TRUE
-			break
-	if(!gauzeable_wound)
-		patient.balloon_alert(user, "can't heal those!")
+		patient.balloon_alert(user, "no limb!")
 		return
 
 	if(limb.current_gauze && (limb.current_gauze.absorption_capacity * 1.2 > absorption_capacity)) // ignore if our new wrap is < 20% better than the current one, so someone doesn't bandage it 5 times in a row
 		patient.balloon_alert(user, pick("already bandaged!", "bandage is clean!")) // good enough
 		return
 
-	if(HAS_TRAIT(woundies, TRAIT_WOUND_SCANNED))
-		treatment_delay *= 0.5
-		if(user == patient)
-			to_chat(user, span_notice("You keep in mind the indications from the holo-image about your injury, and expertly begin wrapping your wounds with [src]."))
-		else
-			user.visible_message(span_warning("[user] begins expertly wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src]..."), span_warning("You begin quickly wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src], keeping the holo-image indications in mind..."))
+	var/boosted = FALSE
+	if(LAZYLEN(limb.wounds))
+		for(var/datum/wound/wound as anything in limb.wounds)
+			if(HAS_TRAIT(wound, TRAIT_WOUND_SCANNED))
+				boosted = TRUE
+				break
 	else
-		user.visible_message(span_warning("[user] begins wrapping the wounds on [patient]'s [limb.plaintext_zone] with [src]..."), span_warning("You begin wrapping the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone] with [src]..."))
+		// gives you extra time so you realize you're not treating a wound
+		treatment_delay *= 2
+
+	var/whose = user == patient ? "your" : "[patient]'s"
+	var/theirs = user == patient ? patient.p_their() : "[patient]'s"
+	var/wrap_or_replace = limb.current_gauze ? "replacing [limb.current_gauze] on" : "wrapping"
+	var/with_what = limb.current_gauze?.type == type ? "more of [src]" : src
+	if(boosted)
+		treatment_delay *= 0.5
+		user.visible_message(
+			span_notice("[user] begins expertly [wrap_or_replace] [theirs] [limb.plaintext_zone] with [with_what]."),
+			span_notice("You begin quickly [wrap_or_replace] [whose] [limb.plaintext_zone] with [with_what], keeping the holo-image indications in mind..."),
+		)
+	else
+		user.visible_message(
+			span_notice("[user] begins [wrap_or_replace] [theirs] [limb.plaintext_zone] with [with_what]."),
+			span_notice("You begin [wrap_or_replace] [whose] [limb.plaintext_zone] with [with_what]..."),
+		)
+	user.balloon_alert(user, "applying gauze...")
+	if(user != patient)
+		user.balloon_alert(patient, "applying gauze...")
+
+	playsound(patient, pick(
+		'monkestation/sound/items/rip1.ogg',
+		'monkestation/sound/items/rip2.ogg',
+		'monkestation/sound/items/rip3.ogg',
+		'monkestation/sound/items/rip4.ogg',
+	), 33)
 
 	if(!do_after(user, treatment_delay, target = patient))
+		user.balloon_alert(user, "interrupted!")
 		return
+	if(limb.current_gauze && (limb.current_gauze.absorption_capacity * 1.2 > absorption_capacity)) // double check for sanity
+		return
+	user.balloon_alert(user, "gauze applied")
+	if(user != patient)
+		user.balloon_alert(patient, "gauze applied")
 
-	user.visible_message("<span class='infoplain'><span class='green'>[user] applies [src] to [patient]'s [limb.plaintext_zone].</span></span>", "<span class='infoplain'><span class='green'>You bandage the wounds on [user == patient ? "your" : "[patient]'s"] [limb.plaintext_zone].</span></span>")
+	user.visible_message(
+		span_infoplain(span_green("[user] applies [src] to [theirs] [limb.plaintext_zone].")),
+		span_infoplain(span_green("You [limb.current_gauze?.type == type ? "replace" : "bandage"] the wounds on [whose] [limb.plaintext_zone].")),
+	)
 	limb.apply_gauze(src)
 
 /obj/item/stack/medical/gauze/twelve
@@ -266,6 +334,7 @@
 	stop_bleeding = 0.6
 	grind_results = list(/datum/reagent/medicine/antipathogenic/spaceacillin = 2)
 	merge_type = /obj/item/stack/medical/suture
+	heal_sound = 'monkestation/sound/items/snip.ogg'
 
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"

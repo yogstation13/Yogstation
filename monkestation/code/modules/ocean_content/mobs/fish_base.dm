@@ -12,8 +12,8 @@
 	speak_emote = list("glubs")
 
 	habitable_atmos = list("min_oxy" = 2, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 1200
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = 1200
 
 	ai_controller = /datum/ai_controller/basic_controller/fish
 

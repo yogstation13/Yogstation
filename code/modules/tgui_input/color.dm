@@ -118,6 +118,10 @@
 			closed = TRUE
 			SStgui.close_uis(src)
 			return TRUE
+		if("null")
+			set_choice(null)
+			SStgui.close_uis(src)
+			return TRUE
 
 /datum/tgui_color_picker/proc/set_choice(choice)
 	src.choice = choice

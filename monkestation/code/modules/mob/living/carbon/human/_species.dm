@@ -1,7 +1,3 @@
-/// Returns the species's laugh sound.
-/datum/species/proc/get_laugh_sound(mob/living/carbon/human/human)
-	return
-
 /datum/species/regenerate_organs(mob/living/carbon/organ_holder, datum/species/old_species, replace_current = TRUE, list/excluded_zones, visual_only = FALSE)
 	var/list/skillchips = organ_holder.clone_skillchip_list()
 	organ_holder.destroy_all_skillchips(silent = TRUE)

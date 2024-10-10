@@ -74,6 +74,8 @@ SUBSYSTEM_DEF(ticker)
 	///add jobs to this that should get rewarded monkecoins, example: JOB_SECURITY_OFFICER
 	var/list/jobs_to_reward = list(JOB_JANITOR,)
 
+	var/list/popcount
+
 /datum/controller/subsystem/ticker/Initialize()
 	// monkestation start: fix-lobby-music
 	var/old_login_music = trim(file2text("data/last_round_lobby_music.txt"))

@@ -73,9 +73,6 @@
 			target_pixel_y = 8
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
 
-/obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter
-	splatter_type = "xsplatter"
-
 /obj/effect/temp_visual/dir_setting/speedbike_trail
 	name = "speedbike trails"
 	icon_state = "ion_fade"

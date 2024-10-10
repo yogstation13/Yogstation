@@ -386,8 +386,8 @@
 /mob/living/basic/spider/giant/ice
 	name = "giant ice spider"
 	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 1500
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = 1500
 	color = rgb(114,228,250)
 	gold_core_spawnable = NO_SPAWN
 	menu_description = "Versatile ice spider variant for frontline combat with high health and damage. Immune to temperature damage."
@@ -400,8 +400,8 @@
 /mob/living/basic/spider/giant/nurse/ice
 	name = "giant ice spider"
 	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 1500
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = 1500
 	poison_type = /datum/reagent/consumable/frostoil
 	color = rgb(114,228,250)
 	menu_description = "Support ice spider variant specializing in healing their brethren and placing webbings very swiftly, but has very low amount of health and deals low damage. Immune to temperature damage."
@@ -414,8 +414,8 @@
 /mob/living/basic/spider/giant/hunter/ice
 	name = "giant ice spider"
 	habitable_atmos = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 1500
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = 1500
 	poison_type = /datum/reagent/consumable/frostoil
 	color = rgb(114,228,250)
 	gold_core_spawnable = NO_SPAWN

@@ -569,7 +569,7 @@
 
 			if(user.gloves)
 				var/obj/item/clothing/gloves/electrician_gloves = user.gloves
-				if(electrician_gloves.max_heat_protection_temperature && electrician_gloves.max_heat_protection_temperature > 360)
+				if(electrician_gloves.max_heat_protection_temperature > 360)
 					protected = TRUE
 		else
 			protected = TRUE

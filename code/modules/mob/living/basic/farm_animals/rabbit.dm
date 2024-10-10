@@ -102,8 +102,8 @@
 	icon_prefix = "space_rabbit"
 	ai_controller = /datum/ai_controller/basic_controller/rabbit/easter/space
 	unsuitable_atmos_damage = 0 // Zero because we are meant to survive in space.
-	minimum_survivable_temperature = 0 // Minimum Allowable Body Temp, zero because we are meant to survive in space and we have a fucking RABBIT SPACE MASK.
-	maximum_survivable_temperature = 1500 // Maximum Allowable Body Temp, 1500 because we might overheat and die in said RABBIT SPACE MASK.
+	bodytemp_cold_damage_limit = -1 // Minimum Allowable Body Temp, zero because we are meant to survive in space and we have a fucking RABBIT SPACE MASK.
+	bodytemp_heat_damage_limit = 1500 // Maximum Allowable Body Temp, 1500 because we might overheat and die in said RABBIT SPACE MASK.
 	unsuitable_cold_damage = 0 // Zero because we are meant to survive in space.
 
 /datum/ai_controller/basic_controller/rabbit/easter/space

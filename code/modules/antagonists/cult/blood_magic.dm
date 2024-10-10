@@ -762,30 +762,25 @@
 					uses = 0
 				playsound(get_turf(M), 'sound/magic/staff_healing.ogg', 25)
 				user.Beam(M, icon_state="sendbeam", time = 1 SECONDS)
-		if(istype(target, /obj/effect/decal/cleanable/blood))
+		if(istype(target, /obj/effect/decal/cleanable/blood) || isturf(target))
 			blood_draw(target, user)
 		..()
 
 /obj/item/melee/blood_magic/manipulator/proc/blood_draw(atom/target, mob/living/carbon/human/user)
-	var/temp = 0
-	var/turf/T = get_turf(target)
-	if(T)
-		for(var/obj/effect/decal/cleanable/blood/B in view(T, 2))
-			if(B.blood_state == BLOOD_STATE_HUMAN)
-				if(B.bloodiness == 100) //Bonus for "pristine" bloodpools, also to prevent cheese with footprint spam
-					temp += 30
-				else
-					temp += max((B.bloodiness**2)/800,1)
-				new /obj/effect/temp_visual/cult/turf/floor(get_turf(B))
-				qdel(B)
-		for(var/obj/effect/decal/cleanable/trail_holder/TH in view(T, 2))
-			qdel(TH)
-		if(temp)
-			user.Beam(T,icon_state="drainbeam", time = 15)
+	var/blood_to_gain = 0
+	var/turf/our_turf = get_turf(target)
+	if(our_turf)
+		for(var/obj/effect/decal/cleanable/blood/blood_around_us in range(our_turf,2))
+			if(blood_around_us.decal_reagent == /datum/reagent/blood)
+				blood_to_gain += max(blood_around_us.bloodiness * 0.12 * BLOOD_PER_UNIT_MODIFIER, 1)
+				new /obj/effect/temp_visual/cult/turf/floor(get_turf(blood_around_us))
+				qdel(blood_around_us)
+		if(blood_to_gain)
+			user.Beam(our_turf,icon_state="drainbeam", time = 15)
 			new /obj/effect/temp_visual/cult/sparks(get_turf(user))
-			playsound(T, 'sound/magic/enter_blood.ogg', 50)
-			to_chat(user, span_cultitalic("Your blood rite has gained [round(temp)] charge\s from blood sources around you!"))
-			uses += max(1, round(temp))
+			playsound(our_turf, 'sound/magic/enter_blood.ogg', 50)
+			to_chat(user, span_cultitalic("Your blood rite has gained [round(blood_to_gain)] charge\s from blood sources around you!"))
+			uses += max(1, round(blood_to_gain))
 
 /obj/item/melee/blood_magic/manipulator/attack_self(mob/living/user)
 	if(IS_CULTIST(user))

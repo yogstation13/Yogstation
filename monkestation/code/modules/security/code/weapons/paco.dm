@@ -117,7 +117,7 @@
 	icon = 'monkestation/code/modules/security/icons/paco_ammo.dmi'
 	icon_state = "rubber_bullet"
 	damage = 4
-	stamina = 45 // Turns out 35 stamina damage is not good enough.
+	stamina = 35 // Turns out 35 stamina damage is not good enough.
 	sharpness = NONE
 	embedding = null
 

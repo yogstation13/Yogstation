@@ -89,7 +89,7 @@
 
 // Turn to dust when gibbed
 
-/mob/living/basic/statue/gib()
+/mob/living/basic/statue/gib(no_brain, no_organs, no_bodyparts, safe_gib = TRUE)
 	dust()
 
 // Statue powers

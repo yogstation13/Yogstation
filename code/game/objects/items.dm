@@ -110,13 +110,11 @@
 	///Whether spessmen with an ID with an age below AGE_MINOR (20 by default) can buy this item
 	var/age_restricted = FALSE
 
-	///flags which determine which body parts are protected from heat. [See here][HEAD]
-	var/heat_protection = 0
-	///flags which determine which body parts are protected from cold. [See here][HEAD]
-	var/cold_protection = 0
-	///Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
+	/// Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage.
+	/// Keep at null to disable protection.
 	var/max_heat_protection_temperature
-	///Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
+	/// Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage.
+	/// Keep at null to disable protection.
 	var/min_cold_protection_temperature
 
 	///list of /datum/action's that this item has.

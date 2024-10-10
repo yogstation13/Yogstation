@@ -45,7 +45,7 @@
 	var/conditions_fulfilled = 0
 
 	// Good: Body temperature is stable (not freezing, we don't care about heat)
-	if(affected_mob.bodytemperature > affected_mob.get_body_temp_cold_damage_limit())
+	if(affected_mob.bodytemperature > affected_mob.bodytemp_cold_damage_limit)
 		conditions_fulfilled += 1
 	// Good: Sleeping (or unconscious I guess)
 	if(affected_mob.IsSleeping() || affected_mob.IsUnconscious())
@@ -147,7 +147,7 @@
 			if(SPT_PROB(6, seconds_per_tick))
 				to_chat(affected_mob, span_danger("You feel cold."))
 				affected_mob.pain_emote("shiver", 3 SECONDS)
-			affected_mob.adjust_bodytemperature(-5 * seconds_per_tick, affected_mob.get_body_temp_cold_damage_limit() + 5) // Not lethal
+			affected_mob.adjust_bodytemperature(-5 * seconds_per_tick, min_temp = affected_mob.bodytemp_cold_damage_limit + 5) // Not lethal
 
 		// decompensated (or progressive) - unable to maintain themselves
 		// - mental issues
@@ -180,7 +180,7 @@
 			if(SPT_PROB(8, seconds_per_tick))
 				to_chat(affected_mob, span_danger("You feel freezing!"))
 				affected_mob.pain_emote("shiver", 3 SECONDS)
-			affected_mob.adjust_bodytemperature(-10 * seconds_per_tick, affected_mob.get_body_temp_cold_damage_limit() - 5) // uh oh
+			affected_mob.adjust_bodytemperature(-10 * seconds_per_tick, min_temp = affected_mob.bodytemp_cold_damage_limit - 5) // uh oh
 
 		// irreversible - point of no return, system failure
 		// cardiac arrest
@@ -204,4 +204,4 @@
 					affected_mob.losebreath += 10
 			else if(SPT_PROB(10, seconds_per_tick))
 				to_chat(affected_mob, span_userdanger(pick("You feel your heart skip a beat...", "You feel your body shutting down...", "You feel your heart beat irregularly...")))
-			affected_mob.adjust_bodytemperature(-10 * seconds_per_tick, affected_mob.get_body_temp_cold_damage_limit() - 20) // welp
+			affected_mob.adjust_bodytemperature(-10 * seconds_per_tick, min_temp = affected_mob.bodytemp_cold_damage_limit - 20) // welp

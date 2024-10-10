@@ -22,19 +22,14 @@
 	color = "#DB90C6"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
-/datum/reagent/medicine/leporazine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
-	var/target_temp = affected_mob.get_body_temp_normal(apply_change = FALSE)
-	if(affected_mob.bodytemperature > target_temp)
-		affected_mob.adjust_bodytemperature(-40 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, target_temp)
-	else if(affected_mob.bodytemperature < (target_temp + 1))
-		affected_mob.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, 0, target_temp)
-	if(ishuman(affected_mob))
-		var/mob/living/carbon/human/affected_human = affected_mob
-		if(affected_human.coretemperature > target_temp)
-			affected_human.adjust_coretemperature(-40 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, target_temp)
-		else if(affected_human.coretemperature < (target_temp + 1))
-			affected_human.adjust_coretemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT * REM * seconds_per_tick, 0, target_temp)
-	..()
+/datum/reagent/medicine/leporazine/on_mob_metabolize(mob/living/carbon/user)
+	. = ..()
+	user.add_homeostasis_level(type, user.standard_body_temperature, 10 KELVIN)
+
+/datum/reagent/medicine/leporazine/on_mob_end_metabolize(mob/living/carbon/user)
+	. = ..()
+	user.remove_homeostasis_level(type)
+
 
 /datum/reagent/medicine/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
@@ -1559,7 +1554,7 @@
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	if(!affected_mob.blood_volume || !affected_mob.all_wounds)
+	if(HAS_TRAIT(affected_mob, TRAIT_NOBLOOD) || !LAZYLEN(affected_mob.all_wounds))
 		return
 
 	var/datum/wound/bloodiest_wound
@@ -1580,7 +1575,7 @@
 
 /datum/reagent/medicine/coagulant/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	if(!affected_mob.blood_volume)
+	if(!HAS_TRAIT(affected_mob, TRAIT_NOBLOOD))
 		return
 
 	if(SPT_PROB(7.5, seconds_per_tick))

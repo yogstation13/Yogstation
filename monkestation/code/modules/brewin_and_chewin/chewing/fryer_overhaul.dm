@@ -60,7 +60,7 @@
 	if(!basket)
 		return
 	for(var/obj/item/item as anything in basket.contents)
-		if(!QDELETED(item))
+		if(!QDELETED(item) && !(item.type in GLOB.oilfry_blacklisted_items))
 			item.AddElement(/datum/element/fried_item, cook_time)
 	if(user)
 		basket.process_item(src, user, lower_quality_on_fail=CHEWIN_BASE_QUAL_REDUCTION, send_message=TRUE)

@@ -50,9 +50,9 @@
 	desc = "A cybernetically enhanced jumpsuit used for administrative duties."
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	armor_type = /datum/armor/misc_adminsuit
-	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 	can_adjust = FALSE
 	resistance_flags = FIRE_PROOF | ACID_PROOF

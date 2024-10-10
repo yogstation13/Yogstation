@@ -84,8 +84,8 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	faction = list(FACTION_MINING)
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = INFINITY
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = INFINITY
 	speed = 1.5
 	maxHealth = 1
 	health = 1

@@ -69,31 +69,43 @@
 	var/min_blood = BLOOD_VOLUME_SAFE - 25 // just barely survivable without treatment
 
 /datum/quirk/blooddeficiency/post_add()
-	if(!ishuman(quirk_holder))
+	update_mail()
+
+/datum/quirk/blooddeficiency/add(client/client_source)
+	. = ..()
+	RegisterSignal(quirk_holder, COMSIG_HUMAN_ON_HANDLE_BLOOD, PROC_REF(lose_blood))
+	RegisterSignal(quirk_holder, COMSIG_SPECIES_GAIN, PROC_REF(update_mail))
+
+/datum/quirk/blooddeficiency/remove()
+	. = ..()
+	UnregisterSignal(quirk_holder, COMSIG_HUMAN_ON_HANDLE_BLOOD)
+	UnregisterSignal(quirk_holder, COMSIG_SPECIES_GAIN)
+
+/datum/quirk/blooddeficiency/proc/lose_blood(mob/living/carbon/human/draining, seconds_per_tick, times_fired)
+	SIGNAL_HANDLER
+	if(quirk_holder.stat == DEAD || quirk_holder.blood_volume <= min_blood)
 		return
 
-	// for making sure the roundstart species has the right blood pack sent to them
-	var/mob/living/carbon/human/carbon_target = quirk_holder
-	carbon_target.dna.species.update_quirk_mail_goodies(carbon_target, src)
-
-/**
- * Makes the mob lose blood from having the blood deficiency quirk, if possible
- *
- * Arguments:
- * * seconds_per_tick
- */
-/datum/quirk/blooddeficiency/proc/lose_blood(seconds_per_tick)
-	if(quirk_holder.stat == DEAD)
-		return
-
-	var/mob/living/carbon/human/carbon_target = quirk_holder
-	if(HAS_TRAIT(carbon_target, TRAIT_NOBLOOD) && isnull(carbon_target.dna.species.exotic_blood)) //can't lose blood if your species doesn't have any
-		return
-
-	if (carbon_target.blood_volume <= min_blood)
-		return
 	// Ensures that we don't reduce total blood volume below min_blood.
-	carbon_target.blood_volume = max(min_blood, carbon_target.blood_volume - carbon_target.dna.species.blood_deficiency_drain_rate * seconds_per_tick)
+	draining.blood_volume = max(min_blood, draining.blood_volume - draining.dna.species.blood_deficiency_drain_rate * seconds_per_tick)
+
+/datum/quirk/blooddeficiency/proc/update_mail(datum/source, datum/species/new_species, datum/species/old_species)
+	SIGNAL_HANDLER
+
+	mail_goodies.Cut()
+
+	var/datum/blood_type/new_type = quirk_holder.get_blood_type()
+	if(isnull(new_type))
+		return
+
+	if(istype(new_type, /datum/blood_type/crew/human))
+		mail_goodies += /obj/item/reagent_containers/blood/o_minus
+		return
+
+	for(var/obj/item/reagent_containers/blood/blood_bag as anything in typesof(/obj/item/reagent_containers/blood))
+		if(initial(blood_bag.blood_type) == new_type.type)
+			mail_goodies += blood_bag
+			break
 
 /datum/quirk/item_quirk/blindness
 	name = "Blind"
@@ -862,7 +874,7 @@
 			quirk_holder.mind.remove_addiction_points(addiction_type, MAX_ADDICTION_POINTS)
 
 /datum/quirk/item_quirk/junkie/process(seconds_per_tick)
-	if(HAS_TRAIT(quirk_holder, TRAIT_NOMETABOLISM))
+	if(HAS_TRAIT(quirk_holder, TRAIT_LIVERLESS_METABOLISM))
 		return
 	var/mob/living/carbon/human/human_holder = quirk_holder
 	if(world.time > next_process)

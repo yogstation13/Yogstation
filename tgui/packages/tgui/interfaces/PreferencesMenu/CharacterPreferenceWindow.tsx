@@ -86,7 +86,7 @@ export const CharacterPreferenceWindow = (props) => {
     <Window
       title="Character Preferences"
       width={1200}
-      height={770}
+      height={800}
       theme="generic"
     >
       <Window.Content scrollable>

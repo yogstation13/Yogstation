@@ -73,8 +73,9 @@
 		birthed.grown_type = layer_hen_type //if no possible mutations default to layer hen type
 
 	if(birthed.grown_type == /mob/living/basic/chicken/glass)
-		for(var/list_item in src.reagents.reagent_list)
-			birthed.glass_egg_reagent.Add(list_item)
+		for(var/datum/reagent/list_reagent as anything in src.reagents.reagent_list)
+			birthed.glass_egg_reagent |= list_reagent.type
+			birthed.glass_egg_reagent[list_reagent.type] = list_reagent.volume
 
 	if(birthed.grown_type == /mob/living/basic/chicken/stone)
 		birthed.production_type = src.production_type

@@ -1,21 +1,24 @@
 /datum/reagent/blood
 	data = list(
-		"viruses"=null,
-		"blood_DNA"=null,
-		"blood_type"=null,
-		"resistances"=null,
-		"trace_chem"=null,
-		"mind"=null,
-		"ckey"=null,
-		"gender"=null,
-		"real_name"=null,
-		"cloneable"=null,
-		"factions"=null,
-		"quirks"=null,
+		// Actually Relevant
+		"viruses" = null, // Refernces to virus datums in this blood
+		"blood_DNA" = null, // DNA of the guy who the blood came from
+		"blood_type" = null, // /datum/blood_type of the blood
+		"resistances" = null, // Viruses the blood is vaccinated against
 		"immunity" = null,
+		// Unused? (but cool)
+		"trace_chem" = null, // Param list of all chems in the blood at the time the sample was taken (type to volume)
+		// Used for podperson shit
+		"mind" = null, // Ref to the mind of the guy who the blood came from
+		"ckey" = null, // Ckey of the guy who the blood came from
+		"gender" = null, // Gender of the guy when the blood was taken
+		"real_name" = null, // Real name of the guy when the blood was taken
+		"cloneable" = null, // Tracks if the guy who the blood came from suicided or not
+		"factions" = null, // Factions the guy who the blood came from was in
+		"quirks" = null, // Quirk typepaths of the guy who the blood came from had
 		)
 	name = "Blood"
-	color = "#9e0101" // rgb: 200, 0, 0
+	color = COLOR_BLOOD
 	metabolization_rate = 12.5 * REAGENTS_METABOLISM //fast rate so it disappears fast.
 	taste_description = "iron"
 	taste_mult = 1.3
@@ -24,6 +27,7 @@
 	default_container = /obj/item/reagent_containers/blood
 	opacity = 230
 	turf_exposure = TRUE
+	chemical_flags = REAGENT_IGNORE_STASIS|REAGENT_DEAD_PROCESS
 
 /datum/glass_style/shot_glass/blood
 	required_drink_type = /datum/reagent/blood
@@ -37,33 +41,30 @@
 
 /datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
 	. = ..()
-	if(data && data["viruses"])
-		for(var/thing in data["viruses"])
-			var/datum/disease/strain = thing
+	for(var/datum/disease/strain as anything in data?["viruses"])
+		if(istype(strain, /datum/disease/advanced))
+			var/datum/disease/advanced/advanced = strain
+			if(methods & (INJECT|INGEST|PATCH))
+				exposed_mob.infect_disease(advanced, TRUE, "(Contact, splashed with infected blood)")
+			if((methods & (TOUCH | VAPOR)) && (advanced.spread_flags & DISEASE_SPREAD_BLOOD))
+				if(exposed_mob.check_bodypart_bleeding(BODY_ZONE_EVERYTHING))
+					exposed_mob.infect_disease(advanced, notes="(Blood, splashed with infected blood)")
 
-			if(istype(strain, /datum/disease/advanced))
-				var/datum/disease/advanced/advanced = strain
-				if(methods & (INJECT|INGEST|PATCH))
-					exposed_mob.infect_disease(advanced, TRUE, "(Contact, splashed with infected blood)")
-				if((methods & (TOUCH | VAPOR)) && (advanced.spread_flags & DISEASE_SPREAD_BLOOD))
-					if(exposed_mob.check_bodypart_bleeding(BODY_ZONE_EVERYTHING))
-						exposed_mob.infect_disease(advanced, notes="(Blood, splashed with infected blood)")
+	var/datum/blood_type/blood = exposed_mob.get_blood_type()
+	if(blood?.reagent_type == type && ((methods & INJECT) || ((methods & INGEST))))
+		if(data["blood_type"] in blood.compatible_types)
+			exposed_mob.blood_volume = min(exposed_mob.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
+		else
+			exposed_mob.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
 
-	if(iscarbon(exposed_mob))
-		var/mob/living/carbon/exposed_carbon = exposed_mob
-		if(exposed_carbon.get_blood_id() == type && ((methods & INJECT) || ((methods & INGEST) && exposed_carbon.dna && exposed_carbon.dna.species && (DRINKSBLOOD in exposed_carbon.dna.species.species_traits))))
-			if(!data || !(data["blood_type"] in get_safe_blood(exposed_carbon.dna.blood_type)))
-				exposed_carbon.reagents.add_reagent(/datum/reagent/toxin, reac_volume * 0.5)
-			else
-				exposed_carbon.blood_volume = min(exposed_carbon.blood_volume + round(reac_volume, 0.1), BLOOD_VOLUME_MAXIMUM)
-
-			exposed_carbon.reagents.remove_reagent(type, reac_volume) // Because we don't want blood to just lie around in the patient's blood, makes no sense.
+		exposed_mob.reagents.remove_reagent(type, reac_volume) // Because we don't want blood to just lie around in the patient's blood, makes no sense.
 
 
 /datum/reagent/blood/on_new(list/data)
 	. = ..()
 	if(istype(data))
 		SetViruses(src, data)
+		color = GLOB.blood_types[data["blood_type"]]?.color || COLOR_BLOOD
 
 /datum/reagent/blood/on_merge(list/mix_data)
 	if(data && mix_data)
@@ -273,7 +274,7 @@
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()
-	if(affected_mob.blood_volume)
+	if(!HAS_TRAIT(affected_mob, TRAIT_NOBLOOD))
 		affected_mob.blood_volume += 0.1 * REM * seconds_per_tick // water is good for you!
 
 /datum/reagent/water/salt
@@ -580,9 +581,10 @@
 					if ("albino")
 						exposed_human.skin_tone = "caucasian1"
 
-			if(MUTCOLORS in exposed_human.dna.species.species_traits) //take current alien color and darken it slightly
+			if(HAS_TRAIT(exposed_human, TRAIT_MUTANT_COLORS)) //take current alien color and darken it slightly
 				var/newcolor = ""
-				var/string = exposed_human.dna.features["mcolor"]
+				var/datum/color_palette/generic_colors/located = exposed_human.dna.color_palettes[/datum/color_palette/generic_colors]
+				var/string = located.return_color(MUTANT_COLOR)
 				var/len = length(string)
 				var/char = ""
 				var/ascii = 0
@@ -605,7 +607,7 @@
 						else
 							break
 				if(ReadHSV(newcolor)[3] >= ReadHSV("#7F7F7F")[3])
-					exposed_human.dna.features["mcolor"] = newcolor
+					located.mutant_color = newcolor
 			exposed_human.update_body(is_creating = TRUE)
 
 		if((methods & INGEST) && show_message)
@@ -625,10 +627,11 @@
 		var/obj/item/bodypart/head/head = affected_human.get_bodypart(BODY_ZONE_HEAD)
 		if(head)
 			head.head_flags |= HEAD_HAIR //No hair? No problem!
-		if(affected_human.dna.species.use_skintones)
+		if(HAS_TRAIT(affected_human, TRAIT_USES_SKINTONES))
 			affected_human.skin_tone = "orange"
-		else if(MUTCOLORS in affected_human.dna.species.species_traits) //Aliens with custom colors simply get turned orange
-			affected_human.dna.features["mcolor"] = "#ff8800"
+		else if(HAS_TRAIT(affected_human, TRAIT_MUTANT_COLORS)) //Aliens with custom colors simply get turned orange
+			var/datum/color_palette/generic_colors/located = affected_human.dna.color_palettes[/datum/color_palette/generic_colors]
+			located.mutant_color = "#ff8800"
 		affected_human.update_body(is_creating = TRUE)
 		if(SPT_PROB(3.5, seconds_per_tick))
 			if(affected_human.w_uniform)

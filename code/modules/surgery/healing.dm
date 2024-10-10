@@ -159,7 +159,7 @@
 	var/estimated_remaining_steps = target.getBruteLoss() / brute_healed
 	var/progress_text
 
-	if(locate(/obj/item/healthanalyzer) in user.held_items)
+	if(get_perfect_information(user, target))
 		progress_text = ". Remaining brute: <font color='#ff3333'>[target.getBruteLoss()]</font>"
 	else
 		switch(estimated_remaining_steps)
@@ -224,7 +224,7 @@
 	var/estimated_remaining_steps = target.getFireLoss() / burn_healed
 	var/progress_text
 
-	if(locate(/obj/item/healthanalyzer) in user.held_items)
+	if(get_perfect_information(user, target))
 		progress_text = ". Remaining burn: <font color='#ff9933'>[target.getFireLoss()]</font>"
 	else
 		switch(estimated_remaining_steps)
@@ -292,7 +292,7 @@
 
 	var/progress_text
 
-	if(locate(/obj/item/healthanalyzer) in user.held_items)
+	if(get_perfect_information(user, target))
 		if(target.getBruteLoss())
 			progress_text = ". Remaining brute: <font color='#ff3333'>[target.getBruteLoss()]</font>"
 		if(target.getFireLoss())

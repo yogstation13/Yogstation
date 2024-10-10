@@ -5,7 +5,6 @@
 	random_icon_states = list("drip1","drip2","drip3","drip4","drip5")
 	plane = GAME_PLANE
 	layer = BELOW_MOB_LAYER
-	should_dry = FALSE
 	bloodiness = BLOOD_AMOUNT_PER_DECAL * 0.2
 	mergeable_decal = FALSE
 	/// Splatter type we create when we bounce on the floor
@@ -14,6 +13,11 @@
 	var/obj/effect/decal/cleanable/splatter_type_wall = /obj/effect/decal/cleanable/blood/splatter/over_window
 	/// Whether or not we transfer our pixel_x and pixel_y to the splatter, only works for floor splatters though
 	var/messy_splatter = TRUE
+
+/obj/effect/decal/cleanable/blood/particle/Initialize(mapload)
+	. = ..()
+	if(QDELETED(loc))
+		return INITIALIZE_HINT_QDEL
 
 /obj/effect/decal/cleanable/blood/particle/can_bloodcrawl_in()
 	return FALSE
@@ -39,12 +43,13 @@
 /obj/effect/decal/cleanable/blood/particle/proc/on_bounce()
 	if(QDELETED(src))
 		return
-	if(QDELETED(loc) || !isturf(loc) || !splatter_type_floor)
+	else if(!isturf(loc) || QDELING(loc) || !splatter_type_floor)
 		qdel(src)
 		return
 	var/obj/effect/decal/cleanable/splatter
 	if(!ispath(splatter_type_floor, /obj/effect/decal/cleanable/blood/splatter/stacking))
 		splatter = new splatter_type_floor(loc)
+		splatter.color = color
 		if(messy_splatter)
 			splatter.pixel_x = src.pixel_x
 			splatter.pixel_y = src.pixel_y
@@ -52,6 +57,7 @@
 		var/obj/effect/decal/cleanable/blood/splatter/stacking/stacker = locate(splatter_type_floor) in loc
 		if(!stacker)
 			stacker = new splatter_type_floor(loc)
+			stacker.color = color
 			if(messy_splatter && length(stacker.splat_overlays))
 				var/mutable_appearance/existing_appearance = stacker.splat_overlays[1]
 				existing_appearance.pixel_x = src.pixel_x
@@ -60,6 +66,7 @@
 			stacker.update_appearance(UPDATE_ICON)
 		else
 			var/obj/effect/decal/cleanable/blood/splatter/stacking/other_splatter = new splatter_type_floor()
+			other_splatter.color = color
 			if(messy_splatter && length(other_splatter.splat_overlays))
 				var/mutable_appearance/existing_appearance = other_splatter.splat_overlays[1]
 				existing_appearance.pixel_x = src.pixel_x
@@ -74,7 +81,7 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/particle/proc/on_bump(atom/bumped_atom)
-	if(QDELETED(src) || QDELETED(bumped_atom) || !isturf(loc) || !splatter_type_wall)
+	if(QDELETED(src) || !isturf(loc) || QDELING(loc) || QDELETED(bumped_atom) || !splatter_type_wall)
 		return
 	if(iswallturf(bumped_atom))
 		//Adjust pixel offset to make splatters appear on the wall
@@ -82,6 +89,7 @@
 		var/dir_to_wall = get_dir(src, bumped_atom)
 		final_splatter.pixel_x = (dir_to_wall & EAST ? world.icon_size : (dir_to_wall & WEST ? -world.icon_size : 0))
 		final_splatter.pixel_y = (dir_to_wall & NORTH ? world.icon_size : (dir_to_wall & SOUTH ? -world.icon_size : 0))
+		final_splatter.color = color
 		var/list/blood_dna = GET_ATOM_BLOOD_DNA(src)
 		if(blood_dna)
 			final_splatter.add_blood_DNA(blood_dna)
@@ -95,6 +103,7 @@
 			return
 		var/obj/effect/decal/cleanable/blood/splatter/over_window/final_splatter = new splatter_type_wall()
 		final_splatter.forceMove(the_window)
+		final_splatter.color = color
 		the_window.vis_contents += final_splatter
 		the_window.bloodied = TRUE
 		qdel(src)
@@ -106,12 +115,15 @@
 	/// Listing containing overlays of all the splatters we've merged with
 	var/list/splat_overlays = list()
 
-/obj/effect/decal/cleanable/blood/splatter/stacking/Initialize(mapload)
+/obj/effect/decal/cleanable/blood/splatter/stacking/Initialize(mapload, blood_color = COLOR_BLOOD)
+	color = blood_color
 	. = ..()
 	var/mutable_appearance/our_appearance = mutable_appearance(src.icon, src.icon_state)
 	our_appearance.color = src.color
 	our_appearance.pixel_x = src.pixel_x
 	our_appearance.pixel_y = src.pixel_y
+	if(glows)
+		our_appearance.plane = EMISSIVE_PLANE
 	icon_state = null
 	color = null
 	pixel_x = 0
@@ -140,8 +152,8 @@
 	desc = "Raining blood, from a lacerated sky, bleeding its horror!"
 	icon_state = "line"
 	random_icon_states = null
-	dryname = "dried blood line"
-	drydesc = "Creating my structure - Now I shall reign in blood!"
+	base_name = "dried blood line"
+	dry_desc = "Creating my structure - Now I shall reign in blood!"
 
 /obj/effect/decal/cleanable/blood/line/Initialize(mapload, direction)
 	if(!isnull(direction))

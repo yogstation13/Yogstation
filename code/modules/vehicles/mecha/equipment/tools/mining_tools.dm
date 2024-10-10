@@ -130,11 +130,7 @@
 		target.apply_damage(10, BRUTE, BODY_ZONE_CHEST, target.run_armor_check(target_part, MELEE))
 
 		//blood splatters
-		var/splatter_dir = get_dir(chassis, target)
-		if(isalien(target))
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target.drop_location(), splatter_dir, COLOR_DARK_PURPLE)
-		else
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(target.drop_location(), splatter_dir, COLOR_DARK_RED)
+		target.do_splatter_effect(get_dir(chassis, target))
 
 		//organs go everywhere
 		if(target_part && prob(10 * drill_level))

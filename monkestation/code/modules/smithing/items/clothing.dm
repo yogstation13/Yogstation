@@ -108,9 +108,9 @@
 	icon_state = "cuirass"
 	allowed = null
 	body_parts_covered = CHEST
-	cold_protection = CHEST|GROIN
+
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	heat_protection = CHEST|GROIN
+
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	strip_delay = 60
 	equip_delay_other = 40
@@ -131,9 +131,9 @@
 	icon = 'icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	icon_state = "knight_green"
-	cold_protection = HEAD
+
 	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
-	heat_protection = HEAD
+
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 	strip_delay = 60
 	clothing_flags = SNUG_FIT | PLASMAMAN_HELMET_EXEMPT
@@ -152,9 +152,9 @@
 	icon_state = "smithed_boots_inhand"
 	worn_icon_state = "smithed_boots"
 	inhand_icon_state = "jackboots"
-	cold_protection = FEET
+
 	min_cold_protection_temperature = SHOES_MIN_TEMP_PROTECT
-	heat_protection = FEET
+
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 	lefthand_file = 'icons/mob/inhands/clothing/shoes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing/shoes_righthand.dmi'

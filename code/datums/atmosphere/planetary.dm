@@ -47,8 +47,8 @@
 	minimum_pressure = HAZARD_LOW_PRESSURE + 10
 	maximum_pressure = LAVALAND_EQUIPMENT_EFFECT_PRESSURE - 1
 
-	minimum_temp = 180
-	maximum_temp = 180
+	minimum_temp = ICEBOX_MIN_TEMPERATURE
+	maximum_temp = ICEBOX_MIN_TEMPERATURE
 
 /datum/atmosphere/oshan
 	id = OSHAN_DEFAULT_ATMOS

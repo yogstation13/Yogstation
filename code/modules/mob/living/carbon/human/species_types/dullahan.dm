@@ -1,14 +1,13 @@
 /datum/species/dullahan
 	name = "Dullahan"
 	id = SPECIES_DULLAHAN
-	species_traits = list()
 	inherent_traits = list(
 		TRAIT_NOBREATH,
 		TRAIT_NOHUNGER,
+		TRAIT_USES_SKINTONES,
 	)
 	inherent_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	mutant_bodyparts = list("wings" = "None")
-	use_skintones = TRUE
 	mutantbrain = /obj/item/organ/internal/brain/dullahan
 	mutanteyes = /obj/item/organ/internal/eyes/dullahan
 	mutanttongue = /obj/item/organ/internal/tongue/dullahan
@@ -71,6 +70,7 @@
 	human.reset_perspective(human)
 
 /datum/species/dullahan/spec_life(mob/living/carbon/human/human, seconds_per_tick, times_fired)
+	. = ..()
 	if(QDELETED(my_head))
 		my_head = null
 		human.investigate_log("has been gibbed by the loss of [human.p_their()] head.", INVESTIGATE_DEATHS)

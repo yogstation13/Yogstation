@@ -13,10 +13,6 @@
 	///Take on the dna/preference from whoever we're gonna be inserted in
 	var/imprint_on_next_insertion = TRUE
 
-/datum/bodypart_overlay/mutant/get_overlay(layer, obj/item/bodypart/limb)
-	inherit_color(limb) // If draw_color is not set yet, go ahead and do that
-	return ..()
-
 ///Completely random image and color generation (obeys what a player can choose from)
 /datum/bodypart_overlay/mutant/proc/randomize_appearance()
 	randomize_sprite()
@@ -54,27 +50,6 @@
 	return sprite_datum.icon_state
 
 ///Get the image we need to draw on the person. Called from get_overlay() which is called from _bodyparts.dm. Limb can be null
-/datum/bodypart_overlay/mutant/get_image(image_layer, obj/item/bodypart/limb)
-	if(!sprite_datum)
-		CRASH("Trying to call get_image() on [type] while it didn't have a sprite_datum. This shouldn't happen, report it as soon as possible.")
-
-	var/gender = (limb?.limb_gender == FEMALE) ? "f" : "m"
-	var/list/icon_state_builder = list()
-	icon_state_builder += sprite_datum.gender_specific ? gender : "m" //Male is default because sprite accessories are so ancient they predate the concept of not hardcoding gender
-	icon_state_builder += feature_key
-	icon_state_builder += get_base_icon_state()
-	icon_state_builder += mutant_bodyparts_layertext(image_layer)
-
-	var/finished_icon_state = icon_state_builder.Join("_")
-
-	var/mutable_appearance/appearance = mutable_appearance(sprite_datum.icon, finished_icon_state, layer = image_layer)
-
-	if(sprite_datum.center)
-		center_image(appearance, sprite_datum.dimension_x, sprite_datum.dimension_y)
-
-	return appearance
-
-///Get the image we need to draw on the person. Called from get_overlay() which is called from _bodyparts.dm. Limb can be null
 /datum/bodypart_overlay/mutant/get_image_inner(image_layer, obj/item/bodypart/limb)
 	if(!sprite_datum)
 		CRASH("Trying to call get_image() on [type] while it didn't have a sprite_datum. This shouldn't happen, report it as soon as possible.")
@@ -97,10 +72,6 @@
 		center_image(appearance, sprite_datum.dimension_x, sprite_datum.dimension_y)
 
 	return appearance
-
-/datum/bodypart_overlay/mutant/color_image(image/overlay, layer, obj/item/bodypart/limb)
-
-	overlay.color = sprite_datum.color_src ? draw_color : null
 
 /datum/bodypart_overlay/mutant/added_to_limb(obj/item/bodypart/limb)
 	inherit_color(limb)
@@ -136,26 +107,25 @@
 	if(draw_color && !force)
 		return FALSE
 
-	switch(color_source)
-		if(ORGAN_COLOR_OVERRIDE)
-			draw_color = override_color(ownerlimb.draw_color)
-		if(ORGAN_COLOR_INHERIT)
-			draw_color = ownerlimb.draw_color
-		if(ORGAN_COLOR_HAIR)
-			if(!ishuman(ownerlimb.owner))
-				return
-			var/mob/living/carbon/human/human_owner = ownerlimb.owner
-			draw_color = human_owner.hair_color
-		if(ORGAN_COLOR_ANIME)
-			if(!ishuman(ownerlimb.owner))
-				return
-			var/mob/living/carbon/human/human_owner = ownerlimb.owner
-			draw_color = human_owner.dna.features["animecolor"]
-		if(ORGAN_COLOR_MUTSECONDARY)
-			if(!ishuman(ownerlimb.owner))
-				return
-			var/mob/living/carbon/human/human_owner = ownerlimb.owner
-			draw_color = human_owner.dna.features["mcolor_secondary"]
+	if(palette)
+		var/datum/color_palette/located = ownerlimb.owner.dna.color_palettes[palette]
+		draw_color = located.return_color(palette_key, fallback_key)
+	else
+		switch(color_source)
+			if(ORGAN_COLOR_OVERRIDE)
+				draw_color = override_color(ownerlimb.draw_color)
+			if(ORGAN_COLOR_INHERIT)
+				draw_color = ownerlimb.draw_color
+			if(ORGAN_COLOR_HAIR)
+				if(!ishuman(ownerlimb.owner))
+					return
+				var/mob/living/carbon/human/human_owner = ownerlimb.owner
+				draw_color = human_owner.hair_color
+			if(ORGAN_COLOR_ANIME)
+				if(!ishuman(ownerlimb.owner))
+					return
+				var/mob/living/carbon/human/human_owner = ownerlimb.owner
+				draw_color = human_owner.dna.features["animecolor"]
 
 	return TRUE
 

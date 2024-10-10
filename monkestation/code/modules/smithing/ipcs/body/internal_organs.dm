@@ -377,6 +377,16 @@
 	slot = ORGAN_SLOT_TONGUE
 	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
 
+/obj/item/organ/internal/tongue/synth/get_scream_sound()
+	return 'monkestation/sound/voice/screams/silicon/scream_silicon.ogg'
+
+/obj/item/organ/internal/tongue/synth/get_laugh_sound()
+	return pick(
+		'monkestation/sound/voice/laugh/silicon/laugh_siliconE1M0.ogg',
+		'monkestation/sound/voice/laugh/silicon/laugh_siliconE1M1.ogg',
+		'monkestation/sound/voice/laugh/silicon/laugh_siliconM2.ogg',
+	)
+
 /obj/item/organ/internal/tongue/synth/can_speak_language(language)
 	return TRUE
 

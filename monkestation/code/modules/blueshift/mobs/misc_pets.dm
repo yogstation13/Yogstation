@@ -27,8 +27,8 @@
 	real_name = "Teshari"
 	desc = "A timeless classic."
 	unsuitable_atmos_damage = 0
-	minimum_survivable_temperature = 0
-	maximum_survivable_temperature = 30000
+	bodytemp_cold_damage_limit = -1
+	bodytemp_heat_damage_limit = 30000
 	worn_slot_flags = null
 
 /mob/living/basic/lizard/tegu

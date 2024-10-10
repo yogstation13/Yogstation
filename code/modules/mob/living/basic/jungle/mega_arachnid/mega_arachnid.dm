@@ -20,8 +20,8 @@
 	faction = list(FACTION_JUNGLE)
 	obj_damage = 30
 	environment_smash = ENVIRONMENT_SMASH_WALLS
-	minimum_survivable_temperature = T0C
-	maximum_survivable_temperature = T0C + 450
+	bodytemp_cold_damage_limit = T0C
+	bodytemp_heat_damage_limit = T0C + 450
 	status_flags = NONE
 	lighting_cutoff_red = 5
 	lighting_cutoff_green = 20

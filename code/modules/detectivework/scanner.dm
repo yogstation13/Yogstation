@@ -169,7 +169,7 @@
 
 	for(var/bloodtype in blood)
 		LAZYADD(det_data[DETSCAN_CATEGORY_BLOOD], \
-		"Type: <font color='red'>[blood[bloodtype]]</font> DNA (UE): <font color='red'>[bloodtype]</font>")
+		"Type: <font color='red'>[GLOB.blood_types[blood[bloodtype]]]</font> DNA (UE): <font color='red'>[bloodtype]</font>")
 
 	// sends it off to be modified by the items
 	SEND_SIGNAL(scanned_atom, COMSIG_DETECTIVE_SCANNED, user, det_data)
