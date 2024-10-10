@@ -30,13 +30,12 @@
 	chemical_flags = REAGENT_SNEAKYNAME | REAGENT_DONOTSPLIT //Inverse generally cannot be synthed - they're difficult to get
 	//Mostly to be safe - but above flags will take care of this. Also prevents it from showing these on reagent lookups in the ui
 	inverse_chem = null
-	///how much this reagent does for tox damage too
-	var/tox_damage = 1
+	// var/tox_damage = 1 MONKESTATION REMOVAL
 
 
-/datum/reagent/inverse/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+/*/datum/reagent/inverse/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)  MONKESTATION REMOVAL
 	affected_mob.adjustToxLoss(tox_damage * REM * seconds_per_tick, FALSE, required_biotype = affected_biotype)
-	return ..()
+	return ..()*/
 
 //Failed chems - generally use inverse if you want to use a impure subtype for it
 //technically not a impure chem, but it's here because it can only be made with a failed impure reaction

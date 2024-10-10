@@ -25,7 +25,7 @@
 	color = "#85111f" // 133, 17, 31
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 	ph = 6.09
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 
 /datum/reagent/inverse/lidocaine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	. = ..()

@@ -18,7 +18,7 @@
 	description = "Not all impure reagents are bad! Sometimes you might want to specifically make these!"
 	chemical_flags = REAGENT_DONOTSPLIT
 	addiction_types = list(/datum/addiction/medicine = 3)
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 
 // END SUBTYPES
 
@@ -55,7 +55,7 @@
 	name = "Helgrasp"
 	description = "This rare and forbidden concoction is thought to bring you closer to the grasp of the Norse goddess Hel."
 	metabolization_rate = 1*REM //This is fast
-	tox_damage = 0.25
+	// tox_damage = 0.25 MONKESTATION REMOVAL
 	ph = 14
 	//Compensates for seconds_per_tick lag by spawning multiple hands at the end
 	var/lag_remainder = 0
@@ -81,6 +81,7 @@ I take the 2s interval period and divide it by the number of hands I want to mak
 Basically, we fill the time between now and 2s from now with hands based off the current lag.
 */
 /datum/reagent/inverse/helgrasp/on_mob_life(mob/living/carbon/owner, seconds_per_tick, times_fired)
+	owner.adjustToxLoss(0.125 * seconds_per_tick) // MONKESTATION EDIT
 	spawn_hands(owner)
 	lag_remainder += seconds_per_tick - FLOOR(seconds_per_tick, 1)
 	seconds_per_tick = FLOOR(seconds_per_tick, 1)
@@ -125,7 +126,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	name = "Grasp of the Mansus"
 	description = "The Hand of the Mansus is at your neck."
 	metabolization_rate = 1 * REM
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 
 //libital
 //Impure
@@ -224,7 +225,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	color = "#C8A5DC"
 	ph = 1.7
 	addiction_types = list(/datum/addiction/medicine = 2.5)
-	tox_damage = 0.1
+	// tox_damage = 0.1 MONKESTATION REMOVAL
 	///Probability of scratch - increases as a function of time
 	var/resetting_probability = 0
 	///Prevents message spam
@@ -270,7 +271,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	name = "Herignis"
 	description = "This reagent causes a dramatic raise in the patient's body temperature. Overdosing makes the effect even stronger and causes severe liver damage."
 	ph = 0.8
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 	color = "#ff1818"
 	overdose_threshold = 25
 	reagent_weight = 0.6
@@ -347,7 +348,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	name = "Coveroli"
 	description = "This reagent is known to coat the inside of a patient's lungs, providing greater protection against hot or cold air."
 	ph = 3.82
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 	addiction_types = list(/datum/addiction/medicine = 2.3)
 	//The heat damage levels of lungs when added (i.e. heat_level_1_threshold on lungs)
 	var/cached_heat_level_1
@@ -422,7 +423,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	description = "A radioactive tracer agent that can improve a scanner's ability to detect internal organ damage. Will poison the patient when present very slowly, purging or using a low dose is recommended after use."
 	metabolization_rate = 0.3 * REM
 	chemical_flags = REAGENT_DONOTSPLIT //Do show this on scanner
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 
 	var/time_until_next_poison = 0
 
@@ -496,7 +497,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 ///If they OD, their heart explodes (if they were brought back from the dead)
 /datum/reagent/inverse/penthrite
 	name = "Nooartrium"
-	description = "A reagent that is known to stimulate the heart in a dead patient, temporarily bringing back recently dead patients at great cost to their heart."
+	description = "A reagent that is known to stimulate the heart in a dead patient, temporarily bringing back recently dead patients at great cost to their heart. Mildly toxic when inert in a patient."
 	ph = 14
 	metabolization_rate = 0.05 * REM
 	addiction_types = list(/datum/addiction/medicine = 12)
@@ -537,6 +538,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 
 /datum/reagent/inverse/penthrite/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	if(!back_from_the_dead)
+		affected_mob.adjustToxLoss(0.2 * seconds_per_tick) // MONKESTATION EDIT: Lower toxin from 0.5/s to 0.2/s and only apply it if inert.
 		return ..()
 	//Following is for those brought back from the dead only
 	REMOVE_TRAIT(affected_mob, TRAIT_KNOCKEDOUT, CRIT_HEALTH_TRAIT)
@@ -633,7 +635,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	ph = 13.4
 	addiction_types = list(/datum/addiction/medicine = 8)
 	metabolization_rate = 0.025 * REM
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 	//The temporary trauma passed to the affected mob
 	var/datum/brain_trauma/temp_trauma
 
@@ -675,7 +677,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	addiction_types = list(/datum/addiction/medicine = 2.5)
 	metabolization_rate = REM
 	chemical_flags = REAGENT_DEAD_PROCESS
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 	///The old heart we're swapping for
 	var/obj/item/organ/internal/heart/original_heart
 	///The new heart that's temp added
@@ -746,7 +748,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	metabolization_rate = 0.05 * REM//This is fast
 	addiction_types = list(/datum/addiction/medicine = 4.5)
 	color = "#4C8000"
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 
 /datum/reagent/inverse/antihol/on_mob_life(mob/living/carbon/C, seconds_per_tick, times_fired)
 	for(var/datum/reagent/consumable/ethanol/alcohol in C.reagents.reagent_list)
@@ -762,7 +764,7 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	addiction_types = list(/datum/addiction/medicine = 3)
 	taste_description = "funky toxin"
 	ph = 13
-	tox_damage = 0
+	// tox_damage = 0 MONKESTATION REMOVAL
 	metabolization_rate = 0.2 * REM
 	///Did we get a headache?
 	var/headache = FALSE
