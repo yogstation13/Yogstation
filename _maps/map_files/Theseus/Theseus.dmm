@@ -18592,6 +18592,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "fFq" = (
@@ -21475,6 +21476,10 @@
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/plating,
 /area/station/security/brig/entrance)
+"gyI" = (
+/obj/machinery/duct,
+/turf/open/floor/grass,
+/area/station/service/hydroponics/garden)
 "gyL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -29385,6 +29390,11 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/commons/fitness)
+"iQp" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/duct,
+/turf/open/floor/plating,
+/area/station/service/hydroponics/garden)
 "iQq" = (
 /turf/open/floor/iron/stairs/medium{
 	dir = 1
@@ -38070,6 +38080,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "lpQ" = (
@@ -39958,6 +39969,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/directional/east,
+/obj/structure/sink/kitchen/directional/north,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "lRt" = (
@@ -41091,6 +41103,7 @@
 	dir = 5
 	},
 /obj/machinery/newscaster/directional/west,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "miF" = (
@@ -43481,6 +43494,7 @@
 /obj/machinery/light_switch/directional/south{
 	pixel_x = 8
 	},
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "mWg" = (
@@ -47244,6 +47258,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "oeq" = (
@@ -49987,6 +50002,7 @@
 /area/station/command/heads_quarters/qm)
 "oWO" = (
 /obj/machinery/growing/tray,
+/obj/machinery/duct,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "oWQ" = (
@@ -50805,6 +50821,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/maintenance/port/fore)
 "pju" = (
@@ -51796,6 +51813,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "pBZ" = (
@@ -58611,6 +58629,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/maintenance/port/fore)
 "rwB" = (
@@ -60686,6 +60705,7 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/light/directional/west,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "sbR" = (
@@ -63795,6 +63815,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/effect/landmark/navigate_destination,
+/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "tan" = (
@@ -63827,6 +63848,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
+"taO" = (
+/obj/machinery/duct,
+/turf/open/floor/iron/stairs/left,
+/area/station/service/hydroponics/garden)
 "taQ" = (
 /obj/structure/table/reinforced/rglass,
 /obj/item/reagent_containers/syringe,
@@ -111046,7 +111071,7 @@ wUT
 aud
 bvU
 rOj
-aKk
+gyI
 lRn
 tGd
 cwk
@@ -111558,7 +111583,7 @@ bJS
 bJS
 bJS
 neU
-bJS
+iQp
 tGd
 tGd
 tGd
@@ -111815,7 +111840,7 @@ nhC
 nhC
 bJS
 alc
-pKo
+taO
 sbO
 mis
 tGd

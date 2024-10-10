@@ -10101,6 +10101,7 @@
 /obj/effect/turf_decal/trimline/dark_green/line{
 	dir = 4
 	},
+/obj/machinery/camera/directional/north,
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/pathology)
 "dMH" = (
@@ -10177,6 +10178,7 @@
 /obj/effect/turf_decal/trimline/dark_green/corner{
 	dir = 4
 	},
+/obj/machinery/camera/directional/south,
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/pathology)
 "dOw" = (
@@ -10372,6 +10374,7 @@
 /obj/effect/turf_decal/trimline/dark_green/line{
 	dir = 5
 	},
+/obj/machinery/camera/directional/north,
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/pathology)
 "dRA" = (
@@ -19086,6 +19089,7 @@
 /obj/effect/turf_decal/trimline/dark_green/line{
 	dir = 9
 	},
+/obj/machinery/camera/directional/west,
 /turf/open/floor/iron/dark/textured,
 /area/station/medical/pathology)
 "gYO" = (
@@ -30215,7 +30219,6 @@
 /obj/effect/turf_decal/delivery/white{
 	color = "#52B4E9"
 	},
-/obj/structure/window/spawner/directional/east,
 /obj/machinery/door/window/right/directional/south{
 	name = "Corpse Arrivals"
 	},
@@ -38927,6 +38930,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/structure/window/spawner/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "nGp" = (
@@ -49530,6 +49534,13 @@
 /obj/machinery/atmospherics/miner/n2o,
 /turf/open/floor/engine/n2o,
 /area/station/engineering/atmos)
+"rvC" = (
+/obj/effect/turf_decal/trimline/dark_green/line{
+	dir = 4
+	},
+/obj/machinery/camera/directional/south,
+/turf/open/floor/iron/dark/textured,
+/area/station/medical/pathology)
 "rvE" = (
 /turf/closed/wall,
 /area/station/medical/pharmacy)
@@ -50118,6 +50129,7 @@
 /obj/structure/table/glass,
 /obj/item/reagent_containers/cup/beaker,
 /obj/item/reagent_containers/dropper,
+/obj/machinery/camera/directional/west,
 /turf/open/floor/iron/white/diagonal,
 /area/station/medical/pathology)
 "rEO" = (
@@ -54719,6 +54731,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
+/obj/machinery/camera/directional/east,
 /turf/open/floor/wood/large,
 /area/station/medical/pathology)
 "tgy" = (
@@ -84025,7 +84038,7 @@ gqk
 naX
 gqk
 gqk
-gqk
+rvC
 xjH
 kvX
 xoV
