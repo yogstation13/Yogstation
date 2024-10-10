@@ -67,6 +67,7 @@
 	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, TRAUMA_TRAIT)
 	..()
 
+/* monkestation removal: reimplemented in [monkestation\code\datums\brain_damage\magic.dm]
 /datum/brain_trauma/magic/stalker
 	name = "Stalking Phantom"
 	desc = "Patient is stalked by a phantom only they can see."
@@ -119,14 +120,10 @@
 			close_stalker = FALSE
 	..()
 
+monkestation end*/
+
 /obj/effect/client_image_holder/stalker_phantom
 	name = "???"
 	desc = "It's coming closer..."
 	image_icon = 'icons/mob/simple/lavaland/lavaland_monsters.dmi'
 	image_state = "curseblob"
-	var/datum/brain_trauma/magic/stalker_multiple/host
-
-/obj/effect/client_image_holder/stalker_phantom/Destroy(force)
-	. = ..()
-	host.stalkers -= src
-	host = null
