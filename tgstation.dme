@@ -459,6 +459,7 @@
 #include "code\__DEFINES\~monkestation\span.dm"
 #include "code\__DEFINES\~monkestation\status_effects.dm"
 #include "code\__DEFINES\~monkestation\storytellers.dm"
+#include "code\__DEFINES\~monkestation\text.dm"
 #include "code\__DEFINES\~monkestation\time.dm"
 #include "code\__DEFINES\~monkestation\twitch.dm"
 #include "code\__DEFINES\~monkestation\uplink.dm"
