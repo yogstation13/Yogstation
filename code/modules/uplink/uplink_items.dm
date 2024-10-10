@@ -1380,6 +1380,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	limited_stock = 1
 	include_objectives = list(/datum/objective/martyr)
 
+/datum/uplink_item/explosives/suicide_vest
+	name = "Suicide Vest"
+	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
+	item = /obj/item/clothing/suit/unalivevest
+	cost = 7
+	manufacturer = /datum/corporation/traitor/donkco
+
 //Support and Mechs
 /datum/uplink_item/support
 	category = UPLINK_CATEGORY_SUPPORT
@@ -3556,3 +3563,4 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
 	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1
+
