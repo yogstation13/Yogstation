@@ -124,6 +124,9 @@
 		tail.Insert(H, TRUE)
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 
+/datum/species/lizard/get_footprint_sprite()
+	return FOOTPRINT_SPRITE_CLAWS
+
 /datum/species/lizard/get_species_description()
 	return "The first sentient beings encountered by the SIC outside of the Sol system, vuulen are the most \
 		commonly encountered non-human species in SIC space. Despite being one of the most integrated species in the SIC, they \
