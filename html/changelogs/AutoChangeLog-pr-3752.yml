@@ -1,7 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Camera system to meta virology"
-  - rscadd: "Added sink to Theseus's garden"
-  - bugfix: "Adjusted the windows of meta morgue chute to not block the chute."
-  - bugfix: "Fixed upside engi map in blueshift's bridge so the captain pilots the ship in the right direction"

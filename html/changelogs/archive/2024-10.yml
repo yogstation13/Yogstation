@@ -147,3 +147,26 @@
   - rscadd: Adds silly easter costume to the autodrobe.
   - balance: Plasmamen can now remove the bunny costumes added by the bunny wand because
       i dont really feel like making easter bunny envirosuits
+2024-10-10:
+  Absolucy:
+  - bugfix: Speech artifact faults no longer make the dead speak.
+  - refactor: Refactored the paranoia/stalking phantoms trauma. In-game behavior should
+      be the same.
+  Gw0sty:
+  - rscadd: Adds hairbrush, comb, and the gothic coat to the Monke shop
+  - spellcheck: Fixes the name of ornate coat
+  - rscadd: Adjusts psychologists' primary door to a solid airlock and their access.
+  - rscadd: Made it so the void cloak stops pressure damage when hooded.
+  - rscadd: Adds the 'Unmarked Takbok Revolver', a variation of the Trapiste Takbok
+      revolver that has less recoil and fires slightly faster.
+  - rscadd: ' Replaces the Takbok revolver in the BlueShield''s gun beacon with a
+      new addition, the ''Unmarked Takbok Revolver'''
+  - rscadd: Camera system to meta virology
+  - rscadd: Added sink to Theseus's garden
+  - bugfix: Adjusted the windows of meta morgue chute to not block the chute.
+  - bugfix: Fixed upside engi map in blueshift's bridge so the captain pilots the
+      ship in the right direction
+  Veth-s:
+  - bugfix: Fixed some of the doors in CC showing as "Veth's Plantery" (against my
+      will).
+  - bugfix: Fixed Fortune's CC office.
