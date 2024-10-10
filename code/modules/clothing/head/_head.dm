@@ -10,6 +10,7 @@
 	/// Can land on someones head
 	var/hattable = TRUE
 	dynamic_hair_suffix = "+generic"
+	strip_delay = 1 SECONDS
 
 /obj/item/clothing/head/Initialize(mapload)
 	. = ..()
@@ -33,7 +34,7 @@
 		bloody_helmet = mutable_appearance('icons/effects/64x64.dmi', "helmetblood_large")
 	else
 		bloody_helmet = mutable_appearance('icons/effects/blood.dmi', "helmetblood")
-		if(species_fitted && icon_exists(bloody_helmet.icon, "helmetblood_[species_fitted]")) 
+		if(species_fitted && icon_exists(bloody_helmet.icon, "helmetblood_[species_fitted]"))
 			bloody_helmet.icon_state = "helmetblood_[species_fitted]"
 	bloody_helmet.color = get_blood_dna_color(return_blood_DNA())
 	. += bloody_helmet
@@ -56,4 +57,3 @@
 			H.visible_message("The [src] lands gracefully on [H]'s head")
 			return TRUE
 		H.visible_message("The [src] hits [H]'s head")
-	
