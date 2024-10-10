@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Made it so the void cloak stops pressure damage when hooded."
