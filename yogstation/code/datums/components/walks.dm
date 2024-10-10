@@ -81,7 +81,7 @@
 			L.forceMove(T)
 			finalize_move(L, T)
 			if(direction & (direction - 1)) //extra delay for diagonals
-				add_delay *= 1.414214 // sqrt(2)
+				add_delay *= SQRT_2 // sqrt(2)
 			L.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 			move_delay += add_delay
 			return TRUE
