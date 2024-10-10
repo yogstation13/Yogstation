@@ -8,15 +8,18 @@
 	taste_description = "bitterness"
 	taste_mult = 1.2
 	evaporation_rate = 3 //6x faster than normal chems
+	/// Handled by the liver, does full damage for the highest toxpwr, and reduced for every following one
 	var/toxpwr = 1.5
 	var/silent_toxin = FALSE //won't produce a pain message when processed by liver/Life(seconds_per_tick = SSMOBS_DT, times_fired) if there isn't another non-silent toxin present.
 
-/datum/reagent/toxin/on_mob_life(mob/living/carbon/M)
-	if(toxpwr)
-		M.adjustToxLoss(toxpwr*REM, 0)
-		. = TRUE
-	..()
+/datum/reagent/toxin/on_mob_metabolize(mob/living/L)
+	. = ..()
+	SEND_SIGNAL(L, COMSIG_CARBON_UPDATE_TOXINS)
 
+/datum/reagent/toxin/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	SEND_SIGNAL(L, COMSIG_CARBON_UPDATE_TOXINS)
+	
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
@@ -916,7 +919,7 @@
 /datum/reagent/toxin/delayed/on_mob_life(mob/living/carbon/M)
 	if(current_cycle > delay)
 		holder.remove_reagent(type, actual_metaboliztion_rate * M.metabolism_efficiency)
-		M.adjustToxLoss(actual_toxpwr*REM, 0)
+		toxpwr = actual_toxpwr
 		if(prob(10))
 			M.Paralyze(20, 0)
 		. = 1
