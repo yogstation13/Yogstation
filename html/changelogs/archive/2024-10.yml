@@ -152,6 +152,8 @@
   - bugfix: Speech artifact faults no longer make the dead speak.
   - refactor: Refactored the paranoia/stalking phantoms trauma. In-game behavior should
       be the same.
+  - qol: The curator's radio channel frequency is now reserved, and can only be broadcast
+      to by the radio booth's mic.
   Gw0sty:
   - rscadd: Adds hairbrush, comb, and the gothic coat to the Monke shop
   - spellcheck: Fixes the name of ornate coat
@@ -166,6 +168,9 @@
   - bugfix: Adjusted the windows of meta morgue chute to not block the chute.
   - bugfix: Fixed upside engi map in blueshift's bridge so the captain pilots the
       ship in the right direction
+  RikuTheKiller:
+  - balance: Inverse reagents no longer cause toxin damage unless it's explicitly
+      one of their effects.
   Veth-s:
   - bugfix: Fixed some of the doors in CC showing as "Veth's Plantery" (against my
       will).
