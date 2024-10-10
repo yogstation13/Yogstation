@@ -26,6 +26,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	/// Does this turf block air from existing on it
 	var/blocks_air = FALSE
 	
+
 	/// If there's a tile over a basic floor that can be ripped out
 	var/overfloor_placed = FALSE
 	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.

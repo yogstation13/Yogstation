@@ -10,6 +10,7 @@
 	icon_state = "server"
 	desc = "A machine used to store data and network statistics."
 	density = TRUE
+	telecomms_type = /obj/machinery/telecomms/server
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
 	circuit = /obj/item/circuitboard/machine/telecomms/server
