@@ -434,6 +434,34 @@
 		/obj/item/implanter = 1)
 	generate_items_inside(items_inside,src)
 
+/obj/item/storage/box/psiimp
+	name = "boxed psi dampener implant kit"
+	desc = "Box full of implants to protect the mentaly gifted."
+	illustration = "implant"
+
+/obj/item/storage/box/psiimp/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/implantcase/psi_control = 4,
+		/obj/item/implanter = 1,
+		/obj/item/implantpad = 1)
+	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/nullglass
+	name = "box of nullglass shells"
+	desc = "A box full of beanbag shells designed for shotguns. The box itself is designed for holding any kind of shotgun shell."
+	icon_state = "rubbershot_box"
+	illustration = null
+
+/obj/item/storage/box/nullglass/PopulateContents()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/ammo_casing/shotgun))
+
+/obj/item/storage/box/nullglass/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/ammo_casing/shotgun/nullglass(src)
+
 /obj/item/storage/box/bodybags
 	name = "body bags"
 	desc = "The label indicates that it contains body bags."
