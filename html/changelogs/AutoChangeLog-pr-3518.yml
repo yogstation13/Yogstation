@@ -1,0 +1,4 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - balance: "Inverse reagents no longer cause toxin damage unless it's explicitly one of their effects."
