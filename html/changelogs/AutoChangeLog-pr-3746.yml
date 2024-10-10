@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Adds hairbrush, comb, and the gothic coat to the Monke shop"
+  - spellcheck: "Fixes the name of ornate coat"
