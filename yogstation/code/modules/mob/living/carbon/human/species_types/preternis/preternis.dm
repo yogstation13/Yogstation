@@ -24,7 +24,7 @@
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
 	punchdamagehigh = 7 //not built for large high speed acts like punches
-	punchstunthreshold = 7 //technically better stunning
+	punchstunchance = 0.2 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
 
 	//organs

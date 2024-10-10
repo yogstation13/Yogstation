@@ -1,3 +1,7 @@
+/// Randomized plant stat with a set amount of inaccuracy
+#define RANDOMIZE_PLANT_STAT(plant_stat, inaccuracy) ((inaccuracy && plant_stat >= round(1 / inaccuracy, 1)) ? \
+	("[plant_stat + rand(inaccuracy)*plant_stat - inaccuracy]-[plant_stat + rand(inaccuracy)*plant_stat]") : plant_stat)
+
 // ********************************************************
 // Here's all the seeds (plants) that can be used in hydro
 // ********************************************************
@@ -288,35 +292,39 @@
 		C.value = weed_chance
 
 
-/obj/item/seeds/proc/get_analyzer_text()  //in case seeds have something special to tell to the analyzer
+/obj/item/seeds/proc/get_analyzer_text(mob/user, check_skills = FALSE)  //in case seeds have something special to tell to the analyzer
 	var/text = ""
-	if(!get_gene(/datum/plant_gene/trait/plant_type/weed_hardy) && !get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism) && !get_gene(/datum/plant_gene/trait/plant_type/alien_properties))
-		text += "- Plant type: Normal plant\n"
-	if(get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
-		text += "- Plant type: Weed. Can grow in nutrient-poor soil.\n"
-	if(get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
-		text += "- Plant type: Mushroom. Can grow in dry soil.\n"
-	if(get_gene(/datum/plant_gene/trait/plant_type/alien_properties))
-		text += "- Plant type: [span_warning("UNKNOWN")] \n"
-	if(potency != -1)
-		text += "- Potency: [potency]\n"
-	if(yield != -1)
-		text += "- Yield: [yield]\n"
-	text += "- Maturation speed: [maturation]\n"
-	if(yield != -1)
-		text += "- Production speed: [production]\n"
-	text += "- Endurance: [endurance]\n"
-	text += "- Lifespan: [lifespan]\n"
-	text += "- Weed Growth Rate: [weed_rate]\n"
-	text += "- Weed Vulnerability: [weed_chance]\n"
-	if(rarity)
-		text += "- Species Discovery Value: [rarity]\n"
-	var/all_traits = ""
-	for(var/datum/plant_gene/trait/traits in genes)
-		if(istype(traits, /datum/plant_gene/trait/plant_type))
-			continue
-		all_traits += " [traits.get_name()]"
-	text += "- Plant Traits:[all_traits]\n"
+	if(!check_skills || user.skill_check(SKILL_SCIENCE, EXP_LOW)) // basic knowledge will tell you what a 
+		if(!get_gene(/datum/plant_gene/trait/plant_type/weed_hardy) && !get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism) && !get_gene(/datum/plant_gene/trait/plant_type/alien_properties))
+			text += "- Plant type: Normal plant\n"
+		if(get_gene(/datum/plant_gene/trait/plant_type/weed_hardy))
+			text += "- Plant type: Weed. Can grow in nutrient-poor soil.\n"
+		if(get_gene(/datum/plant_gene/trait/plant_type/fungal_metabolism))
+			text += "- Plant type: Mushroom. Can grow in dry soil.\n"
+		if(get_gene(/datum/plant_gene/trait/plant_type/alien_properties))
+			text += "- Plant type: [span_warning("UNKNOWN")] \n"
+	if(!check_skills || user.skill_check(SKILL_SCIENCE, EXP_HIGH))
+		var/inaccuracy = check_skills ? (EXP_GENIUS - user.get_skill(SKILL_SCIENCE)) / (EXP_GENIUS * 4) : 0
+		if(potency != -1)
+			text += "- Potency: [RANDOMIZE_PLANT_STAT(potency, inaccuracy)]\n"
+		if(yield != -1)
+			text += "- Yield: [RANDOMIZE_PLANT_STAT(yield, inaccuracy)]\n"
+		text += "- Maturation speed: [RANDOMIZE_PLANT_STAT(maturation, inaccuracy)]\n"
+		if(yield != -1)
+			text += "- Production speed: [RANDOMIZE_PLANT_STAT(production, inaccuracy)]\n"
+		text += "- Endurance: [RANDOMIZE_PLANT_STAT(endurance, inaccuracy)]\n"
+		text += "- Lifespan: [RANDOMIZE_PLANT_STAT(lifespan, inaccuracy)]\n"
+		text += "- Weed Growth Rate: [RANDOMIZE_PLANT_STAT(weed_rate, inaccuracy)]\n"
+		text += "- Weed Vulnerability: [RANDOMIZE_PLANT_STAT(weed_chance, inaccuracy)]\n"
+		if(rarity)
+			text += "- Species Discovery Value: [rarity]\n"
+	if(!check_skills || user.skill_check(SKILL_SCIENCE, EXP_MID))
+		var/all_traits = ""
+		for(var/datum/plant_gene/trait/traits in genes)
+			if(istype(traits, /datum/plant_gene/trait/plant_type))
+				continue
+			all_traits += " [traits.get_name()]"
+		text += "- Plant Traits:[all_traits]\n"
 
 	text += ""
 
@@ -328,7 +336,7 @@
 /// Ghost attack proc
 /obj/item/seeds/attack_ghost(mob/user)
 	to_chat(user, span_info("This is \a [span_name("[src]")]."))
-	var/text = get_analyzer_text()
+	var/text = get_analyzer_text(user)
 	if(text)
 		to_chat(user, span_notice("[text]"))
 
@@ -336,7 +344,7 @@
 	if (istype(O, /obj/item/plant_analyzer))
 		playsound(src, 'sound/effects/fastbeep.ogg', 30)
 		to_chat(user, span_info("This is \a [span_name("[src]")]."))
-		var/text = get_analyzer_text()
+		var/text = get_analyzer_text(user)
 		if(text)
 			to_chat(user, span_notice("[text]"))
 

@@ -167,6 +167,15 @@
 	var/backpack_contents = -1
 	var/suit_store = -1
 
+	var/list/base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	var/skill_points = 3
+
 	var/hair_style
 	var/facial_hair_style
 	var/skin_tone
@@ -200,6 +209,9 @@
 		H.skin_tone = skin_tone
 	else
 		H.skin_tone = random_skin_tone()
+	for(var/skill in base_skills)
+		H.adjust_skill(skill, base_skills[skill])
+	H.add_skill_points(skill_points)
 	H.update_hair()
 	H.update_body()
 	if(outfit)
@@ -333,6 +345,14 @@
 	icon_state = "sleeper"
 	short_desc = "You are a space doctor!"
 	assignedrole = "Space Doctor"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_HIGH
 
 /obj/effect/mob_spawn/human/doctor/alive/equip(mob/living/carbon/human/H)
 	..()

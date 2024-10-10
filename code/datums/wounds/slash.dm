@@ -171,7 +171,7 @@
 	user.visible_message(span_warning("[user] begins aiming [lasgun] directly at [victim]'s [limb.name]..."), span_userdanger("You begin aiming [lasgun] directly at [user == victim ? "your" : "[victim]'s"] [limb.name]..."))
 	playsound(lasgun, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 
-	if(!do_after(user, base_treat_time * self_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
+	if(!do_after(user, base_treat_time * self_penalty_mult, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists)), skill_check = SKILL_PHYSIOLOGY))
 		return
 
 	playsound(lasgun, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)
@@ -195,7 +195,7 @@
 	user.visible_message(span_danger("[user] begins cauterizing [victim]'s [limb.name] with [I]..."), span_warning("You begin cauterizing [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
 	playsound(I, 'sound/surgery/cautery1.ogg', 75, TRUE, falloff_exponent = 1)
 
-	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult * I.toolspeed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
+	if(!do_after(user, base_treat_time * self_penalty_mult * improv_penalty_mult * I.toolspeed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists)), skill_check = SKILL_PHYSIOLOGY))
 		return
 
 	playsound(I, 'sound/surgery/cautery2.ogg', 75, TRUE, falloff_exponent = 1)
@@ -219,7 +219,7 @@
 	user.visible_message(span_notice("[user] begins stitching [victim]'s [limb.name] with [I]..."), span_notice("You begin stitching [user == victim ? "your" : "[victim]'s"] [limb.name] with [I]..."))
 	playsound(I, pick(I.apply_sounds), 25)
 
-	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
+	if(!do_after(user, base_treat_time * self_penalty_mult * I.treatment_speed, victim, extra_checks = CALLBACK(src, PROC_REF(still_exists)), skill_check = SKILL_PHYSIOLOGY))
 		return
 
 	user.visible_message(span_green("[user] stitches up some of the bleeding on [victim]."), span_green("You stitch up some of the bleeding on [user == victim ? "yourself" : "[victim]"]."))
