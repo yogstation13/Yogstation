@@ -48,49 +48,57 @@
 /obj/item/badge/security/officer1
 	name = "security badge (Corporal)"
 	icon_state = "sec1"
+	accessory_state = "worn_chest_bronze"
 
 /obj/item/badge/security/officer2
 	name = "security badge (Sergeant)"
 	icon_state = "sec2"
+	accessory_state = "worn_chest_silver"
 
 /obj/item/badge/security/officer3
 	name = "security badge (Staff Sergeant)"
 	icon_state = "sec3"
+	accessory_state = "worn_chest_gold"
 
 /obj/item/badge/security/warden1
 	name = "security badge (2nd Lieutenant)"
 	icon_state = "warden1"
-	accessory_state = "worn_chest_silver"
+	accessory_state = "worn_chest_bronze"
 
 /obj/item/badge/security/warden2
 	name = "security badge (1st Lieutenant)"
 	icon_state = "warden2"
+	accessory_state = "worn_chest_silver"
 
 /obj/item/badge/security/warden3
 	name = "security badge (Brig Captain)"
 	icon_state = "warden3"
+	accessory_state = "worn_chest_gold"
 
 /obj/item/badge/security/hos1
 	name = "security badge (Major)"
 	icon_state = "hos1"
+	accessory_state = "worn_chest_bronze"
 
 /obj/item/badge/security/hos2
 	name = "security badge (Colonel)"
 	icon_state = "hos2"
+	accessory_state = "worn_chest_silver"
 
 /obj/item/badge/security/hos3
 	name = "security badge (Commissioner)"
 	icon_state = "hos3"
+	accessory_state = "worn_chest_gold"
 
 /obj/item/badge/security/det1
 	name = "security badge (Deputy)"
 	icon_state = "det1"
-	accessory_state = "worn_belt_gold"
+	accessory_state = "worn_belt_bronze"
 
 /obj/item/badge/security/det2
 	name = "security badge (Investigator)"
 	icon_state = "det2"
-	accessory_state = "worn_belt_gold"
+	accessory_state = "worn_belt_silver"
 
 /obj/item/badge/security/det3
 	name = "security badge (Chief Inspector)"
