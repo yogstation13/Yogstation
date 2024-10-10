@@ -57,6 +57,7 @@
 	flags_inv = NONE
 	flags_cover = NONE
 	item_flags = EXAMINE_SKIP
+	clothing_flags = STOPSPRESSUREDAMAGE
 	armor_type = /datum/armor/cult_hoodie_void
 
 /datum/armor/cult_hoodie_void
@@ -80,6 +81,7 @@
 	allowed = list(/obj/item/melee/sickly_blade)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/void
 	flags_inv = NONE
+	clothing_flags = STOPSPRESSUREDAMAGE
 	body_parts_covered = CHEST|GROIN|ARMS
 	// slightly worse than normal cult robes
 	armor_type = /datum/armor/cultrobes_void
