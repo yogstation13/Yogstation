@@ -676,27 +676,32 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 /mob/living/simple_animal/bot/proc/get_next_patrol_target()
 	// search the beacon list for the next target in the list.
-	for(var/obj/machinery/navbeacon/NB in GLOB.navbeacons["[z]"])
-		if(NB.location == next_destination) //Does the Beacon location text match the destination?
-			destination = new_destination //We now know the name of where we want to go.
-			patrol_target = NB.loc //Get its location and set it as the target.
-			next_destination = NB.codes["next_patrol"] //Also get the name of the next beacon in line.
-			return TRUE
+	var/list/connected_levels = SSmapping.get_connected_levels(z)
+	for(var/level in connected_levels)
+		for(var/obj/machinery/navbeacon/NB in GLOB.navbeacons["[level]"])
+			if(NB.location == next_destination) //Does the Beacon location text match the destination?
+				destination = new_destination //We now know the name of where we want to go.
+				patrol_target = NB.loc //Get its location and set it as the target.
+				next_destination = NB.codes["next_patrol"] //Also get the name of the next beacon in line.
+				return TRUE
 
 /mob/living/simple_animal/bot/proc/find_nearest_beacon()
-	for(var/obj/machinery/navbeacon/NB in GLOB.navbeacons["[z]"])
-		var/dist = get_dist(src, NB)
-		if(nearest_beacon) //Loop though the beacon net to find the true closest beacon.
-			//Ignore the beacon if were are located on it.
-			if(dist>1 && dist<get_dist(src,nearest_beacon_loc))
+	var/list/connected_levels = SSmapping.get_connected_levels(z)
+	for(var/level in connected_levels)
+		for(var/obj/machinery/navbeacon/NB in GLOB.navbeacons["[level]"])
+
+			var/dist = get_dist(src, NB)
+			if(nearest_beacon) //Loop though the beacon net to find the true closest beacon.
+				//Ignore the beacon if were are located on it.
+				if(dist>1 && dist<get_dist(src,nearest_beacon_loc))
+					nearest_beacon = NB.location
+					nearest_beacon_loc = NB.loc
+					next_destination = NB.codes["next_patrol"]
+				else
+					continue
+			else if(dist > 1) //Begin the search, save this one for comparison on the next loop.
 				nearest_beacon = NB.location
 				nearest_beacon_loc = NB.loc
-				next_destination = NB.codes["next_patrol"]
-			else
-				continue
-		else if(dist > 1) //Begin the search, save this one for comparison on the next loop.
-			nearest_beacon = NB.location
-			nearest_beacon_loc = NB.loc
 	patrol_target = nearest_beacon_loc
 	destination = nearest_beacon
 

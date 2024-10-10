@@ -35,6 +35,9 @@
 		"whiteship" = "whiteship_1",
 		"emergency" = "emergency_box",
 	)
+
+	/// Dictionary of job sub-typepath to template changes dictionary
+	var/job_changes = list()
 	
 	/// List of unit tests that are skipped when running this map
 	var/list/skipped_tests
@@ -170,6 +173,12 @@
 
 	if("cryo_spawn" in json)
 		cryo_spawn = json["cryo_spawn"]
+
+	if("job_changes" in json)
+		if(!islist(json["job_changes"]))
+			log_world("map_config \"job_changes\" field is missing or invalid!")
+			return
+		job_changes = json["job_changes"]
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 

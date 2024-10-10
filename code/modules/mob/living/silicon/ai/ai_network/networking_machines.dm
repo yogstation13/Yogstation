@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 			if(target_label == label)
 				return
 			for(var/obj/machinery/ai/networking/N in GLOB.ai_networking_machines)
-				if(N.z != src.z)
+				if(!is_station_level(N.z) && !is_station_level(src.z) && N.z != src.z) //non-station levels can only connect to their own z level
 					return
 				if(N.label == target_label)
 					if(N.locked)

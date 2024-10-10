@@ -42,8 +42,6 @@
 		/datum/job_department/command,
 	)
 
-	changed_maps = list("YogsPubby")
-
 	mail_goodies = list(
 		/obj/item/stack/sheet/plastic/five = 20, //need that plastic chair
 		/obj/item/clothing/head/hatsky = 10,
@@ -75,9 +73,6 @@
 		badge.owner_string = H.real_name
 		var/obj/item/clothing/suit/my_suit = H.wear_suit
 		my_suit.attach_badge(badge)
-
-/datum/job/hos/proc/YogsPubbyChanges()
-	base_access |= ACCESS_CREMATORIUM
 
 /datum/outfit/job/hos
 	name = "Head of Security"

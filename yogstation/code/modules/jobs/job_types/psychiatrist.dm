@@ -25,8 +25,6 @@
 		/datum/job_department/medical,
 	)
 
-	changed_maps = list("GaxStation")
-
 	mail_goodies = list(
 		/obj/item/storage/box/hug = 30,
 		/obj/item/storage/pill_bottle/mannitol = 25,

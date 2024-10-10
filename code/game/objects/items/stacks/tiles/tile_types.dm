@@ -526,3 +526,50 @@
 	singular_name = "smooth iron catwalk floor tile"
 	icon_state = "smoothiron_catwalk"
 	turf_type = /turf/open/floor/catwalk_floor/iron_smooth
+
+// Glass floors
+/obj/item/stack/tile/glass
+	name = "glass floor"
+	singular_name = "glass floor tile"
+	desc = "Glass window floors, to let you see... Whatever that is down there."
+	icon_state = "tile_glass"
+	turf_type = /turf/open/floor/glass
+	item_state = "tile-glass"
+	merge_type = /obj/item/stack/tile/glass
+	mats_per_unit = list(/datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25) // 4 tiles per sheet
+	replace_plating = TRUE
+
+/obj/item/stack/tile/glass/sixty
+	amount = 60
+
+/obj/item/stack/tile/rglass
+	name = "reinforced glass floor"
+	singular_name = "reinforced glass floor tile"
+	desc = "Reinforced glass window floors. These bad boys are 50% stronger than their predecessors!"
+	icon_state = "tile_rglass"
+	item_state = "tile-rglass"
+	turf_type = /turf/open/floor/glass/reinforced
+	merge_type = /obj/item/stack/tile/rglass
+	mats_per_unit = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 0.125, /datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25) // 4 tiles per sheet
+	replace_plating = TRUE
+
+/obj/item/stack/tile/rglass/sixty
+	amount = 60
+
+/obj/item/stack/tile/glass/plasma
+	name = "plasma glass floor"
+	singular_name = "plasma glass floor tile"
+	desc = "Plasma glass window floors, for when... Whatever is down there is too scary for normal glass."
+	icon_state = "tile_pglass"
+	turf_type = /turf/open/floor/glass/plasma
+	merge_type = /obj/item/stack/tile/glass/plasma
+	mats_per_unit = list(/datum/material/plasma=SHEET_MATERIAL_AMOUNT * 0.125, /datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25)
+
+/obj/item/stack/tile/rglass/plasma
+	name = "reinforced plasma glass floor"
+	singular_name = "reinforced plasma glass floor tile"
+	desc = "Reinforced plasma glass window floors, because whatever's downstairs should really stay down there."
+	icon_state = "tile_rpglass"
+	turf_type = /turf/open/floor/glass/reinforced/plasma
+	merge_type = /obj/item/stack/tile/rglass/plasma
+	mats_per_unit = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT * 0.125, /datum/material/plasma=SHEET_MATERIAL_AMOUNT * 0.125, /datum/material/glass=SHEET_MATERIAL_AMOUNT * 0.25)

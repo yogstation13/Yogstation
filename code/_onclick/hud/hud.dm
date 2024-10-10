@@ -94,6 +94,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/stamina
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/spacesuit
+
+	var/atom/movable/screen/move_up
+	var/atom/movable/screen/move_down
+
 	// subtypes can override this to force a specific UI style
 	var/ui_style
 
@@ -242,6 +246,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	blobpwrdisplay = null
 	alien_plasma_display = null
 	alien_queen_finder = null
+	move_up = null
+	move_down = null
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)

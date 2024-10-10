@@ -419,3 +419,8 @@
 	icon = 'yogstation/icons/effects/station_blood.dmi'
 	icon_state = "kilo"
 	random_icon_states = null
+
+/obj/effect/decal/cleanable/blood/kilo/gus
+	name = "remember gus"
+	desc = "Never been to Gusstation before."
+	icon_state = "gus"

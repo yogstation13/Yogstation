@@ -37493,17 +37493,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"seS" = (
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 5;
-	name = "fore bay 1";
-	roundstart_template = /datum/map_template/shuttle/labour/gax;
-	shuttle_id = "laborcamp_home";
-	width = 9
-	},
-/turf/open/space/basic,
-/area/space)
 "sfo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -72713,12 +72702,12 @@ vRP
 vRP
 vRP
 ubS
-tkl
-tkl
-tkl
-tkl
-tkl
-tkl
+vRP
+vRP
+vRP
+vRP
+vRP
+vRP
 dll
 dll
 dll
@@ -72970,7 +72959,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -73227,7 +73216,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -73484,12 +73473,12 @@ vRP
 vRP
 vRP
 aCD
-tkl
 vRP
 vRP
 vRP
 vRP
-seS
+vRP
+vRP
 eAe
 lUn
 bOF
@@ -73741,7 +73730,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -73998,7 +73987,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -74255,7 +74244,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -74512,7 +74501,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -74769,7 +74758,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -75026,7 +75015,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -75283,12 +75272,12 @@ vRP
 vRP
 vRP
 ubS
-tkl
-tkl
-tkl
-tkl
-tkl
-tkl
+vRP
+vRP
+vRP
+vRP
+vRP
+vRP
 tkl
 aCD
 lMu
