@@ -44,7 +44,11 @@
 	var/list/data = list()
 	data["section_title"] = "pAI interface"
 	data["modules"] = list()
-	data["modules_tabs"] = list()
+	data["modules_tabs"] = "Directives"
+	data["modules_tabs"] = "Download software"
+	message_admins(data)
+	message_admins(data["modules"])
+	message_admins(data["modules_tabs"])
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)

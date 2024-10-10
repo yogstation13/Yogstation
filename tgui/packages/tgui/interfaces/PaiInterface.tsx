@@ -5,6 +5,9 @@ import { Window } from '../layouts';
 
 type Module = {
   module_name: string;
+  title: string;
+  text: string;
+  module: Module[];
 }
 
 type Data = {
@@ -20,26 +23,18 @@ export const PaiInterface = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
   const { modules_tabs = [] } = data;
-  const winWidth = Math.min(450, window.screen.availWidth * 0.5);
-  const winHeight = Math.min(500, window.screen.availHeight * 0.8);
   return (
     <Window width={450} height={500} theme="">
       <Window.Content>
         <Flex>
           <Flex.Item grow={1}>
-            <Section title="Health status" fill={1}>
+            <Section title="Health status">
               Test
             </Section>
           </Flex.Item>
           <Flex.Item>
-            <Section title="Modules" fill={1}>
+            <Section title="Modules">
               <Tabs vertical>
-                <Tabs.Tab>
-                  Directives
-                </Tabs.Tab>
-                <Tabs.Tab>
-                  Download software
-                </Tabs.Tab>
                 {modules_tabs.map(module => (
                   <Tabs.Tab
                     key={module}
