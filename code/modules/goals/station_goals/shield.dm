@@ -74,7 +74,7 @@
 	data["notice"] = notice
 
 
-	var/datum/station_goal/station_shield/G = locate() in SSticker.mode.station_goals
+	var/datum/station_goal/station_shield/G = locate() in SSgamemode.station_goals
 	if(G)
 		data["meteor_shield"] = 1
 		data["meteor_shield_coverage"] = G.get_coverage()
@@ -161,7 +161,7 @@
 			change_meteor_chance(0.5)
 
 /obj/machinery/satellite/meteor_shield/proc/change_meteor_chance(mod)
-	var/datum/round_event_control/E = locate(/datum/round_event_control/meteor_wave) in SSevents.control
+	var/datum/round_event_control/E = locate(/datum/round_event_control/meteor_wave) in SSgamemode.control
 	if(E)
 		E.weight *= mod
 

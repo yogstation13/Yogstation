@@ -34,7 +34,7 @@
 /obj/item/uplink/nuclear/Initialize(mapload)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
-	hidden_uplink.set_gamemode(/datum/game_mode/nuclear)
+	hidden_uplink.set_antagonist(ROLE_OPERATIVE)
 
 /obj/item/uplink/nuclear/debug
 	name = "debug nuclear uplink"
@@ -42,19 +42,19 @@
 /obj/item/uplink/nuclear/debug/Initialize(mapload, owner, tc_amount = 9000)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
-	hidden_uplink.set_gamemode(/datum/game_mode/nuclear)
+	hidden_uplink.set_antagonist(ROLE_OPERATIVE)
 	hidden_uplink.name = "debug nuclear uplink"
 
 /obj/item/uplink/nuclear_restricted/Initialize(mapload)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
 	hidden_uplink.allow_restricted = FALSE
-	hidden_uplink.set_gamemode(/datum/game_mode/nuclear)
+	hidden_uplink.set_antagonist(ROLE_OPERATIVE)
 
 /obj/item/uplink/clownop/Initialize(mapload)
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
-	hidden_uplink.set_gamemode(/datum/game_mode/nuclear/clown_ops)
+	hidden_uplink.set_antagonist(ROLE_CLOWNOP)
 
 /obj/item/uplink/old
 	name = "dusty radio"

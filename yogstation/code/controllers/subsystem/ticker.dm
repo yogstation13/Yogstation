@@ -64,9 +64,9 @@
 		)
 	selected_lobby_music = pick(songs)
 
-	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
-		for(var/holidayname in SSevents.holidays)
-			var/datum/holiday/holiday = SSevents.holidays[holidayname]
+	if(SSgamemode.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
+		for(var/holidayname in SSgamemode.holidays)
+			var/datum/holiday/holiday = SSgamemode.holidays[holidayname]
 			if(LAZYLEN(holiday.lobby_music))
 				selected_lobby_music = pick(holiday.lobby_music)
 				break

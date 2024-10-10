@@ -115,9 +115,25 @@
 	var/chosen_victim
 	var/list/possible_targets = list()
 	var/list/viable_minds = list()
-	for(var/mob/Player in GLOB.player_list)//prevents crewmembers falling in love with nuke ops they never met, and other annoying hijinks
-		if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client && Player != owner && SSjob.GetJob(Player.mind.assigned_role))
-			viable_minds += Player.mind
+	for(var/mob/player in GLOB.player_list)//prevents crewmembers falling in love with nuke ops they never met, and other annoying hijinks
+		if(!player.mind)
+			continue
+		if(player.stat == DEAD)
+			continue
+		if(isnewplayer(player))
+			continue
+		if(isbrain(player))
+			continue
+		if(!player.client)
+			continue
+		if(player == owner)
+			continue
+		if(!SSjob.GetJob(player.mind.assigned_role))
+			continue
+		if(player.mind.quiet_round)
+			continue
+		viable_minds += player.mind
+
 	for(var/datum/mind/possible_target in viable_minds)
 		if(possible_target != owner && ishuman(possible_target.current))
 			possible_targets += possible_target.current

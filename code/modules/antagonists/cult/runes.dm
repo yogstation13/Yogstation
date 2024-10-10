@@ -281,7 +281,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	convertee.visible_message("<span class='warning'>[convertee] writhes in pain \
 	[brutedamage || burndamage ? "even as [convertee.p_their()] wounds heal and close" : "as the markings below [convertee.p_them()] glow a bloody red"]!</span>", \
  	span_cultlarge("<i>AAAAAAAAAAAAAA-</i>"))
-	SSticker.mode.add_cultist(convertee.mind, 1)
+	convertee.add_cultist(TRUE)
 	new /obj/item/melee/cultblade/dagger(get_turf(src))
 	convertee.mind.special_role = ROLE_CULTIST
 	to_chat(convertee, "<span class='cult italic'><b>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible, truth. The veil of reality has been ripped away \
@@ -554,11 +554,11 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 			to_chat(M, span_warning("Nar'sie is already on this plane!"))
 		log_game("Nar'sie rune failed - already summoned")
 		return
-	if(SSticker.mode.bloodstone_cooldown)
+	if(SSgamemode.bloodstone_cooldown)
 		for(var/M in invokers)
 			to_chat(M, span_warning("The summoning was recently disrupted! you will need to wait before the cult can manage another attempt!"))
 		return
-	if(SSticker.mode.bloodstone_list.len)
+	if(SSgamemode.bloodstone_list.len)
 		for(var/M in invokers)
 			to_chat(M, span_warning("The Red Harvest is already in progress! Protect the bloodstones!"))
 		log_game("Nar'sie rune failed - bloodstones present")
@@ -570,7 +570,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 	sleep(2 SECONDS)
 	if(src)
 		color = RUNE_COLOR_RED
-	SSticker.mode.begin_bloodstone_phase() //activate the FINAL STAGE
+	SSgamemode.begin_bloodstone_phase() //activate the FINAL STAGE
 	used = FALSE
 
 /obj/effect/rune/narsie/attackby(obj/I, mob/user, params)	//Since the narsie rune takes a long time to make, add logging to removal.
@@ -774,7 +774,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 /obj/effect/rune/summon/invoke(list/invokers)
 	var/mob/living/user = invokers[1]
 	var/list/cultists = list()
-	for(var/datum/mind/M in SSticker.mode.cult)
+	for(var/datum/mind/M in SSgamemode.cult)
 		if(!(M.current in invokers) && M.current && M.current.stat != DEAD)
 			cultists |= M.current
 	var/mob/living/cultist_to_summon = input(user, "Who do you wish to call to [src]?", "Followers of the Geometer") as null|anything in cultists
@@ -952,7 +952,7 @@ GLOBAL_VAR_INIT(narsie_summon_count, 0)
 		to_chat(user, span_cultitalic("Your blood begins flowing into [src]. You must remain in place and conscious to maintain the forms of those summoned. This will hurt you slowly but surely..."))
 		var/obj/structure/emergency_shield/invoker/N = new(T)
 		new_human.key = ghost_to_spawn.key
-		SSticker.mode.add_cultist(new_human.mind, 0)
+		new_human.add_cultist()
 		to_chat(new_human, span_cultitalic("<b>You are a servant of the Geometer. You have been made semi-corporeal by the cult of Nar'sie, and you are to serve them at all costs.</b>"))
 
 		while(!QDELETED(src) && !QDELETED(user) && !QDELETED(new_human) && (user in T))

@@ -61,7 +61,7 @@
 		add_devil_law(law)
 
 /datum/ai_laws/proc/clear_devil_laws(force)
-	if(force || !is_devil(owner))
+	if(force || !IS_DEVIL(owner))
 		qdel(devil)
 		devil = new()
 		devilstate = list()

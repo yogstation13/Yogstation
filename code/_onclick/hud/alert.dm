@@ -689,21 +689,21 @@ so as to remain in compliance with the most up-to-date laws."
 
 /atom/movable/screen/alert/revolution
 	name = "Revolution"
-	desc = "VIVA! VIVA! VIVA! You shouldn't be seeing this!"
+	desc = "Soon the revolution will boil over. If need be, rally yourselves and make preparations for fighting."
 	icon_state = "revolution"
 
-/atom/movable/screen/alert/revolution/MouseEntered(location,control,params)
-	if(!istype(SSticker.mode, /datum/game_mode/revolution))
-		return
-	var/datum/game_mode/revolution/R = SSticker.mode
-	if(!R.loud && R.go_fucking_loud_time)
-		var/time_left = R.go_fucking_loud_time - world.time
-		desc = "Soon the revolution will boil over. If need be, rally yourselves and make preparations for fighting.<br>\
-			We will be discovered in [time_left / (1 MINUTES)] minutes if we sit idly.<br>\
-			If we eliminate all of the Command personnel, we will also be detected."
-	else if(R.loud)
-		desc = "The revolution has boiled over. Fight for your life and the life of your allies."
-	..()
+// /atom/movable/screen/alert/revolution/MouseEntered(location,control,params)
+// 	if(!istype(SSticker.mode, /datum/game_mode/revolution))
+// 		return
+// 	var/datum/game_mode/revolution/R = SSticker.mode
+// 	if(!R.loud && R.go_fucking_loud_time)
+// 		var/time_left = R.go_fucking_loud_time - world.time
+// 		desc = "Soon the revolution will boil over. If need be, rally yourselves and make preparations for fighting.<br>
+// 			We will be discovered in [time_left / (1 MINUTES)] minutes if we sit idly.<br>
+// 			If we eliminate all of the Command personnel, we will also be detected."
+// 	else if(R.loud)
+// 		desc = "The revolution has boiled over. Fight for your life and the life of your allies."
+// 	..()
 
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 

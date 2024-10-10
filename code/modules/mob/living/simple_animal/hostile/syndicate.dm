@@ -42,7 +42,7 @@
 	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)
 	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 1, "min_co2" = 0, "max_co2" = 5, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 15
-	faction = list(ROLE_SYNDICATE)
+	faction = list(ROLE_ANTAG)
 	check_friendly_fire = 1
 	status_flags = CANPUSH
 	del_on_death = 1
@@ -51,7 +51,7 @@
 	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/syndicate/sentience_act()
-	faction -= ROLE_SYNDICATE
+	faction -= ROLE_ANTAG
 ///////////////Melee////////////
 
 /mob/living/simple_animal/hostile/syndicate/space
@@ -305,7 +305,7 @@
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	attacktext = "cuts"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	faction = list(ROLE_SYNDICATE)
+	faction = list(ROLE_ANTAG)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	mob_size = MOB_SIZE_TINY

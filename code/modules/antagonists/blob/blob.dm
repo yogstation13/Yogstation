@@ -5,6 +5,7 @@
 	show_to_ghosts = TRUE
 	job_rank = ROLE_BLOB
 	ui_name = "AntagInfoBlob"
+	count_towards_antag_cap = TRUE
 	/// Action to release a blob infection
 	var/datum/action/innate/blobpop/pop_action
 	/// Initial points for a human blob

@@ -13,32 +13,34 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	min_players = 18
 	max_occurrences = 3
 	earliest_start = 20 MINUTES
-	var/atom/special_target
+	description = "The station passes through an immovable rod."
+	min_wizard_trigger_potency = 6
+	max_wizard_trigger_potency = 7
+	admin_setup = list(/datum/event_admin_setup/set_location/immovable_rod)
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_EXTERNAL, TAG_MAGICAL)
+	event_group = /datum/event_group/meteors
 
-/datum/round_event_control/immovable_rod/admin_setup()
-	if(!check_rights(R_FUN))
-		return
+/// Admins can pick a spot the rod will aim for
+/datum/event_admin_setup/set_location/immovable_rod
+	input_text = "Aimed at current location?"
 
-	var/aimed = alert("Aimed at current location?","Sniperod", "Yes", "No")
-	if(aimed == "Yes")
-		var/turf/aimed_turf = get_turf(usr)
-		special_target = aimed_turf
-		message_admins("[key_name_admin(usr)] has aimed the immovable rod at [ADMIN_COORDJMP(aimed_turf)].")
-		log_admin("[key_name(usr)] has aimed the immovable rod at [COORD(aimed_turf)].")
+/datum/event_admin_setup/set_location/immovable_rod/apply_to_event(datum/round_event/immovable_rod/event)
+	event.special_target = chosen_turf
 
 /datum/round_event/immovable_rod
-	announceWhen = 5
+	announce_when = 5
+	/// Admins can pick a spot the rod will aim for.
+	var/atom/special_target
 
 /datum/round_event/immovable_rod/announce(fake)
 	priority_announce("What the fuck was that?!", "General Alert")
 
 /datum/round_event/immovable_rod/start()
-	var/datum/round_event_control/immovable_rod/C = control
 	var/startside = pick(GLOB.cardinals)
-	var/z = pick(SSmapping.levels_by_trait(ZTRAIT_STATION))
-	var/turf/startT = spaceDebrisStartLoc(startside, z)
-	var/turf/endT = spaceDebrisFinishLoc(startside, z)
-	var/atom/rod = new /obj/effect/immovablerod(startT, endT, C.special_target)
+	var/turf/end_turf = get_edge_target_turf(get_random_station_turf(), turn(startside, 180))
+	var/turf/start_turf = spaceDebrisStartLoc(startside, end_turf.z)
+	var/atom/rod = new /obj/effect/immovablerod(start_turf, end_turf, special_target)
 	announce_to_ghosts(rod)
 
 /obj/effect/immovablerod

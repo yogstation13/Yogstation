@@ -89,7 +89,7 @@
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 /datum/team/infiltrator/is_gamemode_hero()
-	return SSticker.mode.name == "infiltration"
+	return SSgamemode.name == "infiltration"
 
 /datum/team/infiltrator/proc/forge_single_objective() // Complete traitor copypasta!
 	if(prob(50))

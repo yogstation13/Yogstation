@@ -4,6 +4,9 @@
 	max_occurrences = 1
 	min_players = 20
 	weight = 5
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_SPOOKY, TAG_ALIEN, TAG_MAGICAL)
+	description = "a floor cluwne will spawn to seek out victims."
 
 /datum/round_event/floor_cluwne/start()
 	var/list/spawn_locs = list()

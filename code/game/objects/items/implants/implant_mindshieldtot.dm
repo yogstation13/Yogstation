@@ -25,51 +25,19 @@
 		if(target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 			target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
 
-		var/datum/antagonist/hivemind/host = target.mind.has_antag_datum(/datum/antagonist/hivemind) //Releases the target from mind control beforehand
-		if(host)
-			var/datum/mind/M = host.owner
-			if(M)
-				var/datum/action/cooldown/spell/aoe/target_hive/hive_control/the_spell = locate(/datum/action/cooldown/spell/aoe/target_hive/hive_control) in M.current.actions
-				if(the_spell && the_spell.active)
-					the_spell.release_control()
-
-		if(target.mind.has_antag_datum(/datum/antagonist/rev/head) || target.mind.has_antag_datum(/datum/antagonist/hivemind) || target.mind.unconvertable)
+		if(target.mind.has_antag_datum(/datum/antagonist/rev/head) || target.mind.unconvertable)
 			if(!silent)
 				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 			removed(target, 1)
 			qdel(src)
 			return FALSE
 
-		var/datum/antagonist/hivevessel/woke = target.is_wokevessel()
-		if(is_hivemember(target))
-			for(var/datum/antagonist/hivemind/hive in GLOB.antagonists)
-				if(hive.hivemembers.Find(target))
-					var/mob/living/carbon/C = hive.owner.current.get_real_hivehost()
-					if(C)
-						C.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, target, woke?TRACKER_AWAKENED_TIME:TRACKER_MINDSHIELD_TIME)
-						target.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, C, TRACKER_DEFAULT_TIME)
-						if(C.mind) //If you were using mind control, too bad
-							C.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
-							to_chat(C, span_assimilator("We detect a surge of psionic energy from a far away vessel before they disappear from the hive. Whatever happened, there's a good chance they're after us now."))
-			to_chat(target, span_assimilator("You hear supernatural wailing echo throughout your mind as you are finally set free. Deep down, you can feel the lingering presence of those who enslaved you... as can they!"))
-			target.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
-			remove_hivemember(target)
-
-		if(woke)
-			woke.one_mind.remove_member(target.mind)
-			target.mind.remove_antag_datum(/datum/antagonist/hivevessel)
-
 		var/datum/antagonist/rev/rev = target.mind.has_antag_datum(/datum/antagonist/rev)
 		if(rev)
 			rev.remove_revolutionary(FALSE, user)
-		if(target.mind.has_antag_datum(/datum/antagonist/gang/boss))
-			if(!silent)
-				target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
-			return FALSE
-		if(target.mind.has_antag_datum(/datum/antagonist/gang))
-			target.mind.remove_antag_datum(/datum/antagonist/gang)
+
 		if(!silent)
-			if(target.mind in SSticker.mode.cult)
+			if(target.mind in SSgamemode.cult)
 				to_chat(target, span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
 			else
 				to_chat(target, span_notice("You feel a sense of peace and security. You are now protected from brainwashing."))

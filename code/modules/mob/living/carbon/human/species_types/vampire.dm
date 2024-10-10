@@ -17,7 +17,7 @@
 	var/datum/action/cooldown/spell/shapeshift/bat/batform //attached to the datum itself to avoid cloning memes, and other duplicates
 
 /datum/species/vampire/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+	if(SSgamemode.holidays && SSgamemode.holidays[HALLOWEEN])
 		return TRUE
 	return FALSE
 

@@ -433,25 +433,9 @@
 	var/dat = {"
 		<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>
 		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=[REF(src)];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
-	if(GLOB.master_mode == "secret")
-		dat += "<A href='?src=[REF(src)];[HrefToken()];f_secret=1'>(Force Secret Mode)</A><br>"
-
-	if(SSticker.is_mode("dynamic"))
-		if(SSticker.current_state <= GAME_STATE_PREGAME)
-			dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_roundstart=1'>(Force Roundstart Rulesets)</A><br>"
-			if (GLOB.dynamic_forced_roundstart_ruleset.len > 0)
-				for(var/datum/dynamic_ruleset/roundstart/rule in GLOB.dynamic_forced_roundstart_ruleset)
-					dat += {"<A href='?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_remove=\ref[rule]'>-> [rule.name] <-</A><br>"}
-				dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_clear=1'>(Clear Rulesets)</A><br>"
-			dat += "<A href='?src=[REF(src)];[HrefToken()];f_dynamic_options=1'>(Dynamic mode options)</A><br>"
-		dat += "<hr/>"
-	if(SSticker.IsRoundInProgress())
-		dat += "<a href='?src=[REF(src)];[HrefToken()];gamemode_panel=1'>(Game Mode Panel)</a><BR>"
 
 	dat += {"
-		<BR>
 		<A href='?src=[REF(src)];[HrefToken()];create_object=1'>Create Object</A><br>
 		<A href='?src=[REF(src)];[HrefToken()];quick_create_object=1'>Quick Create Object</A><br>
 		<A href='?src=[REF(src)];[HrefToken()];create_turf=1'>Create Turf</A><br>
@@ -839,7 +823,7 @@
 
 /datum/admins/proc/output_all_devil_info()
 	var/devil_number = 0
-	for(var/datum/mind/D in SSticker.mode.devils)
+	for(var/datum/mind/D in SSgamemode.devils)
 		devil_number++
 		var/datum/antagonist/devil/devil = D.has_antag_datum(/datum/antagonist/devil)
 		to_chat(usr, "Devil #[devil_number]:<br><br>" + devil.printdevilinfo(), confidential=TRUE)
@@ -847,7 +831,7 @@
 		to_chat(usr, "<b>No Devils located</b>" , confidential=TRUE)
 
 /datum/admins/proc/output_devil_info(mob/living/M)
-	if(is_devil(M))
+	if(IS_DEVIL(M))
 		var/datum/antagonist/devil/devil = M.mind.has_antag_datum(/datum/antagonist/devil)
 		to_chat(usr, devil.printdevilinfo(), confidential=TRUE)
 	else
@@ -890,29 +874,6 @@
 	browser.height = min(100 + count * 20, 650)
 	browser.set_content(dat.Join())
 	browser.open()
-
-/datum/admins/proc/dynamic_mode_options(mob/user)
-	var/dat = {"
-		<center><B><h2>Dynamic Mode Options</h2></B></center><hr>
-		<br/>
-		<h3>Common options</h3>
-		<i>All these options can be changed midround.</i> <br/>
-		<br/>
-		<b>Force extended:</b> - Option is <a href='?src=[REF(src)];[HrefToken()];f_dynamic_force_extended=1'> <b>[GLOB.dynamic_forced_extended ? "ON" : "OFF"]</a></b>.
-		<br/>This will force the round to be extended. No rulesets will be drafted. <br/>
-		<br/>
-		<b>No stacking:</b> - Option is <a href='?src=[REF(src)];[HrefToken()];f_dynamic_no_stacking=1'> <b>[GLOB.dynamic_no_stacking ? "ON" : "OFF"]</b></a>.
-		<br/>Unless the threat goes above [GLOB.dynamic_stacking_limit], only one "round-ender" ruleset will be drafted. <br/>
-		<br/>
-		<b>Forced threat level:</b> Current value : <a href='?src=[REF(src)];[HrefToken()];f_dynamic_forced_threat=1'><b>[GLOB.dynamic_forced_threat_level]</b></a>.
-		<br/>The value threat is set to if it is higher than -1.<br/>
-		<br/>
-		<br/>
-		<b>Stacking threeshold:</b> Current value : <a href='?src=[REF(src)];[HrefToken()];f_dynamic_stacking_limit=1'><b>[GLOB.dynamic_stacking_limit]</b></a>.
-		<br/>The threshold at which "round-ender" rulesets will stack. A value higher than 100 ensure this never happens. <br/>
-		"}
-
-	user << browse(dat, "window=dyn_mode_options;size=900x650")
 
 /datum/admins/proc/create_or_modify_area()
 	set category = "Misc.Server Debug"

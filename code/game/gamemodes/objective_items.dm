@@ -161,11 +161,17 @@
 		CHECK_TICK
 	return found_amount >= target_amount
 
-
+/datum/objective_item/steal/holotool
+	name = "the holotool."
+	targetitem = /obj/item/holotool
+	difficulty = 5
+	excludefromjob = list("Research Director")
+	
 /datum/objective_item/steal/functionalai
 	name = "a functional AI."
 	targetitem = /obj/item/aicard
 	difficulty = 20 //beyond the impossible
+	excludefromjob = list(ROLE_INFILTRATOR) 
 
 /datum/objective_item/steal/functionalai/check_special_completion(obj/item/aicard/C)
 	for(var/mob/living/silicon/ai/A in C)

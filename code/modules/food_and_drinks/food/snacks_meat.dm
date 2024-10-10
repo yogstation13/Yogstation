@@ -551,7 +551,7 @@
 	M.gib(null, TRUE, null, TRUE)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/syndicate
-	faction = list("neutral", ROLE_SYNDICATE)
+	faction = list("neutral", ROLE_ANTAG)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/gorilla
 	name = "gorilla cube"
@@ -623,7 +623,7 @@
 	foodtype = MEAT | MICE | RAW
 
 /obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate
-	faction = list("neutral", ROLE_SYNDICATE)
+	faction = list("neutral", ROLE_ANTAG)
 
 /obj/item/reagent_containers/food/snacks/spam_musubi
 	name = "spam musubi"

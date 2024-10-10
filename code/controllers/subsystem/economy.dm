@@ -115,7 +115,7 @@ SUBSYSTEM_DEF(economy)
 			return D
 
 /datum/controller/subsystem/economy/proc/tally_departments()
-	var/player_count = SSticker.mode.current_players[CURRENT_LIVING_PLAYERS].len
+	var/player_count = SSgamemode.current_players[CURRENT_LIVING_PLAYERS].len
 	if(last_player_count >= player_count)
 		return
 	last_player_count = player_count

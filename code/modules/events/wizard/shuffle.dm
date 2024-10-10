@@ -7,6 +7,9 @@
 	typepath = /datum/round_event/wizard/shuffleloc
 	max_occurrences = 5
 	earliest_start = 0 MINUTES
+	description = "Shuffles everyone around on the station."
+	min_wizard_trigger_potency = 0
+	max_wizard_trigger_potency = 7
 
 /datum/round_event/wizard/shuffleloc/start()
 	var/list/moblocs = list()
@@ -43,6 +46,7 @@
 	typepath = /datum/round_event/wizard/shufflenames
 	max_occurrences = 5
 	earliest_start = 0 MINUTES
+	description = "Shuffles the names of everyone around the station."
 
 /datum/round_event/wizard/shufflenames/start()
 	var/list/mobnames = list()
@@ -77,12 +81,13 @@
 	typepath = /datum/round_event/wizard/shuffleminds
 	max_occurrences = 3
 	earliest_start = 0 MINUTES
+	description = "Shuffles the minds of everyone around the station, except for the wizard."
 
 /datum/round_event/wizard/shuffleminds/start()
 	var/list/mobs_to_swap = list()
 
 	for(var/mob/living/carbon/human/alive_human in GLOB.alive_mob_list)
-		if(alive_human.stat != CONSCIOUS || !alive_human.mind || iswizard(alive_human))
+		if(alive_human.stat != CONSCIOUS || !alive_human.mind || IS_WIZARD(alive_human))
 			continue //the wizard(s) are spared on this one
 		mobs_to_swap += alive_human
 

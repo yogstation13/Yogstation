@@ -91,11 +91,6 @@
 		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
 		. += "Lumens Count: [round(lumens, 0.01)]"
 
-	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
-	if(hivemind)
-		. += ""
-		. += "Hivemind Vessels: [hivemind.hive_size] (+[hivemind.size_mod])"
-		. += "Psychic Link Duration: [(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds"
 	var/mob/living/simple_animal/horror/H = has_horror_inside()
 	if(H && H.controlling)
 		. += ""
@@ -118,11 +113,6 @@
 				var/crystallization_timer = round(COOLDOWN_TIMELEFT(eth_heart, crystalize_cooldown) / 10)
 				var/cooldown_finished = COOLDOWN_FINISHED(eth_heart, crystalize_cooldown)
 				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] seconds left"]"
-
-		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
-		if(zombie)
-			if((zombie.evolutionTime - world.time) > 0)
-				. += "Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds"
 
 
 	//NINJACODE

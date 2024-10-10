@@ -57,7 +57,7 @@
 		. += M
 
 /obj/item/clothing/suit/space/space_ninja/lock_suit(mob/living/carbon/human/H)
-	if(!istype(H) || !is_ninja(H))
+	if(!istype(H) || !IS_SPACE_NINJA(H))
 		return ..()
 
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/gas/space_ninja))

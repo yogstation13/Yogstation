@@ -1,3 +1,75 @@
+/**
+ * =======================
+ * WARNING WARNING WARNING
+ * WARNING WARNING WARNING
+ * WARNING WARNING WARNING
+ * =======================
+ * These names are used as keys in many locations in the database
+ * you cannot change them trivially without breaking job bans and
+ * role time tracking, if you do this and get it wrong you will die
+ * and it will hurt the entire time
+ */
+
+//No department
+#define JOB_ASSISTANT "Assistant"
+//Command
+#define JOB_CAPTAIN "Captain"
+#define JOB_HEAD_OF_PERSONNEL "Head of Personnel"
+#define JOB_HEAD_OF_SECURITY "Head of Security"
+#define JOB_RESEARCH_DIRECTOR "Research Director"
+#define JOB_CHIEF_ENGINEER "Chief Engineer"
+#define JOB_CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
+//Silicon
+#define JOB_AI "AI"
+#define JOB_CYBORG "Cyborg"
+#define JOB_PERSONAL_AI "Personal AI"
+//Security
+#define JOB_WARDEN "Warden"
+#define JOB_BRIG_PHYSICIAN "Brig Physician"
+#define JOB_DETECTIVE "Detective"
+#define JOB_SECURITY_OFFICER "Security Officer"
+#define JOB_SECURITY_OFFICER_MEDICAL "Security Officer (Medical)"
+#define JOB_SECURITY_OFFICER_ENGINEERING "Security Officer (Engineering)"
+#define JOB_SECURITY_OFFICER_SCIENCE "Security Officer (Science)"
+#define JOB_SECURITY_OFFICER_SUPPLY "Security Officer (Cargo)"
+//Engineering
+#define JOB_STATION_ENGINEER "Station Engineer"
+#define JOB_ATMOSPHERIC_TECHNICIAN "Atmospheric Technician"
+//Medical
+#define JOB_MEDICAL_DOCTOR "Medical Doctor"
+#define JOB_PARAMEDIC "Paramedic"
+#define JOB_CHEMIST "Chemist"
+#define JOB_VIROLOGIST "Pathologist"
+//Science
+#define JOB_SCIENTIST "Scientist"
+#define JOB_ROBOTICIST "Roboticist"
+#define JOB_GENETICIST "Geneticist"
+//Supply
+#define JOB_QUARTERMASTER "Quartermaster"
+#define JOB_CARGO_TECHNICIAN "Cargo Technician"
+#define JOB_SHAFT_MINER "Shaft Miner"
+#define JOB_BITRUNNER "Bitrunner"
+//Service
+#define JOB_BARTENDER "Bartender"
+#define JOB_BOTANIST "Botanist"
+#define JOB_COOK "Cook"
+#define JOB_JANITOR "Janitor"
+#define JOB_CLOWN "Clown"
+#define JOB_MIME "Mime"
+#define JOB_CURATOR "Curator"
+#define JOB_LAWYER "Lawyer"
+#define JOB_CHAPLAIN "Chaplain"
+#define JOB_PSYCHOLOGIST "Psychologist"
+
+
+
+// we should probably use these, but it'll be part of a different pr, otherwise it can break shit
+// i'm leaving this here though as a reminder... hopefully
+
+
+
+
+
 #define JOB_AVAILABLE 0
 #define JOB_UNAVAILABLE_GENERIC 1
 #define JOB_UNAVAILABLE_BANNED 2

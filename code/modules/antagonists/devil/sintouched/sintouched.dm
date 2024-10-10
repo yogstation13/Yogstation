@@ -11,6 +11,7 @@
 	roundend_category = "sintouched"
 	antagpanel_category = "Devil"
 	antag_hud_name =  "sintouched"
+	count_towards_antag_cap = TRUE
 	var/sin
 
 	var/static/list/sins = list(SIN_ACEDIA,SIN_GLUTTONY,SIN_GREED,SIN_SLOTH,SIN_WRATH,SIN_ENVY,SIN_PRIDE)

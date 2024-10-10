@@ -1,12 +1,15 @@
 /datum/round_event_control/wizard/imposter //Mirror Mania
-	name = "Imposter Wizard"
+	name = "Imposter Wizard" //sussus amogus ^how times change in 10 years
 	weight = 1
 	typepath = /datum/round_event/wizard/imposter
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
+	description = "Spawns a doppelganger of the wizard."
+	min_wizard_trigger_potency = 2
+	max_wizard_trigger_potency = 7
 
 /datum/round_event/wizard/imposter/start()
-	for(var/datum/mind/M in SSticker.mode.wizards)
+	for(var/datum/mind/M in SSgamemode.wizards)
 		if(!ishuman(M.current))
 			continue
 		var/mob/living/carbon/human/W = M.current
@@ -33,7 +36,7 @@
 		master.wiz_team.add_member(imposter)
 		I.mind.add_antag_datum(imposter)
 		//Remove if possible
-		SSticker.mode.apprentices += I.mind
+		SSgamemode.apprentices += I.mind
 		I.mind.special_role = "imposter"
 		//
 		I.log_message("is an imposter!", LOG_ATTACK, color="red") //?

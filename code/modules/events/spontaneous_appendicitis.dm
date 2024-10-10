@@ -5,6 +5,9 @@
 	max_occurrences = 4
 	earliest_start = 10 MINUTES
 	min_players = 5 // To make your chance of getting help a bit higher.
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_TARGETED)
+	description = "bestows someone with appendicitis."
 
 /datum/round_event/spontaneous_appendicitis
 	fakeable = FALSE

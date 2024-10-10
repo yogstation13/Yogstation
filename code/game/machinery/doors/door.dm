@@ -292,9 +292,6 @@
 	if((!user.combat_mode || (modifiers && modifiers[RIGHT_CLICK])) && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/fireaxe))) // right click always opens
 		try_to_crowbar(I, user)
 		return TRUE
-	else if(istype(I, /obj/item/zombie_hand/gamemode))
-		try_to_crowbar(I, user)
-		return TRUE
 	else if(I.tool_behaviour == TOOL_WELDER)
 		try_to_weld(I, user, modifiers)
 		return TRUE

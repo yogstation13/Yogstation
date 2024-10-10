@@ -1,7 +1,11 @@
 /datum/round_event_control/fake_virus
 	name = "Fake Virus"
 	typepath = /datum/round_event/fake_virus
-	weight = 20
+	weight = 15
+	earliest_start = 10 MINUTES
+	description = "Some crewmembers suffer from temporary hypochondria."
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_TARGETED)
 
 /datum/round_event/fake_virus/start()
 	var/list/fake_virus_victims = list()

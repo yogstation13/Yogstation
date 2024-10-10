@@ -537,13 +537,13 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * antagonist_role: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
   * * flashwindow: Bool, Flash their window to grab their attention
   */
-/proc/pollGhostCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
+/proc/pollGhostCandidates(Question, jobbanType, antagonist_role, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
 	var/list/candidates = list()
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return candidates
@@ -551,7 +551,7 @@
 	for(var/mob/dead/observer/G in GLOB.player_list)
 		candidates += G
 
-	return pollCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category, flashwindow, candidates)
+	return pollCandidates(Question, jobbanType, antagonist_role, be_special_flag, poll_time, ignore_category, flashwindow, candidates)
 
 /**
   * Poll all mentor ghosts for looking for a candidate
@@ -561,13 +561,13 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * antagonist_role: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
   * * flashwindow: Bool, Flash their window to grab their attention
   */
-/proc/pollMentorGhostCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
+/proc/pollMentorGhostCandidates(Question, jobbanType, antagonist_role, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE)
 	var/list/candidates = list()
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
 		return candidates
@@ -576,7 +576,7 @@
 		if(is_mentor(G))
 			candidates += G
 
-	return pollCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category, flashwindow, candidates)
+	return pollCandidates(Question, jobbanType, antagonist_role, be_special_flag, poll_time, ignore_category, flashwindow, candidates)
 
 /**
   * Poll all in the group for a candidate
@@ -586,14 +586,14 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * antagonist_role: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * ignore_category: Define, ignore_category: People with this category(defined in poll_ignore.dm) turned off dont get the message
   * * flashwindow: Bool, Flash their window to grab their attention
   * * group: List, Group of people to poll. list of datum/minds
   */
-/proc/pollCandidates(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE, list/group = null)
+/proc/pollCandidates(Question, jobbanType, antagonist_role, be_special_flag = 0, poll_time = 300, ignore_category = null, flashwindow = TRUE, list/group = null)
 	var/time_passed = world.time
 	if (!Question)
 		Question = "Would you like to be a special role?"
@@ -605,11 +605,12 @@
 		if(be_special_flag)
 			if(!(M.client.prefs) || !(be_special_flag in M.client.prefs.be_special))
 				continue
-		if(gametypeCheck)
-			if(!gametypeCheck.age_check(M.client))
+		if(antagonist_role)
+			var/datum/antagonist/age_check = GLOB.special_roles[antagonist_role]
+			if(M.client.get_remaining_days(initial(age_check.min_account_age)))
 				continue
 		if(jobbanType)
-			if(is_banned_from(M.ckey, list(jobbanType, ROLE_SYNDICATE)) || QDELETED(M))
+			if(is_banned_from(M.ckey, list(jobbanType, ROLE_ANTAG)) || QDELETED(M))
 				continue
 
 		showCandidatePollWindow(M, poll_time, Question, result, ignore_category, time_passed, flashwindow)
@@ -632,14 +633,14 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * antagonist_role: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * M: Mob, /mob to offer
   * * ignore_category: Unknown
   */
-/proc/pollCandidatesForMob(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
-	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
+/proc/pollCandidatesForMob(Question, jobbanType, antagonist_role, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
+	var/list/L = pollGhostCandidates(Question, jobbanType, antagonist_role, be_special_flag, poll_time, ignore_category)
 	if(!M || QDELETED(M) || !M.loc)
 		return list()
 	return L
@@ -652,14 +653,14 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * antagonist_role: Datum, Check if they have the time required for that role
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * M: Mob, /mob to offer
   * * ignore_category: Unknown
   */
-/proc/pollMentorCandidatesForMob(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
-	var/list/L = pollMentorGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
+/proc/pollMentorCandidatesForMob(Question, jobbanType, antagonist_role, be_special_flag = 0, poll_time = 300, mob/M, ignore_category = null)
+	var/list/L = pollMentorGhostCandidates(Question, jobbanType, antagonist_role, be_special_flag, poll_time, ignore_category)
 	if(!M || QDELETED(M) || !M.loc)
 		return list()
 	return L
@@ -672,14 +673,14 @@
   * Arguments:
   * * Question: String, what do you want to ask them
   * * jobbanType: List, Which roles/jobs to exclude from being asked
-  * * gametypeCheck: Datum, Check if they have the time required for that role
+  * * antagonist_role: Role define to check if the player's account is old enough to play that antag
   * * be_special_flag: Bool, Only notify ghosts with special antag on
   * * poll_time: Integer, How long to poll for in deciseconds(0.1s)
   * * mobs: List, list of mobs to offer up
   * * ignore_category: Unknown
   */
-/proc/pollCandidatesForMobs(Question, jobbanType, datum/game_mode/gametypeCheck, be_special_flag = 0, poll_time = 300, list/mobs, ignore_category = null)
-	var/list/L = pollGhostCandidates(Question, jobbanType, gametypeCheck, be_special_flag, poll_time, ignore_category)
+/proc/pollCandidatesForMobs(Question, jobbanType, antagonist_role, be_special_flag = 0, poll_time = 300, list/mobs, ignore_category = null)
+	var/list/L = pollGhostCandidates(Question, jobbanType, antagonist_role, be_special_flag, poll_time, ignore_category)
 	var/i=1
 	for(var/v in mobs)
 		var/atom/A = v

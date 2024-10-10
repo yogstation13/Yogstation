@@ -133,7 +133,7 @@
 	var/datum/antagonist/cult/C = Nominee.mind.has_antag_datum(/datum/antagonist/cult)
 	var/list/saved_spells = C.magic.spells //save our spells...
 	C.magic.spells = list() //...then make sure they don't get deleted
-	SSticker.mode.remove_cultist(Nominee.mind, TRUE)
+	Nominee.remove_cultist(TRUE)
 	var/datum/antagonist/cult/new_antag = Nominee.mind.add_antag_datum(/datum/antagonist/cult/master)
 	new_antag.magic.spells = saved_spells
 	for(var/datum/mind/B in team.members)

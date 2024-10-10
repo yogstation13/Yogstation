@@ -93,7 +93,7 @@
 
 /datum/clockwork_scripture/create_object/construct/clockwork_marauder/update_construct_limit()
 	var/human_servants = 0
-	for(var/V in SSticker.mode.servants_of_ratvar)
+	for(var/V in SSgamemode.servants_of_ratvar)
 		var/datum/mind/M = V
 		var/mob/living/L = M.current
 		if(ishuman(L) && L.stat != DEAD)

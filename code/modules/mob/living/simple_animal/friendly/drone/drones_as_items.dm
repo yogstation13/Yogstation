@@ -29,10 +29,10 @@
 
 /obj/item/drone_shell/proc/build_seasonal_hats()
 	possible_seasonal_hats = list()
-	if(!length(SSevents.holidays))
+	if(!length(SSgamemode.holidays))
 		return //no holidays, no hats; we'll keep the empty list so we never call this proc again
-	for(var/V in SSevents.holidays)
-		var/datum/holiday/holiday = SSevents.holidays[V]
+	for(var/V in SSgamemode.holidays)
+		var/datum/holiday/holiday = SSgamemode.holidays[V]
 		if(holiday.drone_hat)
 			possible_seasonal_hats += holiday.drone_hat
 
@@ -54,9 +54,7 @@
 		if(user.client.player_age < DRONE_MINIMUM_AGE)
 			to_chat(user, span_danger("You're too new to play as a drone! Please try again in [DRONE_MINIMUM_AGE - user.client.player_age] days."))
 			return
-	if(!SSticker.mode)
-		to_chat(user, "Can't become a drone before the game has started.")
-		return
+	// I removed a line that prevented players from becoming a drone before the gamemode starts, because i removed gamemodes
 	var/be_drone = alert("Become a drone? (Warning, You can no longer be cloned!)",,"Yes","No")
 	if(be_drone == "No" || QDELETED(src) || !isobserver(user))
 		return

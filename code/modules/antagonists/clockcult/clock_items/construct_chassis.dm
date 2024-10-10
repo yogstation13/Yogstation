@@ -41,9 +41,6 @@
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/item/clockwork/construct_chassis/attack_ghost(mob/user)
-	if(!SSticker.mode)
-		to_chat(user, span_danger("You cannot use that before the game has started."))
-		return
 	if(QDELETED(src))
 		to_chat(user, span_danger("You were too late! Better luck next time."))
 		return

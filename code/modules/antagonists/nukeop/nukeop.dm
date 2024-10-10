@@ -6,6 +6,7 @@
 	antag_hud_name = "synd"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
+	count_towards_antag_cap = TRUE
 	var/datum/team/nuclear/nuke_team
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
@@ -16,6 +17,9 @@
 
 	/// In the preview icon, the nukies who are behind the leader
 	var/preview_outfit_behind = /datum/outfit/nuclear_operative
+
+	/// the sound clip played during the greet proc
+	var/welcome_music = 'sound/ambience/antag/ops.ogg'
 
 /datum/antagonist/nukeop/apply_innate_effects(mob/living/mob_override)
 	add_team_hud(mob_override || owner.current, /datum/antagonist/nukeop)
@@ -35,7 +39,7 @@
 	return TRUE
 
 /datum/antagonist/nukeop/greet()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0)
+	owner.current.playsound_local(get_turf(owner.current), welcome_music,100,0)
 	to_chat(owner, span_notice("You are a [nuke_team ? nuke_team.syndicate_name : "syndicate"] agent!"))
 	owner.announce_objectives()
 
@@ -120,7 +124,7 @@
 	nuke_team = new_team
 
 /datum/antagonist/nukeop/admin_add(datum/mind/new_owner,mob/admin)
-	new_owner.assigned_role = ROLE_SYNDICATE
+	new_owner.assigned_role = ROLE_ANTAG
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has nuke op'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has nuke op'ed [key_name(new_owner)].")
@@ -209,7 +213,7 @@
 		owner.current.real_name = "Syndicate [title]"
 
 /datum/antagonist/nukeop/leader/greet()
-	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0)
+	owner.current.playsound_local(get_turf(owner.current), welcome_music,100,0)
 	to_chat(owner, "<B>You are the Syndicate [title] for this mission. You are responsible for the distribution of telecrystals and your ID is the only one who can open the launch bay doors.</B>")
 	to_chat(owner, "<B>If you feel you are not up to this task, give your ID to another operative.</B>")
 	to_chat(owner, "<B>In your hand you will find a special item capable of triggering a greater challenge for your team. Examine it carefully and consult with your fellow operatives before activating it.</B>")
@@ -322,8 +326,8 @@
 	var/evacuation = EMERGENCY_ESCAPED_OR_ENDGAMED
 	var/disk_rescued = disk_rescued()
 	var/syndies_didnt_escape = !syndies_escaped()
-	var/station_was_nuked = SSticker.mode.station_was_nuked
-	var/nuke_off_station = SSticker.mode.nuke_off_station
+	var/station_was_nuked = SSgamemode.station_was_nuked
+	var/nuke_off_station = SSgamemode.nuke_off_station
 
 	if(nuke_off_station == NUKE_SYNDICATE_BASE)
 		return NUKE_RESULT_FLUKE
@@ -395,7 +399,7 @@
 	text += printplayerlist(members)
 	text += "<br>"
 	text += "(Syndicates used [TC_uses] TC) [purchases]"
-	if(TC_uses == 0 && SSticker.mode.station_was_nuked && !operatives_dead())
+	if(TC_uses == 0 && SSgamemode.station_was_nuked && !operatives_dead())
 		text += "<BIG>[icon2html('icons/badass.dmi', world, "badass")]</BIG>"
 
 	parts += text
@@ -406,7 +410,7 @@
 	switch(get_result())
 		if(NUKE_RESULT_FLUKE)
 			for(var/mob/living/carbon/human/H in GLOB.player_list) //if you observe, too bad
-				if(!is_nuclear_operative(H))
+				if(!IS_NUKE_OP(H))
 					SSachievements.unlock_achievement(/datum/achievement/flukeops, H.client)
 		if(NUKE_RESULT_NUKE_WIN, NUKE_RESULT_DISK_LOST)
 			for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -444,4 +448,4 @@
 	return common_part + disk_report
 
 /datum/team/nuclear/is_gamemode_hero()
-	return SSticker.mode.name == "nuclear emergency"
+	return SSgamemode.name == "nuclear emergency"

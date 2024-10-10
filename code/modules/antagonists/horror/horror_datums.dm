@@ -5,6 +5,7 @@
 	prevent_roundtype_conversion = FALSE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
+	count_towards_antag_cap = TRUE
 	var/datum/mind/summoner
 
 /datum/antagonist/horror/on_gain()

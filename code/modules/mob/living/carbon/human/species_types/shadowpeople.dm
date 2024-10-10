@@ -77,7 +77,7 @@
 				H.adjustCloneLoss(light_burning)
 
 /datum/species/shadow/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+	if(SSgamemode.holidays && SSgamemode.holidays[HALLOWEEN])
 		return TRUE
 	return ..()
 

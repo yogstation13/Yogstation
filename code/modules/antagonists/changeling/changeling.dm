@@ -1,3 +1,78 @@
+GLOBAL_LIST_INIT(possible_changeling_IDs, list(
+	"Alpha",
+	"Beta",
+	"Gamma",
+	"Delta",
+	"Epsilon",
+	"Zeta",
+	"Eta",
+	"Theta",
+	"Iota",
+	"Kappa",
+	"Lambda",
+	"Mu",
+	"Nu",
+	"Xi",
+	"Omicron",
+	"Pi",
+	"Rho",
+	"Sigma",
+	"Tau",
+	"Upsilon",
+	"Phi",
+	"Chi",
+	"Psi",
+	"Omega",
+))
+
+GLOBAL_LIST_INIT(slots, list(
+	"head",
+	"wear_mask",
+	"back",
+	"wear_suit",
+	"w_uniform",
+	"shoes",
+	"belt",
+	"gloves",
+	"glasses",
+	"ears",
+	"wear_id",
+	"s_store",
+))
+GLOBAL_LIST_INIT(slot2slot, list(
+	"head" = ITEM_SLOT_HEAD,
+	"wear_mask" = ITEM_SLOT_MASK,
+	"neck" = ITEM_SLOT_NECK,
+	"back" = ITEM_SLOT_BACK,
+	"wear_suit" = ITEM_SLOT_OCLOTHING,
+	"w_uniform" = ITEM_SLOT_ICLOTHING,
+	"shoes" = ITEM_SLOT_FEET,
+	"belt" = ITEM_SLOT_BELT,
+	"gloves" = ITEM_SLOT_GLOVES,
+	"glasses" = ITEM_SLOT_EYES,
+	"ears" = ITEM_SLOT_EARS,
+	"wear_id" = ITEM_SLOT_ID,
+	"s_store" = ITEM_SLOT_SUITSTORE,
+))
+
+GLOBAL_LIST_INIT(slot2type, list(
+	"head" = /obj/item/clothing/head/changeling,
+	"wear_mask" = /obj/item/clothing/mask/changeling,
+	"back" = /obj/item/changeling,
+	"wear_suit" = /obj/item/clothing/suit/changeling,
+	"w_uniform" = /obj/item/clothing/under/changeling,
+	"shoes" = /obj/item/clothing/shoes/changeling,
+	"belt" = /obj/item/changeling,
+	"gloves" = /obj/item/clothing/gloves/changeling,
+	"glasses" = /obj/item/clothing/glasses/changeling,
+	"ears" = /obj/item/changeling,
+	"wear_id" = /obj/item/changeling,
+	"s_store" = /obj/item/changeling,
+))
+
+///If this is not null, we hand our this objective to all lings
+GLOBAL_VAR(changeling_team_objective_type)
+
 /// The duration of the fakedeath coma.
 #define LING_FAKEDEATH_TIME 40 SECONDS
 #define LING_DEAD_GENETICDAMAGE_HEAL_CAP	50	//The lowest value of geneticdamage handle_changeling() can take it to while dead.
@@ -13,6 +88,7 @@
 	antag_hud_name = "changeling"
 	antag_moodlet = /datum/mood_event/changeling
 	ui_name = "AntagInfoChangeling"
+	count_towards_antag_cap = TRUE
 
 	var/you_are_greet = TRUE
 	var/give_objectives = TRUE
@@ -752,3 +828,63 @@
 	head = /obj/item/clothing/head/helmet/changeling
 	suit = /obj/item/clothing/suit/armor/changeling
 	l_hand = /obj/item/melee/arm_blade
+
+
+
+/proc/changeling_transform(mob/living/carbon/human/user, datum/changelingprofile/chosen_prof)
+	var/datum/dna/chosen_dna = chosen_prof.dna
+	user.real_name = chosen_prof.name
+	user.underwear = chosen_prof.underwear
+	user.undershirt = chosen_prof.undershirt
+	user.socks = chosen_prof.socks
+	user.mind.accent_name = chosen_prof.accent
+	user.mind.RegisterSignal(user, COMSIG_MOB_SAY, TYPE_PROC_REF(/datum/mind, handle_speech))
+
+	chosen_dna.transfer_identity(user, 1)
+	user.updateappearance(mutcolor_update=1)
+	user.update_body()
+	user.domutcheck()
+
+	// get rid of any scars from previous changeling-ing
+	for(var/i in user.all_scars)
+		var/datum/scar/iter_scar = i
+		if(iter_scar.fake)
+			qdel(iter_scar)
+
+	//vars hackery. not pretty, but better than the alternative.
+	for(var/slot in GLOB.slots)
+		if(istype(user.vars[slot], GLOB.slot2type[slot]) && !(chosen_prof.exists_list[slot])) //remove unnecessary flesh items
+			qdel(user.vars[slot])
+			continue
+
+		if((user.vars[slot] && !istype(user.vars[slot], GLOB.slot2type[slot])) || !(chosen_prof.exists_list[slot]))
+			continue
+
+		var/obj/item/new_flesh_item
+		var/equip = 0
+		if(!user.vars[slot])
+			var/thetype = GLOB.slot2type[slot]
+			equip = 1
+			new_flesh_item = new thetype(user)
+
+		else if(istype(user.vars[slot], GLOB.slot2type[slot]))
+			new_flesh_item = user.vars[slot]
+
+		new_flesh_item.appearance = chosen_prof.appearance_list[slot]
+		new_flesh_item.name = chosen_prof.name_list[slot]
+		new_flesh_item.flags_cover = chosen_prof.flags_cover_list[slot]
+		new_flesh_item.lefthand_file = chosen_prof.lefthand_file_list[slot]
+		new_flesh_item.righthand_file = chosen_prof.righthand_file_list[slot]
+		new_flesh_item.item_state = chosen_prof.inhand_icon_state_list[slot]
+		new_flesh_item.worn_icon = chosen_prof.worn_icon_list[slot]
+		new_flesh_item.worn_icon_state = chosen_prof.worn_icon_state_list[slot]
+		new_flesh_item.sprite_sheets = chosen_prof.sprite_sheets_list[slot]
+
+		if(equip)
+			user.equip_to_slot_or_del(new_flesh_item, GLOB.slot2slot[slot])
+	for(var/stored_scar_line in chosen_prof.stored_scars)
+		var/datum/scar/attempted_fake_scar = user.load_scar(stored_scar_line)
+		if(attempted_fake_scar)
+			attempted_fake_scar.fake = TRUE
+
+	user.regenerate_icons()
