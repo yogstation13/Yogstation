@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - refactor: "Refactored the paranoia/stalking phantoms trauma. In-game behavior should be the same."
