@@ -178,3 +178,8 @@
   catmanpop:
   - bugfix: fixed a mapping issue in void raptor regarding an area of maints and the
       prison not having rad storm protection
+2024-10-11:
+  DexeeXI:
+  - rscadd: Component printer now in the pharmacy.
+  - rscdel: Removed useless chromatography machines (no fermichem)
+  - bugfix: spooky
