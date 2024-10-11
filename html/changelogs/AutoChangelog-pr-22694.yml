@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "Fixed the maint door over tech storage on Box needing engie access instead of maint access"
