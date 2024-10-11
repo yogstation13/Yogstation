@@ -1,0 +1,5 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - mapping: "fixes mining site ruin on icemoon having grey rocks around it"
+  - spellcheck: "world anvils will now correctly announce their names when cooling down"
