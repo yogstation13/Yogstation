@@ -24,9 +24,9 @@
 
 /datum/surgery/ear_surgery/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/ears/target_ears = target.get_organ_slot(ORGAN_SLOT_EARS)
-	if(!target_ears)
-		return FALSE
-	return TRUE
+	if(target_ears?.damage > 0) // monkestation edit: ear surgery is repeatable so no worries about wasting the surgery
+		return TRUE
+	return FALSE
 
 /datum/surgery_step/fix_ears/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	display_results(
