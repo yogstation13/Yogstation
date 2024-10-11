@@ -183,3 +183,10 @@
   - rscadd: Component printer now in the pharmacy.
   - rscdel: Removed useless chromatography machines (no fermichem)
   - bugfix: spooky
+  Gw0sty:
+  - rscadd: Added robotic versions of the organ repair surgeries
+  - qol: Made eye/ear surgery only appears if the organ is damaged.
+  KnigTheThrasher:
+  - bugfix: fixed tram disposals around science
+  ven1883:
+  - bugfix: fixed lobby music exclude being broken

@@ -1,5 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Added robotic versions of the organ repair surgeries"
-  - qol: "Made eye/ear surgery only appears if the organ is damaged."

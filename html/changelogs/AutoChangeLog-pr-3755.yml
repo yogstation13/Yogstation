@@ -1,4 +1,0 @@
-author: "ven1883"
-delete-after: True
-changes:
-  - bugfix: "fixed lobby music exclude being broken"
