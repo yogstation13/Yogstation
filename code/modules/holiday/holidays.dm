@@ -581,7 +581,7 @@
 
 /datum/holiday/halloween
 	name = HALLOWEEN
-	begin_day = 29
+	begin_day = 3
 	begin_month = OCTOBER
 	end_day = 2
 	end_month = NOVEMBER
