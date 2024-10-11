@@ -13809,10 +13809,10 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 8
-	},
 /obj/effect/mapping_helpers/mail_sorting/science/research,
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 4
+	},
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "doH" = (
@@ -30784,10 +30784,10 @@
 /area/station/command/heads_quarters/captain)
 "iQC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 2
-	},
 /obj/effect/mapping_helpers/mail_sorting/science/rd_office,
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 1
+	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "iQH" = (
@@ -47892,11 +47892,11 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/science/breakroom)
 "okn" = (
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 8
-	},
 /obj/effect/mapping_helpers/mail_sorting/science/robotics,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/robotics/lab)
 "oks" = (
@@ -55502,8 +55502,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/disposalpipe/sorting/mail/flip,
 /obj/effect/mapping_helpers/mail_sorting/science/genetics,
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 1
+	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "qFB" = (
@@ -62271,9 +62273,6 @@
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/ai_upload)
 "sNQ" = (
-/obj/structure/disposalpipe/junction{
-	dir = 2
-	},
 /obj/effect/turf_decal/trimline/neutral/filled/corner{
 	dir = 4
 	},
@@ -62281,6 +62280,9 @@
 /obj/structure/cable,
 /obj/structure/sign/directions/cryo/directional/east{
 	pixel_y = 32
+	},
+/obj/structure/disposalpipe/junction/flip{
+	dir = 1
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit)
