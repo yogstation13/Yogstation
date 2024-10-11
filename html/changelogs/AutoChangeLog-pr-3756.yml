@@ -1,0 +1,6 @@
+author: "DexeeXI"
+delete-after: True
+changes:
+  - rscadd: "Component printer now in the pharmacy."
+  - rscdel: "Removed useless chromatography machines (no fermichem)"
+  - bugfix: "spooky"
