@@ -1,0 +1,4 @@
+author: "ynot01, dcxgame"
+delete-after: true 
+changes: 
+  - imageadd: "Security badges are now color coded bronze, silver, and gold depending on your playtime."
