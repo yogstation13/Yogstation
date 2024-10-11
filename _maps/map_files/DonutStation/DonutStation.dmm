@@ -21347,15 +21347,6 @@
 	dir = 5
 	},
 /area/crew_quarters/kitchen)
-"iWv" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/junction,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "iWz" = (
 /turf/template_noop,
 /area/maintenance/port/fore)
@@ -23299,21 +23290,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"jKN" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/disposal/bin,
-/obj/machinery/door_timer{
-	id = "Cell 1";
-	name = "Cell 1";
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "jLn" = (
 /obj/machinery/atmospherics/miner/oxygen{
 	max_ext_kpa = 2500
@@ -25402,6 +25378,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"kFQ" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/door_timer{
+	id = "Cell 1";
+	name = "Cell 1";
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
 "kFU" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/effect/turf_decal/bot,
@@ -103534,7 +103521,7 @@ vra
 vBx
 ghg
 qhm
-jKN
+kFQ
 qhm
 mzt
 uBS
@@ -103788,7 +103775,7 @@ vra
 avf
 kTF
 qEj
-adT
+qEj
 qEj
 cVD
 qEj
@@ -104042,7 +104029,7 @@ voA
 rFE
 kTF
 qEj
-adT
+qEj
 qEj
 ePo
 oOm
@@ -104296,7 +104283,7 @@ kiM
 msW
 oyE
 kiM
-iWv
+kiM
 kiM
 noV
 pzi
