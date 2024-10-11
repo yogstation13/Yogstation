@@ -156,7 +156,6 @@ Runs the event
 	* and not multiple events called by others admins
 	* * In the worst case scenario we can still recall a event which we cancelled by accident, which is much better then to have a unwanted event
 	*/
-	UnregisterSignal(SSdcs, COMSIG_GLOB_RANDOM_EVENT)
 	var/datum/round_event/round_event = new typepath(TRUE, src)
 	if(round_event.oshan_blocked && SSmapping.config.map_name == "Oshan Station") //we'll use this whenever we have an underwater station
 		return
@@ -173,14 +172,6 @@ Runs the event
 		round_event.announce_chance = announce_chance_override
 
 	testing("[time2text(world.time, "hh:mm:ss")] [round_event.type]")
-	triggering = TRUE
-
-	if(!triggering)
-		RegisterSignal(SSdcs, COMSIG_GLOB_RANDOM_EVENT, PROC_REF(stop_random_event))
-		round_event.cancel_event = TRUE
-		return round_event
-
-	triggering = FALSE
 	log_game("[random ? "Random" : "Forced"] Event triggering: [name] ([typepath]).")
 
 	// monkestation start: event groups
@@ -193,11 +184,6 @@ Runs the event
 
 	SSblackbox.record_feedback("tally", "event_ran", 1, "[name]")
 	return round_event
-
-//Returns the component for the listener
-/datum/round_event_control/proc/stop_random_event()
-	SIGNAL_HANDLER
-	return CANCEL_RANDOM_EVENT
 
 /datum/round_event //NOTE: Times are measured in master controller ticks!
 	var/processing = TRUE
@@ -382,11 +368,6 @@ Runs the event
 	if(!setup)
 		return
 	if(!processing)
-		return
-
-	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_RANDOM_EVENT, src) & CANCEL_RANDOM_EVENT)
-		processing = FALSE
-		kill()
 		return
 
 	if(activeFor == start_when)
