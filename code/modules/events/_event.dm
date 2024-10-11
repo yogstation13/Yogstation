@@ -29,8 +29,6 @@
 	/// Maximum wizard rituals at which to trigger this event, inclusive
 	var/max_wizard_trigger_potency = NEVER_TRIGGERED_BY_WIZARDS
 
-	var/triggering //admin cancellation
-
 	/// Datum that will handle admin options for forcing the event.
 	/// If there are no options, just leave it as an empty list.
 	var/list/datum/event_admin_setup/admin_setup = list()
@@ -135,13 +133,7 @@
 	if (SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PRE_RANDOM_EVENT, src) & CANCEL_PRE_RANDOM_EVENT)
 		return EVENT_INTERRUPTED
 
-	triggering = TRUE
-
-	// We sleep HERE, in pre-event setup (because there's no sense doing it in run_event() since the event is already running!) for the given amount of time to make an admin has enough time to cancel an event un-fitting of the present round.
 	if(alert_observers)
-		message_admins("Random Event triggering in [DisplayTimeText(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)]: [name]. (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)")
-		if(!roundstart)
-			sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME)
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 		if(!canSpawnEvent(players_amt, fake_check = TRUE) && !forced)
 			message_admins("Second pre-condition check for [name] failed, skipping...")
@@ -149,21 +141,7 @@
 		if(!canSpawnEvent(players_amt, fake_check = TRUE) && forced)
 			message_admins("Second pre-condition check for [name] failed, but event forced, running event regardless this may have issues...")
 
-	if(!triggering)
-		return EVENT_CANCELLED //admin cancelled
-	triggering = FALSE
 	return EVENT_READY
-
-/datum/round_event_control/Topic(href, href_list)
-	..()
-	if(href_list["cancel"])
-		if(!triggering)
-			to_chat(usr, span_admin("You are too late to cancel that event"))
-			return
-		triggering = FALSE
-		message_admins("[key_name_admin(usr)] cancelled event [name].")
-		log_admin_private("[key_name(usr)] cancelled event [name].")
-		SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
 
 /*
 Runs the event
