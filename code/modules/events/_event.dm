@@ -133,13 +133,12 @@
 	if (SEND_GLOBAL_SIGNAL(COMSIG_GLOB_PRE_RANDOM_EVENT, src) & CANCEL_PRE_RANDOM_EVENT)
 		return EVENT_INTERRUPTED
 
-	if(alert_observers)
-		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
-		if(!canSpawnEvent(players_amt, fake_check = TRUE) && !forced)
-			message_admins("Second pre-condition check for [name] failed, skipping...")
-			return EVENT_INTERRUPTED
-		if(!canSpawnEvent(players_amt, fake_check = TRUE) && forced)
-			message_admins("Second pre-condition check for [name] failed, but event forced, running event regardless this may have issues...")
+	var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+	if(!canSpawnEvent(players_amt, fake_check = TRUE) && !forced)
+		message_admins("Second pre-condition check for [name] failed, skipping...")
+		return EVENT_INTERRUPTED
+	if(!canSpawnEvent(players_amt, fake_check = TRUE) && forced)
+		message_admins("Second pre-condition check for [name] failed, but event forced, running event regardless this may have issues...")
 
 	return EVENT_READY
 
