@@ -15,11 +15,15 @@
 	density = TRUE
 	max_integrity = 200
 	var/obj/item/modular_computer/tablet/inserted_pda
-	var/static/list/pda_skins = list()
-	var/static/list/phone_skins = list()
+	var/static/list/pda_skins
+	var/static/list/phone_skins
 
 /obj/machinery/pdapainter/Initialize(mapload)
 	. = ..()
+	if(!pda_skins)
+		pda_skins = list()
+	if(!phone_skins)
+		phone_skins = list()
 	load_pda_skins()
 
 /obj/machinery/pdapainter/update_icon_state()
@@ -41,7 +45,7 @@
 		. += "[initial(icon_state)]-closed"
 
 /obj/machinery/pdapainter/proc/load_pda_skins()
-	if(length(pda_skins) > 0)
+	if(length(pda_skins)) // We only want to load once
 		return
 
 	// PDAs
