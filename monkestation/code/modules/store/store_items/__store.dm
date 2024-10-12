@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(all_store_datums)
 	custom_loadout = new()
 
 /datum/store_manager/ui_close(mob/user)
-	owner?.prefs.save_character()
+	owner?.prefs?.save_character()
 	if(menu)
 		SStgui.close_uis(menu)
 		menu = null
@@ -129,7 +129,6 @@ GLOBAL_LIST_EMPTY(all_store_datums)
 		all_selected_paths += path
 	data["user_is_donator"] = !!(owner.patreon?.is_donator() || owner.twitch?.is_donator() || is_admin(owner))
 	data["owned_items"] = user.client.prefs.inventory
-
 	data["total_coins"] = user.client.prefs.metacoins
 
 	return data

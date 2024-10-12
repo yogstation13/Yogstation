@@ -40,7 +40,7 @@
 /datum/store_item/proc/finalize_purchase(client/buyer)
 	SHOULD_CALL_PARENT(TRUE)
 
-	var/fail_message ="<span class='warning'>Failed to add purchase to database. You have not been charged.</span>"
+	var/fail_message = span_warning("Failed to add purchase to database. You have not been charged.")
 	if(!SSdbcore.IsConnected())
 		to_chat(buyer, fail_message)
 		return FALSE
