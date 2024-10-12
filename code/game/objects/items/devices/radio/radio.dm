@@ -331,8 +331,11 @@
 		signal.levels = list(0)
 		signal.broadcast()
 		return
-	// monkestation edit: "lossless" var
-	if(lossless)
+	// monkestation edit: "lossless" var, radio host stuff
+	if(radio_host)
+		backup_transmission(signal) // just immediately do direct signal transmission
+		return
+	else if(lossless)
 		signal.data["compression"] = 0
 	// monkestation end
 
