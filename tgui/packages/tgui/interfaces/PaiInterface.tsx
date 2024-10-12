@@ -7,7 +7,6 @@ type Module = {
   module_name: string;
   title: string;
   text: string;
-  module: Module[];
 }
 
 type Data = {
@@ -21,16 +20,14 @@ type Category = {
 
 export const PaiInterface = (props, context) => {
   const { act, data } = useBackend<Data>(context);
-  const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
   const { modules_tabs = [] } = data;
+  const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
   return (
-    <Window width={450} height={500} theme="">
+    <Window width={600} height={500} theme="">
       <Window.Content>
         <Flex>
           <Flex.Item grow={1}>
-            <Section title="Health status">
-              Test
-            </Section>
+            <PaiBox />
           </Flex.Item>
           <Flex.Item>
             <Section title="Modules">
@@ -50,4 +47,18 @@ export const PaiInterface = (props, context) => {
       </Window.Content>
     </Window>
   );
+};
+
+const PaiBox = (props, context) => {
+  const { data } = useBackend<Data>(context);
+  const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
+  if(selectedMainTab!==null) {
+    return (
+      <>
+        <Section title={selectedMainTab.title}>
+          Test
+        </Section>
+      </>
+    );
+  }
 };

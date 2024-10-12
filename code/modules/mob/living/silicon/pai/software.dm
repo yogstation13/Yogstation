@@ -44,11 +44,8 @@
 	var/list/data = list()
 	data["section_title"] = "pAI interface"
 	data["modules"] = list()
-	data["modules_tabs"] = "Directives"
-	data["modules_tabs"] = "Download software"
-	message_admins(data)
-	message_admins(data["modules"])
-	message_admins(data["modules_tabs"])
+	data["modules_tabs"] = list(list("module_name" = "Directives", "title"="Directives"), 
+								list("module_name" = "Download additional software", "title"="CentCom pAI Module Subversion Network"))
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
