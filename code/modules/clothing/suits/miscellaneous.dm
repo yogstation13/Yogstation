@@ -604,9 +604,10 @@
 	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
 	icon = 'icons/obj/clothing/suits/suits.dmi'
 	icon_state = "reactiveoff"
-	item_state = "reactiveoff"
+	item_state = "armoralt"
 	blood_overlay_type = "armor"
 	flags_1 = HEAR_1
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //stop trying to get it off
 	var/listening = FALSE
 	var/activation_phrase = ""
 	var/active = FALSE
@@ -615,6 +616,10 @@
 	var/weak = 4
 	var/medium = 2
 	var/heavy = 1
+
+/obj/item/clothing/suit/unalivevest/ex_act(severity, target)
+	. = ..()
+	Explode()
 
 /obj/item/clothing/suit/unalivevest/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
@@ -648,6 +653,7 @@
 	if((slot & slot_flags))
 		to_chat(user, span_danger("You hear the vest click as it locks around your torso!"))
 		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+		RegisterSignal(user, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(Explode))
 
 /obj/item/clothing/suit/unalivevest/proc/Explode()
 	if(active)
