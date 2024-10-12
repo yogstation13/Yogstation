@@ -23048,6 +23048,20 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"qZP" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/pdapainter,
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
 "rhy" = (
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
@@ -66424,7 +66438,7 @@ aio
 atK
 anq
 aiu
-aiC
+qZP
 aiC
 axm
 axU

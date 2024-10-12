@@ -1074,6 +1074,7 @@
 #include "code\game\machinery\mindmachine.dm"
 #include "code\game\machinery\navbeacon.dm"
 #include "code\game\machinery\newscaster.dm"
+#include "code\game\machinery\PDApainter.dm"
 #include "code\game\machinery\posialert.dm"
 #include "code\game\machinery\prisonlabor.dm"
 #include "code\game\machinery\quantum_pad.dm"

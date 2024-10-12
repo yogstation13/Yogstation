@@ -2514,6 +2514,10 @@
 /obj/effect/landmark/vr_spawn/syndicate,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
+"Xf" = (
+/obj/machinery/pdapainter,
+/turf/open/indestructible,
+/area/awaymission/centcomAway/general)
 
 (1,1,1) = {"
 aa
@@ -11021,7 +11025,7 @@ fw
 gW
 gW
 fw
-gW
+Xf
 gW
 gN
 gN

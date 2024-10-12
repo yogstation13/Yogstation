@@ -627,6 +627,10 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/awaymission/vr/megafauna_arena)
+"ew" = (
+/obj/machinery/pdapainter,
+/turf/open/indestructible,
+/area/awaymission/vr/syndicate)
 "ez" = (
 /obj/structure/barricade/security/murderdome,
 /obj/structure/barricade/security/murderdome,
@@ -54344,7 +54348,7 @@ eb
 gz
 gz
 eb
-gz
+ew
 gz
 xp
 xp

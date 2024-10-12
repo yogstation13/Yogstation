@@ -44787,6 +44787,7 @@
 	name = "Head of Personnel RC";
 	pixel_y = 30
 	},
+/obj/machinery/pdapainter,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "mTT" = (
