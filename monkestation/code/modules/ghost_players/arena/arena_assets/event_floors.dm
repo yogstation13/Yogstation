@@ -10,7 +10,17 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/misc/ashplanet/rocky/arena
+	baseturfs = /turf/open/misc/ashplanet/rocky/arena
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 
 /turf/open/water/arena
+	baseturfs = /turf/open/water/arena
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
+/turf/open/misc/dirt/jungle/arena
+	baseturfs = /turf/open/misc/dirt/jungle/arena
+	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+
+/turf/open/misc/dirt/jungle/dark/arena
+	baseturfs = /turf/open/misc/dirt/jungle/dark/arena
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
