@@ -9,6 +9,7 @@
 	verb_say = "hisses"
 	initial_language_holder = /datum/language_holder/alien
 	bubble_icon = BUBBLE_ALIEN
+	weather_immunities = WEATHER_STORM
 	type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab/xeno
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
