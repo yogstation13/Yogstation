@@ -9,11 +9,15 @@
 	cooldown_reduction_per_rank = -1 SECONDS //bit too strong otherwise
 	spell_max_level = 3
 	projectile_type = /obj/projectile/magic/fire_ball
+	projectile_amount = 2
+	unset_after_click = FALSE
 
 /datum/action/cooldown/spell/pointed/projectile/fireball/bouncy/level_spell(bypass_cap)
 	. = ..()
-	projectile_amount++ //become the schoolyard bully
-	unset_after_click = FALSE
+	if(spell_level == 2)
+		projectile_amount++
+		return
+
 	if(spell_level == spell_max_level)
 		projectiles_per_fire++
 
