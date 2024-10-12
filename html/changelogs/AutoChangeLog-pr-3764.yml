@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed some items (primarily greyscale/recolorable items) having incorrect icons in the loadout shop UI."
-  - qol: "Made the loadout shop UI slightly wider, to better fit the category names at the top."
-  - bugfix: "Fixed a runtime error when a player logged out while having the loadout shop open."

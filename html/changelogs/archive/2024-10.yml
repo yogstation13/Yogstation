@@ -190,3 +190,12 @@
   - bugfix: fixed tram disposals around science
   ven1883:
   - bugfix: fixed lobby music exclude being broken
+2024-10-12:
+  Absolucy:
+  - bugfix: Fixed more roundstart active turfs at centcom.
+  - bugfix: Fixed some items (primarily greyscale/recolorable items) having incorrect
+      icons in the loadout shop UI.
+  - qol: Made the loadout shop UI slightly wider, to better fit the category names
+      at the top.
+  - bugfix: Fixed a runtime error when a player logged out while having the loadout
+      shop open.
