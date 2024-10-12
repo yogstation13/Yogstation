@@ -95,6 +95,9 @@
 		for(var/skin_name in pda_skins)
 			choices += skin_name
 		var/choice = tgui_input_list(user, "Choose what skin to apply", "PDA Skin", choices, PDA_EJECT)
+		if(!in_range(src, user))
+			to_chat(src, span_warning("You are too far away!"))
+			return
 		if(choice == PDA_EJECT)
 			balloon_alert(user, "ejected pda")
 			ejectpda(user)
@@ -119,6 +122,9 @@
 		for(var/skin_name in phone_skins)
 			choices += skin_name
 		var/choice = tgui_input_list(user, "Choose what skin to apply", "Phone Skin", choices, PDA_EJECT)
+		if(!in_range(src, user))
+			to_chat(src, span_warning("You are too far away!"))
+			return
 		if(choice == PDA_EJECT)
 			balloon_alert(user, "ejected phone")
 			ejectpda(user)
