@@ -193,7 +193,7 @@
 // Snow Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow
 	name = "snow legion"
-	desc = "You can still see what was once a human under the shifting snowy mass, clearly decorated by a clown."
+	desc = "You can still see what was once a human under the shifting snowy mass."
 	icon = 'icons/mob/icemoon/icemoon_monsters.dmi'
 	icon_state = "snowlegion"
 	icon_living = "snowlegion"
@@ -225,11 +225,12 @@
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/proc/infest(mob/living/carbon/human/H)
 	visible_message(span_warning("[name] burrows into the flesh of [H]!"))
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
+	if(snow_legion)
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow/L
+	else
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
 	if(H.dna.check_mutation(DWARFISM)) //dwarf legions aren't just fluff!
 		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
-	else if(snow_legion)
-		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow(H.loc)
 	else
 		L = new(H.loc)
 	visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
