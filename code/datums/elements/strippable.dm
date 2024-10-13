@@ -564,6 +564,4 @@
 	user.log_message(log_message_success, LOG_ATTACK, color="red", log_globally=FALSE)
 	loot.add_fingerprint(user)
 
-	living_source.dropItemToGround(loot)
-
 	finish_unequip_mob(loot, living_source, user, TRUE)
