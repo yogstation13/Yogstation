@@ -10498,8 +10498,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/defibrillator_mount/loaded{
-	pixel_x = -31;
-	pixel_y = 0
+	pixel_x = -31
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -13456,9 +13455,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west{
-	pixel_x = -25
-	},
+/obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -44790,9 +44787,7 @@
 	name = "Head of Personnel RC";
 	pixel_y = 30
 	},
-/obj/machinery/pdapainter{
-	pixel_y = 2
-	},
+/obj/machinery/pdapainter,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "mTT" = (
@@ -62599,9 +62594,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west{
-	pixel_x = -24
-	},
+/obj/machinery/airalarm/directional/west,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},

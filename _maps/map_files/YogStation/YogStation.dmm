@@ -18631,10 +18631,10 @@
 	pixel_x = -4;
 	pixel_y = 36
 	},
-/obj/machinery/pdapainter,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
+/obj/machinery/pdapainter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "dQj" = (

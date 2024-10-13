@@ -64,6 +64,9 @@
 				CRASH("Cyborg [borgo]'s tablet hard drive rejected recieving a new copy of the self-manage app. To fix, check the hard drive's space remaining. Please make a bug report about this.")
 	return robotact
 
+/obj/item/modular_computer/tablet/integrated/ui_state(mob/user)
+	return GLOB.deep_inventory_state //it's in the silicon	
+
 //Makes the light settings reflect the borg's headlamp settings
 /obj/item/modular_computer/tablet/integrated/ui_data(mob/user)
 	. = ..()

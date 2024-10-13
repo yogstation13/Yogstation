@@ -4704,7 +4704,6 @@
 	},
 /obj/machinery/turretid{
 	ailock = 1;
-	control_area = null;
 	desc = "A specially designed set of turret controls. Looks to be covered in protective casing to prevent AI interfacing.";
 	icon_state = "control_stun";
 	name = "Security turret control";
@@ -7738,20 +7737,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/centcom/control)
-"avI" = (
-/obj/machinery/pdapainter,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "avJ" = (
 /obj/machinery/photocopier,
@@ -15374,9 +15359,7 @@
 	pixel_x = 24
 	},
 /obj/machinery/turretid/syndicate{
-	icon_state = "control_kill";
 	lethal = 1;
-	locked = 1;
 	pixel_y = 28
 	},
 /turf/open/floor/plasteel/dark/side{
@@ -15493,9 +15476,7 @@
 /area/yogs/infiltrator_base)
 "aLx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aLz" = (
 /obj/effect/turf_decal/stripes/corner,
@@ -16779,9 +16760,7 @@
 /obj/item/storage/crayons,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aOK" = (
 /obj/machinery/door/airlock/external{
@@ -18422,7 +18401,6 @@
 	pixel_y = -2
 	},
 /obj/item/toy/cards/deck/syndicate{
-	icon_state = "deck_syndicate_full";
 	pixel_x = -6;
 	pixel_y = 6
 	},
@@ -19465,9 +19443,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aVC" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -20875,8 +20851,7 @@
 "aZi" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/door/airlock/centcom{
-	name = "Equipment Room";
-	opacity = 1
+	name = "Equipment Room"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
@@ -20948,9 +20923,7 @@
 "aZt" = (
 /obj/machinery/washing_machine,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "aZu" = (
 /obj/structure/chair/stool,
@@ -21899,9 +21872,7 @@
 	},
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "gCx" = (
 /obj/effect/landmark/wiki,
@@ -22666,7 +22637,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm{
-	dir = 2;
 	pixel_y = 24
 	},
 /obj/structure/table,
@@ -23080,6 +23050,20 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/bluespace,
 /area/centcom)
+"qZP" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/pdapainter,
+/turf/open/floor/plasteel/dark,
+/area/centcom/control)
 "rhy" = (
 /obj/item/bedsheet/syndie,
 /obj/structure/bed,
@@ -23374,9 +23358,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 "uDo" = (
 /obj/item/storage/firstaid/toxin,
@@ -23909,9 +23891,7 @@
 /obj/machinery/door/window{
 	name = "Shower Door"
 	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/yogs/infiltrator_base)
 
 (1,1,1) = {"
@@ -66460,7 +66440,7 @@ aio
 atK
 anq
 aiu
-avI
+qZP
 aiC
 axm
 axU
