@@ -46,6 +46,9 @@
 	data["modules"] = list()
 	data["modules_tabs"] = list(list("module_name" = "Directives", "title"="Directives"), 
 								list("module_name" = "Download additional software", "title"="CentCom pAI Module Subversion Network"))
+	data["laws_zeroth"] = laws.zeroth
+	data["laws"] = laws.supplied
+	message_admins(data["laws_zeroth"])
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
