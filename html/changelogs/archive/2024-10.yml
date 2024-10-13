@@ -199,3 +199,6 @@
       at the top.
   - bugfix: Fixed a runtime error when a player logged out while having the loadout
       shop open.
+2024-10-13:
+  Absolucy:
+  - bugfix: Fixed the radio mic being delayed by 2 seconds.
