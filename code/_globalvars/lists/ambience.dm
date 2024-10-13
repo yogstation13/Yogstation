@@ -70,6 +70,16 @@ GLOBAL_LIST_INIT(mining_ambience,list(
 	'sound/ambience/ambilava2.ogg',
 	'sound/ambience/ambilava3.ogg'))
 
+GLOBAL_LIST_INIT(icemoon_ambience,list(
+	'sound/ambience/ambimalf2.ogg',
+	'sound/ambience/ambimo2.ogg',
+	'sound/ambience/ambiruin.ogg',
+	'sound/ambience/ambiruin3.ogg',
+	'sound/ambience/ambiruin5.ogg',
+	'sound/ambience/ambiruin6.ogg',
+	'sound/ambience/ambiruin7.ogg',
+	'sound/ambience/bitumen.ogg'))
+
 GLOBAL_LIST_INIT(medical_ambience,list(
 	'sound/ambience/ambinice.ogg',
 	'sound/ambience/ambiruin2.ogg',
@@ -168,6 +178,7 @@ GLOBAL_LIST_INIT(ambience_assoc,list(
 	AMBIENCE_DANGER = GLOB.danger_ambience,
 	AMBIENCE_RUINS = GLOB.ruins_ambience,
 	AMBIENCE_ENGI = GLOB.engi_ambience,
+	AMBIENCE_ICEMOON = GLOB.icemoon_ambience,
 	AMBIENCE_MINING = GLOB.mining_ambience,
 	AMBIENCE_MEDICAL = GLOB.medical_ambience,
 	AMBIENCE_SPOOKY = GLOB.spooky_ambience,

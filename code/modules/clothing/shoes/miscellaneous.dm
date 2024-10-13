@@ -100,16 +100,17 @@
 
 /obj/item/clothing/shoes/clown_shoes/CtrlClick(mob/living/user)
 	if(!isliving(user))
-		return
+		return FALSE
 	if(user.get_active_held_item() != src)
 		to_chat(user, "You must hold the [src] in your hand to do this.")
-		return
+		return TRUE
 	if (!enabled_waddle)
 		to_chat(user, span_notice("You switch off the waddle dampeners!"))
 		enabled_waddle = TRUE
 	else
 		to_chat(user, span_notice("You switch on the waddle dampeners!"))
 		enabled_waddle = FALSE
+	return TRUE
 
 /obj/item/clothing/shoes/clown_shoes/jester
 	name = "jester shoes"

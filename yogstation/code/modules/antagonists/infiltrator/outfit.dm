@@ -39,8 +39,6 @@
 		card.access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 		card.update_label()
 	
-	var/obj/item/pda/pda = H.belt
-	if(istype(pda))
-		pda.owner = H.real_name
-		pda.ownjob = "Assistant"
-		pda.update_label()
+	var/obj/item/modular_computer/worn_computer = H.belt
+	if(istype(worn_computer))
+		worn_computer.update_label(card)

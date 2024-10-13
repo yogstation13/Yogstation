@@ -105,11 +105,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered)
-"aT" = (
-/obj/structure/table/wood/bar,
-/obj/item/pda/chameleon,
-/turf/open/floor/wood,
-/area/ruin/powered)
 "aU" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
@@ -121,7 +116,6 @@
 /obj/structure/sink{
 	desc = "Clean off your radiation.";
 	dir = 8;
-	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -187,8 +181,7 @@
 /area/ruin/powered)
 "bi" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube"
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -243,8 +236,7 @@
 /area/ruin/powered)
 "bv" = (
 /obj/structure/chair/comfy/beige{
-	dir = 4;
-	icon_state = "comfychair"
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -264,8 +256,7 @@
 /area/ruin/powered)
 "bz" = (
 /obj/structure/chair/comfy/beige{
-	dir = 1;
-	icon_state = "comfychair"
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -274,8 +265,7 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube"
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -286,8 +276,7 @@
 /area/ruin/powered)
 "bE" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube"
+	dir = 4
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
@@ -322,8 +311,7 @@
 "bR" = (
 /obj/structure/table/wood,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube"
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -427,8 +415,7 @@
 /area/ruin/powered)
 "zW" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube"
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -2681,7 +2668,7 @@ ai
 bj
 ai
 ai
-aT
+aw
 ai
 ai
 ai

@@ -38,10 +38,12 @@
 /// From /datum/computer_file/program/radar/ui_act, when action is "selecttarget": (selected_ref)
 #define COMSIG_MODULAR_COMPUTER_RADAR_SELECTED "comsig_modular_computer_radar_selected"
 
+/* //unused as saved identification stuff hasn't been added.
 /// from /obj/item/modular_computer/imprint_id(): (name, job)
 #define COMSIG_MODULAR_PDA_IMPRINT_UPDATED "comsig_modular_pda_imprint_updated"
 /// from /obj/item/modular_computer/reset_id(): ()
 #define COMSIG_MODULAR_PDA_IMPRINT_RESET "comsig_modular_pda_imprint_reset"
+*/
 
 /// From /datum/computer_file/program/messenger/receive_message, sent to the computer: (signal/subspace/messaging/tablet_message/signal, sender_job, sender_name)
 #define COMSIG_MODULAR_PDA_MESSAGE_RECEIVED "comsig_modular_pda_message_received"

@@ -335,7 +335,10 @@
 	var/mob/living/user = hud?.mymob
 	if(!istype(user) || !user.client)
 		return
-	icon_state = user.combat_mode ? "combat" : "combat_off" //Treats the combat_mode
+	if(user.grab_mode)
+		icon_state = "grab" // indicate that you're grabbing instead of whatever else
+	else
+		icon_state = user.combat_mode ? "combat" : "combat_off" //Treats the combat_mode
 
 //Version of the combat toggle with the flashy overlay
 /atom/movable/screen/combattoggle/flashy

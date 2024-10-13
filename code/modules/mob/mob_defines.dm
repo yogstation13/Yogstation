@@ -119,6 +119,8 @@
 	/// How many ticks this mob has been over reating
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 
+	///Whether grab mode is enabled
+	var/grab_mode = FALSE
 	///Whether combat mode is enabled
 	var/combat_mode = FALSE
 	///Whether combat mode can be toggled
