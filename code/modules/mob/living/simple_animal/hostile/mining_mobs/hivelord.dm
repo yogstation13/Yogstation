@@ -228,10 +228,8 @@
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
 	if(H.dna.check_mutation(DWARFISM)) //dwarf legions aren't just fluff!
 		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
-	else if(snow_legion)
-		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow(H.loc)
 	else
-		L = new(H.loc)
+		L = new type(H.loc)
 	visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
 	H.death()
 	H.adjustBruteLoss(1000)
