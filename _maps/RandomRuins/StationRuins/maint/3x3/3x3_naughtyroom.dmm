@@ -22,7 +22,7 @@
 "q" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/clothing/head/kitty,
-/obj/item/clothing/under/schoolgirl/red,
+/obj/item/clothing/under/costume/schoolgirl/red,
 /turf/open/floor/carpet/purple,
 /area/template_noop)
 "K" = (

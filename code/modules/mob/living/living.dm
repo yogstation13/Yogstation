@@ -342,14 +342,23 @@
 
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
-/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+/mob/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
 	set category = "Object"
+	return FALSE
+
+/mob/living/pulled(atom/movable/AM as mob|obj in oview(1))
+	set name = "Pull"
+	set category = "Object"
+
+	if(contains_atom(AM)) // don't pull stuff in your inventory
+		return FALSE
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
 	else if(!combat_mode)
 		stop_pulling()
+	return TRUE
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))

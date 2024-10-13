@@ -1420,7 +1420,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!disable_warning)
 					to_chat(H, "The [I.name] is too big to attach.") //should be src?
 				return FALSE
-			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+			if( istype(I, /obj/item/modular_computer/tablet/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_HANDCUFFED)
@@ -1928,6 +1928,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(attacker, COMSIG_MOB_ATTACK_HAND, attacker, defender, attacker_style, modifiers)
 	if(disarming)
 		disarm(attacker, defender, attacker_style)
+	else if(attacker.grab_mode)
+		grab(attacker, defender, attacker_style)
 	else if(attacker.combat_mode)
 		harm(attacker, defender, attacker_style)
 	else

@@ -119,6 +119,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 /obj/machinery/atmospherics/CtrlClick(mob/user)
 	if(quick_toggle && can_interact(user))
 		toggle_on(user)
+		return TRUE
 	return ..()
 
 /obj/machinery/atmospherics/proc/destroy_network()

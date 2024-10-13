@@ -77,9 +77,11 @@
 /area/template_noop)
 "C" = (
 /obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone,
 /area/template_noop)
 "D" = (
 /obj/structure/grille,
@@ -97,6 +99,14 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
+/area/template_noop)
+"H" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
 /area/template_noop)
 "I" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -118,6 +128,14 @@
 	},
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/plasteel/cult/airless,
+/area/template_noop)
+"O" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone{
+	dir = 1
+	},
 /area/template_noop)
 "Q" = (
 /turf/open/floor/plasteel/cult/airless,
@@ -214,7 +232,7 @@ y
 x
 Q
 u
-a
+H
 V
 V
 V
@@ -228,7 +246,7 @@ I
 Q
 Q
 N
-a
+H
 n
 n
 n
@@ -241,7 +259,7 @@ g
 d
 B
 c
-C
+O
 a
 Y
 Y

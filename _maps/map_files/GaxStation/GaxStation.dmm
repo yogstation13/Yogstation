@@ -5520,9 +5520,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "cES" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
 	dir = 4
 	},
@@ -14690,9 +14687,6 @@
 /obj/effect/turf_decal/trimline/red/arrow_ccw{
 	dir = 4
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
 	dir = 1
 	},
@@ -17654,9 +17648,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "imX" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -21118,9 +21109,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle{
 	dir = 1
 	},
@@ -22876,9 +22864,6 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden)
 "kVA" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -24686,9 +24671,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "lMp" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
 	dir = 4
 	},
@@ -27620,9 +27602,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
 	dir = 4
 	},
@@ -28202,10 +28181,10 @@
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "nzI" = (
-/obj/machinery/pdapainter,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/pdapainter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "nzN" = (
@@ -34750,9 +34729,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_middle{
 	dir = 1
 	},
@@ -34874,9 +34850,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "qSn" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -40109,9 +40082,6 @@
 "trI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs_wide{
 	dir = 1
 	},
@@ -45218,9 +45188,6 @@
 	persistence_id = "public";
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},
@@ -46293,9 +46260,6 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/trimline/red/arrow_ccw{
 	dir = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/goon/dark_stairs_alone{
 	dir = 4
@@ -48429,9 +48393,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "xus" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide{
 	dir = 1
 	},

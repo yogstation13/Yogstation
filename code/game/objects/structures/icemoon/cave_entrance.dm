@@ -8,10 +8,11 @@
 	faction = list("mining")
 	max_mobs = 3
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/wolf)
+	max_integrity = 250
 
 	move_resist = INFINITY
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE // no you can't destroy a hole unfortunately
+	resistance_flags = FIRE_PROOF | LAVA_PROOF 
 
 /obj/structure/spawner/ice_moon/Initialize(mapload)
 	. = ..()
@@ -39,3 +40,35 @@
 
 /obj/structure/spawner/ice_moon/snowlegion
 	mob_types = list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow)
+
+
+/obj/structure/spawner/ice_moon/deconstruct(disassembled)
+	new /obj/effect/cavein(loc)
+	new /obj/structure/closet/crate/necropolis/tendril/icemoon(loc)
+	return ..()
+
+
+/obj/effect/cavein
+	name = "collapsing cave entrance"
+	desc = "Get clear!"
+	layer = TABLE_LAYER
+	icon = 'icons/mob/nest.dmi'
+	icon_state = "hole"
+	anchored = TRUE
+
+/obj/effect/cavein/Initialize(mapload)
+	. = ..()
+	visible_message(span_boldannounce("You hear the screams of creatures as the entrance to the cave crumbles and begins to cave in! Get back!"))
+	visible_message(span_warning("Something is shoved out of the cave by debris!"))
+	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, 1, 1)
+	addtimer(CALLBACK(src, PROC_REF(cavein)), 50)
+
+/obj/effect/cavein/proc/cavein()
+	for(var/mob/M in range(7,src))
+		shake_camera(M, 15, 1)
+	playsound(get_turf(src),'sound/effects/explosionfar.ogg', 200, 1)
+	visible_message(span_boldannounce("The entrance to the cave falls inward, the ground around it widening into a yawning chasm!"))
+	for(var/turf/T in range(2,src))
+		if(!T.density)
+			T.TerraformTurf(/turf/open/chasm/icemoon, /turf/open/chasm/icemoon, flags = CHANGETURF_INHERIT_AIR)
+	qdel(src)

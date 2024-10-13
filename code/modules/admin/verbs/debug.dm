@@ -449,10 +449,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			id.update_label()
 
 			if(worn)
-				if(istype(worn, /obj/item/pda))
-					var/obj/item/pda/PDA = worn
-					PDA.id = id
-					id.forceMove(PDA)
+				if(istype(worn, /obj/item/modular_computer))
+					var/obj/item/modular_computer/worn_computer = worn
+					worn_computer.InsertID(id)
 				else if(istype(worn, /obj/item/storage/wallet))
 					var/obj/item/storage/wallet/W = worn
 					W.front_id = id
