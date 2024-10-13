@@ -1,0 +1,6 @@
+author: "JohnFulpWillard & ynot01"
+delete-after: true 
+changes: 
+  - rscdel: "Removed old PDAs and the ability to fake messaging with the telecomms messaging monitor console."
+  - tweak: "PDA painters now work with new PDAs and phones."
+  - tweak: "pAIs now use new PDAs."
