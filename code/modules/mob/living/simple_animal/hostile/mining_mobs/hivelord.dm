@@ -203,6 +203,8 @@
 	loot = list(/obj/item/organ/regenerative_core/legion/snow)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
 	snow_legion = TRUE
+	can_infest_dead = TRUE
+
 
 // Snow Legion skull
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
@@ -228,8 +230,10 @@
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
 	if(H.dna.check_mutation(DWARFISM)) //dwarf legions aren't just fluff!
 		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
+	else if(snow_legion)
+		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow(H.loc)
 	else
-		L = new type(H.loc)
+		L = new(H.loc)
 	visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
 	H.death()
 	H.adjustBruteLoss(1000)
