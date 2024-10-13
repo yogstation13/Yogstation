@@ -20596,10 +20596,6 @@
 /obj/effect/turf_decal/trimline/yellow/filled/corner,
 /turf/open/floor/iron/white/textured,
 /area/centcom/central_command_areas/admin)
-"fRE" = (
-/obj/machinery/nuclearbomb/syndicate/bananium,
-/turf/open/floor/mineral/bananium,
-/area/centcom/central_command_areas/admin)
 "fRS" = (
 /obj/structure/railing/wood{
 	dir = 8
@@ -64177,7 +64173,7 @@ jmO
 hor
 jSt
 aZf
-fRE
+kUJ
 kUJ
 kjT
 aOn
