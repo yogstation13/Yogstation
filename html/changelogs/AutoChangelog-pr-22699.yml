@@ -1,0 +1,6 @@
+author: "moja10, sapphicoverload"
+delete-after: true 
+changes: 
+  - tweak: "Icemoon now uses its own set of ambience tracks separate from lavaland"
+  - soundadd: "Added new ambience track by Moja10 to the icemoon ambience tracklist"
+  - bugfix: "Removed ambient \"buzz\" when outside on the icemoon"
