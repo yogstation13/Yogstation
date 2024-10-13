@@ -42,13 +42,13 @@
 
 /mob/living/silicon/pai/ui_data(mob/user)
 	var/list/data = list()
-	data["section_title"] = "pAI interface"
 	data["modules"] = list()
 	data["modules_tabs"] = list(list("module_name" = "Directives", "title"="Directives"), 
 								list("module_name" = "Download additional software", "title"="CentCom pAI Module Subversion Network"))
 	data["laws_zeroth"] = laws.zeroth
 	data["laws"] = laws.supplied
-	message_admins(data["laws_zeroth"])
+	data["master"] = master
+	data["masterdna"] = master_dna
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
@@ -56,106 +56,103 @@
 		return
 	switch(action)
 		if("PaiInterface")
-			var/newvar = params["var"]
 			. = TRUE
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/proc/paiInterface()
-	//
-	//var/dat = ""
-	//var/left_part = ""
-	//var/right_part = softwareMenu()
-	//set_machine(src)
-//
-	//if(temp)
-	//	left_part = temp
-	//else if(stat == DEAD)						// Show some flavor text if the pAI is dead
-	//	left_part = "<b><font color=red>ÈRrÖR Ða†Ä ÇÖRrÚþ†Ìoñ</font></b>"
-	//	right_part = "<pre>Program index hash not found</pre>"
-//
-	//else
-	//	switch(screen)							// Determine which interface to show here
-	//		if("main")
-	//			left_part = ""
-	//		if("directives")
-	//			left_part = directives()
-	//		if("pdamessage")
-	//			left_part = pdamessage()
-	//		if("buy")
-	//			left_part = downloadSoftware()
-	//		if("manifest")
-	//			left_part = softwareManifest()
-	//		if("medicalrecord")
-	//			left_part = softwareMedicalRecord()
-	//		if("securityrecord")
-	//			left_part = softwareSecurityRecord()
-	//		if("encryptionkeys")
-	//			left_part = softwareEncryptionKeys()
-	//		if("translator")
-	//			left_part = softwareTranslator()
-	//		if("atmosensor")
-	//			left_part = softwareAtmo()
-	//		if("securityhud")
-	//			left_part = facialRecognition()
-	//		if("medicalhud")
-	//			left_part = medicalAnalysis()
-	//		if("doorjack")
-	//			left_part = softwareDoor()
-	//		if("camerajack")
-	//			left_part = softwareCamera()
-	//		if("signaller")
-	//			left_part = softwareSignal()
-	//		if("loudness")
-	//			left_part = softwareLoudness()
-	//		if("hostscan")
-	//			left_part = softwareHostScan()
-//
-//
-	////usr << browse_rsc('windowbak.png')		// This has been moved to the mob's Login() proc
-//
-//
-	//											// Declaring a doctype is necessary to enable BYOND's crappy browser's more advanced CSS functionality
-	//dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
-	//		<html>
-	//		<head>
-	//			<meta charset='UTF-8'>
-	//			<style type=\"text/css\">
-	//				body { background-image:url('[SSassets.transport.get_asset_url("paigrid.png")]'); }
-//
-	//				#header { text-align:center; color:white; font-size: 30px; height: 35px; width: 100%; letter-spacing: 2px; z-index: 5}
-	//				#content {position: relative; left: 10px; height: 400px; width: 100%; z-index: 0}
-//
-	//				#leftmenu {color: #AAAAAA; background-color:#333333; width: 400px; height: auto; min-height: 340px; position: absolute; z-index: 0}
-	//				#leftmenu a:link { color: #CCCCCC; }
-	//				#leftmenu a:hover { color: #CC3333; }
-	//				#leftmenu a:visited { color: #CCCCCC; }
-	//				#leftmenu a:active { color: #000000; }
-//
-	//				#rightmenu {color: #CCCCCC; background-color:#555555; width: 200px ; height: auto; min-height: 340px; right: 10px; position: absolute; z-index: 1}
-	//				#rightmenu a:link { color: #CCCCCC; }
-	//				#rightmenu a:hover { color: #CC3333; }
-	//				#rightmenu a:visited { color: #CCCCCC; }
-	//				#rightmenu a:active { color: #000000; }
-//
-	//			</style>
-	//			<script language='javascript' type='text/javascript'>
-	//			[js_byjax]
-	//			</script>
-	//		</head>
-	//		<body scroll=yes>
-	//			<div id=\"header\">
-	//				pAI OS
-	//			</div>
-	//			<div id=\"content\">
-	//				<div id=\"leftmenu\">[left_part]</div>
-	//				<div id=\"rightmenu\">[right_part]</div>
-	//			</div>
-	//		</body>
-	//		</html>"} //"
-	//src << browse(dat, "window=pai;size=640x480;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
-	//onclose(src, "pai")
-	//temp = null
-//
+	
+	var/dat = ""
+	var/left_part = ""
+	var/right_part = softwareMenu()
+	set_machine(src)
+
+	if(temp)
+		left_part = temp
+	else if(stat == DEAD)						// Show some flavor text if the pAI is dead
+		left_part = "<b><font color=red>ÈRrÖR Ða†Ä ÇÖRrÚþ†Ìoñ</font></b>"
+		right_part = "<pre>Program index hash not found</pre>"
+
+	else
+		switch(screen)							// Determine which interface to show here
+			if("main")
+				left_part = ""
+			if("directives")
+				left_part = directives()
+			if("buy")
+				left_part = downloadSoftware()
+			if("manifest")
+				left_part = softwareManifest()
+			if("medicalrecord")
+				left_part = softwareMedicalRecord()
+			if("securityrecord")
+				left_part = softwareSecurityRecord()
+			if("encryptionkeys")
+				left_part = softwareEncryptionKeys()
+			if("translator")
+				left_part = softwareTranslator()
+			if("atmosensor")
+				left_part = softwareAtmo()
+			if("securityhud")
+				left_part = facialRecognition()
+			if("medicalhud")
+				left_part = medicalAnalysis()
+			if("doorjack")
+				left_part = softwareDoor()
+			if("camerajack")
+				left_part = softwareCamera()
+			if("signaller")
+				left_part = softwareSignal()
+			if("loudness")
+				left_part = softwareLoudness()
+			if("hostscan")
+				left_part = softwareHostScan()
+
+
+	//usr << browse_rsc('windowbak.png')		// This has been moved to the mob's Login() proc
+
+
+												// Declaring a doctype is necessary to enable BYOND's crappy browser's more advanced CSS functionality
+	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
+			<html>
+			<head>
+				<meta charset='UTF-8'>
+				<style type=\"text/css\">
+					body { background-image:url('[SSassets.transport.get_asset_url("paigrid.png")]'); }
+
+					#header { text-align:center; color:white; font-size: 30px; height: 35px; width: 100%; letter-spacing: 2px; z-index: 5}
+					#content {position: relative; left: 10px; height: 400px; width: 100%; z-index: 0}
+
+					#leftmenu {color: #AAAAAA; background-color:#333333; width: 400px; height: auto; min-height: 340px; position: absolute; z-index: 0}
+					#leftmenu a:link { color: #CCCCCC; }
+					#leftmenu a:hover { color: #CC3333; }
+					#leftmenu a:visited { color: #CCCCCC; }
+					#leftmenu a:active { color: #000000; }
+
+					#rightmenu {color: #CCCCCC; background-color:#555555; width: 200px ; height: auto; min-height: 340px; right: 10px; position: absolute; z-index: 1}
+					#rightmenu a:link { color: #CCCCCC; }
+					#rightmenu a:hover { color: #CC3333; }
+					#rightmenu a:visited { color: #CCCCCC; }
+					#rightmenu a:active { color: #000000; }
+
+				</style>
+				<script language='javascript' type='text/javascript'>
+				[js_byjax]
+				</script>
+			</head>
+			<body scroll=yes>
+				<div id=\"header\">
+					pAI OS
+				</div>
+				<div id=\"content\">
+					<div id=\"leftmenu\">[left_part]</div>
+					<div id=\"rightmenu\">[right_part]</div>
+				</div>
+			</body>
+			</html>"} //"
+	src << browse(dat, "window=pai;size=640x480;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
+	onclose(src, "pai")
+	temp = null
+
 /mob/living/silicon/pai/Topic(href, href_list)
 	if(..())
 		return

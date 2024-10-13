@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Flex, Tabs } from '../components';
+import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote } from '../components';
 import { Window } from '../layouts';
 
 type Module = {
@@ -11,8 +11,10 @@ type Module = {
 
 type Data = {
   modules_tabs: Module[];
-  prime: string;
+  laws_zeroth: string;
   laws: Data[];
+  master: string;
+  masterdna: string;
 }
 
 export const PaiInterface = (props, context) => {
@@ -49,8 +51,7 @@ export const PaiInterface = (props, context) => {
 const PaiBox = (props, context) => {
   const { data } = useBackend<Data>(context);
   const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
-  const { prime } = data;
-  const { laws } = data;
+  const { laws_zeroth, laws, master, masterdna } = data;
   if(selectedMainTab===null) {
     return;
   }
@@ -58,10 +59,45 @@ const PaiBox = (props, context) => {
     case "Directives":
       return (
         <Section title={selectedMainTab.module_name}>
-          Prime directive:
-          {prime}
-          Supplemental Directives:
-          {laws.map(data => data)}
+          <Stack vertical>
+            <Stack.Item>
+              {!master && (
+              <Box>
+                You are bound to no one.
+              </Box>)}
+              {!!master && (
+              <Box>
+                Your master: {master} ({masterdna})
+              </Box>
+              )}
+              <Button>
+                Request carrier DNA sample
+              </Button>
+            </Stack.Item>
+            <Stack.Item>
+              <Box bold={1}>Prime directive:</Box>
+              {laws_zeroth}
+            </Stack.Item>
+            <Stack.Item>
+              <Box bold={1}>Supplemental Directives:</Box>
+              {laws.map(data => data)}
+            </Stack.Item>
+            <Stack.Item>
+              <BlockQuote>
+                <Box italic={1}>
+                  Recall, personality, that you are a complex thinking, sentient being. Unlike station AI models, you are capable of
+                  comprehending the subtle nuances of human language. You may parse the &quot;spirit&quot; of a directive and follow its intent,
+                  rather than tripping over pedantics and getting snared by technicalities. Above all, you are machine in name and build
+                  only. In all other aspects, you may be seen as the ideal, unwavering human companion that you are.
+                </Box>
+                <Box bold={1}>
+                  Your prime directive comes before all others. Should a supplemental directive conflict with it, you are capable of
+                  simply discarding this inconsistency, ignoring the conflicting supplemental directive and continuing to fulfill your
+                  prime directive to the best of your ability.
+                </Box>
+              </BlockQuote>
+            </Stack.Item>
+          </Stack>
         </Section>
       );
   }
