@@ -602,9 +602,8 @@
 /obj/item/clothing/suit/unalivevest
 	name = "extremely obvious suicide vest"
 	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
-	icon = 'icons/obj/clothing/suits/suits.dmi'
-	icon_state = "reactiveoff"
-	item_state = "armoralt"
+	icon_state = "unalive-vest"
+	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
 	flags_1 = HEAR_1
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //stop trying to get it off
