@@ -203,7 +203,6 @@
 	loot = list(/obj/item/organ/regenerative_core/legion/snow)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
 	snow_legion = TRUE
-	can_infest_dead = TRUE
 
 
 // Snow Legion skull
@@ -216,7 +215,7 @@
 	icon_aggro = "snowlegion_head"
 	icon_dead = "snowlegion_head"
 	snow_legion = TRUE
-
+	can_infest_dead = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(isturf(loc))
