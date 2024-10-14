@@ -1,6 +1,0 @@
-author: "t-toasted"
-delete-after: True
-changes:
-  - rscadd: "Added the NT Rep Office to Meta, Delta, and Icebox."
-  - qol: "Moved Gateway on Meta above arrivals."
-  - bugfix: "Various minor fixes."

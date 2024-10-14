@@ -1,5 +1,0 @@
-author: "Absolucy, Aylong, jlsnow301"
-delete-after: True
-changes:
-  - refactor: "Added a better system of displaying object icons in tgui."
-  - refactor: "Botany seed extractors now use aforementioned system to display seed icons."
