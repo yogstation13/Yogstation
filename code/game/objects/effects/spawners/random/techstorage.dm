@@ -48,6 +48,7 @@
 		/obj/item/circuitboard/machine/composters,
 		/obj/item/circuitboard/machine/plantgenes,
 		/obj/item/circuitboard/machine/biogenerator,
+		/obj/item/circuitboard/machine/splicer,
 		/obj/item/circuitboard/machine/hydroponics,
 		/obj/item/circuitboard/machine/seed_extractor,
 		/obj/item/circuitboard/machine/chicken_grinder,

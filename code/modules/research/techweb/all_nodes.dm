@@ -1523,7 +1523,10 @@
 		"seed_extractor",
 		"adv_watering_can",
 		"plantgenes",
-		"composters", // monkestation edit: build composters
+		// monkestation edit: our hydroponics stuff
+		"composters",
+		"splicer",
+		// monkestation end
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 4000)
 	discount_experiments = list(/datum/experiment/scanning/random/plants/traits = 2000,

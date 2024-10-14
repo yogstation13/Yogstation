@@ -25,7 +25,7 @@
 	var/max_maturation = 10
 
 /obj/machinery/plantgenes/RefreshParts() // Comments represent the max you can set per tier, respectively. seeds.dm [219] clamps these for us but we don't want to mislead the viewer.
-	.=..()
+	. = ..()
 	for(var/datum/stock_part/manipulator/M in component_parts)
 		if(M.tier > 3)
 			max_potency = INFINITY
@@ -49,26 +49,49 @@
 		min_wrate = FLOOR(10-wratemod,1) // 7,5,2,0	Clamps at 0 and 10	You want this low
 		min_wchance = 67-(ML.tier*16) // 48,35,19,3 	Clamps at 0 and 67	You want this low
 
-/obj/machinery/plantgenes/update_icon()
-	..()
-	cut_overlays()
-	if((machine_stat & (BROKEN|NOPOWER)))
+/obj/machinery/plantgenes/update_icon_state()
+	. = ..()
+	if((machine_stat & (BROKEN | NOPOWER)) || !anchored)
 		icon_state = "dnamod-off"
 	else
 		icon_state = "dnamod"
+
+/obj/machinery/plantgenes/update_overlays()
+	. = ..()
+	if(machine_stat & BROKEN)
+		return
 	if(seed)
-		add_overlay("dnamod-dna")
+		. += "dnamod-dna"
 	if(panel_open)
-		add_overlay("dnamod-open")
+		. += "dnamod-open"
+
+/obj/machinery/plantgenes/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	default_unfasten_wrench(user, tool)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
+/obj/machinery/plantgenes/screwdriver_act(mob/living/user, obj/item/tool)
+	if(..())
+		return TRUE
+	return default_deconstruction_screwdriver(user, "dnamod", "dnamod", tool)
+
+/obj/machinery/plantgenes/crowbar_act(mob/living/user, obj/item/tool)
+	if(default_deconstruction_crowbar(tool))
+		return TRUE
+
+/obj/machinery/plantgenes/set_anchored(anchorvalue)
+	. = ..()
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/plantgenes/on_set_panel_open(old_value)
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/plantgenes/attackby(obj/item/I, mob/user, params)
-	if(default_deconstruction_screwdriver(user, "dnamod", "dnamod", I))
-		update_icon()
-		return
-	if(default_deconstruction_crowbar(I))
-		return
 	if(iscyborg(user))
 		return
+	if(!anchored)
+		return ..()
 
 	if(istype(I, /obj/item/seeds))
 		if (operation)
@@ -95,7 +118,7 @@
 
 /obj/machinery/plantgenes/ui_interact(mob/user)
 	. = ..()
-	if(!user)
+	if(!user || !anchored || panel_open)
 		return
 
 	var/datum/browser/popup = new(user, "plantdna", "Plant DNA Manipulator", 450, 600)
@@ -323,9 +346,8 @@
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
 						disk.update_disk_name()
-						qdel(seed)
-						seed = null
-						update_icon()
+						QDEL_NULL(seed)
+						update_appearance(UPDATE_OVERLAYS)
 				if("replace")
 					if(disk && disk.gene && istype(disk.gene, G.type) && istype(G, /datum/plant_gene/core))
 						seed.genes -= G
@@ -359,7 +381,7 @@
 	S.forceMove(src)
 	seed = S
 	update_genes()
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/plantgenes/proc/eject_disk()
 	if (disk && !operation)
@@ -379,6 +401,7 @@
 		else
 			seed.forceMove(drop_location())
 		seed = null
+		update_appearance(UPDATE_OVERLAYS)
 		update_genes()
 
 /obj/machinery/plantgenes/proc/update_genes()

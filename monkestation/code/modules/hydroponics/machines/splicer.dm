@@ -1,9 +1,11 @@
 /obj/machinery/splicer
 	name = "Splicer"
 	desc = "Splices two seeds together."
-
-	icon_state = "splicer"
 	icon = 'monkestation/icons/obj/machines/hydroponics.dmi'
+	base_icon_state = "splicer"
+	icon_state = "splicer"
+	circuit = /obj/item/circuitboard/machine/splicer
+
 	var/obj/item/seeds/seed_1
 	var/obj/item/seeds/seed_2
 	var/obj/item/reagent_containers/cup/beaker/held_beaker
@@ -29,12 +31,50 @@
 			if(!user.transferItemToLoc(I, src))
 				return
 			seed_2 = I
-	if(istype(I, /obj/item/reagent_containers/cup/beaker))
+	else if(istype(I, /obj/item/reagent_containers/cup/beaker))
 		if(!held_beaker)
 			if(!user.transferItemToLoc(I, src))
 				return
 			held_beaker = I
 			return
+
+/obj/machinery/splicer/wrench_act(mob/living/user, obj/item/tool)
+	. = ..()
+	default_unfasten_wrench(user, tool)
+	return TOOL_ACT_TOOLTYPE_SUCCESS
+
+/obj/machinery/splicer/screwdriver_act(mob/living/user, obj/item/tool)
+	. = ..()
+	if(!.)
+		return default_deconstruction_screwdriver(user, base_icon_state, base_icon_state, tool)
+
+/obj/machinery/splicer/crowbar_act(mob/living/user, obj/item/tool)
+	if(default_deconstruction_crowbar(tool))
+		return TRUE
+
+/obj/machinery/splicer/update_icon_state()
+	. = ..()
+	if(machine_stat & BROKEN)
+		icon_state = "[base_icon_state]_broken"
+	else if((machine_stat & NOPOWER) || !anchored)
+		icon_state = "[base_icon_state]_off"
+	else if(working)
+		icon_state = "[base_icon_state]_working"
+	else
+		icon_state = "[base_icon_state]"
+
+/obj/machinery/splicer/update_overlays()
+	. = ..()
+	if(panel_open)
+		. += "[base_icon_state]_open"
+
+/obj/machinery/splicer/set_anchored(anchorvalue)
+	. = ..()
+	update_appearance(UPDATE_ICON)
+
+/obj/machinery/splicer/on_set_panel_open(old_value)
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/splicer/ui_data(mob/user)
 	. = ..()
