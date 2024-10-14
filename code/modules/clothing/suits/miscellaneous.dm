@@ -600,7 +600,7 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
 /obj/item/clothing/suit/unalivevest
-	name = "extremely obvious suicide vest"
+	name = "explosive vest"
 	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
 	icon_state = "unalive-vest"
 	item_state = "reactiveoff"
