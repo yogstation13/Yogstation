@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 44
+#define SAVEFILE_VERSION_MAX 45
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -70,6 +70,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(current_version < 44)
 		key_bindings["enable_combat_mode"] = GLOB.default_hotkeys["enable_combat_mode"]
 		key_bindings["disable_combat_mode"] = GLOB.default_hotkeys["disable_combat_mode"]
+
+	if(current_version < 45)
+		key_bindings["grab_mode_hold"] = GLOB.default_hotkeys["grab_mode_hold"]
+		key_bindings["grab_mode_toggle"] = GLOB.default_hotkeys["grab_mode_toggle"]
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 31) //Someone doesn't know how to code and make jukebox and autodeadmin the same thing

@@ -178,7 +178,6 @@
 			return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
-	var/list/mob_details = list()
 	var/list/holding = list()
 	var/len = length(held_items)
 	if(len)
@@ -186,12 +185,10 @@
 			if(!holding.len)
 				holding += "They are holding \a [I]"
 			else if(held_items.Find(I) == len)
-				holding += ", and \a [I]."
+				holding += ", and \a [I]"
 			else
 				holding += ", \a [I]"
-	holding += "."
-	mob_details += "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt":""][holding ? ". [holding.Join("")]":"."]."
-	return mob_details.Join("")
+	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt":""][holding.len ? ". [holding.Join("")].":"."]"
 
 //Called when we bump onto an obj
 /mob/living/proc/ObjBump(obj/O)
@@ -345,14 +342,23 @@
 
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
-/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+/mob/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
 	set category = "Object"
+	return FALSE
+
+/mob/living/pulled(atom/movable/AM as mob|obj in oview(1))
+	set name = "Pull"
+	set category = "Object"
+
+	if(contains_atom(AM)) // don't pull stuff in your inventory
+		return FALSE
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
 	else if(!combat_mode)
 		stop_pulling()
+	return TRUE
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))
@@ -879,58 +885,6 @@
 	else if(((!on || fixed) && (movement_type & FLOATING)))
 		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 1 SECONDS)
 		setMovetype(movement_type & ~FLOATING)
-
-// The src mob is trying to strip an item from someone
-// Override if a certain type of mob should be behave differently when stripping items (can't, for example)
-/mob/living/stripPanelUnequip(obj/item/what, mob/who, where)
-	if(!what.canStrip(who))
-		to_chat(src, span_warning("You can't remove \the [what.name], it appears to be stuck!"))
-		return
-	who.visible_message(span_danger("[src] tries to remove [who]'s [what.name]."), \
-					span_userdanger("[src] tries to remove [who]'s [what.name]."))
-	what.add_fingerprint(src)
-	SEND_SIGNAL(what, COMSIG_ITEM_PRESTRIP)
-	if(do_after(src, what.strip_delay, who, interaction_key = REF(what)))
-		if(what && Adjacent(who))
-			if(islist(where))
-				var/list/L = where
-				if(what == who.get_item_for_held_index(L[2]))
-					if(what.doStrip(src, who))
-						log_combat(src, who, "stripped [what] off")
-			if(what == who.get_item_by_slot(where))
-				if(what.doStrip(src, who))
-					log_combat(src, who, "stripped [what] off")
-
-// The src mob is trying to place an item on someone
-// Override if a certain mob should be behave differently when placing items (can't, for example)
-/mob/living/stripPanelEquip(obj/item/what, mob/who, where)
-	what = src.get_active_held_item()
-	if(what && (HAS_TRAIT(what, TRAIT_NODROP)))
-		to_chat(src, span_warning("You can't put \the [what.name] on [who], it's stuck to your hand!"))
-		return
-	if(what)
-		var/list/where_list
-		var/final_where
-
-		if(islist(where))
-			where_list = where
-			final_where = where[1]
-		else
-			final_where = where
-
-		if(!what.mob_can_equip(who, src, final_where, TRUE, TRUE))
-			to_chat(src, span_warning("\The [what.name] doesn't fit in that place!"))
-			return
-
-		visible_message(span_notice("[src] tries to put [what] on [who]."))
-		if(do_after(src, what.equip_delay_other, who))
-			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
-				if(temporarilyRemoveItemFromInventory(what))
-					if(where_list)
-						if(!who.put_in_hand(what, where_list[2]))
-							what.forceMove(get_turf(who))
-					else
-						who.equip_to_slot(what, where, TRUE)
 
 /mob/living/singularity_pull(S, current_size)
 	..()

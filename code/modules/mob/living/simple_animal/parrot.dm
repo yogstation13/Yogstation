@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	return TRUE
 
-/datum/strippable_item/parrot_headset/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/parrot_headset/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/mob/living/simple_animal/parrot/parrot_source = source
 	if (!istype(parrot_source))
 		return
@@ -1015,3 +1015,15 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 /mob/living/simple_animal/parrot/clock_hawk/ratvar_act()
 	return
+
+/mob/living/simple_animal/parrot/shipbreaking_hawk
+	name = "Terrance"
+	desc = "Born and raised in a cage in the Universal Animalist Hegemony's mega-church, they were found in an abandoned religious ship and left on station."
+	icon_state = "hawk_flying"
+	icon_living = "hawk_flying"
+	icon_sit = "hawk_sitting"
+	icon_dead = "hawk_dead"
+	speak = list("kee-eeeee-arr!", "kee-eeeeear!")
+	speak_emote = list("squawks endlessly", "says crassly", "yells loudly")
+	emote_hear = list("squawks endlessly.", "cries powerfully!")
+	emote_see = list("flutters its powerful wings.")

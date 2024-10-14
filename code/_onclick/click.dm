@@ -97,8 +97,7 @@
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		AltClickOn(A)
 		return
-	if(modifiers["ctrl"])
-		CtrlClickOn(A)
+	if(modifiers["ctrl"] && CtrlClickOn(A))
 		return
 
 	if(incapacitated(ignore_restraints = 1))
@@ -119,6 +118,9 @@
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		changeNext_move(CLICK_CD_HANDCUFFED)   //Doing shit in cuffs shall be vey slow
 		UnarmedAttack(A, FALSE, modifiers)
+		return
+	
+	if(grab_mode && pulled(A))
 		return
 
 	if(in_throw_mode)
@@ -332,24 +334,21 @@
 */
 
 /mob/proc/CtrlClickOn(atom/A)
-	A.CtrlClick(src)
-	return
+	return A.CtrlClick(src)
 
 /atom/proc/CtrlClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL, user)
-	var/mob/living/ML = user
-	if(istype(ML))
-		ML.pulled(src)
+	return FALSE
 
-/mob/living/carbon/human/CtrlClick(mob/user)
-	if(ishuman(user) && Adjacent(user) && !user.incapacitated())
-		if(world.time < user.next_move)
-			return FALSE
-		var/mob/living/carbon/human/H = user
-		H.dna.species.grab(H, src, H.mind.martial_art)
-		H.changeNext_move(CLICK_CD_MELEE)
-	else
-		..()
+/mob/living/carbon/human/pulled(atom/movable/grabbed)
+	if(!ishuman(grabbed) || !Adjacent(grabbed) || incapacitated())
+		return ..()
+	if(world.time < next_move)
+		return TRUE
+	dna.species.grab(src, grabbed, mind.martial_art)
+	changeNext_move(CLICK_CD_MELEE)
+	return TRUE
+
 /*
 	Alt click
 	Unused except for AI

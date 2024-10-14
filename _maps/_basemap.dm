@@ -9,7 +9,7 @@
 		#include "map_files\YogStation\Yogstation.dmm"
 		#include "map_files\IceMeta\IceMeta.dmm"
 		#include "map_files\GaxStation\GaxStation.dmm"
-		#include "map_files\AsteroidStation\AsteroidStation.dmm"
+		#include "map_files\ManateeStation\ManateeStation.dmm"
 		#include "map_files\DonutStation\DonutStation.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"

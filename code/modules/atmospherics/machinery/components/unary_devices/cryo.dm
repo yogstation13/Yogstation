@@ -68,6 +68,7 @@
 	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
 	vent_movement = NONE
 	occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal)
+	quick_toggle = TRUE
 
 	showpipe = FALSE
 
@@ -529,9 +530,9 @@
 				beaker = null
 				. = TRUE
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/CtrlClick(mob/user)
-	if(can_interact(user) && !state_open)
-		set_on(!on)
+/obj/machinery/atmospherics/components/unary/cryo_cell/toggle_on(mob/user)
+	if(state_open)
+		return
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/AltClick(mob/user)

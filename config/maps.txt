@@ -30,6 +30,11 @@ map gaxstation
 	votable
 endmap
 
+map manateestation
+	minplayers 40
+	votable
+endmap
+
 map donutstation
 	maxplayers 50
 	votable

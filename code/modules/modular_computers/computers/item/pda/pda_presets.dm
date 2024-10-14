@@ -86,6 +86,12 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#D6B328#6506CA#927444"
 
+/obj/item/modular_computer/tablet/pda/preset/cargo/quartermaster/Initialize(mapload)
+	starting_files |= list(
+			new /datum/computer_file/program/robocontrol,
+	)
+	return ..()
+
 /obj/item/modular_computer/tablet/pda/preset/shaft_miner
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#927444#D6B328#6C3BA1"

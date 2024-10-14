@@ -18,8 +18,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/devour_will
 	name = "Devour Will"
-	desc = "Creates a dark bead that can be used on a human to fully recharge Psi, gain one lucidity, and knock them unconscious. The victim will be stunned for the duration of the channel, being interrupted \
-	will knock both you and the victim down. Costs 5 Psi."
+	desc = "Creates a dark bead that can be used on a human to begin draining the lucidity and willpower from a living target, knocking them unconscious for a time. Being interrupted will knock you down for a time."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	sound = null

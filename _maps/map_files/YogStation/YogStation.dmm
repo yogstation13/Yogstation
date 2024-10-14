@@ -3417,6 +3417,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"azw" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "azx" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable{
@@ -10112,6 +10126,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bAj" = (
+/mob/living/simple_animal/parrot/shipbreaking_hawk,
 /turf/open/floor/plasteel/dark,
 /area/escapepodbay)
 "bAo" = (
@@ -22635,7 +22650,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
 "fiz" = (
-/obj/effect/turf_decal/ramp_middle,
 /obj/machinery/door/window/northleft{
 	dir = 2;
 	name = "Captain's Desk Door"
@@ -25285,13 +25299,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"geQ" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -31
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "gft" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/power/smes,
@@ -26800,7 +26807,6 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "gJD" = (
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/stairs2_wide,
 /area/crew_quarters/fitness)
 "gJM" = (
@@ -26880,14 +26886,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"gLV" = (
-/obj/machinery/camera{
-	c_tag = "Fore Primary Hallway Central";
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "gMD" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -30107,17 +30105,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"hPV" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp/green{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "hPW" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
@@ -32424,6 +32411,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"iBM" = (
+/obj/machinery/camera{
+	c_tag = "Fore Primary Hallway Central";
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -31
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "iCk" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock"
@@ -33188,9 +33186,6 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "iNY" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
@@ -36012,7 +36007,6 @@
 "jRb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle,
 /obj/machinery/door/window{
 	base_state = "right";
 	icon_state = "right";
@@ -40352,9 +40346,6 @@
 /turf/open/floor/plasteel,
 /area/engine/foyer)
 "lzS" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
 	dir = 1
 	},
@@ -55660,7 +55651,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/plasteel/stairs/goon/stairs_wide,
 /area/crew_quarters/fitness)
 "rdi" = (
@@ -57142,9 +57132,6 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "rFH" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 8
 	},
@@ -57194,6 +57181,11 @@
 /obj/machinery/teleport/station,
 /turf/open/floor/plating,
 /area/teleporter)
+"rGx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/backrooms_portal,
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "rHf" = (
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos/mix)
@@ -61913,7 +61905,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/ramp_middle{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/goon/stairs_alone{
 	dir = 1
@@ -62719,9 +62711,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "tHB" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide{
 	dir = 1
 	},
@@ -63509,9 +63498,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
 	},
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2{
 	dir = 1
@@ -68749,9 +68735,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "vOT" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/railing{
 	dir = 4
 	},
@@ -73842,7 +73825,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "xML" = (
@@ -96590,7 +96573,7 @@ aTD
 aPG
 bbq
 gjl
-baS
+rGx
 hFo
 baS
 baS
@@ -103756,7 +103739,7 @@ rxB
 wXu
 tsu
 anz
-gLV
+iBM
 bNR
 cCR
 hGZ
@@ -104270,9 +104253,9 @@ cRY
 tDw
 tsu
 anz
-geQ
+kUv
 bNR
-hPV
+azw
 qEB
 qEB
 iNE
