@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Adds new greyscale kitsune mask to vendors and the monkeshop."
