@@ -57,7 +57,8 @@
 	var/obj/machinery/door/hackdoor		// The airlock being hacked
 	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
 
-	var/obj/item/integrated_signaler/signaler // AI's signaller
+	/// Remote signaler
+	var/obj/item/assembly/signaler/internal/signaler
 
 	var/obj/item/instrument/piano_synth/internal_instrument
 	var/obj/machinery/newscaster			//pAI Newscaster
@@ -84,6 +85,8 @@
 	var/overload_maxhealth = 0
 	var/silent = FALSE
 	var/brightness_power = 5
+
+	var/atom/movable/screen/ai/mod_pc/interfaceButton
 
 /mob/living/silicon/pai/can_unbuckle()
 	return FALSE
@@ -122,20 +125,27 @@
 		aicamera = new /obj/item/camera/siliconcam/ai_camera(src)
 		aicamera.flash_enabled = TRUE
 
-	//PDA
-	aiPDA = new/obj/item/pda/ai(src)
-	aiPDA.owner = real_name
-	aiPDA.ownjob = "pAI Messenger"
-	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
-
 	. = ..()
 
+	create_modularInterface()
 	emittersemicd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
 /mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(hacking)
 		process_hack()
+	return ..()
+
+/mob/living/silicon/pai/can_interact_with(atom/target)
+	if(target == signaler) // Bypass for signaler
+		return TRUE
+	if(target == modularInterface)
+		return TRUE
+	return ..()
+
+/mob/living/silicon/pai/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/tablet/integrated/pai(src)
 	return ..()
 
 /mob/living/silicon/pai/proc/process_hack()

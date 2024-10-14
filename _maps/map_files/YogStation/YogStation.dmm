@@ -18631,10 +18631,10 @@
 	pixel_x = -4;
 	pixel_y = 36
 	},
-/obj/machinery/pdapainter,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
+/obj/machinery/pdapainter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "dQj" = (
@@ -21535,11 +21535,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"ePH" = (
-/obj/structure/chair/office/dark,
-/obj/effect/landmark/start/detective,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "ePJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -47633,6 +47628,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"okC" = (
+/obj/structure/table/wood,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "okF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -57583,6 +57583,18 @@
 /obj/effect/landmark/stationroom/box/engine,
 /turf/open/space/basic,
 /area/space)
+"rMT" = (
+/obj/structure/chair/office/dark,
+/obj/effect/landmark/start/detective,
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_x = -57;
+	pixel_y = 22;
+	req_access = list("detective")
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "rNk" = (
 /obj/machinery/light{
 	dir = 1
@@ -65410,18 +65422,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
-"uIQ" = (
-/obj/structure/table/wood,
-/obj/item/clothing/glasses/sunglasses,
-/obj/machinery/button/door{
-	id = "kanyewest";
-	name = "Privacy Shutters";
-	pixel_x = -6;
-	pixel_y = 8;
-	req_access = list("detective")
-	},
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "uIU" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -98871,7 +98871,7 @@ whZ
 apd
 izH
 qSt
-ePH
+rMT
 pbR
 xqV
 mMW
@@ -99129,7 +99129,7 @@ bpa
 bxt
 wXq
 xJx
-uIQ
+okC
 xqV
 hix
 apd

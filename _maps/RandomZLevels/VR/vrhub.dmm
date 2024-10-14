@@ -503,16 +503,13 @@
 "da" = (
 /obj/item/toy/spinningtoy{
 	desc = "I hear if you suicide near it, it turns red!";
-	dir = 2;
 	icon = 'icons/effects/160x160.dmi';
 	icon_state = "singularity_s5";
 	light_color = "#FAA019";
-	light_power = 1;
 	light_range = 10;
 	name = "obvious reference";
 	pixel_x = -96;
-	pixel_y = -64;
-	worn_x_dimension = 32
+	pixel_y = -64
 	},
 /turf/open/floor/fakespace,
 /area/awaymission/vr/hub)
@@ -630,6 +627,10 @@
 	initial_gas_mix = "o2=14;n2=23;TEMP=300"
 	},
 /area/awaymission/vr/megafauna_arena)
+"ew" = (
+/obj/machinery/pdapainter,
+/turf/open/indestructible,
+/area/awaymission/vr/syndicate)
 "ez" = (
 /obj/structure/barricade/security/murderdome,
 /obj/structure/barricade/security/murderdome,
@@ -1429,8 +1430,7 @@
 /area/awaymission/vr/syndicate)
 "rY" = (
 /obj/machinery/sleep_console{
-	dir = 8;
-	icon_state = "console"
+	dir = 8
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -1535,9 +1535,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "tB" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "tC" = (
@@ -1889,8 +1887,7 @@
 /area/awaymission/vr/syndicate)
 "Aa" = (
 /obj/machinery/sleep_console{
-	dir = 8;
-	icon_state = "console"
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/syndicate)
@@ -2025,7 +2022,6 @@
 	dir = 1;
 	network = list("ss13","virtual");
 	pixel_x = 16;
-	pixel_y = 0;
 	resistance_flags = 64
 	},
 /obj/effect/light_emitter/vr_hub,
@@ -2366,16 +2362,11 @@
 	c_tag = "Virtual Reality";
 	dir = 8;
 	network = list("ss13","virtual");
-	pixel_x = 0;
 	pixel_y = -16;
 	resistance_flags = 64
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/hub)
-"In" = (
-/obj/machinery/pdapainter,
-/turf/open/indestructible,
-/area/awaymission/vr/syndicate)
 "Ir" = (
 /turf/closed/indestructible/riveted,
 /area/awaymission/vr/megafauna_arena)
@@ -2531,8 +2522,7 @@
 /area/awaymission/vr/murderdome)
 "KV" = (
 /obj/machinery/door/window/northright{
-	dir = 2;
-	icon_state = "right"
+	dir = 2
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
@@ -2786,9 +2776,7 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "Pc" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/syndicate)
 "Pd" = (
@@ -2854,9 +2842,7 @@
 /turf/open/floor/mineral/titanium,
 /area/awaymission/vr/syndicate)
 "PV" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/awaymission/vr/syndicate)
 "PX" = (
@@ -3004,9 +2990,7 @@
 /area/awaymission/vr/syndicate)
 "RW" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/that{
-	throwforce = 1
-	},
+/obj/item/clothing/head/that,
 /turf/open/indestructible,
 /area/awaymission/vr/hub)
 "RY" = (
@@ -3084,8 +3068,7 @@
 /area/awaymission/vr/syndicate)
 "TC" = (
 /obj/effect/mob_spawn/human/virtual_reality{
-	light_color = null;
-	light_range = 0
+	light_color = null
 	},
 /obj/effect/landmark/vr_spawn,
 /obj/effect/vr_clean_master,
@@ -3200,9 +3183,7 @@
 /area/awaymission/vr/megafauna_arena/arena)
 "Wp" = (
 /obj/machinery/door/window/northright{
-	base_state = "right";
 	dir = 4;
-	icon_state = "right";
 	name = "Security Desk";
 	req_access = list("cent_specops")
 	},
@@ -3352,9 +3333,7 @@
 /area/awaymission/vr/syndicate)
 "XX" = (
 /obj/structure/closet/crate,
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "XZ" = (
@@ -54369,7 +54348,7 @@ eb
 gz
 gz
 eb
-In
+ew
 gz
 xp
 xp
