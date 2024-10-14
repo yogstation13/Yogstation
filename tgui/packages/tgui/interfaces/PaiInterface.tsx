@@ -10,11 +10,14 @@ type Module = {
 }
 
 type Data = {
+  modules: Data[];
+  modules_list: Data[];
   modules_tabs: Module[];
   laws_zeroth: string;
   laws: Data[];
   master: string;
   masterdna: string;
+  ram: number;
 }
 
 export const PaiInterface = (props, context) => {
@@ -49,8 +52,9 @@ export const PaiInterface = (props, context) => {
 };
 
 const PaiBox = (props, context) => {
-  const { data } = useBackend<Data>(context);
+  const { act, data } = useBackend<Data>(context);
   const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
+  const { modules, ram, modules_list } = data;
   const { laws_zeroth, laws, master, masterdna } = data;
   if(selectedMainTab===null) {
     return;
@@ -70,7 +74,8 @@ const PaiBox = (props, context) => {
                 Your master: {master} ({masterdna})
               </Box>
               )}
-              <Button>
+              <Button
+                onClick={() => act("getdna")}>
                 Request carrier DNA sample
               </Button>
             </Stack.Item>
@@ -100,5 +105,27 @@ const PaiBox = (props, context) => {
           </Stack>
         </Section>
       );
+    case "Download additional software":
+      return (
+        <Section title={selectedMainTab.module_name}>
+          <Stack vertical>
+            <Stack.Item>
+              Downloaded modules: {modules.map(data => data)}
+              Remaining available memory: {ram}
+            </Stack.Item>
+            {modules_list.map(module => (
+              <Stack.Item>
+                {module}
+              </Stack.Item>
+            ))}
+          </Stack>
+        </Section>
+      );
+      case "Remote signaller":
+        return (
+          <Section title={selectedMainTab.module_name}>
+            
+          </Section>
+        );
   }
 };

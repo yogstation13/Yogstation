@@ -43,20 +43,26 @@
 /mob/living/silicon/pai/ui_data(mob/user)
 	var/list/data = list()
 	data["modules"] = list()
+	data["modules_list"] = available_software
 	data["modules_tabs"] = list(list("module_name" = "Directives", "title"="Directives"), 
 								list("module_name" = "Download additional software", "title"="CentCom pAI Module Subversion Network"))
 	data["laws_zeroth"] = laws.zeroth
 	data["laws"] = laws.supplied
 	data["master"] = master
 	data["masterdna"] = master_dna
+	data["ram"] = ram
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
 	if(..())
 		return
 	switch(action)
-		if("PaiInterface")
-			. = TRUE
+		if("getdna")
+			if(iscarbon(card.loc))
+				CheckDNA(card.loc, src) //you should only be able to check when directly in hand, muh immersions?
+			else
+				to_chat(src, "You are not being carried by anyone!")
+				return 0 // FALSE ? If you return here you won't call paiinterface() below
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/proc/paiInterface()
