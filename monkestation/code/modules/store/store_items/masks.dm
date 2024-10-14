@@ -108,6 +108,11 @@ GLOBAL_LIST_INIT(store_masks, generate_store_items(/datum/store_item/mask))
 	item_path = /obj/item/clothing/mask/kitsuneblack
 	item_cost = 5000
 
+/datum/store_item/mask/kitsune
+	name = "Greyscale Kitsune Mask"
+	item_path = /obj/item/clothing/mask/kitsune
+	item_cost = 5000
+
 /datum/store_item/mask/ook
 	name = "Ook Mask"
 	item_path = /obj/item/clothing/mask/ookmask

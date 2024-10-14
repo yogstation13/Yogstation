@@ -1170,6 +1170,15 @@
 *	MASKS
 */
 
+/datum/greyscale_config/kitsune
+	name = "Kitsune mask"
+	icon_file = 'icons/obj/clothing/masks.dmi'
+	json_config = 'code/datums/greyscale/json_configs/kitsune.json'
+
+/datum/greyscale_config/kitsune/worn
+	name = "Kitsune mask (Worn)"
+	icon_file = 'icons/mob/clothing/mask.dmi'
+
 // BANDANAS
 
 /datum/greyscale_config/bandana_worn/snouted

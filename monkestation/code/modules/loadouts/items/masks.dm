@@ -122,7 +122,9 @@ GLOBAL_LIST_INIT(loadout_masks, generate_loadout_items(/datum/loadout_item/mask)
 	name = "Black Kitsune Mask"
 	item_path = /obj/item/clothing/mask/kitsuneblack
 
-
+/datum/loadout_item/mask/kitsune
+	name = "Greyscale Kitsune Mask"
+	item_path = /obj/item/clothing/mask/kitsune
 /*
 *	DONATOR
 */
