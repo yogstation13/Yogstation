@@ -202,3 +202,6 @@
 2024-10-13:
   Absolucy:
   - bugfix: Fixed the radio mic being delayed by 2 seconds.
+2024-10-14:
+  DexeeXI:
+  - rscdel: removes a series of plushies that should have not been added to the codebase.

@@ -1,4 +1,0 @@
-author: "DexeeXI"
-delete-after: True
-changes:
-  - rscdel: "removes a series of plushies that should have not been added to the codebase."
