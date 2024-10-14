@@ -18,3 +18,6 @@
 
 /datum/keybinding/mob/activate_inhand
 	goon_keys = list("C")
+
+/datum/keybinding/living/interaction_toggle_wield
+	goon_keys = list("ShiftE")

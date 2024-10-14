@@ -100,3 +100,19 @@
 /datum/keybinding/living/pixel_shift/up(client/user)
 	. = ..()
 	SEND_SIGNAL(user.mob, COMSIG_KB_LIVING_PIXEL_SHIFT_UP)
+
+/datum/keybinding/living/interaction_toggle_wield
+	hotkey_keys = list("ShiftX")
+	name = "keybinding_living_toggle_wield"
+	full_name = "Wield"
+	description = "Wield an object in two hands, such as a gun."
+	keybind_signal = COMSIG_KB_LIVING_TOGGLE_WIELD
+
+/datum/keybinding/living/interaction_toggle_wield/down(client/user)
+	. = ..()
+	if(.)
+		return
+	var/mob/mob = user.mob
+	var/obj/item/item = mob?.get_active_held_item()
+	if(item?.GetComponent(/datum/component/two_handed)) // does our active item have a two_handed component? if so let's ctrl click it!
+		item.CtrlClick(mob)
