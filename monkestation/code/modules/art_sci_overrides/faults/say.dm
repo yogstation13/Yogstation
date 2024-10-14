@@ -11,6 +11,7 @@
 
 	for(var/mob/living/living in viewers(rand(7, 10), center_turf))
 		if(living.stat != CONSCIOUS || !living.can_speak())
-			var/speak_over_radio = prob(10) ? "; " : ""
-			var/forced_message = pick_list_replacements(ARTIFACT_FILE, "speech_artifact")
-			living.say(speak_over_radio + forced_message, forced = "artifact ([src])")
+			continue
+		var/speak_over_radio = prob(10) ? "; " : ""
+		var/forced_message = pick_list_replacements(ARTIFACT_FILE, "speech_artifact")
+		living.say(speak_over_radio + forced_message, forced = "artifact ([src])")
