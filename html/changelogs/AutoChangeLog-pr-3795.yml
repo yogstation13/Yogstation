@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Plant splicers and DNA manipulators can now be (un)wrenched and deconstructed."
-  - rscadd: "Plant splicers can now be constructed."

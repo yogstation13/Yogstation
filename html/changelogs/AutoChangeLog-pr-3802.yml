@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed magic mirrors requiring you to select hair first, before being able to change anything else."

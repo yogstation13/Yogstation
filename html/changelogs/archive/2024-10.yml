@@ -205,10 +205,18 @@
 2024-10-14:
   Absolucy:
   - bugfix: Fixed speech artifacts EXCLUSIVELY making dead/mute mobs speak.
+  - bugfix: Plant splicers and DNA manipulators can now be (un)wrenched and deconstructed.
+  - rscadd: Plant splicers can now be constructed.
+  - bugfix: Fixed magic mirrors requiring you to select hair first, before being able
+      to change anything else.
   Absolucy, Aylong, jlsnow301:
   - refactor: Added a better system of displaying object icons in tgui.
   - refactor: Botany seed extractors now use aforementioned system to display seed
       icons.
+  Absolucy, LT3:
+  - bugfix: Ctrl+click on equipped uniforms enables suit sensors as expected.
+  Absolucy, mc-oofert:
+  - bugfix: Fixed the xeno resin floor layer.
   CannibalHunter:
   - rscadd: Added new wield keybind to hold firearms in both hands!
   DexeeXI:
