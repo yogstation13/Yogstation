@@ -37,9 +37,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror, 28)
 		return TRUE
 	if(broken || !Adjacent(user))
 		return TRUE
-
 	if(!ishuman(user))
 		return TRUE
+	if(mirror_act(user))
+		return TRUE
+
+/obj/structure/mirror/proc/mirror_act(mob/living/user)
 	var/mob/living/carbon/human/hairdresser = user
 
 	//handle facial hair (if necessary)
@@ -170,13 +173,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror, 28)
 			selectable_races[initial(species_type.name)] = species_type
 	selectable_races = sort_list(selectable_races)
 
-/obj/structure/mirror/magic/attack_hand(mob/user, list/modifiers)
-	. = ..()
-	if(.)
-		return TRUE
-	if(!ishuman(user))
-		return TRUE
-
+/obj/structure/mirror/magic/mirror_act(mob/user)
 	var/mob/living/carbon/human/amazed_human = user
 
 	var/choice = tgui_input_list(user, "Something to change?", "Magical Grooming", list("name", "race", "gender", "hair", "eyes"))
@@ -306,11 +303,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/mirror, 28)
 	desc = "Pride cometh before the..."
 	race_flags = MIRROR_PRIDE
 
-/obj/structure/mirror/magic/pride/attack_hand(mob/user, list/modifiers)
+/obj/structure/mirror/magic/pride/mirror_act(mob/living/user)
 	. = ..()
 	if(.)
-		return TRUE
-
+		return
 	user.visible_message(span_danger("<B>The ground splits beneath [user] as [user.p_their()] hand leaves the mirror!</B>"), \
 	span_notice("Perfect. Much better! Now <i>nobody</i> will be able to resist yo-"))
 
