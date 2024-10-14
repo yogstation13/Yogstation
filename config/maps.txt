@@ -30,7 +30,7 @@ map gaxstation
 	votable
 endmap
 
-map asteroidstation
+map manateestation
 	minplayers 40
 	votable
 endmap

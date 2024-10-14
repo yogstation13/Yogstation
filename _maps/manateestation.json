@@ -1,7 +1,7 @@
 {
-	"map_name": "[BETA] AsteroidStation",
-	"map_path": "map_files/AsteroidStation",
-	"map_file": "AsteroidStation.dmm",
+	"map_name": "ManateeStation",
+	"map_path": "map_files/ManateeStation",
+	"map_file": "ManateeStation.dmm",
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
