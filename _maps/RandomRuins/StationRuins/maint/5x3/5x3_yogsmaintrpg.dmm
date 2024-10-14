@@ -19,7 +19,7 @@
 "y" = (
 /obj/structure/closet/crate/necropolis,
 /obj/item/clothing/head/helmet/gladiator,
-/obj/item/clothing/under/gladiator,
+/obj/item/clothing/under/costume/gladiator,
 /turf/open/floor/wood,
 /area/maintenance/aft)
 "z" = (

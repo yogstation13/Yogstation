@@ -462,10 +462,11 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 /obj/machinery/gravity_generator/main/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
-		return
+		return FALSE
 	breaker = !breaker
 	investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", INVESTIGATE_GRAVITY)
 	set_power()
+	return TRUE
 
 // Misc
 

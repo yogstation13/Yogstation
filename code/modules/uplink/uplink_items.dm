@@ -2521,6 +2521,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
 
+/datum/uplink_item/role_restricted/coral_generator
+	name = "IA-C01G AORTA 'Coral' Generator"
+	desc = "An experimental generator that can be attatched to a mech, provides a massive speedboost when active at the cost of greater power consumption."
+	item = /obj/item/mecha_parts/mecha_equipment/coral_generator
+	cost = 10
+	manufacturer = /datum/corporation/traitor/cybersun
+	restricted_roles = list("Research Director", "Scientist", "Roboticist")
+
 /datum/uplink_item/role_restricted/gorillacubes
 	name = "Box of Gorilla Cubes"
 	desc = "A box with three Waffle Co. brand gorilla cubes. Eat big to get big. \

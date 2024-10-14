@@ -1,3 +1,4 @@
+import { storage } from 'common/storage';
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Table, Tabs, Box, TextArea, Stack } from '../components';
@@ -12,6 +13,7 @@ type Data = {
 type Tab = {
   cones: ConeStats[];
   ice_cream: IceCreamStats[];
+  storage: StorageStats[];
   info_tab: InformationStats[];
 }
 
@@ -37,6 +39,11 @@ type ConeStats = {
 type InformationStats = {
   section_title: string;
   section_text: string;
+}
+
+type StorageStats = {
+  contents_length: number;
+  storage_capacity: number;
 }
 
 export const IceCreamVat = (props, context) => {
@@ -229,7 +236,7 @@ const InfoContentRow = (props, context) => {
   // Make constant that starts with the section_text of the first element of info_tab and which will recieve new data from InfoTab
   const[infoContent] = useLocalState(context, 'selectedInfoTab', info_tab[0].section_text);
 
-  // Return a section with the tab's section_text
+  // Return a section with the vat's contents and capacity
   return (
       <Section
       fontSize="16px">
@@ -238,18 +245,52 @@ const InfoContentRow = (props, context) => {
     );
 };
 
+const CapacityRow = (props, context) => {
+  // Get data from ui_data in backend code
+  const { data } = useBackend<StorageStats>(context);
+  // Get needed variables from StorageStats
+  const { contents_length } = data;
+  const { storage_capacity } = data;
+
+  // Return a section with the tab's section_text
+  return(
+  <Table>
+    <Table.Row>
+      <Table.Cell
+      fontSize="14px"
+      textAlign="center"
+      bold>
+        {/* Show the vat's current contents and its max contents */}
+        {contents_length}/{storage_capacity}
+      </Table.Cell>
+    </Table.Row>
+  </Table>
+  );
+};
+
 const VatTab = (props, context) => {
 
   // For organizing the vat tab's information
   return (
   <Stack vertical>
     <Stack.Item>
-      <Section title="Cones">
+      <Section
+      title="Storage Capacity"
+      textAlign="center">
+        <CapacityRow />
+      </Section>
+    </Stack.Item>
+    <Stack.Item>
+      <Section
+      title="Cones"
+      textAlign="center">
         <ConeRow />
       </Section>
     </Stack.Item>
     <Stack.Item>
-      <Section title="Scoops">
+      <Section
+      title="Scoops"
+      textAlign="center">
         <IceCreamRow />
       </Section>
     </Stack.Item>

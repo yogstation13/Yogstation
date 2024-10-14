@@ -1026,6 +1026,9 @@
 /area/awaymission/vr/syndicate)
 "kb" = (
 /obj/structure/chair/sofa/left,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/plasteel/chapel,
 /area/awaymission/vr/hub)
 "kh" = (
@@ -1187,6 +1190,11 @@
 /obj/item/reagent_containers/glass/rag,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
+"ne" = (
+/turf/open/floor/plasteel/stairs/goon/stairs_middle{
+	dir = 8
+	},
+/area/awaymission/vr/hub)
 "nn" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/indestructible,
@@ -1213,7 +1221,9 @@
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "nN" = (
-/turf/open/floor/plasteel/stairs/medium,
+/turf/open/floor/plasteel/stairs/goon/stairs_wide{
+	dir = 8
+	},
 /area/awaymission/vr/hub)
 "os" = (
 /obj/structure/filingcabinet,
@@ -1310,6 +1320,14 @@
 /area/awaymission/vr/murderdome)
 "qk" = (
 /turf/open/floor/fakespace,
+/area/awaymission/vr/hub)
+"ql" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
 /area/awaymission/vr/hub)
 "qs" = (
 /obj/structure/table/reinforced,
@@ -1568,6 +1586,11 @@
 /obj/structure/closet/crate/trashcart,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
+"uJ" = (
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
+	dir = 4
+	},
+/area/awaymission/vr/hub)
 "uL" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -1579,6 +1602,11 @@
 /obj/machinery/door/window/southright,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
+"va" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/awaymission/vr/hub)
 "vg" = (
 /obj/structure/bed,
 /turf/open/indestructible,
@@ -1959,6 +1987,12 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/indestructible,
 /area/awaymission/vr/hub)
+"BJ" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/chapel,
+/area/awaymission/vr/hub)
 "BL" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Engineering"
@@ -2086,6 +2120,12 @@
 /obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/titanium/blue,
 /area/awaymission/vr/syndicate)
+"DR" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/awaymission/vr/hub)
 "Ea" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
@@ -2233,6 +2273,14 @@
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
+"Gf" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/awaymission/vr/hub)
 "Gl" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/trophy/gold_cup,
@@ -2648,6 +2696,11 @@
 	},
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
+"NL" = (
+/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
+	dir = 8
+	},
+/area/awaymission/vr/hub)
 "NP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -2916,6 +2969,14 @@
 /obj/effect/light_emitter/vr_hub,
 /turf/open/indestructible,
 /area/awaymission/vr/hub/boxing)
+"Rz" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/awaymission/vr/hub)
 "RB" = (
 /obj/structure/table/wood,
 /obj/structure/window/reinforced{
@@ -2966,7 +3027,9 @@
 /area/awaymission/vr/murderdome)
 "Sp" = (
 /obj/structure/chair/sofa/right,
-/turf/open/floor/plasteel/chapel,
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
 /area/awaymission/vr/hub)
 "St" = (
 /obj/machinery/door/poddoor/shutters{
@@ -3072,6 +3135,11 @@
 "UN" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/chapel,
+/area/awaymission/vr/hub)
+"US" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
 /area/awaymission/vr/hub)
 "UY" = (
 /obj/machinery/mass_driver{
@@ -3206,6 +3274,13 @@
 /obj/structure/closet/crate,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
+"Xm" = (
+/obj/machinery/chem_dispenser/drinks/beer,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/chapel,
+/area/awaymission/vr/hub)
 "Xu" = (
 /obj/structure/toilet{
 	dir = 8
@@ -3297,6 +3372,11 @@
 /obj/item/flashlight/flare,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
+"Yp" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/awaymission/vr/hub)
 "Yr" = (
 /obj/structure/chair/stool{
 	pixel_y = 8
@@ -7457,8 +7537,8 @@ qk
 Gw
 Gw
 nN
-nN
-nN
+ne
+NL
 Gw
 Gw
 qk
@@ -7713,9 +7793,9 @@ qk
 qk
 Gw
 Gw
-Vs
-Vs
-Vs
+ql
+Rz
+ql
 Gw
 Gw
 qk
@@ -7970,9 +8050,9 @@ qk
 qk
 bI
 UN
+va
 Vs
-Vs
-Vs
+va
 Wd
 bI
 qk
@@ -8227,10 +8307,10 @@ qk
 qk
 bI
 Sp
-Vs
-Vs
-Vs
-UN
+Yp
+US
+Yp
+DR
 bI
 qk
 qk
@@ -8484,10 +8564,10 @@ qk
 qk
 Gw
 kb
-Vs
-Vs
-Vs
-Wd
+Gf
+BJ
+Gf
+Xm
 Gw
 qk
 qk
@@ -8742,7 +8822,7 @@ Gw
 Gw
 Gw
 Gw
-nN
+uJ
 Gw
 Gw
 Gw

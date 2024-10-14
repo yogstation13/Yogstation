@@ -233,7 +233,6 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		spans |= SPAN_ITALICS
 
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mods)
-
 	
 	return on_say_success(message,message_range,succumbed, spans, language, message_mods)//Yogs
 
@@ -303,6 +302,15 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 		eavesdropping = stars(message)
 		eavesrendered = compose_message(src, message_language, eavesdropping, , spans, message_mods)
 
+
+	
+	//yogs edit (stolen from monkestation and moved)
+	///Play a sound to indicate we just spoke
+	var/sound/speak_sound
+	if(client && voice_type && istype(voice_type))
+		speak_sound = voice_type.get_sound(src, message, spans)
+	//yogs change end
+
 	var/rendered = compose_message(src, message_language, message, , spans, message_mods)
 	for(var/_AM in listening)
 		var/atom/movable/AM = _AM
@@ -310,6 +318,12 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, , spans, message_mods)
 		else
 			AM.Hear(rendered, src, message_language, message, , spans, message_mods)
+			if(speak_sound && ismob(AM) && (!(the_dead[AM]) || (get_dist(source, AM) <= message_range)))
+				var/mob/hearing_mob = AM
+				if(hearing_mob.client?.prefs?.read_preference(/datum/preference/toggle/speech_hear) && hearing_mob.has_language(message_language))
+					var/volume = hearing_mob.client?.prefs?.read_preference(/datum/preference/numeric/speech_volume) || DEFAULT_SPEECH_VOLUME
+					volume *= 6 //the sounds are actually really quiet, we just reduced the numbers shown in preferences to not confuse players
+					hearing_mob.playsound_local(src, speak_sound, volume, TRUE, pressure_affected = FALSE, use_reverb = FALSE) //virtualspeaker handles radio stuff
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
 	//speech bubble

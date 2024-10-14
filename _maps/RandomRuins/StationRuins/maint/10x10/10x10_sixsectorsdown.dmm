@@ -54,7 +54,7 @@
 	dir = 4
 	},
 /obj/item/stack/spacecash/c20,
-/obj/item/clothing/under/jabroni,
+/obj/item/clothing/under/costume/jabroni,
 /turf/open/floor/plasteel/showroomfloor,
 /area/template_noop)
 "hX" = (

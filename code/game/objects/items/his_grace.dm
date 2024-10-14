@@ -60,7 +60,7 @@
 			O.take_damage(force*2, BRUTE, MELEE, FALSE, null, armour_penetration)
 
 /obj/item/his_grace/CtrlClick(mob/user) //you can't pull his grace
-	return
+	return FALSE
 
 /obj/item/his_grace/examine(mob/user)
 	. = ..()
