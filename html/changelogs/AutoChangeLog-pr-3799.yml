@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed speech artifacts EXCLUSIVELY making dead/mute mobs speak."
