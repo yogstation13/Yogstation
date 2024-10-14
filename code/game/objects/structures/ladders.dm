@@ -170,6 +170,7 @@
 		use(user, going_up = FALSE)
 	else
 		to_chat(user, span_warning("[src] doesn't seem to lead anywhere!"))
+	return TRUE
 
 /obj/structure/ladder/AltClick(mob/user)
 	. = ..()

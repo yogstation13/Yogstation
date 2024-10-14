@@ -12,7 +12,7 @@
 /area/template_noop)
 "e" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 9
 	},
 /turf/open/floor/plating,
@@ -43,7 +43,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -61,7 +61,7 @@
 /area/template_noop)
 "H" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -71,13 +71,13 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "N" = (
-/obj/effect/decal/cleanable/blood/xtracks{
+/obj/effect/decal/cleanable/xenoblood/xtracks{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/template_noop)
 "O" = (
-/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/xenoblood/xtracks,
 /turf/open/floor/plating,
 /area/template_noop)
 

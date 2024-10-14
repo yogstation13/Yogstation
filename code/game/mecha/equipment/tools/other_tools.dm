@@ -600,29 +600,26 @@
 	button_icon_state = "mech_coral_overload_off"
 
 /datum/action/innate/mecha/coral_overload_mode/Activate(forced_state = null)
-	
 	if(chassis?.equipment_disabled) // If a EMP or something has messed a mech up return instead of activating -- Moogle
 		return
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
 	if(!isnull(forced_state))
-		chassis.coral_leg_overload_mode = forced_state
+		chassis.leg_overload_mode = forced_state
 	else
-		chassis.coral_leg_overload_mode = !chassis.coral_leg_overload_mode
-	button_icon_state = "mech_coral_overload_[chassis.coral_leg_overload_mode ? "on" : "off"]"
+		chassis.leg_overload_mode = !chassis.leg_overload_mode
+	button_icon_state = "mech_coral_overload_[chassis.leg_overload_mode ? "on" : "off"]"
 	chassis.log_message("Toggled coral engine overload.", LOG_MECHA)
-	if(chassis.coral_leg_overload_mode)
+	if(chassis.leg_overload_mode)
 		chassis.AddComponent(/datum/component/after_image, 0.5 SECONDS, 0.5, TRUE)
-		chassis.coral_leg_overload_mode = 1
-		chassis.step_in = min(1, round(chassis.step_in/2))
-		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)
+		chassis.bumpsmash = TRUE
+		chassis.leg_overload_mode = TRUE
 		chassis.occupant_message(span_danger("You enable coral engine overload."))
 	else
 		var/datum/component/after_image/chassis_after_image = chassis.GetComponent(/datum/component/after_image)
 		if(chassis_after_image)
 			qdel(chassis_after_image)
-		chassis.coral_leg_overload_mode = 0
-		chassis.step_in = initial(chassis.step_in)
-		chassis.step_energy_drain = chassis.normal_step_energy_drain
+		chassis.bumpsmash = FALSE
+		chassis.leg_overload_mode = FALSE
 		chassis.occupant_message(span_notice("You disable coral engine overload."))
 	build_all_button_icons()

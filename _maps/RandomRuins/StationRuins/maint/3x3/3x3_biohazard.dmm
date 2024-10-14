@@ -8,7 +8,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "e" = (
-/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/xenoblood/xtracks,
 /turf/open/floor/plating,
 /area/template_noop)
 "f" = (
@@ -33,7 +33,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "v" = (
-/obj/effect/decal/cleanable/blood/xtracks,
+/obj/effect/decal/cleanable/xenoblood/xtracks,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
