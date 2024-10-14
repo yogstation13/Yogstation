@@ -159,7 +159,7 @@
 		hackdoor = null
 		return
 	if(screen == "doorjack" && subscreen == 0) // Update our view, if appropriate
-		paiInterface()
+		//paiInterface()
 	if(hackprogress >= 100)
 		hackprogress = 0
 		var/obj/machinery/door/D = cable.machine

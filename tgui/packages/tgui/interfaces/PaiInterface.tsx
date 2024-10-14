@@ -7,11 +7,12 @@ type Module = {
   module_name: string;
   title: string;
   text: string;
+  cost: number;
 }
 
 type Data = {
   modules: Data[];
-  modules_list: Data[];
+  modules_list: Module[];
   modules_tabs: Module[];
   laws_zeroth: string;
   laws: Data[];
@@ -111,20 +112,25 @@ const PaiBox = (props, context) => {
           <Stack vertical>
             <Stack.Item>
               Downloaded modules: {modules.map(data => data)}
+            </Stack.Item>
+            <Stack.Item>
               Remaining available memory: {ram}
             </Stack.Item>
-            {modules_list.map(module => (
-              <Stack.Item>
-                {module}
-              </Stack.Item>
-            ))}
+            <Stack.Item>
+              {modules_list.map(module => (
+                <Stack.Item
+                  key={module}>
+                  {module.module_name}: {module.cost}
+                </Stack.Item>
+              ))}
+            </Stack.Item>
           </Stack>
         </Section>
       );
       case "Remote signaller":
         return (
           <Section title={selectedMainTab.module_name}>
-            
+            Signaller
           </Section>
         );
   }
