@@ -197,7 +197,8 @@
 		piles[seed_id]["refs"] += WEAKREF(to_add)
 	else
 		var/list/seed_data = list()
-		seed_data["icon"] = sanitize_css_class_name("[initial(to_add.icon)][initial(to_add.icon_state)]")
+		seed_data["icon"] = to_add.icon
+		seed_data["icon_state"] = to_add.icon_state
 		seed_data["name"] = capitalize(replacetext(to_add.name,"pack of ", ""));
 		seed_data["lifespan"] = to_add.lifespan
 		seed_data["endurance"] = to_add.endurance
@@ -291,7 +292,14 @@
 				INVOKE_ASYNC(src, TYPE_PROC_REF(/datum, update_static_data_for_all_viewers)) // monkestation edit: lagfixing
 				. = TRUE
 
-/obj/machinery/seed_extractor/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet/seeds)
-	)
+/obj/machinery/seed_extractor/perftest/Initialize(mapload, obj/item/seeds/new_seed)
+	. = ..()
+	INVOKE_ASYNC(src, PROC_REF(add_random_seeds))
+
+/obj/machinery/seed_extractor/perftest/proc/add_random_seeds()
+	for(var/i = 1 to 500)
+		add_seed(new /obj/item/seeds/random)
+	var/list/seed_types = subtypesof(/obj/item/seeds)
+	for(var/i = 1 to 250)
+		var/seed_type = pick(seed_types)
+		add_seed(new seed_type)

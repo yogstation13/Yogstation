@@ -1,4 +1,4 @@
-import { BooleanLike, classes } from 'common/react';
+import { BooleanLike } from 'common/react';
 import { createSearch } from 'common/string';
 import { flow } from 'common/fp';
 import { sortBy } from 'common/collections';
@@ -13,6 +13,7 @@ import {
   Table,
   NoticeBox,
   Icon,
+  DmIcon,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -40,6 +41,7 @@ type SeedData = {
   potency: number;
   instability: number;
   icon: string;
+  icon_state: string;
   volume_mod: BooleanLike;
   traits: string[];
   reagents: ReagentData[];
@@ -195,9 +197,13 @@ export const SeedExtractor = (props) => {
                   style={{ 'border-top': '2px solid #222' }}
                 >
                   <Table.Cell collapsing>
-                    <Box
+                    <DmIcon
                       mb={-2}
-                      className={classes(['seeds32x32', item.icon])}
+                      icon={item.icon}
+                      icon_state={item.icon_state}
+                      fallback={<Icon mr={1} name="spinner" spin />}
+                      height={'32px'}
+                      width={'32px'}
                     />
                   </Table.Cell>
                   <Table.Cell py={0.5} px={1}>
