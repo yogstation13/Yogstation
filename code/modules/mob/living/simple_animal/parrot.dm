@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 	return TRUE
 
-/datum/strippable_item/parrot_headset/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/parrot_headset/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/mob/living/simple_animal/parrot/parrot_source = source
 	if (!istype(parrot_source))
 		return

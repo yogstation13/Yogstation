@@ -1119,7 +1119,7 @@
 	name = "Ammo Box (.38 Rubber)"
 	id = "box_a38_rubber"
 	build_path = /obj/item/ammo_box/no_direct/a38/rubber
-	category = list("Security")
+	category = list("initial", "Security")
 
 /datum/design/cleaver
 	name = "Butcher's Cleaver"
