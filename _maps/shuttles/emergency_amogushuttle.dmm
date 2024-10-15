@@ -1,14 +1,58 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aF" = (
-/obj/machinery/computer/emergency_shuttle,
-/turf/open/floor/plasteel/white{
-	color = "red"
+"ag" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/public/glass{
+	color = "lightblue";
+	name = "Emergency Shuttle Cockpit"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"aH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/chair/office/dark{
+	color = "red";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/half/contrasted{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aV" = (
 /obj/structure/table,
 /obj/item/storage/box/zipties,
 /turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape)
+"bl" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"bu" = (
+/obj/structure/window/reinforced/tinted{
+	color = "red";
+	dir = 1;
+	max_integrity = 300
+	},
+/obj/structure/window/reinforced/tinted{
+	color = "red";
+	dir = 4;
+	max_integrity = 300
+	},
+/turf/open/floor/plating{
+	color = "red"
+	},
 /area/shuttle/escape)
 "bX" = (
 /obj/effect/turf_decal/bot_red,
@@ -18,21 +62,34 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"bY" = (
-/turf/open/floor/plasteel/stairs/goon/white_stairs_middle{
-	color = "red";
-	dir = 1
-	},
-/area/shuttle/escape)
 "cx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"cR" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 9
+"cy" = (
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"dq" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"du" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/basic,
+/obj/machinery/door/airlock/security/glass{
+	name = "Emergency Shuttle Brig"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
@@ -47,18 +104,15 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"dN" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"ed" = (
+"dF" = (
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white{
-	color = "red"
+/obj/effect/turf_decal/tile/bar/full{
+	pixel_x = -1
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide2{
+	dir = 1
 	},
 /area/shuttle/escape)
 "em" = (
@@ -70,22 +124,16 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"eA" = (
-/obj/machinery/door/airlock/public/glass{
-	color = "red";
-	name = "Emergency Shuttle Brig"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
+"ex" = (
+/obj/effect/turf_decal/ramp_corner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
+/obj/structure/window/reinforced{
+	color = "red"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "eN" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -98,15 +146,46 @@
 	color = "red"
 	},
 /area/shuttle/escape)
+"eZ" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"fc" = (
+/obj/structure/table,
+/obj/item/clothing/suit/apron/surgical,
+/obj/item/clothing/gloves/color/latex,
+/obj/item/clothing/mask/surgical,
+/obj/item/surgical_drapes,
+/obj/item/razor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "fl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"fu" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
+"ft" = (
+/obj/structure/grille,
+/obj/structure/window/plastitanium{
+	color = "red"
+	},
+/turf/open/floor/plating{
+	color = "red"
+	},
+/area/shuttle/escape)
+"fx" = (
+/obj/structure/chair/comfy/shuttle{
+	color = "red";
+	dir = 8
+	},
+/obj/structure/window{
+	color = "red";
+	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
@@ -135,20 +214,25 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"gL" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plasteel/stairs/goon/white_stairs_wide{
+"gs" = (
+/obj/structure/window/reinforced{
 	color = "red";
 	dir = 1
 	},
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "gW" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating/broken{
 	color = "red"
 	},
+/area/shuttle/escape)
+"hg" = (
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "hy" = (
 /obj/structure/window/reinforced{
@@ -157,37 +241,36 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
+"hB" = (
+/obj/structure/table/optable,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"hD" = (
+/obj/structure/railing/corner,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
 "hP" = (
 /obj/machinery/light,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"ib" = (
-/obj/machinery/computer/atmos_alert{
+"hR" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"ij" = (
+/obj/structure/chair/comfy/shuttle{
+	color = "red";
 	dir = 4
 	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"ii" = (
-/obj/machinery/computer/med_data{
+/obj/structure/window{
+	color = "red";
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"iD" = (
-/obj/structure/table,
-/obj/item/clothing/suit/apron/surgical,
-/obj/item/clothing/gloves/color/latex,
-/obj/item/clothing/mask/surgical,
-/obj/item/surgical_drapes,
-/obj/item/razor,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"iI" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium{
-	color = "black"
-	},
-/turf/open/space/basic,
 /area/shuttle/escape)
 "iN" = (
 /obj/effect/fun_balloon/sentience/emergency_shuttle{
@@ -243,15 +326,20 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"jR" = (
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
 "ka" = (
 /obj/structure/table,
 /obj/machinery/recharger,
 /turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape)
+"ks" = (
+/obj/structure/window/reinforced/tinted{
+	color = "red";
+	dir = 4;
+	max_integrity = 300
+	},
+/turf/open/floor/plating/burnt{
+	color = "red"
+	},
 /area/shuttle/escape)
 "kt" = (
 /obj/structure/chair/comfy/shuttle{
@@ -260,25 +348,41 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"kM" = (
-/obj/structure/chair/office/dark{
-	color = "red";
+"kw" = (
+/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/obj/machinery/door/airlock/medical/glass{
+	name = "Emergency Shuttle Medbay"
+	},
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"kX" = (
+"kW" = (
+/obj/structure/window/reinforced/tinted{
+	color = "red";
+	dir = 4;
+	max_integrity = 300
+	},
+/turf/open/floor/plating{
+	color = "red"
+	},
+/area/shuttle/escape)
+"lp" = (
 /obj/machinery/door/airlock/titanium/glass{
 	name = "Emergency Shuttle Airlock"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
 	},
 /obj/docking_port/mobile/emergency{
 	dir = 1;
 	name = "Suspicious emergency shuttle"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "lA" = (
@@ -286,6 +390,14 @@
 	dir = 6
 	},
 /turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape)
+"lJ" = (
+/obj/machinery/light,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "mf" = (
 /obj/effect/turf_decal/bot_red,
@@ -295,6 +407,26 @@
 	color = "red"
 	},
 /area/shuttle/escape)
+"mg" = (
+/obj/structure/chair/office/dark{
+	color = "red";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red/half/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar/half/contrasted{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"my" = (
+/obj/machinery/modular_computer/console/preset/command/ce{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
 "mE" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/closet/crate,
@@ -302,9 +434,12 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"mH" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/mineral/plastitanium/red,
+"mM" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "nb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -314,16 +449,20 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"no" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"nv" = (
-/obj/structure/window/reinforced{
-	color = "red";
-	dir = 4
+"nn" = (
+/obj/structure/table,
+/obj/item/circular_saw,
+/obj/item/scalpel{
+	pixel_y = 12
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/item/hemostat,
+/obj/item/surgicaldrill,
+/obj/item/cautery{
+	pixel_x = 4
+	},
+/obj/item/retractor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "nz" = (
 /obj/machinery/light/floor,
@@ -331,13 +470,21 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"oL" = (
-/obj/structure/railing/corner{
+"nG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/plasteel/white{
-	color = "red"
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"ou" = (
+/obj/effect/turf_decal/tile/red/half/contrasted{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/bar/half/contrasted{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "pb" = (
 /obj/machinery/light{
@@ -352,30 +499,19 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"pA" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/item/wrench/medical,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"pE" = (
-/obj/structure/grille,
-/obj/structure/window/plastitanium{
-	color = "black"
-	},
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"pY" = (
-/obj/structure/railing{
+"pM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/goon/white_stairs_wide2{
-	color = "red";
-	dir = 1
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"qh" = (
+/obj/machinery/modular_computer/console/preset/command/hop{
+	dir = 8
 	},
+/turf/open/floor/wood/tile,
 /area/shuttle/escape)
 "qj" = (
 /obj/item/melee/baseball_bat{
@@ -385,19 +521,22 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"qH" = (
-/obj/machinery/stasis{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"rc" = (
-/obj/structure/chair/comfy/shuttle{
-	color = "red";
+"qI" = (
+/obj/machinery/computer/communications{
 	dir = 4
 	},
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"rB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/wrench/medical,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "rE" = (
 /mob/living/simple_animal/hostile/retaliate/goat/suspicious,
@@ -405,11 +544,18 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"sl" = (
-/obj/machinery/modular_computer/console/preset/command/cmo{
+"rY" = (
+/obj/structure/chair/office/dark{
+	color = "red";
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/purple/half/contrasted{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/half/contrasted{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "sC" = (
 /obj/structure/window/reinforced{
@@ -429,33 +575,6 @@
 	color = "red"
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"sR" = (
-/obj/structure/window/plasma/reinforced{
-	color = "red";
-	dir = 1
-	},
-/obj/structure/window/plasma/reinforced{
-	color = "red";
-	dir = 4
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/structure/window/plasma/reinforced{
-	color = "red";
-	dir = 4
-	},
-/obj/structure/window/plasma/reinforced{
-	color = "red";
-	dir = 1
-	},
-/turf/open/floor/plating{
-	color = "red"
-	},
 /area/shuttle/escape)
 "sS" = (
 /obj/structure/window/reinforced{
@@ -479,11 +598,12 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"tW" = (
-/obj/machinery/light/floor,
-/turf/open/floor/plasteel/white{
-	color = "red"
+"tg" = (
+/obj/machinery/modular_computer/console/preset/command/rd{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/purple/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "uo" = (
 /obj/machinery/light/floor,
@@ -504,10 +624,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-"uQ" = (
-/obj/machinery/iv_drip,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
 "uY" = (
 /obj/structure/window/reinforced{
 	color = "red";
@@ -521,10 +637,6 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"vv" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
 "vz" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/closet/crate,
@@ -537,11 +649,12 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"vQ" = (
-/obj/machinery/computer/security{
-	dir = 8
+"vT" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "wi" = (
 /obj/structure/window/reinforced{
@@ -576,18 +689,10 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"wR" = (
-/obj/structure/chair/office/dark{
-	color = "red";
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"wX" = (
-/obj/machinery/modular_computer/console/preset/command/hos{
-	dir = 8
-	},
-/turf/open/floor/mineral/plastitanium/red,
+"wS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "xp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -597,49 +702,67 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"xx" = (
-/obj/structure/railing,
-/turf/open/floor/plasteel/white{
-	color = "red"
-	},
-/area/shuttle/escape)
 "xy" = (
 /obj/machinery/light/floor/built,
 /turf/open/floor/plating/broken{
 	color = "red"
 	},
 /area/shuttle/escape)
-"xB" = (
-/obj/structure/window/reinforced{
-	color = "red"
+"xE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
 	},
-/obj/structure/window/reinforced{
-	color = "red";
-	dir = 1
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"xK" = (
+/obj/machinery/modular_computer/console/preset/command/hos{
+	dir = 8
 	},
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/red/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"xP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/half/contrasted{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "xU" = (
 /turf/open/floor/plating/broken{
 	color = "red"
 	},
 /area/shuttle/escape)
-"yl" = (
-/obj/structure/window/plasma/reinforced{
+"zg" = (
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"zo" = (
+/obj/machinery/modular_computer/console/preset/command{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"zF" = (
+/obj/structure/chair/comfy/shuttle{
+	color = "red";
+	dir = 8
+	},
+/obj/machinery/light/floor,
+/obj/structure/window{
 	color = "red";
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/structure/window/plasma/reinforced{
-	color = "red";
-	dir = 4
-	},
-/turf/open/floor/plating/burnt{
-	color = "red"
-	},
+/turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "zV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -648,10 +771,6 @@
 /turf/open/floor/grass{
 	color = "red"
 	},
-/area/shuttle/escape)
-"zZ" = (
-/obj/structure/table/optable,
-/turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "Av" = (
 /obj/structure/safe,
@@ -662,60 +781,33 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"AW" = (
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
+"AB" = (
+/obj/machinery/computer/med_data{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/blue/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"Ba" = (
+"AX" = (
 /obj/structure/window/reinforced{
 	color = "red";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"BK" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/full{
+	pixel_x = 1
+	},
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_wide{
 	dir = 1
 	},
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"Cs" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/fire,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"DN" = (
-/obj/structure/window/plasma/reinforced{
-	color = "red";
-	dir = 4
-	},
-/obj/structure/window/reinforced/tinted{
-	dir = 4
-	},
-/obj/structure/window/plasma/reinforced{
-	color = "red";
-	dir = 4
-	},
-/turf/open/floor/plating{
-	color = "red"
-	},
-/area/shuttle/escape)
-"DO" = (
-/obj/machinery/modular_computer/console/preset/command/ce{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"ED" = (
-/obj/structure/chair/comfy/shuttle{
-	color = "red";
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"EQ" = (
+"Ef" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/public/glass{
 	color = "lightblue";
@@ -726,11 +818,42 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"EG" = (
+/obj/machinery/computer/mecha{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"EK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "ER" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plating/burnt{
+	color = "red"
+	},
+/area/shuttle/escape)
+"Fb" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"Fq" = (
+/obj/structure/window/plastitanium{
+	color = "red"
+	},
+/obj/structure/grille,
+/turf/open/floor/plating{
 	color = "red"
 	},
 /area/shuttle/escape)
@@ -742,13 +865,14 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"Fx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/chair/office/dark{
-	color = "red";
+"Fv" = (
+/obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/half/contrasted{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "Gm" = (
 /obj/machinery/light{
@@ -756,27 +880,19 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"Gp" = (
-/obj/machinery/modular_computer/console/preset/command/hop,
-/turf/open/floor/plasteel/white{
-	color = "red"
-	},
+"Gz" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"Gs" = (
-/turf/closed/wall{
-	color = "black"
-	},
+"GM" = (
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
-"GV" = (
-/obj/structure/window/reinforced{
-	color = "red";
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	color = "red"
-	},
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
+"GN" = (
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "Hr" = (
 /obj/item/crowbar/large{
@@ -792,55 +908,90 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"HS" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood,
-/obj/item/reagent_containers/blood/AMinus,
-/obj/item/reagent_containers/blood/BMinus{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/blood/BPlus{
-	pixel_x = 1;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OPlus{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/random,
-/obj/item/reagent_containers/blood/APlus,
-/obj/item/reagent_containers/blood/random,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"HW" = (
-/obj/machinery/modular_computer/console/preset/command,
-/turf/open/floor/plasteel/white{
-	color = "red"
-	},
-/area/shuttle/escape)
-"IA" = (
-/obj/effect/turf_decal/ramp_corner{
+"HO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/chair/office/dark{
+	color = "red";
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	color = "red"
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 4
 	},
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"JW" = (
-/obj/effect/turf_decal/ramp_corner{
+/obj/effect/turf_decal/tile/bar/half/contrasted{
 	dir = 8
 	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"HX" = (
+/obj/structure/window/reinforced{
+	color = "red";
+	dir = 1
+	},
 /obj/structure/window/reinforced{
 	color = "red"
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"Ip" = (
+/obj/machinery/iv_drip,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"IJ" = (
+/obj/structure/railing,
+/obj/structure/window/reinforced{
+	color = "red";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"IN" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating{
+	color = "red"
+	},
+/area/shuttle/escape)
+"Jl" = (
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"JF" = (
+/obj/structure/window/reinforced{
+	color = "red"
+	},
+/obj/structure/window/reinforced{
+	color = "red";
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"JM" = (
+/obj/structure/window/reinforced{
+	color = "red";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"JY" = (
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"Kd" = (
+/obj/machinery/computer/security{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "Kh" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -861,6 +1012,29 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
+"Ls" = (
+/obj/machinery/modular_computer/console/preset/command/cmo{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue/fourcorners,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"LL" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	name = "Connector Port (Air Supply)"
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"Mh" = (
+/obj/structure/chair/office/dark{
+	color = "red";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
 "Mw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -875,12 +1049,6 @@
 /turf/closed/wall{
 	color = "red"
 	},
-/area/shuttle/escape)
-"ME" = (
-/obj/machinery/modular_computer/console/preset/command/rd{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "MQ" = (
 /turf/open/floor/grass{
@@ -904,15 +1072,6 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"Ny" = (
-/obj/structure/chair/comfy/shuttle{
-	color = "red";
-	dir = 1
-	},
-/turf/open/floor/plasteel/white{
-	color = "red"
-	},
-/area/shuttle/escape)
 "ND" = (
 /obj/machinery/light/floor/built,
 /turf/open/floor/plating/burnt{
@@ -928,62 +1087,7 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"Oy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/door/airlock/public/glass{
-	color = "lightblue";
-	name = "Emergency Shuttle Cockpit"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/all/command/general,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"OR" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"PG" = (
-/obj/machinery/computer/mecha{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"PO" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"PZ" = (
-/obj/machinery/door/airlock/public/glass{
-	color = "red";
-	name = "Emergency Shuttle Infirmary"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"Qf" = (
-/obj/structure/window/plastitanium{
-	color = "black"
-	},
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"Qt" = (
-/obj/machinery/door/airlock/public/glass{
-	color = "red";
-	name = "Emergency Shuttle Infirmary"
-	},
+"Ow" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -993,11 +1097,63 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/obj/machinery/door/airlock/medical/glass{
+	name = "Emergency Shuttle Medbay"
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"OR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"QB" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+"OT" = (
+/obj/machinery/light/floor,
+/obj/structure/chair/comfy/shuttle{
+	color = "red";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"Pa" = (
+/obj/machinery/computer/emergency_shuttle,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"PA" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"PT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/tile/blue/half/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar/half/contrasted{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"Qe" = (
+/obj/effect/turf_decal/tile/bar/full,
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
+	dir = 1
+	},
+/area/shuttle/escape)
+"QK" = (
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	color = "red"
+	},
+/obj/machinery/light/floor,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "Rb" = (
 /obj/structure/window/reinforced{
@@ -1008,6 +1164,31 @@
 	color = "red"
 	},
 /area/shuttle/escape)
+"Rq" = (
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood/AMinus,
+/obj/item/reagent_containers/blood/BMinus{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/blood/BPlus{
+	pixel_x = 1;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OPlus{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood/APlus,
+/obj/item/reagent_containers/blood/random,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
+/area/shuttle/escape)
 "Rs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
@@ -1017,17 +1198,25 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"RG" = (
-/turf/open/floor/plasteel/white{
-	color = "red"
+"RH" = (
+/obj/machinery/stasis{
+	dir = 8
 	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "SE" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"To" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/mineral/plastitanium/red,
+"Tm" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/fire,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "Tq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -1039,9 +1228,10 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"Uu" = (
+"Ug" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "UB" = (
 /obj/structure/window/reinforced{
@@ -1061,20 +1251,16 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"Wy" = (
-/obj/machinery/light,
-/obj/machinery/computer/operating{
-	dir = 4
-	},
-/turf/open/floor/mineral/plastitanium/red,
+"VT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"WW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/chair/office/dark{
-	color = "red";
-	dir = 4
+"Wq" = (
+/obj/machinery/computer/cargo{
+	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/turf/open/floor/wood/tile,
 /area/shuttle/escape)
 "XJ" = (
 /obj/structure/window/reinforced{
@@ -1089,31 +1275,26 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"XN" = (
-/obj/structure/chair/comfy/shuttle{
-	color = "red";
-	dir = 8
-	},
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
-"Ym" = (
-/obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/hemostat,
-/obj/item/surgicaldrill,
-/obj/item/cautery{
-	pixel_x = 4
-	},
-/obj/item/retractor,
-/turf/open/floor/mineral/plastitanium/red,
-/area/shuttle/escape)
 "Yu" = (
 /turf/template_noop,
 /area/template_noop)
+"YC" = (
+/obj/structure/railing,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
+"YE" = (
+/obj/structure/chair/comfy/shuttle{
+	color = "red";
+	dir = 4
+	},
+/obj/machinery/light/floor,
+/obj/structure/window{
+	color = "red";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/escape)
 "YG" = (
 /obj/structure/window/reinforced{
 	color = "red";
@@ -1125,12 +1306,13 @@
 	},
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-"YO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
+"YQ" = (
+/obj/structure/chair/office/dark{
+	color = "red";
+	dir = 8
 	},
-/obj/machinery/light/floor,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
 /area/shuttle/escape)
 "YW" = (
 /obj/effect/turf_decal/bot_red,
@@ -1139,11 +1321,12 @@
 	color = "red"
 	},
 /area/shuttle/escape)
-"Zj" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
+"Zq" = (
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/mineral/plastitanium/red,
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "Zx" = (
 /obj/structure/closet/emcloset,
@@ -1154,23 +1337,21 @@
 
 (1,1,1) = {"
 Yu
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
-Gs
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
+vP
 Yu
 Yu
 Yu
@@ -1179,33 +1360,6 @@ Yu
 Yu
 "}
 (2,1,1) = {"
-Gs
-Gs
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-vP
-Gs
-Gs
-Yu
-Yu
-Yu
-Yu
-Yu
-"}
-(3,1,1) = {"
-Gs
 vP
 vP
 Zx
@@ -1223,15 +1377,13 @@ bX
 Av
 vP
 vP
-Gs
 Yu
 Yu
 Yu
 Yu
 Yu
 "}
-(4,1,1) = {"
-Gs
+(3,1,1) = {"
 vP
 gW
 qj
@@ -1249,7 +1401,30 @@ xU
 dE
 mf
 vP
-Gs
+Yu
+Yu
+Yu
+Yu
+Yu
+"}
+(4,1,1) = {"
+vP
+kW
+kW
+kW
+kW
+kW
+kW
+kW
+ks
+kW
+kW
+kW
+kW
+dE
+eS
+vz
+vP
 Yu
 Yu
 Yu
@@ -1257,25 +1432,23 @@ Yu
 Yu
 "}
 (5,1,1) = {"
-Gs
 vP
-DN
-DN
-DN
-DN
-DN
-DN
-DN
-yl
-DN
-DN
-DN
-DN
-dE
-eS
-vz
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+bu
+kW
+kW
 vP
-Gs
 Yu
 Yu
 Yu
@@ -1283,25 +1456,23 @@ Yu
 Yu
 "}
 (6,1,1) = {"
-iI
+ft
+qI
+zo
+IJ
+GN
+Jl
+JM
+JM
+Jl
+JM
+JM
+Jl
+IN
+IN
+pb
+SE
 vP
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-sR
-DN
-DN
-vP
-Gs
 Yu
 Yu
 Yu
@@ -1309,25 +1480,23 @@ Yu
 Yu
 "}
 (7,1,1) = {"
-iI
-RG
-RG
-RG
-xx
-To
-SE
-nv
-nv
-SE
-nv
-nv
-SE
-QB
-QB
-pb
-SE
+ft
+YQ
+cy
+YC
+zg
+QK
+EG
+tg
+JF
+my
+bl
+gs
+Jl
+IN
+lA
+dx
 vP
-Gs
 Yu
 Yu
 Yu
@@ -1335,99 +1504,68 @@ Yu
 Yu
 "}
 (8,1,1) = {"
-iI
-HW
-Ny
-RG
-xx
-AW
-IA
-PG
-ME
-xB
-DO
-ib
-Ba
+ft
+cy
+cy
+eZ
+BK
+GN
+Fv
+rY
+VT
+aH
+xP
+wS
+wS
+ag
+wI
 SE
-QB
-lA
-dx
 vP
-Gs
-Gs
-Gs
-Gs
-Gs
+vP
+vP
+vP
+vP
 Yu
 "}
 (9,1,1) = {"
-iI
-aF
-tW
-RG
-oL
-gL
-To
+ft
+Pa
+OT
+cy
+Qe
+GN
+Jl
+Jl
+Jl
+Jl
+Jl
+Jl
+Jl
+IN
+em
 SE
-kM
-Tq
-Fx
-fA
-fA
-fA
-Oy
-wI
+SE
+SE
+SE
 SE
 vP
 vP
-vP
-vP
-vP
-Gs
-Gs
 "}
 (10,1,1) = {"
-iI
-Gp
-Ny
-RG
-RG
-bY
-To
-SE
-SE
-SE
-SE
-SE
-SE
-SE
-QB
-em
-SE
-SE
-SE
-SE
-SE
-vP
-vP
-Gs
-"}
-(11,1,1) = {"
-iI
-ed
-ed
-ed
-ed
-pY
-To
-SE
-wR
-Tq
-WW
-fA
-fA
-fA
-EQ
+ft
+cy
+cy
+hD
+dF
+GN
+ou
+mg
+VT
+HO
+PT
+wS
+wS
+Ef
 wI
 SE
 SE
@@ -1436,24 +1574,22 @@ SE
 SE
 SE
 vP
-Gs
 "}
-(12,1,1) = {"
-iI
-Zj
-Zj
-Zj
-Zj
-Zj
-JW
-vQ
-wX
-GV
-sl
-ii
-Ba
-SE
-QB
+(11,1,1) = {"
+ft
+Mh
+cy
+YC
+JY
+ex
+Kd
+xK
+HX
+Ls
+AB
+gs
+Jl
+IN
 em
 SE
 SE
@@ -1462,24 +1598,22 @@ SE
 SE
 SE
 vP
-Gs
 "}
-(13,1,1) = {"
-iI
-SE
-SE
-SE
-SE
-SE
-SE
-hy
-hy
-SE
-hy
-hy
-SE
-QB
-QB
+(12,1,1) = {"
+ft
+Wq
+qh
+IJ
+GN
+Jl
+AX
+AX
+Jl
+AX
+AX
+Jl
+IN
+IN
 Mw
 SE
 SE
@@ -1488,23 +1622,21 @@ SE
 SE
 hP
 vP
-Gs
 "}
-(14,1,1) = {"
-iI
+(13,1,1) = {"
 vP
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
-QB
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
+IN
 lA
 eN
 Hw
@@ -1513,11 +1645,9 @@ Hw
 iV
 fl
 SE
-SE
-kX
+lp
 "}
-(15,1,1) = {"
-Gs
+(14,1,1) = {"
 vP
 pb
 SE
@@ -1540,10 +1670,8 @@ jl
 te
 jl
 vP
-Gs
 "}
-(16,1,1) = {"
-Gs
+(15,1,1) = {"
 vP
 SE
 SE
@@ -1566,10 +1694,8 @@ MQ
 nb
 MQ
 vP
-Gs
 "}
-(17,1,1) = {"
-Gs
+(16,1,1) = {"
 vP
 SE
 Tq
@@ -1592,21 +1718,19 @@ MQ
 Ok
 Ok
 vP
-Gs
 "}
-(18,1,1) = {"
-Gs
+(17,1,1) = {"
 vP
 SE
 SE
-XN
-ww
-ww
-XN
-ww
-ww
-XN
-ww
+zF
+fx
+fx
+zF
+fx
+fx
+zF
+fx
 jO
 Rb
 rE
@@ -1618,21 +1742,19 @@ Fs
 SE
 kt
 vP
-Gs
 "}
-(19,1,1) = {"
-Gs
+(18,1,1) = {"
 vP
 SE
 SE
-rc
-ED
-ED
-rc
-ED
-ED
-rc
-ED
+YE
+ij
+ij
+YE
+ij
+ij
+YE
+ij
 Kh
 UB
 zV
@@ -1644,10 +1766,8 @@ Fs
 SE
 uA
 vP
-Gs
 "}
-(20,1,1) = {"
-Gs
+(19,1,1) = {"
 vP
 Tq
 fA
@@ -1670,10 +1790,8 @@ hy
 SE
 kt
 vP
-Gs
 "}
-(21,1,1) = {"
-Gs
+(20,1,1) = {"
 vP
 SE
 SE
@@ -1696,106 +1814,121 @@ SE
 SE
 kt
 vP
-Gs
+"}
+(21,1,1) = {"
+vP
+pb
+SE
+Mw
+SE
+SE
+Gm
+SE
+SE
+SE
+Gm
+SE
+Mw
+SE
+Mw
+SE
+Gm
+ww
+ww
+ww
+vP
+vP
 "}
 (22,1,1) = {"
-Gs
 vP
-pb
-SE
-Mw
-SE
-SE
-Gm
-SE
-SE
-SE
-Gm
-SE
-Mw
-SE
-Mw
-SE
-Gm
-ww
-ww
-ww
+wq
+kw
+Ow
+wq
+wq
 vP
 vP
-Gs
+vP
+vP
+vP
+Lh
+du
+Lh
+du
+Lh
+vP
+vP
+vP
+vP
+vP
+Yu
 "}
 (23,1,1) = {"
-Gs
 vP
-wq
-PZ
-Qt
-wq
-wq
+GM
+GM
+xE
+GM
+Rq
 vP
+Yu
+Yu
+Yu
 vP
+SE
+Mw
+SE
+Mw
+SE
 vP
-vP
-vP
-Lh
-eA
-Lh
-eA
-Lh
-vP
-vP
-vP
-vP
-vP
-Gs
-Gs
+Yu
+Yu
+Yu
+Yu
+Yu
 "}
 (24,1,1) = {"
-Gs
 vP
-SE
-SE
-Mw
-SE
-HS
+Zq
+GM
+pM
+Ip
+lJ
 vP
-Gs
-Gs
-Gs
-vP
-SE
-Mw
-SE
-Mw
-SE
-vP
-Gs
-Gs
-Gs
-Gs
-Gs
 Yu
-"}
-(25,1,1) = {"
-Gs
+Yu
+Yu
 vP
 pb
-SE
-YO
-uQ
-Wy
-vP
-Gs
-Yu
-Gs
-vP
-SE
 Mw
 uo
 Mw
 hP
 vP
-Gs
+Yu
+Yu
+Yu
+Yu
+Yu
+"}
+(25,1,1) = {"
+ft
+dq
+vT
+xE
+GM
+hB
+Fq
+Yu
+Yu
+Yu
+Fq
+SE
+cx
+SE
+cx
+SE
+ft
 Yu
 Yu
 Yu
@@ -1803,25 +1936,23 @@ Yu
 Yu
 "}
 (26,1,1) = {"
-pE
-SE
-no
-fu
-Mw
-SE
-zZ
-vP
-Gs
+ft
+PA
+Ug
+xE
+nn
+fc
+Fq
 Yu
-Gs
-vP
-pb
-cx
+Yu
+Yu
+Fq
 SE
-cx
+kt
+aV
+sF
 SE
-SE
-Qf
+ft
 Yu
 Yu
 Yu
@@ -1829,25 +1960,23 @@ Yu
 Yu
 "}
 (27,1,1) = {"
-pE
-vv
-dN
-Uu
-Mw
-Ym
-iD
-vP
-Gs
+ft
+LL
+Ug
+mM
+nG
+GM
+Fq
 Yu
-Gs
-vP
+Yu
+Yu
+Fq
 SE
 kt
-aV
+ka
 sF
 SE
-SE
-Qf
+ft
 Yu
 Yu
 Yu
@@ -1855,25 +1984,23 @@ Yu
 Yu
 "}
 (28,1,1) = {"
-pE
-mH
-cR
-PO
-Kh
-dx
-SE
-vP
-Gs
+ft
+dq
+Fb
+EK
+GM
+GM
+Fq
 Yu
-Gs
-vP
+Yu
+Yu
+Fq
 SE
 kt
 ka
 sF
 SE
-SE
-Qf
+ft
 Yu
 Yu
 Yu
@@ -1881,43 +2008,16 @@ Yu
 Yu
 "}
 (29,1,1) = {"
-pE
-SE
-no
-cR
-cx
-SE
-SE
 vP
-Gs
-Yu
-Gs
+rB
+GM
+GM
+GM
+Gz
 vP
-SE
-kt
-ka
-sF
-SE
-SE
-Qf
 Yu
 Yu
 Yu
-Yu
-Yu
-"}
-(30,1,1) = {"
-Gs
-vP
-pA
-SE
-SE
-SE
-hP
-vP
-Gs
-Yu
-Gs
 vP
 pb
 kt
@@ -1925,7 +2025,30 @@ jo
 sF
 hP
 vP
-Gs
+Yu
+Yu
+Yu
+Yu
+Yu
+"}
+(30,1,1) = {"
+vP
+hR
+GM
+hg
+GM
+GM
+vP
+Yu
+Yu
+Yu
+vP
+SE
+SE
+uo
+SE
+SE
+vP
 Yu
 Yu
 Yu
@@ -1933,25 +2056,23 @@ Yu
 Yu
 "}
 (31,1,1) = {"
-Gs
 vP
-jR
-SE
-uo
-SE
-SE
+MC
+RH
+Tm
+RH
 vP
-Gs
+vP
 Yu
-Gs
+Yu
+Yu
+vP
 vP
 SE
 SE
-uo
-SE
 SE
 vP
-Gs
+vP
 Yu
 Yu
 Yu
@@ -1959,25 +2080,23 @@ Yu
 Yu
 "}
 (32,1,1) = {"
-Gs
 vP
-MC
-qH
-Cs
-qH
+jq
+YG
+YG
+YG
+YG
 vP
-vP
-Gs
 Yu
-Gs
+Yu
+Yu
 vP
+jq
+YG
+YG
+YG
+YG
 vP
-SE
-SE
-SE
-vP
-vP
-Gs
 Yu
 Yu
 Yu
@@ -1985,50 +2104,22 @@ Yu
 Yu
 "}
 (33,1,1) = {"
-Gs
-Gs
-jq
-YG
-YG
-YG
-YG
-Gs
-Gs
 Yu
-Gs
-Gs
-jq
-YG
-YG
-YG
-YG
-Gs
-Gs
-Yu
-Yu
-Yu
-Yu
-Yu
-"}
-(34,1,1) = {"
-Yu
-Gs
 uB
 uB
 uB
 uB
 uB
-Gs
 Yu
 Yu
 Yu
-Gs
+Yu
+Yu
 uB
 uB
 uB
 uB
 uB
-Gs
 Yu
 Yu
 Yu
