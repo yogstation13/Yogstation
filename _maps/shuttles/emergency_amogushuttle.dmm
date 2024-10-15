@@ -748,12 +748,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
-"uA" = (
-/obj/machinery/modular_computer/console/preset/command/hop{
-	dir = 8
-	},
-/turf/open/floor/wood/tile,
-/area/shuttle/escape)
 "uB" = (
 /obj/structure/shuttle/engine/propulsion{
 	color = "red";
@@ -1130,6 +1124,13 @@
 	color = "red"
 	},
 /area/shuttle/escape)
+"Fh" = (
+/obj/machinery/modular_computer/console/preset/command/hop{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
+/area/shuttle/escape)
 "Fo" = (
 /obj/machinery/light{
 	dir = 4
@@ -1396,12 +1397,6 @@
 /turf/open/floor/plating/burnt{
 	color = "red"
 	},
-/area/shuttle/escape)
-"NK" = (
-/obj/machinery/computer/cargo{
-	dir = 8
-	},
-/turf/open/floor/wood/tile,
 /area/shuttle/escape)
 "NY" = (
 /obj/machinery/door/firedoor/border_only{
@@ -1693,6 +1688,13 @@
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/tile/bar/fourcorners,
 /turf/open/floor/plasteel/white,
+/area/shuttle/escape)
+"Up" = (
+/obj/machinery/computer/cargo{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar/fourcorners,
+/turf/open/floor/wood/tile,
 /area/shuttle/escape)
 "Ur" = (
 /obj/structure/window/reinforced{
@@ -2200,8 +2202,8 @@ vP
 "}
 (12,1,1) = {"
 re
-NK
-uA
+Up
+Fh
 yt
 AJ
 Zw
