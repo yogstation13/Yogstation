@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Gives yellow clown bridge access during Clown Bridge Access station trait."
