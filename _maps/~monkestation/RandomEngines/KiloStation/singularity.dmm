@@ -580,6 +580,24 @@
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/space/nearstation)
+"wV" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow/half/contrasted{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/bed/dogbed{
+	name = "Poppy's Bed"
+	},
+/mob/living/basic/pet/poppy,
+/turf/open/floor/iron,
+/area/station/engineering/supermatter/room)
 "xj" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line,
@@ -1635,7 +1653,7 @@ rP
 "}
 (16,1,1) = {"
 rz
-HX
+wV
 Ch
 NK
 Yj
