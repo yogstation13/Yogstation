@@ -89,6 +89,8 @@
 		/datum/job/detective,
 		/datum/job/security_officer,
 		/datum/job/warden,
+		// Monkestation edit: brig docs
+		/datum/job/brig_physician,
 	)
 	alive_bonus = 5
 
@@ -100,6 +102,8 @@
 	target_jobs = list(
 		/datum/job/captain,
 		/datum/job/head_of_security,
+		// Monkestation edit: Blueshields
+		/datum/job/blueshield,
 	)
 	alive_bonus = 6
 
