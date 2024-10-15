@@ -1,0 +1,8 @@
+author: "ven1883"
+delete-after: True
+changes:
+  - bugfix: "character and inherent armor have been fixed. unknown how many things this will affect, but includes nanite armor"
+  - code_imp: "modified carbon/human/proc/check_armor() to check src.armor during calculations"
+  - code_imp: "you can now use \"set_armor\" on human subtypes"
+  - refactor: "for people using debuggers, you can watch \"inherent_armor_rating\" to see the inherent armor stats of a character being damaged."
+  - refactor: "uses / 100 instead of * 0.01. No change in function as far as I know"
