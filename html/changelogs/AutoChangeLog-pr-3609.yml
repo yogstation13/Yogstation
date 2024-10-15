@@ -1,7 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Added Nanite room to Void Raptor."
-  - rscadd: "Added nanite chamber & console to Ouroboros."
-  - qol: "Added a box of nanite remotes."
-  - bugfix: "Redefined circuit lab to circuit lab from aux lab,"
