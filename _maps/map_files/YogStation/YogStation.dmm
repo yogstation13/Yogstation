@@ -3417,6 +3417,20 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
+"azw" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "azx" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable{
@@ -18617,10 +18631,10 @@
 	pixel_x = -4;
 	pixel_y = 36
 	},
-/obj/machinery/pdapainter,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
+/obj/machinery/pdapainter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "dQj" = (
@@ -21521,11 +21535,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"ePH" = (
-/obj/structure/chair/office/dark,
-/obj/effect/landmark/start/detective,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "ePJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -25285,13 +25294,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"geQ" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -31
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "gft" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/power/smes,
@@ -26879,14 +26881,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"gLV" = (
-/obj/machinery/camera{
-	c_tag = "Fore Primary Hallway Central";
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "gMD" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -30106,17 +30100,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"hPV" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp/green{
-	pixel_x = 1;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/fore)
 "hPW" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
@@ -32423,6 +32406,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
+"iBM" = (
+/obj/machinery/camera{
+	c_tag = "Fore Primary Hallway Central";
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -31
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "iCk" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock"
@@ -41310,7 +41304,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "lUW" = (
@@ -47634,6 +47628,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"okC" = (
+/obj/structure/table/wood,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "okF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -57584,6 +57583,18 @@
 /obj/effect/landmark/stationroom/box/engine,
 /turf/open/space/basic,
 /area/space)
+"rMT" = (
+/obj/structure/chair/office/dark,
+/obj/effect/landmark/start/detective,
+/obj/machinery/button/door{
+	id = "kanyewest";
+	name = "Privacy Shutters";
+	pixel_x = -57;
+	pixel_y = 22;
+	req_access = list("detective")
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
 "rNk" = (
 /obj/machinery/light{
 	dir = 1
@@ -65411,18 +65422,6 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
-"uIQ" = (
-/obj/structure/table/wood,
-/obj/item/clothing/glasses/sunglasses,
-/obj/machinery/button/door{
-	id = "kanyewest";
-	name = "Privacy Shutters";
-	pixel_x = -6;
-	pixel_y = 8;
-	req_access = list("detective")
-	},
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "uIU" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -73826,7 +73825,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "xML" = (
@@ -98872,7 +98871,7 @@ whZ
 apd
 izH
 qSt
-ePH
+rMT
 pbR
 xqV
 mMW
@@ -99130,7 +99129,7 @@ bpa
 bxt
 wXq
 xJx
-uIQ
+okC
 xqV
 hix
 apd
@@ -103740,7 +103739,7 @@ rxB
 wXu
 tsu
 anz
-gLV
+iBM
 bNR
 cCR
 hGZ
@@ -104254,9 +104253,9 @@ cRY
 tDw
 tsu
 anz
-geQ
+kUv
 bNR
-hPV
+azw
 qEB
 qEB
 iNE

@@ -538,9 +538,7 @@
 /area/awaymission/centcomAway/hangar)
 "dm" = (
 /obj/machinery/door/window/northright{
-	base_state = "right";
 	dir = 4;
-	icon_state = "right";
 	name = "Security Desk";
 	req_access = list("cent_specops")
 	},
@@ -645,9 +643,7 @@
 /area/awaymission/centcomAway/hangar)
 "dN" = (
 /obj/structure/closet/crate,
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
 "dO" = (
@@ -1085,10 +1081,6 @@
 /area/awaymission/centcomAway/maint)
 "gr" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/end,
-/turf/open/indestructible,
-/area/awaymission/centcomAway/general)
-"gs" = (
-/obj/machinery/pdapainter,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
 "gt" = (
@@ -1785,8 +1777,7 @@
 /area/awaymission/centcomAway/general)
 "kD" = (
 /obj/machinery/door/window/northright{
-	dir = 2;
-	icon_state = "right"
+	dir = 2
 	},
 /turf/open/indestructible,
 /area/awaymission/centcomAway/general)
@@ -2236,9 +2227,7 @@
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "mK" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/turf_decal/stripes/line,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/cafe)
 "mN" = (
@@ -2317,9 +2306,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "nc" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "nd" = (
@@ -2447,9 +2434,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "nt" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 2
-	},
+/obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
 /area/awaymission/centcomAway/thunderdome)
 "nu" = (
@@ -2529,6 +2514,10 @@
 /obj/effect/landmark/vr_spawn/syndicate,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/hangar)
+"Xf" = (
+/obj/machinery/pdapainter,
+/turf/open/indestructible,
+/area/awaymission/centcomAway/general)
 
 (1,1,1) = {"
 aa
@@ -11036,7 +11025,7 @@ fw
 gW
 gW
 fw
-gs
+Xf
 gW
 gN
 gN

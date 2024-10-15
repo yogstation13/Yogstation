@@ -28181,10 +28181,10 @@
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "nzI" = (
-/obj/machinery/pdapainter,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/pdapainter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "nzN" = (

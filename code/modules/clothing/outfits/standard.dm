@@ -192,17 +192,15 @@
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/ammo_box/m44, null, TRUE, TRUE)
 	SEND_SIGNAL(sec_briefcase, COMSIG_TRY_STORAGE_INSERT, new /obj/item/grenade/plastic/x4, null, TRUE, TRUE)
 
-	var/obj/item/pda/heads/pda = H.belt
-	pda.owner = H.real_name
-	pda.ownjob = "Reaper"
-	pda.update_label()
-
 	var/obj/item/card/id/syndicate/W = H.wear_id
 	W.access = get_all_accesses()
 	W.assignment = "Reaper"
 	W.originalassignment = "Reaper"
 	W.registered_name = H.real_name
 	W.update_label(H.real_name)
+
+	var/obj/item/modular_computer/tablet/phone/preset/advanced/command/command_phone = H.belt
+	command_phone.update_label(W)
 
 /datum/outfit/spec_ops
 	name = "Special Ops Officer"

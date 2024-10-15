@@ -1191,14 +1191,12 @@
 					break
 				search_id = 0
 
-		else if( search_pda && istype(A, /obj/item/pda) )
-			var/obj/item/pda/PDA = A
-			if(PDA.owner == oldname)
-				PDA.owner = newname
-				PDA.update_label()
-				if(!search_id)
-					break
-				search_pda = 0
+		else if( search_pda && istype(A, /obj/item/modular_computer/tablet) )
+			var/obj/item/modular_computer/tablet/PDA_or_phone = A
+			PDA_or_phone.update_label()
+			if(!search_id)
+				break
+			search_pda = 0
 
 /mob/proc/update_stat()
 	return

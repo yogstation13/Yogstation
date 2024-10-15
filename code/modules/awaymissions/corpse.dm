@@ -211,9 +211,12 @@
 		H.equipOutfit(outfit)
 		if(disable_pda)
 			// We don't want corpse PDAs to show up in the messenger list.
-			var/obj/item/pda/PDA = locate(/obj/item/pda) in H
-			if(PDA)
-				PDA.toff = TRUE
+			var/obj/item/modular_computer/tablet/pda/computer = locate(/obj/item/modular_computer/tablet/pda) in H
+			if(computer)
+				var/obj/item/computer_hardware/hard_drive/hdd = computer.all_components[MC_HDD]
+				var/datum/computer_file/program/pdamessager/messenger_app = locate() in hdd.stored_files
+				if(messenger_app)
+					messenger_app.receiving = FALSE
 		if(disable_sensors)
 			// Using crew monitors to find corpses while creative makes finding certain ruins too easy.
 			var/obj/item/clothing/under/C = H.w_uniform
@@ -337,7 +340,7 @@
 /obj/effect/mob_spawn/human/doctor/alive/equip(mob/living/carbon/human/H)
 	..()
 	// Remove radio and PDA so they wouldn't annoy station crew.
-	var/list/del_types = list(/obj/item/pda, /obj/item/radio/headset)
+	var/list/del_types = list(/obj/item/modular_computer/tablet/pda, /obj/item/radio/headset)
 	for(var/del_type in del_types)
 		var/obj/item/I = locate(del_type) in H
 		qdel(I)

@@ -99,7 +99,7 @@
 		return
 	forge_charges--
 	if(forge_charges <= 0)
-		visible_message("The World Anvil cools down.")
+		visible_message("The [src] cools down.")
 		update_appearance(UPDATE_ICON)
 
 

@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 
 	corgi_source.place_on_head(equipping, user)
 
-/datum/strippable_item/corgi_head/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/corgi_head/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/mob/living/simple_animal/pet/dog/corgi/corgi_source = source
 	if (!istype(corgi_source))
 		return
@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	corgi_source.update_corgi_fluff()
 	corgi_source.regenerate_icons()
 
-/datum/strippable_item/corgi_back/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/corgi_back/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/mob/living/simple_animal/pet/dog/corgi/corgi_source = source
 	if (!istype(corgi_source))
 		return
@@ -254,7 +254,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	corgi_source.add_collar(equipping, user)
 	corgi_source.update_corgi_fluff()
 
-/datum/strippable_item/corgi_collar/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/corgi_collar/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/mob/living/simple_animal/pet/dog/corgi/corgi_source = source
 	if (!istype(corgi_source))
 		return
@@ -293,7 +293,7 @@ GLOBAL_LIST_INIT(strippable_corgi_items, create_strippable_list(list(
 	equipping.forceMove(source)
 	corgi_source.access_card = equipping
 
-/datum/strippable_item/corgi_id/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/corgi_id/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/mob/living/simple_animal/pet/dog/corgi/corgi_source = source
 	if (!istype(corgi_source))
 		return
