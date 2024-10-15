@@ -1,7 +1,3 @@
-/// Randomized plant stat with a set amount of inaccuracy
-#define RANDOMIZE_PLANT_STAT(plant_stat, inaccuracy) ((inaccuracy && plant_stat >= round(1 / inaccuracy, 1)) ? \
-	("[plant_stat + rand(inaccuracy)*plant_stat - inaccuracy]-[plant_stat + rand(inaccuracy)*plant_stat]") : plant_stat)
-
 // ********************************************************
 // Here's all the seeds (plants) that can be used in hydro
 // ********************************************************
@@ -304,18 +300,18 @@
 		if(get_gene(/datum/plant_gene/trait/plant_type/alien_properties))
 			text += "- Plant type: [span_warning("UNKNOWN")] \n"
 	if(!check_skills || user.skill_check(SKILL_SCIENCE, EXP_HIGH))
-		var/inaccuracy = check_skills ? (EXP_GENIUS - user.get_skill(SKILL_SCIENCE)) / (EXP_GENIUS * 4) : 0
+		var/inaccuracy = check_skills ? (EXP_GENIUS - user.get_skill(SKILL_SCIENCE)) / (EXP_GENIUS * 2) : 0
 		if(potency != -1)
-			text += "- Potency: [RANDOMIZE_PLANT_STAT(potency, inaccuracy)]\n"
+			text += "- Potency: [randomize_plant_stat(potency, inaccuracy * 100, 0)]\n"
 		if(yield != -1)
-			text += "- Yield: [RANDOMIZE_PLANT_STAT(yield, inaccuracy)]\n"
-		text += "- Maturation speed: [RANDOMIZE_PLANT_STAT(maturation, inaccuracy)]\n"
+			text += "- Yield: [randomize_plant_stat(yield, inaccuracy * 10, 2)]\n"
+		text += "- Maturation speed: [randomize_plant_stat(maturation, inaccuracy * 10, 4)]\n"
 		if(yield != -1)
-			text += "- Production speed: [RANDOMIZE_PLANT_STAT(production, inaccuracy)]\n"
-		text += "- Endurance: [RANDOMIZE_PLANT_STAT(endurance, inaccuracy)]\n"
-		text += "- Lifespan: [RANDOMIZE_PLANT_STAT(lifespan, inaccuracy)]\n"
-		text += "- Weed Growth Rate: [RANDOMIZE_PLANT_STAT(weed_rate, inaccuracy)]\n"
-		text += "- Weed Vulnerability: [RANDOMIZE_PLANT_STAT(weed_chance, inaccuracy)]\n"
+			text += "- Production speed: [randomize_plant_stat(production, inaccuracy * 10, 6)]\n"
+		text += "- Endurance: [randomize_plant_stat(endurance, inaccuracy * 100, 8)]\n"
+		text += "- Lifespan: [randomize_plant_stat(lifespan, inaccuracy * 100, 10)]\n"
+		text += "- Weed Growth Rate: [randomize_plant_stat(weed_rate, inaccuracy * 10, 12)]\n"
+		text += "- Weed Vulnerability: [randomize_plant_stat(weed_chance, inaccuracy * 10, 14)]\n"
 		if(rarity)
 			text += "- Species Discovery Value: [rarity]\n"
 	if(!check_skills || user.skill_check(SKILL_SCIENCE, EXP_MID))
@@ -329,6 +325,18 @@
 	text += ""
 
 	return text
+
+/// Randomizes and displays a plant stat.
+/obj/item/seeds/proc/randomize_plant_stat(plant_stat, inaccuracy = 0, hash_offset = 0)
+	if(!inaccuracy)
+		return plant_stat
+	hash_offset += 1 + (GLOB.round_id % 16)
+	var/raw_hash = copytext(md5("[potency]/[yield]/[maturation]/[production]/[endurance]/[lifespan]/[weed_rate]/[weed_chance]/[inaccuracy]/[REF(src)]"), \
+		hash_offset, hash_offset + 2)
+	var/random_offset = round(inaccuracy * hex2num(raw_hash) / 255)
+	if(plant_stat + random_offset - inaccuracy < 0) // keep it in bounds
+		random_offset += -(plant_stat + random_offset - inaccuracy)
+	return "[plant_stat + random_offset - inaccuracy]-[plant_stat + random_offset + inaccuracy]"
 
 /obj/item/seeds/proc/on_chem_reaction(datum/reagents/S)  //in case seeds have some special interaction with special chems
 	return

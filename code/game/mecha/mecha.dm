@@ -374,7 +374,7 @@
 				. += span_danger("The capacitor did well in preventing too much damage. Repair will be manageable.")
 			if(4)
 				. += span_danger("The capacitor did such a good job in preserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
-		if(repair_hint && capacitor?.rating)
+		if(repair_hint && (capacitor?.rating || user.skill_check(SKILL_TECHNICAL, EXP_GENIUS) || user.skill_check(SKILL_MECHANICAL, EXP_GENIUS)))
 			. += repair_hint
 
 //Armor tag
@@ -1038,7 +1038,7 @@
 
 	visible_message("[user] starts to climb into [name].")
 
-	if(do_after(user, round(enter_delay * (check_eva()**2)), src, skill_check = null))
+	if(do_after(user, round(enter_delay * (check_eva(user)**2)), src, skill_check = null))
 		if(atom_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
@@ -1157,7 +1157,7 @@
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
-	if(do_after(occupant, exit_delay, src))
+	if(do_after(occupant, round(exit_delay * (check_eva(user)**2)), src))
 		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
 		go_out()
 	else
@@ -1373,8 +1373,10 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			return
 
 // Check the pilot for mech piloting skill
-/obj/mecha/proc/check_eva()
-	var/effective_skill = occupant.get_skill(SKILL_TECHNICAL)
-	if(effective_skill < EXP_MASTER && HAS_TRAIT(occupant, TRAIT_SKILLED_PILOT))
+/obj/mecha/proc/check_eva(mob/pilot)
+	if(!pilot)
+		pilot = occupant
+	var/effective_skill = pilot.get_skill(SKILL_TECHNICAL)
+	if(effective_skill < EXP_MASTER && HAS_TRAIT(pilot, TRAIT_SKILLED_PILOT))
 		effective_skill += EXP_LOW // mech pilot suit adds extra pilot skill, up to EXP_MASTER
 	return (12 - effective_skill) / 10
