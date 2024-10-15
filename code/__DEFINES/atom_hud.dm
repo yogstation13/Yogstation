@@ -53,8 +53,6 @@
 #define PERMIT_HUD "25"
 // for implants to let you see sensor field
 #define SENSOR_HUD	"26"
-// for mood change
-#define MOOD_HUD "27"
 //monkestation edit end
 
 //by default everything in the hud_list of an atom is an image
@@ -75,7 +73,6 @@
 #define DATA_HUD_FAN 10
 #define DATA_HUD_PERMIT 11 //monkestation edit
 #define DATA_HUD_SENSORS 12 //monkestation edit
-#define DATA_HUD_MOOD 13 //monkestation edit
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

@@ -37,7 +37,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/health_scan = FALSE //Are health scans currently enabled?
 	var/chem_scan = FALSE //Are chem scans currently enabled?
 	var/gas_scan = FALSE //Are gas scans currently enabled?
-	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED, DATA_HUD_MOOD) //list of data HUDs shown to ghosts. monkestation addition here
+	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
 	//These variables store hair data if the ghost originates from a species with head and/or facial hair.
@@ -770,10 +770,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/datum/atom_hud/data_hud = GLOB.huds[hudtype]
 		data_hud.hide_from(src)
 
-//MONKESTATION
 /mob/dead/observer/verb/toggle_data_huds()
-	set name = "Toggle Sec/Med/Diag/Mood HUD"
-	set desc = "Toggles whether you see medical/security/diagnostic/mood HUDs"
+	set name = "Toggle Sec/Med/Diag HUD"
+	set desc = "Toggles whether you see medical/security/diagnostic HUDs"
 	set category = "Ghost"
 
 	if(data_huds_on) //remove old huds

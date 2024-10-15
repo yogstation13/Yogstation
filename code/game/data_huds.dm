@@ -90,10 +90,6 @@
 	for(var/mob/camera/ai_eye/eye as anything in GLOB.aiEyes)
 		eye.update_ai_detect_hud()
 
-//MONKESTATION ADDITION
-/datum/atom_hud/mood
-	hud_icons = list(MOOD_HUD)
-
 /* MED/SEC/DIAG HUD HOOKS */
 
 /*
