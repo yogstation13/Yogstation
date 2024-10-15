@@ -729,7 +729,10 @@
 	new /obj/item/gun/ballistic/automatic/c20r/toy(src)
 	new /obj/item/storage/box/syringes(src)
 	new /obj/item/ammo_box/foambox/riot(src)
-	new /obj/item/grenade/chem_grenade/bioterrorfoam(src)
+	// MONKESTATION EDIT START
+	// MONKESTATION EDIT ORIGINAL new /obj/item/grenade/chem_grenade/bioterrorfoam(src)
+	new /obj/item/grenade/chem_grenade/large/bioterrorfoam(src)
+	// MONKESTATION EDIT END
 	if(prob(5))
 		new /obj/item/food/pizza/pineapple(src)
 

@@ -224,7 +224,10 @@
 			new /obj/item/megaphone(src) // 0 tc
 			new /obj/item/grenade/clusterbuster/random(src) // 10 tc?
 			new /obj/item/grenade/clusterbuster/random(src) // 10 tc?
-			new /obj/item/grenade/chem_grenade/bioterrorfoam(src) // 5 tc
+			// MONKESTATION EDIT START
+			// MONKESTATION EDIT ORIGINAL new /obj/item/grenade/chem_grenade/bioterrorfoam(src)
+			new /obj/item/grenade/chem_grenade/large/bioterrorfoam(src) // 5 tc
+			// MONKESTATION EDIT END
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
 			new /obj/item/assembly/signaler(src) // 0 tc
