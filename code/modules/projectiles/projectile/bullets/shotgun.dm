@@ -19,7 +19,7 @@
 	name = "beanbag slug"
 	icon_state = "pellet"
 	damage = 10
-	stamina = 145 //monkestation edit
+	stamina = 65 //monkestation edit
 	wound_bonus = 20
 	sharpness = NONE
 	embedding = null
