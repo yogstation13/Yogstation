@@ -37,6 +37,7 @@
 
 	alt_titles = list(
 		"Security Assistant",
+		"Correctional Officer",
 		"Deputy",
 		"Hall Monitor",
 		"Assistant Officer",
