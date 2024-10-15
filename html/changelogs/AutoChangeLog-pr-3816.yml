@@ -1,0 +1,4 @@
+author: "Meowosers"
+delete-after: True
+changes:
+  - bugfix: "Blueshields no longer have a missing security HUD icon."
