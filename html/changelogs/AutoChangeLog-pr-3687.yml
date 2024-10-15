@@ -1,0 +1,8 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added a new PDA for the Psychlogist with mass messaging."
+  - rscadd: "Gave Blueshield's PDA's Lifeline predownloaded"
+  - rscadd: "Gave Robotistic's PDA's Silliconnect Predownloaded"
+  - rscadd: "Gave Engineers's PDA Canary predownloaded"
+  - qol: "moved all the Psychlogist round start pills into a pill box in their inventory."
