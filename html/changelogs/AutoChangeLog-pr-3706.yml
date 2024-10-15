@@ -1,0 +1,6 @@
+author: "KnigTheThrasher"
+delete-after: True
+changes:
+  - rscadd: "Updated kilostation atmospherics"
+  - rscadd: "Added Nanotrasen Consultant's office to kilo"
+  - rscdel: "Tweaked the amount of decals in kilostation"
