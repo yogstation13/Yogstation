@@ -105,3 +105,8 @@
 	name = "ghastly evil demon"
 	default_name = "ghastly evil demon"
 	donator_pet = 	/mob/living/basic/pet/ghastly_evil_demon
+
+/obj/item/choice_beacon/pet/donator/albino_ghost_ian
+	name = "ghost ian"
+	default_name = "ghost ian"
+	donator_pet = /mob/living/basic/pet/albino_ghost_ian

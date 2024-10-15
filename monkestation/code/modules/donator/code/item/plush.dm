@@ -146,3 +146,8 @@
 	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
 	icon_state = "toadie_wan_kenfrogi"
 
+/obj/item/toy/plush/trax_the_coward
+	name = "trax the coward plush"
+	desc = "A plushie of trax the coward. They're wearing a captains uniform."
+	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
+	icon_state = "trax_the_coward"

@@ -632,3 +632,49 @@
 	item_path = /obj/item/clothing/suit/hooded/mothysmantle
 	donator_only = TRUE
 	requires_purchase = FALSE
+
+//wisemonster
+/datum/loadout_item/head/purple_gold_tophat_kid
+	name = "Purple And Gold Tophat"
+	item_path = /obj/item/clothing/head/costume/purple_gold_tophat_kid
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+//Shodd
+/datum/loadout_item/mask/dark_skeletal_visage
+	name = "Dark Skeletal Visage"
+	item_path = /obj/item/clothing/mask/dark_skeletal_visage
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+//Eacles13
+/datum/loadout_item/suit/traxs_jacket
+	name = "Trax's Jacket"
+	item_path = /obj/item/clothing/suit/toggle/traxs_jacket
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+/datum/loadout_item/toys/trax_the_coward
+	name = "Trax The Coward Plush"
+	item_path = /obj/item/toy/plush/trax_the_coward
+	donator_only = TRUE
+	requires_purchase = FALSE
+
+/datum/loadout_item/pocket_items/donator/albino_ghost_ian
+	name = "Pet Delivery Beacon - Ghost Ian"
+	item_path = /obj/item/choice_beacon/pet/donator/albino_ghost_ian
+	donator_only = TRUE
+	requires_purchase = FALSE
+	ckeywhitelist = list("Eacles13")
+
+/datum/loadout_item/effects/albino_ghost_ian
+	ckeywhitelist = list("Eacles13")
+	name = "Ghost Ian Transformation"
+	item_path = /obj/item/effect_granter/donator/albino_ghost_ian
+	requires_purchase = FALSE
+
+/datum/loadout_item/neck/mist_cloak
+	name = "Mist Cloak"
+	item_path = /obj/item/clothing/neck/mist_cloak
+	donator_only = TRUE
+	requires_purchase = FALSE

@@ -112,3 +112,10 @@
 	icon_state = "ghastly_evil_demon"
 	animal_transformation = /mob/living/basic/pet/ghastly_evil_demon
 	basic_inhands_y_offset = 0
+
+//Eacles13
+/obj/item/effect_granter/donator/albino_ghost_ian
+	name = "ghost ian transformation"
+	icon = 'monkestation/code/modules/donator/icons/mob/pets_32x48.dmi'
+	icon_state = "ghastly_evil_demon"
+	animal_transformation = /mob/living/basic/pet/albino_ghost_ian
