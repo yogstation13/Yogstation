@@ -27442,6 +27442,24 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"gVc" = (
+/obj/machinery/rnd/production/protolathe/department/engineering,
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering - Foyer - Shared Storage";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "gVn" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -48015,21 +48033,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison/hallway)
-"osD" = (
-/obj/machinery/rnd/production/protolathe/department/engineering,
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering - Foyer - Shared Storage";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "osE" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -107413,7 +107416,7 @@ kHt
 cnG
 akB
 dXX
-osD
+gVc
 fpn
 raI
 cfb
