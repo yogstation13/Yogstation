@@ -15269,18 +15269,25 @@
 	pixel_y = -3
 	},
 /obj/item/computer_disk{
-	pixel_x = -5;
-	pixel_y = 8
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /obj/item/computer_disk/ordnance{
-	pixel_x = 1
+	pixel_x = -8;
+	pixel_y = 5
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /obj/machinery/light/directional/north,
-/obj/item/storage/box/disks_nanite,
-/obj/item/storage/box/disks_nanite,
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 6;
+	pixel_y = 1
+	},
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/office)
 "dNT" = (
@@ -56320,19 +56327,19 @@
 /turf/open/floor/iron/cafeteria,
 /area/station/security/prison/mess)
 "qPX" = (
-/obj/structure/table,
-/obj/item/analyzer,
+/obj/item/storage/box/nanitecontrol{
+	pixel_x = -5;
+	pixel_y = 11
+	},
 /obj/item/book/manual/wiki/ordnance{
 	pixel_x = 5;
 	pixel_y = 1
 	},
+/obj/item/analyzer,
+/obj/structure/table,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
-/obj/item/nanite_scanner,
-/obj/item/nanite_scanner,
-/obj/item/nanite_remote,
-/obj/item/nanite_remote,
 /turf/open/floor/iron/white,
 /area/station/science/ordnance/office)
 "qQc" = (

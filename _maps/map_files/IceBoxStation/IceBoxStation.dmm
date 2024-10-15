@@ -12527,12 +12527,18 @@
 "dOK" = (
 /obj/structure/sign/poster/official/random/directional/south,
 /obj/structure/table,
-/obj/item/storage/box/disks_nanite,
-/obj/item/nanite_scanner,
-/obj/item/nanite_scanner,
-/obj/item/nanite_remote,
-/obj/item/nanite_remote,
-/obj/item/storage/box/disks_nanite,
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/storage/box/nanitecontrol{
+	pixel_x = 0;
+	pixel_y = 18
+	},
 /turf/open/floor/iron,
 /area/station/science/explab)
 "dOY" = (

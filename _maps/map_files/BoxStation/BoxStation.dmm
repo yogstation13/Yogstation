@@ -8391,14 +8391,7 @@
 "cMv" = (
 /obj/effect/turf_decal/tile/purple/fourcorners,
 /obj/structure/table/glass,
-/obj/item/nanite_scanner{
-	pixel_x = -4;
-	pixel_y = -2
-	},
-/obj/item/nanite_remote{
-	pixel_y = 6;
-	pixel_x = 5
-	},
+/obj/item/storage/box/nanitecontrol,
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "cMy" = (

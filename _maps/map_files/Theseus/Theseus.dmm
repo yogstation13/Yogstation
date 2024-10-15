@@ -69514,9 +69514,9 @@
 	pixel_y = 10;
 	pixel_x = 6
 	},
-/obj/item/storage/box/disks_nanite{
-	pixel_y = 2;
-	pixel_x = 10
+/obj/item/storage/box/nanitecontrol{
+	pixel_x = 10;
+	pixel_y = 2
 	},
 /turf/open/floor/iron/dark/side,
 /area/station/science/circuits)

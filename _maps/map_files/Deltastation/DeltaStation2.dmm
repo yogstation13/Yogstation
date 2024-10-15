@@ -17894,10 +17894,6 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/structure/table,
 /obj/item/mmi,
-/obj/item/nanite_remote,
-/obj/item/nanite_remote,
-/obj/item/nanite_scanner,
-/obj/item/nanite_scanner,
 /obj/item/multitool{
 	pixel_x = -4;
 	pixel_y = 2
@@ -65656,12 +65652,22 @@
 /area/station/science/xenobiology)
 "pDi" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high,
 /obj/structure/table,
 /obj/machinery/newscaster/directional/west,
-/obj/item/storage/box/disks_nanite,
-/obj/item/storage/box/disks_nanite,
+/obj/item/storage/box/disks_nanite{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = -7;
+	pixel_y = 12
+	},
+/obj/item/storage/box/nanitecontrol{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high,
 /turf/open/floor/iron/dark,
 /area/station/science/circuits)
 "pDt" = (

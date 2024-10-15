@@ -26693,13 +26693,30 @@
 "hWY" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/stripes/line,
-/obj/item/nanite_scanner,
-/obj/item/nanite_scanner,
-/obj/item/nanite_scanner,
-/obj/item/nanite_scanner,
-/obj/item/storage/box/disks_nanite,
-/obj/item/storage/box/disks_nanite,
-/obj/item/storage/box/disks_nanite,
+/obj/item/storage/box/disks_nanite{
+	pixel_x = -7;
+	pixel_y = 14
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/storage/box/nanitecontrol{
+	pixel_x = -7;
+	pixel_y = 19
+	},
+/obj/item/paper_bin{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/folder/white{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/pen{
+	pixel_x = 8;
+	pixel_y = 7
+	},
 /turf/open/floor/iron/dark/small,
 /area/station/science/circuits)
 "hWZ" = (
@@ -32059,6 +32076,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
+/obj/machinery/modular_computer/preset/cargochat/science,
 /turf/open/floor/iron/white/diagonal,
 /area/station/science/breakroom)
 "jzW" = (
@@ -35454,11 +35472,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
 "kxN" = (
-/obj/machinery/photocopier,
-/obj/effect/turf_decal/bot,
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark,
 /area/station/science/circuits)
 "kxX" = (
@@ -43529,20 +43547,8 @@
 /area/station/science/xenobiology)
 "mMG" = (
 /obj/machinery/airalarm/directional/west,
-/obj/structure/table/glass,
-/obj/item/folder/white{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/paper_bin{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_x = 5;
-	pixel_y = 4
-	},
 /obj/machinery/light_switch/directional/north,
+/obj/machinery/computer/nanite_chamber_control,
 /turf/open/floor/iron/dark/small,
 /area/station/science/circuits)
 "mMK" = (
@@ -75990,7 +75996,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/box,
-/obj/machinery/modular_computer/preset/cargochat/science,
+/obj/machinery/nanite_chamber,
 /turf/open/floor/iron/dark/small,
 /area/station/science/circuits)
 "wtk" = (

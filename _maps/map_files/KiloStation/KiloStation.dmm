@@ -41744,9 +41744,14 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/storage/box/disks_nanite,
-/obj/item/nanite_scanner,
-/obj/item/nanite_remote,
+/obj/item/storage/box/disks_nanite{
+	pixel_x = -7;
+	pixel_y = 9
+	},
+/obj/item/storage/box/nanitecontrol{
+	pixel_x = 8;
+	pixel_y = 9
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/research)
 "naG" = (

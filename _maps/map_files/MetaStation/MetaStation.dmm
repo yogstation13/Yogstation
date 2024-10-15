@@ -3166,14 +3166,18 @@
 	network = list("ss13","rd")
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/disks_nanite,
 /obj/item/storage/box/disks_nanite{
-	pixel_y = 4
+	pixel_x = -6;
+	pixel_y = 9
 	},
-/obj/item/nanite_remote,
-/obj/item/nanite_remote,
-/obj/item/nanite_scanner,
-/obj/item/nanite_scanner,
+/obj/item/storage/box/nanitecontrol{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_y = 3;
+	pixel_x = -6
+	},
 /obj/effect/turf_decal/tile/purple/half{
 	dir = 1
 	},
