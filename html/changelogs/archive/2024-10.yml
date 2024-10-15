@@ -230,6 +230,8 @@
   - qol: Moved Gateway on Meta above arrivals.
   - bugfix: Various minor fixes.
 2024-10-15:
+  Absolucy:
+  - rscdel: Removed mood change indicator huds for ghosts due to potential major lag.
   Gw0sty:
   - rscadd: Gives yellow clown bridge access during Clown Bridge Access station trait.
   - rscadd: Adds Blueshields and brig physicians to the kidnapping objectives target
@@ -238,5 +240,39 @@
   - rscadd: Added nanite chamber & console to Ouroboros.
   - qol: Added a box of nanite remotes.
   - bugfix: Redefined circuit lab to circuit lab from aux lab,
+  - rscadd: Added a new PDA for the Psychlogist with mass messaging.
+  - rscadd: Gave Blueshield's PDA's Lifeline predownloaded
+  - rscadd: Gave Robotistic's PDA's Silliconnect Predownloaded
+  - rscadd: Gave Engineers's PDA Canary predownloaded
+  - qol: moved all the Psychlogist round start pills into a pill box in their inventory.
+  KnigTheThrasher:
+  - rscadd: Updated kilostation atmospherics
+  - rscadd: Added Nanotrasen Consultant's office to kilo
+  - rscdel: Tweaked the amount of decals in kilostation
+  Meowosers:
+  - bugfix: Blueshields no longer have a missing security HUD icon.
   MomoBerri:
   - bugfix: meta's engi security post can now use the cam viewer with a singularity.
+  MrBagHead:
+  - bugfix: The Bioterror foam grenade now uses a large grenade casing to fit its
+      bluespace beakers.
+  RafRoq:
+  - bugfix: Plant reagent genes no longer take all the plant volume if there are other
+      reagents
+  Shoddd:
+  - balance: beanbags now properly two shot stam crit
+  - bugfix: Beanbags no longer stam crit in one shot
+  Sylphily:
+  - rscadd: more contraband to the cig vendors
+  Wisemonster:
+  - rscadd: Gives the Blueshield 5 new alt titles
+  YehnBeep:
+  - rscadd: Secasses can now select the "Correctional Officer" alt title
+  ven1883:
+  - bugfix: character and inherent armor have been fixed. unknown how many things
+      this will affect, but includes nanite armor
+  - code_imp: modified carbon/human/proc/check_armor() to check src.armor during calculations
+  - code_imp: you can now use "set_armor" on human subtypes
+  - refactor: for people using debuggers, you can watch "inherent_armor_rating" to
+      see the inherent armor stats of a character being damaged.
+  - refactor: uses / 100 instead of * 0.01. No change in function as far as I know

@@ -1,4 +1,0 @@
-author: "RafRoq"
-delete-after: True
-changes:
-  - bugfix: "Plant reagent genes no longer take all the plant volume if there are other reagents"

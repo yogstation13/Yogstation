@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscdel: "Removed mood change indicator huds for ghosts due to potential major lag."

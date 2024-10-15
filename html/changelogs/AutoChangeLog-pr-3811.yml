@@ -1,5 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - balance: "beanbags now properly two shot stam crit"
-  - bugfix: "Beanbags no longer stam crit in one shot"
