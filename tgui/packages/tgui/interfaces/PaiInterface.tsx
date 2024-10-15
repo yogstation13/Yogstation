@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote } from '../components';
+import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote, Table, Dropdown } from '../components';
 import { Window } from '../layouts';
 
 type Module = {
@@ -55,6 +55,7 @@ export const PaiInterface = (props, context) => {
 const PaiBox = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
+  const [hoveredModule, sethoveredModule] = useLocalState(context, "hoveredModule", {});
   const { modules, ram, modules_list } = data;
   const { laws_zeroth, laws, master, masterdna } = data;
   if(selectedMainTab===null) {
@@ -106,6 +107,15 @@ const PaiBox = (props, context) => {
           </Stack>
         </Section>
       );
+    case "Screen Display":
+      return (
+        <Section title={selectedMainTab.module_name}>
+          Select your new display image.
+          <Dropdown>
+
+          </Dropdown>
+        </Section>
+      )
     case "Download additional software":
       return (
         <Section title={selectedMainTab.module_name}>
@@ -117,12 +127,25 @@ const PaiBox = (props, context) => {
               Remaining available memory: {ram}
             </Stack.Item>
             <Stack.Item>
-              {modules_list.map(module => (
-                <Stack.Item
-                  key={module}>
-                  {module.module_name}: {module.cost}
-                </Stack.Item>
-              ))}
+              <Table>
+                {modules_list.map(module => (
+                  <Table.Row
+                    key={module}>
+                    <Table.Cell bold>
+                      {module.module_name}
+                    </Table.Cell>
+                    <Table.Cell collapsing textAlign="right">
+                      <Button
+                        fluid
+                        content={module.cost}
+                        tooltip={module.text}
+                        onmouseover={() => sethoveredModule(module)}
+                        onmouseout={() => sethoveredModule({})}
+                        onClick={() => act("buy", {name: module.module_name})}/>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table>
             </Stack.Item>
           </Stack>
         </Section>
