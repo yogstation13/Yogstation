@@ -360,7 +360,8 @@
 "AZ" = (
 /obj/item/kirbyplants/random,
 /obj/machinery/camera/emp_proof/directional/north{
-	c_tag = "Singularity Engine #1"
+	c_tag = "Singularity Engine #1";
+	network = list("ss13","engine")
 	},
 /turf/open/floor/carpet/black,
 /area/station/engineering/supermatter/room)
@@ -602,7 +603,8 @@
 /area/station/engineering/supermatter/room)
 "Rw" = (
 /obj/machinery/camera/emp_proof/directional/west{
-	c_tag = "Singularity Engine #4"
+	c_tag = "Singularity Engine #4";
+	network = list("ss13","engine")
 	},
 /turf/open/floor/plating/airless,
 /area/station/engineering/supermatter/room)
@@ -631,7 +633,8 @@
 /area/station/engineering/supermatter/room)
 "UU" = (
 /obj/machinery/camera/emp_proof/directional/east{
-	c_tag = "Singularity Engine #3"
+	c_tag = "Singularity Engine #3";
+	network = list("ss13","engine")
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
@@ -646,7 +649,8 @@
 /area/station/engineering/supermatter/room)
 "Vn" = (
 /obj/machinery/camera/emp_proof/directional/north{
-	c_tag = "Singularity Engine #2"
+	c_tag = "Singularity Engine #2";
+	network = list("ss13","engine")
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
