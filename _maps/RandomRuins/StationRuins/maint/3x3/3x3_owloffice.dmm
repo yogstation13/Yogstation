@@ -54,7 +54,7 @@
 	dir = 1
 	},
 /obj/item/clothing/suit/toggle/owlwings,
-/obj/item/clothing/under/owl,
+/obj/item/clothing/under/costume/owl,
 /obj/item/clothing/mask/gas/owl_mask,
 /obj/structure/sign/poster/official/the_owl{
 	pixel_y = 32
