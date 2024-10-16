@@ -291,7 +291,7 @@
 		if(GLOB.antag_token_users.len >= 1) //Antag token users get first priority, no matter their preferences
 			var/client/C = pick_n_take(GLOB.antag_token_users)
 			candidate = C.mob
-			if((candidate in candidates) && !is_banned_from(C.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(candidate))
+			if((candidate in candidates) && !is_banned_from(C.ckey, list(antag_flag, ROLE_ANTAG)) && !QDELETED(candidate))
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
 		else
 			candidate = pick_n_take(candidates)
