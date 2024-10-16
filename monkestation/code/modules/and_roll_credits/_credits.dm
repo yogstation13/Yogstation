@@ -6,7 +6,7 @@
 
 /client/proc/RollCredits()
 	set waitfor = FALSE
-	if(!fexists(CREDITS_PATH))
+	if(!fexists(CREDITS_PATH) || !prefs?.read_preference(/datum/preference/toggle/show_roundend_credits))
 		return
 	LAZYINITLIST(credits)
 	var/list/_credits = credits
@@ -93,8 +93,7 @@
 	set name = "Hide Credits"
 	set category = "OOC"
 	remove_verb(src, /client/proc/ClearCredits)
-	QDEL_LIST(credits)
-	credits = null
+	QDEL_LAZYLIST(credits)
 
 /atom/movable/screen/credit
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -158,8 +157,7 @@
 	animate(src, alpha = 255, time = CREDIT_EASE_DURATION, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, PROC_REF(FadeOut)), CREDIT_ROLL_SPEED - CREDIT_EASE_DURATION)
 	QDEL_IN(src, CREDIT_ROLL_SPEED)
-	if(parent)
-		parent.screen += src
+	parent?.screen += src
 
 /atom/movable/screen/credit/Destroy()
 	icon = null
