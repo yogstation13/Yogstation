@@ -293,7 +293,6 @@
 			candidate = C.mob
 			if((candidate in candidates) && !is_banned_from(C.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(candidate))
 				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
-				candidate.mind.token_picked = TRUE
 		else
 			candidate = pick_n_take(candidates)
 
