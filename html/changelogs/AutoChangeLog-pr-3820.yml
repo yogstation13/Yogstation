@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Add a preference to disable roundend credits. (Game Preferences -> UI -> Show Roundend Credits)"
+  - bugfix: "Fixed a runtime error related to stopping the roundend credits before they end."
