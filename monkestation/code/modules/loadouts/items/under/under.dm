@@ -282,6 +282,10 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	name = "Beige Suit"
 	item_path = /obj/item/clothing/under/suit/beige
 
+/datum/loadout_item/under/formal/ballgown
+	name = "Ball gown"
+	item_path = /obj/item/clothing/under/dress/ballgown
+
 /datum/loadout_item/under/formal/black_suit
 	name = "Black Suit"
 	item_path = /obj/item/clothing/under/suit/black

@@ -11,3 +11,10 @@
 	icon_state = "tophat_wiz"
 	dog_fashion = null
 
+/obj/item/clothing/head/costume/minicrown
+	name = "Mini crown"
+	desc = "A cute crown for the cutest prince or princess. Has the initials 'VA' embroidered inside of the cap.."
+	icon = 'monkestation/icons/obj/clothing/hats.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/head.dmi'
+	icon_state = "minicrown"
+	inhand_icon_state = null

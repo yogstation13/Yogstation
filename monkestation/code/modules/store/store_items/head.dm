@@ -178,6 +178,12 @@ GLOBAL_LIST_INIT(store_head, generate_store_items(/datum/store_item/head))
 	item_path = /obj/item/clothing/head/hats/bowler
 	item_cost = 3000
 
+
+/datum/store_item/head/mini_crown
+	name = "Mini Crown"
+	item_path = /obj/item/clothing/head/costume/minicrown
+	item_cost = 3000
+
 /*
 *	HALLOWEEN
 */

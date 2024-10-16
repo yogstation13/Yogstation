@@ -183,6 +183,10 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 	name = "Bowler Hat"
 	item_path = /obj/item/clothing/head/hats/bowler
 
+/datum/loadout_item/head/mini_crown
+	name = "Mini Crown"
+	item_path = /obj/item/clothing/head/costume/minicrown
+
 /datum/loadout_item/head/tragic
 	name = "Tragic Mime Headpiece"
 	item_path = /obj/item/clothing/head/tragic
