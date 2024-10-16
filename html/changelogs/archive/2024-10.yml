@@ -277,9 +277,16 @@
       see the inherent armor stats of a character being damaged.
   - refactor: uses / 100 instead of * 0.01. No change in function as far as I know
 2024-10-16:
+  Absolucy:
+  - qol: Jaunts/teleports now work at centcom after roundend.
+  - rscadd: Add a preference to disable roundend credits. (Game Preferences -> UI
+      -> Show Roundend Credits)
+  - bugfix: Fixed a runtime error related to stopping the roundend credits before
+      they end.
   Gw0sty:
   - rscadd: Added icons for Blueshield and Secass
   - rscadd: Added icons for all Spooktober roles
   Shoddd:
   - rscadd: Adds ball gown and mini crown to loadout menu
   - rscadd: Mini crown, in loadout and autodrobe
+  - bugfix: Minicrown sprite centered
