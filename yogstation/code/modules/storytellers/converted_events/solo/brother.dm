@@ -27,29 +27,30 @@
 		JOB_SECURITY_OFFICER,
 	)
 	min_players = 10 //need at least some players since it IS blood brothers
-	required_enemies = 1
 	weight = 10
+	required_enemies = 2
 	maximum_antags = 2
 	cost = 0.45 // so it doesn't eat up threat for a relatively low-threat antag
 
 /datum/round_event_control/antagonist/solo/brother/roundstart
 	name = "Blood Brothers"
-	roundstart = TRUE
 	earliest_start = 0 SECONDS
-	min_players = 15 //need more people because this always spawns another antag
-	extra_spawned_events = list(
-		/datum/round_event_control/antagonist/solo/traitor/roundstart = 12,
-		/datum/round_event_control/antagonist/solo/bloodsucker/roundstart = 4,
-		/datum/round_event_control/antagonist/solo/heretic/roundstart = 2,
-	)
+	roundstart = TRUE
 
 /datum/round_event_control/antagonist/solo/brother/midround
 	name = "Sleeper Agents (Blood Brothers)"
-	required_enemies = 2
 	min_players = 15 //need more people because this after something else has already spawned
 
+
+/datum/round_event/antagonist/solo/brother
+	/// all bloodbrothers picked by this event are going on this team
+	var/datum/team/brother_team/bloods
+
+/datum/round_event/antagonist/solo/brother/setup()
+	. = ..()
+	bloods = new
+
 /datum/round_event/antagonist/solo/brother/add_datum_to_mind(datum/mind/antag_mind)
-	var/datum/team/brother_team/team = new
-	team.add_member(antag_mind)
-	team.forge_brother_objectives()
-	antag_mind.add_antag_datum(/datum/antagonist/brother, team)
+	bloods.add_member(antag_mind)
+	bloods.forge_brother_objectives()
+	antag_mind.add_antag_datum(/datum/antagonist/brother, bloods)

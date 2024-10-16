@@ -286,7 +286,17 @@
 			log_storyteller("A roleset event got fewer antags than its antag_count and may not function correctly.")
 			break
 
-		var/mob/candidate = pick_n_take(candidates)
+		var/mob/candidate
+
+		if(GLOB.antag_token_users.len >= 1) //Antag token users get first priority, no matter their preferences
+			var/client/C = pick_n_take(GLOB.antag_token_users)
+			candidate = C.mob
+			if((candidate in candidates) && !is_banned_from(C.ckey, list(antag_flag, ROLE_SYNDICATE)) && !QDELETED(candidate))
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(antag_token_used), C.ckey, C), 5 MINUTES + 10 SECONDS)
+				candidate.mind.token_picked = TRUE
+		else
+			candidate = pick_n_take(candidates)
+
 		if(!candidate || QDELETED(candidate) || !istype(candidate)) //if the mob has somehow died or disappeared while we were prompting a previous player
 			i-- //don't count this as an antag that was picked
 			continue
