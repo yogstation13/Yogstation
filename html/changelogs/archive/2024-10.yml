@@ -276,3 +276,10 @@
   - refactor: for people using debuggers, you can watch "inherent_armor_rating" to
       see the inherent armor stats of a character being damaged.
   - refactor: uses / 100 instead of * 0.01. No change in function as far as I know
+2024-10-16:
+  Gw0sty:
+  - rscadd: Added icons for Blueshield and Secass
+  - rscadd: Added icons for all Spooktober roles
+  Shoddd:
+  - rscadd: Adds ball gown and mini crown to loadout menu
+  - rscadd: Mini crown, in loadout and autodrobe
