@@ -1397,3 +1397,6 @@
 		if(destination)
 			forceMove(destination)
 			return TRUE
+
+/atom/movable/proc/do_simple_ranged_interaction(mob/user)
+	return FALSE

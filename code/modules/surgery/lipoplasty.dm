@@ -28,7 +28,7 @@
 //cut fat
 /datum/surgery_step/cut_fat
 	name = "cut excess fat"
-	implements = list(TOOL_SCALPEL = 100, /obj/item/hatchet = 35, /obj/item/kitchen/knife/butcher = 25)
+	implements = list(TOOL_SCALPEL = 100, TOOL_HATCHET = 35, /obj/item/kitchen/knife/butcher = 25)
 	time = 6.4 SECONDS
 	preop_sound = 'sound/surgery/scalpel1.ogg'
 	success_sound = 'sound/surgery/scalpel2.ogg'
