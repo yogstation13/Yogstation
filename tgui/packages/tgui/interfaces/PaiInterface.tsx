@@ -64,7 +64,7 @@ const PaiBox = (props, context) => {
   switch(selectedMainTab.module_name) {
     case "Directives":
       return (
-        <Section title={selectedMainTab.module_name}>
+        <Section title={selectedMainTab.title}>
           <Stack vertical>
             <Stack.Item>
               {!master && (
@@ -82,7 +82,7 @@ const PaiBox = (props, context) => {
               </Button>
             </Stack.Item>
             <Stack.Item>
-              <Box bold={1}>Prime directive:</Box>
+              <Box bold={1}>Prime Directive:</Box>
               {laws_zeroth}
             </Stack.Item>
             <Stack.Item>
@@ -109,16 +109,13 @@ const PaiBox = (props, context) => {
       );
     case "Screen Display":
       return (
-        <Section title={selectedMainTab.module_name}>
+        <Section title={selectedMainTab.title}>
           Select your new display image.
-          <Dropdown>
-
-          </Dropdown>
         </Section>
-      )
+      );
     case "Download additional software":
       return (
-        <Section title={selectedMainTab.module_name}>
+        <Section title={selectedMainTab.title}>
           <Stack vertical>
             <Stack.Item>
               Downloaded modules: {modules.map(data => data)}
@@ -137,11 +134,11 @@ const PaiBox = (props, context) => {
                     <Table.Cell collapsing textAlign="right">
                       <Button
                         fluid
-                        content={module.cost}
+                        content={module.cost+" GB"}
                         tooltip={module.text}
                         onmouseover={() => sethoveredModule(module)}
                         onmouseout={() => sethoveredModule({})}
-                        onClick={() => act("buy", {name: module.module_name})}/>
+                        onClick={() => act("buy", { name: module.module_name, cost: module.cost })} />
                     </Table.Cell>
                   </Table.Row>
                 ))}

@@ -11,25 +11,25 @@
 															//radiation eyes
 															//chem goggs
 															//mesons
-															list("module_name" = "crew manifest", "cost" = 5),
-															list("module_name" = "digital messenger", "cost" = 5),
-															list("module_name" = "atmosphere sensor", "cost" = 5),
-															list("module_name" = "photography module", "cost" = 5),
-															list("module_name" = "remote signaller", "cost" = 10),
-															list("module_name" = "medical records", "cost" = 10),
-															list("module_name" = "security records", "cost" = 10),
-															list("module_name" = "camera zoom", "cost" = 10),
-															list("module_name" = "host scan", "cost" = 10),
+															list("module_name" = "crew manifest", "tab"=FALSE, "cost" = 5),
+															list("module_name" = "digital messenger", "tab"=FALSE, "cost" = 5),
+															list("module_name" = "atmosphere sensor", "tab"=TRUE, "cost" = 5),
+															list("module_name" = "photography module", "tab"=FALSE, "cost" = 5),
+															list("module_name" = "remote signaller", "tab"=TRUE, "cost" = 10),
+															list("module_name" = "medical records", "tab"=TRUE, "cost" = 10),
+															list("module_name" = "security records", "tab"=TRUE, "cost" = 10),
+															list("module_name" = "camera zoom", "tab"=FALSE, "cost" = 10),
+															list("module_name" = "host scan", "tab"=TRUE, "cost" = 10),
 															//"camera jack" = 10,
 															//"heartbeat sensor" = 10,
 															//"projection array" = 15,
-															list("module_name" = "medical HUD", "cost" = 20),
-															list("module_name" = "security HUD", "cost" = 20),
-															list("module_name" = "loudness booster", "cost" = 20),
-															list("module_name" = "newscaster", "cost" = 20),
-															list("module_name" = "door jack", "cost" = 25),
-															list("module_name" = "encryption keys", "cost" = 25),
-															list("module_name" = "universal translator", "cost" = 35)
+															list("module_name" = "medical HUD", "tab"=FALSE, "cost" = 20),
+															list("module_name" = "security HUD", "tab"=FALSE, "cost" = 20),
+															list("module_name" = "loudness booster", "tab"=TRUE, "cost" = 20),
+															list("module_name" = "newscaster", "tab"=FALSE, "cost" = 20),
+															list("module_name" = "door jack", "tab"=TRUE, "cost" = 25),
+															list("module_name" = "encryption keys", "tab"=FALSE, "cost" = 25),
+															list("module_name" = "universal translator", "tab"=FALSE, "cost" = 35)
 															)
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
@@ -42,7 +42,7 @@
 
 /mob/living/silicon/pai/ui_data(mob/user)
 	var/list/data = list()
-	data["modules"] = list()
+	data["modules"] = software
 	data["modules_list"] = available_software
 	data["modules_tabs"] = list(list("module_name" = "Directives", "title"="Directives"), 
 								list("module_name" = "Screen Display", "title"="Screen Display"),
@@ -59,18 +59,37 @@
 		return
 	switch(action)
 		if("getdna")
-			//This is probably breaking because it's using loc again
-			message_admins(card.loc)
-			if(iscarbon(card.loc))
-				CheckDNA(card.loc, src) //you should only be able to check when directly in hand, muh immersions?
+			message_admins(get(card, /mob/living/carbon/human)) //No way to test if get() works since UI buttons doesn't work currently if in card form
+			if(iscarbon(get(card, /mob/living/carbon/human)))
+				CheckDNA(get(card, /mob/living/carbon/human), src) //you should only be able to check when directly in hand, muh immersions?
 			else
 				to_chat(src, "You are not being carried by anyone!")
 				return 0 // FALSE ? If you return here you won't call paiinterface() below
-		if("encryptionkeys")
-			encryptmod = TRUE
-		if("translator")
-			grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_SOFTWARE)
+		if("buy")
+			message_admins(params["name"])
+			message_admins(params["cost"])
+			if(!software.Find(params["name"]))
+				software.Add(params["name"])
+				ram -= params["cost"]
+				if(params["name"] == "medical HUD")
+					var/datum/atom_hud/med = GLOB.huds[med_hud]
+					med.show_to(src)
+				if(params["name"] == "security HUD")
+					var/datum/atom_hud/sec = GLOB.huds[sec_hud]
+					sec.show_to(src)
+				if(params["name"] == "encryption keys")
+					encryptmod = TRUE
+				if(params["name"] == "universal translator")
+					grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_SOFTWARE)
+				var/datum/hud/pai/pAIhud = hud_used
+				pAIhud?.update_software_buttons()
+				available_software.Remove(available_software.Find(params["name"])) //Removes from downloadable software list so they can't be redownloaded
+			else //Should not be possible, but in the edge case that it does...
+				to_chat(usr, "Module already downloaded!")
 	update_appearance(UPDATE_ICON)
+
+/mob/living/silicon/pai/ui_state(mob/user)
+	return GLOB.always_state
 
 ///mob/living/silicon/pai/proc/paiInterface()
 //	
