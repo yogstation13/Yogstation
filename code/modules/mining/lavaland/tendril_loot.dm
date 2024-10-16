@@ -322,7 +322,7 @@
 /obj/item/warp_cube/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)
 	var/area/current_area = current_location.loc
-	if(!linked || (current_area.area_flags & NOTELEPORT))
+	if(!linked || ((SSticker.current_state < GAME_STATE_FINISHED) && (current_area.area_flags & NOTELEPORT))) // monkestation edit: allow jaunts to work after roundend
 		to_chat(user, span_warning("[src] fizzles uselessly."))
 		return
 	if(teleporting)

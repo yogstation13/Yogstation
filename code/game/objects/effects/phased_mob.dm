@@ -84,12 +84,13 @@
 		return
 	var/area/destination_area = newloc.loc
 	movedelay = world.time + movespeed
-	if(newloc.turf_flags & NOJAUNT)
-		to_chat(user, span_warning("Some strange aura is blocking the way."))
-		return
-	if(destination_area.area_flags & NOTELEPORT || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
-		to_chat(user, span_danger("Some dull, universal force is blocking the way. It's overwhelmingly oppressive force feels dangerous."))
-		return
+	if(SSticker.current_state < GAME_STATE_FINISHED) // monkestation edit: allow jaunts to work after roundend
+		if(newloc.turf_flags & NOJAUNT)
+			to_chat(user, span_warning("Some strange aura is blocking the way."))
+			return
+		if((destination_area.area_flags & NOTELEPORT) || SSmapping.level_trait(newloc.z, ZTRAIT_NOPHASE))
+			to_chat(user, span_danger("Some dull, universal force is blocking the way. It's overwhelmingly oppressive force feels dangerous."))
+			return
 	if (direction == UP || direction == DOWN)
 		newloc = can_z_move(direction, get_turf(src), newloc, ZMOVE_INCAPACITATED_CHECKS | ZMOVE_FEEDBACK | ZMOVE_ALLOW_ANCHORED, user)
 

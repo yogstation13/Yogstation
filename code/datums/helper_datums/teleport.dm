@@ -175,7 +175,7 @@
 		if(T.is_transition_turf())
 			continue // Avoid picking these.
 		var/area/A = T.loc
-		if(!(A.area_flags & NOTELEPORT))
+		if(!(A.area_flags & NOTELEPORT) || (SSticker.current_state == GAME_STATE_FINISHED)) // monkestation edit: allow jaunts to work after roundend
 			posturfs.Add(T)
 	return posturfs
 

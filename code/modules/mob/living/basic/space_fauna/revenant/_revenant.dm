@@ -357,7 +357,7 @@
 	if(isnull(step_turf))
 		return TRUE // what? whatever let it happen
 
-	if(step_turf.turf_flags & NOJAUNT)
+	if((SSticker.current_state < GAME_STATE_FINISHED) && (step_turf.turf_flags & NOJAUNT)) // monkestation edit: allow jaunts to work after roundend
 		to_chat(src, span_warning("Some strange aura is blocking the way."))
 		return FALSE
 

@@ -260,7 +260,7 @@
 						ghostie.apply_status_effect(/datum/status_effect/revenant/revealed, 2 SECONDS)
 						ghostie.apply_status_effect(/datum/status_effect/incapacitating/paralyzed/revenant, 2 SECONDS)
 					return
-				if(stepTurf.turf_flags & NOJAUNT)
+				if((SSticker.current_state < GAME_STATE_FINISHED) && (stepTurf.turf_flags & NOJAUNT)) // monkestation edit: allow jaunts to work after roundend
 					to_chat(L, span_warning("Some strange aura is blocking the way."))
 					return
 				if(locate(/obj/effect/blessing) in stepTurf)

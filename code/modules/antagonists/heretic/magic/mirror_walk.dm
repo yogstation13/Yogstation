@@ -144,7 +144,7 @@
 
 		if(isturf(thing))
 			var/turf/turf_thing = thing
-			if(turf_thing.turf_flags & NOJAUNT)
+			if((SSticker.current_state < GAME_STATE_FINISHED) && (turf_thing.turf_flags & NOJAUNT)) // monkestation edit: allow jaunts to work after roundend
 				continue
 			if(turf_thing.flags_ricochet & RICOCHET_SHINY)
 				return thing
