@@ -395,7 +395,13 @@
 		if((target_area.area_flags & PASSIVE_AREA) && amount > 0)
 			return FALSE
 	if(!can_adjust_tox_loss(amount, forced, required_biotype))
-		return 0
+		return FALSE
+	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEALS))
+		return FALSE
+	if(!forced && (status_flags & GODMODE))
+		return FALSE
+	if(!forced && !(mob_biotypes & required_biotype))
+		return
 	. = toxloss
 	toxloss = clamp((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	. -= toxloss
@@ -403,17 +409,6 @@
 		return FALSE
 	if(updating_health)
 		updatehealth()
-
-	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEALS))
-		return FALSE
-	if(!forced && (status_flags & GODMODE))
-		return FALSE
-	if(!forced && !(mob_biotypes & required_biotype))
-		return
-	toxloss = clamp((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
-	if(updating_health)
-		updatehealth()
-	return amount
 
 /mob/living/proc/setToxLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype)
 	if(!forced && (status_flags & GODMODE))
