@@ -83,9 +83,11 @@
 					grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_SOFTWARE)
 				var/datum/hud/pai/pAIhud = hud_used
 				pAIhud?.update_software_buttons()
+				var/list = list()
 				for(list in available_software)
 					if(list["tab"] && list["module_name"] == params["name"]) //Find if this is meant to be a tab or not
-						module_tabs.Add(list("module_name" = params["name"], "title"=list["title"]))
+						var/new_module = list("module_name" = params["name"], "title"=list["title"])
+						module_tabs += list(new_module)
 						available_software.Remove(list) //Removes from downloadable software list so they can't be redownloaded
 						message_admins("Module [params["name"]] bought succesfully and added to interface.")
 						break
