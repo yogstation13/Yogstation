@@ -290,3 +290,6 @@
   - rscadd: Adds ball gown and mini crown to loadout menu
   - rscadd: Mini crown, in loadout and autodrobe
   - bugfix: Minicrown sprite centered
+2024-10-17:
+  Absolucy, LemonInTheDark:
+  - bugfix: Fixed a major source of lag related to hallucinations.

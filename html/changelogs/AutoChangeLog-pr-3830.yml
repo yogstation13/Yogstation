@@ -1,4 +1,0 @@
-author: "Absolucy, LemonInTheDark"
-delete-after: True
-changes:
-  - bugfix: "Fixed a major source of lag related to hallucinations."
