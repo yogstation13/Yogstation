@@ -1,0 +1,5 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - mapping: "Box shared engi storage has a light now"
+  - mapping: "GaxStation warden office no longer has two lightswitches"
