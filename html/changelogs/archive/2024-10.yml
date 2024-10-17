@@ -300,6 +300,8 @@
   - image: (MTandi) Made chem master container icons not blurry.
   - bugfix: Stamina regeneration and stuns/incapacitation wearing off should hopefully
       be more consistent regardless of server lag.
+  - bugfix: Fixed a variety of random minor errors.
+  - rscdel: HoPs can no longer open more Blueshield job slots.
   Absolucy, LemonInTheDark:
   - bugfix: Fixed a major source of lag related to hallucinations.
   Meowosers:
