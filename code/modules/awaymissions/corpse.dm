@@ -167,6 +167,7 @@
 	var/backpack_contents = -1
 	var/suit_store = -1
 
+	/// The base skills of this ghost role.
 	var/list/base_skills = list(
 		SKILL_PHYSIOLOGY = EXP_NONE,
 		SKILL_MECHANICAL = EXP_NONE,
@@ -174,7 +175,10 @@
 		SKILL_SCIENCE = EXP_NONE,
 		SKILL_FITNESS = EXP_NONE,
 	)
-	var/skill_points = 3
+	/// The skill points this ghost role can allocate.
+	var/skill_points = EXP_MASTER
+	/// Whether this ghost role can allocate up to 5 points into a single skill.
+	var/exceptional_skill = FALSE
 
 	var/hair_style
 	var/facial_hair_style
@@ -212,6 +216,8 @@
 	for(var/skill in base_skills)
 		H.adjust_skill(skill, base_skills[skill])
 	H.add_skill_points(skill_points)
+	if(exceptional_skill)
+		ADD_TRAIT(H, TRAIT_EXCEPTIONAL_SKILL, assignedrole)
 	H.update_hair()
 	H.update_body()
 	if(outfit)

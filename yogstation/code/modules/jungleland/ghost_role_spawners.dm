@@ -9,6 +9,15 @@
 	icon_state = "ivymen_egg"
 	mob_species = /datum/species/pod/ivymen
 	outfit = /datum/outfit/ivymen
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = EXP_HIGH
+	exceptional_skill = TRUE
 	roundstart = FALSE
 	death = FALSE
 	anchored = FALSE
@@ -58,12 +67,28 @@
 	assignedrole = "Lavaland Syndicate"
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/scientist
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_HIGH,
+		SKILL_FITNESS = EXP_LOW,
+	)
+	skill_points = EXP_HIGH
 	outfit = /datum/outfit/lavaland_syndicate/jungle/scientist
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/jungle/technician
 	name = "Syndicate Technician"
 	short_desc = "You are a syndicate technician, employed in a top secret research facility that is developing biological weapons."
 	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Keep the base functional and manned, and try to keep a low profile."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_LOW,
+	)
+	skill_points = EXP_HIGH
 	outfit = /datum/outfit/lavaland_syndicate/jungle/technician
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/special(mob/living/new_spawn)
