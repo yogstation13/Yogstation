@@ -303,45 +303,48 @@
 /datum/wires/ui_act(action, params)
 	if(..() || !interactable(usr))
 		return
+	if(!holder) // wires with no holder makes no sense to exist and probably breaks things, so catch any instances of that
+		CRASH("[type] has no holder!")
 	var/target_wire = params["wire"]
-	var/mob/living/L = usr
-	var/obj/item/I
+	var/mob/living/user = usr
+	var/obj/item/tool
+	var/tool_delay = max((0.5**user.get_skill(SKILL_TECHNICAL)) SECONDS, 0)
+	if(tool_delay < 0.2 SECONDS) // effectively already instant
+		tool_delay = 0
 	switch(action)
 		if("cut")
-			I = (L.is_holding_tool_quality(TOOL_WIRECUTTER) || (L.is_holding_tool_quality(TOOL_WIRING) && is_cut(target_wire)))
-			if(I || IsAdminGhost(usr))
-				if(I && holder)
-					I.play_tool_sound(holder, 20)
+			tool = user.is_holding_tool_quality(TOOL_WIRECUTTER)
+			if(tool?.use_tool(holder, user, tool_delay) || IsAdminGhost(usr))
+				tool.play_tool_sound(holder, 20)
 				cut_color(target_wire)
 				. = TRUE
-			else
-				to_chat(L, span_warning("You need wirecutters!"))
+			else if(!tool)
+				to_chat(user, span_warning("You need wirecutters!"))
 		if("pulse")
-			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
-			if(I || IsAdminGhost(usr))
-				if(I && holder)
-					I.play_tool_sound(holder, 20)
-				pulse_color(target_wire, L)
+			tool = user.is_holding_tool_quality(TOOL_MULTITOOL)
+			if(tool?.use_tool(holder, user, tool_delay) || IsAdminGhost(usr))
+				tool.play_tool_sound(holder, 20)
+				pulse_color(target_wire, user)
 				. = TRUE
-			else
-				to_chat(L, span_warning("You need a multitool!"))
+			else if(!tool)
+				to_chat(user, span_warning("You need a multitool!"))
 		if("attach")
 			if(is_attached(target_wire))
-				I = detach_assembly(target_wire)
-				if(I)
-					L.put_in_hands(I)
-					. = TRUE
+				if(!do_after(user, tool_delay, holder))
+					return
+				user.put_in_hands(detach_assembly(target_wire))
+				. = TRUE
 			else
-				I = L.get_active_held_item()
-				if(istype(I, /obj/item/assembly))
-					var/obj/item/assembly/A = I
+				tool = user.get_active_held_item()
+				if(istype(tool, /obj/item/assembly) && tool?.use_tool(holder, user, tool_delay))
+					var/obj/item/assembly/A = tool
 					if(A.attachable)
-						if(!L.temporarilyRemoveItemFromInventory(A))
+						if(!user.temporarilyRemoveItemFromInventory(A))
 							return
 						if(!attach_assembly(target_wire, A))
-							A.forceMove(L.drop_location())
+							A.forceMove(user.drop_location())
 						. = TRUE
 					else
-						to_chat(L, span_warning("You need an attachable assembly!"))
+						to_chat(user, span_warning("You need an attachable assembly!"))
 
 #undef MAXIMUM_EMP_WIRES
