@@ -1,0 +1,4 @@
+author: "cark"
+delete-after: true 
+changes: 
+  - mapping: "fixes donutstation being slightly smaller than other maps"
