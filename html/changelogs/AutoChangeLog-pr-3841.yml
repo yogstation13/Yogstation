@@ -1,0 +1,6 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "Fixed Theseus having brig access doors in place of perma ones."
+  - bugfix: "Fixed Delta having general security access airlocks instead of perma ones."
+  - bugfix: "Fixed Box almost only using general security access doors."
