@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscdel: "HoPs can no longer open more Blueshield job slots."
