@@ -87,7 +87,7 @@
 	update_config_movespeed()
 	update_movespeed(TRUE)
 
-/mob/New()
+/mob/New(loc, ...)
 	// This needs to happen IMMEDIATELY. I'm sorry :(
 	GenerateTag()
 	return ..()
