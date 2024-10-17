@@ -1164,7 +1164,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 	if(!istext(icon_path) || !length(icon_path))
 		return FALSE
 
-	var/is_in_icon_folder = findtextEx(icon_path, "icons/")
+	var/is_in_icon_folder = findtextEx(icon_path, "icons/") || findtextEx(icon_path, "monkestation/") // STOP PUTTING ICONS IN THE `monkestation/code` FOLDER FFS
 	var/is_dmi_file = findtextEx(icon_path, ".dmi")
 
 	if(is_in_icon_folder && is_dmi_file)

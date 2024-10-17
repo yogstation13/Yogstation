@@ -214,11 +214,6 @@ GLOBAL_LIST_INIT(chem_master_containers, list(
 		CAT_PATCHES = GLOB.chem_master_containers[CAT_PATCHES],
 	)
 
-/obj/machinery/chem_master/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet/chemmaster)
-	)
-
 /obj/machinery/chem_master/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -232,7 +227,8 @@ GLOBAL_LIST_INIT(chem_master_containers, list(
 		var/container_data = list()
 		for(var/obj/item/reagent_containers/container as anything in printable_containers[category])
 			container_data += list(list(
-				"icon" = sanitize_css_class_name("[container]"),
+				"icon" = initial(container.icon),
+				"icon_state" = initial(container.icon_state),
 				"ref" = REF(container),
 				"name" = initial(container.name),
 				"volume" = initial(container.volume),

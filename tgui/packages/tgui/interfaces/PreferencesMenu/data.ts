@@ -195,6 +195,7 @@ type LoadoutData = {
 type LoadoutItem = {
   name: string;
   icon: string;
+  icon_state?: string;
   desc: string;
   cost: number;
   item_path: string;

@@ -1,10 +1,12 @@
-import { BooleanLike, classes } from 'common/react';
+import { BooleanLike } from 'common/react';
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
 import {
   AnimatedNumber,
   Box,
   Button,
+  DmIcon,
+  Icon,
   Section,
   Table,
   NumberInput,
@@ -64,6 +66,7 @@ type Reagent = {
 
 type Container = {
   icon: string;
+  icon_state: string;
   ref: string;
   name: string;
   volume: number;
@@ -366,6 +369,8 @@ const ContainerButton = ({ container, category }) => {
   const { act, data } = useBackend<Data>();
   const { isPrinting, selectedContainerRef } = data;
   const isPillPatch = ['pills', 'patches'].includes(category.name);
+  const fallback = <Icon m="18px" name="spinner" spin />;
+  const fallbackPillPatch = <Icon m="10px" name="spinner" spin />;
   return (
     <Tooltip
       key={container.ref}
@@ -385,12 +390,13 @@ const ContainerButton = ({ container, category }) => {
           });
         }}
       >
-        <Box
-          m={isPillPatch ? '0' : '8px'}
-          style={{
-            transform: 'scale(2)',
-          }}
-          className={classes(['chemmaster32x32', container.icon])}
+        <DmIcon
+          m={isPillPatch ? '-16px' : '-8px'}
+          fallback={isPillPatch ? fallbackPillPatch : fallback}
+          icon={container.icon}
+          icon_state={container.icon_state}
+          height="64px"
+          width="64px"
         />
       </Button>
     </Tooltip>

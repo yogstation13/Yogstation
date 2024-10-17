@@ -1,5 +1,14 @@
 import { useBackend, useSharedState } from '../backend';
-import { Box, Button, Section, Stack, Tabs, Table } from '../components';
+import {
+  Box,
+  Button,
+  DmIcon,
+  Section,
+  Stack,
+  Tabs,
+  Table,
+  Icon,
+} from '../components';
 import { PreferencesMenuData } from './PreferencesMenu/data';
 import { Window } from '../layouts';
 import { classes } from 'common/react';
@@ -69,13 +78,27 @@ export const StoreManager = (props) => {
                       backgroundColor={index % 2 === 0 ? '#19181e' : '#16151b'}
                     >
                       <Table.Cell>
-                        <Box
-                          inline
-                          verticalAlign="middle"
-                          width={'32px'}
-                          height={'32px'}
-                          className={classes(['loadout_store32x32', item.icon])}
-                        />
+                        {item.icon && item.icon_state ? (
+                          <DmIcon
+                            icon={item.icon}
+                            icon_state={item.icon_state}
+                            verticalAlign="middle"
+                            height={'32px'}
+                            width={'32px'}
+                            fallback={<Icon name="spinner" size={2} spin />}
+                          />
+                        ) : (
+                          <Box
+                            inline
+                            verticalAlign="middle"
+                            width={'32px'}
+                            height={'32px'}
+                            className={classes([
+                              'loadout_store32x32',
+                              item.icon,
+                            ])}
+                          />
+                        )}
                       </Table.Cell>
                       <Table.Cell>
                         <Button
