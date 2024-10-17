@@ -13455,7 +13455,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -35298,6 +35300,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"knP" = (
+/obj/item/radio/intercom{
+	pixel_y = 21
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "knV" = (
 /obj/effect/landmark/start/lawyer,
 /turf/open/floor/wood,
@@ -62594,7 +62603,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -74721,13 +74732,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"vue" = (
-/obj/machinery/vending/cart,
-/obj/item/radio/intercom{
-	pixel_y = 21
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
 "vuj" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/item/radio/intercom{
@@ -240824,7 +240828,7 @@ jfG
 byf
 hMv
 sYq
-vue
+knP
 bjT
 nMh
 biJ

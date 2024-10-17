@@ -68,7 +68,9 @@
 /turf/closed/wall,
 /area/quartermaster/qm)
 "aaD" = (
-/obj/machinery/airalarm/directional/south,
+/obj/machinery/airalarm/directional/south{
+	pixel_y = -24
+	},
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/ethanol{
 	pixel_x = -5;
@@ -19113,6 +19115,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"fdW" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "fdX" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
@@ -28788,7 +28800,9 @@
 /area/bridge/meeting_room)
 "ihh" = (
 /obj/structure/table/glass,
-/obj/machinery/airalarm/directional/south,
+/obj/machinery/airalarm/directional/south{
+	pixel_y = -24
+	},
 /obj/item/storage/firstaid/fire{
 	pixel_x = 3;
 	pixel_y = 3
@@ -44801,7 +44815,9 @@
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
 "ndK" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 8
 	},
@@ -52476,7 +52492,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
 	},
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "puV" = (
@@ -61643,16 +61661,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"sgg" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/vending/cart,
-/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "sgi" = (
 /obj/machinery/icecream_vat,
 /obj/machinery/light/small{
@@ -62175,7 +62183,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "sps" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
 	},
@@ -102759,7 +102769,7 @@ ecY
 iWW
 vlg
 ink
-sgg
+fdW
 tNJ
 epA
 uEH

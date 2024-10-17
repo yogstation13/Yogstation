@@ -189,7 +189,7 @@
 					/obj/item/clothing/under/rank/cargo/tech = 3,
 					/obj/item/clothing/under/rank/cargo/tech/skirt = 3,
 					/obj/item/clothing/under/rank/cargo/tech/turtleneck = 3,
-					/obj/item/clothing/under/rank/cargo/tech/skirt/turtleneck = 3,					
+					/obj/item/clothing/under/rank/cargo/tech/skirt/turtleneck = 3,
 					/obj/item/clothing/shoes/sneakers/black = 3,
 					/obj/item/clothing/shoes/xeno_wraps/cargo = 3,
 					/obj/item/clothing/shoes/xeno_wraps/cargo/cleated = 1,
@@ -511,7 +511,7 @@
 	name = "ViroDrobe"
 	desc = "An unsterilized machine for dispending virology related clothing."
 	icon_state = "virodrobe"
-	product_ads = " Viruses getting you down? Then upgrade to sterilized clothing today!"
+	product_ads = "Viruses getting you down? Then upgrade to sterilized clothing today!"
 	vend_reply = "Thank you for using the ViroDrobe"
 	products = list(/obj/item/clothing/under/rank/medical/virologist = 2,
 					/obj/item/clothing/under/rank/medical/virologist/skirt = 2,
@@ -525,3 +525,28 @@
 	payment_department = ACCOUNT_MED
 /obj/item/vending_refill/wardrobe/viro_wardrobe
 	machine_name = "ViroDrobe"
+
+/obj/machinery/vending/wardrobe/hop_wardrobe
+	name = "HopDrobe"
+	desc = "A machine that will dispense clothing meant for the head of personnel."
+	icon_state = "hopdrobe"
+	product_ads = "Get your Ian approved clothing here!"
+	vend_reply = "Thank you for using the HopDrobe!"
+	products = list(/obj/item/clothing/under/rank/command/head_of_personnel = 2,
+					/obj/item/clothing/under/rank/command/head_of_personnel/skirt = 2,
+					/obj/item/clothing/under/rank/command/head_of_personnel/turtleneck = 2,
+					/obj/item/clothing/under/rank/command/head_of_personnel/skirt/turtleneck = 2,
+					/obj/item/clothing/head/hopcap = 2,
+					/obj/item/clothing/head/beret/hop = 2,
+					/obj/item/clothing/shoes/sneakers/brown = 2,
+					/obj/item/clothing/shoes/xeno_wraps/command = 2,
+					/obj/item/clothing/suit/armor/vest/rurmcoat = 1,
+					/obj/item/clothing/suit/armor/vest/sovietcoat = 1,
+					/obj/item/clothing/suit/armor/vest/hop_formal = 1,
+					/obj/item/clothing/under/yogs/hopcasual = 2,
+					/obj/item/clothing/suit/hooded/wintercoat/hop = 2)
+	refill_canister = /obj/item/vending_refill/wardrobe/hop_wardrobe
+	payment_department = ACCOUNT_SRV
+
+/obj/item/vending_refill/wardrobe/hop_wardrobe
+	machine_name = "HopDrobe"
