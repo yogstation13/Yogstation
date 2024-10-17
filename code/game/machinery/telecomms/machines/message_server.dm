@@ -167,11 +167,17 @@
 /datum/signal/subspace/messaging/New(init_source, init_data)
 	source = init_source
 	data = init_data
-	var/turf/T = get_turf(source)
+	var/turf/T
+	if(istype(source, /datum/computer_file/program)) //programs don't actually have locations
+		var/datum/computer_file/program/P = source
+		T = get_turf_global(P.computer)
+	else
+		T = get_turf_global(source)
+
 	if(T)
 		levels = SSmapping.get_connected_levels(T)
 	else
-		levels = list(2) 
+		levels = SSmapping.levels_by_trait(ZTRAIT_STATION) //just assume we're on station..
 	if(!("reject" in data))
 		data["reject"] = TRUE
 

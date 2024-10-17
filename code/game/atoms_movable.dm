@@ -274,17 +274,6 @@
 	if(!(impact_flags & ZIMPACT_NO_SPIN))
 		INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
 	SEND_SIGNAL(src, COMSIG_ATOM_ON_Z_IMPACT, impacted_turf, levels)
-	
-	//Yog code: since we still handle falling as throwing things
-	var/atom/highest = impacted_turf
-	for(var/i in impacted_turf.contents)
-		var/atom/A = i
-		if(!A.density)
-			continue
-		if(isobj(A) || ismob(A))
-			if(A.layer > highest.layer)
-				highest = A
-	throw_impact(highest)
 	return TRUE
 
 /*

@@ -69,10 +69,10 @@
 		return
 	zFall(movable)
 
-/turf/open/openspace/zAirIn()
+/turf/open/openspace/zAirIn(direction, turf/source)
 	return TRUE
 
-/turf/open/openspace/zAirOut()
+/turf/open/openspace/zAirOut(direction, turf/source)
 	return TRUE
 
 /turf/open/openspace/zPassIn(direction)

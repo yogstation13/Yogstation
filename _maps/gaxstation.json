@@ -8,5 +8,14 @@
 		"ferry": "ferry_fancy",
 		"emergency": "emergency_box"
 	},
-	"cryo_spawn": true
+	"cryo_spawn": true,
+	"job_changes": {
+		"Captain": {
+			"special_charter": "ship"
+		},
+		"Psychiatrist": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		}
+	}
 }

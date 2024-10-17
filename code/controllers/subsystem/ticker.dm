@@ -543,6 +543,8 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/check_maprotate()
 	if (!CONFIG_GET(flag/maprotation))
 		return
+	if(SSticker.maprotatechecked || SSmapping.next_map_config) //we already have a map set
+		return
 	//map rotate chance defaults to 75% of the length of the round (in minutes)
 	if (!prob((world.time/600)*CONFIG_GET(number/maprotationchancedelta)))
 		return
