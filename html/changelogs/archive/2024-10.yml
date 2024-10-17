@@ -293,3 +293,5 @@
 2024-10-17:
   Absolucy, LemonInTheDark:
   - bugfix: Fixed a major source of lag related to hallucinations.
+  RikuTheKiller:
+  - bugfix: Toxin damage is no longer doubled. (LMAO)
