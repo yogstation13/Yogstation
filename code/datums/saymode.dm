@@ -16,7 +16,7 @@
 	mode = MODE_CHANGELING
 
 /datum/saymode/changeling/handle_message(mob/living/user, message, datum/language/language)
-	if(ismob(user.pulledby) && is_changeling(user.pulledby) && user.pulledby.grab_state >= GRAB_NECK)
+	if(ismob(user.pulledby) && IS_CHANGELING(user.pulledby) && user.pulledby.grab_state >= GRAB_NECK)
 		to_chat(user, span_warning("Our abilities are being dampened! We cannot speak through the hivemind!"))
 		return FALSE
 	switch(user.lingcheck())
@@ -118,28 +118,6 @@
 		AI.holopad_talk(message, language)
 		return FALSE
 	return TRUE
-
-/datum/saymode/monkey
-	key = MODE_KEY_MONKEY
-	mode = MODE_MONKEY
-
-/datum/saymode/monkey/handle_message(mob/living/user, message, datum/language/language)
-	var/datum/mind = user.mind
-	if(!mind)
-		return TRUE
-	if(is_monkey_leader(mind) || (ismonkey(user) && is_monkey(mind)))
-		user.log_talk(message, LOG_SAY, tag="monkey")
-		if(prob(75) && ismonkey(user))
-			user.visible_message(span_notice("\The [user] chimpers."))
-		var/msg = "<span class='[is_monkey_leader(mind) ? "monkeylead" : "monkeyhive"]'><b><font size=2>\[[is_monkey_leader(mind) ? "Monkey Leader" : "Monkey"]\]</font> [user]</b>: [message]</span>"
-		for(var/_M in GLOB.mob_list)
-			var/mob/M = _M
-			if(M in GLOB.dead_mob_list)
-				var/link = FOLLOW_LINK(M, user)
-				to_chat(M, "[link] [msg]")
-			if((is_monkey_leader(M.mind) || ismonkey(M)) && (M.mind in SSticker.mode.ape_infectees))
-				to_chat(M, msg)
-		return FALSE
 
 /datum/saymode/darkspawn //yogs: darkspawn
 	key = MODE_KEY_DARKSPAWN

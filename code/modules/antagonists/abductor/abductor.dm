@@ -13,6 +13,7 @@
 	var/outfit
 	var/landmark_type
 	var/greet_text
+	count_towards_antag_cap = TRUE
 
 /datum/antagonist/abductor/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/scientist = new

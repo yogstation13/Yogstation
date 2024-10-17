@@ -722,7 +722,7 @@
 		H.eye_color = "5b5beb"
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		H.update_body()
-	if(!is_wizard(M))
+	if(!IS_WIZARD(M))
 		M.set_blue_eye(17)
 		M.adjust_jitter(2 SECONDS)
 		M.adjustStaminaLoss(-2, 0)
@@ -745,7 +745,7 @@
 
 /datum/reagent/drug/blue_eye/overdose_process(mob/living/M)
 	M.adjustToxLoss(1, 0)
-	if(!is_wizard(M))
+	if(!IS_WIZARD(M))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5, 0.6))
 	else
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.2, 0.3, 0.4))
@@ -788,7 +788,7 @@
 			step(M, pick(GLOB.cardinals))
 	M.adjust_jitter(15 SECONDS)
 	M.adjust_dizzy(15)
-	if(!is_wizard(M))
+	if(!IS_WIZARD(M))
 		M.adjustToxLoss(3, 0)
 	if(prob(50))
 		M.emote(pick("twitch","drool","moan","giggle"))

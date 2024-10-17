@@ -70,7 +70,7 @@
 
 /obj/item/pitchfork/demonic/pickup(mob/living/user)
 	. = ..()
-	if(isliving(user) && user.mind && user.owns_soul() && !is_devil(user))
+	if(isliving(user) && user.mind && user.owns_soul() && !IS_DEVIL(user))
 		var/mob/living/U = user
 		U.visible_message(span_warning("As [U] picks [src] up, [U]'s arms briefly catch fire."), \
 			span_warning("\"As you pick up [src] your arms ignite, reminding you of all your past sins.\""))
@@ -81,7 +81,7 @@
 			U.adjustFireLoss(rand(force/2,force))
 
 /obj/item/pitchfork/demonic/attack(mob/target, mob/living/carbon/human/user)
-	if(user.mind && user.owns_soul() && !is_devil(user))
+	if(user.mind && user.owns_soul() && !IS_DEVIL(user))
 		to_chat(user, "<span class ='warning'>[src] burns in your hands.</span>")
 		user.apply_damage(rand(force/2, force), BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 	return ..()

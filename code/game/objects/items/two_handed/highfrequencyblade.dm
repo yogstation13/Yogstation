@@ -38,7 +38,7 @@
 	bare_wound_bonus = 25
 
 /obj/item/vibro_weapon/wizard/attack_self(mob/user, modifiers)
-	if(!iswizard(user))
+	if(!IS_WIZARD(user))
 		balloon_alert(user, "you're too weak!")
 		return
 	return ..()

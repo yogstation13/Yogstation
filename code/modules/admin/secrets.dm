@@ -214,14 +214,6 @@
 			if(!check_rights_for(rights, R_ADMIN))
 				return
 			admindatum.output_ai_laws()
-		if("showgm")
-			if(!check_rights_for(rights, R_ADMIN))
-				return
-			if(!SSticker.HasRoundStarted())
-				tgui_alert(mob_user, "The game hasn't started yet!")
-			else if (SSticker.mode)
-				tgui_alert(mob_user, "The game mode is [SSticker.mode.name]")
-			else tgui_alert(mob_user, "For some reason there's a SSticker, but not a game mode")
 		if("manifest")
 			if(!check_rights_for(rights, R_ADMIN))
 				return
@@ -581,9 +573,9 @@
 
 	if(E)
 		E.processing = FALSE
-		if(E.announceWhen>0)
+		if(E.announce_when>0)
 			if(tgui_alert(mob_user, "Would you like to alert the crew?", "Alert",list("Yes", "No")) == "No")
-				E.announceWhen = -1
+				E.announce_when = -1
 		E.processing = TRUE
 	if (mob_user)
 		log_admin("[key_name(mob_user)] used secret [action]")

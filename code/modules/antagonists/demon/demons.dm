@@ -11,6 +11,7 @@
 	antagpanel_category = "Demon"
 	job_rank = ROLE_SINFULDEMON
 	show_to_ghosts = TRUE
+	count_towards_antag_cap = TRUE
 	///The sin a specific demon is assigned to. Defines what objectives and powers they'll receive.
 	var/demonsin
 	///The list of choosable sins for demons. One will be assigned to a demon when spawned naturally.

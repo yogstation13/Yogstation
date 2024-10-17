@@ -347,7 +347,7 @@
 		message_admins("Blood Cult: A blood stone was somehow spawned in nullspace. It has been destroyed.")
 		qdel(src)
 	SSshuttle.registerHostileEnvironment(src)
-	SSticker.mode.bloodstone_list.Add(src)
+	SSgamemode.bloodstone_list.Add(src)
 	for (var/obj/O in loc)
 		if (O != src)
 			O.ex_act(2)
@@ -416,23 +416,23 @@
 /obj/structure/destructible/cult/bloodstone/Destroy()
 	for(var/mob/M in range(7, loc))
 		M.playsound_local(M, 'sound/creatures/legion_death.ogg', 75, FALSE) //make it suitably loud
-	SSticker.mode.bloodstone_list.Remove(src)
+	SSgamemode.bloodstone_list.Remove(src)
 	SSshuttle.clearHostileEnvironment(src)
-	for(var/datum/mind/B in SSticker.mode.cult)
+	for(var/datum/mind/B in SSgamemode.cult)
 		if(B.current)
 			SEND_SOUND(B.current, 'sound/magic/demon_dies.ogg')
-			if(SSticker.mode.bloodstone_list.len)
-				to_chat(B.current, span_cultlarge("The Bloodstone in [get_area(src)] has been destroyed! There are [SSticker.mode.bloodstone_list.len] Bloodstones remaining!."))
+			if(SSgamemode.bloodstone_list.len)
+				to_chat(B.current, span_cultlarge("The Bloodstone in [get_area(src)] has been destroyed! There are [SSgamemode.bloodstone_list.len] Bloodstones remaining!."))
 	new /obj/effect/decal/cleanable/ash(loc)
 	new /obj/item/ectoplasm(loc)
 	new /obj/structure/destructible/dead_bloodstone(loc)
 
-	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!SSticker.mode.bloodstone_cooldown && SSticker.mode.bloodstone_list.len <= 0 || anchor))
+	if(!(locate(/obj/singularity/narsie) in GLOB.poi_list) && (!SSgamemode.bloodstone_cooldown && SSgamemode.bloodstone_list.len <= 0 || anchor))
 		if(anchor)
-			SSticker.mode.anchor_bloodstone = null
-			SSticker.mode.cult_loss_anchor()
+			SSgamemode.anchor_bloodstone = null
+			SSgamemode.cult_loss_anchor()
 		else
-			SSticker.mode.cult_loss_bloodstones()
+			SSgamemode.cult_loss_bloodstones()
 	..()
 
 /obj/structure/destructible/cult/bloodstone/mech_melee_attack(obj/mecha/M, punch_force, equip_allowed = TRUE)	//you're welcome, mqiib

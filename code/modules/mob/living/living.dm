@@ -1039,7 +1039,7 @@
 		mind.soulOwner = mind
 
 /mob/living/proc/has_bane(banetype)
-	var/datum/antagonist/devil/devilInfo = is_devil(src)
+	var/datum/antagonist/devil/devilInfo = IS_DEVIL(src)
 	return devilInfo && banetype == devilInfo.bane
 
 /mob/living/proc/check_weakness(obj/item/weapon, mob/living/attacker)

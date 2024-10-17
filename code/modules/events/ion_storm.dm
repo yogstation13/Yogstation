@@ -6,6 +6,12 @@
 	typepath = /datum/round_event/ion_storm
 	weight = 15
 	min_players = 2
+	description = "Gives the AI a new, randomized law."
+	min_wizard_trigger_potency = 2
+	max_wizard_trigger_potency = 7
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_TARGETED, TAG_ALIEN)
+	event_group = /datum/event_group/bsod
 
 /datum/round_event/ion_storm
 	/// Chance a new ion law will be added in addition to other ion effects.
@@ -34,7 +40,7 @@
 	var/ionMessage = null
 	/// If announceEvent is 0, what is the chance it is will accounce?
 	var/ionAnnounceChance = 33
-	announceWhen	= 1
+	announce_when	= 1
 
 /datum/round_event/ion_storm/add_law_only // special subtype that adds a law only
 	replaceLawsetChance = 0

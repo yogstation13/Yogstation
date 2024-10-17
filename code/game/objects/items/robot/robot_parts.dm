@@ -350,7 +350,7 @@
 					// Obvious warning that their modified laws didn't get passed on.
 					to_chat(user, span_warning("Any laws uploaded to this MMI have not been transferred!"))
 
-			SSticker.mode.remove_antag_for_borging(BM.mind)
+			SSgamemode.remove_antag_for_borging(BM.mind)
 			if(!istype(M.laws, /datum/ai_laws/ratvar))
 				remove_servant_of_ratvar(BM, TRUE)
 

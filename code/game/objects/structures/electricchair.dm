@@ -42,7 +42,7 @@
 			var/mob/living/buckled_mob = m
 			buckled_mob.electrocute_act(170, src, 1)
 			to_chat(buckled_mob, span_userdanger("You feel a deep shock course through your body!"))
-			if(buckled_mob.mind && is_revolutionary(buckled_mob) && prob(50))
+			if(buckled_mob.mind && IS_REVOLUTIONARY(buckled_mob) && prob(50))
 				var/datum/antagonist/rev/rev = buckled_mob.mind.has_antag_datum(/datum/antagonist/rev)
 				if(rev)
 					rev.remove_revolutionary(TRUE)

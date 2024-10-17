@@ -203,7 +203,7 @@
 				if(!brain.brainmob)
 					to_chat(user, span_warning("[brain] is not active!"))
 					return ..()
-				SSticker.mode.remove_antag_for_borging(brain.brainmob.mind)
+				SSgamemode.remove_antag_for_borging(brain.brainmob.mind)
 				if(!istype(brain.laws, /datum/ai_laws/ratvar))
 					remove_servant_of_ratvar(brain.brainmob, TRUE)
 				var/mob/living/silicon/ai/A

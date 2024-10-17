@@ -4,24 +4,15 @@
 	weight = 2
 	max_occurrences = 3
 
-/datum/round_event_control/immovable_rod/duck/admin_setup()
-	if(!check_rights(R_FUN))
-		return
-
-	var/aimed = alert("Aimed at current location?","SniperQUACK", "Yes", "No")
-	if(aimed == "Yes")
-		special_target = get_turf(usr)
-
 /datum/round_event/immovable_rod/duck/announce(fake)
 	priority_announce("What the duck was that?!", "General Alert")
 
 /datum/round_event/immovable_rod/duck/start()
-	var/datum/round_event_control/immovable_rod/duck/C = control
 	var/startside = pick(GLOB.cardinals)
-	var/z = pick(SSmapping.levels_by_trait(ZTRAIT_STATION))
-	var/turf/startT = spaceDebrisStartLoc(startside, z)
-	var/turf/endT = spaceDebrisFinishLoc(startside, z)
-	new /obj/effect/immovablerod/duck(startT, endT, C.special_target)
+	var/turf/end_turf = get_edge_target_turf(get_random_station_turf(), turn(startside, 180))
+	var/turf/start_turf = spaceDebrisStartLoc(startside, end_turf.z)
+	var/atom/rod = new /obj/effect/immovablerod/duck(start_turf, end_turf, special_target)
+	announce_to_ghosts(rod)
 
 /obj/effect/immovablerod/duck
 	name = "immovable DUCK"

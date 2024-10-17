@@ -184,6 +184,9 @@
 /// Checks if the given mob is a wizard
 #define IS_WIZARD(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/wizard))
 
+/// Checks if the given mob is a devil
+#define IS_DEVIL(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/devil))
+
 /// Checks if the given mob is a revolutionary. Will return TRUE for rev heads as well.
 #define IS_REVOLUTIONARY(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/rev))
 
@@ -192,6 +195,15 @@
 
 /// Checks if the given mob is a malf ai.
 #define IS_MALF_AI(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/malf_ai))
+
+/// Checks if the given mob is infected.
+#define IS_INFECTED(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/zombie))
+
+/// Checks if the given mob is a changeling
+#define IS_CHANGELING(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/changeling))
+
+/// Checks if the given mob is a vampire
+#define IS_VAMPIRE(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/vampire))
 
 // Antag resource defines
 #define ANTAG_RESOURCE_DARKSPAWN "psi"

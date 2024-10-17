@@ -1,12 +1,5 @@
 /datum/config_entry/number_list/repeated_mode_adjust
 
-/datum/config_entry/keyed_list/probability
-	key_mode = KEY_MODE_TEXT
-	value_mode = VALUE_MODE_NUM
-
-/datum/config_entry/keyed_list/probability/ValidateListEntry(key_name)
-	return key_name in config.modes
-
 /datum/config_entry/keyed_list/max_pop
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_NUM
@@ -23,20 +16,6 @@
 	value_mode = VALUE_MODE_NUM
 
 /datum/config_entry/keyed_list/min_pop/ValidateListEntry(key_name, key_value)
-	return key_name in config.modes
-
-/datum/config_entry/keyed_list/continuous	// which roundtypes continue if all antagonists die
-	key_mode = KEY_MODE_TEXT
-	value_mode = VALUE_MODE_FLAG
-
-/datum/config_entry/keyed_list/continuous/ValidateListEntry(key_name, key_value)
-	return key_name in config.modes
-
-/datum/config_entry/keyed_list/midround_antag	// which roundtypes use the midround antagonist system
-	key_mode = KEY_MODE_TEXT
-	value_mode = VALUE_MODE_FLAG
-
-/datum/config_entry/keyed_list/midround_antag/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
 
 /datum/config_entry/number/damage_multiplier
@@ -170,8 +149,6 @@
 	config_entry_value = 12000
 	integer = FALSE
 	min_val = 0
-
-/datum/config_entry/flag/show_game_type_odds	//if set this allows players to see the odds of each roundtype on the get revision screen
 
 /datum/config_entry/keyed_list/roundstart_races	//races you can play as from the get go.
 	key_mode = KEY_MODE_TEXT
@@ -380,8 +357,6 @@
 	integer = FALSE
 	min_val = 0
 //Yogs end
-
-/datum/config_entry/flag/allow_random_events	// Enables random events mid-round when set
 
 /datum/config_entry/number/events_min_time_mul	// Multipliers for random events minimal starting time and minimal players amounts
 	config_entry_value = 1

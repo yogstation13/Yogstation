@@ -47,6 +47,7 @@
 #define LOG_RADIO_EMOTE 		(1 << 20)
 #define LOG_SPEECH_INDICATORS 	(1 << 21)
 #define LOG_TRANSPORT 			(1 << 22)
+#define LOG_STORYTELLER			(1 << 23)
 
 //Yogger's Loggers
 #define LOG_NTSL			(1 << 23)
@@ -95,6 +96,7 @@
 #define LOG_CATEGORY_ATTACK "attack"
 #define LOG_CATEGORY_CONFIG "config"
 #define LOG_CATEGORY_DYNAMIC "dynamic"
+#define LOG_CATEGORY_STORYTELLER "storyteller"
 #define LOG_CATEGORY_ECONOMY "economy"
 #define LOG_CATEGORY_FILTER "filter"
 #define LOG_CATEGORY_MANIFEST "manifest"

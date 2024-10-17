@@ -312,7 +312,7 @@
 		return
 	if(NOBLOOD in dna.species.species_traits)
 		return
-	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS] && mind?.assigned_role == "Clown")
+	if(SSgamemode.holidays && SSgamemode.holidays[APRIL_FOOLS] && mind?.assigned_role == "Clown")
 		return /datum/reagent/colorful_reagent
 	if(dna.species.exotic_blood)
 		return dna.species.exotic_blood

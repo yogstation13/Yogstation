@@ -1,35 +1,35 @@
 /datum/round_event_control/chem_spill
 	name = "Chemical Spill: Normal"
+	description = "The pool will be filled with random chemicals."
 	typepath = /datum/round_event/chem_spill
 	weight = 20
 	max_occurrences = 3
 	min_players = 10
-	max_alert = SEC_LEVEL_DELTA
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL)
 
 /datum/round_event/chem_spill
-	announceWhen	= 1
-	startWhen		= 1
-	endWhen			= 35
+	announce_when	= 1
+	start_when		= 1
+	end_when			= 35
 	var/interval 	= 2
 	var/list/filters  = list()
 	var/randomProbability = 25
 	var/reagentsAmount = 50
-	var/list/saferChems = list(/datum/reagent/water,/datum/reagent/carbon,/datum/reagent/consumable/flour,/datum/reagent/space_cleaner,/datum/reagent/consumable/nutriment,/datum/reagent/consumable/condensedcapsaicin,/datum/reagent/drug/mushroomhallucinogen,/datum/reagent/lube,/datum/reagent/glitter/pink,/datum/reagent/cryptobiolin,
-						 /datum/reagent/toxin/plantbgone,/datum/reagent/blood,/datum/reagent/medicine/charcoal,/datum/reagent/drug/space_drugs,/datum/reagent/medicine/morphine,/datum/reagent/water/holywater,/datum/reagent/consumable/ethanol,/datum/reagent/consumable/hot_coco,/datum/reagent/toxin/acid,/datum/reagent/toxin/mindbreaker,/datum/reagent/toxin/rotatium,/datum/reagent/bluespace,
-						 /datum/reagent/pax,/datum/reagent/consumable/laughter,/datum/reagent/concentrated_barbers_aid,/datum/reagent/colorful_reagent,/datum/reagent/peaceborg/confuse,/datum/reagent/peaceborg/tire,/datum/reagent/consumable/sodiumchloride,/datum/reagent/consumable/ethanol/beer,/datum/reagent/hair_dye,/datum/reagent/consumable/sugar,/datum/reagent/glitter/white,/datum/reagent/growthserum)
 	//needs to be chemid unit checked at some point
 
 /datum/round_event/chem_spill/announce()
 	priority_announce("Due to a chemical spill, your pool[filters.len > 1 ? "s" : ""] may have been contaminated", "Hazmat alert")
 
 /datum/round_event/chem_spill/setup()
-	endWhen = rand(25, 100)
+	end_when = rand(25, 100)
 	for(var/obj/machinery/pool_filter/filter in GLOB.pool_filters)
 		var/turf/T = get_turf(filter)
 		if(T && is_station_level(T.z))
 			filters += filter
 	if(!filters.len)
 		return kill()
+	setup = TRUE //storytellers
 
 /datum/round_event/chem_spill/start()
 	for(var/obj/machinery/pool_filter/filter in filters)
@@ -38,7 +38,7 @@
 			if (prob(randomProbability))
 				R.add_reagent(get_random_reagent_id(), reagentsAmount)
 			else
-				R.add_reagent(pick(saferChems), reagentsAmount)
+				R.add_reagent(get_random_safe_chem(), reagentsAmount)
 		CHECK_TICK
 
 /datum/round_event_control/chem_spill/threatening

@@ -193,7 +193,7 @@
 
 	// This should be a better check but this covers 99.9% of cases
 	if(!(compatible_biotypes & C.mob_biotypes))
-		to_chat(user, span_warner("This brain is incompatible with this being's biology!"))
+		to_chat(user, span_warning("This brain is incompatible with this being's biology!"))
 		return
 
 	if(!target_has_brain && C.is_eyes_covered() && user.zone_selected == BODY_ZONE_HEAD)

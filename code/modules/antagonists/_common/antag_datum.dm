@@ -15,11 +15,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/antag_memory = ""//These will be removed with antag datum
 	var/task_memory = ""//Optional little objectives that are to be removed on a certain milestone
 	var/antag_moodlet //typepath of moodlet that the mob will gain with their status
-	var/can_hijack = HIJACK_NEUTRAL //If these antags are alone on shuttle hijack happens.
+
+	/// Variable to check how this antag interacts with hijacking the shuttle.
+	var/can_hijack = HIJACK_NEUTRAL
+	
 	///The antag hud's icon file
 	var/hud_icon = 'yogstation/icons/mob/antag_hud.dmi'
 	///Name of the antag hud we provide to this mob.
 	var/antag_hud_name
+
 	var/awake_stage = ANTAG_AWAKE //What stage we are of "waking up"
 
 	//Antag panel properties
@@ -41,6 +45,12 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/datum/weakref/info_button_ref
 	/// A weakref to the HUD shown to teammates, created by `add_team_hud`
 	var/datum/weakref/team_hud_ref
+
+	/// Minimum account age in days to be valid for picking by this antag
+	var/min_account_age = 14
+
+	/// Does this antag count towards the storytellers antag cap (False by default, but set to true for any antag of suitable size)
+	var/count_towards_antag_cap = FALSE
 
 
 /datum/antagonist/New()
@@ -142,7 +152,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)
 		return FALSE
-	. = (is_banned_from(M.ckey, list(ROLE_SYNDICATE, job_rank)) || QDELETED(M))
+	. = (is_banned_from(M.ckey, list(ROLE_ANTAG, job_rank)) || QDELETED(M))
 
 /datum/antagonist/proc/replace_banned_player()
 	set waitfor = FALSE

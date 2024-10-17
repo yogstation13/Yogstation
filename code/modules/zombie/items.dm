@@ -117,22 +117,3 @@
 		user.updatehealth()
 		user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -hp_gained) // Zom Bee gibbers "BRAAAAISNSs!1!"
 		user.set_nutrition(min(user.nutrition + hp_gained, NUTRITION_LEVEL_FULL))
-
-/obj/item/zombie_hand/gamemode
-	inserted_organ = /obj/item/organ/zombie_infection/gamemode
-	infect_chance = 70
-	scaled_infect_chance = TRUE
-	force = 15
-	var/door_open_modifier = 1
-
-/obj/item/zombie_hand/gamemode/runner
-	force = 10
-	infect_chance = 35
-	door_open_modifier = 1.1
-
-/obj/item/zombie_hand/gamemode/tank
-	door_open_modifier = 0.8
-
-/obj/item/zombie_hand/gamemode/necro
-	force = 7
-	infect_chance = 30

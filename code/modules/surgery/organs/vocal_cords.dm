@@ -191,7 +191,7 @@
 
 	for(var/V in listeners)
 		var/mob/living/L = V
-		var/datum/antagonist/devil/devilinfo = is_devil(L)
+		var/datum/antagonist/devil/devilinfo = IS_DEVIL(L)
 		if(devilinfo && findtext(message, devilinfo.truename))
 			var/start = findtext(message, devilinfo.truename)
 			listeners = list(L) //Devil names are unique.
@@ -388,8 +388,8 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			var/text = ""
-			if(is_devil(L))
-				var/datum/antagonist/devil/devilinfo = is_devil(L)
+			if(IS_DEVIL(L))
+				var/datum/antagonist/devil/devilinfo = IS_DEVIL(L)
 				text = devilinfo.truename
 			else
 				text = L.real_name
