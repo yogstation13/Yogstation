@@ -3796,7 +3796,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /turf/open/floor/iron,
 /area/station/security/execution/transfer)
 "bgg" = (
@@ -4627,7 +4627,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /turf/open/floor/iron,
 /area/station/security/execution/transfer)
 "btv" = (
@@ -9841,7 +9841,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "cWk" = (
@@ -11763,7 +11763,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/education)
 "dAp" = (
@@ -37561,7 +37561,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /turf/open/floor/iron,
 /area/station/security/execution/transfer)
 "ljd" = (
@@ -39050,7 +39050,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/transfer)
@@ -65308,7 +65308,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/iron/dark,
 /area/station/security/brig/entrance)
 "tux" = (

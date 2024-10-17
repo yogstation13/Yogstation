@@ -3077,7 +3077,7 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Justice Chamber Exterior"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
@@ -3930,7 +3930,7 @@
 	name = "Labor Camp Shuttle Airlock";
 	shuttledocked = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/security/processing)
 "bpB" = (
@@ -6175,7 +6175,7 @@
 	name = "Isolation Cell";
 	id_tag = "iso_cell_hall_bolt"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/duct,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/iron/dark/textured,
@@ -8877,7 +8877,7 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Prisoner Processing"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/processing)
 "cSQ" = (
@@ -14309,7 +14309,7 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Justice Chamber Interior"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
@@ -57056,7 +57056,7 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Labor Camp Shuttle Dock"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/processing)
 "tjB" = (
@@ -59007,7 +59007,7 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Visitation"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/prison/visit)
 "tQg" = (
@@ -59857,7 +59857,7 @@
 	name = "Isolation Cell";
 	id_tag = "iso_cell_hall_bolt"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/duct,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -64754,7 +64754,7 @@
 	name = "Labor Camp Shuttle Airlock";
 	req_access = list("brig")
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/security/processing)
 "vHc" = (
@@ -64835,7 +64835,7 @@
 	id_tag = "justice_chamber";
 	name = "Justice Chamber"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/duct,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/execution)
@@ -68369,7 +68369,7 @@
 	id = "perma_lockdown";
 	name = "Lockdown Blast Door"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
 	cycle_id = "perma-entrance"
 	},
