@@ -6,6 +6,7 @@
 	alert_type = null
 	remove_on_fullheal = TRUE
 	heal_flag_necessary = HEAL_CC_STATUS
+	processing_speed = STATUS_EFFECT_PRIORITY // monkestation edit: high-priority status effect processing
 	var/needs_update_stat = FALSE
 
 /datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)

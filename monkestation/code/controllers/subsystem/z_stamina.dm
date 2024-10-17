@@ -2,8 +2,8 @@ SUBSYSTEM_DEF(stamina)
 	name = "Stamina"
 
 	priority = FIRE_PRIORITY_STAMINA
-	flags = SS_BACKGROUND|SS_POST_FIRE_TIMING|SS_NO_INIT
-	wait = 1 SECONDS
+	flags = SS_TICKER | SS_KEEP_TIMING | SS_NO_INIT
+	wait = 10 // Not seconds - we're running on SS_TICKER, so this is ticks.
 
 	var/list/processing = list()
 	var/list/currentrun = list()
@@ -21,6 +21,6 @@ SUBSYSTEM_DEF(stamina)
 	while(current_run.len)
 		var/datum/stamina_container/thing = current_run[current_run.len]
 		current_run.len--
-		thing.update(wait * 0.1)
+		thing.update(world.tick_lag * wait * 0.1)
 		if (MC_TICK_CHECK)
 			return

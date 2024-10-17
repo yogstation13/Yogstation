@@ -12,6 +12,8 @@
 #define STATUS_EFFECT_FAST_PROCESS 0
 ///This is slower and better for more intensive status effects - 1s between ticks
 #define STATUS_EFFECT_NORMAL_PROCESS 1
+/// (monkestation addition) Similar speed to STATUS_EFFECT_FAST_PROCESS, but uses a high priority subsystem (SSpriority_effects).
+#define STATUS_EFFECT_PRIORITY 2
 
 //several flags for the Necropolis curse status effect
 ///makes the edges of the target's screen obscured
