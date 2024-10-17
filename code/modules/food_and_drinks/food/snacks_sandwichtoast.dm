@@ -1,12 +1,12 @@
 /obj/item/reagent_containers/food/snacks/sandwich
 	name = "sandwich"
-	desc = "A grand creation of meat, cheese, bread, and several leaves of lettuce! Arthur Dent would be proud."
+	desc = "A grand creation of meat, cheese and bread. Arthur Dent would be proud."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "sandwich"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 1)
-	tastes = list("meat" = 2, "cheese" = 1, "bread" = 2, "lettuce" = 1)
-	foodtype = GRAIN | VEGETABLES
+	tastes = list("meat" = 2, "cheese" = 1, "bread" = 2)
+	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/sandwich/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/toastedsandwich, rand(20 SECONDS, 30 SECONDS), TRUE)
@@ -16,10 +16,10 @@
 	desc = "Now if you only had a pepper bar."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "toastedsandwich"
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/carbon = 2)
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/carbon = 2)
-	tastes = list("toast" = 1)
-	foodtype = GRAIN
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/carbon = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/carbon = 2)
+	tastes = list("meat" = 2, "cheese" = 1, "toast" = 1)
+	foodtype = GRAIN | MEAT
 	burns_on_grill = TRUE
 
 /obj/item/reagent_containers/food/snacks/grilledcheese
