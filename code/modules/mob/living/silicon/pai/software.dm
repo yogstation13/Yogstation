@@ -13,24 +13,28 @@
 															//mesons
 															list("module_name" = "crew manifest", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "digital messenger", "tab"=FALSE, "cost" = 5),
-															list("module_name" = "atmosphere sensor", "tab"=TRUE, "cost" = 5),
+															list("module_name" = "atmosphere sensor", "tab"=TRUE, "title"="Atmospheric sensor", "cost" = 5),
 															list("module_name" = "photography module", "tab"=FALSE, "cost" = 5),
-															list("module_name" = "remote signaller", "tab"=TRUE, "cost" = 10),
-															list("module_name" = "medical records", "tab"=TRUE, "cost" = 10),
-															list("module_name" = "security records", "tab"=TRUE, "cost" = 10),
+															list("module_name" = "remote signaller", "tab"=TRUE, "title"="Remote signaller", "cost" = 10),
+															list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
+															list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
 															list("module_name" = "camera zoom", "tab"=FALSE, "cost" = 10),
-															list("module_name" = "host scan", "tab"=TRUE, "cost" = 10),
+															list("module_name" = "host scan", "tab"=TRUE, "title"="Host scan", "cost" = 10),
 															//"camera jack" = 10,
 															//"heartbeat sensor" = 10,
 															//"projection array" = 15,
 															list("module_name" = "medical HUD", "tab"=FALSE, "cost" = 20),
 															list("module_name" = "security HUD", "tab"=FALSE, "cost" = 20),
-															list("module_name" = "loudness booster", "tab"=TRUE, "cost" = 20),
+															list("module_name" = "loudness booster", "tab"=TRUE, "title"="Sound Synthesizer", "cost" = 20),
 															list("module_name" = "newscaster", "tab"=FALSE, "cost" = 20),
-															list("module_name" = "door jack", "tab"=TRUE, "cost" = 25),
+															list("module_name" = "door jack", "tab"=TRUE, "title"="Airlock Jack", "cost" = 25),
 															list("module_name" = "encryption keys", "tab"=FALSE, "cost" = 25),
 															list("module_name" = "universal translator", "tab"=FALSE, "cost" = 35)
 															)
+
+/mob/living/silicon/pai/var/list/module_tabs = list(list("module_name" = "Directives", "title"="Directives"), 
+													list("module_name" = "Screen Display", "title"="Screen Display"),
+													list("module_name" = "Download additional software", "title"="CentCom pAI Module Subversion Network"))
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -44,9 +48,7 @@
 	var/list/data = list()
 	data["modules"] = software
 	data["modules_list"] = available_software
-	data["modules_tabs"] = list(list("module_name" = "Directives", "title"="Directives"), 
-								list("module_name" = "Screen Display", "title"="Screen Display"),
-								list("module_name" = "Download additional software", "title"="CentCom pAI Module Subversion Network"))
+	data["modules_tabs"] = module_tabs
 	data["laws_zeroth"] = laws.zeroth
 	data["laws"] = laws.supplied
 	data["master"] = master
@@ -83,13 +85,19 @@
 					grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_SOFTWARE)
 				var/datum/hud/pai/pAIhud = hud_used
 				pAIhud?.update_software_buttons()
+				message_admins(available_software.Find(params["name"])) //This is the culprit, only comparing against 1D, not the 2D name
+				message_admins(module_tabs)
+				if(available_software.Find(params["name"])["tab"]) //Find if this is meant to be a tab or not
+					module_tabs.Add(list("module_name" = params["name"], "title"=available_software.Find(params["name"])["title"])) 
 				available_software.Remove(available_software.Find(params["name"])) //Removes from downloadable software list so they can't be redownloaded
 			else //Should not be possible, but in the edge case that it does...
-				to_chat(usr, "Module already downloaded!")
+				to_chat(usr, span_warning("Module already downloaded!"))
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)
-	return GLOB.always_state
+	if(user == src)
+		return GLOB.always_state
+	..()
 
 ///mob/living/silicon/pai/proc/paiInterface()
 //	
