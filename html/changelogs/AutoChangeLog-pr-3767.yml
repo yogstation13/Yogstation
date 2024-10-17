@@ -1,0 +1,5 @@
+author: "Meowosers"
+delete-after: True
+changes:
+  - rscadd: "Placed a Biogenerator on the front desk of Icebox Station's Hydroponics"
+  - qol: "Rearranged Icebox Station's Kitchen"
