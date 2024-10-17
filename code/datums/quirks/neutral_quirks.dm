@@ -180,7 +180,7 @@
 // to allow all inserted replacement eyes to become heterochromatic or for it to transfer between mobs"
 // Then just change this to [proc/add] I really don't care
 /datum/quirk/heterochromatic/add_unique(client/client_source)
-	var/color = client_source?.prefs.read_preference(/datum/preference/color/heterochromatic)
+	var/color = client_source?.prefs?.read_preference(/datum/preference/color/heterochromatic)
 	if(!color)
 		return
 
@@ -256,7 +256,7 @@
 
 // Phobia will follow you between transfers
 /datum/quirk/phobia/add(client/client_source)
-	var/phobia = client_source?.prefs.read_preference(/datum/preference/choiced/phobia)
+	var/phobia = client_source?.prefs?.read_preference(/datum/preference/choiced/phobia)
 	if(!phobia)
 		return
 

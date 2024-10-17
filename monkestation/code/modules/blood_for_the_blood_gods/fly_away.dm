@@ -1,6 +1,6 @@
 /// Called on drop_organs for the organ to "fly away" using movable physics
 /obj/item/organ/proc/fly_away(turf/open/owner_location, fly_angle = rand(0, 360), horizontal_multiplier = 1, vertical_multiplier = 1)
-	if(!istype(owner_location))
+	if(QDELETED(src) || !istype(owner_location) || QDELING(owner_location))
 		return
 	return AddComponent(/datum/component/movable_physics, \
 		physics_flags = MPHYSICS_QDEL_WHEN_NO_MOVEMENT, \
@@ -16,7 +16,7 @@
 
 /// Proc called to initialize movable physics when a bodypart gets dismembered
 /obj/item/bodypart/proc/fly_away(turf/open/owner_location, fly_angle = rand(0, 360), horizontal_multiplier = 1, vertical_multiplier = 1)
-	if(!istype(owner_location))
+	if(QDELETED(src) || !istype(owner_location) || QDELING(owner_location))
 		return
 	pixel_x = -px_x
 	pixel_y = -px_y
@@ -34,7 +34,7 @@
 	)
 
 /obj/item/proc/launch_item(turf/open/owner_location, fly_angle = rand(0, 360), horizontal_multiplier = 1, vertical_multiplier = 1)
-	if(!istype(owner_location))
+	if(QDELETED(src) || !istype(owner_location) || QDELING(owner_location))
 		return
 	forceMove(owner_location)
 	return AddComponent(/datum/component/movable_physics, \

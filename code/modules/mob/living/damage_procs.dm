@@ -96,7 +96,7 @@
 		if(CLONE)
 			damage_dealt = -1 *  adjustCloneLoss(damage_amount, forced = forced)
 		if(STAMINA)
-			damage_dealt = -1 * stamina.adjust(-damage)
+			damage_dealt = -1 * stamina?.adjust(-damage)
 		if(PAIN)
 			if(pain_controller)
 				var/pre_pain = pain_controller.get_average_pain()

@@ -42,6 +42,8 @@
 	return ..()
 
 /datum/wound/pierce/bleed/receive_damage(wounding_type, wounding_dmg, wound_bonus, attack_direction, damage_source)
+	if(QDELETED(victim))
+		CRASH("Wound tried to receive damage with null/qdeling victim!")
 	if(victim.stat == DEAD || (wounding_dmg < WOUND_MINIMUM_DAMAGE) || wounding_type == WOUND_BURN)
 		return
 	if(!limb.can_bleed() || !prob(internal_bleeding_chance))

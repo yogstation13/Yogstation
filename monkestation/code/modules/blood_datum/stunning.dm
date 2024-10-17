@@ -210,7 +210,7 @@
 		span_notice("You try to remove the electrodes!"),
 	)
 	// If embedding was less... difficult to work with, I would make tasers rely on an embedded object to handle this
-	if(!do_after(src, 5 SECONDS, src, extra_checks = CALLBACK(src, PROC_REF(try_remove_taser_checks)), interaction_key = "tazed"))
+	if(!do_after(owner, 5 SECONDS, extra_checks = CALLBACK(src, PROC_REF(try_remove_taser_checks)), interaction_key = "tazed"))
 		return
 	owner.visible_message(
 		span_warning("[owner] removes the electrodes from [owner.p_their()] body!"),

@@ -639,6 +639,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	cached_fire_spreads[burning_member] = spreading_turfs
 
 /datum/liquid_group/proc/process_spread(turf/member)
+	if(QDELETED(src) || QDELETED(member) || QDELETED(member.liquids))
+		return
 	if(member.liquids.fire_state <= LIQUID_FIRE_STATE_MEDIUM) // fires to small to worth spreading
 		return
 
