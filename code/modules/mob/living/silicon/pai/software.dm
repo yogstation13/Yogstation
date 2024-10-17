@@ -68,8 +68,6 @@
 				to_chat(src, "You are not being carried by anyone!")
 				return 0 // FALSE ? If you return here you won't call paiinterface() below
 		if("buy")
-			message_admins(params["name"])
-			message_admins(params["cost"])
 			if(!software.Find(params["name"]))
 				software.Add(params["name"])
 				ram -= params["cost"]
@@ -85,13 +83,33 @@
 					grant_all_languages(TRUE, TRUE, TRUE, LANGUAGE_SOFTWARE)
 				var/datum/hud/pai/pAIhud = hud_used
 				pAIhud?.update_software_buttons()
-				message_admins(available_software.Find(params["name"])) //This is the culprit, only comparing against 1D, not the 2D name
-				message_admins(module_tabs)
-				if(available_software.Find(params["name"])["tab"]) //Find if this is meant to be a tab or not
-					module_tabs.Add(list("module_name" = params["name"], "title"=available_software.Find(params["name"])["title"])) 
-				available_software.Remove(available_software.Find(params["name"])) //Removes from downloadable software list so they can't be redownloaded
+				for(list in available_software)
+					if(list["tab"] && list["module_name"] == params["name"]) //Find if this is meant to be a tab or not
+						module_tabs.Add(list("module_name" = params["name"], "title"=list["title"]))
+						available_software.Remove(list) //Removes from downloadable software list so they can't be redownloaded
+						message_admins("Module [params["name"]] bought succesfully and added to interface.")
+						break
+					else if(list["module_name"] == params["name"]) //If it's not a tab but it is our bought module, remove it from the list
+						available_software.Remove(list("module_name" = params[name], "tab"=FALSE, "cost"=params["cost"]))
+						message_admins("Module [params["name"]] bought successfully.")
+						break
+				
 			else //Should not be possible, but in the edge case that it does...
 				to_chat(usr, span_warning("Module already downloaded!"))
+		if("signallersend")
+			signaler.signal()
+			audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
+			playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
+		if("signallerfreq")
+			var/new_frequency = (signaler.frequency + text2num(params["freq"]))
+			if(new_frequency < MIN_FREE_FREQ || new_frequency > MAX_FREE_FREQ)
+				new_frequency = sanitize_frequency(new_frequency)
+			signaler.set_frequency(new_frequency)
+		if("signallercode")
+			signaler.code += text2num(params["code"])
+			signaler.code = round(signaler.code)
+			signaler.code = min(100, signaler.code)
+			signaler.code = max(1, signaler.code)
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)
