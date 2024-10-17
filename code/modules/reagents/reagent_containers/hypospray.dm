@@ -279,8 +279,8 @@
 	//  Wait Time Vars  //
 	var/inject_wait = 2 SECONDS
 	var/inject_self = 1 SECONDS
-	var/spray_wait = 2 SECONDS
-	var/spray_self = 1 SECONDS
+	var/spray_wait = 0 SECONDS //spraying is instant because it's significantly weaker than injecting
+	var/spray_self = 0 SECONDS
 
 	//  Misc Vars  //
 	var/upgrade_flags = NONE
@@ -292,9 +292,9 @@
 	/// The sound that plays when you eject a vial from the hypospray
 	var/eject_sound = 'sound/weapons/empty.ogg'
 	/// The sound that plays when you someone with the hypospray
-	var/inject_sound = 'sound/items/hypospray.ogg'
+	var/list/inject_sound = list('sound/items/hypospray.ogg', 'sound/items/hypospray2.ogg')
 	/// The sound that plays when you spray someone with the hypospray
-	var/spray_sound = 'sound/effects/spray2.ogg'
+	var/list/spray_sound = list('sound/effects/spray2.ogg', 'sound/effects/spray3.ogg')
 	/// The sound that plays when you draw from someone with the hypospray
 	var/draw_sound = 'sound/items/autoinjector.ogg'
 
@@ -560,8 +560,6 @@
 	possible_transfer_amounts = list(1, 5)
 	inject_wait = 0 SECONDS
 	inject_self = 0 SECONDS
-	spray_wait = 0.5 SECONDS
-	spray_self = 0.5 SECONDS
 
 /obj/item/hypospray/deluxe/cmo
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -574,8 +572,6 @@
 	container = /obj/item/reagent_containers/glass/bottle/adminordrazine
 	upgrade_flags = PIERCING
 	possible_transfer_amounts = list(0.1, 1, 5, 10, 15, 20, 30, 50, 100)
-	spray_wait = 0 SECONDS
-	spray_self = 0 SECONDS
   
 /obj/item/hypospray/combat
 	name = "combat hypospray"
@@ -585,8 +581,6 @@
 	container = /obj/item/reagent_containers/glass/bottle/vial/combat
 	inject_wait = 0 SECONDS
 	inject_self = 0 SECONDS
-	spray_wait = 0 SECONDS
-	spray_self = 0 SECONDS
 	upgrade_flags = PIERCING
 
 /obj/item/hypospray/qmc
