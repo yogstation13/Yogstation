@@ -291,7 +291,23 @@
   - rscadd: Mini crown, in loadout and autodrobe
   - bugfix: Minicrown sprite centered
 2024-10-17:
+  Absolucy:
+  - refactor: Refactored how loadout shop items are displayed. (again)
+  - image: Properly centered the Sunset Sarsaparilla sprite.
+  - refactor: (Melbert) Refactored how vending machine icons are displayed, please
+      report if you see any broken icons. Also if all the icons look like missing
+      file icons for you, you gotta update byond man, you're like a year out of date.
+  - image: (MTandi) Made chem master container icons not blurry.
+  - bugfix: Stamina regeneration and stuns/incapacitation wearing off should hopefully
+      be more consistent regardless of server lag.
   Absolucy, LemonInTheDark:
   - bugfix: Fixed a major source of lag related to hallucinations.
+  Meowosers:
+  - rscadd: Placed a Biogenerator on the front desk of Icebox Station's Hydroponics
+  - qol: Rearranged Icebox Station's Kitchen
   RikuTheKiller:
   - bugfix: Toxin damage is no longer doubled. (LMAO)
+  Wisemonster:
+  - bugfix: Fixed Theseus having brig access doors in place of perma ones.
+  - bugfix: Fixed Delta having general security access airlocks instead of perma ones.
+  - bugfix: Fixed Box almost only using general security access doors.

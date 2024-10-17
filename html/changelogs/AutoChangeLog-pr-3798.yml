@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Stamina regeneration and stuns/incapacitation wearing off should hopefully be more consistent regardless of server lag."
