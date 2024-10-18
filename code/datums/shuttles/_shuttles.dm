@@ -349,3 +349,7 @@
 /datum/map_template/shuttle/arrival/donut
 	suffix = "donut"
 	name = "arrival shuttle (Donut)"
+
+/datum/map_template/shuttle/arrival/diver_a
+	suffix = "diver_a"
+	name = "D.I.V.E.R. A"

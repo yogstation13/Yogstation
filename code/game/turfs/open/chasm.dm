@@ -114,6 +114,8 @@
 // Chasms for the jungle, with planetary atmos and a different icon
 /turf/open/chasm/jungle
 	icon = 'icons/turf/floors/junglechasm.dmi'
+	icon_state = "junglechasm-255"
+	base_icon_state = "junglechasm"
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/chasm/jungle
@@ -123,8 +125,12 @@
 	underlay_appearance.icon_state = "dirt"
 	return TRUE
 
-//For Bag of Holding Bombs
+// Cavern variant, relevant atmos applied
+/turf/open/chasm/lavaland/cavern
+	initial_gas_mix = CAVERN_DEFAULT_ATMOS
+	baseturfs = /turf/open/chasm/lavaland/cavern
 
+//For Bag of Holding Bombs
 /turf/open/chasm/magic
 	name = "tear in the fabric of reality"
 	desc = "Where does it lead?"
@@ -136,3 +142,4 @@
 
 /turf/open/chasm/magic/apply_components(mapload)
 	AddComponent(/datum/component/chasm, pick(get_area_turfs(/area/centcom/fabric_of_reality)), mapload)
+
