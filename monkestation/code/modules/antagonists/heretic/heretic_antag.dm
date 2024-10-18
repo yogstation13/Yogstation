@@ -29,7 +29,7 @@
 		return FALSE
 	var/datum/weakref/target_ref = WEAKREF(target_mind)
 	LAZYOR(all_sac_targets, target_ref)
-	LAZYSET(current_sac_targets, target_ref, getFlatIcon(target_body, defdir = SOUTH))
+	LAZYSET(current_sac_targets, target_ref, TRUE)
 	return TRUE
 
 /**
