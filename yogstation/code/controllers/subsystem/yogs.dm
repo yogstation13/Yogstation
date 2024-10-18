@@ -90,7 +90,7 @@ SUBSYSTEM_DEF(Yogs)
 		if(istype(C, /obj/machinery/computer/card/minor/ce))
 			account = ACCOUNT_ENG
 
-		else if(istype(C, /obj/machinery/computer/cargo))
+		else if(istype(C, /obj/machinery/computer/cargo) && !istype(C, /obj/machinery/computer/cargo/request))
 			account = ACCOUNT_CAR
 
 		else if(istype(C, /obj/machinery/computer/card/minor/cmo))
