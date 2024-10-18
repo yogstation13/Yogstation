@@ -120,10 +120,10 @@ const PaiBox = (props, context) => {
             <Stack.Item>
               <Box bold={1}>Remaining available memory:</Box>
               <ProgressBar ranges={{
-                good: [50, Infinity],
+                good: [-Infinity, 25],
                 average: [25, 50],
-                bad: [-Infinity, 25] }}
-                value={ram}
+                bad: [50, Infinity] }}
+                value={100-ram}
                 maxValue={100}>
                   {ram} GQ
               </ProgressBar>
