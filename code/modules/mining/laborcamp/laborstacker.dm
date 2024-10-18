@@ -14,12 +14,12 @@ GLOBAL_LIST(labor_sheet_values)
 	var/obj/machinery/door/airlock/release_door
 	var/door_tag = "prisonshuttle"
 	/// Needed to send messages to sec radio
-	var/obj/item/radio/Radio
+	var/obj/item/radio/integrated_radio
 
 /obj/machinery/mineral/labor_claim_console/Initialize(mapload)
 	. = ..()
-	Radio = new/obj/item/radio(src)
-	Radio.listening = FALSE
+	integrated_radio = new /obj/item/radio(src)
+	integrated_radio.set_listening(FALSE)
 	locate_stacking_machine()
 
 	if(!GLOB.labor_sheet_values)
