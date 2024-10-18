@@ -76,6 +76,7 @@
 /datum/surgery_step/coronary_bypass
 	name = "graft coronary bypass"
 	implements = list(TOOL_HEMOSTAT = 90, TOOL_WIRECUTTER = 35, /obj/item/stack/packageWrap = 15, /obj/item/stack/cable_coil = 5)
+	difficulty = EXP_HIGH
 	time = 9 SECONDS
 	preop_sound = 'sound/surgery/hemostat1.ogg'
 	success_sound = 'sound/surgery/hemostat1.ogg'

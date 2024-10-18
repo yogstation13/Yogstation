@@ -34,7 +34,10 @@
 	/// Sound played if the step succeeded
 	var/success_sound 
 	/// Sound played if the step fails
-	var/failure_sound 
+	var/failure_sound
+
+	/// Level of skill required to not have increased failure chance
+	var/difficulty = EXP_MID
 
 /datum/surgery_step/proc/try_op(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	var/success = FALSE
@@ -102,22 +105,24 @@
 		return FALSE
 	play_preop_sound(user, target, target_zone, tool, surgery)
 
-	if(is_species(user, /datum/species/lizard/ashwalker/shaman))//shaman is slightly better at surgeries
-		speed_mod *= 0.9
-
 	if(istype(user.get_item_by_slot(ITEM_SLOT_GLOVES), /obj/item/clothing/gloves/color/latex))
 		var/obj/item/clothing/gloves/color/latex/surgicalgloves = user.get_item_by_slot(ITEM_SLOT_GLOVES)
 		speed_mod *= surgicalgloves.surgeryspeed
+	
+	var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)
+	if(!operated_bodypart) // if the limb is missing, check what it should be attached to instead
+		operated_bodypart = target.get_bodypart(BODY_ZONE_CHEST)
+	var/skill_checked = operated_bodypart?.status == BODYPART_ROBOTIC ? SKILL_TECHNICAL : SKILL_PHYSIOLOGY
 
 	var/previous_loc = user.loc
 
 	// If we have a tool, use it
-	if((tool && tool.use_tool(target, user, time * speed_mod, robo_check = TRUE)) || do_after(user, time * speed_mod, target))
+	if((tool && tool.use_tool(target, user, time * speed_mod, skill_check = skill_checked)) || do_after(user, time * speed_mod, target, skill_check = skill_checked))
 		var/prob_chance = 100
 
 		if(implement_type)	//this means it isn't a require hand or any item step.
 			prob_chance = implements[implement_type]
-		prob_chance *= surgery.get_probability_multiplier()
+		prob_chance *= surgery.get_probability_multiplier(user, src, skill_checked)
 
 		// Blood splatters on tools and user
 		if(tool && prob(bloody_chance))
@@ -138,10 +143,8 @@
 			target.balloon_alert(user, "Failure!")
 			play_failure_sound(user, target, target_zone, tool, surgery)
 		if(iscarbon(target) && !HAS_TRAIT(target, TRAIT_SURGERY_PREPARED) && target.stat != DEAD && !IS_IN_STASIS(target) && fuckup_damage) //not under the effects of anaesthetics or a strong painkiller, harsh penalty to success chance
-			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON)) //borgs and abductors are immune to this
-				var/obj/item/bodypart/operated_bodypart = target.get_bodypart(target_zone)
-				if(!operated_bodypart || operated_bodypart?.status == BODYPART_ORGANIC) //robot limbs don't feel pain
-					cause_ouchie(user, target, target_zone, tool, advance)
+			if(!issilicon(user) && !HAS_TRAIT(user, TRAIT_SURGEON) && (!operated_bodypart || operated_bodypart?.status == BODYPART_ORGANIC)) //robot limbs don't feel pain
+				cause_ouchie(user, target, target_zone, tool, advance)
 		if(advance && !repeatable)
 			surgery.status++
 			if(surgery.status > surgery.steps.len)

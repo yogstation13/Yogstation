@@ -692,7 +692,7 @@
 	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
 
 //call the shuttle to destination S
-/obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S)
+/obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S, skill_multiplier = 1)
 	if(!check_dock(S))
 		testing("check_dock failed on request for [src]")
 		return
@@ -703,22 +703,22 @@
 	switch(mode)
 		if(SHUTTLE_CALL)
 			if(S == destination)
-				if(timeLeft(1) < callTime * engine_coeff)
-					setTimer(callTime * engine_coeff)
+				if(timeLeft(1) < callTime * engine_coeff * skill_multiplier)
+					setTimer(callTime * engine_coeff * skill_multiplier)
 			else
 				destination = S
-				setTimer(callTime * engine_coeff)
+				setTimer(callTime * engine_coeff * skill_multiplier)
 		if(SHUTTLE_RECALL)
 			if(S == destination)
-				setTimer(callTime * engine_coeff - timeLeft(1))
+				setTimer(callTime * engine_coeff * skill_multiplier - timeLeft(1))
 			else
 				destination = S
-				setTimer(callTime * engine_coeff)
+				setTimer(callTime * engine_coeff * skill_multiplier)
 			mode = SHUTTLE_CALL
 		if(SHUTTLE_IDLE, SHUTTLE_IGNITING)
 			destination = S
 			mode = SHUTTLE_IGNITING
-			setTimer(ignitionTime)
+			setTimer(ignitionTime * skill_multiplier)
 
 //recall the shuttle to where it was previously
 /obj/docking_port/mobile/proc/cancel()

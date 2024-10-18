@@ -1,7 +1,7 @@
-/mob/living/proc/Life(seconds_per_tick = SSMOBS_DT, times_fired)
+/mob/living/proc/Life(delta_time = SSMOBS_DT, times_fired)
 	set waitfor = FALSE
 
-	var/signal_result = SEND_SIGNAL(src, COMSIG_LIVING_LIFE, seconds_per_tick, times_fired)
+	var/signal_result = SEND_SIGNAL(src, COMSIG_LIVING_LIFE, delta_time, times_fired)
 
 	if(signal_result & COMPONENT_LIVING_CANCEL_LIFE_PROCESSING) // mmm less work
 		return
@@ -68,6 +68,8 @@
 		handle_stomach()
 	//Yogs end
 		handle_gravity()
+
+		handle_skills(delta_time)
 
 		if(stat != DEAD)
 			handle_traits() // eye, ear, brain damages
@@ -147,3 +149,6 @@
 	if(gravity >= GRAVITY_DAMAGE_TRESHOLD) //Aka gravity values of 3 or more
 		var/grav_stregth = gravity - GRAVITY_DAMAGE_TRESHOLD
 		adjustBruteLoss(min(grav_stregth,3))
+
+/mob/living/proc/handle_skills(delta_time)
+	return
