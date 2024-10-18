@@ -778,6 +778,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "You are the commander of the Syndicate icemoon outpost."
 	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = EXP_MID
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/captain
 	id_access_list = list(150,151)
 
@@ -793,14 +801,6 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	back = /obj/item/storage/backpack/satchel/leather //LUXURY AT ITS FINEST
 	suit_store = /obj/item/gun/ballistic/revolver/ultrasecure //No
 	belt = /obj/item/storage/belt/sabre //ceremonial shamnk
-	base_skills = list(
-		SKILL_PHYSIOLOGY = EXP_LOW,
-		SKILL_MECHANICAL = EXP_LOW,
-		SKILL_TECHNICAL = EXP_LOW,
-		SKILL_SCIENCE = EXP_LOW,
-		SKILL_FITNESS = EXP_HIGH,
-	)
-	skill_points = EXP_MID
 	backpack_contents = list(
 		/obj/item/modular_computer/tablet/preset/syndicate=1,
 		/obj/item/ammo_box/a357=2,
