@@ -1,6 +1,6 @@
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote, Table, Dropdown } from '../components';
+import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote, Table, Dropdown, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
 type Module = {
@@ -26,7 +26,7 @@ export const PaiInterface = (props, context) => {
   const { modules_tabs = [] } = data;
   const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
   return (
-    <Window width={600} height={500} theme="">
+    <Window width={600} height={550} theme="">
       <Window.Content>
         <Flex>
           <Flex.Item grow={1}>
@@ -62,7 +62,7 @@ const PaiBox = (props, context) => {
     return;
   }
   switch(selectedMainTab.module_name) {
-    case "Directives":
+    case "directives":
       return (
         <Section title={selectedMainTab.title}>
           <Stack vertical>
@@ -107,34 +107,55 @@ const PaiBox = (props, context) => {
           </Stack>
         </Section>
       );
-    case "Screen Display":
+    case "screen display":
       return (
         <Section title={selectedMainTab.title}>
           Select your new display image.
         </Section>
       );
-    case "Download additional software":
+    case "download additional software":
       return (
         <Section title={selectedMainTab.title}>
           <Stack vertical>
             <Stack.Item>
-              Downloaded modules: {modules.map(data => data)}
+              <Box bold={1}>Remaining available memory:</Box>
+              <ProgressBar ranges={{
+                good: [50, Infinity],
+                average: [25, 50],
+                bad: [-Infinity, 25] }}
+                value={ram}
+                maxValue={100}>
+                  {ram} GQ
+              </ProgressBar>
             </Stack.Item>
             <Stack.Item>
-              Remaining available memory: {ram}
+              <Box bold={1}>Downloaded modules:</Box>
+            </Stack.Item>
+            {modules.length === 0 && (
+              <Stack.Item>
+                No downloaded modules.
+              </Stack.Item>
+            )}
+            {modules.length !== 0 && modules.map(module => (
+              <Stack.Item key="">
+                {module}
+              </Stack.Item>
+            ))}
+            <Stack.Item>
+              <Box bold={1}>Available modules:</Box>
             </Stack.Item>
             <Stack.Item>
               <Table>
                 {modules_list.map(module => (
                   <Table.Row
                     key={module}>
-                    <Table.Cell bold>
+                    <Table.Cell>
                       {module.module_name}
                     </Table.Cell>
                     <Table.Cell collapsing textAlign="right">
                       <Button
                         fluid
-                        content={module.cost+" GB"}
+                        content={module.cost+" GQ"}
                         tooltip={module.text}
                         onmouseover={() => sethoveredModule(module)}
                         onmouseout={() => sethoveredModule({})}
@@ -147,11 +168,11 @@ const PaiBox = (props, context) => {
           </Stack>
         </Section>
       );
-      case "Remote signaller":
-        return (
-          <Section title={selectedMainTab.module_name}>
-            Signaller
-          </Section>
-        );
+    case "remote signaller":
+      return (
+        <Section title={selectedMainTab.title}>
+          Signaller
+        </Section>
+      );
   }
 };

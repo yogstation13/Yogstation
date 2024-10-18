@@ -32,9 +32,9 @@
 															list("module_name" = "universal translator", "tab"=FALSE, "cost" = 35)
 															)
 
-/mob/living/silicon/pai/var/list/module_tabs = list(list("module_name" = "Directives", "title"="Directives"), 
-													list("module_name" = "Screen Display", "title"="Screen Display"),
-													list("module_name" = "Download additional software", "title"="CentCom pAI Module Subversion Network"))
+/mob/living/silicon/pai/var/list/module_tabs = list(list("module_name" = "directives", "title"="Directives"), 
+													list("module_name" = "screen display", "title"="Screen Display"),
+													list("module_name" = "download additional software", "title"="CentCom pAI Module Subversion Network"))
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -70,6 +70,9 @@
 		if("buy")
 			if(!software.Find(params["name"]))
 				software.Add(params["name"])
+				if((ram-params["cost"])<0)
+					to_chat(usr, span_warning("Insufficient RAM available."))
+					return
 				ram -= params["cost"]
 				if(params["name"] == "medical HUD")
 					var/datum/atom_hud/med = GLOB.huds[med_hud]
@@ -88,14 +91,13 @@
 					if(list["tab"] && list["module_name"] == params["name"]) //Find if this is meant to be a tab or not
 						var/new_module = list("module_name" = params["name"], "title"=list["title"])
 						module_tabs += list(new_module)
-						available_software.Remove(list) //Removes from downloadable software list so they can't be redownloaded
+						available_software.Remove(list(list)) //Removes from downloadable software list so they can't be redownloaded
 						message_admins("Module [params["name"]] bought succesfully and added to interface.")
 						break
 					else if(list["module_name"] == params["name"]) //If it's not a tab but it is our bought module, remove it from the list
-						available_software.Remove(list("module_name" = params[name], "tab"=FALSE, "cost"=params["cost"]))
+						available_software.Remove(list(list))
 						message_admins("Module [params["name"]] bought successfully.")
 						break
-				
 			else //Should not be possible, but in the edge case that it does...
 				to_chat(usr, span_warning("Module already downloaded!"))
 		if("signallersend")

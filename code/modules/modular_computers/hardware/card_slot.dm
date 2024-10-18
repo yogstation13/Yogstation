@@ -71,7 +71,6 @@
 		I.forceMove(src)
 
 	stored_card = I
-	to_chat(user, stored_card)
 	holder.update_label()
 	to_chat(user, "<span class='notice'>You insert \the [I] into \the [expansion_hw ? "secondary":"primary"] [src].</span>")
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
