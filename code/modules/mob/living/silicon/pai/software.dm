@@ -39,7 +39,6 @@
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		message_admins("new ui created")
 		ui = new(user, src, "PaiInterface", "pAI Software Interface")
 		ui.open()
 		ui.set_autoupdate(TRUE)
@@ -61,18 +60,19 @@
 		return
 	switch(action)
 		if("getdna")
-			message_admins(get(card, /mob/living/carbon/human)) //No way to test if get() works since UI buttons doesn't work currently if in card form
-			if(iscarbon(get(card, /mob/living/carbon/human)))
+			if(iscarbon(get(card, /mob/living/carbon/human))) //No way to test if get() works since UI buttons doesn't work currently if in card form
 				CheckDNA(get(card, /mob/living/carbon/human), src) //you should only be able to check when directly in hand, muh immersions?
 			else
 				to_chat(src, "You are not being carried by anyone!")
 				return 0 // FALSE ? If you return here you won't call paiinterface() below
+		if("update_image")
+			card.setEmotion(params["updated_image"])
 		if("buy")
 			if(!software.Find(params["name"]))
-				software.Add(params["name"])
 				if((ram-params["cost"])<0)
 					to_chat(usr, span_warning("Insufficient RAM available."))
 					return
+				software.Add(params["name"])
 				ram -= params["cost"]
 				if(params["name"] == "medical HUD")
 					var/datum/atom_hud/med = GLOB.huds[med_hud]
@@ -92,11 +92,9 @@
 						var/new_module = list("module_name" = params["name"], "title"=list["title"])
 						module_tabs += list(new_module)
 						available_software.Remove(list(list)) //Removes from downloadable software list so they can't be redownloaded
-						message_admins("Module [params["name"]] bought succesfully and added to interface.")
 						break
 					else if(list["module_name"] == params["name"]) //If it's not a tab but it is our bought module, remove it from the list
 						available_software.Remove(list(list))
-						message_admins("Module [params["name"]] bought successfully.")
 						break
 			else //Should not be possible, but in the edge case that it does...
 				to_chat(usr, span_warning("Module already downloaded!"))

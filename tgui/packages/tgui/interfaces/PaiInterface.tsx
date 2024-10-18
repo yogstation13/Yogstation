@@ -111,6 +111,10 @@ const PaiBox = (props, context) => {
       return (
         <Section title={selectedMainTab.title}>
           Select your new display image.
+          <Stack.Item>
+            <Dropdown options={["Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Null", "Sunglasses"]}
+            onSelected={(value) => act("update_image", { updated_image: value })} />
+          </Stack.Item>
         </Section>
       );
     case "download additional software":
@@ -120,9 +124,9 @@ const PaiBox = (props, context) => {
             <Stack.Item>
               <Box bold={1}>Remaining available memory:</Box>
               <ProgressBar ranges={{
-                good: [-Infinity, 25],
-                average: [25, 50],
-                bad: [50, Infinity] }}
+                good: [-Infinity, 50],
+                average: [50, 75],
+                bad: [75, Infinity] }}
                 value={100-ram}
                 maxValue={100}>
                   {ram} GQ
@@ -159,6 +163,7 @@ const PaiBox = (props, context) => {
                         tooltip={module.text}
                         onmouseover={() => sethoveredModule(module)}
                         onmouseout={() => sethoveredModule({})}
+                        disabled={module.cost>ram}
                         onClick={() => act("buy", { name: module.module_name, cost: module.cost })} />
                     </Table.Cell>
                   </Table.Row>
