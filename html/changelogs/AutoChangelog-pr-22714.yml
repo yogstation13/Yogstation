@@ -1,0 +1,5 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - rscadd: "glacite plasma cutter shotgun, glacite plasma cutter, glacite KA"
+  - imageadd: "sprites for new glacite weapons"
