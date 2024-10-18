@@ -23,7 +23,7 @@
 	maximum_pressure = LAVALAND_EQUIPMENT_EFFECT_PRESSURE - 1
 
 	minimum_temp = BODYTEMP_COLD_DAMAGE_LIMIT + 1
-	maximum_temp = 350
+	maximum_temp = BODYTEMP_HEAT_DAMAGE_LIMIT - 5
 
 /datum/atmosphere/icemoon
 	id = ICEMOON_DEFAULT_ATMOS
