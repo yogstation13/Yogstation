@@ -123,7 +123,6 @@
 #define STATUS_EFFECT_TAMING /datum/status_effect/taming //tames the target after enough tame stacks
 
 #define STATUS_EFFECT_NECROPOLIS_CURSE /datum/status_effect/necropolis_curse
-#define STATUS_EFFECT_HIVEMIND_CURSE /datum/status_effect/necropolis_curse/hivemind
 #define CURSE_BLINDING	1 //makes the edges of the target's screen obscured
 #define CURSE_SPAWNING	2 //spawns creatures that attack the target only
 #define CURSE_WASTING	4 //causes gradual damage

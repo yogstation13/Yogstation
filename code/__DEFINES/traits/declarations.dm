@@ -74,7 +74,7 @@
 #define TRAIT_EAT_MORE			"eat_more"
 /// Can never be full
 #define TRAIT_BOTTOMLESS_STOMACH "bottomless_stomach"
-/// Randomly passes out
+/// Randomly makes nearby lights flicker
 #define RANDOM_BLACKOUTS "random_blackouts"
 /// Provides the cultist red eyes overlay
 #define CULT_EYES "cult_eyes"

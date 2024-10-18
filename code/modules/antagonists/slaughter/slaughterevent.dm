@@ -5,7 +5,12 @@
 	max_occurrences = 1
 	earliest_start = 1 HOURS
 	min_players = 20
-	dynamic_should_hijack = TRUE
+	description = "Spawns a slaughter demon, to hunt by travelling through pools of blood."
+	min_wizard_trigger_potency = 6
+	max_wizard_trigger_potency = 7
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_EXTERNAL, TAG_MAGICAL)
+	checks_antag_cap = TRUE
 
 
 

@@ -1,4 +1,4 @@
-// Contains mob factions that are not handled by special role defines (for example, viscerators having ROLE_SYNDICATE)
+// Contains mob factions that are not handled by special role defines (for example, viscerators having ROLE_ANTAG)
 
 // Default factions
 

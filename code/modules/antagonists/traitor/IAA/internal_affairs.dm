@@ -228,9 +228,9 @@
 					objective.stolen = FALSE
 
 /datum/antagonist/traitor/internal_affairs/proc/forge_iaa_objectives()
-	if(SSticker.mode.target_list.len && SSticker.mode.target_list[owner]) // Is a double agent
+	if(SSgamemode.target_list.len && SSgamemode.target_list[owner]) // Is a double agent
 		// Assassinate
-		var/datum/mind/target_mind = SSticker.mode.target_list[owner]
+		var/datum/mind/target_mind = SSgamemode.target_list[owner]
 		if(issilicon(target_mind.current))
 			var/datum/objective/destroy/internal/destroy_objective = new
 			destroy_objective.owner = owner

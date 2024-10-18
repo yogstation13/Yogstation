@@ -4,6 +4,9 @@
 	typepath = /datum/round_event/wizard/rpgloot
 	max_occurrences = 1
 	earliest_start = 0 MINUTES
+	description = "Every item in the world will have fantastical names."
+	min_wizard_trigger_potency = 4
+	max_wizard_trigger_potency = 7
 
 /datum/round_event/wizard/rpgloot/start()
 	var/upgrade_scroll_chance = 0
