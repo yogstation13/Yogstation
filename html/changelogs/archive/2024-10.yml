@@ -313,3 +313,7 @@
   - bugfix: Fixed Theseus having brig access doors in place of perma ones.
   - bugfix: Fixed Delta having general security access airlocks instead of perma ones.
   - bugfix: Fixed Box almost only using general security access doors.
+2024-10-18:
+  Absolucy:
+  - qol: The heretic living heart now displays up-to-date appearances of its targets
+      when used.
