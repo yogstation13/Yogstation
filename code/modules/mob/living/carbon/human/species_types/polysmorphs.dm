@@ -19,6 +19,7 @@
 	coldmod = 0.75
 	heatmod = 1.5
 	pressuremod = 0.75 //Xenos are completely pressure immune, they're bargain bin xenos
+	toxmod = 0.8 //their blood is acid, their liver is pretty used to fucked up things
 	acidmod = 0.2 //Their blood is literally acid
 	action_speed_coefficient = 1.1 //claws aren't dextrous like hands
 	speedmod = -0.1 //apex predator humanoid hybrid
