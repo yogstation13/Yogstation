@@ -157,3 +157,33 @@
 /obj/item/organ/regenerative_core/legion/preserved(implanted = 0)
 	..()
 	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."
+
+
+// Snow Legion Core
+
+/obj/item/organ/regenerative_core/legion/snow
+	desc = "A strangely hard snowball that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments may slow its healing effects."
+	icon_state = "slegion_soul"
+
+/obj/item/organ/regenerative_core/legion/snow/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_ICON)
+
+/obj/item/organ/regenerative_core/legion/snow/update_icon_state()
+	. = ..()
+	icon_state = inert ? "slegion_soul_inert" : "slegion_soul"
+	for(var/datum/action/A as anything in actions)
+		A.build_all_button_icons()
+
+/obj/item/organ/regenerative_core/snow/update_overlays()
+	. = ..()
+	if(!inert && !preserved)
+		. += "slegion_soul_crackle"
+
+/obj/item/organ/regenerative_core/legion/snow/go_inert()
+	..()
+	desc = "[src] has become inert. It has decayed, and is completely useless."
+
+/obj/item/organ/regenerative_core/legion/snow/preserved(implanted = 0)
+	..()
+	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."
