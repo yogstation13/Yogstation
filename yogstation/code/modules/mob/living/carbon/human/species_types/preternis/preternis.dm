@@ -27,6 +27,11 @@
 	punchstunthreshold = 7 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
 
+	//psionics
+	latency_chance = 100
+	possible_faculties = list(PSI_COERCION)
+	starting_psi_level = PSI_RANK_LATENT
+
 	//organs
 	mutanteyes = /obj/item/organ/eyes/robotic/preternis
 	mutantlungs = /obj/item/organ/lungs/preternis
