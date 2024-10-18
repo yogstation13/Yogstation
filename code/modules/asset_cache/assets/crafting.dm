@@ -7,6 +7,7 @@
 	for(var/atom in GLOB.crafting_recipes_atoms)
 		add_atom_icon(atom, id++)
 	add_tool_icons()
+	add_skill_icons()
 
 /datum/asset/spritesheet/crafting/cooking
 	name = "cooking"
@@ -49,3 +50,16 @@
 
 	for(var/tool in tool_icons)
 		Insert(replacetext(tool, " ", ""), tool_icons[tool])
+
+///Adds skill icons to the spritesheet
+/datum/asset/spritesheet/crafting/proc/add_skill_icons()
+	var/list/skill_icons = list(
+		SKILL_PHYSIOLOGY = icon('icons/obj/storage.dmi', "firstaid"),
+		SKILL_MECHANICAL = icon('icons/obj/tools.dmi', "drill_bolt"),
+		SKILL_TECHNICAL = icon('icons/obj/module.dmi', "bluespacearray"),
+		SKILL_SCIENCE = icon('icons/obj/turrets.dmi', "mini_on", frame = 2),
+		SKILL_FITNESS = icon('icons/obj/clothing/gloves.dmi', "boxing"),
+	)
+
+	for(var/skill in skill_icons)
+		Insert(replacetext(skill, " ", ""), skill_icons[skill])
