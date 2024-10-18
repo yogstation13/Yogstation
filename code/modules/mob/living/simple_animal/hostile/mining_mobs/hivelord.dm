@@ -126,7 +126,6 @@
 	robust_searching = 1
 	var/dwarf_mob = FALSE
 	var/mob/living/carbon/human/stored_mob
-	var/snow_legion = FALSE
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize(mapload)
 	. = ..()
 	if(prob(5))
@@ -189,7 +188,6 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
 	var/can_infest_dead = FALSE
-	var/snow_legion = FALSE
 // Snow Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow
 	name = "snow legion"
@@ -202,8 +200,6 @@
 	crusher_loot = /obj/item/crusher_trophy/legion_skull
 	loot = list(/obj/item/organ/regenerative_core/legion/snow)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
-	snow_legion = TRUE
-
 
 // Snow Legion skull
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
@@ -214,7 +210,6 @@
 	icon_living = "snowlegion_head"
 	icon_aggro = "snowlegion_head"
 	icon_dead = "snowlegion_head"
-	snow_legion = TRUE
 	can_infest_dead = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life(seconds_per_tick = SSMOBS_DT, times_fired)
@@ -229,18 +224,14 @@
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
 	if(H.dna.check_mutation(DWARFISM)) //dwarf legions aren't just fluff!
 		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
-	else if(snow_legion)
-		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow(H.loc)
 	else
-		L = new(H.loc)
+		L = new type(H.loc)
 	visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
 	H.death()
 	H.adjustBruteLoss(1000)
 	L.stored_mob = H
 	H.forceMove(L)
 	qdel(src)
-
-
 
 //Advanced Legion is slightly tougher to kill and can raise corpses (revive other legions)
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced
