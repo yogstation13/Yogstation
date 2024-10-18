@@ -222,10 +222,12 @@
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/proc/infest(mob/living/carbon/human/H)
 	visible_message(span_warning("[name] burrows into the flesh of [H]!"))
 	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
+	var/legion_type = /mob/living/simple_animal/hostile/asteroid/hivelord/legion
 	if(H.dna.check_mutation(DWARFISM)) //dwarf legions aren't just fluff!
-		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
-	else
-		L = new type(H.loc)
+		legion_type = /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf
+	if(istype(src, /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow))
+		legion_type = /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow
+	L = new legion_type(H.loc)
 	visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
 	H.death()
 	H.adjustBruteLoss(1000)
