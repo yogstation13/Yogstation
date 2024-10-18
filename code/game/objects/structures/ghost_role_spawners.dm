@@ -600,7 +600,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_empty/post_equip(mob/living/carbon/human/H)
-	H.faction |= ROLE_SYNDICATE
+	H.faction |= ROLE_ANTAG
 
 /obj/effect/mob_spawn/human/syndicate/battlecruiser
 	name = "Syndicate Battlecruiser Ship Operative"
@@ -1046,7 +1046,4 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	box = /obj/item/storage/box/survival/syndie
 
 /datum/outfit/syndicate_derelict_engi/post_equip(mob/living/carbon/human/H)
-	H.faction |= ROLE_SYNDICATE
-	H.adjust_skill(SKILL_MECHANICAL, EXP_MID)
-	H.adjust_skill(SKILL_TECHNICAL, EXP_MID)
-	H.add_skill_points(EXP_MID)
+	H.faction |= ROLE_ANTAG

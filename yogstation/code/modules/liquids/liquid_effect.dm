@@ -43,23 +43,25 @@
 
 
 /obj/effect/abstract/liquid_turf/proc/process_evaporation()
-	if(liquid_group.expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT)
+	if(!liquid_group.always_evaporates && (liquid_group.expected_turf_height > LIQUID_ANKLES_LEVEL_HEIGHT))
 		SSliquids.evaporation_queue -= my_turf
 		return
 
 	//See if any of our reagents evaporates
 	var/any_change = FALSE
+	var/always_evaporates = liquid_group.always_evaporates
+	var/evaporation_multiplier = liquid_group.evaporation_multiplier
 	var/datum/reagent/R //Faster declaration
 	for(var/reagent_type in liquid_group.reagents.reagent_list)
 		R = reagent_type
 		//We evaporate. bye bye
-		if(initial(R.evaporates))
-			var/remove_amount = min((initial(R.evaporation_rate) * GLOB.global_evaporation_rate), R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
+		if(initial(R.evaporates) || always_evaporates)
+			var/remove_amount = min((initial(R.evaporation_rate) * GLOB.global_evaporation_rate * evaporation_multiplier), R.volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
 			liquid_group.remove_specific(src, remove_amount, R, TRUE)
 			any_change = TRUE
 			R.evaporate(src.loc, remove_amount)
 		if(initial(R.group_evaporation_rate))
-			var/remove_amount = min((initial(R.group_evaporation_rate) * GLOB.global_evaporation_rate), liquid_group.total_reagent_volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
+			var/remove_amount = min((initial(R.group_evaporation_rate) * GLOB.global_evaporation_rate * evaporation_multiplier), liquid_group.total_reagent_volume, (liquid_group.reagents_per_turf / length(liquid_group.reagents.reagent_list)))
 			liquid_group.remove_any(src, remove_amount)
 			any_change = TRUE
 			R.evaporate(src.loc, remove_amount)

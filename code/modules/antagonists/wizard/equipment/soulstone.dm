@@ -38,12 +38,12 @@
 
 /obj/item/soulstone/pickup(mob/living/user)
 	..()
-	if(!iscultist(user) && !iswizard(user) && !usability)
+	if(!iscultist(user) && !IS_WIZARD(user) && !usability)
 		to_chat(user, span_danger("An overwhelming feeling of dread comes over you as you pick up the soulstone. It would be wise to be rid of this quickly."))
 
 /obj/item/soulstone/examine(mob/user)
 	. = ..()
-	if(usability || iscultist(user) || iswizard(user) || isobserver(user))
+	if(usability || iscultist(user) || IS_WIZARD(user) || isobserver(user))
 		if (old_shard)
 			. += span_cult("A soulstone, used to capture a soul, either from dead humans or from freed shades.")
 		else
@@ -60,7 +60,7 @@
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
 /obj/item/soulstone/attack(mob/living/carbon/human/M, mob/living/user)
-	if(!iscultist(user) && !iswizard(user) && !usability)
+	if(!iscultist(user) && !IS_WIZARD(user) && !usability)
 		user.Unconscious(10 SECONDS)
 		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
 		return
@@ -89,7 +89,7 @@
 /obj/item/soulstone/attack_self(mob/living/user)
 	if(!in_range(src, user))
 		return
-	if(!iscultist(user) && !iswizard(user) && !usability)
+	if(!iscultist(user) && !IS_WIZARD(user) && !usability)
 		user.Unconscious(100)
 		to_chat(user, span_userdanger("Your body is wracked with debilitating pain!"))
 		return
@@ -109,7 +109,7 @@
 		else
 			icon_state = "soulstone"
 		name = initial(name)
-		if(iswizard(user) || usability)
+		if(IS_WIZARD(user) || usability)
 			to_chat(A, "<b>You have been released from your prison, but you are still bound to [user.real_name]'s will. Help [user.p_them()] succeed in [user.p_their()] goals at all costs.</b>")
 		else if(iscultist(user))
 			to_chat(A, "<b>You have been released from your prison, but you are still bound to the cult's will. Help them succeed in their goals at all costs.</b>")
@@ -124,7 +124,7 @@
 
 /obj/structure/constructshell/examine(mob/user)
 	. = ..()
-	if(iscultist(user) || iswizard(user) || user.stat == DEAD)
+	if(iscultist(user) || IS_WIZARD(user) || user.stat == DEAD)
 		. += {"<span class='cult'>A construct shell, used to house bound souls from a soulstone.\n
 		Placing a soulstone with a soul into this shell allows you to produce your choice of the following:\n
 		An <b>Artificer</b>, which can produce <b>more shells and soulstones</b>, as well as fortifications.\n
@@ -134,7 +134,7 @@
 /obj/structure/constructshell/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/soulstone))
 		var/obj/item/soulstone/SS = O
-		if(!iscultist(user) && !iswizard(user) && !SS.purified)
+		if(!iscultist(user) && !IS_WIZARD(user) && !SS.purified)
 			to_chat(user, span_danger("An overwhelming feeling of dread comes over you as you attempt to place the soulstone into the shell. It would be wise to be rid of this quickly."))
 			if(isliving(user))
 				var/mob/living/living_user = user
@@ -218,7 +218,7 @@
 					return
 				switch(construct_class)
 					if("Juggernaut")
-						if(iscultist(user) || iswizard(user))
+						if(iscultist(user) || IS_WIZARD(user))
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/armored, A, user, 0, T.loc)
 						else
 							if(purified)
@@ -226,7 +226,7 @@
 							else
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/armored/noncult, A, user, 0, T.loc)
 					if("Wraith")
-						if(iscultist(user) || iswizard(user))
+						if(iscultist(user) || IS_WIZARD(user))
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith, A, user, 0, T.loc)
 						else
 							if(purified)
@@ -234,16 +234,16 @@
 							else
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith/noncult, A, user, 0, T.loc)
 					if("Artificer")
-						if(iscultist(user) || iswizard(user))
+						if(iscultist(user) || IS_WIZARD(user))
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder, A, user, 0, T.loc)
 						else
 							if(purified)
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/angelic, A, user, 0, T.loc)
 							else
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/noncult, A, user, 0, T.loc)
-				for(var/datum/mind/B in SSticker.mode.cult)
+				for(var/datum/mind/B in SSgamemode.cult)
 					if(B == A.mind)
-						SSticker.mode.cult -= A.mind
+						SSgamemode.cult -= A.mind
 				qdel(T)
 				qdel(src)
 			else
@@ -264,8 +264,8 @@
 	else
 		newstruct.key = target.key
 	var/atom/movable/screen/alert/bloodsense/BS
-	if(newstruct.mind && ((stoner && iscultist(stoner)) || cultoverride) && SSticker && SSticker.mode)
-		SSticker.mode.add_cultist(newstruct.mind, 0)
+	if(newstruct.mind && ((stoner && iscultist(stoner)) || cultoverride))
+		newstruct.add_cultist()
 	if(iscultist(stoner) || cultoverride)
 		to_chat(newstruct, "<b>You are still bound to serve the cult[stoner ? " and [stoner]":""], follow [stoner ? stoner.p_their() : "their"] orders and help [stoner ? stoner.p_them() : "them"] complete [stoner ? stoner.p_their() : "their"] goals at all costs.</b>")
 	else if(stoner)
@@ -295,14 +295,14 @@
 	if(U)
 		S.faction |= "[REF(U)]" //Add the master as a faction, allowing inter-mob cooperation
 	if(U && iscultist(U))
-		SSticker.mode.add_cultist(S.mind, 0)
+		S.add_cultist()
 	S.cancel_camera()
 	name = "soulstone: Shade of [T.real_name]"
 	if(purified)
 		icon_state = "purified_soulstone2"
 	else
 		icon_state = "soulstone2"
-	if(U && (iswizard(U) || usability))
+	if(U && (IS_WIZARD(U) || usability))
 		to_chat(S, "Your soul has been captured! You are now bound to [U.real_name]'s will. Help [U.p_them()] succeed in [U.p_their()] goals at all costs.")
 	else if(U && iscultist(U))
 		to_chat(S, "Your soul has been captured! You are now bound to the cult's will. Help them succeed in their goals at all costs.")

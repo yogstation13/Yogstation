@@ -208,6 +208,7 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, "rustle", 50, vary = TRUE, extrarange = -5)
 	user.visible_message(span_notice("[user] hugs [src]."), span_notice("You hug [src]."))
+	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
 
 //Mime survival box
 /obj/item/storage/box/survival/hug/black
@@ -863,6 +864,7 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, "rustle", 50, 1, -5)
 	user.visible_message(span_notice("[user] hugs \the [src]."),span_notice("You hug \the [src]."))
+	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
 
 /obj/item/storage/box/hug/black
 	icon_state = "hugbox_black"
@@ -1407,7 +1409,7 @@
 	var/container_type = "carton"
 	//String for ice cream vat
 	var/contents_type = "ice cream"
-	
+
 
 /obj/item/storage/box/ice_cream_carton/Initialize(mapload)
 	. = ..()

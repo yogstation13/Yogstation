@@ -166,6 +166,12 @@
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one has been enhanced with plasma magmite."
 	max_mod_capacity = 120
 
+/obj/item/gun/energy/kinetic_accelerator/mega/glacite
+	name = "mega proto-kinetic accelerator"
+	icon_state = "kineticgun_g"
+	item_state = "kineticgun_glacite"
+	desc = "A self recharging, ranged mining tool that does increased damage in low pressure. This one has been enhanced with plasma glacite."
+
 //Casing
 /obj/item/ammo_casing/energy/kinetic
 	projectile_type = /obj/projectile/kinetic

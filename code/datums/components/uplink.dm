@@ -46,7 +46,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/telecrystals
 	var/selected_cat
 	var/owner = null
-	var/datum/game_mode/gamemode
+	/// What antagonist role this uplink belongs to
+	var/antagonist = null
 	var/datum/uplink_purchase_log/purchase_log
 	var/list/uplink_items
 	var/hidden_crystals = 0
@@ -62,7 +63,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/list/previous_attempts
 	var/nt_uplink_type = null //for NT uplinks to enforce team variety.
 
-/datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = TELECRYSTALS_DEFAULT)
+/datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, _antagonist = ROLE_TRAITOR, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -83,7 +84,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		RegisterSignal(parent, COMSIG_PEN_ROTATED, PROC_REF(pen_rotation))
 
 	GLOB.uplinks += src
-	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted, js_ui)
+	uplink_items = get_uplink_items(_antagonist, TRUE, allow_restricted, js_ui)
 
 	if(_owner)
 		owner = _owner
@@ -94,7 +95,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 			purchase_log = new(owner, src)
 	lockable = _lockable
 	active = _enabled
-	gamemode = _gamemode
+	antagonist = _antagonist
 	telecrystals = starting_tc
 	if(!lockable)
 		active = TRUE
@@ -105,15 +106,15 @@ GLOBAL_LIST_EMPTY(uplinks)
 /datum/component/uplink/InheritComponent(datum/component/uplink/U)
 	lockable |= U.lockable
 	active |= U.active
-	if(!gamemode)
-		gamemode = U.gamemode
+	if(!antagonist)
+		antagonist = U.antagonist
 	telecrystals += U.telecrystals
 	if(purchase_log && U.purchase_log)
 		purchase_log.MergeWithAndDel(U.purchase_log)
 
 /datum/component/uplink/Destroy()
 	GLOB.uplinks -= src
-	gamemode = null
+	antagonist = null
 	purchase_log = null
 	return ..()
 
@@ -124,9 +125,9 @@ GLOBAL_LIST_EMPTY(uplinks)
 	telecrystals += amt
 	TC.use(amt)
 
-/datum/component/uplink/proc/set_gamemode(_gamemode)
-	gamemode = _gamemode
-	uplink_items = get_uplink_items(gamemode, TRUE, allow_restricted, js_ui)
+/datum/component/uplink/proc/set_antagonist(_antagonist)
+	antagonist = _antagonist
+	uplink_items = get_uplink_items(antagonist, TRUE, allow_restricted, js_ui)
 
 /datum/component/uplink/proc/OnAttackBy(datum/source, obj/item/I, mob/user)
 	if(!active)

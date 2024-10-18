@@ -305,6 +305,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway/secondary/entry
 	name = "Arrival Shuttle Hallway"
 	icon_state = "entry"
+	area_flags = EVENT_PROTECTED
 
 /area/hallway/secondary/service
 	name = "Service Hallway"
