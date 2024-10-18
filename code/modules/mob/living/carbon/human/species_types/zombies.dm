@@ -135,7 +135,7 @@
 	staminamod = 0.5 //difficult to subdue via nonlethal means
 	punchdamagelow = 13
 	punchdamagehigh = 16
-	punchstunthreshold = 17 //pretty good punch damage but no knockdown
+	punchstunchance = 0 //pretty good punch damage but no knockdown
 	///no guns or soft crit
 	inherent_traits = list(
 		TRAIT_STABLELIVER,
