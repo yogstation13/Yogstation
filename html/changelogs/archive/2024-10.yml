@@ -317,3 +317,8 @@
   Absolucy:
   - qol: The heretic living heart now displays up-to-date appearances of its targets
       when used.
+2024-10-19:
+  DexeeXI:
+  - bugfix: wikibooks now point to the new page homes on the wiki.
+  Shoddd:
+  - bugfix: fixes lavaland max temperature
