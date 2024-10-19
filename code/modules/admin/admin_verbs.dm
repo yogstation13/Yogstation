@@ -718,7 +718,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	to_chat(src, span_interface("You are now a normal player."), confidential=TRUE)
 	
 	remove_mentor_verbs()
-	mentor_datum = null
+	QDEL_NULL(mentor_datum)
 	GLOB.mentors -= src
 	add_verb(src, /client/proc/rementor)
 	

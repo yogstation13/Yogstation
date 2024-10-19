@@ -60,7 +60,7 @@
 		new /datum/mentors(ckey)
 
 	if(mentor_datum)
-		if(admin)
+		if(!admin)
 			GLOB.mentors |= src // don't add admins to this list too.
 
 		mentor_datum.owner = src
