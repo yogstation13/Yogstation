@@ -19,7 +19,7 @@
 															list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
 															list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
 															list("module_name" = "camera zoom", "tab"=FALSE, "cost" = 10),
-															list("module_name" = "host scan", "tab"=TRUE, "title"="Host scan", "cost" = 10),
+															list("module_name" = "host scan", "tab"=TRUE, "title"="Host Bioscan settings", "cost" = 10),
 															//"camera jack" = 10,
 															//"heartbeat sensor" = 10,
 															//"projection array" = 15,
@@ -35,6 +35,10 @@
 /mob/living/silicon/pai/var/list/module_tabs = list(list("module_name" = "directives", "title"="Directives"), 
 													list("module_name" = "screen display", "title"="Screen Display"),
 													list("module_name" = "download additional software", "title"="CentCom pAI Module Subversion Network"))
+
+/mob/living/silicon/pai/var/datum/gas_mixture/environment = null
+/mob/living/silicon/pai/var/pressure = null
+/mob/living/silicon/pai/var/gases = null
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -53,6 +57,14 @@
 	data["master"] = master
 	data["masterdna"] = master_dna
 	data["ram"] = ram
+	if(!isnull(environment))
+		data["pressure"] = round(pressure,0.1)
+		data["gases"] = gases
+		data["temperature"] = round(environment.return_temperature()-T0C)
+	else
+		data["pressure"] = pressure
+		data["gases"] = gases
+		data["temperature"] = null
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
@@ -98,6 +110,23 @@
 						break
 			else //Should not be possible, but in the edge case that it does...
 				to_chat(usr, span_warning("Module already downloaded!"))
+		if("atmossensor")
+			var/turf/T = get_turf(loc)
+			if (isnull(T))
+				to_chat(usr, span_warning("Unable to obtain a reading."))
+			else
+				environment = T.return_air()
+				pressure = environment.return_pressure()
+				var/total_moles = environment.total_moles()
+
+				if (total_moles)
+					for(var/id in environment.get_gases())
+						var/gas_level = environment.get_moles(id)/total_moles
+						gases = list()
+						if(gas_level > 0.01)
+							gases += "[GLOB.gas_data.labels[id]]: [round(gas_level*100)]%"
+						else
+							gases = list()
 		if("signallersend")
 			signaler.signal()
 			audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
@@ -112,6 +141,9 @@
 			signaler.code = round(signaler.code)
 			signaler.code = min(100, signaler.code)
 			signaler.code = max(1, signaler.code)
+		if("hostscan")
+			var/mob/living/silicon/pai/pAI = usr
+			pAI.hostscan.attack_self(src)
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)

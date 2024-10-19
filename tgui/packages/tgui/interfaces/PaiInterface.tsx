@@ -19,6 +19,9 @@ type Data = {
   master: string;
   masterdna: string;
   ram: number;
+  pressure: number;
+  gases: Data[];
+  temperature: number;
 }
 
 export const PaiInterface = (props, context) => {
@@ -58,6 +61,7 @@ const PaiBox = (props, context) => {
   const [hoveredModule, sethoveredModule] = useLocalState(context, "hoveredModule", {});
   const { modules, ram, modules_list } = data;
   const { laws_zeroth, laws, master, masterdna } = data;
+  const { pressure, gases, temperature } = data;
   if(selectedMainTab===null) {
     return;
   }
@@ -173,10 +177,59 @@ const PaiBox = (props, context) => {
           </Stack>
         </Section>
       );
+    case "atmosphere sensor":
+      return (
+        <Section title={selectedMainTab.title}>
+          {!pressure && (
+            <Stack.Item>
+              Air Pressure: None
+            </Stack.Item>
+          )}
+          {!!pressure && (
+            <Stack.Item>
+              Air Pressure: {pressure} kPa
+            </Stack.Item>
+          )}
+          <Stack.Item>
+            Detected gases:
+          </Stack.Item>
+          {!gases && (
+            <Stack.Item>
+              None
+            </Stack.Item>
+          )}
+          {!!gases && gases.map(gas => (
+            <Stack.Item key="">
+              {gas}
+            </Stack.Item>
+          ))}
+          {!temperature && (
+            <Stack.Item>
+              Temperature: None
+            </Stack.Item>
+          )}
+          {!!temperature && (
+            <Stack.Item>
+              Temperature: {temperature}&deg;C
+            </Stack.Item>
+          )}
+          <Button onClick={() => act("atmossensor")}>
+            Take new reading
+          </Button>
+        </Section>
+      );
     case "remote signaller":
       return (
         <Section title={selectedMainTab.title}>
           Signaller
+        </Section>
+      );
+    case "host scan":
+      return (
+        <Section title={selectedMainTab.title}>
+          <Button onClick={() => act("hostscan")}>
+            Change scan type
+          </Button>
         </Section>
       );
   }
