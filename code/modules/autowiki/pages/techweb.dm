@@ -3,18 +3,20 @@
 
 /datum/autowiki/techweb/generate()
 	var/output = ""
-
-	// filenames is the name of the icon file 
-	var/filename = "researchables"
 	
 	for (var/node_id in sort_list(SSresearch.techweb_nodes, GLOBAL_PROC_REF(sort_research_nodes)))
 		var/datum/techweb_node/node = SSresearch.techweb_nodes[node_id]
 		//the images we are trying to upload
 		var/datum/design/displayed_design = SSresearch.techweb_design_by_id(node.design_ids.len ? node.design_ids[1] : null)
+		var/datum/design/doped_design = displayed_design
+		if(initial(doped_design.name) == initial(displayed_design.name))
+			continue //copy protection 
 		var/research = displayed_design
-		
+
 		if (!node.show_on_wiki)
 			continue
+		// filenames is the name of the icon file 
+		var/filename = SANITIZE_FILENAME(escape_value(format_text(node.display_name)))
 
 		output += "\n\n" + include_template("Autowiki/TechwebEntry", list(
 			"icon" = escape_value(filename),
