@@ -70,9 +70,9 @@
 	database_id = MEDAL_CLEANBOSS
 
 /datum/award/achievement/misc/rule8
-	name = "Rule 8"
+	name = "Rule 3"
 	desc = "Call an admin this is ILLEGAL!!"
-	database_id = MEDAL_RULE8
+	database_id = MEDAL_RULE8 //blame tg lmao
 	icon = "rule8"
 
 /datum/award/achievement/misc/speed_round
