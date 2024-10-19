@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed tamed goliaths not properly following commands - they'll now actually follow you if you command \"follow\"."
