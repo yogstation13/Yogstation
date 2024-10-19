@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;gamemode - Yogstation 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Yogstation 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/gamemode.html#var">Var Details</a> - <a href="datum/controller/subsystem/gamemode.html#proc">Proc Details</a></header>
+<main>
+<h1>Gamemode <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/gamemode.html">gamemode</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/game/gamemodes/clean_this_shit_up/blood_cult.dm#L3">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;game&#x2F;gamemodes&#x2F;clean_this_shit_up&#x2F;blood_cult.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/allow_pop_scaling">allow_pop_scaling</a></th><td>Whether we allow pop scaling. This is configured by config, or the storyteller UI</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/current_players">current_players</a></th><td>Associative list of current players, in order: living players, living antagonists, dead players and observers.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/current_pop_scale_multipliers">current_pop_scale_multipliers</a></th><td>Associative list of active multipliers from pop scale penalty.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/current_roundstart_event">current_roundstart_event</a></th><td>What is our currently desired/selected roundstart event</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/event_frequency_multiplier">event_frequency_multiplier</a></th><td>Event frequency multiplier, it exists because wizard, eugh.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/event_pools">event_pools</a></th><td>Associative list of control events by their track category. Compiled in Init</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/event_track_points">event_track_points</a></th><td>Associative list of even track points.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/event_tracks">event_tracks</a></th><td>List of our event tracks for fast access during for loops.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/forced_next_events">forced_next_events</a></th><td>Associative list of tracks to forced event controls. For admins to force events (though they can still invoke them freely outside of the track system)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/halted_storyteller">halted_storyteller</a></th><td>Whether the storyteller has been halted</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/last_point_gains">last_point_gains</a></th><td>Last point amount gained of each track. Those are recorded for purposes of estimating how long until next event.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/next_storyteller_process">next_storyteller_process</a></th><td>Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/panel_page">panel_page</a></th><td>Page of the UI panel.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/point_gain_multipliers">point_gain_multipliers</a></th><td>Configurable multipliers for point gain over time.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/point_thresholds">point_thresholds</a></th><td>Point thresholds at which the events are supposed to be rolled, it is also the base cost for events.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/pop_scale_penalties">pop_scale_penalties</a></th><td>Associative list of pop scale penalties.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/pop_scale_thresholds">pop_scale_thresholds</a></th><td>Associative list of pop scale thresholds.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/ready_players">ready_players</a></th><td>Ready players for roundstart events.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/roundstart_antag_minds">roundstart_antag_minds</a></th><td>List of new player minds we currently want to give our roundstart antag to</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/roundstart_event_view">roundstart_event_view</a></th><td>Whether we are viewing the roundstart events or not</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/roundstart_point_multipliers">roundstart_point_multipliers</a></th><td>Configurable multipliers for roundstart points.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/scheduled_events">scheduled_events</a></th><td>Events that we have scheduled to run in the nearby future</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/secret_storyteller">secret_storyteller</a></th><td>Is storyteller secret or not</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/selected_storyteller">selected_storyteller</a></th><td>Result of the storyteller vote/pick. Defaults to the guide.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/statistics_track_page">statistics_track_page</a></th><td>Current preview page for the statistics UI.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/storyteller">storyteller</a></th><td>Our storyteller. They progresses our trackboards and picks out events</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/storytellers">storytellers</a></th><td>List of all the storytellers. Populated at init. Associative from type</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/title_icon">title_icon</a></th><td>The name of the icon shown during credit roll (only set if the roundstart antag has an icon)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#var/uncategorized">uncategorized</a></th><td>List of all uncategorized events, because they were wizard or holiday events</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/Topic">Topic</a></th><td>Create event info and stats table</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/TriggerEvent">TriggerEvent</a></th><td>If the bounds are equal, we'd be dividing by zero or worse, if upper is smaller than lower, we'd be increasing the factor, just make it 1 and continue.
+this is only a problem for bad configs</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/admin_panel">admin_panel</a></th><td>Panel containing information, variables and controls about the gamemode and scheduled event</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/calculate_ready_players">calculate_ready_players</a></th><td>We need to calculate ready players for the sake of roundstart events becoming eligible.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/can_inject_antags">can_inject_antags</a></th><td>Whether events can inject more antagonists into the round</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/event_panel">event_panel</a></th><td>Panel containing information and actions regarding events</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/fire">fire</a></th><td>Seeding events into track event pools needs to happen after event config vars are loaded</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_all_by_department">get_all_by_department</a></th><td>Gets all crewmembers for a department including dead ones</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_all_silicon">get_all_silicon</a></th><td>Gets all silicon members including dead ones</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_antag_cap">get_antag_cap</a></th><td>Handle scheduled events
+Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
+Gets the number of antagonists the antagonist injection events will stop rolling after.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_candidates">get_candidates</a></th><td>Gets candidates for antagonist roles.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_correct_popcount">get_correct_popcount</a></th><td>Gets the correct popcount, returning READY people if roundstart, and active people if not.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_living_by_department">get_living_by_department</a></th><td>Gets all living crewmembers for a department</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_living_silicon">get_living_silicon</a></th><td>Gets all living silicon members</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/get_valid_storytellers">get_valid_storytellers</a></th><td>return a weighted list of all storytellers that are currently valid to roll, if return_types is set then we will return types instead of instances</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/handle_post_setup_points">handle_post_setup_points</a></th><td>Distribute points
+If the storyteller guarantees an antagonist roll, add points to make it so.
+If we have any forced events, ensure we get enough points for them
+At this point we've rolled roundstart events and antags and we handle leftover points here.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/handle_post_setup_roundstart_events">handle_post_setup_roundstart_events</a></th><td>Second step of handlind roundstart events, happening after people spawn.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/handle_pre_setup_roundstart_events">handle_pre_setup_roundstart_events</a></th><td>Because roundstart events need 2 steps of firing for purposes of antags, here is the first step handled, happening before occupation division.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/load_config_vars">load_config_vars</a></th><td>Loads config values from game_options.txt</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/load_event_config_vars">load_event_config_vars</a></th><td>Loads json event config values from events.txt</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/make_antag_chance">make_antag_chance</a></th><td>Handles late-join antag assignments</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/post_setup">post_setup</a></th><td>Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/pre_setup">pre_setup</a></th><td>Attempts to select players for special roles the mode might have.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/refund_scheduled_event">refund_scheduled_event</a></th><td>Refunds and removes a scheduled event.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/remove_antag_for_borging">remove_antag_for_borging</a></th><td>Used to remove antag status on borging for some gamemodes</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/remove_scheduled_event">remove_scheduled_event</a></th><td>Removes a scheduled event.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/resetFrequency">resetFrequency</a></th><td>Resets frequency multiplier.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/roll_pre_setup_points">roll_pre_setup_points</a></th><td>We roll points to be spent for roundstart events, including antagonists.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/gamemode.html#proc/schedule_event">schedule_event</a></th><td>Start all roundstart events on post_setup immediately
+Schedules an event to run later.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/allow_pop_scaling"><aside class="declaration">var </aside>allow_pop_scaling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L69">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 69"/></a></h3>
+        <p>Whether we allow pop scaling. This is configured by config, or the storyteller UI</p><h3 id="var/current_players"><aside class="declaration">var </aside>current_players
+            <aside>&ndash; /list/list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/game/gamemodes/clean_this_shit_up/other.dm#L44">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;game&#x2F;gamemodes&#x2F;clean_this_shit_up&#x2F;other.dm 44"/></a></h3>
+        <p>Associative list of current players, in order: living players, living antagonists, dead players and observers.</p><h3 id="var/current_pop_scale_multipliers"><aside class="declaration">var </aside>current_pop_scale_multipliers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L90">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 90"/></a></h3>
+        <p>Associative list of active multipliers from pop scale penalty.</p><h3 id="var/current_roundstart_event"><aside class="declaration">var </aside>current_roundstart_event
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/round_event_control.html">round_event_control</a>/<a href="datum/round_event_control/antagonist.html">antagonist</a>/<a href="datum/round_event_control/antagonist/solo.html">solo</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L149">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 149"/></a></h3>
+        <p>What is our currently desired/selected roundstart event</p><h3 id="var/event_frequency_multiplier"><aside class="declaration">var </aside>event_frequency_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L120">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 120"/></a></h3>
+        <p>Event frequency multiplier, it exists because wizard, eugh.</p><h3 id="var/event_pools"><aside class="declaration">var </aside>event_pools
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L101">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 101"/></a></h3>
+        <p>Associative list of control events by their track category. Compiled in Init</p><h3 id="var/event_track_points"><aside class="declaration">var </aside>event_track_points
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L28">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 28"/></a></h3>
+        <p>Associative list of even track points.</p><h3 id="var/event_tracks"><aside class="declaration">var </aside>event_tracks
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L18">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 18"/></a></h3>
+        <p>List of our event tracks for fast access during for loops.</p><h3 id="var/forced_next_events"><aside class="declaration">var </aside>forced_next_events
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L107">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 107"/></a></h3>
+        <p>Associative list of tracks to forced event controls. For admins to force events (though they can still invoke them freely outside of the track system)</p><h3 id="var/halted_storyteller"><aside class="declaration">var </aside>halted_storyteller
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L130">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 130"/></a></h3>
+        <p>Whether the storyteller has been halted</p><h3 id="var/last_point_gains"><aside class="declaration">var </aside>last_point_gains
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L36">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 36"/></a></h3>
+        <p>Last point amount gained of each track. Those are recorded for purposes of estimating how long until next event.</p><h3 id="var/next_storyteller_process"><aside class="declaration">var </aside>next_storyteller_process
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L26">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 26"/></a></h3>
+        <p>Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME</p><h3 id="var/panel_page"><aside class="declaration">var </aside>panel_page
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L125">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 125"/></a></h3>
+        <p>Page of the UI panel.</p><h3 id="var/point_gain_multipliers"><aside class="declaration">var </aside>point_gain_multipliers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L53">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 53"/></a></h3>
+        <p>Configurable multipliers for point gain over time.</p><h3 id="var/point_thresholds"><aside class="declaration">var </aside>point_thresholds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L44">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 44"/></a></h3>
+        <p>Point thresholds at which the events are supposed to be rolled, it is also the base cost for events.</p><h3 id="var/pop_scale_penalties"><aside class="declaration">var </aside>pop_scale_penalties
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L81">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 81"/></a></h3>
+        <p>Associative list of pop scale penalties.</p><h3 id="var/pop_scale_thresholds"><aside class="declaration">var </aside>pop_scale_thresholds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L72">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 72"/></a></h3>
+        <p>Associative list of pop scale thresholds.</p><h3 id="var/ready_players"><aside class="declaration">var </aside>ready_players
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L133">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 133"/></a></h3>
+        <p>Ready players for roundstart events.</p><h3 id="var/roundstart_antag_minds"><aside class="declaration">var </aside>roundstart_antag_minds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L144">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 144"/></a></h3>
+        <p>List of new player minds we currently want to give our roundstart antag to</p><h3 id="var/roundstart_event_view"><aside class="declaration">var </aside>roundstart_event_view
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L127">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 127"/></a></h3>
+        <p>Whether we are viewing the roundstart events or not</p><h3 id="var/roundstart_point_multipliers"><aside class="declaration">var </aside>roundstart_point_multipliers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L61">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 61"/></a></h3>
+        <p>Configurable multipliers for roundstart points.</p><h3 id="var/scheduled_events"><aside class="declaration">var </aside>scheduled_events
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L104">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 104"/></a></h3>
+        <p>Events that we have scheduled to run in the nearby future</p><h3 id="var/secret_storyteller"><aside class="declaration">var </aside>secret_storyteller
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L141">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 141"/></a></h3>
+        <p>Is storyteller secret or not</p><h3 id="var/selected_storyteller"><aside class="declaration">var </aside>selected_storyteller
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L22">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 22"/></a></h3>
+        <p>Result of the storyteller vote/pick. Defaults to the guide.</p><h3 id="var/statistics_track_page"><aside class="declaration">var </aside>statistics_track_page
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L123">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 123"/></a></h3>
+        <p>Current preview page for the statistics UI.</p><h3 id="var/storyteller"><aside class="declaration">var </aside>storyteller
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/storyteller.html">storyteller</a></aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L20">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 20"/></a></h3>
+        <p>Our storyteller. They progresses our trackboards and picks out events</p><h3 id="var/storytellers"><aside class="declaration">var </aside>storytellers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L24">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 24"/></a></h3>
+        <p>List of all the storytellers. Populated at init. Associative from type</p><h3 id="var/title_icon"><aside class="declaration">var </aside>title_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L15">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 15"/></a></h3>
+        <p>The name of the icon shown during credit roll (only set if the roundstart antag has an icon)</p><h3 id="var/uncategorized"><aside class="declaration">var </aside>uncategorized
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L115">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 115"/></a></h3>
+        <p>List of all uncategorized events, because they were wizard or holiday events</p><h2 id="proc">Proc Details</h2><h3 id="proc/Topic"><aside class="parent"><a title="/datum" href="datum.html#proc/Topic">&uarr;</a></aside>Topic<aside>(href, href_list) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L1080">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 1080"/></a></aside>
+        </h3>
+        <p>Create event info and stats table</p><h3 id="proc/TriggerEvent"><aside class="declaration">proc </aside>TriggerEvent<aside>(/<a href="datum.html">datum</a>/<a href="datum/round_event_control.html">round_event_control</a>/event, forced) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L466">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 466"/></a></aside>
+        </h3>
+        <p>If the bounds are equal, we'd be dividing by zero or worse, if upper is smaller than lower, we'd be increasing the factor, just make it 1 and continue.
+this is only a problem for bad configs</p><h3 id="proc/admin_panel"><aside class="declaration">proc </aside>admin_panel<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L869">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 869"/></a></aside>
+        </h3>
+        <p>Panel containing information, variables and controls about the gamemode and scheduled event</p><h3 id="proc/calculate_ready_players"><aside class="declaration">proc </aside>calculate_ready_players<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L330">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 330"/></a></aside>
+        </h3>
+        <p>We need to calculate ready players for the sake of roundstart events becoming eligible.</p><h3 id="proc/can_inject_antags"><aside class="declaration">proc </aside>can_inject_antags<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L228">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 228"/></a></aside>
+        </h3>
+        <p>Whether events can inject more antagonists into the round</p><h3 id="proc/event_panel"><aside class="declaration">proc </aside>event_panel<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L991">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 991"/></a></aside>
+        </h3>
+        <p>Panel containing information and actions regarding events</p><h3 id="proc/fire"><aside class="parent"><a title="/datum/controller/subsystem" href="datum/controller/subsystem.html#proc/fire">&uarr;</a></aside>fire<aside>(resumed) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L189">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 189"/></a></aside>
+        </h3>
+        <p>Seeding events into track event pools needs to happen after event config vars are loaded</p><h3 id="proc/get_all_by_department"><aside class="declaration">proc </aside>get_all_by_department<aside>(department) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/game/gamemodes/clean_this_shit_up/other.dm#L187">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;game&#x2F;gamemodes&#x2F;clean_this_shit_up&#x2F;other.dm 187"/></a></aside>
+        </h3>
+        <p>Gets all crewmembers for a department including dead ones</p><h3 id="proc/get_all_silicon"><aside class="declaration">proc </aside>get_all_silicon<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/game/gamemodes/clean_this_shit_up/other.dm#L202">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;game&#x2F;gamemodes&#x2F;clean_this_shit_up&#x2F;other.dm 202"/></a></aside>
+        </h3>
+        <p>Gets all silicon members including dead ones</p><h3 id="proc/get_antag_cap"><aside class="declaration">proc </aside>get_antag_cap<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L222">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 222"/></a></aside>
+        </h3>
+        <p>Handle scheduled events
+Alert admins 1 minute before running and allow them to cancel or refund the event, once again.
+Gets the number of antagonists the antagonist injection events will stop rolling after.</p><h3 id="proc/get_candidates"><aside class="declaration">proc </aside>get_candidates<aside>(be_special, job_ban, observers, ready_newplayers, living_players, required_time, inherit_required_time, midround_antag_pref, no_antags, /list/restricted_roles, /list/required_roles) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L244">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 244"/></a></aside>
+        </h3>
+        <p>Gets candidates for antagonist roles.</p><h3 id="proc/get_correct_popcount"><aside class="declaration">proc </aside>get_correct_popcount<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L309">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 309"/></a></aside>
+        </h3>
+        <p>Gets the correct popcount, returning READY people if roundstart, and active people if not.</p><h3 id="proc/get_living_by_department"><aside class="declaration">proc </aside>get_living_by_department<aside>(department) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/game/gamemodes/clean_this_shit_up/other.dm#L180">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;game&#x2F;gamemodes&#x2F;clean_this_shit_up&#x2F;other.dm 180"/></a></aside>
+        </h3>
+        <p>Gets all living crewmembers for a department</p><h3 id="proc/get_living_silicon"><aside class="declaration">proc </aside>get_living_silicon<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/game/gamemodes/clean_this_shit_up/other.dm#L195">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;game&#x2F;gamemodes&#x2F;clean_this_shit_up&#x2F;other.dm 195"/></a></aside>
+        </h3>
+        <p>Gets all living silicon members</p><h3 id="proc/get_valid_storytellers"><aside class="declaration">proc </aside>get_valid_storytellers<aside>(return_types) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L841">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 841"/></a></aside>
+        </h3>
+        <p>return a weighted list of all storytellers that are currently valid to roll, if return_types is set then we will return types instead of instances</p><h3 id="proc/handle_post_setup_points"><aside class="declaration">proc </aside>handle_post_setup_points<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L376">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 376"/></a></aside>
+        </h3>
+        <p>Distribute points
+If the storyteller guarantees an antagonist roll, add points to make it so.
+If we have any forced events, ensure we get enough points for them
+At this point we've rolled roundstart events and antags and we handle leftover points here.</p><h3 id="proc/handle_post_setup_roundstart_events"><aside class="declaration">proc </aside>handle_post_setup_roundstart_events<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L393">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 393"/></a></aside>
+        </h3>
+        <p>Second step of handlind roundstart events, happening after people spawn.</p><h3 id="proc/handle_pre_setup_roundstart_events"><aside class="declaration">proc </aside>handle_pre_setup_roundstart_events<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L382">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 382"/></a></aside>
+        </h3>
+        <p>Because roundstart events need 2 steps of firing for purposes of antags, here is the first step handled, happening before occupation division.</p><h3 id="proc/load_config_vars"><aside class="declaration">proc </aside>load_config_vars<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L782">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 782"/></a></aside>
+        </h3>
+        <p>Loads config values from game_options.txt</p><h3 id="proc/load_event_config_vars"><aside class="declaration">proc </aside>load_event_config_vars<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L743">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 743"/></a></aside>
+        </h3>
+        <p>Loads json event config values from events.txt</p><h3 id="proc/make_antag_chance"><aside class="declaration">proc </aside>make_antag_chance<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/character) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L605">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 605"/></a></aside>
+        </h3>
+        <p>Handles late-join antag assignments</p><h3 id="proc/post_setup"><aside class="declaration">proc </aside>post_setup<aside>(report) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L567">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 567"/></a></aside>
+        </h3>
+        <p>Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things</p><h3 id="proc/pre_setup"><aside class="declaration">proc </aside>pre_setup<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L560">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 560"/></a></aside>
+        </h3>
+        <p>Attempts to select players for special roles the mode might have.</p><h3 id="proc/refund_scheduled_event"><aside class="declaration">proc </aside>refund_scheduled_event<aside>(/<a href="datum.html">datum</a>/<a href="datum/scheduled_event.html">scheduled_event</a>/refunded) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L318">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 318"/></a></aside>
+        </h3>
+        <p>Refunds and removes a scheduled event.</p><h3 id="proc/remove_antag_for_borging"><aside class="declaration">proc </aside>remove_antag_for_borging<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/newborgie) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/game/gamemodes/clean_this_shit_up/other.dm#L61">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;game&#x2F;gamemodes&#x2F;clean_this_shit_up&#x2F;other.dm 61"/></a></aside>
+        </h3>
+        <p>Used to remove antag status on borging for some gamemodes</p><h3 id="proc/remove_scheduled_event"><aside class="declaration">proc </aside>remove_scheduled_event<aside>(/<a href="datum.html">datum</a>/<a href="datum/scheduled_event.html">scheduled_event</a>/removed) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L325">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 325"/></a></aside>
+        </h3>
+        <p>Removes a scheduled event.</p><h3 id="proc/resetFrequency"><aside class="declaration">proc </aside>resetFrequency<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L475">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 475"/></a></aside>
+        </h3>
+        <p>Resets frequency multiplier.</p><h3 id="proc/roll_pre_setup_points"><aside class="declaration">proc </aside>roll_pre_setup_points<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L337">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 337"/></a></aside>
+        </h3>
+        <p>We roll points to be spent for roundstart events, including antagonists.</p><h3 id="proc/schedule_event"><aside class="declaration">proc </aside>schedule_event<aside>(/<a href="datum.html">datum</a>/<a href="datum/round_event_control.html">round_event_control</a>/passed_event, passed_time, passed_cost, passed_ignore, passed_announce, _forced) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/yogstation/code/modules/storytellers/gamemode_subsystem.dm#L403">
+        <img src="git.png" width="16" height="16" title="yogstation&#x2F;code&#x2F;modules&#x2F;storytellers&#x2F;gamemode_subsystem.dm 403"/></a></aside>
+        </h3>
+        <p>Start all roundstart events on post_setup immediately
+Schedules an event to run later.</p></main>
+<footer>
+    yogstation.dme
+    <a href="https://github.com/yogstation13/Yogstation/tree/99e6868a165da66470e6c5a3a0aac16295baf282">99e6868</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

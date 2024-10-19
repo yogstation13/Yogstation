@@ -11,13 +11,13 @@
     <a href="index.html">Yogstation 13</a> -
     <a href="index.html#modules">Modules</a> -
     <a href="index.html#types">Types</a>
- &mdash; <a href="obj/effect/meteor.html#var">Var Details</a></header>
+ &mdash; <a href="obj/effect/meteor.html#var">Var Details</a> - <a href="obj/effect/meteor.html#proc">Proc Details</a></header>
 <main>
 <h1>the concept of meteor <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/meteor.html">effect/meteor</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L84">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 84"/></a></h1>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 3"/></a></h1>
 
 <table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
             <tr><th><a href="obj/effect/meteor.html#var/dest">dest</a></th><td>The thing we're moving towards, usually a turf</td></tr>
@@ -26,60 +26,87 @@
             <tr><th><a href="obj/effect/meteor.html#var/hits">hits</a></th><td>The resilience of our meteor</td></tr>
             <tr><th><a href="obj/effect/meteor.html#var/lifetime">lifetime</a></th><td>Lifetime in seconds</td></tr>
             <tr><th><a href="obj/effect/meteor.html#var/meteorsound">meteorsound</a></th><td>Sound to play when you hit something</td></tr>
+            <tr><th><a href="obj/effect/meteor.html#var/signature">signature</a></th><td>Used by Stray Meteor event to indicate meteor type (the type of sensor that &quot;detected&quot; it) in announcement</td></tr>
             <tr><th><a href="obj/effect/meteor.html#var/threat">threat</a></th><td>Used for determining which meteors are most interesting</td></tr>
-            <tr><th><a href="obj/effect/meteor.html#var/z_original">z_original</a></th><td>Our starting z level, prevents infinite meteors</td></tr></table>
+            <tr><th><a href="obj/effect/meteor.html#var/z_original">z_original</a></th><td>Our starting z level, prevents infinite meteors</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/meteor.html#proc/handle_stopping">handle_stopping</a></th><td>Deals with what happens when we stop moving, IE we die</td></tr>
+            <tr><th><a href="obj/effect/meteor.html#proc/shield_defense">shield_defense</a></th><td>Handles the meteor's interaction with meteor shields.</td></tr></table>
     <h2 id="var">Var Details</h2><h3 id="var/dest"><aside class="declaration">var </aside>dest
             <aside>&ndash; /<a href="atom.html">atom</a></aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L112">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 112"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 31"/></a></h3>
         <p>The thing we're moving towards, usually a turf</p><h3 id="var/dropamt"><aside class="declaration">var </aside>dropamt
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L109">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 109"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 28"/></a></h3>
         <p>How much stuff to spawn when you die</p><h3 id="var/hitpwr"><aside class="declaration">var </aside>hitpwr
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L96">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 96"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 15"/></a></h3>
         <p>Level of ex_act to be called on hit.</p><h3 id="var/hits"><aside class="declaration">var </aside>hits
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L94">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 94"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 13"/></a></h3>
         <p>The resilience of our meteor</p><h3 id="var/lifetime"><aside class="declaration">var </aside>lifetime
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L114">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 114"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 33"/></a></h3>
         <p>Lifetime in seconds</p><h3 id="var/meteorsound"><aside class="declaration">var </aside>meteorsound
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L100">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 100"/></a></h3>
-        <p>Sound to play when you hit something</p><h3 id="var/threat"><aside class="declaration">var </aside>threat
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 19"/></a></h3>
+        <p>Sound to play when you hit something</p><h3 id="var/signature"><aside class="declaration">var </aside>signature
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L104">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 104"/></a></h3>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 36"/></a></h3>
+        <p>Used by Stray Meteor event to indicate meteor type (the type of sensor that &quot;detected&quot; it) in announcement</p><h3 id="var/threat"><aside class="declaration">var </aside>threat
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 23"/></a></h3>
         <p>Used for determining which meteors are most interesting</p><h3 id="var/z_original"><aside class="declaration">var </aside>z_original
             <aside>&ndash; </aside>
         
     
-            <a href="https://github.com/yogstation13/Yogstation/blob/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84/code/game/gamemodes/meteor/meteors.dm#L102">
-        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;meteor&#x2F;meteors.dm 102"/></a></h3>
-        <p>Our starting z level, prevents infinite meteors</p></main>
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 21"/></a></h3>
+        <p>Our starting z level, prevents infinite meteors</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_stopping"><aside class="declaration">proc </aside>handle_stopping<aside>() 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 82"/></a></aside>
+        </h3>
+        <p>Deals with what happens when we stop moving, IE we die</p><h3 id="proc/shield_defense"><aside class="declaration">proc </aside>shield_defense<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/satellite/meteor_shield/defender) 
+        
+    
+            <a href="https://github.com/yogstation13/Yogstation/blob/99e6868a165da66470e6c5a3a0aac16295baf282/code/modules/meteors/meteor_types.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;meteors&#x2F;meteor_types.dm 147"/></a></aside>
+        </h3>
+        <p>Handles the meteor's interaction with meteor shields.</p>
+<p>Returns TRUE if the meteor should be destroyed. Overridable for custom shield interaction.
+Return FALSE if a meteor's interaction with meteor shields should NOT destroy it.</p>
+<p>Arguments:</p>
+<ul>
+<li>defender - The meteor shield that is vaporizing us.</li>
+</ul></main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/6abfb5b760efa7876e2e0e12c5aae0f0a4347d84">6abfb5b</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/99e6868a165da66470e6c5a3a0aac16295baf282">99e6868</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
