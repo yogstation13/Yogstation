@@ -1181,7 +1181,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 #define ROBO_LIMB_HEAL_OTHER 1 SECONDS
 
 /obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
-	if(I.use_tool(H, user, (H == user) ? ROBO_LIMB_HEAL_SELF : ROBO_LIMB_HEAL_OTHER, amount, volume, null, TRUE))
+	if(I.use_tool(H, user, (H == user) ? ROBO_LIMB_HEAL_SELF : ROBO_LIMB_HEAL_OTHER, amount, volume, null, skill_check = SKILL_MECHANICAL))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE
