@@ -811,7 +811,7 @@
 	if(mind.exp_progress[skill] + amount >= EXPERIENCE_PER_LEVEL * (2**mind.skills[skill])) // exp required scales exponentially
 		mind.exp_progress[skill] = 0
 		adjust_skill(skill, 1)
-		to_chat(src, span_boldnotice("your [skill] skill is now level [get_skill(skill)]!"))
+		to_chat(src, span_boldnotice("Your [skill] skill is now level [get_skill(skill)]!"))
 		return TRUE
 	mind.exp_progress[skill] += amount
 	return FALSE
