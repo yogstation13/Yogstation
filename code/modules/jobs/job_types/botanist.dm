@@ -26,7 +26,7 @@
 		SKILL_SCIENCE = EXP_MID,
 		SKILL_FITNESS = EXP_LOW,
 	)
-	skill_points = 2
+	skill_points = 3
 
 	departments_list = list(
 		/datum/job_department/service,

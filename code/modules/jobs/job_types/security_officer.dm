@@ -33,9 +33,9 @@
 		SKILL_MECHANICAL = EXP_NONE,
 		SKILL_TECHNICAL = EXP_NONE,
 		SKILL_SCIENCE = EXP_NONE,
-		SKILL_FITNESS = EXP_HIGH,
+		SKILL_FITNESS = EXP_MID,
 	)
-	skill_points = 1 // officers don't really have much to do
+	skill_points = 2 // officers don't really have much to do
 
 	departments_list = list(
 		/datum/job_department/security,

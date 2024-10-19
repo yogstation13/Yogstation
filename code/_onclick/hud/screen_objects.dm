@@ -124,13 +124,13 @@
 	icon_state = "skill_menu"
 	screen_loc = ui_skill_menu
 	var/list/allocated_skills = list(
-		SKILL_PHYSIOLOGY = 0,
-		SKILL_MECHANICAL = 0,
-		SKILL_TECHNICAL = 0,
-		SKILL_SCIENCE = 0,
-		SKILL_FITNESS = 0,
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
 	)
-	var/allocated_points = 0
+	var/allocated_points = EXP_NONE
 
 /atom/movable/screen/skill_menu/Click()
 	ui_interact(usr)
@@ -164,15 +164,30 @@
 		CRASH("User ([user]) without a mind attempted to allocate skill points!")
 	switch(action)
 		if("confirm")
+			if(allocated_points > user.mind.skill_points)
+				stack_trace("[user] attempted to allocate [allocated_points] skill points when they only had [user.mind.skill_points] available!")
+				message_admins("[key_name_admin(user)] may have attempted an exploit to gain more skill points than intended!")
+				qdel(allocated_skills)
+				allocated_skills = list(
+					SKILL_PHYSIOLOGY = EXP_NONE,
+					SKILL_MECHANICAL = EXP_NONE,
+					SKILL_TECHNICAL = EXP_NONE,
+					SKILL_SCIENCE = EXP_NONE,
+					SKILL_FITNESS = EXP_NONE,
+				)
+				allocated_points = EXP_NONE
+				return TRUE
 			for(var/skill in user.mind.skills)
 				user.adjust_skill(skill, allocated_skills[skill], max_skill = EXP_GENIUS)
-				allocated_skills[skill] = 0
+				allocated_skills[skill] = EXP_NONE
 			user.mind.skill_points -= allocated_points
-			allocated_points = 0
+			allocated_points = EXP_NONE
 			if(!user.mind.skill_points)
 				user.clear_alert("skill points")
 			return TRUE
 		if("allocate")
+			if(allocated_points + params["amount"] > user.mind.skill_points)
+				return TRUE
 			allocated_skills[params["skill"]] += params["amount"]
 			allocated_points += params["amount"]
 			return TRUE

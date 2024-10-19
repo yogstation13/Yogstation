@@ -32,9 +32,10 @@
 		SKILL_PHYSIOLOGY = EXP_HIGH,
 		SKILL_MECHANICAL = EXP_NONE,
 		SKILL_TECHNICAL = EXP_NONE,
-		SKILL_SCIENCE = EXP_LOW,
+		SKILL_SCIENCE = EXP_NONE,
 		SKILL_FITNESS = EXP_NONE,
 	)
+	skill_points = 3
 
 	mail_goodies = list(
 		/obj/item/healthanalyzer/advanced = 15,

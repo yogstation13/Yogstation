@@ -26,11 +26,11 @@
 	base_skills = list(
 		SKILL_PHYSIOLOGY = EXP_NONE,
 		SKILL_MECHANICAL = EXP_LOW,
-		SKILL_TECHNICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_LOW,
 		SKILL_SCIENCE = EXP_LOW,
 		SKILL_FITNESS = EXP_NONE,
 	)
-	skill_points = 2
+	skill_points = 3
 
 	departments_list = list(
 		/datum/job_department/science,
