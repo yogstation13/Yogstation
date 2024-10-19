@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Large amounts of smoke should no longer live for many times its intended lifetime."
