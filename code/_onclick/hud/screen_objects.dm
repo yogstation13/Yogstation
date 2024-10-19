@@ -200,6 +200,11 @@
 /atom/movable/screen/skill_menu/ui_state(mob/user)
 	return GLOB.always_state
 
+/atom/movable/screen/skill_menu/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/crafting),
+	)
+
 /atom/movable/screen/ghost/pai
 	name = "pAI Candidate"
 	icon = 'icons/mob/screen_midnight.dmi'

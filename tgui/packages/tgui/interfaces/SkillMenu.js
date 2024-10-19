@@ -1,6 +1,6 @@
+import { classes } from 'common/react';
 import { useBackend } from '../backend';
-import { formatSiUnit } from '../format';
-import { Box, Button, Icon, LabeledList, NumberInput, Section, Tabs, Tooltip } from '../components';
+import { Box, Button, Icon, LabeledList, Section, Stack, Tooltip } from '../components';
 import { Window } from '../layouts';
 
 export const SkillMenu = (props, context) => {
@@ -10,7 +10,7 @@ export const SkillMenu = (props, context) => {
   return (
     <Window
       title="Skills"
-      width={204}
+      width={224}
       height={262}
       >
       <Window.Content>
@@ -72,28 +72,39 @@ const AdjustSkill = (props, context) => {
   const { base, allocated } = skills[index];
 
   return (
-    <LabeledList.Item label={name}>
-      <Tooltip content={tooltip}>
-        <Icon name="question-circle" width="12px" mr="6px" />
-      </Tooltip>
-      <Button
-        icon="minus"
-        disabled={allocated <= 0 || allocated_points <= 0}
-        onClick={() => act('allocate', {
-          skill: skill,
-          amount: -1,
-        })}
+    <Stack>
+      <Box
+        verticalAlign="middle"
+        inline
+        my={-0.5}
+        mr={-1}
+        className={classes(['crafting32x32', skill.replace(/ /g, '')])}
       />
-      {base + allocated} / {exceptional_skill ? 5 : 4}
-      <Button
-        ml="2px"
-        icon="plus"
-        disabled={(base + allocated) >= (exceptional_skill ? 5 : 4) || allocated_points >= skill_points}
-        onClick={() => act('allocate', {
-          skill: skill,
-          amount: 1,
-        })}
-      />
-    </LabeledList.Item>
+      <LabeledList.Item label={name}>
+        <Box textAlign="right" ml={-5} mr={40}>
+          <Tooltip content={tooltip}>
+            <Icon name="question-circle" width="12px" mr="6px" />
+          </Tooltip>
+          <Button
+            icon="minus"
+            disabled={allocated <= 0 || allocated_points <= 0}
+            onClick={() => act('allocate', {
+              skill: skill,
+              amount: -1,
+            })}
+          />
+          {base + allocated} / {exceptional_skill ? 5 : 4}
+          <Button
+            ml="2px"
+            icon="plus"
+            disabled={(base + allocated) >= (exceptional_skill ? 5 : 4) || allocated_points >= skill_points}
+            onClick={() => act('allocate', {
+              skill: skill,
+              amount: 1,
+            })}
+          />
+        </Box>
+      </LabeledList.Item>
+    </Stack>
   );
 };
