@@ -60,7 +60,7 @@ export const SeedExtractor = (props) => {
   const [searchText, setSearchText] = useLocalState('searchText', '');
   const [sortField, setSortField] = useLocalState('sortField', 'name');
   const [action, toggleAction] = useLocalState('action', true);
-  const search = createSearch(searchText, (item: SeedData) => item.name);
+  const search = createSearch(searchText, createSearchableString);
   const seeds_filtered =
     searchText.length > 0 ? data.seeds.filter(search) : data.seeds;
   const seeds = flow([
@@ -373,4 +373,13 @@ const TraitTooltip = (props) => {
       <Icon name={trait.icon} m={0.5} />
     </Tooltip>
   );
+};
+
+const createSearchableString = (seedData: SeedData): string => {
+  const reagentNames = seedData.reagents
+    .map((reagent) => reagent.name)
+    .join(' ');
+  const searchableString = `${seedData.name} ${reagentNames}`;
+
+  return searchableString;
 };
