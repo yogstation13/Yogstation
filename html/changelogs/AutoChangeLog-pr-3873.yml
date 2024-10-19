@@ -1,0 +1,4 @@
+author: "RafRoq"
+delete-after: True
+changes:
+  - qol: "You can now search for reagents in the seed extractor"
