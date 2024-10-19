@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - bugfix: "Fixed incorrect door access on Theseus's BlueShield's Office."
