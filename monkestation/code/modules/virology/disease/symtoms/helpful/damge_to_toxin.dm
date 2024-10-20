@@ -9,6 +9,9 @@
 	max_multiplier = 10
 
 /datum/symptom/damage_converter/activate(mob/living/carbon/mob)
+	if(HAS_TRAIT(mob, TRAIT_TOXINLOVER) || HAS_TRAIT(mob, TRAIT_TOXIMMUNE))
+		return
+
 	if(mob.getFireLoss() > 0 || mob.getBruteLoss() > 0)
 		var/get_damage = rand(1, 3)
 		mob.adjustFireLoss(-get_damage)
