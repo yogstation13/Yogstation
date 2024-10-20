@@ -302,6 +302,7 @@
 		"Biomechanical Engineer",
 		"Mechatronic Engineer",
 		"Apprentice Roboticist",
+		"Ripperdoc",
 	)
 
 /datum/job/science_guard //See orderly
