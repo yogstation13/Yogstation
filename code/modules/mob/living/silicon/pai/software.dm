@@ -73,6 +73,11 @@
 		data["door"] = null
 	else
 		data["door"] = cable.machine
+	data["code"] = signaler.code
+	data["frequency"] = signaler.frequency
+	data["minFrequency"] = MIN_FREE_FREQ
+	data["maxFrequency"] = MAX_FREE_FREQ
+	data["color"] = signaler.label_color
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
@@ -135,20 +140,36 @@
 							gases += "[GLOB.gas_data.labels[id]]: [round(gas_level*100)]%"
 						else
 							gases = list()
-		if("signallersend")
+		if("signallersignal")
+			if(TIMER_COOLDOWN_CHECK(signaler, COOLDOWN_SIGNALLER_SEND))
+				to_chat(usr, span_warning("[signaler] is still recharging..."))
+				return
+			TIMER_COOLDOWN_START(signaler, COOLDOWN_SIGNALLER_SEND, 1 SECONDS)
 			signaler.signal()
 			audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
 			playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 		if("signallerfreq")
-			var/new_frequency = (signaler.frequency + text2num(params["freq"]))
-			if(new_frequency < MIN_FREE_FREQ || new_frequency > MAX_FREE_FREQ)
-				new_frequency = sanitize_frequency(new_frequency)
-			signaler.set_frequency(new_frequency)
+			signaler.frequency = unformat_frequency(params["freq"])
+			signaler.frequency = sanitize_frequency(signaler.frequency, TRUE)
+			signaler.set_frequency(signaler.frequency)
+			. = TRUE
 		if("signallercode")
-			signaler.code += text2num(params["code"])
+			signaler.code = text2num(params["code"])
 			signaler.code = round(signaler.code)
-			signaler.code = min(100, signaler.code)
-			signaler.code = max(1, signaler.code)
+			. = TRUE
+		if("signallerreset")
+			if(params["reset"] == "freq")
+				signaler.frequency = initial(signaler.frequency)
+			else
+				signaler.code = initial(signaler.code)
+			. = TRUE
+		if("signallercolor")
+			var/idx = signaler.label_colors.Find(signaler.label_color)
+			if(idx == signaler.label_colors.len || idx == 0)
+				idx = 1
+			else
+				idx++
+			signaler.label_color = signaler.label_colors[idx]
 		if("hostscan")
 			var/mob/living/silicon/pai/pAI = usr
 			pAI.hostscan.attack_self(src)

@@ -1,6 +1,7 @@
+import { toFixed } from 'common/math';
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote, Table, Dropdown, ProgressBar } from '../components';
+import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote, Table, Dropdown, ProgressBar, NumberInput } from '../components';
 import { Window } from '../layouts';
 
 type Module = {
@@ -26,6 +27,11 @@ type Data = {
   hackprogress: number;
   cable: string;
   door: Data[];
+  code: number;
+  frequency: number;
+  minFrequency: number;
+  maxFrequency: number;
+  color: string;
 }
 
 export const AirlockJackTextSwitch = params => {
@@ -82,6 +88,7 @@ const PaiBox = (props, context) => {
   const { laws_zeroth, laws, master, masterdna } = data;
   const { pressure, gases, temperature } = data;
   const { hacking, hackprogress, cable, door } = data;
+  const { code, frequency, minFrequency, maxFrequency, color } = data;
   if(selectedMainTab===null) {
     return;
   }
@@ -241,7 +248,70 @@ const PaiBox = (props, context) => {
     case "remote signaller":
       return (
         <Section title={selectedMainTab.title}>
-          Signaller
+          <Stack vertical>
+            <Stack.Item>
+              Frequency:
+              <NumberInput
+                  animate
+                  unit="kHz"
+                  step={0.2}
+                  stepPixelSize={6}
+                  minValue={minFrequency / 10}
+                  maxValue={maxFrequency / 10}
+                  value={frequency / 10}
+                  format={value => toFixed(value, 1)}
+                  width="80px"
+                  onDrag={(e, value) => act('signallerfreq', {
+                    freq: value,
+                  })} />
+              <Button
+                ml={1.3}
+                icon="sync"
+                content="Reset"
+                onClick={() => act("signallerreset", {
+                  reset: "freq",
+                })} />
+            </Stack.Item>
+            <Stack.Item>
+              Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <NumberInput
+                animate
+                step={1}
+                stepPixelSize={6}
+                minValue={1}
+                maxValue={100}
+                value={code}
+                width="80px"
+                onDrag={(e, value) => act("signallercode", {
+                  code: value,
+                })} />
+              <Button
+                ml={1.1}
+                icon="sync"
+                content="Reset"
+                onClick={() => act("signallerreset", {
+                  reset: "code",
+                })} />
+            </Stack.Item>
+            <Stack.Item>
+              Color:
+              <Button
+                ml={5.2}
+                icon="sync"
+                width={13.1}
+                color={color}
+                content={color}
+                onClick={() => act("signallercolor")} />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+              mb={-0.1}
+              icon="arrow-up"
+              content="Send Signal"
+              textAlign="center"
+              onClick={() => act("signallersignal")} />
+            </Stack.Item>
+          </Stack>
         </Section>
       );
     case "host scan":
