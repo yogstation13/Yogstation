@@ -265,7 +265,7 @@
 			if(!is_operational() || QDELETED(cell))
 				return
 			var/reagent = GLOB.name2reagent[params["reagent"]]
-			if(beaker && dispensable_reagents.Find(reagent))
+			if(beaker && can_display_reagent(usr, reagent))
 				var/datum/reagents/R = beaker.reagents
 				var/free = R.maximum_volume - R.total_volume
 				var/actual = min(amount, (cell.charge * powerefficiency)*10, free)

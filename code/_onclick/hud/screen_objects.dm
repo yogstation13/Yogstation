@@ -190,9 +190,9 @@
 				return TRUE
 			if(allocated_points + params["amount"] < user.get_skill(params["skill"]))
 				return TRUE
-			if(allocated_skills[params["skill"]] + params["amount"] > (4 + HAS_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)))
+			if(allocated_skills[params["skill"]] + params["amount"] + user.get_skill(params["skill"]) > (4 + HAS_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)))
 				return TRUE
-			if(allocated_skills[params["skill"]] + params["amount"] < user.get_skill(params["skill"]))
+			if(allocated_skills[params["skill"]] + params["amount"] < 0)
 				return TRUE
 			allocated_skills[params["skill"]] += params["amount"]
 			allocated_points += params["amount"]
