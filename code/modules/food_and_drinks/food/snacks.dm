@@ -150,7 +150,7 @@ All foods are distributed among various categories. Use common sense.
 		// ewww someone else bit this
 		var/someone_else_bit = islist(who_bit) && ((length(who_bit) > 0 && who_bit[1].resolve() != M) || length(who_bit) > 1)
 		// (most) junky snacks are meant to be shared!
-		if(someone_else_bit && !HAS_TRAIT(M, TRAIT_AGEUSIA) && junkiness <= 0)
+		if(someone_else_bit && !HAS_TRAIT(M, TRAIT_AGEUSIA) && !HAS_TRAIT(M, TRAIT_IGNORE_SHAREDFOOD) && junkiness <= 0)
 			to_chat(M, span_notice("Eww... Someone else bit this..."))
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "shared_food", /datum/mood_event/shared_food)
 
@@ -167,7 +167,7 @@ All foods are distributed among various categories. Use common sense.
 			. += "[src] was bitten multiple times!"
 	var/someone_else_bit = islist(who_bit) && ((length(who_bit) > 0 && who_bit[1].resolve() != user) || length(who_bit) > 1)
 	if(someone_else_bit && junkiness <= 0)
-		. += span_notice("You don't recognize the bites taken as your own.")
+		. += span_notice("You recognize some bites as not your own.")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/storage))
