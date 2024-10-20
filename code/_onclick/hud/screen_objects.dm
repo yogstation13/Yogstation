@@ -188,6 +188,12 @@
 		if("allocate")
 			if(allocated_points + params["amount"] > user.mind.skill_points)
 				return TRUE
+			if(allocated_points + params["amount"] < user.get_skill(params["skill"]))
+				return TRUE
+			if(allocated_skills[params["skill"]] + params["amount"] > (4 + HAS_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)))
+				return TRUE
+			if(allocated_skills[params["skill"]] + params["amount"] < user.get_skill(params["skill"]))
+				return TRUE
 			allocated_skills[params["skill"]] += params["amount"]
 			allocated_points += params["amount"]
 			return TRUE
