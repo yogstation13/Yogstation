@@ -258,13 +258,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/multiz_turf_new(turf/T, dir)
 	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
-//zPassIn doesn't necessarily pass an atom!
 //direction is direction of travel of air
-/turf/proc/zPassIn(atom/movable/A, direction, turf/source)
+/turf/proc/zPassIn(direction)
 	return FALSE
 
 //direction is direction of travel of air
-/turf/proc/zPassOut(atom/movable/A, direction, turf/destination)
+/turf/proc/zPassOut(direction)
 	return FALSE
 
 //direction is direction of travel of air
@@ -328,10 +327,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(falling_mov.pulledby && (falling_mov.z != falling_mov.pulledby.z || get_dist(falling_mov, falling_mov.pulledby) > 1))
 			falling_mov.pulledby.stop_pulling()
 	return TRUE
-
-/turf/proc/can_zFall(atom/movable/A, levels = 1, turf/target)
-	SHOULD_BE_PURE(TRUE)
-	return zPassOut(A, DOWN, target) && target.zPassIn(A, DOWN, src)
 
 /turf/proc/handleRCL(obj/item/rcl/C, mob/user)
 	if(C.loaded)

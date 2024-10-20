@@ -59,7 +59,7 @@
 		var/datum/objective/eldergod/summon_objective = locate() in T.objectives
 		if(summon_objective)
 			summon_objective.summoned = TRUE
-	for(var/datum/mind/cult_mind in SSticker.mode.cult)
+	for(var/datum/mind/cult_mind in SSgamemode.cult)
 		if(isliving(cult_mind.current))
 			var/mob/living/L = cult_mind.current
 			L.narsie_act()

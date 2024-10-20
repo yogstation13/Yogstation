@@ -58,6 +58,10 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	var/list/current_temperature_queue = list()
 	///do we evaporate
 	var/evaporates = TRUE
+	/// Liquids in this group will always evaporate regardless of height
+	var/always_evaporates = FALSE
+	/// The multiplier added to the evaporation rate of all reagents in this group.
+	var/evaporation_multiplier = 1
 	///can we merge?
 	var/can_merge = TRUE
 	///number in decimal value that acts as a multiplier to the amount of liquids lost in applications
@@ -91,6 +95,11 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	burning_members = null
 	return ..()
 
+/datum/liquid_group/proc/copy_properties(datum/liquid_group/from)
+	if(isnull(from))
+		return
+	always_evaporates = from.always_evaporates
+	evaporation_multiplier = from.evaporation_multiplier
 
 ///GROUP CONTROLLING
 /datum/liquid_group/proc/add_to_group(turf/T)
@@ -155,6 +164,8 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 
 	total_reagent_volume = reagents.total_volume
 	reagents_per_turf = total_reagent_volume / length(members)
+	always_evaporates ||= otherg.always_evaporates
+	evaporation_multiplier = (evaporation_multiplier + otherg.evaporation_multiplier) * 0.5 // average the evaporation multipliers
 
 	qdel(otherg)
 	process_group()
@@ -377,6 +388,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 /datum/liquid_group/proc/move_liquid_group(obj/effect/abstract/liquid_turf/member)
 	remove_from_group(member.my_turf)
 	member.liquid_group = new(1, member)
+	member.liquid_group.copy_properties(src)
 	var/remove_amount = reagents_per_turf / length(reagents.reagent_list)
 	for(var/datum/reagent/reagent_type in reagents.reagent_list)
 		member.liquid_group.reagents.add_reagent(reagent_type, remove_amount, no_react = TRUE)

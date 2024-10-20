@@ -745,6 +745,15 @@
 	tastes = list("lost dreams" = 1, "cinnamon" = 1)
 	foodtype = GRAIN | SUGAR
 
+/obj/item/reagent_containers/food/snacks/chocolatechurro
+	name = "chocolate-dipped churro"
+	desc = "A tasty churro that has been dipped in chocolate."
+	icon_state = "churro_choc"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/cinnamon = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/cinnamon = 5, /datum/reagent/consumable/sugar = 5)
+	tastes = list("chocolate" = 1, "cinnamon" = 1)
+	foodtype = GRAIN | SUGAR | CHOCOLATE
+
 /obj/item/reagent_containers/food/snacks/raw_croissant
 	name = "raw croissant"
 	desc = "Folded dough ready to bake into a croissant."

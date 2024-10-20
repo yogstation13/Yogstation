@@ -35479,6 +35479,11 @@
 /obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"rgz" = (
+/obj/machinery/paystand,
+/obj/item/paper/guides/jobs/security/paystand_setup,
+/turf/open/floor/plasteel,
+/area/security/warden)
 "rgP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -37495,17 +37500,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"seS" = (
-/obj/docking_port/stationary{
-	dwidth = 2;
-	height = 5;
-	name = "fore bay 1";
-	roundstart_template = /datum/map_template/shuttle/labour/gax;
-	shuttle_id = "laborcamp_home";
-	width = 9
-	},
-/turf/open/space/basic,
-/area/space)
 "sfo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -46681,14 +46675,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"wFZ" = (
-/obj/machinery/light_switch{
-	pixel_x = 24
-	},
-/obj/machinery/paystand,
-/obj/item/paper/guides/jobs/security/paystand_setup,
-/turf/open/floor/plasteel,
-/area/security/warden)
 "wGe" = (
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria{
@@ -71958,7 +71944,7 @@ vVo
 hlo
 vNC
 xMn
-wFZ
+rgz
 pYB
 bVZ
 czC
@@ -72715,12 +72701,12 @@ vRP
 vRP
 vRP
 ubS
-tkl
-tkl
-tkl
-tkl
-tkl
-tkl
+vRP
+vRP
+vRP
+vRP
+vRP
+vRP
 dll
 dll
 dll
@@ -72972,7 +72958,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -73229,7 +73215,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -73486,12 +73472,12 @@ vRP
 vRP
 vRP
 aCD
-tkl
 vRP
 vRP
 vRP
 vRP
-seS
+vRP
+vRP
 eAe
 lUn
 bOF
@@ -73743,7 +73729,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -74000,7 +73986,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -74257,7 +74243,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -74514,7 +74500,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -74771,7 +74757,7 @@ vRP
 vRP
 vRP
 aCD
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -75028,7 +75014,7 @@ vRP
 vRP
 vRP
 ubS
-tkl
+vRP
 vRP
 vRP
 vRP
@@ -75285,12 +75271,12 @@ vRP
 vRP
 vRP
 ubS
-tkl
-tkl
-tkl
-tkl
-tkl
-tkl
+vRP
+vRP
+vRP
+vRP
+vRP
+vRP
 tkl
 aCD
 lMu

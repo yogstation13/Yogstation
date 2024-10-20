@@ -183,6 +183,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Aft (S) Maintenance"
 	icon_state = "amaint"
 
+/area/maintenance/aft/lower
+	name = "Lower Aft (S) Maintenance"
+
 /area/maintenance/aft/secondary
 	name = "Aft (S) Maintenance"
 	icon_state = "amaint_2"
@@ -190,6 +193,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/central
 	name = "Central Maintenance"
 	icon_state = "maintcentral"
+
+/area/maintenance/central/lower
+	name = "Lower Central Maintenance"
 
 /area/maintenance/central/secondary
 	name = "Central Maintenance"
@@ -200,6 +206,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Fore (N) Maintenance"
 	icon_state = "fmaint"
 
+/area/maintenance/fore/lower
+	name = "Lower Fore (N) Maintenance"
+
 /area/maintenance/fore/secondary
 	name = "Fore (N) Maintenance"
 	icon_state = "fmaint_2"
@@ -207,6 +216,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/starboard
 	name = "Starboard (E) Maintenance"
 	icon_state = "smaint"
+
+/area/maintenance/starboard/lower
+	name = "Lower Starboard (E) Maintenance"
 
 /area/maintenance/starboard/central
 	name = "Central Starboard (E) Maintenance"
@@ -220,6 +232,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Starboard Quarter (SE) Maintenance"
 	icon_state = "asmaint"
 
+/area/maintenance/starboard/aft/lower
+	name = "Lower Starboard Quarter (SE) Maintenance"
+
 /area/maintenance/starboard/aft/secondary
 	name = "Secondary Starboard Quarter (SE) Maintenance"
 	icon_state = "asmaint_2"
@@ -228,9 +243,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Starboard Bow (NE) Maintenance"
 	icon_state = "fsmaint"
 
+/area/maintenance/starboard/fore/lower
+	name = "Lower Starboard Fore (NE) Maintenance"
+
 /area/maintenance/port
 	name = "Port (W) Maintenance"
 	icon_state = "pmaint"
+
+/area/maintenance/port/lower
+	name = "Lower Port (W) Maintenance"
 
 /area/maintenance/port/central
 	name = "Central Port (W) Maintenance"
@@ -240,9 +261,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Port Quarter (SW) Maintenance"
 	icon_state = "apmaint"
 
+/area/maintenance/port/aft/lower
+	name = "Lower Port Quarter (SW) Maintenance"
+
 /area/maintenance/port/fore
 	name = "Port Bow (NW) Maintenance"
 	icon_state = "fpmaint"
+
+/area/maintenance/port/fore/lower
+	name = "Lower Port Bow (NW) Maintenance"
 
 /area/maintenance/disposal
 	name = "Waste Disposal"
@@ -305,6 +332,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway/secondary/entry
 	name = "Arrival Shuttle Hallway"
 	icon_state = "entry"
+	area_flags = EVENT_PROTECTED
 
 /area/hallway/secondary/service
 	name = "Service Hallway"

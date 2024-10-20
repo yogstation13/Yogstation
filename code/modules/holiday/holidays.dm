@@ -103,10 +103,10 @@
 		if(PATTERN_RAINBOW)
 			var/datum/holiday/pride_week/rainbow_datum = new()
 			return rainbow_datum.get_holiday_colors(thing_to_color, PATTERN_DEFAULT)
-	if(!length(GLOB.holidays))
+	if(!length(SSgamemode.holidays))
 		return
-	for(var/holiday_key in GLOB.holidays)
-		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
+	for(var/holiday_key in SSgamemode.holidays)
+		var/datum/holiday/holiday_real = SSgamemode.holidays[holiday_key]
 		if(!holiday_real.holiday_colors)
 			continue
 		return holiday_real.get_holiday_colors(thing_to_color, pattern || holiday_real.holiday_pattern)
