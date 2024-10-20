@@ -9,7 +9,7 @@
 	base_icon_state = "sign"
 	density = TRUE
 	anchored = TRUE
-	interaction_flags_atom  = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_DEXTERITY
+	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_DEXTERITY
 	/// The current text written on the sign.
 	var/sign_text
 	/// The maximum length of text that can be input onto the sign.
@@ -22,16 +22,11 @@
 	var/edit_by_hand = FALSE
 	/// Holder for signboard maptext
 	var/obj/effect/abstract/signboard_holder/text_holder
-	/// Lazy assoc list of clients to images
-	VAR_PROTECTED/list/client_maptext_images
-	/// If a mass client add/removal is currently being done.
-	VAR_PRIVATE/doing_update = FALSE
 
 /obj/structure/signboard/Initialize(mapload)
 	. = ..()
 	text_holder = new(src)
 	vis_contents += text_holder
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGGED_IN, PROC_REF(on_mob_login))
 	if(sign_text)
 		set_text(sign_text, force = TRUE)
 		investigate_log("had its text set on load to \"[sign_text]\"", INVESTIGATE_SIGNBOARD)
@@ -39,8 +34,6 @@
 	register_context()
 
 /obj/structure/signboard/Destroy()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGGED_IN)
-	remove_from_all_clients_unsafe()
 	vis_contents -= text_holder
 	QDEL_NULL(text_holder)
 	return ..()
@@ -149,14 +142,14 @@
 		default_unfasten_wrench(user, tool)
 	return TOOL_ACT_TOOLTYPE_SUCCESS
 
+/obj/structure/signboard/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	if(!same_z_layer)
+		SET_PLANE_EXPLICIT(text_holder, GAME_PLANE_UPPER_FOV_HIDDEN, src)
+	return ..()
+
 /obj/structure/signboard/set_anchored(anchorvalue)
 	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(add_to_all_clients))
-
-/obj/structure/signboard/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
-	. = ..()
-	if(!isturf(old_loc) || !isturf(loc))
-		INVOKE_ASYNC(src, PROC_REF(add_to_all_clients))
+	update_text()
 
 /obj/structure/signboard/proc/is_locked(mob/user)
 	. = locked
@@ -175,98 +168,22 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/signboard/proc/on_mob_login(datum/source, mob/user)
-	SIGNAL_HANDLER
-	var/client/client = user?.client
-	ASYNC
-		UNTIL_WHILE_EXISTS(src, !doing_update)
-		doing_update = TRUE
-		add_client(client)
-		doing_update = FALSE
-
-/obj/structure/signboard/proc/add_client(client/user)
-	if(QDELETED(user) || !should_display_text())
-		return
-	if(LAZYACCESS(client_maptext_images, user))
-		remove_client(user)
-	var/image/client_image = create_image_for_client(user)
-	if(!client_image || QDELETED(user))
-		return
-	LAZYSET(client_maptext_images, user, client_image)
-	LAZYADD(update_on_z, client_image)
-	user.images |= client_image
-	RegisterSignal(user, COMSIG_QDELETING, PROC_REF(remove_client))
-
-/obj/structure/signboard/proc/remove_client(client/user)
-	SIGNAL_HANDLER
-	if(isnull(user))
-		return
-	UnregisterSignal(user, COMSIG_QDELETING)
-	var/image/client_image = LAZYACCESS(client_maptext_images, user)
-	if(!client_image)
-		return
-	user.images -= client_image
-	LAZYREMOVE(client_maptext_images, user)
-	LAZYREMOVE(update_on_z, client_image)
-
-/obj/structure/signboard/proc/add_to_all_clients()
-	UNTIL_WHILE_EXISTS(src, !doing_update)
-	doing_update = TRUE
-	add_to_all_clients_unsafe()
-	doing_update = FALSE
-
-/obj/structure/signboard/proc/add_to_all_clients_unsafe()
-	PRIVATE_PROC(TRUE)
-	if(QDELETED(src))
-		return
-	remove_from_all_clients_unsafe()
+/obj/structure/signboard/proc/update_text()
+	PROTECTED_PROC(TRUE)
 	if(!should_display_text())
-		return
-	var/list/shown_first = list()
-	var/client/usr_client = usr?.client
-	add_client(usr_client)
-	for(var/mob/mob in viewers(world.view, src))
-		if(QDELING(mob) || QDELETED(mob.client) || mob == usr)
-			continue
-		add_client(mob.client)
-		shown_first[mob.client] = TRUE
-	for(var/client/client as anything in GLOB.clients)
-		if(QDELETED(client) || shown_first[client] || client == usr_client)
-			continue
-		add_client(client)
-
-/obj/structure/signboard/proc/remove_from_all_clients()
-	UNTIL_WHILE_EXISTS(src, !doing_update)
-	doing_update = TRUE
-	remove_from_all_clients_unsafe()
-	doing_update = FALSE
-
-/obj/structure/signboard/proc/remove_from_all_clients_unsafe()
-	PRIVATE_PROC(TRUE)
-	for(var/client/client as anything in client_maptext_images)
-		remove_client(client)
-	LAZYNULL(client_maptext_images)
-
-/obj/structure/signboard/proc/create_image_for_client(client/user) as /image
-	RETURN_TYPE(/image)
-	if(QDELETED(user) || !sign_text)
+		text_holder.maptext = null
 		return
 	var/bwidth = src.bound_width || world.icon_size
 	var/bheight = src.bound_height || world.icon_size
 	var/text_html = MAPTEXT_GRAND9K("<span style='text-align: center'>[html_encode(sign_text)]</span>")
-	var/mheight
-	WXH_TO_HEIGHT(user.MeasureText(text_html, null, SIGNBOARD_WIDTH), mheight)
-	var/image/maptext_holder = image(loc = text_holder)
-	SET_PLANE_EXPLICIT(maptext_holder, GAME_PLANE_UPPER_FOV_HIDDEN, src)
-	maptext_holder.layer = ABOVE_ALL_MOB_LAYER
-	maptext_holder.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
-	maptext_holder.alpha = 192
-	maptext_holder.maptext = text_html
-	maptext_holder.maptext_x = (SIGNBOARD_WIDTH - bwidth) * -0.5
-	maptext_holder.maptext_y = bheight
-	maptext_holder.maptext_width = SIGNBOARD_WIDTH
-	maptext_holder.maptext_height = mheight
-	return maptext_holder
+	SET_PLANE_EXPLICIT(text_holder, GAME_PLANE_UPPER_FOV_HIDDEN, src)
+	text_holder.layer = ABOVE_ALL_MOB_LAYER
+	text_holder.alpha = 140
+	text_holder.maptext = text_html
+	text_holder.maptext_x = (SIGNBOARD_WIDTH - bwidth) * -0.5
+	text_holder.maptext_y = bheight
+	text_holder.maptext_width = SIGNBOARD_WIDTH
+	text_holder.maptext_height = SIGNBOARD_HEIGHT
 
 /obj/structure/signboard/proc/set_text(new_text, force = FALSE)
 	. = FALSE
@@ -275,20 +192,15 @@
 	if(!istext(new_text) && !isnull(new_text))
 		CRASH("Attempted to set invalid signtext: [new_text]")
 	. = TRUE
-	new_text = trimtext(copytext_char(new_text, 1, max_length))
-	if(length(new_text))
-		sign_text = new_text
-		INVOKE_ASYNC(src, PROC_REF(add_to_all_clients))
-	else
-		sign_text = null
-		INVOKE_ASYNC(src, PROC_REF(remove_from_all_clients))
+	sign_text = trim(new_text, max_length)
+	update_text()
 	update_appearance()
 
 /obj/effect/abstract/signboard_holder
 	name = ""
 	icon = null
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	vis_flags = VIS_INHERIT_PLANE
 
 /obj/effect/abstract/signboard_holder/Initialize(mapload)
 	. = ..()

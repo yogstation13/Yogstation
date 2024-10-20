@@ -18,6 +18,7 @@
 
 /obj/structure/signboard/holosign/Initialize(mapload)
 	. = ..()
+	text_holder.appearance_flags &= ~RESET_COLOR // allow the text holoder to inherit our color
 	if(current_color)
 		INVOKE_ASYNC(src, PROC_REF(set_color), current_color)
 
@@ -92,13 +93,6 @@
 			return TRUE
 		return !cmptext(trimtext(id.registered_name), registered_owner)
 
-/obj/structure/signboard/holosign/create_image_for_client(client/user)
-	RETURN_TYPE(/image)
-	var/image/client_image = ..()
-	if(current_color)
-		client_image?.color = current_color
-	return client_image
-
 /obj/structure/signboard/holosign/set_text(new_text, force)
 	. = ..()
 	set_light_on(!!sign_text)
@@ -154,10 +148,5 @@
 	else
 		current_color = new_color
 		add_atom_colour(new_color, FIXED_COLOUR_PRIORITY)
-	set_light_color(current_color || initial(light_color))
-	for(var/client/client as anything in client_maptext_images)
-		if(QDELETED(client))
-			continue
-		var/image/client_image = client_maptext_images[client]
-		client_image.color = current_color
+	set_light_color(current_color || src::light_color)
 	update_appearance()
