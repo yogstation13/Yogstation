@@ -42,6 +42,7 @@
 
 /obj/item/reagent_containers/food/proc/checkLiked(fraction, mob/M)
 	if(last_check_time + 50 < world.time)
+		. = TRUE
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(!HAS_TRAIT(H, TRAIT_AGEUSIA))
@@ -64,5 +65,7 @@
 			if((foodtype & BREAKFAST) && world.time - SSticker.round_start_time < STOP_SERVING_BREAKFAST)
 				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "breakfast", /datum/mood_event/breakfast)
 			last_check_time = world.time
+	else
+		return FALSE
 
 #undef STOP_SERVING_BREAKFAST
