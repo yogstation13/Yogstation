@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Signboards no longer have a delay or update inconsistently when their text is changed."
