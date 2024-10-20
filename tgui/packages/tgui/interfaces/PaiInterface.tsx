@@ -22,7 +22,26 @@ type Data = {
   pressure: number;
   gases: Data[];
   temperature: number;
+  hacking: boolean;
+  hackprogress: number;
+  cable: string;
+  door: Data[];
 }
+
+export const AirlockJackTextSwitch = params => {
+  switch (params) {
+    case 0:
+      return "Connection handshake";
+    case 20:
+      return "Starting brute-force encryption crack";
+    case 40:
+      return "Running brute-force encryption crack";
+    case 60:
+      return "Alert: Station AI network has been notified!";
+    case 80:
+      return "Success! Hijacking door subroutines...";
+  }
+};
 
 export const PaiInterface = (props, context) => {
   const { act, data } = useBackend<Data>(context);
@@ -62,6 +81,7 @@ const PaiBox = (props, context) => {
   const { modules, ram, modules_list } = data;
   const { laws_zeroth, laws, master, masterdna } = data;
   const { pressure, gases, temperature } = data;
+  const { hacking, hackprogress, cable, door } = data;
   if(selectedMainTab===null) {
     return;
   }
@@ -232,5 +252,93 @@ const PaiBox = (props, context) => {
           </Button>
         </Section>
       );
-  }
-};
+    case "loudness booster":
+      return (
+        <Section title={selectedMainTab.title}>
+          <Button onClick={() => act("loudness")}>
+            Open Synthesizer Interface
+          </Button>
+        </Section>
+      );
+    case "door jack":
+      if(hacking) {
+        return (
+          <Section title={selectedMainTab.title}>
+            <Box bold={1}>Status:</Box>
+            <ProgressBar ranges={{
+              good: [75, Infinity],
+              average: [50, 75],
+              bad: [-Infinity, 50] }}
+              value={hackprogress}
+              maxValue={100}>
+                {AirlockJackTextSwitch(hackprogress)}
+            </ProgressBar>
+            {cable === "Retracted" && (
+              <Button onClick={() => act("cable")}>
+                Extend cable
+              </Button>
+            )}
+            {cable === "Extended" && (
+              <Button onClick={() => act("retract")}>
+                Retract cable
+              </Button>
+            )}
+            {cable === "Extended" && door !== null && (
+              hacking ? (
+                <Button onClick={() => act("cancel")}>
+                  Cancel Airlock Jack
+                </Button>
+                ) : (
+                  <Button onClick={() => act("jack")}>
+                    Begin Airlock Jack
+                  </Button>
+                )
+              )}
+          </Section>
+        );
+      } else {
+          return (
+            <Section title={selectedMainTab.title}>
+              <Box bold={1}>Status:</Box>
+              <ProgressBar ranges={{
+                good: [75, Infinity],
+                average: [50, 75],
+                bad: [-Infinity, 50] }}
+                value={hackprogress}
+                maxValue={100}>
+                  {cable === "Retracted" && (
+                    <Box>Cable retracted</Box>
+                  )}
+                  {cable === "Extended" && door === null && (
+                    <Box>Cable extended</Box>
+                  )}
+                  {cable === "Extended" && door !== null && (
+                    <Box>Compatible interface detected</Box>
+                  )}
+              </ProgressBar>
+              {cable === "Retracted" && (
+                <Button onClick={() => act("cable")}>
+                  Extend cable
+                </Button>
+              )}
+              {cable === "Extended" && (
+                <Button onClick={() => act("retract")}>
+                  Retract cable
+                </Button>
+              )}
+              {cable === "Extended" && door !== null && (
+                hacking ? (
+                  <Button onClick={() => act("cancel")}>
+                    Cancel Airlock Jack
+                  </Button>
+                  ) : (
+                    <Button onClick={() => act("jack")}>
+                      Begin Airlock Jack
+                    </Button>
+                  )
+                )}
+            </Section>
+          );
+        }
+      }
+    };

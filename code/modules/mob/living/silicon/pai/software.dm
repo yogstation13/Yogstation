@@ -1,7 +1,6 @@
 // TODO:
 //	- Potentially roll HUDs and Records into one
 //	- Shock collar/lock system for prisoner pAIs?
-//  - Put cable in user's hand instead of on the ground
 //  - Camera jack
 
 
@@ -16,8 +15,8 @@
 															list("module_name" = "atmosphere sensor", "tab"=TRUE, "title"="Atmospheric sensor", "cost" = 5),
 															list("module_name" = "photography module", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "remote signaller", "tab"=TRUE, "title"="Remote signaller", "cost" = 10),
-															list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
-															list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
+															//list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
+															//list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
 															list("module_name" = "camera zoom", "tab"=FALSE, "cost" = 10),
 															list("module_name" = "host scan", "tab"=TRUE, "title"="Host Bioscan settings", "cost" = 10),
 															//"camera jack" = 10,
@@ -36,9 +35,11 @@
 													list("module_name" = "screen display", "title"="Screen Display"),
 													list("module_name" = "download additional software", "title"="CentCom pAI Module Subversion Network"))
 
-/mob/living/silicon/pai/var/datum/gas_mixture/environment = null
-/mob/living/silicon/pai/var/pressure = null
-/mob/living/silicon/pai/var/gases = null
+/mob/living/silicon/pai/var/datum/gas_mixture/environment
+/mob/living/silicon/pai/var/pressure
+/mob/living/silicon/pai/var/gases
+
+/mob/living/silicon/pai/var/cable_status = "Retracted"
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -65,6 +66,13 @@
 		data["pressure"] = pressure
 		data["gases"] = gases
 		data["temperature"] = null
+	data["hacking"] = hacking
+	data["hackprogress"] = hackprogress
+	data["cable"] = cable_status
+	if(isnull(cable))
+		data["door"] = null
+	else
+		data["door"] = cable.machine
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
@@ -144,6 +152,31 @@
 		if("hostscan")
 			var/mob/living/silicon/pai/pAI = usr
 			pAI.hostscan.attack_self(src)
+		if("loudness")
+			if(!internal_instrument)
+				internal_instrument = new(src)
+			internal_instrument.interact(src)
+		if("cable")
+			var/turf/T = get_turf(loc)
+			cable = new /obj/item/pai_cable(T)
+			if(get(card, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = get(card, /mob/living/carbon/human)
+				H.put_in_hands(cable)
+			T.visible_message(span_warning("A port on [src] opens to reveal [cable], which promptly falls to the floor."), span_italics("You hear the soft click of something light and hard falling to the ground."))
+			cable_status = "Extended"
+		if("jack")
+			if(cable && cable.machine)
+				hackdoor = cable.machine
+				hackloop()
+		if("cancel")
+			hackdoor = null
+		if("retract")
+			var/turf/T = get_turf(src.loc)
+			T.visible_message(span_warning("[src.cable] rapidly retracts back into its spool."), span_italics("You hear a click and the sound of wire spooling rapidly."))
+			qdel(cable)
+			hackdoor = null
+			cable = null
+			cable_status = "Retracted"
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)
@@ -727,15 +760,15 @@
 //		dat += "<a href='byond://?src=[REF(src)];software=doorjack;cancel=1;sub=0'>Cancel Airlock Jack</a> <br>"
 //	return dat
 //
-//// Door Jack - supporting proc
-///mob/living/silicon/pai/proc/hackloop()
-//	var/turf/T = get_turf(src)
-//	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
-//		if(T.loc)
-//			to_chat(AI, "<font color = red><b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b></font>")
-//		else
-//			to_chat(AI, "<font color = red><b>Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location.</b></font>")
-//	hacking = TRUE
+// Door Jack - supporting proc
+/mob/living/silicon/pai/proc/hackloop()
+	var/turf/T = get_turf(src)
+	for(var/mob/living/silicon/ai/AI in GLOB.player_list)
+		if(T.loc)
+			to_chat(AI, span_userdanger("Network Alert: Brute-force encryption crack in progress in [T.loc]."))
+		else
+			to_chat(AI, span_userdanger("Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location."))
+	hacking = TRUE
 //
 //// Loudness Booster
 ///mob/living/silicon/pai/proc/softwareLoudness()

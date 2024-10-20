@@ -158,8 +158,6 @@
 		hacking = FALSE
 		hackdoor = null
 		return
-	if(screen == "doorjack" && subscreen == 0) // Update our view, if appropriate
-		//paiInterface()
 	if(hackprogress >= 100)
 		hackprogress = 0
 		var/obj/machinery/door/D = cable.machine
@@ -175,7 +173,6 @@
 
 /mob/living/silicon/pai/Login()
 	..()
-	usr << browse_rsc('html/paigrid.png')			// Go ahead and cache the interface resources as early as possible
 	if(client)
 		client.perspective = EYE_PERSPECTIVE
 		if(holoform)
@@ -296,6 +293,7 @@
 			T.visible_message(span_warning("[src.cable] rapidly retracts back into its spool."), span_italics("You hear a click and the sound of wire spooling rapidly."))
 			qdel(src.cable)
 			cable = null
+			cable_status = "Retracted"
 	silent = max(silent - 1, 0)
 	. = ..()
 
