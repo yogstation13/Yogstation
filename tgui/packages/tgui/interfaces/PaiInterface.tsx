@@ -52,7 +52,7 @@ export const AirlockJackTextSwitch = params => {
 export const PaiInterface = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const { modules_tabs = [] } = data;
-  const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
+  const [selectedMainTab, setMainTab] = useLocalState(context, "selectedMainTab", 0);
   return (
     <Window width={600} height={550} theme="">
       <Window.Content>
@@ -63,11 +63,11 @@ export const PaiInterface = (props, context) => {
           <Flex.Item>
             <Section title="Modules">
               <Tabs vertical>
-                {modules_tabs.map(module => (
+                {modules_tabs.map((module, index) => (
                   <Tabs.Tab
-                    key={module}
-                    selected={module === selectedMainTab}
-                    onClick={() => setMainTab(module)}>
+                    key={index}
+                    selected={index === selectedMainTab}
+                    onClick={() => setMainTab(index)}>
                       {capitalize(module.module_name)}
                   </Tabs.Tab>
                 ))}
@@ -82,9 +82,9 @@ export const PaiInterface = (props, context) => {
 
 const PaiBox = (props, context) => {
   const { act, data } = useBackend<Data>(context);
-  const [selectedMainTab, setMainTab] = useLocalState<Module | null>(context, "selectedMainTab", null);
+  const [selectedMainTab, setMainTab] = useLocalState(context, "selectedMainTab", 0);
   const [hoveredModule, sethoveredModule] = useLocalState(context, "hoveredModule", {});
-  const { modules, ram, modules_list } = data;
+  const { modules, ram, modules_list, modules_tabs = [] } = data;
   const { laws_zeroth, laws, master, masterdna } = data;
   const { pressure, gases, temperature } = data;
   const { hacking, hackprogress, cable, door } = data;
@@ -92,10 +92,10 @@ const PaiBox = (props, context) => {
   if(selectedMainTab===null) {
     return;
   }
-  switch(selectedMainTab.module_name) {
+  switch(modules_tabs[selectedMainTab].module_name) {
     case "directives":
       return (
-        <Section title={selectedMainTab.title}>
+        <Section title={modules_tabs[selectedMainTab].title}>
           <Stack vertical>
             <Stack.Item>
               {!master && (
@@ -140,7 +140,7 @@ const PaiBox = (props, context) => {
       );
     case "screen display":
       return (
-        <Section title={selectedMainTab.title}>
+        <Section title={modules_tabs[selectedMainTab].title}>
           Select your new display image.
           <Stack.Item>
             <Dropdown options={["Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Null", "Sunglasses"]}
@@ -150,7 +150,7 @@ const PaiBox = (props, context) => {
       );
     case "download additional software":
       return (
-        <Section title={selectedMainTab.title}>
+        <Section title={modules_tabs[selectedMainTab].title}>
           <Stack vertical>
             <Stack.Item>
               <Box bold={1}>Remaining available memory:</Box>
@@ -206,7 +206,7 @@ const PaiBox = (props, context) => {
       );
     case "atmosphere sensor":
       return (
-        <Section title={selectedMainTab.title}>
+        <Section title={modules_tabs[selectedMainTab].title}>
           {!pressure && (
             <Stack.Item>
               Air Pressure: None
@@ -247,7 +247,7 @@ const PaiBox = (props, context) => {
       );
     case "remote signaller":
       return (
-        <Section title={selectedMainTab.title}>
+        <Section title={modules_tabs[selectedMainTab].title}>
           <Stack vertical>
             <Stack.Item>
               Frequency:
@@ -316,7 +316,7 @@ const PaiBox = (props, context) => {
       );
     case "host scan":
       return (
-        <Section title={selectedMainTab.title}>
+        <Section title={modules_tabs[selectedMainTab].title}>
           <Button onClick={() => act("hostscan")}>
             Change scan type
           </Button>
@@ -324,7 +324,7 @@ const PaiBox = (props, context) => {
       );
     case "loudness booster":
       return (
-        <Section title={selectedMainTab.title}>
+        <Section title={modules_tabs[selectedMainTab].title}>
           <Button onClick={() => act("loudness")}>
             Open Synthesizer Interface
           </Button>
@@ -333,7 +333,7 @@ const PaiBox = (props, context) => {
     case "door jack":
       if(hacking) {
         return (
-          <Section title={selectedMainTab.title}>
+          <Section title={modules_tabs[selectedMainTab].title}>
             <Box bold={1}>Status:</Box>
             <ProgressBar ranges={{
               good: [75, Infinity],
@@ -368,7 +368,7 @@ const PaiBox = (props, context) => {
         );
       } else {
           return (
-            <Section title={selectedMainTab.title}>
+            <Section title={modules_tabs[selectedMainTab].title}>
               <Box bold={1}>Status:</Box>
               <ProgressBar ranges={{
                 good: [75, Infinity],
