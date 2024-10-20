@@ -1,4 +1,0 @@
-author: "Addust"
-delete-after: True
-changes:
-  - rscadd: "The ERP achievement has been updated to reflect current rules naming schemes in-game. This DOES NOT affect back-end code because I'm too lazy to change that."
