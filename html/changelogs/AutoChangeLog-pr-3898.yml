@@ -1,0 +1,5 @@
+author: "dwasint"
+delete-after: True
+changes:
+  - balance: "TWitch now requires you have a heart to function"
+  - balance: "Toxic Compensation now requires that you are not immune to toxin damage"
