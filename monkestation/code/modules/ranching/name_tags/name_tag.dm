@@ -30,13 +30,11 @@
 	name_tag = new(src)
 	//SET_PLANE_EXPLICIT(name_tag, PLANE_NAME_TAGS, src)
 	update_name_tag()
-	vis_contents += name_tag
 
 /mob/Login()
 	. = ..()
 	if(client && isliving(src) && (!iscyborg(src) && !isaicamera(src) && !isAI(src)))
-		shadow = new()
-		shadow.loc = src
+		shadow = new(src)
 		SET_PLANE_EXPLICIT(shadow, PLANE_NAME_TAGS_BLOCKER, src)
 		client.screen += shadow
 		hud_used.always_visible_inventory += shadow
@@ -50,7 +48,6 @@
 	return ..()
 
 /mob/Destroy()
-	vis_contents -= name_tag
 	QDEL_NULL(name_tag)
 	if(shadow)
 		client?.screen -= shadow
@@ -98,13 +95,18 @@
 	if(!ismovable(loc) || QDELING(loc))
 		return INITIALIZE_HINT_QDEL
 	var/atom/movable/movable_loc = loc
+	movable_loc.vis_contents += src
 	var/bound_width = movable_loc.bound_width || world.icon_size
 	maptext_width = NAME_TAG_WIDTH
 	maptext_height = world.icon_size * 1.5
-	maptext_x = (NAME_TAG_WIDTH - bound_width) * -0.5
+	maptext_x = ((NAME_TAG_WIDTH - bound_width) * -0.5) - loc.base_pixel_x
+	maptext_y = src::maptext_y - loc.base_pixel_y
 	RegisterSignal(loc, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(update_z))
 
 /obj/effect/abstract/name_tag/Destroy(force)
+	if(ismovable(loc))
+		var/atom/movable/movable_loc = loc
+		movable_loc.vis_contents -= src
 	UnregisterSignal(loc, COMSIG_MOVABLE_Z_CHANGED)
 	return ..()
 
