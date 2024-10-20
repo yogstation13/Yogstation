@@ -247,7 +247,7 @@
 	if(!QDELETED(GLOB.cult_narsie))
 		return //if Nar'sie is alive, don't even worry about it
 	var/area/A = get_area(owner)
-	for(var/datum/mind/B in SSticker.mode.cult)
+	for(var/datum/mind/B in SSgamemode.cult)
 		if(isliving(B.current))
 			var/mob/living/M = B.current
 			SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))

@@ -3135,16 +3135,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"axg" = (
-/obj/machinery/door/airlock/external{
-	name = "Auxillary Base Construction Dock"
-	},
-/obj/machinery/atmospherics/pipe/layer_manifold,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/aux_base,
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "axl" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -3694,19 +3684,6 @@
 "aBj" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/closed/wall,
-/area/construction/mining/aux_base)
-"aBn" = (
-/obj/machinery/door/airlock/external{
-	name = "Auxillary Base Construction Dock"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/external,
-/obj/effect/mapping_helpers/airlock/access/any/engineering/aux_base,
-/turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "aBs" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
@@ -25574,6 +25551,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"glp" = (
+/obj/machinery/door/airlock/external{
+	name = "Auxillary Base Construction Dock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "glP" = (
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/effect/turf_decal/tile/dark{
@@ -27442,6 +27430,24 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+"gVc" = (
+/obj/machinery/rnd/production/protolathe/department/engineering,
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering - Foyer - Shared Storage";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
 "gVn" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -48015,21 +48021,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/prison/hallway)
-"osD" = (
-/obj/machinery/rnd/production/protolathe/department/engineering,
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 26
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering - Foyer - Shared Storage";
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/storage_shared)
 "osE" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -49265,6 +49256,14 @@
 /obj/structure/sign/warning/electricshock,
 /turf/closed/wall/r_wall,
 /area/maintenance/solars/port/fore)
+"oOk" = (
+/obj/machinery/door/airlock/external{
+	name = "Auxillary Base Construction Dock"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "oOn" = (
 /obj/machinery/door/window/westleft{
 	dir = 4;
@@ -88825,9 +88824,9 @@ aaa
 aaa
 aaa
 avo
-axg
+oOk
 ayZ
-aBn
+glp
 hZB
 jME
 mEI
@@ -107413,7 +107412,7 @@ kHt
 cnG
 akB
 dXX
-osD
+gVc
 fpn
 raI
 cfb

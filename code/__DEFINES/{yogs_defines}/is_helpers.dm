@@ -15,7 +15,8 @@
 #define is_blood_brother(M) (istype(M, /mob/living) && M.mind && M.mind.has_antag_datum(/datum/antagonist/brother))
 #define is_nukeop(M) (M.mind && M.mind.has_antag_datum(/datum/antagonist/nukeop)) // also detects clownOP
 #define is_infiltrator(M) (M.mind && M.mind.has_antag_datum(/datum/antagonist/infiltrator))
-#define is_syndicate(M) (istype(M, /mob/living) && is_traitor(M) || is_blood_brother(M) || is_nukeop(M) || is_infiltrator(M))
+#define is_syndicate(M) (istype(M, /mob/living) && is_traitor(M) || is_blood_brother(M) || is_nukeop(M) || is_infiltrator(M) || is_battleroyale(M))
+
 #define is_battleroyale(M) (M.mind && M.mind.has_antag_datum(/datum/antagonist/battleroyale))
 
 #define isspacepod(A) (istype(A, /obj/spacepod))

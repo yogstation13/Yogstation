@@ -593,7 +593,7 @@
 	icon_state = "sleeper"
 	roundstart = FALSE
 	death = FALSE
-	faction = ROLE_SYNDICATE
+	faction = ROLE_ANTAG
 	outfit = /datum/outfit/snowsyndie
 	short_desc = "You are a syndicate operative recently awoken from cryostasis in an underground outpost."
 	flavour_text = "You are a syndicate operative recently awoken from cryostasis in an underground outpost. Monitor Nanotrasen communications and record information. All intruders should be \

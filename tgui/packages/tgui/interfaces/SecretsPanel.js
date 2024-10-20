@@ -31,7 +31,6 @@ export const SecretsPanel = (props, context) => {
           <Button content={'Show last '+lastsignalers+' signalers'} onClick={() => act('list_signalers')} disabled={!adminRights} /><br />
           <Button content={'Show last '+lawchanges+' law changes'} onClick={() => act('list_lawchanges')} disabled={!adminRights} /><br />
           <Button content={'Show AI Laws'} onClick={() => act('showailaws')} disabled={!adminRights} /><br />
-          <Button content={'Show Game Mode'} onClick={() => act('showgm')} disabled={!adminRights} /><br />
           <Button content={'Show Crew Manifest'} onClick={() => act('manifest')} disabled={!adminRights} /><br />
           <Button content={'List DNA (Blood)'} onClick={() => act('DNA')} disabled={!adminRights} /><br />
           <Button content={'List Fingerprints'} onClick={() => act('fingerprints')} disabled={!adminRights} /><br />

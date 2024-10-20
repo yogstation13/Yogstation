@@ -88,8 +88,6 @@
 	/// If this job's mail goodies compete with generic goodies.
 	var/exclusive_mail_goodies = FALSE
 
-	var/list/changed_maps = list() // Maps on which the job is changed. Should use the same name as the mapping config
-
 	///The text a person using olfaction will see for the job of the target's scent
 	var/smells_like = "a freeloader"
 
@@ -109,45 +107,17 @@
 	 */
 	var/list/minimal_lightup_areas = list()
 
-/*
-	If you want to change a job on a specific map with this system, you will want to go onto that job datum
-	and add said map's name to the changed_maps list, like so:
-	changed_maps = list("OmegaStation")
-
-	Then, you're going to want to make a proc called "OmegaStationChanges" on the job, which will be the one
-	actually making the changes, like so:
-
-	/datum/job/miner/proc/OmegaStationChanges()
-
-	If you want to remove the job from said map, you will return TRUE in the proc, otherwise you can make
-	whatever changes to the job datum you need to make. For example, say we want to make it so 2 wardens spawn
-	on OmegaStation, we'd do the following:
-
-	/datum/job/warden
-		changed_maps = list("OmegaStation")
-
-	/datum/job/warden/proc/OmegaStationChanges()
-		total_positions = 2
-		spawn_positions = 2
-
-	Here is another example of using this:
-
-	/datum/job/doctor/proc/OmegaStationChanges()
-	total_positions = 3
-	spawn_positions = 3
-	added_access = list()
-	base_access = list(ACCESS_MEDICAL, ACCESS_MORGUE)
-	supervisors = "the captain and the head of personnel"
-	*/
-
 /datum/job/New()
 	.=..()
 	lightup_areas = typecacheof(lightup_areas)
 	minimal_lightup_areas = typecacheof(minimal_lightup_areas)
 
-	if(changed_maps.len)
-		for(var/map in changed_maps)
-			RegisterSignal(src, map, text2path("[type]/proc/[map]Changes"))
+	var/new_spawn_positions = CHECK_MAP_JOB_CHANGE(title, "spawn_positions")
+	if(isnum(new_spawn_positions))
+		spawn_positions = new_spawn_positions
+	var/new_total_positions = CHECK_MAP_JOB_CHANGE(title, "total_positions")
+	if(isnum(new_total_positions))
+		total_positions = new_total_positions
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it

@@ -3,9 +3,14 @@
 	typepath = /datum/round_event/processor_overload
 	weight = 15
 	min_players = 20
+	description = "Emps the telecomm processors, scrambling radio speech. Might blow up a few."
+	max_occurrences = 2
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_COMMUNAL)
+	event_group = /datum/event_group/comms
 
 /datum/round_event/processor_overload
-	announceWhen	= 1
+	announce_when	= 1
 
 /datum/round_event/processor_overload/announce(fake)
 	var/alert = pick(	"Exospheric bubble inbound. Processor overload is likely. Please contact you*%xp25)`6cq-BZZT", \

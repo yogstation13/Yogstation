@@ -72,9 +72,6 @@ GLOBAL_LIST_EMPTY(antag_token_users)
 /proc/antag_token_used(ckey, client/C)
 	var/mob/player = C.mob
 
-	// Mark the mind as having not been picked by a token
-	player.mind.token_picked = FALSE
-
 	if(!is_special_character(player))
 		message_admins("Failed to make player [ckey] an antag. Their token has NOT been used!")
 		return

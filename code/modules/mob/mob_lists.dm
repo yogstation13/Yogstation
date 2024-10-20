@@ -45,7 +45,7 @@
 /mob/proc/add_to_player_list()
 	SHOULD_CALL_PARENT(TRUE)
 	GLOB.player_list |= src
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
 	if(stat == DEAD)
 		add_to_current_dead_players()
@@ -56,7 +56,7 @@
 /mob/proc/remove_from_player_list()
 	SHOULD_CALL_PARENT(TRUE)
 	GLOB.player_list -= src
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
 	if(stat == DEAD)
 		remove_from_current_dead_players()
@@ -66,15 +66,15 @@
 
 ///Adds the cliented mob reference to either the list of dead player-mobs or to the list of observers, depending on how they joined the game.
 /mob/proc/add_to_current_dead_players()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
-	SSticker.mode.current_players[CURRENT_DEAD_PLAYERS] |= src
+	SSgamemode.current_players[CURRENT_DEAD_PLAYERS] |= src
 
 /mob/dead/observer/add_to_current_dead_players()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
 	if(started_as_observer)
-		SSticker.mode.current_players[CURRENT_OBSERVERS] |= src
+		SSgamemode.current_players[CURRENT_OBSERVERS] |= src
 		return
 	return ..()
 
@@ -83,44 +83,44 @@
 
 ///Removes the mob reference from either the list of dead player-mobs or from the list of observers, depending on how they joined the game.
 /mob/proc/remove_from_current_dead_players()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
-	SSticker.mode.current_players[CURRENT_DEAD_PLAYERS] -= src
+	SSgamemode.current_players[CURRENT_DEAD_PLAYERS] -= src
 
 /mob/dead/observer/remove_from_current_dead_players()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
 	if(started_as_observer)
-		SSticker.mode.current_players[CURRENT_OBSERVERS] -= src
+		SSgamemode.current_players[CURRENT_OBSERVERS] -= src
 		return
 	return ..()
 
 
 ///Adds the cliented mob reference to the list of living player-mobs. If the mob is an antag, it adds it to the list of living antag player-mobs.
 /mob/proc/add_to_current_living_players()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
-	SSticker.mode.current_players[CURRENT_LIVING_PLAYERS] |= src
+	SSgamemode.current_players[CURRENT_LIVING_PLAYERS] |= src
 	if(mind && (mind.special_role || length(mind.antag_datums)))
 		add_to_current_living_antags()
 
 ///Removes the mob reference from the list of living player-mobs. If the mob is an antag, it removes it from the list of living antag player-mobs.
 /mob/proc/remove_from_current_living_players()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
-	SSticker.mode.current_players[CURRENT_LIVING_PLAYERS] -= src
+	SSgamemode.current_players[CURRENT_LIVING_PLAYERS] -= src
 	if(LAZYLEN(mind?.antag_datums))
 		remove_from_current_living_antags()
 
 
 ///Adds the cliented mob reference to the list of living antag player-mobs.
 /mob/proc/add_to_current_living_antags()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
-	SSticker.mode.current_players[CURRENT_LIVING_ANTAGS] |= src
+	SSgamemode.current_players[CURRENT_LIVING_ANTAGS] |= src
 
 ///Removes the mob reference from the list of living antag player-mobs.
 /mob/proc/remove_from_current_living_antags()
-	if(!SSticker?.mode)
+	if(!SSgamemode)
 		return
-	SSticker.mode.current_players[CURRENT_LIVING_ANTAGS] -= src
+	SSgamemode.current_players[CURRENT_LIVING_ANTAGS] -= src

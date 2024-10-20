@@ -8,6 +8,7 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	count_towards_antag_cap = TRUE
 	var/helping_station = FALSE
 	var/give_objectives = TRUE
 	var/give_equipment = TRUE
@@ -118,9 +119,6 @@ GLOBAL_LIST_EMPTY(ninja_capture)
 	var/datum/antagonist/datum = L.mind.has_antag_datum(/datum/antagonist/ninja)
 	datum.on_removal()
 	return TRUE
-
-/proc/is_ninja(mob/living/M)
-	return M?.mind?.has_antag_datum(/datum/antagonist/ninja)
 
 
 /datum/antagonist/ninja/greet()
