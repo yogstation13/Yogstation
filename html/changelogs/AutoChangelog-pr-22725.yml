@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "fixes custom sandwiches and burgers having invisible ingredients if you add more than 1"
