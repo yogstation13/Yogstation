@@ -1,3 +1,4 @@
+/* Monkestation edit : sentient disease doesnt exist or work in current codebase
 import { Antagonist, Category } from '../base';
 import { multiline } from 'common/string';
 
@@ -14,3 +15,4 @@ const SentientDisease: Antagonist = {
 };
 
 export default SentientDisease;
+*/
