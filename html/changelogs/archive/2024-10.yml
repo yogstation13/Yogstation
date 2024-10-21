@@ -342,6 +342,22 @@
   - bugfix: Name tags now take the mob's base offset into account.
   - bugfix: Signboards no longer have a delay or update inconsistently when their
       text is changed.
+  - rscadd: PDA ringtones now show a balloon alert to the PDA holder.
+  - refactor: Refactored how some screen alerts, such as aura healing, show atom overlays.
+  DexeeXI:
+  - rscadd: Metastation now has a justice/education injection locker.
+  - bugfix: Cell timers for all cells in jail not work on Blueshift.
+  Gw0sty:
+  - rscdel: Removed sentient disease from showing in antag preferences
+  - rscadd: Made upgraded robotic wound tending a researchable surgery
+  - rscadd: Gave Exp. Robotic wound tending part to the clockwork operating terminal
+  - qol: Adjusted IPC brain surgery steps to clarify tools more
+  - rscadd: Gave prisoners and NT rep's postions in crew tracking on crew monitors.
+  - qol: Removes quartermasters from blueshield's handheld devices tracking.
+  - balance: Removes IPC organ smuggling from the Medbays bounty pool.
+  - rscadd: Adds powercable cybernetics as a researchable and printable technology
   dwasint:
   - balance: TWitch now requires you have a heart to function
   - balance: Toxic Compensation now requires that you are not immune to toxin damage
+  ven1883:
+  - refactor: fixes character armor to be inline with style requirements

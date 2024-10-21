@@ -1,4 +1,0 @@
-author: "ven1883"
-delete-after: True
-changes:
-  - refactor: "fixes character armor to be inline with style requirements"
