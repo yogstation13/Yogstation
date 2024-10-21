@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Eating food that someone else bit now applies a negative moodlet unless you cannot taste, are Vox, or are Vuulen"
