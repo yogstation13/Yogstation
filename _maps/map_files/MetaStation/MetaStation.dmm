@@ -51617,9 +51617,16 @@
 /area/station/science/ordnance/testlab)
 "rXB" = (
 /obj/structure/table,
-/obj/item/flashlight/lamp,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/item/storage/backpack/duffelbag/sec/surgery{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5
+	},
+/obj/item/clothing/mask/balaclava,
+/obj/item/flashlight/lamp,
 /turf/open/floor/iron/dark,
 /area/station/security/execution/education)
 "rXF" = (
@@ -64412,16 +64419,11 @@
 /area/station/service/cafeteria)
 "wAp" = (
 /obj/item/radio/intercom/directional/west,
-/obj/structure/table,
-/obj/item/storage/backpack/duffelbag/sec/surgery{
-	pixel_y = 5
-	},
-/obj/item/clothing/mask/balaclava,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/tile/red/half/contrasted,
+/obj/structure/closet/secure_closet/injection{
+	name = "justice injections locker"
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/execution/education)
 "wAA" = (

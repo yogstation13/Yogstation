@@ -6618,7 +6618,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/vg_decals/numbers/two,
 /obj/machinery/door/window/brigdoor/security/cell/right/directional/west{
-	name = "Cell 2"
+	name = "Cell 2";
+	id = "Cell 2"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
@@ -17227,7 +17228,8 @@
 	dir = 8
 	},
 /obj/machinery/door/window/brigdoor/security/cell/right/directional/west{
-	name = "Cell 1"
+	name = "Cell 1";
+	id = "Cell 1"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
@@ -40119,7 +40121,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/vg_decals/numbers/three,
 /obj/machinery/door/window/brigdoor/security/cell/right/directional/west{
-	name = "Cell 3"
+	name = "Cell 3";
+	id = "Cell 3"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 8
@@ -55422,7 +55425,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/vg_decals/numbers/five,
 /obj/machinery/door/window/brigdoor/security/cell/right/directional/east{
-	name = "Cell 5"
+	name = "Cell 5";
+	id = "Cell 5"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 4
@@ -73522,7 +73526,8 @@
 	dir = 4
 	},
 /obj/machinery/door/window/brigdoor/security/cell/right/directional/east{
-	name = "Cell 4"
+	name = "Cell 4";
+	id = "Cell 4"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 4
@@ -108933,7 +108938,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/turf_decal/vg_decals/numbers/six,
 /obj/machinery/door/window/brigdoor/security/cell/right/directional/east{
-	name = "Cell 6"
+	name = "Cell 6";
+	id = "Cell 6"
 	},
 /turf/open/floor/iron/dark/side{
 	dir = 4
