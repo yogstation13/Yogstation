@@ -1,0 +1,5 @@
+author: "DexeeXI"
+delete-after: True
+changes:
+  - rscadd: "Metastation now has a justice/education injection locker."
+  - bugfix: "Cell timers for all cells in jail not work on Blueshift."
