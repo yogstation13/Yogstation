@@ -335,3 +335,13 @@
   - bugfix: Fixed incorrect door access on Theseus's BlueShield's Office.
   RafRoq:
   - qol: You can now search for reagents in the seed extractor
+2024-10-21:
+  Absolucy:
+  - bugfix: Spades and such no longer damage Craig (or planter trays) if you or them
+      move.
+  - bugfix: Name tags now take the mob's base offset into account.
+  - bugfix: Signboards no longer have a delay or update inconsistently when their
+      text is changed.
+  dwasint:
+  - balance: TWitch now requires you have a heart to function
+  - balance: Toxic Compensation now requires that you are not immune to toxin damage

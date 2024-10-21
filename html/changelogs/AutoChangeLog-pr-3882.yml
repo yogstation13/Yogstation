@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Spades and such no longer damage Craig (or planter trays) if you or them move."
