@@ -495,7 +495,7 @@
 			if((newgene == "J") && (jokerready < world.time))
 				var/truegenes = GET_SEQUENCE(path)
 				newgene = truegenes[genepos]
-				jokerready = world.time + JOKER_TIMEOUT - (JOKER_UPGRADE * (connected_scanner.precision_coeff + (user.get_skill(SKILL_SCIENCE) / 2) - 1))
+				jokerready = world.time + (JOKER_TIMEOUT - (JOKER_UPGRADE * connected_scanner.precision_coeff)) * (8 - user.get_skill(SKILL_SCIENCE)) / 8
 
 			// If the gene is an X, we want to update the default genes with the new
 			//  X to allow highlighting logic to work on the tgui interface.
@@ -1933,7 +1933,7 @@
 		var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(path)
 		stored_research.discovered_mutations += path
 		say("Successfully discovered [HM.name].")
-		user.add_exp(SKILL_SCIENCE, EXPERIENCE_PER_LEVEL / 2)
+		user.add_exp(SKILL_SCIENCE, 100)
 		return TRUE
 
 	return FALSE
