@@ -18961,6 +18961,16 @@
 /obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"hgh" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/catwalk_floor,
+/area/engine/engineering)
 "hgs" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -23028,12 +23038,6 @@
 /obj/machinery/computer/station_alert,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
-"jLE" = (
-/obj/machinery/vending/tool,
-/obj/machinery/suit_storage_unit/engine,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/dark,
-/area/engine/engineering)
 "jLX" = (
 /obj/effect/turf_decal/trimline/secred/warning/lower,
 /obj/effect/turf_decal/trimline/secred/filled/corner/lower{
@@ -29802,6 +29806,34 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"nRu" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 10
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/structure/closet/crate{
+	name = "solar pack crate"
+	},
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/circuitboard/computer/solar_control,
+/obj/item/electronics/tracker,
+/obj/item/paper/guides/jobs/engi/solars,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "nRH" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -34100,16 +34132,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
-"qvd" = (
-/obj/machinery/power/port_gen/pacman,
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 10
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "qvv" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -39858,15 +39880,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"tWD" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/turf/open/floor/catwalk_floor,
-/area/engine/engineering)
 "tXz" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -127119,7 +127132,7 @@ wVY
 djR
 bLr
 mnu
-jLE
+eie
 aQW
 hJe
 oMh
@@ -128917,8 +128930,8 @@ ich
 sKR
 shC
 mFU
-afT
-qvd
+kLX
+nRu
 aSh
 aSh
 aSh
@@ -130203,7 +130216,7 @@ vxW
 vur
 svA
 tCZ
-tWD
+hgh
 aiD
 gIU
 aZM
