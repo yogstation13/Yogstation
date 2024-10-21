@@ -20,6 +20,10 @@ GLOBAL_LIST_INIT(store_glasses, generate_store_items(/datum/store_item/glasses))
 	name = "Jamjar Glasses"
 	item_path = /obj/item/clothing/glasses/regular/jamjar
 
+/datum/store_item/glasses/prescription_glasses/betterunshit
+    name = "modern glasses"
+    item_path = /obj/item/clothing/glasses/regular/betterunshit
+
 /*
 *	COSMETIC GLASSES
 */
