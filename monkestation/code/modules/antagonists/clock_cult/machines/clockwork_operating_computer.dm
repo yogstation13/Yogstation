@@ -13,6 +13,7 @@
 												/datum/surgery/healing/brute/upgraded/femto,
 												/datum/surgery/healing/burn/upgraded/femto,
 												/datum/surgery/healing/combo/upgraded/femto,
+												/datum/surgery/robot_healing/experimental,
 												/datum/surgery/revival)
 
 /obj/machinery/computer/operating/clockwork/Initialize(mapload)

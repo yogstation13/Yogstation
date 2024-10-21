@@ -26,7 +26,7 @@
 		return TRUE
 
 /datum/surgery_step/fix_robot_brain
-	name = "fix posibrain"
+	name = "fix posibrain (multitool)"
 	implements = list(
 		TOOL_MULTITOOL = 100,
 		TOOL_HEMOSTAT = 35,

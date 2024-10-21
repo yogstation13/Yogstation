@@ -82,3 +82,16 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/power_cord
+	name = "power cord implant"
+	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
+	id = "power_cord"
+	build_type = MECHFAB
+	construction_time = 15 SECONDS
+	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2000)
+	build_path = /obj/item/organ/internal/cyberimp/arm/item_set/power_cord
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

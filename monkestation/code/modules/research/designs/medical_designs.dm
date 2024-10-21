@@ -46,3 +46,24 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/surgery/robot_healing // Apparently this helps the code not scream looking at other examples?
+	name = "Repair Robotic Limbs"
+	desc = "A surgical procedure that provides highly effective repairs and maintenance to robotic limbs."
+	surgery = /datum/surgery/robot_healing
+	id = "surgery_heal_robot_base"
+	research_icon_state = "surgery_chest"
+	
+/datum/design/surgery/robot_healing/upgraded
+	name = "Repair Robotic Limbs (Physical) Upgrade"
+	desc = "A surgical procedure that provides highly effective repairs and maintenance to robotic limbs. Is somewhat more efficient when the patient is severely damaged."
+	surgery = /datum/surgery/robot_healing/upgraded
+	id = "surgery_heal_robot_upgrade"
+	research_icon_state = "surgery_chest"
+
+/datum/design/surgery/robot_healing/upgraded_2
+	name = "Repair Robotic Limbs (Physical) Upgrade"
+	desc = "A surgical procedure that quickly provides highly effective repairs and maintenance to robotic limbs. Is moderately more efficient when the patient is severely damaged."
+	surgery = /datum/surgery/robot_healing/experimental
+	id = "surgery_heal_robot_upgrade_femto"
+	research_icon_state = "surgery_chest"

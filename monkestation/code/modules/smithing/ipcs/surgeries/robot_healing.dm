@@ -16,7 +16,7 @@
 	possible_locs = list(BODY_ZONE_CHEST)
 	replaced_by = /datum/surgery
 	requires_bodypart_type = BODYTYPE_ROBOTIC
-	surgery_flags = SURGERY_IGNORE_CLOTHES | SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB
+	surgery_flags = SURGERY_IGNORE_CLOTHES | SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_SELF_OPERABLE
 
 	/// The step to use in the 4th surgery step.
 	var/healing_step_type
