@@ -503,12 +503,15 @@
 	playsound(src, sound, 50, TRUE)
 	loc.visible_message(span_notice("[icon2html(src)] [span_notice("The [src] displays a [origin.filedesc] notification: [alerttext]")]"))
 
-/obj/item/modular_computer/proc/ring(ringtone) // bring bring
+/obj/item/modular_computer/proc/ring(ringtone, list/balloon_alertees) // bring bring
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))
 		playsound(src, pick('sound/machines/twobeep_voice1.ogg', 'sound/machines/twobeep_voice2.ogg'), 50, TRUE)
 	else
 		playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
-	audible_message("*[ringtone]*")
+	ringtone = "*[ringtone]*"
+	audible_message(ringtone)
+	for(var/mob/living/alertee in balloon_alertees)
+		alertee.balloon_alert(alertee, ringtone)
 
 /obj/item/modular_computer/proc/send_sound()
 	playsound(src, 'sound/machines/terminal_success.ogg', 15, TRUE)

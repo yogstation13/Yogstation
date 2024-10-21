@@ -686,7 +686,7 @@
 		to_chat(receiver_mob, span_infoplain("[icon2html(computer, receiver_mob)] <b>PDA message from [sender_title], </b>\"[inbound_message]\"[photo_message] [reply]"))
 
 	if (alert_able && should_ring)
-		computer.ring(ringtone)
+		computer.ring(ringtone, list(receiver_mob))
 
 	SStgui.update_uis(computer)
 	update_pictures_for_all()
