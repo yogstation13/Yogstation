@@ -1409,22 +1409,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"aiC" = (
-/obj/effect/turf_decal/trimline/brown/filled/corner{
-	dir = 8
-	},
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aiD" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -4290,13 +4274,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
-"aAH" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad2"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aAK" = (
 /turf/closed/wall,
 /area/medical/genetics)
@@ -8271,17 +8248,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/qm)
-"aWP" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aWS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -8389,19 +8355,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"aXD" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad2"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "aXE" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -9464,6 +9417,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"bCm" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "bCz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -15937,6 +15901,16 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+"flW" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/catwalk_floor,
+/area/engine/engineering)
 "flX" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -18961,16 +18935,6 @@
 /obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"hgh" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/power/port_gen/pacman,
-/turf/open/floor/catwalk_floor,
-/area/engine/engineering)
 "hgs" = (
 /obj/structure/sign/painting{
 	persistence_id = "public";
@@ -21378,6 +21342,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"iHW" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad"
+	},
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "iHZ" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
@@ -29806,34 +29782,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"nRu" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 10
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/structure/closet/crate{
-	name = "solar pack crate"
-	},
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/circuitboard/computer/solar_control,
-/obj/item/electronics/tracker,
-/obj/item/paper/guides/jobs/engi/solars,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "nRH" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -31393,6 +31341,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oJI" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad2"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "oJL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -39988,6 +39947,34 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"ubx" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 10
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/structure/closet/crate{
+	name = "solar pack crate"
+	},
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/circuitboard/computer/solar_control,
+/obj/item/electronics/tracker,
+/obj/item/paper/guides/jobs/engi/solars,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "ubC" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
@@ -40602,6 +40589,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"uwI" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Security Maintenance"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore/lower)
 "uwR" = (
 /obj/effect/landmark/stationroom/maint/fivexthree,
 /turf/template_noop,
@@ -44026,19 +44026,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"wxT" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Security Maintenance"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/effect/mapping_helpers/airlock/access/all/security/basic,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore/lower)
 "wya" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -70280,7 +70267,7 @@ ckC
 eES
 sSo
 fvg
-wxT
+uwI
 sFF
 hPm
 sHt
@@ -125785,11 +125772,11 @@ aXo
 aXo
 kqI
 tsh
-aXD
+oJI
 aca
 eVs
 aca
-aiC
+bCm
 tsh
 aLm
 aXo
@@ -126042,11 +126029,11 @@ qdO
 nfI
 aSe
 aKe
-aAH
+oJI
 aBy
 air
 aBy
-aWP
+iHW
 aaH
 aVK
 sBh
@@ -128931,7 +128918,7 @@ sKR
 shC
 mFU
 kLX
-nRu
+ubx
 aSh
 aSh
 aSh
@@ -130216,7 +130203,7 @@ vxW
 vur
 svA
 tCZ
-hgh
+flW
 aiD
 gIU
 aZM
