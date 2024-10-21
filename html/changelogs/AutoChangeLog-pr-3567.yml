@@ -1,0 +1,10 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Made upgraded robotic wound tending a researchable surgery"
+  - rscadd: "Gave Exp. Robotic wound tending part to the clockwork operating terminal"
+  - qol: "Adjusted IPC brain surgery steps to clarify tools more"
+  - rscadd: "Gave prisoners and NT rep's postions in crew tracking on crew monitors."
+  - qol: "Removes quartermasters from blueshield's handheld devices tracking."
+  - balance: "Removes IPC organ smuggling from the Medbays bounty pool."
+  - rscadd: "Adds powercable cybernetics as a researchable and printable technology"
