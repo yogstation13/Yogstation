@@ -1,0 +1,13 @@
+author: "ven1883"
+delete-after: True
+changes:
+  - balance: "tribal claw rebalance"
+  - balance: "Tribal Claw now costs 10 TC, an increase of 3."
+  - balance: "Tribal Claw now gives you 20% armor against melee, bullets, and lasers, as well as giving you wound resistance."
+  - balance: "Tribal Claw now gives Hard Soles (run on glass my pretties)"
+  - balance: "Tribal Claw now has a 60% block chance against melee when in throw mode."
+  - balance: "Face Scratch now deals 30 damage instead of 10 as well as its original effects"
+  - balance: "Jugular Cut now deals 10 oxygen damage and causes breath loss for 10 seconds per combo hit, capping out at 50 seconds."
+  - balance: "Jugular Cut has a strong attack on sleeping or neck grabbed targets, which deals 60 damage and a Weeping Avulsion."
+  - balance: "Jugular Cut has a weak attack on standing targets for 15 damage, but only does a Open Laceration"
+  - code_imp: "minor code fixes in Tribal Claw"
