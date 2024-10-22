@@ -175,6 +175,7 @@
 				to_chat(C, span_userdanger("You fall in and swallow some water!"))
 		else
 			to_chat(M, span_userdanger("You fall in the water!"))
+		return ZIMPACT_CANCEL_DAMAGE
 
 /obj/effect/abstract/liquid_turf/Initialize(mapload, datum/liquid_group/group_to_add)
 	. = ..()
