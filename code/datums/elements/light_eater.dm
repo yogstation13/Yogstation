@@ -44,7 +44,7 @@
  * - [food][/atom]: The atom to start the search for lights at.
  * - [eater][/datum]: The light eater being used in this case.
  */
-/datum/element/light_eater/proc/eat_lights(atom/food, datum/eater)
+/datum/element/light_eater/proc/eat_lights(atom/food, datum/eater, silent) // monkestation edit
 	var/list/buffet = table_buffet(food)
 	if(!LAZYLEN(buffet))
 		return 0
@@ -53,7 +53,7 @@
 	for(var/morsel in buffet)
 		. += devour(morsel, eater)
 
-	if(!.)
+	if(!. || silent) // monkestation edit
 		return
 
 	food.visible_message(

@@ -24,6 +24,7 @@
 		TRAIT_NODISMEMBER,
 		TRAIT_NOHUNGER,
 		TRAIT_NOBLOOD,
+		TRAIT_NO_PAIN_EFFECTS, // monkestation edit
 	)
 
 	mutantheart = /obj/item/organ/internal/heart/nightmare

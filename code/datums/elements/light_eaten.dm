@@ -10,10 +10,10 @@
 
 	. = ..()
 	var/atom/atom_target = target
-	RegisterSignal(atom_target, COMSIG_ATOM_SET_LIGHT_POWER, PROC_REF(block_light_power))
-	RegisterSignal(atom_target, COMSIG_ATOM_SET_LIGHT_RANGE, PROC_REF(block_light_range))
-	RegisterSignal(atom_target, COMSIG_ATOM_SET_LIGHT_ON, PROC_REF(block_light_on))
-	RegisterSignal(atom_target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(atom_target, COMSIG_ATOM_SET_LIGHT_POWER, PROC_REF(block_light_power), override = TRUE) // monkestation edit
+	RegisterSignal(atom_target, COMSIG_ATOM_SET_LIGHT_RANGE, PROC_REF(block_light_range), override = TRUE) // monkestation edit
+	RegisterSignal(atom_target, COMSIG_ATOM_SET_LIGHT_ON, PROC_REF(block_light_on), override = TRUE) // monkestation edit
+	RegisterSignal(atom_target, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine), override = TRUE) // monkestation edit
 
 	/// Because the lighting system does not like movable lights getting set_light() called.
 	switch(atom_target.light_system)
@@ -64,7 +64,7 @@
 /datum/element/light_eaten/proc/on_examine(atom/eaten_light, mob/examiner, list/examine_text)
 	SIGNAL_HANDLER
 	examine_text += span_warning("It's dark and empty...")
-	if(isliving(examiner) && prob(20))
+	if(isliving(examiner) && prob(20) && !isnightmare(examiner)) // monkestation edit
 		var/mob/living/target = examiner
 		examine_text += span_danger("You can feel something in [eaten_light.p_them()] gnash at your eyes!")
 		target.adjust_temp_blindness(10 SECONDS)

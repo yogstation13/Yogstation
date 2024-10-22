@@ -44,3 +44,6 @@
 #define COMSIG_LIVING_GIVE_ITEM_CHECK "living_give_item_check"
 
 #define COMSIG_LIVING_ITEM_OFFERED_PRECHECK "living_item_offer_precheck"
+
+/// Initiates a nightmare snuff check (eats dim lights on everything within 2 tiles) with the given args. (turf/start_turf)
+#define COMSIG_NIGHTMARE_SNUFF_CHECK "nightmare_snuff_check"
