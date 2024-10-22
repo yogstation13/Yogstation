@@ -1,7 +1,0 @@
-author: "SapphicOverload"
-delete-after: true 
-changes: 
-  - tweak: "Fall damage can now break bones, or dismember if you're an IPC"
-  - tweak: "Landing in deep enough liquids prevents fall damage"
-  - tweak: "Cats are now immune to fall damage"
-  - bugfix: "Fixed RCD construction effects being affected by gravity"
