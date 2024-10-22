@@ -1,0 +1,7 @@
+author: "DexeeXI"
+delete-after: True
+changes:
+  - rscadd: "Voidraptor's BP office is now upgraded and working as intended."
+  - rscadd: "shower drains to BP offices on all maps but ouroboros (thanks Moberry)"
+  - bugfix: "QM's office on Theseus is now cargo brown without command stuff."
+  - rscdel: "removed a redundant (very well hidden on SDMM) fire extinguisher cabinet from the BP office on Theseus."
