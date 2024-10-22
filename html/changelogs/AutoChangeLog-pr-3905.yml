@@ -1,6 +1,0 @@
-author: "Absolucy, mc-oofert"
-delete-after: True
-changes:
-  - qol: "Slaughter/laughter demons have a cooler round end report."
-  - qol: "You may not bodyslam yourself as a demon"
-  - code_imp: "Slaughter and laughter demons are given their antag datum when their mind initializes."

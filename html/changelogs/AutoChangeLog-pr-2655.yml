@@ -1,6 +1,0 @@
-author: "flleeppyy"
-delete-after: True
-changes:
-  - rscadd: "added Plexora subsystem for Plexora bot integration"
-  - admin: "Admin and Mentor tickets will be relayed to the Discord server via Plexora."
-  - admin: "External PM's from the Discord will show usernames as `usernamehere(Plexora/External)`.\nserver:"
