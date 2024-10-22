@@ -1,0 +1,4 @@
+author: "N3D6"
+delete-after: true 
+changes: 
+  - mapping: "fixes some space tiles on icemeta"
