@@ -1,3 +1,4 @@
+/// if you're porting this from yogstation let it be known it was originally from /tg/, include where you got it from! -- thanks @Time-Green and all other contributers!
 ///A component that lets you turn an object invisible when you're standing on certain relative turfs to it, like behind a tree
 /datum/component/seethrough
 	///List of lists that represent relative coordinates to the source atom
