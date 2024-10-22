@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added a new final objective for obsessed, 'Protect 'Target' from any harm'"
+  - rscadd: "Obsessed trauma now disguises itself as another trauma until time is spent with the target."
+  - rscadd: "Added more greet text when becoming obsessed."
