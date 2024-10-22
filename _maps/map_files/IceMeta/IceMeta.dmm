@@ -13455,7 +13455,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/west,
+/obj/machinery/power/apc/auto_name/west{
+	pixel_x = -25
+	},
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "dWi" = (
@@ -29693,9 +29695,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"iJR" = (
-/turf/open/openspace/icemoon/keep_below,
-/area/icemoon/surface/outdoors)
 "iJS" = (
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
@@ -62594,7 +62593,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "san" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -161868,7 +161869,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -164183,7 +164184,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -165990,7 +165991,7 @@ oVp
 oVp
 wMi
 wMi
-iJR
+wMi
 wMi
 wMi
 wMi
