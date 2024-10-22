@@ -58,7 +58,7 @@
 
 /obj/item/chainsaw/attack_self(mob/user)
 	on = !on
-	to_chat(user, "As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")
+	to_chat(user, span_notice("As you pull the starting cord dangling from [src], [on ? "it begins to whirr." : "the chain stops moving."]")) // monkestation edit
 	force = on ? force_on : initial(force)
 	throwforce = on ? force_on : initial(force)
 	icon_state = "chainsaw_[on ? "on" : "off"]"
@@ -99,12 +99,14 @@
 	armour_penetration = 100
 	force_on = 30
 
+/* MONKESTATION REMOVAL START
 /obj/item/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		owner.visible_message(span_danger("Ranged attacks just make [owner] angrier!"))
 		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, TRUE)
 		return TRUE
 	return FALSE
+MONKESTATION REMOVAL END */
 
 /obj/item/chainsaw/mounted_chainsaw
 	name = "mounted chainsaw"

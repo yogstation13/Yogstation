@@ -364,7 +364,7 @@
 
 /datum/status_effect/mayhem
 	id = "Mayhem"
-	duration = 2 MINUTES
+	duration = 1 MINUTE // monkestation edit
 	/// The chainsaw spawned by the status effect
 	var/obj/item/chainsaw/doomslayer/chainsaw
 
@@ -387,9 +387,11 @@
 	if(iscarbon(owner))
 		chainsaw = new(get_turf(owner))
 		ADD_TRAIT(chainsaw, TRAIT_NODROP, CHAINSAW_FRENZY_TRAIT)
+		chainsaw.item_flags |= DROPDEL // monkestation addition
+		chainsaw.resistance_flags |= INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // monkestation addition
 		owner.put_in_hands(chainsaw, forced = TRUE)
 		chainsaw.attack_self(owner)
-		owner.reagents.add_reagent(/datum/reagent/medicine/adminordrazine, 25)
+		//owner.reagents.add_reagent(/datum/reagent/medicine/adminordrazine, 25) MONKESTATION REMOVAL
 
 	owner.log_message("entered a blood frenzy", LOG_ATTACK)
 	to_chat(owner, span_warning("KILL, KILL, KILL! YOU HAVE NO ALLIES ANYMORE, KILL THEM ALL!"))

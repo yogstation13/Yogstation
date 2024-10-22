@@ -142,4 +142,7 @@
 /// Mob does not homeostasize body temperature
 #define TRAIT_COLD_BLOODED "cold_blooded"
 
+/// Mob can't strip other mobs, overrides TRAIT_CAN_STRIP. Importantly, they cannot *open* strip menus, so this is used for mayhem in a bottle.
+#define TRAIT_CANT_STRIP "cant_strip"
+
 // END TRAIT DEFINES
