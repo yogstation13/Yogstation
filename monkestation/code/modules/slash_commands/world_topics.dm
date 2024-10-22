@@ -83,7 +83,18 @@
 		logger.Log(LOG_CATEGORY_DEBUG, "NO REPLY CLIENT FOUND")
 		return
 
-	to_chat(chosen_client, "<font color='purple'>Mentor PM from-<b>[key_name_mentor(from, chosen_client, TRUE, FALSE, FALSE)]</b>: [msg]</font>")
+	chosen_client << 'sound/items/bikehorn.ogg'
+	to_chat(chosen_client,
+		type = MESSAGE_TYPE_MODCHAT,
+		html = "<font color='purple'>Mentor PM from-<b>[key_name_mentor(from, chosen_client, TRUE, FALSE, FALSE)]</b>: [msg]</font>",
+		confidential = TRUE)
+	for(var/client/honked_clients in GLOB.mentors | GLOB.admins)
+		/// Check client/honked_clients is an Mentor and isn't the Sender/Recipient
+		if(honked_clients.key!=chosen_client.key)
+			to_chat(honked_clients,
+				type = MESSAGE_TYPE_MODCHAT,
+				html = "<B><font color='green'>Mentor PM: [key_name_mentor(from, honked_clients, FALSE, FALSE)]-&gt;[key_name_mentor(chosen_client, honked_clients, FALSE, FALSE)]:</B> <font color = #5c00e6> <span class='message linkify'>[msg]</span></font>",
+				confidential = TRUE)
 
 	var/regular_webhook_url = CONFIG_GET(string/regular_mentorhelp_webhook_url)
 	if(regular_webhook_url)

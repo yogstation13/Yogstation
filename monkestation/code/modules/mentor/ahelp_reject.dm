@@ -1,3 +1,8 @@
+#define CHECK_AHELP_ACTIVE\
+	if(state != AHELP_ACTIVE) { \
+		return;\
+	};
+
 /datum/admin_help/ClosureLinks(ref_src)
 	. = ..()
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mhelp'>MHELP</A>)"
@@ -11,6 +16,8 @@
 	. = ..()
 	switch(action)
 		if("mhelp")
+			CHECK_AHELP_ACTIVE
+			SSplexora.aticket_closed(src, usr.ckey, AHELP_CLOSETYPE_CLOSE, AHELP_CLOSEREASON_MENTOR)
 			MHelpThis()
 
 /datum/admin_help/proc/MHelpThis(key_name = key_name_admin(usr))
@@ -31,3 +38,5 @@
 	log_admin_private(msg)
 	AddInteraction("Told to mentorhelp by [key_name].")
 	Close(silent = TRUE)
+
+#undef CHECK_AHELP_ACTIVE

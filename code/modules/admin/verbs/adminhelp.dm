@@ -1,3 +1,10 @@
+// monkestation start
+#define CHECK_AHELP_ACTIVE\
+	if(state != AHELP_ACTIVE) { \
+		return;\
+	};
+// monkestation end
+
 /// Client var used for returning the ahelp verb
 /client/var/adminhelptimerid = 0
 /// Client var used for tracking the ticket the (usually) not-admin client is dealing with
@@ -119,6 +126,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		C.current_ticket.initiator = C
 		C.current_ticket.AddInteraction("Client reconnected.")
 		SSblackbox.LogAhelp(C.current_ticket.id, "Reconnected", "Client reconnected", C.ckey)
+		SSplexora.aticket_connection(C.current_ticket, FALSE) // monkestation edit: PLEXORA
 
 //Dissasociate ticket
 /datum/admin_help_tickets/proc/ClientLogout(client/C)
@@ -128,6 +136,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		//Gotta async this cause clients only logout on destroy, and sleeping in destroy is disgusting
 		INVOKE_ASYNC(SSblackbox, TYPE_PROC_REF(/datum/controller/subsystem/blackbox, LogAhelp), T.id, "Disconnected", "Client disconnected", C.ckey)
 		T.initiator = null
+		SSplexora.aticket_connection(C.current_ticket) // monkestation edit: PLEXORA
 
 //Get a ticket given a ckey
 /datum/admin_help_tickets/proc/CKey2ActiveTicket(ckey)
@@ -239,7 +248,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(is_bwoink)
 		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>", player_message = "<font color='blue'>[key_name_admin(usr, include_name = FALSE)] PM'd [LinkedReplyName()]</font>")
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
+		SSplexora.aticket_new(src, msg_raw, is_bwoink, urgent, usr.ckey) // monkestation edit: PLEXORA
 	else
+		SSplexora.aticket_new(src, msg_raw, is_bwoink, urgent) // monkestation edit: PLEXORA
 		MessageNoRecipient(msg_raw, urgent)
 		send_message_to_tgs(msg, urgent)
 	GLOB.ahelp_tickets.active_tickets += src
@@ -463,6 +474,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	SSblackbox.LogAhelp(id, "Reopened", "Reopened by [usr.key]", usr.ckey)
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "reopened")
+	SSplexora.aticket_reopened(src, usr.ckey) // monkestation edit: PLEXORA
 	TicketPanel() //can only be done from here, so refresh it
 
 //private
@@ -504,6 +516,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	AddInteraction("<font color='green'>Resolved by [key_name].</font>", player_message = "<font color='green'>Ticket resolved!</font>")
 	to_chat(initiator, span_adminhelp("Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly."), confidential = TRUE)
+
 	if(!silent)
 		SSblackbox.record_feedback("tally", "ahelp_stats", 1, "resolved")
 		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name]"
@@ -531,6 +544,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	AddInteraction("Rejected by [key_name].", player_message = "Ticket rejected!")
 	SSblackbox.LogAhelp(id, "Rejected", "Rejected by [usr.key]", null, usr.ckey)
+
 	Close(silent = TRUE)
 
 //Resolve ticket with IC Issue message
@@ -630,18 +644,27 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			TicketPanel()
 		if("retitle")
 			Retitle()
-		if("reject")
-			Reject()
 		if("reply")
 			usr.client.cmd_ahelp_reply(initiator)
+		if("reopen")
+			CHECK_AHELP_ACTIVE
+			Reopen()
+		if("reject")
+			CHECK_AHELP_ACTIVE
+			SSplexora.aticket_closed(src, usr.ckey, AHELP_CLOSETYPE_REJECT)
+			Reject()
 		if("icissue")
+			CHECK_AHELP_ACTIVE
+			SSplexora.aticket_closed(src, usr.ckey, AHELP_CLOSETYPE_RESOLVE, AHELP_CLOSEREASON_IC)
 			ICIssue()
 		if("close")
+			CHECK_AHELP_ACTIVE
+			SSplexora.aticket_closed(src, usr.ckey, AHELP_CLOSETYPE_CLOSE)
 			Close()
 		if("resolve")
+			CHECK_AHELP_ACTIVE
+			SSplexora.aticket_closed(src, usr.ckey, AHELP_CLOSETYPE_RESOLVE)
 			Resolve()
-		if("reopen")
-			Reopen()
 
 /datum/admin_help/proc/player_ticket_panel()
 	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Player Ticket</title></head>")
@@ -1133,3 +1156,4 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 #undef WEBHOOK_URGENT
 #undef WEBHOOK_NONE
 #undef WEBHOOK_NON_URGENT
+#undef CHECK_AHELP_ACTIVE

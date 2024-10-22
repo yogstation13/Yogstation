@@ -129,11 +129,13 @@
 		if ("approve")
 			if (usr.client?.holder && status == INTERVIEW_PENDING)
 				src.approve(usr)
+				SSplexora.interview(src) // Monkestation edit: plexora
 				. = TRUE
 		if ("deny")
 			if (usr.client?.holder && status == INTERVIEW_PENDING)
 				src.deny(usr)
 				. = TRUE
+				SSplexora.interview(src) // Monkestation edit: plexora
 		if ("adminpm")
 			if (usr.client?.holder && owner)
 				usr.client.cmd_admin_pm(owner, null)

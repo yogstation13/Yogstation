@@ -68,16 +68,27 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 		if(processing_interval > 0)
 			if(Master.processing && Master.iteration)
 				if (defcon > 1 && (!Master.stack_end_detector || !Master.stack_end_detector.check()))
-
-					to_chat(GLOB.admins, span_boldannounce("ERROR: The Master Controller code stack has exited unexpectedly, Restarting..."))
+					// Monkestation edit: start - plexora
+					var/msg = "ERROR: The Master Controller code stack has exited unexpectedly, Restarting..."
+					to_chat(GLOB.admins, span_boldannounce(msg))
+					SSplexora.mc_alert(msg, defcon)
+					// Monkestation edit: end
 					defcon = 0
 					var/rtn = Recreate_MC()
 					if(rtn > 0)
 						master_iteration = 0
-						to_chat(GLOB.admins, span_adminnotice("MC restarted successfully"))
+						// Monkestation edit: start - plexora
+						msg = "MC restarted successfully"
+						to_chat(GLOB.admins, span_adminnotice(msg))
+						SSplexora.mc_alert(msg, defcon)
+						// Monkestation edit: end
 					else if(rtn < 0)
 						log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
-						to_chat(GLOB.admins, span_boldannounce("ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying."))
+						// Monkestation edit: start - plexora
+						msg = "ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying."
+						to_chat(GLOB.admins, span_boldannounce(msg))
+						SSplexora.mc_alert(msg, defcon)
+						// Monkestation edit: end
 				// Check if processing is done yet.
 				if(Master.iteration == master_iteration)
 					switch(defcon)
@@ -85,24 +96,44 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							--defcon
 
 						if(3)
-							message_admins(span_adminnotice("Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks."))
+							// Monkestation edit: start - plexora
+							var/msg = "Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks."
+							message_admins(span_adminnotice(msg))
+							SSplexora.mc_alert(msg)
+							// Monkestation edit: end
 							--defcon
 
 						if(2)
-							to_chat(GLOB.admins, span_boldannounce("Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks."))
+							// Monkestation edit: start - plexora
+							var/msg = "Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks."
+							to_chat(GLOB.admins, span_boldannounce(msg))
+							SSplexora.mc_alert(msg)
+							// Monkestation edit: end
 							--defcon
 
 						if(1)
-							to_chat(GLOB.admins, span_boldannounce("Warning: DEFCON [defcon_pretty()]. The Master Controller has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting..."))
+							// Monkestation edit: start - plexora
+							var/msg = "Warning: DEFCON [defcon_pretty()]. The Master Controller has still not fired within the last [(5-defcon) * processing_interval] ticks. Killing and restarting..."
+							to_chat(GLOB.admins, span_boldannounce(msg))
+							SSplexora.mc_alert(msg, defcon)
+							// Monkestation edit: end
 							--defcon
 							var/rtn = Recreate_MC()
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, span_adminnotice("MC restarted successfully"))
+								// Monkestation edit: start - plexora
+								msg = "MC restarted successfully"
+								to_chat(GLOB.admins, span_adminnotice(msg))
+								SSplexora.mc_alert(msg, defcon)
+								// Monkestation edit: end
 							else if(rtn < 0)
 								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
-								to_chat(GLOB.admins, span_boldannounce("ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying."))
+								// Monkestation edit: start - plexora
+								msg = "ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying."
+								to_chat(GLOB.admins, span_boldannounce(msg))
+								SSplexora.mc_alert(msg, defcon)
+								// Monkestation edit: end
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
 
@@ -111,7 +142,11 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							if(rtn > 0)
 								defcon = 4
 								master_iteration = 0
-								to_chat(GLOB.admins, span_adminnotice("MC restarted successfully"))
+								// Monkestation edit: start - plexora
+								var/msg = "MC restarted successfully"
+								to_chat(GLOB.admins, span_adminnotice(msg))
+								SSplexora.mc_alert(msg, defcon)
+								// Monkestation edit: end
 				else
 					defcon = min(defcon + 1,5)
 					master_iteration = Master.iteration
@@ -156,7 +191,9 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	if (. == 1) //We were able to create a new master
 		SSticker.Recover(); //Recover the ticket system so the Masters runlevel gets set
 		Master.Initialize(10, FALSE, FALSE) //Need to manually start the MC, normally world.new would do this
-		to_chat(GLOB.admins, span_adminnotice("MC successfully recreated after recovering all subsystems!"))
+		var/msg = "MC successfully recreated after recovering all subsystems!"
+		to_chat(GLOB.admins, span_adminnotice(msg))
+		SSplexora.mc_alert(msg, Failsafe.defcon)
 	else
 		message_admins(span_boldannounce("Failed to create new MC!"))
 

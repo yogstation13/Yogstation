@@ -103,6 +103,27 @@
 		log_admin_private(pm)
 		message_admins("[header]:<br>[text]")
 		admin_ticket_log(target_ckey, "<font color='blue'>[header]</font><br>[text]")
+		// Monkestation edit start - plexora
+		var/datum/client_interface/mock_player = new(target_ckey)
+		mock_player.prefs = new /datum/preferences(mock_player)
+
+		var/list/plexora_note = list(
+			"ckey" = target_ckey,
+			"type" = type,
+			"text" = text,
+			"secret" = secret,
+			"expiration_time" = expiry || null,
+			"note_severity" = note_severity,
+			"admin_ckey" = admin_ckey,
+			"admin_key_name" = key_name(usr),
+			"round_id" = GLOB.round_id,
+			"round_timer" = ROUND_TIME(),
+			"world_time" = world.time,
+		)
+
+		plexora_note["total_playtime"] = mock_player.get_exp_living()
+		SSplexora.new_note(plexora_note)
+		// Monkestation edit end
 		if(browse)
 			browse_messages("[type]")
 		else

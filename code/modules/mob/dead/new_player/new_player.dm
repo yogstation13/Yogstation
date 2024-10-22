@@ -390,7 +390,7 @@
 		remove_verb(mob, verb_path)
 
 	// Then we create the interview form and show it to the client
-	var/datum/interview/I = GLOB.interviews.interview_for_client(mob)
+	var/datum/interview/I = GLOB.interviews.interview_for_client(src)
 	if (I)
 		I.ui_interact(mob)
 

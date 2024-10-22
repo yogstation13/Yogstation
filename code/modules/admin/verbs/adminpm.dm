@@ -1,4 +1,4 @@
-#define EXTERNALREPLYCOUNT 2
+// monkestation edit: moved EXTERNALREPLYCOUNT to __defines
 #define EXTERNAL_PM_USER "IRCKEY"
 
 // HEY FUCKO, IMPORTANT NOTE!
@@ -304,10 +304,11 @@
 /// or a /client, in which case we send in the standard form
 /// send_message is the raw message to send, it will be filtered and treated to ensure we do not break any text handling
 /// Returns FALSE if the send failed, TRUE otherwise
-/client/proc/sends_adminpm_message(ambiguious_recipient, send_message)
+/client/proc/sends_adminpm_message(ambiguious_recipient, raw_send_message)
 	if(IsAdminAdvancedProcCall())
 		return FALSE
 
+	var/send_message = raw_send_message // monkestation edit: PLEXORA
 	send_message = adminpm_filter_text(ambiguious_recipient, send_message)
 	if(!send_message)
 		return null
@@ -339,6 +340,7 @@
 		var/category = "Reply: [ckey]"
 		if(new_admin_help)
 			category = "#[new_help_id] [category]"
+			SSplexora.aticket_pm(new_admin_help, raw_send_message) // monkestation edit: PLEXORA
 
 		send2adminchat(category, raw_message)
 		return TRUE
@@ -414,6 +416,14 @@
 			span_linkify(send_message),
 		)
 
+		// monkestation start: PLEXORA
+		if (!ticket || recipient_ticket)
+			var/datum/admin_help = GLOB.ahelp_tickets.TicketByID(recipient_ticket_id)
+
+			SSplexora.aticket_pm(admin_help, raw_send_message, src.ckey) // monkestation edit: PLEXORA
+		else
+			SSplexora.aticket_pm(ticket || recipient_ticket, raw_send_message, src.ckey) // monkestation edit: PLEXORA
+		// monkestation end: PLEXORA
 		to_chat(recipient,
 			type = MESSAGE_TYPE_ADMINPM,
 			html = span_adminsay("<i>Click on the administrator's name to reply.</i>"),
@@ -499,6 +509,8 @@
 				log_in_blackbox = FALSE,
 				player_message = player_interaction_message)
 
+		if (ticket || recipient_ticket) SSplexora.aticket_pm(ticket || recipient_ticket, raw_send_message, src.ckey) // monkestation edit: PLEXORA
+
 		SSblackbox.LogAhelp(ticket_id, "Reply", send_message, recip_ckey, our_ckey)
 		return TRUE
 
@@ -516,6 +528,7 @@
 
 	ticket.reply_to_admins_notification(send_message)
 	SSblackbox.LogAhelp(ticket_id, "Reply", send_message, recip_ckey, our_ckey)
+	SSplexora.aticket_pm(ticket, raw_send_message) // monkestation edit: PLEXORA
 
 	return TRUE
 
@@ -792,5 +805,4 @@
 	SEND_SIGNAL(src, COMSIG_ADMIN_HELP_RECEIVED, message)
 
 #undef EXTERNAL_PM_USER
-#undef EXTERNALREPLYCOUNT
 #undef TGS_AHELP_USAGE

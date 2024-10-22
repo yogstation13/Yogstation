@@ -256,6 +256,7 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 	send2chat(new /datum/tgs_message_content("[GLOB.round_id ? "Round [GLOB.round_id]" : "The round has"] just ended."), CONFIG_GET(string/channel_announce_end_game))
 	send2adminchat("Server", "Round just ended.")
 
+
 	if(length(CONFIG_GET(keyed_list/cross_server)))
 		send_news_report()
 
@@ -303,6 +304,7 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 	ready_for_reboot = TRUE
 	var/datum/discord_embed/embed = format_roundend_embed("<@&999008528595419278>")
 	send2roundend_webhook(embed)
+	SSplexora.roundended()
 	// monkestation end
 	standard_reboot()
 

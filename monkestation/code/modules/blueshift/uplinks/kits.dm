@@ -19,7 +19,7 @@
 	name = "M-90gl Carbine Case (Hard)"
 	desc = "A fully-loaded, specialized three-round burst carbine that fires .223 ammunition from a 30 round magazine \
 		with a 40mm underbarrel grenade launcher. Use secondary-fire to fire the grenade launcher. Comes with two spare magazines \
-		and a box of 40mm rubber slugs."
+		and a box of 40mm HE."
 	item = /obj/item/storage/toolbox/guncase/m90gl
 	cost = 14
 

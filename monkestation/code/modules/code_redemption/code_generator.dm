@@ -13,18 +13,68 @@ GLOBAL_LIST_INIT(stored_codes, list())
 
 	switch(choice)
 		if("Coins")
-			generate_coin_code()
+			generate_coin_code_tgui()
 		if("Loadout Items")
-			generate_loadout_code()
+			generate_loadout_code_tgui()
 		if("Antag Tokens")
-			generate_antag_token_code()
+			generate_antag_token_code_tgui()
 		if("Unusual")
-			generate_unsual_code()
+			generate_unusual_code_tgui()
 
-/proc/generate_coin_code(no_logs = FALSE)
+/proc/generate_coin_code_tgui(no_logs = FALSE)
 	if(!check_rights(R_FUN))
 		return
 	var/amount = tgui_input_number(usr, "Please enter an amount of coins to give", "Coin Amount", 0, 10000, 0)
+	if(!amount)
+		return
+	return generate_coin_code(amount, no_logs)
+
+/proc/generate_loadout_code_tgui(no_logs = FALSE)
+	if(!check_rights(R_FUN))
+		return
+	var/static/list/possible_items
+	if(!possible_items)
+		possible_items = subtypesof(/datum/store_item) - typesof(/datum/store_item/roundstart)
+	var/choice = tgui_input_list(usr, "Please choose a loadout item to award", "Loadout Choice", possible_items)
+	if(!choice)
+		return
+	return generate_loadout_code(choice, no_logs)
+
+/proc/generate_antag_token_code_tgui(no_logs = FALSE)
+	if(!check_rights(R_FUN))
+		return
+	var/choice = tgui_input_list(usr, "Please choose an antag token level to award", "Token Choice", list(HIGH_THREAT, MEDIUM_THREAT, LOW_THREAT))
+	if(!choice)
+		return
+	return generate_antag_token_code(choice, no_logs)
+
+/proc/generate_unusual_code_tgui(no_logs = FALSE)
+	if(!check_rights(R_FUN))
+		return
+	var/item_choice = tgui_alert(usr, "Should it be a random item?", "Loadout Choice", list("Yes", "No"))
+	switch(item_choice)
+		if("Yes")
+			item_choice = pick(GLOB.possible_lootbox_clothing)
+		if("No")
+			item_choice = tgui_input_list(usr, "Please choose a loadout item to award", "Loadout Choice", GLOB.possible_lootbox_clothing)
+	if(!ispath(item_choice))
+		return
+
+	var/static/list/possible_effects
+	if(!possible_effects)
+		possible_effects = subtypesof(/datum/component/particle_spewer) - /datum/component/particle_spewer/movement
+
+	var/effect_choice = tgui_alert(usr, "Should it be a random effect?", "Loadout Choice", list("Yes", "No"))
+	switch(effect_choice)
+		if("Yes")
+			effect_choice = pick(possible_effects)
+		if("No")
+			effect_choice = tgui_input_list(usr, "Please choose an effect to give the item.", "Loadout Choice", possible_effects)
+	if(!ispath(effect_choice))
+		return
+	return generate_unusual_code(item_choice, effect_choice, no_logs)
+
+/proc/generate_coin_code(amount, no_logs = FALSE)
 	if(!amount)
 		return
 	var/string = generate_code_string()
@@ -48,10 +98,7 @@ GLOBAL_LIST_INIT(stored_codes, list())
 		to_chat(usr, span_big("Your generated code is: [string]"))
 	return string
 
-/proc/generate_loadout_code(no_logs = FALSE)
-	if(!check_rights(R_FUN))
-		return
-	var/choice = tgui_input_list(usr, "Please choose a loadout item to award", "Loadout Choice", subtypesof(/datum/store_item) - typesof(/datum/store_item/roundstart))
+/proc/generate_loadout_code(choice, no_logs = FALSE)
 	if(!choice)
 		return
 	reload_global_stored_codes()
@@ -76,12 +123,7 @@ GLOBAL_LIST_INIT(stored_codes, list())
 		to_chat(usr, span_big("Your generated code is: [string]"))
 	return string
 
-/proc/generate_antag_token_code(no_logs = FALSE)
-	if(!check_rights(R_FUN))
-		return
-	var/choice = tgui_input_list(usr, "Please choose an antag token level to award", "Token Choice", list(HIGH_THREAT, MEDIUM_THREAT, LOW_THREAT))
-	if(!choice)
-		return
+/proc/generate_antag_token_code(choice, no_logs = FALSE)
 	var/string = generate_code_string()
 
 	var/json_file = file(CODE_STORAGE_PATH)
@@ -104,30 +146,7 @@ GLOBAL_LIST_INIT(stored_codes, list())
 		to_chat(usr, span_big("Your generated code is: [string]"))
 	return string
 
-/proc/generate_unsual_code(no_logs = FALSE)
-	if(!check_rights(R_FUN))
-		return
-	var/item_choice = tgui_alert(usr, "Should it be a random item?", "Loadout Choice", list("Yes", "No"))
-	if(!item_choice)
-		return
-	if(item_choice == "Yes")
-		item_choice = pick(GLOB.possible_lootbox_clothing)
-	else
-		item_choice = tgui_input_list(usr, "Please choose a loadout item to award", "Loadout Choice", GLOB.possible_lootbox_clothing)
-	if(!item_choice || !ispath(item_choice))
-		return
-
-	var/effect_choice = tgui_alert(usr, "Should it be a random effect?", "Loadout Choice", list("Yes", "No"))
-	if(!effect_choice)
-		return
-	var/static/list/possible_effects = subtypesof(/datum/component/particle_spewer) - /datum/component/particle_spewer/movement
-	if(effect_choice == "Yes")
-		effect_choice = pick(possible_effects)
-	else
-		effect_choice = tgui_input_list(usr, "Please choose an effect to give the item.", "Loadout Choice", possible_effects)
-	if(!effect_choice || !ispath(effect_choice))
-		return
-
+/proc/generate_unusual_code(item_choice, effect_choice, no_logs = FALSE)
 	reload_global_stored_codes()
 	var/string = generate_code_string()
 
@@ -181,11 +200,11 @@ GLOBAL_LIST_INIT(stored_codes, list())
 	var/list/generated_codes = list()
 	for(var/num in 1 to amount)
 		if(choice == "Coins")
-			generated_codes += generate_coin_code(TRUE)
+			generated_codes += generate_coin_code_tgui(TRUE)
 		else if(choice == "Loadout Items")
-			generated_codes += generate_loadout_code(TRUE)
+			generated_codes += generate_loadout_code_tgui(TRUE)
 		else
-			generated_codes += generate_antag_token_code(TRUE)
+			generated_codes += generate_antag_token_code_tgui(TRUE)
 
 	log_game("[usr] generated [amount] new redemption codes.")
 	message_admins("[usr] generated a new redemption codes.")

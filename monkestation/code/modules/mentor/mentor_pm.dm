@@ -31,6 +31,11 @@
 				var/datum/request/request = GLOB.mentor_requests.requests[ckey][length(GLOB.mentor_requests.requests[ckey])]
 				if(request)
 					id = "[request.id]"
+					if (ismob(whom))
+						SSplexora.mticket_pm(request, src.mob, whom, msg)
+					else if (istype(whom, /client))
+						var/client/whom_client = whom
+						SSplexora.mticket_pm(request, src.mob, whom_client.mob, msg)
 
 				var/regular_webhook_url = CONFIG_GET(string/regular_mentorhelp_webhook_url)
 				if(regular_webhook_url)
@@ -60,6 +65,11 @@
 				var/datum/request/request = GLOB.mentor_requests.requests[ckey][length(GLOB.mentor_requests.requests[ckey])]
 				if(request)
 					id = "[request.id]"
+					if (ismob(whom))
+						SSplexora.mticket_pm(request, src.mob, whom, msg)
+					else if (istype(whom, /client))
+						var/client/whom_client = whom
+						SSplexora.mticket_pm(request, src.mob, whom_client.mob, msg)
 
 				var/regular_webhook_url = CONFIG_GET(string/regular_mentorhelp_webhook_url)
 				if(regular_webhook_url)
@@ -124,6 +134,8 @@
 				type = MESSAGE_TYPE_MODCHAT,
 				html = "<font color='green'>Mentor PM to-<b>[key_name_mentor(chosen_client, chosen_client, TRUE, FALSE)]</b>: <span class='message linkify'>[msg]</span></font>",
 				confidential = TRUE)
+			var/datum/request/request = GLOB.mentor_requests.requests[chosen_client.ckey][length(GLOB.mentor_requests.requests[chosen_client.ckey])]
+			SSplexora.mticket_pm(request, src.mob, chosen_client.mob, msg)
 
 	else
 		if(is_mentor())
@@ -133,6 +145,9 @@
 				type = MESSAGE_TYPE_MODCHAT,
 				html = "<font color='green'>Mentor PM to-<b>[key_name_mentor(chosen_client, chosen_client, TRUE, FALSE)]</b>: <span class='message linkify'>[msg]</span></font>",
 				confidential = TRUE)
+			var/datum/request/request = GLOB.mentor_requests.requests[chosen_client.ckey][length(GLOB.mentor_requests.requests[chosen_client.ckey])]
+			SSplexora.mticket_pm(request, src.mob, chosen_client.mob, msg)
+
 
 
 	var/id = "None"
