@@ -1,0 +1,7 @@
+author: "KnigTheThrasher"
+delete-after: True
+changes:
+  - rscadd: "Added portable rtg's to cargo warehouse that's in space"
+  - balance: "Updated kilo solars"
+  - bugfix: "Fixed John Gamers health being 1200 instead of 200"
+  - bugfix: "Fixed medbay security outpost wall items being on the floor"
