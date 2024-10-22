@@ -29665,9 +29665,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"iJR" = (
-/turf/open/openspace/icemoon/keep_below,
-/area/icemoon/surface/outdoors)
 "iJS" = (
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
@@ -161865,7 +161862,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -164180,7 +164177,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -165987,7 +165984,7 @@ oVp
 oVp
 wMi
 wMi
-iJR
+wMi
 wMi
 wMi
 wMi
@@ -265281,7 +265278,7 @@ tRh
 tRh
 tRh
 tRh
-orI
+tRh
 tRh
 tRh
 tRh
