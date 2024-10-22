@@ -104,6 +104,7 @@
 #define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device" //This one ignores alphabetical order cause the arms should be together
 #define ORGAN_SLOT_STOMACH "stomach"
 #define ORGAN_SLOT_STOMACH_AID "stomach_aid"
+#define ORGAN_SLOT_STORAGE_CAVITY "storage_cavity" // monkestation edit
 #define ORGAN_SLOT_THRUSTERS "thrusters"
 #define ORGAN_SLOT_TONGUE "tongue"
 #define ORGAN_SLOT_VOICE "vocal_cords"
