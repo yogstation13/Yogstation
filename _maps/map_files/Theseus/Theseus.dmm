@@ -129,7 +129,7 @@
 "abT" = (
 /mob/living/basic/sloth/citrus,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "acv" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/marker_beacon/yellow,
@@ -3658,7 +3658,7 @@
 /obj/effect/turf_decal/bot,
 /obj/item/trash/ready_donk,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "ben" = (
 /turf/open/floor/iron,
 /area/station/cargo/storage)
@@ -5097,7 +5097,7 @@
 /obj/item/computer_disk/quartermaster,
 /obj/machinery/newscaster/directional/south,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "bBX" = (
 /obj/effect/turf_decal/tile/blue/half{
 	dir = 8
@@ -6843,7 +6843,7 @@
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "cdu" = (
 /obj/structure/chair/wood/wings{
 	dir = 1
@@ -9880,7 +9880,7 @@
 "cWV" = (
 /obj/structure/sign/calendar/directional/south,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "cXA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -15425,7 +15425,7 @@
 	pixel_x = -6
 	},
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "eEm" = (
 /obj/effect/spawner/random/decoration/glowstick,
 /obj/effect/spawner/random/structure/tank_holder,
@@ -15838,7 +15838,7 @@
 /obj/machinery/holopad/secure,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "eOw" = (
 /obj/effect/spawner/structure/window,
 /obj/structure/cable,
@@ -15944,9 +15944,9 @@
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "eQi" = (
-/obj/machinery/modular_computer/preset/id,
+/obj/machinery/computer/cargo,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "eQj" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
@@ -18003,7 +18003,7 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "ful" = (
 /obj/machinery/light/small/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible/layer4,
@@ -18452,7 +18452,7 @@
 	pixel_y = -4
 	},
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "fCO" = (
 /turf/open/floor/carpet,
 /area/station/hallway/secondary/entry)
@@ -18602,7 +18602,7 @@
 	name = "Quartermaster's Fax Machine"
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "fFz" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp/green{
@@ -24062,14 +24062,13 @@
 	},
 /obj/effect/landmark/start/quartermaster,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "hmb" = (
-/obj/machinery/computer/cargo,
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "hmc" = (
 /obj/structure/table/reinforced/rglass,
 /obj/effect/spawner/random/food_or_drink/booze{
@@ -24261,8 +24260,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "hor" = (
-/obj/machinery/door/airlock/command{
-	name = "Quartermaster's Office"
+/obj/machinery/door/airlock/mining/glass{
+	name = "Cargo Bay"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/supply/qm,
 /obj/machinery/door/firedoor,
@@ -24272,7 +24271,7 @@
 /obj/effect/landmark/navigate_destination,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "hoJ" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -31502,7 +31501,7 @@
 /obj/effect/mapping_helpers/requests_console/supplies,
 /obj/effect/mapping_helpers/requests_console/announcement,
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "jxW" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -32935,9 +32934,8 @@
 /obj/structure/bed/dogbed{
 	pixel_x = 3
 	},
-/obj/machinery/keycard_auth/directional/south,
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "jUk" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/hidden{
 	dir = 5
@@ -33468,7 +33466,7 @@
 /obj/item/paper/carbon,
 /obj/item/pen/fountain,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "kcc" = (
 /obj/machinery/atmospherics/pipe/smart/simple/purple/visible{
 	dir = 9
@@ -41475,7 +41473,7 @@
 	pixel_y = 28
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "moM" = (
 /obj/machinery/light{
 	dir = 4
@@ -43609,7 +43607,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "mYt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -48522,7 +48520,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "oyk" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -49293,7 +49291,7 @@
 /area/station/service/chapel)
 "oLs" = (
 /turf/closed/wall,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "oLC" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -49911,7 +49909,7 @@
 	dir = 5
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "oVl" = (
 /turf/closed/wall/r_wall,
 /area/station/security/brig)
@@ -49991,7 +49989,6 @@
 /obj/item/modular_computer/laptop{
 	pixel_y = -1
 	},
-/obj/item/melee/baseball_bat/ablative,
 /obj/item/clothing/shoes/jackboots/timbs,
 /obj/item/clothing/suit/brownfurrich/public,
 /obj/structure/noticeboard/qm{
@@ -49999,7 +49996,7 @@
 	},
 /obj/item/food/donkpocket/warm/spicy,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "oWO" = (
 /obj/machinery/growing/tray,
 /obj/machinery/duct,
@@ -50908,7 +50905,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "plw" = (
 /obj/item/computer_disk/atmos,
 /obj/item/computer_disk/atmos,
@@ -56357,7 +56354,7 @@
 /area/station/hallway/secondary/entry)
 "qPf" = (
 /turf/closed/wall/r_wall,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "qPg" = (
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
 	id = "engsm";
@@ -63866,7 +63863,6 @@
 /obj/item/healthanalyzer,
 /obj/effect/turf_decal/tile/neutral/half,
 /obj/effect/turf_decal/trimline/dark_red/end,
-/obj/structure/extinguisher_cabinet/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/security/medical)
 "taV" = (
@@ -65561,7 +65557,7 @@
 	name = "Privacy Shutters"
 	},
 /turf/open/floor/plating,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "txK" = (
 /obj/effect/spawner/random/structure/barricade,
 /obj/effect/spawner/structure/window,
@@ -68904,7 +68900,6 @@
 	id = "qmprivacy";
 	pixel_x = 6
 	},
-/obj/machinery/pdapainter/supply,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -68913,7 +68908,7 @@
 	pixel_x = -6
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "uwr" = (
 /obj/structure/chair/stool/directional/west,
 /obj/machinery/camera/directional/south,
@@ -71066,7 +71061,7 @@
 	},
 /obj/structure/sign/poster/contraband/donk_co/directional/south,
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "vaV" = (
 /obj/effect/turf_decal/tile/yellow/opposingcorners{
 	dir = 1
@@ -71998,7 +71993,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /turf/open/floor/carpet/red,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "vox" = (
 /obj/effect/spawner/random/trash/mess,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -81074,7 +81069,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/station/command/heads_quarters/qm)
+/area/station/cargo/quartermaster)
 "xZW" = (
 /obj/structure/lattice,
 /obj/effect/spawner/random/structure/grille,

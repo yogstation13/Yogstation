@@ -40132,6 +40132,12 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/machinery/iv_drip,
 /obj/item/reagent_containers/blood,
+/obj/structure/fluff{
+	desc = "What, you think the water just magically soaks into the metallic flooring?";
+	icon = 'icons/obj/lavaland/survival_pod.dmi';
+	icon_state = "fan_tiny";
+	name = "shower drain"
+	},
 /turf/open/floor/iron/white/textured,
 /area/station/security/medical)
 "nYJ" = (
