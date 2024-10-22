@@ -1,0 +1,8 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - balance: "Nightmares now automatically break dim lighting. Fire alarm emergency lighting is unaffected."
+  - balance: "Nightmares are now immune to pain and slowly heal wounds while in the dark as well."
+  - balance: "Light eaters can now forcibly open unpowered doors (and powered firelocks) like a crowbar."
+  - balance: "Shadow walk can now be cast even while in soft crit."
+  - bugfix: "Light eaten objects can't blind nightmares anymore."
