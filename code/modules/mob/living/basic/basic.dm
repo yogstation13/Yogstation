@@ -91,6 +91,11 @@
 	///This damage is taken when atmos doesn't fit all the requirements above. Set to 0 to avoid adding the atmos_requirements element.
 	var/unsuitable_atmos_damage = 1
 
+//MONKESTATION EDIT START
+	/// List of weather immunity traits that are then added on Initialize(), see traits.dm.
+	var/list/weather_immunities
+//MONKESTATION EDIT END
+
 	bodytemp_cold_damage_limit = NPC_DEFAULT_MIN_TEMP
 	bodytemp_heat_damage_limit = NPC_DEFAULT_MAX_TEMP
 	///This damage is taken when the body temp is too cold. Set both this and unsuitable_heat_damage to 0 to avoid adding the basic_body_temp_sensitive element.
@@ -106,6 +111,11 @@
 
 	if(!real_name)
 		real_name = name
+
+	// MONKESTATION ADDITION START
+	if(length(weather_immunities))
+		add_traits(weather_immunities, ROUNDSTART_TRAIT)
+	//MONKESTATION ADDITION END
 
 	/* MONKESTATION REMOVAL - This is totally valid to create a mob in nullspace, its not valid to move a client onto it, this seems weird.
 	if(!loc)

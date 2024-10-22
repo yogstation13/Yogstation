@@ -95,6 +95,7 @@
 	icon_state = "iceboots"
 	inhand_icon_state = null
 	clothing_traits = list(TRAIT_NO_SLIP_ICE, TRAIT_NO_SLIP_SLIDE)
+	resistance_flags = FIRE_PROOF // Monkestation addition
 
 // A pair of ice boots intended for general crew EVA use - see EVA winter coat for comparison.
 /obj/item/clothing/shoes/winterboots/ice_boots/eva

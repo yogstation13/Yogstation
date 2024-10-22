@@ -215,7 +215,7 @@
 	enslaved_to = WEAKREF(creator)
 
 	current.faction |= creator.faction
-	creator.faction |= current.faction
+	creator.faction |= "[REF(current)]"
 
 	if(creator.mind?.special_role)
 		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
