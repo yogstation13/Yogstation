@@ -1,3 +1,4 @@
+/// if you're porting this from yogstation let it be known it was originally from /tg/, include where you got it from! -- thanks @Time-Green and all other contributers!
 //For these defines, check also above for their actual shapes in-game and maybe get a better idea
 
 ///Default shape. It's one tile above the atom
