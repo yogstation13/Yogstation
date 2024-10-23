@@ -61,7 +61,7 @@
 	/// How much brute and burn individually is healed per tick
 	var/healing = 2
 	/// How much body temperature is increased by per overdose cycle on robotic bodyparts.
-	var/temperature_change = 50
+	var/temperature_change = 16.75
 
 
 /datum/reagent/medicine/nanite_slurry/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick)
