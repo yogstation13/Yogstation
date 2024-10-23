@@ -54,7 +54,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/keycard_auth, 26)
 	return data
 
 /obj/machinery/keycard_auth/ui_status(mob/user)
-	if(isdrone(user))
+	if(isdrone(user) || issilicon(user)) //no more borg red alerts
 		return UI_CLOSE
 	if(!isanimal_or_basicmob(user))
 		return ..()

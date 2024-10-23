@@ -44,6 +44,10 @@
 			footstep_sounds = 'sound/effects/footstep/rustystep1.ogg'
 		if(FOOTSTEP_MOB_SLIME)
 			footstep_sounds = 'sound/effects/footstep/slime1.ogg'
+		if(FOOTSTEP_OBJ_SILICON)
+			footstep_sounds = 'sound/effects/footstep/silicon_step.ogg'
+			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep_machine))
+			return
 		if(FOOTSTEP_OBJ_MACHINE)
 			footstep_sounds = 'sound/effects/bang.ogg'
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(play_simplestep_machine))
