@@ -54,7 +54,7 @@
 
 
 /datum/element/climbable/proc/climb_structure(atom/climbed_thing, mob/living/user, params)
-	if(!can_climb(climbed_thing, user))
+	if(!can_climb(climbed_thing, user) || DOING_INTERACTION(user, DOAFTER_SOURCE_CLIMBING))
 		return
 	climbed_thing.add_fingerprint(user)
 	user.visible_message(span_warning("[user] starts climbing onto [climbed_thing]."), \
@@ -72,7 +72,7 @@
 		adjusted_climb_time *= 0.3
 	//monkestation edit - CYBERNETICS
 	LAZYADDASSOCLIST(current_climbers, climbed_thing, user)
-	if(do_after(user, adjusted_climb_time, climbed_thing))
+	if(do_after(user, adjusted_climb_time, climbed_thing, interaction_key = DOAFTER_SOURCE_CLIMBING)) // monkestation edit: add an interaction key
 		if(QDELETED(climbed_thing)) //Checking if structure has been destroyed
 			return
 
@@ -154,9 +154,11 @@
 
 ///Tries to climb onto the target if the forced movement of the mob allows it
 /datum/element/climbable/proc/attempt_sprint_climb(datum/source, mob/bumpee)
+	if(DOING_INTERACTION(bumpee, DOAFTER_SOURCE_CLIMBING))
+		return
 	if(HAS_TRAIT(bumpee, TRAIT_FREERUNNING))
-		if(do_after(bumpee, climb_time, source))
+		if(do_after(bumpee, climb_time, source, interaction_key = DOAFTER_SOURCE_CLIMBING))
 			do_climb(source, bumpee)
 	else
-		if(do_after(bumpee, climb_time * 1.2, source))
+		if(do_after(bumpee, climb_time * 1.2, source, interaction_key = DOAFTER_SOURCE_CLIMBING))
 			do_climb(source, bumpee)

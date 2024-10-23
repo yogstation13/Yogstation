@@ -422,6 +422,7 @@
 #include "code\__DEFINES\~monkestation\cooldowns.dm"
 #include "code\__DEFINES\~monkestation\cybernetics.dm"
 #include "code\__DEFINES\~monkestation\DNA.dm"
+#include "code\__DEFINES\~monkestation\do_afters.dm"
 #include "code\__DEFINES\~monkestation\elevation.dm"
 #include "code\__DEFINES\~monkestation\factions.dm"
 #include "code\__DEFINES\~monkestation\guns.dm"
