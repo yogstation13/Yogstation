@@ -19,12 +19,13 @@
 
 /datum/element/easy_ignite/Detach(datum/source, ...)
 	. = ..()
-	UnregisterSignal(source, COMSIG_ATOM_ATTACKBY)
-	UnregisterSignal(source, COMSIG_ATOM_FIRE_ACT)
-	UnregisterSignal(source, COMSIG_ATOM_BULLET_ACT)
-	UnregisterSignal(source, COMSIG_ATOM_TOOL_ACT(TOOL_WELDER))
-	if(isturf(source))
-		UnregisterSignal(source, COMSIG_TURF_EXPOSE)
+	UnregisterSignal(source, list(
+		COMSIG_ATOM_ATTACKBY,
+		COMSIG_ATOM_FIRE_ACT,
+		COMSIG_ATOM_BULLET_ACT,
+		COMSIG_ATOM_TOOL_ACT(TOOL_WELDER),
+		COMSIG_TURF_EXPOSE
+	))
 
 /datum/element/easy_ignite/proc/ignite(atom/igniting, mob/user)
 	var/delete_after = TRUE
@@ -61,7 +62,7 @@
 	if(exposed_temperature > required_temp)
 		ignite(source)
 
-/datum/element/easy_ignite/proc/attackby_react(obj/item/source, mob/user, obj/item/tool, modifiers)
+/datum/element/easy_ignite/proc/attackby_react(obj/item/source, obj/item/tool, mob/user, modifiers)
 	SIGNAL_HANDLER
 
 	if(tool.get_temperature() && item_ignition(source, tool, user))

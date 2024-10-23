@@ -248,7 +248,7 @@
 		. = TRUE
 
 /obj/item/reagent_containers/proc/SplashReagents(atom/target, thrown = FALSE, override_spillable = FALSE)
-	if(!reagents || !reagents.total_volume || (!spillable && !override_spillable))
+	if(!reagents?.total_volume || (!spillable && !override_spillable))
 		return
 	var/mob/thrown_by = thrownby?.resolve()
 
@@ -279,7 +279,7 @@
 			if(istype(T, /turf/open))
 				T.add_liquid_from_reagents(reagents, FALSE, reagents.chem_temp)
 
-			if(reagents.reagent_list.len && thrown_by)
+			if(length(reagents.reagent_list) && thrown_by)
 				log_combat(thrown_by, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
 				log_game("[key_name(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
 				message_admins("[ADMIN_LOOKUPFLW(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
@@ -289,12 +289,12 @@
 			if(istype(targets_loc, /turf/open))
 				if(thrown_by && !target.can_atmos_pass)
 					var/turf/open/open = get_step(src, get_dir(src, thrown_by))
-					open.add_liquid_from_reagents(reagents)
+					open?.add_liquid_from_reagents(reagents)
 				else
 					targets_loc.add_liquid_from_reagents(reagents)
 			else
 				targets_loc = get_step_towards(targets_loc, thrown_by)
-				targets_loc.add_liquid_from_reagents(reagents) //not perfect but i can't figure out how to move something to the nearest visible turf from throw_target
+				targets_loc?.add_liquid_from_reagents(reagents) //not perfect but i can't figure out how to move something to the nearest visible turf from throw_target
 		reagents.expose(target, TOUCH)
 		if(QDELETED(src))
 			return

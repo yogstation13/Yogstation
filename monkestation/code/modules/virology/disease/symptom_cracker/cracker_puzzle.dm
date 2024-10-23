@@ -28,8 +28,8 @@
 	generate_sequence()
 
 /datum/cracker_puzzle/Destroy(force)
-	. = ..()
 	parent = null
+	return ..()
 
 /datum/cracker_puzzle/proc/generate_combination_strings()
 	combinations = list()
@@ -136,7 +136,6 @@
 
 /datum/cracker_puzzle/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "CrackerPuzzle", "Genetic Sequence")

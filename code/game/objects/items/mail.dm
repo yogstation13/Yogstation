@@ -173,7 +173,7 @@
 				goodies[quirk_goodie] = 5
 
 	for(var/iterator in 1 to goodie_count)
-		var/target_good = pick_weight(goodies)
+		var/target_good = pick_weight(fill_with_ones(goodies)) // monkestation edit: fix pick_weight runtime
 		var/atom/movable/target_atom = new target_good(src)
 		body.log_message("received [target_atom.name] in the mail ([target_good])", LOG_GAME)
 

@@ -20,15 +20,15 @@
 	blood_type = null
 
 	var/datum/reagent/master_reagent = holder.get_master_reagent()
-	if(istype(master_reagent, /datum/reagent/blood))
-		blood_type = master_reagent.data?["blood_type"]
-
-	else
-		for(var/blood_type in GLOB.blood_types)
-			var/datum/blood_type/blood = GLOB.blood_types[blood_type]
-			if(blood.reagent_type == master_reagent.type)
-				blood_type = blood_type
-				break
+	if(master_reagent)
+		if(istype(master_reagent, /datum/reagent/blood))
+			blood_type = master_reagent.data?["blood_type"]
+		else
+			for(var/blood_type in GLOB.blood_types)
+				var/datum/blood_type/blood = GLOB.blood_types[blood_type]
+				if(blood.reagent_type == master_reagent.type)
+					blood_type = blood_type
+					break
 
 	return ..()
 

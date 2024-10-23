@@ -48,7 +48,7 @@
 
 /obj/item/assembly_holder/proc/try_add_assembly(obj/item/assembly/attached_assembly, mob/user)
 	if(attached_assembly.secured)
-		balloon_alert(attached_assembly, "not attachable!")
+		balloon_alert(user, "not attachable!")
 		return FALSE
 
 	if(LAZYLEN(assemblies) >= HOLDER_MAX_ASSEMBLIES)

@@ -37,13 +37,13 @@
 	UnregisterSignal(parent, COMSIG_ATOM_EXTRAPOLATOR_ACT)
 
 /datum/component/symptom_genes/Destroy(force)
-	. = ..()
 	current_user = null
 	current_extrapolator = null
 	if(puzzle)
 		SStgui.close_uis(puzzle)
 		UnregisterSignal(puzzle, list(COMSIG_CRACKER_PUZZLE_FAILURE, COMSIG_CRACKER_PUZZLE_SUCCESS))
-		qdel(puzzle)
+		QDEL_NULL(puzzle)
+	return ..()
 
 /datum/component/symptom_genes/proc/add_symptoms(datum/species/host_species, symptom_count)
 

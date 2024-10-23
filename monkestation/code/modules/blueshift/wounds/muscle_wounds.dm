@@ -54,8 +54,9 @@
 	return ..()
 
 /datum/wound/muscle/handle_process()
+	if(QDELETED(victim) || QDELETED(limb))
+		return
 	. = ..()
-
 	regen_ticks_current++
 	if(victim.body_position == LYING_DOWN)
 		if(prob(50))

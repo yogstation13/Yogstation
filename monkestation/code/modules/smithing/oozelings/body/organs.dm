@@ -339,8 +339,7 @@
 
 	if(HAS_TRAIT(slime, TRAIT_BLOOD_DEFICIENCY))
 		var/datum/quirk/blooddeficiency/blooddeficiency = slime.get_quirk(/datum/quirk/blooddeficiency)
-		if(!isnull(blooddeficiency))
-			blooddeficiency.lose_blood(seconds_per_tick)
+		blooddeficiency?.lose_blood(slime, seconds_per_tick)
 
 	if(slime.blood_volume < BLOOD_VOLUME_OKAY)
 		if(SPT_PROB(2.5, seconds_per_tick))

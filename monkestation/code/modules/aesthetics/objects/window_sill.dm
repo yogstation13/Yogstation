@@ -22,13 +22,39 @@
 	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/structure/window_sill/deconstruct(disassembled = TRUE, wrench_disassembly = 0)
-	new /obj/item/stack/sheet/iron(get_turf(src))
+	new /obj/item/stack/sheet/iron(drop_location())
 	qdel(src)
+
+/obj/structure/window_sill/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
+	if(!isturf(loc) || the_rcd.mode != RCD_WINDOWGRILLE)
+		return FALSE
+	var/obj/structure/grille/existing_grille = locate() in loc
+	if(existing_grille)
+		return existing_grille.rcd_vals(user, the_rcd)
+	return rcd_result_with_memory(
+		list("mode" = RCD_WINDOWGRILLE, "delay" = 1 SECONDS, "cost" = 4),
+		loc, RCD_MEMORY_WINDOWGRILLE,
+	)
+
+/obj/structure/window_sill/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
+	if(!isturf(loc) || passed_mode != RCD_WINDOWGRILLE)
+		return FALSE
+	var/obj/structure/window/window_path = the_rcd.window_type
+	if(!ispath(window_path))
+		CRASH("Invalid window path type in RCD: [window_path]")
+	if(!window_path::fulltile)
+		return FALSE
+	var/obj/structure/grille/existing_grille = locate() in loc
+	if(!existing_grille)
+		var/obj/structure/grille/window_sill/new_grille = new(loc)
+		new_grille.set_anchored(TRUE)
+		return TRUE
+	return existing_grille.rcd_act(user, the_rcd, passed_mode)
 
 /obj/structure/window_sill/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
-	if(!isstack(attacking_item))
-		return FALSE
+	if(!. || !isstack(attacking_item))
+		return
 	var/obj/item/stack/stack_item = attacking_item
 	if(istype(attacking_item, /obj/item/stack/sheet/glass))
 		if(stack_item.amount < 2)

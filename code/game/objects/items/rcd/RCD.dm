@@ -289,20 +289,19 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 			var/list/structures_to_ignore
 			if(istype(target, /obj/structure/grille))
 				if(is_full_tile) //if we are trying to build full-tile windows we ignore the grille
-					structures_to_ignore = list(target)
-				else //no building directional windows on grills
-					return FALSE
-			else //for directional windows we ignore other directional windows as they can be in diffrent directions on the turf.
+					structures_to_ignore = list(/obj/structure/grille, /obj/structure/grille/window_sill) // monkestation edit: add /obj/structure/grille/window_sill subtype
+				else //when building directional windows we ignore the grill and other directional windows
+					structures_to_ignore = list(/obj/structure/grille, /obj/structure/window)
+			else //for directional windows we ignore other directional windows as they can be in different directions on the turf.
 				structures_to_ignore = list(/obj/structure/window)
-			//if we are trying to build full-tile windows we only ignore the grille but other directional windows on the grill can block its construction
-			if(window_type == /obj/structure/window/fulltile || window_type == /obj/structure/window/reinforced/fulltile)
-				structures_to_ignore = list(/obj/structure/grille, /obj/structure/window_sill)
-			//for normal directional windows we ignore the grille & other directional windows as they can be in diffrent directions on the grill. There is a later check during construction to deal with those
-			else
-				structures_to_ignore = list(/obj/structure/grille, /obj/structure/window, /obj/structure/window_sill)
+
+			// monkestation start: window sills
+			if(is_full_tile)
+				structures_to_ignore += /obj/structure/window_sill
+			// monkestation end
 
 			//check if we can build our window on the grill
-			if(target_turf.is_blocked_turf(exclude_mobs = !is_full_tile, source_atom = null, ignore_atoms = structures_to_ignore, type_list = !is_full_tile))
+			if(target_turf.is_blocked_turf(exclude_mobs = !is_full_tile, source_atom = null, ignore_atoms = structures_to_ignore, type_list = TRUE))
 				playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 				balloon_alert(user, "something is blocking the turf")
 				return FALSE

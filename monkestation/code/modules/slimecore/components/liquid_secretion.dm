@@ -7,7 +7,7 @@
 	var/amount
 	///Callback interaction called when the turf has some liquids on it
 	var/datum/callback/pre_secrete_callback
-	var/next_secrete = 0
+	COOLDOWN_DECLARE(next_secrete)
 
 /datum/component/liquid_secretion/Initialize(reagent_id = /datum/reagent/water, amount = 10, secretion_interval = 1 SECONDS, pre_secrete_callback)
 	. = ..()
@@ -40,14 +40,13 @@
 
 
 /datum/component/liquid_secretion/process(seconds_per_tick)
-	if(!parent || (next_secrete > world.time))
+	if(QDELETED(parent) || !COOLDOWN_FINISHED(src, next_secrete))
 		return
-	next_secrete = world.time + secretion_interval
+	COOLDOWN_START(src, next_secrete, secretion_interval)
 	if(pre_secrete_callback && !pre_secrete_callback.Invoke(parent))
 		return
 
 	var/turf/parent_turf = get_turf(parent)
 	var/list/reagent_list = list()
-	reagent_list |= reagent_id
 	reagent_list[reagent_id] = amount
-	parent_turf.add_liquid_list(reagent_list, FALSE, T20C)
+	parent_turf?.add_liquid_list(reagent_list, FALSE, T20C)

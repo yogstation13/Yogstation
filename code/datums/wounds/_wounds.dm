@@ -526,7 +526,7 @@
 /datum/wound/proc/handle_process(seconds_per_tick, times_fired)
 	SHOULD_CALL_PARENT(TRUE)
 	if(regen_ticks_current > regen_ticks_needed)
-		if(!victim || !limb)
+		if(QDELETED(victim) || QDELETED(limb))
 			qdel(src)
 			return
 		to_chat(victim, span_green("Your [limb.plaintext_zone] has recovered from its [undiagnosed_name || name]!"))
