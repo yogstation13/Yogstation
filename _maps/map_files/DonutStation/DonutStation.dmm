@@ -2468,9 +2468,24 @@
 /obj/structure/table,
 /obj/item/paper_bin{
 	pixel_x = -3;
-	pixel_y = 7
+	pixel_y = 4
 	},
-/obj/item/stamp/hop,
+/obj/item/stamp/hop{
+	pixel_x = -9;
+	pixel_y = 6
+	},
+/obj/item/stamp{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/item/stamp/denied{
+	pixel_x = -9;
+	pixel_y = -4
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 9;
+	pixel_y = -1
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "aWv" = (
@@ -6459,6 +6474,17 @@
 	},
 /turf/open/floor/wood,
 /area/library)
+"cBx" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hop)
 "cCh" = (
 /turf/closed/wall/r_wall,
 /area/science/storage)
@@ -8956,6 +8982,9 @@
 	},
 /obj/machinery/modular_computer/console/preset/command/hop{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -11680,6 +11709,34 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+"eKA" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/obj/machinery/inspector_booth{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 4;
+	name = "Head of Personnel's Desk"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hop)
 "eKB" = (
 /obj/machinery/door/airlock/security{
 	name = "Security Office"
@@ -12870,6 +12927,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -14640,8 +14700,6 @@
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
 "fXS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -17133,6 +17191,12 @@
 /area/crew_quarters/kitchen)
 "hbi" = (
 /obj/machinery/papershredder,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "hbj" = (
@@ -18186,6 +18250,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -23986,10 +24053,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "jYW" = (
-/obj/machinery/computer/cargo,
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
+/obj/machinery/computer/cargo,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "jZb" = (
@@ -26555,6 +26622,12 @@
 	name = "Privacy Shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "lfj" = (
@@ -27125,15 +27198,12 @@
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 4;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk"
-	},
 /obj/machinery/door/window/northleft{
 	dir = 8;
 	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	name = "Head of Personnel's Desk"
 	},
 /obj/effect/mapping_helpers/windoor/access/all/service/hop{
 	dir = 4
@@ -29187,13 +29257,13 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "mkY" = (
-/obj/machinery/disposal/bin/tagger,
 /obj/machinery/newscaster/security_unit{
 	pixel_y = -32
 	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
+/obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "mln" = (
@@ -29455,21 +29525,12 @@
 /turf/open/floor/grass,
 /area/medical/genetics)
 "mqb" = (
-/obj/structure/bed/dogbed/ian,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/mob/living/simple_animal/pet/dog/corgi/Ian{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -30213,9 +30274,6 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "mEx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Head of Personnel's Desk";
@@ -30223,11 +30281,15 @@
 	name = "Head of Personnel RC";
 	pixel_y = -30
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/machinery/disposal/bin/tagger,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -30923,15 +30985,13 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/chief)
 "mTZ" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -36359,7 +36419,6 @@
 /turf/closed/wall,
 /area/quartermaster/warehouse)
 "pkR" = (
-/obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
@@ -40406,14 +40465,17 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "qQr" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 10
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -40498,6 +40560,17 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"qRN" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hop)
 "qRU" = (
 /obj/machinery/conveyor/inverted,
 /turf/open/floor/plating,
@@ -43393,7 +43466,6 @@
 /turf/open/floor/wood,
 /area/maintenance/port/fore)
 "sjZ" = (
-/obj/machinery/computer/bounty,
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/hop";
 	dir = 1;
@@ -43402,6 +43474,15 @@
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian{
+	dir = 8
+	},
+/obj/item/toy/figure/hop{
+	layer = 2.89;
+	pixel_x = 8;
+	pixel_y = -5
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -45145,6 +45226,8 @@
 	c_tag = "Bridge - Head of Personnel's Office";
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "sTs" = (
@@ -51509,14 +51592,11 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "vwv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 5
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -103776,11 +103856,11 @@ rGQ
 vdL
 wBL
 ouG
+qRN
 leC
-leC
-leC
+eKA
 lqF
-leC
+cBx
 ouG
 pLR
 eRv

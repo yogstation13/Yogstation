@@ -87,25 +87,17 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aap" = (
-/obj/structure/bed/dogbed/ian,
 /obj/structure/sign/painting{
 	persistence_id = "public";
 	pixel_y = 32
 	},
-/obj/item/toy/figure/hop{
-	layer = 2.89;
-	pixel_x = 8;
-	pixel_y = -5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
-/mob/living/simple_animal/pet/dog/corgi/Ian{
-	dir = 8
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
+/obj/machinery/disposal/bin/tagger,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "aaq" = (
@@ -12596,10 +12588,10 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "bYm" = (
-/obj/structure/chair/office/dark{
+/obj/effect/turf_decal/trimline/dark_blue/warning/lower{
 	dir = 8
 	},
-/obj/effect/turf_decal/trimline/dark_blue/warning/lower{
+/obj/structure/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -18611,7 +18603,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
-/obj/machinery/pdapainter,
+/obj/machinery/modular_computer/console/preset/command/hop,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "dQj" = (
@@ -19130,13 +19122,13 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "eaw" = (
-/obj/machinery/newscaster/security_unit{
-	pixel_y = 32
-	},
-/obj/machinery/papershredder,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
+/obj/machinery/computer/security/telescreen/vault{
+	pixel_y = 30
+	},
+/obj/machinery/pdapainter,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "eaO" = (
@@ -22914,6 +22906,7 @@
 	dir = 8
 	},
 /obj/effect/mapping_helpers/mail_sorting/medbay/general,
+/obj/effect/mapping_helpers/mail_sorting/medbay/chemistry,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "fnr" = (
@@ -31112,16 +31105,13 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "ien" = (
-/obj/machinery/computer/security/telescreen/vault{
-	pixel_y = 30
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 1
 	},
-/obj/machinery/disposal/bin/tagger,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
+	},
+/obj/machinery/vending/cart,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "ieo" = (
@@ -33677,13 +33667,13 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "iXa" = (
-/obj/machinery/vending/cart,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
+/obj/machinery/papershredder,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "iXg" = (
@@ -39079,9 +39069,24 @@
 	id = "hop";
 	name = "Privacy Shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "0-2"
+/obj/machinery/inspector_booth{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	name = "Head of Personnel's Desk"
+	},
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
@@ -50887,10 +50892,16 @@
 /turf/closed/wall,
 /area/escapepodbay)
 "ptS" = (
-/obj/machinery/modular_computer/console/preset/command/hop{
-	dir = 1
+/obj/effect/turf_decal/trimline/dark_blue/warning/lower{
+	dir = 8
 	},
-/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+/obj/item/toy/figure/hop{
+	layer = 2.89;
+	pixel_x = 8;
+	pixel_y = -5
+	},
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -52090,9 +52101,6 @@
 	name = "Privacy Shutters"
 	},
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -54957,20 +54965,6 @@
 /area/crew_quarters/heads/captain)
 "qPS" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft{
-	dir = 8;
-	name = "Reception Window"
-	},
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 4;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk"
-	},
-/obj/machinery/flasher{
-	id = "hopflash";
-	pixel_y = 28
-	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "hop";
 	name = "Privacy Shutters"
@@ -54987,6 +54981,19 @@
 	},
 /obj/effect/mapping_helpers/windoor/access/all/service/hop{
 	dir = 4
+	},
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 4;
+	name = "Head of Personnel's Desk"
+	},
+/obj/machinery/door/window/eastright{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/machinery/flasher{
+	id = "hopflash";
+	pixel_y = 28
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
