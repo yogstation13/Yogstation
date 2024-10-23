@@ -17,13 +17,15 @@
 			continue
 		var/sac_name = trimtext(target_mind.name || living_target.real_name || living_target.name)
 		living_targets[sac_name] = living_target
-		var/mutable_appearance/target_appearance = new
-		target_appearance.appearance = living_target.appearance
-		target_appearance.setDir(SOUTH)
-		target_appearance.pixel_x = 0
-		target_appearance.pixel_y = 0
-		target_appearance.pixel_z = 0
-		targets_to_choose[sac_name] = target_appearance
+		var/mutable_appearance/target_appearance = new(living_target)
+		target_appearance.appearance_flags = KEEP_TOGETHER
+		target_appearance.layer = FLOAT_LAYER
+		target_appearance.plane = FLOAT_PLANE
+		target_appearance.dir = SOUTH
+		target_appearance.pixel_x = living_target.base_pixel_x
+		target_appearance.pixel_y = living_target.base_pixel_y
+		target_appearance.pixel_z = 0 /* living_target.base_pixel_z */
+		targets_to_choose[sac_name] = strip_appearance_underlays(target_appearance)
 
 	// If we don't have a last tracked name, open a radial to set one.
 	// If we DO have a last tracked name, we skip the radial if they right click the action.

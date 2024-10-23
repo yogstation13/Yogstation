@@ -1503,3 +1503,10 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 		var/icon/my_icon = icon(icon_path)
 		GLOB.icon_dimensions[icon_path] = list("width" = my_icon.Width(), "height" = my_icon.Height())
 	return GLOB.icon_dimensions[icon_path]
+
+/proc/strip_appearance_underlays(mutable_appearance/appearance)
+	var/base_plane = PLANE_TO_TRUE(appearance.plane)
+	for(var/mutable_appearance/underlay as anything in appearance.underlays)
+		if(PLANE_TO_TRUE(underlay.plane) != base_plane)
+			appearance.underlays -= underlay
+	return appearance
