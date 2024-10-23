@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Insulation now properly protects you from snowstorms on Icebox."
+  - refactor: "Cleaned up particle weather code quite a bit."
