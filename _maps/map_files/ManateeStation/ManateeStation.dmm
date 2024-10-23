@@ -63766,6 +63766,12 @@
 /obj/effect/mapping_helpers/windoor/access/all/service/hop{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "sMi" = (
