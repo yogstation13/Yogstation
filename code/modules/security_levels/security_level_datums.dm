@@ -90,3 +90,18 @@
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
 	shuttle_call_time_mod = 0.25
+
+//MONKESTATION EDIT START
+/**
+ * EPSILON
+ *
+ * Central Command is fed up with the station
+ */
+/datum/security_level/epsilon
+	name = "Epsilon"
+	announcement_color = "grey" //this was painful
+	number_level = SEC_LEVEL_EPSILON
+	sound = 'monkestation/sound/misc/epsilon.ogg'
+	elevating_to_configuration_key = /datum/config_entry/string/alert_epsilon
+	shuttle_call_time_mod = 10 //nobody escapes the station
+//MONKESTATION EDIT STOP

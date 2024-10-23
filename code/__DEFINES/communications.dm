@@ -13,3 +13,7 @@
 #define SEC_LEVEL_RED 2
 /// Security level is delta. (station destruction immiment)
 #define SEC_LEVEL_DELTA 3
+//MONKESTATION EDIT START
+// Security level is epsilon. (yall fucked up)
+#define SEC_LEVEL_EPSILON 4
+//MONKESTATION EDIT STOP
