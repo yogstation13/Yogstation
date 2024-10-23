@@ -499,6 +499,22 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 	name = "Floral Garland"
 	item_path = /obj/item/clothing/head/costume/garland
 
+/datum/loadout_item/head/rainbowbunch //BUYABLE
+	name = "Rainbow Flower Crown"
+	item_path = /obj/item/clothing/head/costume/garland/rainbowbunch
+
+/datum/loadout_item/head/sunflower_crown //BUYABLE
+	name = "Sunflower Crown"
+	item_path = /obj/item/clothing/head/costume/garland/sunflower
+
+/datum/loadout_item/head/poppy_crown //BUYABLE
+	name = "Poppy Crown"
+	item_path = /obj/item/clothing/head/costume/garland/poppy
+
+/datum/loadout_item/head/lily_crown //BUYABLE
+	name = "Lily Crown"
+	item_path = /obj/item/clothing/head/costume/garland/lily
+
 /datum/loadout_item/head/sombrero //BUYABLE
 	name = "Sombrero"
 	item_path = /obj/item/clothing/head/costume/sombrero

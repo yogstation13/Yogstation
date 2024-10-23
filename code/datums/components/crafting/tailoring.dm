@@ -284,6 +284,46 @@
 	)
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/poppy_crown
+	name = "Poppy Crown"
+	result = /obj/item/clothing/head/costume/garland/poppy
+	time = 1 SECONDS
+	reqs = list(
+		/obj/item/food/grown/poppy = 5,
+		/obj/item/stack/cable_coil = 3,
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/lily_crown
+	name = "Lily Crown"
+	result = /obj/item/clothing/head/costume/garland/lily
+	time = 1 SECONDS
+	reqs = list(
+		/obj/item/food/grown/poppy/lily = 5,
+		/obj/item/stack/cable_coil = 3,
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/sunflower_crown
+	name = "Sunflower Crown"
+	result = /obj/item/clothing/head/costume/garland/sunflower
+	time = 1 SECONDS
+	reqs = list(
+		/obj/item/food/grown/sunflower = 5,
+		/obj/item/stack/cable_coil = 3,
+	)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/rainbow_bunch_crown
+	name = "Rainbow Flower Crown"
+	result = /obj/item/clothing/head/costume/garland/rainbowbunch
+	time = 1 SECONDS
+	reqs = list(
+		/obj/item/food/grown/rainbow_flower = 5,
+		/obj/item/stack/cable_coil = 3,
+	)
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/pillow_suit
 	name = "pillow suit"
 	result = /obj/item/clothing/suit/pillow_suit
