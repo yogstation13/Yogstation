@@ -796,40 +796,6 @@
 	. = 1
 
 /**
- * basic wakefulness chem
- * addiction gets less bad over time rather than the inverse
- */
-/datum/reagent/drug/caffeine
-	name = "Caffeine"
-	description = "Slightly increases wakefulness. If overdosed it will cause jitters and heart problems."
-	reagent_state = SOLID //powder in pure form
-	color = "#ffffff" //very white
-	metabolization_rate = REAGENTS_METABOLISM
-	overdose_threshold = 20 //please don't consume pure caffeine
-	addiction_threshold = 20 //the addiction isn't that dangerous
-	trippy = FALSE
-	var/list/overdose_text = list("Your head pounds.", "You feel lethargic.", "You feel drowsy.", "You feel weak.", "You just want to sleep.")
-
-/datum/reagent/drug/caffeine/on_mob_life(mob/living/carbon/M)
-	. = ..()
-	if(prob(1))
-		var/caffeine_message = pick("You feel alert.")
-		to_chat(M, span_notice("[caffeine_message]"))
-	M.adjust_drowsiness(-6 SECONDS * REM)
-	M.AdjustSleeping(-4 SECONDS, FALSE)
-	M.adjust_dizzy(-4 SECONDS * REM)
-
-/datum/reagent/drug/caffeine/overdose_process(mob/living/M)
-	. = ..()
-	M.set_jitter_if_lower(20 SECONDS)
-	M.adjustOrganLoss(ORGAN_SLOT_HEART, 1.25*REM)
-
-/datum/reagent/drug/caffeine/proc/apply_drowsy(mob/living/M)
-	M.adjust_drowsiness_up_to(3 SECONDS * REM, 10 SECONDS)
-	if(prob(50))
-		to_chat(M, span_warning(pick(overdose_text)))
-
-/**
  * doesn't call the parent addiction acts because it doesn't function the same way
  */
 /datum/reagent/drug/caffeine/addiction_act_stage1(mob/living/M)
@@ -847,3 +813,90 @@
 /datum/reagent/drug/caffeine/addiction_act_stage4(mob/living/M)
 	if(prob(45) && iscarbon(M))
 		apply_drowsy(M)
+
+
+/datum/reagent/drug/three_eye
+	name = "Three Eye"
+	taste_description = "liquid starlight"
+	description = "Three Eye is one of the most notorious narcotics to ever come out of the independant habitats, allowing those who take it to see through walls."
+	reagent_state = LIQUID
+	color = "#ccccff"
+	metabolization_rate = REAGENTS_METABOLISM
+	overdose_threshold = 25
+
+	// M A X I M U M C H E E S E
+	var/global/list/dose_messages = list(
+		"Your name is called. It is your time.",
+		"You are dissolving. Your hands are wax...",
+		"It all runs together. It all mixes.",
+		"It is done. It is over. You are done. You are over.",
+		"You won't forget. Don't forget. Don't forget.",
+		"Light seeps across the edges of your vision...",
+		"Something slides and twitches within your sinus cavity...",
+		"Your bowels roil. It waits within.",
+		"Your gut churns. You are heavy with potential.",
+		"Your heart flutters. It is winged and caged in your chest.",
+		"There is a precious thing, behind your eyes.",
+		"Everything is ending. Everything is beginning.",
+		"Nothing ends. Nothing begins.",
+		"Wake up. Please wake up.",
+		"Stop it! You're hurting them!",
+		"It's too soon for this. Please go back.",
+		"We miss you. Where are you?",
+		"Come back from there. Please."
+	)
+
+	var/global/list/overdose_messages = list(
+		"THE SIGNAL THE SIGNAL THE SIGNAL THE SIGNAL",
+		"IT CRIES IT CRIES IT WAITS IT CRIES",
+		"NOT YOURS NOT YOURS NOT YOURS NOT YOURS",
+		"THAT IS NOT FOR YOU",
+		"IT RUNS IT RUNS IT RUNS IT RUNS",
+		"THE BLOOD THE BLOOD THE BLOOD THE BLOOD",
+		"THE LIGHT THE DARK A STAR IN CHAINS"
+	)
+
+	COOLDOWN_DECLARE(next_trigger)
+	var/cooldown_duration = 15 SECONDS
+
+/datum/reagent/drug/three_eye/on_mob_metabolize(mob/living/L)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_THERMAL_VISION, type)
+	L.add_client_colour(/datum/client_colour/thirdeye)
+	L.update_sight()
+
+/datum/reagent/drug/three_eye/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_THERMAL_VISION, type)
+	L.remove_client_colour(/datum/client_colour/thirdeye)
+	L.update_sight()
+	return ..()
+
+/datum/reagent/drug/three_eye/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	M.adjust_hallucinations_up_to(10 SECONDS, 50 SECONDS)
+	M.adjust_jitter_up_to(3 SECONDS, 10 SECONDS)
+	M.adjust_dizzy_up_to(3 SECONDS, 10 SECONDS)
+	if(prob(0.1))
+		seizure(M)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(8, 12))
+	if(prob(5))
+		to_chat(M, span_warning("[pick(dose_messages)]"))
+
+/datum/reagent/drug/three_eye/overdose_process(mob/living/M)
+	. = ..()
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, rand(1, 5))
+	if(prob(10))
+		seizure(M)
+	if(prob(10))
+		to_chat(M, span_danger("[pick(overdose_messages)]"))
+		return
+	if(!COOLDOWN_FINISHED(src, next_trigger))
+		return
+	COOLDOWN_START(src, next_trigger, cooldown_duration)
+	if(M.psi)
+		M.psi.check_latency_trigger(30, "a Three Eye overdose", 30)
+
+/datum/reagent/drug/three_eye/proc/seizure(mob/living/M)
+	M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
+	M.Unconscious(10 SECONDS)
+	M.adjust_jitter(10 SECONDS)

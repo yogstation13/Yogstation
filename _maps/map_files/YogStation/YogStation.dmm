@@ -51124,7 +51124,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "pxM" = (
-/obj/structure/bookcase/random/religion,
+/obj/machinery/psionic_awakener,
 /turf/open/floor/wood,
 /area/medical/psych)
 "pxQ" = (
@@ -67397,7 +67397,6 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "vtO" = (
-/obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/wood,
 /area/medical/psych)
 "vtR" = (
@@ -69925,6 +69924,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"wlB" = (
+/obj/effect/turf_decal/tile/blue/opposingcorners{
+	dir = 1
+	},
+/obj/machinery/psi_monitor,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/cmo)
 "wlK" = (
 /obj/machinery/camera/motion{
 	c_tag = "Armory External";
@@ -114314,7 +114320,7 @@ jXL
 wgu
 pbD
 elr
-vcC
+wlB
 dmN
 lcC
 guV

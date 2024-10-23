@@ -800,6 +800,10 @@
 /// determines whether or not objects are haunted and teleport/attack randomly
 #define TRAIT_HAUNTED "haunted"
 
+//quirk traits
+#define TRAIT_PSIONICALLY_DEAFENED "Psionically Deafened"
+/// Can never have psionics, but is pretty much immune to direct tampering by them
+#define TRAIT_PSIONICALLY_IMMUNE "Psionically Immune"
 
 /// This mob always lands on their feet when they fall, for better or for worse.
 #define TRAIT_CATLIKE_GRACE "catlike_grace"
