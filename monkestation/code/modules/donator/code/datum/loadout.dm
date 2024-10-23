@@ -678,3 +678,10 @@
 	item_path = /obj/item/clothing/neck/mist_cloak
 	donator_only = TRUE
 	requires_purchase = FALSE
+
+//jimmytombstone
+/datum/loadout_item/neck/linen_tombstone_shroud
+	name = "linen tombstone shroud"
+	item_path = /obj/item/clothing/neck/linen_tombstone_shroud
+	donator_only = TRUE
+	requires_purchase = FALSE

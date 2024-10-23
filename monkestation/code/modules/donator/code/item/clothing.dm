@@ -570,3 +570,11 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "mist_cloak"
 	worn_icon_state = "mist_cloak"
+
+/obj/item/clothing/neck/linen_tombstone_shroud
+	name = "linen tombstone shroud"
+	desc = "It's a dark linen cloak with a tombstone symbol on it. It seems covered in strands of blue hair and filth. It also has a pungent stench of cigarette smoke."
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
+	icon_state = "linen_tombstone_shroud"
+	worn_icon_state = "linen_tombstone_shroud"
