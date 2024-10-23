@@ -196,7 +196,7 @@
 	if(!isnull(pai))
 		to_chat(user, "Status: Active")
 		to_chat(user, "pAI designation: [pai.name]")
-		to_chat(user, "Remaining storage available: [pai.ram]")
+		to_chat(user, "Remaining storage available: [pai.ram]GQ")
 	else
 		to_chat(user, "Status: Standby")
 		to_chat(user, "Storage: Formatted")
