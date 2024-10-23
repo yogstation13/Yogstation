@@ -1,5 +1,0 @@
-author: "manray0"
-delete-after: True
-changes:
-  - rscdel: "borg ability to use keycard auth"
-  - sound: "added borg footstep"

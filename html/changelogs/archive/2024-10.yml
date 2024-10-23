@@ -433,3 +433,63 @@
   - balance: Jugular Cut has a weak attack on standing targets for 15 damage, but
       only does a Open Laceration
   - code_imp: minor code fixes in Tribal Claw
+2024-10-23:
+  Absolucy:
+  - bugfix: You can no longer spam climbing attempts, which could cause quite a bit
+      of lag.
+  - bugfix: Fixed some various minor runtime errors.
+  - bugfix: Fixed blood deficiency's interaction with oozelings.
+  - bugfix: Fixed RCDs having trouble constructing windows, and their general jankiness
+      when window sills are involved.
+  - bugfix: (SyncIt21) Microwaves (after it has finished cooking) & other machines
+      that spit out contents don't spit out assemblies / signalers attached to it's
+      wires.
+  - bugfix: (SyncIt21) Signalers can be picked up if you attached them to a machine's
+      wire & later deconstructed that machine without detaching it first.
+  Absolucy, xPokee, Pirill:
+  - rscadd: Added flower crowns, craftable via the clothing menu, and also can be
+      bought from the loadout shop.
+  DexeeXI:
+  - bugfix: Fixed one (of unfortunately many) CC map exploits.
+  Gw0sty:
+  - bugfix: Makes it so nanite slurry/mechanical patches are not a death sentence
+      for IPC's upon application.
+  RikuTheKiller:
+  - bugfix: Changeling's "Adrenaline Sacs" ability no longer keeps you borderline
+      stamcrit.
+  - balance: Changeling adrenaline is much better at combatting stuns and it's cost
+      is now 20 chemicals. (down from 30)
+  - refactor: Changeling adrenaline is now a status effect, changeling haste still
+      exists (and works) because it was used somewhere.
+  - balance: Strained muscles now costs 10 chemicals to activate and the downside
+      works properly now.
+  - balance: Strained muscles accumulates via delta time now, so lag won't save you
+      from it.
+  - refactor: Strained muscles is now a status effect.
+  - balance: Biodegrade now costs 20 chemicals down from 30.
+  - balance: Lesser form now costs 15 chemicals down from 20.
+  - bugfix: Lesser form (and other species changes) carry over limb damage.
+  - balance: Changeling Sting (the drink) is viable to use for chemicals now.
+  - balance: Anatomic panacea is more consistent now via becoming a status effect
+      as well.
+  - rscadd: Adds a new changeling ability, "Darkness Adaptation". Making you more
+      translucent, especially in darkness and allowing you to see slightly better
+      in the dark. (Ghommie)
+  - balance: The changeling power "Chameleon Skin" has been buffed, Reduces the cost
+      to 1 and sped up the time it takes to turn invisible. (Ghommie)
+  - bugfix: Unlike upstream, "Chameleon Skin" and "Darkness Adaptation", while still
+      overriding each other, don't break if you turn off chameleon skin while in darkness
+      adaptation. (i.e. it'll turn you translucent again)
+  - bugfix: Paralysis, stun, etc. diminishment no longer applies to decreasing their
+      duration.
+  - spellcheck: A lot of changeling ability descriptions are better now. I didn't
+      go through all of them, but some of the durations are directly mentioned rather
+      than just "short" or "long" with no reference point as to what that means.
+  Shoddd:
+  - rscadd: You can now have numbers in your characters name
+  - rscadd: Plasma men, Arachnids, and fly people can have hair
+  SirNightKnight:
+  - rscadd: Added the [REDACTED] Security Level
+  manray0:
+  - rscdel: borg ability to use keycard auth
+  - sound: added borg footstep

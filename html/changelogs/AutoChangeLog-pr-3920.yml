@@ -1,8 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed some various minor runtime errors."
-  - bugfix: "Fixed blood deficiency's interaction with oozelings."
-  - bugfix: "Fixed RCDs having trouble constructing windows, and their general jankiness when window sills are involved."
-  - bugfix: "(SyncIt21) Microwaves (after it has finished cooking) & other machines that spit out contents don't spit out assemblies / signalers attached to it's wires."
-  - bugfix: "(SyncIt21) Signalers can be picked up if you attached them to a machine's wire & later deconstructed that machine without detaching it first."
