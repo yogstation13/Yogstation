@@ -2,7 +2,7 @@
 	icon_greyscale = 'monkestation/icons/mob/species/arachnid/bodyparts.dmi'
 	limb_id = SPECIES_ARACHNIDS
 	is_dimorphic = FALSE
-	head_flags = HEAD_EYESPRITES | HEAD_EYEHOLES | HEAD_DEBRAIN | HEAD_EYECOLOR
+	head_flags = HEAD_EYESPRITES | HEAD_EYEHOLES | HEAD_DEBRAIN | HEAD_EYECOLOR | HEAD_HAIR
 	palette = /datum/color_palette/generic_colors
 	palette_key = MUTANT_COLOR
 
