@@ -99,8 +99,8 @@ export const PaiManagement = (props, context) => {
         <Box><Button onClick={() => act("setlaws")}>Configure directives</Button></Box> {/* Without the box, Stack will make this button fluid for some reason */}
         <Stack.Item>
           <Box bold={1}>Radio Uplink:</Box>
-          <Button.Checkbox onClick={() => act("radio", { radio: 1 })} checked={transmit}>Transmit</Button.Checkbox>
-          <Button.Checkbox onClick={() => act("radio", { radio: 0 })} checked={receive}>Receive</Button.Checkbox>
+          <Button.Checkbox icon="arrow-up" onClick={() => act("radio", { radio: 1 })} checked={transmit}>Transmit</Button.Checkbox>
+          <Button.Checkbox icon="arrow-down" onClick={() => act("radio", { radio: 0 })} checked={receive}>Receive</Button.Checkbox>
         </Stack.Item>
         <Stack.Item>
           <Box bold={1}>Other:</Box>
