@@ -85,8 +85,6 @@ SUBSYSTEM_DEF(pai)
 		candidate = new /datum/paiCandidate()
 		candidate.key = M.key
 		candidates.Add(candidate)
-
-
 	var/dat = ""
 	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += {"
@@ -151,43 +149,10 @@ SUBSYSTEM_DEF(pai)
 		addtimer(CALLBACK(src, PROC_REF(spam_again)), spam_delay)
 	var/list/available = list()
 	for(var/datum/paiCandidate/c in SSpai.candidates)
-		available.Add(check_ready(c))
-	var/dat = ""
-	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
-	dat += {"
-			<style type="text/css">
-
-			p.top {
-				background-color: #AAAAAA; color: black;
-			}
-
-			tr.d0 td {
-				background-color: #CC9999; color: black;
-			}
-			tr.d1 td {
-				background-color: #9999CC; color: black;
-			}
-			tr.d2 td {
-				background-color: #99CC99; color: black;
-			}
-			</style>
-			"}
-	dat += "<p class=\"top\">Requesting AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>"
-
-	dat += "<table>"
-
-	for(var/datum/paiCandidate/c in available)
-		dat += "<tr class=\"d0\"><td>Name:</td><td>[c.name]</td></tr>"
-		dat += "<tr class=\"d1\"><td>Description:</td><td>[c.description]</td></tr>"
-		dat += "<tr class=\"d0\"><td>Preferred Role:</td><td>[c.role]</td></tr>"
-		dat += "<tr class=\"d1\"><td>OOC Comments:</td><td>[c.comments]</td></tr>"
-		dat += "<tr class=\"d2\"><td><a href='byond://?src=[REF(src)];download=1;candidate=[REF(c)];device=[REF(p)]'>\[Download [c.name]\]</a></td><td></td></tr>"
-
-	dat += "</table>"
-
-	dat += "</BODY></HTML>"
-
-	user << browse(dat, "window=findPai")
+		if(check_ready(c))
+			var/candidate = list("name" = c.name, "description"=c.description, "prefrole"=c.role, "ooccomments"=c.comments)
+			available += list(candidate)
+	return available
 
 /datum/paiCandidate
 	var/name

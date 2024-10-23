@@ -224,7 +224,7 @@
 	else
 		to_chat(P, "[M] does not seem like [M.p_theyre()] going to provide a DNA sample willingly.")
 
-//Leaving the medical records stuff commented out till they can be added back
+//Leaving the medical & security records stuff commented out till they can be added back
 //
 //// Medical Records
 ///mob/living/silicon/pai/proc/softwareMedicalRecord()

@@ -7,7 +7,6 @@ import { Window } from '../layouts';
 type Module = {
   module_name: string;
   title: string;
-  text: string;
   cost: number;
 }
 
@@ -16,17 +15,17 @@ type Data = {
   modules_list: Module[];
   modules_tabs: Module[];
   laws_zeroth: string;
-  laws: Data[];
+  laws: string[];
   master: string;
   masterdna: string;
   ram: number;
   pressure: number;
-  gases: Data[];
+  gases: string[];
   temperature: number;
   hacking: boolean;
   hackprogress: number;
   cable: string;
-  door: Data[];
+  door: string[];
   code: number;
   frequency: number;
   minFrequency: number;
@@ -54,7 +53,7 @@ export const PaiInterface = (props, context) => {
   const { modules_tabs = [] } = data;
   const [selectedMainTab, setMainTab] = useLocalState(context, "selectedMainTab", 0);
   return (
-    <Window width={600} height={550} theme="">
+    <Window width={600} height={550}>
       <Window.Content>
         <Flex>
           <Flex.Item grow={1}>
@@ -83,14 +82,13 @@ export const PaiInterface = (props, context) => {
 const PaiBox = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const [selectedMainTab, setMainTab] = useLocalState(context, "selectedMainTab", 0);
-  const [hoveredModule, sethoveredModule] = useLocalState(context, "hoveredModule", {});
   const { modules, ram, modules_list, modules_tabs = [] } = data;
   const { laws_zeroth, laws, master, masterdna } = data;
   const { pressure, gases, temperature } = data;
   const { hacking, hackprogress, cable, door } = data;
   const { code, frequency, minFrequency, maxFrequency, color } = data;
-  if(selectedMainTab===null) {
-    return;
+  if(!modules_tabs[selectedMainTab]) {
+    return null;
   }
   switch(modules_tabs[selectedMainTab].module_name) {
     case "directives":
@@ -191,9 +189,6 @@ const PaiBox = (props, context) => {
                       <Button
                         fluid
                         content={module.cost+" GQ"}
-                        tooltip={module.text}
-                        onmouseover={() => sethoveredModule(module)}
-                        onmouseout={() => sethoveredModule({})}
                         disabled={module.cost>ram}
                         onClick={() => act("buy", { name: module.module_name, cost: module.cost })} />
                     </Table.Cell>
