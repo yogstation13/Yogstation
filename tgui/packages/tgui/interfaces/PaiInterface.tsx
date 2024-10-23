@@ -87,9 +87,6 @@ const PaiBox = (props, context) => {
   const { pressure, gases, temperature } = data;
   const { hacking, hackprogress, cable, door } = data;
   const { code, frequency, minFrequency, maxFrequency, color } = data;
-  if(!modules_tabs[selectedMainTab]) {
-    return null;
-  }
   switch(modules_tabs[selectedMainTab].module_name) {
     case "directives":
       return (
@@ -406,4 +403,5 @@ const PaiBox = (props, context) => {
           );
         }
       }
-    };
+  return null;
+  };
