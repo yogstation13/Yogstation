@@ -1,3 +1,6 @@
+#define SNOW_STORM_TEMP		CELCIUS_TO_KELVIN(-40 CELCIUS)
+#define SNOW_GENTLE_TEMP	CELCIUS_TO_KELVIN(-12 CELCIUS)
+
 /turf
 	var/weather_affectable = TRUE
 
@@ -24,9 +27,18 @@
 	weather_additional_events = list("wind" = list(5, /datum/weather_event/wind))
 
 /datum/particle_weather/snow_gentle/can_weather_effect(mob/living/mob_to_check)
+	. = ..()
+	if(!.)
+		return
 	if(HAS_TRAIT(mob_to_check, TRAIT_RESISTCOLD))
 		return FALSE
-	return ..()
+	if(mob_to_check.get_insulation(SNOW_GENTLE_TEMP) >= 0.85)
+		return FALSE
+
+/datum/particle_weather/snow_gentle/calculate_base_damage_for_mob(mob/living/target)
+	. = ..()
+	if(.)
+		. *= target.get_insulation_damage_multiplier(SNOW_GENTLE_TEMP)
 
 /datum/particle_weather/snow_storm
 	name = "Snowstorm"
@@ -53,12 +65,24 @@
 	fire_smothering_strength = 4
 
 //Makes you a lot little chilly
-/datum/particle_weather/snow_storm/affect_mob_effect(mob/living/L, delta_time, calculated_damage)
+/datum/particle_weather/snow_storm/affect_mob_effect(mob/living/target, delta_time, calculated_damage)
 	. = ..()
-	if(ishuman(L))
-		L.adjust_eye_blur(5)
+	if(ishuman(target))
+		target.adjust_eye_blur(5)
+
+/datum/particle_weather/snow_storm/calculate_base_damage_for_mob(mob/living/target)
+	. = ..()
+	if(.)
+		. *= target.get_insulation_damage_multiplier(SNOW_STORM_TEMP)
 
 /datum/particle_weather/snow_storm/can_weather_effect(mob/living/mob_to_check)
+	. = ..()
+	if(!.)
+		return
 	if(HAS_TRAIT(mob_to_check, TRAIT_RESISTCOLD))
 		return FALSE
-	return ..()
+	if(mob_to_check.get_insulation(SNOW_STORM_TEMP) >= 0.85)
+		return FALSE
+
+#undef SNOW_GENTLE_TEMP
+#undef SNOW_STORM_TEMP

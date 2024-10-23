@@ -64,6 +64,25 @@
 #undef THERMAL_PROTECTION_ARM
 #undef THERMAL_PROTECTION_HAND
 
+/**
+ * Returns a multiplier to apply to temperature-based damage given to a mob, based on the exposed temperature.
+ *
+ * Args
+ * * temperature - what temperature is being exposed to this mob?
+ *
+ * Returns a multiplier as a value from 0 - 1.
+ */
+/mob/living/proc/get_insulation_damage_multiplier(temperature = T20C)
+	return (1 - get_insulation(temperature))
+
+/mob/living/carbon/human/get_insulation_damage_multiplier(temperature = T20C)
+	. = ..()
+	if(physiology)
+		if(temperature < bodytemp_cold_damage_limit)
+			. *= physiology.cold_mod
+		else if(temperature > bodytemp_heat_damage_limit)
+			. *= physiology.heat_mod
+
 /mob/living/proc/adjust_bodytemperature(amount = 0, min_temp = 0, max_temp = INFINITY, use_insulation = FALSE)
 	// apply insulation to the amount of change
 	if(use_insulation)
