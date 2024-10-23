@@ -33676,16 +33676,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"iXa" = (
-/obj/machinery/vending/cart,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "iXg" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -49359,6 +49349,16 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
+"oPT" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "oQe" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
@@ -101983,7 +101983,7 @@ dEb
 dPP
 bYm
 ptS
-iXa
+oPT
 qhG
 evI
 vTR
