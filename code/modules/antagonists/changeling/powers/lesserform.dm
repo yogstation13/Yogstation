@@ -1,9 +1,9 @@
 /datum/action/changeling/lesserform
 	name = "Lesser Form"
-	desc = "We debase ourselves and become lesser. We become a monkey. Costs 5 chemicals."
-	helptext = "The transformation greatly reduces our size, allowing us to slip out of cuffs and climb through vents."
+	desc = "We debase ourselves and become lesser. We become a monkey. Costs 15 chemicals." // monkestation edit
+	helptext = "We become much smaller, allowing us to slip out of cuffs and climb through vents. Right-click to drop items."
 	button_icon_state = "lesser_form"
-	chemical_cost = 20 // monkestation edit
+	chemical_cost = 15 // monkestation edit
 	dna_cost = 1
 	/// Whether to allow the transformation animation to play
 	var/transform_instantly = FALSE

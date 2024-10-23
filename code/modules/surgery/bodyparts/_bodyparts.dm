@@ -676,6 +676,10 @@
 	cremation_progress = min(0, cremation_progress - ((brute_dam + burn_dam)*(100/max_damage)))
 	return update_bodypart_damage_state()
 
+///Sets the damage of a bodypart when it is created.
+/obj/item/bodypart/proc/set_initial_damage(brute_damage, burn_damage)
+	set_brute_dam(brute_damage)
+	set_burn_dam(burn_damage)
 
 ///Proc to hook behavior associated to the change of the brute_dam variable's value.
 /obj/item/bodypart/proc/set_brute_dam(new_value)

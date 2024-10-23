@@ -41,7 +41,9 @@
 	return 0
 
 /mob/living/proc/Stun(amount, ignore_canstun = FALSE, ignores_diminish = FALSE) //Can't go below remaining duration
-	amount *= stun_diminish
+	ignores_diminish ||= amount < 0 // don't diminish lowering the duration
+	if(!ignores_diminish)
+		amount *= stun_diminish
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(check_stun_immunity(CANSTUN, ignore_canstun))
@@ -72,7 +74,9 @@
 	return S
 
 /mob/living/proc/AdjustStun(amount, ignore_canstun = FALSE, ignores_diminish = FALSE) //Adds to remaining duration
-	amount *= stun_diminish
+	ignores_diminish ||= amount < 0 // don't diminish lowering the duration
+	if(!ignores_diminish)
+		amount *= stun_diminish
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(check_stun_immunity(CANSTUN, ignore_canstun))
@@ -97,7 +101,9 @@
 	return 0
 
 /mob/living/proc/Knockdown(amount, ignore_canstun = FALSE, ignores_diminish = FALSE) //Can't go below remaining duration
-	amount *= knockdown_diminish
+	ignores_diminish ||= amount < 0 // don't diminish lowering the duration
+	if(!ignores_diminish)
+		amount *= knockdown_diminish
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(check_stun_immunity(CANKNOCKDOWN, ignore_canstun))
@@ -128,7 +134,9 @@
 	return K
 
 /mob/living/proc/AdjustKnockdown(amount, ignore_canstun = FALSE, ignores_diminish = FALSE) //Adds to remaining duration
-	amount *= knockdown_diminish
+	ignores_diminish ||= amount < 0 // don't diminish lowering the duration
+	if(!ignores_diminish)
+		amount *= knockdown_diminish
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(check_stun_immunity(CANKNOCKDOWN, ignore_canstun))
@@ -203,7 +211,9 @@
 	return 0
 
 /mob/living/proc/Paralyze(amount, ignore_canstun = FALSE, ignores_diminish = FALSE) //Can't go below remaining duration
-	amount *= paralyze_diminish
+	ignores_diminish ||= amount < 0 // don't diminish lowering the duration
+	if(!ignores_diminish)
+		amount *= paralyze_diminish
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(check_stun_immunity(CANSTUN|CANKNOCKDOWN, ignore_canstun)) // this requires both can stun and can knockdown
@@ -234,7 +244,9 @@
 	return P
 
 /mob/living/proc/AdjustParalyzed(amount, ignore_canstun = FALSE, ignores_diminish = FALSE) //Adds to remaining duration
-	amount *= paralyze_diminish
+	ignores_diminish ||= amount < 0 // don't diminish lowering the duration
+	if(!ignores_diminish)
+		amount *= paralyze_diminish
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(check_stun_immunity(CANSTUN|CANKNOCKDOWN, ignore_canstun))

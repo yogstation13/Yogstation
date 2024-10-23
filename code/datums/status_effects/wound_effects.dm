@@ -101,7 +101,7 @@
 /datum/status_effect/limp
 	id = "limp"
 	status_type = STATUS_EFFECT_REPLACE
-	tick_interval = 0
+	tick_interval = -1 // monkestation edit
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/limp
 	var/msg_stage = 0//so you dont get the most intense messages immediately

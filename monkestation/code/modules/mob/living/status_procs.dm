@@ -28,7 +28,7 @@
 		if(stam2deal)
 			stamina.adjust(-stam2deal)
 
-	if(HAS_TRAIT(src, TRAIT_EXHAUSTED))
+	if(HAS_TRAIT(src, TRAIT_EXHAUSTED) && !HAS_TRAIT(src, TRAIT_CANT_STAMCRIT))
 		if(knockdown)
 			if(stack_status)
 				AdjustKnockdown(knockdown, ignore_canstun, TRUE)

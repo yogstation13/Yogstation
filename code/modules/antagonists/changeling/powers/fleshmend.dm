@@ -1,7 +1,7 @@
 /datum/action/changeling/fleshmend
 	name = "Fleshmend"
 	desc = "Our flesh rapidly regenerates, healing our burns, bruises, and shortness of breath, as well as hiding all of our scars. Costs 20 chemicals."
-	helptext = "If we are on fire, the healing effect will not function. Does not regrow limbs or restore lost blood. Functions while unconscious."
+	helptext = "Lasts for 10 seconds and does not stack. If we are on fire, the healing effect wont function. Does not regrow limbs or restore lost blood. Functions while unconscious." // monkestation edit
 	button_icon_state = "fleshmend"
 	chemical_cost = 20
 	dna_cost = 2

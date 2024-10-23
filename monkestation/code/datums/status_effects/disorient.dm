@@ -21,7 +21,7 @@
 		INVOKE_ASYNC(owner, TYPE_PROC_REF(/atom/movable, twitch))
 		playsound(owner, 'sound/effects/zzzt.ogg', 35, TRUE, 0.5, 1.5)
 		last_twitch = world.time
-	if(HAS_TRAIT(owner, TRAIT_EXHAUSTED) && (stun || knockdown || paralyze))
+	if(HAS_TRAIT(owner, TRAIT_EXHAUSTED) && !HAS_TRAIT(src, TRAIT_CANT_STAMCRIT) && (stun || knockdown || paralyze))
 		if(knockdown)
 			owner.AdjustKnockdown(min(knockdown, 15 SECONDS))
 			knockdown = 0

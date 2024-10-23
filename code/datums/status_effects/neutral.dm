@@ -344,7 +344,7 @@
 /datum/status_effect/caltropped
 	id = "caltropped"
 	duration = 1 SECONDS
-	tick_interval = INFINITY
+	tick_interval = -1 // monkestation edit
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 

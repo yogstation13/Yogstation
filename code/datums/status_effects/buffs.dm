@@ -104,7 +104,7 @@
 /datum/status_effect/blooddrunk
 	id = "blooddrunk"
 	duration = 10
-	tick_interval = 0
+	tick_interval = -1 // monkestation edit
 	alert_type = /atom/movable/screen/alert/status_effect/blooddrunk
 
 /atom/movable/screen/alert/status_effect/blooddrunk

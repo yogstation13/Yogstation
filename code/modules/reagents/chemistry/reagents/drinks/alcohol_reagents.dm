@@ -1141,14 +1141,15 @@
 	name = "Changeling Sting"
 	description = "You take a tiny sip and feel a burning sensation..."
 	color = "#2E6671" // rgb: 46, 102, 113
-	boozepwr = 50
+	boozepwr = 60 // monkestation edit
 	quality = DRINK_GOOD
 	taste_description = "your brain coming out your nose"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	metabolization_rate = 0.2 // monkestation edit
 
 /datum/reagent/consumable/ethanol/changelingsting/on_mob_life(mob/living/carbon/target, seconds_per_tick, times_fired)
 	var/datum/antagonist/changeling/changeling = target.mind?.has_antag_datum(/datum/antagonist/changeling)
-	changeling?.adjust_chemicals(metabolization_rate * REM * seconds_per_tick)
+	changeling?.adjust_chemicals(metabolization_rate * seconds_per_tick) // monkestation edit
 	return ..()
 
 /datum/reagent/consumable/ethanol/irishcarbomb

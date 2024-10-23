@@ -10,6 +10,7 @@
 	/// When set initially / in on_creation, this is how long between [proc/tick] calls in deciseconds.
 	/// While processing, this becomes the world.time when the next tick will occur.
 	/// -1 = will stop processing, if duration is also unlimited (-1).
+	/// 0 = passes processing straight to tick(), generally not that bad of an idea.
 	var/tick_interval = 1 SECONDS
 	/// The mob affected by the status effect.
 	VAR_FINAL/mob/living/owner
@@ -59,7 +60,7 @@
 		linked_alert = new_alert //so we can reference the alert, if we need to
 		update_shown_duration()
 
-	if(duration > 0 || initial(tick_interval) > 0) //don't process if we don't care
+	if(duration > 0 || initial(tick_interval) >= 0) // don't process if we don't care | MONKESTATION EDIT
 		switch(processing_speed)
 			if(STATUS_EFFECT_FAST_PROCESS)
 				START_PROCESSING(SSfastprocess, src)

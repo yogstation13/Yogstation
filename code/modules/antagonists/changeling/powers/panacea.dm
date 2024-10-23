@@ -1,16 +1,18 @@
 /datum/action/changeling/panacea
 	name = "Anatomic Panacea"
-	desc = "Expels impurifications from our form; curing diseases, removing parasites, sobering us, purging toxins and radiation, curing traumas and brain damage, and resetting our genetic code completely. Costs 20 chemicals."
-	helptext = "Can be used while unconscious."
+	desc = "Expels impurifications from our form; curing diseases, removing parasites, sobering us, purging chemicals and radiation, curing traumas and brain damage, and resetting our genetic code completely. Costs 20 chemicals." // monkestation edit
+	helptext = "Lasts for a minute. Can be used while unconscious. Will purge helpful things as well. Maximum stack duration of 2 minutes." // monkestation edit
 	button_icon_state = "panacea"
 	chemical_cost = 20
 	dna_cost = 1
 	req_stat = HARD_CRIT
 
 //Heals the things that the other regenerative abilities don't.
-/datum/action/changeling/panacea/sting_action(mob/user)
-	to_chat(user, span_notice("We cleanse impurities from our form."))
+/datum/action/changeling/panacea/sting_action(mob/living/user) // monkestation edit
+	//to_chat(user, span_notice("We cleanse impurities from our form."))
 	..()
+	user.apply_status_effect(/datum/status_effect/changeling_panacea) // monkestation addition
+	/* MONKESTATION REMOVAL START
 	var/list/bad_organs = list(
 		user.get_organ_by_type(/obj/item/organ/internal/body_egg),
 		user.get_organ_by_type(/obj/item/organ/internal/legion_tumour),
@@ -52,4 +54,5 @@
 				continue
 			D.cure()
 	*/
+	MONKESTATION REMOVAL END */
 	return TRUE

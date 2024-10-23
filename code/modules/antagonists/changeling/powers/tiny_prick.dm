@@ -67,9 +67,9 @@
 	name = "Transformation Sting"
 	desc = "We silently sting an organism, injecting a retrovirus that forces them to transform."
 	helptext = "The victim will transform much like a changeling would. \
-		For complex humanoids, the transformation is temporarily, but the duration is paused while the victim is dead or in stasis. \
+		For complex humanoids, the transformation only lasts 8 minutes, but the duration is paused while the victim is dead or in stasis. \
 		For more simple humanoids, such as monkeys, the transformation is permanent. \
-		Does not provide a warning to others. Mutations will not be transferred."
+		Does not provide a warning to others. Mutations will not be transferred." // monkestation edit
 	button_icon_state = "sting_transform"
 	chemical_cost = 33 // Low enough that you can sting only two people in quick succession
 	dna_cost = 2
@@ -209,7 +209,7 @@
 
 /datum/action/changeling/sting/mute
 	name = "Mute Sting"
-	desc = "We silently sting a human, completely silencing them for a short time. Costs 20 chemicals."
+	desc = "We silently sting a human, completely silencing them for a minute. Costs 20 chemicals." // monkestation edit
 	helptext = "Does not provide a warning to the victim that they have been stung, until they try to speak and cannot."
 	button_icon_state = "sting_mute"
 	chemical_cost = 20
@@ -223,7 +223,7 @@
 /datum/action/changeling/sting/blind
 	name = "Blind Sting"
 	desc = "We temporarily blind our victim. Costs 25 chemicals."
-	helptext = "This sting completely blinds a target for a short time, and leaves them with blurred vision for a long time."
+	helptext = "This sting completely blinds a target for 40 seconds, and leaves them with blurred vision for 80 seconds." // monkestation edit
 	button_icon_state = "sting_blind"
 	chemical_cost = 25
 	dna_cost = 1
