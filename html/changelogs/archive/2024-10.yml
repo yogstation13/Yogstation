@@ -446,6 +446,12 @@
       wires.
   - bugfix: (SyncIt21) Signalers can be picked up if you attached them to a machine's
       wire & later deconstructed that machine without detaching it first.
+  - qol: Insulation now properly protects you from snowstorms on Icebox.
+  - refactor: Cleaned up particle weather code quite a bit.
+  - bugfix: Fixed a potential rare source of strange behavior (such as players often
+      dropping inputs) resulting from an admin manually restarting the MC.
+  - bugfix: Fix overlay lighting (such as lanterns) messing up alert overlays, i.e
+      the rod of asclepius alert, and the living heart selection.
   Absolucy, xPokee, Pirill:
   - rscadd: Added flower crowns, craftable via the clothing menu, and also can be
       bought from the loadout shop.
