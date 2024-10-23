@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fix overlay lighting (such as lanterns) messing up alert overlays, i.e the rod of asclepius alert, and the living heart selection."
