@@ -3,6 +3,7 @@
 #define TOOL_MULTITOOL 		"multitool"
 #define TOOL_SCREWDRIVER 	"screwdriver"
 #define TOOL_WIRECUTTER 	"wirecutter"
+#define TOOL_WIRING			"wiring"
 #define TOOL_WRENCH 		"wrench"
 #define TOOL_WELDER 		"welder"
 #define TOOL_ANALYZER		"analyzer"

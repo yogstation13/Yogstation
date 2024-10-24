@@ -6,6 +6,7 @@
 	reqs = list(/obj/item/gun = 1)
 	parts = list(/obj/item/gun = 1)
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	time = 5 SECONDS
 	category = CAT_MISC
 
@@ -17,6 +18,10 @@
 				/obj/item/assembly/igniter = 1,
 				/obj/item/reagent_containers/food/drinks/soda_cans = 1)
 	parts = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1)
+	skill_requirements = list(
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+	)
 	time = 1.5 SECONDS
 	category = CAT_WEAPON_RANGED
 
@@ -27,6 +32,7 @@
 				/obj/item/assembly/flash/handheld = 1,
 				/obj/item/shield/riot = 1)
 	blacklist = list(/obj/item/shield/riot/buckler, /obj/item/shield/riot/tele)
+	skill_requirements = list(SKILL_TECHNICAL = EXP_LOW)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
 
@@ -45,6 +51,7 @@
 	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
 				/obj/item/stack/rods = 1,
 				/obj/item/assembly/igniter = 1)
+	skill_requirements = list(SKILL_TECHNICAL = EXP_LOW)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
 
@@ -55,6 +62,10 @@
 				/obj/item/stack/rods = 1,
 				/obj/item/assembly/igniter = 1,
 				/obj/item/stack/ore/bluespace_crystal = 1)
+	skill_requirements = list(
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_LOW,
+	)
 	time = 4 SECONDS
 	category = CAT_WEAPON_MELEE
 
@@ -131,6 +142,7 @@
 	reqs = list(/obj/item/pipe = 5,
 				/obj/item/stack/sheet/plastic = 5,
 				/obj/item/weaponcrafting/silkstring = 1)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	time = 9 SECONDS
 	category = CAT_WEAPON_RANGED
 
@@ -140,6 +152,7 @@
 	reqs = list(/obj/item/pipe = 5,
            		/obj/item/stack/tape = 3,
 				/obj/item/stack/cable_coil = 10)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 
@@ -149,6 +162,7 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 8,
 				/obj/item/stack/sheet/metal = 2,
 				/obj/item/weaponcrafting/silkstring = 1)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	time = 7 SECONDS
 	category = CAT_WEAPON_RANGED
 
@@ -161,6 +175,7 @@
 				/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/weaponcrafting/stock = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 
@@ -172,6 +187,7 @@
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_MID)
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
 
@@ -184,6 +200,11 @@
 				/obj/item/stack/rods = 4,
 				/obj/item/stack/cable_coil = 10)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_WRENCH)
+	skill_requirements = list(
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+	)
 	result = /obj/item/gun/ballistic/gauss
 	time = 12
 	category = CAT_WEAPON_RANGED
@@ -195,6 +216,7 @@
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER, TOOL_WRENCH)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	result = /obj/item/gun/ballistic/maint_musket
 	time = 10 SECONDS
 	category = CAT_WEAPON_RANGED
@@ -206,6 +228,7 @@
 				/obj/item/stack/sheet/plasteel = 3,
 				/obj/item/stack/sheet/metal = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WELDER)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	result = /obj/item/melee/sledgehammer
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
@@ -217,6 +240,7 @@
 				/obj/item/stack/cable_coil = 3,
 				/obj/item/stack/sheet/plasteel = 5)
 	tool_behaviors = list(TOOL_WELDER)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_MID)
 	time = 5 SECONDS
 	category = CAT_WEAPON_MELEE
 
@@ -245,6 +269,10 @@
 		/obj/item/grenade/chem_grenade = 2
 	)
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
+	skill_requirements = list(
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_MID,
+	)
 	time = 3 SECONDS
 	category = CAT_MISC
 
@@ -257,6 +285,10 @@
 		/obj/item/grenade/chem_grenade = 2
 	)
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
+	skill_requirements = list(
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_MID,
+	)
 	time = 5 SECONDS
 	category = CAT_MISC
 
@@ -333,6 +365,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 4,
 				/obj/item/stack/packageWrap = 8,
 				/obj/item/pipe = 2)
+	skill_requirements = list(SKILL_MECHANICAL = EXP_LOW)
 	time = 5 SECONDS
 	category = CAT_WEAPON_RANGED
 

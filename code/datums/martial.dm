@@ -101,8 +101,8 @@
   * used for basic punch attacks
   */
 /datum/martial_art/proc/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
-
-	var/damage = rand(A.get_punchdamagelow(), A.get_punchdamagehigh())
+	var/percentile = rand()
+	var/damage = LERP(A.get_punchdamagelow(), A.get_punchdamagehigh(), percentile)
 
 	var/atk_verb = pick(A.dna.species.attack_verbs)
 	var/atk_effect = A.dna.species.attack_effect
@@ -129,7 +129,7 @@
 
 	log_combat(A, D, "punched")
 
-	if((D.stat != DEAD) && damage >= A.get_punchstunthreshold())
+	if((D.stat != DEAD) && percentile > (1 - A.get_punchstunchance()) && !HAS_TRAIT(A, TRAIT_NO_PUNCH_STUN))
 		D.visible_message(span_danger("[A] has knocked [D] down!!"), \
 								span_userdanger("[A] has knocked [D] down!"))
 		D.apply_effect(40, EFFECT_KNOCKDOWN, armor_block)
