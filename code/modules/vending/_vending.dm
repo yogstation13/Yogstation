@@ -14,7 +14,6 @@
 IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY CANISTER CHARGES in vending_items.dm
 */
 
-#define MAX_VENDING_INPUT_AMOUNT 30
 /**
   * # vending record datum
   *
@@ -197,10 +196,10 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 	/// how many items have been inserted in a vendor
 	var/loaded_items = 0
-	
+
 	///Name of lighting mask for the vending machine
 	var/light_mask
-	
+
 	/// used for narcing on underages
 	var/obj/item/radio/alertradio
 
@@ -485,9 +484,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/loaded = 0
 			var/denied_items = 0
 			for(var/obj/item/the_item in T.contents)
-				if(contents.len >= MAX_VENDING_INPUT_AMOUNT) // no more than 30 item can fit inside, legacy from snack vending although not sure why it exists
-					to_chat(user, span_warning("[src]'s chef compartment is full."))
-					break
 				if(canLoadItem(the_item) && loadingAttempt(the_item,user))
 					SEND_SIGNAL(T, COMSIG_TRY_STORAGE_TAKE, the_item, src, TRUE)
 					loaded++
@@ -693,7 +689,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	obj_flags |= EMAGGED
 	to_chat(user, span_notice("You short out the product lock on [src]."))
 	return TRUE
-	
+
 /obj/machinery/vending/_try_interact(mob/user)
 	if(seconds_electrified && !(stat & NOPOWER))
 		if(shock(user, 100))
@@ -966,7 +962,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(COOLDOWN_FINISHED(src, product_ad_cooldown) && LAZYLEN(small_ads) > 0)
 		COOLDOWN_START(src, product_ad_cooldown, product_cd)
 		current_ad = pick(small_ads)
-	
+
 	if(seconds_electrified > MACHINE_NOT_ELECTRIFIED)
 		seconds_electrified--
 
