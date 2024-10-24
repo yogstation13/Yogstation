@@ -11,6 +11,7 @@
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
 	density = TRUE
+	telecomms_type = /obj/machinery/telecomms/message_server
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
