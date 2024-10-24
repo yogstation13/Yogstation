@@ -130,6 +130,7 @@
 /mob/living/simple_animal/hostile/asteroid/marrowweaver/ice
 	name = "Frostbite Spider"
 	desc = "A big, angry, venomous ice spider. It likes to snack on bone marrow. Its preferred food source is you."
+	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/bone = 3, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/animalhide/weaver_chitin = 4, /obj/item/reagent_containers/food/snacks/meat/slab/spider = 2)
 	icon_state = "weaver_ice"
 	icon_living = "weaver_ice"
 	icon_aggro = "weaver_ice"
