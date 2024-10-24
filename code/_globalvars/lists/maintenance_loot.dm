@@ -646,7 +646,7 @@ GLOBAL_LIST_INIT(maintenance_loot_minor,list(
 	/obj/item/kitchen/knife = W_RARE,
 	/obj/item/melee/skateboard = W_RARE,
 	/obj/item/mining_scanner = W_RARE,
-	/obj/item/paicard = W_RARE,
+	/obj/item/computer_hardware/paicard = W_RARE,
 	/obj/item/paint/anycolor = W_MYTHICAL,
 	/obj/item/paint/paint_remover = W_RARE,
 	/obj/item/phone = W_RARE,

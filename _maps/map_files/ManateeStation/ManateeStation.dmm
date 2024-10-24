@@ -683,7 +683,7 @@
 /area/maintenance/solars/port/fore)
 "afV" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "agk" = (
@@ -3115,7 +3115,7 @@
 "aBH" = (
 /obj/structure/table/glass,
 /obj/item/disk/design_disk,
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -3453,7 +3453,7 @@
 "aDJ" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
@@ -43147,7 +43147,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /obj/effect/turf_decal/stripes/line{

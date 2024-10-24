@@ -743,7 +743,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/bot/mulebot/insertpai(mob/user, obj/item/paicard/card)
+/mob/living/simple_animal/bot/mulebot/insertpai(mob/user, obj/item/computer_hardware/paicard/card)
 	if(..())
 		visible_message("[src] safeties are locked on.")
 

@@ -2035,7 +2035,7 @@
 /obj/item/stack/sheet/mineral/bamboo{
 	amount = 50
 	},
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/item/reagent_containers/glass/gromitmug,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/fishing/shop)

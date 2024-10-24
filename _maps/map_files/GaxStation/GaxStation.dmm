@@ -10356,7 +10356,7 @@
 /obj/machinery/keycard_auth{
 	pixel_x = 24
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -28835,7 +28835,7 @@
 /area/security/execution/transfer)
 "nOj" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "nOx" = (

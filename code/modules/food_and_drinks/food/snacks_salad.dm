@@ -85,9 +85,9 @@
 	foodtype = GRAIN | RAW
 
 /obj/item/reagent_containers/food/snacks/salad/ricebowl/attackby(obj/item/W, mob/user, params)
-	if(!istype(W, /obj/item/paicard))
+	if(!istype(W, /obj/item/computer_hardware/paicard))
 		return ..()
-	var/obj/item/paicard/ricephone = W
+	var/obj/item/computer_hardware/paicard/ricephone = W
 	if(!ricephone.pai)
 		return ..()
 	if(!ricephone.pai.has_status_effect(/datum/status_effect/speech/slurring/drunk) && !ricephone.pai.has_status_effect(/datum/status_effect/speech/stutter/derpspeech))

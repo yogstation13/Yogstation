@@ -23,6 +23,7 @@
 	if(istype(card.loc, /obj/item/modular_computer))
 		var/obj/item/modular_computer/P = card.loc
 		P.inserted_pai = null
+		P.uninstall_component(card, src)
 		P.visible_message(span_notice("[src] ejects itself from [P]!"))
 	if(isliving(card.loc))
 		var/mob/living/L = card.loc

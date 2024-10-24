@@ -11,10 +11,10 @@ SUBSYSTEM_DEF(pai)
 /datum/controller/subsystem/pai/Topic(href, href_list[])
 	if(href_list["download"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"]) in candidates
-		var/obj/item/paicard/card = locate(href_list["device"]) in paicard_list
+		var/obj/item/computer_hardware/paicard/card = locate(href_list["device"]) in paicard_list
 		if(card.pai)
 			return
-		if(istype(card, /obj/item/paicard) && istype(candidate, /datum/paiCandidate))
+		if(istype(card, /obj/item/computer_hardware/paicard) && istype(candidate, /datum/paiCandidate))
 			if(check_ready(candidate) != candidate)
 				return FALSE
 			var/mob/living/silicon/pai/pai = new(card)
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(pai)
 			if("submit")
 				if(candidate)
 					candidate.ready = 1
-					for(var/obj/item/paicard/p in paicard_list)
+					for(var/obj/item/computer_hardware/paicard/p in paicard_list)
 						if(!p.pai)
 							p.alertUpdate()
 				usr << browse(null, "window=paiRecruit")
@@ -85,8 +85,6 @@ SUBSYSTEM_DEF(pai)
 		candidate = new /datum/paiCandidate()
 		candidate.key = M.key
 		candidates.Add(candidate)
-
-
 	var/dat = ""
 	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
 	dat += {"
@@ -141,58 +139,20 @@ SUBSYSTEM_DEF(pai)
 			return C
 	return FALSE
 
-/datum/controller/subsystem/pai/proc/findPAI(obj/item/paicard/p, mob/user)
+/datum/controller/subsystem/pai/proc/findPAI(obj/item/computer_hardware/paicard/p, mob/user)
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SILICONS))
 		to_chat(user, span_warning("Due to growing incidents of SELF corrupted independent artificial intelligences, freeform personality devices have been temporarily banned in this sector."))
 		return
 	if(!ghost_spam)
 		ghost_spam = TRUE
-		for(var/mob/dead/observer/G in GLOB.player_list)
-			if(!G.key || !G.client)
-				continue
-			if(!(ROLE_PAI in G.client.prefs.be_special))
-				continue
-			to_chat(G, span_ghostalert("[user] is requesting a pAI personality! Use the pAI button to submit yourself as one."))
+		notify_ghosts("[user] is requesting a pAI personality! Use the pAI button to submit yourself as one.")
 		addtimer(CALLBACK(src, PROC_REF(spam_again)), spam_delay)
 	var/list/available = list()
 	for(var/datum/paiCandidate/c in SSpai.candidates)
-		available.Add(check_ready(c))
-	var/dat = ""
-	dat += "<HTML><HEAD><meta charset='UTF-8'></HEAD><BODY>"
-	dat += {"
-			<style type="text/css">
-
-			p.top {
-				background-color: #AAAAAA; color: black;
-			}
-
-			tr.d0 td {
-				background-color: #CC9999; color: black;
-			}
-			tr.d1 td {
-				background-color: #9999CC; color: black;
-			}
-			tr.d2 td {
-				background-color: #99CC99; color: black;
-			}
-			</style>
-			"}
-	dat += "<p class=\"top\">Requesting AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>"
-
-	dat += "<table>"
-
-	for(var/datum/paiCandidate/c in available)
-		dat += "<tr class=\"d0\"><td>Name:</td><td>[c.name]</td></tr>"
-		dat += "<tr class=\"d1\"><td>Description:</td><td>[c.description]</td></tr>"
-		dat += "<tr class=\"d0\"><td>Preferred Role:</td><td>[c.role]</td></tr>"
-		dat += "<tr class=\"d1\"><td>OOC Comments:</td><td>[c.comments]</td></tr>"
-		dat += "<tr class=\"d2\"><td><a href='byond://?src=[REF(src)];download=1;candidate=[REF(c)];device=[REF(p)]'>\[Download [c.name]\]</a></td><td></td></tr>"
-
-	dat += "</table>"
-
-	dat += "</BODY></HTML>"
-
-	user << browse(dat, "window=findPai")
+		if(check_ready(c))
+			var/candidate = list("name" = c.name, "description"=c.description, "prefrole"=c.role, "ooccomments"=c.comments)
+			available += list(candidate)
+	return available
 
 /datum/paiCandidate
 	var/name

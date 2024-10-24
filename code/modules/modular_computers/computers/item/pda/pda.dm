@@ -27,7 +27,7 @@
 		. += mutable_appearance(initial(icon), "id_overlay")
 	if(light_on)
 		. += mutable_appearance(initial(icon), "light_overlay")
-	if(inserted_pai)
+	if(all_components[MC_PAI])
 		. += mutable_appearance(initial(icon), "pai_inserted")
 
 /obj/item/modular_computer/tablet/pda/verb/verb_toggle_light()

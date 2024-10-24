@@ -70,7 +70,7 @@
 "ar" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/carpet,
 /area/template_noop)
 "as" = (
