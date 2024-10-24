@@ -499,3 +499,20 @@
   manray0:
   - rscdel: borg ability to use keycard auth
   - sound: added borg footstep
+2024-10-24:
+  Absolucy:
+  - bugfix: Spessmen are no longer hyper-empaths (you no longer scream in pain while
+      helping relocate *someone else's* limb)
+  Shoddd:
+  - rscadd: Nukies can now buy the outlaw kit for 18 TC
+  - rscadd: Syndicate horses, obtainable from outlaw kit
+  - rscadd: Syndicate body armor, obtainable for 4 TC from any uplink
+  - qol: mentions you can lock chameleon clothes with multitool
+  - bugfix: All mountable mobs can no longer ride through space
+  Volpiin:
+  - rscadd: Added new and improved Artifact Experimentation Lab on Metastation
+  - rscadd: MetaStation - Redone the maintenance glass corridor under Ordnance.
+  - rscadd: Slightly redesigned Aft Solars on Metastation to make space for a new
+      ArtSci Lab.
+  manray0:
+  - bugfix: borgo footstep sound

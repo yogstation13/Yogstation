@@ -1,8 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - rscadd: "Nukies can now buy the outlaw kit for 18 TC"
-  - rscadd: "Syndicate horses, obtainable from outlaw kit"
-  - rscadd: "Syndicate body armor, obtainable for 4 TC from any uplink"
-  - qol: "mentions you can lock chameleon clothes with multitool"
-  - bugfix: "All mountable mobs can no longer ride through space"
