@@ -97,3 +97,9 @@
 	name = "\improper Hugs-The-Feet lizard skin boots"
 	desc = "A pair of masterfully crafted lizard skin boots. Finally a good application for the station's most bothersome inhabitants."
 	icon_state = "lizardboots_blue"
+
+/// Shoes for the nuke-ops cowboy fit
+/obj/item/clothing/shoes/cowboy/black/syndicate
+	name = "black spurred cowboy boots"
+	desc = "And they sing, oh, ain't you glad you're single? And that song ain't so very far from wrong."
+	armor_type = /datum/armor/shoes_combat

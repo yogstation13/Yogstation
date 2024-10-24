@@ -8041,6 +8041,7 @@
 #include "monkestation\code\modules\uplink\uplink_items\misc.dm"
 #include "monkestation\code\modules\uplink\uplink_items\nukeops.dm"
 #include "monkestation\code\modules\uplink\uplink_items\species.dm"
+#include "monkestation\code\modules\uplink\uplink_items\stealthy_tools.dm"
 #include "monkestation\code\modules\uplink\uplink_items\suits.dm"
 #include "monkestation\code\modules\uplink\uplink_items\weapons.dm"
 #include "monkestation\code\modules\vehicles\monkey_ball.dm"
