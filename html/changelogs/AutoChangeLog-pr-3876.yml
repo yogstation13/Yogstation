@@ -1,0 +1,6 @@
+author: "Volpiin"
+delete-after: True
+changes:
+  - rscadd: "Added new and improved Artifact Experimentation Lab on Metastation"
+  - rscadd: "MetaStation - Redone the maintenance glass corridor under Ordnance."
+  - rscadd: "Slightly redesigned Aft Solars on Metastation to make space for a new ArtSci Lab."
