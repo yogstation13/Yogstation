@@ -518,7 +518,6 @@
 		"https://www.youtube.com/watch?v=fixc63xMXeY", // Plok Boss Theme - HD Remastered
 		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
-	holiday_colors = list(COLOR_MOSTLY_PURE_ORANGE, COLOR_PRISONER_BLACK)
 
 /datum/holiday/halloween/shouldCelebrate(dd, mm, yy, ww, ddd)
 	. = ..()
