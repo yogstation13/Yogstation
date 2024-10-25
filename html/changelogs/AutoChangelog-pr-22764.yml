@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - spellcheck: "Removed an extra space from blood-stained hands examine"
-  - spellcheck: "Examining someone who is bloody but does not have bloody hands will now be indicated correctly"
