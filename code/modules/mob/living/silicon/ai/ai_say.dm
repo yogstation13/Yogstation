@@ -4,7 +4,8 @@
 	return ..()
 
 /mob/living/silicon/ai/compose_track_href(atom/movable/speaker, namepart)
-	var/mob/M = speaker.GetSource()
+//	var/mob/M = speaker.GetSource() // MONKESTATION EDIT OLD
+	var/mob/M = speaker.GetJob() // MONKESTATION EDIT NEW -- NTSL
 	if(M)
 		return "<a href='byond://?src=[REF(src)];track=[html_encode(namepart)]'>"
 	return ""

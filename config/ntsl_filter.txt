@@ -1,0 +1,50 @@
+# This file contains filters required for replacements in supported speech systems.
+# Each line contains one pattern and one replacement. The patterns used are regular
+# expression patterns.
+#
+# Examples:
+#
+# fuck=duck
+# 	This would replace all instances of "fuck" with duck. So "fucking" would become "ducking".
+#
+# fu+ck=duck
+#	This would do the same as above, except it would accept one or more "u". So "fuuuuuck" would become "duck".
+#
+# Activate the ([\\S]+?)=use $1
+#	This would match a group, and use it in a pattern. So "Activate the probulator" would become "use probulator".
+#
+# \\b[f]+[u]+\\b=fun you
+#	This would make any word with combinations of "f" followed by "u" be replaced with fun you. So "ffffffffuuuuuuuuuuu" becomes "fun you".
+
+#prettyfiltertest=SUCCESS
+
+\bf[4a]*g+=BAN ME ADMINS!
+f[4a]*gg+[0o]*t=BAN ME ADMINS!
+
+#Regex for le epic nword that if i type out will get the repo yeeted, in multiple variations, even capturing against simple replacement tricks (like "n.w.o.r.d" or "n!ord")
+#Case sensitivity precautions added due to known regex bug in 512.14XX. Feel free to remove when Lummox fixes it.
+\b[Nn]+[\W_]*[!iI\/?1\\]+[\W_]*[qgbQGB]+[\W_]*[qgbQGB]?[\W_]*(?:[eE3]+[\W_]*[Rr]+|[Aa]+)(?![iI][Aa])=BAN ME ADMINS!
+
+#Regex for le epic lword
+#Case sensitivity precautions added due to known regex bug in 512.14XX. Feel free to remove when Lummox fixes it.
+\b[Ll]+[\W_]*[!iI\/?1\\]+[\W_]*[qgQG]+[\W_]*[qgQG]?[\W_]*(?:[eE3]+[\W_]*[Rr]+|[Aa]+)\b=BAN ME ADMINS!
+
+#Regex for le epic nword but ending in an o:
+#Case sensitivity precautions added due to known regex bug in 512.14XX. Feel free to remove when Lummox fixes it.
+\b[nlNL][\W_]*[eE3]+[\W_]*[Gg]+[\W_]*[Rr]+[\W_]*[0Oo\*]+(?:\b|[iI!\/\\]+[Dd]|[Ee]+[Ss]|[Ss])\b=BAN ME ADMINS!
+
+\bnig\b=BAN ME ADMINS!
+
+#Regex for the first 4 letters of le epic nword and the combinaison of le epic nword and piglet:
+n[i1!\\\/]+g(?:g|l+[e3]+t)=BAN ME ADMINS!
+
+\bligg=BAN ME ADMINS!
+
+One day while Andy was masturbating=BAN ME ADMINS!
+XEzwgBD=BAN ME ADMINS!
+
+#Regex for tyranny without the y
+tra+n+y+=BAN ME ADMINS!
+
+\b(?:https?:\/\/)?(?:www|i)?\.?(?!yogstation\.net|github\.com)\w{4,128}\.\w{2}\.?\w{0,2}\b\S*=[Link Removed]
+[^ -ÿ]+=​

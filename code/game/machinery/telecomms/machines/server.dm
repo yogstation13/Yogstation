@@ -28,6 +28,8 @@
 	if (log_entries.len >= 400)
 		log_entries.Cut(1, 2)
 
+	signal.data["server"] = src; // MONKESTATION ADDITION -- NTSL
+
 	// Don't create a log if the frequency is banned from being logged
 	if(!(signal.frequency in banned_frequencies))
 		var/datum/comm_log_entry/log = new
@@ -50,6 +52,11 @@
 		var/identifier = num2text( rand(-1000,1000) + world.time )
 		log.name = "data packet ([md5(identifier)])"
 		log_entries.Add(log)
+
+	// MONKESTATION ADDITION START -- NTSL -- Run the damn NTSL code
+	if(Compiler && autoruncode)
+		Compiler.Run(signal)
+	// MONKESTATION ADDITION END
 
 	var/can_send = relay_information(signal, /obj/machinery/telecomms/hub)
 	if(!can_send)

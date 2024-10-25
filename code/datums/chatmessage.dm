@@ -334,6 +334,11 @@
 		speaker = v.source
 		spans |= "virtual-speaker"
 
+	// MONKESTATION ADDITION START -- NTSL -- NTSL doesn't pass a speaker when you do broadcast() since technically nothing is actually speaking.
+	if(!speaker)
+		return
+	// MONKESTATION ADDITION END
+
 	// Ignore virtual speaker (most often radio messages) from ourself
 	if (originalSpeaker != src && speaker == src)
 		return

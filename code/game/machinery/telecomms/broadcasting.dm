@@ -106,7 +106,8 @@
 	datum/language/language,  // the language of the message
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
-	list/message_mods // the list of modification applied to the message. Whispering, singing, ect
+	list/message_mods, // the list of modification applied to the message. Whispering, singing, ect
+	lvls = null, // MONKESTATION ADDITION -- NTSL -- what z-levels is this message broadcast to?
 )
 	src.source = source
 	src.frequency = frequency
@@ -122,7 +123,8 @@
 		"spans" = spans,
 		"mods" = message_mods
 	)
-	levels = SSmapping.get_connected_levels(get_turf(source))
+	// levels = SSmapping.get_connected_levels(get_turf(source)) -- MONKESTATION EDIT OLD
+	levels = lvls != null ? lvls : SSmapping.get_connected_levels(get_turf(source)) // MONKESTATION EDIT NEW
 
 /datum/signal/subspace/vocal/copy()
 	var/datum/signal/subspace/vocal/copy = new(source, frequency, virt, language)
