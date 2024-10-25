@@ -1,0 +1,4 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - bugfix: "Removed making gold with server racks only using out of iron and glass"
