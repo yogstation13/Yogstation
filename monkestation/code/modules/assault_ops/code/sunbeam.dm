@@ -51,6 +51,8 @@
 	if(obliteration_range_flatten_override)
 		obliteration_range_flatten = obliteration_range_flatten_override
 
+	SSpoints_of_interest.make_point_of_interest(src)
+
 	START_PROCESSING(SSfastprocess, src)
 	update_appearance()
 	if(scale_x || scale_y)
@@ -64,6 +66,7 @@
 	soundloop = new(src, TRUE)
 
 /obj/effect/sunbeam/Destroy(force)
+	target_atom = null
 	QDEL_NULL(soundloop)
 	return ..()
 
@@ -75,7 +78,7 @@
 		. += beam_overlay
 
 /obj/effect/sunbeam/process(seconds_per_tick)
-	if(target_atom && COOLDOWN_FINISHED(src, movement_delay))
+	if(!QDELETED(target_atom) && COOLDOWN_FINISHED(src, movement_delay))
 		step_towards(src, target_atom)
 		COOLDOWN_START(src, movement_delay, movement_cooldown)
 

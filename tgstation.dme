@@ -474,6 +474,7 @@
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_carbon.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_element.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_food.dm"
+#include "code\__DEFINES\~monkestation\dcs\signals\signals_global.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_guns.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_item.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_object.dm"

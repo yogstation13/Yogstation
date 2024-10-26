@@ -19695,7 +19695,10 @@
 /turf/open/floor/iron/white/textured,
 /area/centcom/central_command_areas/admin)
 "cvB" = (
-/obj/machinery/armament_station/assault_operatives,
+/obj/structure/signboard{
+	locked = 1;
+	sign_text = "Your armament points is effectively your uplink, use it in-hand!"
+	},
 /turf/open/floor/iron/smooth_large,
 /area/cruiser_dock)
 "cvJ" = (
@@ -20735,10 +20738,8 @@
 /area/centcom/central_command_areas/adminroom)
 "gwo" = (
 /obj/structure/closet/cardboard,
-/mob/living/basic/bot/medbot{
-	faction = list("Syndicate");
-	name = "Kahn";
-	radio_channel = "Syndicate"
+/mob/living/basic/bot/medbot/nukie/assop{
+	name = "Kahn"
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)

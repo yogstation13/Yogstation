@@ -1,7 +1,4 @@
-GLOBAL_LIST_EMPTY(goldeneye_pinpointers)
-
 #define ICARUS_IGNITION_TIME (20 SECONDS)
-#define PINPOINTER_PING_TIME (4 SECONDS)
 
 /**
  * GoldenEye defence network
@@ -11,7 +8,7 @@ GLOBAL_LIST_EMPTY(goldeneye_pinpointers)
 
 SUBSYSTEM_DEF(goldeneye)
 	name = "GoldenEye"
-	flags = SS_NO_FIRE | SS_NO_INIT
+	flags = SS_NO_INIT | SS_NO_FIRE
 	/// A tracked list of all our keys.
 	var/list/goldeneye_keys = list()
 	/// A list of minds that have been extracted and thus cannot be extracted again.
@@ -24,6 +21,14 @@ SUBSYSTEM_DEF(goldeneye)
 	var/goldeneye_activated = FALSE
 	/// How long until ICARUS fires?
 	var/ignition_time = ICARUS_IGNITION_TIME
+
+/datum/controller/subsystem/goldeneye/Recover()
+	goldeneye_keys = SSgoldeneye.goldeneye_keys
+	goldeneye_extracted_minds = SSgoldeneye.goldeneye_extracted_minds
+	uploaded_keys = SSgoldeneye.uploaded_keys
+	required_keys = SSgoldeneye.required_keys
+	goldeneye_activated = SSgoldeneye.goldeneye_activated
+	ignition_time = SSgoldeneye.ignition_time
 
 /// A safe proc for adding a targets mind to the tracked extracted minds.
 /datum/controller/subsystem/goldeneye/proc/extract_mind(datum/mind/target_mind)
@@ -83,22 +88,39 @@ SUBSYSTEM_DEF(goldeneye)
 	var/goldeneye_tag = "G00000"
 	/// Flavour text for who's mind is in the key.
 	var/extract_name = "NO DATA"
+	/// The color used for the tracking hUD element.
+	var/beacon_color = COLOR_WHITE
+	/// The tracking beacon component, used so the operatives can track it via HUD arrows.
+	var/datum/component/tracking_beacon/beacon
 
 /obj/item/goldeneye_key/Initialize(mapload)
 	. = ..()
 	SSgoldeneye.goldeneye_keys += src
 	goldeneye_tag = "G[rand(10000, 99999)]"
 	name = "\improper GoldenEye authentication keycard: [goldeneye_tag]"
+	AddComponent(/datum/component/stationloving/goldeneye)
 	AddComponent(/datum/component/gps, goldeneye_tag)
+	beacon = AddComponent(/datum/component/tracking_beacon, "goldeneye_key", _colour = choose_beacon_color(), _global = TRUE, _always_update = TRUE)
 	SSpoints_of_interest.make_point_of_interest(src)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GOLDENEYE_KEY_CREATED, src)
+
+/obj/item/goldeneye_key/Destroy(force)
+	SSgoldeneye.goldeneye_keys -= src
+	QDEL_NULL(beacon)
+	return ..()
+
+/obj/item/goldeneye_key/proc/choose_beacon_color()
+	var/static/list/possible_beacon_colors
+	var/static/next_beacon_color = 1
+	if(isnull(possible_beacon_colors))
+		possible_beacon_colors = shuffle(flatten_list(GLOB.cable_colors))
+	beacon_color = possible_beacon_colors[next_beacon_color]
+	next_beacon_color = WRAP_UP(next_beacon_color, length(possible_beacon_colors))
+	return beacon_color
 
 /obj/item/goldeneye_key/examine(mob/user)
 	. = ..()
 	. += "The DNA data link belongs to: [extract_name]"
-
-/obj/item/goldeneye_key/Destroy(force)
-	SSgoldeneye.goldeneye_keys -= src
-	return ..()
 
 // Upload terminal
 /obj/machinery/goldeneye_upload_terminal
@@ -133,36 +155,13 @@ SUBSYSTEM_DEF(goldeneye)
 		playsound(src, 'sound/machines/nuke/confirm_beep.ogg', 100)
 		SSgoldeneye.upload_key()
 		uploading = FALSE
+		// Remove its stationloving, so we can delete it.
+		qdel(inserting_key.GetComponent(/datum/component/stationloving/goldeneye))
 		qdel(inserting_key)
 	else
 		say("GOLDENEYE KEYCARD VERIFICATION FAILED: Please try again.")
 		playsound(src, 'sound/machines/nuke/angry_beep.ogg', 100)
 		uploading = FALSE
-
-// Pinpointer
-/obj/item/pinpointer/nuke/goldeneye
-	name = "\improper GoldenEye keycard pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals. This one is configured to locate any GoldenEye keycards."
-	icon_state = "pinpointer_syndicate"
-	worn_icon_state = "pinpointer_black"
-	active = TRUE
-	mode = TRACK_GOLDENEYE
-
-/obj/item/pinpointer/nuke/goldeneye/Initialize(mapload)
-	. = ..()
-	START_PROCESSING(SSfastprocess, src)
-
-/obj/item/pinpointer/nuke/goldeneye/attack_self(mob/living/user)
-	if(!LAZYLEN(SSgoldeneye.goldeneye_keys))
-		to_chat(user, span_danger("ERROR! No GoldenEye keys detected!"))
-		return
-	target = tgui_input_list(user, "Select GoldenEye keycard to track", "GoldenEye keycard", SSgoldeneye.goldeneye_keys)
-	if(target)
-		to_chat(user, span_notice("Set to track: [target.name]"))
-
-/obj/item/pinpointer/nuke/goldeneye/scan_for_target()
-	if(QDELETED(target))
-		target = null
 
 // Objective
 /datum/objective/goldeneye
@@ -172,86 +171,15 @@ SUBSYSTEM_DEF(goldeneye)
 	martyr_compatible = TRUE
 
 /datum/objective/goldeneye/check_completion()
-	if(SSgoldeneye.goldeneye_activated)
+	return ..() || SSgoldeneye.goldeneye_activated
+
+// Variant of stationloving that also allows it to be at the assop base, used by the goldeneye keycards.
+/datum/component/stationloving/goldeneye
+	inform_admins = TRUE
+
+/datum/component/stationloving/goldeneye/atom_in_bounds(atom/atom_to_check)
+	if(istype(get_area(atom_to_check), /area/cruiser_dock))
 		return TRUE
-	return FALSE
-
-// Internal pinpointer
-
-
-/atom/movable/screen/alert/status_effect/goldeneye_pinpointer
-	name = "Target Integrated Pinpointer"
-	desc = "Even stealthier than a normal implant, it points to a selected GoldenEye keycard."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "pinon"
-
-/datum/status_effect/goldeneye_pinpointer
-	id = "goldeneye_pinpointer"
-	duration = -1
-	tick_interval = PINPOINTER_PING_TIME
-	alert_type = /atom/movable/screen/alert/status_effect/goldeneye_pinpointer
-	/// The range until you're considered 'close'
-	var/range_mid = 8
-	/// The range until you're considered 'too far away'
-	var/range_far = 16
-	/// The target we are pointing towards, refreshes every tick.
-	var/obj/item/target
-	/// Our linked antagonist datum, if any.
-	var/datum/antagonist/assault_operative/linked_antagonist
-
-/datum/status_effect/goldeneye_pinpointer/New(list/arguments)
-	GLOB.goldeneye_pinpointers += src
 	return ..()
-
-/datum/status_effect/goldeneye_pinpointer/Destroy()
-	GLOB.goldeneye_pinpointers -= src
-	if(linked_antagonist)
-		linked_antagonist.pinpointer = null
-		linked_antagonist = null
-	return ..()
-
-/datum/status_effect/goldeneye_pinpointer/tick(seconds_between_ticks)
-	if(!owner)
-		qdel(src)
-		return
-	point_to_target()
-
-///Show the distance and direction of a scanned target
-/datum/status_effect/goldeneye_pinpointer/proc/point_to_target()
-	if(QDELETED(target))
-		linked_alert.icon_state = "pinonnull"
-		target = null
-		return
-	if(!target)
-		linked_alert.icon_state = "pinonnull"
-		return
-
-	var/turf/here = get_turf(owner)
-	var/turf/there = get_turf(target)
-
-	if(!here || !there)
-		linked_alert.icon_state = "pinonnull"
-		return
-	if(here.z != there.z)
-		linked_alert.icon_state = "pinonnull"
-		return
-	if(!get_dist_euclidean(here,there))
-		linked_alert.icon_state = "pinondirect"
-		return
-	linked_alert.setDir(get_dir(here, there))
-
-	var/dist = (get_dist(here, there))
-	if(dist >= 1 && dist <= range_mid)
-		linked_alert.icon_state = "pinonclose"
-	else if(dist > range_mid && dist <= range_far)
-		linked_alert.icon_state = "pinonmedium"
-	else if(dist > range_far)
-		linked_alert.icon_state = "pinonfar"
-
-
-/datum/status_effect/goldeneye_pinpointer/proc/set_target(obj/item/new_target)
-	target = new_target
-	to_chat(owner, span_redtext("Integrated pinpointer set to: [target.name]"))
 
 #undef ICARUS_IGNITION_TIME
-#undef PINPOINTER_PING_TIME

@@ -1,14 +1,7 @@
-// VENDOR
-/obj/machinery/armament_station/assault_operatives
-	name = "Military Grade Armament Station"
-
-	// required_access = list(ACCESS_SYNDICATE) TESTING
-
-	armament_type = /datum/armament_entry/assault_operatives
-
 // POINTS CARDS
 
 /obj/item/armament_points_card/assaultops
+	desc = "A points card that can be used to acquire weapons and tools for your mission."
 	points = 50
 	armament_type = /datum/armament_entry/assault_operatives
 	access = list(ACCESS_SYNDICATE)

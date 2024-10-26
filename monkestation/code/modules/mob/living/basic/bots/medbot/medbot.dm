@@ -1,3 +1,21 @@
+/mob/living/basic/bot/medbot/nukie
+	bot_mode_flags = parent_type::bot_mode_flags & ~(BOT_MODE_REMOTE_ENABLED) // Prevent nukie/assop medibots from outing them via remote control
+
+// Assault op medibot shares the nukie subtype, but gets rid of the custom description/behavior,
+// so we don't have to duplicate code to related to the syndicate radio channel.
+/mob/living/basic/bot/medbot/nukie/assop
+	desc = /mob/living/basic/bot/medbot::desc
+	skin = "advanced"
+
+/mob/living/basic/bot/medbot/nukie/assop/nuke_disarm()
+	return
+
+/mob/living/basic/bot/medbot/nukie/assop/nuke_arm()
+	return
+
+/mob/living/basic/bot/medbot/nukie/assop/nuke_detonate()
+	return
+
 /mob/living/basic/bot/medbot/proc/link_techweb(datum/techweb/techweb)
 	if(QDELETED(techweb))
 		return FALSE

@@ -348,6 +348,7 @@
 	dir = 4
 	},
 /obj/structure/chair/stool/directional/west,
+/obj/effect/spawner/random/entertainment/plushie,
 /turf/open/floor/iron/dark/diagonal,
 /area/shuttle/syndicate/cruiser/brig)
 "pE" = (
@@ -482,7 +483,7 @@
 "wb" = (
 /obj/structure/table/optable,
 /obj/effect/turf_decal/bot,
-/obj/machinery/defibrillator_mount/directional/north,
+/obj/machinery/defibrillator_mount/loaded/directional/north,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/medical)
 "ws" = (
@@ -560,7 +561,9 @@
 /area/shuttle/syndicate/cruiser/hallway)
 "Bx" = (
 /obj/effect/turf_decal/bot_white,
-/obj/structure/tank_holder,
+/obj/effect/spawner/random/entertainment/arcade{
+	dir = 8
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/brig)
 "CH" = (
@@ -880,12 +883,10 @@
 /area/shuttle/syndicate/cruiser/brig)
 "Ud" = (
 /obj/structure/closet/crate/medical,
-/mob/living/basic/bot/medbot{
-	faction = list("Syndicate");
-	name = "James T. Kirk";
-	radio_channel = "Syndicate"
-	},
 /obj/effect/turf_decal/bot_white,
+/mob/living/basic/bot/medbot/nukie/assop{
+	name = "James T. Kirk"
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/hallway)
 "Vm" = (
@@ -944,7 +945,6 @@
 "ZC" = (
 /obj/structure/rack/shelf,
 /obj/effect/turf_decal/bot_white,
-/obj/item/defibrillator/loaded,
 /obj/item/storage/backpack/duffelbag/syndie/surgery,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/medical)

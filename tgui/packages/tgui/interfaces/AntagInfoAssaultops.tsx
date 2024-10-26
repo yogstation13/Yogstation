@@ -32,12 +32,12 @@ type ExtractedTargets = {
 };
 
 type GoldeneyeKeys = {
+  name: string;
+  color: string;
   coord_x: number;
   coord_y: number;
   coord_z: number;
-  name: string;
   ref: string;
-  selected: BooleanLike;
 };
 
 type Info = {
@@ -138,7 +138,7 @@ export const AntagInfoAssaultops = (props) => {
 };
 
 const TargetPrintout = (props) => {
-  const { act, data } = useBackend<Info>();
+  const { data } = useBackend<Info>();
   const { available_targets, extracted_targets } = data;
   return (
     <Section>
@@ -213,34 +213,18 @@ const KeyPrintout = (props) => {
                   <Button
                     width="100%"
                     textAlign="center"
-                    color="yellow"
-                    disabled={key.selected}
+                    color={key.color || 'yellow'}
                     key={key.name}
                     icon="key"
                     content={
-                      key.selected
-                        ? key.name +
-                          ' (' +
-                          key.coord_x +
-                          ', ' +
-                          key.coord_y +
-                          ', ' +
-                          key.coord_z +
-                          ')' +
-                          ' (Tracking)'
-                        : key.name +
-                          ' (' +
-                          key.coord_x +
-                          ', ' +
-                          key.coord_y +
-                          ', ' +
-                          key.coord_z +
-                          ')'
-                    }
-                    onClick={() =>
-                      act('track_key', {
-                        key_ref: key.ref,
-                      })
+                      key.name +
+                      ' (' +
+                      key.coord_x +
+                      ', ' +
+                      key.coord_y +
+                      ', ' +
+                      key.coord_z +
+                      ')'
                     }
                   />
                 </Stack.Item>

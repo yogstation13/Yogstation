@@ -17,7 +17,7 @@
  */
 /obj/machinery/interrogator
 	name = "In-TERROR-gator"
-	desc = "A morraly corrupt piece of machinery used to extract the human mind into a GoldenEye authentication key. The process is said to be one of the most painful experiences someone can endure. Alt+click to start the process."
+	desc = "A morraly corrupt piece of machinery used to extract the human mind into a GoldenEye authentication key. The process is said to be one of the most painful experiences someone can endure. Alt + Click to start the process."
 	icon = 'monkestation/code/modules/assault_ops/icons/goldeneye.dmi'
 	icon_state = "interrogator_open"
 	state_open = FALSE
@@ -32,9 +32,31 @@
 	/// The human occupant currently inside. Used for easier referencing later on.
 	var/mob/living/carbon/human/human_occupant
 
+/obj/machinery/interrogator/Initialize(mapload)
+	. = ..()
+	register_context()
+
+/obj/machinery/interrogator/Destroy()
+	if(timer_id)
+		deltimer(timer_id)
+		timer_id = null
+	human_occupant = null
+	return ..()
+
+/obj/machinery/interrogator/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	if(!processing)
+		if(check_requirements())
+			context[SCREENTIP_CONTEXT_ALT_LMB] = "Begin Extraction"
+		if(!locked)
+			context[SCREENTIP_CONTEXT_LMB] = state_open ? "Close Door" : "Open Door"
+	else
+		context[SCREENTIP_CONTEXT_ALT_LMB] = "Cancel Extraction"
+	return CONTEXTUAL_SCREENTIP_SET
+
 /obj/machinery/interrogator/examine(mob/user)
 	. = ..()
 	. += "It requies a direct link to a Nanotrasen defence network, stay near a Nanotrasen comms sat!"
+	. += span_info(span_italics("If a target has committed suicide, their body can be still be used to instantly extract the keycard."))
 
 /obj/machinery/interrogator/AltClick(mob/user)
 	. = ..()
@@ -64,13 +86,6 @@
 	else
 		icon_state = state_open ? "interrogator_open" : "interrogator_closed"
 
-/obj/machinery/interrogator/Destroy()
-	if(timer_id)
-		deltimer(timer_id)
-		timer_id = null
-	human_occupant = null
-	return ..()
-
 /obj/machinery/interrogator/container_resist_act(mob/living/user)
 	if(!locked)
 		open_machine()
@@ -97,7 +112,7 @@
 		return FALSE
 	if(!is_station_level(z))
 		return FALSE
-	if(human_occupant.stat == DEAD)
+	if(human_occupant.stat == DEAD && !HAS_TRAIT(human_occupant, TRAIT_SUICIDED))
 		return FALSE
 	return TRUE
 
@@ -115,15 +130,25 @@
 		balloon_alert_to_viewers("invalid target DNA!")
 		return
 	human_occupant = occupant
-	if(human_occupant.stat == DEAD)
+	if(human_occupant.stat == DEAD && !HAS_TRAIT(human_occupant, TRAIT_SUICIDED))
 		balloon_alert_to_viewers("occupant is dead!")
 		return
 	if(!SSgoldeneye.check_goldeneye_target(human_occupant.mind)) // Preventing abuse by method of duplication.
 		balloon_alert_to_viewers("no GoldenEye data!")
 		playsound(src, 'sound/machines/scanbuzz.ogg', 100)
 		return
+	if(handle_victim_suicide(human_occupant))
+		return
 
 	start_extract()
+
+/obj/machinery/interrogator/proc/handle_victim_suicide(mob/living/carbon/human/victim)
+	if(!HAS_TRAIT(victim, TRAIT_SUICIDED))
+		return FALSE
+	say("Extraction completed instantly due to target's mental state. A key is being sent aboard! Crew will shortly detect the keycard!")
+	send_keycard()
+	addtimer(CALLBACK(src, PROC_REF(announce_creation)), ALERT_CREW_TIME)
+	return TRUE
 
 /obj/machinery/interrogator/proc/start_extract()
 	to_chat(human_occupant, span_userdanger("You feel dread wash over you as you hear the door on [src] lock!"))
@@ -193,8 +218,6 @@
 	SSgoldeneye.extract_mind(human_occupant.mind)
 	var/obj/structure/closet/supplypod/pod = new
 	new /obj/effect/pod_landingzone(landingzone, pod, new_key)
-	for(var/datum/status_effect/goldeneye_pinpointer/iterating_pinpointer in GLOB.goldeneye_pinpointers)
-		iterating_pinpointer.set_target(new_key)
 
 	notify_ghosts("GoldenEye key launched!",
 		source = new_key,

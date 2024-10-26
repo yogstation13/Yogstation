@@ -22,9 +22,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
 
 /obj/machinery/defibrillator_mount/loaded/Initialize(mapload) //loaded subtype for mapping use
 	. = ..()
-	defib = new/obj/item/defibrillator/loaded(src)
+	defib = new /obj/item/defibrillator/loaded(src)
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount, 28)
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/defibrillator_mount/loaded, 28)
 
 /obj/machinery/defibrillator_mount/Destroy()
 	if(defib)
