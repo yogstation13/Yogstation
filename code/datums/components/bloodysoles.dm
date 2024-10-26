@@ -220,7 +220,7 @@
 /datum/component/bloodysoles/proc/on_clean(datum/source, clean_types)
 	SIGNAL_HANDLER
 
-	if(!(clean_types & CLEAN_TYPE_BLOOD))
+	if(!(clean_types & CLEAN_TYPE_BLOOD) || total_bloodiness <= 0)
 		return NONE
 
 	total_bloodiness = 0
