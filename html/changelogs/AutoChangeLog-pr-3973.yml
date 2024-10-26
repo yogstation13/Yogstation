@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Shuttle events meteors now don't sometimes kill everyone."

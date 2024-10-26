@@ -542,6 +542,10 @@
       looking like one, too.
   - balance: Whenever Pro-tagonista Syndrome is cured, the spawned katana will crumble
       to nothing more than a pile of ashes on the floor.
+  - bugfix: Washing colors off yourself with a shower or something now actually works.
+  - bugfix: Shuttle events meteors now don't sometimes kill everyone.
+  Absolucy, afonamos2:
+  - bugfix: Firelocks will once again respect fire alarm's thermal sensors being disabled.
   Gboster-0:
   - rscadd: Adds NTSL, a new programming language designed for telecommunications
   KnigTheThrasher:
