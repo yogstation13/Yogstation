@@ -516,3 +516,14 @@
       ArtSci Lab.
   manray0:
   - bugfix: borgo footstep sound
+2024-10-26:
+  Absolucy:
+  - refactor: Refactored some text helper procs to use BYOND's native text trimming
+      proc.
+  - admin: Added a _trimtext proc, for use with SDQL2 or Lua scripting.
+  Gboster-0:
+  - rscadd: Adds NTSL, a new programming language designed for telecommunications
+  flleeppyy:
+  - sound: slugcats now make noises!
+  - rscadd: slugcats now have their own language!
+  - sound: forgot licensing for slugcat sounds
