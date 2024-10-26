@@ -522,6 +522,26 @@
       proc.
   - admin: Added a _trimtext proc, for use with SDQL2 or Lua scripting.
   - sound: Optimized all sound files, resulting in a total of around 12.3 MB saved.
+  - rscdel: Get rid of the armament vendor machine at the assault ops base, replacing
+      it with a signboard telling them to use their card in-hand instead.
+  - qol: The ICARUS sunbeam is now a point of interest in the ghost orbit menu.
+  - qol: The In-TERROR-gator now works on suicided targets, instantly extracting their
+      keycard.
+  - qol: Added screentips to the In-TERROR-gator.
+  - bugfix: Nukie and assault operative medibots now have remote control disabled
+      by default, preventing them from being outed by the AI bot control or the BotKeeper
+      app.
+  - qol: Pre-loaded the defib into the wall mount on the GoldenEye cruiser.
+  - bugfix: Roundstart assault operatives are now removed from the crew manifest.
+  - rscadd: Replaced the assault operative keycard pinpointer HUD with arrows on their
+      screen.
+  - balance: GoldenEye keycards are now stationloving, similar to the nuke disk.
+  - rscadd: Added an arcade machine to the GoldenEye Cruiser's prison.
+  - balance: Pro-tagonista Syndrome no longer spawns katanas for non-sentient mobs.
+      If you want the weapon of an anime protagonist, you must accept the burden of
+      looking like one, too.
+  - balance: Whenever Pro-tagonista Syndrome is cured, the spawned katana will crumble
+      to nothing more than a pile of ashes on the floor.
   Gboster-0:
   - rscadd: Adds NTSL, a new programming language designed for telecommunications
   KnigTheThrasher:
