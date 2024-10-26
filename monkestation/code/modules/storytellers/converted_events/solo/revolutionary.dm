@@ -36,8 +36,8 @@
 	min_players = 35
 	roundstart = TRUE
 	earliest_start = 0 SECONDS
-	weight = 3 //value was 3, we need to manually test if this works or not before allowing it normally
-	max_occurrences = 1
+	weight = 0
+	max_occurrences = 0
 	event_icon_state = "revolution"
 
 /datum/antagonist/rev/head/event_trigger
