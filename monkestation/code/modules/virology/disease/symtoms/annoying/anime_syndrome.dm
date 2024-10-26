@@ -4,10 +4,12 @@
 	stage = 3
 	max_count = 1
 	max_chance = 20
-	var/given_katana = FALSE
 	max_multiplier = 4
 	badness = EFFECT_DANGER_ANNOYING
+	/// The affected mob's old hair color, so it can be restored upon deactivation.
 	var/old_haircolor = ""
+	/// A weakref to the katana given by the symptom, so it can be destroyed upon deactivation.
+	var/datum/weakref/katana_ref
 
 /datum/symptom/anime_hair/first_activate(mob/living/carbon/mob)
 	RegisterSignal(mob, COMSIG_MOB_SAY, PROC_REF(handle_speech))
@@ -70,21 +72,28 @@
 				if(!affected.head)
 					affected.equip_to_slot(kitty, ITEM_SLOT_HEAD)
 
-			if(multiplier >= 2.5 && !given_katana)
-				if(multiplier >= 3)
-					//REAL katana /obj/item/katana
-					var/obj/item/katana/real_katana = new /obj/item/katana
-					affected.put_in_hands(real_katana)
-				else
-					//Toy katana /obj/item/toy/katana
-					var/obj/item/toy/katana/fake_katana = new /obj/item/toy/katana
-					affected.put_in_hands(fake_katana)
-				given_katana = TRUE
+			if(multiplier >= 2.5 && !katana_ref && !QDELETED(mob.client) && !mob.client.is_afk()) // if you wish to use the weapon of an anime protagonist, you must accept the consequences of looking like one
+				var/katana_type = (multiplier >= 3) ? /obj/item/katana : /obj/item/toy/katana
+				var/obj/item/katana = new katana_type
+				if(affected.put_in_hands(katana, del_on_fail = TRUE))
+					katana_ref = WEAKREF(katana)
 
 /datum/symptom/anime_hair/deactivate(mob/living/carbon/mob)
 	UnregisterSignal(mob, COMSIG_MOB_SAY)
-	to_chat(mob, "<span class = 'notice'>You no longer feel quite like the main character. </span>")
-	if (ishuman(mob))
+	to_chat(mob, span_notice("You no longer feel quite like the main character."))
+	var/obj/item/katana = katana_ref?.resolve()
+	if(!QDELETED(katana))
+		var/mob/katana_loc = katana.loc
+		if(ismob(katana_loc))
+			katana_loc.visible_message(span_warning("[katana_loc]'s [katana] rapidly crumbles to dust!"), span_danger("Your [katana] rapidly crumbles to dust, turning into a useless pile of ash on the floor!"))
+		else if(isturf(katana_loc))
+			katana_loc.visible_message(span_warning("\The [katana] rapidly crumbles to dust, turning into a useless pile of ash on the floor!"))
+		var/turf/drop_loc = katana.drop_location()
+		if(drop_loc)
+			new /obj/effect/decal/cleanable/ash(drop_loc)
+		qdel(katana)
+	katana_ref = null
+	if(ishuman(mob))
 		var/mob/living/carbon/human/affected = mob
 		if(affected.shoes && istype(affected.shoes, /obj/item/clothing/shoes/kneesocks))
 			REMOVE_TRAIT(affected.shoes, TRAIT_NODROP, "disease")
