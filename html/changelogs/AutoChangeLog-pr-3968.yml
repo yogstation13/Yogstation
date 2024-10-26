@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - sound: "Optimized all sound files, resulting in a total of around 12.3 MB saved."
