@@ -556,3 +556,7 @@
   - sound: slugcats now make noises!
   - rscadd: slugcats now have their own language!
   - sound: forgot licensing for slugcat sounds
+2024-10-27:
+  Absolucy, SmArtKar:
+  - bugfix: Fixed luminiscent major extract activation button not disappearing/updating
+      when it should've
