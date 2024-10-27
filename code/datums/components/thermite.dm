@@ -26,7 +26,7 @@
 	)
 
 /datum/component/thermite/Initialize(_amount)
-	if(!istype(parent, /turf) || blacklist[parent.type])
+	if(!istype(parent, /turf) || is_type_in_typecache(parent, blacklist))
 		return COMPONENT_INCOMPATIBLE
 	if(immunelist[parent.type])
 		melting_point = INFINITY //Yeah the overlay can still go on it and be cleaned but you arent burning down a diamond wall
