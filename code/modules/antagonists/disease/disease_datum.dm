@@ -4,6 +4,7 @@
 	antagpanel_category = "Disease"
 	show_to_ghosts = TRUE
 	var/disease_name = ""
+	count_towards_antag_cap = TRUE
 
 /datum/antagonist/disease/on_gain()
 	owner.special_role = "Sentient Disease"

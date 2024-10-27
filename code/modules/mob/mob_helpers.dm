@@ -296,30 +296,18 @@
 				return TRUE
 		return FALSE
 	if(M.mind?.special_role)//If they have a mind and special role, they are some type of traitor or antagonist.
-		switch(SSticker.mode.config_tag)
-			if("revolution")
-				if(is_revolutionary(M))
-					return 2
-			if("cult")
-				if(M.mind in SSticker.mode.cult)
-					return 2
-			if("nuclear")
-				if(M.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
-					return 2
-			if("changeling")
-				if(M.mind.has_antag_datum(/datum/antagonist/changeling,TRUE))
-					return 2
-			if("wizard")
-				if(iswizard(M))
-					return 2
-			if("apprentice")
-				if(M.mind in SSticker.mode.apprentices)
-					return 2
-			if("monkey")
-				if(isliving(M))
-					var/mob/living/L = M
-					if(L.diseases && (locate(/datum/disease/transformation/jungle_fever) in L.diseases))
-						return 2
+		if(IS_REVOLUTIONARY(M))
+			return 2
+		if(M.mind in SSgamemode.cult)
+			return 2
+		if(M.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
+			return 2
+		if(M.mind.has_antag_datum(/datum/antagonist/changeling,TRUE))
+			return 2
+		if(IS_WIZARD(M))
+			return 2
+		if(M.mind in SSgamemode.apprentices)
+			return 2
 		return TRUE
 	if(M.mind && LAZYLEN(M.mind.antag_datums)) //they have an antag datum!
 		return TRUE
@@ -579,3 +567,15 @@
 	if(client?.combo_hud_enabled && client?.prefs?.toggles & COMBOHUD_LIGHTING)
 		return LIGHTING_CUTOFF_FULLBRIGHT
 	return initial(lighting_cutoff)
+
+/// Returns a client from a mob, mind or client
+/proc/get_player_client(player)
+	if(ismob(player))
+		var/mob/player_mob = player
+		player = player_mob.client
+	else if(istype(player, /datum/mind))
+		var/datum/mind/player_mind = player
+		player = player_mind.current.client
+	if(!istype(player, /client))
+		return
+	return player

@@ -27,11 +27,6 @@
 /datum/outfit/centcom/official/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
-	if(pdaequip)
-		var/obj/item/pda/heads/pda = H.r_store
-		pda.owner = H.real_name
-		pda.ownjob = "CentCom Official"
-		pda.update_label()
 
 	var/obj/item/card/id/W = H.wear_id
 	W.icon = 'icons/obj/card.dmi' //Bypasses modularisation.
@@ -42,6 +37,10 @@
 	W.originalassignment = "CentCom Official"
 	W.registered_name = H.real_name
 	W.update_label()
+
+	if(pdaequip)
+		var/obj/item/modular_computer/tablet/phone/preset/advanced/command/command_phone = H.r_store
+		command_phone.update_label(W)
 
 	H.ignores_capitalism = TRUE // Yogs -- Lets Centcom guys buy a damned smoke for christ's sake
 

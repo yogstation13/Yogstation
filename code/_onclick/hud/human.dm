@@ -292,6 +292,18 @@
 	pull_icon.screen_loc = ui_above_intent
 	static_inventory += pull_icon
 
+	move_up = new /atom/movable/screen/move(src)
+	move_up.icon = ui_style
+	move_up.update_appearance(UPDATE_ICON)
+	//move_up.screen_loc = ui_move_up
+	static_inventory += move_up
+
+	move_down = new /atom/movable/screen/move/down(src)
+	move_down.icon = ui_style
+	move_down.update_appearance(UPDATE_ICON)
+	//move_down.screen_loc = ui_move_down
+	static_inventory += move_down
+
 	devilsouldisplay = new /atom/movable/screen/devil/soul_counter(src)
 	infodisplay += devilsouldisplay
 

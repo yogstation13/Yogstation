@@ -94,6 +94,8 @@ SUBSYSTEM_DEF(throwing)
 
 	last_move = world.time
 
+	SEND_SIGNAL(AM, COMSIG_MOVABLE_THROW_TICK)
+
 	//calculate how many tiles to move, making up for any missed ticks.
 	var/tilestomove = CEILING(min(((((world.time+world.tick_lag) - start_time + delayed_time) * speed) - (dist_travelled ? dist_travelled : -1)), speed*MAX_TICKS_TO_MAKE_UP) * (world.tick_lag * SSthrowing.wait), 1)
 	while (tilestomove-- > 0)
@@ -151,6 +153,11 @@ SUBSYSTEM_DEF(throwing)
 
 	if (callback)
 		callback.Invoke()
+
+	if(!thrownthing.currently_z_moving) // I don't think you can zfall while thrown but hey, just in case.
+		var/turf/T = get_turf(thrownthing)
+		if(T && thrownthing.has_gravity(T))
+			T.zFall(thrownthing)
 
 	if(thrownthing)
 		SEND_SIGNAL(thrownthing, COMSIG_MOVABLE_THROW_LANDED, src)

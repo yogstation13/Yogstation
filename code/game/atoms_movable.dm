@@ -265,26 +265,13 @@
 
 /atom/movable/proc/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
 	SHOULD_CALL_PARENT(TRUE)
+
+	pixel_z += 32
+	animate(src, max((4 - levels) / 10, 0.1) SECONDS, pixel_z = pixel_z - 32)
 	
-	if(!(impact_flags & ZIMPACT_NO_MESSAGE))
-		visible_message(
-			span_danger("[src] crashes into [impacted_turf]!"),
-			span_userdanger("You crash into [impacted_turf]!"),
-		)
 	if(!(impact_flags & ZIMPACT_NO_SPIN))
 		INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
 	SEND_SIGNAL(src, COMSIG_ATOM_ON_Z_IMPACT, impacted_turf, levels)
-	
-	//Yog code: since we still handle falling as throwing things
-	var/atom/highest = impacted_turf
-	for(var/i in impacted_turf.contents)
-		var/atom/A = i
-		if(!A.density)
-			continue
-		if(isobj(A) || ismob(A))
-			if(A.layer > highest.layer)
-				highest = A
-	throw_impact(highest)
 	return TRUE
 
 /*

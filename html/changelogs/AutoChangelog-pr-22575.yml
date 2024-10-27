@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "fixes shuttle calling itself again if it's already called after 2 hours hitsss"

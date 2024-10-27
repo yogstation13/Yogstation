@@ -121,15 +121,14 @@ Difficulty: Very Hard
 		else
 			alternating_dir_shots()
 
-/mob/living/simple_animal/hostile/megafauna/colossus/proc/enrage(mob/living/L)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		if(H.mind)
-			if(H.mind.martial_art && prob(H.mind.martial_art.deflection_chance))
-				. = TRUE
-		if(H.mind)
-			if(H.dna.species == /datum/species/golem/sand)
-				. = TRUE
+/mob/living/simple_animal/hostile/megafauna/colossus/proc/enrage(mob/living/carbon/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(target.dna?.species == /datum/species/golem/sand)
+		return TRUE
+	if(target.mind.has_martialart(MARTIALART_SPACIALLDOMINANCE))
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/alternating_dir_shots()
 	ranged_cooldown = world.time + 40
@@ -671,7 +670,7 @@ Difficulty: Very Hard
 
 /mob/living/simple_animal/hostile/lightgeist/healing/Initialize(mapload)
 	. = ..()
-	remove_verb(src, /mob/living/verb/pulled)
+	remove_verb(src, /mob/verb/pulled)
 	remove_verb(src, /mob/verb/me_verb)
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.show_to(src)
@@ -842,7 +841,7 @@ Difficulty: Very Hard
 		L.mind.transfer_to(holder_animal)
 		var/datum/action/exit_possession/escape = new(holder_animal)
 		escape.Grant(holder_animal)
-		remove_verb(holder_animal, /mob/living/verb/pulled)
+		remove_verb(holder_animal, /mob/verb/pulled)
 
 /obj/structure/closet/stasis/dump_contents(kill = TRUE)
 	STOP_PROCESSING(SSobj, src)

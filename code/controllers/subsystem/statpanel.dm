@@ -24,9 +24,21 @@ SUBSYSTEM_DEF(statpanels)
 		num_fires++
 		var/datum/map_config/cached = SSmapping.next_map_config
 		var/round_time = world.time - SSticker.round_start_time
+
+		var/storyteller = "Not Set"
+		if(SSgamemode.storyteller)
+			storyteller = SSgamemode.storyteller.name
+		if(SSgamemode.selected_storyteller)
+			var/datum/storyteller/check = SSgamemode.storytellers[SSgamemode.selected_storyteller]
+			if(check && istype(check))
+				storyteller = check.name
+		if(SSgamemode.secret_storyteller)
+			storyteller = "Secret"
+
 		var/list/global_data = list(
 			"Map: [SSmapping.config?.map_name || "Loading..."]",
 			cached ? "Next Map: [cached.map_name]" : null,
+			"Storyteller: [storyteller]",
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 			"Round Time: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[worldtime2text()]" : worldtime2text()]",

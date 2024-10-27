@@ -5,6 +5,7 @@
 	area_type = /area
 	weather_overlay = "ash_storm"
 	telegraph_overlay = "light_ash"
+	weather_color = "#aa69ff" //6527a7
 	end_message = null
 	telegraph_duration = 10 SECONDS //actually give them a brief moment to react
 	end_duration = 1

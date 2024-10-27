@@ -513,8 +513,8 @@ GLOBAL_LIST_INIT(guardian_projectile_damage, list(
 	return ..()
 
 /mob/living/simple_animal/hostile/guardian/CtrlClickOn(atom/A)
-	if (stats.ability && stats.ability.CtrlClickOn(A))
-		return
+	if(stats.ability && stats.ability.CtrlClickOn(A))
+		return TRUE
 	return ..()
 
 

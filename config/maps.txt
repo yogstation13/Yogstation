@@ -30,13 +30,18 @@ map gaxstation
 	votable
 endmap
 
-map asteroidstation
+map manateestation
 	minplayers 40
 	votable
 endmap
 
 map donutstation
 	maxplayers 50
+	votable
+endmap
+
+map ministation
+	maxplayers 30
 	votable
 endmap
 

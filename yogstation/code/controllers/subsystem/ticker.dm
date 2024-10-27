@@ -64,9 +64,9 @@
 		)
 	selected_lobby_music = pick(songs)
 
-	if(SSevents.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
-		for(var/holidayname in SSevents.holidays)
-			var/datum/holiday/holiday = SSevents.holidays[holidayname]
+	if(SSgamemode.holidays) // What's this? Events are initialized before tickers? Let's do something with that!
+		for(var/holidayname in SSgamemode.holidays)
+			var/datum/holiday/holiday = SSgamemode.holidays[holidayname]
 			if(LAZYLEN(holiday.lobby_music))
 				selected_lobby_music = pick(holiday.lobby_music)
 				break
@@ -77,7 +77,7 @@
 		log_world("Could not play lobby song because youtube-dl is not configured properly, check the config.")
 		return
 
-	var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[selected_lobby_music]\"")
+	var/list/output = world.shelleo("[ytdl] --config-location /bootstrapper/yt-dlp.conf -- \"[selected_lobby_music]\"")
 	var/errorlevel = output[SHELLEO_ERRORLEVEL]
 	var/stdout = output[SHELLEO_STDOUT]
 	var/stderr = output[SHELLEO_STDERR]

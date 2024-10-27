@@ -32,6 +32,8 @@
 			var/mutable_appearance/bloody_armor = mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
 			if(species_fitted && icon_exists(bloody_armor.icon, "[bloody_armor.icon_state]_[species_fitted]")) 
 				bloody_armor.icon_state = "[bloody_armor.icon_state]_[species_fitted]"
+			else if(HAS_TRAIT(loc, TRAIT_DIGITIGRADE) && !HAS_TRAIT(loc, TRAIT_DIGI_SQUISH) && icon_exists(bloody_armor.icon, "[bloody_armor.icon_state]_digi"))
+				bloody_armor.icon_state = "[bloody_armor.icon_state]_digi"
 			bloody_armor.color = get_blood_dna_color(return_blood_DNA())
 			. += bloody_armor
 		var/mob/living/carbon/human/M = loc

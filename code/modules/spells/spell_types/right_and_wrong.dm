@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		CRASH("give_guns() was called without a summon guns global datum!")
 	if(to_equip.stat == DEAD || !to_equip.client || !to_equip.mind)
 		return
-	if(iswizard(to_equip) || to_equip.mind.has_antag_datum(/datum/antagonist/survivalist/guns))
+	if(IS_WIZARD(to_equip) || to_equip.mind.has_antag_datum(/datum/antagonist/survivalist/guns))
 		return
 
 	if(!length(to_equip.mind.antag_datums) && prob(GLOB.summon_guns.survivor_probability))
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		CRASH("give_magic() was called without a summon magic global datum!")
 	if(to_equip.stat == DEAD || !to_equip.client || !to_equip.mind)
 		return
-	if(is_wizard(to_equip) || to_equip.mind.has_antag_datum(/datum/antagonist/survivalist/guns))
+	if(IS_WIZARD(to_equip) || to_equip.mind.has_antag_datum(/datum/antagonist/survivalist/guns))
 		return
 
 	if(!length(to_equip.mind.antag_datums) && prob(GLOB.summon_magic.survivor_probability))
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  */
 /proc/summon_ghosts(mob/user)
 
-	var/datum/round_event_control/wizard/ghost/ghost_event = locate() in SSevents.control
+	var/datum/round_event_control/wizard/ghost/ghost_event = locate() in SSgamemode.control
 	if(ghost_event)
 		if(user)
 			to_chat(user, span_warning("You summoned ghosts!"))
@@ -217,13 +217,10 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
  * If Summon Events has already been triggered, speeds up the event timer.
  */
 /proc/summon_events(mob/user)
-	// Already in wiz-mode? Speed er up
-	if(SSevents.wizardmode)
-		SSevents.frequency_upper -= 1 MINUTES //The upper bound falls a minute each time, making the AVERAGE time between events lessen
-		if(SSevents.frequency_upper < SSevents.frequency_lower) //Sanity
-			SSevents.frequency_upper = SSevents.frequency_lower
+	SSgamemode.event_frequency_multiplier *= 1.1 //gamemode generates points faster
 
-		SSevents.reschedule()
+	// Already in wiz-mode? different text
+	if(SSgamemode.wizardmode)
 		if(user)
 			to_chat(user, span_warning("You have intensified summon events, causing them to occur more often!"))
 			message_admins("[ADMIN_LOOKUPFLW(user)] intensified summon events!")
@@ -231,14 +228,11 @@ GLOBAL_LIST_INIT(summoned_magic_objectives, list(
 		else
 			log_game("Summon Events was intensified!")
 
-		message_admins("Summon Events intensifies, events will now occur every [SSevents.frequency_lower / 600] to [SSevents.frequency_upper / 600] minutes.")
+		message_admins("Summon Events intensifies, events will now occur even faster.")
 
-	// Not in wiz-mode?  Get this show on the road
+	// Not in wiz-mode? toggle it
 	else
-		SSevents.frequency_lower = 1 MINUTES //1 minute lower bound
-		SSevents.frequency_upper = 5 MINUTES //5 minutes upper bound
-		SSevents.toggleWizardmode()
-		SSevents.reschedule()
+		SSgamemode.toggleWizardmode()
 		if(user)
 			to_chat(user, span_warning("You have cast summon events!"))
 			message_admins("[ADMIN_LOOKUPFLW(user)] summoned events!")

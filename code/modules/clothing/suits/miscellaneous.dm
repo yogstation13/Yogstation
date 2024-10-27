@@ -598,3 +598,68 @@
 	icon_state = "pocketcat"
 	item_state = "pocketcat"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
+
+/obj/item/clothing/suit/unalivevest
+	name = "explosive vest"
+	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
+	icon_state = "unalive-vest"
+	item_state = "reactiveoff"
+	blood_overlay_type = "armor"
+	flags_1 = HEAR_1
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //stop trying to get it off
+	var/listening = FALSE
+	var/activation_phrase = ""
+	var/active = FALSE
+
+	//explosion control vars
+	var/weak = 4
+	var/medium = 2
+	var/heavy = 1
+
+/obj/item/clothing/suit/unalivevest/ex_act(severity, target)
+	. = ..()
+	Explode()
+
+/obj/item/clothing/suit/unalivevest/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	if(activation_phrase)
+		say("Activation phrase already set.")
+		return
+	say("Now recording.")
+	listening = TRUE
+
+/obj/item/clothing/suit/unalivevest/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods)
+	. = ..()
+	if(speaker == src)
+		return
+	if(listening)
+		activation_phrase = raw_message
+		listening = FALSE
+		say("Activation message is '[activation_phrase]'.", message_language)
+	else
+		if(activation_phrase && findtext(raw_message, activation_phrase))
+			Explode()
+
+/obj/item/clothing/suit/unalivevest/mob_can_equip(mob/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	if(listening || !activation_phrase)
+		to_chat(equipper, span_warning("Set the activation phrase first!"))
+		return FALSE
+	return ..()
+
+/obj/item/clothing/suit/unalivevest/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if((slot & slot_flags))
+		to_chat(user, span_danger("You hear the vest click as it locks around your torso!"))
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT(type))
+		RegisterSignal(user, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(Explode))
+
+/obj/item/clothing/suit/unalivevest/proc/Explode()
+	if(active)
+		return
+	active = TRUE
+	explosion(src, heavy, medium, weak, weak, flame_range = weak)
+	if(isliving(loc))
+		var/mob/living/L = loc
+		L.gib(no_brain = TRUE, no_items = TRUE)
+	qdel(src)
