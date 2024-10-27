@@ -9,6 +9,7 @@
 	antag_hud_name = "traitor"
 	antag_moodlet = /datum/mood_event/focused
 	preview_outfit = /datum/outfit/traitor
+	count_towards_antag_cap = TRUE
 	var/special_role = ROLE_TRAITOR
 	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
@@ -38,7 +39,7 @@
 		company = pick(subtypesof(/datum/corporation/traitor))
 	owner.add_employee(company)
 
-	SSticker.mode.traitors += owner
+	SSgamemode.traitors += owner
 	owner.special_role = special_role
 	if(give_objectives)
 		forge_traitor_objectives()
@@ -78,7 +79,7 @@
 		if(uplink)//remove uplink so they can't keep using it if admin abuse happens
 			qdel(uplink)
 	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR)
-	SSticker.mode.traitors -= owner
+	SSgamemode.traitors -= owner
 	if(!silent && owner.current)
 		to_chat(owner.current,span_userdanger(" You are no longer the [special_role]! "))
 	owner.special_role = null
@@ -109,13 +110,13 @@
 		is_hijacker = prob(10)
 	var/martyr_chance = prob(20)
 	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
-	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 6) 	//Set up an exchange if there are enough traitors. YOGSTATION CHANGE: 8 TO 6.
-		if(!SSticker.mode.exchange_red)
-			SSticker.mode.exchange_red = owner
+	if(!SSgamemode.exchange_blue && SSgamemode.traitors.len >= 6) 	//Set up an exchange if there are enough traitors. YOGSTATION CHANGE: 8 TO 6.
+		if(!SSgamemode.exchange_red)
+			SSgamemode.exchange_red = owner
 		else
-			SSticker.mode.exchange_blue = owner
-			assign_exchange_role(SSticker.mode.exchange_red)
-			assign_exchange_role(SSticker.mode.exchange_blue)
+			SSgamemode.exchange_blue = owner
+			assign_exchange_role(SSgamemode.exchange_red)
+			assign_exchange_role(SSgamemode.exchange_blue)
 		objective_count += 1					//Exchange counts towards number of objectives
 	var/toa = CONFIG_GET(number/traitor_objectives_amount)
 	for(var/i = objective_count, i < toa, i++)
@@ -126,7 +127,7 @@
 	if(is_hijacker && objective_count <= toa) //Don't assign hijack if it would exceed the number of objectives set in config.traitor_objectives_amount
 		//Start of Yogstation change: adds /datum/objective/sole_survivor
 		if(!(locate(/datum/objective/hijack) in objectives) && !(locate(/datum/objective/hijack/sole_survivor) in objectives))
-			if(SSticker.mode.has_hijackers)
+			if(SSgamemode.has_hijackers)
 				var/datum/objective/hijack/sole_survivor/survive_objective = new
 				survive_objective.owner = owner
 				add_objective(survive_objective)
@@ -134,7 +135,7 @@
 				var/datum/objective/hijack/hijack_objective = new
 				hijack_objective.owner = owner
 				add_objective(hijack_objective)
-			SSticker.mode.has_hijackers = TRUE
+			SSgamemode.has_hijackers = TRUE
 			return
 		//End of yogstation change.
 
@@ -325,12 +326,12 @@
 /datum/antagonist/traitor/proc/assign_exchange_role()
 	//set faction
 	var/faction = "red"
-	if(owner == SSticker.mode.exchange_blue)
+	if(owner == SSgamemode.exchange_blue)
 		faction = "blue"
 
 	//Assign objectives
 	var/datum/objective/steal/exchange/exchange_objective = new
-	exchange_objective.set_faction(faction,((faction == "red") ? SSticker.mode.exchange_blue : SSticker.mode.exchange_red))
+	exchange_objective.set_faction(faction,((faction == "red") ? SSgamemode.exchange_blue : SSgamemode.exchange_red))
 	exchange_objective.owner = owner
 	add_objective(exchange_objective)
 
@@ -344,7 +345,7 @@
 	var/mob/living/carbon/human/mob = owner.current
 
 	var/obj/item/folder/syndicate/folder
-	if(owner == SSticker.mode.exchange_red)
+	if(owner == SSgamemode.exchange_red)
 		folder = new/obj/item/folder/syndicate/red(mob.loc)
 	else
 		folder = new/obj/item/folder/syndicate/blue(mob.loc)
@@ -470,7 +471,7 @@
 	return message
 
 /datum/antagonist/traitor/is_gamemode_hero()
-	return SSticker.mode.name == "traitor"
+	return SSgamemode.name == "traitor"
 
 /datum/outfit/traitor
 	name = "Traitor (Preview only)"

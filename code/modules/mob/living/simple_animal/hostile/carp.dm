@@ -135,7 +135,7 @@
 	gender = FEMALE
 	speak_emote = list("squeaks")
 	gold_core_spawnable = NO_SPAWN
-	faction = list(ROLE_SYNDICATE)
+	faction = list(ROLE_ANTAG)
 	AIStatus = AI_OFF
 	rarechance = 10
 

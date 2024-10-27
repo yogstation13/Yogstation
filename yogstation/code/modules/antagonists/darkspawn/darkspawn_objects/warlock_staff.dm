@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////
 /obj/item/gun/magic/darkspawn
 	name = "channeling staff"
-	desc = "This staff is boring to watch because even though it came first you've seen everything it can do in other staves for years."
+	desc = "A staff made from pure darkness."
 	icon = 'yogstation/icons/obj/darkspawn_items.dmi'
 	icon_state = "shadow_staff"
 	item_state = "shadow_staff0"
@@ -21,6 +21,27 @@
 	var/psi_cost = 40
 	/// Flags used for different effects that apply when a projectile hits something
 	var/effect_flags
+
+/obj/item/gun/magic/darkspawn/examine(mob/user)
+	. = ..()
+	if(isobserver(user) || isdarkspawn(user))
+		. += span_velvet("<b>Functions:</b>")
+		if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
+			. += span_velvet("The staff will devour any lights hit.")
+		. += span_velvet("Consumes [psi_cost] psi to fire a projectile.")
+		. += span_velvet("Projectiles do 35 stamina damage.")
+
+		. += span_velvet("Also functions to pry open depowered airlocks using right click.")
+		if(effect_flags)
+			. += span_velvet("The projectile will also:")
+			if(effect_flags & STAFF_UPGRADE_HEAL)
+				. += span_velvet("Heal any ally hit for 30 health.")
+			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
+				. += span_velvet("Extinguish the fire on any ally.")
+			if(effect_flags & STAFF_UPGRADE_EXTINGUISH)
+				. += span_velvet("Confuse any enemy struck for 4 seconds.")
+			if(effect_flags & STAFF_UPGRADE_LIGHTEATER)
+				. += span_velvet("Consume the light of anything struck.")
 
 /obj/item/gun/magic/darkspawn/Initialize(mapload)
 	. = ..()

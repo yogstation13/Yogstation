@@ -89,7 +89,7 @@
 	foodtype = MEAT | TOXIC
 
 /obj/item/reagent_containers/food/snacks/spiderleg/MakeGrillable()
-	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/boiledspiderleg, rand(50 SECONDS, 60 SECONDS), TRUE, TRUE)
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/grilledspiderleg, rand(50 SECONDS, 60 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/cornedbeef
 	name = "corned beef and cabbage"
@@ -375,8 +375,8 @@
 	. = ..()
 	eatverb = pick("slurp","sip","inhale","drink")
 
-/obj/item/reagent_containers/food/snacks/boiledspiderleg
-	name = "boiled spider leg"
+/obj/item/reagent_containers/food/snacks/grilledspiderleg
+	name = "grilled spider leg"
 	desc = "A giant spider's leg that's still twitching after being cooked. Gross!"
 	icon_state = "spiderlegcooked"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/capsaicin = 2, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -551,7 +551,7 @@
 	M.gib(null, TRUE, null, TRUE)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/syndicate
-	faction = list("neutral", ROLE_SYNDICATE)
+	faction = list("neutral", ROLE_ANTAG)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/gorilla
 	name = "gorilla cube"
@@ -623,7 +623,7 @@
 	foodtype = MEAT | MICE | RAW
 
 /obj/item/reagent_containers/food/snacks/monkeycube/mouse/syndicate
-	faction = list("neutral", ROLE_SYNDICATE)
+	faction = list("neutral", ROLE_ANTAG)
 
 /obj/item/reagent_containers/food/snacks/spam_musubi
 	name = "spam musubi"

@@ -196,6 +196,32 @@
 	caliber = CALIBER_308
 	max_ammo = 20
 
+/obj/item/ammo_box/no_direct/a38
+	name = "ammo box (.38 special)"
+	icon_state = "38box"
+	ammo_type = /obj/item/ammo_casing/c38
+	max_ammo = 20
+
+/obj/item/ammo_box/no_direct/a38/rubber
+	name = "ammo box (.38 rubber)"
+	ammo_type = /obj/item/ammo_casing/c38/rubber
+
+/obj/item/ammo_box/no_direct/a38/ap
+	name = "ammo box (.38 armor-piercing)"
+	ammo_type = /obj/item/ammo_casing/c38/ap
+
+/obj/item/ammo_box/no_direct/a38/frost
+	name = "ammo box (.38 frost)"
+	ammo_type = /obj/item/ammo_casing/c38/frost
+
+/obj/item/ammo_box/no_direct/a38/talon
+	name = "ammo box (.38 talon)"
+	ammo_type = /obj/item/ammo_casing/c38/talon
+
+/obj/item/ammo_box/no_direct/a38/bluespace
+	name = "ammo box (.38 bluespace)"
+	ammo_type = /obj/item/ammo_casing/c38/bluespace
+
 // Mosin stripper clip
 
 /obj/item/ammo_box/a762

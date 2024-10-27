@@ -321,6 +321,15 @@
 		if(istype(checked_atom, type))
 			. += checked_atom
 
+///Checks if an atom is inside another atom. Significantly faster than iterating through all the mob's contents.
+/atom/proc/contains_atom(atom/contained_atom)
+	var/atom/location_checked = contained_atom.loc
+	while(location_checked != src)
+		if(isnull(location_checked))
+			return FALSE // end of the line
+		location_checked = location_checked.loc
+	return TRUE // success!
+
 ///Returns a list of all locations (except the area) the movable is within.
 /proc/get_nested_locs(atom/movable/atom_on_location, include_turf = FALSE)
 	. = list()

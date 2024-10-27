@@ -87,8 +87,6 @@
 	var/current_scar_slot
 	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
 	var/current_scar_slot_index
-	/// Is set to true if an antag was used to get this person picked as an antag
-	var/token_picked = FALSE
 
 	/// If they have used the afk verb recently
 	var/afk_verb_used = FALSE
@@ -263,62 +261,6 @@
 		else if(A.type == datum_type)
 			return A
 
-/*
-	Removes antag type's references from a mind.
-	objectives, uplinks, powers etc are all handled.
-*/
-
-/datum/mind/proc/remove_changeling()
-	var/datum/antagonist/changeling/C = has_antag_datum(/datum/antagonist/changeling)
-	if(C)
-		remove_antag_datum(/datum/antagonist/changeling)
-		special_role = null
-
-/datum/mind/proc/remove_traitor()
-	remove_antag_datum(/datum/antagonist/traitor)
-
-/datum/mind/proc/remove_brother()
-	if(src in SSticker.mode.brothers)
-		remove_antag_datum(/datum/antagonist/brother)
-
-/datum/mind/proc/remove_nukeop()
-	var/datum/antagonist/nukeop/nuke = has_antag_datum(/datum/antagonist/nukeop,TRUE)
-	if(nuke)
-		remove_antag_datum(nuke.type)
-		special_role = null
-
-/datum/mind/proc/remove_wizard()
-	remove_antag_datum(/datum/antagonist/wizard)
-	special_role = null
-
-/datum/mind/proc/remove_cultist()
-	if(src in SSticker.mode.cult)
-		SSticker.mode.remove_cultist(src, 0, 0)
-	special_role = null
-	remove_antag_equip()
-
-/datum/mind/proc/remove_rev()
-	var/datum/antagonist/rev/rev = has_antag_datum(/datum/antagonist/rev)
-	if(rev)
-		remove_antag_datum(rev.type)
-		special_role = null
-
-
-/datum/mind/proc/remove_antag_equip()
-	var/list/Mob_Contents = current.get_contents()
-	for(var/obj/item/I in Mob_Contents)
-		var/datum/component/uplink/O = I.GetComponent(/datum/component/uplink) //Todo make this reset signal
-		if(O)
-			O.unlock_code = null
-
-/datum/mind/proc/remove_all_antag() //For the Lazy amongst us.
-	remove_changeling()
-	remove_traitor()
-	remove_nukeop()
-	remove_wizard()
-	remove_cultist()
-	remove_rev()
-
 /datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
 	if(!current)
 		return
@@ -431,16 +373,16 @@
 	RegisterSignal(creator.mind, COMSIG_ANTAGONIST_REMOVED, PROC_REF(remove_creator_antag)) //remove enslavement to the antag
 
 	if(iscultist(creator))
-		SSticker.mode.add_cultist(src)
+		current.add_cultist()
 
-	else if(is_revolutionary(creator))
+	else if(IS_REVOLUTIONARY(creator))
 		var/datum/antagonist/rev/converter = creator.mind.has_antag_datum(/datum/antagonist/rev,TRUE)
 		converter.add_revolutionary(src,FALSE)
 
 	else if(is_servant_of_ratvar(creator))
 		add_servant_of_ratvar(current)
 
-	else if(is_nuclear_operative(creator))
+	else if(IS_NUKE_OP(creator))
 		var/datum/antagonist/nukeop/converter = creator.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE)
 		var/datum/antagonist/nukeop/N = new()
 		N.send_to_spawnpoint = FALSE
@@ -750,8 +692,10 @@
 	if(quiet_round)
 		return
 	// yogs end
+	if(!current)
+		return
 	if(!has_antag_datum(/datum/antagonist/cult,TRUE))
-		SSticker.mode.add_cultist(src,FALSE,equip=TRUE)
+		current.add_cultist(FALSE, equip=TRUE)
 		special_role = ROLE_CULTIST
 		to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar'sie, The Geometer of Blood. You now see how flimsy your world is, you see that it should be open to the knowledge of Nar'sie.</b></i></font>")
 		to_chat(current, "<font color=\"purple\"><b><i>Assist your new brethren in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")

@@ -918,7 +918,7 @@
 
 /mob/living/silicon/robot/modules/syndicate
 	icon_state = "synd_sec"
-	faction = list(ROLE_SYNDICATE)
+	faction = list(ROLE_ANTAG)
 	bubble_icon = BUBBLE_SYNDIBOT
 	req_access = list(ACCESS_SYNDICATE)
 	lawupdate = FALSE

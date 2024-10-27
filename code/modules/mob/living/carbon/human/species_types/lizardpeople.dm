@@ -8,7 +8,7 @@
 	say_mod = "hisses"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,DIGITIGRADE,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
-	inherent_traits = list(TRAIT_COLDBLOODED)
+	inherent_traits = list(TRAIT_COLDBLOODED, TRAIT_IGNORE_SHAREDFOOD)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_REPTILE
 	mutant_bodyparts = list("tail_lizard", "snout", "spines", "horns", "frills", "body_markings")
 	mutanttongue = /obj/item/organ/tongue/lizard
@@ -124,6 +124,9 @@
 		tail.Insert(H, TRUE)
 		H.visible_message("[H]'s tail regrows.","You feel your tail regrow.")
 
+/datum/species/lizard/get_footprint_sprite()
+	return FOOTPRINT_SPRITE_CLAWS
+
 /datum/species/lizard/get_species_description()
 	return "The first sentient beings encountered by the SIC outside of the Sol system, vuulen are the most \
 		commonly encountered non-human species in SIC space. Despite being one of the most integrated species in the SIC, they \
@@ -172,7 +175,14 @@
 /datum/species/lizard/create_pref_temperature_perks()
 	var/list/to_add = list()
 
-	to_add += list(list(
+	to_add += list(
+		list(
+		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+		SPECIES_PERK_ICON = "hamburger",
+		SPECIES_PERK_NAME = "Communal Eater",
+		SPECIES_PERK_DESC = "Due to the communal nature of Vuulen, they are unbothered by the thought of sharing a meal.",
+		),
+		list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
 		SPECIES_PERK_ICON = "thermometer-half",
 		SPECIES_PERK_NAME = "Cold-Blooded",

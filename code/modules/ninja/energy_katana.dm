@@ -56,7 +56,7 @@
 
 /obj/item/energy_katana/pickup(mob/living/carbon/human/user)
 	. = ..()
-	if(!is_ninja(user)) //stolen directly from the bloody bastard sword
+	if(!IS_SPACE_NINJA(user)) //stolen directly from the bloody bastard sword
 		if(user.electrocute_act(15, src, 1, user.held_index_to_hand(user.active_hand_index))) // you tried to grab it with this hand, so we'll shock it
 			to_chat(user, span_userdanger("[src] shocks you!"))
 			user.emote("scream")

@@ -2,8 +2,10 @@
 /obj/item/modular_computer/tablet/phone/preset
 	starting_files = list(	new /datum/computer_file/program/budgetorders,
 							new /datum/computer_file/program/bounty_board)
+	var/reskin_name = null // Name that shows up in PDA painter, or null if forbidden
 
 /obj/item/modular_computer/tablet/phone/preset/cheap
+	reskin_name = "Default"
 	desc = "A low-end tablet often seen among low ranked station personnel."
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer/micro,
@@ -47,10 +49,11 @@
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/card_mod
-	)	
+	)
 	. = ..()
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cap
+	reskin_name = "Captain"
 	finish_color = "yellow"
 	pen_type = /obj/item/pen/fountain/captain
 
@@ -59,18 +62,21 @@
 	RegisterSignal(src, COMSIG_TABLET_CHECK_DETONATE, PROC_REF(pda_no_detonate))
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop
+	reskin_name = "Head of Personnel"
 	finish_color = "brown"
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hop/Initialize(mapload)
 	starting_files |= list(
 		new /datum/computer_file/program/cargobounty
-	)	
+	)
 	. = ..()
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/hos
+	reskin_name = "Head of Security"
 	finish_color = "red"
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/ce
+	reskin_name = "Chief Engineer"
 	starting_components = list(	/obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/pda,
@@ -88,6 +94,7 @@
 	. = ..()
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/rd
+	reskin_name = "Research Director"
 	finish_color = "purple"
 	pen_type = /obj/item/pen/fountain
 
@@ -96,6 +103,7 @@
 	. = ..()
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo
+	reskin_name = "Chief Medical Officer"
 	finish_color = "white"
 
 /obj/item/modular_computer/tablet/phone/preset/advanced/command/cmo/Initialize(mapload)

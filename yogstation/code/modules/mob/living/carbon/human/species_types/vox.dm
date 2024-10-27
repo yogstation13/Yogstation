@@ -5,7 +5,7 @@
 	is_dimorphic = FALSE
 	generate_husk_icon = TRUE
 	species_traits = list(EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.
-	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE)
+	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_NOCLONE, TRAIT_IGNORE_SHAREDFOOD)
 	mutant_bodyparts = list("vox_quills", "vox_body_markings", "vox_facial_quills", "vox_tail", "vox_tail_markings")
 	default_features = list("vox_quills" = "None", "vox_facial_quills" = "None", "vox_body_markings" = "None", "vox_tail" = "lime", "vox_tail_markings" = "None", "vox_skin_tone" = "lime")
 	attack_verbs = list("scratch", "claw")
@@ -48,7 +48,7 @@
 	These bioengineered, reptilian, beaked, and quilled beings have a physiological caste system and follow 'The Inviolate' tenets. \
 	Breathing pure nitrogen, they need specialized masks and tanks for survival outside their arkships. \
 	Their insular nature limits their involvement in broader galactic affairs, maintaining a distinct, yet isolated presence away from other species."
-	
+
 /datum/species/vox/get_species_lore()
 	return list("Vox have no colonies of their own to speak of. Most Vox originate from a location known as the Shoal, a sprawling, labyrinth-like space megalith of debris and asteroids fused together over countless orbits. It is there where their cutthroat and opportunistic behavior stems from.",\
 	"Little is known of Vox history itself, as the Vox do not keep many records beyond personal accomplishments and tales of profit and triumph. They have lived among the Shoal and the stars as long as they or anyone else can remember.",\
@@ -77,7 +77,7 @@
 	vox.dna.update_uf_block(DNA_VOX_FACIAL_QUILLS_BLOCK)
 	vox.dna.update_uf_block(DNA_VOX_QUILLS_BLOCK)
 	vox.update_hair()
-	
+
 /datum/species/vox/survival_box_replacement(mob/living/carbon/human/box_holder, obj/item/storage/box/survival_box, list/soon_deleted_items, list/soon_added_items)
 	var/mask_to_replace = /obj/item/clothing/mask/breath/vox
 	if(mask_to_replace in soon_added_items)
@@ -153,6 +153,12 @@
 			SPECIES_PERK_ICON = "heart-circle-check",
 			SPECIES_PERK_NAME = "Imperishable Organs",
 			SPECIES_PERK_DESC = "Vox organs contain advanced cybernetics that prevent them from decaying.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "hamburger",
+			SPECIES_PERK_NAME = "Communal Eater",
+			SPECIES_PERK_DESC = "Due to their tribal background, Vox are unbothered by the thought of sharing a meal.",
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,

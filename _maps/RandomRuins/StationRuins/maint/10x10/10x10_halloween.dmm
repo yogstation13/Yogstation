@@ -46,7 +46,7 @@
 /obj/structure/railing,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/ash/large,
-/obj/item/clothing/under/schoolgirl/orange,
+/obj/item/clothing/under/costume/schoolgirl/orange,
 /obj/item/clothing/head/kitty{
 	pixel_y = 8
 	},
@@ -60,7 +60,7 @@
 "j" = (
 /obj/effect/decal/remains/xeno,
 /obj/effect/decal/cleanable/ash/large,
-/obj/item/clothing/under/scratch{
+/obj/item/clothing/under/suit/scratch{
 	pixel_x = 2;
 	pixel_y = -2
 	},
@@ -151,7 +151,7 @@
 	pixel_x = -2;
 	pixel_y = 11
 	},
-/obj/item/clothing/under/redeveninggown,
+/obj/item/clothing/under/dress/redeveninggown,
 /obj/effect/decal/cleanable/glitter/pink,
 /turf/open/floor/light/colour_cycle/dancefloor_a,
 /area/template_noop)
@@ -307,7 +307,7 @@
 	},
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/ash/large,
-/obj/item/clothing/under/soviet{
+/obj/item/clothing/under/costume/soviet{
 	pixel_x = 1;
 	pixel_y = -5
 	},

@@ -15,7 +15,6 @@ SUBSYSTEM_DEF(ticker)
 	var/setup_done = FALSE //All game setup done including mode post setup and
 
 	var/hide_mode = 0
-	var/datum/game_mode/mode = null
 
 	var/login_music							//music played in pregame lobby
 	var/login_music_data
@@ -196,10 +195,9 @@ SUBSYSTEM_DEF(ticker)
 				SEND_SIGNAL(src, COMSIG_TICKER_ERROR_SETTING_UP)
 
 		if(GAME_STATE_PLAYING)
-			mode.process(wait * 0.1)
 			check_queue()
 
-			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
+			if(!roundend_check_paused && SSgamemode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
@@ -214,51 +212,19 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 
-	var/list/datum/game_mode/runnable_modes
-	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
-		runnable_modes = config.get_runnable_modes()
-
-		if(GLOB.master_mode == "secret")
-			hide_mode = 1
-			if(GLOB.secret_force_mode != "secret")
-				var/datum/game_mode/smode
-				if(runnable_modes.len)
-					smode = config.pick_mode(GLOB.secret_force_mode)
-				if(!smode.can_start())
-					message_admins(span_notice("Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed."))
-				else
-					mode = smode
-
-		if(!mode)
-			if(!runnable_modes.len)
-				mode = new /datum/game_mode/extended()
-				message_admins(span_notice("Unable to choose any non-extended gamemode, running extended."))
-			else
-				mode = pickweight(runnable_modes)
-			if(!mode)	//too few roundtypes all run too recently
-				mode = pick(runnable_modes)
-
-	else
-		mode = config.pick_mode(GLOB.master_mode)
-		if(!mode.can_start())
-			to_chat(world, "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players and [mode.required_enemies] eligible antagonists needed. Reverting to pre-game lobby.")
-			qdel(mode)
-			mode = null
-			SSjob.ResetOccupations()
-			return 0
+	SSgamemode.init_storyteller() //monkestation addition
 
 	CHECK_TICK
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
-	can_continue = src.mode.pre_setup()		//Choose antagonists
+	can_continue = SSgamemode.pre_setup()		//Choose antagonists
 	CHECK_TICK
-	can_continue = can_continue && SSjob.DivideOccupations(mode.required_jobs) 				//Distribute jobs
+	can_continue = can_continue && SSjob.DivideOccupations() 				//Distribute jobs
 	CHECK_TICK
 
 	if(!GLOB.Debug2)
 		if(!can_continue)
-			log_game("[mode.name] failed pre_setup, cause: [mode.setup_error]")
-			QDEL_NULL(mode)
+			log_game("failed pre_setup, cause: storytellers stuff or ssjob maybe, good luck")
 			to_chat(world, "<B>Error setting up [GLOB.master_mode].</B> Reverting to pre-game lobby.")
 			SSjob.ResetOccupations()
 			return 0
@@ -266,10 +232,6 @@ SUBSYSTEM_DEF(ticker)
 		message_admins(span_notice("DEBUG: Bypassing prestart checks..."))
 
 	CHECK_TICK
-	if(hide_mode)
-		to_chat(world, "<b>The gamemode is: secret!</b>") // yogs - removed possible gamemodes list
-	else
-		mode.announce()
 
 	if(!CONFIG_GET(flag/ooc_during_round))
 		toggle_ooc(FALSE) // Turn it off
@@ -314,10 +276,10 @@ SUBSYSTEM_DEF(ticker)
 	webhook_send_roundstatus("ingame") //yogs - webhook support
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
-	if(SSevents.holidays)
+	if(SSgamemode.holidays)
 		to_chat(world, span_notice("and..."))
-		for(var/holidayname in SSevents.holidays)
-			var/datum/holiday/holiday = SSevents.holidays[holidayname]
+		for(var/holidayname in SSgamemode.holidays)
+			var/datum/holiday/holiday = SSgamemode.holidays[holidayname]
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
 
 	PostSetup()
@@ -358,13 +320,15 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/PostSetup()
 	set waitfor = FALSE
-	mode.post_setup()
+	SSgamemode.post_setup()
+	SSgamemode.storyteller.process(STORYTELLER_WAIT_TIME * 0.1) // we want this asap
+	SSgamemode.storyteller.round_started = TRUE
 	GLOB.start_state = new /datum/station_state()
 	GLOB.start_state.count()
 
 	var/list/adm = get_admin_counts()
 	var/list/allmins = adm["present"]
-	send2irc("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]:" : "of"] [hide_mode ? "secret":"[mode.name]"] has started[allmins.len ? ".":" with no active admins online!"]")
+	send2irc("Server", "Round [GLOB.round_id ? "#[GLOB.round_id]:" : "of"] [SSgamemode.storyteller ? SSgamemode.storyteller : "error no storyteller"] has started[allmins.len ? ".":" with no active admins online!"]")
 	setup_done = TRUE
 
 	for(var/i in GLOB.start_landmarks_list)
@@ -543,6 +507,8 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/check_maprotate()
 	if (!CONFIG_GET(flag/maprotation))
 		return
+	if(SSticker.maprotatechecked || SSmapping.next_map_config) //we already have a map set
+		return
 	//map rotate chance defaults to 75% of the length of the round (in minutes)
 	if (!prob((world.time/600)*CONFIG_GET(number/maprotationchancedelta)))
 		return
@@ -558,7 +524,6 @@ SUBSYSTEM_DEF(ticker)
 	current_state = SSticker.current_state
 	force_ending = SSticker.force_ending
 	hide_mode = SSticker.hide_mode
-	mode = SSticker.mode
 
 	login_music = SSticker.login_music
 	round_end_sound = SSticker.round_end_sound

@@ -2225,9 +2225,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aHc" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_right{
 	dir = 1
 	},
@@ -8209,26 +8206,6 @@
 	dir = 4
 	},
 /area/science/robotics/lab)
-"cul" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -26
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "cum" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp/green{
@@ -10501,8 +10478,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/defibrillator_mount/loaded{
-	pixel_x = -31;
-	pixel_y = 0
+	pixel_x = -31
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
@@ -13107,9 +13083,6 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "dRf" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_left{
 	dir = 1
 	},
@@ -14177,6 +14150,25 @@
 /obj/item/aiModule/supplied/freeform,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"eiP" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/machinery/light_switch{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "eiT" = (
 /obj/machinery/button/door{
 	id = "prisonereducation";
@@ -15040,19 +15032,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"euO" = (
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 5
-	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/obj/machinery/power/apc/auto_name{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/laborcamp/security)
 "euQ" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -16145,35 +16124,6 @@
 /obj/item/target/syndicate,
 /turf/open/floor/plasteel,
 /area/security/range)
-"eNB" = (
-/obj/structure/table,
-/obj/machinery/newscaster/security_unit{
-	pixel_x = 29;
-	pixel_y = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Departure Lounge - Security Post";
-	dir = 1
-	},
-/obj/item/book/manual/wiki/security_space_law{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/taperecorder{
-	pixel_x = 4
-	},
-/obj/item/radio/intercom{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 6
-	},
-/obj/machinery/light_switch{
-	pixel_x = 23;
-	pixel_y = -23
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "eNH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -29715,9 +29665,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"iJR" = (
-/turf/open/openspace/icemoon/keep_below,
-/area/icemoon/surface/outdoors)
 "iJS" = (
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
@@ -32364,9 +32311,6 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/storage/art)
 "jvC" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_right{
 	dir = 1
 	},
@@ -37195,22 +37139,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"kNr" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/mine/laborcamp/security)
 "kNz" = (
 /obj/machinery/light{
 	dir = 4
@@ -44828,9 +44756,7 @@
 	name = "Head of Personnel RC";
 	pixel_y = 30
 	},
-/obj/machinery/pdapainter{
-	pixel_y = 2
-	},
+/obj/machinery/pdapainter,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "mTT" = (
@@ -45515,9 +45441,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/mine/break_room)
 "ncA" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_left{
 	dir = 1
 	},
@@ -47551,6 +47474,31 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"nIf" = (
+/obj/structure/table,
+/obj/machinery/newscaster/security_unit{
+	pixel_x = 29;
+	pixel_y = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Departure Lounge - Security Post";
+	dir = 1
+	},
+/obj/item/book/manual/wiki/security_space_law{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/taperecorder{
+	pixel_x = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "nIi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -58361,6 +58309,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
+"qMG" = (
+/obj/structure/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 9
+	},
+/obj/machinery/firealarm{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
 "qMO" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -60257,10 +60217,6 @@
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"rts" = (
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
-/turf/closed/wall,
-/area/security/brig)
 "rtz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -66047,20 +66003,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"sXK" = (
-/obj/structure/chair/office/dark{
-	dir = 8
-	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching output from station security cameras.";
-	name = "Security Camera Monitor";
-	pixel_y = 30
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "sXS" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -68515,6 +68457,22 @@
 /obj/item/clothing/under/suit/burgundy,
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
+"tIc" = (
+/obj/effect/turf_decal/trimline/secred/filled/line/lower{
+	dir = 5
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/laborcamp/security)
 "tIm" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -69979,7 +69937,6 @@
 	pixel_y = -38
 	},
 /obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "udI" = (
@@ -78108,9 +78065,6 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/foyer)
 "wop" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_mid{
 	dir = 1
 	},
@@ -78310,6 +78264,25 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"wqV" = (
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower,
+/obj/effect/turf_decal/trimline/secred/filled/corner/lower{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/mine/laborcamp/security)
 "wqW" = (
 /obj/item/radio/intercom{
 	frequency = 1485;
@@ -79406,9 +79379,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "wHy" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
 /obj/structure/stairs/wide_mid{
 	dir = 1
 	},
@@ -88300,8 +88270,8 @@ bIx
 bIx
 bIx
 qJA
-euO
-kNr
+tIc
+wqV
 erb
 dfX
 hyK
@@ -161892,7 +161862,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -164207,7 +164177,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -166014,7 +165984,7 @@ oVp
 oVp
 wMi
 wMi
-iJR
+wMi
 wMi
 wMi
 wMi
@@ -244762,9 +244732,9 @@ cuc
 wAR
 ugk
 qHW
-sXK
+qMG
 iHW
-cul
+eiP
 qHW
 hwM
 pXc
@@ -245187,7 +245157,7 @@ xvh
 iSo
 gNR
 udn
-rts
+ulr
 ulr
 ulr
 qin
@@ -245535,7 +245505,7 @@ dAi
 qHW
 pOm
 wjA
-eNB
+nIf
 qHW
 sBE
 bwy
@@ -265308,7 +265278,7 @@ tRh
 tRh
 tRh
 tRh
-orI
+tRh
 tRh
 tRh
 tRh

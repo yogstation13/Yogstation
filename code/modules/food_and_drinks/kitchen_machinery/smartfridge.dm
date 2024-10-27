@@ -596,8 +596,9 @@
 
 /obj/machinery/smartfridge/drying_rack/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
-		return
+		return FALSE
 	toggle_drying(FALSE)
+	return TRUE
 
 // ----------------------------
 //  Bar drink smartfridge

@@ -397,6 +397,15 @@ datum/crafting_recipe/food/donut/meat
 	result = /obj/item/reagent_containers/food/snacks/churro
 	category = CAT_PASTRY
 
+/datum/crafting_recipe/food/chocolatechurro
+	name = "Chocolate-Dipped Churro"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/churro = 1,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/chocolatechurro
+	category = CAT_PASTRY
+
 /datum/crafting_recipe/food/cinnamonroll
 	name = "Cinnamon Roll"
 	reqs = list(

@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(title)
 	var/use_rare_screens = prob(1)		// 1% Chance for Rare Screens in /rare
 	var/use_joke_screens = prob(10) 	// 10% Chance for Joke Screens in /joke
 
-	if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS])
+	if(SSgamemode.holidays && SSgamemode.holidays[APRIL_FOOLS])
 		use_joke_screens = TRUE
 
 	if(use_rare_screens)

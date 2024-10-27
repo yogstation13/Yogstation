@@ -449,10 +449,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			id.update_label()
 
 			if(worn)
-				if(istype(worn, /obj/item/pda))
-					var/obj/item/pda/PDA = worn
-					PDA.id = id
-					id.forceMove(PDA)
+				if(istype(worn, /obj/item/modular_computer))
+					var/obj/item/modular_computer/worn_computer = worn
+					worn_computer.InsertID(id)
 				else if(istype(worn, /obj/item/storage/wallet))
 					var/obj/item/storage/wallet/W = worn
 					W.front_id = id
@@ -1079,19 +1078,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	GLOB.error_cache.show_to(src)
-
-/client/proc/pump_random_event()
-	set category = "Misc.Server Debug"
-	set name = "Pump Random Event"
-	set desc = "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification."
-	if(!holder)
-		return
-
-	SSevents.scheduled = world.time
-
-	message_admins(span_adminnotice("[key_name_admin(src)] pumped a random event."))
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Pump Random Event")
-	log_admin("[key_name(src)] pumped a random event.")
 
 /client/proc/start_line_profiling()
 	set category = "Profile"

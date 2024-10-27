@@ -73,8 +73,10 @@
 		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
 	else if(FR && length(FR.blood_DNA))
 		var/hand_number = get_num_arms(FALSE)
-		if(hand_number)
-			. += span_warning("[t_He] [t_has] [hand_number > 1 ? "" : "a"] blood-stained hand[hand_number > 1 ? "s" : ""]!")
+		if(hand_number && blood_in_hands)
+			. += span_warning("[t_He] [t_has][hand_number > 1 ? "" : " a"] blood-stained hand[hand_number > 1 ? "s" : ""]!")
+		else
+			. += span_warning("[t_He] [t_is] covered in blood!")
 
 	//handcuffed?
 	if(handcuffed)

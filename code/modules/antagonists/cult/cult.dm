@@ -3,6 +3,34 @@
 #define CULT_LOSS 0
 #define CULT_NARSIE_KILLED -1
 
+
+/proc/iscultist(mob/living/M)
+	if(istype(M, /mob/living/carbon/human/dummy))
+		return TRUE
+	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
+
+/proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
+	if(!istype(M))
+		return FALSE
+	if(M.mind)
+		if(ishuman(M) && (M.mind.holy_role))
+			return FALSE
+		if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
+			return FALSE
+		var/mob/living/master = M.mind.enslaved_to?.resolve()
+		if(master && !iscultist(master))
+			return FALSE
+		if(M.mind.unconvertable)
+			return FALSE
+		if(M.is_convert_antag())
+			return FALSE
+	else
+		return FALSE
+	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || ismouse(M) || is_servant_of_ratvar(M) || !M.client)
+		return FALSE //can't convert machines, shielded, braindead, mice, or ratvar's dogs
+	return TRUE
+
+
 /datum/antagonist/cult
 	name = "Cultist"
 	roundend_category = "cultists"
@@ -14,6 +42,7 @@
 	preview_outfit = /datum/outfit/cultist
 	job_rank = ROLE_CULTIST
 	antag_hud_name = "cult"
+	count_towards_antag_cap = TRUE
 	var/ignore_implant = FALSE
 	var/give_equipment = FALSE
 	var/datum/team/cult/cult_team
@@ -73,14 +102,14 @@
 		original_eye_color = H.eye_color
 	if(give_equipment)
 		equip_cultist(TRUE)
-	SSticker.mode.cult += owner // Only add after they've been given objectives
+	SSgamemode.cult += owner // Only add after they've been given objectives
 	current.log_message("has been converted to the cult of Nar'sie!", LOG_ATTACK, color="#960000")
 
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image
 
 /datum/antagonist/cult/on_removal()
-	SSticker.mode.cult -= owner
+	SSgamemode.cult -= owner
 	if(!silent)
 		owner.current.visible_message("[span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just reverted to [owner.current.p_their()] old faith!")]", null, null, null, owner.current)
 		to_chat(owner.current, span_userdanger("An unfamiliar white light flashes through your mind, cleansing the taint of the Geometer and all your memories as her servant."))
@@ -219,9 +248,11 @@
 	log_admin("[key_name(admin)] has cult'ed [key_name(new_owner)].")
 
 /datum/antagonist/cult/admin_remove(mob/user)
+	if(!owner.current)
+		return
 	message_admins("[key_name_admin(user)] has decult'ed [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has decult'ed [key_name(owner)].")
-	SSticker.mode.remove_cultist(owner,silent=TRUE) //disgusting
+	owner.current.remove_cultist(silent=TRUE)
 
 /datum/antagonist/cult/get_admin_commands()
 	. = ..()
@@ -640,7 +671,7 @@
 	return FALSE
 
 /datum/team/cult/is_gamemode_hero()
-	return SSticker.mode.name == "cult"
+	return SSgamemode.name == "cult"
 
 /// Sets a blood target for the cult.
 /datum/team/cult/proc/set_blood_target(atom/new_target, mob/marker, duration = 90 SECONDS)
@@ -716,3 +747,31 @@
 	if(!isdummy(H))
 		hooded.MakeHood() // This is usually created on Initialize, but we run before atoms
 		hooded.ToggleHood()
+
+
+
+	
+/mob/living/proc/add_cultist(stun, equip = FALSE, datum/team/cult/cult_team = null)
+	if (!istype(mind))
+		return FALSE
+
+	var/datum/antagonist/cult/new_cultist = new()
+	new_cultist.give_equipment = equip
+
+	if(mind.add_antag_datum(new_cultist,cult_team))
+		if(stun)
+			Unconscious(100)
+		return TRUE
+
+/mob/living/proc/remove_cultist(silent, stun)
+	if (!istype(mind))
+		return FALSE
+
+	var/datum/antagonist/cult/cult_datum = mind.has_antag_datum(/datum/antagonist/cult)
+	if(!cult_datum)
+		return FALSE
+	cult_datum.silent = silent
+	cult_datum.on_removal()
+	if(stun)
+		Unconscious(100)
+	return TRUE
