@@ -100,15 +100,15 @@
 /datum/component/thermite/proc/attackby_react(datum/source, obj/item/thing, mob/user, params)
 	if(thing.is_hot() > IGNITION_TEMP)
 		thermite_melt(user)
-	else
+		return COMPONENT_BLOCK_TOOL_ATTACK
+	else if(thing.is_hot())
 		to_chat(user, span_warning("[thing] isn't hot enough!"))
-	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/thermite/proc/welder_act(datum/source, mob/user, obj/item/tool, params)
 	if(tool.is_hot() > IGNITION_TEMP)
 		thermite_melt(user)
-	else
+		return COMPONENT_BLOCK_TOOL_ATTACK
+	else if(tool.is_hot())
 		to_chat(user, span_warning("[tool] isn't hot enough!"))
-	return COMPONENT_BLOCK_TOOL_ATTACK
 
 #undef IGNITION_TEMP
