@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "IPCs take 20% more damage not 20% less"
