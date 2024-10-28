@@ -43,14 +43,16 @@ GLOBAL_PROTECT(mentor_verbs)
 	set category = "Mentor"
 	var/position = "Mentor"
 	var/msg = "<b>Current Mentors & Wiki:</b>\n"
-	if(holder)
-		for(var/client/C in GLOB.mentors)
-			if(C.holder) continue
-			if(C.mentor_datum.position)
-				position = C.mentor_datum.position
-			msg += "\t[C] is a [position]"
 
-			if(C.holder && C.holder.fakekey)
+	for(var/client/C in GLOB.mentors)
+		if(C.holder) 
+			continue
+		if(C.mentor_datum.position)
+			position = C.mentor_datum.position
+		msg += "\t[C] is a [position]"
+
+		if(holder) //admins get extra info about the mentors
+			if(C?.holder?.fakekey)
 				msg += " <i>(as [C.holder.fakekey])</i>"
 
 			if(isobserver(C.mob))
@@ -62,18 +64,10 @@ GLOBAL_PROTECT(mentor_verbs)
 
 			if(C.is_afk())
 				msg += " (AFK)"
-			msg += "\n"
-	else
-		for(var/client/C in GLOB.mentors)
-			if(C.holder) continue
-			if(C.mentor_datum.position)	
-				position = C.mentor_datum.position
-			if(C.holder && C.holder.fakekey)
-				msg += "\t[C.holder.fakekey] is a [position]"
-			else
-				msg += "\t[C] is a [position]"
-			msg += "\n"
-		msg += span_info("Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.")
+		else
+			msg += span_info("Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.")
+		msg += "\n"
+
 	to_chat(src, msg, confidential=TRUE)
 
 /client/verb/mrat()
@@ -110,7 +104,7 @@ GLOBAL_PROTECT(mentor_verbs)
 			return
 	mentor_position = mentor_datum.position
 	remove_mentor_verbs()
-	mentor_datum = null
+	QDEL_NULL(mentor_datum)
 	GLOB.mentors -= src
 	add_verb(src, /client/proc/rementor)
 	to_chat(src, span_interface("You are now a normal player."), confidential=TRUE)
