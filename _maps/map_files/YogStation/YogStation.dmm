@@ -8592,7 +8592,7 @@
 /area/science/lab)
 "bnv" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "bnx" = (
@@ -10038,7 +10038,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -61616,7 +61616,7 @@
 /obj/item/disk/design_disk{
 	pixel_x = 1
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = -8;
 	pixel_y = -3
 	},
