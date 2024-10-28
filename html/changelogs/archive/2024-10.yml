@@ -560,3 +560,10 @@
   Absolucy, SmArtKar:
   - bugfix: Fixed luminiscent major extract activation button not disappearing/updating
       when it should've
+2024-10-28:
+  RikuTheKiller:
+  - rscadd: Electronic pocket heaters now exist, mainly for lizardperson miners. You
+      can print them in auto- and cargolathes and lizardperson miners get them at
+      roundstart in their backpacks.
+  t-toasted:
+  - qol: ports TG Meta Kitchen design.
