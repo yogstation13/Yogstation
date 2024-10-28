@@ -51,12 +51,18 @@ GLOBAL_LIST_INIT(stored_codes, list())
 /proc/generate_unusual_code_tgui(no_logs = FALSE)
 	if(!check_rights(R_FUN))
 		return
-	var/item_choice = tgui_alert(usr, "Should it be a random item?", "Loadout Choice", list("Yes", "No"))
-	switch(item_choice)
-		if("Yes")
-			item_choice = pick(GLOB.possible_lootbox_clothing)
-		if("No")
-			item_choice = tgui_input_list(usr, "Please choose a loadout item to award", "Loadout Choice", GLOB.possible_lootbox_clothing)
+	var/free_pick_item = tgui_alert(usr, "Should this be any item?", "Item Choice Type", list("Yes", "No"))
+	var/item_choice
+	if(free_pick_item == "No")
+		item_choice = tgui_alert(usr, "Should it be a random item?", "Loadout Choice", list("Yes", "No"))
+		switch(item_choice)
+			if("Yes")
+				item_choice = pick(GLOB.possible_lootbox_clothing)
+			if("No")
+				item_choice = tgui_input_list(usr, "Please choose a loadout item to award", "Loadout Choice", GLOB.possible_lootbox_clothing)
+	else
+		item_choice = tgui_input_list(usr, "Choose an Item", "Item Choice", typesof(/obj/item)) ///probably will lag a fair bit
+
 	if(!ispath(item_choice))
 		return
 
