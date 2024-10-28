@@ -135,14 +135,22 @@ SUBSYSTEM_DEF(outdoor_effects)
 	fire(FALSE, TRUE)
 
 	var/daylight = FALSE
+	var/dark_days = FALSE
 	for (var/z in (SSmapping.levels_by_trait(ZTRAIT_DAYCYCLE) + SSmapping.levels_by_trait(ZTRAIT_STARLIGHT)))
+		if(SSmapping.level_trait(z, ZTRAIT_JUSTWEATHER))
+			dark_days = TRUE
+			continue
 		if(SSmapping.level_trait(z, ZTRAIT_DAYCYCLE))
 			daylight = TRUE
 			continue
 
-	if(!daylight)
+	if(!daylight && !dark_days)
 		for(var/datum/time_of_day/listed_time as anything in time_cycle_steps)
 			listed_time.color = GLOB.starlight_color
+
+	if(dark_days)
+		for(var/datum/time_of_day/listed_time as anything in time_cycle_steps)
+			listed_time.color = COLOR_BLACK
 
 	return SS_INIT_SUCCESS
 

@@ -239,6 +239,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define WEATHER_MESSAGE_DELAY 30 SECONDS
 #define ZTRAIT_DAYCYCLE "Daycycle"
 #define ZTRAIT_STARLIGHT "Starlight"
+#define ZTRAIT_JUSTWEATHER "WeatherOnly"
 #define PARTICLEWEATHER_RAIN "weather_rain"
 #define PARTICLEWEATHER_SNOW "weather_snow"
 #define PARTICLEWEATHER_DUST "weather_dust"
