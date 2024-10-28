@@ -1,5 +1,0 @@
-author: "Ghilker"
-delete-after: true 
-changes: 
-  - tweak: "Plastic flaps now pass atmos when unanchored"
-  - bugfix: "Plastic flaps properly update their air adjacencies when unscrewed"
