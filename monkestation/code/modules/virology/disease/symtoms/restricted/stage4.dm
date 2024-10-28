@@ -13,7 +13,7 @@
 		affected_mob.death()
 		return FALSE
 
-	if(!affected_mob.can_heartattack())
+	if(!affected_mob.can_heartattack() && !HAS_TRAIT(affected_mob, TRAIT_STABLEHEART)) //This was so stupid. We had 9 people round removed with no fix other than admins because of this.
 		affected_mob.death()
 		return FALSE
 
