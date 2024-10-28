@@ -2484,9 +2484,6 @@
 /area/station/medical/treatment_center)
 "aRj" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/obj/machinery/atmospherics/miner/carbon_dioxide{
-	desc = "Gasses mined from the ground below flow out through this massive vent."
-	},
 /turf/open/floor/engine/co2,
 /area/station/engineering/atmos)
 "aRl" = (
@@ -9883,7 +9880,6 @@
 /obj/effect/turf_decal/trimline/dark_red/arrow_ccw{
 	dir = 1
 	},
-/obj/machinery/atmospherics/miner/oxygen,
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "cXZ" = (
@@ -16014,9 +16010,6 @@
 /area/station/command/heads_quarters/hop)
 "eWj" = (
 /obj/machinery/portable_atmospherics/canister/plasma,
-/obj/machinery/atmospherics/miner/plasma{
-	desc = "Gasses mined from the ground below flow out through this massive vent."
-	},
 /turf/open/floor/engine/plasma,
 /area/station/engineering/atmos)
 "eWn" = (
@@ -16070,9 +16063,6 @@
 /area/station/command/bridge)
 "eWQ" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/atmospherics/miner/nitrogen{
-	desc = "Gasses mined from the ground below  flow out through this massive vent."
-	},
 /turf/open/floor/engine/n2,
 /area/station/engineering/atmos)
 "eWT" = (
@@ -16218,9 +16208,6 @@
 /area/station/service/hydroponics)
 "eZc" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-/obj/machinery/atmospherics/miner/n2o{
-	desc = "Gasses mined from the ground below flow out through this massive vent."
-	},
 /turf/open/floor/engine/n2o,
 /area/station/engineering/atmos)
 "eZi" = (
@@ -55002,7 +54989,8 @@
 	},
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
-	name = "Plasma to Pure"
+	name = "Plasma to Pure";
+	piping_layer = 4
 	},
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted{
 	dir = 4
@@ -60276,9 +60264,6 @@
 /area/station/engineering/storage_shared)
 "tln" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/atmospherics/miner/oxygen{
-	desc = "Gasses mined from the ground below flow out through this massive vent."
-	},
 /turf/open/floor/engine/o2,
 /area/station/engineering/atmos)
 "tlo" = (
