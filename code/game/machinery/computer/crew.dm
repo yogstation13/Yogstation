@@ -157,6 +157,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_ERT_DEATHSQUAD = 227,
 		JOB_NT_REP = 230,
 		JOB_BLUESHIELD = 231,
+		JOB_NANOTRASEN_REPRESENTATIVE = 230,
 
 		// ANYTHING ELSE = UNKNOWN_JOB_ID, Unknowns/custom jobs will appear after civilians, and before assistants
 		JOB_PRISONER = 998,

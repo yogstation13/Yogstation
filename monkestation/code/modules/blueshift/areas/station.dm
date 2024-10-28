@@ -27,7 +27,7 @@
 
 // NT Consultant area
 /area/station/command/heads_quarters/nt_rep
-	name = "Nanotrasen Consultant's Office"
+	name = "Nanotrasen Representative's Office"
 	icon = 'monkestation/code/modules/blueshift/icons/areas/areas_station.dmi'
 	icon_state = "nt_rep"
 

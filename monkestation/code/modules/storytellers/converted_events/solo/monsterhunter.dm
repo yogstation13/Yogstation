@@ -8,6 +8,7 @@
 	antag_datum = /datum/antagonist/monsterhunter
 	protected_roles = list(
 		JOB_CAPTAIN,
+		JOB_NANOTRASEN_REPRESENTATIVE,
 		JOB_BLUESHIELD,
 		JOB_HEAD_OF_PERSONNEL,
 		JOB_CHIEF_ENGINEER,

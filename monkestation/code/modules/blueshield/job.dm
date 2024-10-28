@@ -6,7 +6,7 @@
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Heads of Staff"
+	supervisors = "the Nanotrasen Representative and Central Command"
 	minimal_player_age = 30
 	exp_requirements = 7200
 	exp_required_type = EXP_TYPE_CREW

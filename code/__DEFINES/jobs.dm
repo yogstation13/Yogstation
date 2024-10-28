@@ -121,6 +121,7 @@
 
 #define JOB_DISPLAY_ORDER_ASSISTANT 1
 #define JOB_DISPLAY_ORDER_CAPTAIN 2
+#define JOB_DISPLAY_ORDER_NANOTRASEN_REPRESENTATIVE 2.25 //monkestation edit: nanotrasen representative
 #define JOB_DISPLAY_ORDER_BLUESHIELD 2.5 // monkestation edit: blueshield
 #define JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL 3
 #define JOB_DISPLAY_ORDER_BARTENDER 4

@@ -32,7 +32,7 @@ GLOBAL_DATUM_INIT(blueshield_crewmonitor, /datum/crewmonitor/blueshield, new)
 		JOB_ERT_CHAPLAIN = 225,
 		JOB_ERT_JANITOR = 226,
 		JOB_ERT_DEATHSQUAD = 227,
-		JOB_NT_REP = 230,
+		JOB_NANOTRASEN_REPRESENTATIVE = 230,
 		JOB_BLUESHIELD = 231,
 	)
 
