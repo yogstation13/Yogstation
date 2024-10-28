@@ -1,6 +1,0 @@
-author: "N3D6"
-delete-after: true 
-changes: 
-  - bugfix: "snow legions now properly infect dead mobs"
-  - imageadd: "new snow legion core sprites"
-  - rscadd: "snow legion regenerative cores"

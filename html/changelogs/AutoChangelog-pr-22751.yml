@@ -1,7 +1,0 @@
-author: "Oblisk234"
-delete-after: true 
-changes: 
-  - rscadd: "pAIs now have a new interface to use."
-  - rscdel: "Removed old pAI interface"
-  - bugfix: "Fixed pAI door jacking not auto-canceling after hacking completes"
-  - tweak: "pAI cards have had their connectors changed, and can now fit in modular PDAs!"
