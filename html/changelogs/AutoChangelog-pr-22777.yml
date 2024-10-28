@@ -1,0 +1,7 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed thermite being able to destroy walls immune to thermite"
+  - bugfix: "Fixed thermite being applied to blacklisted turfs"
+  - bugfix: "Fixed thermite being applied to open space tiles"
+  - bugfix: "Fixed being able to ignite thermite without a sufficient heat source"
