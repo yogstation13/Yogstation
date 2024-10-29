@@ -25504,6 +25504,18 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"kJc" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Bridge - Head of Personnel's Office";
+	dir = 8
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "kJg" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -45172,18 +45184,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"sTl" = (
-/obj/machinery/vending/cart,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge - Head of Personnel's Office";
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
 "sTU" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -104750,7 +104750,7 @@ siL
 ouG
 ouG
 hbi
-sTl
+kJc
 mqb
 mTZ
 sIT
