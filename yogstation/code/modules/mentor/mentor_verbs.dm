@@ -65,7 +65,7 @@ GLOBAL_PROTECT(mentor_verbs)
 			if(C.is_afk())
 				msg += " (AFK)"
 		else
-			msg += span_info("Mentorhelps are also seen by admins. If no mentors are available in game adminhelp instead and an admin will see it and respond.")
+			msg += span_info("Mentorhelps are also sent to Discord. If no mentors are available in game mentorhelp anyways and a mentor on Discord may see it and respond.")
 		msg += "\n"
 
 	to_chat(src, msg, confidential=TRUE)
