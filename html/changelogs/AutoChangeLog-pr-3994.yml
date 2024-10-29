@@ -1,5 +1,0 @@
-author: "Yawet330"
-delete-after: True
-changes:
-  - bugfix: "Heart Worms now respects penthrite and vein muscle threading. Like it was supposed to (indicated by its own code)"
-  - bugfix: "Heart Worms now no longer instantly kills you if you have CE_STABLEHEART or for some reason are immune to heart attacks WITH stableheart."
