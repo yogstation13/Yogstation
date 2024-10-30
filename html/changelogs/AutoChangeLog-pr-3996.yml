@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "You can no longer lower the alert from delta/epsilon from a comms console (it wouldn't actually do anything to whatever was CAUSING said alert anyways)"
