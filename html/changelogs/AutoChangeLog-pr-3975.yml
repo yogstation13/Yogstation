@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed a hard delete related to wumpas."
-  - sound: "The sound from picking up / dropping a wumpa now respects the \"squeak\" mixer channel, as stepping on it and such already does."

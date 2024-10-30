@@ -1,4 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - bugfix: "Makes Nuclear reinforcements call upon Midround nukie preferences rather than round start."

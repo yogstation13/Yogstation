@@ -580,3 +580,19 @@
       was supposed to (indicated by its own code)
   - bugfix: Heart Worms now no longer instantly kills you if you have CE_STABLEHEART
       or for some reason are immune to heart attacks WITH stableheart.
+2024-10-30:
+  Absolucy:
+  - bugfix: Fixed a hard delete related to wumpas.
+  - sound: The sound from picking up / dropping a wumpa now respects the "squeak"
+      mixer channel, as stepping on it and such already does.
+  - bugfix: You can no longer lower the alert from delta/epsilon from a comms console
+      (it wouldn't actually do anything to whatever was CAUSING said alert anyways)
+  Gboster-0:
+  - rscadd: Signal technicians now have wintercoats
+  - qol: The signal technician's traffic console no longer saves your code on ENTER,
+      letting you comfortably make new-lines with enter instead
+  Gw0sty:
+  - bugfix: Makes Nuclear reinforcements call upon Midround nukie preferences rather
+      than round start.
+  MomoBerri:
+  - bugfix: fixed quartermasters doors.
