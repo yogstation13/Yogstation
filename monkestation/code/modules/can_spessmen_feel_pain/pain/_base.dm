@@ -558,9 +558,9 @@
 			shock_mod *= 2 // stacks with above
 		var/curr_pain = get_total_pain()
 		if(curr_pain < PAIN_LIMB_MAX * 0.5)
-			parent.adjust_pain_shock(-3 * seconds_per_tick) // staying out of pain for a while gives you a small resiliency to shock (~1 minute)
+			parent.adjust_pain_shock(-24 * seconds_per_tick) // staying out of pain for a while gives you a small resiliency to shock (~1 minute)
 		else if(curr_pain < PAIN_LIMB_MAX)
-			parent.adjust_pain_shock(-1 * seconds_per_tick)
+			parent.adjust_pain_shock(-6 * seconds_per_tick)
 		else if(curr_pain < PAIN_LIMB_MAX * 2)
 			if(shock_buildup <= 120)
 				parent.adjust_pain_shock(0.5 * shock_mod * seconds_per_tick)
