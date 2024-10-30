@@ -218,7 +218,7 @@
 				return
 		//user.say("Heeeeeeeeeerrre's Johnny!")
 		if(istype(src, /obj/item/melee/arm_blade/slime))
-			user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), span_italics("You hear a metal screeching sound."))
+			user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("You force the airlock to open."), span_italics("You hear a metal screeching sound."))
 		else
 			user.visible_message(span_warning("[user] forces the airlock to open with [user.p_their()] [src]!"), span_warning("We force the airlock to open."), //yogs modified description
 		span_italics("You hear a metal screeching sound."))
