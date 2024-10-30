@@ -1,0 +1,5 @@
+author: "Gboster-0"
+delete-after: True
+changes:
+  - rscadd: "Signal technicians now have wintercoats"
+  - qol: "The signal technician's traffic console no longer saves your code on ENTER, letting you comfortably make new-lines with enter instead"
