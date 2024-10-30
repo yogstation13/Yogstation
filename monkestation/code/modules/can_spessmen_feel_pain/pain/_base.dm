@@ -562,10 +562,10 @@
 		else if(curr_pain < PAIN_LIMB_MAX)
 			parent.adjust_pain_shock(-1 * seconds_per_tick)
 		else if(curr_pain < PAIN_LIMB_MAX * 2)
-			if(shock_buildup <= 30)
+			if(shock_buildup <= 120)
 				parent.adjust_pain_shock(0.5 * shock_mod * seconds_per_tick)
 		else if(curr_pain < PAIN_LIMB_MAX * 4)
-			if(shock_buildup <= 65)
+			if(shock_buildup <= 195)
 				parent.adjust_pain_shock(1 * shock_mod * seconds_per_tick)
 			if(SPT_PROB(2, seconds_per_tick))
 				do_pain_message(span_userdanger(pick("It hurts.")))
@@ -574,7 +574,7 @@
 			if(SPT_PROB(2, seconds_per_tick))
 				do_pain_message(span_userdanger(pick("Stop the pain!", "It hurts!")))
 
-		switch(shock_buildup)
+		switch(shock_buildup * 0.25)
 			if(10 to 60)
 				parent.adjust_bodytemperature(-5 * seconds_per_tick, min_temp = parent.bodytemp_cold_damage_limit + 5)
 			if(60 to 120)
@@ -592,7 +592,7 @@
 					parent.pain_emote("shiver", 3 SECONDS)
 				parent.adjust_bodytemperature(-20 * seconds_per_tick, min_temp = parent.bodytemp_cold_damage_limit - 20)
 
-		if((shock_buildup >= 20 || curr_pain >= PAIN_LIMB_MAX) && !just_cant_feel_anything)
+		if((shock_buildup >= 60 || curr_pain >= PAIN_LIMB_MAX) && !just_cant_feel_anything)
 			if(SPT_PROB(min(curr_pain / 5, 24), seconds_per_tick))
 				parent.adjust_jitter_up_to(5 SECONDS * pain_modifier, 30 SECONDS)
 			if(SPT_PROB(min(curr_pain / 10, 12), seconds_per_tick))
@@ -600,22 +600,22 @@
 			if(SPT_PROB(min(curr_pain / 20, 6), seconds_per_tick)) // pain applies its own stutter
 				parent.adjust_stutter_up_to(5 SECONDS * pain_modifier, 30 SECONDS)
 
-		if(shock_buildup >= 40 && parent.stat != HARD_CRIT)
+		if(shock_buildup >= 120 && parent.stat != HARD_CRIT)
 			if(SPT_PROB(shock_buildup / 60, seconds_per_tick))
 				//parent.vomit(VOMIT_CATEGORY_KNOCKDOWN, lost_nutrition = 7.5)
 				parent.Knockdown(rand(3 SECONDS, 6 SECONDS))
 
-		if(shock_buildup >= 60 || curr_pain >= PAIN_CHEST_MAX)
+		if(shock_buildup >= 180 || curr_pain >= PAIN_CHEST_MAX)
 			if(SPT_PROB(shock_buildup / 20, seconds_per_tick) && !parent.IsParalyzed() && parent.Paralyze(rand(2 SECONDS, 8 SECONDS)))
 				parent.visible_message(
 					span_warning("[parent]'s body falls limp!"),
 					span_warning("Your body [just_cant_feel_anything ? "goes" : "falls"] limp!"),
 
 				)
-			if(SPT_PROB(shock_buildup / 20, seconds_per_tick))
+			if(SPT_PROB(shock_buildup / 60, seconds_per_tick))
 				parent.adjust_confusion_up_to(8 SECONDS * pain_modifier, 24 SECONDS)
 
-		if((shock_buildup >= 120 || curr_pain >= PAIN_CHEST_MAX * 2) && SPT_PROB(shock_buildup / 40, seconds_per_tick) && parent.stat != HARD_CRIT)
+		if((shock_buildup >= 360 || curr_pain >= PAIN_CHEST_MAX * 2) && SPT_PROB(shock_buildup / 120, seconds_per_tick) && parent.stat != HARD_CRIT)
 			if(!parent.IsUnconscious() && parent.Unconscious(rand(4 SECONDS, 16 SECONDS)))
 				parent.visible_message(
 					span_warning("[parent] falls unconscious!"),
@@ -624,12 +624,12 @@
 				)
 
 		// This is death
-		if(shock_buildup >= 120 && !parent.undergoing_cardiac_arrest())
+		if(shock_buildup >= 360 && !parent.undergoing_cardiac_arrest())
 			var/heart_attack_prob = 0
 			if(parent.health <= parent.maxHealth * -1)
 				heart_attack_prob += abs(parent.health + parent.maxHealth) * 0.1
-			if(shock_buildup >= 180)
-				heart_attack_prob += (shock_buildup * 0.1)
+			if(shock_buildup >= 540)
+				heart_attack_prob += (shock_buildup * 0.1 * 0.25)
 			if(SPT_PROB(min(20, heart_attack_prob), seconds_per_tick))
 				if(!COOLDOWN_FINISHED(src, time_since_last_heart_attack_counter))
 					parent.losebreath += 1
@@ -658,7 +658,7 @@
 			heart_attack_counter = 0
 
 		// This is where "soft crit" is now
-		if(shock_buildup >= 90)
+		if(shock_buildup >= 270)
 			if(!HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINSHOCK))
 				ADD_TRAIT(parent, TRAIT_LABOURED_BREATHING, PAINSHOCK)
 				set_pain_modifier(PAINSHOCK, 1.2)
@@ -672,7 +672,7 @@
 				parent.remove_traits(list(TRAIT_LABOURED_BREATHING), PAINSHOCK)
 
 		// This is "pain crit", it's where stamcrit has moved and is also applied by extreme shock
-		if(curr_pain >= PAIN_LIMB_MAX * 3 || shock_buildup >= 150)
+		if(curr_pain >= PAIN_LIMB_MAX * 3 || shock_buildup >= 450)
 			parent.adjust_jitter_up_to(5 SECONDS * pain_modifier, 60 SECONDS)
 			if(!HAS_TRAIT_FROM(parent, TRAIT_LABOURED_BREATHING, PAINCRIT))
 				var/is_standing = parent.body_position == STANDING_UP
