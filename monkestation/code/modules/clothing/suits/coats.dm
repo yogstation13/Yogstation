@@ -48,6 +48,20 @@
 	worn_icon = 'monkestation/icons/mob/clothing/head.dmi'
 	icon_state = "winterhood_narsie"
 
+/obj/item/clothing/suit/hooded/wintercoat/engineering/signal_tech
+	name = "engineering winter coat"
+	desc = "A surprisingly heavy yellow winter coat with reflective green stripes. It has a small antennae for its zipper tab, and the inside layer is covered with a radiation-resistant silver-nylon blend. Because heat insulation is clearly not a priority."
+	icon = 'monkestation/icons/obj/clothing/suits.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/suit.dmi'
+	icon_state = "coat_signal_tech"
+	hoodtype = /obj/item/clothing/head/hooded/winterhood/engineering/signal_tech
+
+/obj/item/clothing/head/hooded/winterhood/engineering/signal_tech
+	desc = "A yellow winter coat hood. Definitely not enough to keep you warm near the telecommunications servers."
+	icon = 'monkestation/icons/obj/clothing/hats.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/head.dmi'
+	icon_state = "winterhood_signal_tech"
+
 // End Of Winter Coat Varients
 
 // Costumes

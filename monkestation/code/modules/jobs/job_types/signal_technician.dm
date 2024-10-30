@@ -58,6 +58,7 @@
 	id_trim = /datum/id_trim/job/signal_technician
 
 	uniform = /obj/item/clothing/under/rank/engineering/signal_tech
+	suit = /obj/item/clothing/suit/hooded/wintercoat/engineering/signal_tech
 	belt = /obj/item/storage/belt/utility/full/engi
 	ears = /obj/item/radio/headset/headset_eng
 	gloves = /obj/item/clothing/gloves/color/black

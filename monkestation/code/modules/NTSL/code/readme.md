@@ -28,10 +28,17 @@ for example, adding in their job after their name
 
 - monkestation\code\modules\jobs\job_types\signal_technician.dm
 - monkestation\code\modules\clothing\under\jobs\engineering.dm
+- monkestation\code\modules\clothing\suits\coats.dm
 - monkestation\code\modules\clothing\spacesuits\plasmamen.dm
 
 - monkestation\icons\obj\clothing\uniforms.dmi
 - monkestation\icons\mob\clothing\uniform.dmi
+
+- monkestation\icons\obj\clothing\suits.dmi
+- monkestation\icons\mob\clothing\suit.dmi
+- monkestation\icons\obj\clothing\hats.dmi
+- monkestation\icons\mob\clothing\head.dmi
+
 - monkestation\icons\obj\clothing\plasmaman.dmi
 - monkestation\icons\mob\clothing\plasmaman.dmi
 - monkestation\icons\obj\clothing\plasmaman_head.dmi

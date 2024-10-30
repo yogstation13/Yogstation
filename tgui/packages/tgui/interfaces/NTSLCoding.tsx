@@ -4,13 +4,85 @@ import {
   Button,
   Divider,
   Input,
-  Tabs,
-  TextArea,
   Section,
   Stack,
+  Tabs,
+  TextArea,
 } from '../components';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
+
+// NTSLTextArea component start
+// This is literally just TextArea but without ENTER updating anything, for NTSL
+import { KEY_ESCAPE, KEY_TAB } from 'common/keycodes';
+import { toInputValue } from '../components/Input';
+
+class NTSLTextArea extends TextArea {
+  constructor(props) {
+    super(props);
+    super(this.textareaRef);
+    super(this.state);
+    const { dontUseTabForIndent = false } = props;
+    this.handleKeyDown = (e) => {
+      const { editing } = this.state;
+      const { onInput, onKey } = this.props;
+      if (e.keyCode === KEY_ESCAPE) {
+        if (this.props.onEscape) {
+          this.props.onEscape(e);
+        }
+        this.setEditing(false);
+        if (this.props.selfClear) {
+          e.target.value = '';
+        } else {
+          e.target.value = toInputValue(this.props.value);
+          e.target.blur();
+        }
+        return;
+      }
+      if (!editing) {
+        this.setEditing(true);
+      }
+      // Custom key handler
+      if (onKey) {
+        onKey(e, e.target.value);
+      }
+      if (!dontUseTabForIndent) {
+        const keyCode = e.keyCode || e.which;
+        if (keyCode === KEY_TAB) {
+          e.preventDefault();
+          const { value, selectionStart, selectionEnd } = e.target;
+          e.target.value =
+            value.substring(0, selectionStart) +
+            '\t' +
+            value.substring(selectionEnd);
+          e.target.selectionEnd = selectionStart + 1;
+          if (onInput) {
+            onInput(e, e.target.value);
+          }
+        }
+      }
+    };
+  }
+}
+
+// NTSLTextArea component end
+
+type Data = {
+  admin_view: Boolean;
+  emagged: Boolean;
+  stored_code: string;
+  user_name: string;
+  network: string;
+  compiler_output: string[];
+  access_log: string[];
+  server_data: Server_Data[];
+};
+
+type Server_Data = {
+  run_code: Boolean;
+  server: string;
+  server_name: string;
+};
 
 export const NTSLCoding = (props) => {
   // Make sure we don't start larger than 50%/80% of screen width/height.
@@ -34,12 +106,12 @@ export const NTSLCoding = (props) => {
 };
 
 const ScriptEditor = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { stored_code, user_name } = data;
   return (
     <Box width="100%" height="100%">
       {user_name ? (
-        <TextArea
+        <NTSLTextArea
           noborder
           scrollbar
           value={stored_code}
@@ -61,12 +133,12 @@ const ScriptEditor = (props) => {
 };
 
 const MainMenu = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { emagged, user_name, admin_view } = data;
   const [tabIndex, setTabIndex] = useLocalState('tab-index', 1);
   return (
     <>
-      {admin_view === 1 ? (
+      {admin_view ? (
         <Button
           icon="power-off"
           color="red"
@@ -126,7 +198,7 @@ const MainMenu = (props) => {
 };
 
 const CompilerOutput = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { compiler_output } = data;
   return (
     <>
@@ -151,7 +223,7 @@ const CompilerOutput = (props) => {
 };
 
 const ServerList = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { network, server_data } = data;
   return (
     <>
@@ -196,7 +268,7 @@ const ServerList = (props) => {
 };
 
 const LogViewer = (props) => {
-  const { act, data } = useBackend();
+  const { act, data } = useBackend<Data>();
   const { access_log } = data;
   // This is terrible but nothing else will work
   return (
