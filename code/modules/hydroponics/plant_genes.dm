@@ -943,7 +943,7 @@
 	else
 		our_plant.embedding = EMBED_HARMLESS
 	our_plant.updateEmbedding()
-	our_plant.throwforce = qp_sigmoid(1000, 100, our_seed.potency)
+	our_plant.throwforce = qp_sigmoid(1000, 50, our_seed.potency)
 
 /**
  * This trait automatically heats up the plant's chemical contents when harvested.
