@@ -3,7 +3,7 @@
 	icon_state = "nugget"
 
 /obj/item/effect_granter/amogus/grant_effect(mob/living/carbon/granter)
-	if(issimian(granter))
+	if(ismonkey(granter))
 		to_chat(granter, span_notice("Sorry but simians are to small to be turned into amogus you have not been charged."))
 		return FALSE
 	if(isgoblin(granter))

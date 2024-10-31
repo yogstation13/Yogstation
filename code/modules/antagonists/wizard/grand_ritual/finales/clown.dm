@@ -35,9 +35,8 @@
 			var/datum/action/cooldown/spell/pointed/untie_shoes/newer_spell = new(victim)
 			newer_spell.Grant(victim)
 			continue
-		if (!ismonkey(victim)) // Monkeys cannot yet wear clothes
-			dress_as_magic_clown(victim)
-			ADD_TRAIT(victim, TRAIT_CLUMSY, MAGIC_TRAIT) //monkestation edit: HONK HONK!
+		dress_as_magic_clown(victim)
+		ADD_TRAIT(victim, TRAIT_CLUMSY, MAGIC_TRAIT) //monkestation edit: HONK HONK!
 		if (prob(15))
 			create_vendetta(victim.mind, invoker.mind)
 

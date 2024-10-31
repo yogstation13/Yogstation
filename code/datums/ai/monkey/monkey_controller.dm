@@ -161,8 +161,10 @@ have ways of interacting with a specific mob and control it.
 	var/obj/item/clothing/suit/costume/monkeysuit/S
 	var/obj/item/clothing/mask/gas/monkeymask/M
 	var/list/equipped = user.get_equipped_items(FALSE)
-	if(issimian(user))
-		ADD_TRAIT(user, TRAIT_MONKEYFRIEND, SPECIES_TRAIT)
+	if(iscarbon(user))
+		var/mob/living/carbon/carbon_user = user
+		if(TRAIT_MONKEYFRIEND in carbon_user?.dna?.species.inherent_traits)
+			ADD_TRAIT(user, TRAIT_MONKEYFRIEND, SPECIES_TRAIT)
 	if(((M in equipped) && (S in equipped)))
 		ADD_TRAIT(user, TRAIT_MONKEYFRIEND, CLOTHING_TRAIT)
 

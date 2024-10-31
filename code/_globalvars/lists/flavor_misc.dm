@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(caps_list)
 GLOBAL_LIST_EMPTY(pod_hair_list)
 GLOBAL_LIST_EMPTY(ethereal_horns_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(ethereal_tail_list) //Monkestation Addition
-GLOBAL_LIST_EMPTY(tails_list_monkey) //Monkestation Addition
+GLOBAL_LIST_EMPTY(tails_list_monkey)
 GLOBAL_LIST_EMPTY(anime_top_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(anime_middle_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(anime_bottom_list) //Monkestation Addition
@@ -66,7 +66,6 @@ GLOBAL_LIST_INIT(color_list_ethereal, list(
 	"Cyan Blue" = "#00ffff",
 	"Dark Blue" = "#6666ff",
 	"Dark Fuschia" = "#C70064", //Monkestation Edit: #CC0066 TO #C70064
-
 	"Dark Green" = "#37835b",
 	"Dark Red" = "#9c3030",
 	"Dull Yellow" = "#fbdf56",

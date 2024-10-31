@@ -83,7 +83,6 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define islizard(A) (is_species(A, /datum/species/lizard))
 #define isashwalker(A) (is_species(A, /datum/species/lizard/ashwalker))
 #define isplasmaman(A) (is_species(A, /datum/species/plasmaman))
-#define issimian(A) (is_species(A, /datum/species/simian)) //Monkestation Addition
 #define ispodperson(A) (is_species(A, /datum/species/pod))
 #define isflyperson(A) (is_species(A, /datum/species/fly))
 #define isjellyperson(A) (is_species(A, /datum/species/jelly))

@@ -650,9 +650,7 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 
 	if(icon_update)
 		dna.species.handle_body(src) // We want 'update_body_parts(update_limb_data = TRUE)' to be called only if mutcolor_update is TRUE, so no 'update_body()' here.
-		update_body_parts() //We can call this because it doesnt refresh limb data, and it handles hair and such.
-		if(mutcolor_update)
-			update_body_parts(update_limb_data = TRUE)
+		update_body_parts(update_limb_data = mutcolor_update) //We can call this because it doesnt refresh limb data, and it handles hair and such.
 		if(mutations_overlay_update)
 			update_mutations_overlay()
 

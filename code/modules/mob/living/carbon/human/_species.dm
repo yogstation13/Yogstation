@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/maxhealthmod = 1
 	///Path to BODYTYPE_CUSTOM species worn icons. An assoc list of ITEM_SLOT_X => /icon
 	var/list/custom_worn_icons = list()
-	///Override of the eyes icon file, used for Vox and maybe more in the future - The future is now, with Teshari using it too
+	///Override of the eyes icon file, used for Monkeys.
 	var/eyes_icon
 	///our color palette
 	var/datum/color_palette/color_palette
@@ -522,6 +522,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	C.bodytemp_cold_damage_limit = src.bodytemp_cold_damage_limit
 	C.temperature_normalization_speed = src.temperature_normalization_speed
 	C.temperature_homeostasis_speed = src.temperature_homeostasis_speed
+	C.butcher_results = knife_butcher_results?.Copy()
 
 	C.physiology?.cold_mod *= coldmod
 	C.physiology?.heat_mod *= heatmod
@@ -621,12 +622,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
  */
 /datum/species/proc/handle_body(mob/living/carbon/human/species_human)
 	species_human.remove_overlay(BODY_LAYER)
-	species_human.remove_overlay(FACE_LAYER)
-	var/height_offset = species_human.get_top_offset() // From high changed by varying limb height
 	if(HAS_TRAIT(species_human, TRAIT_INVISIBLE_MAN))
 		return handle_mutant_bodyparts(species_human)
 	var/list/standing = list()
-	var/list/standing_face = list()
 
 	if(!HAS_TRAIT(species_human, TRAIT_HUSK))
 		var/obj/item/bodypart/head/noggin = species_human.get_bodypart(BODY_ZONE_HEAD)
@@ -635,9 +633,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			var/obj/item/organ/internal/eyes/eye_organ = species_human.get_organ_slot(ORGAN_SLOT_EYES)
 			if(eye_organ)
 				eye_organ.refresh(call_update = FALSE)
-				for(var/mutable_appearance/eye_overlay in eye_organ.generate_body_overlay(species_human))
-					eye_overlay.pixel_y += height_offset
-					standing += eye_overlay
+				standing += eye_organ.generate_body_overlay(species_human)
 
 		// organic body markings
 		if(HAS_TRAIT(species_human, TRAIT_HAS_MARKINGS))
@@ -651,22 +647,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!HAS_TRAIT(species_human, TRAIT_HUSK))
 					if(noggin && (IS_ORGANIC_LIMB(noggin)))
 						var/mutable_appearance/markings_head_overlay = mutable_appearance(markings.icon, "[markings.icon_state]_head", -BODY_LAYER)
-						markings_head_overlay.pixel_y += height_offset
 						standing += markings_head_overlay
 
 					if(chest && (IS_ORGANIC_LIMB(chest)))
 						var/mutable_appearance/markings_chest_overlay = mutable_appearance(markings.icon, "[markings.icon_state]_chest", -BODY_LAYER)
-						markings_chest_overlay.pixel_y += height_offset
 						standing += markings_chest_overlay
 
 					if(right_arm && (IS_ORGANIC_LIMB(right_arm)))
 						var/mutable_appearance/markings_r_arm_overlay = mutable_appearance(markings.icon, "[markings.icon_state]_r_arm", -BODY_LAYER)
-						markings_r_arm_overlay.pixel_y += height_offset
 						standing += markings_r_arm_overlay
 
 					if(left_arm && (IS_ORGANIC_LIMB(left_arm)))
 						var/mutable_appearance/markings_l_arm_overlay = mutable_appearance(markings.icon, "[markings.icon_state]_l_arm", -BODY_LAYER)
-						markings_l_arm_overlay.pixel_y += height_offset
 						standing += markings_l_arm_overlay
 
 					if(right_leg && (IS_ORGANIC_LIMB(right_leg)))
@@ -689,7 +681,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 				if(!underwear.use_static)
 					underwear_overlay.color = species_human.underwear_color
-				underwear_overlay.pixel_y += height_offset
 				standing += underwear_overlay
 
 		if(species_human.undershirt)
@@ -700,7 +691,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					working_shirt = wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					working_shirt = mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
-				working_shirt.pixel_y += height_offset
 				standing += working_shirt
 
 		if(species_human.socks && species_human.num_legs >= 2 && !(src.bodytype & BODYTYPE_DIGITIGRADE))
@@ -714,17 +704,13 @@ GLOBAL_LIST_EMPTY(features_by_species)
 					socks_overlay = mutable_appearance(socks.icon, socks.icon_state, -BODY_LAYER)
 				if(!socks.use_static)
 					socks_overlay.color = species_human.socks_color
-				socks_overlay.pixel_y += height_offset
 				standing += socks_overlay
 			//MONKESTATION EDITS END
 
 	if(standing.len)
 		species_human.overlays_standing[BODY_LAYER] = standing
-	if(standing_face.len)
-		species_human.overlays_standing[FACE_LAYER] = standing_face
 
 	species_human.apply_overlay(BODY_LAYER)
-	species_human.apply_overlay(FACE_LAYER)
 	handle_mutant_bodyparts(species_human)
 
 /**
@@ -784,7 +770,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(!accessory || accessory.icon_state == "none")
 				continue
 
-			var/mutable_appearance/accessory_overlay = mutable_appearance(accessory.icon, layer = -layer)
+			var/mutable_appearance/accessory_overlay = mutable_appearance(accessory.icon, layer = -layer, appearance_flags = KEEP_TOGETHER)
 
 			if(accessory.gender_specific)
 				accessory_overlay.icon_state = "[g]_[bodypart]_[accessory.icon_state]_[layertext]"
@@ -879,13 +865,17 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 ///Proc that will randomize all the external organs (i.e. horns, frills, tails etc.) of a species' associated mob
 /datum/species/proc/randomize_external_organs(mob/living/carbon/human/human_mob)
+	var/static/list/organs_to_randomize = list()
 	for(var/obj/item/organ/external/organ_path as anything in external_organs)
-		var/obj/item/organ/external/randomized_organ = human_mob.get_organ_by_type(organ_path)
-		if(randomized_organ)
-			var/datum/bodypart_overlay/mutant/overlay = randomized_organ.bodypart_overlay
-			var/new_look = pick(overlay.get_global_feature_list())
-			human_mob.dna.features["[overlay.feature_key]"] = new_look
-			mutant_bodyparts["[overlay.feature_key]"] = new_look
+		var/overlay_path = initial(organ_path.bodypart_overlay)
+		var/datum/bodypart_overlay/mutant/sample_overlay = organs_to_randomize[overlay_path]
+		if(isnull(sample_overlay))
+			sample_overlay = new overlay_path()
+			organs_to_randomize[overlay_path] = sample_overlay
+
+		var/new_look = pick(sample_overlay.get_global_feature_list())
+		human_mob.dna.features["[sample_overlay.feature_key]"] = new_look
+		mutant_bodyparts["[sample_overlay.feature_key]"] = new_look
 
 ///Proc that randomizes all the appearance elements (external organs, markings, hair etc.) of a species' associated mob. Function set by child procs
 /datum/species/proc/randomize_features(mob/living/carbon/human/human_mob)
@@ -980,12 +970,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_ICLOTHING)
-			var/obj/item/bodypart/chest = H.get_bodypart(BODY_ZONE_CHEST)
-			if(chest && (chest.bodytype & BODYTYPE_MONKEY))
-				if(!(I.supports_variations_flags & CLOTHING_MONKEY_VARIATION))
-					if(!disable_warning)
-						to_chat(H, span_warning("[I] doesn't fit your [chest.name]!"))
-					return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_ID)
 			var/obj/item/bodypart/O = H.get_bodypart(BODY_ZONE_CHEST)
@@ -1061,10 +1045,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		return TRUE
 	H.visible_message(span_notice("[H] start putting on [I]..."), span_notice("You start putting on [I]..."))
 	return do_after(H, I.equip_delay_self, target = H)
-
-
-/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/human_host, client/preference_source = null)
-	human_host.update_mutant_bodyparts()
 
 /// Equips the necessary species-relevant gear before putting on the rest of the uniform.
 /datum/species/proc/pre_equip_species_outfit(datum/job/job, mob/living/carbon/human/equipping, visuals_only = FALSE)

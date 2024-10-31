@@ -34,7 +34,7 @@
 /datum/element/gun_launches_little_guys/proc/throw_it_back(obj/item/gun/weapon, mob/living/carbon/user, atom/target, params, zone_override)
 	SIGNAL_HANDLER
 
-	if(!issimian(user) && !HAS_TRAIT(user, TRAIT_DWARF) && !(user.dna.features["body_size"] <= 0.9))
+	if(!ismonkey(user) && !HAS_TRAIT(user, TRAIT_DWARF) && !(user.dna.features["body_size"] <= 0.9))
 		return
 
 	var/fling_direction = REVERSE_DIR(user.dir)

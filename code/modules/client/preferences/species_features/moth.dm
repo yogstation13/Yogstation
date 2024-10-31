@@ -4,6 +4,7 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Antennae"
 	should_generate_icons = TRUE
+	relevant_external_organ = /obj/item/organ/external/antennae
 
 /datum/preference/choiced/moth_antennae/init_possible_values()
 	var/list/values = list()
@@ -88,6 +89,7 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Moth wings"
 	should_generate_icons = TRUE
+	relevant_external_organ = /obj/item/organ/external/wings/moth
 
 /datum/preference/choiced/moth_wings/init_possible_values()
 	return possible_values_for_sprite_accessory_list_for_body_part(

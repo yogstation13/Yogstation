@@ -4,6 +4,7 @@
 	category = PREFERENCE_CATEGORY_FEATURES
 	main_feature_name = "Hairstyle"
 	should_generate_icons = TRUE
+	relevant_external_organ = /obj/item/organ/external/pod_hair
 
 /datum/preference/choiced/pod_hair/init_possible_values()
 	var/list/values = list()

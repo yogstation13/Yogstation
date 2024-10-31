@@ -88249,7 +88249,7 @@
 /obj/structure/window/reinforced/tinted/spawner/directional/west,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/toiletbong,
-/obj/item/bodypart/head/simian,
+/obj/item/bodypart/head/monkey,
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "floor5-old"
 	},

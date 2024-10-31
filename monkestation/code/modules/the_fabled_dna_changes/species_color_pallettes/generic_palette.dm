@@ -2,7 +2,8 @@
 	var/hair_color
 	var/mutant_color
 	var/mutant_color_secondary
-	var/fur_color
+	///Color of Monkey and Simian's fur, defaulted to Monkey-Brown.
+	var/fur_color = COLOR_MONKEY_BROWN
 	var/ethereal_color
 
 /datum/color_palette/generic_colors/apply_prefs(datum/preferences/incoming)

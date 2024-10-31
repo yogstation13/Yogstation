@@ -69,7 +69,6 @@
 
 	return randname
 
-
 /datum/species/lizard/randomize_features(mob/living/carbon/human/human_mob)
 	human_mob.dna.features["body_markings"] = pick(GLOB.body_markings_list)
 	randomize_external_organs(human_mob)

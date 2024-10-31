@@ -33,10 +33,10 @@
 	invisibility = 0
 	set_species(/datum/species/monkey)
 	name = "monkey"
+	regenerate_icons()
 	set_name()
 	SEND_SIGNAL(src, COMSIG_HUMAN_MONKEYIZE)
 	uncuff()
-	regenerate_icons()
 	return src
 
 //////////////////////////           Humanize               //////////////////////////////

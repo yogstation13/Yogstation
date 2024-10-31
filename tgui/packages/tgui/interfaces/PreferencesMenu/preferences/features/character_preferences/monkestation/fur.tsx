@@ -2,6 +2,7 @@ import { Feature, FeatureValueProps, StandardizedPalette } from '../../base';
 
 const furPresets = {
   // these need to be short color (3 byte) compatible
+  '#cd8765': 'Monkey', // also the define used for monkestation\code\__DEFINES\colors.dm's COLOR_MONKEY_BROWN
   '#ffffff': 'Albino',
   '#ffb089': 'Chimp',
   '#aeafb3': 'Grey',

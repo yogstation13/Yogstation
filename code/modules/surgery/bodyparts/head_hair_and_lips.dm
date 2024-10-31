@@ -8,16 +8,6 @@
 	var/mob/living/carbon/human/human_head_owner = owner
 	var/datum/species/owner_species = human_head_owner.dna.species
 
-	var/offset = 0
-	if(!istype(owner, /mob/living/carbon/human/dummy))
-		switch(human_head_owner.get_mob_height())
-			if(HUMAN_HEIGHT_DWARF)
-				offset = -2
-			if(HUMAN_HEIGHT_SHORTEST)
-				offset = -1
-			if(HUMAN_HEIGHT_SHORT)
-				offset = 0
-
 	//HIDDEN CHECKS START
 	hair_hidden = FALSE
 	facial_hair_hidden = FALSE
@@ -85,7 +75,6 @@
 			//Overlay
 			facial_overlay = mutable_appearance(sprite_accessory.icon, sprite_accessory.icon_state, -HAIR_LAYER)
 			facial_overlay.alpha = facial_hair_alpha
-			facial_overlay.pixel_y = offset
 			//Gradients
 			facial_hair_gradient_style = LAZYACCESS(human_head_owner.grad_style, GRADIENT_FACIAL_HAIR_KEY)
 			if(facial_hair_gradient_style)
@@ -100,7 +89,6 @@
 			//Overlay
 			hair_overlay = mutable_appearance(sprite_accessory.icon, sprite_accessory.icon_state, -HAIR_LAYER)
 			hair_overlay.alpha = hair_alpha
-			//hair_overlay.pixel_y = offset
 			//Gradients
 			hair_gradient_style = LAZYACCESS(human_head_owner.grad_style, GRADIENT_HAIR_KEY)
 			if(hair_gradient_style)

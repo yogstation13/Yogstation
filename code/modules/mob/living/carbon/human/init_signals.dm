@@ -19,9 +19,12 @@
 
 	// We need to regenerate everything for height
 	regenerate_icons()
-	if(isdummy(src))
-		apply_height_filters(src, TRUE)
-	// No more passtable for you, bub
+/* //Non-Modular change - Remove passtable from dwarves.
+	if(HAS_TRAIT(src, TRAIT_DWARF))
+		passtable_on(src, TRAIT_DWARF)
+	else
+		passtable_off(src, TRAIT_DWARF)
+*/
 
 /mob/living/carbon/human/proc/on_gain_giant_trait(datum/source)
 	SIGNAL_HANDLER
@@ -31,6 +34,8 @@
 
 /mob/living/carbon/human/proc/on_lose_giant_trait(datum/source)
 	SIGNAL_HANDLER
-	//We're leaving the size traits permanent until someone wants to separate the mutation from customization aspects
-	//src.update_transform(0.8)
-	//src.visible_message(span_danger("[src] suddenly shrinks!"), span_notice("Everything around you seems to grow.."))
+
+	if(HAS_TRAIT(src, TRAIT_GIANT)) //They have the trait through another source, cancel out.
+		return
+	src.update_transform(0.8)
+	src.visible_message(span_danger("[src] suddenly shrinks!"), span_notice("Everything around you seems to grow.."))

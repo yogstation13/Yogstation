@@ -352,3 +352,6 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	CABLE_COLOR_YELLOW = CABLE_HEX_COLOR_YELLOW,
 	CABLE_COLOR_BROWN = CABLE_HEX_COLOR_BROWN
 ))
+
+//Monkestation non-modular change: This has to be here because we use it in setup_consistent_human_dna
+#define COLOR_MONKEY_BROWN "#cd8765"

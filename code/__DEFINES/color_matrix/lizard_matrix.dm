@@ -1,4 +1,6 @@
 // These COLORPIXEL defines indicate the pixel position on the base sprite of a clothing piece from which the color will be taken.
+// Only 4 of these are used, for digi lizards. Rest have been removed once Simians were changed to use filters instead.
+/*
 #define GLASSES_COLORPIXEL_X_1 10
 #define GLASSES_COLORPIXEL_Y_1 16
 #define GLASSES_COLORPIXEL_X_2 18
@@ -40,12 +42,15 @@
 #define CLOAK_COLORPIXEL_X_2 12
 #define CLOAK_COLORPIXEL_Y_2 22
 
+*/
 #define UNDER_COLORPIXEL_X_1 15
 #define UNDER_COLORPIXEL_Y_1 17
 #define UNDER_COLORPIXEL_X_2 10
 #define UNDER_COLORPIXEL_Y_2 19
+/*
 #define UNDER_COLORPIXEL_X_3 15
 #define UNDER_COLORPIXEL_Y_3 10
 
 #define BACK_COLORPIXEL_X_1 13
 #define BACK_COLORPIXEL_Y_1 18
+*/

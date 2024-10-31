@@ -1789,8 +1789,17 @@ MONKESTATION EDIT
 	palette_key = MUTANT_COLOR
 
 /datum/sprite_accessory/tails/monkey
+
+//Non-Modular change - Removes monkey tails, adds Simian tails instead.
+/datum/sprite_accessory/tails/monkey/default
 	name = "Monkey"
-	icon_state = "monkey"
+	icon = 'monkestation/icons/mob/species/monkey/monkey_tail.dmi' //Original: 'icons/mob/species/monkey/monkey_tail.dmi'
+	icon_state = "default"
+	color_src = MUTANT_COLOR //Original: FALSE
+
+/datum/sprite_accessory/tails/monkey/none
+	name = "None"
+	icon_state = "none"
 	color_src = FALSE
 
 /datum/sprite_accessory/pod_hair

@@ -18,6 +18,7 @@
 	limb_id = SPECIES_TERATOMA
 	is_dimorphic = FALSE
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ORGANIC | BODYTYPE_CUSTOM
+	acceptable_bodytype = BODYTYPE_CUSTOM
 	should_draw_greyscale = FALSE
 	composition_effects = list(TRAIT_PASSTABLE = 0.5, TRAIT_VENTCRAWLER_ALWAYS = 0.8)
 

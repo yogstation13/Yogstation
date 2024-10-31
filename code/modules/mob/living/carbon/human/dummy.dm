@@ -22,6 +22,19 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	harvest_organs()
 	return ..()
 
+// To speed up the preference menu, we apply 1 filter to the entire mob
+/mob/living/carbon/human/dummy/regenerate_icons()
+	. = ..()
+	apply_height_filters(src, only_apply_in_prefs = TRUE)
+
+/mob/living/carbon/human/dummy/apply_height_filters(image/appearance, only_apply_in_prefs = FALSE)
+	if(only_apply_in_prefs)
+		return ..()
+
+// Not necessary with above
+/mob/living/carbon/human/dummy/apply_height_offsets(image/appearance, upper_torso)
+	return
+
 ///Let's extract our dummies organs and limbs for storage, to reduce the cache missed that spamming a dummy cause
 /mob/living/carbon/human/dummy/proc/harvest_organs()
 	for(var/slot in list(ORGAN_SLOT_BRAIN, ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_APPENDIX, \
@@ -82,17 +95,6 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 /mob/living/carbon/human/dummy/log_mob_tag(text)
 	return
 
-
-/mob/living/carbon/human/dummy/apply_height_filters(image/appearance, only_apply_in_prefs = FALSE)
-	if(QDELETED(src))
-		return
-	if(only_apply_in_prefs)
-		return ..()
-
-// Not necessary with above
-/mob/living/carbon/human/dummy/apply_height_offsets(image/appearance, upper_torso)
-	return
-
 /proc/create_consistent_human_dna(mob/living/carbon/human/target)
 	target.dna.initialize_dna(/datum/blood_type/crew/human/o_plus, skip_index = TRUE)
 	target.dna.features["body_markings"] = "None"
@@ -106,8 +108,9 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.features["spines"] = "None"
 	target.dna.features["tail_cat"] = "None"
 	target.dna.features["tail_lizard"] = "Smooth"
-	target.dna.features["tail_monkey"] = "Chimp" //Monkestation Addition
+	target.dna.features["tail_monkey"] = "Monkey"
 	target.dna.features["pod_hair"] = "Ivy"
+	target.dna.features["fur"] = COLOR_MONKEY_BROWN //Monkestation Addition
 	target.dna.features["ethereal_horns"] = "None" //Monkestation Addition
 	target.dna.features["ethereal_tail"] = "None" //Monkestation Addition
 	target.dna.features["ipc_screen"] = "BSOD" //Monkestation Addition

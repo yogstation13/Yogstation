@@ -128,7 +128,6 @@
 /datum/quirk/kleptomaniac
 	name = "Kleptomaniac"
 	desc = "The station's just full of free stuff!  Nobody would notice if you just... took it, right?"
-	mob_trait = TRAIT_KLEPTOMANIAC
 	value = -2
 	icon = FA_ICON_BAG_SHOPPING
 
