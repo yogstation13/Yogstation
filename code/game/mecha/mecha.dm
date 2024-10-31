@@ -1038,7 +1038,7 @@
 
 	visible_message("[user] starts to climb into [name].")
 
-	if(do_after(user, round(enter_delay * (check_eva(user)**2)), src, skill_check = null))
+	if(do_after(user, round(enter_delay * (check_eva(user)**2)), src, IGNORE_SKILL_DELAY, skill_check = SKILL_TECHNICAL))
 		if(atom_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
@@ -1157,7 +1157,7 @@
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
-	if(do_after(occupant, round(exit_delay * (check_eva(user)**2)), src))
+	if(do_after(occupant, round(exit_delay * (check_eva(user)**2)), src, IGNORE_SKILL_DELAY, skill_check = SKILL_TECHNICAL))
 		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
 		go_out()
 	else

@@ -172,7 +172,7 @@
 	if(ismob(a))
 		var/mob/mob = a
 		timer *= (10 - (mob.get_skill(SKILL_MECHANICAL) + HAS_TRAIT(mob, TRAIT_CRAFTY)*2)) / 10
-	if(!do_after(a, timer, a))
+	if(!do_after(a, timer, a, IGNORE_SKILL_DELAY, skill_check = SKILL_MECHANICAL))
 		return "."
 	contents = get_surroundings(a, R.blacklist) // Double checking since items could no longer be there after the do_after().
 	if(!check_contents(a, R, contents))

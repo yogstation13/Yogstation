@@ -350,7 +350,7 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new(user, delay, target || user)
+		progbar = new(user, delay, target || user, skill_check)
 
 	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN)
 
