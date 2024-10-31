@@ -55,6 +55,10 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_GRILLE
 
+/obj/structure/grille/window_sill/atom_break()
+	. = ..()
+	Destroy()
+
 /obj/structure/grille/update_overlays(updates=ALL)
 	. = ..()
 	if((updates & UPDATE_SMOOTHING) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))

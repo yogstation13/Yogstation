@@ -53,8 +53,8 @@
 
 /obj/structure/window_sill/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
-	if(!. || !isstack(attacking_item))
-		return
+	if(!isstack(attacking_item))
+		return FALSE
 	var/obj/item/stack/stack_item = attacking_item
 	if(istype(attacking_item, /obj/item/stack/sheet/glass))
 		if(stack_item.amount < 2)
