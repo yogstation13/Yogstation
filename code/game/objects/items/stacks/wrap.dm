@@ -183,6 +183,28 @@
 			balloon_alert(user, "not enough paper!")
 			return
 
+	// MONKESTATION EDIT START
+	else if(istype(target, /obj/structure/fermentation_keg))
+		var/obj/structure/fermentation_keg/keg = target
+		if(!keg.ready_to_bottle)
+			balloon_alert(user, "can't wrap without anything in it!")
+			return
+		if(!keg.delivery_icon) //no delivery icon means unwrappable keg. As of 10/14/2024, these do not exist.
+			balloon_alert(user, "can't wrap!")
+			return
+		if(use(3))
+			var/obj/item/delivery/big/parcel = new(get_turf(keg.loc))
+			parcel.base_icon_state = keg.delivery_icon
+			parcel.update_icon()
+			parcel.drag_slowdown = keg.drag_slowdown
+			keg.forceMove(parcel)
+			parcel.add_fingerprint(user)
+			keg.add_fingerprint(user)
+		else
+			balloon_alert(user, "not enough paper!")
+			return
+	// MONKESTATION EDIT END
+
 	else
 		balloon_alert(user, "can't wrap!")
 		return

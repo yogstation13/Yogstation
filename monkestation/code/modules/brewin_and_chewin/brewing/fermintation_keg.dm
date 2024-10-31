@@ -28,6 +28,9 @@ GLOBAL_LIST_EMPTY(custom_fermentation_recipes)
 	///our made item which we clear once its no longer ready to bottle
 	var/made_item
 
+	///icon used for wrapping the keg. set to NULL for any intentionally unwrappable subtypes.
+	var/delivery_icon = "deliverykeg"
+
 
 
 /obj/structure/fermentation_keg/Initialize()
