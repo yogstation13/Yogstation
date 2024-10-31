@@ -1,0 +1,5 @@
+author: "ThePooba"
+delete-after: True
+changes:
+  - bugfix: "window sill grills now break instantly instead of becoming glitchy messes"
+  - bugfix: "windowsills can now be built on once again."
