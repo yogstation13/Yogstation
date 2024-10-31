@@ -11081,6 +11081,7 @@
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
 "fgB" = (
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "fgN" = (
@@ -16552,6 +16553,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"hJy" = (
+/mob/living/carbon/monkey/punpun,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "hJB" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
@@ -91756,7 +91761,7 @@ eAn
 kfu
 oas
 lzl
-bfP
+hJy
 rAA
 kfu
 fmk
