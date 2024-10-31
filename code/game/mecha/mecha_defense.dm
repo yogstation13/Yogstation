@@ -175,7 +175,9 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	severity -= EMP_HEAVY * (100 - armor.getRating(ENERGY)) / 100 // energy armor is subtractive so that it's less effective against stronger EMPs and more against weaker ones
+	severity -= EMP_HEAVY * armor.getRating(ENERGY) / 100 // energy armor is subtractive so that it's less effective against stronger EMPs and more against weaker ones
+	if(severity <= 0)
+		return
 	if(get_charge())
 		use_power(cell.charge * severity / 40)
 	if(overheat < OVERHEAT_EMP_MAX)

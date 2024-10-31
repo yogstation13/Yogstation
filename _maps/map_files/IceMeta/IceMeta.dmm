@@ -15674,7 +15674,7 @@
 /area/aisat)
 "eFc" = (
 /obj/structure/table,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "eFd" = (
@@ -29665,9 +29665,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"iJR" = (
-/turf/open/openspace/icemoon/keep_below,
-/area/icemoon/surface/outdoors)
 "iJS" = (
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
@@ -34310,7 +34307,7 @@
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/wood,
 /area/library)
 "jZd" = (
@@ -49332,7 +49329,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /obj/machinery/firealarm{
@@ -56432,7 +56429,7 @@
 /area/storage/tools)
 "qnr" = (
 /obj/structure/table,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/item/folder/white{
 	pixel_x = 4;
 	pixel_y = -3
@@ -80543,7 +80540,7 @@
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	desc = "A real Nanotrasen success, these personal AIs provide all of the companionship of an AI without any law related red-tape.";
 	name = "Nanotrasen-brand personal AI device exhibit"
 	},
@@ -161865,7 +161862,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -164180,7 +164177,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -165987,7 +165984,7 @@ oVp
 oVp
 wMi
 wMi
-iJR
+wMi
 wMi
 wMi
 wMi
@@ -265281,7 +265278,7 @@ tRh
 tRh
 tRh
 tRh
-orI
+tRh
 tRh
 tRh
 tRh

@@ -301,6 +301,9 @@
 
 /// A utility function for `/datum/strippable_item`s to finish unequipping an item from a mob.
 /proc/finish_unequip_mob(obj/item/item, mob/source, mob/user, place_in_hand = FALSE)
+	if (!in_range(source, user)) // No TK abuse
+		return FALSE
+
 	if (place_in_hand && (!source.temporarilyRemoveItemFromInventory(item) || !user.put_in_hands(item, no_sound = TRUE)))
 		place_in_hand = FALSE // drop to ground if we cant put it in hands
 
@@ -532,6 +535,9 @@
 
 	var/mob/living/living_source = source
 	if (!istype(living_source))
+		return
+
+	if (!in_range(source, user)) // No TK abuse
 		return
 
 	if (istype(storage_item, /obj/item/storage/backpack/duffelbag))
