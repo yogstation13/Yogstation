@@ -6919,7 +6919,8 @@
 	id_tag = "BSdoor";
 	name = "Blueshield's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "cgX" = (
@@ -8166,6 +8167,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/obj/effect/landmark/start/nanotrasen_representative,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/nt_rep)
 "czy" = (
@@ -9822,7 +9824,7 @@
 /area/station/hallway/primary/fore)
 "dcm" = (
 /obj/structure/sign/warning/secure_area,
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/nt_rep)
 "dcn" = (
 /obj/effect/turf_decal/bot,
@@ -13307,9 +13309,6 @@
 /obj/item/stamp{
 	pixel_x = -6;
 	pixel_y = -2
-	},
-/obj/item/stamp/centcom{
-	pixel_y = 7
 	},
 /obj/item/stamp/denied{
 	pixel_x = 6;
@@ -34799,16 +34798,6 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/rank/centcom/officer,
-/obj/item/clothing/under/rank/centcom/officer_skirt,
-/obj/item/clothing/under/rank/centcom/intern,
-/obj/item/clothing/under/rank/centcom/commander,
-/obj/item/clothing/under/rank/centcom/centcom_skirt,
-/obj/item/clothing/head/hats/centcom_cap,
-/obj/item/clothing/head/hats/centhat,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/clothing/suit/armor/centcom_formal,
 /obj/structure/sign/poster/contraband/random/directional/west,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/nt_rep)
@@ -36987,9 +36976,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/fore)
-"lAU" = (
-/turf/closed/wall,
-/area/station/command/heads_quarters/nt_rep)
 "lAV" = (
 /obj/machinery/atmospherics/pipe/smart/simple/yellow/visible{
 	dir = 4
@@ -59337,7 +59323,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
-/obj/structure/closet/secure_closet/nanotrasen_consultant,
+/obj/structure/closet/secure_closet/nanotrasen_representative,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/nt_rep)
 "sKV" = (
@@ -64683,8 +64669,9 @@
 	id_tag = "BSdoor";
 	name = "Nanotrasen Representative's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/nt_rep)
 "uyR" = (
@@ -71302,7 +71289,7 @@
 "wxG" = (
 /obj/machinery/asteroid_magnet{
 	center_x = 176;
-	center_y = 177;
+	center_y = 178;
 	area_size = 7
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted{
@@ -99139,9 +99126,9 @@ qNZ
 jwQ
 sbO
 qea
-lAU
+nYX
 dcm
-lAU
+nYX
 nYX
 nYX
 nYX
@@ -99396,7 +99383,7 @@ vrb
 vrb
 vrb
 kDc
-lAU
+nYX
 sKM
 sOq
 czv
@@ -99653,7 +99640,7 @@ bCE
 pcX
 skH
 pFr
-lAU
+nYX
 upR
 pRB
 blu
@@ -99910,7 +99897,7 @@ fkL
 xDc
 obQ
 taX
-lAU
+nYX
 gSZ
 wpv
 guv
@@ -100167,7 +100154,7 @@ lXe
 xDc
 xDc
 xDc
-lAU
+nYX
 wgn
 tOY
 hUl
@@ -100424,9 +100411,9 @@ uAA
 dLk
 uAA
 uwR
-lAU
+nYX
 uyD
-lAU
+nYX
 cme
 iEU
 wHo
@@ -100683,7 +100670,7 @@ apv
 hoK
 vUP
 iGs
-lAU
+nYX
 qsR
 qsR
 qsR
@@ -119877,23 +119864,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ohI
+acK
+acK
+acK
+acK
+acK
+acK
+ohI
+acK
+ohI
+acK
+acK
+acK
+acK
+acK
+acK
+ohI
 aaa
 aaa
 aaa
@@ -120134,23 +120121,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-ohI
 acK
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
 acK
-acK
-acK
-acK
-ohI
-acK
-ohI
-acK
-acK
-acK
-acK
-acK
-ohI
 aaa
 aaa
 aaa
@@ -120391,9 +120378,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -120648,9 +120635,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -120905,9 +120892,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -121162,9 +121149,9 @@ aeU
 aaa
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -121419,9 +121406,9 @@ aeU
 aaa
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -121676,9 +121663,9 @@ aeU
 aeU
 aaa
 aaa
-aaa
-aaa
 ohI
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -121933,9 +121920,9 @@ aeu
 aeU
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -122190,9 +122177,9 @@ aUz
 aeU
 aaa
 aaa
-aaa
-aaa
 ohI
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -122447,9 +122434,9 @@ aeU
 aeU
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -122704,9 +122691,9 @@ aeU
 aeU
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -122961,9 +122948,9 @@ aeU
 aeU
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -123218,9 +123205,9 @@ aap
 aaa
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -123475,9 +123462,9 @@ aeu
 aeu
 aaa
 aaa
-aaa
-aaa
 acK
+cBp
+cBp
 cBp
 cBp
 cBp
@@ -123732,23 +123719,23 @@ aeu
 aeu
 aeu
 aaa
-aaa
-aaa
-ohI
 acK
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
+cBp
 acK
-acK
-acK
-acK
-ohI
-acK
-ohI
-acK
-acK
-acK
-acK
-acK
-ohI
 aaa
 aaa
 aaa
@@ -123989,23 +123976,23 @@ aeu
 aeu
 aeu
 aeu
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ohI
+acK
+acK
+acK
+acK
+acK
+acK
+ohI
+acK
+ohI
+acK
+acK
+acK
+acK
+acK
+acK
+ohI
 aaa
 aaa
 aaa

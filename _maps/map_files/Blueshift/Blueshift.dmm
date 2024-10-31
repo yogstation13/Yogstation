@@ -9651,8 +9651,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "bSQ" = (
@@ -19385,9 +19386,6 @@
 	},
 /obj/item/pen/fountain{
 	pixel_y = 10
-	},
-/obj/item/stamp/centcom{
-	pixel_x = 6
 	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
@@ -35335,16 +35333,7 @@
 	dir = 8
 	},
 /obj/structure/window/spawner/directional/west,
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/rank/centcom/officer,
-/obj/item/clothing/under/rank/centcom/officer_skirt,
-/obj/item/clothing/under/rank/centcom/intern,
-/obj/item/clothing/under/rank/centcom/commander,
-/obj/item/clothing/under/rank/centcom/centcom_skirt,
-/obj/item/clothing/head/hats/centcom_cap,
-/obj/item/clothing/head/hats/centhat,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/clothing/suit/armor/centcom_formal,
+/obj/structure/closet/secure_closet/nanotrasen_representative,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "gPh" = (
@@ -39111,7 +39100,8 @@
 /obj/machinery/door/airlock/corporate{
 	name = "Representative's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "hCU" = (
@@ -54800,6 +54790,7 @@
 	name = "Premium Cozy Chair"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/nanotrasen_representative,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "kAU" = (
@@ -70915,11 +70906,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
-"nOw" = (
-/obj/item/clothing/accessory/medal/silver/bureaucracy,
-/obj/item/clothing/accessory/medal/gold/ordom,
-/turf/open/floor/carpet/green,
-/area/station/command/heads_quarters/nt_rep)
 "nOE" = (
 /obj/structure/barricade/security,
 /obj/effect/turf_decal/stripes,
@@ -73721,8 +73707,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "ooF" = (
@@ -81111,9 +81098,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/machinery/duct,
 /obj/effect/landmark/navigate_destination,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "pLg" = (
@@ -123003,6 +122991,8 @@
 /obj/item/pen/fountain{
 	pixel_y = 5
 	},
+/obj/item/clothing/accessory/medal/gold/ordom,
+/obj/item/clothing/accessory/medal/silver/bureaucracy,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "xLj" = (
@@ -214752,7 +214742,7 @@ jrA
 ide
 ide
 ide
-nOw
+oTn
 bhf
 rre
 ide

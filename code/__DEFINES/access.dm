@@ -34,6 +34,10 @@
 #define ACCESS_CAPTAIN "captain"
 /// Access used for the Head of Personnel's personal quarters in mapping, as well as the security console and other HoP-related things.
 #define ACCESS_HOP "hop"
+/// Access for Blueshield to their office and locker, as well as access to the NT Representitive Office
+#define ACCESS_BLUESHIELD "blueshield" ///monkestation edit
+/// Access for NT Rep to their office and locker, as well as access to the Blueshield Office
+#define ACCESS_NT_REPRESENTATVE "nt_rep" ///monkestation edit
 
 /// Security's General Access. In mapping, grants access to spaces such as to the "meeting room" or firing range, as well as being the general access that Tablet/Computer Programs check for "heads". Also unlocks other types of security equipment.
 #define ACCESS_SECURITY "security"
@@ -51,7 +55,7 @@
 #define ACCESS_HOS "hos"
 /// Access for the detective to get into their office, the medical data console, and some other detective-related stuff.
 #define ACCESS_DETECTIVE "detective"
-/// Access for the brig physician to get basic access to medical tools, but not all encompassing access to medical under normal manning. MONKESTATION EDIT
+/// Access for the brig physician to get basic access to medical tools, but not all encompassing access to medical under normal manning.
 #define ACCESS_BRIG_PHYSICIAN "brig_physician" /// MONKESTATION EDIT
 
 /// Engineering General Access, grants access to the standard parts of engineering (as well as the Supermatter and related equipment).

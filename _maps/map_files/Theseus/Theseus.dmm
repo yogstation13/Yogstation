@@ -18624,7 +18624,8 @@
 	id_tag = "BSdoor";
 	name = "Blueshield's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "fGn" = (
@@ -41321,6 +41322,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/holopad/secure,
 /obj/structure/cable,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "mmY" = (
@@ -43499,6 +43501,9 @@
 	},
 /obj/structure/cable,
 /obj/item/radio/intercom/command/directional/north,
+/obj/item/clothing/mask/cigarette/pipe{
+	pixel_x = -5
+	},
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "mWY" = (
@@ -48038,6 +48043,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/blueshield)
 "org" = (
@@ -49776,26 +49782,15 @@
 /turf/open/floor/iron/dark,
 /area/station/security/interrogation)
 "oSE" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/modular_computer/laptop/preset/civilian{
 	pixel_y = 3;
 	pixel_x = 6
 	},
-/obj/item/clothing/mask/cigarette/pipe{
-	pixel_x = -5
-	},
-/obj/item/clothing/suit/armor/centcom_formal,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/clothing/head/hats/centhat,
-/obj/item/clothing/head/hats/centcom_cap,
-/obj/item/clothing/under/rank/centcom/centcom_skirt,
-/obj/item/clothing/under/rank/centcom/commander,
-/obj/item/clothing/under/rank/centcom/intern,
-/obj/item/clothing/under/rank/centcom/officer_skirt,
-/obj/item/clothing/under/rank/centcom/officer,
-/obj/item/clothing/accessory/medal/gold/ordom,
-/obj/item/clothing/accessory/medal/silver/bureaucracy,
 /obj/machinery/light/warm/directional/south,
+/obj/structure/closet/secure_closet/nanotrasen_representative,
+/obj/item/clothing/accessory/medal/silver/bureaucracy,
+/obj/item/clothing/accessory/medal/gold/ordom,
+/obj/item/clothing/accessory/medal/gold/ordom,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "oSI" = (
@@ -53814,10 +53809,6 @@
 /obj/item/paper_bin{
 	pixel_x = -5;
 	pixel_y = 3
-	},
-/obj/item/stamp/centcom{
-	pixel_x = 5;
-	pixel_y = 7
 	},
 /obj/item/pen{
 	pixel_x = 4;
@@ -58677,6 +58668,7 @@
 "rxE" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "rxK" = (
@@ -62309,8 +62301,9 @@
 /obj/machinery/door/airlock/bathroom{
 	name = "Restroom"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/captain,
 /obj/machinery/duct,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "sCg" = (
@@ -72562,7 +72555,8 @@
 /obj/machinery/door/airlock/corporate{
 	name = "Representative's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/command/general,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "vxI" = (
@@ -77087,6 +77081,7 @@
 /obj/structure/window/spawner/directional/east,
 /obj/item/storage/secure/safe/directional/north,
 /obj/structure/cable,
+/obj/effect/landmark/start/nanotrasen_representative,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "wRq" = (

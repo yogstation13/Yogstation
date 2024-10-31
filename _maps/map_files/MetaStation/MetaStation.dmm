@@ -7039,16 +7039,7 @@
 /turf/open/floor/iron/white,
 /area/station/science/lobby)
 "cAx" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/rank/centcom/officer,
-/obj/item/clothing/under/rank/centcom/officer_skirt,
-/obj/item/clothing/under/rank/centcom/intern,
-/obj/item/clothing/under/rank/centcom/commander,
-/obj/item/clothing/under/rank/centcom/centcom_skirt,
-/obj/item/clothing/head/hats/centcom_cap,
-/obj/item/clothing/head/hats/centhat,
-/obj/item/clothing/glasses/sunglasses,
-/obj/item/clothing/suit/armor/centcom_formal,
+/obj/structure/closet/secure_closet/nanotrasen_representative,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "cAB" = (
@@ -9948,7 +9939,8 @@
 	},
 /obj/effect/landmark/navigate_destination,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/blueshield)
 "dIy" = (
@@ -22449,12 +22441,13 @@
 	id_tag = "Repdoor";
 	name = "Representative's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /obj/effect/landmark/navigate_destination,
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "hZV" = (
@@ -22840,6 +22833,7 @@
 /obj/structure/chair/office{
 	dir = 1
 	},
+/obj/effect/landmark/start/nanotrasen_representative,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "igS" = (
@@ -35318,10 +35312,6 @@
 /obj/item/pen/fountain{
 	pixel_x = 8;
 	pixel_y = 2
-	},
-/obj/item/stamp/centcom{
-	pixel_x = 9;
-	pixel_y = 17
 	},
 /obj/item/stamp{
 	pixel_x = -1;

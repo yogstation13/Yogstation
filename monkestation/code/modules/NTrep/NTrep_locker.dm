@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/nanotrasen_representative
 	name = "Nanotrasen representative's locker"
-	req_access = list(ACCESS_CENT_GENERAL)
+	req_access = list(ACCESS_NT_REPRESENTATVE)
 	icon_state = "cc"
 	icon = 'monkestation/code/modules/blueshift/icons/obj/closet.dmi'
 

@@ -20844,7 +20844,8 @@
 /obj/machinery/door/airlock/wood{
 	name = "Representative Bedroom"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "fzZ" = (
@@ -40034,11 +40035,12 @@
 	id_tag = "Repdoor";
 	name = "Representative's Office"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
 /obj/structure/cable,
 /obj/effect/landmark/navigate_destination,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "lFH" = (
@@ -49146,6 +49148,12 @@
 	},
 /obj/structure/table/wood,
 /obj/machinery/computer/security/telescreen/entertainment/directional/north,
+/obj/item/clothing/accessory/medal/silver/bureaucracy,
+/obj/item/clothing/accessory/medal/gold/ordom,
+/obj/item/flashlight/lamp/green{
+	pixel_x = 5;
+	pixel_y = 16
+	},
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "oCX" = (
@@ -54562,7 +54570,8 @@
 /obj/machinery/door/airlock/corporate{
 	name = "Blueshield's Quarters"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/carpet/neon/simple/blue/nodots,
 /area/station/command/heads_quarters/blueshield)
 "qos" = (
@@ -55866,17 +55875,11 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "qIq" = (
-/obj/item/flashlight/lamp/green{
-	pixel_x = 5;
-	pixel_y = 16
-	},
-/obj/item/clothing/accessory/medal/gold/ordom,
-/obj/item/clothing/accessory/medal/silver/bureaucracy,
-/obj/structure/table/wood,
 /obj/machinery/camera/motion/directional/north{
 	c_tag = "Secure - Nuclear Storage";
 	network = list("ss13","secure")
 	},
+/obj/structure/closet/secure_closet/nanotrasen_representative,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "qIs" = (
@@ -58956,9 +58959,6 @@
 /obj/item/pen/fountain{
 	pixel_y = 10
 	},
-/obj/item/stamp/centcom{
-	pixel_x = 6
-	},
 /obj/item/stamp/denied{
 	pixel_x = -6;
 	pixel_y = 4
@@ -61011,8 +61011,9 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
 /obj/effect/landmark/navigate_destination,
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/carpet/neon/simple/blue/nodots,
 /area/station/command/heads_quarters/blueshield)
 "sqQ" = (
@@ -77768,6 +77769,7 @@
 	dir = 4;
 	name = "Premium Cozy Chair"
 	},
+/obj/effect/landmark/start/nanotrasen_representative,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "xAR" = (

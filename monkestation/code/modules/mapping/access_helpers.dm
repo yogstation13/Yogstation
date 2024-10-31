@@ -35,3 +35,18 @@
 /obj/effect/mapping_helpers/airlock/access/any/away/bounty_hunter/get_access()
 	. = ..()
 	. += list(ACCESS_BOUNTY_HUNTER)
+
+/obj/effect/mapping_helpers/airlock/access/any/security/brig_physician/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_BRIG_PHYSICIAN
+	return access_list
+
+/obj/effect/mapping_helpers/airlock/access/any/command/blueshield/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_BLUESHIELD
+	return access_list
+
+/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep/get_access()
+	var/list/access_list = ..()
+	access_list += ACCESS_NT_REPRESENTATVE
+	return access_list
