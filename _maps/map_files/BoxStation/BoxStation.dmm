@@ -16133,6 +16133,22 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/command/storage/eva)
+"fvw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/door/airlock/freezer{
+	name = "Coldroom"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/duct,
+/turf/open/floor/iron/dark/textured,
+/area/station/service/kitchen/coldroom)
 "fvz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
@@ -21959,22 +21975,6 @@
 /obj/machinery/duct,
 /turf/open/floor/iron/large,
 /area/station/hallway/secondary/service)
-"hoq" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/obj/machinery/door/airlock/freezer{
-	name = "Coldroom"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/service/kitchen,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/duct,
-/turf/open/floor/iron/dark/textured,
-/area/station/service/kitchen/coldroom)
 "hoR" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -29587,6 +29587,11 @@
 "jQu" = (
 /turf/open/floor/wood,
 /area/station/commons/locker)
+"jQS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/barber,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "jRl" = (
 /obj/machinery/door/window/left/directional/south,
 /obj/structure/table/wood/fancy,
@@ -38515,12 +38520,6 @@
 /obj/machinery/status_display/ai/directional/west,
 /turf/open/floor/iron/vaporwave,
 /area/station/command/heads_quarters/rd)
-"mSe" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash/mopbucket,
-/obj/item/mop,
-/turf/open/floor/plating,
-/area/station/maintenance/port)
 "mSx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -57722,11 +57721,6 @@
 /obj/effect/spawner/random/entertainment/coin,
 /turf/open/floor/iron,
 /area/station/commons/dorms)
-"tsD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash/caution_sign,
-/turf/open/floor/plating,
-/area/station/maintenance/port)
 "tsL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -62596,6 +62590,11 @@
 /obj/item/instrument/eguitar,
 /turf/open/floor/wood,
 /area/station/maintenance/starboard/fore)
+"uZv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/barbervend,
+/turf/open/floor/plating,
+/area/station/maintenance/port)
 "uZz" = (
 /obj/machinery/camera/directional/south{
 	c_tag = "Engineering - Atmospherics, External HFR Room, South";
@@ -90638,13 +90637,13 @@ pWG
 iay
 pWG
 vqJ
-hoq
+fvw
 sWm
 bia
 bia
 sWm
 sWm
-hoq
+fvw
 sjw
 nKV
 vBA
@@ -91677,7 +91676,7 @@ hlF
 qXb
 jiL
 bnl
-tsD
+uZv
 slx
 dgd
 bnl
@@ -91934,7 +91933,7 @@ gMs
 qwd
 nUi
 bnl
-mSe
+jQS
 kSL
 mNd
 ejD

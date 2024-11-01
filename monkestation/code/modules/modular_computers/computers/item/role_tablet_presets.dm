@@ -51,3 +51,8 @@
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#D99A2E#0EC220#727272"
 	starting_programs = list()
+
+/obj/item/modular_computer/pda/barber
+	name = "barber PDA"
+	greyscale_colors = "#933ea8#235AB2"
+	starting_programs = list()

@@ -811,6 +811,11 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/hand_labeler/borg,
 		/obj/item/razor,
+		// Monkestation edit start: Barbering
+		/obj/item/scissors,
+		/obj/item/hairbrush/comb,
+		/obj/item/dyespray,
+		// Monestation edit end
 		/obj/item/rsf,
 		/obj/item/instrument/guitar,
 		/obj/item/instrument/piano_synth/robot,

@@ -3,6 +3,7 @@ const BASEICONS = {
   AI: 'eye',
   Assistant: 'toolbox',
   'Atmospheric Technician': 'fan',
+  Barber: 'cut',
   Bartender: 'cocktail',
   'Bit Avatar': 'code',
   Bitrunner: 'gamepad',

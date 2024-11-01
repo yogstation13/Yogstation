@@ -27,3 +27,21 @@
 		ACCESS_HOS,
 		)
 	job = /datum/job/brig_physician
+
+/datum/id_trim/job/barber
+	assignment = "Barber"
+	trim_state = "trim_barber"
+	department_color = COLOR_SERVICE_LIME
+	subdepartment_color = COLOR_SERVICE_LIME
+	sechud_icon_state = SECHUD_BARBER
+	minimal_access = list(
+		ACCESS_SERVICE,
+		ACCESS_THEATRE,
+		)
+	extra_access = list()
+	template_access = list(
+		ACCESS_CAPTAIN,
+		ACCESS_CHANGE_IDS,
+		ACCESS_HOP,
+		)
+	job = /datum/job/barber

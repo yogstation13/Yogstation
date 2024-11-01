@@ -190,6 +190,9 @@
 #define DEPARTMENT_BITFLAG_CENTRAL_COMMAND (1<<11)
 #define DEPARTMENT_CENTRAL_COMMAND "Central Command"
 
+#define DEPARTMENT_BITFLAG_LATE (1<<12)
+#define DEPARTMENT_LATE "Late Join"
+
 /* Job datum job_flags */
 /// Whether the mob is announced on arrival.
 #define JOB_ANNOUNCE_ARRIVAL (1<<0)
