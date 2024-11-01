@@ -1,0 +1,6 @@
+author: "dwasint"
+delete-after: True
+changes:
+  - bugfix: "some species not healing oxyloss when giving the NOBREATH trait"
+  - rscadd: "right clicking food items will bring up a radial wheel of foods you can craft, this allows bulk crafting."
+  - balance: "Hand crafted foods (using the new system) increases the quality of food buffs."
