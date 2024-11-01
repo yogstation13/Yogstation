@@ -169,6 +169,11 @@
 		render_list += "<span class='alert ml-1'><b>Subject cannot be healed by any known methods.</b></span>\n"
 	// monkestation end
 
+	// monkestation edit: heavy bleeder challenge
+	if(HAS_TRAIT(target, TRAIT_HEAVY_BLEEDER))
+		render_list += "<span class='alert ml-1'><b>Subject will suffer highly abnormal hemorrhaging from laceration or surgical incension.</b></span>\n"
+	// monkestation end
+
 	if(target.stamina.loss)
 		if(advanced)
 			render_list += "<span class='alert ml-1'>Fatigue level: [target.stamina.loss]%.</span>\n"
