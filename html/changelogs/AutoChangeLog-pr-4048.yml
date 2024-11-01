@@ -1,0 +1,4 @@
+author: "ThePooba"
+delete-after: True
+changes:
+  - bugfix: "Eland can now be reloaded and wont drop its spent caseless ammunition"
