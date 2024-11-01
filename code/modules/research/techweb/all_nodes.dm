@@ -1421,6 +1421,7 @@
 		"ci-reviver",
 		"ci-surgery",
 		"ci-toolset",
+		"ci-sprinter", //monkestation edit:
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
