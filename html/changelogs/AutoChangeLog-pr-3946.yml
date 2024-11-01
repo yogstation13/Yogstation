@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - qol: "Health analyzers now alert if the subject has taken the heavy bleeder trait."
