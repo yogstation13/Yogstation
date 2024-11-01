@@ -45,3 +45,8 @@
 
 /obj/item/organ/internal/eyes/ethereal
 	eye_icon_state = "etherealeyes"
+
+/obj/item/organ/internal/eyes/moth/tundra
+	name = "tundra moth eyes"
+	eye_icon_state = "tundramotheyes"
+	icon_state = "eyeballs-tundramoth"

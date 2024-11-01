@@ -7415,6 +7415,8 @@
 #include "monkestation\code\modules\mob\living\carbon\human\species_type\simian.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\species_type\skeletons.dm"
 #include "monkestation\code\modules\mob\living\carbon\human\species_type\teratoma.dm"
+#include "monkestation\code\modules\mob\living\carbon\human\species_type\tundra_moths\mothaccessories.dm"
+#include "monkestation\code\modules\mob\living\carbon\human\species_type\tundra_moths\tundramoths.dm"
 #include "monkestation\code\modules\mob\living\silicon\death.dm"
 #include "monkestation\code\modules\mob\living\simple_animal\megafauna\wendigo.dm"
 #include "monkestation\code\modules\mob\living\simple_animal\pets\bees.dm"
