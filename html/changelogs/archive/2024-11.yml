@@ -33,3 +33,12 @@
   ThePooba:
   - bugfix: window sill grills now break instantly instead of becoming glitchy messes
   - bugfix: windowsills can now be built on once again.
+  - bugfix: Eland can now be reloaded and wont drop its spent caseless ammunition
+  dwasint:
+  - bugfix: some species not healing oxyloss when giving the NOBREATH trait
+  - rscadd: right clicking food items will bring up a radial wheel of foods you can
+      craft, this allows bulk crafting.
+  - balance: Hand crafted foods (using the new system) increases the quality of food
+      buffs.
+  lemonycake:
+  - rscadd: add the alt title "Princess" to captain
