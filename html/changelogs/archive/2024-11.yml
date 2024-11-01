@@ -1,0 +1,35 @@
+2024-11-01:
+  DexeeXI:
+  - bugfix: 'Kilo: asteroid magnet resized, now working once more without (for now)
+      showing SHIT IS FUCK.'
+  - rscadd: Blueshield and NT Rep specific permissions.
+  - rscdel: Removed Centcom perms from Blueshield and NT Rep (this is admin only,
+      dont give this to players)
+  - bugfix: 'All Maps except Box: NT Rep and Blueshield doors now accessible by BS
+      and Rep.'
+  - bugfix: 'Icebox: Teleporter doors tweaked to allow Blueshield and NT Rep to go
+      through to the weirdly placed office.'
+  - bugfix: 'All Maps except Box: NT Rep closets and lockers replaced with standardized
+      NT Rep Locker, with perms. Some maps will have medals that were included from
+      previous authors.'
+  - rscadd: NT Rep now has a singular spawn point on all maps, except Box. This singular
+      point is in a comfy chair in the office.
+  JohnFulpWillard:
+  - rscadd: Monkeys can now wear any outfit rather than just the waiter outfit.
+  - rscadd: Simians now use the same height filter system as Monkeys to wear outfits
+      instead of having their own icon for each individual piece of clothing.
+  - rscadd: Monkeys now use the same prefs as Simians, having Fur and eye colors.
+      By default monkeys are all brown, and simians can choose to be brown as well.
+  - rscadd: Simians and monkeys are now at the bottom of the tile they are on, rather
+      than the middle.
+  - rscdel: Big legged species and monkey abominations.
+  - bugfix: Gigantism no longer doubles your size twice.
+  KnigTheThrasher:
+  - bugfix: Fixed security maintenance on kilostation
+  Meowosers:
+  - rscadd: Finished Fermentation Kegs can now be wrapped into parcels
+  RafRoq:
+  - balance: Prickly Adhesion damage halved
+  ThePooba:
+  - bugfix: window sill grills now break instantly instead of becoming glitchy messes
+  - bugfix: windowsills can now be built on once again.

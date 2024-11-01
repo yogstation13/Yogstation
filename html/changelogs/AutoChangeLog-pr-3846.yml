@@ -1,9 +1,0 @@
-author: "JohnFulpWillard"
-delete-after: True
-changes:
-  - rscadd: "Monkeys can now wear any outfit rather than just the waiter outfit."
-  - rscadd: "Simians now use the same height filter system as Monkeys to wear outfits instead of having their own icon for each individual piece of clothing."
-  - rscadd: "Monkeys now use the same prefs as Simians, having Fur and eye colors. By default monkeys are all brown, and simians can choose to be brown as well."
-  - rscadd: "Simians and monkeys are now at the bottom of the tile they are on, rather than the middle."
-  - rscdel: "Big legged species and monkey abominations."
-  - bugfix: "Gigantism no longer doubles your size twice."
