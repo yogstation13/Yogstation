@@ -54,6 +54,8 @@
 // Start of a breath chain, calls [carbon/proc/breathe()]
 /mob/living/carbon/handle_breathing(seconds_per_tick, times_fired)
 	if(HAS_TRAIT(src, TRAIT_NOBREATH))
+		setOxyLoss(0) //idk how because spec life should cover this
+		losebreath = 0
 		return
 
 	var/next_breath = 4

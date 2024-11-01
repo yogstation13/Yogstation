@@ -181,7 +181,7 @@
 	return TRUE
 
 
-/datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
+/datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R, time_override = null)
 	var/list/contents = get_surroundings(a,R.blacklist)
 	var/send_feedback = 1
 	if(check_contents(a, R, contents))
@@ -191,8 +191,8 @@
 					if(istype(content, R.result))
 						return ", object already present."
 			//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
-			if(ismob(a) && !do_after(a, R.time, target = a))
-				return "."
+			if(ismob(a) && !do_after(a, time_override ? time_override : R.time, target = a))
+				return ", interrupted."
 			contents = get_surroundings(a,R.blacklist)
 			if(!check_contents(a, R, contents))
 				return ", missing component."

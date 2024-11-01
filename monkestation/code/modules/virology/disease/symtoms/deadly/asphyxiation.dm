@@ -7,6 +7,8 @@
 	stage = 3
 
 /datum/symptom/asphyxiation/activate(mob/living/carbon/mob)
+	if(HAS_TRAIT(mob, TRAIT_NOBREATH))
+		return
 	mob.emote("gasp")
 	if(prob(20) && multiplier >= 4 && iscarbon(mob))
 		mob.reagents.add_reagent_list(list(/datum/reagent/toxin/pancuronium = 3, /datum/reagent/toxin/sodium_thiopental = 3))

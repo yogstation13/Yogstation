@@ -9,7 +9,7 @@
 	name = "condiment bottle"
 	desc = "Just your average condiment bottle."
 	icon = 'icons/obj/food/containers.dmi'
-	icon_state = "bottle"
+	icon_state = "generic_condiment" // monkestation edit: ew should just be a generic bottle.
 	inhand_icon_state = "beer" //Generic held-item sprite until unique ones are made.
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
@@ -66,7 +66,7 @@
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
 	return TRUE
 
-/obj/item/reagent_containers/condiment/afterattack(obj/target, mob/user , proximity)
+/obj/item/reagent_containers/condiment/afterattack(obj/target, mob/user, proximity, params)
 	. = ..()
 	if(!proximity)
 		return
@@ -94,6 +94,18 @@
 			return
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 		to_chat(user, span_notice("You transfer [trans] units of the condiment to [target]."))
+
+		var/datum/reagent/main_reagent = reagents.get_master_reagent_id()
+		var/condiment_overlay = initial(main_reagent.condiment_overlay)
+		var/overlay_colored = initial(main_reagent.overlay_colored)
+		if(condiment_overlay && istype (target, /obj/item/food))
+			var/list/params_list = params2list(params)
+			var/image/I = image('monkestation/code/modules/brewin_and_chewin/icons/condiment_overlays.dmi', target, condiment_overlay)
+			I.pixel_x = clamp(text2num(params_list["icon-x"]) - world.icon_size/2 - pixel_x,-world.icon_size/2,world.icon_size/2)
+			I.pixel_y = clamp(text2num(params_list["icon-y"]) - world.icon_size/2 - pixel_y,-world.icon_size/2,world.icon_size/2)
+			if (overlay_colored)
+				I.color = mix_color_from_reagents(reagents.reagent_list)
+			target.overlays += I
 
 /obj/item/reagent_containers/condiment/enzyme
 	name = "universal enzyme"
@@ -445,7 +457,7 @@
 /obj/item/reagent_containers/condiment/pack/attack(mob/M, mob/user, def_zone) //Can't feed these to people directly.
 	return
 
-/obj/item/reagent_containers/condiment/pack/afterattack(obj/target, mob/user , proximity)
+/obj/item/reagent_containers/condiment/pack/afterattack(obj/target, mob/user , proximity, params)
 	if(!proximity)
 		return
 	. |= AFTERATTACK_PROCESSED_ITEM
@@ -461,6 +473,17 @@
 			return
 		else
 			to_chat(user, span_notice("You tear open [src] above [target] and the condiments drip onto it."))
+			var/datum/reagent/main_reagent = reagents.get_master_reagent_id()
+			var/condiment_overlay = initial(main_reagent.condiment_overlay)
+			var/overlay_colored = initial(main_reagent.overlay_colored)
+			if(condiment_overlay && istype (target, /obj/item/food))
+				var/list/params_list = params2list(params)
+				var/image/I = image('monkestation/code/modules/brewin_and_chewin/icons/condiment_overlays.dmi', target, condiment_overlay)
+				I.pixel_x = clamp(text2num(params_list["icon-x"]) - world.icon_size/2 - pixel_x,-world.icon_size/2,world.icon_size/2)
+				I.pixel_y = clamp(text2num(params_list["icon-y"]) - world.icon_size/2 - pixel_y,-world.icon_size/2,world.icon_size/2)
+				if (overlay_colored)
+					I.color = mix_color_from_reagents(reagents.reagent_list)
+				target.overlays += I
 			src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
 			qdel(src)
 			return

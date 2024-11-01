@@ -59,3 +59,29 @@
 
 		list(CHEWIN_USE_STOVE, J_LO, 1 MINUTES),
 	)
+
+/datum/chewin_cooking/recipe/yakisoba_katsu
+	name = "Yakisoba Curry"
+	cooking_container = PAN
+	food_category = CAT_STOVETOP
+	product_type = /obj/item/food/salad/yakisoba_katsu
+	recipe_guide = "Melt some butter in a pan, add some noodles, vegetables, worcestershire and katsu."
+	step_builder = list(
+		list(CHEWIN_ADD_ITEM, /obj/item/food/butter, qmod=0.5),
+		list(CHEWIN_USE_STOVE, J_LO, 10 SECONDS, finish_text = "The butter melts in the bowl!"),
+
+		list(CHEWIN_ADD_ITEM, /obj/item/food/spaghetti/boilednoodles, qmod=0.5),
+		list(CHEWIN_ADD_REAGENT, /datum/reagent/consumable/worcestershire, 5, base=3),
+
+		list(CHEWIN_ADD_ITEM, /obj/item/food/katsu_fillet, qmod=0.5),
+		list(CHEWIN_ADD_ITEM, /obj/item/food/onion_slice, qmod=0.5),
+		list(CHEWIN_ADD_PRODUCE, /obj/item/food/grown/carrot , qmod=0.5),
+		list(CHEWIN_ADD_PRODUCE, /obj/item/food/grown/cabbage , qmod=0.5),
+
+		CHEWIN_BEGIN_EXCLUSIVE_OPTIONS,
+		list(CHEWIN_ADD_PRODUCE_OPTIONAL, /obj/item/food/grown/chili, qmod=0.2, reagent_skip=TRUE, prod_desc = "Extra spicy!", food_buff = /datum/status_effect/food/sweaty),
+		list(CHEWIN_ADD_PRODUCE_OPTIONAL, /obj/item/food/grown/pineapple, qmod=0.2, reagent_skip=TRUE, prod_desc = "Mild and Sweet."),
+		CHEWIN_END_EXCLUSIVE_OPTIONS,
+
+		list(CHEWIN_USE_STOVE, J_LO, 20 SECONDS),
+	)

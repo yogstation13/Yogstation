@@ -2,7 +2,10 @@
 	duration = 10 MINUTES
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = TRUE
-	var/quality_modifier = 1
+
+
+/datum/status_effect/food/proc/apply_quality(quality)
+	return
 
 /datum/status_effect/food/on_apply()
 	if(HAS_TRAIT(owner, TRAIT_GOURMAND))
@@ -18,6 +21,9 @@
 	id = "t1_stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/food/stamina_increase_t1
 	var/stam_increase = 10
+
+/datum/status_effect/food/stamina_increase/apply_quality(quality)
+	stam_increase = stam_increase * (1 + (quality / 50))
 
 /atom/movable/screen/alert/status_effect/food/stamina_increase_t1
 	name = "Tiny Stamina Increase"
@@ -86,6 +92,9 @@
 	alert_type = /atom/movable/screen/alert/status_effect/food/fire_burps
 	var/range = RANGE
 	var/duration_loss = DURATION_LOSS
+
+/datum/status_effect/food/fire_burps/apply_quality(quality)
+	range = range + round((quality / 40))
 
 /atom/movable/screen/alert/status_effect/food/fire_burps
 	name = "Firey Burps"
@@ -191,6 +200,9 @@
 	alert_type = /atom/movable/screen/alert/status_effect/food/health_increase_t1
 	var/health_increase = 10
 
+/datum/status_effect/food/health_increase/apply_quality(quality)
+	health_increase = health_increase * (1 + (quality / 50))
+
 /atom/movable/screen/alert/status_effect/food/health_increase_t1
 	name = "Small Health Increase"
 	desc = "You feel slightly heartier"
@@ -257,6 +269,9 @@
 	id = "t1_stam_regen"
 	alert_type = /atom/movable/screen/alert/status_effect/food/stam_regen_t1
 	var/regen_increase = 0.5
+
+/datum/status_effect/food/stam_regen/apply_quality(quality)
+	regen_increase = regen_increase * (1 + (quality / 20))
 
 /atom/movable/screen/alert/status_effect/food/stam_regen_t1
 	name = "Small Stamina Regeneration Increase"

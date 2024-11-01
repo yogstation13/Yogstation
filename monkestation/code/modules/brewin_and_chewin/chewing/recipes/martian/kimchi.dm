@@ -1,5 +1,6 @@
 /datum/chewin_cooking/recipe/kimchi
 	cooking_container = BOWL
+	food_category = CAT_STOVETOP
 	product_type = /obj/item/food/kimchi
 	recipe_guide = "Mix Cabbage, Chili, and Salt in a bowl."
 	step_builder = list(
@@ -10,6 +11,7 @@
 
 /datum/chewin_cooking/recipe/kimchi_inferno
 	cooking_container = BOWL
+	food_category = CAT_STOVETOP
 	product_type = /obj/item/food/inferno_kimchi
 	recipe_guide = "Mix Cabbage, Ghost Chili, and Salt in a bowl."
 	step_builder = list(
@@ -20,6 +22,7 @@
 
 /datum/chewin_cooking/recipe/garlic_kimchi
 	cooking_container = BOWL
+	food_category = CAT_STOVETOP
 	product_type = /obj/item/food/garlic_kimchi
 	recipe_guide = "Mix Cabbage, Garlic, Chili, and Salt in a bowl."
 	step_builder = list(
