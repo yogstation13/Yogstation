@@ -1,0 +1,4 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - imageadd: "Tweaked lizard sprites slightly, fixes a missing pixel"
