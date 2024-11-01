@@ -169,9 +169,10 @@
 	if(!check_skills(a, R))
 		return ", inadequate skills."
 	var/timer = R.time
+	var/mob/user_mob
 	if(ismob(a))
-		var/mob/mob = a
-		timer *= (10 - (mob.get_skill(SKILL_MECHANICAL) + HAS_TRAIT(mob, TRAIT_CRAFTY)*2)) / 10
+		user_mob = a
+		timer *= (10 - (user_mob.get_skill(SKILL_MECHANICAL) + HAS_TRAIT(user_mob, TRAIT_CRAFTY)*2)) / 10
 	if(!do_after(a, timer, a, IGNORE_SKILL_DELAY, skill_check = SKILL_MECHANICAL))
 		return "."
 	contents = get_surroundings(a, R.blacklist) // Double checking since items could no longer be there after the do_after().
@@ -182,6 +183,9 @@
 	var/list/parts = del_reqs(R, a)
 	var/atom/movable/I = new R.result(get_turf(a.loc))
 	I.CheckParts(parts, R)
+	if(user_mob && R.skill_requirements.len)
+		for(var/skill in R.skill_requirements)
+			user_mob.add_exp(skill, R.skill_requirements[skill] * 10)
 	if(send_feedback)
 		SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
 	return I

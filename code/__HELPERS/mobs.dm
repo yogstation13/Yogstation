@@ -345,7 +345,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(!(timed_action_flags & IGNORE_SLOWDOWNS))
 		delay *= user.action_speed_modifier * user.do_after_coefficent() //yogs: darkspawn
 	
-	if(skill_check && user.mind)
+	if(skill_check && user.mind && !(timed_action_flags & IGNORE_SKILL_DELAY))
 		delay *= (12 - user.get_skill(skill_check)) / 10
 
 	var/datum/progressbar/progbar

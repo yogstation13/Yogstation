@@ -290,7 +290,7 @@
 		return
 
 	traitor_mob.add_skill_points(EXP_LOW) // one extra skill point
-	ADD_TRAIT(traitor_mob, TRAIT_EXCEPTIONAL_SKILL, type)
+	ADD_TRAIT(src, TRAIT_EXCEPTIONAL_SKILL, type)
 
 	var/list/all_contents = traitor_mob.get_all_contents()
 	var/obj/item/modular_computer/PDA = locate() in all_contents

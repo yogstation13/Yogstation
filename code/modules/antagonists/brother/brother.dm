@@ -35,7 +35,7 @@
 	qdel(W)
 
 	brother.add_skill_points(EXP_HIGH) // extra skills
-	ADD_TRAIT(brother, TRAIT_EXCEPTIONAL_SKILL, type)
+	ADD_TRAIT(owner, TRAIT_EXCEPTIONAL_SKILL, type)
 
 	if(istype(brother))
 		var/obj/item/storage/box/bloodbrother/T = new()
