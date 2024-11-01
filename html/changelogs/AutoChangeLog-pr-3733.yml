@@ -1,0 +1,8 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added a new 'Late Join' Category and role, the 'Barber'."
+  - rscadd: "Added scissors, hairbrush, combs, dye sprays, and fur dyers from the code into service lathe roundstart!"
+  - rscadd: "Gave service cyborgs new tools of scissors, hairbrush, and dye sprays."
+  - rscadd: "Added barber lockers and vendings to all stations."
+  - code_imp: "Changed the voidraptor forge area type from a barber area to a forge area."
