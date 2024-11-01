@@ -495,7 +495,7 @@
 			if((newgene == "J") && (jokerready < world.time))
 				var/truegenes = GET_SEQUENCE(path)
 				newgene = truegenes[genepos]
-				jokerready = world.time + (JOKER_TIMEOUT - (JOKER_UPGRADE * connected_scanner.precision_coeff)) * (8 - user.get_skill(SKILL_SCIENCE)) / 8
+				jokerready = world.time + (JOKER_TIMEOUT - (JOKER_UPGRADE * (connected_scanner.precision_coeff - 1))) * (8 - user.get_skill(SKILL_SCIENCE)) / 8
 
 			// If the gene is an X, we want to update the default genes with the new
 			//  X to allow highlighting logic to work on the tgui interface.
