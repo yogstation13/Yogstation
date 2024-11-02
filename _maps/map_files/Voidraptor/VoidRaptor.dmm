@@ -7573,7 +7573,7 @@
 /area/station/science/ordnance/testlab)
 "cnc" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -11671,7 +11671,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Aft Central Primary Hallway"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/security/execution/transfer)
 "dwb" = (
@@ -24738,7 +24738,7 @@
 /turf/open/floor/iron/textured_large,
 /area/station/hallway/primary/aft)
 "hdK" = (
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security/old/glass{
 	name = "Prison Wing"
@@ -39630,7 +39630,7 @@
 /obj/machinery/door/airlock/security{
 	name = "Isolation Cell"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/station/security/execution/transfer)
@@ -41481,7 +41481,7 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Prison Satellite Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/department/security/greater)
@@ -43123,7 +43123,7 @@
 /turf/open/floor/wood,
 /area/station/commons/vacant_room/office)
 "mep" = (
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -44067,7 +44067,7 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Prison Satellite Maintenance"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/security/execution/transfer)
 "msv" = (
@@ -45087,7 +45087,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "Aft Central Primary Hallway"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/security/office)
 "mJs" = (
@@ -46611,7 +46611,7 @@
 /turf/open/floor/plating/airless,
 /area/station/engineering/power_room)
 "ndR" = (
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Security Maintenance"
 	},
@@ -47280,7 +47280,7 @@
 /area/station/maintenance/port/upper)
 "nnj" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -58897,7 +58897,7 @@
 /area/station/medical/morgue)
 "qtc" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -75555,7 +75555,7 @@
 /area/station/command/cc_dock)
 "uVM" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/access/any/security/permabrig,
 /obj/machinery/door/airlock/security/glass{
 	name = "Prison Wing"
 	},
