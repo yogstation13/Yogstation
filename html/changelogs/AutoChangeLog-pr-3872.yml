@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - bugfix: "The security airlocks leading to perma from inner security on voidraptor now use perma access"
