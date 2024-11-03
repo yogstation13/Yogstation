@@ -1538,16 +1538,6 @@
 	},
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
-"to" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 1"
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "tz" = (
 /obj/structure/table/glass,
 /obj/effect/spawner/lootdrop/three_course_meal,
@@ -2458,16 +2448,6 @@
 /obj/effect/turf_decal/box/white/corners,
 /obj/machinery/vending/wardrobe/sig_wardrobe,
 /turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"Ds" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 3"
-	},
-/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "DC" = (
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown,
@@ -3848,16 +3828,6 @@
 /obj/machinery/suit_storage_unit/ce,
 /turf/open/indestructible/carpet/blue,
 /area/shuttle/escape)
-"UL" = (
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod 2"
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/escape)
 "Va" = (
 /obj/structure/closet/crate/secure/plasma,
 /turf/open/floor/plasteel/dark,
@@ -4229,7 +4199,7 @@ YQ
 Rn
 Er
 TX
-to
+Er
 wQ
 HD
 YQ
@@ -5103,7 +5073,7 @@ YQ
 Rn
 Er
 TX
-UL
+Er
 yR
 ii
 "}
@@ -5838,7 +5808,7 @@ YQ
 Rn
 Er
 TX
-Ds
+Er
 hP
 qW
 "}
