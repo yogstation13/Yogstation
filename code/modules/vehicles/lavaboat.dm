@@ -45,6 +45,13 @@
 	time = 5 SECONDS
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/plasmaboat
+	name = "Polar Bear Hide Boat"
+	result = /obj/vehicle/ridden/lavaboat/plasma
+	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide = 3)
+	time = 5 SECONDS
+	category = CAT_PRIMAL
+
 //Dragon Boat
 
 
