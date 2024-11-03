@@ -46,6 +46,7 @@
     "eslint-plugin-unused-imports": "^1.1.4",
     "file-loader": "^6.2.0",
     "inferno": "^8.2.1",
+    "inferno-compat": "^8.2.1",
     "jest": "^27.0.6",
     "jest-circus": "^27.0.6",
     "jsdom": "^16.7.0",

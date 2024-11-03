@@ -5211,6 +5211,65 @@ __metadata:
   languageName: node
   linkType: hard
 
+"inferno-clone-vnode@npm:8.2.3":
+  version: 8.2.3
+  resolution: "inferno-clone-vnode@npm:8.2.3"
+  dependencies:
+    inferno: 8.2.3
+  checksum: cc2ab83503aa56c2b6a3124d1257f0445a104885f236d78442001696803701cab7b0e1952f54c65cd55957f1d0fc273acea10ded8b35fe7f00b2f56f741039ac
+  languageName: node
+  linkType: hard
+
+"inferno-compat@npm:^8.2.1":
+  version: 8.2.3
+  resolution: "inferno-compat@npm:8.2.3"
+  dependencies:
+    inferno: 8.2.3
+    inferno-clone-vnode: 8.2.3
+    inferno-create-class: 8.2.3
+    inferno-create-element: 8.2.3
+    inferno-extras: 8.2.3
+    inferno-hydrate: 8.2.3
+  checksum: d54e51c544bd1d080cc85ddcdcabc7dfdf7c6b415ee88155a3c35c19b9f8c82ea7c48a21d65c25f7743d59227335ec51b0ff28a839b4cd431c7d9a28cd58a554
+  languageName: node
+  linkType: hard
+
+"inferno-create-class@npm:8.2.3":
+  version: 8.2.3
+  resolution: "inferno-create-class@npm:8.2.3"
+  dependencies:
+    inferno: 8.2.3
+  checksum: d04d0b2275baf8a330134e1e2b62f4ea7df933467a9ae9404f5be0c4463702da171140d0e466a84a6ecb4ff8e83e8faef15259f233cbdbcc46a2bb52eea64539
+  languageName: node
+  linkType: hard
+
+"inferno-create-element@npm:8.2.3":
+  version: 8.2.3
+  resolution: "inferno-create-element@npm:8.2.3"
+  dependencies:
+    inferno: 8.2.3
+  checksum: c11fb7264b48349086144146520fd77d5e46565ca1cea4819568805541e5ec7a30e53eb6ab4a4cfaca413688f733e168a039510a5cd77602a287c4e29419e4fc
+  languageName: node
+  linkType: hard
+
+"inferno-extras@npm:8.2.3":
+  version: 8.2.3
+  resolution: "inferno-extras@npm:8.2.3"
+  dependencies:
+    inferno: 8.2.3
+  checksum: e93e9d2be399e7c717f4744d0a32e5e13e24ea1cd078e9da2cdedb648c7a20d38e0e33ac56bbbc5fd989bd2ab012ea11871810ad1f8fbc70dbfe02ac9a5b4e73
+  languageName: node
+  linkType: hard
+
+"inferno-hydrate@npm:8.2.3":
+  version: 8.2.3
+  resolution: "inferno-hydrate@npm:8.2.3"
+  dependencies:
+    inferno: 8.2.3
+  checksum: 0cd3fb99b28a970c14934c515196feb56b54e720e64e5ee26dff1cc403966202fb6495c9fda4c2d43518147f3b76aee9baad4596ab236451e349b8a2b04f6f07
+  languageName: node
+  linkType: hard
+
 "inferno-vnode-flags@npm:8.2.2, inferno-vnode-flags@npm:^8.2.1":
   version: 8.2.2
   resolution: "inferno-vnode-flags@npm:8.2.2"
@@ -5218,10 +5277,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"inferno-vnode-flags@npm:8.2.3":
+  version: 8.2.3
+  resolution: "inferno-vnode-flags@npm:8.2.3"
+  checksum: 4618a7598b5471ec71bb4972a8ff57dd6718d55624d9c1ae6336416f8d3c47002b2d8b088b0e976ef07bd239a057f87f16ad1238ae7dafd1c5c4d6644f1dabbc
+  languageName: node
+  linkType: hard
+
 "inferno-vnode-flags@npm:^7.4.8":
   version: 7.4.8
   resolution: "inferno-vnode-flags@npm:7.4.8"
   checksum: 72f26ebb361482a3312a30c89606c1eee85d7c7a790b2614d0d8567291d6cd7079b7536285b749dbfd5ead77e1546a2f4a676692e3fb08eb90eef009cbabbce0
+  languageName: node
+  linkType: hard
+
+"inferno@npm:8.2.3":
+  version: 8.2.3
+  resolution: "inferno@npm:8.2.3"
+  dependencies:
+    csstype: ^3.1.2
+    inferno-vnode-flags: 8.2.3
+    opencollective-postinstall: ^2.0.3
+  checksum: 630ee33ad8e12d62ef2ad82ea5b8ba2dd426326fb5aa077f892051b59ccdbe0a276637c777544b01367a74eba20a5122ce78d885dbf9650dfc59f419bf57959b
   languageName: node
   linkType: hard
 
@@ -8809,6 +8886,7 @@ resolve@^2.0.0-next.3:
     eslint-plugin-unused-imports: ^1.1.4
     file-loader: ^6.2.0
     inferno: ^8.2.1
+    inferno-compat: ^8.2.1
     jest: ^27.0.6
     jest-circus: ^27.0.6
     jsdom: ^16.7.0
@@ -8837,6 +8915,7 @@ resolve@^2.0.0-next.3:
     dompurify: ^2.3.1
     highlight.js: ^11.5.1
     inferno: ^8.2.1
+    inferno-compat: ^8.2.1
     inferno-vnode-flags: ^8.2.1
     js-yaml: ^4.1.0
     marked: ^4.2.12
