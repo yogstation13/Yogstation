@@ -61,6 +61,14 @@
   Absolucy:
   - bugfix: Fixed a door in the Blueshift aux base requiring construction access instead
       of aux base access.
+  - bugfix: Moon heretic ascension now properly turns 20% of the crew into lunatics,
+      rather than ALL ELIGIBLE CREW.
+  - admin: Changed the Lua scripting backend from auxlua to dreamluau. Lua scripts
+      will need to be adjusted accordingly.
+  - bugfix: Fixed some code related to artifacts.
+  - bugfix: Clown artifact faults should now actually work.
+  Absolucy, LT3:
+  - bugfix: Fixed alignment of RPG titles.
   Gboster-0:
   - bugfix: the signal technician's winter hood no longer flickers in the dark
   Gw0sty:

@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - admin: "Changed the Lua scripting backend from auxlua to dreamluau. Lua scripts will need to be adjusted accordingly."
