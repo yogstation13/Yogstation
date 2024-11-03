@@ -1,5 +1,5 @@
 /datum/artifact_fault/whisper
-	name = "Wispering Fault"
+	name = "Whispering Fault"
 	trigger_chance = 75
 	var/list/whispers = list("Help me!","I've seen your sins","Egg.")
 

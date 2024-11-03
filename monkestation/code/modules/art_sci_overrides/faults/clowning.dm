@@ -1,7 +1,11 @@
 /datum/artifact_fault/clown
 	name = "Funny Fault"
 	trigger_chance = 5
-	inspect_warning = list("Smells faintly of bananas","Looks Funny.","Hates mimes.")
+	inspect_warning = list(
+		"Smells faintly of bananas",
+		"Looks funny.",
+		"Hates mimes.",
+	)
 	visible_message = "summons a portal to the HONK DIMENSION!"
 	discovered_credits = -500
 	research_value = 250
@@ -14,6 +18,5 @@
 	if(!center_turf)
 		CRASH("[src] had attempted to trigger, but failed to find the center turf!")
 
-	var/obj/structure/spawner/clown/hehe = new(src)
-
-	addtimer(CALLBACK(hehe,PROC_REF(Destroy)),3 MINUTE)
+	var/obj/structure/spawner/clown/hehe = new(center_turf)
+	QDEL_IN(hehe, 3 MINUTES)

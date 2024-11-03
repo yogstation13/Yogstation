@@ -2,9 +2,11 @@
 	name = "Instant Death Fault"
 	trigger_chance = 50 //God forbid this actually rolls on a touch artifact,like it did during my testing.
 	visible_message = "blows someone up with mind."
-	inspect_warning = list(span_danger("The grim reapers scythe seems to be reflected in its surface!"),
-	span_danger("An Aura of death surrounds this object!"),
-	span_danger("I'd bet 50/50 someone dies if this turns on!"))
+	inspect_warning = list(
+		span_danger("The grim reapers scythe seems to be reflected in its surface!"),
+		span_danger("An aura of death surrounds this object!"),
+		span_danger("I'd bet 50/50 someone dies if this turns on!")
+	)
 
 	research_value = 10000 //Wow, this would make a fucking amazing weapon
 
