@@ -18,3 +18,6 @@
 #define COMSIG_CHECK_TURF_CLOCKWORK "check_turf_clockwork"
 
 #define COMSIG_ITEM_DAMAGE_MULTIPLIER "damage_multi_item"
+
+///Sent by a tumor when its removed
+#define COMSIG_ZOMBIE_TUMOR_REMOVED "zombie_tumor_removed"

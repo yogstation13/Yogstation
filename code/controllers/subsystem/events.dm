@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(events)
 			continue
 		var/datum/round_event_control/event = new event_type
 		if(!event.valid_for_map())
-			qdel(event)
+			qdel(event) //highly iffy on this as it does cause issues for admins sometimes
 			continue
 		control += event //add it to the list of all events (controls)
 	reschedule()

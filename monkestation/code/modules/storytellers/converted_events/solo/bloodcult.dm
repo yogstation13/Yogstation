@@ -40,6 +40,7 @@
 	weight = 4
 	max_occurrences = 1
 	event_icon_state = "cult"
+	preferred_events = list(/datum/round_event_control/antagonist/solo/clockcult = 1)
 
 /datum/round_event/antagonist/solo/bloodcult
 	excute_round_end_reports = TRUE

@@ -32,3 +32,5 @@
 #define FRENZY_TRAIT "frenzy_trait"
 /// Source trait for slashers.
 #define TRAIT_SLASHER "slasher_trait"
+/// Source trait for zombies
+#define ZOMBIE_TRAIT "zombie_trait"

@@ -3,6 +3,8 @@
 #define DEFAULT_STORYTELLER_VOTE_OPTIONS 4
 ///amount of players we can have before no longer running votes for storyteller
 #define MAX_POP_FOR_STORYTELLER_VOTE 25
+///the duration into the round for which roundstart events are still valid to run
+#define ROUNDSTART_VALID_TIMEFRAME 3 MINUTES
 
 SUBSYSTEM_DEF(gamemode)
 	name = "Gamemode"
@@ -15,7 +17,7 @@ SUBSYSTEM_DEF(gamemode)
 	/// List of our event tracks for fast access during for loops.
 	var/list/event_tracks = EVENT_TRACKS
 	/// Our storyteller. They progresses our trackboards and picks out events
-	var/datum/storyteller/storyteller
+	var/datum/storyteller/current_storyteller
 	/// Result of the storyteller vote/pick. Defaults to the guide.
 	var/selected_storyteller = /datum/storyteller/guide
 	/// List of all the storytellers. Populated at init. Associative from type
@@ -116,12 +118,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/control = list() //list of all datum/round_event_control. Used for selecting events based on weight and occurrences.
 	var/list/running = list() //list of all existing /datum/round_event
 	var/list/round_end_data = list() //list of all reports that need to add round end reports
-	var/list/currentrun = list()
 
 	/// List of all uncategorized events, because they were wizard or holiday events
 	var/list/uncategorized = list()
-
-	var/list/holidays //List of all holidays occuring today or null if no holidays
 
 	/// Event frequency multiplier, it exists because wizard, eugh.
 	var/event_frequency_multiplier = 1
@@ -155,7 +154,10 @@ SUBSYSTEM_DEF(gamemode)
 	/// What is our currently desired/selected roundstart event
 	var/datum/round_event_control/antagonist/solo/current_roundstart_event
 	var/list/last_round_events = list()
+	/// Has a roundstart event been run
 	var/ran_roundstart = FALSE
+	/// Are we able to run roundstart events
+	var/can_run_roundstart = TRUE
 	var/list/triggered_round_events = list()
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
@@ -170,12 +172,12 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/datum/round_event_control/event_type as anything in typesof(/datum/round_event_control))
 		if(!event_type::typepath || !event_type::name)
 			continue
+
 		var/datum/round_event_control/event = new event_type
 		if(!event.valid_for_map())
 			qdel(event)
 			continue // event isn't good for this map no point in trying to add it to the list
 		control += event //add it to the list of all events (controls)
-	getHoliday()
 
 	load_config_vars()
 	load_event_config_vars()
@@ -193,10 +195,33 @@ SUBSYSTEM_DEF(gamemode)
 		return SS_INIT_NO_NEED
 	return SS_INIT_SUCCESS
 
-
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
-	if(!resumed)
-		src.currentrun = running.Copy()
+	if(SSticker.round_start_time && (world.time - SSticker.round_start_time) >= ROUNDSTART_VALID_TIMEFRAME)
+		can_run_roundstart = FALSE
+	else if(current_roundstart_event && length(current_roundstart_event.preferred_events)) //note that this implementation is made for preferred_events being other roundstart events
+		var/list/preferred_copy = current_roundstart_event.preferred_events.Copy()
+		var/datum/round_event_control/selected_event = pick_weight(preferred_copy)
+		var/player_count = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+		if(ispath(selected_event)) //get the instances if we dont have them
+			current_roundstart_event.preferred_events = list()
+			for(var/datum/round_event_control/e_control as anything in preferred_copy)
+				current_roundstart_event.preferred_events[new e_control] = preferred_copy[e_control]
+			preferred_copy = current_roundstart_event.preferred_events.Copy()
+			selected_event = null
+		else if(!selected_event.can_spawn_event(player_count))
+			preferred_copy -= selected_event
+			selected_event = null
+
+		var/sanity = 0
+		while(!selected_event && length(preferred_copy) && sanity < 100)
+			sanity++
+			selected_event = pick_weight(preferred_copy)
+			if(!selected_event.can_spawn_event(player_count))
+				preferred_copy -= selected_event
+				selected_event = null
+
+		if(selected_event)
+			current_storyteller.try_buy_event(GLOB.event_groups)
 
 	///Handle scheduled events
 	for(var/datum/scheduled_event/sch_event in scheduled_events)
@@ -207,24 +232,11 @@ SUBSYSTEM_DEF(gamemode)
 			sch_event.alerted_admins = TRUE
 			message_admins("Scheduled Event: [sch_event.event] will run in [(sch_event.start_time - world.time) / 10] seconds. (<a href='byond://?src=[REF(sch_event)];action=cancel'>CANCEL</a>) (<a href='byond://?src=[REF(sch_event)];action=refund'>REFUND</a>)")
 
-	if(!halted_storyteller && next_storyteller_process <= world.time && storyteller)
+	if(!halted_storyteller && next_storyteller_process <= world.time && current_storyteller)
 		// We update crew information here to adjust population scalling and event thresholds for the storyteller.
 		update_crew_infos()
 		next_storyteller_process = world.time + STORYTELLER_WAIT_TIME
-		storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
-
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-
-	while(currentrun.len)
-		var/datum/thing = currentrun[currentrun.len]
-		currentrun.len--
-		if(thing)
-			thing.process(wait * 0.1)
-		else
-			running.Remove(thing)
-		if (MC_TICK_CHECK)
-			return
+		current_storyteller.process(STORYTELLER_WAIT_TIME * 0.1)
 
 /// Gets the number of antagonists the antagonist injection events will stop rolling after.
 /datum/controller/subsystem/gamemode/proc/get_antag_cap()
@@ -347,7 +359,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /// We roll points to be spent for roundstart events, including antagonists.
 /datum/controller/subsystem/gamemode/proc/roll_pre_setup_points()
-	if(storyteller.disable_distribution || halted_storyteller)
+	if(current_storyteller.disable_distribution || halted_storyteller)
 		return
 	/// Distribute points
 	for(var/track in event_track_points)
@@ -371,12 +383,12 @@ SUBSYSTEM_DEF(gamemode)
 				gain_amt = ROUNDSTART_OBJECTIVES_GAIN
 		var/calc_value = base_amt + (gain_amt * ready_players)
 		calc_value *= roundstart_point_multipliers[track]
-		calc_value *= storyteller.starting_point_multipliers[track]
-		calc_value *= (rand(100 - storyteller.roundstart_points_variance,100 + storyteller.roundstart_points_variance)/100)
+		calc_value *= current_storyteller.starting_point_multipliers[track]
+		calc_value *= (rand(100 - current_storyteller.roundstart_points_variance,100 + current_storyteller.roundstart_points_variance)/100)
 		event_track_points[track] = round(calc_value)
 
 	/// If the storyteller guarantees an antagonist roll, add points to make it so.
-	if(storyteller.guarantees_roundstart_roleset && event_track_points[EVENT_TRACK_ROLESET] < point_thresholds[EVENT_TRACK_ROLESET])
+	if(current_storyteller.guarantees_roundstart_roleset && event_track_points[EVENT_TRACK_ROLESET] < point_thresholds[EVENT_TRACK_ROLESET])
 		event_track_points[EVENT_TRACK_ROLESET] = point_thresholds[EVENT_TRACK_ROLESET]
 
 	/// If we have any forced events, ensure we get enough points for them
@@ -392,13 +404,13 @@ SUBSYSTEM_DEF(gamemode)
 
 /// Because roundstart events need 2 steps of firing for purposes of antags, here is the first step handled, happening before occupation division.
 /datum/controller/subsystem/gamemode/proc/handle_pre_setup_roundstart_events()
-	if(storyteller.disable_distribution)
+	if(current_storyteller.disable_distribution)
 		return
 	if(halted_storyteller)
 		message_admins("WARNING: Didn't roll roundstart events (including antagonists) due to the storyteller being halted.")
 		return
 	while(TRUE)
-		if(!storyteller.handle_tracks())
+		if(!current_storyteller.handle_tracks())
 			break
 
 /// Second step of handlind roundstart events, happening after people spawn.
@@ -503,56 +515,6 @@ SUBSYSTEM_DEF(gamemode)
 /datum/admins/proc/forceGamemode(mob/user)
 	SSgamemode.admin_panel(user)
 
-
-//////////////
-// HOLIDAYS //
-//////////////
-//Uncommenting ALLOW_HOLIDAYS in config.txt will enable holidays
-
-//It's easy to add stuff. Just add a holiday datum in code/modules/holiday/holidays.dm
-//You can then check if it's a special day in any code in the game by doing if(SSgamemode.holidays["Groundhog Day"])
-
-//You can also make holiday random events easily thanks to Pete/Gia's system.
-//simply make a random event normally, then assign it a holidayID string which matches the holiday's name.
-//Anything with a holidayID, which isn't in the holidays list, will never occur.
-
-//Please, Don't spam stuff up with stupid stuff (key example being april-fools Pooh/ERP/etc),
-//And don't forget: CHECK YOUR CODE!!!! We don't want any zero-day bugs which happen only on holidays and never get found/fixed!
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//ALSO, MOST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//sets up the holidays and holidays list
-/datum/controller/subsystem/gamemode/proc/getHoliday()
-	if(!CONFIG_GET(flag/allow_holidays))
-		return // Holiday stuff was not enabled in the config!
-	for(var/H in subtypesof(/datum/holiday))
-		var/datum/holiday/holiday = new H()
-		var/delete_holiday = TRUE
-		for(var/timezone in holiday.timezones)
-			var/time_in_timezone = world.realtime + timezone HOURS
-
-			var/YYYY = text2num(time2text(time_in_timezone, "YYYY")) // get the current year
-			var/MM = text2num(time2text(time_in_timezone, "MM")) // get the current month
-			var/DD = text2num(time2text(time_in_timezone, "DD")) // get the current day
-			var/DDD = time2text(time_in_timezone, "DDD") // get the current weekday
-
-			if(holiday.shouldCelebrate(DD, MM, YYYY, DDD))
-				holiday.celebrate()
-				LAZYSET(holidays, holiday.name, holiday)
-				delete_holiday = FALSE
-				break
-		if(delete_holiday)
-			qdel(holiday)
-
-	if(holidays)
-		holidays = shuffle(holidays)
-		// regenerate station name because holiday prefixes.
-		set_station_name(new_station_name())
-		world.update_status()
-
 /datum/controller/subsystem/gamemode/proc/toggleWizardmode()
 	wizardmode = !wizardmode //TODO: decide what to do with wiz events
 	message_admins("Summon Events has been [wizardmode ? "enabled, events will occur [SSgamemode.event_frequency_multiplier] times as fast" : "disabled"]!")
@@ -582,9 +544,9 @@ SUBSYSTEM_DEF(gamemode)
 	if(SSdbcore.Connect())
 		var/list/to_set = list()
 		var/arguments = list()
-		if(storyteller)
+		if(current_storyteller)
 			to_set += "game_mode = :game_mode"
-			arguments["game_mode"] = storyteller.name
+			arguments["game_mode"] = current_storyteller.name
 		if(GLOB.revdata.originmastercommit)
 			to_set += "commit_hash = :commit_hash"
 			arguments["commit_hash"] = GLOB.revdata.originmastercommit
@@ -865,21 +827,21 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/proc/set_storyteller(passed_type)
 	if(!storytellers[passed_type])
 		message_admins("Attempted to set an invalid storyteller type: [passed_type], force setting to guide instead.")
-		storyteller = storytellers[/datum/storyteller/guide] //if we dont have any then we brick, lets not do that
+		current_storyteller = storytellers[/datum/storyteller/guide] //if we dont have any then we brick, lets not do that
 		CRASH("Attempted to set an invalid storyteller type: [passed_type].")
-	storyteller = storytellers[passed_type]
+	current_storyteller = storytellers[passed_type]
 	if(!secret_storyteller)
-		send_to_playing_players(span_notice("<b>Storyteller is [storyteller.name]!</b>"))
-		send_to_playing_players(span_notice("[storyteller.welcome_text]"))
+		send_to_playing_players(span_notice("<b>Storyteller is [current_storyteller.name]!</b>"))
+		send_to_playing_players(span_notice("[current_storyteller.welcome_text]"))
 	else
-		send_to_observers(span_boldbig("<b>Storyteller is [storyteller.name]!</b>")) //observers still get to know
+		send_to_observers(span_boldbig("<b>Storyteller is [current_storyteller.name]!</b>")) //observers still get to know
 
 /// Panel containing information, variables and controls about the gamemode and scheduled event
 /datum/controller/subsystem/gamemode/proc/admin_panel(mob/user)
 	update_crew_infos()
 	var/round_started = SSticker.HasRoundStarted()
 	var/list/dat = list()
-	dat += "Storyteller: [storyteller ? "[storyteller.name]" : "None"] "
+	dat += "Storyteller: [current_storyteller ? "[current_storyteller.name]" : "None"] "
 	dat += " <a href='byond://?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='byond://?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='byond://?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='byond://?src=[REF(src)];panel=main'>Refresh</a>"
 	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
 	dat += "<BR>Active Players: [active_players]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew])"
@@ -995,15 +957,15 @@ SUBSYSTEM_DEF(gamemode)
  /// Panel containing information and actions regarding events
 /datum/controller/subsystem/gamemode/proc/event_panel(mob/user)
 	var/list/dat = list()
-	if(storyteller)
-		dat += "Storyteller: [storyteller.name]"
-		dat += "<BR>Repetition penalty multiplier: [storyteller.event_repetition_multiplier]"
-		dat += "<BR>Cost variance: [storyteller.cost_variance]"
-		if(storyteller.tag_multipliers)
+	if(current_storyteller)
+		dat += "Storyteller: [current_storyteller.name]"
+		dat += "<BR>Repetition penalty multiplier: [current_storyteller.event_repetition_multiplier]"
+		dat += "<BR>Cost variance: [current_storyteller.cost_variance]"
+		if(current_storyteller.tag_multipliers)
 			dat += "<BR>Tag multipliers:"
-			for(var/tag in storyteller.tag_multipliers)
-				dat += "[tag]:[storyteller.tag_multipliers[tag]] | "
-		storyteller.calculate_weights(statistics_track_page)
+			for(var/tag in current_storyteller.tag_multipliers)
+				dat += "[tag]:[current_storyteller.tag_multipliers[tag]] | "
+		current_storyteller.calculate_weights(statistics_track_page)
 	else
 		dat += "Storyteller: None<BR>Weight and chance statistics will be inaccurate due to the present lack of a storyteller."
 	dat += "<BR><a href='byond://?src=[REF(src)];panel=stats;action=set_roundstart'[roundstart_event_view ? "class='linkOn'" : ""]>Roundstart Events</a> Forced Roundstart events will use rolled points, and are guaranteed to trigger (even if the used points are not enough)"
@@ -1163,8 +1125,8 @@ SUBSYSTEM_DEF(gamemode)
 							message_admins("[key_name_admin(usr)] invoked next event for [track] track.")
 							log_admin_private("[key_name(usr)] invoked next event for [track] track.")
 							event_track_points[track] = point_thresholds[track]
-							if(storyteller)
-								storyteller.handle_tracks()
+							if(current_storyteller)
+								current_storyteller.handle_tracks()
 			admin_panel(user)
 		if("stats")
 			switch(href_list["action"])
@@ -1211,3 +1173,4 @@ SUBSYSTEM_DEF(gamemode)
 
 #undef DEFAULT_STORYTELLER_VOTE_OPTIONS
 #undef MAX_POP_FOR_STORYTELLER_VOTE
+#undef ROUNDSTART_VALID_TIMEFRAME

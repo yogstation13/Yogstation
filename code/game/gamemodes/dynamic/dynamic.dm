@@ -334,7 +334,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		if(ruleset.weight <= 0 || ruleset.cost <= 0)
 			continue
 		min_threat = min(ruleset.cost, min_threat)
-	var/greenshift = SSgamemode.storyteller.disable_distribution //|| (threat_level < min_threat && shown_threat < min_threat) //if both shown and real threat are below any ruleset, its extended time //monkestation edit: Makes it so greenshift is based on the storyteller
+	var/greenshift = SSgamemode.current_storyteller.disable_distribution //|| (threat_level < min_threat && shown_threat < min_threat) //if both shown and real threat are below any ruleset, its extended time //monkestation edit: Makes it so greenshift is based on the storyteller
 
 	generate_station_goals(greenshift)
 	. += generate_station_goal_report()

@@ -59,7 +59,7 @@
 	///weight this has of being picked for random storyteller/showing up in the vote if not always_votable
 	var/weight = 0
 
-/datum/storyteller/process(delta_time)
+/datum/storyteller/process(seconds_per_tick)
 	if(!round_started || disable_distribution) // we are differing roundstarted ones until base roundstart so we can get cooler stuff
 		return
 
@@ -73,17 +73,15 @@
 			SSgamemode.forced_next_events -= EVENT_TRACK_ROLESET
 
 		log_storyteller("Running SSgamemode.current_roundstart_event\[[SSgamemode.current_roundstart_event]\]")
-		SSgamemode.current_roundstart_event = null
-		if(!ignores_roundstart)
-			SSgamemode.ran_roundstart = TRUE
+		SSgamemode.ran_roundstart = TRUE
 
-	add_points(delta_time)
+	add_points(seconds_per_tick)
 	handle_tracks()
 
 /// Add points to all tracks while respecting the multipliers.
-/datum/storyteller/proc/add_points(delta_time)
+/datum/storyteller/proc/add_points(seconds_per_tick)
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
-	var/base_point = EVENT_POINT_GAINED_PER_SECOND * delta_time * mode.event_frequency_multiplier
+	var/base_point = EVENT_POINT_GAINED_PER_SECOND * seconds_per_tick * mode.event_frequency_multiplier
 	for(var/track in mode.event_track_points)
 		var/point_gain = base_point * point_gains_multipliers[track] * mode.point_gain_multipliers[track]
 		if(mode.allow_pop_scaling)
@@ -150,8 +148,26 @@
 	buy_event(picked_event, track, are_forced)
 	. = TRUE
 
+///Attempt to buy a specific event if we can afford it, otherwise returns FALSE, note this does NOT take cost variance into account
+/datum/storyteller/proc/try_buy_event(datum/round_event_control/bought_event)
+	if(ispath(bought_event))
+		bought_event = locate(bought_event) in SSevents.control //might be able to make this slightly cheaper by searching in the track sorted list
+	var/track = bought_event.track
+	if(!track || (bought_event in SSgamemode.uncategorized))
+		return FALSE //trackless events cant be bought
+
+	var/datum/controller/subsystem/gamemode/mode = SSgamemode
+	if(mode.event_track_points[track] - (bought_event.cost * mode.point_thresholds[track]) < 0)
+		return FALSE
+
+	buy_event(bought_event, track)
+	return TRUE
+
 /// Find and buy a valid event from a track.
 /datum/storyteller/proc/buy_event(datum/round_event_control/bought_event, track, forced = FALSE)
+	if(!track)
+		track = bought_event.track
+
 	var/datum/controller/subsystem/gamemode/mode = SSgamemode
 	// Perhaps use some bell curve instead of a flat variance?
 	var/total_cost = bought_event.cost * mode.point_thresholds[track]
@@ -160,8 +176,7 @@
 	mode.event_track_points[track] = max(mode.event_track_points[track] - total_cost, 0)
 	message_admins("Storyteller purchased and triggered [bought_event] event, on [track] track, for [total_cost] cost.")
 	if(bought_event.roundstart)
-		if(!ignores_roundstart)
-			SSgamemode.ran_roundstart = TRUE
+		SSgamemode.ran_roundstart = TRUE
 		mode.TriggerEvent(bought_event, forced)
 	else
 		mode.schedule_event(bought_event, 3 MINUTES, total_cost, _forced = forced)

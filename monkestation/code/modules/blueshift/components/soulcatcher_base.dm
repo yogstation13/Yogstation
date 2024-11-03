@@ -77,7 +77,8 @@ GLOBAL_LIST_EMPTY(soulcatchers)
  * * target_name - The name that we want to assign to the created room.
  * * target_desc - The description that we want to assign to the created room.
  */
-/datum/component/soulcatcher/proc/create_room(target_name = "Default Room", target_desc = "An orange platform suspended in space orbited by reflective cubes of various sizes. There really isn't much here at the moment.")
+/datum/component/soulcatcher/proc/create_room(target_name = "Default Room", \
+										target_desc = "An orange platform suspended in space orbited by reflective cubes of various sizes. There really isn't much here at the moment.")
 	var/datum/soulcatcher_room/created_room = new(src)
 	created_room.name = target_name
 	created_room.room_description = target_desc
@@ -155,13 +156,14 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 
 /// Checks the total number of souls present and compares it with `max_souls` returns `TRUE` if there is room (or no limit), otherwise returns `FALSE`
 /datum/component/soulcatcher/proc/check_for_vacancy()
-	if(!max_souls)
+	return FALSE
+	/*if(!max_souls)
 		return TRUE
 
 	if(length(get_current_souls()) >= max_souls)
 		return FALSE
 
-	return TRUE
+	return TRUE*/
 
 /// Attempts to remove the soulcatcher from the attached object
 /datum/component/soulcatcher/proc/remove_self()

@@ -39,6 +39,7 @@
 	weight = 0
 	max_occurrences = 1
 	event_icon_state = "clockcult"
+	preferred_events = list(/datum/round_event_control/antagonist/solo/bloodcult = 1)
 
 /datum/round_event/antagonist/solo/clockcult
 	end_when = 60000
