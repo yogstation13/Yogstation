@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed a door in the Blueshift aux base requiring construction access instead of aux base access."

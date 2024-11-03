@@ -57,3 +57,15 @@
   Shoddd:
   - rscadd: Tundra moths, a new species of moth
   - rscadd: 3 New wings, 2 new antennae, and 1 new marking for moths
+2024-11-03:
+  Absolucy:
+  - bugfix: Fixed a door in the Blueshift aux base requiring construction access instead
+      of aux base access.
+  Gboster-0:
+  - bugfix: the signal technician's winter hood no longer flickers in the dark
+  Gw0sty:
+  - rscadd: 'Added three programs to cyborg PDAs: SiliConnect, AtmoZphere, and Crew
+      Manifest'
+  Wisemonster:
+  - bugfix: The security airlocks leading to perma from inner security on voidraptor
+      now use perma access
