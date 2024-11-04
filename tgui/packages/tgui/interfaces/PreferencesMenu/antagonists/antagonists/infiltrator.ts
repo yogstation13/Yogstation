@@ -19,7 +19,7 @@ const Infiltrator: Antagonist = {
     `,
     INFILTRATOR_MECHANICAL_DESCRIPTION,
   ],
-  category: Category.Roundstart,
+  category: Category.Midround,
   priority: -1,
 };
 

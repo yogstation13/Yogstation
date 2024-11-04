@@ -9,7 +9,7 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
-	var/datum/component/uplink/uplink = AddComponent(/datum/component/uplink, _owner, TRUE, FALSE, null, 20)
+	var/datum/component/uplink/uplink = AddComponent(/datum/component/uplink, _owner, TRUE, FALSE, null, 14)
 	uplink.set_antagonist(ROLE_INFILTRATOR)
 	alert_radio = new(src)
 	alert_radio.make_syndie()
@@ -81,6 +81,7 @@
 				else
 					pinpointer.scan_target = targets[pinpointer_chosen]
 					to_chat(imp_in, span_notice("Pinpointer target set to [pinpointer.scan_target]"))
+				message_admins(pinpointer.scan_target)
 				pinpointer.point_to_target()
 		if ("Send Ship Away")
 			alert_radio.talk_into(alert_radio, "The infiltration cruiser has been remotely sent to the base by [imp_in.real_name]")
