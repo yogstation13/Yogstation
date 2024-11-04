@@ -1255,12 +1255,9 @@
 /turf/open/floor/carpet,
 /area/station/service/chapel)
 "auc" = (
-/obj/machinery/door/window/brigdoor/right/directional/north{
-	id = "Cell 2";
-	name = "Cell 2";
-	dir = 4
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/east{
+	id = "Cell 2"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -5436,7 +5433,7 @@
 "bHk" = (
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/armory,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security/glass{
 	name = "Equipment Room"
@@ -7164,12 +7161,9 @@
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "cit" = (
-/obj/machinery/door/window/brigdoor/right/directional/north{
-	id = "Cell 1";
-	name = "Cell 1";
-	dir = 4
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/east{
+	id = "Cell 1"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -14653,7 +14647,6 @@
 	},
 /area/station/engineering/hallway)
 "erV" = (
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
@@ -14661,6 +14654,8 @@
 	dir = 4
 	},
 /obj/machinery/camera/directional/west,
+/obj/machinery/rnd/production/techfab/department/security,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/security/office)
 "esb" = (
@@ -17522,7 +17517,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
 	},
-/obj/machinery/suit_storage_unit/open,
+/obj/machinery/suit_storage_unit/security,
 /turf/open/floor/iron,
 /area/station/security/office)
 "fnq" = (
@@ -23871,12 +23866,9 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/upper)
 "hkt" = (
-/obj/machinery/door/window/brigdoor/right/directional/north{
-	id = "Cell 3";
-	name = "Cell 3";
-	dir = 4
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/east{
+	id = "Cell 3"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -39996,7 +39988,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red/fourcorners,
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/disposalpipe/segment{
@@ -56420,12 +56412,9 @@
 /turf/open/floor/iron/freezer,
 /area/station/service/kitchen/coldroom)
 "qQs" = (
-/obj/machinery/door/window/brigdoor/right/directional/north{
-	id = "Cell 4";
-	name = "Cell 4";
-	dir = 4
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/east{
+	id = "Cell 4"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/general,
 /obj/effect/turf_decal/tile/red/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -69162,11 +69151,10 @@
 /turf/open/floor/iron,
 /area/station/service/bar)
 "uzj" = (
-/obj/machinery/rnd/production/techfab/department/security,
-/obj/effect/turf_decal/bot,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/machinery/light/directional/north,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/grimy,
 /area/station/security/office)
 "uzm" = (
@@ -81512,7 +81500,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
 	},
-/obj/machinery/suit_storage_unit/open,
+/obj/machinery/suit_storage_unit/security,
 /turf/open/floor/iron,
 /area/station/security/office)
 "yhk" = (
