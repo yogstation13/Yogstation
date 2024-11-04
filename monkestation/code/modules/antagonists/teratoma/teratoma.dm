@@ -9,6 +9,14 @@
 	show_to_ghosts = TRUE
 	var/datum/team/teratoma/team
 
+/datum/antagonist/teratoma/on_gain()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_UNCONVERTABLE, REF(src))
+
+/datum/antagonist/teratoma/on_removal()
+	REMOVE_TRAIT(owner, TRAIT_UNCONVERTABLE, REF(src))
+	return ..()
+
 /datum/antagonist/teratoma/greet()
 	var/list/parts = list()
 	parts += span_big("You are a living teratoma!")

@@ -88,6 +88,12 @@
 	if (living_parent.health == living_parent.maxHealth)
 		stop_regenerating()
 		return
-	living_parent.heal_overall_damage(health_per_second * seconds_per_tick)
+	do_heal(health_per_second * seconds_per_tick) // monkestation edit: minor refactor
+
+// monkestation start: minor refactor
+/datum/component/regenerator/proc/do_heal(amt)
+	var/mob/living/living_parent = parent
+	living_parent.heal_overall_damage(amt)
+// monkestation end
 
 #undef REGENERATION_FILTER
