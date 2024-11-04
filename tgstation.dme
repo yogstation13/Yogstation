@@ -5899,6 +5899,7 @@
 #include "monkestation\code\datums\weather\weather_types\radiation_storm.dm"
 #include "monkestation\code\datums\wires\particle_accelerator.dm"
 #include "monkestation\code\game\atom.dm"
+#include "monkestation\code\game\say.dm"
 #include "monkestation\code\game\sound.dm"
 #include "monkestation\code\game\world.dm"
 #include "monkestation\code\game\area\areas.dm"
