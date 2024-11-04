@@ -38,7 +38,7 @@
 		return
 
 	var/area/destination_area = get_area(eject_spot)
-	if(destination_area.area_flags & NOTELEPORT)
+	if((destination_area.area_flags & NOTELEPORT) && (SSticker.current_state < GAME_STATE_FINISHED)) // monkestation edit: allow jaunts to work after roundend
 		// this ONLY happens if someone uses a phasing effect
 		// to try to land in a NOTELEPORT zone after it is created, AKA trying to exploit.
 		if(isliving(jaunter))
