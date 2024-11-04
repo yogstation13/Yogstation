@@ -28473,6 +28473,7 @@
 /obj/effect/turf_decal/bot,
 /obj/effect/spawner/random/armory/riot_shield,
 /obj/machinery/light/cold/directional/south,
+/obj/item/clothing/suit/armor/riot,
 /turf/open/floor/iron/dark/textured_edge,
 /area/station/ai_monitored/security/armory)
 "iiB" = (
@@ -30034,10 +30035,10 @@
 /turf/open/floor/wood/large,
 /area/station/commons/fitness/recreation/entertainment)
 "iAE" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/machinery/firealarm/directional/north,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/red/diagonal_centre,
+/obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/security/office)
 "iAF" = (
@@ -34344,7 +34345,6 @@
 /turf/open/floor/plating,
 /area/station/engineering/storage/tech)
 "jJr" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/red/diagonal_centre,
 /obj/machinery/light/cold/directional/north,
@@ -48158,7 +48158,6 @@
 	},
 /area/station/hallway/primary/fore)
 "nzM" = (
-/obj/structure/table/reinforced,
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -48170,7 +48169,7 @@
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/delivery,
-/obj/item/clothing/suit/armor/riot,
+/obj/machinery/suit_storage_unit/security,
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 4
 	},
@@ -52740,9 +52739,9 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/solars/starboard/aft)
 "oPQ" = (
-/obj/structure/tank_dispenser/oxygen,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile/red/diagonal_centre,
+/obj/vehicle/ridden/secway,
 /turf/open/floor/iron/dark/diagonal,
 /area/station/security/office)
 "oPU" = (
@@ -79034,8 +79033,8 @@
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 4
 	},
-/obj/vehicle/ridden/secway,
 /obj/effect/turf_decal/bot,
+/obj/machinery/suit_storage_unit/security,
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 4
 	},
