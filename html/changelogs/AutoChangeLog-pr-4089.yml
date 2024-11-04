@@ -1,0 +1,7 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "Blueshift's security modsuits now require armory access for their room"
+  - balance: "Blueshift's security locker room now requires brig access to enter"
+  - balance: "Blueshifts's gulag teleporter room now requires brig access to enter"
+  - bugfix: "The security escape pod on blueshift uses general security access instead of external access"
