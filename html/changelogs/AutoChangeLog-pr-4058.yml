@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "The AI radio speech sound effect now only plays from over \"normal\" frequencies - AI private and non-departmental frequencies will not play the speech sound."
