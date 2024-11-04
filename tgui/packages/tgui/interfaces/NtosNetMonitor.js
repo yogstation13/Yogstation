@@ -65,7 +65,7 @@ export const NtosNetMonitor = (props, context) => {
                   icon={config_communication ? 'power-off' : 'times'}
                   content={config_communication ? 'ENABLED' : 'DISABLED'}
                   selected={config_communication}
-                  onClick={() => act('toggle_function', { id: "3" })} />
+                  onClick={() => act('toggle_function', { id: "2" })} />
               )} />
           </LabeledList>
         </Section>
