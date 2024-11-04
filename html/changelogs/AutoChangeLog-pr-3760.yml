@@ -1,0 +1,7 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "Teratomas now have minor regeneration (1 brute/burn, 0.5 tox per second). This is linked to their liver."
+  - balance: "Teratomas no longer need to breathe."
+  - refactor: "Moved teratoma misfortune to be linked to their brain, rather than species."
+  - refactor: "Moved teratoma unconvertability to their mind/antag datum, rather than species."
