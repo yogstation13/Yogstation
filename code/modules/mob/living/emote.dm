@@ -280,16 +280,18 @@
 	return ..() && user.can_speak(allow_mimes = TRUE)
 
 // MonkeStation Edit Start
-/datum/emote/living/laugh/get_sound(mob/living/carbon/human/user)
-	if(!istype(user))
-		return
+/datum/emote/living/laugh/get_sound(mob/living/user)
+	if(isbasicmob(user))
+		var/mob/living/basic/mob = user
+		. = mob.get_laugh_sound()
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		// Alternative Laugh Hook
+		if(human_user.alternative_laughs.len)
+			return pick(human_user.alternative_laughs)
 
-	// Alternative Laugh Hook
-	if(user.alternative_laughs.len)
-		return pick(user.alternative_laughs)
-
-	var/obj/item/organ/internal/tongue/tongue = user.get_organ_slot(ORGAN_SLOT_TONGUE)
-	return tongue?.get_laugh_sound(user)
+		var/obj/item/organ/internal/tongue/tongue = human_user.get_organ_slot(ORGAN_SLOT_TONGUE)
+		return tongue?.get_laugh_sound(human_user)
 // MonkeStation Edit End
 
 /datum/emote/living/look

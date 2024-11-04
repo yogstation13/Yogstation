@@ -167,6 +167,9 @@
 			return pick(human_user.alternative_screams)
 		var/obj/item/organ/internal/tongue/tongue = human_user.get_organ_slot(ORGAN_SLOT_TONGUE)
 		. = tongue?.get_scream_sound()
+	if(isbasicmob(user))
+		var/mob/living/basic/mob = user
+		. = mob.get_scream_sound()
 
 /datum/emote/living/scream/should_vary(mob/living/user)
 	if(ishuman(user) && !is_cat_enough(user))

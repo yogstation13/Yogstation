@@ -328,3 +328,11 @@
 		SET_PLANE(held, ABOVE_HUD_PLANE, our_turf)
 		held.screen_loc = ui_hand_position(index)
 		client.screen |= held
+
+//MONKESTATION EDIT START
+/mob/living/basic/proc/get_scream_sound()
+	return
+/mob/living/basic/proc/get_laugh_sound()
+	return
+//MONKESTATION EDIT STOP
+
