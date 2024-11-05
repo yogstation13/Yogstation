@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "replaced all stations bardrone mob with a new ghostrole spawner \"Bardrone\"."
