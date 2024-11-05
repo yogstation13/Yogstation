@@ -1,0 +1,7 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "Satyr tail and fur is no longer in their head"
+  - bugfix: "Satyr tail, fur, and horns have proper descriptions"
+  - bugfix: "Tundra moth limb descriptions and names fixed"
+  - bugfix: "Tundra moths use moth wings with flight potion"
