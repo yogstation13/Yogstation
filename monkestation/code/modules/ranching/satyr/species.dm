@@ -11,8 +11,8 @@
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
 	external_organs = list(
 		/obj/item/organ/external/satyr_fluff = "normal",
-		/obj/item/organ/external/satyr_tail = "short",
-		/obj/item/organ/external/satyr_horns = "back",
+		/obj/item/organ/external/tail/satyr_tail = "short",
+		/obj/item/organ/external/horns/satyr_horns = "back",
 	)
 	meat = /obj/item/food/meat/steak
 	mutanttongue = /obj/item/organ/internal/tongue/satyr
