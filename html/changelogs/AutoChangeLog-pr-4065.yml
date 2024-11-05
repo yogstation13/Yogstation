@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Jaunts now ACTUALLY work at centcom after roundend, for realsies."

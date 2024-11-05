@@ -1,8 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Theseus now has security modsuits in security"
-  - balance: "The room containing security modsuits on Theseus now requires armory access to enter"
-  - balance: "Theseus' security techfab has been moved to the security office proper"
-  - balance: "The security locker room on theseus now requires brig access"
-  - balance: "The Theseus brig cells now require brig access to use"

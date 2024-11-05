@@ -77,3 +77,32 @@
   Wisemonster:
   - bugfix: The security airlocks leading to perma from inner security on voidraptor
       now use perma access
+2024-11-05:
+  Absolucy:
+  - qol: The AI radio speech sound effect now only plays from over "normal" frequencies
+      - AI private and non-departmental frequencies will not play the speech sound.
+  - bugfix: Jaunts now ACTUALLY work at centcom after roundend, for realsies.
+  - balance: Teratomas now have minor regeneration (1 brute/burn, 0.5 tox per second).
+      This is linked to their liver.
+  - balance: Teratomas no longer need to breathe.
+  - refactor: Moved teratoma misfortune to be linked to their brain, rather than species.
+  - refactor: Moved teratoma unconvertability to their mind/antag datum, rather than
+      species.
+  SirNightKnight:
+  - rscadd: Mice/rats have figured out how to eat a larger variety of food.
+  Wisemonster:
+  - balance: Blueshift's security modsuits now require armory access for their room
+  - balance: Blueshift's security locker room now requires brig access to enter
+  - balance: Blueshifts's gulag teleporter room now requires brig access to enter
+  - bugfix: The security escape pod on blueshift uses general security access instead
+      of external access
+  - balance: Moved the security modsuits on voidraptor into the armory, moved the
+      secway and riot suit to the previous modsuit location and onto a nearby rack,
+      respectively
+  - balance: Theseus now has security modsuits in security
+  - balance: The room containing security modsuits on Theseus now requires armory
+      access to enter
+  - balance: Theseus' security techfab has been moved to the security office proper
+  - balance: The security locker room on theseus now requires brig access
+  - balance: The Theseus brig cells now require brig access to use
+  - balance: The gulag is now more secure using more lava tiles
