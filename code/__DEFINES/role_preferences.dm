@@ -89,6 +89,7 @@
 //Spawner roles
 #define ROLE_ANCIENT_CREW "Ancient Crew"
 #define ROLE_ASHWALKER "Ash Walker"
+#define ROLE_BAR_DRONE "Bardrone" // monkestation addition
 #define ROLE_BATTLECRUISER_CAPTAIN "Battlecruiser Captain"
 #define ROLE_BATTLECRUISER_CREW "Battlecruiser Crew"
 #define ROLE_BEACH_BUM "Beach Bum"

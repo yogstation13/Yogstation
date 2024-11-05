@@ -9635,7 +9635,7 @@
 /turf/open/floor/iron/dark,
 /area/station/medical/morgue)
 "ciO" = (
-/mob/living/basic/drone/snowflake/bardrone,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
 /turf/open/floor/carpet/green,
 /area/station/command/heads_quarters/nt_rep)
 "cjh" = (

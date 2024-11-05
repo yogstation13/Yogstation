@@ -25844,7 +25844,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood,
-/mob/living/basic/drone/snowflake/bardrone,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "jcd" = (

@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(exp_specialmap, list(
 	EXP_TYPE_SPECIAL = list(
 		ROLE_LIFEBRINGER,
 		ROLE_ASHWALKER,
+		ROLE_BAR_DRONE, // monkestation addition
 		ROLE_EXILE,
 		ROLE_SERVANT_GOLEM,
 		ROLE_FREE_GOLEM,
