@@ -5,6 +5,10 @@
 /datum/mood_event/nanite_happiness/add_effects(message)
 	description = "<span class='nicegreen robot'>+++++++[message]+++++++</span>"
 
+/datum/mood_event/superfart_armed
+	description = "MUST... FART..."
+	mood_change = -10
+
 /datum/mood_event/monster_hunter
 	description = "Glory to the hunt."
 	mood_change = 10

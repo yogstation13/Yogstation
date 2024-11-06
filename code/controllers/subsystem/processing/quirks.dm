@@ -71,11 +71,26 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 			continue
 		hardcore_quirks[quirk_type] += hardcore_value
 
-/datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/applied_client)
+// Monkestation edit - original: /datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/applied_client)
+/datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/applied_client, omit_negatives = FALSE, omit_positives = FALSE, omit_neutrals = FALSE)
 	var/badquirk = FALSE
 	for(var/quirk_name in applied_client?.prefs?.all_quirks)
 		var/datum/quirk/quirk_type = quirks[quirk_name]
 		if(ispath(quirk_type))
+			// Monkestation edit start
+			if (omit_negatives)
+				var/q_val = initial(quirk_type.value)
+				if (q_val < 0 && q_val != 0)
+					continue
+			if (omit_positives)
+				var/q_val = initial(quirk_type.value)
+				if (q_val > 0 && q_val != 0)
+					continue
+			if (omit_neutrals)
+				var/q_val = initial(quirk_type.value)
+				if (q_val == 0)
+					continue
+			// monkestation end
 			if(user.add_quirk(quirk_type, override_client = applied_client))
 				SSblackbox.record_feedback("nested tally", "quirks_taken", 1, list("[quirk_name]"))
 		else

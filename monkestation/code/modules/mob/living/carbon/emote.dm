@@ -1,3 +1,15 @@
+/datum/emote/living/carbon/vomit
+	key = "vomit"
+	key_third_person = "vomits"
+
+/datum/emote/living/carbon/vomit/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(!.)
+		return
+
+	var/mob/living/carbon/carbon_owner = user
+	carbon_owner.vomit(harm = FALSE, force = TRUE)
+
 //Finger Guns *blows smoke off his finger tips*
 /datum/emote/living/carbon/fingergun
 	key = "fingergun"

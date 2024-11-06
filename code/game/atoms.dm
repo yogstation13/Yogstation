@@ -1380,6 +1380,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRANSFORM, "Modify Transform")
 	VV_DROPDOWN_OPTION(VV_HK_SPIN_ANIMATION, "SpinAnimation")
 	VV_DROPDOWN_OPTION(VV_HK_STOP_ALL_ANIMATIONS, "Stop All Animations")
+	VV_DROPDOWN_OPTION(VV_HK_SHAKE, "Shake")
 	VV_DROPDOWN_OPTION(VV_HK_SHOW_HIDDENPRINTS, "Show Hiddenprint log")
 	VV_DROPDOWN_OPTION(VV_HK_ADD_REAGENT, "Add Reagent")
 	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EMP, "EMP Pulse")
@@ -1522,6 +1523,20 @@
 			animate(src, transform = null, flags = ANIMATION_END_NOW) // Literally just fucking stop animating entirely because admin said so
 		return
 
+	// monkestation edit start: forced shake
+	if(href_list[VV_HK_SHAKE] && check_rights(R_FUN))
+		var/pixelshiftx = input(usr, "Choose amount of pixels to shift on X axis","Shake Atom") as null|num
+		var/pixelshifty = input(usr, "Choose amount of pixels to shift on Y axis","Shake Atom") as null|num
+		if(isnull(pixelshiftx) || isnull(pixelshifty))
+			return
+
+		var/duration = input(usr, "Duration? (In seconds)","Shake Atom") as null|num
+		var/shake_interval = input(usr, "Shake interval (In seconds) - Default: 0.02", "Shake Atom", 0.02) as null|num
+		if(isnull(shake_interval) || isnull(duration))
+			return
+
+		src.Shake(pixelshiftx, pixelshifty, duration * 10, shake_interval * 10)
+	// monkestation edit end
 	if(href_list[VV_HK_AUTO_RENAME] && check_rights(R_VAREDIT))
 		var/newname = input(usr, "What do you want to rename this to?", "Automatic Rename") as null|text
 		// Check the new name against the chat filter. If it triggers the IC chat filter, give an option to confirm.

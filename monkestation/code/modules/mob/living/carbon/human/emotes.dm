@@ -1,5 +1,42 @@
+/datum/emote/living/carbon/human/assinhale
+	key = "assinhale"
+	key_third_person = "inhales through their ass"
+
+	var/sounds = list(
+		'monkestation/sound/effects/fart_reverse1.ogg',
+		'monkestation/sound/effects/fart_reverse2.ogg',
+		'monkestation/sound/effects/fart_reverse3.ogg',
+		'monkestation/sound/effects/fart_reverse4.ogg'
+	)
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/human/assinhale/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if (!.)
+		return
+
+	if(!user.get_organ_slot(ORGAN_SLOT_BUTT) || !ishuman(user))
+		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
+		return
+	var/mob/living/carbon/human/ass_holder = user
+	var/obj/item/organ/internal/butt/booty = user.get_organ_slot(ORGAN_SLOT_BUTT)
+
+	if (booty.superfart_armed)
+		to_chat(user, "<span class='warning'>Your ass is already armed!</span>")
+		return
+
+	var/volume = 50
+	if(ass_holder.has_quirk(/datum/quirk/loud_ass))
+		volume = volume * 2
+
+	user.visible_message(span_warning("[ass_holder] inhales through their ass. What the fuck?"), span_warning("You inhale through your ass, ready to super fart at any moment!"))
+	playsound(ass_holder, pick(sounds), volume, TRUE, pressure_affected = FALSE, mixer_channel = CHANNEL_PRUDE)
+	booty.superfart_armed = TRUE
+	ass_holder.add_mood_event("superfart_armed", /datum/mood_event/superfart_armed)
+
 /datum/emote/living/carbon/human/superfart
 	key = "superfart"
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/superfart/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -14,6 +51,8 @@
 		return
 	booty.cooling_down = TRUE
 	var/turf/Location = get_turf(ass_holder)
+
+	ass_holder.clear_mood_event("superfart_armed")
 
 	//BIBLEFART/
 	//This goes above all else because it's an instagib.
