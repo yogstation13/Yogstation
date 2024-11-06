@@ -80,12 +80,13 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "co" = (
+/obj/machinery/light/small/directional/west,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/engine_access,
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
 	name = "Gas to Filter"
 	},
-/obj/machinery/airalarm/directional/west,
-/obj/effect/mapping_helpers/airalarm/engine_access,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "cs" = (
@@ -124,6 +125,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "dy" = (
+/obj/machinery/light/small/directional/east,
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Gas to Chamber"
 	},
@@ -159,7 +161,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engineering/central)
+/area/station/engineering/supermatter/room)
 "ez" = (
 /obj/structure/reflector/box/anchored{
 	dir = 1
@@ -760,7 +762,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engineering/central)
+/area/station/engineering/supermatter/room)
 "AT" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/stripes/line,
@@ -1061,10 +1063,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
-"IK" = (
-/obj/machinery/light/floor/has_bulb,
-/turf/open/floor/engine,
-/area/station/engineering/supermatter)
 "IV" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/structure/table,
@@ -1314,7 +1312,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 4
 	},
 /turf/open/floor/engine,
@@ -1497,7 +1495,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "WL" = (
-/obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -2061,7 +2059,7 @@ Su
 TL
 Pd
 pv
-IK
+YV
 PZ
 cZ
 oS

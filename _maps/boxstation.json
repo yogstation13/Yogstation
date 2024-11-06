@@ -17,12 +17,16 @@
 	],
 	"job_changes": {
 		"Prisoner": {
-			"total_positions": 5,
+			"total_positions": 4,
+			"spawn_positions": 8
+		},
+		"Security Assistant": {
+			"total_positions": 4,
 			"spawn_positions": 8
 		},
 		"Security Officer": {
-			"total_positions": 7,
-			"spawn_positions": 17
+			"total_positions": 8,
+			"spawn_positions": 18
 		}
 	}
 }

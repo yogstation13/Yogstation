@@ -25,13 +25,13 @@
 /area/space/nearstation)
 "aD" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	name = "Hot";
-	dir = 1
+	name = "Mix to Cold Loop"
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "bc" = (
 /obj/machinery/light/small/directional/east,
+/obj/machinery/status_display/evac/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
@@ -45,8 +45,11 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "bl" = (
-/obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
 	dir = 4
+	},
+/obj/machinery/igniter{
+	id = "teg_igniter"
 	},
 /turf/open/floor/engine/vacuum,
 /area/station/engineering/atmospherics_engine)
@@ -91,7 +94,6 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
@@ -109,7 +111,7 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "dU" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -226,7 +228,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
@@ -243,7 +244,9 @@
 /area/station/engineering/atmospherics_engine)
 "ig" = (
 /obj/machinery/light/directional/north,
-/obj/structure/sign/warning/engine_safety/directional/north,
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/cell_10k,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
@@ -271,7 +274,6 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/machinery/door/window/left/directional/south{
 	name = "Gas Canister Storage";
 	req_access = list("engineering")
@@ -281,19 +283,20 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/atmospherics_engine)
 "km" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/effect/mapping_helpers/apc/cell_10k,
+/obj/machinery/firealarm/directional/north,
+/obj/machinery/light_switch/directional/north{
+	pixel_x = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "ku" = (
-/obj/machinery/sparker/directional/east{
-	id = "teg_igniter"
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "eng_burn";
+	name = "Burn Chamber Radiation Shutters"
 	},
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/turf/open/floor/engine/vacuum,
+/turf/open/floor/plating,
 /area/station/engineering/atmospherics_engine)
 "kV" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -313,7 +316,6 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/machinery/portable_atmospherics/canister/plasma,
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/cable/layer1,
@@ -341,10 +343,10 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "lY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "md" = (
@@ -361,7 +363,10 @@
 /area/template_noop)
 "mm" = (
 /obj/machinery/camera/autoname/directional/east,
-/obj/machinery/atmospherics/pipe/smart/simple/orange/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Hot";
+	dir = 1
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "mx" = (
@@ -370,10 +375,15 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/atmospherics_engine)
 "mG" = (
-/obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/atmospherics/pipe/layer_manifold/pink/hidden{
 	dir = 4
 	},
-/turf/closed/wall/r_wall,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "eng_burn";
+	name = "Burn Chamber Radiation Shutters"
+	},
+/turf/open/floor/plating,
 /area/station/engineering/atmospherics_engine)
 "mH" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -384,7 +394,6 @@
 /area/station/engineering/atmospherics_engine)
 "mJ" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -413,13 +422,13 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 6
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "os" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 9
 	},
 /turf/open/floor/iron/dark,
@@ -428,7 +437,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
@@ -447,9 +455,15 @@
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
+"oT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/engineering/atmospherics_engine)
 "pg" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -457,18 +471,18 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/atmospherics_engine)
 "pt" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
 /obj/machinery/meter,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "qj" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/manifold/brown/visible{
 	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "qJ" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 9
 	},
 /obj/machinery/meter,
@@ -481,7 +495,6 @@
 "re" = (
 /obj/machinery/light/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "rh" = (
@@ -497,8 +510,8 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "rA" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
 	},
@@ -511,14 +524,16 @@
 /area/station/engineering/main)
 "rZ" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/atmospherics/pipe/smart/simple/pink/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/pink/hidden{
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
 /area/station/engineering/atmospherics_engine)
 "so" = (
-/obj/machinery/atmospherics/pipe/smart/manifold/cyan/visible{
-	dir = 1
+/obj/machinery/atmospherics/pipe/bridge_pipe/brown/visible,
+/obj/machinery/atmospherics/components/binary/valve/digital{
+	name = "Burn Bypass";
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
@@ -555,7 +570,7 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "tI" = (
-/obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -622,7 +637,6 @@
 /area/station/engineering/atmospherics_engine)
 "vr" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/window/right/directional/south{
 	name = "Gas Canister Storage";
@@ -654,6 +668,7 @@
 /area/station/engineering/atmospherics_engine)
 "vW" = (
 /obj/machinery/light/small/directional/west,
+/obj/machinery/status_display/ai/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
@@ -682,7 +697,6 @@
 "wu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/structure/cable/layer1,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
@@ -693,7 +707,7 @@
 /area/station/engineering/atmospherics_engine)
 "wD" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
-	name = "Space Loop Bypass";
+	name = "Space Bypass";
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -720,6 +734,9 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "wU" = (
+/obj/machinery/igniter{
+	id = "teg_igniter"
+	},
 /turf/open/floor/engine/vacuum,
 /area/station/engineering/atmospherics_engine)
 "xr" = (
@@ -751,11 +768,14 @@
 /area/station/engineering/atmospherics_engine)
 "yO" = (
 /obj/machinery/camera/autoname/directional/west,
-/obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Cold"
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "yS" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "zy" = (
@@ -771,9 +791,6 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "zR" = (
-/obj/machinery/sparker/directional/west{
-	id = "teg_igniter"
-	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
@@ -805,8 +822,8 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "AM" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/bot,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
@@ -834,7 +851,6 @@
 /area/station/engineering/atmospherics_engine)
 "CH" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -843,7 +859,6 @@
 "CY" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/light_switch/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Df" = (
@@ -887,7 +902,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable/layer1,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
@@ -933,10 +948,11 @@
 	dir = 4
 	},
 /obj/machinery/meter,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Gr" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 6
 	},
 /turf/open/floor/iron/dark,
@@ -1028,7 +1044,7 @@
 /area/station/engineering/atmospherics_engine)
 "Kd" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	name = "Cold"
+	name = "Mix to Hot Loop"
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
@@ -1107,10 +1123,11 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engineering/central)
+/area/station/engineering/atmospherics_engine)
 "Mu" = (
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	name = "Space to Cold Loop"
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Space to Cold Loop";
+	dir = 1
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
@@ -1143,11 +1160,22 @@
 	pixel_y = -24
 	},
 /obj/machinery/light/directional/south,
+/obj/machinery/button/door/directional/south{
+	id = "eng_burn";
+	name = "Burn Chamber Radiation Shutters Control";
+	req_access = list("engineering");
+	pixel_x = 6;
+	pixel_y = -35
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "No" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "eng_burn";
+	name = "Burn Chamber Radiation Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/engineering/atmospherics_engine)
 "Ot" = (
@@ -1162,7 +1190,8 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "OH" = (
-/obj/machinery/atmospherics/pipe/bridge_pipe/dark/visible,
+/obj/machinery/atmospherics/pipe/bridge_pipe/brown/visible,
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/bridge_pipe/orange/visible{
 	dir = 4
 	},
@@ -1175,10 +1204,10 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Pq" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/directional/south,
+/obj/structure/sign/poster/official/random/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Pv" = (
@@ -1215,18 +1244,23 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"Rb" = (
+/obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/station/engineering/atmospherics_engine)
 "Rl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	name = "Cold Loop"
-	},
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
+/obj/machinery/meter,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Rr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	name = "Cold Loop"
-	},
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
+/obj/machinery/meter,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "RA" = (
@@ -1237,7 +1271,6 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
 /obj/machinery/portable_atmospherics/canister/plasma,
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -1246,6 +1279,7 @@
 /area/station/engineering/atmospherics_engine)
 "So" = (
 /obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "SB" = (
@@ -1303,15 +1337,14 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Uf" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Ui" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -1323,7 +1356,7 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Ut" = (
-/obj/machinery/atmospherics/components/binary/valve/digital{
+/obj/machinery/atmospherics/components/binary/pump{
 	name = "Cold Loop to Space"
 	},
 /turf/open/floor/iron/dark,
@@ -1382,10 +1415,11 @@
 /turf/open/floor/iron/dark/textured,
 /area/station/engineering/atmospherics_engine)
 "WP" = (
-/obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 6
 	},
 /obj/machinery/meter,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Xz" = (
@@ -1407,7 +1441,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/heater{
 	dir = 4
 	},
-/obj/machinery/status_display/ai/directional/west,
+/obj/machinery/status_display/evac/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Yl" = (
@@ -1423,12 +1457,20 @@
 "YM" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
+/obj/machinery/door/poddoor/shutters/radiation/preopen{
+	id = "eng_burn";
+	name = "Burn Chamber Radiation Shutters"
+	},
 /turf/open/floor/plating,
 /area/station/engineering/atmospherics_engine)
 "YS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
 /obj/item/stock_parts/cell/high/empty,
+/turf/open/floor/iron/dark,
+/area/station/engineering/atmospherics_engine)
+"Zb" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmospherics_engine)
 "Zc" = (
@@ -1438,6 +1480,10 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"Zi" = (
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible,
+/turf/open/floor/iron/dark,
+/area/station/engineering/atmospherics_engine)
 "Zv" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
 	dir = 9
@@ -1688,11 +1734,11 @@ EY
 aw
 Kk
 Kk
-Kk
+Zb
 HO
 No
 lH
-bU
+ku
 lA
 bl
 mh
@@ -1716,7 +1762,7 @@ ig
 Go
 Gr
 pt
-yS
+so
 Pv
 YM
 gd
@@ -1741,14 +1787,14 @@ re
 ug
 Lj
 RA
-wb
+Rb
 dU
 aw
-lv
+Kk
 kV
 No
 lH
-bU
+ku
 Wj
 wU
 mh
@@ -1764,7 +1810,7 @@ dh
 Vv
 Df
 Gh
-bp
+oT
 WP
 yS
 yS
@@ -1779,7 +1825,7 @@ dh
 Vv
 UF
 SO
-ku
+lA
 Vv
 dh
 ml
@@ -1886,12 +1932,12 @@ CB
 Jo
 ja
 lY
-RA
-RA
+up
+up
 rA
 rA
-RA
-iI
+up
+ly
 wb
 Vv
 ml
@@ -1906,16 +1952,16 @@ QA
 ds
 TT
 qj
-yS
+Zi
 Rr
-lv
+Kd
 zY
 BG
 fT
 oK
 GY
 mm
-aD
+lv
 lv
 lv
 lv
@@ -1962,16 +2008,16 @@ Jo
 ot
 ja
 qj
-yS
+Zi
 Rl
-lm
+aD
 MD
 ry
 cx
 OD
 gG
 yO
-Kd
+lm
 lm
 lm
 lm
@@ -1998,12 +2044,12 @@ GJ
 QA
 TT
 Uf
-up
-up
+RA
+RA
 AM
 AM
-up
-ly
+RA
+iI
 OO
 Vv
 ml
@@ -2133,9 +2179,9 @@ CY
 SB
 sJ
 up
-so
-lm
-HM
+OO
+lb
+xr
 Dk
 Ut
 bU

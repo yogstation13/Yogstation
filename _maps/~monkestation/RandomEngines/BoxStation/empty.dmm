@@ -47,7 +47,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/plating,
-/area/station/maintenance/department/engineering/central)
+/area/station/engineering/main)
 "m" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -73,7 +73,7 @@
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "z" = (
-/obj/machinery/atmospherics/pipe/smart/simple/orange/visible{
+/obj/machinery/atmospherics/pipe/smart/simple/brown/visible{
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced/plasma,
