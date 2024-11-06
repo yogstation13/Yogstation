@@ -135,10 +135,11 @@
 		final_pixel_y += living_target.body_position_pixel_y_offset
 	animate(target, pixel_y = final_pixel_y, time = 0.5 SECONDS)
 
-/datum/dance/head_spin/trigger_dance(mob/living/target)
+/datum/dance/head_spin/trigger_dance(mob/living/target, start=TRUE)
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, type)
-	animate(target, transform = matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
 	var/matrix/initial_matrix = matrix(target.transform)
+	if(start)
+		animate(target, transform = initial_matrix * matrix(180, MATRIX_ROTATE), time = 1, loop = 0)
 	for (var/i in 1 to 60)
 		if (!target)
 			return
@@ -177,7 +178,7 @@
 	target.lying_fix()
 
 /datum/dance/head_spin/proc/restart_dance(mob/target)
-	INVOKE_ASYNC(src, PROC_REF(trigger_dance), target)
+	INVOKE_ASYNC(src, PROC_REF(trigger_dance), target, FALSE)
 
 /datum/dance/head_spin/end_dance(mob/target)
 	continues = FALSE

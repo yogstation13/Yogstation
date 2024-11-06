@@ -914,10 +914,25 @@ generate/load female uniform sprites matching all previously decided variables
  * Applies a filter to an appearance according to mob height
  */
 /mob/living/carbon/human/proc/apply_height_filters(image/appearance, only_apply_in_prefs = FALSE)
-	var/static/icon/cut_torso_mask = icon('icons/effects/cut.dmi', "Cut1")
-	var/static/icon/cut_legs_mask = icon('icons/effects/cut.dmi', "Cut2")
-	var/static/icon/lenghten_torso_mask = icon('icons/effects/cut.dmi', "Cut3")
-	var/static/icon/lenghten_legs_mask = icon('icons/effects/cut.dmi', "Cut4")
+//MONKESTATION EDIT START : Pick a displacement mask depending on the height of the icon, 32x48 icons are used for features which would otherwise get clipped when tall players use them
+	var/dims = get_icon_dimensions(appearance.icon)
+	var/icon_width = dims["width"]
+	var/icon_height = dims["height"]
+
+	var/mask_icon = 'icons/effects/cut.dmi'
+	if(icon_width != 0 && icon_height != 0)
+		if(icon_width != 32)
+			throw EXCEPTION("Bad dimensions ([icon_width]x[icon_height]) for icon '[appearance.icon]'")
+		if(icon_height == 48)
+			mask_icon = 'monkestation/icons/effects/cut_32x48.dmi'
+		else if(icon_height != 32)
+			throw EXCEPTION("Bad dimensions ([icon_width]x[icon_height]) for icon '[appearance.icon]'")
+
+	var/icon/cut_torso_mask = icon(mask_icon, "Cut1")
+	var/icon/cut_legs_mask = icon(mask_icon, "Cut2")
+	var/icon/lenghten_torso_mask = icon(mask_icon, "Cut3")
+	var/icon/lenghten_legs_mask = icon(mask_icon, "Cut4")
+//MONKESTATION EDIT END
 
 	appearance.remove_filter(list(
 		"Cut_Torso",

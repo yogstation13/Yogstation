@@ -434,8 +434,11 @@
 	M.lying_fix()
 
 /mob/living/proc/lying_fix()
-	animate(src, transform = null, time = 1, loop = 0)
-	lying_prev = 0
+//MONKESTATION EDIT START : Fixes this breaking the mob's size
+	// animate(src, transform = null, time = 1, loop = 0) - original
+	// lying_prev = 0 - original
+	rebuild_transform()
+//MONKESTATION EDIT END
 
 /obj/machinery/jukebox/proc/dance_over()
 	for(var/mob/living/L in rangers)

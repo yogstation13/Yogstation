@@ -346,7 +346,8 @@
 
 ///Podperson bodypart overlay, with special coloring functionality to render the flowers in the inverse color
 /datum/bodypart_overlay/mutant/pod_hair
-	layers = EXTERNAL_FRONT|EXTERNAL_ADJACENT
+	// layers = EXTERNAL_FRONT|EXTERNAL_ADJACENT monkestation edit - original
+	layers = EXTERNAL_FRONT
 	feature_key = "pod_hair"
 
 	///This layer will be colored differently than the rest of the organ. So we can get differently colored flowers or something

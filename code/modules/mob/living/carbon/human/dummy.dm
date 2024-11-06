@@ -22,6 +22,9 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	harvest_organs()
 	return ..()
 
+/*
+	MONKESTATION EDIT START
+	This causes a problem with tall players as some of their overlays will go outside of the 32x32 range which the mob's icon is restricted to
 // To speed up the preference menu, we apply 1 filter to the entire mob
 /mob/living/carbon/human/dummy/regenerate_icons()
 	. = ..()
@@ -34,6 +37,9 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 // Not necessary with above
 /mob/living/carbon/human/dummy/apply_height_offsets(image/appearance, upper_torso)
 	return
+
+	MONKESTATION EDIT END
+ */
 
 ///Let's extract our dummies organs and limbs for storage, to reduce the cache missed that spamming a dummy cause
 /mob/living/carbon/human/dummy/proc/harvest_organs()
