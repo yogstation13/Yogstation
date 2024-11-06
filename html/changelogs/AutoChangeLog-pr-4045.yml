@@ -1,0 +1,7 @@
+author: "flleeppyy"
+delete-after: True
+changes:
+  - bugfix: "you must *assinhale to *superfart. you may *fart to disarm your ass."
+  - rscadd: "added emotes vomit, nodnods, and squint"
+  - admin: "you can now choose to add quirks in the \"Select Equipment\" menu"
+  - admin: "new VV dropdown option \"Shake\""
