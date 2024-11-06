@@ -1,0 +1,6 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - bugfix: "fixed dwarfish people not having eyes"
+  - bugfix: "fixed giant people shrinking when they break-dance"
+  - bugfix: "fixed floran / pod people hair being drawn bellow clothing"
