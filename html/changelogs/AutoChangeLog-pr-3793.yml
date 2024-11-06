@@ -1,0 +1,7 @@
+author: "Tractor Mann"
+delete-after: True
+changes:
+  - rscadd: "You can fax more things now! hack a fax machines input servo to send banana peels, commit remote armed robbery and more!"
+  - rscdel: "Fax machines can no longer jam."
+  - spellcheck: "the paper only message for NT faxes has been changed."
+  - admin: "fax machines can now have recieve_notifies_admins set so you dont have to always keep a eye on your fax machine."
