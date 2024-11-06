@@ -1,0 +1,7 @@
+author: "The-Black-Screen"
+delete-after: True
+changes:
+  - rscadd: "added the nanotrasen representative's office area, the shipbreaking area, miscellaneous things."
+  - rscdel: "removed the vacant office, miscellaneous things."
+  - balance: "changed the numbers of specific roles via boxstation.json."
+  - bugfix: "fixed the air alarm in the kitchen coldroom, fixed the tachyon-doppler array direction, fixed tank compressor direction, miscellaneous things."
