@@ -156,14 +156,13 @@ GLOBAL_LIST_EMPTY(soulcatchers)
 
 /// Checks the total number of souls present and compares it with `max_souls` returns `TRUE` if there is room (or no limit), otherwise returns `FALSE`
 /datum/component/soulcatcher/proc/check_for_vacancy()
-	return FALSE
-	/*if(!max_souls)
+	if(!max_souls)
 		return TRUE
 
 	if(length(get_current_souls()) >= max_souls)
 		return FALSE
 
-	return TRUE*/
+	return TRUE
 
 /// Attempts to remove the soulcatcher from the attached object
 /datum/component/soulcatcher/proc/remove_self()
