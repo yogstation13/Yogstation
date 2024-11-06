@@ -124,7 +124,7 @@
 		to_chat(user, span_warning("[target_mob] lacks a brain!"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-	if(target_mob.mind || target_mob.ckey || GetComponent(/datum/component/previous_body))
+	if(target_mob.mind || target_mob.ckey || target_mob.GetComponent(/datum/component/previous_body))
 		to_chat(user, span_warning("[target_mob] is not able to receive a soul"))
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
