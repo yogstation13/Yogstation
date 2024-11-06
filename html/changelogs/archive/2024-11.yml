@@ -106,3 +106,16 @@
   - balance: The security locker room on theseus now requires brig access
   - balance: The Theseus brig cells now require brig access to use
   - balance: The gulag is now more secure using more lava tiles
+2024-11-06:
+  BanementI:
+  - rscadd: Adds 326 new vox lines for you to annoy the crew with.
+  Gw0sty:
+  - rscadd: replaced all stations bardrone mob with a new ghostrole spawner "Bardrone".
+  Shoddd:
+  - bugfix: Satyr tail and fur is no longer in their head
+  - bugfix: Satyr tail, fur, and horns have proper descriptions
+  - bugfix: Tundra moth limb descriptions and names fixed
+  - bugfix: Tundra moths use moth wings with flight potion
+  Wisemonster:
+  - balance: The advisory level is now based on the selected storyteller, rather than
+      arbitrary. (green = ghost, sleeper. midnight= jester, warrior. orange = others)

@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "The advisory level is now based on the selected storyteller, rather than arbitrary. (green = ghost, sleeper. midnight= jester, warrior. orange = others)"
