@@ -86,6 +86,7 @@
 	. = ..()
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	become_hearing_sensitive()
 
 /mob/New()
 	// This needs to happen IMMEDIATELY. I'm sorry :(

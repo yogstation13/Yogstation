@@ -181,19 +181,6 @@
 	return turfs
 
 
-//This is the new version of recursive_mob_check, used for say().
-//The other proc was left intact because morgue trays use it.
-//Sped this up again for real this time
-/proc/recursive_hear_check(O)
-	var/list/processing_list = list(O)
-	. = list()
-	var/i = 0
-	while(i < length(processing_list))
-		var/atom/A = processing_list[++i]
-		if(A.flags_1 & HEAR_1)
-			. += A
-		processing_list += A.contents
-
 /** recursive_organ_check
   * inputs: O (object to start with)
   * outputs:
@@ -294,7 +281,6 @@
 	var/i = 0
 	while(i < length(processing_list)) // recursive_hear_check inlined here
 		var/atom/A = processing_list[++i]
-		if(A.flags_1 & HEAR_1)
 			. += A
 		processing_list += A.contents
 

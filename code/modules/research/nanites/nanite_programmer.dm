@@ -10,6 +10,10 @@
 	anchored = TRUE
 	density = TRUE
 
+/obj/machinery/nanite_programmer/Initialize()
+	. = ..()
+	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
+
 /obj/machinery/nanite_programmer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/nanite_program))
 		var/obj/item/disk/nanite_program/N = I
