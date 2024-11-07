@@ -1,4 +1,0 @@
-author: "Sylphily"
-delete-after: True
-changes:
-  - balance: "changed how getting paralyzed by the vendors works, it now can take a selection of any 2 limbs, or your entire body, but a lobo from medical can fix it, also raises the weight of the head gib crit"

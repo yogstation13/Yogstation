@@ -119,3 +119,34 @@
   Wisemonster:
   - balance: The advisory level is now based on the selected storyteller, rather than
       arbitrary. (green = ghost, sleeper. midnight= jester, warrior. orange = others)
+2024-11-07:
+  RikuTheKiller:
+  - rscadd: Transfer votes now have an announcement and default to continuing the
+      round for any non-voters.
+  Sorenon:
+  - bugfix: fixed dwarfish people not having eyes
+  - bugfix: fixed giant people shrinking when they break-dance
+  - bugfix: fixed floran / pod people hair being drawn bellow clothing
+  Sylphily:
+  - balance: changed how getting paralyzed by the vendors works, it now can take a
+      selection of any 2 limbs, or your entire body, but a lobo from medical can fix
+      it, also raises the weight of the head gib crit
+  The-Black-Screen:
+  - rscadd: added the nanotrasen representative's office area, the shipbreaking area,
+      miscellaneous things.
+  - rscdel: removed the vacant office, miscellaneous things.
+  - balance: changed the numbers of specific roles via boxstation.json.
+  - bugfix: fixed the air alarm in the kitchen coldroom, fixed the tachyon-doppler
+      array direction, fixed tank compressor direction, miscellaneous things.
+  Tractor Mann:
+  - rscadd: You can fax more things now! hack a fax machines input servo to send banana
+      peels, commit remote armed robbery and more!
+  - rscdel: Fax machines can no longer jam.
+  - spellcheck: the paper only message for NT faxes has been changed.
+  - admin: fax machines can now have recieve_notifies_admins set so you dont have
+      to always keep a eye on your fax machine.
+  flleeppyy:
+  - bugfix: you must *assinhale to *superfart. you may *fart to disarm your ass.
+  - rscadd: added emotes vomit, nodnods, and squint
+  - admin: you can now choose to add quirks in the "Select Equipment" menu
+  - admin: new VV dropdown option "Shake"

@@ -1,4 +1,0 @@
-author: "RikuTheKiller"
-delete-after: True
-changes:
-  - rscadd: "Transfer votes now have an announcement and default to continuing the round for any non-voters."
