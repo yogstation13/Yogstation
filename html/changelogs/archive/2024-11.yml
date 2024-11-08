@@ -150,3 +150,7 @@
   - rscadd: added emotes vomit, nodnods, and squint
   - admin: you can now choose to add quirks in the "Select Equipment" menu
   - admin: new VV dropdown option "Shake"
+2024-11-08:
+  Absolucy:
+  - rscadd: Organs no longer decay when below freezing temperatures, and decay slower
+      in colder (but not below freezing) temperatures.

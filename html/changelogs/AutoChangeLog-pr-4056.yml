@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscadd: "Organs no longer decay when below freezing temperatures, and decay slower in colder (but not below freezing) temperatures."
