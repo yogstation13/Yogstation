@@ -1,4 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - rscadd: "Added AdminVOX to the game, to allow admins to do AI-like Vox announcements."

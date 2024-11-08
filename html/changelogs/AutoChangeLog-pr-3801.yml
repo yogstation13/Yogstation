@@ -1,9 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Added the robotic versions of brainwashing, lobotomy, pacification, amputation, and brain surgery"
-  - rscadd: "Added a 'Brig Physician's Toolbox' to the Brig docs locker"
-  - rscadd: "Added Surgery computer and table to ouroboros sec med."
-  - rscdel: "Removed the ability for wound tending on robotic chest's."
-  - rscdel: "Removed doorhelper that wasnt doing anything in Centcom"
-  - qol: "Clarified gas analyzers are needed for xray cameras in the tooltips."
