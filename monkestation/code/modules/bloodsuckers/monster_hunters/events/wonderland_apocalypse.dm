@@ -122,10 +122,29 @@
 
 /datum/status_effect/wonderland_district
 	id = "wonderland_district"
-	alert_type = null
+	alert_type = /atom/movable/screen/alert/status_effect/wonderland_district
 	tick_interval = -1
+	/// List of /datum/action instance that we've registered `COMSIG_ACTION_TRIGGER` on.
+	var/list/datum/action/registered_actions
+	/// Typecache of spells to NOT trigger the effect on.
 	var/static/list/spell_whitelist_typecache
-	var/static/list/trigger_recoil_typecache
+	/// Typecache of non-spell actions to trigger the effect on.
+	var/static/list/register_action_typecache
+
+/datum/status_effect/wonderland_district/New(list/arguments)
+	. = ..()
+	spell_whitelist_typecache ||= typecacheof(list(
+		/datum/action/cooldown/spell/florida_regeneration,
+		/datum/action/cooldown/spell/florida_cuff_break,
+		/datum/action/cooldown/spell/florida_doorbuster,
+	))
+	register_action_typecache ||= zebra_typecacheof(list(
+		/datum/action/innate/cult = TRUE,
+		/datum/action/innate/cult/comm = FALSE,
+		/datum/action/innate/clockcult/quick_bind = TRUE,
+		/datum/action/cooldown/bloodsucker = TRUE,
+		/datum/action/changeling = TRUE,
+	))
 
 /datum/status_effect/wonderland_district/on_apply()
 	. = ..()
@@ -134,62 +153,62 @@
 	to_chat(owner, span_warning("You feel an ominous pressure fill the air around you..."))
 	RegisterSignal(owner, COMSIG_ENTER_AREA, PROC_REF(on_enter_area))
 	RegisterSignal(owner, COMSIG_MOB_AFTER_SPELL_CAST, PROC_REF(after_spell_cast))
-	RegisterSignal(owner, COMSIG_ACTION_TRIGGER, PROC_REF(on_action_triggered))
+	RegisterSignal(owner, COMSIG_MOB_GRANTED_ACTION, PROC_REF(owner_granted_action))
+	RegisterSignal(owner, COMSIG_MOB_REMOVED_ACTION, PROC_REF(owner_removed_action))
+	for(var/datum/action/action as anything in owner.actions)
+		owner_granted_action(owner, action)
 
 /datum/status_effect/wonderland_district/on_remove()
 	. = ..()
-	UnregisterSignal(owner, list(COMSIG_ENTER_AREA, COMSIG_MOB_AFTER_SPELL_CAST, COMSIG_ACTION_TRIGGER))
+	UnregisterSignal(owner, list(COMSIG_ENTER_AREA, COMSIG_MOB_AFTER_SPELL_CAST, COMSIG_MOB_GRANTED_ACTION, COMSIG_MOB_REMOVED_ACTION))
+	for(var/datum/action/action as anything in registered_actions)
+		UnregisterSignal(action, COMSIG_ACTION_TRIGGER)
+	LAZYNULL(registered_actions)
 
 /datum/status_effect/wonderland_district/proc/on_enter_area(datum/source, area/centcom/new_area)
 	SIGNAL_HANDLER
 	if(istype(new_area) && new_area.grace)
 		qdel(src)
 
+/datum/status_effect/wonderland_district/proc/owner_granted_action(datum/source, datum/action/action)
+	SIGNAL_HANDLER
+	if(!(action in registered_actions) && is_type_in_typecache(action, register_action_typecache))
+		RegisterSignal(action, COMSIG_ACTION_TRIGGER, PROC_REF(on_action_triggered))
+		LAZYADD(registered_actions, action)
+
+/datum/status_effect/wonderland_district/proc/owner_removed_action(datum/source, datum/action/action)
+	SIGNAL_HANDLER
+	UnregisterSignal(action, COMSIG_ACTION_TRIGGER)
+	LAZYREMOVE(registered_actions, action)
+
 /datum/status_effect/wonderland_district/proc/after_spell_cast(datum/source, datum/action/cooldown/spell/spell, atom/cast_on)
 	SIGNAL_HANDLER
-	if(!spell_whitelist_typecache)
-		spell_whitelist_typecache = typecacheof(list(
-			/datum/action/cooldown/spell/florida_regeneration,
-			/datum/action/cooldown/spell/florida_cuff_break,
-			/datum/action/cooldown/spell/florida_doorbuster
-		))
 	if(!istype(spell) || QDELING(spell) || !spell.antimagic_flags || is_type_in_typecache(spell, spell_whitelist_typecache)) // don't affect non-magic spells.
 		return
-	recoil(span_warning("[owner] doubles over in pain, violently coughing up blood!"), span_userdanger("An overwhelming pressure fills your body as you cast [spell.name || "magic"], filling you with excruciating pain down to the very core of your being!"))
+	recoil(
+		span_warning("[owner] doubles over in pain, violently coughing up blood!"),
+		span_userdanger("An overwhelming pressure fills your body as you cast [spell.name || "magic"], filling you with excruciating pain down to the very core of your being!")
+	)
 
 /datum/status_effect/wonderland_district/proc/on_action_triggered(datum/source, datum/action/action)
 	SIGNAL_HANDLER
-	if(!trigger_recoil_typecache)
-		trigger_recoil_typecache = typecacheof(list(
-			/datum/action/innate/cult/blood_spell,
-			/datum/action/innate/cult/blood_magic,
-			/datum/action/innate/cult/master,
-			/datum/action/innate/clockcult/quick_bind,
-			/datum/action/cooldown/bloodsucker
-		))
-	if(!is_type_in_typecache(action, trigger_recoil_typecache))
-		return
-	recoil(span_warning("[owner] doubles over in pain, violently coughing up blood!"), span_userdanger("An overwhelming pressure fills your body as you use [action.name || "your ability"], filling you with excruciating pain down to the very core of your being!"))
+	recoil(
+		span_warning("[owner] doubles over in pain, violently coughing up blood!"),
+		span_userdanger("An overwhelming pressure fills your body as you use [action.name || "your ability"], filling you with excruciating pain down to the very core of your being!")
+	)
 
 /datum/status_effect/wonderland_district/proc/recoil(vis_msg, self_msg)
-	make_visible()
 	INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/living, emote), "scream")
 	if(vis_msg)
 		owner.visible_message(vis_msg, self_msg)
 	owner.take_overall_damage(brute = rand(5, 15))
+	owner.sharp_pain(BODY_ZONES_ALL, rand(5, 15), BRUTE, 10 SECONDS)
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
 		carbon_owner.vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE, distance = prob(20) + 1, message = FALSE)
 
-/datum/status_effect/wonderland_district/proc/make_visible()
-	if(alert_type && !QDELETED(linked_alert))
-		return
-	alert_type = /atom/movable/screen/alert/status_effect/wonderland_district
-	linked_alert = owner.throw_alert(id, alert_type)
-	linked_alert.attached_effect = src
-
 /atom/movable/screen/alert/status_effect/wonderland_district
 	name = "Wonderland Manifestation"
-	desc = "An omnipresent pressure surrounds you, causing any use of magic to overload your body!"
+	desc = "The veil between fantasy and reality has been shattered!"
 	icon = 'monkestation/icons/hud/screen_alert.dmi'
 	icon_state = "wonderland"

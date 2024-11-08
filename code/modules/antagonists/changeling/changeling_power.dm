@@ -46,7 +46,9 @@ the same goes for Remove(). if you override Remove(), call parent or else your p
 
 /datum/action/changeling/Trigger(trigger_flags)
 	var/mob/user = owner
-	if(!user || !user.mind || !user.mind.has_antag_datum(/datum/antagonist/changeling))
+	if(!user?.mind?.has_antag_datum(/datum/antagonist/changeling))
+		return
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return
 	try_to_sting(user)
 
