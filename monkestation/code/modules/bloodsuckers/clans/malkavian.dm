@@ -64,13 +64,47 @@
 	SIGNAL_HANDLER
 	if(masquerade_breaker == bloodsuckerdatum)
 		return
-	to_chat(bloodsuckerdatum.owner.current, span_userdanger("[masquerade_breaker.owner.current] has broken the Masquerade! Ensure [masquerade_breaker.owner.current.p_they()] [masquerade_breaker.owner.current.p_are()] eliminated at all costs!"))
-	var/datum/objective/assassinate/masquerade_objective = new()
-	masquerade_objective.target = masquerade_breaker.owner.current
-	masquerade_objective.objective_name = "Clan Objective"
-	masquerade_objective.explanation_text = "Ensure [masquerade_breaker.owner.current], who has broken the Masquerade, succumbs to Final Death."
+	var/mob/living/target_body = masquerade_breaker.owner.current
+	var/vampiric_name = masquerade_breaker.return_full_name()
+	var/mortal_name = masquerade_breaker.owner.name || target_body.real_name || target_body.name
+	to_chat(bloodsuckerdatum.owner.current, span_userdanger("[vampiric_name], also known as [mortal_name], has broken the Masquerade! Ensure [target_body.p_they()] [target_body.p_are()] eliminated at all costs!"))
+	var/datum/objective/enforce_masquerade/masquerade_objective = new(null, masquerade_breaker)
+	masquerade_objective.owner = bloodsuckerdatum.owner
 	bloodsuckerdatum.objectives += masquerade_objective
 	bloodsuckerdatum.owner.announce_objectives()
+
+/datum/objective/enforce_masquerade
+	name = "kill masquerade breaker"
+	objective_name = "Clan Objective"
+	var/datum/antagonist/bloodsucker/masquerade_breaker
+
+/datum/objective/enforce_masquerade/New(text, datum/antagonist/bloodsucker/masquerade_breaker)
+	. = ..()
+	if(!istype(masquerade_breaker) || !masquerade_breaker.owner)
+		CRASH("Attempted to create [type] objective without a valid target bloodsucker datum!")
+	RegisterSignal(masquerade_breaker, BLOODSUCKER_FINAL_DEATH, PROC_REF(on_target_final_death))
+	src.target = masquerade_breaker.owner
+	src.masquerade_breaker = masquerade_breaker
+	update_explanation_text()
+
+/datum/objective/enforce_masquerade/Destroy()
+	if(masquerade_breaker)
+		UnregisterSignal(masquerade_breaker, BLOODSUCKER_FINAL_DEATH)
+		masquerade_breaker = null
+	return ..()
+
+/datum/objective/enforce_masquerade/update_explanation_text()
+	var/target_name = target.name || target.current?.real_name || target.current?.name
+	explanation_text = "Ensure that [target_name], who has broken the Masquerade, succumbs to Final Death."
+
+// Simple signal handler to mark the objective as completed when the target succumbs to the final death.
+/datum/objective/enforce_masquerade/proc/on_target_final_death(datum/source)
+	SIGNAL_HANDLER
+	completed = TRUE
+
+/datum/objective/enforce_masquerade/check_completion()
+	return ..() || QDELETED(target?.current)
+
 
 #undef REVELATION_MAX_COOLDOWN
 #undef REVELATION_MIN_COOLDOWN
