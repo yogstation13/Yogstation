@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(gamemode)
 				selected_event = null
 
 		if(selected_event)
-			current_storyteller.try_buy_event(GLOB.event_groups)
+			current_storyteller.try_buy_event(selected_event)
 
 	///Handle scheduled events
 	for(var/datum/scheduled_event/sch_event in scheduled_events)
