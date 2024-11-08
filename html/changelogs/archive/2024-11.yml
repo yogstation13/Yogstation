@@ -154,3 +154,9 @@
   Absolucy:
   - rscadd: Organs no longer decay when below freezing temperatures, and decay slower
       in colder (but not below freezing) temperatures.
+  - bugfix: The Wonderland Manifestation status effect actually properly works for
+      most abilities now.
+  - rscadd: The Wonderland Manifestation recoil effect now interacts with the pain
+      system.
+  - bugfix: The Malkavian clan objective to kill masquerade breakers is now properly
+      marked as completed when the target succumbs to the Final Death.

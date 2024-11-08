@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "The Wonderland Manifestation status effect actually properly works for most abilities now."
-  - rscadd: "The Wonderland Manifestation recoil effect now interacts with the pain system."
