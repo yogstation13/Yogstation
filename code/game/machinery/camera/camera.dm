@@ -145,7 +145,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/camera/xray, 0)
 	if(isXRay(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
 		. += span_info("It has an X-ray photodiode installed.")
 	else
-		. += span_info("It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.")
+		. += span_info("It can be upgraded with an X-ray photodiode with an <b> gas analyzer</b>.") //monkestation edit : Clarity
 	if(isMotion())
 		. += span_info("It has a proximity sensor installed.")
 	else

@@ -19694,13 +19694,6 @@
 	},
 /turf/open/floor/iron/white/textured,
 /area/centcom/central_command_areas/admin)
-"cvB" = (
-/obj/structure/signboard{
-	locked = 1;
-	sign_text = "Your armament points is effectively your uplink, use it in-hand!"
-	},
-/turf/open/floor/iron/smooth_large,
-/area/cruiser_dock)
 "cvJ" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /turf/open/floor/wood/large,
@@ -20736,13 +20729,6 @@
 /obj/item/kirbyplants/random/dead,
 /turf/open/misc/sandy_dirt,
 /area/centcom/central_command_areas/adminroom)
-"gwo" = (
-/obj/structure/closet/cardboard,
-/mob/living/basic/bot/medbot/nukie/assop{
-	name = "Kahn"
-	},
-/turf/open/floor/iron/dark/textured_large,
-/area/cruiser_dock)
 "gyJ" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L5"
@@ -21750,14 +21736,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/admin)
-"jEO" = (
-/obj/structure/fence/door{
-	name = "coven corner"
-	},
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/effect/mapping_helpers/airlock/access/any/admin/captain,
-/turf/open/floor/grass,
-/area/centcom/central_command_areas/admin)
 "jFt" = (
 /obj/structure/table/glass/plasmaglass,
 /obj/item/storage/box/beakers{
@@ -22225,6 +22203,13 @@
 "lNv" = (
 /obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/iron/dark/textured_large,
+/area/cruiser_dock)
+"lNO" = (
+/obj/structure/signboard{
+	locked = 1;
+	sign_text = "Your armament points is effectively your uplink, use it in-hand!"
+	},
+/turf/open/floor/iron/smooth_large,
 /area/cruiser_dock)
 "lQf" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
@@ -25142,6 +25127,13 @@
 /obj/effect/decal/cleanable/piss_stain,
 /turf/open/misc/sandy_dirt,
 /area/centcom/central_command_areas/admin)
+"xJC" = (
+/obj/structure/closet/cardboard,
+/mob/living/basic/bot/medbot/nukie/assop{
+	name = "Kahn"
+	},
+/turf/open/floor/iron/dark/textured_large,
+/area/cruiser_dock)
 "xKq" = (
 /obj/structure/railing/wooden_fencing{
 	pixel_y = 16
@@ -25219,6 +25211,13 @@
 /obj/item/storage/box/mothic_rations,
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"xXt" = (
+/obj/structure/fence/door{
+	name = "coven corner"
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/grass,
+/area/centcom/central_command_areas/admin)
 "xZW" = (
 /obj/structure/table/wood,
 /obj/item/knife/ritual,
@@ -56978,7 +56977,7 @@ fDz
 mvd
 vHF
 xGe
-jEO
+xXt
 btE
 btE
 kjO
@@ -78280,7 +78279,7 @@ iDX
 lWT
 xWM
 hrx
-gwo
+xJC
 axV
 nvZ
 fEL
@@ -81617,7 +81616,7 @@ axV
 vJI
 xPB
 sAG
-cvB
+lNO
 lWT
 xPB
 vJI

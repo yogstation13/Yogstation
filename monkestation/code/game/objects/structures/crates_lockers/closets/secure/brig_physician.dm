@@ -15,3 +15,4 @@
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/defibrillator/loaded(src)
+	new /obj/item/storage/toolbox/brig_physician (src)
