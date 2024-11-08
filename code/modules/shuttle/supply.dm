@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/extraction_point,
 		/obj/structure/guardian_beacon,
 		/obj/tear_in_reality,
+		/obj/item/mcobject/flusher,
 	)))
 
 /// How many goody orders we can fit in a lockbox before we upgrade to a crate
