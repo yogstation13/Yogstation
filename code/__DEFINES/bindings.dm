@@ -14,39 +14,7 @@
 /proc/byondapi_stack_trace(msg)
 	CRASH(msg)
 
-/datum/controller/subsystem/air/proc/process_excited_groups_auxtools(remaining)
-	return call_ext(AUXMOS, "byond:groups_hook_ffi")(src, remaining)
-
-/proc/finalize_gas_refs()
-	return call_ext(AUXMOS, "byond:finalize_gas_refs_ffi")()
-
-/datum/controller/subsystem/air/proc/auxtools_update_reactions()
-	return call_ext(AUXMOS, "byond:update_reactions_ffi")()
-
-/proc/auxtools_atmos_init(gas_data)
-	return call_ext(AUXMOS, "byond:hook_init_ffi")(gas_data)
-
-/proc/_auxtools_register_gas(gas)
-	return call_ext(AUXMOS, "byond:hook_register_gas_ffi")(gas)
-
-/turf/proc/__update_auxtools_turf_adjacency_info()
-	return call_ext(AUXMOS, "byond:hook_infos_ffi")(src)
-
-/turf/proc/update_air_ref(flag)
-	return call_ext(AUXMOS, "byond:hook_register_turf_ffi")(src, flag)
-
-/datum/controller/subsystem/air/proc/process_turfs_auxtools(remaining)
-	return call_ext(AUXMOS, "byond:process_turf_hook_ffi")(src, remaining)
-
-/datum/controller/subsystem/air/proc/finish_turf_processing_auxtools(time_remaining)
-	return call_ext(AUXMOS, "byond:finish_process_turfs_ffi")(time_remaining)
-
-/datum/controller/subsystem/air/proc/thread_running()
-	return call_ext(AUXMOS, "byond:thread_running_hook_ffi")()
-
-/datum/controller/subsystem/air/proc/process_turf_equalize_auxtools(remaining)
-	return call_ext(AUXMOS, "byond:equalize_hook_ffi")(src, remaining)
-
+/// Returns: true. Parses gas strings like "o2=2500;plasma=5000;TEMP=370" and turns src mixes into the parsed gas mixture, invalid patterns will be ignored
 /datum/gas_mixture/proc/__auxtools_parse_gas_string(string)
 	return call_ext(AUXMOS, "byond:parse_gas_string_ffi")(src, string)
 
@@ -106,27 +74,27 @@
 /datum/gas_mixture/proc/scrub_into(into, ratio_v, gas_list)
 	return call_ext(AUXMOS, "byond:scrub_into_hook_ffi")(src, into, ratio_v, gas_list)
 
-///Args: (flag). As get_gases(), but only returns gases with the given flag.
+/// Args: (flag). As get_gases(), but only returns gases with the given flag.
 /datum/gas_mixture/proc/get_by_flag(flag_val)
 	return call_ext(AUXMOS, "byond:get_by_flag_hook_ffi")(src, flag_val)
 
-///Args: (mixture, flag, amount). Takes `amount` from src that have the given `flag` and puts them into the given `mixture`. Returns: 0 if gas didn't have any with that flag, 1 if it did.
+/// Args: (mixture, flag, amount). Takes `amount` from src that have the given `flag` and puts them into the given `mixture`. Returns: 0 if gas didn't have any with that flag, 1 if it did.
 /datum/gas_mixture/proc/__remove_by_flag(into, flag_val, amount_val)
 	return call_ext(AUXMOS, "byond:remove_by_flag_hook_ffi")(src, into, flag_val, amount_val)
 
-///Args: (coefficient). Divides all gases by this amount.
+/// Args: (coefficient). Divides all gases by this amount.
 /datum/gas_mixture/proc/divide(num_val)
 	return call_ext(AUXMOS, "byond:divide_hook_ffi")(src, num_val)
 
-///Args: (coefficient). Multiplies all gases by this amount.
+/// Args: (coefficient). Multiplies all gases by this amount.
 /datum/gas_mixture/proc/multiply(num_val)
 	return call_ext(AUXMOS, "byond:multiply_hook_ffi")(src, num_val)
 
-///Args: (amount). Subtracts the given amount from each gas.
+/// Args: (amount). Subtracts the given amount from each gas.
 /datum/gas_mixture/proc/subtract(num_val)
 	return call_ext(AUXMOS, "byond:subtract_hook_ffi")(src, num_val)
 
-///Args: (amount). Adds the given amount to each gas.
+/// Args: (amount). Adds the given amount to each gas.
 /datum/gas_mixture/proc/add(num_val)
 	return call_ext(AUXMOS, "byond:add_hook_ffi")(src, num_val)
 
@@ -230,4 +198,48 @@
 /// Args: (ms). Runs callbacks until time limit is reached. If time limit is omitted, runs all callbacks.
 /proc/process_atmos_callbacks(remaining)
 	return call_ext(AUXMOS, "byond:atmos_callback_handle_ffi")(remaining)
+
+/// Updates adjacency infos for turfs, only use this in immediateupdateturfs.
+/turf/proc/__update_auxtools_turf_adjacency_info()
+	return call_ext(AUXMOS, "byond:hook_infos_ffi")(src)
+
+/// Returns: null. Updates turf air infos, whether the turf is closed, is space or a regular turf, or even a planet turf is decided here.
+/turf/proc/update_air_ref(flag)
+	return call_ext(AUXMOS, "byond:hook_register_turf_ffi")(src, flag)
+
+/// Returns: If this cycle is interrupted by overtiming or not. Starts a katmos equalize cycle, does nothing if process_turfs isn't ran.
+/datum/controller/subsystem/air/proc/process_turf_equalize_auxtools(remaining)
+	return call_ext(AUXMOS, "byond:equalize_hook_ffi")(src, remaining)
+
+/// Returns: If this cycle is interrupted by overtiming or not. Starts a processing turfs cycle.
+/datum/controller/subsystem/air/proc/process_turfs_auxtools(remaining)
+	return call_ext(AUXMOS, "byond:process_turf_hook_ffi")(src, remaining)
+
+/// Returns: If this cycle is interrupted by overtiming or not. Calls all outstanding callbacks created by other processes, usually ones that can't run on other threads and only the main thread.
+/datum/controller/subsystem/air/proc/finish_turf_processing_auxtools(time_remaining)
+	return call_ext(AUXMOS, "byond:finish_process_turfs_ffi")(time_remaining)
+
+/// Returns: If a processing thread is running or not.
+/datum/controller/subsystem/air/proc/thread_running()
+	return call_ext(AUXMOS, "byond:thread_running_hook_ffi")()
+
+/// Returns: If this cycle is interrupted by overtiming or not. Starts a processing excited groups cycle, does nothing if process_turfs isn't ran.
+/datum/controller/subsystem/air/proc/process_excited_groups_auxtools(remaining)
+	return call_ext(AUXMOS, "byond:groups_hook_ffi")(src, remaining)
+
+/// For updating reagent gas fire products, do not use for now.
+/proc/finalize_gas_refs()
+	return call_ext(AUXMOS, "byond:finalize_gas_refs_ffi")()
+
+/// For updating reaction informations for auxmos, only call this when it is changed.
+/datum/controller/subsystem/air/proc/auxtools_update_reactions()
+	return call_ext(AUXMOS, "byond:update_reactions_ffi")()
+
+/// Registers gases, and get reaction infos for auxmos, only call when ssair is initing.
+/proc/auxtools_atmos_init(gas_data)
+	return call_ext(AUXMOS, "byond:hook_init_ffi")(gas_data)
+
+/// For registering gases, do not touch this.
+/proc/_auxtools_register_gas(gas)
+	return call_ext(AUXMOS, "byond:hook_register_gas_ffi")(gas)
 
