@@ -174,3 +174,6 @@
   - bugfix: fixed a few things, really.
   Veth-s:
   - rscadd: Added AdminVOX to the game, to allow admins to do AI-like Vox announcements.
+2024-11-09:
+  Wisemonster:
+  - spellcheck: Added mention of the supply department in the HoP's description
