@@ -275,9 +275,16 @@
 	if(istype(atom_target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
 		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
-		var/obj/item/clothing/head/helmet/helmet = initial(HS.helmettype)
+		var/obj/item/clothing/head/helmet/space/hardsuit/helmet = initial(HS.helmettype)
 		I.head_piece.initial_state = initial(helmet.icon_state)
 		I.head_piece.update_appearance(UPDATE_ICON)
+		I.head_piece.current_disguise = picked_item
+		I.head_piece.new_type = helmet.hardsuit_type
+		var/datum/action/A
+		for(var/X in I.actions)
+			A = X
+			A.build_all_button_icons()
+		
 		qdel(helmet)
 		//YOGS END
 
