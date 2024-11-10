@@ -27,3 +27,12 @@
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 	item = /obj/item/radio/headset/chameleon/advanced
 	cost = 2
+
+/datum/uplink_item/device_tools/plasma_license
+	name = "License to Plasmaflood"
+	desc = "A contract abusing a loophole founud by plasmamen to invade halls with harmful gases \
+			without repricution or warning, garnering no attention from any higher powers. \
+			Has to be signed by purchaser to be consider valid."
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	item = /obj/item/card/plasma_license
+	cost = 20
