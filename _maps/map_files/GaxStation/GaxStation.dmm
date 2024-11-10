@@ -41841,10 +41841,11 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "ulW" = (
-/obj/machinery/vending/cart,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "umn" = (
@@ -41980,11 +41981,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "urY" = (
-/obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
 /obj/machinery/light_switch{
 	pixel_x = 24
 	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "usc" = (

@@ -31111,7 +31111,7 @@
 /obj/machinery/newscaster/security_unit{
 	pixel_y = 32
 	},
-/obj/machinery/vending/cart,
+/obj/machinery/vending/wardrobe/hop_wardrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "ieo" = (

@@ -23964,7 +23964,13 @@
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
-/obj/machinery/computer/cargo,
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
+/obj/item/toy/figure/hop{
+	layer = 2.89;
+	pixel_x = 8;
+	pixel_y = -5
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "jZb" = (
@@ -43562,15 +43568,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian{
-	dir = 8
-	},
-/obj/item/toy/figure/hop{
-	layer = 2.89;
-	pixel_x = 8;
-	pixel_y = -5
-	},
+/obj/machinery/computer/cargo,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "skC" = (
@@ -45254,7 +45252,6 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "sTl" = (
-/obj/machinery/vending/cart,
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
@@ -45265,6 +45262,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/vending/wardrobe/hop_wardrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "sTU" = (
