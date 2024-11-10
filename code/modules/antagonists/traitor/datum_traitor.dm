@@ -136,6 +136,7 @@
 				hijack_objective.owner = owner
 				add_objective(hijack_objective)
 			SSgamemode.has_hijackers = TRUE
+			setup_backstories(murderbone = FALSE, hijack = TRUE)
 			return
 		//End of yogstation change.
 
@@ -149,6 +150,7 @@
 		var/datum/objective/martyr/martyr_objective = new
 		martyr_objective.owner = owner
 		add_objective(martyr_objective)
+		setup_backstories(murderbone = TRUE, hijack = FALSE)
 		return
 
 	else
