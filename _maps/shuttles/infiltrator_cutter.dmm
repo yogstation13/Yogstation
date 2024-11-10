@@ -204,13 +204,6 @@
 /area/shuttle/yogs/stealthcruiser)
 "aC" = (
 /obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/cautery{
-	pixel_x = 4
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -312,8 +305,7 @@
 /area/shuttle/yogs/stealthcruiser)
 "aN" = (
 /obj/structure/table,
-/obj/item/retractor,
-/obj/item/hemostat,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/shuttle/yogs/stealthcruiser)
