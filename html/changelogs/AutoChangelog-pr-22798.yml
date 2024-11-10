@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "actually fixes traitor backstories bluescreening if you have martyr or hijack"
