@@ -31284,6 +31284,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"iin" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 8
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "iix" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -33676,16 +33686,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"iXa" = (
-/obj/machinery/vending/cart,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "iXg" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 1
@@ -101983,7 +101983,7 @@ dEb
 dPP
 bYm
 ptS
-iXa
+iin
 qhG
 evI
 vTR

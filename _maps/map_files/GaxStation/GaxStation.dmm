@@ -2131,6 +2131,16 @@
 /obj/effect/turf_decal/trimline/green/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"bah" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/hop)
 "bal" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -41827,16 +41837,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"ulW" = (
-/obj/machinery/vending/cart,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/hop)
 "umn" = (
 /obj/machinery/door/airlock/engineering{
 	name = "AI Ship Access"
@@ -95359,7 +95359,7 @@ baa
 xdL
 cov
 gCk
-ulW
+bah
 pdq
 omw
 viA
