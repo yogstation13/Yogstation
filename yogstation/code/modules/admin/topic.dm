@@ -76,7 +76,7 @@
 			return
 
 		C.remove_mentor_verbs()
-		C.mentor_datum = null
+		QDEL_NULL(C.mentor_datum)
 		GLOB.mentors -= C
 
 	if(SSdbcore.Connect())
