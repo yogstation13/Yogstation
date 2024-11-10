@@ -49,6 +49,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!procpath)
 		return
 
+	if(findtextEx(trim(lowertext(procpath)), "rustg"))
+		message_admins("<span class='userdanger'>[key_name_admin(src)] attempted to proc call rust-g procs. Inform council/host <u>at once</u>.</span>")
+		log_admin("[key_name(src)] attempted to proc call rust-g procs. Inform council/host at once.")
+		return
+
 	//strip away everything but the proc name
 	var/list/proclist = splittext(procpath, "/")
 	if (!length(proclist))
