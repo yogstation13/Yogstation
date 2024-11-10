@@ -6146,13 +6146,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"aLX" = (
-/obj/effect/turf_decal/siding/wood/corner/thin{
-	dir = 4
-	},
-/obj/machinery/vending/cart,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
 "aLY" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/light{
@@ -40114,6 +40107,13 @@
 /obj/machinery/portable_atmospherics/canister/plasma,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"ugX" = (
+/obj/effect/turf_decal/siding/wood/corner/thin{
+	dir = 4
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "uhn" = (
 /obj/structure/table,
 /obj/item/toy/cards/deck{
@@ -128877,7 +128877,7 @@ uku
 aGB
 aSo
 aIo
-aLX
+ugX
 asD
 vXN
 bkw

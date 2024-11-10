@@ -1,0 +1,5 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - bugfix: "Changelings can no longer assimilate burning green slimecross armblades"
+  - spellcheck: "Changed the text for forcing open airlocks with xenobio armblades"

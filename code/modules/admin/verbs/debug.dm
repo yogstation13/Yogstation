@@ -48,6 +48,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/procpath = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
 	if(!procpath)
 		return
+	//thanks paradise - https://github.com/ParadiseSS13/Paradise/pull/27327
+	if(findtextEx(trim(lowertext(procpath)), "rustg"))
+		message_admins("<span class='userdanger'>[key_name_admin(src)] attempted to proc call rust-g procs. Inform council/host <u>at once</u>.</span>")
+		log_admin("[key_name(src)] attempted to proc call rust-g procs. Inform council/host at once.")
+		return
 
 	//strip away everything but the proc name
 	var/list/proclist = splittext(procpath, "/")

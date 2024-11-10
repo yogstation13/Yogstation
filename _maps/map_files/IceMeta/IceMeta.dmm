@@ -31486,6 +31486,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"jkl" = (
+/obj/item/radio/intercom{
+	pixel_y = 21
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "jky" = (
 /obj/machinery/button/flasher{
 	id = "holdingflash";
@@ -74694,13 +74701,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"vue" = (
-/obj/machinery/vending/cart,
-/obj/item/radio/intercom{
-	pixel_y = 21
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
 "vuj" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/item/radio/intercom{
@@ -240794,7 +240794,7 @@ jfG
 byf
 hMv
 sYq
-vue
+jkl
 bjT
 ibB
 biJ
