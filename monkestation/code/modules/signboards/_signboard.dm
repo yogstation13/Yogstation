@@ -175,10 +175,10 @@
 		return
 	var/bwidth = src.bound_width || world.icon_size
 	var/bheight = src.bound_height || world.icon_size
-	var/text_html = MAPTEXT_GRAND9K("<span style='text-align: center'>[html_encode(sign_text)]</span>")
+	var/text_html = MAPTEXT_GRAND9K("<span style='text-align: center; line-height: 1'>[html_encode(sign_text)]</span>")
 	SET_PLANE_EXPLICIT(text_holder, GAME_PLANE_UPPER_FOV_HIDDEN, src)
 	text_holder.layer = ABOVE_ALL_MOB_LAYER
-	text_holder.alpha = 140
+	text_holder.alpha = 192
 	text_holder.maptext = text_html
 	text_holder.maptext_x = (SIGNBOARD_WIDTH - bwidth) * -0.5
 	text_holder.maptext_y = bheight
@@ -206,6 +206,7 @@
 	. = ..()
 	if(!istype(loc, /obj/structure/signboard) || QDELING(loc))
 		return INITIALIZE_HINT_QDEL
+	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_THREE_X_TWO, 112, use_parent_turf = TRUE)
 
 /obj/effect/abstract/signboard_holder/Destroy(force)
 	if(!force && istype(loc, /obj/structure/signboard) && !QDELING(loc))
