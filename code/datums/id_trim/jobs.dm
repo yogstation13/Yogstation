@@ -1133,6 +1133,7 @@
 		ACCESS_MEDICAL,
 		ACCESS_MINERAL_STOREROOM,
 		ACCESS_VIROLOGY,
+		ACCESS_PHARMACY, // MONKESTATION EDIT: Pathologists now have access to pharmacy due to their need for chems. Hopefully doesn't get abused too much and MDs have this too.
 		)
 	extra_access = list(
 		ACCESS_PLUMBING,
