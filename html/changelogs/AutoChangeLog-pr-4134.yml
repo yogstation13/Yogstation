@@ -1,0 +1,4 @@
+author: "Absolucy, Spaghetti-bit"
+delete-after: True
+changes:
+  - bugfix: "Tweaked how combinable messages work in an attempt to reduce lag from chat spam."
