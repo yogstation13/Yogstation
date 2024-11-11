@@ -1,0 +1,13 @@
+author: "t-toasted"
+delete-after: True
+changes:
+  - rscadd: "adds some more materials throughout maint, alongside other goodies"
+  - rscadd: "adds some solars crates near solars"
+  - rscadd: "gives NT Rep a computer and fax machine"
+  - rscadd: "adds in request consoles to almost every room"
+  - rscdel: "removed stray button in QM office"
+  - rscdel: "removed stray shutters outside chapel"
+  - balance: "removed a few windows at public garden"
+  - qol: "expands maints a little, hopefully gives antags more open spaces (three large spaces added: one above science, one below cargo, one east of botany)"
+  - qol: "engineering now has more tools in their lockers, adds two additional lockers"
+  - bugfix: "captain office shutters now work"
