@@ -14,6 +14,7 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/hydraulic_clamp,
 		/obj/item/borg/hydraulic_clamp/mail,
+		/obj/item/storage/bag/mail_token_catcher, //monkestation edit
 		/obj/item/hand_labeler/cyborg,
 		/obj/item/dest_tagger,
 		/obj/item/crowbar/cyborg,
