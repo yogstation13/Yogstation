@@ -1,0 +1,5 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - qol: "The cyborg cargo module now has a tray for collecting mail tokens."
+  - bugfix: "Fixed reloading for the bounty cycler shotgun."
