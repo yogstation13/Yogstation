@@ -69245,6 +69245,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 9
 	},
+/obj/item/tank/internals/emergency_oxygen/vox,
+/obj/item/clothing/mask/breath/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "vZc" = (

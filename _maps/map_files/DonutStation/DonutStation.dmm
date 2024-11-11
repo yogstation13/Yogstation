@@ -22216,6 +22216,8 @@
 	dir = 1;
 	network = list("ss13","Medical")
 	},
+/obj/item/clothing/mask/breath/vox,
+/obj/item/tank/internals/emergency_oxygen/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "jnO" = (
