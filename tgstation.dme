@@ -5982,6 +5982,7 @@
 #include "monkestation\code\game\objects\items\granters\maintenanceencyclopedia.dm"
 #include "monkestation\code\game\objects\items\grenades\monkey_barrel.dm"
 #include "monkestation\code\game\objects\items\guns\crank_guns.dm"
+#include "monkestation\code\game\objects\items\guns\long_guns.dm"
 #include "monkestation\code\game\objects\items\guns\shotguns.dm"
 #include "monkestation\code\game\objects\items\guns\SRN.dm"
 #include "monkestation\code\game\objects\items\guns\wt_ammo.dm"

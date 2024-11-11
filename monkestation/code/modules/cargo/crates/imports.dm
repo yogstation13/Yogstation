@@ -55,7 +55,7 @@
 	access_view = ACCESS_ARMORY
 	crate_type = /obj/structure/closet/crate/secure/weapon
 
-
+// MONKESTATION ADDITION START
 /datum/supply_pack/imports/Lrevolvercrate
 	name = "Long Revolver Crate"
 	desc = "We got these old revolvers from a unnamed man, enjoy them"
@@ -83,3 +83,4 @@
 	access = ACCESS_ARMORY
 	access_view = ACCESS_ARMORY
 	crate_type = /obj/structure/closet/crate/secure/weapon
+// MONKESTATION ADDITION END

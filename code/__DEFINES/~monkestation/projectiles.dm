@@ -26,6 +26,9 @@
 /// Caliber used by the pepperball gun
 #define CALIBER_PEPPERBALL "pepperball"
 
+/// The caliber used by long revolver and long rifle
+#define CALIBER_45L ".45l"
+
 // open to suggestions on where to put these overrides
 // hugely not a fan of this but we do what we gotta
 

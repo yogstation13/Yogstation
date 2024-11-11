@@ -20,9 +20,3 @@
 /obj/item/ammo_box/magazine/internal/rus357/Initialize(mapload)
 	stored_ammo += new ammo_type(src)
 	. = ..()
-
-/obj/item/ammo_box/magazine/internal/cylinder/rev45l
-	name = ".45 Long revolver cylinder"
-	ammo_type = /obj/item/ammo_casing/g45l
-	caliber = CALIBER_45L
-	max_ammo = 6

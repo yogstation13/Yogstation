@@ -344,22 +344,3 @@
 	hook.afterattack(target, user, proximity_flag, click_parameters)
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
-// Lever gun
-/obj/item/gun/ballistic/shotgun/leveraction
-	name = "brush gun"
-	desc = "While lever-actions have been horribly out of date for hundreds of years now, \
-	putting a nicely sized hole in a man-sized target with a .45 Long round has stayed relatively timeless."
-	icon_state = "brushgun"
-	bolt_wording = "Lever"
-	cartridge_wording = "bullet"
-	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/levergun
-	projectile_wound_bonus = 10
-	projectile_damage_multiplier = 1.1
-	w_class = WEIGHT_CLASS_BULKY
-	force = 10
-	flags_1 = CONDUCT_1
-	semi_auto = FALSE
-	internal_magazine = TRUE
-	casing_ejector = FALSE
-	weapon_weight = WEAPON_HEAVY
-

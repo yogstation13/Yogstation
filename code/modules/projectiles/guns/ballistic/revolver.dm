@@ -162,18 +162,6 @@
 
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
-/obj/item/gun/ballistic/revolver/r45l
-	name = "\improper .45 Long Revolver"
-	desc = "A cheap .45 Long Revolver. Pray the timing keeps."
-	icon_state = "45revolver"
-	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/rev45l
-	obj_flags = UNIQUE_RENAME
-
-	unique_reskin = list("Default" = "45revolver",
-						"Cowboy" = "357colt",
-						"Lucky" = "lucky" //Well do ya?
-						)
-
 // A gun to play Russian Roulette!
 // You can spin the chamber to randomize the position of the bullet.
 
