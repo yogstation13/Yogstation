@@ -1,6 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Boxstation's security locker room now requires brig access to enter"
-  - balance: "The security side of Boxstation's labor camp shuttle transfer area now requires brig access."
-  - balance: "The interior of Boxstation's justice chamber now requires brig access, and the execution chamber itself requires armory access."

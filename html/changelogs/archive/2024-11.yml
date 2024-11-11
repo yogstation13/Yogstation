@@ -178,11 +178,43 @@
   Wisemonster:
   - spellcheck: Added mention of the supply department in the HoP's description
 2024-11-11:
+  Absolucy:
+  - qol: Signboard text now appears more transparent for players when they are standing
+      behind the text.
+  - qol: Decreased line height for signboard text, so the text takes up less vertical
+      space.
+  - qol: Restored the original alpha for signboard text.
+  - rscadd: Tamed carps now go much faster when ridden without gravity.
+  - qol: Tamed carps now have better pathfinding.
   Absolucy, Spaghetti-bit:
   - bugfix: Tweaked how combinable messages work in an attempt to reduce lag from
       chat spam.
   Gw0sty:
   - rscadd: Added new traitor uplink item. "License to Plasmaflood". You can guess
       the rest.
+  Shoddd:
+  - rscadd: Tumor Shard now works on elites not in their body
+  - bugfix: you can no longer unflip tables as ghost and from a distance
+  - code_imp: modularized long guns
+  SirNightKnight:
+  - qol: The cyborg cargo module now has a tray for collecting mail tokens.
+  - bugfix: Fixed reloading for the bounty cycler shotgun.
   ThePooba:
   - rscdel: changed the continue vote to not default to continue without votes
+  - bugfix: Allows loneops to spawn if the antag cap is reached but disk is unsecured
+      and gaining weight.
+  - bugfix: Omnitraitors should no longer occur roundstart (no more Changeling vampyres)
+  - balance: Stardust shells do half the stamina damage now and have more spread
+  - balance: Rainbow slimes no do not Regen limbs anymore, healing is 300 over 30
+      seconds, Causes pain, can only be used every 3 minutes.
+  Wisemonster:
+  - rscadd: The HoP's hardsuit is now available on all maps
+  - balance: Pathologist now have pharmacy access
+  - balance: The HoP's door remote has been given supply access, in addition to it's
+      civilian access.
+  - balance: The HoP now has access to mining, the QM office, and the vault.
+  - balance: Boxstation's security locker room now requires brig access to enter
+  - balance: The security side of Boxstation's labor camp shuttle transfer area now
+      requires brig access.
+  - balance: The interior of Boxstation's justice chamber now requires brig access,
+      and the execution chamber itself requires armory access.

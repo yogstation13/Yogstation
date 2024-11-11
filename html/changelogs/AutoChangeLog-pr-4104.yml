@@ -1,7 +1,0 @@
-author: "ThePooba"
-delete-after: True
-changes:
-  - bugfix: "Allows loneops to spawn if the antag cap is reached but disk is unsecured and gaining weight."
-  - bugfix: "Omnitraitors should no longer occur roundstart (no more Changeling vampyres)"
-  - balance: "Stardust shells do half the stamina damage now and have more spread"
-  - balance: "Rainbow slimes no do not Regen limbs anymore, healing is 300 over 30 seconds, Causes pain, can only be used every 3 minutes."

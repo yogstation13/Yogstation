@@ -1,5 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - bugfix: "you can no longer unflip tables as ghost and from a distance"
-  - code_imp: "modularized long guns"

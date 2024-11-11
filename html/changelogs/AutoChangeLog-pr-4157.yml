@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - qol: "Signboard text now appears more transparent for players when they are standing behind the text."
-  - qol: "Decreased line height for signboard text, so the text takes up less vertical space."
-  - qol: "Restored the original alpha for signboard text."
