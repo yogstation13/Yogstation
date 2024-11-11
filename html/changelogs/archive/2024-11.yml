@@ -177,3 +177,12 @@
 2024-11-09:
   Wisemonster:
   - spellcheck: Added mention of the supply department in the HoP's description
+2024-11-11:
+  Absolucy, Spaghetti-bit:
+  - bugfix: Tweaked how combinable messages work in an attempt to reduce lag from
+      chat spam.
+  Gw0sty:
+  - rscadd: Added new traitor uplink item. "License to Plasmaflood". You can guess
+      the rest.
+  ThePooba:
+  - rscdel: changed the continue vote to not default to continue without votes

@@ -1,4 +1,0 @@
-author: "ThePooba"
-delete-after: True
-changes:
-  - rscdel: "changed the continue vote to not default to continue without votes"
