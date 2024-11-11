@@ -77159,7 +77159,6 @@
 	dir = 4
 	},
 /obj/structure/sign/poster/official/random/directional/north,
-/obj/item/clothing/suit/space/hardsuit/hop,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hop)
 "wSi" = (

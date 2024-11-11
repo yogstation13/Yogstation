@@ -44,6 +44,7 @@
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/hop(src)
 	new /obj/item/storage/lockbox/medal/hop(src)
+	new /obj/item/clothing/suit/space/hardsuit/hop(src) //monkestation addition
 
 /obj/structure/closet/secure_closet/hos
 	name = "head of security's locker"
