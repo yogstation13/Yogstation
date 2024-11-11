@@ -98,7 +98,7 @@
 
 	step(movable_parent, direction)
 	last_move_diagonal = ((direction & (direction - 1)) && (movable_parent.loc == next))
-	COOLDOWN_START(src, vehicle_move_cooldown, (last_move_diagonal? 2 : 1) * vehicle_move_delay)
+	COOLDOWN_START(src, vehicle_move_cooldown, (last_move_diagonal ? 2 : 1) * move_delay()) // monkestation edit: use move_delay() proc instead of raw vehicle_move_delay var
 
 	if(QDELETED(src))
 		return
@@ -214,7 +214,7 @@
 			COOLDOWN_START(src, message_cooldown, 0.75 SECONDS)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	return ..()
-	
+
 /datum/component/riding/vehicle/speedbike
 	vehicle_move_delay = 0
 	override_allow_spacemove = TRUE

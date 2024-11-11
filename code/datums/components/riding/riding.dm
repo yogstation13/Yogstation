@@ -251,7 +251,7 @@
 /datum/component/riding/proc/driver_move(atom/movable/movable_parent, mob/living/user, direction)
 	SIGNAL_HANDLER
 	SHOULD_CALL_PARENT(TRUE)
-	movable_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
+	movable_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay())) // monkestation edit: use move_delay() proc instead of raw vehicle_move_delay var
 
 /// So we can check all occupants when we bump a door to see if anyone has access
 /datum/component/riding/proc/vehicle_bump(atom/movable/movable_parent, obj/machinery/door/possible_bumped_door)
