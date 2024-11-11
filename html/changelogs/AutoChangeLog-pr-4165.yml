@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "The HoP's door remote has been given supply access, in addition to it's civilian access."
+  - balance: "The HoP now has access to mining, the QM office, and the vault."
