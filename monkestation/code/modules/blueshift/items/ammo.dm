@@ -1274,7 +1274,7 @@
 	icon_state = "lasershell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot/antitide
 	pellets = 8 // 8 * 7 for 56 stamina damage, plus whatever the embedded shells do
-	variance = 30
+	variance = 50
 	harmful = FALSE
 	fire_sound = 'sound/weapons/taser.ogg'
 	custom_materials = AMMO_MATS_SHOTGUN_TIDE
@@ -1285,14 +1285,14 @@
 	icon = 'monkestation/code/modules/blueshift/icons/projectiles.dmi'
 	icon_state = "stardust"
 	damage = 2
-	stamina = 16
+	stamina = 10
 	wound_bonus = 0
 	bare_wound_bonus = 0
 	stutter = 3 SECONDS
 	jitter = 5 SECONDS
 	eyeblur = 1 SECONDS
 	sharpness = NONE
-	range = 8
+	range = 7
 	embedding = list(embed_chance=70, pain_chance=25, fall_chance=15, jostle_chance=80, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.9, pain_mult=2, rip_time=10)
 
 /obj/projectile/bullet/pellet/shotgun_buckshot/antitide/on_range()

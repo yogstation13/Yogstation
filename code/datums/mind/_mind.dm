@@ -105,6 +105,8 @@
 	var/list/failed_special_equipment
 	/// A list to keep track of which books a person has read (to prevent people from reading the same book again and again for positive mood events)
 	var/list/book_titles_read
+	/// Variable that lets the event picker see if someones getting chosen or not
+	var/picking = FALSE
 
 /datum/mind/New(_key)
 	key = _key

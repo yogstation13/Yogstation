@@ -150,18 +150,47 @@
 
 // Bar staff, GODMODE mobs(as long as they stay in the shuttle) that just want to make sure people have drinks
 // and a good time.
+/obj/item/storage/backpack/duffelbag/bardrone
+	name = "Bardrones Duffelbag"
+	desc = "A funny little bag for funny little drones"
+	icon_state = "duffel"
+	inhand_icon_state = "duffel"
+
+/obj/item/storage/backpack/duffelbag/bardrone/PopulateContents()
+	new /obj/item/reagent_containers/cup/glass/shaker(src)
+	new /obj/item/storage/box/drinkingglasses(src)
+	new /obj/item/reagent_containers/cup/rag(src)
+	new /obj/item/storage/fancy/cigarettes/cigars/havana(src)
+
 
 /mob/living/basic/drone/snowflake/bardrone
 	name = "Bardrone"
-	desc = "A barkeeping drone, a robot built to tend bars."
+	desc = "A barkeeping drone, a robot built to tend and maintain bars."
+	default_storage = /obj/item/storage/backpack/duffelbag/bardrone
 	hacked = TRUE
 	shy = FALSE
 	laws = "1. Serve drinks.\n\
 		2. Talk to patrons.\n\
-		3. Don't get messed up in their affairs."
+		3. Maintain the integrity of the bar.\n\
+		4. Do NOT involve yourself in the affairs of others outside of the above laws\n\
+		5. If given permission by relevant owners, you may improve the bar you have chosen to operate at."
+
 	unique_name = FALSE // disables the (123) number suffix
 	initial_language_holder = /datum/language_holder/universal
 	default_storage = null
+	flavortext = \
+	"\n<big><span class='warning'>LAW EXPLANATION FOR BAR DRONES</span></big>\n"+\
+	"<span class='notice'>As a bar drone your goal is to provide a fun interactive experience for other players visiting the bar*. </span>\n"+\
+	"<span class='notice'>BARDRONE GUIDELINES</span>\n"+\
+	"<span class='notice'>     -Do not harm sapient creatures </span>\n"+\
+	"<span class='notice'>     -Do not interact with non-concious people, including dead, passed out, or SSD. Call medical instead.</span>\n"+\
+	"<span class='notice'>     -Do not get into altercations with other players, remove yourself from the situation. </span>\n"+\
+	"<span class='notice'>     -Do not protect the bar from agressors. </span>\n"+\
+	"<span class='notice'>     -You may decide what bar you wish to operate at as long as the users/owners of that bar also agree.</span>\n"+\
+	"<span class='notice'>     -You may create your own bar with permission from a relevant head of staff. Do not monopolize station resources. </span>\n"+\
+	"<span class='warning'>These rules are at admin discretion and will be heavily enforced. If you have questions about these rules AHELP it.</span>\n"+\
+	"<span class='warning'><u></u></span>\n"+\
+	"<span class='notice'>Prefix your message with :b to speak in Drone Chat.</span>\n"
 
 /mob/living/basic/drone/snowflake/bardrone/Initialize(mapload)
 	. = ..()

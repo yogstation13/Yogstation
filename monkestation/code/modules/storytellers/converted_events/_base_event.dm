@@ -248,6 +248,7 @@
 	var/list/cliented_list = list()
 	for(var/mob/living/mob as anything in possible_candidates)
 		cliented_list += mob.client
+
 	if(length(cliented_list))
 		mass_adjust_antag_rep(cliented_list, 1)
 
@@ -279,6 +280,7 @@
 			if(QDELETED(picked_client))
 				continue
 			var/mob/picked_mob = picked_client.mob
+			picked_mob?.mind?.picking = TRUE
 			log_storyteller("Picked antag event mob: [picked_mob], special role: [picked_mob.mind?.special_role ? picked_mob.mind.special_role : "none"]")
 			candidates |= picked_mob
 

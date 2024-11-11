@@ -25,20 +25,12 @@
 /datum/status_effect/regenerative_extract/adamantine
 	extra_traits = list(TRAIT_FEARLESS, TRAIT_HARDLY_WOUNDED)
 
-// rainbow extracts are similar to old regen extract effects, albeit it won't replace your organs, and won't heal limbs (unless you're an oozeling)
-#define RAINBOW_HEAL_FLAGS ~(HEAL_ADMIN | HEAL_RESTRAINTS | HEAL_LIMBS | HEAL_REFRESH_ORGANS)
-
+// rainbow extracts are similar to old regen extract effects, albeit it won't replace your organs, and won't heal limbs
 /datum/status_effect/regenerative_extract/rainbow
-	alert_type = null
-	diminishing_multiplier = 0 // you can't use other extracts at all during this time
-	tick_interval = -1
+	duration = 30 SECONDS
+	base_healing_amt = 15
+	diminishing_multiplier = 1
+	diminish_time = 1.5 MINUTES
+	extra_traits = list(TRAIT_NOCRITOVERLAY, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT)
+	pain_amount = 80 //wow having my wounds closed up in seconds really fucking HURTS
 
-/datum/status_effect/regenerative_extract/rainbow/on_apply()
-	var/heal_flags = RAINBOW_HEAL_FLAGS
-	if(isoozeling(owner)) // have some mercy on oozelings
-		heal_flags |= HEAL_LIMBS
-	owner.revive(heal_flags)
-	return FALSE // return false so we immediately clear the effect and start the cooldown
-
-
-#undef RAINBOW_HEAL_FLAGS

@@ -14,13 +14,15 @@
 	/// The multiplier that the cooldown applied after the effect ends will use.
 	var/diminishing_multiplier = 0.75
 	/// How long the subsequent cooldown effect will last.
-	var/diminish_time = 45 SECONDS
+	var/diminish_time = 90 SECONDS
 	/// The maximum nutrition level this regenerative extract can heal up to.
 	var/nutrition_heal_cap = NUTRITION_LEVEL_FED - 50
 	/// Base traits given to the owner.
 	var/static/list/given_traits = list(TRAIT_ANALGESIA, TRAIT_NOCRITDAMAGE)
 	/// Extra traits given to the owner, added to the base traits.
 	var/list/extra_traits
+	//Slime healing cause pain, oof ouch
+	var/pain_amount = 20
 
 /datum/status_effect/regenerative_extract/on_apply()
 	// So this seems weird, but this allows us to have multiple things affect the regen multiplier,
@@ -35,6 +37,7 @@
 /datum/status_effect/regenerative_extract/on_remove()
 	owner.remove_traits(islist(extra_traits) ? (given_traits + extra_traits) : given_traits, id)
 	owner.apply_status_effect(/datum/status_effect/slime_regen_cooldown, diminishing_multiplier, diminish_time)
+	owner.cause_pain(BODY_ZONE_CHEST, pain_amount, BRUTE)
 
 /datum/status_effect/regenerative_extract/tick(seconds_per_tick, times_fired)
 	var/heal_amt = base_healing_amt * seconds_per_tick * multiplier
@@ -58,11 +61,12 @@
 	owner.adjustCloneLoss(-heal_amt, updating_health = FALSE)
 
 /datum/status_effect/regenerative_extract/proc/heal_misc(heal_amt)
-	owner.adjust_disgust(-heal_amt)
+	var/blood_restore = (heal_amt * 0.25)
+	owner.adjust_disgust(-blood_restore)
 	if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
-		owner.blood_volume = min(owner.blood_volume + heal_amt, BLOOD_VOLUME_NORMAL)
+		owner.blood_volume = min(owner.blood_volume + blood_restore, BLOOD_VOLUME_NORMAL)
 	if((owner.nutrition < nutrition_heal_cap) && !HAS_TRAIT(owner, TRAIT_NOHUNGER))
-		owner.nutrition = min(owner.nutrition + heal_amt, nutrition_heal_cap)
+		owner.nutrition = min(owner.nutrition + blood_restore, nutrition_heal_cap)
 
 /datum/status_effect/regenerative_extract/proc/heal_organs(heal_amt)
 	var/static/list/ignored_traumas
@@ -93,5 +97,5 @@
 
 /atom/movable/screen/alert/status_effect/regen_extract
 	name = "Slime Regeneration"
-	desc = "A milky slime covers your skin, soothing and regenerating your injuries!"
+	desc = "A milky slime covers your skin, regenerating your injuries!"
 	icon_state = "regenerative_core"

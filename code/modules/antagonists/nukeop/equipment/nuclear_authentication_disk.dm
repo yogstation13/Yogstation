@@ -40,6 +40,7 @@
 	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
 	if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
 		loneop.weight = max(loneop.weight - 1, 0)
+		loneop.checks_antag_cap = (loneop.weight < 3)
 		if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
 			message_admins("[src] is secured (currently in [ADMIN_VERBOSEJMP(new_turf)]). The weight of Lone Operative is now [loneop.weight].")
 		log_game("[src] being secured has reduced the weight of the Lone Operative event to [loneop.weight].")
@@ -57,12 +58,14 @@
 	if(last_move < world.time - 500 SECONDS && prob((world.time - 500 SECONDS - last_move)*0.0001))
 		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
 		if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
+			loneop.checks_antag_cap = (loneop.weight < 3)
 			loneop.weight += 1
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
 				if(disk_comfort_level >= 2)
 					visible_message(span_notice("[src] sleeps soundly. Sleep tight, disky."))
 				message_admins("[src] is unsecured in [ADMIN_VERBOSEJMP(new_turf)]. The weight of Lone Operative is now [loneop.weight].")
 			log_game("[src] was left unsecured in [loc_name(new_turf)]. Weight of the Lone Operative event increased to [loneop.weight].")
+
 
 /obj/item/disk/nuclear/examine(mob/user)
 	. = ..()
