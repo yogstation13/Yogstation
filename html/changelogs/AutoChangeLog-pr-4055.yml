@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Tamed carps now go much faster when ridden without gravity."
+  - qol: "Tamed carps now have better pathfinding."
