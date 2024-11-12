@@ -24218,6 +24218,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 9
 	},
+/obj/item/clothing/mask/breath/vox,
+/obj/item/tank/internals/emergency_oxygen/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "lzE" = (
