@@ -159,6 +159,7 @@ GLOBAL_LIST_EMPTY(all_store_datums)
 	loadout_tabs += list(list("name" = "Accessory", "title" = "Uniform Accessory Slot Items", "contents" = list_to_data(GLOB.store_accessory)))
 	loadout_tabs += list(list("name" = "Inhand", "title" = "In-hand Items", "contents" = list_to_data(GLOB.store_inhand_items)))
 	loadout_tabs += list(list("name" = "Toys", "title" = "Toys!", "contents" = list_to_data(GLOB.store_toys)))
+	loadout_tabs += list(list("name" = "Plushies", "title" = "Adorable little plushies!", "contents" = list_to_data(GLOB.store_plushies)))
 	loadout_tabs += list(list("name" = "Other", "title" = "Backpack Items", "contents" = list_to_data(GLOB.store_pockets)))
 
 	data["loadout_tabs"] = loadout_tabs
