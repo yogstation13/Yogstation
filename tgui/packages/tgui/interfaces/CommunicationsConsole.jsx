@@ -257,6 +257,7 @@ const PageMain = (props) => {
     emergencyAccess,
     importantActionReady,
     sectors,
+    settableLevels,
     shuttleCalled,
     shuttleCalledPreviously,
     shuttleCanEvacOrFailReason,
@@ -341,17 +342,14 @@ const PageMain = (props) => {
             </Flex.Item>
 
             <Flex.Item>
-              <AlertButton
-                alertLevel="green"
-                showAlertLevelConfirm={showAlertLevelConfirm}
-                setShowAlertLevelConfirm={setShowAlertLevelConfirm}
-              />
-
-              <AlertButton
-                alertLevel="blue"
-                showAlertLevelConfirm={showAlertLevelConfirm}
-                setShowAlertLevelConfirm={setShowAlertLevelConfirm}
-              />
+              {settableLevels.map((level) => (
+                <AlertButton
+                  alertLevel={level}
+                  key={level}
+                  showAlertLevelConfirm={showAlertLevelConfirm}
+                  setShowAlertLevelConfirm={setShowAlertLevelConfirm}
+                />
+              ))}
             </Flex.Item>
           </Flex>
         </Section>
