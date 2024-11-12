@@ -66,7 +66,7 @@
 	if(clip_on)
 		return
 	update_appearance(UPDATE_ICON)
-	register_context()
+	// register_context() monkestation: register_context() is already called in ..()
 
 /obj/item/clothing/neck/tie/examine(mob/user)
 	. = ..()

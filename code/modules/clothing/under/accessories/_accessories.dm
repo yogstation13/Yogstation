@@ -141,7 +141,10 @@
 	SIGNAL_HANDLER
 
 	accessory_dropped(source, user)
-	user.update_clothing(ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING)
+	// MONKESTATION EDIT START
+	//	user.update_clothing(ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING) - original
+	user.update_clothing(ITEM_SLOT_ICLOTHING|ITEM_SLOT_OCLOTHING|ITEM_SLOT_NECK)
+	// MONKESTATION EDIT END
 
 /// Called when the uniform this accessory is pinned to is equipped in a valid slot
 /obj/item/clothing/accessory/proc/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)

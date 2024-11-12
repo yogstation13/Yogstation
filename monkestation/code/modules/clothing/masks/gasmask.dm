@@ -1,3 +1,6 @@
+/obj/item/clothing/mask/gas/clown_hat
+	starting_filter_type = /obj/item/gas_filter/clown
+
 /obj/item/clothing/mask/gas/clown_hat/yellow
 	name = "yellow clown wig and mask"
 	desc = "A true prankster's facial attire. But yellow! A clown is incomplete without his wig and mask."
