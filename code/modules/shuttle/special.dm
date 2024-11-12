@@ -191,6 +191,10 @@
 	"<span class='warning'>These rules are at admin discretion and will be heavily enforced. If you have questions about these rules AHELP it.</span>\n"+\
 	"<span class='warning'><u></u></span>\n"+\
 	"<span class='notice'>Prefix your message with :b to speak in Drone Chat.</span>\n"
+	var/static/list/actions_to_add = list(
+		/datum/action/drone/bar/information,
+	)
+
 
 /mob/living/basic/drone/snowflake/bardrone/Initialize(mapload)
 	. = ..()
