@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Artifacts with the Talkative Fault now have an actual cooldown between forcing people to speak, preventing client-side lag whenever someone decides to be annoying and activate it 500 times in a populated area."
