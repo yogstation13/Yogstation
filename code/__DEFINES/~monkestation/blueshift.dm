@@ -273,10 +273,6 @@ See the examinemore module for information.
 /// Trait that changes the ending effects of twitch leaving your system
 #define TRAIT_TWITCH_ADAPTED "twitch_adapted"
 
-// Have to put it here so I can use it in the global list of wound series
-/// See muscle.dm and robotic_blunt.dm
-#define WOUND_SERIES_MUSCLE_DAMAGE "nova_wound_series_muscle_damage"
-
 //defines for antag opt in objective checking
 //objectives check for all players with a value equal or greater than the 'threat' level of an objective then pick from that list
 //command + sec roles are always opted in regardless of opt in status

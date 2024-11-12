@@ -123,6 +123,14 @@ GLOBAL_LIST_INIT(bio_state_anatomy, list(
 /// Generic loss wounds. See loss.dm
 #define WOUND_SERIES_LOSS_BASIC "wound_series_loss_basic"
 
+// MONKESTATION ADDITION START
+//Have to put it here so it can be used in the global list of wound series wounding_types_to_series
+/// muscle wounds applied at a low chance from blunt, slash, or pierce attacks
+#define WOUND_MUSCLE "wound_muscle"
+/// T1-T2 Muscle wounds. Both flesh and robotic variants. See muscle.dm and robotic_blunt.dm
+#define WOUND_SERIES_MUSCLE_DAMAGE "nova_wound_series_muscle_damage"
+// MONKESTATION ADDITION END
+
 /// A assoc list of (wound typepath -> wound_pregen_data instance). Every wound should have a pregen data.
 GLOBAL_LIST_INIT_TYPED(all_wound_pregen_data, /datum/wound_pregen_data, generate_wound_static_data())
 
@@ -202,8 +210,12 @@ GLOBAL_LIST_INIT(wounding_types_to_series, list(
 	WOUND_BURN = list(
 		WOUND_SERIES_FLESH_BURN_BASIC,
 	),
-	WOUND_PUNCTURE = list(
+	WOUND_PIERCE = list(
 		WOUND_SERIES_FLESH_PUNCTURE_BLEED
+	),
+	//MONKESTATION ADDITION
+	WOUND_MUSCLE = list(
+		WOUND_SERIES_MUSCLE_DAMAGE
 	),
 ))
 

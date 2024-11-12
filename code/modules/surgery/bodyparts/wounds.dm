@@ -174,13 +174,14 @@
  * * max_severity: The maximum severity that will be considered.
  * * severity_pick_mode: The "pick mode" to be used. See get_corresponding_wound_type's documentation
  * * wound_source: The source of the wound to be applied. Nullable.
+ * * smited: If the wound is to be applied from a smite.
  *
  * For the rest of the args, refer to get_corresponding_wound_type().
  *
  * Returns:
  * A new wound instance if the application was successful, null otherwise.
 */
-/mob/living/carbon/proc/cause_wound_of_type_and_severity(wounding_type, obj/item/bodypart/limb, min_severity, max_severity = min_severity, severity_pick_mode = WOUND_PICK_HIGHEST_SEVERITY, wound_source)
+/mob/living/carbon/proc/cause_wound_of_type_and_severity(wounding_type, obj/item/bodypart/limb, min_severity, max_severity = min_severity, severity_pick_mode = WOUND_PICK_HIGHEST_SEVERITY, wound_source, smited = FALSE)
 	if (isnull(limb))
 		limb = pick(bodyparts)
 
@@ -190,7 +191,7 @@
 
 	var/datum/wound/corresponding_typepath = get_corresponding_wound_type(type_list, limb, min_severity, max_severity, severity_pick_mode)
 	if (corresponding_typepath)
-		return limb.force_wound_upwards(corresponding_typepath, wound_source = wound_source)
+		return limb.force_wound_upwards(corresponding_typepath, smited = smited, wound_source = wound_source)
 
 /// Limb is nullable, but picks a random one. Defers to limb.get_wound_threshold_of_wound_type, see it for documentation.
 /mob/living/carbon/proc/get_wound_threshold_of_wound_type(wounding_type, severity, default, obj/item/bodypart/limb, wound_source)

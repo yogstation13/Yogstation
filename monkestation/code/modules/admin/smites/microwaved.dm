@@ -1,8 +1,8 @@
-/// Gives the target critically bad wounds
-/datum/smite/swisscheese
-	name = "Swisscheese without the cheese"
+/// Gives the target critically bad burns
+/datum/smite/microwaved
+	name = "Microwaved"
 
-/datum/smite/swisscheese/effect(client/user, mob/living/target)
+/datum/smite/microwaved/effect(client/user, mob/living/target)
 	. = ..()
 
 	if (!iscarbon(target))
@@ -17,4 +17,4 @@
 			WOUND_SEVERITY_CRITICAL,
 			WOUND_SEVERITY_CRITICAL,
 		))
-		carbon_target.cause_wound_of_type_and_severity(WOUND_PIERCE, limb, severity, smited = TRUE)
+		carbon_target.cause_wound_of_type_and_severity(WOUND_BURN, limb, severity, smited = TRUE)

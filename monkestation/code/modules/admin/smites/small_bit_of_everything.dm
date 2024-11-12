@@ -1,6 +1,6 @@
-/// Gives the target critically bad wounds
+/// Gives the target a mix of pretty bad wounds
 /datum/smite/small_bit_of_everything
-	name = "light wound mix bag"
+	name = "Light wound mix bag"
 
 /datum/smite/small_bit_of_everything/effect(client/user, mob/living/target)
 	. = ..()
@@ -9,12 +9,17 @@
 		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
 		return
 	var/mob/living/carbon/carbon_target = target
-	for(var/_limb in carbon_target.bodyparts)
-		var/obj/item/bodypart/limb = _limb // fine to use this raw, its a meme smite
-		var/type_wound = pick(list(/datum/wound/burn/flesh/severe/cursed_brand,/datum/wound/burn/flesh/moderate))
-		limb.force_wound_upwards(type_wound, smited = TRUE)
-		type_wound = pick(list(/datum/wound/blunt/bone/moderate, /datum/wound/pierce/bleed/moderate, /datum/wound/slash/flesh/moderate/many_cuts))
-		limb.force_wound_upwards(type_wound, smited = TRUE)
-		type_wound = pick(list(/datum/wound/muscle/moderate, /datum/wound/muscle/severe))
-		limb.force_wound_upwards(type_wound, smited = TRUE)
-
+	for(var/obj/item/bodypart/limb as anything in carbon_target.bodyparts)
+		var/severity = pick(list(
+			WOUND_SEVERITY_MODERATE,
+			WOUND_SEVERITY_MODERATE,
+			WOUND_SEVERITY_SEVERE,
+		))
+		var/wound_type = pick(list(
+			"[WOUND_BLUNT]",
+			"[WOUND_SLASH]",
+			"[WOUND_PIERCE]",
+			"[WOUND_BURN]",
+			"[WOUND_MUSCLE]",
+		))
+		carbon_target.cause_wound_of_type_and_severity(wound_type, limb, severity, smited = TRUE)
