@@ -1,0 +1,7 @@
+author: "Absolucy, OliverOtter"
+delete-after: True
+changes:
+  - rscadd: "4 new alert levels! Yellow, Amber, Gamma, and Lambda."
+  - rscadd: "Yellow alert is for engineering issues, and Amber is for biological issues (like zombies, blob, super virus, etc)"
+  - sound: "Added a special sound effect for Both Gamma and Lambda."
+  - admin: "Added Gamma, a CC flavored Red alert, and Lambda, which should ONLY be used for when a cult wins, or potentially a very angry ascended heretic."
