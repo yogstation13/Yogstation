@@ -23,6 +23,8 @@
 	plane = SPLASHSCREEN_PLANE
 	layer = LOBBY_BUTTON_LAYER
 	screen_loc = "TOP,CENTER"
+	var/here
+
 
 /// Run sleeping actions after initialize
 /atom/movable/screen/lobby/proc/SlowInit()
@@ -41,6 +43,11 @@
 	var/highlighted = FALSE
 	/// The ref of the mob that owns this button. Only the owner can click on it.
 	var/owner
+	var/area/misc/start/lobbyarea
+
+/atom/movable/screen/lobby/button/Initialize(mapload)
+	. = ..()
+	lobbyarea = GLOB.areas_by_type[/area/misc/start]
 
 /atom/movable/screen/lobby/button/Click(location, control, params)
 	if(owner != REF(usr))
@@ -437,3 +444,97 @@
 		return
 	var/mob/dead/new_player/new_player = hud.mymob
 	new_player.handle_player_polling()
+
+//This is the changing You are here Button
+/atom/movable/screen/lobby/youarehere
+	var/vanderlin = 0
+	screen_loc = "TOP:-81,CENTER:+177"
+	icon = 'icons/hud/lobby/location_indicator.dmi'
+	icon_state = "you_are_here"
+	screen_loc = "TOP,CENTER:-61"
+
+//Explanation: It gets the port then sets the "here" var in /movable/screen/lobby to the port number
+// and if the port number matches it makes clicking the button do nothing so you dont spam reconnect to the server your in
+/atom/movable/screen/lobby/youarehere/Initialize(mapload)
+	. = ..()
+	var/port = world.port
+	switch(port)
+		if(1337)
+			screen_loc = "TOP:-87,CENTER:+190"
+		if(2102)
+			screen_loc = "TOP:-100,CENTER:+190"
+		if(1342)
+			screen_loc = "TOP:-34,CENTER:+190"
+		else
+			screen_loc = "TOP:0,CENTER:0"
+
+
+//HRP MONKE
+/atom/movable/screen/lobby/button/hrp
+	screen_loc = "TOP:-44,CENTER:+173"
+	icon = 'icons/hud/lobby/sister_server_buttons.dmi'
+	icon_state = "hrp"
+	base_icon_state = "hrp"
+
+/atom/movable/screen/lobby/button/hrp/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return
+	if(!(world.port == 1342))
+		if(time2text(world.realtime, "DDD") == "Sat")
+			hud.mymob.client << link("byond://198.37.111.92:1342")
+
+//MAIN MONKE
+/atom/movable/screen/lobby/button/mrp
+	screen_loc = "TOP:-77,CENTER:+173"
+	icon = 'icons/hud/lobby/sister_server_buttons.dmi'
+	icon_state = "mrp"
+	base_icon_state = "mrp"
+
+/atom/movable/screen/lobby/button/mrp/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return
+	if(!(world.port == 0))
+		hud.mymob.client << link("byond://play.monkestation.com:1337")
+
+//NRP MONKE
+/atom/movable/screen/lobby/button/nrp
+	screen_loc = "TOP:-110,CENTER:+173"
+	icon = 'icons/hud/lobby/sister_server_buttons.dmi'
+	icon_state = "nrp"
+	base_icon_state = "nrp"
+
+/atom/movable/screen/lobby/button/nrp/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return
+	if(!(world.port == 2102))
+		hud.mymob.client << link("byond://198.37.111.92:2102")
+
+//The Vanderlin Project
+/atom/movable/screen/lobby/background/vanderlin
+	screen_loc = "TOP:-140,CENTER:+177"
+	icon = 'icons/hud/lobby/vanderlin_button.dmi'
+	icon_state = "vanderlin_WIP"
+	base_icon_state = "vanderlin_WIP"
+
+/*
+/atom/movable/screen/lobby/button/vanderlin/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return
+	hud.mymob.client << link("byond://play.monkestation.com:1337")
+*/
+
+/atom/movable/screen/lobby/button/ook
+	screen_loc = "TOP:-126,CENTER:110"
+	icon = 'icons/hud/lobby/bottom_buttons.dmi'
+	icon_state = "monke"
+	base_icon_state = "monke"
+
+/atom/movable/screen/lobby/button/ook/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return
+//	playsound(get_turf(usr), 'monkestation/sound/misc/menumonkey.ogg', 50, TRUE)
