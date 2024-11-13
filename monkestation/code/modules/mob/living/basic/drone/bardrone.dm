@@ -49,8 +49,8 @@
 /datum/action/drone/bar/information //sets up action button datum for the button itself
 	name = "Bar Drone Information"
 	desc = "Shows information and laws for the Bar Drone."
-	button_icon = 'icons/obj/art/musician.dmi'
-	button_icon_state = "synth"
+	button_icon = 'monkestation/code/modules/veth_misc_items/bardrone/sillybardrone.dmi'
+	button_icon_state = "silly_bardrone"
 
 /datum/action/drone/bar/information/Trigger(trigger_flags) //what happens when the button is pressed
 	var/datum/drone/bar/information/tgui = new(usr)
