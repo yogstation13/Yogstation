@@ -1,4 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - rscadd: "Added a tgui panel/button to access drone laws at any time."

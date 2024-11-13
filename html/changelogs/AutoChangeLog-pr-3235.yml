@@ -1,5 +1,0 @@
-author: "PotatoTomahto"
-delete-after: True
-changes:
-  - rscadd: "Adds microwave smite to toast people."
-  - bugfix: "Fixes pierce wounds and admin smites.\n:cl:"

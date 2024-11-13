@@ -231,3 +231,41 @@
       large spaces added: one above science, one below cargo, one east of botany)'
   - qol: engineering now has more tools in their lockers, adds two additional lockers
   - bugfix: captain office shutters now work
+2024-11-13:
+  Absolucy:
+  - qol: Artifacts with the Talkative Fault now have an actual cooldown between forcing
+      people to speak, preventing client-side lag whenever someone decides to be annoying
+      and activate it 500 times in a populated area.
+  Absolucy, OliverOtter:
+  - rscadd: 4 new alert levels! Yellow, Amber, Gamma, and Lambda.
+  - rscadd: Yellow alert is for engineering issues, and Amber is for biological issues
+      (like zombies, blob, super virus, etc)
+  - sound: Added a special sound effect for Both Gamma and Lambda.
+  - admin: Added Gamma, a CC flavored Red alert, and Lambda, which should ONLY be
+      used for when a cult wins, or potentially a very angry ascended heretic.
+  Gw0sty:
+  - bugfix: Fix ssd examine text to show the correct cyro time. (30 minutes)
+  PotatoTomahto:
+  - rscadd: Adds microwave smite to toast people.
+  - bugfix: 'Fixes pierce wounds and admin smites.
+
+      :cl:'
+  Sorenon:
+  - rscadd: Added the pride pin quirk
+  - image: adds special sprites for lungs when you use the smoker quirk
+  - rscadd: Added the ability to adjust neck clothing items to reveal accessories
+  - rscadd: 'New funny internals for the clowns to spawn with. They come with O2 and
+      a secondary gas between 3 options: BZ, Helium and N2O. Talk with a "different
+      tone" with Helium, giggle and laugh "uncontrollably" while under the minor effects
+      of N2O or have "fun" hallucinations while under the minor effects of BZ.'
+  - balance: To not cut on how long the clown's O2 internals last due to the mixed
+      gases, the funny internals have 50% more gas volume, same as engineers' internals.
+  - rscadd: You can now choose the prosthetic you want with the Prosthetic Limb quirk.
+  - refactor: split the three tg quirk files into separate files for each quirk
+  Veth-s:
+  - rscadd: Added a tgui panel/button to access drone laws at any time.
+  steelphoenix4:
+  - code_imp: Split Toys loadout category into Plushies and Toys
+  - code_imp: Split Toys store category into Plushies and Toys
+  - code_imp: Move plushies from toys to Plushies
+  - rscadd: Add Big And Will Be Bad Wolf and Scorched Girl to the store
