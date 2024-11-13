@@ -236,6 +236,8 @@
   - qol: Artifacts with the Talkative Fault now have an actual cooldown between forcing
       people to speak, preventing client-side lag whenever someone decides to be annoying
       and activate it 500 times in a populated area.
+  - bugfix: Bloodsucker lunge can no longer grab the victim from several rooms away
+      after it starts.
   Absolucy, OliverOtter:
   - rscadd: 4 new alert levels! Yellow, Amber, Gamma, and Lambda.
   - rscadd: Yellow alert is for engineering issues, and Amber is for biological issues

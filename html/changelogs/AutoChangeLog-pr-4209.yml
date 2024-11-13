@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Bloodsucker lunge can no longer grab the victim from several rooms away after it starts."
