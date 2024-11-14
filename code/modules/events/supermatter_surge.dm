@@ -46,7 +46,7 @@
 	announce_when = 4
 	end_when = SURGE_DURATION_MIN
 	/// How powerful is the supermatter surge going to be?
-	var/surge_class =  SURGE_SEVERITY_MIN
+	var/surge_class = null //monkestation edit
 	/// Typecasted reference to the supermatter chosen at event start
 	var/obj/machinery/power/supermatter_crystal/engine
 	/// Typecasted reference to the nitrogen properies in the SM chamber
