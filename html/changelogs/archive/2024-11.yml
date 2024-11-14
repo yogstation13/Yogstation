@@ -271,3 +271,9 @@
   - code_imp: Split Toys store category into Plushies and Toys
   - code_imp: Move plushies from toys to Plushies
   - rscadd: Add Big And Will Be Bad Wolf and Scorched Girl to the store
+2024-11-14:
+  ThePooba:
+  - rscadd: Adds buttons to switch between servers. The buttons will also indicate
+      which server you are currently on.
+  Veth-s:
+  - image: added a new icon for the bardrone law panel

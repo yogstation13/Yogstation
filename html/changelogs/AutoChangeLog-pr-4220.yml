@@ -1,4 +1,0 @@
-author: "ThePooba"
-delete-after: True
-changes:
-  - rscadd: "Adds buttons to switch between servers. The buttons will also indicate which server you are currently on."
