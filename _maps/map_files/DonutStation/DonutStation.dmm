@@ -14369,7 +14369,6 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/paper/fluff/ruins/thederelict/equipment,
 /turf/open/floor/plasteel/airless,
 /area/space/nearstation)
 "fTq" = (
