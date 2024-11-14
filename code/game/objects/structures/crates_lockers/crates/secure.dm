@@ -7,7 +7,7 @@
 	max_integrity = 500
 	armor_type = /datum/armor/crate_secure
 	var/tamperproof = 0
-	damage_deflection = 25
+	damage_deflection = 35
 
 /datum/armor/crate_secure
 	melee = 30
