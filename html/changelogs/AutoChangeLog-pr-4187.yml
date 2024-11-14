@@ -1,5 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Chainsaw's structure damage multiplier reduced from 1.5 to 1.4 (36 damage to 33.6)"
-  - balance: "Secure crate's minimum damage required increased from 25 to 35"

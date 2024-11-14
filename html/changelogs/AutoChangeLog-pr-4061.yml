@@ -1,8 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Pathologists are given science goggles and a syringe in their roundstart equipment."
-  - rscadd: "Added virology chemical fridges to several maps"
-  - qol: "Added Gloves to the Virology vendor."
-  - bugfix: "Adjusted vox to reflect what is said for two virology related lines."
-  - balance: "Removed advanced parts from holomaps so they will stop being harvested by said virologists."

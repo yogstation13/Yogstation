@@ -1,6 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - admin: "Added Check Players verb"
-  - admin: "Fixed Adjust Event Tokens to work off of ckey instead of Character Name"
-  - admin: "Fixed Adjust Antag Tokens to work off of ckey instead of Character Name"

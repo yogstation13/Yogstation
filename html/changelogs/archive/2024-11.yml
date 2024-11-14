@@ -272,8 +272,24 @@
   - code_imp: Move plushies from toys to Plushies
   - rscadd: Add Big And Will Be Bad Wolf and Scorched Girl to the store
 2024-11-14:
+  Gw0sty:
+  - rscadd: Pathologists are given science goggles and a syringe in their roundstart
+      equipment.
+  - rscadd: Added virology chemical fridges to several maps
+  - qol: Added Gloves to the Virology vendor.
+  - bugfix: Adjusted vox to reflect what is said for two virology related lines.
+  - balance: Removed advanced parts from holomaps so they will stop being harvested
+      by said virologists.
   ThePooba:
   - rscadd: Adds buttons to switch between servers. The buttons will also indicate
       which server you are currently on.
   Veth-s:
   - image: added a new icon for the bardrone law panel
+  - admin: Added Check Players verb
+  - admin: Fixed Adjust Event Tokens to work off of ckey instead of Character Name
+  - admin: Fixed Adjust Antag Tokens to work off of ckey instead of Character Name
+  Wisemonster:
+  - bugfix: Fixed the supermatter power surge event only ever being class 1
+  - balance: Chainsaw's structure damage multiplier reduced from 1.5 to 1.4 (36 damage
+      to 33.6)
+  - balance: Secure crate's minimum damage required increased from 25 to 35
