@@ -26369,6 +26369,9 @@
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/neck/stethoscope,
 /obj/machinery/firealarm/directional/south,
+/obj/effect/spawner/random/food_or_drink/donkpockets{
+	pixel_y = 5
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/pathology)
 "hBZ" = (
@@ -30442,14 +30445,11 @@
 /turf/open/floor/carpet/green,
 /area/station/commons/dorms)
 "iHU" = (
-/obj/structure/table/glass,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
 	dir = 9
 	},
-/obj/effect/spawner/random/food_or_drink/donkpockets{
-	pixel_y = 5
-	},
+/obj/machinery/smartfridge/chemistry/virology/preloaded,
 /turf/open/floor/iron/white,
 /area/station/medical/pathology)
 "iHX" = (

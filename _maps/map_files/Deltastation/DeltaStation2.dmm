@@ -5524,6 +5524,7 @@
 /obj/item/storage/box/monkeycubes/mousecubes,
 /obj/item/storage/box/monkeycubes/mousecubes,
 /obj/item/storage/box/monkeycubes/mousecubes,
+/obj/effect/turf_decal/trimline/green/filled/line,
 /turf/open/floor/iron/white,
 /area/station/medical/pathology)
 "bmU" = (
@@ -17020,6 +17021,15 @@
 	},
 /turf/open/floor/iron,
 /area/station/ai_monitored/command/storage/eva)
+"eab" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/green/filled/corner{
+	dir = 8
+	},
+/turf/open/floor/iron/white,
+/area/station/medical/pathology)
 "eae" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
@@ -27025,15 +27035,16 @@
 /area/station/smithing)
 "grE" = (
 /obj/machinery/airalarm/directional/west,
-/obj/effect/turf_decal/trimline/green/filled/line{
-	dir = 10
-	},
 /obj/machinery/camera/directional/west{
 	c_tag = "Virology - Work Room";
 	name = "virology camera";
 	network = list("ss13","medbay","virology")
 	},
-/turf/open/floor/iron/white,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/smartfridge/chemistry/virology/preloaded,
+/turf/open/floor/iron,
 /area/station/medical/pathology)
 "grM" = (
 /obj/structure/disposalpipe/segment{
@@ -39527,7 +39538,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/obj/effect/turf_decal/trimline/green/filled/corner{
+/obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
 	},
 /turf/open/floor/iron/white/smooth_large,
@@ -86177,10 +86188,10 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "uxI" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
 /obj/machinery/disease2/centrifuge,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/medical/pathology)
 "uxY" = (
@@ -136314,7 +136325,7 @@ tgT
 qYo
 tgT
 hZE
-wjV
+eab
 jpN
 mIg
 rJG

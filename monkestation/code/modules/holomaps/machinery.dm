@@ -323,13 +323,13 @@
 /obj/item/circuitboard/machine/station_map
 	name = "Station Map"
 	build_path = /obj/machinery/station_map/directional/north
-	req_components = list(/obj/item/stock_parts/scanning_module/triphasic = 3, /obj/item/stock_parts/micro_laser/ultra = 4)
+	req_components = list(/obj/item/stock_parts/scanning_module = 3, /obj/item/stock_parts/micro_laser = 4)
 
 /obj/item/circuitboard/machine/station_map/engineering
 	name = "Engineering Station Map"
 	desc = "A virtual map of the surrounding station. Also shows any active fire and atmos alarms."
 	build_path = /obj/machinery/station_map/engineering/directional/north
-	req_components = list(/obj/item/stock_parts/scanning_module/triphasic = 3, /obj/item/stock_parts/micro_laser/ultra = 4, /obj/item/stock_parts/subspace/analyzer = 1)
+	req_components = list(/obj/item/stock_parts/scanning_module = 3, /obj/item/stock_parts/micro_laser = 4, /obj/item/stock_parts/subspace/analyzer = 1)
 
 // Directional Ones for Mapping //
 /obj/machinery/station_map/directional/north

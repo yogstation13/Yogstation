@@ -69187,7 +69187,7 @@
 	dir = 10
 	},
 /obj/effect/turf_decal/bot,
-/obj/structure/closet/l3closet/virology,
+/obj/machinery/smartfridge/chemistry/virology/preloaded,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/medical/virology)
 "uyk" = (

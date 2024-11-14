@@ -554,6 +554,7 @@
 		/obj/item/storage/backpack/virology = 2,
 		/obj/item/storage/backpack/satchel/vir = 2,
 		/obj/item/storage/backpack/duffelbag/virology = 2,
+		/obj/item/clothing/gloves/latex/nitrile = 2, // Monkestation addition
 	)
 	refill_canister = /obj/item/vending_refill/wardrobe/viro_wardrobe
 	payment_department = ACCOUNT_MED

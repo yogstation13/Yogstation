@@ -7282,6 +7282,7 @@
 #include "monkestation\code\modules\jobs\job_types\shaft_miner.dm"
 #include "monkestation\code\modules\jobs\job_types\signal_technician.dm"
 #include "monkestation\code\modules\jobs\job_types\skeleton.dm"
+#include "monkestation\code\modules\jobs\job_types\virologist.dm"
 #include "monkestation\code\modules\jobs\job_types\yellowclown.dm"
 #include "monkestation\code\modules\jobs\job_types\departments\departments.dm"
 #include "monkestation\code\modules\jobs\job_types\spawner\bar_drone.dm"
