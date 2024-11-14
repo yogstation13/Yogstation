@@ -11,6 +11,7 @@ import {
   Icon,
   Section,
   LabeledList,
+  DmIcon,
 } from '../components';
 import { Window } from '../layouts';
 import { formatSiUnit } from '../format';
@@ -169,14 +170,8 @@ export const OreRedemptionMachine = (props) => {
 };
 
 const MaterialRow = (props) => {
-  const { data } = useBackend();
-  const { material_icons } = data;
   const { material, onRelease } = props;
   const [compact, setCompact] = useLocalState('compact', false);
-
-  const display = material_icons.find(
-    (mat_icon) => mat_icon.id === material.id,
-  );
 
   const sheet_amounts = Math.floor(material.amount);
   const print_amount = 5;
@@ -186,16 +181,12 @@ const MaterialRow = (props) => {
     <Table.Row className="candystripe" collapsing>
       {!compact && (
         <Table.Cell collapsing>
-          <Box
-            as="img"
-            m={1}
-            src={`data:image/jpeg;base64,${display.product_icon}`}
-            height="18px"
-            width="18px"
-            style={{
-              '-ms-interpolation-mode': 'nearest-neighbor',
-              'vertical-align': 'middle',
-            }}
+          <DmIcon
+            height={'18px'}
+            width={'18px'}
+            icon={material.icon}
+            icon_state={material.icon_state}
+            fallback={<Icon name="spinner" size={2} spin />}
           />
         </Table.Cell>
       )}

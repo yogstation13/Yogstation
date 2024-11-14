@@ -12,6 +12,7 @@ import {
   Section,
   Stack,
   Tabs,
+  DmIcon,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -23,7 +24,8 @@ type OrderDatum = {
   cat: string;
   ref: string;
   cost: number;
-  product_icon: string;
+  icon: string;
+  icon_state: string;
 };
 
 type Item = {
@@ -130,16 +132,13 @@ const ShoppingTab = (props) => {
                   />{' '}
                   {!condensed && (
                     <Stack.Item>
-                      <Box
-                        as="img"
-                        m={1}
-                        src={`data:image/jpeg;base64,${item.product_icon}`}
-                        height="36px"
-                        width="36px"
-                        style={{
-                          '-ms-interpolation-mode': 'nearest-neighbor',
-                          'vertical-align': 'middle',
-                        }}
+                      <DmIcon
+                        icon={item.icon}
+                        icon_state={item.icon_state}
+                        verticalAlign="middle"
+                        height={'36px'}
+                        width={'36px'}
+                        fallback={<Icon name="spinner" size={2} spin />}
                       />
                     </Stack.Item>
                   )}
