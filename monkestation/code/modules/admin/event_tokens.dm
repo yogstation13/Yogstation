@@ -4,11 +4,10 @@
 	set name = "Adjust Event Tokens"
 	set desc = "Adjust how many event tokens someone has."
 
-	var/mob/chosen_player = tgui_input_list(src, "Choose a Player", "Player List", GLOB.player_list)
-	if(!chosen_player)
+	var/client/chosen_client = tgui_input_list(src, "Choose a Player", "Player List", GLOB.clients)
+	if(!chosen_client)
 		return
 
-	var/client/chosen_client = chosen_player.client
 	var/adjustment_amount = tgui_input_number(src, "How much should we adjust this users tokens by?", "Input Value", TRUE)
 	if(!adjustment_amount || !chosen_client)
 		return

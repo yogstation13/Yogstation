@@ -8216,6 +8216,7 @@
 #include "monkestation\code\modules\vehicles\mecha\mecha_actions.dm"
 #include "monkestation\code\modules\vehicles\mecha\equipment\tools\other_tools.dm"
 #include "monkestation\code\modules\vending\megaseed.dm"
+#include "monkestation\code\modules\veth_misc_items\admin_fixes\check_players.dm"
 #include "monkestation\code\modules\veth_misc_items\admin_vox\admin_vox.dm"
 #include "monkestation\code\modules\veth_misc_items\canopics\canopics.dm"
 #include "monkestation\code\modules\viking\viking_armour.dm"
