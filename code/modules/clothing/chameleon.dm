@@ -142,6 +142,16 @@
 	qdel(O)
 	return TRUE
 
+/datum/action/chameleon_copy
+	name = "Copy person"
+	button_icon_state = "chameleon_outfit" //Temporary, just to test it works
+	var/syndicate = FALSE
+
+/datum/action/chameleon_copy/Grant(mob/user)
+	if(syndicate)
+		owner_has_control = is_syndicate(user)
+	return ..()
+
 
 /datum/action/item_action/chameleon/change
 	name = "Chameleon Change"
