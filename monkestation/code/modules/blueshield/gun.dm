@@ -48,6 +48,14 @@
 
 	weapon_to_spawn = /obj/item/gun/ballistic/revolver/takbok/blueshield
 
+/obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/takbok/blueshield/PopulateContents()
+	new weapon_to_spawn (src)
+
+	generate_items_inside(list(
+		/obj/item/ammo_box/c585trappiste/incapacitator = 1,
+		/obj/item/ammo_box/c585trappiste = 1,
+	), src)
+
 //Weapon beacon
 /obj/item/choice_beacon/blueshield
 	name = "gunset beacon"
@@ -77,6 +85,15 @@
 
 	weapon_to_spawn = /obj/item/gun/ballistic/automatic/pistol/tech_9/no_mag
 	extra_to_spawn = /obj/item/ammo_box/magazine/m35/rubber
+
+/obj/item/storage/toolbox/guncase/skyrat/pistol/tech_9/PopulateContents()
+	new weapon_to_spawn (src)
+
+	generate_items_inside(list(
+		/obj/item/ammo_box/magazine/m35/rubber = 2,
+		/obj/item/ammo_box/magazine/m35 = 1,
+	), src)
+
 
 /obj/item/gun/ballistic/automatic/pistol/tech_9
 	name = "\improper Glock-O"
