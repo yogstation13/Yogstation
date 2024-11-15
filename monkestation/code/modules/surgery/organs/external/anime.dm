@@ -11,6 +11,7 @@
 	bodypart_overlay = /datum/bodypart_overlay/mutant/anime_head
 
 /datum/bodypart_overlay/mutant/anime_head
+	color_source = ORGAN_COLOR_ANIME
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
 	feature_key = "anime_top"
 
@@ -33,6 +34,7 @@
 	bodypart_overlay = /datum/bodypart_overlay/mutant/anime_middle
 
 /datum/bodypart_overlay/mutant/anime_middle
+	color_source = ORGAN_COLOR_ANIME
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
 	feature_key = "anime_middle"
 
@@ -55,6 +57,7 @@
 	bodypart_overlay = /datum/bodypart_overlay/mutant/anime_bottom
 
 /datum/bodypart_overlay/mutant/anime_bottom
+	color_source = ORGAN_COLOR_ANIME
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
 	feature_key = "anime_bottom"
 
