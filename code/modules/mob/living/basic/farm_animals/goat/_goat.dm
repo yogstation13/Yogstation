@@ -125,6 +125,8 @@
 
 /// Proc that handles dealing with the various types of plants we might eat. Assumes that a valid list of type(s) will be passed in.
 /mob/living/basic/goat/proc/eat_plant(list/plants)
+	if(health == 0) //monkestation edit
+		return
 	var/eaten = FALSE
 
 	for(var/atom/target as anything in plants)
