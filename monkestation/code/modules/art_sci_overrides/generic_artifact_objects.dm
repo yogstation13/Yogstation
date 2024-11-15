@@ -54,6 +54,9 @@ ARTIFACT_SETUP(/obj/structure/artifact, SSobj, null, forced_effect, null)
 /obj/structure/artifact/vomit
 	forced_effect = /datum/artifact_effect/vomit
 
+/obj/structure/artifact/orchestral
+	forced_effect = /datum/artifact_effect/orchestral
+
 /obj/structure/artifact/borger
 	forced_effect = /datum/artifact_effect/borger
 

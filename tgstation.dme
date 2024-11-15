@@ -6405,6 +6405,7 @@
 #include "monkestation\code\modules\art_sci_overrides\artifact_effects\melee.dm"
 #include "monkestation\code\modules\art_sci_overrides\artifact_effects\money.dm"
 #include "monkestation\code\modules\art_sci_overrides\artifact_effects\narsieoffering.dm"
+#include "monkestation\code\modules\art_sci_overrides\artifact_effects\orchestral.dm"
 #include "monkestation\code\modules\art_sci_overrides\artifact_effects\plushie_vendor.dm"
 #include "monkestation\code\modules\art_sci_overrides\artifact_effects\repulsor.dm"
 #include "monkestation\code\modules\art_sci_overrides\artifact_effects\smoke_artifacts.dm"
