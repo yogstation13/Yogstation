@@ -17,7 +17,9 @@
 		/datum/reagent/medicine/omnizine/godblood,
 		/datum/reagent/medicine/cordiolis_hepatico,
 		/datum/reagent/medicine/synaphydramine,
-		/datum/reagent/medicine/diphenhydramine
+		/datum/reagent/medicine/diphenhydramine,
+		/datum/reagent/medicine/changelingadrenaline,
+		/datum/reagent/medicine/spaceacillin
 		)
 	var/allergy_string
 
