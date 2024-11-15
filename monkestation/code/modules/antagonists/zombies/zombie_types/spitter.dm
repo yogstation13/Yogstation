@@ -72,6 +72,7 @@
 
 // Has to return TRUE, otherwise is skipped.
 /datum/action/cooldown/zombie/spit/Activate(atom/target)
+	StartCooldown()
 	return TRUE
 
 /obj/projectile/neurotoxin/zombie

@@ -92,6 +92,9 @@
 	if(ismob(target)) //If it could corrode mobs, it would one-shot them.
 		owner.balloon_alert(owner, "doesn't work on mobs!")
 		return FALSE
+	if(isfloorturf(target)) // Turns floors into landmines which do the same as above
+		owner.balloon_alert(owner, "doesn't work on floors!")
+		return FALSE
 
 	return ..()
 
@@ -104,6 +107,7 @@
 		span_alert("[owner] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"),
 		span_notice("You vomit globs of acid over [target]. It begins to sizzle and melt."),
 	)
+	StartCooldown()
 	return TRUE
 
 /datum/action/cooldown/zombie/explode
