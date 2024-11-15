@@ -18,8 +18,8 @@
 /obj/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	icon_state = "pellet"
-	damage = 10
-	stamina = 65 //monkestation edit
+	damage = 5 //10 to 5 monkestation edit
+	stamina = 75 //monkestation edit
 	wound_bonus = 20
 	sharpness = NONE
 	embedding = null
@@ -84,9 +84,10 @@
 /obj/projectile/bullet/pellet/shotgun_rubbershot
 	name = "rubber shot pellet"
 	damage = 3
-	stamina = 30 //monkestation edit
+	stamina = 15 //monkestation edit
 	sharpness = NONE
 	embedding = null
+	tile_dropoff_s = 0 //monkestation edit
 	speed = 1.2
 	ricochets_max = 4
 	ricochet_chance = 120
@@ -106,7 +107,8 @@
 /obj/projectile/bullet/pellet/shotgun_incapacitate
 	name = "incapacitating pellet"
 	damage = 1
-	stamina = 6
+	stamina = 12 //monkestation edit
+	tile_dropoff_s = 3 //monkestation edit spitting distance
 	embedding = null
 
 /obj/projectile/bullet/pellet/shotgun_improvised

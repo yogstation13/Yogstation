@@ -79,7 +79,7 @@
 	desc = "A 12 gauge buckshot shell."
 	icon_state = "gshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_buckshot
-	pellets = 6
+	pellets = 8 //monkestation edit was 6
 	variance = 25
 
 /obj/item/ammo_casing/shotgun/rubbershot
@@ -87,8 +87,8 @@
 	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
 	icon_state = "rshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
-	pellets = 6
-	variance = 20
+	pellets = 5 //monkestation edit
+	variance = 25 // 5 pellets for 15 stam and 3 damage each
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)
 
 /obj/item/ammo_casing/shotgun/incapacitate
@@ -96,8 +96,8 @@
 	desc = "A shotgun casing filled with... something. used to incapacitate targets."
 	icon_state = "bountyshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_incapacitate
-	pellets = 12//double the pellets, but half the stun power of each, which makes this best for just dumping right in someone's face.
-	variance = 25
+	pellets = 20//monkestation edit 12 to 20
+	variance = 30 //monkestation edit
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)
 
 /obj/item/ammo_casing/shotgun/improvised

@@ -256,7 +256,7 @@
 
 	// i know that this is probably more with wands and gun mods in mind, but it's a bit silly that the projectile on_hit signal doesn't ping the projectile itself.
 	// maybe we care what the projectile thinks! See about combining these via args some time when it's not 5AM
-	if(stamina >= 10 && isliving(target))
+	if(stamina >= 15 && isliving(target))
 		var/mob/living/living = target
 		var/datum/status_effect/stacking/debilitated/effect = living.has_status_effect(/datum/status_effect/stacking/debilitated)
 		if(effect)

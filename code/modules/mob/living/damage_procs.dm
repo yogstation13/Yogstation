@@ -268,8 +268,8 @@
 	if(immobilize)
 		apply_effect(immobilize, EFFECT_IMMOBILIZE, blocked)
 
-	if(stamina)
-		apply_damage(stamina, STAMINA, null, blocked)
+	//if(stamina) //monkestation removal
+	//	apply_damage(stamina, STAMINA, null, blocked) //IF THIS ISN'T AN EFFECT AND IS A DAMAGE TYPE WHY IS IT HERE?
 
 	if(drowsy)
 		adjust_drowsiness(drowsy)
