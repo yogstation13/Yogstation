@@ -7,6 +7,16 @@
 	name = "None"
 	icon_state = "none"
 
+/datum/sprite_accessory/anime_head/elf1
+	name = "Short Elf Ears"
+	icon_state = "elf1"
+	color_src = SKIN_COLOR
+
+/datum/sprite_accessory/anime_head/elf2
+	name = "Long Elf Ears"
+	icon_state = "elf2"
+	color_src = SKIN_COLOR
+
 /datum/sprite_accessory/anime_head/pony
 	name = "Pony Ears"
 	icon_state = "pony"
