@@ -1,5 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - bugfix: "Cooldowns for spitter and bloater now trigger"
-  - bugfix: "Bloaters and xenos can no longer instant husk, and gib"

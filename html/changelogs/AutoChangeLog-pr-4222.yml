@@ -1,5 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - rscadd: "Add two types of elf ears to anime quirk"
-  - code_imp: "Removed a second color check from anime overlays"

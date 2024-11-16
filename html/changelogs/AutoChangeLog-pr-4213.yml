@@ -1,6 +1,0 @@
-author: "SirNightKnight"
-delete-after: True
-changes:
-  - bugfix: "Fixed stamina projectiles dealing DOUBLE STAMINA DAMAGE. Rebalanced the debilitated status effect accordingly."
-  - balance: "Rebalanced shotgun ammo."
-  - balance: "C38 rubber rounds do not lose kinetic force on ricochet and deal slightly more stamina damage."

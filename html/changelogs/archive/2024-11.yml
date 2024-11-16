@@ -293,3 +293,36 @@
   - balance: Chainsaw's structure damage multiplier reduced from 1.5 to 1.4 (36 damage
       to 33.6)
   - balance: Secure crate's minimum damage required increased from 25 to 35
+2024-11-16:
+  Absolucy:
+  - image: LOOC runechat now has an icon next to it, making it more obviously LOOC.
+      Whoops, I kinda forgot to add this, then completely forgot about it.
+  - bugfix: You can no longer crush random unsuspecting people with vendors by ventcrawling
+      while cursed. Teratomas rejoice, doors won't stun you while inside the vents
+      anymore.
+  - qol: AFK players don't count as "watchers" for cursed stuff.
+  KnigTheThrasher:
+  - rscadd: Updated some maintenance areas on kilostation.
+  Shoddd:
+  - rscadd: Add two types of elf ears to anime quirk
+  - code_imp: Removed a second color check from anime overlays
+  - bugfix: Cooldowns for spitter and bloater now trigger
+  - bugfix: Bloaters and xenos can no longer instant husk, and gib
+  - bugfix: Fixes lucky skin for .45 Long
+  SirNightKnight:
+  - bugfix: Fixed stamina projectiles dealing DOUBLE STAMINA DAMAGE. Rebalanced the
+      debilitated status effect accordingly.
+  - balance: Rebalanced shotgun ammo.
+  - balance: C38 rubber rounds do not lose kinetic force on ricochet and deal slightly
+      more stamina damage.
+  - bugfix: Dismissed goats from service in death against vines.
+  - bugfix: Covert mod can be used as internals
+  Veth-s:
+  - bugfix: fixed allergens from the Allergies perk sometimes being blank.
+  Wisemonster:
+  - balance: Each blueshield gun (minus the Hellfire) now comes with lethal ammo and
+      non-lethal ammo
+  flleeppyy:
+  - rscadd: jazz artifact effects
+  tired-wired:
+  - rscadd: adds an intern (trialmin) office to centcom.

@@ -1,5 +1,0 @@
-author: "SirNightKnight"
-delete-after: True
-changes:
-  - bugfix: "Dismissed goats from service in death against vines."
-  - bugfix: "Covert mod can be used as internals"

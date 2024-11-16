@@ -1,4 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - bugfix: "fixed allergens from the Allergies perk sometimes being blank."
