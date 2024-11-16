@@ -23,4 +23,4 @@
 	first.Turn(rand(-90, 90))
 	animate(transform = first, time = 0.3 SECONDS)
 
-	addtimer(CALLBACK(src, PROC_REF(delete_particle), spawned), duration)
+	QDEL_IN(spawned, duration)

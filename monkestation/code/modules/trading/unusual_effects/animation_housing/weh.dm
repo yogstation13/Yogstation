@@ -22,4 +22,4 @@
 	animate(spawned, transform = first, time = 0.4 SECONDS, pixel_y = rand(-1, 12) + spawned.pixel_y, pixel_x = rand(-32, 32) + spawned.pixel_x, easing = JUMP_EASING)
 	animate(transform = second, time = 0.5 SECONDS, pixel_y = spawned.pixel_y - 32)
 	animate(spawned, alpha = 0, time = duration)
-	addtimer(CALLBACK(src, PROC_REF(delete_particle), spawned), duration)
+	QDEL_IN(spawned, duration)

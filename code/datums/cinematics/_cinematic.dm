@@ -155,7 +155,7 @@
 
 /// Unlocks a previously locked weakref
 /datum/cinematic/proc/unlock_mob(datum/weakref/mob_ref)
-	var/mob/locked_mob = mob_ref.resolve()
+	var/mob/locked_mob = mob_ref?.resolve()
 	if(isnull(locked_mob))
 		return
 	REMOVE_TRAIT(locked_mob, TRAIT_NO_TRANSFORM, CINEMATIC_SOURCE)

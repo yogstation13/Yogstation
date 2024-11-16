@@ -34,4 +34,4 @@
 			animate(spawned, time = rand(0.5 SECONDS, duration), pixel_x = spawned.pixel_x + 160, alpha = 25)
 		if(WEST)
 			animate(spawned, time = rand(0.5 SECONDS, duration), pixel_x = spawned.pixel_x - 160, alpha = 25)
-	addtimer(CALLBACK(src, PROC_REF(delete_particle), spawned), duration)
+	QDEL_IN(spawned, duration)

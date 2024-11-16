@@ -6,13 +6,10 @@ GLOBAL_LIST_EMPTY(cached_preround_items)
 /datum/pre_round_store
 	var/datum/store_item/bought_item
 
-/datum/pre_round_store/New(mob/user)
-	. = ..()
-	ui_interact(user)
-
 /datum/pre_round_store/Destroy(force)
-	. = ..()
+	SStgui.close_uis(src)
 	bought_item = null
+	return ..()
 
 /datum/pre_round_store/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -95,8 +92,7 @@ GLOBAL_LIST_EMPTY(cached_preround_items)
 				if(!granting_time.grant_effect(new_player_mob_living))
 					return
 		else
-			ui_close()
-			qdel(new_player_mob.client.readied_store)
+			QDEL_NULL(new_player_mob.client.readied_store)
 			return
 	else if(!new_player_mob.put_in_hands(created_item, FALSE))
 		var/obj/item/storage/backpack/backpack = new_player_mob_living.get_item_by_slot(ITEM_SLOT_BACK)
@@ -107,5 +103,4 @@ GLOBAL_LIST_EMPTY(cached_preround_items)
 
 	owners_prefs.adjust_metacoins(new_player_mob.client.ckey, (-initial(bought_item.item_cost)), donator_multipler = FALSE)
 	logger.Log(LOG_CATEGORY_META, "[new_player_mob.client] bought a [created_item] for [initial(bought_item.item_cost)] (Pre-round Store)", list("currency_left" = new_player_mob.client.prefs.metacoins))
-	ui_close()
-	qdel(new_player_mob.client.readied_store)
+	QDEL_NULL(new_player_mob.client.readied_store)

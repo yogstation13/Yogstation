@@ -21,14 +21,11 @@
 /datum/round_event_control/bitrunning_glitch/can_spawn_event(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()
 	if(!.)
-		return .
-
+		return
 	active_servers.Cut()
-
 	get_active_servers()
-
-	if(length(active_servers))
-		return TRUE
+	if(!length(active_servers))
+		return FALSE
 
 /// All servers currently running, has players in it, and map has valid mobs
 /datum/round_event_control/bitrunning_glitch/proc/get_active_servers()

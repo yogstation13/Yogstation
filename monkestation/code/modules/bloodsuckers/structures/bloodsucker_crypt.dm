@@ -605,7 +605,7 @@
 	target.pixel_y -= 2
 
 // The speech itself
-/obj/structure/bloodsucker/bloodthrone/proc/handle_speech(datum/source, mob/speech_args)
+/obj/structure/bloodsucker/bloodthrone/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
 
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -614,9 +614,9 @@
 	user.log_talk(message, LOG_SAY, tag=ROLE_BLOODSUCKER)
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
 	for(var/datum/antagonist/vassal/receiver as anything in bloodsuckerdatum.vassals)
-		if(!receiver.owner.current)
+		var/mob/receiver_mob = receiver?.owner?.current
+		if(QDELETED(receiver_mob))
 			continue
-		var/mob/receiver_mob = receiver.owner.current
 		to_chat(receiver_mob, rendered, type = MESSAGE_TYPE_RADIO)
 	to_chat(user, rendered, type = MESSAGE_TYPE_RADIO, avoid_highlighting = TRUE) // tell yourself, too.
 

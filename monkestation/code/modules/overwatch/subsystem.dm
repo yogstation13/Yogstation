@@ -414,7 +414,7 @@ SUBSYSTEM_DEF(overwatch)
 	if(response.body == "[]")
 		return
 	var/active_ban_count = 0
-	bans = json_decode(response["body"])
+	bans = json_decode(response.body)
 	for(var/list/ban in bans)
 		if(ban["type"] != "Server")
 			continue

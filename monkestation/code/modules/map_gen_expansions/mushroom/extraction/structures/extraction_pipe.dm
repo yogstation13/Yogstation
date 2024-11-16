@@ -265,4 +265,5 @@
 
 		living_particles |= spawned
 
+		RegisterSignal(spawned, COMSIG_QDELETING, PROC_REF(particle_qdeleting))
 		animate_particle(spawned)

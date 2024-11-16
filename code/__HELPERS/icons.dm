@@ -1507,6 +1507,8 @@ GLOBAL_LIST_EMPTY(icon_dimensions)
 /proc/strip_appearance_underlays(mutable_appearance/appearance)
 	var/base_plane = PLANE_TO_TRUE(appearance.plane)
 	for(var/mutable_appearance/underlay as anything in appearance.underlays)
+		if(isnull(underlay))
+			continue
 		if(PLANE_TO_TRUE(underlay.plane) != base_plane)
 			appearance.underlays -= underlay
 	return appearance

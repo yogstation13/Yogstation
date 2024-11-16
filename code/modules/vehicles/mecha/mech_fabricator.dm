@@ -380,7 +380,7 @@
 	var/size32x32 = "[spritesheet.name]32x32"
 
 	for(var/datum/design/design in cached_designs)
-		var/cost = list()
+		var/list/cost = list()
 
 		for(var/datum/material/material in design.materials)
 			cost[material.name] = get_resource_cost_w_coeff(design, material)

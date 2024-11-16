@@ -424,8 +424,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	var/obj/item/radio/server/hradio = S.server_radio
 
 	if(!hradio)
-		throw EXCEPTION("tcombroadcast(): signal has no radio")
-		return
+		CRASH("tcombroadcast(): signal has no radio")
 	//First lets do some checks for bad input
 	if(isnum(message)) // Allows for setting $content to a number value
 		message = "[message]"

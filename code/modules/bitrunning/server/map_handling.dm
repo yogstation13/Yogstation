@@ -128,7 +128,7 @@
 
 /// Loads the safehouse
 /obj/machinery/quantum_server/proc/initialize_safehouse()
-	var/turf/safehouse_load_turf = list()
+	var/list/turf/safehouse_load_turf = list()
 	for(var/obj/effect/landmark/bitrunning/safehouse_spawn/spawner in GLOB.landmarks_list)
 		safehouse_load_turf += get_turf(spawner)
 		qdel(spawner)

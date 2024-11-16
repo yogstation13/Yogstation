@@ -16,6 +16,7 @@
 		log_admin("[key_name(usr)] deleted [D] [coords]")
 		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		SEND_SIGNAL(D, COMSIG_ADMIN_DELETING, src)
 		if(isturf(D))
 			var/turf/T = D
 			T.ScrapeAway()

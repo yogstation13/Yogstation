@@ -91,6 +91,10 @@
 
 	var/list/modifiers = params2list(params)
 
+	if(!client?.holder && (isobserver(A) || isaicamera(A)) && A.invisibility > see_invisible)
+		message_admins("[ADMIN_LOOKUPFLW(src)] clicked on [key_name_admin(A)] ([A?.type]) [ADMIN_FLW(A)], which they should not be able to see!")
+		log_admin_private("[key_name(src)] clicked on [key_name(A)] ([A?.type]), which they should not be able to see!")
+
 	if(client)
 		client.imode.update_istate(src, modifiers)
 

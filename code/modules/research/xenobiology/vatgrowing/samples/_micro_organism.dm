@@ -73,7 +73,7 @@
 /datum/micro_organism/cell_line/proc/finish_growing(obj/machinery/plumbing/growing_vat/vat)
 	var/risk = 0 //Penalty for failure, goes up based on how much growth the other cell_lines have
 
-	for(var/datum/micro_organism/cell_line/cell_line in vat.biological_sample.micro_organisms)
+	for(var/datum/micro_organism/cell_line/cell_line in vat.biological_sample?.micro_organisms)
 		if(cell_line == src) //well duh
 			continue
 		if(cell_line.growth >= VATGROWING_DANGER_MINIMUM)

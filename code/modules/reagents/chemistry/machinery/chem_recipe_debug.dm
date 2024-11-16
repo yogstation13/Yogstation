@@ -330,7 +330,7 @@
 				if(!reagent)
 					say("Could not find [name]")
 					continue
-				var/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list_product_index[reagent.type]
+				var/list/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list_product_index[reagent.type]
 				if(!reaction)
 					say("Could not find [name] reaction!")
 					continue
@@ -364,7 +364,7 @@
 			if(!reagent)
 				say("Could not find [name]")
 				return
-			var/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list_product_index[reagent.type]
+			var/list/datum/chemical_reaction/reaction = GLOB.chemical_reactions_list_product_index[reagent.type]
 			if(!reaction)
 				say("Could not find [name] reaction!")
 				return

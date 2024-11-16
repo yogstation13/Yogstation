@@ -108,7 +108,7 @@
 
 	var/avg_iter_count = 0
 	var/avg_drift = 0
-	var/list/enqueue_log = list()
+	/* var/list/enqueue_log = list() */
 
 	//Do not blindly add vars here to the bottom, put it where it goes above
 	//If your var only has two values, put it in as a flag.
@@ -197,7 +197,7 @@
 
 	var/iter_count = 0
 
-	enqueue_log.Cut()
+	/* enqueue_log.Cut() */
 	for (queue_node = Master.queue_head; queue_node; queue_node = queue_node.queue_next)
 		iter_count++
 		if(iter_count >= ENQUEUE_SANITY)
@@ -207,12 +207,10 @@
 				examine_block(span_userdanger("ERROR: [msg]")),
 				type = MESSAGE_TYPE_DEBUG
 			)
-			log_enqueue(msg, list("enqueue_log" = enqueue_log.Copy()))
-#if defined(INIT_ORDER_PLEXORA) && !defined(UNIT_TESTS)
+			/* log_enqueue(msg, list("enqueue_log" = enqueue_log.Copy())) */
 			SSplexora.mc_alert("[src] has likely entered an infinite loop in enqueue(), we're restarting the MC immediately!")
-#endif
 			stack_trace("enqueue() entered an infinite loop, we're restarting the MC!")
-			enqueue_log.Cut()
+			/* enqueue_log.Cut() */
 			Recreate_MC()
 			return
 
@@ -220,12 +218,12 @@
 		queue_node_priority = queue_node.queued_priority
 		queue_node_flags = queue_node.flags
 
-		enqueue_log["[iter_count]"] = list(
+		/* enqueue_log["[iter_count]"] = list(
 			"node" = "[queue_node]",
 			"next" = "[queue_node.queue_next || "(none)"]",
 			"priority" = queue_node_priority,
 			"flags" = queue_node_flags,
-		)
+		) */
 
 		if (queue_node_flags & (SS_TICKER|SS_BACKGROUND) == SS_TICKER)
 			if ((SS_flags & (SS_TICKER|SS_BACKGROUND)) != SS_TICKER)

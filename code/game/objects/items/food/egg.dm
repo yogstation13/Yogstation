@@ -77,7 +77,7 @@ GLOBAL_VAR_INIT(chicks_from_eggs, 0)
 		pre_hatch()
 		GLOB.chicks_from_eggs++
 
-	reagents.expose(hit_atom, TOUCH)
+	reagents?.expose(hit_atom, TOUCH)
 
 /obj/item/food/egg/attackby(obj/item/item, mob/user, params)
 	if(istype(item, /obj/item/toy/crayon))
