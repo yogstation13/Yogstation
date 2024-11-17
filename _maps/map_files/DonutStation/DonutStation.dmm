@@ -19697,7 +19697,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "iiz" = (
@@ -22216,6 +22216,8 @@
 	dir = 1;
 	network = list("ss13","Medical")
 	},
+/obj/item/clothing/mask/breath/vox,
+/obj/item/tank/internals/emergency_oxygen/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "jnO" = (
@@ -25504,6 +25506,18 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
+"kJc" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/machinery/camera{
+	c_tag = "Bridge - Head of Personnel's Office";
+	dir = 8
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "kJg" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -31840,7 +31854,7 @@
 /area/maintenance/port/fore)
 "nlA" = (
 /obj/structure/closet/crate,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "nlC" = (
@@ -44878,7 +44892,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -45172,18 +45186,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
-"sTl" = (
-/obj/machinery/vending/cart,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge - Head of Personnel's Office";
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
 "sTU" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -104750,7 +104752,7 @@ siL
 ouG
 ouG
 hbi
-sTl
+kJc
 mqb
 mTZ
 sIT

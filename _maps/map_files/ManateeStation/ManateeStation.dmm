@@ -68,7 +68,9 @@
 /turf/closed/wall,
 /area/quartermaster/qm)
 "aaD" = (
-/obj/machinery/airalarm/directional/south,
+/obj/machinery/airalarm/directional/south{
+	pixel_y = -24
+	},
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/ethanol{
 	pixel_x = -5;
@@ -683,7 +685,7 @@
 /area/maintenance/solars/port/fore)
 "afV" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "agk" = (
@@ -3115,7 +3117,7 @@
 "aBH" = (
 /obj/structure/table/glass,
 /obj/item/disk/design_disk,
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -3453,7 +3455,7 @@
 "aDJ" = (
 /obj/structure/table/wood,
 /obj/item/storage/pill_bottle/dice,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
@@ -28788,7 +28790,9 @@
 /area/bridge/meeting_room)
 "ihh" = (
 /obj/structure/table/glass,
-/obj/machinery/airalarm/directional/south,
+/obj/machinery/airalarm/directional/south{
+	pixel_y = -24
+	},
 /obj/item/storage/firstaid/fire{
 	pixel_x = 3;
 	pixel_y = 3
@@ -32561,6 +32565,8 @@
 /obj/effect/turf_decal/trimline/purple/filled/line/lower{
 	dir = 4
 	},
+/obj/item/clothing/mask/breath/vox,
+/obj/item/tank/internals/emergency_oxygen/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "jmj" = (
@@ -37495,6 +37501,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"kQV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
+	dir = 4
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/plasteel,
+/area/crew_quarters/heads/hop)
 "kQW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -43147,7 +43163,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -44801,7 +44817,9 @@
 /turf/open/floor/plating/asteroid,
 /area/space/nearstation)
 "ndK" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
 	dir = 8
 	},
@@ -52476,7 +52494,9 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
 	},
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "puV" = (
@@ -61643,16 +61663,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"sgg" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/vending/cart,
-/obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/heads/hop)
 "sgi" = (
 /obj/machinery/icecream_vat,
 /obj/machinery/light/small{
@@ -62175,7 +62185,9 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "sps" = (
-/obj/machinery/airalarm/directional/west,
+/obj/machinery/airalarm/directional/west{
+	pixel_x = -24
+	},
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 8
 	},
@@ -102759,7 +102771,7 @@ ecY
 iWW
 vlg
 ink
-sgg
+kQV
 tNJ
 epA
 uEH

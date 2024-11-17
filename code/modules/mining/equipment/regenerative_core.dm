@@ -134,6 +134,7 @@
 /obj/item/organ/regenerative_core/legion
 	desc = "A strange rock that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments will slow its healing effects."
 	icon_state = "legion_soul"
+	base_icon_state = "legion_soul"
 
 /obj/item/organ/regenerative_core/legion/Initialize(mapload)
 	. = ..()
@@ -141,14 +142,14 @@
 
 /obj/item/organ/regenerative_core/update_icon_state()
 	. = ..()
-	icon_state = inert ? "legion_soul_inert" : "legion_soul"
+	icon_state = inert ? "[base_icon_state]_inert" : "[base_icon_state]"
 	for(var/datum/action/A as anything in actions)
 		A.build_all_button_icons()
 
 /obj/item/organ/regenerative_core/update_overlays()
 	. = ..()
 	if(!inert && !preserved)
-		. += "legion_soul_crackle"
+		. += "[base_icon_state]_crackle"
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()
@@ -157,3 +158,11 @@
 /obj/item/organ/regenerative_core/legion/preserved(implanted = 0)
 	..()
 	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."
+
+
+// Snow Legion Core
+
+/obj/item/organ/regenerative_core/legion/snow
+	desc = "A strangely hard snowball that crackles with power. It can be used to heal quickly, but it will rapidly decay into uselessness. Radiation found in active space installments may slow its healing effects."
+	icon_state = "slegion_soul"
+	base_icon_state = "slegion_soul"

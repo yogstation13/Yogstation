@@ -2571,10 +2571,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			to create a few of the same type of spiders we found on the planets over there. They're a bit tame until you \
 			also give them a bit of sentience though."
 	item = /obj/item/reagent_containers/syringe/spider_extract
-	cost = 25 //yogs - increase price to reduce grief potential
+	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs // >Increase price to reduce grief > limit it to hijack only :think:
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs reduces grief potential
 
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"

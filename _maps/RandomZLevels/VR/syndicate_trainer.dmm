@@ -1841,7 +1841,7 @@
 /area/space/nearstation)
 "kW" = (
 /obj/structure/table,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/indestructible,
 /area/awaymission/centcomAway/thunderdome)
 "kX" = (

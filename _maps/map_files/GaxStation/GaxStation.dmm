@@ -2131,6 +2131,16 @@
 /obj/effect/turf_decal/trimline/green/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"bah" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/hop)
 "bal" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -10356,7 +10366,7 @@
 /obj/machinery/keycard_auth{
 	pixel_x = 24
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -11081,6 +11091,7 @@
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
 "fgB" = (
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "fgN" = (
@@ -16552,6 +16563,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"hJy" = (
+/mob/living/carbon/monkey/punpun,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "hJB" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
@@ -24203,6 +24218,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 9
 	},
+/obj/item/clothing/mask/breath/vox,
+/obj/item/tank/internals/emergency_oxygen/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "lzE" = (
@@ -28835,7 +28852,7 @@
 /area/security/execution/transfer)
 "nOj" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "nOx" = (
@@ -41822,16 +41839,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
-"ulW" = (
-/obj/machinery/vending/cart,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/hop)
 "umn" = (
 /obj/machinery/door/airlock/engineering{
 	name = "AI Ship Access"
@@ -91756,7 +91763,7 @@ eAn
 kfu
 oas
 lzl
-bfP
+hJy
 rAA
 kfu
 fmk
@@ -95354,7 +95361,7 @@ baa
 xdL
 cov
 gCk
-ulW
+bah
 pdq
 omw
 viA

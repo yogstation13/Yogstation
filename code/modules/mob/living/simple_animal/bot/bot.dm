@@ -32,7 +32,7 @@
 	var/window_name = "Protobot 1.0" //Popup title
 	var/window_width = 0 //0 for default size
 	var/window_height = 0
-	var/obj/item/paicard/paicard // Inserted pai card.
+	var/obj/item/computer_hardware/paicard/paicard // Inserted pai card.
 	var/allow_pai = 1 // Are we even allowed to insert a pai card.
 	var/bot_name
 
@@ -300,7 +300,7 @@
 			to_chat(user, span_warning("The maintenance panel is locked."))
 	else if(W.GetID())
 		togglelock(user)
-	else if(istype(W, /obj/item/paicard))
+	else if(istype(W, /obj/item/computer_hardware/paicard))
 		insertpai(user, W)
 	else if(istype(W, /obj/item/hemostat) && paicard)
 		if(open)
@@ -922,7 +922,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		eject += "<BR>"
 	return eject
 
-/mob/living/simple_animal/bot/proc/insertpai(mob/user, obj/item/paicard/card)
+/mob/living/simple_animal/bot/proc/insertpai(mob/user, obj/item/computer_hardware/paicard/card)
 	if(paicard)
 		to_chat(user, span_warning("A [paicard] is already inserted!"))
 	else if(allow_pai && !key)
