@@ -19,8 +19,8 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 /datum/meta_token_holder
 	///the client that owns this holder
 	var/client/owner
-	///are they a donator? and do they have their free token?
-	var/donator_token = FALSE
+	///our total donator tokens
+	var/donator_token = 0
 	///total amount of antag tokens
 	var/total_antag_tokens = 0
 	///high threat antag tokens
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	var/datum/preferences/owners_prefs = creator.prefs
 	backup_tokens()
 	convert_list_to_tokens(owners_prefs.saved_tokens)
-	donator_token = check_for_donator_token()
+	check_for_donator_token()
 
 /datum/meta_token_holder/proc/convert_list_to_tokens(list/saved_tokens)
 	if(!length(saved_tokens))
@@ -64,6 +64,7 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	total_high_threat_tokens = saved_tokens["high_threat"]
 	event_tokens = saved_tokens["event_tokens"]
 	event_token_month = saved_tokens["event_token_month"]
+	donator_token = saved_tokens["donator"]
 
 	total_antag_tokens = total_low_threat_tokens + total_medium_threat_tokens + total_high_threat_tokens
 
@@ -81,6 +82,7 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 		"high_threat" = total_high_threat_tokens,
 		"event_tokens" = event_tokens,
 		"event_token_month" = event_token_month,
+		"donator" = donator_token,
 	)
 	backup_tokens()
 	owner.prefs.save_preferences()
@@ -88,19 +90,26 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 /datum/meta_token_holder/proc/check_for_donator_token()
 	if(!owner.patreon)
 		return FALSE
-	if(!owner.patreon.has_access(ACCESS_TRAITOR_RANK))
-		return FALSE
+	if(!owner.patreon.has_access(ACCESS_COMMAND_RANK))
+		return
 	var/month_number = text2num(time2text(world.time, "MM"))
+	owner.prefs.token_month = month_number
+	if(owner.prefs.token_month != month_number)
+		owner.prefs.adjust_metacoins(owner?.ckey, 10000, "Monthly Monkecoin rations.", TRUE, FALSE, FALSE)
+	if(!owner.patreon.has_access(ACCESS_TRAITOR_RANK))
+		owner.prefs.save_preferences()
+		return FALSE
 	if(owner.prefs.token_month == month_number)
 		return FALSE
-	return TRUE
+	donator_token++
+	owner.prefs.token_month = month_number
+	convert_tokens_to_list()
 
 /datum/meta_token_holder/proc/spend_antag_token(tier, use_donor = FALSE)
 	if(use_donor)
 		if(donator_token)
-			donator_token = FALSE
+			donator_token--
 			logger.Log(LOG_CATEGORY_META, "[owner], used donator token on [owner.prefs.token_month].")
-			owner.prefs.token_month = text2num(time2text(world.time, "MM"))
 			owner.prefs.save_preferences()
 			return
 
