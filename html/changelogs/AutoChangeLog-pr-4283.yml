@@ -1,0 +1,4 @@
+author: "tired-wired"
+delete-after: True
+changes:
+  - bugfix: "Blueshift blueshield's office should work properly now."
