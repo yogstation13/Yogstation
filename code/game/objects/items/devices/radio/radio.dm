@@ -107,7 +107,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	set_frequency(sanitize_frequency(frequency, freerange))
 	set_on(on)
 
-	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
@@ -242,17 +241,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		set_listening(FALSE, actual_setting = FALSE)
 
 /obj/item/radio/talk_into(atom/movable/talking_movable, message, channel, list/spans, datum/language/language, list/message_mods)
-	if(HAS_TRAIT(talking_movable, TRAIT_SIGN_LANG)) //Forces Sign Language users to wear the translation gloves to speak over radios
-		var/mob/living/carbon/mute = talking_movable
-		if(istype(mute))
-			var/obj/item/clothing/gloves/radio/G = mute.get_item_by_slot(ITEM_SLOT_GLOVES)
-			if(!istype(G))
-				return FALSE
-			switch(mute.check_signables_state())
-				if(SIGN_ONE_HAND) // One hand full
-					message = stars(message)
-				if(SIGN_HANDS_FULL to SIGN_CUFFED)
-					return FALSE
+//	if(HAS_TRAIT(talking_movable, TRAIT_SIGN_LANG)) //Forces Sign Language users to wear the translation gloves to speak over radios / if implemented uncomment
+//		var/mob/living/carbon/mute = talking_movable
+//	if(istype(mute))
+//		var/obj/item/clothing/gloves/radio/G = mute.get_item_by_slot(ITEM_SLOT_GLOVES)
+//	if(!istype(G))
+//		return FALSE
+//	switch(mute.check_signables_state())
+//		if(SIGN_ONE_HAND) // One hand full
+//			message = stars(message)
+//		if(SIGN_HANDS_FULL to SIGN_CUFFED)
+//			return FALSE
 	if(!spans)
 		spans = list(talking_movable.speech_span)
 	if(!language)

@@ -49,6 +49,11 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	/// Is it a hidden machine?
 	var/hide = FALSE
 
+	var/net_efective = 100 //yogs percentage of netspeed aplied
+	var/generates_heat = TRUE 	//yogs turn off tcomms generating heat
+	var/heatoutput = 2500		//yogs modify power output per trafic removed(usual heat capacity of the air in server room is 1600J/K)
+
+	var/on_icon = "" // used for special cases broadcaster/reciever
 	///Looping sounds for any servers
 	var/datum/looping_sound/server/soundloop
 

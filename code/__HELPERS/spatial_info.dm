@@ -295,11 +295,11 @@
 	return atoms
 
 ///Returns the distance between two atoms
-/proc/get_dist_euclidean(atom/first_location, atom/second_location)
-	var/dx = first_location.x - second_location.x
-	var/dy = first_location.y - second_location.y
+/proc/get_dist_euclidian(atom/Loc1 as turf|mob|obj,atom/Loc2 as turf|mob|obj)
+	var/dx = Loc1.x - Loc2.x
+	var/dy = Loc1.y - Loc2.y
 
-	var/dist = sqrt(dx ** 2 + dy ** 2)
+	var/dist = sqrt(dx**2 + dy**2)
 
 	return dist
 
@@ -318,7 +318,7 @@
 	return turfs
 
 ///Returns a list of turfs around a center based on view()
-/proc/circle_view_turfs(center=usr,radius=3) //Is there even a diffrence between this proc and circle_range_turfs()? // Yes
+/proc/circleviewturfs(center=usr,radius=3) //Is there even a diffrence between this proc and circle_range_turfs()? // Yes
 	var/turf/center_turf = get_turf(center)
 	var/list/turfs = new/list()
 	var/rsq = radius * (radius + 0.5)
@@ -441,7 +441,7 @@
 		get_area(get_ranged_target_turf(center, EAST, 1)),
 		get_area(get_ranged_target_turf(center, WEST, 1))
 		)
-	list_clear_nulls(.)
+	listclearnulls(.)
 
 ///Checks if the mob provided (must_be_alone) is alone in an area
 /proc/alone_in_area(area/the_area, mob/must_be_alone, check_type = /mob/living/carbon)
@@ -462,7 +462,7 @@
  * @params outer_range - The outer range of the cicle to pull from.
  * @params inner_range - The inner range of the circle to NOT pull from.
  * @params center - The center of the circle to pull from, can be an atom (we'll apply get_turf() to it within circle_x_turfs procs.)
- * @params view_based - If TRUE, we'll use circle_view_turfs instead of circle_range_turfs procs.
+ * @params view_based - If TRUE, we'll use circleviewturfs instead of circle_range_turfs procs.
  */
 /proc/turf_peel(outer_range, inner_range, center, view_based = FALSE)
 	if(inner_range > outer_range) // If the inner range is larger than the outer range, you're using this wrong.
@@ -471,8 +471,8 @@
 	var/list/outer
 	var/list/inner
 	if(view_based)
-		outer = circle_view_turfs(center, outer_range)
-		inner = circle_view_turfs(center, inner_range)
+		outer = circleviewturfs(center, outer_range)
+		inner = circleviewturfs(center, inner_range)
 	else
 		outer = circle_range_turfs(center, outer_range)
 		inner = circle_range_turfs(center, inner_range)

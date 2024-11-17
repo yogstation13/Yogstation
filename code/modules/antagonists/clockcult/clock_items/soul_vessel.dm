@@ -28,7 +28,7 @@
 
 /obj/item/mmi/posibrain/soul_vessel/Initialize(mapload)
 	. = ..()
-	radio.on = FALSE
+	radio.is_on(FALSE)
 	laws = new /datum/ai_laws/ratvar()
 	braintype = picked_name
 	GLOB.all_clockwork_objects += src
