@@ -93,3 +93,29 @@
 		var/mob/living/carbon/human/human_target = target
 		human_target.drop_all_held_items()
 		human_target.visible_message(span_danger("[user] disarms [human_target]!"), span_userdanger("[user] disarmed you!"))
+
+/obj/item/melee/viking/genja/runeaxe
+	name = "Rune Axe"
+	icon_state = "runeaxe0"
+	base_icon_state = "runeaxe"
+	worn_icon_state = "rune_axe_worn"
+	desc = "A massive two handed axe gilded and inscribed with runes."
+	force = 20
+	throwforce = 60
+	embedding = 50
+	sharpness = SHARP_EDGED
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	wound_bonus = 50
+	block_chance = 78
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
+	slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+/// How much damage to do unwielded
+	force_unwielded = 20
+	/// How much damage to do wielded
+	force_wielded = 35
+
+/obj/item/melee/viking/genja/runeaxe/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=force_unwielded, force_wielded=force_wielded, icon_wielded="[base_icon_state]1")
+	AddElement(/datum/element/lifesteal, 15)
