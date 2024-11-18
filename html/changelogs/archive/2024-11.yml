@@ -326,3 +326,21 @@
   - rscadd: jazz artifact effects
   tired-wired:
   - rscadd: adds an intern (trialmin) office to centcom.
+2024-11-18:
+  SirNightKnight:
+  - rscadd: Gave the clown a cool new hardsuit.
+  - balance: Added security hardsuits and jetpacks to the security suit storage unit
+      so they can catch the clown in space easier.
+  - rscadd: Nanotrasen has relaunched their space exploration program utilizing old
+      equipment. Welcome aboard the station explorers!
+  - rscadd: Reintroduced security, clown, and mining hardsuits.
+  - rscadd: Dug so hard in the code changelog I found mining jetpacks.
+  - qol: Cargo teleporters can fit in explorer webbing.
+  - qol: Citationinators can fit in security belts.
+  - qol: Adds a controls description to the space suit parent clarifying how to open
+      the cell cover, remove the cell, and adjust the thermal regulator.
+  - rscadd: Added hardsuit crates to the cargo catalog.
+  ThePooba:
+  - rscadd: adds an admin rune axe
+  tired-wired:
+  - bugfix: Blueshift blueshield's office should work properly now.
