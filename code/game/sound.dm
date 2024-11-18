@@ -30,23 +30,22 @@ GLOBAL_LIST_INIT(alt_sound_overrides, list(
 	)
 	environment = SOUND_ENVIRONMENT_NONE //Default to none so sounds without overrides dont get reverb
 
-/*! playsound
-
-playsound is a proc used to play a 3D sound in a specific range. This uses SOUND_RANGE + extra_range to determine that.
-
-source - Origin of sound
-soundin - Either a file, or a string that can be used to get an SFX
-vol - The volume of the sound, excluding falloff and pressure affection.
-vary - bool that determines if the sound changes pitch every time it plays
-extrarange - modifier for sound range. This gets added on top of SOUND_RANGE
-falloff_exponent - Rate of falloff for the audio. Higher means quicker drop to low volume. Should generally be over 1 to indicate a quick dive to 0 rather than a slow dive.
-frequency - playback speed of audio
-channel - The channel the sound is played at
-pressure_affected - Whether or not difference in pressure affects the sound (E.g. if you can hear in space)
-ignore_walls - Whether or not the sound can pass through walls.
-falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
-
-*/
+/**
+ * playsound is a proc used to play a 3D sound in a specific range. This uses SOUND_RANGE + extra_range to determine that.
+ *
+ * Arguments:
+ * * source - Origin of sound.
+ * * soundin - Either a file, or a string that can be used to get an SFX.
+ * * vol - The volume of the sound, excluding falloff and pressure affection.
+ * * vary - bool that determines if the sound changes pitch every time it plays.
+ * * extrarange - modifier for sound range. This gets added on top of SOUND_RANGE.
+ * * falloff_exponent - Rate of falloff for the audio. Higher means quicker drop to low volume. Should generally be over 1 to indicate a quick dive to 0 rather than a slow dive.
+ * * frequency - playback speed of audio.
+ * * channel - The channel the sound is played at.
+ * * pressure_affected - Whether or not difference in pressure affects the sound (E.g. if you can hear in space).
+ * * ignore_walls - Whether or not the sound can pass through walls.
+ * * falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
+ */
 
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE)
 	if(isarea(source))
@@ -95,21 +94,25 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 			listening_mob.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, 1, use_reverb)
 			. += listening_mob
 
-/*! playsound
-playsound_local is a proc used to play a sound directly on a mob from a specific turf.
-This is called by playsound to send sounds to players, in which case it also gets the max_distance of that sound.
-turf_source - Origin of sound
-soundin - Either a file, or a string that can be used to get an SFX
-vol - The volume of the sound, excluding falloff
-vary - bool that determines if the sound changes pitch every time it plays
-frequency - playback speed of audio
-falloff_exponent - Rate of falloff for the audio. Higher means quicker drop to low volume. Should generally be over 1 to indicate a quick dive to 0 rather than a slow dive.
-channel - The channel the sound is played at
-pressure_affected - Whether or not difference in pressure affects the sound (E.g. if you can hear in space)
-max_distance - The peak distance of the sound, if this is a 3D sound
-falloff_distance - Distance at which falloff begins, if this is a 3D sound
-distance_multiplier - Can be used to multiply the distance at which the sound is heard
-*/
+/**
+ * Plays a sound with a specific point of origin for src mob
+ * Affected by pressure, distance, terrain and environment (see arguments)
+ *
+ * Arguments:
+ * * turf_source - The turf our sound originates from, if this is not a turf, the sound is played with no spatial audio
+ * * soundin - Either a file, or a string that can be used to get an SFX.
+ * * vol - The volume of the sound, excluding falloff and pressure affection.
+ * * vary - bool that determines if the sound changes pitch every time it plays.
+ * * frequency - playback speed of audio.
+ * * falloff_exponent - Rate of falloff for the audio. Higher means quicker drop to low volume. Should generally be over 1 to indicate a quick dive to 0 rather than a slow dive.
+ * * channel - Optional: The channel the sound is played at.
+ * * pressure_affected - bool Whether or not difference in pressure affects the sound (E.g. if you can hear in space).
+ * * sound_to_use - Optional: Will default to soundin when absent
+ * * max_distance - number, determines the maximum distance of our sound
+ * * falloff_distance - Distance at which falloff begins. Sound is at peak volume (in regards to falloff) aslong as it is in this range.
+ * * distance_multiplier - Default 1, multiplies the maximum distance of our sound
+ * * use_reverb - bool default TRUE, determines if our sound has reverb
+ */
 
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/sound_to_use, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE)
 	if(!client || !can_hear())
