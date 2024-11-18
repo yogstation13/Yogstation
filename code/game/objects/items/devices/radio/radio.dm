@@ -598,18 +598,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		else
 			to_chat(user, span_warning("This radio doesn't have any encryption keys!"))
 
-	else if(istype(W, /obj/item/encryptionkey/))
-		if(keyslot)
-			to_chat(user, span_warning("The radio can't hold another key!"))
-			return
-
-		if(!keyslot)
-			if(!user.transferItemToLoc(W, src))
-				return
-			keyslot = W
-
-		recalculateChannels()
-
 
 /obj/item/radio/off	// Station bounced radios, their only difference is spawning with the speakers off, this was made to help the lag.
 	dog_fashion = /datum/dog_fashion/back
