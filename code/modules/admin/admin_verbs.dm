@@ -264,6 +264,9 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/getserverlogs_debug,
 	/client/proc/getcurrentlogs_debug,
 	/client/proc/server_memory_stats,
+	/client/proc/tracy_next_round,
+	/client/proc/start_tracy,
+	// monkestation end
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)

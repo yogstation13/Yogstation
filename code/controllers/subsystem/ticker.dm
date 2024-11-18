@@ -329,6 +329,7 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(world, span_info(holiday.greet()))
 
 	PostSetup()
+	INVOKE_ASYNC(world, TYPE_PROC_REF(/world, flush_byond_tracy)) // monkestation edit: byond-tracy
 
 	return TRUE
 
