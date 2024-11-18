@@ -67,11 +67,14 @@
 	return
 
 ///Returns the name of the area the atom is in
-/proc/get_area_name(atom/checked_atom, format_text = FALSE)
-	var/area/checked_area = isarea(checked_atom) ? checked_atom : get_area(checked_atom)
-	if(!checked_area)
+/proc/get_area_name(atom/X, format_text = FALSE, is_sensor = FALSE)
+	var/area/A = isarea(X) ? X : get_area(X)
+	if(!A)
 		return null
-	return format_text ? format_text(checked_area.name) : checked_area.name
+	var/name = A.name
+	if (is_sensor && !A.show_on_sensors)
+		name = Gibberish(name, TRUE, 90)
+	return format_text ? format_text(name) : name
 
 /proc/get_cardinal_step_away(atom/start, atom/finish) //returns the position of a step from start away from finish, in one of the cardinal directions
 	//returns only NORTH, SOUTH, EAST, or WEST

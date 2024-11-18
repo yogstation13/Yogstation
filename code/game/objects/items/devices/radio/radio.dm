@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	if(radio_sounds.len) //Sephora - Radios make small static sounds now.
 		var/sound/radio_sound = pick(radio_sounds)
-		playsound(M.loc, radio_sound, 50, 1)
+		playsound(talking_movable.loc, radio_sound, 50, 1)
 
 	if(use_command)
 		spans |= SPAN_COMMAND

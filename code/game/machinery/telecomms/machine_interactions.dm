@@ -146,7 +146,13 @@
 		if("link")
 			if(heldmultitool)
 				var/obj/machinery/telecomms/tcomms_machine = multitool_get_buffer(src, heldmultitool)
-				. = add_new_link(T, operator)
+				if(istype(tcomms_machine) && tcomms_machine != src)
+					if(!(src in tcomms_machine.links))
+						tcomms_machine.links += src
+					if(!(tcomms_machine in links))
+						links += tcomms_machine
+						log_game("[key_name(operator)] linked [src] for [tcomms_machine] at [AREACOORD(src)].")
+						
 		if("buffer") // Yogs start -- holotool support
 			if(heldmultitool)
 				multitool_set_buffer(usr, heldmultitool, src)
