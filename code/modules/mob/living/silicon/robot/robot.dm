@@ -12,7 +12,6 @@
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
-	radio = /obj/item/radio/borg
 	
 	var/custom_name = ""
 	var/braintype = "Cyborg"
@@ -213,8 +212,8 @@
 		GLOB.available_ai_shells -= src
 	else
 		if(T && istype(radio) && istype(radio.keyslot))
-			radio.keyslot.forceMove(T)
-			radio.keyslot = null
+			radio?.keyslot?.forceMove(T)
+			radio?.keyslot = null
 	qdel(wires)
 	qdel(module)
 	qdel(eye_lights)
