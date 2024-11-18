@@ -602,7 +602,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/off	// Station bounced radios, their only difference is spawning with the speakers off, this was made to help the lag.
 	dog_fashion = /datum/dog_fashion/back
 
-/obj/item/radio/off/Initialize()
+/obj/item/radio/off/Initialize(mapload)
 	. = ..()
 	set_listening(FALSE)
 

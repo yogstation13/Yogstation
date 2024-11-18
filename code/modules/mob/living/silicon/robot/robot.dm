@@ -876,11 +876,12 @@
 	qdel(src)
 
 /mob/living/silicon/robot/modules
-	var/set_module = null
+	var/set_module = /obj/item/robot_module
 
 /mob/living/silicon/robot/modules/Initialize(mapload)
 	. = ..()
-	module.transform_to(set_module)
+	INVOKE_ASYNC(module, TYPE_PROC_REF(/obj/item/robot_module, transform_to), set_module, TRUE)
+
 
 /mob/living/silicon/robot/modules/standard
 	set_module = /obj/item/robot_module/standard
