@@ -12,7 +12,8 @@
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
-
+	radio = /obj/item/radio/borg
+	
 	var/custom_name = ""
 	var/braintype = "Cyborg"
 	var/obj/item/mmi/mmi = null
