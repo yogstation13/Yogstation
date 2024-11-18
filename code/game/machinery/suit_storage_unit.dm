@@ -98,6 +98,9 @@
 /obj/machinery/suit_storage_unit/security
 	mask_type = /obj/item/clothing/mask/gas/sechailer
 	mod_type = /obj/item/mod/control/pre_equipped/security
+	suit_type = /obj/item/clothing/suit/space/hardsuit/sec //monkestation edit
+	storage_type = /obj/item/tank/jetpack/oxygen/security //monkestation edit
+
 
 /obj/machinery/suit_storage_unit/hos
 	mask_type = /obj/item/clothing/mask/gas/sechailer

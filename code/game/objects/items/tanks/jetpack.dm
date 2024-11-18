@@ -175,6 +175,7 @@
 	volume = 40
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT //monkestation edit
 
 /obj/item/tank/jetpack/oxygen/captain
 	name = "captain's jetpack"
@@ -191,6 +192,7 @@
 	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas by security forces."
 	icon_state = "jetpack-sec"
 	inhand_icon_state = "jetpack-sec"
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE //monkestation edit
 
 
 
@@ -201,3 +203,12 @@
 	inhand_icon_state = "jetpack-black"
 	distribute_pressure = 0
 	gas_type = /datum/gas/carbon_dioxide
+
+//MONKESTATION EDIT START
+/obj/item/tank/jetpack/mining //tried to get hardsuit jetpacks to work again took all day with no real progess so this is the compromise
+	name = "mining jetpack (oxygen)"
+	icon_state = "jetpack-mining"
+	inhand_icon_state = "jetpack-mining"
+	desc = "A tank of compressed oxygen for miners to use as propulsion in local space."
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
+//MONKESTATION EDIT STOP

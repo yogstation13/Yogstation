@@ -32,6 +32,7 @@
 /obj/item/clothing/suit/space
 	name = "space suit"
 	desc = "A suit that protects against low pressure environments. Has a big 13 on the back."
+	desc_controls = "Alt-Click to open the cell cover. CTRL-Click to remove the cell. The thermal regulator can be adjusted with a screwdriver." //monkestation edit
 	icon_state = "spaceold"
 	icon = 'icons/obj/clothing/suits/spacesuit.dmi'
 	lefthand_file = 'icons/mob/inhands/clothing/suits_lefthand.dmi'
@@ -162,11 +163,14 @@
 			else
 				. += "\The [cell] is firmly in place."
 
-/obj/item/clothing/suit/space/crowbar_act(mob/living/user, obj/item/tool)
-	toggle_spacesuit_cell(user)
-	return TOOL_ACT_TOOLTYPE_SUCCESS
+//MONKSTATION REMOVAL
+///obj/item/clothing/suit/space/crowbar_act(mob/living/user, obj/item/tool)
+//	toggle_spacesuit_cell(user)
+//	return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/item/clothing/suit/space/screwdriver_act(mob/living/user, obj/item/tool)
+	if(!cell_cover_open)   //monkestation edit
+		return
 	var/range_low = 20 // Default min temp c
 	var/range_high = 45 // default max temp c
 	if(obj_flags & EMAGGED)

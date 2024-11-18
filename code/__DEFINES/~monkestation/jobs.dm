@@ -7,3 +7,4 @@
 #define JOB_SPOOKTOBER (1<<16)
 
 #define JOB_LATEJOIN_BARBER "Barber"
+#define JOB_LATEJOIN_EXPLORER "Explorer"

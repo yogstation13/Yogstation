@@ -52,3 +52,32 @@
 	acid = 100
 	bomb = 100
 
+/datum/armor/hardsuit/mining
+	melee = 30
+	bullet = 5
+	laser = 10
+	energy = 5
+	bomb = 50
+	bio = 100
+	fire = 50
+	acid = 75
+
+/datum/armor/hardsuit/clown
+	melee = 30
+	bullet = 5
+	laser = 10
+	energy = 5
+	bomb = 10
+	bio = 100
+	fire = 60
+	acid = 30
+
+/datum/armor/hardsuit/sec
+	melee = 35
+	bullet = 15
+	laser = 30
+	energy = 10
+	bomb = 10
+	bio = 100
+	fire = 75
+	acid = 75

@@ -139,6 +139,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_LAWYER = 69,
 		JOB_PSYCHOLOGIST = 71,
 		JOB_LATEJOIN_BARBER = 72, //monkestation edit: barber
+		JOB_LATEJOIN_EXPLORER = 73, //monkestation edit: explorer
 		// 200-239: Centcom
 		JOB_CENTCOM_ADMIRAL = 200,
 		JOB_CENTCOM = 201,

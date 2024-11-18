@@ -33,6 +33,7 @@ const BASEICONS = {
   Detective: 'user-secret',
   'Diet Wizard': 'hat-wizard',
   'Discount Godzilla': 'ticket-alt', // like a movie ticket? IDK theres not many good icons for this.
+  Explorer: 'rocket',
   Geneticist: 'dna',
   Ghost: 'ghost',
   Gorilla: 'exclamation-triangle',
