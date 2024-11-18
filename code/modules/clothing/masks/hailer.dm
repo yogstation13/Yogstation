@@ -70,6 +70,14 @@
 		"Hehe" = 'sound/voice/cpvoicelines/chuckle.ogg',
 	)
 
+/obj/item/clothing/mask/gas/sechailer/Initialize(mapload)
+	. = ..()
+	become_hearing_sensitive()
+
+/obj/item/clothing/mask/gas/sechailer/Destroy()
+	. = ..()
+	lose_hearing_sensitivity() // makes sure this item hears and if destroyed removes from list
+
 /obj/item/clothing/mask/gas/sechailer/swat/spacepol
 	name = "spacepol mask"
 	desc = "A close-fitting tactical mask created in cooperation with a certain megacorporation, comes with an especially aggressive Compli-o-nator 3000."
