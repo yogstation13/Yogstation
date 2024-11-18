@@ -442,6 +442,8 @@
 		"flatpack_turbine_team_fortress_two",
 		"flatpack_bootleg_teg",
 		"flatpack_ore_thumper",
+		"flatpack_organic_printer",
+		"flatpack_colony_medstation",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000000000000000) // God save you
 	hidden = TRUE
@@ -470,6 +472,39 @@
 		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MANUFACTURING,
 	)
 	construction_time = 2 MINUTES
+
+/datum/design/organic_printer
+	name = "Flat-Packed Organic Materials Printer"
+	desc = "A useful modified biogenerator that produces most of the needed clothing for the frontier."
+	id = "flatpack_organic_printer"
+	build_type = COLONY_FABRICATOR
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+	)
+	build_path = /obj/item/flatpacked_machine/organics_printer
+	category = list(
+		RND_CATEGORY_INITIAL,
+		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MANUFACTURING,
+	)
+	construction_time = 30 SECONDS
+
+/datum/design/medstation
+	name = "Wall Mounted Frontier Medical Station"
+	desc = "A machine designed with cooperation with Deforest Medical Corporation, this can produce invaluable medical supplies far away on the frontier."
+	id = "flatpack_colony_medstation"
+	build_type = COLONY_FABRICATOR
+	materials = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/glass = SHEET_MATERIAL_AMOUNT * 2,
+		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 3,
+	)
+	build_path = /obj/item/wallframe/frontier_medstation
+	category = list(
+		RND_CATEGORY_INITIAL,
+		FABRICATOR_CATEGORY_FLATPACK_MACHINES + FABRICATOR_SUBCATEGORY_MANUFACTURING,
+	)
+	construction_time = 30 SECONDS
 
 // Solar panels and trackers
 

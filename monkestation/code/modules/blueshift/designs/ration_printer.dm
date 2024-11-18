@@ -151,6 +151,16 @@
 		RND_CATEGORY_INITIAL,
 		RND_CATEGORY_AKHTER_SEEDS,
 	)
+/datum/design/organic_cotton_seed
+	name = "Pack of Cotton Seeds"
+	id = "oganic_cotton_seed"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 25)
+	build_path = /obj/item/seeds/cotton
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_AKHTER_SEEDS,
+	)
 
 /datum/design/organic_potato_seed
 	name = "Pack of Potato Seeds"

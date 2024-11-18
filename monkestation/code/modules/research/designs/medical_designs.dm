@@ -79,3 +79,16 @@
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_IMPLANTS_UTILITY
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/glasses
+	name = "Prescription glasses"
+	desc = "Glasses that can fix vision."
+	id = "pglasses"
+	build_type = PROTOLATHE | AWAY_LATHE | COLONY_FABRICATOR
+	materials = list(/datum/material/glass = 500)
+	build_path = /obj/item/clothing/glasses/regular
+	category = list(
+		RND_CATEGORY_INITIAL,
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL

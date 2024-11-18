@@ -197,6 +197,14 @@
 /datum/design/beaker/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
+	
+/datum/design/large_beaker/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/drinking_glass/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
 
 // Stock parts are going here too because there's not many of them
 
@@ -329,6 +337,14 @@
 	build_type |= COLONY_FABRICATOR
 
 /datum/design/cable_coil/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/sticky_tape/New()
+	. = ..()
+	build_type |= COLONY_FABRICATOR
+
+/datum/design/pocket_heater/New()
 	. = ..()
 	build_type |= COLONY_FABRICATOR
 
