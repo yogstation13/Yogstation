@@ -10,7 +10,7 @@
 	anchored = TRUE
 	density = TRUE
 
-/obj/machinery/nanite_programmer/Initialize()
+/obj/machinery/nanite_programmer/Initialize(mapload)
 	. = ..()
 	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
 
