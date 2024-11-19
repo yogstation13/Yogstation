@@ -142,26 +142,68 @@
 	qdel(O)
 	return TRUE
 
-/datum/action/chameleon_copy
+/datum/action/cooldown/chameleon_copy
 	name = "Copy person"
 	button_icon_state = "default" //Temporary, just to test it works
+	var/target_range = 3
 	var/syndicate = FALSE
 	var/active = FALSE
 	var/copying = FALSE
+	var/in_use = FALSE
 
-/datum/action/chameleon_copy/Grant(mob/M)
+/datum/action/cooldown/chameleon_copy/Grant(mob/M)
 	if(syndicate)
 		owner_has_control = is_syndicate(M)
 	return ..()
 
-/datum/action/chameleon_copy/Trigger(trigger_flags, atom/target)
+/datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, atom/target)
 	if(active)
-		active = !active
+		active = FALSE
 		build_all_button_icons()
 		return FALSE
 	to_chat(owner, span_announce("Whom shall your chameleon kit copy?")) //Bad wording, need to improve it
-	active = !active
+	active = TRUE
 	build_all_button_icons()
+	if(target)
+		return InterceptClickOn(owner, null, target)
+
+/datum/action/cooldown/chameleon_copy/proc/CheckValidTarget(atom/target_atom)
+	if(target_atom == owner)
+		return FALSE
+	return TRUE
+
+/datum/action/cooldown/chameleon_copy/proc/CheckCanTarget(atom/target_atom)
+	if(target_range)
+		if(!(target_atom in view(target_range, owner)))
+			return FALSE
+	return istype(target_atom)
+
+/datum/action/cooldown/chameleon_copy/proc/click_with_power(atom/target_atom)
+	if(in_use || !CheckValidTarget(target_atom))
+		return FALSE
+	if(!CheckCanTarget(target_atom))
+		return TRUE
+	in_use = TRUE
+	FireTargetedPower(target_atom)
+	in_use = FALSE
+	return TRUE
+
+/datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target_atom)
+	. = ..()
+	var/mob/living/target = target_atom
+	var/mob/living/user = owner
+	var/datum/outfit/O = new()
+	to_chat(owner, span_notice("Attempting to copy [target]..."))
+	if(!do_after(user, 5 SECONDS, target))
+		return
+	for(var/item in target.contents)
+		message_admins(item)
+	to_chat(owner, span_notice("Successfully copied [target]!"))
+	active = FALSE
+	
+
+/datum/action/cooldown/chameleon_copy/InterceptClickOn(/mob/living/caller, params, atom/target)
+	click_with_power()
 
 /datum/action/item_action/chameleon/change
 	name = "Chameleon Change"
@@ -180,7 +222,7 @@
 			var/datum/action/chameleon_outfit/O = new /datum/action/chameleon_outfit()
 			O.syndicate = syndicate
 			O.Grant(M)
-			var/datum/action/chameleon_copy/C = new /datum/action/chameleon_copy()
+			var/datum/action/cooldown/chameleon_copy/C = new /datum/action/cooldown/chameleon_copy()
 			C.syndicate = syndicate
 			C.Grant(M)
 		else

@@ -81,7 +81,6 @@
 				else
 					pinpointer.scan_target = targets[pinpointer_chosen]
 					to_chat(imp_in, span_notice("Pinpointer target set to [pinpointer.scan_target]"))
-				message_admins(pinpointer.scan_target)
 				pinpointer.point_to_target()
 		if ("Send Ship Away")
 			alert_radio.talk_into(alert_radio, "The infiltration cruiser has been remotely sent to the base by [imp_in.real_name]")
