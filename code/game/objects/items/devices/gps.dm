@@ -13,6 +13,8 @@
 	obj_flags = UNIQUE_RENAME
 	var/gpstag
 
+// monkestation removal: reimplemented in [code\game\objects\items\devices\gps.dm]
+/*
 /obj/item/gps/Initialize(mapload)
 	. = ..()
 	add_gps_component()
@@ -20,6 +22,8 @@
 /// Adds the GPS component to this item.
 /obj/item/gps/proc/add_gps_component()
 	AddComponent(/datum/component/gps/item, gpstag)
+*/
+// monkestation end
 
 /obj/item/gps/spaceruin
 	gpstag = SPACE_SIGNAL_GPSTAG

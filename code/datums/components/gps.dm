@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	/// UI state of GPS, altering when it can be used.
 	var/datum/ui_state/state = null
 
-/datum/component/gps/item/Initialize(_gpstag = "COM0", emp_proof = FALSE, state = null, overlay_state = "working")
+/datum/component/gps/item/Initialize(_gpstag = "COM0", emp_proof = FALSE, state = null, overlay_state = "working", requires_z_calibration, list/calibrate_zs) // monkestation edit: require calibration to point to remote z-levels
 	. = ..()
 	if(. == COMPONENT_INCOMPATIBLE || !isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -51,6 +51,13 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp_act))
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(on_AltClick))
+
+	// monkestation start: require calibration to point to remote z-levels
+	if(!isnull(requires_z_calibration))
+		src.requires_z_calibration = requires_z_calibration
+	if(islist(calibrate_zs))
+		src.calibrated_zs = calibrate_zs
+	// monkestation end
 
 ///Called on COMSIG_ITEM_ATTACK_SELF
 /datum/component/gps/item/proc/interact(datum/source, mob/user)
@@ -135,19 +142,23 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	var/list/signals = list()
 	data["signals"] = list()
 
-	for(var/gps in GLOB.GPS_list)
-		var/datum/component/gps/G = gps
-		if(G.emped || !G.tracking || G == src)
+	for(var/datum/component/gps/gps as anything in GLOB.GPS_list)
+		if(gps == src || gps.emped || !gps.tracking)
 			continue
-		var/turf/pos = get_turf(G.parent)
-		if(!pos || !global_mode && pos.z != curr.z)
+		var/turf/pos = get_turf(gps.parent)
+		if(!pos || (!global_mode && pos.z != curr.z))
 			continue
 		var/list/signal = list()
-		signal["entrytag"] = G.gpstag //Name or 'tag' of the GPS
+		signal["entrytag"] = gps.gpstag //Name or 'tag' of the GPS
 		signal["coords"] = "[pos.x], [pos.y], [pos.z]"
-		if(pos.z == curr.z) //Distance/Direction calculations for same z-level only
+		// Distance is calculated for the same z-level only, and direction is calculated for crosslinked/neighboring and same z-levels.
+		if(pos.z == curr.z)
 			signal["dist"] = max(get_dist(curr, pos), 0) //Distance between the src and remote GPS turfs
 			signal["degrees"] = round(get_angle(curr, pos)) //0-360 degree directional bearing, for more precision.
+		else if(can_point_to_z_level(pos.z)) // monkestation edit: require calibration to point to remove z-levels
+			var/angle = get_linked_z_angle(curr.z, pos.z)
+			if(!isnull(angle))
+				signal["degrees"] = angle
 		signals += list(signal) //Add this signal to the list of signals
 	data["signals"] = signals
 	return data

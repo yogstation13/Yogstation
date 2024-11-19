@@ -81,7 +81,7 @@
 	new /obj/item/clothing/suit/space/nasavoid(src)
 	new /obj/item/clothing/head/helmet/space/nasavoid(src)
 	new /obj/item/tank/internals/oxygen(src)
-	new /obj/item/gps(src)
+	new /obj/item/gps/advanced(src) // monkestation edit: make this kit less useless, give it an advanced gps
 
 /obj/item/storage/box/hero/scottish
 	name = "Braveheart, the Scottish rebel - 1300's."
