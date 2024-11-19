@@ -1023,7 +1023,7 @@
 	desc = "Standard issue hardsuit helmet for playing capture the flag."
 	icon_state = "hardsuit0-ctf_blue"
 	item_state = "hardsuit0-ctf_blue"
-	hardsuit_type = "ctf_red"
+	hardsuit_type = "ctf_blue"
 
 
 
