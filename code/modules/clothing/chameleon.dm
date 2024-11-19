@@ -142,6 +142,26 @@
 	qdel(O)
 	return TRUE
 
+/datum/action/chameleon_copy
+	name = "Copy person"
+	button_icon_state = "default" //Temporary, just to test it works
+	var/syndicate = FALSE
+	var/active = FALSE
+	var/copying = FALSE
+
+/datum/action/chameleon_copy/Grant(mob/M)
+	if(syndicate)
+		owner_has_control = is_syndicate(M)
+	return ..()
+
+/datum/action/chameleon_copy/Trigger(trigger_flags, atom/target)
+	if(active)
+		active = !active
+		build_all_button_icons()
+		return FALSE
+	to_chat(owner, span_announce("Whom shall your chameleon kit copy?")) //Bad wording, need to improve it
+	active = !active
+	build_all_button_icons()
 
 /datum/action/item_action/chameleon/change
 	name = "Chameleon Change"
@@ -160,6 +180,9 @@
 			var/datum/action/chameleon_outfit/O = new /datum/action/chameleon_outfit()
 			O.syndicate = syndicate
 			O.Grant(M)
+			var/datum/action/chameleon_copy/C = new /datum/action/chameleon_copy()
+			C.syndicate = syndicate
+			C.Grant(M)
 		else
 			M.chameleon_item_actions |= src
 	if(syndicate)
