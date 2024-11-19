@@ -1,7 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Added a dedicated expansion area for the juggernaut suit"
-  - qol: "Renamed the juggernaut suit purchase to reflect your buying access to the suit, not the suit itself."
-  - balance: "Lowered the amount mining transfer cards come with, fixing a infinite mining point exploit. CC hated this one trick."
-  - bugfix: "Adjusted bioterrorism area in nukie base so you can actually preform xenobio and virology."

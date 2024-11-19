@@ -344,3 +344,17 @@
   - rscadd: adds an admin rune axe
   tired-wired:
   - bugfix: Blueshift blueshield's office should work properly now.
+2024-11-19:
+  Gw0sty:
+  - rscadd: Added a dedicated expansion area for the juggernaut suit
+  - qol: Renamed the juggernaut suit purchase to reflect your buying access to the
+      suit, not the suit itself.
+  - balance: Lowered the amount mining transfer cards come with, fixing a infinite
+      mining point exploit. CC hated this one trick.
+  - bugfix: Adjusted bioterrorism area in nukie base so you can actually preform xenobio
+      and virology.
+  Shoddd:
+  - code_imp: Simple mob xenos are now basic mob xenos
+  Uristthedorf:
+  - rscadd: Adds prescription glasses to autolathe, medfab, and colony fab.
+  - rscadd: Adds several new items to the colony fabricator from the autolathe.

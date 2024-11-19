@@ -1,5 +1,0 @@
-author: "Uristthedorf"
-delete-after: True
-changes:
-  - rscadd: "Adds prescription glasses to autolathe, medfab, and colony fab."
-  - rscadd: "Adds several new items to the colony fabricator from the autolathe."
