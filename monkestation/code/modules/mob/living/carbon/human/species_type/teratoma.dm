@@ -88,11 +88,19 @@
 /obj/item/organ/internal/liver/teratoma
 	name = "horribly malformed liver"
 	desc = "It seems to pulse as if existed out of spite of nature itself."
-	var/datum/component/regenerator/teratoma/oh_god_why
+	var/datum/component/regenerator/oh_god_why
 
 /obj/item/organ/internal/liver/teratoma/on_insert(mob/living/carbon/organ_owner, special)
 	. = ..()
-	oh_god_why = organ_owner.AddComponent(/datum/component/regenerator/teratoma, health_per_second = 1, ignore_damage_types = list(OXY, STAMINA), outline_colour = COLOR_RED_LIGHT) // ignore oxy damage so they can regen while in crit if you just leave them there
+	oh_god_why = organ_owner.AddComponent(\
+		/datum/component/regenerator,\
+		brute_per_second = 2,\
+		burn_per_second = 2,\
+		tox_per_second = 1,\
+		heals_wounds = TRUE,\
+		ignore_damage_types = list(OXY, STAMINA),\
+		outline_colour = COLOR_RED_LIGHT\
+	) // ignore oxy damage so they can regen while in crit if you just leave them there
 	RegisterSignal(organ_owner, COMSIG_ATOM_EXPOSE_REAGENTS, PROC_REF(prevent_banned_reagent_exposure))
 	if(ishuman(organ_owner))
 		var/mob/living/carbon/human/human_owner = organ_owner
@@ -137,8 +145,3 @@
 	incidents_left = INFINITY
 	luck_mod = 0.75
 	damage_mod = 0.2
-
-/datum/component/regenerator/teratoma/do_heal(amt)
-	var/mob/living/living_parent = parent
-	living_parent.heal_overall_damage(brute = amt, burn = amt, updating_health = FALSE)
-	living_parent.adjustToxLoss(-(amt * 0.5), updating_health = TRUE)

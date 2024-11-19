@@ -125,7 +125,7 @@
 
 	AddComponent(/datum/component/regenerator,\
 		regeneration_delay = 1 SECONDS,\
-		health_per_second = 5,\
+		brute_per_second = 5,\
 		outline_colour = COLOR_YELLOW,\
 	)
 
