@@ -228,7 +228,7 @@
 	R.module = RM
 	R.update_module_innate()
 	RM.rebuild_modules()
-	R.radio.recalculateChannels()
+	R.radio?.recalculateChannels()
 	var/datum/component/armor_plate/C = R.GetComponent(/datum/component/armor_plate)
 	if(C) // Remove armor plating.
 		C.dropplates()
