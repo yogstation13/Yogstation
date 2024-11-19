@@ -189,7 +189,6 @@
 	return TRUE
 
 /datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target_atom)
-	. = ..()
 	var/mob/living/target = target_atom
 	var/mob/living/user = owner
 	var/datum/outfit/O = new()
