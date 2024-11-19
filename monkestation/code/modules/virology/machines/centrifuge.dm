@@ -483,6 +483,9 @@
 	special = CENTRIFUGE_LIGHTSPECIAL_OFF
 	. = ..()
 
+/obj/machinery/disease2/centrifuge/fullupgrade
+	circuit = /obj/item/circuitboard/machine/centrifuge/fullupgrade
+
 #undef CENTRIFUGE_LIGHTSPECIAL_OFF
 #undef CENTRIFUGE_LIGHTSPECIAL_BLINKING
 #undef CENTRIFUGE_LIGHTSPECIAL_ON

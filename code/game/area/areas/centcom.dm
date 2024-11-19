@@ -216,6 +216,12 @@
 	name = "Syndicate Elite Squad"
 	icon_state = "syndie-elite"
 
+//monkestation addition
+/area/centcom/syndicate_mothership/expansion_bulldozer
+	name = "Syndicate Juggernaut Armory"
+	icon_state = "syndie-elite"
+	ambience_index = AMBIENCE_DANGER
+
 //CAPTURE THE FLAG
 /area/centcom/ctf
 	name = "Capture the Flag"

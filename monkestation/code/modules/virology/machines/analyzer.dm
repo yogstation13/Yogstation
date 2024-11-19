@@ -227,3 +227,6 @@
 		dish.forceMove(loc)
 		dish = null
 		update_appearance()
+
+/obj/machinery/disease2/diseaseanalyser/fullupgrade
+	circuit = /obj/item/circuitboard/machine/diseaseanalyser/fullupgrade
