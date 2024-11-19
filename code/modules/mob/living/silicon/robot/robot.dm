@@ -211,7 +211,7 @@
 	if(shell)
 		GLOB.available_ai_shells -= src
 	else
-		if(T && istype(radio) && istype(radio.keyslot))
+		if(T && istype(radio) && istype(radio?.keyslot))
 			radio?.keyslot?.forceMove(T)
 			radio?.keyslot = null
 	qdel(wires)
