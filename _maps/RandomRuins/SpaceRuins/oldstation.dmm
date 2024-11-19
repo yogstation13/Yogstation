@@ -11,7 +11,7 @@
 /area/ruin/space/ancientstation/delta/ai)
 "af" = (
 /obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien,
+/mob/living/basic/alien,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "ag" = (
@@ -52,7 +52,7 @@
 /area/ruin/space/ancientstation/charlie/bridge)
 "ao" = (
 /obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien/drone,
+/mob/living/basic/alien/drone,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "ap" = (
@@ -854,7 +854,7 @@
 /area/ruin/space/ancientstation/delta/ai)
 "de" = (
 /obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien/queen,
+/mob/living/basic/alien/queen,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "df" = (
@@ -1004,7 +1004,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/mob/living/simple_animal/hostile/alien/drone,
+/mob/living/basic/alien/drone,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/delta/hall)
 "dH" = (
@@ -1855,7 +1855,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm/directional/east,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/alien/drone,
+/mob/living/basic/alien/drone,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/delta/hall)
 "gE" = (
@@ -2102,7 +2102,7 @@
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/ancientstation/charlie/kitchen)
 "hE" = (
-/mob/living/simple_animal/hostile/alien/drone,
+/mob/living/basic/alien/drone,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
@@ -3202,7 +3202,7 @@
 "lq" = (
 /obj/structure/alien/weeds,
 /obj/effect/decal/cleanable/blood/gibs/old,
-/mob/living/simple_animal/hostile/alien,
+/mob/living/basic/alien,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "lr" = (
@@ -3955,7 +3955,7 @@
 /area/ruin/space/ancientstation/delta/rnd)
 "nN" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/alien/drone,
+/mob/living/basic/alien/drone,
 /turf/open/floor/iron/white,
 /area/ruin/space/ancientstation/delta/rnd)
 "nO" = (
@@ -4020,7 +4020,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/alien,
+/mob/living/basic/alien,
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/delta/hall)
@@ -6658,7 +6658,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/directional/south,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/alien/drone,
+/mob/living/basic/alien/drone,
 /obj/machinery/duct,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/delta/hall)
@@ -8231,7 +8231,7 @@
 "Ws" = (
 /obj/machinery/light/small/directional/west,
 /obj/structure/alien/weeds,
-/mob/living/simple_animal/hostile/alien,
+/mob/living/basic/alien,
 /turf/open/floor/iron/dark,
 /area/ruin/space/ancientstation/delta/ai)
 "Wu" = (

@@ -39,7 +39,7 @@
 	//Mobs: Misc
 	/mob/living/carbon/alien/adult/royal/ = list("XENO ROYAL!!", "THICK XENO HERE!!", "WE'VE GOT COMPANY!!", "SHE'S A BIG ONE!!", "GLYPHID...I MEAN XENO ROYAL!!"),
 	/mob/living/carbon/alien/ = list("Got a xenomorph here!", "Xeno! Watch for huggers!", "Xenomorph!", "We've got xenos!", "Don't let it grab you!"),
-	/mob/living/simple_animal/hostile/alien/ = list("Got a xenomorph here!", "Xeno! Watch for huggers!", "Strange dog!", "Xenomorph!", "Die like your mother did!"),
+	/mob/living/basic/alien/ = list("Got a xenomorph here!", "Xeno! Watch for huggers!", "Strange dog!", "Xenomorph!", "Die like your mother did!"),
 	/obj/structure/alien/egg/ = list("Watch the eggs!", "Stay back from the egg!", "There's an egg here!", "Egg! I found an egg!", "EGG!", "Egg found!", "Careful! We don't want to wake up what's in that egg!", "I don't ever wanna meet whatever laid these eggs..."),
 	/obj/item/food/egg/ = list("There's an egg here!", "Egg! I found an egg!", "EGG!", "Egg found!"),
 	/obj/item/clothing/mask/facehugger/ = list("Watch it!", "Don't let that touch you!", "Mouthgrabber!", "It's one of those headhuggers!", "Don't touch that unless you wanna be a mother!", "Hugger! Shoot it from a distance!", "Is it real?"),
