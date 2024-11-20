@@ -12,6 +12,8 @@
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
+
+	radio = new /obj/item/radio/borg
 	
 	var/custom_name = ""
 	var/braintype = "Cyborg"
@@ -142,7 +144,7 @@
 
 	update_law_history() //yogs
 
-	radio = new /obj/item/radio/borg(src)
+	
 	if(!scrambledcodes && !builtInCamera)
 		builtInCamera = new (src)
 		builtInCamera.c_tag = real_name
