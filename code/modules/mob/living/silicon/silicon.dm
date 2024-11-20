@@ -58,6 +58,8 @@
 		armor = getArmor()
 	else if(!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during [type] Initialize()")
+	if(ispath(radio))
+		radio = new radio(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
 	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
@@ -69,8 +71,8 @@
 	return //we use a different hud
 
 /mob/living/silicon/Destroy()
-	radio = null
-	aicamera = null
+	QDEL_NULL(radio)
+	QDEL_NULL(aicamera)
 	QDEL_NULL(builtInCamera)
 	GLOB.silicon_mobs -= src
 	return ..()
