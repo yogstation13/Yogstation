@@ -30,6 +30,7 @@
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/dagoth
 
+/* disabled (its not my birthday, this has a weight of 0 and yet somehow still rolls)
 /datum/station_trait/announcement_veth_birthday
 	name = "Announcement Veth's Birthday"
 	trait_type = STATION_TRAIT_NEUTRAL
@@ -41,5 +42,5 @@
 /datum/station_trait/announcement_veth_birthday/New()
 	. = ..()
 	SSstation.announcer = /datum/centcom_announcer/vethday
-
+*/
 

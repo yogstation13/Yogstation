@@ -1,3 +1,4 @@
+/* disabled (its not my birthday, this has a weight of 0 and somehow still rolls)
 /datum/centcom_announcer/vethday
 	welcome_sounds = list('monkestation/sound/ai/vethbirthday/welcome/ccveth.ogg')
 
@@ -30,5 +31,5 @@
 						ANNOUNCER_SHUTTLEDOCK = 'monkestation/sound/ai/vethbirthday/abShuttleDocked.ogg',
 						ANNOUNCER_SHUTTLERECALLED = 'monkestation/sound/ai/vethbirthday/abShuttleRecalled.ogg',
 						ANNOUNCER_SPANOMALIES = 'monkestation/sound/ai/vethbirthday/chenSpanomalies.ogg')
-
+*/
 
