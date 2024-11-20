@@ -869,9 +869,12 @@
 		for(b=0, b!=2, b++)
 			var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
 			F.burn_out()
-		if (cell) //Sanity check.
+		if		(cell) //Sanity check.
 			cell.forceMove(T)
 			cell = null
+		if	(radio)
+			radio?.keyslot?.forceMove(T)
+			radio?.keyslot = null
 	qdel(src)
 
 /mob/living/silicon/robot/modules
