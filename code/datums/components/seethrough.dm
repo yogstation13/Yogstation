@@ -19,7 +19,7 @@
 	var/use_parent_turf
 
 ///see_through_map is a define pointing to a specific map. It's basically defining the area which is considered behind. See see_through_maps.dm for a list of maps
-/datum/component/seethrough/Initialize(see_through_map = SEE_THROUGH_MAP_DEFAULT, target_alpha = 100, animation_time = 0.5 SECONDS, perimeter_reset_timer = 2 SECONDS, clickthrough = TRUE, use_parent_turf = FALSE)
+/datum/component/seethrough/Initialize(see_through_map = SEE_THROUGH_MAP_DEFAULT, target_alpha = 100, animation_time = 0.5 SECONDS, perimeter_reset_timer = 2 SECONDS, clickthrough = TRUE, use_parent_turf = FALSE, movement_source = null)
 	. = ..()
 
 	relative_turf_coords = GLOB.see_through_maps[see_through_map]
@@ -35,7 +35,7 @@
 	src.clickthrough = clickthrough
 	src.use_parent_turf = use_parent_turf
 
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(dismantle_perimeter))
+	RegisterSignal(movement_source || parent, COMSIG_MOVABLE_MOVED, PROC_REF(dismantle_perimeter))
 
 	setup_perimeter(parent)
 

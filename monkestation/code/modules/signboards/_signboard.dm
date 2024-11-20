@@ -206,7 +206,7 @@
 	. = ..()
 	if(!istype(loc, /obj/structure/signboard) || QDELING(loc))
 		return INITIALIZE_HINT_QDEL
-	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_THREE_X_TWO, 112, use_parent_turf = TRUE)
+	AddComponent(/datum/component/seethrough, SEE_THROUGH_MAP_THREE_X_TWO, 112, use_parent_turf = TRUE, movement_source = loc)
 
 /obj/effect/abstract/signboard_holder/Destroy(force)
 	if(!force && istype(loc, /obj/structure/signboard) && !QDELING(loc))
