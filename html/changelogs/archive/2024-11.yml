@@ -358,3 +358,17 @@
   Uristthedorf:
   - rscadd: Adds prescription glasses to autolathe, medfab, and colony fab.
   - rscadd: Adds several new items to the colony fabricator from the autolathe.
+2024-11-20:
+  Absolucy:
+  - rscadd: GPSes now show the general direction of "calibrated" Z-levels, altho there's
+      currently no way of manually calibrating them.
+  - rscadd: GPSes will always be pre-calibrated to be capable of pointing back to
+      whichever z-level they were created on.
+  - rscadd: Added the advanced GPS, behind the Miniaturized Bluespace Research node,
+      which does not require calibration at all.
+  - rscadd: The "First Man on the Moon" curator kit now comes with an advanced GPS
+      - it's no longer an objectively worse version of the carp hunter kit!
+  - rscadd: Teratomas now heal wounds when regenerating now.
+  - bugfix: Hopefully made teratoma/carp regeneration more consistent and reliable.
+  Veth-s:
+  - rscdel: Disabled VethDay announcer pack.

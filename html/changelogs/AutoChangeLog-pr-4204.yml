@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscadd: "Teratomas now heal wounds when regenerating now."
-  - bugfix: "Hopefully made teratoma/carp regeneration more consistent and reliable."
