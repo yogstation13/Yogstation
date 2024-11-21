@@ -2131,16 +2131,6 @@
 /obj/effect/turf_decal/trimline/green/filled/corner/lower,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bah" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/vending/wardrobe/hop_wardrobe,
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/hop)
 "bal" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -14154,12 +14144,6 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "gCk" = (
-/obj/machinery/modular_computer/console/preset/command/hop{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "gCt" = (
@@ -15571,10 +15555,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "hnx" = (
-/obj/machinery/firealarm{
-	pixel_y = 28
+/obj/machinery/modular_computer/console/preset/command/hop{
+	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "hnH" = (
@@ -17672,12 +17655,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
 /obj/machinery/photocopier/faxmachine{
 	department = "Head of Personnel";
 	name = "Head of Personnel's Fax Machine"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -18275,6 +18258,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "izV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "iAA" = (
@@ -22532,8 +22516,24 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "kJB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet/blue,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/obj/machinery/inspector_booth{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	name = "Head of Personnel's Desk"
+	},
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "kJU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -28202,6 +28202,9 @@
 	dir = 1
 	},
 /obj/machinery/pdapainter,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "nzN" = (
@@ -28539,9 +28542,6 @@
 "nHr" = (
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
@@ -32553,7 +32553,6 @@
 /obj/machinery/door/window/brigdoor{
 	base_state = "rightsecure";
 	dir = 4;
-	icon_state = "rightsecure";
 	name = "Head of Personnel's Desk"
 	},
 /obj/machinery/flasher{
@@ -37245,6 +37244,10 @@
 /area/medical/storage)
 "rWx" = (
 /obj/structure/closet/secure_closet/hop,
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "rWP" = (
@@ -41839,6 +41842,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
+"ulW" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/hop)
 "umn" = (
 /obj/machinery/door/airlock/engineering{
 	name = "AI Ship Access"
@@ -41972,11 +41983,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "urY" = (
-/obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
 /obj/machinery/light_switch{
 	pixel_x = 24
 	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "usc" = (
@@ -95103,7 +95113,7 @@ xPn
 tCL
 xdL
 pKI
-mUc
+kJB
 mUc
 omw
 omw
@@ -95361,7 +95371,7 @@ baa
 xdL
 cov
 gCk
-bah
+ulW
 pdq
 omw
 viA
@@ -95617,7 +95627,7 @@ qot
 hXw
 xdL
 hnx
-kJB
+gCk
 nHr
 gqN
 omw
