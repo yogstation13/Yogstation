@@ -156,9 +156,9 @@
 		owner_has_control = is_syndicate(M)
 	return ..()
 
-/datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, mob/living/copy_target)
+/datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, atom/target)
 	message_admins("Trigger called")
-	message_admins("Trigger: [copy_target]")
+	message_admins("Trigger: [target]")
 	if(active)
 		active = FALSE
 		background_icon_state = "bg_default"
@@ -169,42 +169,43 @@
 	active = TRUE
 	background_icon_state = "bg_default_on"
 	build_all_button_icons()
-	if(copy_target)
-		return InterceptClickOn(owner, null, copy_target)
-	return set_click_ability(owner)
+	if(target)
+		return InterceptClickOn(owner, null, target)
+	set_click_ability(owner)
 
-/datum/action/cooldown/chameleon_copy/proc/CheckValidTarget(mob/living/copy_target)
+/datum/action/cooldown/chameleon_copy/proc/CheckValidTarget(atom/target)
 	message_admins("CheckValidTarget called")
-	if(copy_target == owner)
+	if(target == owner)
 		return FALSE
 	return TRUE
 
 /datum/action/cooldown/chameleon_copy/proc/CheckCanTarget(atom/target)
 	return !isnull(target)
 
-/datum/action/cooldown/chameleon_copy/proc/click_with_power(atom/target)
+/datum/action/cooldown/chameleon_copy/proc/click_with_power(atom/target_atom)
 	message_admins("click_with_power called")
-	message_admins("Click: [target]")
-	if(in_use || !CheckValidTarget(target))
+	message_admins("Click: [target_atom]")
+	if(in_use || !CheckValidTarget(target_atom))
 		message_admins("Failed click_with_power 1")
 		return FALSE
-	if(!CheckCanTarget(target))
+	if(!CheckCanTarget(target_atom))
 		message_admins("Failed click_with_power 2")
 		return TRUE
 	in_use = TRUE
-	FireTargetedPower(target)
+	FireTargetedPower(target_atom)
 	in_use = FALSE
 	return TRUE
 
-/datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target)
+/datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target_atom)
 	message_admins("FireTargetedPower called")
 	var/mob/M = target
+	message_admins("Atom: [target_atom]")
 	message_admins("Mob: [M]")
 	//var/datum/outfit/O = new()
 	to_chat(owner, span_notice("Attempting to copy [M]..."))
-	if(!do_after(owner, 5 SECONDS, target))
+	if(!do_after(owner, 5 SECONDS, target_atom))
 		return
-	for(var/item in target.contents)
+	for(var/item in target_atom.contents)
 		message_admins(item)
 	to_chat(owner, span_notice("Successfully copied [M]!"))
 	active = FALSE
