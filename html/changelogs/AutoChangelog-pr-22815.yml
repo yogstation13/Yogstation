@@ -1,0 +1,5 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - bugfix: "Solved issue #22801"
+  - imageadd: "Added object sprites to CTF armors"
