@@ -1,8 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - mapping: "The HoP's office now has an inspector booth beside the desk on all maps"
-  - tweak: "Some things in the HoP's office have been shuffled around to make room for new inspector booths"
-  - bugfix: "Fixed chemistry not being able to receive mail on Box"
-  - bugfix: "Fixed the HoP's disposal chute on Donut not working properly"
-  - bugfix: "Fixed HoP's desk having a duplicate ID console on Mini"
