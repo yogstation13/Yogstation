@@ -201,6 +201,7 @@
 	name = "supermatter bin"
 	desc = "A tiny receptacle that releases an inert hyper-noblium mix upon sealing, allowing a sliver of a supermatter crystal to be safely stored."
 	var/obj/item/nuke_core/supermatter_sliver/sliver
+	resistance_flags = FIRE_PROOF
 
 /obj/item/nuke_core_container/supermatter/Destroy()
 	QDEL_NULL(sliver)
