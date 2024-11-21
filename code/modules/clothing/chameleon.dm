@@ -169,8 +169,6 @@
 	active = TRUE
 	background_icon_state = "bg_default_on"
 	build_all_button_icons()
-	if(target)
-		return InterceptClickOn(owner, null, target)
 	set_click_ability(owner)
 
 /datum/action/cooldown/chameleon_copy/proc/CheckValidTarget(atom/target)
