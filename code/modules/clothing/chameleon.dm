@@ -157,6 +157,8 @@
 	return ..()
 
 /datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, mob/living/copy_target)
+	message_admins("Trigger called")
+	message_admins("Trigger: [copy_target]")
 	if(active)
 		active = FALSE
 		background_icon_state = "bg_default"
@@ -172,41 +174,46 @@
 	return set_click_ability(owner)
 
 /datum/action/cooldown/chameleon_copy/proc/CheckValidTarget(mob/living/copy_target)
+	message_admins("CheckValidTarget called")
 	if(copy_target == owner)
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/chameleon_copy/proc/CheckCanTarget(mob/living/copy_target)
-	var/mob/living/carbon/human/user = owner
-	if(target_range)
-		if(!(get_dist(user, copy_target) <= target_range)) //get_dist really hates datums for some reason
-			return FALSE
-	return istype(target)
+/datum/action/cooldown/chameleon_copy/proc/CheckCanTarget(atom/target)
+	return !isnull(target)
 
-/datum/action/cooldown/chameleon_copy/proc/click_with_power(mob/living/copy_target)
-	if(in_use || !CheckValidTarget(copy_target))
+/datum/action/cooldown/chameleon_copy/proc/click_with_power(atom/target)
+	message_admins("click_with_power called")
+	message_admins("Click: [target]")
+	if(in_use || !CheckValidTarget(target))
+		message_admins("Failed click_with_power 1")
 		return FALSE
-	if(!CheckCanTarget(copy_target))
+	if(!CheckCanTarget(target))
+		message_admins("Failed click_with_power 2")
 		return TRUE
 	in_use = TRUE
-	FireTargetedPower(copy_target)
+	FireTargetedPower(target)
 	in_use = FALSE
 	return TRUE
 
-/datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(mob/living/copy_target)
+/datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target)
+	message_admins("FireTargetedPower called")
+	var/mob/M = target
+	message_admins("Mob: [M]")
 	//var/datum/outfit/O = new()
-	to_chat(owner, span_notice("Attempting to copy [copy_target]..."))
-	if(!do_after(owner, 5 SECONDS, copy_target))
+	to_chat(owner, span_notice("Attempting to copy [M]..."))
+	if(!do_after(owner, 5 SECONDS, target))
 		return
-	for(var/item in copy_target.contents)
+	for(var/item in target.contents)
 		message_admins(item)
-	to_chat(owner, span_notice("Successfully copied [copy_target]!"))
+	to_chat(owner, span_notice("Successfully copied [M]!"))
 	active = FALSE
 	
 
 /datum/action/cooldown/chameleon_copy/InterceptClickOn(/mob/living/caller, params, atom/target)
-	var/mob/living/copy_target = target
-	click_with_power(copy_target)
+	message_admins("InterceptClickOn called")
+	message_admins("Intercept: [target]")
+	click_with_power(target)
 
 /datum/action/item_action/chameleon/change
 	name = "Chameleon Change"
