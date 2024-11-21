@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Signboards no longer \"leave behind\" their text transparency area whenever they're moved."

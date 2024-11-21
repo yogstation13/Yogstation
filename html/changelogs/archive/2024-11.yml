@@ -372,3 +372,7 @@
   - bugfix: Hopefully made teratoma/carp regeneration more consistent and reliable.
   Veth-s:
   - rscdel: Disabled VethDay announcer pack.
+2024-11-21:
+  Absolucy:
+  - bugfix: Signboards no longer "leave behind" their text transparency area whenever
+      they're moved.
