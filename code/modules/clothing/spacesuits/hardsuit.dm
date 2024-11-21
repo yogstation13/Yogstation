@@ -979,7 +979,7 @@
 	name = "white team armor"
 	desc = "Standard issue hardsuit for playing capture the flag."
 	icon_state = "ctf-white"
-	item_state = null
+	item_state = "ctf-white"
 	hardsuit_type = "ctf-white"
 	// Adding TRAIT_NODROP is done when the CTF spawner equips people
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf
@@ -990,7 +990,7 @@
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf/red
 	name = "red team armor"
 	icon_state = "ctf-red"
-	item_state =  null
+	item_state =  "ctf-red"
 	hardsuit_type = "ert_security"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf/red
 	shield_state = "shield-red"
@@ -998,7 +998,7 @@
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf/blue
 	name = "blue team armor"
 	icon_state = "ctf-blue"
-	item_state = null
+	item_state = "ctf-blue"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf/blue
 
 
@@ -1007,23 +1007,23 @@
 	name = "white team helmet"
 	desc = "Standard issue hardsuit helmet for playing capture the flag."
 	icon_state = "hardsuit0-ctf_white"
-	item_state = null
-	hardsuit_type = "ert_medical"
+	item_state = "hardsuit0-ctf_white"
+	hardsuit_type = "ctf_white"
 	armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 50, BIO = 100, RAD = 100, FIRE = 95, ACID = 95, ELECTRIC = 100)
 
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf/red
 	name = "red team helmet"
 	icon_state = "hardsuit0-ctf_red"
-	item_state = null
-	hardsuit_type = "ert_security"
+	item_state = "hardsuit0-ctf_red"
+	hardsuit_type = "ctf_red"
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf/blue
 	name = "blue team helmet"
 	desc = "Standard issue hardsuit helmet for playing capture the flag."
 	icon_state = "hardsuit0-ctf_blue"
-	item_state = null
-	hardsuit_type = "ert_commander"
+	item_state = "hardsuit0-ctf_blue"
+	hardsuit_type = "ctf_blue"
 
 
 
