@@ -13,7 +13,7 @@
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
 
-	radio = new /obj/item/radio/borg
+	radio = /obj/item/radio/borg
 	
 	var/custom_name = ""
 	var/braintype = "Cyborg"
@@ -121,7 +121,6 @@
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-
 	wires = new /datum/wires/robot(src)
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 

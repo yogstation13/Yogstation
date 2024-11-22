@@ -3740,6 +3740,7 @@
 #include "code\modules\shuttle\shuttle_creation\shuttle_creator_eye.dm"
 #include "code\modules\shuttle\shuttle_creation\shuttle_creator_overlay.dm"
 #include "code\modules\shuttle\shuttle_creation\shuttle_upgrades.dm"
+#include "code\modules\spatial_grid\cell_tracker.dm"
 #include "code\modules\spells\spell.dm"
 #include "code\modules\spells\spell_types\devil.dm"
 #include "code\modules\spells\spell_types\devil_boons.dm"
