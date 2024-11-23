@@ -9,7 +9,7 @@
 // Delete self without hitting
 #define PROJECTILE_DELETE_WITHOUT_HITTING 3
 
-// Caliber defines: (current count stands at 24)
+// Caliber defines: (current count stands at 27)
 /// The caliber used by the [L6 SAW][/obj/item/gun/ballistic/automatic/l6_saw].
 #define CALIBER_712X82MM "mm71282"
 /// The caliber used by the [security auto-rifle][/obj/item/gun/ballistic/automatic/wt550].
@@ -59,6 +59,8 @@
 #define CALIBER_A223 "a223"
 /// The caliber used by bolt action rifles.
 #define CALIBER_STRILKA310 ".310_strilka"
+/// The caliber used by the atlatl spear thrower
+#define CALIBER_SPEAR "throwing spear"
 
 /// For gunpoints, how many tiles around the target the shooter can roam without losing their shot
 #define GUNPOINT_SHOOTER_STRAY_RANGE 2
