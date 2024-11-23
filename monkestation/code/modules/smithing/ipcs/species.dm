@@ -56,12 +56,12 @@
 	exotic_bloodtype = /datum/blood_type/oil
 
 	bodypart_overrides = list(
-		BODY_ZONE_HEAD = /obj/item/bodypart/head/robot/ipc,
-		BODY_ZONE_CHEST = /obj/item/bodypart/chest/robot/ipc,
-		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/robot/ipc,
-		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/robot/ipc,
-		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/robot/ipc,
-		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/robot/ipc,
+		BODY_ZONE_HEAD = /obj/item/bodypart/head/ipc,
+		BODY_ZONE_CHEST = /obj/item/bodypart/chest/ipc,
+		BODY_ZONE_L_ARM = /obj/item/bodypart/arm/left/ipc,
+		BODY_ZONE_R_ARM = /obj/item/bodypart/arm/right/ipc,
+		BODY_ZONE_L_LEG = /obj/item/bodypart/leg/left/ipc,
+		BODY_ZONE_R_LEG = /obj/item/bodypart/leg/right/ipc,
 	)
 
 	bodytemp_heat_damage_limit = CELCIUS_TO_KELVIN(450)

@@ -1,4 +1,4 @@
-/obj/item/bodypart/head/robot/ipc
+/obj/item/bodypart/head/ipc
 	icon = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_greyscale = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_static = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
@@ -15,7 +15,14 @@
 	body_damage_coeff = 1.1	//IPC's Head can dismember	//Monkestation Edit
 	max_damage = 40	//Keep in mind that this value is used in the //Monkestation Edit
 	dmg_overlay_type = "synth"
-/obj/item/bodypart/chest/robot/ipc
+
+	disabling_threshold_percentage = 1
+
+	biological_state = (BIO_ROBOTIC|BIO_JOINTED)
+
+	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT, CLONE = DEFAULT_CLONE_EXAMINE_TEXT)
+
+/obj/item/bodypart/chest/ipc
 	icon = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_greyscale = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_static = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
@@ -33,12 +40,19 @@
 
 	dmg_overlay_type = "synth"
 
-/obj/item/bodypart/arm/left/robot/ipc
+	disabling_threshold_percentage = 1
+
+	biological_state = (BIO_ROBOTIC|BIO_JOINTED)
+
+	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT, CLONE = DEFAULT_CLONE_EXAMINE_TEXT)
+
+/obj/item/bodypart/arm/left/ipc
 	icon = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_greyscale = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_static = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	limb_id = "synth"
 	icon_state = "synth_l_arm"
+	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
@@ -50,12 +64,19 @@
 
 	dmg_overlay_type = "synth"
 
-/obj/item/bodypart/arm/right/robot/ipc
+	disabling_threshold_percentage = 1
+
+	biological_state = (BIO_ROBOTIC|BIO_JOINTED)
+
+	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT, CLONE = DEFAULT_CLONE_EXAMINE_TEXT)
+
+/obj/item/bodypart/arm/right/ipc
 	icon = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_greyscale = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_static = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	limb_id = "synth"
 	icon_state = "synth_r_arm"
+	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
@@ -67,12 +88,19 @@
 
 	dmg_overlay_type = "synth"
 
-/obj/item/bodypart/leg/left/robot/ipc
+	disabling_threshold_percentage = 1
+
+	biological_state = (BIO_ROBOTIC|BIO_JOINTED)
+
+	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT, CLONE = DEFAULT_CLONE_EXAMINE_TEXT)
+
+/obj/item/bodypart/leg/left/ipc
 	icon = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_greyscale = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_static = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	limb_id = "synth"
 	icon_state = "synth_l_leg"
+	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
@@ -82,12 +110,19 @@
 	dmg_overlay_type = "synth"
 	step_sounds = list('sound/effects/servostep.ogg')
 
-/obj/item/bodypart/leg/right/robot/ipc
+	disabling_threshold_percentage = 1
+
+	biological_state = (BIO_ROBOTIC|BIO_JOINTED)
+
+	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT, CLONE = DEFAULT_CLONE_EXAMINE_TEXT)
+
+/obj/item/bodypart/leg/right/ipc
 	icon = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_greyscale = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	icon_static = 'monkestation/icons/mob/species/ipc/bodyparts.dmi'
 	limb_id = "synth"
 	icon_state = "synth_r_leg"
+	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
@@ -99,3 +134,9 @@
 
 	dmg_overlay_type = "synth"
 	step_sounds = list('sound/effects/servostep.ogg')
+
+	disabling_threshold_percentage = 1
+
+	biological_state = (BIO_ROBOTIC|BIO_JOINTED)
+
+	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT, CLONE = DEFAULT_CLONE_EXAMINE_TEXT)

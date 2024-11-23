@@ -17,7 +17,7 @@
 	build_type = MECHFAB
 	construction_time = 15 SECONDS
 	materials = list(/datum/material/iron = 4000, /datum/material/glass = 500)
-	build_path = /obj/item/bodypart/head/robot/ipc
+	build_path = /obj/item/bodypart/head/ipc
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
@@ -29,7 +29,7 @@
 	build_type = MECHFAB
 	construction_time = 15 SECONDS
 	materials = list(/datum/material/iron = 5000)
-	build_path = /obj/item/bodypart/chest/robot/ipc
+	build_path = /obj/item/bodypart/chest/ipc
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
@@ -41,7 +41,7 @@
 	build_type = MECHFAB
 	construction_time = 15 SECONDS
 	materials = list(/datum/material/iron = 2000)
-	build_path = /obj/item/bodypart/arm/left/robot/ipc
+	build_path = /obj/item/bodypart/arm/left/ipc
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
@@ -53,7 +53,7 @@
 	build_type = MECHFAB
 	construction_time = 15 SECONDS
 	materials = list(/datum/material/iron = 2000)
-	build_path = /obj/item/bodypart/arm/right/robot/ipc
+	build_path = /obj/item/bodypart/arm/right/ipc
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
@@ -65,7 +65,7 @@
 	build_type = MECHFAB
 	construction_time = 15 SECONDS
 	materials = list(/datum/material/iron = 2000)
-	build_path = /obj/item/bodypart/leg/left/robot/ipc
+	build_path = /obj/item/bodypart/leg/left/ipc
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
@@ -77,7 +77,7 @@
 	build_type = MECHFAB
 	construction_time = 15 SECONDS
 	materials = list(/datum/material/iron = 2000)
-	build_path = /obj/item/bodypart/leg/right/robot/ipc
+	build_path = /obj/item/bodypart/leg/right/ipc
 	category = list(
 		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_MISC
 	)
