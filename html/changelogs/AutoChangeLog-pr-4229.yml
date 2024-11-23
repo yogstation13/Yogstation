@@ -1,0 +1,7 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - bugfix: "Fixed usable wings not scaling with player height"
+  - bugfix: "Altered how Tallest players render to reduce artifacts"
+  - rscadd: "Enabled the Taller player height"
+  - bugfix: "Enabled mutation overlays scaling with height"
