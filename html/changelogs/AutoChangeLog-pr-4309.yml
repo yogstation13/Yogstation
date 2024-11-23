@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added several fire alarms to Boxstation medical."
+  - rscadd: "Added bardrone spawner to Boxstation, rejoice"
