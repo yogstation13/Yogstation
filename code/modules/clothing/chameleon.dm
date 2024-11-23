@@ -142,6 +142,7 @@
 	qdel(O)
 	return TRUE
 
+
 /datum/action/cooldown/chameleon_copy
 	name = "Copy person"
 	button_icon_state = "default" //Temporary, just to test it works
@@ -151,10 +152,15 @@
 	var/copying = FALSE
 	var/in_use = FALSE
 
+/datum/action/cooldown/chameleon_copy/InterceptClickOn(mob/living/caller, params, atom/target)
+	message_admins("InterceptClickOn called")
+	message_admins("Intercept: [target]")
+	click_with_power(target)
+
 /datum/action/cooldown/chameleon_copy/Grant(mob/M)
 	if(syndicate)
 		owner_has_control = is_syndicate(M)
-	return ..()
+	. = ..()
 
 /datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, atom/target)
 	message_admins("Trigger called")
@@ -177,18 +183,12 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/chameleon_copy/proc/CheckCanTarget(atom/target)
-	return !isnull(target)
-
 /datum/action/cooldown/chameleon_copy/proc/click_with_power(atom/target_atom)
 	message_admins("click_with_power called")
 	message_admins("Click: [target_atom]")
 	if(in_use || !CheckValidTarget(target_atom))
 		message_admins("Failed click_with_power 1")
 		return FALSE
-	if(!CheckCanTarget(target_atom))
-		message_admins("Failed click_with_power 2")
-		return TRUE
 	in_use = TRUE
 	FireTargetedPower(target_atom)
 	in_use = FALSE
@@ -196,7 +196,7 @@
 
 /datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target_atom)
 	message_admins("FireTargetedPower called")
-	var/mob/M = target
+	var/mob/M = target_atom
 	message_admins("Atom: [target_atom]")
 	message_admins("Mob: [M]")
 	//var/datum/outfit/O = new()
@@ -207,12 +207,7 @@
 		message_admins(item)
 	to_chat(owner, span_notice("Successfully copied [M]!"))
 	active = FALSE
-	
 
-/datum/action/cooldown/chameleon_copy/InterceptClickOn(/mob/living/caller, params, atom/target)
-	message_admins("InterceptClickOn called")
-	message_admins("Intercept: [target]")
-	click_with_power(target)
 
 /datum/action/item_action/chameleon/change
 	name = "Chameleon Change"
