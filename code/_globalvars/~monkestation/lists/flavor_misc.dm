@@ -4,5 +4,6 @@ GLOBAL_LIST_INIT(body_heights, list(
 	"Short" = HUMAN_HEIGHT_SHORT,
 	"Normal" = HUMAN_HEIGHT_MEDIUM,
 	"Tall" = HUMAN_HEIGHT_TALL,
+	"Taller" = HUMAN_HEIGHT_TALLER,
 	"Tallest" = HUMAN_HEIGHT_TALLEST,
 ))

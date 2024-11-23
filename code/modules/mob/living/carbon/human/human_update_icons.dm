@@ -869,7 +869,10 @@ generate/load female uniform sprites matching all previously decided variables
 // Some overlays can't be displaced as they're too close to the edge of the sprite or cross the middle point in a weird way.
 // So instead we have to pass them through an offset, which is close enough to look good.
 /mob/living/carbon/human/apply_overlay(cache_index)
-	if(get_mob_height() == HUMAN_HEIGHT_MEDIUM)
+	/* MONKESTATION EDIT: made it so that MUTATIONS_LAYER and FRONT_MUTATIONS_LAYER always get their filters updated
+		This is required because they use cached / shared appearences
+	if(get_mob_height() == HUMAN_HEIGHT_MEDIUM) - original */
+	if(get_mob_height() == HUMAN_HEIGHT_MEDIUM && cache_index != MUTATIONS_LAYER && cache_index != FRONT_MUTATIONS_LAYER)
 		return ..()
 
 	var/raw_applied = overlays_standing[cache_index]
@@ -914,29 +917,35 @@ generate/load female uniform sprites matching all previously decided variables
  * Applies a filter to an appearance according to mob height
  */
 /mob/living/carbon/human/proc/apply_height_filters(image/appearance, only_apply_in_prefs = FALSE)
-//MONKESTATION EDIT START : Pick a displacement mask depending on the height of the icon, 32x48 icons are used for features which would otherwise get clipped when tall players use them
+//MONKESTATION EDIT START
+	// Pick a displacement mask depending on the height of the icon, ?x48 icons are used for features which would otherwise get clipped when tall players use them
+	// Note: Due to how this system works it's okay to use a mask which is wider than the appearence but NOT okay if the mask is thinner, taller or shorter
 	var/dims = get_icon_dimensions(appearance.icon)
 	var/icon_width = dims["width"]
 	var/icon_height = dims["height"]
 
 	var/mask_icon = 'icons/effects/cut.dmi'
 	if(icon_width != 0 && icon_height != 0)
-		if(icon_width != 32)
-			throw EXCEPTION("Bad dimensions ([icon_width]x[icon_height]) for icon '[appearance.icon]'")
 		if(icon_height == 48)
-			mask_icon = 'monkestation/icons/effects/cut_32x48.dmi'
+			mask_icon = 'monkestation/icons/effects/cut_96x48.dmi'
+			if(icon_width > 96)
+				stack_trace("Bad dimensions (w[icon_width],h[icon_height]) for icon '[appearance.icon]'")
 		else if(icon_height != 32)
-			throw EXCEPTION("Bad dimensions ([icon_width]x[icon_height]) for icon '[appearance.icon]'")
+			stack_trace("Bad dimensions (w[icon_width],h[icon_height]) for icon '[appearance.icon]'")
+		else if(icon_width > 32)
+			stack_trace("Bad dimensions (w[icon_width],h[icon_height]) for icon '[appearance.icon]'")
 
 	var/icon/cut_torso_mask = icon(mask_icon, "Cut1")
 	var/icon/cut_legs_mask = icon(mask_icon, "Cut2")
 	var/icon/lenghten_torso_mask = icon(mask_icon, "Cut3")
 	var/icon/lenghten_legs_mask = icon(mask_icon, "Cut4")
+	var/icon/lenghten_ankles_mask = icon(mask_icon, "Cut5")
 //MONKESTATION EDIT END
 
 	appearance.remove_filter(list(
 		"Cut_Torso",
 		"Cut_Legs",
+		"Lenghten_Ankles", // MONKESTATION ADDITION
 		"Lenghten_Legs",
 		"Lenghten_Torso",
 		"Gnome_Cut_Torso",
@@ -1029,8 +1038,15 @@ generate/load female uniform sprites matching all previously decided variables
 				list(
 					"name" = "Lenghten_Legs",
 					"priority" = 1,
-					"params" = displacement_map_filter(lenghten_legs_mask, x = 0, y = 0, size = 2),
+					"params" = displacement_map_filter(lenghten_legs_mask, x = 0, y = 0, size = 1 /* monke edit: 2 -> 1 */),
 				),
+				// MONKESTATION EDIT START
+				list(
+					"name" = "Lenghten_Ankles",
+					"priority" = 1,
+					"params" = displacement_map_filter(lenghten_ankles_mask, x = 0, y = 0, size = 1),
+				),
+				// MONKESTATION EDIT END
 			))
 
 	// Kinda gross but because many humans overlays do not use KEEP_TOGETHER we need to manually propogate the filter
