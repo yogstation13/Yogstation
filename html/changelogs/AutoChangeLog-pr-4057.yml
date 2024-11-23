@@ -1,0 +1,6 @@
+author: "MissClassyPineapple"
+delete-after: True
+changes:
+  - rscadd: "Added Sect of the Hunt as an available sect for the chaplain."
+  - rscadd: "Prey mobs and Prime Cut item as needed by the new sect."
+  - rscadd: "Added Atlatl Weapon with accompanying throwing spears and spear quiver."
