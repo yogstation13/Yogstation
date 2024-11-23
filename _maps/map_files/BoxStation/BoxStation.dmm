@@ -4424,6 +4424,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "bvp" = (
@@ -35239,6 +35240,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/assistant,
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "lvV" = (
@@ -44077,6 +44079,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
+"osq" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/aft)
 "osP" = (
 /obj/machinery/computer/cryopod/directional/north,
 /turf/open/floor/iron/dark/side{
@@ -50870,6 +50882,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "qHC" = (
@@ -61785,6 +61798,14 @@
 /obj/machinery/door/poddoor/massdriver_chapel,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/service/chapel/funeral)
+"uoW" = (
+/obj/effect/turf_decal/trimline/dark_blue/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/dark_blue/line,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "uoX" = (
 /obj/structure/foamedmetal,
 /turf/open/floor/plating,
@@ -65577,6 +65598,16 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
+"vyc" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/blue/line{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/aft)
 "vyg" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -70433,6 +70464,14 @@
 "xba" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/port/aft)
+"xbb" = (
+/obj/effect/turf_decal/trimline/blue/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/blue/line,
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/iron/white,
+/area/station/medical/medbay/central)
 "xbz" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible,
 /obj/machinery/meter,
@@ -70988,7 +71027,7 @@
 /area/station/maintenance/port/fore)
 "xkR" = (
 /obj/machinery/duct,
-/mob/living/basic/drone/snowflake/bardrone,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
 /turf/open/floor/iron/kitchen,
 /area/station/command/heads_quarters/nt_rep)
 "xkV" = (
@@ -111101,7 +111140,7 @@ qOH
 qOH
 qOH
 qOH
-bkW
+xbb
 nCY
 mOZ
 fep
@@ -112908,7 +112947,7 @@ owt
 eKx
 owt
 olq
-owt
+osq
 owt
 dIC
 owt
@@ -113433,7 +113472,7 @@ cdm
 qdu
 sxi
 sxi
-sxi
+vyc
 lfs
 cNw
 iOG
@@ -115727,7 +115766,7 @@ khD
 lWn
 lWn
 lWn
-aio
+uoW
 nCY
 dQC
 fpy
