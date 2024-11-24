@@ -808,9 +808,15 @@
 /mob/proc/add_exp(skill, amount)
 	if(!mind)
 		return FALSE
-	if(mind.exp_progress[skill] + amount >= EXPERIENCE_PER_LEVEL * (2**mind.skills[skill])) // exp required scales exponentially
-		mind.exp_progress[skill] = 0
-		adjust_skill(skill, 1)
+	var/exp_required = EXPERIENCE_PER_LEVEL * (2**mind.skills[skill]) // exp required scales exponentially
+	if(mind.exp_progress[skill] + amount >= exp_required)
+		var/levels_gained = round(log(2, 1 + (mind.exp_progress[skill] + amount) / exp_required)) // in case you gained so much you go up more than one level
+		var/levels_allocated = hud_used?.skill_menu ? hud_used.skill_menu.allocated_skills[skill] : 0
+		if(levels_allocated > 0) // adjust any already allocated skills to prevent shenanigans (you know who you are)
+			hud_used.skill_menu.allocated_points -= min(levels_gained, levels_allocated)
+			hud_used.skill_menu.allocated_skills[skill] -= min(levels_gained, levels_allocated)
+		mind.exp_progress[skill] += amount - exp_required * (2**(levels_gained - 1))
+		adjust_skill(skill, levels_gained)
 		to_chat(src, span_boldnotice("Your [skill] skill is now level [get_skill(skill)]!"))
 		return TRUE
 	mind.exp_progress[skill] += amount
