@@ -1,5 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - bugfix: "IPCs not applying physiology modifiers"
-  - code_imp: "moved IPC limbs from under robot, this should have no gameplay changes please report any"

@@ -376,3 +376,24 @@
   Absolucy:
   - bugfix: Signboards no longer "leave behind" their text transparency area whenever
       they're moved.
+2024-11-24:
+  Gw0sty:
+  - rscadd: Added several fire alarms to Boxstation medical.
+  - rscadd: Added bardrone spawner to Boxstation, rejoice
+  MissClassyPineapple:
+  - rscadd: Added Sect of the Hunt as an available sect for the chaplain.
+  - rscadd: Prey mobs and Prime Cut item as needed by the new sect.
+  - rscadd: Added Atlatl Weapon with accompanying throwing spears and spear quiver.
+  Shoddd:
+  - bugfix: IPCs not applying physiology modifiers
+  - code_imp: moved IPC limbs from under robot, this should have no gameplay changes
+      please report any
+  Sorenon:
+  - bugfix: Fixed usable wings not scaling with player height
+  - bugfix: Altered how Tallest players render to reduce artifacts
+  - rscadd: Enabled the Taller player height
+  - bugfix: Enabled mutation overlays scaling with height
+  ThePooba:
+  - rscadd: Added Valentines office
+  tired-wired:
+  - rscadd: Added a new office to centcom
