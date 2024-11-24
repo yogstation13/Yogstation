@@ -5,7 +5,7 @@
 	program_icon_state = "power_monitor"
 	extended_desc = "This program connects to a local AI network to allow for administrative access"
 	ui_header = "power_norm.gif"
-	transfer_access = ACCESS_ROBO_CONTROL
+	transfer_access = ACCESS_TCOMMS_ADMIN
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP | PROGRAM_TABLET
 	requires_ntnet = FALSE
 	size = 8
