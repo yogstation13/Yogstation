@@ -76,7 +76,7 @@ const AdjustSkill = (props, context) => {
   const { skills, skill_points, allocated_points, exceptional_skill, exp_per_level } = data;
   const { base, allocated, exp_progress } = skills[index];
 
-  const exp_required = exp_per_level * Math.pow(2, base)
+  const exp_required = exp_per_level * Math.pow(2, base);
 
   return (
     <Stack>
