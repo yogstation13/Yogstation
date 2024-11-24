@@ -136,6 +136,8 @@
 	ui_interact(usr)
 
 /atom/movable/screen/skill_menu/ui_interact(mob/user, datum/tgui/ui)
+	if(!user.mind)
+		CRASH("[user.type] ([user]) tried to use the skill menu without a mind!")
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
 		ui = new(user, src, "SkillMenu", "Allocate Skill Points")
@@ -148,11 +150,18 @@
 		skill_data.Add(list(list(
 			"base" = user.get_skill(skill),
 			"allocated" = allocated_skills[skill],
+			"exp_progress" = user.mind?.exp_progress[skill],
 		)))
 	data["skills"] = skill_data
 	data["skill_points"] = user.mind.skill_points
 	data["allocated_points"] = allocated_points
 	data["exceptional_skill"] = HAS_MIND_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)
+	return data
+
+/atom/movable/screen/skill_menu/ui_static_data(mob/user)
+	var/static/list/data = list(
+		"exp_per_level" = EXPERIENCE_PER_LEVEL
+	)
 	return data
 
 /atom/movable/screen/skill_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)

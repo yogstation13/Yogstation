@@ -1,6 +1,6 @@
 import { classes } from 'common/react';
 import { useBackend } from '../backend';
-import { Box, Button, Icon, LabeledList, Section, Stack, Tooltip } from '../components';
+import { Box, Button, Icon, LabeledList, ProgressBar, Section, Stack, Tooltip } from '../components';
 import { Window } from '../layouts';
 
 export const SkillMenu = (props, context) => {
@@ -10,7 +10,7 @@ export const SkillMenu = (props, context) => {
   return (
     <Window
       title="Skills"
-      width={224}
+      width={320}
       height={262}
       >
       <Window.Content>
@@ -21,30 +21,35 @@ export const SkillMenu = (props, context) => {
               name="Physiology"
               index={0}
               tooltip="Medical knowledge and surgical precision."
+              color='blue'
             />
             <AdjustSkill
               skill="mechanics"
               name="Mechanics"
               index={1}
               tooltip="Construction and repair of structures, machinery, and exosuits."
+              color='orange'
             />
             <AdjustSkill
               skill="technical"
               name="Technical"
               index={2}
               tooltip="Electrical work, robot maintenance, and piloting exosuits or ships."
+              color='yellow'
             />
             <AdjustSkill
               skill="science"
               name="Science"
               index={3}
               tooltip="Knowledge of biology, chemistry, or other scientific fields."
+              color='rebeccapurple'
             />
             <AdjustSkill
               skill="fitness"
               name="Fitness"
               index={4}
               tooltip="Physical prowess and accuracy with weapons."
+              color='red'
             />
           </LabeledList>
           <Button
@@ -67,9 +72,11 @@ export const SkillMenu = (props, context) => {
 
 const AdjustSkill = (props, context) => {
   const { act, data } = useBackend(context);
-  const { skill, name, index, tooltip } = props;
-  const { skills, skill_points, allocated_points, exceptional_skill } = data;
-  const { base, allocated } = skills[index];
+  const { skill, name, index, tooltip, color } = props;
+  const { skills, skill_points, allocated_points, exceptional_skill, exp_per_level } = data;
+  const { base, allocated, exp_progress } = skills[index];
+
+  const exp_required = exp_per_level * Math.pow(2, base)
 
   return (
     <Stack>
@@ -103,6 +110,16 @@ const AdjustSkill = (props, context) => {
               amount: 1,
             })}
           />
+          <ProgressBar
+            value={exp_progress}
+            maxValue={exp_required}
+            color={color}
+            width={7.5}
+            ml={1}
+            textAlign="left"
+          >
+            {Math.floor(exp_progress)} / {Math.floor(exp_required)}
+          </ProgressBar>
         </Box>
       </LabeledList.Item>
     </Stack>
