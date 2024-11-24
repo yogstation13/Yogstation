@@ -77,8 +77,8 @@
 	var/list/L = parser.curBlock.statements
 	var/datum/node/statement/IfStatement/ifstmt
 
-	if(L && L.len)
-		ifstmt = L[L.len] //Get the last statement in the current block
+	if(L && length(L))
+		ifstmt = L[length(L)] //Get the last statement in the current block
 	if(!ifstmt || !istype(ifstmt) || ifstmt.else_if)
 		parser.errors += new /datum/scriptError/ExpectedToken("if statement", parser.curToken)
 		return KW_FAIL
@@ -102,7 +102,7 @@
 	. = KW_PASS
 	var/list/L = parser.curBlock.statements
 	var/datum/node/statement/IfStatement/stmt
-	if(L&&L.len) stmt=L[L.len] //Get the last statement in the current block
+	if(L&&length(L)) stmt=L[length(L)] //Get the last statement in the current block
 	if(!stmt || !istype(stmt) || stmt.else_block) //Ensure that it is an if statement
 		parser.errors += new /datum/scriptError/ExpectedToken("if statement",parser.curToken)
 		return KW_FAIL
