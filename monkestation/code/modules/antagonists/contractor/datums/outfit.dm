@@ -52,3 +52,4 @@
 /datum/id_trim/chameleon/contractor
 	assignment = "Syndicate Contractor"
 	trim_state = "trim_contractor"
+	sechud_icon_state = SECHUD_CONTRACTOR
