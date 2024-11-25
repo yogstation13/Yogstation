@@ -99,30 +99,45 @@
 /datum/action/chameleon_outfit/Trigger()
 	return select_outfit(owner)
 
-/datum/action/chameleon_outfit/proc/select_outfit(mob/user)
+/datum/action/chameleon_outfit/proc/select_outfit(mob/user, datum/outfit/outfit = null)
+	message_admins("select_outfit called")
 	if(!user || !IsAvailable(feedback = FALSE))
 		return FALSE
-	var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", outfit_options)
-	if(!IsAvailable(feedback = FALSE) || QDELETED(src) || QDELETED(user))
-		return FALSE
-	var/outfit_type = outfit_options[selected]
-	if(!outfit_type)
-		return FALSE
-	var/datum/outfit/O = new outfit_type()
-	var/list/outfit_types = O.get_chameleon_disguise_info()
-
-	for(var/V in user.chameleon_item_actions)
-		var/datum/action/item_action/chameleon/change/A = V
-		var/done = FALSE
-		for(var/T in outfit_types)
-			for(var/name in A.chameleon_list)
-				if(A.chameleon_list[name] == T)
-					A.update_look(user, T)
-					outfit_types -= T
-					done = TRUE
+	var/datum/outfit/O
+	if(isnull(outfit)) //If no outfit is passed, get the user to decide
+		var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", outfit_options)
+		if(!IsAvailable(feedback = FALSE) || QDELETED(src) || QDELETED(user))
+			return FALSE
+		var/outfit_type = outfit_options[selected]
+		if(!outfit_type)
+			return FALSE
+		message_admins(outfit_type)
+		O = new outfit_type()
+		message_admins(O)
+		var/list/outfit_types = O.get_chameleon_disguise_info()
+		for(var/V in user.chameleon_item_actions)
+			var/datum/action/item_action/chameleon/change/A = V
+			var/done = FALSE
+			for(var/T in outfit_types)
+				for(var/name in A.chameleon_list)
+					if(A.chameleon_list[name] == T)
+						message_admins("List: [A.chameleon_list[name]], T: [T]")
+						A.update_look(user, T)
+						outfit_types -= T
+						done = TRUE
+						break
+				if(done)
 					break
-			if(done)
-				break
+	else //If a specific outfit is passed through
+		var/list/types = outfit.get_chameleon_disguise_info()
+		message_admins(outfit)
+		message_admins("Uniform: [outfit.uniform]")
+		message_admins("Suit: [outfit.suit]")
+		for(var/i in 1 to types.len)
+			var/datum/action/item_action/chameleon/change/A = user.chameleon_item_actions[i]
+			message_admins("T: [types[i]]")
+			A.update_look(user, types[i])
+		return TRUE
 	//hardsuit helmets/suit hoods
 	if(O.toggle_helmet && (ispath(O.suit, /obj/item/clothing/suit/space/hardsuit) || ispath(O.suit, /obj/item/clothing/suit/hooded)) && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -153,8 +168,6 @@
 	var/in_use = FALSE
 
 /datum/action/cooldown/chameleon_copy/InterceptClickOn(mob/living/caller, params, atom/target)
-	message_admins("InterceptClickOn called")
-	message_admins("Intercept: [target]")
 	click_with_power(target)
 
 /datum/action/cooldown/chameleon_copy/Grant(mob/M)
@@ -162,32 +175,35 @@
 		owner_has_control = is_syndicate(M)
 	. = ..()
 
-/datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, atom/target)
-	message_admins("Trigger called")
-	message_admins("Trigger: [target]")
+/datum/action/cooldown/chameleon_copy/proc/toggle_button()
 	if(active)
 		active = FALSE
 		background_icon_state = "bg_default"
 		build_all_button_icons()
 		unset_click_ability(owner)
 		return FALSE
-	to_chat(owner, span_announce("Whom shall your chameleon kit copy?")) //Bad wording, need to improve it
 	active = TRUE
 	background_icon_state = "bg_default_on"
 	build_all_button_icons()
 	set_click_ability(owner)
 
+/datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, atom/target)
+	if(active)
+		toggle_button()
+	else
+		to_chat(owner, span_announce("Whom shall your chameleon kit copy?")) //Bad wording, need to improve it
+		toggle_button()
+	
+
 /datum/action/cooldown/chameleon_copy/proc/CheckValidTarget(atom/target)
-	message_admins("CheckValidTarget called")
 	if(target == owner)
+		return FALSE
+	if(!ishuman(target))
 		return FALSE
 	return TRUE
 
 /datum/action/cooldown/chameleon_copy/proc/click_with_power(atom/target_atom)
-	message_admins("click_with_power called")
-	message_admins("Click: [target_atom]")
 	if(in_use || !CheckValidTarget(target_atom))
-		message_admins("Failed click_with_power 1")
 		return FALSE
 	in_use = TRUE
 	FireTargetedPower(target_atom)
@@ -195,18 +211,24 @@
 	return TRUE
 
 /datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target_atom)
-	message_admins("FireTargetedPower called")
-	var/mob/M = target_atom
-	message_admins("Atom: [target_atom]")
-	message_admins("Mob: [M]")
-	//var/datum/outfit/O = new()
-	to_chat(owner, span_notice("Attempting to copy [M]..."))
+	var/mob/living/carbon/human/T = target_atom
+	var/datum/outfit/O = new()
+	to_chat(owner, span_notice("Attempting to copy [T]..."))
 	if(!do_after(owner, 5 SECONDS, target_atom))
 		return
-	for(var/item in target_atom.contents)
-		message_admins(item)
-	to_chat(owner, span_notice("Successfully copied [M]!"))
-	active = FALSE
+	O.uniform = T.w_uniform
+	O.suit = T.wear_suit
+	O.head = T.head
+	O.shoes = T.shoes
+	O.gloves = T.gloves
+	O.ears = T.ears
+	O.glasses = T.glasses
+	O.mask = T.wear_mask
+	O.neck = T.wear_neck
+	var/datum/action/chameleon_outfit/select = locate(/datum/action/chameleon_outfit) in owner.actions
+	select.select_outfit(owner, O)
+	to_chat(owner, span_notice("Successfully copied [T]!"))
+	toggle_button()
 
 
 /datum/action/item_action/chameleon/change
@@ -691,6 +713,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
+	if(!is_syndicate(user)) //Wouldn't want someone to randomly find a switch on a mask, would we?
+		return
 	vchange = !vchange
 	to_chat(user, span_notice("The voice changer is now [vchange ? "on" : "off"]!"))
 	if(vchange)
