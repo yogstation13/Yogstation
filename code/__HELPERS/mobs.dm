@@ -333,21 +333,12 @@ GLOBAL_LIST_EMPTY(species_list)
 			return
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
-	var/atom/user_loc = user.loc
-	var/atom/target_loc = target?.loc
-
-	var/drifting = FALSE
-	if(!user.Process_Spacemove() && user.inertia_dir)
-		drifting = TRUE
-
-	var/holding = user.get_active_held_item()
-
 	if(!(timed_action_flags & IGNORE_SLOWDOWNS))
 		delay *= user.action_speed_modifier * user.do_after_coefficent() //yogs: darkspawn
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new(user, delay, target || user)
+		progbar = new(user, delay, target || user, timed_action_flags, extra_checks)
 
 	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN)
 
@@ -357,24 +348,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	while (world.time < endtime)
 		stoplag(1)
 
-		if(!QDELETED(progbar))
-			progbar.update(world.time - starttime)
-
-		if(drifting && !user.inertia_dir)
-			drifting = FALSE
-			user_loc = user.loc
-
-		if(QDELETED(user) \
-			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
-			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding) \
-			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
-			|| (extra_checks && !extra_checks.Invoke()))
-			. = FALSE
-			break
-
-		if(target && (user != target) && \
-			(QDELETED(target) \
-			|| (!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc)))
+		if(QDELETED(progbar) || !progbar.update(world.time - starttime))
 			. = FALSE
 			break
 

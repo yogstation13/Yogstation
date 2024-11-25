@@ -10,15 +10,19 @@
 	var/mob/user
 	///The client seeing the progress bar.
 	var/client/user_client
+	///Extra checks for whether to stop the progress.
+	var/datum/callback/extra_checks
 	///Effectively the number of steps the progress bar will need to do before reaching completion.
 	var/goal = 1
 	///Control check to see if the progress was interrupted before reaching its goal.
 	var/last_progress = 0
 	///Variable to ensure smooth visual stacking on multiple progress bars.
 	var/listindex = 0
+	///Whether progress has already been ended.
+	var/progress_ended = FALSE
 
 
-/datum/progressbar/New(mob/User, goal_number, atom/target)
+/datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE)
 	. = ..()
 	if (!istype(target))
 		stack_trace("Invalid target [target] passed in")
@@ -50,6 +54,23 @@
 	RegisterSignal(user, COMSIG_QDELETING, PROC_REF(on_user_delete))
 	RegisterSignal(user, COMSIG_MOB_LOGOUT, PROC_REF(clean_user_client))
 	RegisterSignal(user, COMSIG_MOB_LOGIN, PROC_REF(on_user_login))
+	if(!(timed_action_flags & IGNORE_USER_LOC_CHANGE))
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+		var/obj/mecha/mech = user.loc
+		if(ismecha(user.loc) && user == mech.occupant)
+			RegisterSignal(mech, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+	if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE))
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+	if(!(timed_action_flags & IGNORE_HELD_ITEM))
+		var/obj/item/held = user.get_active_held_item()
+		if(held)
+			RegisterSignal(held, COMSIG_ITEM_EQUIPPED, PROC_REF(end_progress))
+			RegisterSignal(held, COMSIG_ITEM_DROPPED, PROC_REF(end_progress))
+		else
+			RegisterSignal(user, COMSIG_MOB_PICKUP_ITEM, PROC_REF(end_progress))
+		RegisterSignal(user, COMSIG_MOB_SWAPPING_HANDS, PROC_REF(end_progress))
+	if(!(timed_action_flags & IGNORE_INCAPACITATED))
+		RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), PROC_REF(end_progress))
 
 
 /datum/progressbar/Destroy()
@@ -121,15 +142,24 @@
 
 ///Updates the progress bar image visually.
 /datum/progressbar/proc/update(progress)
+	if(progress_ended)
+		return FALSE
 	progress = clamp(progress, 0, goal)
 	if(progress == last_progress)
-		return
+		return FALSE
 	last_progress = progress
+	if(extra_checks && !extra_checks.Invoke())
+		return FALSE
 	bar.icon_state = "prog_bar_[round(((progress / goal) * 100), 5)]"
+	return TRUE
 
 
 ///Called on progress end, be it successful or a failure. Wraps up things to delete the datum and bar.
 /datum/progressbar/proc/end_progress()
+	if(progress_ended)
+		return
+	progress_ended = TRUE
+
 	if(last_progress != goal)
 		bar.icon_state = "[bar.icon_state]_fail"
 
@@ -137,6 +167,13 @@
 
 	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
 
+/datum/progressbar/proc/on_moved(atom/movable/mover, atom/old_loc, movement_dir, forced, list/old_locs, momentum_change, interrupting)
+	SIGNAL_HANDLER
+	if(!interrupting)
+		return
+	if(!mover.Process_Spacemove() && mover.inertia_dir)
+		return
+	INVOKE_ASYNC(src, PROC_REF(end_progress))
 
 #undef PROGRESSBAR_ANIMATION_TIME
 #undef PROGRESSBAR_HEIGHT
