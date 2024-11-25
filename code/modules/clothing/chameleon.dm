@@ -100,7 +100,6 @@
 	return select_outfit(owner)
 
 /datum/action/chameleon_outfit/proc/select_outfit(mob/user, datum/outfit/outfit = null)
-	message_admins("select_outfit called")
 	if(!user || !IsAvailable(feedback = FALSE))
 		return FALSE
 	var/datum/outfit/O
@@ -111,9 +110,7 @@
 		var/outfit_type = outfit_options[selected]
 		if(!outfit_type)
 			return FALSE
-		message_admins(outfit_type)
 		O = new outfit_type()
-		message_admins(O)
 		var/list/outfit_types = O.get_chameleon_disguise_info()
 		for(var/V in user.chameleon_item_actions)
 			var/datum/action/item_action/chameleon/change/A = V
@@ -121,7 +118,6 @@
 			for(var/T in outfit_types)
 				for(var/name in A.chameleon_list)
 					if(A.chameleon_list[name] == T)
-						message_admins("List: [A.chameleon_list[name]], T: [T]")
 						A.update_look(user, T)
 						outfit_types -= T
 						done = TRUE
@@ -130,15 +126,11 @@
 					break
 	else //If a specific outfit is passed through
 		var/list/types = outfit.get_chameleon_disguise_info()
-		message_admins(outfit)
-		message_admins("Uniform: [outfit.uniform]")
-		message_admins("Suit: [outfit.suit]")
-		for(var/i in 1 to types.len)
+		for(var/T in types)
 			for(var/V in user.chameleon_item_actions)
 				var/datum/action/item_action/chameleon/change/A = V
-				if(istype(types[i], A.chameleon_type))
-					message_admins("T: [types[i]]")
-					A.update_look(user, types[i])
+				if(istype(T, A.chameleon_type))
+					A.update_look(user, T)
 		return TRUE
 	//hardsuit helmets/suit hoods
 	if(O.toggle_helmet && (ispath(O.suit, /obj/item/clothing/suit/space/hardsuit) || ispath(O.suit, /obj/item/clothing/suit/hooded)) && ishuman(user))
@@ -216,7 +208,7 @@
 	var/mob/living/carbon/human/T = target_atom
 	var/datum/outfit/O = new()
 	to_chat(owner, span_notice("Attempting to copy [T]..."))
-	if(!do_after(owner, 5 SECONDS, target_atom))
+	if(!do_after(owner, 10 SECONDS, target_atom))
 		return
 	O.uniform = T.w_uniform
 	O.suit = T.wear_suit
@@ -226,7 +218,6 @@
 	O.ears = T.ears
 	O.glasses = T.glasses
 	O.mask = T.wear_mask
-	O.neck = T.wear_neck
 	var/datum/action/chameleon_outfit/select = locate(/datum/action/chameleon_outfit) in owner.actions
 	select.select_outfit(owner, O)
 	to_chat(owner, span_notice("Successfully copied [T]!"))
