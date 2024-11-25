@@ -18,10 +18,10 @@
 	//originally wanted to do inverse correlation but it donbt work :pensive:
 
 /datum/armor/scales
-	melee = 20
-	bullet = 20
-	laser = 20
-	wound = 20
+	melee = 40
+	bullet = 40
+	laser = 40
+	wound = 50
 
 /datum/martial_art/tribal_claw/teach(mob/living/carbon/human/target, make_temporary = FALSE)
 	. = ..()
