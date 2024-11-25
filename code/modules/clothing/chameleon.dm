@@ -134,9 +134,11 @@
 		message_admins("Uniform: [outfit.uniform]")
 		message_admins("Suit: [outfit.suit]")
 		for(var/i in 1 to types.len)
-			var/datum/action/item_action/chameleon/change/A = user.chameleon_item_actions[i]
-			message_admins("T: [types[i]]")
-			A.update_look(user, types[i])
+			for(var/V in user.chameleon_item_actions)
+				var/datum/action/item_action/chameleon/change/A = V
+				if(istype(types[i], A.chameleon_type))
+					message_admins("T: [types[i]]")
+					A.update_look(user, types[i])
 		return TRUE
 	//hardsuit helmets/suit hoods
 	if(O.toggle_helmet && (ispath(O.suit, /obj/item/clothing/suit/space/hardsuit) || ispath(O.suit, /obj/item/clothing/suit/hooded)) && ishuman(user))
