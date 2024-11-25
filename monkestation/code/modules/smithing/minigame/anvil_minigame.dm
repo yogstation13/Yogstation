@@ -46,6 +46,8 @@
 	total_notes = end_product_recipe.total_notes
 
 	difficulty = max(1,round(selected_recipe.difficulty + difficulty_modifier - (user.mind.get_skill_level(/datum/skill/smithing) - 3))) //Better smiths have easier times
+	if(HAS_TRAIT(user, TRAIT_DWARF) && difficulty > 1) //Dwarves are better at smithing.
+		difficulty--
 
 	generate_anvil_beats(TRUE)
 
