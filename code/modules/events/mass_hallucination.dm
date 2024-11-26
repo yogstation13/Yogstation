@@ -92,7 +92,10 @@
 		// Unless the mob is off the station z-level. It's unlikely anyone will notice.
 		if(hallucinating.z != 0 && !is_station_level(hallucinating.z) && !hallucinating.client)
 			continue
-
+		//monkestation edit start: Make TRAIT_MADNESS_IMMUNE exempt from hullications.
+		if(HAS_TRAIT(hallucinating, TRAIT_MADNESS_IMMUNE))
+			continue
+		//monkestation edit end:
 		// Not using the wrapper here because we already have a list / arglist
 		hallucinating._cause_hallucination(hallucination_args)
 
