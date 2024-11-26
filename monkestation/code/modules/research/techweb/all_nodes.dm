@@ -236,3 +236,117 @@
 		"bomb_actualizer",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 20000)
+
+// Maint mods
+/datum/techweb_node/springlock
+	id = "mod_springlock"
+	display_name = "MOD Springlock Module"
+	description = "A obsolete module decreasing the sealing time of modsuits. A discarded note from the orginal designs was found. 'Try not to nudge or press against ANY of the spring locks inside the suit. Do not touch the spring lock at any time. Do not breathe on a spring lock, as mouisture may loosen them, and cause them to break loose.'"
+	prereq_ids = list("mod_advanced")
+	design_ids = list(
+		"mod_springlock",
+	)
+
+	boost_item_paths = list(
+		/obj/item/mod/module/springlock,
+	)
+
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	hidden = TRUE
+
+/datum/techweb_node/rave
+	id = "mod_rave"
+	display_name = "MOD Rave Visor Module"
+	description = "Reverse engineering of the Super Cool Awesome Visor for mass production."
+	prereq_ids = list("mod_advanced")
+	design_ids = list(
+		"mod_rave",
+	)
+
+	boost_item_paths = list(
+		/obj/item/mod/module/visor/rave,
+	)
+
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	hidden = TRUE
+
+/datum/techweb_node/tanner
+	id = "mod_tanner"
+	display_name = "MOD Tanning Module"
+	description = "Enjoy all the benifets of vitamin D without a lick of starlight touching you."
+	prereq_ids = list("mod_advanced")
+	design_ids = list(
+		"mod_tanner",
+	)
+
+	boost_item_paths = list(
+		/obj/item/mod/module/tanner,
+	)
+
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	hidden = TRUE
+
+/datum/techweb_node/balloon
+	id = "mod_balloon"
+	display_name = "MOD Balloon Blower Module"
+	description = "Crack the mimes ancestor's secret of balloon blowing."
+	prereq_ids = list("mod_advanced")
+	design_ids = list(
+		"mod_balloon",
+	)
+
+	boost_item_paths = list(
+		/obj/item/mod/module/balloon,
+	)
+
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	hidden = TRUE
+
+/datum/techweb_node/paper_dispenser
+	id = "mod_paper_dispenser"
+	display_name = "MOD Paper Dispenser Module"
+	description = "Become the master of all paperwork, and annoy everyone with ondemand paper airplanes."
+	prereq_ids = list("mod_advanced")
+	design_ids = list(
+		"mod_paper_dispenser",
+	)
+
+	boost_item_paths = list(
+		/obj/item/mod/module/paper_dispenser,
+	)
+
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	hidden = TRUE
+
+/datum/techweb_node/stamp
+	id = "mod_stamp"
+	display_name = "MOD Stamper Module"
+	description = "Forgo the ability to forget your stamp at home. Paper pushers of all kinds, rejoyce."
+	prereq_ids = list("mod_advanced")
+	design_ids = list(
+		"mod_stamp",
+	)
+
+	boost_item_paths = list(
+		/obj/item/mod/module/stamp,
+	)
+
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	hidden = TRUE
+
+/datum/techweb_node/atrocinator
+	id = "mod_atrocinator"
+	display_name = "MOD Atrocinator Module"
+	description = "With this forgotten innovation things will only be looking up from here once."
+	prereq_ids = list("mod_advanced")
+	design_ids = list(
+		"mod_atrocinator",
+	)
+
+	boost_item_paths = list(
+		/obj/item/mod/module/atrocinator,
+	)
+
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500)
+	hidden = TRUE
+
