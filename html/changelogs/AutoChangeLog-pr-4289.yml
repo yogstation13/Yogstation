@@ -1,0 +1,4 @@
+author: "aberrantQuesrist"
+delete-after: True
+changes:
+  - qol: "Fixes center lobby screen; adds sever uptime checker to HRP. Should no longer cause client issues or crashes."
