@@ -15,6 +15,20 @@
 	sharpness = NONE
 	wound_bonus = 80
 
+/obj/projectile/bullet/shotgun_slug/apds
+	name = "tungsten sabot-slug"
+	icon_state = "gauss"
+	damage = 30 //20 less than slugs.
+	speed = 0.3 //sub-caliber + lighter = speed. (Smaller number = faster)
+	armour_penetration = 80 //Tis a solid-tungsten penetrator, what do you expect?
+	wound_bonus = 5 //30 seems kinda wimpy, 5 bonus puts it over the threshold
+	ricochets_max = 2 //Unlike slugs which tend to squish on impact, these are hard enough to bounce rarely.
+	ricochet_chance = 60
+	ricochet_auto_aim_range = 4
+	ricochet_incidence_leeway = 55
+	embedding = null
+	demolition_mod = 4 //One higher than it was at 35. It might do less damage, but it will still go through stuff just fine.
+
 /obj/projectile/bullet/shotgun_beanbag
 	name = "beanbag slug"
 	icon_state = "pellet"

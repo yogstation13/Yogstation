@@ -28,6 +28,12 @@
 	custom_materials = list(/datum/material/iron=SMALL_MATERIAL_AMOUNT*2.5)
 	projectile_type = /obj/projectile/bullet/shotgun_beanbag
 
+/obj/item/ammo_casing/shotgun/apds
+	name = "armor-peircing slug"
+	desc = "A 12-guage shotgun slug, reloaded with a saboted tungsten penetrator. Armor? What armor!"
+	icon_state = "apshell"
+	projectile_type = /obj/projectile/bullet/shotgun_slug/apds
+
 /obj/item/ammo_casing/shotgun/incendiary
 	name = "incendiary slug"
 	desc = "An incendiary-coated shotgun slug."

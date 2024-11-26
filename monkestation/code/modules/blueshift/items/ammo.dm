@@ -1030,6 +1030,14 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/hunter
 	max_ammo = 15
 
+/obj/item/ammo_box/advanced/s12gauge/apds
+	name = "AP sabot-slug ammo box"
+	desc = "A box of 15 tungsten sabot-slugs. A vastly higher velocity combined with greater sectional density renders most armor irrelevant."
+	icon_state = "apshell"
+	ammo_type = /obj/item/ammo_casing/shotgun/apds
+	max_ammo = 15
+
+
 /obj/item/ammo_box/advanced/s12gauge/flechette
 	name = "Flechette ammo box"
 	desc = "A box of 15 flechette shells. Each shell contains a small group of tumbling blades that excel at causing terrible wounds."

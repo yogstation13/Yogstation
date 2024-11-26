@@ -129,6 +129,9 @@
 /datum/armament_entry/company_import/vitezstvi/shot_shells/slugs
 	item_type = /obj/item/ammo_box/advanced/s12gauge
 
+/datum/armament_entry/company_import/vitezstvi/shot_shells/AP_slugs
+	item_type = /obj/item/ammo_box/advanced/s12gauge/apds
+
 /datum/armament_entry/company_import/vitezstvi/shot_shells/buckshot
 	item_type = /obj/item/ammo_box/advanced/s12gauge/buckshot
 
