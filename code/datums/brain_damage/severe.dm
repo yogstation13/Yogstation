@@ -172,7 +172,7 @@
 	name = "Monophobia"
 	desc = "Patient feels sick and distressed when not around other people, leading to potentially lethal levels of stress."
 	scan_desc = "monophobia"
-	gain_text = ""
+	gain_text = "You no longer feel safe being alone." //monkestation edit
 	lose_text = span_notice("You feel like you could be safe on your own.")
 	var/stress = 0
 
