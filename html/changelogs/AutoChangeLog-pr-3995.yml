@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added C.H.R.O.M.A.T.A Mantis Blades to Blueshield's armament beacon."
+  - qol: "Moved Blueshield's Belt and baton from their locker to their backpack."
+  - spellcheck: "Renamed and applied descriptions to various Blueshield items."
