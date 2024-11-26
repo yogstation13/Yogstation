@@ -754,15 +754,15 @@
 	. = ..()
 	if(ishuman(drinker))
 		var/mob/living/carbon/human/potential_dwarf = drinker
-		if(HAS_TRAIT(potential_dwarf, TRAIT_DWARF))
+		if(HAS_TRAIT(potential_dwarf, TRAIT_DWARF) || HAS_TRAIT(potential_dwarf, TRAIT_ALCOHOL_TOLERANCE))
 			to_chat(potential_dwarf, span_notice("Now THAT is MANLY!"))
 			boozepwr = 50 // will still smash but not as much.
 			dorf_mode = TRUE
 
 /datum/reagent/consumable/ethanol/manly_dorf/on_mob_life(mob/living/carbon/dwarf, seconds_per_tick, times_fired)
 	if(dorf_mode)
-		dwarf.adjustBruteLoss(-2 * REM * seconds_per_tick, required_bodytype = affected_bodytype)
-		dwarf.adjustFireLoss(-2 * REM * seconds_per_tick, required_bodytype = affected_bodytype)
+		dwarf.adjustBruteLoss(-1.75 * REM * seconds_per_tick, required_bodytype = affected_bodytype)
+		dwarf.adjustFireLoss(-1.75 * REM * seconds_per_tick, required_bodytype = affected_bodytype)
 	return ..()
 
 /datum/reagent/consumable/ethanol/longislandicedtea
