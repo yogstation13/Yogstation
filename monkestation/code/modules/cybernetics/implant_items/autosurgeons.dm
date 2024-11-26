@@ -4,6 +4,13 @@
 /obj/item/autosurgeon/organ/syndicate/esword
 	starting_organ = /obj/item/organ/internal/cyberimp/arm/item_set/esword
 
+/obj/item/autosurgeon/organ/mantis_blade
+	starting_organ = /obj/item/organ/internal/cyberimp/arm/item_set/mantis
+	uses = 1
+
+/obj/item/autosurgeon/organ/mantis_blade/l
+	starting_organ = /obj/item/organ/internal/cyberimp/arm/item_set/mantis/l
+
 /obj/item/autosurgeon/organ/syndicate/syndie_mantis
 	starting_organ = /obj/item/organ/internal/cyberimp/arm/item_set/syndie_mantis
 
@@ -142,3 +149,4 @@
 
 /obj/item/autosurgeon/organ/chemvat
 	starting_organ = /obj/item/organ/internal/cyberimp/chest/chemvat
+

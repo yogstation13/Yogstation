@@ -13,6 +13,7 @@
 	desc = "A lightly overtuned version of NT's Hellfire Laser rifle, scratches showing its age and the fact it has definitely been owned before. This one is more energy efficient without sacrificing damage."
 	icon_state = "hellgun"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/hellfire/blueshield)
+
 // Blueshields custom takbok revolver.
 /obj/item/gun/ballistic/revolver/takbok/blueshield
 	name = "unmarked takbok revolver" //Give it a unique prefix compared hellfire's 'modified' to stand out
@@ -58,22 +59,24 @@
 
 //Weapon beacon
 /obj/item/choice_beacon/blueshield
-	name = "gunset beacon"
+	name = "armament beacon"
 	desc = "A single use beacon to deliver a gunset of your choice. Please only call this in your office"
 	company_source = "Sol Defense Contracting"
 	company_message = span_bold("Supply Pod incoming, please stand by.")
 
 /obj/item/choice_beacon/blueshield/generate_display_names()
 	var/static/list/selectable_gun_types = list(
-		"Unmarked Takbok Revolver Set" = /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/takbok/blueshield,
+		"Unmarked Takbok Revolver Gunset" = /obj/item/storage/toolbox/guncase/skyrat/pistol/trappiste_small_case/takbok/blueshield,
 		"Custom Hellfire Laser Rifle" = /obj/item/gun/energy/laser/hellgun/blueshield,
 		"Bogseo Submachinegun Gunset" = /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo,
 		"Tech-9" = /obj/item/storage/toolbox/guncase/skyrat/pistol/tech_9,
+		"C.H.R.O.M.A.T.A. Mantis Blade Cyberset" = /obj/item/storage/box/mantis_blade,
 	)
 
 	return selectable_gun_types
 
 /obj/item/storage/toolbox/guncase/skyrat/pistol/tech_9
+	name = "Tech-9 Gunset"
 	desc = "A thick yellow gun case with foam inserts laid out to fit a weapon, magazines, and gear securely. The five square grid of Tech-9 is displayed prominently on the top."
 
 	icon = 'monkestation/code/modules/blueshift/icons/obj/gunsets.dmi'
@@ -109,3 +112,13 @@
 
 /obj/item/gun/ballistic/automatic/pistol/tech_9/no_mag
 	spawnwithmagazine = FALSE
+
+/obj/item/storage/box/mantis_blade
+	name = "C.H.R.O.M.A.T.A. Mantis Blades Cyberset"
+	desc = "A box full essentials for C.H.R.O.M.A.T.A. Blades quick implentation and installation. A deadly and a very personal weapon."
+	icon_state = "cyber_implants"
+
+/obj/item/storage/box/mantis_blade/PopulateContents()
+	new /obj/item/autosurgeon/organ/cyberlink_terragov(src)
+	new /obj/item/autosurgeon/organ/mantis_blade(src)
+	new /obj/item/autosurgeon/organ/mantis_blade/l(src)

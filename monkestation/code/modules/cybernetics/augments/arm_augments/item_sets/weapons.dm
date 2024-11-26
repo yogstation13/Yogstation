@@ -88,6 +88,9 @@
 	items_to_create = list(/obj/item/mantis_blade/chromata)
 	encode_info = AUGMENT_TG_LEVEL
 
+/obj/item/organ/internal/cyberimp/arm/item_set/mantis/l
+	zone = BODY_ZONE_L_ARM
+
 /obj/item/organ/internal/cyberimp/arm/item_set/syndie_mantis
 	name = "A.R.A.S.A.K.A. mantis blade implants"
 	desc = "Modernized mantis blade designed coined by Tiger operatives, much sharper blade with energy actuators makes it a much deadlier weapon."
@@ -210,3 +213,4 @@
 	demolition_mod = 1.25
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
+

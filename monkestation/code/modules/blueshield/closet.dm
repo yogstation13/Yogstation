@@ -29,8 +29,6 @@
 /obj/structure/closet/secure_closet/blueshield/New()
 	..()
 	new /obj/item/storage/briefcase/secure(src)
-	new /obj/item/storage/belt/security/blueshield(src)
-	new /obj/item/melee/baton/telescopic(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/storage/medkit/frontier/stocked(src)
 	new /obj/item/storage/bag/garment/blueshield(src)
