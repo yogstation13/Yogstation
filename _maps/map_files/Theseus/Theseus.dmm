@@ -4395,7 +4395,6 @@
 /area/station/maintenance/starboard/aft)
 "bqu" = (
 /obj/item/borg/upgrade/transform/clown,
-/mob/living/basic/chicken/clown,
 /obj/effect/spawner/liquids_spawner{
 	reagent_list = list(/datum/reagent/ammonia/urine = 1000)
 	},
