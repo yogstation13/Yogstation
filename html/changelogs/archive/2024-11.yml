@@ -397,3 +397,16 @@
   - rscadd: Added Valentines office
   tired-wired:
   - rscadd: Added a new office to centcom
+2024-11-26:
+  Gw0sty:
+  - rscadd: Added more Id trims and sec icons for bounty hunters, assassins, luminescent,
+      cyber police, Space police, Contractors, signal technicians, and clown operatives.
+  Uristthedorf:
+  - rscadd: Dwarves are now better at smithing.
+  Wisemonster:
+  - balance: Reduced sunset sarsaparilla's limb healing from 2.5 brute and burn per
+      life tick to 1.5 brute and burn.
+  - balance: Reduced the glock-o (Tech9)'s burst size from 10 to 4
+  ven1883:
+  - balance: tribal claw armor increased by 20% to 40%
+  - balance: tribal claw wounding armor by 30% to 50%
