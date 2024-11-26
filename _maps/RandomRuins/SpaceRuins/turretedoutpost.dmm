@@ -60,6 +60,11 @@
 /area/ruin/space/has_grav/turretedoutpost)
 "ao" = (
 /obj/machinery/porta_turret,
+/obj/machinery/porta_turret/syndicate/pod{
+	dir = 9;
+	max_integrity = 60;
+	faction = list("syndicate","xenomorph")
+	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/turretedoutpost)
 "ap" = (
@@ -87,6 +92,7 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 1
 	},
+/obj/item/gun/ballistic/revolver/nagant,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/turretedoutpost)
 "au" = (
@@ -157,8 +163,8 @@
 /area/ruin/space/has_grav/turretedoutpost)
 "aH" = (
 /obj/structure/rack,
-/obj/item/ammo_box/c9mm,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/ammo_box/n762,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/turretedoutpost)
 "aI" = (
@@ -272,12 +278,33 @@
 /obj/effect/turf_decal/tile/red/fourcorners,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/turretedoutpost)
+"BO" = (
+/obj/item/food/deadmouse,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/turretedoutpost)
 "Nu" = (
 /obj/machinery/door/airlock/external/ruin,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/turretedoutpost)
+"Qt" = (
+/obj/item/ammo_casing/n762,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/turretedoutpost)
+"Uc" = (
+/mob/living/basic/trooper/russian/ranged/lootless,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/turretedoutpost)
+"WT" = (
+/obj/item/ammo_casing/n762,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/turretedoutpost)
+"ZC" = (
+/mob/living/basic/trooper/russian/ranged/lootless,
+/turf/open/floor/iron,
 /area/ruin/space/has_grav/turretedoutpost)
 
 (1,1,1) = {"
@@ -327,14 +354,14 @@ aa
 aa
 aa
 aa
+ao
 al
 al
 al
 al
 al
 al
-al
-al
+ao
 ab
 ab
 aa
@@ -346,16 +373,16 @@ aa
 aa
 aa
 aa
-al
-ao
-ad
-ad
-ad
-ad
-ad
-ad
 ao
 al
+ad
+ad
+ad
+ad
+ad
+ad
+al
+ao
 ab
 ab
 aa
@@ -389,10 +416,10 @@ ab
 al
 ad
 as
+BO
 az
 az
-az
-az
+Uc
 aW
 ad
 al
@@ -409,7 +436,7 @@ aa
 al
 ad
 at
-az
+Qt
 aG
 aG
 az
@@ -449,10 +476,10 @@ aa
 al
 ad
 av
+Uc
 az
 az
-az
-az
+Qt
 aZ
 ad
 al
@@ -466,7 +493,7 @@ ab
 aa
 ab
 aa
-al
+ao
 ad
 ad
 aA
@@ -483,19 +510,19 @@ aa
 (11,1,1) = {"
 aa
 aa
-ac
-ac
-ac
-ac
-ac
-ad
-ad
-aI
-aI
-ad
-ad
 ao
+ac
+ac
+ac
+ac
+ad
+ad
+aI
+aI
+ad
+ad
 al
+ao
 ab
 aa
 aa
@@ -530,7 +557,7 @@ am
 ap
 ad
 aC
-ag
+WT
 ag
 aS
 ad
@@ -571,11 +598,11 @@ ag
 aw
 ag
 ag
-ag
+ZC
 aU
 ad
 ac
-ac
+ao
 ab
 ab
 ab
@@ -651,7 +678,7 @@ ad
 ad
 ad
 ag
-ag
+ZC
 ag
 ag
 ad
@@ -715,7 +742,7 @@ ac
 ac
 ac
 ac
-ac
+ao
 aa
 ab
 aa

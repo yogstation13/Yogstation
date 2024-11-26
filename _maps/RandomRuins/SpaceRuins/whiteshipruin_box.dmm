@@ -101,8 +101,8 @@
 /area/ruin/space/has_grav/whiteship/box)
 "nL" = (
 /obj/structure/table,
-/obj/item/screwdriver,
 /obj/structure/light_construct/directional/north,
+/obj/item/screwdriver/power,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/whiteship/box)
 "pq" = (
@@ -188,7 +188,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/whiteship/box)
 "Db" = (
-/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/bluespace,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/whiteship/box)
 "Gj" = (
@@ -241,7 +241,7 @@
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/space/has_grav/whiteship/box)
 "Ov" = (
-/obj/item/scalpel,
+/obj/item/scalpel/advanced,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/whiteship/box)
 "Px" = (
@@ -875,9 +875,9 @@ kK
 pv
 Db
 gO
+pv
+pv
 Ov
-pv
-pv
 kK
 "}
 (27,1,1) = {"

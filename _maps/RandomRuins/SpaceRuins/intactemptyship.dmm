@@ -32,7 +32,9 @@
 /area/ruin/space/has_grav/powered/authorship)
 "g" = (
 /obj/structure/table/wood,
-/obj/item/clothing/under/shorts/black,
+/obj/effect/spawner/random/food_or_drink/pizzaparty{
+	pixel_y = 10
+	},
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/space/has_grav/powered/authorship)
 "h" = (
@@ -54,7 +56,7 @@
 /area/ruin/space/has_grav/powered/authorship)
 "l" = (
 /obj/structure/table/wood,
-/obj/item/clothing/shoes/sandal,
+/obj/effect/spawner/random/food_or_drink/donkpockets_single,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/space/has_grav/powered/authorship)
 "m" = (
@@ -138,6 +140,16 @@
 /obj/machinery/door/airlock/external/ruin,
 /turf/open/floor/mineral/titanium/purple,
 /area/ruin/space/has_grav/powered/authorship)
+"W" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/dinner,
+/turf/open/floor/mineral/titanium/purple,
+/area/ruin/space/has_grav/powered/authorship)
+"X" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
+/turf/open/floor/mineral/titanium/purple,
+/area/ruin/space/has_grav/powered/authorship)
 
 (1,1,1) = {"
 a
@@ -188,7 +200,7 @@ D
 p
 c
 A
-n
+X
 c
 "}
 (5,1,1) = {"
@@ -201,7 +213,7 @@ h
 y
 c
 h
-n
+W
 c
 "}
 (6,1,1) = {"
@@ -289,7 +301,7 @@ c
 j
 r
 w
-n
+X
 j
 c
 a

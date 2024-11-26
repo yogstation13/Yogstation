@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"cB" = (
+/obj/item/book/mimery,
+/obj/item/book/granter/action/spell/mime,
+/turf/open/floor/iron/checker/airless,
+/area/ruin)
 "dq" = (
 /obj/effect/decal/cleanable/shreds,
 /obj/structure/reagent_dispensers/fueltank,
@@ -50,6 +55,11 @@
 "mB" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
+/area/ruin)
+"nA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/lighter/mime,
+/turf/open/floor/iron/checker/airless,
 /area/ruin)
 "of" = (
 /obj/item/storage/toolbox/syndicate,
@@ -114,6 +124,10 @@
 	dir = 8
 	},
 /obj/item/bedsheet/mime,
+/turf/open/floor/iron/checker/airless,
+/area/ruin)
+"yw" = (
+/obj/item/pneumatic_cannon/pie/selfcharge,
 /turf/open/floor/iron/checker/airless,
 /area/ruin)
 "yY" = (
@@ -386,7 +400,7 @@ Mx
 Jz
 Jz
 BU
-gV
+cB
 gZ
 Fx
 Fx
@@ -426,7 +440,7 @@ ve
 WY
 KI
 hG
-iP
+nA
 Vj
 Fx
 Fx
@@ -438,7 +452,7 @@ Fx
 Fx
 gZ
 gZ
-gV
+yw
 wo
 ef
 JW

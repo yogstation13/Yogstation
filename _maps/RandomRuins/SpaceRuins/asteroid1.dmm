@@ -8,6 +8,22 @@
 "c" = (
 /turf/closed/mineral/random/high_chance,
 /area/ruin/space)
+"f" = (
+/obj/effect/spawner/random/trash,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
+"k" = (
+/obj/effect/spawner/random/trash,
+/turf/closed/mineral/random/high_chance,
+/area/ruin/space)
+"M" = (
+/obj/effect/spawner/random/trash/box,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
+"R" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 
 (1,1,1) = {"
 a
@@ -20,7 +36,7 @@ a
 a
 a
 a
-b
+f
 b
 b
 a
@@ -31,7 +47,7 @@ a
 (2,1,1) = {"
 a
 b
-b
+f
 a
 a
 a
@@ -40,8 +56,8 @@ a
 a
 c
 c
-c
-b
+k
+f
 a
 a
 a
@@ -49,14 +65,14 @@ b
 "}
 (3,1,1) = {"
 a
-b
+M
 b
 a
 a
 a
 a
 b
-b
+R
 c
 c
 c
@@ -69,7 +85,7 @@ a
 (4,1,1) = {"
 a
 a
-b
+R
 a
 a
 a
@@ -113,7 +129,7 @@ a
 a
 a
 b
-b
+f
 a
 a
 a
@@ -147,7 +163,7 @@ a
 a
 a
 b
-b
+f
 b
 a
 a
@@ -166,7 +182,7 @@ a
 a
 a
 c
-b
+R
 a
 a
 a
@@ -191,7 +207,7 @@ a
 a
 a
 b
-b
+f
 b
 a
 a
@@ -210,7 +226,7 @@ a
 a
 a
 c
-c
+k
 b
 a
 a
@@ -245,7 +261,7 @@ a
 a
 a
 a
-b
+f
 c
 b
 a
@@ -266,7 +282,7 @@ a
 a
 b
 b
-b
+f
 a
 a
 a

@@ -48,6 +48,7 @@
 /obj/item/stack/sheet/mineral/bananium{
 	amount = 15
 	},
+/obj/item/megaphone/clown,
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/space/has_grav)
 "n" = (
@@ -55,6 +56,7 @@
 	dir = 1
 	},
 /obj/item/storage/pod/directional/west,
+/obj/item/clothing/under/rank/civilian/clown/rainbow,
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/space/has_grav)
 "o" = (
@@ -67,6 +69,10 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/space/has_grav)
+"F" = (
+/obj/item/inspector/clown/bananium,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 
 (1,1,1) = {"
 a
@@ -155,7 +161,7 @@ b
 b
 b
 b
-e
+F
 e
 a
 a

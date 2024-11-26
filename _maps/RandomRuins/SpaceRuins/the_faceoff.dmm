@@ -174,7 +174,7 @@
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space)
 "eI" = (
-/mob/living/basic/trooper/syndicate/melee/space,
+/mob/living/basic/trooper/syndicate/melee/space/stormtrooper,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space)
 "eU" = (
@@ -632,8 +632,8 @@
 /turf/open/misc/asteroid/basalt/airless,
 /area/ruin/space)
 "Bi" = (
-/obj/effect/mapping_helpers/burnt_floor,
-/mob/living/basic/viscerator,
+/obj/effect/mapping_helpers/broken_floor,
+/mob/living/basic/trooper/syndicate/ranged,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space)
 "BV" = (
@@ -962,10 +962,6 @@
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/space)
-"ST" = (
-/mob/living/basic/viscerator,
-/turf/open/floor/mineral/plastitanium/airless,
-/area/ruin/space)
 "SY" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
@@ -976,6 +972,7 @@
 "Tp" = (
 /obj/effect/mapping_helpers/broken_floor,
 /obj/effect/mapping_helpers/burnt_floor,
+/mob/living/basic/trooper/syndicate/ranged,
 /turf/open/floor/iron/dark/airless,
 /area/ruin/space)
 "Tu" = (
@@ -1689,7 +1686,7 @@ lX
 xm
 ZC
 gN
-ZC
+eI
 gN
 Vr
 DI
@@ -1772,7 +1769,7 @@ tW
 CY
 Dc
 mC
-ZC
+eI
 YE
 ij
 Er
@@ -1920,8 +1917,8 @@ HE
 tm
 JP
 GA
-eI
-zi
+ZC
+Bi
 ds
 CT
 ds
@@ -1996,7 +1993,7 @@ Ni
 Zg
 ds
 zi
-ST
+ZO
 ZC
 gN
 ZC
@@ -2065,7 +2062,7 @@ UV
 zv
 ds
 zi
-Bi
+SB
 ds
 CT
 ds

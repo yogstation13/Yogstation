@@ -34,8 +34,8 @@
 /area/ruin/space/has_grav/interdyne)
 "bU" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/zombie,
 /obj/structure/cable,
+/mob/living/simple_animal/hostile/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "bV" = (
@@ -75,6 +75,11 @@
 /area/ruin/space/has_grav/interdyne)
 "cK" = (
 /obj/structure/shipping_container/interdyne,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/interdyne)
+"cX" = (
+/obj/effect/mapping_helpers/burnt_floor,
+/mob/living/simple_animal/hostile/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "dk" = (
@@ -135,10 +140,12 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "eJ" = (
-/mob/living/simple_animal/hostile/zombie,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/mob/living/simple_animal/hostile/zombie{
+	health = 200
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "eL" = (
@@ -193,6 +200,13 @@
 /obj/effect/spawner/random/exotic/tool,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/interdyne)
+"gn" = (
+/obj/structure/cable,
+/mob/living/simple_animal/hostile/zombie{
+	health = 250
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/interdyne)
 "gV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -227,6 +241,13 @@
 "hG" = (
 /obj/structure/table/wood,
 /obj/machinery/light/blacklight/directional/south,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/interdyne)
+"hV" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/zombie{
+	health = 150
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "iv" = (
@@ -313,6 +334,11 @@
 /obj/structure/cable,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/interdyne)
+"lo" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/mob/living/simple_animal/hostile/zombie,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/interdyne)
 "lQ" = (
 /obj/machinery/light/blacklight/directional/south,
 /obj/structure/cable,
@@ -345,10 +371,6 @@
 /obj/machinery/door/airlock/hatch,
 /obj/effect/mapping_helpers/airlock/abandoned,
 /obj/structure/fans/tiny,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/interdyne)
-"mi" = (
-/obj/structure/chair/office/tactical,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/interdyne)
 "mj" = (
@@ -490,6 +512,14 @@
 /obj/effect/mob_spawn/corpse/human/cargo_tech,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
+"ry" = (
+/obj/structure/cable,
+/mob/living/simple_animal/hostile/zombie{
+	health = 150;
+	cached_multiplicative_slowdown = 2
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/interdyne)
 "rC" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -515,6 +545,12 @@
 	},
 /turf/open/floor/engine/air,
 /area/ruin/space/has_grav/interdyne)
+"ss" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/mob/living/simple_animal/hostile/zombie,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/interdyne)
 "sD" = (
 /obj/item/paper/fluff/ruins/interdyne/note_5,
 /turf/open/floor/iron/smooth,
@@ -529,6 +565,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/mob/living/simple_animal/hostile/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "tm" = (
@@ -626,6 +663,15 @@
 /area/ruin/space/has_grav/interdyne)
 "xf" = (
 /obj/item/paper/fluff/ruins/interdyne/pizza_note,
+/mob/living/simple_animal/hostile/zombie{
+	health = 150
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/interdyne)
+"xh" = (
+/mob/living/simple_animal/hostile/zombie{
+	health = 150
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "xu" = (
@@ -715,9 +761,13 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/interdyne)
 "By" = (
-/mob/living/simple_animal/hostile/zombie,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/mineral/plastitanium/red,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/mob/living/simple_animal/hostile/zombie{
+	health = 250;
+	cached_multiplicative_slowdown = 2
+	},
+/turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "BR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -748,8 +798,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/interdyne)
 "DA" = (
-/mob/living/simple_animal/hostile/zombie,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "DH" = (
@@ -791,6 +842,10 @@
 /obj/effect/mob_spawn/corpse/human/doctor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/mob/living/simple_animal/hostile/zombie{
+	health = 250;
+	cached_multiplicative_slowdown = 2
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "EM" = (
@@ -809,8 +864,10 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/interdyne)
 "FC" = (
-/mob/living/simple_animal/hostile/zombie,
 /obj/structure/cable,
+/mob/living/simple_animal/hostile/zombie{
+	health = 150
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "Go" = (
@@ -851,6 +908,7 @@
 "Ie" = (
 /obj/effect/decal/cleanable/glass/plastitanium,
 /obj/effect/mapping_helpers/burnt_floor,
+/mob/living/simple_animal/hostile/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "IL" = (
@@ -943,6 +1001,13 @@
 /obj/effect/mapping_helpers/burnt_floor,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/interdyne)
+"Lt" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/mob/living/simple_animal/hostile/zombie{
+	health = 200
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/interdyne)
 "Lx" = (
 /turf/open/misc/asteroid/airless{
 	icon_state = "asteroid12"
@@ -980,6 +1045,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/blacklight/directional/east,
+/mob/living/simple_animal/hostile/zombie{
+	health = 150;
+	cached_multiplicative_slowdown = 2
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "MY" = (
@@ -1023,10 +1092,14 @@
 /obj/effect/mob_spawn/corpse/human/monkey,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/mob/living/simple_animal/hostile/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "Oo" = (
 /obj/structure/sink/directional/south,
+/mob/living/simple_animal/hostile/zombie{
+	health = 150
+	},
 /turf/open/floor/iron/showroomfloor,
 /area/ruin/space/has_grav/interdyne)
 "OD" = (
@@ -1146,6 +1219,7 @@
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/mob/living/simple_animal/hostile/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "Sz" = (
@@ -1267,6 +1341,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
+	},
+/mob/living/simple_animal/hostile/zombie{
+	health = 250;
+	cached_multiplicative_slowdown = 2
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
@@ -1463,7 +1541,7 @@ Zi
 QD
 hG
 Zi
-QD
+xh
 Zi
 ma
 Am
@@ -1495,7 +1573,7 @@ aY
 Lb
 VN
 Zi
-QD
+xh
 QD
 JC
 fu
@@ -1503,10 +1581,10 @@ Zi
 xf
 XT
 Zi
-QD
+xh
 Ww
 Zi
-QD
+xh
 QD
 Bf
 Zi
@@ -1577,7 +1655,7 @@ JC
 Zi
 Zi
 QD
-dR
+hV
 QD
 Zi
 Rn
@@ -1594,7 +1672,7 @@ Rn
 Rn
 Zi
 qW
-mi
+eJ
 JR
 aY
 Lb
@@ -1603,7 +1681,7 @@ Zi
 Oo
 DH
 qt
-fu
+ry
 Js
 KW
 MB
@@ -1611,9 +1689,9 @@ gV
 Ej
 fu
 pE
-fu
+FC
 rC
-QD
+xh
 Zi
 Rn
 Rn
@@ -1733,7 +1811,7 @@ Lx
 Rn
 Rn
 Zi
-QD
+uy
 aF
 QD
 QD
@@ -1818,7 +1896,7 @@ wE
 wE
 li
 fu
-eJ
+DA
 WU
 KA
 gV
@@ -1838,7 +1916,7 @@ Rn
 Rn
 Rn
 Zi
-nm
+cX
 QD
 vd
 Rg
@@ -1889,9 +1967,9 @@ IL
 dU
 Zi
 AV
-Nb
+By
 Zi
-fu
+gn
 QD
 xb
 Zi
@@ -1982,7 +2060,7 @@ QD
 QD
 QD
 nm
-nm
+cX
 Ro
 Yv
 Zi
@@ -2086,7 +2164,7 @@ Zi
 GY
 QD
 pp
-uy
+QD
 Wc
 SE
 Zi
@@ -2098,7 +2176,7 @@ Zi
 Zi
 Yv
 aY
-Nr
+Lt
 Jo
 OD
 GK
@@ -2169,8 +2247,8 @@ VR
 Zi
 MA
 eg
-By
-Vi
+Nr
+ss
 kA
 VC
 Zi
@@ -2199,12 +2277,12 @@ mp
 Zi
 fu
 Nb
-DA
+SE
 ga
 Zi
 Wa
 eh
-Nr
+lo
 eQ
 aY
 HQ
@@ -2224,7 +2302,7 @@ Rn
 Rn
 Zi
 DL
-FC
+fu
 ot
 Sd
 wF

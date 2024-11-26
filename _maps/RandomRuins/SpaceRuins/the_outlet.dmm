@@ -636,7 +636,8 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/the_outlet/researchrooms)
 "qs" = (
-/turf/closed/wall/r_wall,
+/obj/item/book/granter/action/spell/forcewall,
+/turf/open/floor/cult,
 /area/ruin/space/has_grav/the_outlet/cultinfluence)
 "qv" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -677,6 +678,7 @@
 /area/ruin/space/has_grav/the_outlet/employeesection)
 "ri" = (
 /obj/machinery/light/dim/directional/west,
+/mob/living/basic/construct/proteon/hostile,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/the_outlet/employeesection)
 "rk" = (
@@ -1227,6 +1229,7 @@
 "DC" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/fluff/ruins/the_outlet/tanners_steps,
+/obj/item/book/granter/action/spell/summon_cheese,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/the_outlet/researchrooms)
 "DQ" = (
@@ -1425,6 +1428,10 @@
 /obj/item/clothing/suit/hooded/bloated_human,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/the_outlet/researchrooms)
+"Ia" = (
+/obj/item/book/granter/action/spell/knock,
+/turf/open/floor/cult,
+/area/ruin/space/has_grav/the_outlet/cultinfluence)
 "Ie" = (
 /obj/effect/decal/cleanable/ants,
 /turf/open/floor/plating/rust,
@@ -1796,6 +1803,13 @@
 /obj/structure/broken_flooring/plating/directional/north,
 /turf/open/floor/iron/grimy,
 /area/ruin/space/has_grav/the_outlet/employeesection)
+"Rr" = (
+/obj/effect/decal/cleanable/dirt{
+	icon_state = "dirt-55"
+	},
+/mob/living/basic/construct/proteon/hostile,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/the_outlet/employeesection)
 "Rs" = (
 /obj/effect/baseturf_helper/asteroid/airless,
 /turf/closed/wall/r_wall/rust,
@@ -1827,8 +1841,10 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/the_outlet/employeesection)
 "RN" = (
-/turf/closed/wall/r_wall/rust,
-/area/ruin/space/has_grav/the_outlet/cultinfluence)
+/obj/effect/decal/cleanable/confetti,
+/mob/living/basic/construct/proteon/hostile,
+/turf/open/floor/iron/grimy,
+/area/ruin/space/has_grav/the_outlet/employeesection)
 "RO" = (
 /obj/structure/headpike/bone,
 /turf/open/floor/cult,
@@ -2058,6 +2074,7 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/toilet,
+/mob/living/basic/construct/proteon/hostile,
 /turf/open/floor/iron/small,
 /area/ruin/space/has_grav/the_outlet/storefront)
 "Xt" = (
@@ -2127,6 +2144,7 @@
 /obj/effect/decal/cleanable/dirt{
 	icon_state = "dirt-1"
 	},
+/mob/living/basic/construct/proteon/hostile,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/the_outlet/employeesection)
 "YP" = (
@@ -2985,7 +3003,7 @@ jw
 zR
 Qd
 RL
-ya
+Rr
 uE
 HH
 HH
@@ -3009,17 +3027,17 @@ Fm
 Pb
 Po
 Fm
-UF
-qs
-qs
-RN
-RN
-qs
-RN
-RN
-qs
-qs
-qs
+iL
+qy
+qy
+qy
+qy
+qy
+qy
+qy
+qy
+qy
+qy
 aX
 yG
 SJ
@@ -3055,7 +3073,7 @@ bk
 sc
 OL
 ua
-UF
+iL
 uR
 re
 Ce
@@ -3065,7 +3083,7 @@ Iz
 eN
 Gu
 Gu
-RN
+qy
 Wc
 xj
 Qi
@@ -3111,7 +3129,7 @@ re
 re
 re
 Mk
-qs
+qy
 Ll
 Rj
 Qi
@@ -3157,7 +3175,7 @@ iC
 Gu
 re
 Gu
-RN
+qy
 au
 bS
 Qi
@@ -3203,12 +3221,12 @@ Gu
 qy
 Ez
 zd
-RN
+qy
 sO
 au
 pG
 zA
-Hg
+RN
 uE
 od
 SM
@@ -3239,7 +3257,7 @@ VT
 XW
 OL
 Zy
-UF
+iL
 re
 re
 qy
@@ -3249,7 +3267,7 @@ Gu
 re
 Gu
 Gu
-qs
+qy
 Iy
 Wc
 Qi
@@ -3295,7 +3313,7 @@ Gu
 re
 Gu
 Gu
-qs
+qy
 Ts
 bn
 UO
@@ -3331,8 +3349,8 @@ UF
 iL
 iL
 UF
-UF
-RN
+iL
+qy
 qy
 Iz
 re
@@ -3379,7 +3397,7 @@ Er
 Er
 Er
 Er
-RN
+qy
 rH
 eN
 eN
@@ -3466,20 +3484,20 @@ Kp
 Er
 Er
 Er
-RN
 qy
-RN
 qy
-RN
-RN
+qy
+qy
+qy
+qy
 qy
 qy
 Aa
-Gu
+qs
 re
 Od
 Gu
-RN
+qy
 UY
 Mu
 UY
@@ -3519,7 +3537,7 @@ hC
 qc
 hC
 qa
-RN
+qy
 qy
 xL
 re
@@ -3563,15 +3581,15 @@ HO
 iS
 Gu
 xe
-Gu
+Ia
 iS
 Gu
-RN
+qy
 re
 re
 uW
 Gu
-RN
+qy
 GK
 YP
 TM
@@ -3604,7 +3622,7 @@ Kp
 Kp
 Er
 Er
-RN
+qy
 kr
 ym
 Gu
@@ -3663,7 +3681,7 @@ Gu
 Gu
 Bo
 eN
-RN
+qy
 od
 Xm
 ko
@@ -3755,7 +3773,7 @@ re
 Ee
 Gu
 Gu
-RN
+qy
 Er
 Er
 Er
@@ -3788,7 +3806,7 @@ Kp
 Kp
 Er
 Er
-RN
+qy
 XH
 KZ
 hC
@@ -3801,7 +3819,7 @@ re
 re
 eN
 qy
-RN
+qy
 Er
 Er
 Er
@@ -3837,15 +3855,15 @@ Er
 qy
 qy
 qy
-RN
-RN
 qy
 qy
-RN
-RN
 qy
-RN
-RN
+qy
+qy
+qy
+qy
+qy
+qy
 qy
 Er
 Er

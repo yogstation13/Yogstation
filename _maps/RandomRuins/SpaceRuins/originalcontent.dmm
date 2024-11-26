@@ -766,6 +766,7 @@
 	dir = 8
 	},
 /obj/structure/fluff/paper/stack,
+/obj/item/wirecutters/abductor,
 /turf/open/indestructible/paper,
 /area/ruin/space/has_grav/powered)
 "cg" = (
@@ -894,6 +895,17 @@
 /mob/living/basic/stickman/ranged,
 /turf/open/indestructible/paper,
 /area/ruin/space/has_grav/powered)
+"ja" = (
+/obj/item/scalpel/alien,
+/turf/open/indestructible/paper,
+/area/ruin/space/has_grav/powered)
+"oe" = (
+/obj/structure/fluff/paper{
+	dir = 5
+	},
+/obj/item/book/granter/action/spell/summon_cheese,
+/turf/open/indestructible/paper,
+/area/ruin/space/has_grav/powered)
 "wr" = (
 /obj/machinery/door/airlock/freezer{
 	name = "Airlock";
@@ -908,6 +920,14 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/turf/open/indestructible/paper,
+/area/ruin/space/has_grav/powered)
+"zK" = (
+/obj/item/book/granter/action/spell/barnyard,
+/turf/open/indestructible/paper,
+/area/ruin/space/has_grav/powered)
+"Mb" = (
+/obj/item/implanter/stealth,
 /turf/open/indestructible/paper,
 /area/ruin/space/has_grav/powered)
 "Ns" = (
@@ -2294,7 +2314,7 @@ aT
 af
 bQ
 ap
-ap
+zK
 aA
 cf
 ar
@@ -2342,7 +2362,7 @@ bS
 bX
 ap
 bR
-ap
+ja
 cq
 af
 am
@@ -2387,7 +2407,7 @@ bM
 bt
 cb
 ap
-ap
+Mb
 cr
 af
 af
@@ -2518,7 +2538,7 @@ af
 af
 af
 af
-am
+oe
 bZ
 cd
 cg

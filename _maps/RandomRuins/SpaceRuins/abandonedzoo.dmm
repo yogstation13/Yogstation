@@ -93,6 +93,7 @@
 /obj/item/clothing/suit/space/eva,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/clothing/head/helmet/space/eva,
+/obj/effect/spawner/random/medical/surgery_tool_advanced,
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "aV" = (
@@ -102,6 +103,7 @@
 "aW" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/syringe,
+/obj/item/food/egg/raptor,
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "aY" = (
@@ -140,6 +142,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/hypospray/medipen/stimpack,
 /obj/item/reagent_containers/cup/bottle/mutagen,
+/obj/item/food/egg/cockatrice,
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bk" = (
@@ -159,7 +162,7 @@
 /area/ruin/space/has_grav/abandonedzoo)
 "bn" = (
 /obj/structure/table/reinforced,
-/obj/item/food/carrotfries,
+/obj/item/food/grown/eggplant,
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "bp" = (
@@ -235,11 +238,11 @@
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "bN" = (
-/obj/structure/grille/broken,
 /obj/item/stack/cable_coil/cut,
 /obj/item/shard{
 	icon_state = "small"
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
 "bO" = (
@@ -274,14 +277,14 @@
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "bT" = (
-/obj/structure/grille,
 /obj/item/shard{
 	icon_state = "medium"
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
 "bU" = (
-/obj/structure/grille/broken,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
 "bW" = (
@@ -289,6 +292,8 @@
 /turf/template_noop,
 /area/template_noop)
 "bX" = (
+/obj/structure/alien/weeds,
+/obj/structure/alien/egg/fake,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/abandonedzoo)
 "eY" = (
@@ -381,7 +386,14 @@
 /obj/item/crowbar,
 /obj/item/shield/riot,
 /obj/machinery/light/directional/north,
+/obj/effect/spawner/random/medical/surgery_tool_advanced,
 /turf/open/floor/iron/dark/side,
+/area/ruin/space/has_grav/abandonedzoo)
+"vy" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/green/fourcorners,
+/mob/living/basic/trooper/russian/ranged/lootless,
+/turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/abandonedzoo)
 "vU" = (
 /mob/living/basic/mining/goldgrub,
@@ -433,15 +445,11 @@
 	},
 /obj/item/melee/baton/security/cattleprod,
 /obj/effect/mapping_helpers/apc/unlocked,
+/obj/effect/spawner/random/medical/surgery_tool_advanced,
+/obj/effect/spawner/random/engineering/tool_advanced,
 /turf/open/floor/iron/dark/side,
 /area/ruin/space/has_grav/abandonedzoo)
 "Mb" = (
-/mob/living/basic/bee,
-/mob/living/basic/bee,
-/mob/living/basic/bee,
-/mob/living/basic/bee,
-/mob/living/basic/bee,
-/mob/living/basic/bee,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
 "Ng" = (
@@ -463,7 +471,6 @@
 /area/ruin/space/has_grav/abandonedzoo)
 "PF" = (
 /obj/machinery/light/directional/south,
-/mob/living/basic/bee,
 /mob/living/basic/bee,
 /turf/open/floor/grass,
 /area/ruin/space/has_grav/abandonedzoo)
@@ -724,7 +731,7 @@ Ni
 Ni
 Ni
 Ni
-oS
+vy
 Ni
 Ni
 Ni
@@ -802,8 +809,8 @@ aa
 (14,1,1) = {"
 ac
 al
-gE
-gE
+Mb
+Mb
 aA
 ac
 at
@@ -822,8 +829,8 @@ aa
 "}
 (15,1,1) = {"
 ac
-Mb
-Mb
+gE
+gE
 ao
 PF
 ac
@@ -837,7 +844,7 @@ ac
 mY
 bH
 bH
-bB
+bX
 bT
 aa
 "}
@@ -846,7 +853,7 @@ ac
 gE
 aq
 nY
-Mb
+gE
 aD
 aL
 kp
@@ -876,10 +883,10 @@ aQ
 aQ
 aQ
 ac
-bB
-bB
-bB
 bX
+bB
+bB
+bH
 bP
 aa
 "}

@@ -174,7 +174,6 @@
 	lethal = 1;
 	name = "Ship turret control panel";
 	pixel_y = 32;
-	req_access = null;
 	req_access = list("syndicate")
 	},
 /turf/open/floor/mineral/plastitanium/red,
@@ -1181,6 +1180,22 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
+"eg" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/powered/syndicate_forgotten_vault)
+"gU" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"hO" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"iD" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "jN" = (
 /obj/structure/closet/crate/secure/gear{
 	req_access = list("syndicate")
@@ -1200,6 +1215,14 @@
 /obj/effect/spawner/random/contraband/armory,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
+"qG" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"vz" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "Ia" = (
 /obj/structure/closet/crate/secure/gear{
 	req_access = list("syndicate")
@@ -1216,6 +1239,10 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/pod/dark,
 /area/ruin/space/has_grav/powered/syndicate_forgotten_vault)
+"St" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "WR" = (
 /obj/structure/closet/crate/secure/gear{
 	req_access = list("syndicate")
@@ -1806,7 +1833,7 @@ bZ
 dn
 bZ
 bZ
-bZ
+qG
 dn
 bZ
 bZ
@@ -1902,7 +1929,7 @@ bc
 bZ
 bY
 bE
-al
+St
 al
 cY
 bZ
@@ -1985,9 +2012,9 @@ aa
 aa
 bZ
 ay
-aw
+vz
 bZ
-ao
+hO
 ao
 bx
 aS
@@ -2044,7 +2071,7 @@ bZ
 bY
 bE
 al
-al
+St
 cY
 bZ
 aa
@@ -2057,7 +2084,7 @@ ba
 aZ
 bd
 de
-de
+eg
 cz
 aZ
 ba
@@ -2103,7 +2130,7 @@ bq
 ba
 aZ
 Il
-de
+eg
 de
 do
 aZ
@@ -2221,7 +2248,7 @@ aa
 aa
 bZ
 aj
-am
+gU
 am
 cj
 bZ
@@ -2373,7 +2400,7 @@ aK
 aP
 al
 bZ
-al
+St
 bJ
 bZ
 aa
@@ -2411,7 +2438,7 @@ ai
 al
 bZ
 bP
-al
+St
 ax
 ax
 cN
@@ -2433,7 +2460,7 @@ aY
 bR
 bp
 bh
-bj
+iD
 bC
 bb
 bq
@@ -2561,7 +2588,7 @@ al
 al
 al
 bZ
-al
+St
 bL
 bZ
 aa
@@ -2740,7 +2767,7 @@ bZ
 bZ
 bZ
 aw
-aw
+vz
 aw
 aw
 cS
@@ -2792,7 +2819,7 @@ aw
 cB
 cT
 aw
-aw
+vz
 aw
 aw
 bZ
@@ -2831,7 +2858,7 @@ aa
 aa
 bZ
 br
-aw
+vz
 cp
 aw
 aV
@@ -2935,7 +2962,7 @@ aw
 aw
 aw
 aw
-aw
+vz
 bZ
 bZ
 bZ

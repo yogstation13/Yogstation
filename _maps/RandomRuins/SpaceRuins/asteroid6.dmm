@@ -2,6 +2,14 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
+"l" = (
+/obj/item/pickaxe/silver,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
+"n" = (
+/obj/item/storage/backpack/duffelbag/mining_conscript,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 "o" = (
 /turf/closed/mineral/asteroid,
 /area/ruin/space)
@@ -163,7 +171,7 @@ M
 M
 M
 M
-M
+l
 M
 p
 a
@@ -194,7 +202,7 @@ o
 o
 o
 M
-M
+n
 M
 M
 p

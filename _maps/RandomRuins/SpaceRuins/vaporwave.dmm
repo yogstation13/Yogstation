@@ -66,6 +66,7 @@
 /turf/open/floor/holofloor/beach,
 /area/ruin/space/has_grav/powered/aesthetic)
 "q" = (
+/obj/item/implanter/radio,
 /turf/open/floor/holofloor/beach,
 /area/ruin/space/has_grav/powered/aesthetic)
 "r" = (
@@ -74,9 +75,7 @@
 /area/ruin/space/has_grav/powered/aesthetic)
 "s" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/glasses/sunglasses/big{
-	name = "aesthetic sunglasses"
-	},
+/obj/item/clothing/glasses/hud/health/sunglasses,
 /turf/open/floor/iron/vaporwave,
 /area/ruin/space/has_grav/powered/aesthetic)
 "t" = (
@@ -213,6 +212,20 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/space)
+"T" = (
+/obj/effect/spawner/random/entertainment/drugs,
+/turf/open/floor/iron/vaporwave,
+/area/ruin/space/has_grav/powered/aesthetic)
+"U" = (
+/obj/structure/window/spawner/directional/east,
+/obj/effect/spawner/random/entertainment/drugs,
+/turf/open/floor/iron/vaporwave,
+/area/ruin/space/has_grav/powered/aesthetic)
+"Z" = (
+/obj/structure/window/spawner/directional/west,
+/obj/effect/spawner/random/entertainment/drugs,
+/turf/open/floor/iron/vaporwave,
+/area/ruin/space/has_grav/powered/aesthetic)
 
 (1,1,1) = {"
 a
@@ -326,7 +339,7 @@ i
 r
 r
 r
-r
+Z
 f
 B
 H
@@ -341,7 +354,7 @@ d
 f
 j
 k
-k
+T
 v
 P
 f
@@ -360,7 +373,7 @@ k
 k
 k
 k
-k
+T
 f
 D
 J
@@ -394,7 +407,7 @@ m
 s
 k
 k
-k
+T
 f
 D
 L
@@ -409,7 +422,7 @@ c
 g
 O
 n
-k
+T
 w
 P
 g
@@ -428,7 +441,7 @@ o
 o
 o
 o
-o
+U
 f
 G
 M

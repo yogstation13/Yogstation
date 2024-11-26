@@ -437,6 +437,7 @@
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "kO" = (
 /obj/effect/turf_decal/siding/thinplating_new/light,
+/mob/living/basic/trooper/russian/ranged/lootless,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "le" = (
@@ -604,6 +605,12 @@
 /obj/structure/frame/computer,
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"oW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/closed/indestructible/riveted/plastinum/nodiagonal,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "pq" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -716,6 +723,7 @@
 /turf/open/floor/circuit/green/anim,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility/secretroom)
 "sz" = (
+/mob/living/basic/trooper/russian/ranged/lootless,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "sO" = (
@@ -1155,6 +1163,12 @@
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Bo" = (
 /turf/closed/indestructible/riveted/plastinum,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"Bz" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/closed/indestructible/riveted/plastinum/nodiagonal,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "BA" = (
 /obj/machinery/door/airlock/science{
@@ -2265,6 +2279,10 @@
 /obj/structure/bedsheetbin,
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/powered/hilbertresearchfacility)
+"Yk" = (
+/mob/living/basic/trooper/russian/ranged/lootless,
+/turf/open/floor/mineral/plastitanium,
+/area/ruin/space/has_grav/powered/hilbertresearchfacility)
 "Ym" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -2856,7 +2874,7 @@ Ut
 Ut
 Ut
 Bo
-La
+Yk
 La
 Ok
 Bo
@@ -5055,8 +5073,8 @@ KC
 KC
 PR
 KC
-KC
 PR
+Ok
 Ok
 Ok
 Dk
@@ -5095,8 +5113,8 @@ Ba
 Ba
 Ba
 Ba
-Ba
-Ba
+Bz
+Bz
 Ok
 Bo
 Iy
@@ -5173,8 +5191,8 @@ vr
 vr
 vr
 vr
-vr
-vr
+oW
+oW
 Ok
 Bo
 Iy
@@ -5211,8 +5229,8 @@ KC
 KC
 PR
 KC
-KC
 PR
+Ok
 Ok
 Ok
 Dk

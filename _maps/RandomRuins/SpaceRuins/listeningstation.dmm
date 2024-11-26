@@ -116,7 +116,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/warning/vacuum/external/directional/west,
 /obj/structure/sign/poster/official/safety_internals/directional/east,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "cj" = (
 /turf/closed/wall/rust,
@@ -175,12 +175,6 @@
 /mob/living/basic/mining/hivelord,
 /turf/open/misc/asteroid,
 /area/ruin/space/has_grav/listeningstation/support)
-"eu" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small/red/directional/east,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/listeningstation/lobby)
 "eM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table_frame,
@@ -975,6 +969,9 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/support)
+"BT" = (
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/listeningstation/lobby)
 "BX" = (
 /obj/item/toy/plush/lizard_plushie/green{
 	name = "Hears-It-All";
@@ -1053,7 +1050,6 @@
 /turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/listeningstation/medical)
 "Dv" = (
-/obj/machinery/door/airlock/external/ruin,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
@@ -1387,13 +1383,9 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "MT" = (
-/obj/machinery/door/airlock/external/ruin,
-/obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/airlock/cutaiwire,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "MV" = (
 /obj/structure/cable,
@@ -1868,9 +1860,8 @@
 /turf/closed/wall/rock,
 /area/ruin/space/has_grav/listeningstation/asteroid)
 "XQ" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "Yb" = (
 /turf/closed/wall,
@@ -2794,9 +2785,9 @@ MS
 It
 iN
 zo
-rG
+BT
 dg
-ME
+OT
 bi
 kt
 go
@@ -2822,7 +2813,7 @@ NY
 NY
 hm
 VK
-rG
+BT
 rG
 rG
 rG
@@ -2861,7 +2852,7 @@ xY
 NY
 cG
 MT
-eu
+MT
 ch
 Dv
 WD
@@ -2869,8 +2860,8 @@ UI
 Ag
 vm
 EG
-rG
-rG
+BT
+BT
 dW
 QI
 Sz
@@ -2898,16 +2889,16 @@ xY
 xY
 EK
 XM
-rG
-rG
-rG
-rG
-rG
+BT
+BT
+BT
+BT
+BT
 rG
 Es
 BA
-rG
-rG
+BT
+BT
 go
 go
 QI
@@ -2941,10 +2932,10 @@ go
 go
 go
 go
-rG
-rG
-rG
-rG
+BT
+BT
+BT
+BT
 go
 go
 bK

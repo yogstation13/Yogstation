@@ -73,6 +73,11 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/hotel/bar)
+"aN" = (
+/obj/structure/sign/poster/random/directional/north,
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/iron/grimy,
+/area/ruin/space/has_grav/hotel)
 "aQ" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/poddoor/shutters{
@@ -791,11 +796,9 @@
 /turf/open/floor/wood/tile,
 /area/ruin/space/has_grav/hotel)
 "hf" = (
-/obj/effect/decal/cleanable/blood/drip{
-	pixel_y = 5
-	},
-/turf/open/floor/iron/dark/textured,
-/area/ruin/space/has_grav/hotel/security)
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/iron/cafeteria,
+/area/ruin/space/has_grav/hotel/bar)
 "hg" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/sign/warning/fire{
@@ -820,6 +823,10 @@
 /obj/effect/spawner/random/vending/colavend,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/hotel)
+"hp" = (
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/misc/beach/sand,
+/area/ruin/space/has_grav/hotel/pool)
 "hq" = (
 /obj/structure/chair/sofa/right/brown{
 	dir = 4
@@ -902,6 +909,7 @@
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/survival_pod/spawner/directional/west,
 /obj/item/kitchen/rollingpin,
+/obj/effect/spawner/random/food_or_drink/refreshing_beverage,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "hT" = (
@@ -957,6 +965,7 @@
 /obj/item/reagent_containers/cup/beaker{
 	pixel_x = 5
 	},
+/obj/effect/spawner/random/food_or_drink/pizzaparty,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "ii" = (
@@ -1030,6 +1039,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/item/storage/box/beanbag,
+/obj/effect/spawner/random/food_or_drink/three_course_meal,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "iA" = (
@@ -1045,6 +1055,10 @@
 /mob/living/basic/bot/medbot/derelict,
 /turf/open/floor/circuit/red,
 /area/ruin/space/has_grav/hotel/workroom)
+"iC" = (
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/iron/grimy,
+/area/ruin/space/has_grav/hotel)
 "iE" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair,
@@ -2364,9 +2378,9 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel)
 "uu" = (
-/obj/item/beacon,
-/turf/open/floor/wood/tile,
-/area/ruin/space/has_grav/hotel)
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/carpet/royalblue,
+/area/ruin/space/has_grav/hotel/guestroom/room_4)
 "uw" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair,
@@ -2393,6 +2407,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/power)
+"uO" = (
+/mob/living/simple_animal/bot/secbot/beepsky/armsky{
+	name = "Hotelsky";
+	desc = "It's Hotelsky! He's a disgruntled servant of the hotel that would probably shoot you if he had hands."
+	},
+/turf/open/floor/carpet/neon/simple/red/nodots,
+/area/space)
 "uQ" = (
 /obj/structure/chair/office/tactical,
 /obj/machinery/button{
@@ -2577,6 +2598,10 @@
 /obj/item/soap,
 /turf/open/floor/iron/showroomfloor,
 /area/ruin/space/has_grav/hotel/guestroom/room_3)
+"wj" = (
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/hotel)
 "wk" = (
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/dark/side,
@@ -2626,6 +2651,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/wood/parquet,
 /area/ruin/space/has_grav/hotel/guestroom/room_4)
+"wF" = (
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/carpet/green,
+/area/ruin/space/has_grav/hotel/guestroom/room_2)
 "wH" = (
 /obj/structure/cable,
 /obj/structure/table/reinforced,
@@ -2807,6 +2836,13 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/hotel/dock)
+"xX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/mob/living/basic/trooper/syndicate/melee/sword/space/stormtrooper,
+/turf/open/floor/carpet/blue,
+/area/ruin/space/has_grav/hotel)
 "xZ" = (
 /obj/structure/table/wood,
 /obj/machinery/firealarm/directional/east,
@@ -3057,6 +3093,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/egg_box,
 /obj/item/knife/kitchen,
+/obj/effect/spawner/random/food_or_drink/soup,
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/hotel/bar)
 "BK" = (
@@ -3336,10 +3373,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "EW" = (
-/mob/living/simple_animal/bot/secbot/beepsky/armsky{
-	name = "Hotelsky";
-	desc = "It's Hotelsky! He's a disgruntled servant of the hotel that would probably shoot you if he had hands."
-	},
 /turf/open/floor/carpet/neon/simple/red/nodots,
 /area/ruin/space/has_grav/hotel/security)
 "EY" = (
@@ -3779,6 +3812,10 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/white,
 /obj/structure/rack,
+/obj/item/food/watermelonslice,
+/obj/item/food/watermelonslice,
+/obj/item/food/watermelonslice,
+/obj/item/food/watermelonslice,
 /turf/open/floor/iron/sepia,
 /area/ruin/space/has_grav/hotel/pool)
 "JD" = (
@@ -3931,6 +3968,11 @@
 "LD" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
+"LE" = (
+/obj/structure/rack,
+/obj/item/knife/combat,
+/turf/open/floor/iron/sepia,
+/area/ruin/space/has_grav/hotel/pool)
 "LI" = (
 /obj/structure/bed/pod,
 /obj/item/bedsheet/red,
@@ -4004,7 +4046,9 @@
 /area/ruin/space/has_grav/hotel)
 "ML" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/random/bureaucracy/briefcase,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/head/costume/maidheadband/syndicate,
+/obj/item/weldingtool/experimental,
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/hotel)
 "MN" = (
@@ -4152,6 +4196,8 @@
 /area/ruin/space/has_grav/hotel/pool)
 "OF" = (
 /obj/structure/table/wood,
+/obj/item/clothing/gloves/combat/maid,
+/obj/item/clothing/under/syndicate/skirt/maid,
 /turf/open/floor/carpet/black,
 /area/ruin/space/has_grav/hotel)
 "OI" = (
@@ -5132,6 +5178,7 @@
 /area/ruin/space/has_grav/hotel)
 "Yh" = (
 /obj/structure/table/wood/fancy/green,
+/obj/item/crowbar/power,
 /turf/open/floor/carpet/purple,
 /area/ruin/space/has_grav/hotel/guestroom/room_5)
 "Yw" = (
@@ -6566,7 +6613,7 @@ wb
 kk
 Ki
 nE
-Ew
+hf
 if
 iy
 Ew
@@ -6694,7 +6741,7 @@ Pn
 QW
 eA
 WD
-KA
+aN
 iM
 qR
 WD
@@ -7201,7 +7248,7 @@ PI
 WD
 FV
 mj
-Ac
+uu
 dq
 Hm
 eg
@@ -7313,7 +7360,7 @@ JY
 Rk
 MQ
 JY
-ma
+LE
 JC
 db
 db
@@ -7371,7 +7418,7 @@ jt
 jt
 jt
 rM
-rM
+xX
 rM
 jt
 jt
@@ -7517,7 +7564,7 @@ cl
 Zm
 MJ
 mR
-uu
+mR
 mR
 MJ
 tq
@@ -7681,7 +7728,7 @@ JY
 RS
 Zg
 QJ
-QJ
+hp
 po
 qv
 QJ
@@ -8229,7 +8276,7 @@ Ff
 fg
 cf
 PF
-cf
+iC
 QH
 BK
 EJ
@@ -8295,7 +8342,7 @@ WD
 YZ
 WD
 ay
-RH
+wF
 LI
 LI
 Ff
@@ -8730,7 +8777,7 @@ Cl
 Qb
 WD
 Hv
-YZ
+wj
 YZ
 YZ
 qe
@@ -9028,7 +9075,7 @@ QD
 QD
 bc
 Dc
-Ve
+uO
 Sq
 cf
 JD
@@ -9398,7 +9445,7 @@ qx
 JE
 tJ
 tQ
-hf
+Ve
 mr
 xd
 cN

@@ -344,6 +344,7 @@
 "pg" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/urinal/directional/north,
+/obj/item/reagent_containers/syringe/morphine,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
 "qp" = (
@@ -372,6 +373,7 @@
 /obj/structure/sink/directional/east,
 /obj/structure/mirror/directional/west,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/syringe/morphine,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
 "rb" = (
@@ -481,6 +483,11 @@
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/kitchen/small,
+/area/ruin/space/has_grav/allamericandiner)
+"wb" = (
+/obj/structure/table/reinforced,
+/obj/item/food/pie/applepie,
 /turf/open/floor/iron/kitchen/small,
 /area/ruin/space/has_grav/allamericandiner)
 "wC" = (
@@ -617,9 +624,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/condiment/peppermill{
 	pixel_x = 3
-	},
-/obj/item/reagent_containers/condiment/saltshaker{
-	pixel_x = -3
 	},
 /turf/open/floor/iron/kitchen/small,
 /area/ruin/space/has_grav/allamericandiner)
@@ -787,6 +791,7 @@
 	pixel_x = 7;
 	pixel_y = 4
 	},
+/obj/item/gun/ballistic/automatic/pistol/m1911,
 /turf/open/floor/iron/grimy,
 /area/ruin/space/has_grav/allamericandiner)
 "HF" = (
@@ -1153,6 +1158,7 @@
 	pixel_x = 6
 	},
 /obj/effect/turf_decal/bot,
+/obj/item/reagent_containers/cocaine,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
 "UR" = (
@@ -1251,11 +1257,16 @@
 	pixel_x = 9;
 	pixel_y = 1
 	},
+/obj/item/implanter/freedom,
 /turf/open/floor/iron/grimy,
 /area/ruin/space/has_grav/allamericandiner)
 "Yr" = (
 /obj/effect/spawner/structure/electrified_grille,
 /turf/open/floor/plating,
+/area/ruin/space/has_grav/allamericandiner)
+"YE" = (
+/obj/item/reagent_containers/cocainebrick,
+/turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/allamericandiner)
 "YK" = (
 /obj/structure/table/reinforced,
@@ -1298,6 +1309,14 @@
 "Zw" = (
 /obj/effect/turf_decal/trimline/dark_green/filled/line,
 /turf/open/floor/iron,
+/area/ruin/space/has_grav/allamericandiner)
+"ZP" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/cocaine,
+/obj/item/reagent_containers/condiment/saltshaker{
+	pixel_x = -3
+	},
+/turf/open/floor/iron/kitchen/small,
 /area/ruin/space/has_grav/allamericandiner)
 "ZS" = (
 /obj/item/storage/box/ingredients/american,
@@ -1624,7 +1643,7 @@ dl
 jZ
 jZ
 jZ
-Xw
+ZP
 FB
 PW
 Ap
@@ -1772,7 +1791,7 @@ TN
 jZ
 Uc
 jZ
-Xw
+wb
 rG
 rd
 gB
@@ -1876,7 +1895,7 @@ oN
 EK
 uP
 Al
-Kp
+YE
 WC
 EK
 HF

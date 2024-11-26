@@ -50,6 +50,10 @@
 "n" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/syndicate,
+/obj/item/wrench/caravan,
+/obj/item/wirecutters/caravan,
+/obj/item/screwdriver/caravan,
+/obj/item/crowbar/red/caravan,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav)
 "o" = (

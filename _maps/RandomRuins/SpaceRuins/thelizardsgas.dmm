@@ -405,10 +405,14 @@
 /area/ruin/space/has_grav/thelizardsgas)
 "Ow" = (
 /obj/structure/table/reinforced,
+/obj/item/reagent_containers/cup/glass/drinkingglass/filled/sunset_sarsaparilla,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/ruin/space/has_grav/thelizardsgas)
 "OQ" = (
 /obj/machinery/light/small/directional/west,
+/obj/item/organ/internal/cyberimp/chest/sandevistan/refurbished{
+	name = "Party Time"
+	},
 /turf/open/floor/engine/plasma{
 	initial_gas_mix = "plasma=35000;TEMP=293.15"
 	},
@@ -525,6 +529,14 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/yellow/hidden,
 /turf/template_noop,
+/area/ruin/space/has_grav/thelizardsgas)
+"WU" = (
+/obj/item/implanter/sad_trombone{
+	name = "Totally Amazing Implant"
+	},
+/turf/open/floor/engine/plasma{
+	initial_gas_mix = "plasma=35000;TEMP=293.15"
+	},
 /area/ruin/space/has_grav/thelizardsgas)
 "WY" = (
 /obj/machinery/air_sensor{
@@ -808,7 +820,7 @@ CA
 Qg
 Qg
 LA
-DG
+WU
 WY
 QQ
 rC

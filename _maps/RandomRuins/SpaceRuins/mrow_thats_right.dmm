@@ -404,6 +404,7 @@
 /area/ruin/space/has_grav/powered/cat_man)
 "br" = (
 /obj/structure/table/reinforced,
+/obj/item/implanter/stealth,
 /obj/item/scalpel{
 	pixel_y = 12
 	},
@@ -850,11 +851,29 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
+"xe" = (
+/obj/effect/turf_decal/tile/neutral/half/contrasted{
+	dir = 1
+	},
+/mob/living/basic/cat_butcherer,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/powered/cat_man)
 "Bl" = (
 /obj/machinery/door/airlock/external/ruin,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/cat_man)
+"JG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/cat_butcherer,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/cat_man)
+"RE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/implanter/storage,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "RT" = (
@@ -867,6 +886,11 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/cat_man)
+"Uo" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/cat_butcherer,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 
@@ -1231,7 +1255,7 @@ ad
 ag
 aj
 ad
-aw
+xe
 aG
 ad
 ad
@@ -1328,7 +1352,7 @@ ad
 ad
 ad
 ay
-ay
+RE
 aP
 aw
 be
@@ -1340,7 +1364,7 @@ bP
 bU
 as
 bZ
-ay
+Uo
 ah
 cp
 ct
@@ -1360,7 +1384,7 @@ ad
 al
 as
 az
-aJ
+JG
 aP
 aw
 bf

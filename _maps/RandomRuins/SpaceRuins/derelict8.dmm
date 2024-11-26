@@ -38,6 +38,11 @@
 /obj/item/stack/rods,
 /turf/template_noop,
 /area/template_noop)
+"gE" = (
+/obj/structure/cable,
+/obj/item/storage/pill_bottle/maintenance_pill/full,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav)
 "hs" = (
 /obj/effect/spawner/random/trash/bin,
 /obj/effect/decal/cleanable/dirt,
@@ -163,6 +168,7 @@
 	pixel_y = 2
 	},
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/item/reagent_containers/pill/ibuprofen,
 /turf/open/floor/iron/dark/textured,
 /area/ruin/space/has_grav)
 "BX" = (
@@ -196,6 +202,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/storage/pill_bottle/iron,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav)
 "JE" = (
@@ -208,7 +215,14 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/pill/mutadone,
 /turf/open/floor/iron,
+/area/ruin/space/has_grav)
+"JV" = (
+/obj/structure/cable,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/item/storage/pill_bottle/maintenance_pill/full,
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav)
 "KW" = (
 /obj/effect/spawner/random/trash/food_packaging,
@@ -320,6 +334,7 @@
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/pill/patch/synthflesh,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav)
 "WI" = (
@@ -410,7 +425,7 @@ OM
 BD
 hs
 Yp
-Ym
+gE
 Yp
 Yp
 Yp
@@ -444,7 +459,7 @@ dS
 Yp
 Nl
 Yp
-Sp
+JV
 Ym
 Yp
 es
@@ -522,7 +537,7 @@ Yp
 KW
 kA
 WI
-Ym
+gE
 es
 OD
 es

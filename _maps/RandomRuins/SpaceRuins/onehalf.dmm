@@ -132,6 +132,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/medkit/regular,
+/obj/item/circular_saw/alien,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/onehalf/dorms_med)
 "aC" = (
@@ -913,6 +914,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/onehalf/bridge)
+"ns" = (
+/mob/living/basic/trooper/nanotrasen/ranged/elite,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/onehalf/dorms_med)
 "nu" = (
 /obj/item/crowbar/red,
 /obj/item/multitool,
@@ -1184,7 +1189,7 @@ aa
 aa
 ab
 ah
-ap
+ns
 ap
 ap
 aW

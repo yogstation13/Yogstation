@@ -98,6 +98,10 @@
 	},
 /turf/open/floor/grass,
 /area/ruin/space/has_grav)
+"N" = (
+/obj/item/scalpel/alien,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav)
 
 (1,1,1) = {"
 a
@@ -1143,7 +1147,7 @@ c
 c
 b
 b
-d
+N
 d
 d
 f

@@ -33,6 +33,7 @@
 "i" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/yellow,
+/obj/item/skillchip/job/engineer,
 /turf/open/floor/plating/airless,
 /area/ruin/space/abandoned_tele)
 "j" = (
@@ -71,8 +72,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/abandoned_tele)
 "q" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/flashlight,
+/obj/item/flashlight/flashdark,
 /turf/open/floor/plating/airless,
 /area/ruin/space/abandoned_tele)
 "r" = (
@@ -208,7 +208,7 @@ a
 a
 b
 b
-h
+q
 h
 s
 b
@@ -223,7 +223,7 @@ b
 b
 g
 l
-q
+m
 u
 h
 b

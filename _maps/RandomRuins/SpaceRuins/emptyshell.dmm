@@ -47,6 +47,10 @@
 /obj/effect/spawner/random/maintenance/four,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav)
+"X" = (
+/obj/item/storage/pill_bottle/maintenance_pill/full,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav)
 
 (1,1,1) = {"
 a
@@ -162,7 +166,7 @@ d
 d
 d
 d
-d
+X
 c
 c
 a
@@ -206,7 +210,7 @@ b
 a
 c
 c
-d
+X
 d
 d
 g
@@ -263,7 +267,7 @@ d
 d
 d
 d
-d
+X
 c
 c
 c

@@ -19,6 +19,18 @@
 /obj/item/pickaxe/diamond,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space)
+"F" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
+"J" = (
+/obj/item/storage/backpack/duffelbag/mining_conscript,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
+"W" = (
+/obj/effect/spawner/random/maintenance/two,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space)
 
 (1,1,1) = {"
 a
@@ -81,7 +93,7 @@ b
 a
 "}
 (4,1,1) = {"
-b
+F
 b
 b
 b
@@ -169,7 +181,7 @@ c
 c
 c
 b
-b
+W
 b
 f
 b
@@ -210,9 +222,9 @@ b
 b
 b
 b
+J
 b
-b
-b
+W
 c
 c
 c
@@ -296,7 +308,7 @@ c
 c
 b
 b
-b
+F
 a
 a
 "}

@@ -11,6 +11,34 @@
 "d" = (
 /turf/open/misc/asteroid/airless,
 /area/ruin/space/has_grav)
+"e" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
+"m" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/closed/mineral/random/high_chance,
+/area/ruin/space/has_grav)
+"s" = (
+/obj/effect/spawner/random/maintenance,
+/turf/closed/mineral/random,
+/area/ruin/space/has_grav)
+"x" = (
+/obj/effect/spawner/random/trash/soap,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
+"F" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
+"H" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
+"K" = (
+/obj/effect/spawner/random/maintenance/two,
+/turf/open/misc/asteroid/airless,
+/area/ruin/space/has_grav)
 
 (1,1,1) = {"
 a
@@ -200,7 +228,7 @@ a
 a
 a
 d
-d
+F
 d
 d
 d
@@ -221,7 +249,7 @@ c
 c
 c
 b
-b
+s
 b
 b
 b
@@ -279,7 +307,7 @@ a
 b
 d
 d
-d
+H
 d
 b
 c
@@ -304,7 +332,7 @@ b
 b
 d
 d
-d
+F
 d
 b
 b
@@ -339,7 +367,7 @@ b
 b
 b
 b
-b
+s
 d
 d
 d
@@ -397,7 +425,7 @@ a
 a
 d
 d
-d
+x
 b
 c
 c
@@ -455,11 +483,11 @@ a
 (12,1,1) = {"
 a
 b
-b
+s
 b
 b
 d
-d
+H
 a
 a
 a
@@ -616,7 +644,7 @@ a
 b
 b
 b
-d
+K
 d
 d
 a
@@ -714,7 +742,7 @@ b
 b
 a
 a
-d
+H
 d
 b
 b
@@ -797,7 +825,7 @@ a
 b
 d
 d
-d
+K
 b
 b
 d
@@ -875,10 +903,10 @@ a
 a
 a
 a
+F
 d
 d
-d
-c
+m
 c
 c
 b
@@ -1018,7 +1046,7 @@ b
 b
 b
 b
-d
+F
 d
 d
 a
@@ -1311,7 +1339,7 @@ d
 d
 d
 d
-d
+H
 d
 d
 c
@@ -1348,14 +1376,14 @@ a
 a
 a
 d
+e
 d
 d
 d
 d
 d
 d
-d
-d
+e
 d
 b
 b

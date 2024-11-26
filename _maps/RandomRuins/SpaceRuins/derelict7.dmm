@@ -230,6 +230,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav)
 "AV" = (
+/obj/item/clothing/glasses/hud/health/night/science,
 /turf/open/floor/wood/airless,
 /area/ruin/space/has_grav)
 "AY" = (
@@ -288,6 +289,14 @@
 /obj/machinery/light/broken/directional/south,
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating/airless,
+/area/ruin/space/has_grav)
+"Dt" = (
+/obj/item/crowbar/red/caravan,
+/turf/open/floor/iron/white/airless,
+/area/ruin/space/has_grav)
+"DV" = (
+/obj/item/wrench/caravan,
+/turf/open/floor/iron/airless,
 /area/ruin/space/has_grav)
 "DY" = (
 /turf/template_noop,
@@ -481,6 +490,7 @@
 /obj/effect/turf_decal/trimline/neutral/corner{
 	dir = 4
 	},
+/obj/item/clothing/gloves/color/yellow/heavy,
 /turf/open/floor/iron/dark/corner/airless{
 	dir = 4
 	},
@@ -575,7 +585,7 @@ tF
 gi
 eP
 nf
-nf
+DV
 Qy
 Si
 uB
@@ -831,7 +841,7 @@ DY
 CT
 oy
 iB
-Lc
+Dt
 Ke
 CT
 dy

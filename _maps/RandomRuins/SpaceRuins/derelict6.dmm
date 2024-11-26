@@ -74,8 +74,11 @@
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav)
 "ax" = (
-/mob/living/basic/ghost,
-/turf/open/floor/iron/airless,
+/obj/structure/table,
+/obj/item/food/pizza/meat{
+	pixel_y = 5
+	},
+/turf/open/floor/iron/cafeteria/airless,
 /area/ruin/space/has_grav)
 "az" = (
 /obj/structure/broken_flooring/plating/directional/west{
@@ -192,6 +195,10 @@
 /area/ruin/space/has_grav)
 "aW" = (
 /obj/structure/table,
+/obj/item/circular_saw/field_medic,
+/obj/item/knife/hunting{
+	pixel_y = 10
+	},
 /turf/open/floor/iron/cafeteria/airless,
 /area/ruin/space/has_grav)
 "aX" = (
@@ -210,7 +217,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ba" = (
-/mob/living/basic/ghost,
+/obj/effect/mob_spawn/corpse/human/cook,
 /turf/open/floor/iron/cafeteria/airless,
 /area/ruin/space/has_grav)
 "bb" = (
@@ -357,6 +364,22 @@
 	name = "broken plating"
 	},
 /turf/template_noop,
+/area/ruin/space/has_grav)
+"JE" = (
+/obj/structure/table,
+/obj/item/food/pizzaslice/mothic_firecracker,
+/obj/item/food/pizzaslice/mothic_firecracker{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/food/pizzaslice/mothic_firecracker{
+	pixel_y = 15
+	},
+/turf/open/floor/iron/cafeteria/airless,
+/area/ruin/space/has_grav)
+"Lq" = (
+/obj/effect/mob_spawn/corpse/human/pirate/melee,
+/turf/open/floor/iron/airless,
 /area/ruin/space/has_grav)
 
 (1,1,1) = {"
@@ -551,12 +574,12 @@ ah
 ah
 ai
 av
-ag
+Lq
 aC
 ai
 aI
 aR
-aW
+ax
 aW
 bh
 ah
@@ -597,13 +620,13 @@ bg
 ai
 ai
 ag
-ax
+ag
 ag
 ai
 aK
 aR
-ba
 aR
+ba
 bj
 bg
 ah
@@ -648,7 +671,7 @@ ag
 ai
 ai
 aS
-aW
+JE
 bc
 aR
 aS

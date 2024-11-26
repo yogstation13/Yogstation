@@ -12,6 +12,30 @@
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
+"s" = (
+/obj/item/stack/sheet/iron/five,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"u" = (
+/obj/item/organ/internal/butt/iron,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"B" = (
+/obj/item/coin/iron,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"E" = (
+/obj/item/reagent_containers/pill/iron,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"K" = (
+/obj/item/stack/rods/two,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"Z" = (
+/obj/item/storage/pill_bottle/iron,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
 
 (1,1,1) = {"
 a
@@ -102,11 +126,11 @@ a
 a
 b
 b
+u
 b
 b
-b
-b
-b
+s
+K
 c
 "}
 (4,1,1) = {"
@@ -135,7 +159,7 @@ a
 a
 d
 b
-b
+E
 b
 b
 b
@@ -266,7 +290,7 @@ d
 d
 d
 b
-b
+s
 a
 "}
 (9,1,1) = {"
@@ -446,7 +470,7 @@ a
 b
 b
 b
-b
+K
 d
 d
 d
@@ -479,7 +503,7 @@ b
 c
 b
 b
-b
+s
 d
 a
 a
@@ -539,7 +563,7 @@ d
 b
 b
 b
-b
+E
 c
 b
 b
@@ -626,7 +650,7 @@ a
 a
 a
 b
-b
+K
 b
 d
 d
@@ -637,7 +661,7 @@ b
 b
 b
 b
-b
+K
 d
 d
 d
@@ -687,7 +711,7 @@ a
 "}
 (22,1,1) = {"
 b
-b
+K
 b
 b
 c
@@ -722,7 +746,7 @@ b
 b
 b
 c
-b
+Z
 b
 b
 b
@@ -788,7 +812,7 @@ b
 c
 b
 b
-b
+B
 b
 d
 d
@@ -825,7 +849,7 @@ d
 d
 d
 d
-b
+K
 b
 b
 b
@@ -882,7 +906,7 @@ a
 a
 a
 b
-b
+s
 b
 b
 d
@@ -891,7 +915,7 @@ d
 b
 b
 b
-b
+B
 b
 c
 b
@@ -984,7 +1008,7 @@ d
 d
 d
 d
-b
+B
 b
 b
 b

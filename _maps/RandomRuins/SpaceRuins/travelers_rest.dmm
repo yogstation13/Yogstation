@@ -364,6 +364,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
+/obj/item/stock_parts/cell/bluespace,
 /turf/open/floor/iron/textured,
 /area/ruin/space/has_grav/travelers_rest)
 "Lx" = (
