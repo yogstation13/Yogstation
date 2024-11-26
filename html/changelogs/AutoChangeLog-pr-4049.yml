@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Madness Immunity excludes you from mass hallucinations"
