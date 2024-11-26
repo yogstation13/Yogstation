@@ -73,3 +73,6 @@ endmap
 map ouroboros
 	votable
 endmap
+
+map graveyard
+endmap

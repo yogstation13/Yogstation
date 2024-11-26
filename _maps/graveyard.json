@@ -1,0 +1,41 @@
+{
+	"version": 1,
+	"map_name": "Graveyard",
+	"map_path": "map_files/Graveyard",
+	"map_file": "Graveyard.dmm",
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"planetary": 1,
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_meta",
+		"emergency": "emergency_meta"
+	},
+	"traits": [
+		{
+			"Up": true,
+			"Baseturf": "/turf/open/misc/asteroid",
+			"Mining": true,
+			"Linkage": "Cross",
+			"Gravity": true,
+			"No Parallax": true,
+			"Daycycle": false
+		},
+		{
+			"Down": true,
+			"Baseturf": "/turf/open/misc/dirt/jungle",
+			"Mining": false,
+			"Linkage": "Cross",
+			"Gravity": true,
+			"No Parallax": true,
+			"Daycycle": true
+		}
+	],
+	"minetype": "none",
+	"job_changes": {
+		"Cook": {
+			"additional_cqc_areas": ["/area/station/service/bar", "/area/station/hallway/secondary/service"]
+		}
+	}
+}
