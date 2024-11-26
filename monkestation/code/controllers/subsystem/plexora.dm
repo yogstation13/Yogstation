@@ -38,11 +38,15 @@ SUBSYSTEM_DEF(plexora)
 	var/version_increment_counter = 2
 	var/configuration_path = "config/plexora.json"
 	var/plexora_is_alive = FALSE
+	var/vanderlin_available = FALSE
 	var/http_root = ""
 	var/http_port = 0
 	var/enabled = TRUE
 	var/tripped_bad_version = FALSE
 	var/list/default_headers
+
+	//other thingys!
+	var/hrp_available = FALSE
 
 /datum/controller/subsystem/plexora/Initialize()
 	if (!rustg_file_exists(configuration_path))
@@ -117,6 +121,10 @@ SUBSYSTEM_DEF(plexora)
 		return TRUE
 
 /datum/controller/subsystem/plexora/fire()
+	/*if((cur_day == "Sat") && (cur_hour >= 12 && cur_hour <= 18))
+  	//hrp_available = check_byondserver_status("7cfa7daf")
+	//else
+    		hrp_available = FALSE */
 	if(!is_plexora_alive()) return
 	// Send current status to Plexora
 	var/datum/world_topic/status/status_handler = new()
@@ -193,6 +201,24 @@ SUBSYSTEM_DEF(plexora)
 		"ip" = interview.owner?.address,
 		"computer_id" = interview.owner?.computer_id,
 	))
+
+/datum/controller/subsystem/plexora/proc/check_byondserver_status(id)
+	if (isnull(id)) return
+
+	var/list/body = list(
+		"id" = id
+	)
+
+	var/datum/http_request/request = new(RUSTG_HTTP_METHOD_GET, "http://[http_root]:[http_port]/byondserver_alive", json_encode(body))
+	request.begin_async()
+	UNTIL_OR_TIMEOUT(request.is_complete(), 5 SECONDS)
+	var/datum/http_response/response = request.into_response()
+	if (response.errored)
+		stack_trace("check_byondserver_status failed, likely an bad id passed ([id]) aka id of a server that doesnt exist")
+		return FALSE
+	else
+		var/list/json_body = json_decode(response.body)
+		return json_body["alive_likely"]
 
 // note: recover_all_SS_and_recreate_master to force mc shit
 
