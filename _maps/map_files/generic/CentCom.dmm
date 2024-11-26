@@ -85,8 +85,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/borbop)
 "aao" = (
-/obj/effect/turf_decal/tile/dark/opposingcorners,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/tile/hot_pink/opposingcorners{
+	dir = 1
+	},
+/turf/open/floor/iron/white/small,
 /area/centcom/central_command_areas/kitchen)
 "aap" = (
 /obj/structure/sign/poster/contraband/energy_swords/directional/north,
@@ -167,11 +169,11 @@
 	},
 /area/centcom/central_command_areas/hall)
 "aaz" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
 	},
 /obj/machinery/vending/imported/mothic,
 /turf/open/floor/iron/white/herringbone,
@@ -187,10 +189,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/firing_range_checkpoint_control)
 "aaC" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/dark,
 /obj/machinery/oven/range,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
@@ -402,11 +404,11 @@
 /turf/open/misc/asteroid/snow/icemoon,
 /area/centcom/syndicate_mothership/control)
 "abe" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/structure/sink/directional/south,
+/obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/dark,
-/obj/structure/sink/directional/south,
+/obj/effect/turf_decal/siding/purple,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "abf" = (
@@ -552,12 +554,12 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/borbop)
 "abw" = (
-/obj/structure/chair/wood{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
+	},
+/obj/structure/chair/wood/wings{
+	dir = 8
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -759,11 +761,11 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/hall)
 "abY" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
 	},
 /obj/machinery/vending/imported/tizirian,
 /turf/open/floor/iron/white/herringbone,
@@ -1382,9 +1384,11 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin_hangout)
 "adE" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/curtain/cloth/fancy,
-/turf/open/indestructible/event/plating,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/item/food/cake/trumpet,
+/turf/open/floor/iron,
 /area/centcom/central_command_areas/kitchen)
 "adF" = (
 /obj/structure/table/reinforced,
@@ -2142,11 +2146,11 @@
 /turf/open/space/basic,
 /area/space)
 "afS" = (
-/obj/structure/chair/wood{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
+	},
+/obj/structure/chair/wood/wings{
+	dir = 4
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -2246,7 +2250,6 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/evacuation/ship)
 "agk" = (
-/obj/structure/hedge,
 /obj/machinery/light/floor/has_bulb,
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -2300,9 +2303,11 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/supply)
 "agr" = (
-/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/hot_pink/opposingcorners{
+	dir = 1
+	},
 /obj/structure/chair/stool/bar/directional/north,
-/turf/open/floor/iron/dark,
+/turf/open/floor/iron/white/small,
 /area/centcom/central_command_areas/kitchen)
 "ags" = (
 /obj/structure/railing/wood,
@@ -2920,14 +2925,14 @@
 /turf/open/floor/wood/parquet,
 /area/centcom/central_command_areas/retirement_home)
 "ahZ" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 5
-	},
-/obj/effect/turf_decal/siding/dark/corner{
+/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
 	},
-/obj/structure/hedge,
-/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/purple{
+	dir = 5
+	},
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aia" = (
@@ -3007,11 +3012,11 @@
 	},
 /area/awaymission/errorroom)
 "ail" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 10
-	},
-/obj/effect/turf_decal/siding/dark/corner{
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
 	},
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
@@ -3022,14 +3027,11 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/retirement_yard)
 "ain" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-22";
-	pixel_x = -4
-	},
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/item/kirbyplants/organic/plant18,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aio" = (
@@ -4027,9 +4029,12 @@
 /turf/open/floor/grass,
 /area/centcom/wizard_station)
 "akW" = (
-/obj/effect/turf_decal/tile/dark/opposingcorners,
-/obj/structure/table/wood/fancy/royalblack,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/tile/hot_pink/opposingcorners{
+	dir = 1
+	},
+/obj/structure/table/wood/fancy/purple,
+/obj/item/clothing/head/peaceflower,
+/turf/open/floor/iron/white/small,
 /area/centcom/central_command_areas/kitchen)
 "akX" = (
 /obj/effect/turf_decal/siding/wood/corner,
@@ -4449,18 +4454,22 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/medical)
 "amc" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/machinery/light/directional/north,
+/obj/effect/turf_decal/siding/purple/corner,
+/obj/effect/turf_decal/siding/purple{
 	dir = 9
 	},
-/obj/effect/turf_decal/siding/dark/corner,
-/obj/structure/table/reinforced,
-/obj/item/food/dough,
-/obj/item/food/dough,
-/obj/item/food/dough,
-/obj/item/food/dough,
-/obj/item/food/dough,
-/obj/item/food/dough,
-/obj/machinery/light/directional/north,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/item/food/piedough,
+/obj/item/food/piedough,
+/obj/item/food/piedough,
+/obj/item/food/piedough,
+/obj/item/food/piedough,
+/obj/item/food/piedough,
+/obj/item/food/cakebatter,
+/obj/item/food/cakebatter,
+/obj/item/food/cakebatter,
+/obj/item/food/cakebatter,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "amd" = (
@@ -4539,11 +4548,11 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/arcade)
 "amp" = (
-/obj/structure/chair/wood{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
+	},
+/obj/structure/chair/wood/wings{
+	dir = 4
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -4686,8 +4695,9 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/evacuation/ship)
 "amC" = (
-/obj/structure/table/wood/fancy/royalblack,
-/turf/open/floor/carpet,
+/obj/structure/table/wood/fancy/purple,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "amD" = (
 /turf/closed/indestructible/riveted,
@@ -4878,12 +4888,12 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/hall)
 "and" = (
-/obj/structure/chair/wood{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
+	},
+/obj/structure/chair/wood/wings{
+	dir = 4
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -5410,10 +5420,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/firing_range_checkpoint_control)
 "aoG" = (
-/obj/structure/chair/wood{
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/wood/wings{
 	dir = 8
 	},
-/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aoI" = (
@@ -6258,7 +6268,8 @@
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "aqT" = (
 /obj/machinery/light/floor/has_bulb,
-/turf/open/floor/carpet,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "aqU" = (
 /obj/structure/fence,
@@ -7291,8 +7302,8 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/hall)
 "atI" = (
-/obj/effect/turf_decal/tile/dark/diagonal_edge,
 /obj/machinery/deepfryer,
+/obj/effect/turf_decal/tile/hot_pink/diagonal_edge,
 /turf/open/floor/iron/white/diagonal,
 /area/centcom/central_command_areas/kitchen)
 "atJ" = (
@@ -7303,9 +7314,11 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/retirement_yard)
 "atK" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/dark/opposingcorners,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/item/food/cake/lemon,
+/turf/open/floor/iron,
 /area/centcom/central_command_areas/kitchen)
 "atL" = (
 /obj/effect/turf_decal/siding/wood{
@@ -7576,11 +7589,11 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/medical)
 "auy" = (
-/obj/structure/chair/wood{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
+	},
+/obj/structure/chair/wood/wings{
+	dir = 8
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -7854,11 +7867,11 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/hall)
 "avl" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 6
-	},
-/obj/effect/turf_decal/siding/dark/corner{
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
 	},
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
@@ -7904,7 +7917,11 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin_hangout)
 "avt" = (
-/turf/open/floor/glass/reinforced,
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/turf/open/floor/glass/plasma,
 /area/centcom/central_command_areas/kitchen)
 "avu" = (
 /obj/effect/turf_decal/stripes/line{
@@ -8316,15 +8333,19 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/ferry)
 "awC" = (
-/obj/structure/hedge,
-/obj/structure/railing/wood,
-/obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/structure/flora/bush/flowers_yw/style_2,
 /obj/machinery/light/floor/has_bulb,
-/turf/open/floor/iron/dark,
+/obj/structure/railing/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/misc/grass,
 /area/centcom/central_command_areas/kitchen)
 "awE" = (
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/carpet,
+/obj/structure/chair/sofa/left,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "awF" = (
 /obj/machinery/modular_computer/preset/id/centcom{
@@ -9032,8 +9053,9 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/ferry)
 "ays" = (
-/obj/structure/chair/sofa/corp,
-/turf/open/floor/carpet,
+/obj/structure/chair/sofa/middle,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "ayt" = (
 /obj/effect/turf_decal/siding/wood{
@@ -9245,7 +9267,6 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/centcom/syndicate_mothership/control)
 "ayU" = (
-/obj/structure/hedge,
 /obj/machinery/light/floor/has_bulb,
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -9416,7 +9437,6 @@
 	},
 /area/centcom/central_command_areas/adminroom)
 "azu" = (
-/obj/structure/hedge,
 /obj/machinery/light/floor/has_bulb,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -9501,10 +9521,11 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supplypod/loading/three)
 "azF" = (
-/obj/structure/chair/sofa/corp{
+/obj/structure/chair/sofa/middle{
 	dir = 1
 	},
-/turf/open/floor/carpet,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "azG" = (
 /obj/effect/turf_decal/siding/dark{
@@ -9550,10 +9571,11 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supplypod/loading/two)
 "azN" = (
-/obj/structure/chair/sofa/corp/right{
+/obj/structure/chair/sofa/right{
 	dir = 1
 	},
-/turf/open/floor/carpet,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "azO" = (
 /obj/effect/turf_decal/siding/wood{
@@ -9578,10 +9600,11 @@
 /turf/open/floor/wood/parquet,
 /area/centcom/central_command_areas/borbop)
 "azP" = (
-/obj/structure/chair/sofa/corp/left{
+/obj/structure/chair/sofa/left{
 	dir = 1
 	},
-/turf/open/floor/carpet,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "azQ" = (
 /obj/effect/turf_decal/siding/white{
@@ -9666,11 +9689,11 @@
 /turf/open/floor/glass/reinforced,
 /area/centcom/central_command_areas/hall)
 "aAc" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
 	},
 /obj/machinery/vending/cigarette,
 /turf/open/floor/iron/white/herringbone,
@@ -9745,7 +9768,8 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aAn" = (
-/turf/open/floor/carpet,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "aAo" = (
 /turf/open/floor/vault/sandstone,
@@ -9905,12 +9929,12 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supplypod/loading/one)
 "aAI" = (
-/obj/structure/chair/wood{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
+	},
+/obj/structure/chair/wood/wings{
+	dir = 8
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -11018,14 +11042,11 @@
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/centcom/syndicate_mothership/expansion_chemicalwarfare)
 "aDO" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-22";
-	pixel_x = -4
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood,
+/obj/item/kirbyplants/organic/plant18,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aDP" = (
@@ -11407,18 +11428,19 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/supply)
 "aEP" = (
-/obj/structure/table/wood/fancy/royalblack,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/structure/table/wood/fancy/purple,
+/obj/item/clothing/head/peaceflower,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aER" = (
-/obj/effect/turf_decal/tile/dark/diagonal_edge,
-/obj/structure/table/reinforced,
 /obj/item/knife,
 /obj/item/knife,
 /obj/item/kitchen/rollingpin,
+/obj/effect/turf_decal/tile/hot_pink/diagonal_edge,
+/obj/structure/table/reinforced/plasmarglass,
 /turf/open/floor/iron/white/diagonal,
 /area/centcom/central_command_areas/kitchen)
 "aES" = (
@@ -11629,12 +11651,12 @@
 /turf/open/floor/carpet,
 /area/centcom/central_command_areas/retirement_home)
 "aFv" = (
-/obj/effect/turf_decal/tile/dark/diagonal_edge,
-/obj/structure/table/reinforced,
 /obj/machinery/processor{
 	pixel_y = 8
 	},
 /obj/machinery/light/floor/has_bulb,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/effect/turf_decal/tile/hot_pink/diagonal_edge,
 /turf/open/floor/iron/white/diagonal,
 /area/centcom/central_command_areas/kitchen)
 "aFw" = (
@@ -11991,14 +12013,14 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/borbop)
 "aGv" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 6
-	},
-/obj/effect/turf_decal/siding/dark/corner{
+/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
 	},
-/obj/structure/hedge,
-/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aGw" = (
@@ -12171,10 +12193,10 @@
 /turf/open/floor/carpet,
 /area/centcom/central_command_areas/admin_hangout)
 "aGX" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/dark,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aGY" = (
@@ -12804,14 +12826,14 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/botany)
 "aIN" = (
-/obj/structure/chair/wood{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
+	},
+/obj/structure/chair/wood/wings{
+	dir = 4
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -12843,8 +12865,9 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "aIR" = (
-/obj/structure/table/wood/fancy/royalblack,
 /obj/effect/turf_decal/siding/wood,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/clothing/head/peaceflower,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aIS" = (
@@ -12864,7 +12887,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/centcom/central_command_areas/adminroom)
 "aIV" = (
-/obj/effect/turf_decal/tile/dark/diagonal_edge,
+/obj/effect/turf_decal/tile/hot_pink/diagonal_edge,
 /turf/open/floor/iron/white/diagonal,
 /area/centcom/central_command_areas/kitchen)
 "aIW" = (
@@ -12920,18 +12943,9 @@
 /turf/open/floor/iron,
 /area/centcom/syndicate_mothership/control)
 "aJg" = (
-/obj/effect/turf_decal/tile/dark/diagonal_edge,
-/obj/structure/table/reinforced,
-/obj/item/pizzabox,
-/obj/item/pizzabox{
-	pixel_y = 3
-	},
-/obj/item/pizzabox{
-	pixel_y = 6
-	},
-/obj/item/pizzabox{
-	pixel_y = 9
-	},
+/obj/effect/turf_decal/tile/hot_pink/diagonal_edge,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/item/food/pie/asdfpie,
 /turf/open/floor/iron/white/diagonal,
 /area/centcom/central_command_areas/kitchen)
 "aJh" = (
@@ -13396,15 +13410,15 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/admin)
 "aKp" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 5
-	},
-/obj/effect/turf_decal/siding/dark/corner{
+/obj/machinery/light/directional/north,
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/light/directional/north,
+/obj/effect/turf_decal/siding/purple{
+	dir = 5
+	},
 /obj/machinery/microwave,
+/obj/structure/table/reinforced/plasmarglass,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aKq" = (
@@ -14008,8 +14022,8 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/borbop)
 "aLT" = (
-/obj/structure/flora/tree/jungle/small/style_5,
-/turf/open/floor/grass,
+/obj/structure/flora/tree/mushroom,
+/turf/open/misc/grass,
 /area/centcom/central_command_areas/kitchen)
 "aLU" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -14271,8 +14285,8 @@
 /turf/open/floor/circuit,
 /area/centcom/central_command_areas/adminroom)
 "aMF" = (
-/obj/structure/curtain/cloth/fancy,
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/curtain/cloth,
 /turf/open/indestructible/event/plating,
 /area/centcom/central_command_areas/kitchen)
 "aMG" = (
@@ -14321,10 +14335,6 @@
 /turf/open/floor/plating,
 /area/centcom/central_command_areas/evacuation/ship)
 "aMO" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-22";
-	pixel_x = -4
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
@@ -14332,6 +14342,7 @@
 	dir = 9
 	},
 /obj/machinery/light/directional/north,
+/obj/item/kirbyplants/organic/plant18,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aMP" = (
@@ -14551,12 +14562,9 @@
 /turf/open/floor/iron/grimy,
 /area/centcom/central_command_areas/adminroom)
 "aNt" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-22";
-	pixel_x = -4
-	},
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/light/directional/south,
+/obj/item/kirbyplants/organic/plant18,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aNu" = (
@@ -14582,14 +14590,14 @@
 /turf/closed/indestructible/syndicate,
 /area/centcom/syndicate_mothership/expansion_bombthreat)
 "aNx" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
 /obj/machinery/reagentgrinder,
+/obj/structure/table/reinforced/plasmarglass,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aNy" = (
@@ -14834,7 +14842,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/centcom/syndicate_mothership/expansion_chemicalwarfare)
 "aOj" = (
-/obj/structure/hedge,
 /obj/machinery/light/floor/has_bulb,
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -14961,7 +14968,7 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/firing_range)
 "aOx" = (
-/obj/effect/turf_decal/tile/dark/diagonal_edge,
+/obj/effect/turf_decal/tile/hot_pink/diagonal_edge,
 /obj/machinery/griddle,
 /turf/open/floor/iron/white/diagonal,
 /area/centcom/central_command_areas/kitchen)
@@ -15928,12 +15935,12 @@
 /turf/open/floor/carpet,
 /area/centcom/syndicate_mothership/control)
 "aRm" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/purple/corner,
+/obj/effect/turf_decal/siding/purple{
 	dir = 9
 	},
-/obj/effect/turf_decal/siding/dark/corner,
-/obj/structure/hedge,
-/obj/machinery/light/floor/has_bulb,
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aRn" = (
@@ -16142,11 +16149,11 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/armory)
 "aRN" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
 	},
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/iron/white/herringbone,
@@ -16536,11 +16543,11 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/hall)
 "aSK" = (
-/obj/structure/chair/wood{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
+	},
+/obj/structure/chair/wood/wings{
+	dir = 8
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
@@ -17111,8 +17118,9 @@
 /turf/open/floor/carpet,
 /area/centcom/wizard_station)
 "aUj" = (
-/obj/structure/chair/sofa/corp/right,
-/turf/open/floor/carpet,
+/obj/structure/chair/sofa/right,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
 /area/centcom/central_command_areas/kitchen)
 "aUk" = (
 /obj/effect/turf_decal/siding/dark{
@@ -17296,6 +17304,7 @@
 /area/centcom/tdome/observation)
 "aUN" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
 /obj/machinery/door/airlock/centcom{
 	name = "Kitchen"
 	},
@@ -17589,11 +17598,11 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/supply)
 "aVx" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/dark,
-/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/siding/purple,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aVy" = (
@@ -17603,11 +17612,11 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/botany)
 "aVz" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
 	},
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/iron/white/herringbone,
@@ -18405,10 +18414,10 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/supply)
 "aXC" = (
-/obj/effect/turf_decal/siding/dark{
+/obj/effect/turf_decal/siding/purple,
+/obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/dark,
 /obj/structure/food_machine,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
@@ -18738,10 +18747,13 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/retirement_yard)
 "aYC" = (
-/obj/structure/hedge,
+/obj/structure/flora/bush/flowers_br/style_2,
 /obj/structure/railing/wood,
-/obj/effect/turf_decal/tile/dark/opposingcorners,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/misc/grass,
 /area/centcom/central_command_areas/kitchen)
 "aYD" = (
 /obj/machinery/light/floor/has_bulb,
@@ -18955,9 +18967,11 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/retirement_yard)
 "aZj" = (
-/obj/effect/turf_decal/tile/dark/opposingcorners,
 /obj/effect/landmark/navigate_destination/centcom/kitchen,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/tile/hot_pink/opposingcorners{
+	dir = 1
+	},
+/turf/open/floor/iron/white/small,
 /area/centcom/central_command_areas/kitchen)
 "aZk" = (
 /obj/machinery/light/cold/directional/east,
@@ -19239,21 +19253,21 @@
 /turf/open/floor/mineral/plastitanium,
 /area/centcom/syndicate_mothership/control)
 "aZX" = (
-/obj/effect/turf_decal/siding/dark{
-	dir = 10
-	},
-/obj/effect/turf_decal/siding/dark/corner{
+/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
 	},
-/obj/structure/hedge,
-/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/iron/white/herringbone,
 /area/centcom/central_command_areas/kitchen)
 "aZY" = (
-/obj/structure/chair/wood{
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/wood/wings{
 	dir = 4
 	},
-/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aZZ" = (
@@ -19699,6 +19713,13 @@
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin)
+"cdU" = (
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/item/food/cake/birthday/energy,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/kitchen)
 "ceI" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8;
@@ -19752,6 +19773,13 @@
 	},
 /turf/open/floor/iron/white/textured,
 /area/centcom/central_command_areas/admin)
+"cuK" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple,
+/turf/open/floor/iron/white/herringbone,
+/area/centcom/central_command_areas/kitchen)
 "cuW" = (
 /obj/machinery/photocopier/gratis{
 	pixel_y = -3
@@ -20690,6 +20718,13 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/admin)
+"fae" = (
+/obj/effect/turf_decal/tile/hot_pink/full,
+/obj/structure/signboard/holosign{
+	sign_text = "Piecake's Piecakery"
+	},
+/turf/open/floor/mineral/titanium/tiled/white/airless,
+/area/centcom/central_command_areas/kitchen)
 "fan" = (
 /obj/machinery/light/floor/has_bulb,
 /turf/open/floor/iron/dark/herringbone,
@@ -20810,6 +20845,13 @@
 	},
 /turf/open/floor/iron/white/textured,
 /area/centcom/central_command_areas/admin)
+"frv" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/purple/corner,
+/turf/open/floor/glass/plasma,
+/area/centcom/central_command_areas/kitchen)
 "ftb" = (
 /obj/effect/turf_decal/siding/wood{
 	pixel_x = -5
@@ -21388,6 +21430,12 @@
 /obj/structure/chair/sofa/left/maroon,
 /turf/open/floor/carpet/neon/simple/green/nodots,
 /area/centcom/central_command_areas/admin)
+"gOn" = (
+/obj/structure/table/wood/fancy/purple,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/obj/item/clothing/head/peaceflower,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
+/area/centcom/central_command_areas/kitchen)
 "gOu" = (
 /obj/item/storage/toolbox/fishing,
 /turf/open/floor/sandy_dirt,
@@ -22380,6 +22428,15 @@
 	},
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/cruiser_dock)
+"jcU" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/turf/open/floor/iron/white/herringbone,
+/area/centcom/central_command_areas/kitchen)
 "jhk" = (
 /obj/structure/marker_beacon/teal,
 /turf/open/misc/asteroid,
@@ -23471,6 +23528,13 @@
 /mob/living/basic/mega_arachnid,
 /turf/open/misc/dirt/station,
 /area/centcom/central_command_areas/admin)
+"mZX" = (
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/item/toy/plush/admin/jace,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/kitchen)
 "nai" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/food/pie/berrytart,
@@ -23701,6 +23765,15 @@
 /obj/machinery/light/small/red/dim/directional/south,
 /turf/open/floor/sandy_dirt,
 /area/centcom/central_command_areas/admin)
+"nUl" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 8
+	},
+/turf/open/floor/glass/plasma,
+/area/centcom/central_command_areas/kitchen)
 "nUK" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -24067,6 +24140,11 @@
 /obj/machinery/microwave,
 /turf/open/floor/carpet/orange,
 /area/centcom/central_command_areas/adminroom)
+"oYE" = (
+/obj/effect/turf_decal/tile/hot_pink/full,
+/obj/structure/table/wood/fancy/purple,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
+/area/centcom/central_command_areas/kitchen)
 "oYI" = (
 /obj/machinery/light/small/directional/west,
 /obj/item/stack/cable_coil,
@@ -24253,6 +24331,17 @@
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin)
+"pDk" = (
+/obj/structure/hedge,
+/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/centcom/central_command_areas/botany)
 "pDD" = (
 /obj/structure/stone_tile/center,
 /obj/structure/stone_tile/surrounding/burnt,
@@ -24292,6 +24381,15 @@
 /obj/structure/chair/sofa/right/maroon,
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/admin)
+"pHj" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/turf/open/floor/glass/plasma,
+/area/centcom/central_command_areas/kitchen)
 "pIf" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -24520,6 +24618,16 @@
 	dir = 1
 	},
 /area/centcom/central_command_areas/evacuation)
+"qoQ" = (
+/obj/structure/flora/bush/flowers_pp,
+/obj/structure/railing/wood,
+/obj/machinery/light/floor/has_bulb,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/misc/grass,
+/area/centcom/central_command_areas/kitchen)
 "qpt" = (
 /obj/structure/flora/grass/jungle/b/style_2,
 /turf/open/misc/dirt/jungle/dark/arena,
@@ -24821,6 +24929,15 @@
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/adminroom)
+"rmu" = (
+/obj/structure/flora/bush/flowers_yw/style_2,
+/obj/structure/railing/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/misc/grass,
+/area/centcom/central_command_areas/kitchen)
 "rmL" = (
 /obj/machinery/field/generator/anchored,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -25123,6 +25240,12 @@
 /obj/effect/mapping_helpers/airlock/access/any/admin/general,
 /turf/open/floor/iron/textured,
 /area/centcom/central_command_areas/admin)
+"sci" = (
+/obj/effect/turf_decal/tile/hot_pink/full,
+/obj/structure/table/wood/fancy/purple,
+/obj/effect/turf_decal/tile/hot_pink/full,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
+/area/centcom/central_command_areas/kitchen)
 "sco" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/syndicate,
@@ -25146,6 +25269,11 @@
 /mob/living/simple_animal/pet/gondola/funky,
 /turf/open/floor/eighties/red,
 /area/centcom/central_command_areas/admin)
+"sig" = (
+/obj/machinery/griddle,
+/obj/effect/turf_decal/tile/hot_pink/diagonal_edge,
+/turf/open/floor/iron/white/diagonal,
+/area/centcom/central_command_areas/kitchen)
 "siB" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 1;
@@ -26081,6 +26209,15 @@
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/adminroom)
+"vee" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/turf/open/floor/glass/plasma,
+/area/centcom/central_command_areas/kitchen)
 "veh" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark{
 	dir = 1
@@ -26220,6 +26357,13 @@
 /obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/plastic,
 /area/centcom/central_command_areas/admin)
+"vuG" = (
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/effect/turf_decal/tile/hot_pink/fourcorners,
+/obj/structure/table/reinforced/plasmarglass,
+/obj/item/food/cake/birthday,
+/turf/open/floor/iron,
+/area/centcom/central_command_areas/kitchen)
 "vvk" = (
 /obj/machinery/door/airlock/centcom{
 	name = "IS Containment Cell";
@@ -26278,6 +26422,12 @@
 "vFm" = (
 /turf/open/floor/mineral/titanium/purple,
 /area/centcom/central_command_areas/adminroom)
+"vFS" = (
+/obj/effect/turf_decal/tile/hot_pink/full,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/clothing/head/peaceflower,
+/turf/open/floor/mineral/titanium/tiled/white/airless,
+/area/centcom/central_command_areas/kitchen)
 "vHF" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/innards,
@@ -26837,6 +26987,15 @@
 "wXS" = (
 /turf/open/floor/glass/reinforced,
 /area/centcom/central_command_areas/admin)
+"wZv" = (
+/obj/structure/flora/bush/flowers_pp/style_random,
+/obj/structure/railing/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/misc/grass,
+/area/centcom/central_command_areas/kitchen)
 "xbs" = (
 /obj/item/toy/plush/moth{
 	name = "Athena";
@@ -27189,6 +27348,15 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/adminroom)
+"xVl" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/turf/open/floor/glass/plasma,
+/area/centcom/central_command_areas/kitchen)
 "xWM" = (
 /obj/structure/closet/crate/cardboard/mothic,
 /obj/item/storage/box/mothic_rations,
@@ -63890,7 +64058,7 @@ aKu
 agL
 aLK
 avN
-aMa
+pDk
 aXE
 aoe
 aZm
@@ -66467,7 +66635,7 @@ amQ
 axl
 aXg
 ays
-amC
+gOn
 azF
 aAm
 aFq
@@ -66720,7 +66888,7 @@ amQ
 atL
 aaf
 amp
-aYC
+rmu
 afS
 aJn
 awE
@@ -66972,12 +67140,12 @@ avl
 aIV
 aIV
 aIV
-aGX
+cuK
 aUN
 aao
 aao
 akW
-awC
+qoQ
 aEP
 aJR
 aKG
@@ -66985,7 +67153,7 @@ aAn
 atL
 aIX
 aIR
-adE
+aMF
 arj
 arj
 aZP
@@ -67242,7 +67410,7 @@ aqT
 aAn
 axT
 abw
-adE
+aMF
 asO
 asO
 ank
@@ -67486,7 +67654,7 @@ aIV
 aIV
 aER
 aIV
-aGX
+cuK
 atK
 agr
 aAm
@@ -67739,21 +67907,21 @@ aaa
 amQ
 aaC
 aIV
-aOx
+sig
 aIV
 aJg
 aIV
-aGX
-atK
+cuK
+adE
 agr
 axT
 aNg
 acE
 axD
 aAn
-avt
-avt
-avt
+frv
+pHj
+xVl
 aAn
 aWr
 aBE
@@ -67996,12 +68164,12 @@ aaa
 amQ
 aXC
 aIV
-aOx
+sig
 aIV
 aFv
 aIV
 aGX
-atK
+vuG
 agr
 aZj
 aao
@@ -68011,7 +68179,7 @@ aAn
 avt
 aLT
 avt
-aAn
+fae
 aqT
 aBE
 ank
@@ -68257,17 +68425,17 @@ aOx
 aIV
 atI
 aIV
-aGX
-atK
+cuK
+mZX
 agr
 axo
 aOl
 acE
 aAz
 aAn
-avt
-avt
-avt
+nUl
+pHj
+vee
 aAn
 amk
 aBE
@@ -68514,8 +68682,8 @@ aIV
 aIV
 atI
 aIV
-aGX
-atK
+cuK
+cdU
 agr
 aAm
 aNt
@@ -68784,7 +68952,7 @@ aqT
 aAn
 axo
 and
-adE
+aMF
 asO
 asO
 ank
@@ -69024,11 +69192,11 @@ aaa
 aaa
 amQ
 aKp
-ail
+jcU
 aIV
 aIV
 aIV
-aGX
+cuK
 aUN
 aao
 aao
@@ -69290,15 +69458,15 @@ amQ
 aJw
 aIO
 aSK
-aYC
+wZv
 auy
 aJn
 aUj
-amC
+oYE
 azP
 aAm
 aoG
-adE
+aMF
 arj
 arj
 aTi
@@ -69551,7 +69719,7 @@ amQ
 aHA
 aJn
 ays
-amC
+vFS
 azF
 aAp
 aAT
@@ -69808,7 +69976,7 @@ amQ
 amQ
 ayU
 awE
-amC
+sci
 azN
 agk
 amQ
