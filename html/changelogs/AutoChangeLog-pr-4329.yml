@@ -1,0 +1,4 @@
+author: "Loiosh42"
+delete-after: True
+changes:
+  - rscadd: "Added AP slugs for shotgun that deal less damage but go through armour nicely"
