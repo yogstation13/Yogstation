@@ -99,39 +99,30 @@
 /datum/action/chameleon_outfit/Trigger()
 	return select_outfit(owner)
 
-/datum/action/chameleon_outfit/proc/select_outfit(mob/user, datum/outfit/outfit = null)
+/datum/action/chameleon_outfit/proc/select_outfit(mob/user)
 	if(!user || !IsAvailable(feedback = FALSE))
 		return FALSE
 	var/datum/outfit/O
-	if(isnull(outfit)) //If no outfit is passed, get the user to decide
-		var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", outfit_options)
-		if(!IsAvailable(feedback = FALSE) || QDELETED(src) || QDELETED(user))
-			return FALSE
-		var/outfit_type = outfit_options[selected]
-		if(!outfit_type)
-			return FALSE
-		O = new outfit_type()
-		var/list/outfit_types = O.get_chameleon_disguise_info()
-		for(var/V in user.chameleon_item_actions)
-			var/datum/action/item_action/chameleon/change/A = V
-			var/done = FALSE
-			for(var/T in outfit_types)
-				for(var/name in A.chameleon_list)
-					if(A.chameleon_list[name] == T)
-						A.update_look(user, T)
-						outfit_types -= T
-						done = TRUE
-						break
-				if(done)
-					break
-	else //If a specific outfit is passed through
-		var/list/types = outfit.get_chameleon_disguise_info()
-		for(var/T in types)
-			for(var/V in user.chameleon_item_actions)
-				var/datum/action/item_action/chameleon/change/A = V
-				if(istype(T, A.chameleon_type))
+	var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", outfit_options)
+	if(!IsAvailable(feedback = FALSE) || QDELETED(src) || QDELETED(user))
+		return FALSE
+	var/outfit_type = outfit_options[selected]
+	if(!outfit_type)
+		return FALSE
+	O = new outfit_type()
+	var/list/outfit_types = O.get_chameleon_disguise_info()
+	for(var/V in user.chameleon_item_actions)
+		var/datum/action/item_action/chameleon/change/A = V
+		var/done = FALSE
+		for(var/T in outfit_types)
+			for(var/name in A.chameleon_list)
+				if(A.chameleon_list[name] == T)
 					A.update_look(user, T)
-		return TRUE
+					outfit_types -= T
+					done = TRUE
+					break
+			if(done)
+				break
 	//hardsuit helmets/suit hoods
 	if(O.toggle_helmet && (ispath(O.suit, /obj/item/clothing/suit/space/hardsuit) || ispath(O.suit, /obj/item/clothing/suit/hooded)) && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -218,8 +209,17 @@
 	O.ears = T.ears
 	O.glasses = T.glasses
 	O.mask = T.wear_mask
-	var/datum/action/chameleon_outfit/select = locate(/datum/action/chameleon_outfit) in owner.actions
-	select.select_outfit(owner, O)
+	O.back = T.back
+	var/list/types = O.get_chameleon_disguise_info()
+	for(var/Y in types)
+		for(var/V in owner.chameleon_item_actions)
+			var/datum/action/item_action/chameleon/change/A = V
+			if(A.chameleon_blacklist[Y])
+				continue
+			if(istype(Y, A.chameleon_type)) //Need to make sure it's the right type, wouldn't want to wear an armour vest on your head.
+				A.update_look(owner, Y)
+				A.copying = TRUE
+				A.copy_target = T
 	to_chat(owner, span_notice("Successfully copied [T]!"))
 	toggle_button()
 
@@ -233,6 +233,8 @@
 	var/emp_timer
 	var/current_disguise = null
 	var/syndicate = FALSE
+	var/copying = FALSE
+	var/mob/living/copy_target
 
 /datum/action/item_action/chameleon/change/Grant(mob/M)
 	if(M && (owner != M))
@@ -279,6 +281,7 @@
 	if(!picked_item)
 		return
 	update_look(user, picked_item)
+	copying = FALSE
 
 /datum/action/item_action/chameleon/change/proc/random_look(mob/user)
 	var/picked_name = pick(chameleon_list)
