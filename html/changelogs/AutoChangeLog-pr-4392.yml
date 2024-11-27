@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed some errors related to lungs that breathe lavaland atmos on maps without lavaland."
+  - bugfix: "Slightly rearranged the distro input in Graveyard's atmos to fix some errors."
