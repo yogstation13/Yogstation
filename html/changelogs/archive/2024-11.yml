@@ -410,3 +410,52 @@
   ven1883:
   - balance: tribal claw armor increased by 20% to 40%
   - balance: tribal claw wounding armor by 30% to 50%
+2024-11-27:
+  Gw0sty:
+  - rscadd: Maintenace modsuit modules can now be deconstructed to allow production
+      of the respective module.
+  - rscadd: Madness Immunity excludes you from mass hallucinations
+  - rscadd: Added a new negative quirk, "Monophobia" (-6 points), being alone never
+      been so stressful
+  - rscadd: Added C.H.R.O.M.A.T.A Mantis Blades to Blueshield's armament beacon.
+  - qol: Moved Blueshield's Belt and baton from their locker to their backpack.
+  - spellcheck: Renamed and applied descriptions to various Blueshield items.
+  KittyNoodle:
+  - rscdel: Noisy squeaking sound in the AI sat hidden compartment on theseus station.
+  Koportable:
+  - rscadd: Clowns Vs Mimes now has special themed non-lethal loot
+  - rscadd: Several locations now have loot/themeing
+  - rscadd: Vaporwave now _slightly_ more on-brand
+  - rscadd: POIs and loot added to more locations
+  - rscadd: Someone has dumped their maintenance debris all over the asteroids
+  - balance: DeepStorage is now staffed
+  - balance: Cat base has more staff
+  - balance: Hivebots added to Bigderelict1 to provide threat to general loot pool.
+  - balance: Russians have found the Bluespace Research Facility
+  - balance: Indentured Factory Workers now protect the money in Hell Factory
+  - balance: A lone Russian has found the Space Zoo and stocked it with some advanced
+      biological research tools
+  - balance: Crew has returned to the Forgotten Ship
+  - balance: A lone agent has landed at the half station
+  - balance: Xenos have filled an appropriate abandoned ship while stripping it's
+      last occupant of loot neatly on some tables
+  - balance: Shambling Corpses have risen in mass on the Interdyne
+  - balance: More Proteons infest the Outlet after a magical person was reading books
+      there
+  - balance: More Syndicate agents occupy the Waystation/loot pool slightly improved
+  - balance: Space Hotel is now occupied and must be conquered to some degree for
+      loot.
+  - bugfix: Viscerators removed from/Broken Syndi mobs replaced on The Faceoff
+  - bugfix: Turreted Outpost staff have returned
+  Loiosh42:
+  - rscadd: Added AP slugs for shotgun that deal less damage but go through armour
+      nicely
+  Sord213:
+  - rscadd: 'New station: Graveyard. A large map set on a jungle planet.'
+  Wisemonster:
+  - bugfix: The recovery ship's morgue should no longer open through a window
+  aberrantQuesrist:
+  - qol: Fixes center lobby screen; adds sever uptime checker to HRP. Should no longer
+      cause client issues or crashes.
+  lemonycake:
+  - rscadd: My bakery
