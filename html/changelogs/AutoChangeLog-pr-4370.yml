@@ -1,6 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - rscadd: "Ported several new belt sprites from upstream"
-  - image: "Added new EMT belt sprite"
-  - image: "Added shiny new belts and detective/syndicate holsters (onmob sprites included)"
