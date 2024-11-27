@@ -2257,6 +2257,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "agl" = (
@@ -4697,7 +4698,7 @@
 "amC" = (
 /obj/structure/table/wood/fancy/purple,
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "amD" = (
 /turf/closed/indestructible/riveted,
@@ -6269,7 +6270,7 @@
 "aqT" = (
 /obj/machinery/light/floor/has_bulb,
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "aqU" = (
 /obj/structure/fence,
@@ -8345,7 +8346,7 @@
 "awE" = (
 /obj/structure/chair/sofa/left,
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "awF" = (
 /obj/machinery/modular_computer/preset/id/centcom{
@@ -9055,7 +9056,7 @@
 "ays" = (
 /obj/structure/chair/sofa/middle,
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "ayt" = (
 /obj/effect/turf_decal/siding/wood{
@@ -9272,6 +9273,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "ayV" = (
@@ -9444,6 +9446,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "azv" = (
@@ -9525,7 +9528,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "azG" = (
 /obj/effect/turf_decal/siding/dark{
@@ -9575,7 +9578,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "azO" = (
 /obj/effect/turf_decal/siding/wood{
@@ -9604,7 +9607,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "azQ" = (
 /obj/effect/turf_decal/siding/white{
@@ -9769,7 +9772,7 @@
 /area/centcom/central_command_areas/kitchen)
 "aAn" = (
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "aAo" = (
 /turf/open/floor/vault/sandstone,
@@ -14849,6 +14852,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
+/obj/item/kirbyplants/organic/plant10,
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/kitchen)
 "aOk" = (
@@ -17122,7 +17126,7 @@
 "aUj" = (
 /obj/structure/chair/sofa/right,
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "aUk" = (
 /obj/effect/turf_decal/siding/dark{
@@ -20725,7 +20729,7 @@
 /obj/structure/signboard/holosign{
 	sign_text = "Piecake's Piecakery"
 	},
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "fan" = (
 /obj/machinery/light/floor/has_bulb,
@@ -21436,7 +21440,7 @@
 /obj/structure/table/wood/fancy/purple,
 /obj/effect/turf_decal/tile/hot_pink/full,
 /obj/item/clothing/head/peaceflower,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "gOu" = (
 /obj/item/storage/toolbox/fishing,
@@ -24145,7 +24149,7 @@
 "oYE" = (
 /obj/effect/turf_decal/tile/hot_pink/full,
 /obj/structure/table/wood/fancy/purple,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "oYI" = (
 /obj/machinery/light/small/directional/west,
@@ -25246,7 +25250,7 @@
 /obj/effect/turf_decal/tile/hot_pink/full,
 /obj/structure/table/wood/fancy/purple,
 /obj/effect/turf_decal/tile/hot_pink/full,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "sco" = (
 /obj/structure/table/reinforced,
@@ -26428,7 +26432,7 @@
 /obj/effect/turf_decal/tile/hot_pink/full,
 /obj/structure/table/wood/fancy/purple,
 /obj/item/clothing/head/peaceflower,
-/turf/open/floor/mineral/titanium/tiled/white/airless,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/centcom/central_command_areas/kitchen)
 "vHF" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -68171,7 +68175,7 @@ aIV
 aFv
 aIV
 aGX
-vuG
+mZX
 agr
 aZj
 aao
@@ -68428,7 +68432,7 @@ aIV
 atI
 aIV
 cuK
-mZX
+vuG
 agr
 axo
 aOl
