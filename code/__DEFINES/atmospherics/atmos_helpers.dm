@@ -120,3 +120,13 @@ GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
  */
 #define CALCULATE_CONDUCTION_ENERGY(temperature_delta, heat_capacity_one, heat_capacity_two)\
 	((temperature_delta) * ((heat_capacity_one) * ((heat_capacity_two) / ((heat_capacity_one) + (heat_capacity_two)))))
+
+/// Gets a cached static gas mix from SSair.planetary, initializing it if it hasn't been already.
+/// This is a define rather than a proc due to the fact it runs for
+/// every open turf's init, so we want to minimize overhead.
+#define CACHE_PLANETARY_ATMOS(gas_mix) \
+	if(!SSair.planetary[gas_mix]) { \
+		var/datum/gas_mixture/immutable/planetary/mix = new; \
+		mix.parse_string_immutable(gas_mix); \
+		SSair.planetary[gas_mix] = mix; \
+	};

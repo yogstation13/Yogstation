@@ -1027,6 +1027,7 @@
 #define GAS_TOLERANCE 5
 
 /obj/item/organ/internal/lungs/lavaland/Initialize(mapload)
+	CACHE_PLANETARY_ATMOS(LAVALAND_DEFAULT_ATMOS)
 	var/datum/gas_mixture/immutable/planetary/mix = SSair.planetary[LAVALAND_DEFAULT_ATMOS]
 
 	if(!mix?.total_moles()) // this typically means we didn't load lavaland, like if we're using the LOWMEMORYMODE define

@@ -58,10 +58,7 @@
 	if(!blocks_air)
 		air = create_gas_mixture()
 		if(planetary_atmos)
-			if(!SSair.planetary[initial_gas_mix])
-				var/datum/gas_mixture/immutable/planetary/mix = new
-				mix.parse_string_immutable(initial_gas_mix)
-				SSair.planetary[initial_gas_mix] = mix
+			CACHE_PLANETARY_ATMOS(initial_gas_mix)
 	. = ..()
 
 /turf/open/Destroy()
