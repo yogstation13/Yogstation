@@ -808,6 +808,8 @@
 /mob/proc/add_exp(skill, amount)
 	if(!mind)
 		return FALSE
+	if(mind.skill_points > 0)
+		return FALSE
 	var/exp_required = EXPERIENCE_PER_LEVEL * (2**mind.skills[skill]) // exp required scales exponentially
 	if(mind.exp_progress[skill] + amount >= exp_required)
 		var/levels_gained = round(log(2, 1 + (mind.exp_progress[skill] + amount) / exp_required)) // in case you gained so much you go up more than one level
