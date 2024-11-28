@@ -1,4 +1,0 @@
-author: "Kmla2"
-delete-after: True
-changes:
-  - bugfix: "fixed the opfor panel linking you to the wrong wiki pages when asking for help"
