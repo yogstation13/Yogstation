@@ -95,8 +95,8 @@ If the target is T3 grabbed or sleeping, instead deal 60 damage with a weeping a
 
 	//balance feature, prevents damage bonus
 	if(LAZYLEN(head?.wounds) > 0)
-		for(var/i in head.wounds)
-			if (i == critical_wound_type)
+		for(var/wound in head.wounds)
+			if (istype(wound, critical_wound_type))
 				is_jugcut = TRUE
 				break
 
