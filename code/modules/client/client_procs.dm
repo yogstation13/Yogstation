@@ -781,14 +781,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	. = player_age
 
 /client/proc/log_client_to_db_connection_log()
-	var/sql_ip = sql_sanitize_text(src.address)
-	var/sql_computerid = sql_sanitize_text(src.computer_id)
-	var/sql_ckey = sql_sanitize_text(src.ckey)
-
+	if(SSdbcore.shutting_down)
+		return
 	var/datum/db_query/query_log_connection = SSdbcore.NewQuery({"
 		INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`)
 		VALUES(null,Now(),INET_ATON(:internet_address),:port,:round_id,:ckey,INET_ATON(:ip),:computerid)
-	"}, list("internet_address" = world.internet_address || "0", "port" = world.port, "round_id" = GLOB.round_id, "ckey" = sql_ckey, "ip" = sql_ip, "computerid" = sql_computerid))
+	"}, list("internet_address" = world.internet_address || "0", "port" = world.port, "round_id" = GLOB.round_id, "ckey" = src.ckey, "ip" = src.address, "computerid" = src.computer_id))
 	query_log_connection.Execute()
 	qdel(query_log_connection)
 

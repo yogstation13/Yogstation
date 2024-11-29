@@ -79,7 +79,7 @@
 	. = ..()
 	var/pre_light_range = 0
 	var/pre_light_power = 0
-	var/pre_light_color = ""
+	var/pre_light_color = NONSENSICAL_VALUE // avoid issues if we somehow don't set a pre_light_color
 	var/lights_overlay = ""
 
 	var/frame_state

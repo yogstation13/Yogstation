@@ -52,11 +52,8 @@ Slimecrossing Armor
 	anchored = TRUE
 	max_integrity = 10
 
-/obj/structure/light_prism/Initialize(mapload, newcolor)
+/obj/structure/light_prism/Initialize(mapload, newcolor = COLOR_WHITE)
 	. = ..()
-	#if DM_VERSION < 515
-	newcolor ||= COLOR_WHITE // If you're reading this and developing on 515 or later, you can remove this line
-	#endif
 	color = newcolor
 	set_light_color(newcolor)
 	set_light(5)

@@ -3,7 +3,8 @@
     "admincloak": [
         {
             "type": "icon_state",
-            "icon_state": "admin"
+            "icon_state": "admin",
+			"blend_mode": "overlay"
         },
         {
             "type": "icon_state",

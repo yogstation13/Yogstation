@@ -5,8 +5,12 @@
 	icon_state = "particle"
 	anchored = TRUE
 	density = FALSE
+	/// How many tiles remaining the particle will move.
+	/// The particle will delete itself if this reaches 0.
 	var/movement_range = 10
+	/// How much energy this particle has.
 	var/energy = 10
+	/// The cooldown for this particle's movement. Higher = slower.
 	var/speed = 1
 	COOLDOWN_DECLARE(next_move)
 
@@ -24,7 +28,7 @@
 
 /obj/effect/accelerated_particle/Initialize(mapload)
 	. = ..()
-	if(QDELETED(loc))
+	if(!isturf(loc))
 		return INITIALIZE_HINT_QDEL
 	START_PROCESSING(SSactualfastprocess, src)
 
@@ -32,39 +36,25 @@
 	STOP_PROCESSING(SSactualfastprocess, src)
 	return ..()
 
-/obj/effect/accelerated_particle/Bump(atom/bumped_atom)
-	if(QDELETED(bumped_atom))
+/obj/effect/accelerated_particle/Bump(atom/movable/bumped_atom)
+	if(QDELETED(src) || !ismovable(bumped_atom) || QDELING(bumped_atom))
 		return
-	if(isliving(bumped_atom))
-		toxmob(bumped_atom)
-	else if(istype(bumped_atom, /obj/machinery/the_singularitygen))
-		var/obj/machinery/the_singularitygen/generator = bumped_atom
-		generator.energy += energy
-	else if(istype(bumped_atom, /obj/singularity))
-		var/obj/singularity/singuloth = bumped_atom
-		singuloth.energy += energy
-	else if(istype(bumped_atom, /obj/energy_ball))
-		var/obj/energy_ball/tesloose = bumped_atom
-		tesloose.energy += energy
-	else if(istype(bumped_atom, /obj/structure/blob))
-		var/obj/structure/blob/blob = bumped_atom
-		blob.take_damage(energy * 0.6)
-		movement_range = 0
+	bumped_atom.accelerated_particle_act(src)
 
 /obj/effect/accelerated_particle/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(isliving(arrived))
-		toxmob(arrived)
+	if(!QDELETED(src) && !QDELETED(arrived))
+		arrived.accelerated_particle_act(src)
 
 /obj/effect/accelerated_particle/process()
-	if(QDELETED(loc) || movement_range <= 0)
+	if(!isturf(loc) || movement_range <= 0)
 		qdel(src)
 		return PROCESS_KILL
 	if(!COOLDOWN_FINISHED(src, next_move))
 		return
 	if(!step(src, dir))
 		var/turf/next_step = get_step(src, dir) // this doesn't make sense but it was in the original code so I'm keeping it (with an actual qdeleted check) ~Lucy
-		if(QDELETED(next_step))
+		if(!next_step)
 			qdel(src)
 			return PROCESS_KILL
 		forceMove(next_step)
@@ -77,5 +67,24 @@
 /obj/effect/accelerated_particle/singularity_pull()
 	return
 
-/obj/effect/accelerated_particle/proc/toxmob(mob/living/victim)
-	radiation_pulse(victim, 1, 3, 0.5)
+/obj/effect/accelerated_particle/newtonian_move(direction, instant, start_delay)
+	return TRUE
+
+/atom/movable/proc/accelerated_particle_act(obj/effect/accelerated_particle/particle)
+	return
+
+/obj/machinery/the_singularitygen/accelerated_particle_act(obj/effect/accelerated_particle/particle)
+	energy += particle.energy
+
+/obj/singularity/accelerated_particle_act(obj/effect/accelerated_particle/particle)
+	energy += particle.energy
+
+/obj/energy_ball/accelerated_particle_act(obj/effect/accelerated_particle/particle)
+	energy += particle.energy
+
+/obj/structure/blob/accelerated_particle_act(obj/effect/accelerated_particle/particle)
+	take_damage(particle.energy * 0.6)
+	particle.movement_range = 0
+
+/mob/living/accelerated_particle_act(obj/effect/accelerated_particle/particle)
+	radiation_pulse(src, 1, 3, 0.5)

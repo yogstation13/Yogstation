@@ -135,6 +135,17 @@
 
 /// Setter for the light color of this atom.
 /atom/proc/set_light_color(new_color)
+	if(!new_color) // monkestation edit: trying to trace down what's doing this.
+		var/color_desc
+		if(isnull(new_color))
+			color_desc = "null"
+		else if(istext(new_color))
+			color_desc = "blank string"
+		else
+			color_desc = "false value ([new_color])"
+		stack_trace("tried to set light color of [src] ([type]) to [color_desc]!")
+	else if(islist(new_color))
+		stack_trace("tried to set light color of [src] ([type]) to a list: [json_encode(new_color)]!")
 	if(new_color == light_color)
 		return
 	if(SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT_COLOR, new_color) & COMPONENT_BLOCK_LIGHT_UPDATE)
