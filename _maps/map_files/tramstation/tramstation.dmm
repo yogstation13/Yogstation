@@ -9236,6 +9236,10 @@
 /area/station/hallway/secondary/exit)
 "bPV" = (
 /obj/structure/cable,
+/obj/machinery/navbeacon{
+	location = "commandhallway2";
+	codes_txt = "patrol;next_patrol=westtram3"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
 "bPZ" = (
@@ -15200,6 +15204,10 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/navbeacon{
+	location = "easttram2";
+	codes_txt = "patrol;next_patrol=easttram3"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit)
 "dLt" = (
@@ -17102,6 +17110,16 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
+"enR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/navbeacon{
+	location = "westtram1";
+	codes_txt = "patrol;next_patrol=commandhallway1"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/tram/left)
 "enV" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/small/directional/east,
@@ -19355,6 +19373,10 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/navbeacon{
+	location = "arrivals3";
+	codes_txt = "patrol;next_patrol=arrivals1"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "fbx" = (
@@ -21484,6 +21506,16 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/lab)
+"fJR" = (
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 4
+	},
+/obj/machinery/navbeacon{
+	location = "easttram3";
+	codes_txt = "patrol;next_patrol=easttram4"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/exit/departure_lounge)
 "fKg" = (
 /obj/machinery/air_sensor/nitrogen_tank,
 /turf/open/floor/engine/n2,
@@ -21519,6 +21551,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/hop)
+"fKR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/navbeacon{
+	location = "westtram3";
+	codes_txt = "patrol;next_patrol=midtram1"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/tram/left)
 "fKS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -34832,6 +34874,16 @@
 /obj/structure/cable,
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/ai)
+"jYv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/navbeacon{
+	location = "arrivals2";
+	codes_txt = "patrol;next_patrol=westtram1"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "jYC" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner{
 	dir = 4
@@ -35380,6 +35432,10 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/navbeacon{
+	location = "westtram4";
+	codes_txt = "patrol;next_patrol=dorms1"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/tram/left)
 "kjr" = (
@@ -40923,6 +40979,10 @@
 /obj/effect/mapping_helpers/mail_sorting/service/library,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/navbeacon{
+	location = "dorms2";
+	codes_txt = "patrol;next_patrol=arrivals3"
+	},
 /turf/open/floor/iron,
 /area/station/commons/fitness/recreation)
 "lTV" = (
@@ -49705,6 +49765,10 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/effect/turf_decal/trimline/neutral/filled/warning,
 /obj/machinery/button/tram/directional/south,
+/obj/machinery/navbeacon{
+	location = "westtram2";
+	codes_txt = "patrol;next_patrol=commandhallway2"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/tram/left)
 "oNa" = (
@@ -51433,6 +51497,10 @@
 "psv" = (
 /obj/effect/landmark/start/hangover,
 /obj/structure/cable,
+/obj/machinery/navbeacon{
+	location = "commandhallway1";
+	codes_txt = "patrol;next_patrol=westtram2"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/command)
 "psy" = (
@@ -62824,6 +62892,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/navbeacon{
+	location = "midtram2";
+	codes_txt = "patrol;next_patrol=westtram4"
+	},
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/lobby)
 "sSx" = (
@@ -66383,6 +66455,10 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/navbeacon{
+	location = "dorms1";
+	codes_txt = "patrol;next_patrol=dorms2"
+	},
 /turf/open/floor/iron,
 /area/station/commons/fitness/recreation)
 "tYb" = (
@@ -67500,6 +67576,13 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/department/eva)
+"urz" = (
+/obj/machinery/navbeacon{
+	location = "easttram4";
+	codes_txt = "patrol;next_patrol=easttram5"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/secondary/exit)
 "urA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold/yellow/visible,
 /turf/open/floor/iron,
@@ -68339,8 +68422,12 @@
 /turf/open/floor/iron/smooth,
 /area/station/maintenance/central/greater)
 "uDg" = (
-/obj/machinery/holopad,
 /obj/effect/turf_decal/bot,
+/obj/machinery/navbeacon{
+	location = "arrivals1";
+	codes_txt = "patrol;next_patrol=arrivals2"
+	},
+/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
@@ -69627,6 +69714,16 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/security/brig)
+"uXu" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/obj/machinery/navbeacon{
+	location = "easttram5";
+	codes_txt = "patrol;next_patrol=midtram2"
+	},
+/turf/open/floor/iron/white,
+/area/station/science/lobby)
 "uXv" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -75853,6 +75950,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/navbeacon{
+	location = "easttram1";
+	codes_txt = "patrol;next_patrol=easttram2"
+	},
 /turf/open/floor/iron,
 /area/station/hallway/primary/tram/right)
 "wQm" = (
@@ -80035,6 +80136,14 @@
 "ylV" = (
 /turf/open/lava,
 /area/station/security/execution/education)
+"ylY" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/navbeacon{
+	location = "midtram1";
+	codes_txt = "patrol;next_patrol=easttram1"
+	},
+/turf/open/floor/iron,
+/area/station/hallway/primary/tram/center)
 "ymh" = (
 /obj/effect/turf_decal/trimline/dark_red/warning{
 	dir = 9
@@ -160106,7 +160215,7 @@ vUW
 twz
 mqK
 kDm
-kDm
+jYv
 kDm
 off
 fNV
@@ -162160,7 +162269,7 @@ nYr
 rEq
 bSS
 eKy
-dOb
+enR
 rbe
 jva
 jva
@@ -165758,7 +165867,7 @@ cmW
 rti
 bSS
 yhR
-dOb
+fKR
 aFm
 jva
 qWY
@@ -177579,7 +177688,7 @@ vXM
 vXM
 vXM
 dRv
-veL
+ylY
 nOB
 fld
 xVH
@@ -191214,7 +191323,7 @@ fTP
 ptV
 lew
 hlD
-vyy
+uXu
 vyy
 raP
 uGo
@@ -195061,7 +195170,7 @@ geG
 geG
 dLs
 aFZ
-geG
+urz
 geG
 geG
 vjb
@@ -198401,7 +198510,7 @@ uCy
 pFH
 gTN
 eAk
-gTN
+fJR
 tgP
 gTN
 oXC

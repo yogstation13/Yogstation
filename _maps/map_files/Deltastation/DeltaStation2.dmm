@@ -95050,7 +95050,7 @@
 	icon_state = "L9"
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "patrol;next_patrol=hall15";
+	codes_txt = "patrol;next_patrol=hall1";
 	location = "hall14"
 	},
 /turf/open/floor/iron,
