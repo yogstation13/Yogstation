@@ -138,6 +138,14 @@ GLOBAL_LIST_INIT(store_miscunders, generate_store_items(/datum/store_item/under/
 	name = "Recolorable Sundress"
 	item_path = /obj/item/clothing/under/dress/sundress
 
+/datum/store_item/under/miscellaneous/ballgown
+	name = "Recolorable Ballgown"
+	item_path = /obj/item/clothing/under/dress/ballgown
+
+/datum/store_item/under/miscellaneous/wlpinafore
+	name = "Recolorable Wonderland Pinafore"
+	item_path = /obj/item/clothing/under/dress/wlpinafore
+
 /datum/store_item/under/miscellaneous/kilt
 	name = "Kilt"
 	item_path = /obj/item/clothing/under/costume/kilt

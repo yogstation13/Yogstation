@@ -32,6 +32,8 @@
 	desc = "Fancy dress for space bar singers."
 	icon_state = "red_evening_gown"
 	inhand_icon_state = null
+	body_parts_covered = CHEST|GROIN|LEGS
+	flags_inv = HIDESHOES
 
 /obj/item/clothing/under/dress/skirt
 	name = "black skirt"
@@ -87,10 +89,19 @@
 	desc = "A luxurious ballgown best worn before midnight. A signature of the letters 'VA` is stitched on the hem."
 	icon_state = "ballgown"
 	custom_price = PAYCHECK_COMMAND
-	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS
 	greyscale_config = /datum/greyscale_config/ballgown
 	greyscale_config_worn = /datum/greyscale_config/ballgown_worn
 	greyscale_colors = "#FFFFFF#CCECFF#FFFFFF"
 	flags_1 = IS_PLAYER_COLORABLE_1
 	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/dress/wlpinafore
+	name = "wonderland pinafore"
+	desc = "An adorable pinafore, just don't chase any white rabbits down any holes this time. It has the initials 'VA' embroidered on the skirt hem."
+	icon_state = "wlpinafore"
+	custom_price = PAYCHECK_COMMAND
+	greyscale_config = /datum/greyscale_config/wlpinafore
+	greyscale_config_worn = /datum/greyscale_config/wlpinafore_worn
+	greyscale_colors = "#5190c8#FFFFFF"
+	flags_1 = IS_PLAYER_COLORABLE_1

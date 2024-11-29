@@ -708,6 +708,16 @@
 	name = "Worn Ballgown"
 	icon_file = 'icons/mob/clothing/under/dress.dmi'
 	json_config = 'code/datums/greyscale/json_configs/ballgown_worn.json'
+
+/datum/greyscale_config/wlpinafore
+	name = "Wonderland Pinafore"
+	icon_file = 'icons/obj/clothing/under/dress.dmi'
+	json_config = 'code/datums/greyscale/json_configs/wlpinafore.json'
+
+/datum/greyscale_config/wlpinafore_worn
+	name = "Wonderland Pinafore"
+	icon_file = 'icons/mob/clothing/under/dress.dmi'
+	json_config = 'code/datums/greyscale/json_configs/wlpinafore_worn.json'
 //MONKESTATION ADDITION END
 
 /datum/greyscale_config/beanie

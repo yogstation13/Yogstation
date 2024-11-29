@@ -279,6 +279,7 @@
 		/obj/item/clothing/under/suit/tuxedo = 1,
 		/obj/item/clothing/head/costume/weddingveil = 1,
 		/obj/item/clothing/under/dress/ballgown = 1, //MONKESTATION EDIT ADDITION
+		/obj/item/clothing/under/dress/wlpinafore = 1, //MONKESTATION EDIT ADDITION
 		/obj/item/storage/belt/fannypack/cummerbund = 1,
 		/obj/item/clothing/suit/costume/drfreeze_coat = 1,
 		/obj/item/clothing/under/costume/drfreeze = 1,

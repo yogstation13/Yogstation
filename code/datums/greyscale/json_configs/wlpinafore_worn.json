@@ -1,0 +1,27 @@
+{
+	"wlpinafore": [
+		{
+		"type": "icon_state",
+		"icon_state": "wlpinafore_dress",
+		"blend_mode": "overlay",
+		"color_ids": [ 1 ]
+		},
+		{
+		"type": "icon_state",
+		"icon_state": "wlpinafore_sleeves",
+		"blend_mode": "overlay",
+		"color_ids": [ 1 ]
+		},
+		{
+		"type": "icon_state",
+		"icon_state": "wlpinafore_apron",
+		"blend_mode": "overlay",
+		"color_ids": [ 2 ]
+		},
+		{
+		"type": "icon_state",
+		"icon_state": "wlpinafore_petticoat",
+		"blend_mode": "overlay"
+		}
+	]
+}
