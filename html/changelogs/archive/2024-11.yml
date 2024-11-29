@@ -478,3 +478,31 @@
   Kmla2:
   - bugfix: fixed the opfor panel linking you to the wrong wiki pages when asking
       for help
+2024-11-29:
+  Absolucy:
+  - bugfix: Fixed some more various stuff.
+  - qol: Signalers now tell you their cooldown and also use balloon alerts.
+  Gw0sty:
+  - rscadd: Added a patrol system for simple bots on Tramstation
+  - bugfix: fixed the simple bot pileup on Delta station
+  OtieBoy:
+  - qol: Allow the Good Assistant Punchcard to be stored in wallets
+  PotatoTomahto:
+  - rscadd: adds the wonderland pinafore dress
+  - rscadd: the wonderland pinafore and ballgown can be bought in the monkestation
+      shop now.
+  Shoddd:
+  - bugfix: mentor cloak is now flippable
+  Shoddd, Absolucy:
+  - admin: Admin artifact panel now list trigger and effect.
+  Syndie Kate:
+  - bugfix: 'Made mice vomiting spiders NOT explode the game
+
+      :cl:'
+  Tractor Mann:
+  - rscadd: Tired of your eternal death being disturbed? Nanotrasen is too! thats
+      valuable resources wasted on your resuscitation. Introducing the new -8 quirk
+      Do Not Revive, taking it causes death to be permanent. Tread carefully!
+  ven1883:
+  - bugfix: tribal claw's jugular cut now behaves properly and you can no longer chain
+      infinite strong combos

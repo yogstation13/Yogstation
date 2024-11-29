@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - qol: "Signalers now tell you their cooldown and also use balloon alerts."
