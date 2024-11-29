@@ -172,6 +172,10 @@
 	// monkestation edit: heavy bleeder challenge
 	if(HAS_TRAIT(target, TRAIT_HEAVY_BLEEDER))
 		render_list += "<span class='alert ml-1'><b>Subject will suffer highly abnormal hemorrhaging from laceration or surgical incension.</b></span>\n"
+
+	// monkestation edit: DNR Quirk, i mean it also technically will count for all other defib blacklist reasons.
+	if(HAS_TRAIT(target, TRAIT_DEFIB_BLACKLISTED))
+		render_list += "<span class='alert ml-1'><b>Subject is blacklisted from resuscitation and cannot be defibrillated[target.stat == DEAD ? "" : " after dying"].</b></span>\n"
 	// monkestation end
 
 	if(target.stamina.loss)
