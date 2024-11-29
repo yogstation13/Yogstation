@@ -249,9 +249,7 @@
   - bugfix: Fix ssd examine text to show the correct cyro time. (30 minutes)
   PotatoTomahto:
   - rscadd: Adds microwave smite to toast people.
-  - bugfix: 'Fixes pierce wounds and admin smites.
-
-      :cl:'
+  - bugfix: Fixes pierce wounds and admin smites.
   Sorenon:
   - rscadd: Added the pride pin quirk
   - image: adds special sprites for lungs when you use the smoker quirk
@@ -496,9 +494,7 @@
   Shoddd, Absolucy:
   - admin: Admin artifact panel now list trigger and effect.
   Syndie Kate:
-  - bugfix: 'Made mice vomiting spiders NOT explode the game
-
-      :cl:'
+  - bugfix: Made mice vomiting spiders NOT explode the game.
   Tractor Mann:
   - rscadd: Tired of your eternal death being disturbed? Nanotrasen is too! thats
       valuable resources wasted on your resuscitation. Introducing the new -8 quirk
