@@ -160,6 +160,11 @@
 				formatted_list.len--
 				continue
 
+		if(item.mentor_only) //These checks are also performed in the backend.
+			if(!preferences.parent.mentor_datum && !is_admin(preferences.parent))
+				formatted_list.len--
+				continue
+
 		if(item.admin_only) //These checks are also performed in the backend.
 			if(!is_admin(preferences.parent))
 				formatted_list.len--

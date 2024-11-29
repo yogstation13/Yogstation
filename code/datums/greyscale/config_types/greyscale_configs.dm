@@ -1100,6 +1100,16 @@
 	icon_file = 'monkestation/icons/mob/clothing/neck.dmi'
 	json_config = 'code/datums/greyscale/json_configs/boatcloakworn.json'
 
+/datum/greyscale_config/admincloak
+	name = "admincloak"
+	icon_file = 'monkestation/icons/obj/clothing/necks.dmi'
+	json_config = 'code/datums/greyscale/json_configs/admincloak.json'
+
+/datum/greyscale_config/admincloak_worn
+	name = "wadmincloak"
+	icon_file = 'monkestation/icons/obj/clothing/necks.dmi'
+	json_config = 'code/datums/greyscale/json_configs/admincloakworn.json'
+
 /datum/greyscale_config/fish_analyzer_inhand_left
 	name = "Held Fish Analyzer, Left"
 	icon_file = 'icons/mob/inhands/items_lefthand.dmi'

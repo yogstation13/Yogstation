@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(all_loadout_datums)
 	var/requires_purchase = TRUE
 	///can only admins use this?
 	var/admin_only = FALSE
+	//can only mentors use this?
+	var/mentor_only = FALSE
 
 /*
  * Place our [var/item_path] into [outfit].

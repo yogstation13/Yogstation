@@ -1,0 +1,15 @@
+
+{
+    "admincloak": [
+        {
+            "type": "icon_state",
+            "icon_state": "admin"
+        },
+        {
+            "type": "icon_state",
+            "icon_state": "admin-lizard",
+            "blend_mode": "overlay",
+			"color_ids": [1]
+        }
+    ]
+}
