@@ -156,10 +156,9 @@
 	worn_icon = 'monkestation/icons/obj/clothing/necks.dmi'
 	icon_state = "mentor"
 
-/obj/item/clothing/neck/mentor/Initialize(mapload)
+/obj/item/clothing/neck/mentorcloak/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/toggle_clothes, "mentor_t")
-
 
 /obj/item/clothing/neck/helldivercape
 	name = "helldiver cape"
