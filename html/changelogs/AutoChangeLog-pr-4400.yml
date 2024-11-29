@@ -1,0 +1,4 @@
+author: "ven1883"
+delete-after: True
+changes:
+  - bugfix: "tribal claw's jugular cut now behaves properly and you can no longer chain infinite strong combos"
