@@ -8,7 +8,7 @@
 	///what gets added based on multiplier NOT INCLUSIVE OF PREVIOUS TIERS
 	var/list/multipler_unlocks = list()
 
-/datum/symptom/spawn/activate(mob/living/carbon/mob)
+/datum/symptom/spawn/activate(mob/living/mob)
 	check_unlocks()
 	playsound(mob.loc, 'sound/effects/splat.ogg', 50, 1)
 	var/atom/spawn_type = pick_weight(spawn_types)
