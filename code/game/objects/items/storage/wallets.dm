@@ -27,6 +27,7 @@
 		/obj/item/coin,
 		/obj/item/dice,
 		/obj/item/disk,
+		/obj/item/gbp_punchcard,
 		/obj/item/implanter,
 		/obj/item/lighter,
 		/obj/item/lipstick,
