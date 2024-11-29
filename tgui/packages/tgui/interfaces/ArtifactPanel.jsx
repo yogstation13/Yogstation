@@ -34,6 +34,9 @@ export const ArtifactPanel = (props) => {
           >
             <Box>{'Type name: ' + artifact_data.typename}</Box>
             <Box>{'Located at: ' + artifact_data.loc}</Box>
+            <Box>{'Activated by: ' + artifact_data.trigger}</Box>
+            <Box>{'Effect: ' + artifact_data.effect}</Box>
+            <Box>{'Fault: ' + artifact_data.fault}</Box>
             <Box>{'Last touched by: ' + artifact_data.lastprint}</Box>
           </Section>
         ))}

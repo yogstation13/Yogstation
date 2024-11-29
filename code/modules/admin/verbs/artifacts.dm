@@ -26,10 +26,15 @@
 		ui.open()
 
 /datum/artifactpanel/ui_data(mob/user)
-	. = list()
-	.["artifacts"] = list()
+	. = list("artifacts" = list())
 	for(var/obj/art in GLOB.running_artifact_list)
 		var/datum/component/artifact/component = GLOB.running_artifact_list[art]
+		var/list/activators = list()
+		for(var/datum/artifact_activator/activator as anything in component.activators)
+			activators += activator.name
+		var/list/effect = list()
+		for(var/datum/artifact_effect/effects as anything in component.artifact_effects)
+			effect += effects.type_name
 		.["artifacts"] += list(list(
 			"name" = art.name,
 			"ref" = REF(art),
@@ -37,6 +42,9 @@
 			"active" = component.active,
 			"typename" = component.type_name,
 			"lastprint" = "[art.fingerprintslast]",
+			"trigger" = english_list(activators, nothing_text = "None"),
+			"effect" = english_list(effect, nothing_text = "None"),
+			"fault" = component.chosen_fault?.name,
 		))
 
 /datum/artifactpanel/ui_act(action, params)
