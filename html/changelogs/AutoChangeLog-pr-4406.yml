@@ -1,4 +1,0 @@
-author: "dwasint"
-delete-after: True
-changes:
-  - bugfix: "Fixed an internal error relating to disconnected clients."

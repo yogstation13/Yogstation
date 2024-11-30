@@ -502,3 +502,9 @@
   ven1883:
   - bugfix: tribal claw's jugular cut now behaves properly and you can no longer chain
       infinite strong combos
+2024-11-30:
+  Shoddd:
+  - rscdel: deleted stowaway code that tried to open a new job slot
+  - bugfix: stowaways are properly removed from the manifest
+  dwasint:
+  - bugfix: Fixed an internal error relating to disconnected clients.
