@@ -60,14 +60,7 @@
 /datum/quirk/stowaway/post_add()
 	. = ..()
 	to_chat(quirk_holder, span_boldnotice("You've awoken to find yourself inside [GLOB.station_name] without real identification!"))
-	addtimer(CALLBACK(src, PROC_REF(datacore_deletion)), 5 SECONDS)
-
-/datum/quirk/stowaway/proc/datacore_deletion()
-	var/mob/living/carbon/human/stowaway = quirk_holder
-	var/perpname = stowaway.name
-	var/datum/record/crew/record_deletion = find_record(perpname, GLOB.manifest.general)
-	SSjob.FreeRole(quirk_holder.mind.assigned_role)  //open their job slot back up
-	qdel(record_deletion)
+	addtimer(CALLBACK(quirk_holder.mind, TYPE_PROC_REF(/datum/mind, remove_from_manifest)), 5 SECONDS)
 
 /obj/item/card/id/fake_card //not a proper ID but still shares a lot of functions
 	name = "\"ID Card\""
