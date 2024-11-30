@@ -743,8 +743,9 @@
  * * The forced flag indicates whether this was a forced move, which skips many checks of regular movement.
  * * The old_locs is an optional argument, in case the moved movable was present in multiple locations before the movement.
  * * momentum_change represents whether this movement is due to a "new" force if TRUE or an already "existing" force if FALSE
+ * * interrupting will cancel any do_after progress bars that should be canceled by moving.
  **/
-/atom/movable/proc/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE)
+/atom/movable/proc/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE, interrupting = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
 
 	if (!inertia_moving && momentum_change)
@@ -755,7 +756,7 @@
 	if (!moving_diagonally && client_mobs_in_contents)
 		update_parallax_contents()
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs, momentum_change)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs, momentum_change, interrupting)
 
 	if(old_loc)
 		SEND_SIGNAL(old_loc, COMSIG_ATOM_ABSTRACT_EXITED, src, movement_dir)

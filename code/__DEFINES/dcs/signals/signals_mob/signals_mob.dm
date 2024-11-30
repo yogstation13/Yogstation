@@ -134,6 +134,8 @@
 ///from base of /mob/living/start_pulling: (atom/movable/AM, state, force)
 #define COMSIG_MOB_PULL "mob_pull"
 	#define COMPONENT_BLOCK_PULL (1<<0) // blocks pulling
+///from base of /obj/item/pickup: (obj/item/item)
+#define COMSIG_MOB_PICKUP_ITEM "mob_pickup_item"
 ///Mob is trying to open the wires of a target [/atom], from /datum/wires/interactable(): (atom/target)
 #define COMSIG_TRY_WIRES_INTERACT "try_wires_interact"
 	#define COMPONENT_CANT_INTERACT_WIRES (1<<0)
