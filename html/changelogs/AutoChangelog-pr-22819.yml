@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed hydraulic clamp being able to pry doors from a distance"
+  - bugfix: "Fixed timed actions in exosuits being interrupted by drifting through space"
