@@ -1,0 +1,5 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - rscdel: "deleted stowaway code that tried to open a new job slot"
+  - bugfix: "stowaways are properly removed from the manifest"
