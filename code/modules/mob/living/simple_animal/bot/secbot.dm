@@ -106,9 +106,9 @@
 	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED
 	commissioned = FALSE
 
-/mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize(mapload)
+/mob/living/simple_animal/bot/secbot/beepsky/big/Initialize(mapload)
 	. = ..()
-	update_transform(1.2)
+	update_transform(1.3)
 //monkestation edit end
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()

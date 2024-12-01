@@ -480,3 +480,19 @@
 	base_icon_state = "sepia"
 	desc = "Well, the flow of time is normal on these tiles, weird."
 	floor_tile = /obj/item/stack/tile/iron/sepia
+
+/turf/open/floor/iron/snowed
+	icon_state = "snow"
+	base_icon_state = "snow"
+	icon = 'icons/turf/snow.dmi'
+	desc = "The stations floor tiles are covered in heaping of snow."
+	slowdown = 2
+	bullet_sizzle = TRUE
+	footstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	clawfootstep = FOOTSTEP_SAND
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+
+/turf/open/floor/iron/snowed/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/diggable, /obj/item/stack/sheet/mineral/snow, 2)
