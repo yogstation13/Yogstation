@@ -122,6 +122,8 @@ GLOBAL_PROTECT(href_token)
 
 		if (deadmined)
 			activate()
+		if(C.mentor_datum)
+			C.mentor_position = C.mentor_datum.position
 		owner = C
 		ip_cache = C.address
 		cid_cache = C.computer_id
