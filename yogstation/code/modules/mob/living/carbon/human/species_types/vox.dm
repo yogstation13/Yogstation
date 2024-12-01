@@ -86,20 +86,20 @@
 		soon_added_items += pick(possible_masks)
 	..()
 
-/datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE) // Don't forget your voxygen tank
+/datum/species/vox/after_equip_job(datum/job/J, mob/living/carbon/human/H, client/preference_source) // Don't forget your voxygen tank
 	if(!H.can_breathe_mask())
 		var/obj/item/clothing/mask/current_mask = H.get_item_by_slot(ITEM_SLOT_MASK)
 		if(!H.equip_to_slot_if_possible(current_mask, ITEM_SLOT_BACKPACK, disable_warning = TRUE))
 			H.put_in_hands(current_mask)
 	var/obj/item/clothing/mask/vox_mask
-	var/mask_pref = H.client?.prefs?.read_preference(/datum/preference/choiced/vox_mask)
+	var/mask_pref = preference_source?.prefs?.read_preference(/datum/preference/choiced/vox_mask)
 	if(mask_pref == "Respirator")
 		vox_mask = new /obj/item/clothing/mask/breath/vox/respirator
 	else
 		vox_mask = new /obj/item/clothing/mask/breath/vox
 	H.equip_to_slot_or_del(vox_mask, ITEM_SLOT_MASK)
 	var/obj/item/tank/internals_tank
-	var/tank_pref = H.client?.prefs?.read_preference(/datum/preference/choiced/vox_tank_type)
+	var/tank_pref = preference_source?.prefs?.read_preference(/datum/preference/choiced/vox_tank_type)
 	if(tank_pref == "Large")
 		internals_tank = new /obj/item/tank/internals/nitrogen
 	else
