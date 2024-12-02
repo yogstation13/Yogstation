@@ -84,11 +84,11 @@
 
 /datum/lighting_corner/proc/vis_update()
 	for (var/datum/light_source/light_source as anything in affecting)
-		light_source.vis_update()
+		light_source?.vis_update()
 
 /datum/lighting_corner/proc/full_update()
 	for (var/datum/light_source/light_source as anything in affecting)
-		light_source.recalc_corner(src)
+		light_source?.recalc_corner(src)
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
 /datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
