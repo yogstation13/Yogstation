@@ -41689,6 +41689,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera/directional/east,
+/obj/machinery/vending/access/command,
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "moN" = (

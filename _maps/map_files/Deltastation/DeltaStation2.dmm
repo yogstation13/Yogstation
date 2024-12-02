@@ -68819,8 +68819,7 @@
 /turf/open/floor/iron/grimy,
 /area/station/command/heads_quarters/hop)
 "qoo" = (
-/obj/structure/table/wood,
-/obj/item/pai_card,
+/obj/machinery/vending/access/command,
 /turf/open/floor/wood,
 /area/station/command/meeting_room/council)
 "qoA" = (

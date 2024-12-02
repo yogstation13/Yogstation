@@ -39811,7 +39811,7 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Bridge Conference Room"
 	},
-/obj/machinery/computer/slot_machine,
+/obj/machinery/vending/access/command,
 /turf/open/floor/wood,
 /area/station/command/meeting_room)
 "mLV" = (
