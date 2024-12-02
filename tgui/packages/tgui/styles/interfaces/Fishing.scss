@@ -21,6 +21,7 @@
   border-radius: 10px;
   border: 0px black solid;
   -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
 }
 
 .fishing .main .fish {
@@ -30,6 +31,7 @@
   font-size: 3em;
   text-align: center;
   -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: pixelated;
   color: white;
   background-color: rgba(65, 91, 138, 0.5);
 }

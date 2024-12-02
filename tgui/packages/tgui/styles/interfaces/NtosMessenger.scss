@@ -77,6 +77,7 @@ $msgpadding: 0.7rem;
     margin-right: 3rem;
     max-width: 25rem;
     -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: pixelated;
   }
 }
 
@@ -96,6 +97,7 @@ $msgpadding: 0.7rem;
     justify-self: center;
     align-self: center;
     -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: pixelated;
   }
 }
 

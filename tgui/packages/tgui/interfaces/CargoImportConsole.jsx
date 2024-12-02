@@ -115,6 +115,7 @@ export const CargoImportConsole = (props) => {
                                     'horizontal-align': 'middle',
                                     '-ms-interpolation-mode':
                                       'nearest-neighbor',
+                                    'image-rendering': 'pixelated',
                                   }}
                                 />
                               </Box>

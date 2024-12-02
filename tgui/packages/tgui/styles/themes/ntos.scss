@@ -47,3 +47,8 @@ $nanotrasen: #384e68;
     $with: ('color-default': darken($nanotrasen, 15%))
   );
 }
+
+.theme-ntos:root {
+  --scrollbar-base: #141d26;
+  --scrollbar-thumb: #2a3b4f;
+}

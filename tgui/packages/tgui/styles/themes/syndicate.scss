@@ -72,3 +72,8 @@
     background-image: url('../../assets/bg-syndicate.svg');
   }
 }
+
+.theme-syndicate:root {
+  --scrollbar-base: #3a0202;
+  --scrollbar-thumb: #770303;
+}

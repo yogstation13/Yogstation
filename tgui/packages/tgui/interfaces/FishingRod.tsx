@@ -35,6 +35,7 @@ const FishingRodSlot = (props: FishingSlotProps) => {
       src={`data:image/jpeg;base64,${icon}`}
       style={{
         '-ms-interpolation-mode': 'nearest-neighbor',
+        'image-rendering': 'pixelated',
         'vertical-align': 'middle',
         'object-fit': 'cover',
       }}

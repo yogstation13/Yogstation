@@ -220,7 +220,10 @@ const PreviewDisplay = (props) => {
                 m={0}
                 width="75%"
                 mx="10%"
-                style={{ '-ms-interpolation-mode': 'nearest-neighbor' }}
+                style={{
+                  '-ms-interpolation-mode': 'nearest-neighbor',
+                  'image-rendering': 'pixelated',
+                }}
               />
             </Table.Cell>
           ) : (
@@ -230,7 +233,10 @@ const PreviewDisplay = (props) => {
                   name="image"
                   ml="25%"
                   size={5}
-                  style={{ '-ms-interpolation-mode': 'nearest-neighbor' }}
+                  style={{
+                    '-ms-interpolation-mode': 'nearest-neighbor',
+                    'image-rendering': 'pixelated',
+                  }}
                 />
               </Box>
             </Table.Cell>
@@ -282,7 +288,10 @@ const SingleSprite = (props) => {
       as="img"
       src={source}
       width="100%"
-      style={{ '-ms-interpolation-mode': 'nearest-neighbor' }}
+      style={{
+        '-ms-interpolation-mode': 'nearest-neighbor',
+        'image-rendering': 'pixelated',
+      }}
     />
   );
 };

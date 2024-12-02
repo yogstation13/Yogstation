@@ -11,7 +11,8 @@ body
 hr
 {
 	background-color: #40628a;
-	height: 1px;
+	height: 2px;
+	border: 0;
 }
 
 a, button, a:link, a:visited, a:active, .linkOn, .linkOff
