@@ -1,0 +1,4 @@
+author: "Marabout2"
+delete-after: True
+changes:
+  - rscadd: "Added a version of the space hotel ruin, that actually work as a hotel. With ghost roles.\n:cl:"
