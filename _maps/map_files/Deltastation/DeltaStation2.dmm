@@ -81869,7 +81869,11 @@
 	},
 /obj/item/paper/monitorkey,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/newscaster/directional/west,
+/obj/machinery/requests_console/directional/west{
+	name = "Telecomms Requests Console";
+	department = "Telecomms Admin"
+	},
+/obj/effect/mapping_helpers/requests_console/announcement,
 /turf/open/floor/iron/dark,
 /area/station/tcommsat/computer)
 "txd" = (

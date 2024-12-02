@@ -28566,6 +28566,7 @@
 	name = "Telecomms Requests Console";
 	can_send_announcements = 1
 	},
+/obj/effect/mapping_helpers/requests_console/announcement,
 /turf/open/floor/iron,
 /area/station/tcommsat/computer)
 "jer" = (

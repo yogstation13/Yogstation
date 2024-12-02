@@ -32637,7 +32637,11 @@
 	},
 /obj/item/book/manual/wiki/robotics_cyborgs,
 /obj/machinery/light/cold/directional/north,
-/obj/item/radio/intercom/directional/north,
+/obj/machinery/requests_console/directional/north{
+	name = "Telecomms Requests Console";
+	department = "Telecomms Admin"
+	},
+/obj/effect/mapping_helpers/requests_console/announcement,
 /turf/open/floor/iron/dark/small,
 /area/station/tcommsat/computer)
 "jGP" = (
@@ -37944,6 +37948,9 @@
 	network = list("minisat")
 	},
 /mob/living/simple_animal/bot/secbot/pingsky,
+/obj/item/radio/intercom/directional/south{
+	pixel_y = -40
+	},
 /turf/open/floor/wood/large,
 /area/station/tcommsat/computer)
 "lgc" = (
