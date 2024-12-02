@@ -447,5 +447,5 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 
 /obj/effect/dummy/crawling/vomit/proc/follow_vomit()
 	var/turf/T = get_turf(currentvomit)
-	if(T)
+	if(T && !(T.z == 1||T.z == 16))
 		forceMove(T)
