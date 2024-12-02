@@ -130,19 +130,8 @@
 		return FALSE
 
 	bloodiness = clamp((bloodiness + by_amount), 0, BLOOD_POOL_MAX)
-	update_appearance()
 	return TRUE
 
 /// Called before attempting to scoop up reagents from this decal to only load reagents when necessary
 /obj/effect/decal/cleanable/proc/lazy_init_reagents()
 	return
-
-#ifdef TESTING
-/obj/effect/decal/cleanable/update_overlays()
-	. = ..()
-	if(bloodiness)
-		var/mutable_appearance/blah_text = new()
-		blah_text.maptext = MAPTEXT_TINY_UNICODE("[bloodiness]")
-		blah_text.appearance_flags |= (KEEP_APART|RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM)
-		. += blah_text
-#endif

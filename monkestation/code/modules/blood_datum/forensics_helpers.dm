@@ -19,6 +19,9 @@
 	cached_blood_dna_color = final_color
 	return final_color
 
+/obj/effect/decal/cleanable/blood/get_blood_dna_color()
+	return ..() || COLOR_BLOOD
+
 /obj/effect/decal/cleanable/blood/drip/get_blood_dna_color()
 	var/list/all_dna = GET_ATOM_BLOOD_DNA(src)
 	return GLOB.blood_types[all_dna[all_dna[1]]]?.color || COLOR_BLOOD
@@ -28,7 +31,8 @@
 	if(!..())
 		return FALSE
 
-	color = get_blood_dna_color()
+	if(dried)
+		return TRUE
 	// Imperfect, ends up with some blood types being double-set-up, but harmless (for now)
 	for(var/new_blood in blood_DNA_to_add)
 		var/datum/blood_type/blood = GLOB.blood_types[blood_DNA_to_add[new_blood]]

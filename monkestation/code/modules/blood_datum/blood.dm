@@ -10,7 +10,7 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 	name = "Blood Drying"
 	flags = SS_NO_INIT | SS_BACKGROUND
 	priority = 10
-	wait = 10 SECONDS
+	wait = 4 SECONDS
 
 /// Takes the name of a blood type and return the typepath
 /proc/blood_name_to_blood_type(name)
@@ -83,6 +83,9 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 /**
  * Used to handle any unique facets of blood spawned of this blood type
  *
+ * You don't need to worry about updating the icon of the decal,
+ * it will be handled automatically after setup is finished
+ *
  * Arguments
  * * blood - the blood being set up
  * * new_splat - whether this is a newly instantiated blood decal, or an existing one this blood is being added to
@@ -114,10 +117,9 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 		if(isnull(drop))
 			var/obj/effect/decal/cleanable/blood/splatter = locate() in blood_turf
 			if(!QDELETED(splatter))
+				splatter.add_mob_blood(bleeding)
 				splatter.adjust_bloodiness(new_blood)
-				splatter.drying_progress -= (new_blood * BLOOD_PER_UNIT_MODIFIER)
-				splatter.update_blood_drying_effect()
-				splatter.transfer_mob_blood_dna(bleeding)
+				splatter.slow_dry(1 SECONDS * new_blood * BLOOD_PER_UNIT_MODIFIER)
 				return splatter
 
 			drop = new(blood_turf, bleeding.get_static_viruses())
@@ -133,11 +135,10 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 			drop_overlay.appearance_flags |= RESET_COLOR // So each drop has its own color
 			drop_overlay.color = color
 			drop.add_overlay(drop_overlay)
-			// Handle adding blood to the base atom
+			// Handle adding blood to the base AUTOMATIC_SAFETIES
 			drop.adjust_bloodiness(new_blood)
-			drop.drying_progress -= (new_blood * BLOOD_PER_UNIT_MODIFIER)
 			drop.transfer_mob_blood_dna(bleeding)
-			drop.update_blood_drying_effect()
+			drop.slow_dry(1 SECONDS * new_blood * BLOOD_PER_UNIT_MODIFIER)
 			return drop
 
 		temp_blood_DNA = GET_ATOM_BLOOD_DNA(drop) //we transfer the dna from the drip to the splatter
@@ -151,8 +152,7 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 			return null
 	else
 		splatter.adjust_bloodiness(BLOOD_AMOUNT_PER_DECAL)
-		splatter.drying_progress -= (BLOOD_AMOUNT_PER_DECAL * BLOOD_PER_UNIT_MODIFIER)
-		splatter.update_blood_drying_effect()
+		splatter.slow_dry(1 SECONDS * BLOOD_AMOUNT_PER_DECAL * BLOOD_PER_UNIT_MODIFIER)
 	splatter.transfer_mob_blood_dna(bleeding) //give blood info to the blood decal.
 	if(temp_blood_DNA)
 		splatter.add_blood_DNA(temp_blood_DNA)
@@ -252,7 +252,6 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 	if(!new_splat)
 		return
 	blood.can_dry = FALSE
-	blood.update_blood_drying_effect()
 	RegisterSignals(blood, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACKBY_SECONDARY), PROC_REF(on_cleaned))
 
 /datum/blood_type/crew/ethereal/proc/on_cleaned(obj/effect/decal/cleanable/source, mob/living/user, obj/item/tool, ...)
@@ -285,7 +284,6 @@ PROCESSING_SUBSYSTEM_DEF(blood_drying)
 		return
 	// Oil blood will never dry and can be ignited with fire
 	blood.can_dry = FALSE
-	blood.update_blood_drying_effect()
 	blood.AddElement(/datum/element/easy_ignite)
 
 /// A universal blood type which accepts everything
