@@ -14,4 +14,4 @@
 	lighting_cutoff_red = 5
 	lighting_cutoff_green = 20
 	lighting_cutoff_blue = 25
-	mob_size = MOB_SIZE_LARGE
+	mob_size = MOB_SIZE_HUGE

@@ -27,7 +27,7 @@
 
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/bee = 1 )
 
-	mob_size = MOB_SIZE_LARGE
+	mob_size = MOB_SIZE_SMALL
 	pixel_x = -16
 	base_pixel_x = -16
 
