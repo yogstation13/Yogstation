@@ -1,3 +1,6 @@
+/mob/living/basic/drone/snowflake/bardrone
+	show_diag_hud = FALSE
+
 /obj/effect/mob_spawn/ghost_role/drone/bar
 	name = "bardrone shell"
 	desc = "A modified shell of a maintenance drone, an nonexpendable robot built to serve drinks and chat."
