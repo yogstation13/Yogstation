@@ -1,3 +1,20 @@
 2024-12-01:
   Marabout2:
   - rscadd: Added a new stylish admin jail
+2024-12-02:
+  Absolucy:
+  - bugfix: Fixed some seemingly common runtime errors related to lighting.
+  - balance: His Grace now provides immunity to pain effects while in use.
+  Absolucy, Melbert:
+  - qol: Cockroaches, butterflies, chickens, and similarly small mobs can't bump open
+      (public access) airlocks unless they are controlled by a player.
+  - qol: Tweaked the sizes of a few mobs.
+  Gw0sty:
+  - rscadd: Added biomass links to Box's xenobio.
+  - bugfix: Replaced caravan space ruin arm-mounted implant with a toolset implant.
+  Shoddd:
+  - rscadd: Map votes now auto start when the round ends
+  Wisemonster:
+  - rscadd: Added a request console boards to the telecomms of Blueshift, Delta, Meta,
+      and Theseus.
+  - balance: Signal Technicians can now use the request consoles' announcement system
