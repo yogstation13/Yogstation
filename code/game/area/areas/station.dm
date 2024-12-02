@@ -1488,6 +1488,7 @@
 	power_light = FALSE
 	requires_power = TRUE
 	ambience_index = AMBIENCE_MINING
+	outdoors = TRUE
 
 // Telecommunications Satellite
 
