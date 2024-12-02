@@ -29,8 +29,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/closet/bluespace, // yogs - nope nice try
 		/obj/structure/disposalpipe,
 		/obj/structure/disposaloutlet, // connect outlet to bin, knock outlet onto shuttle, send it, enter bin
-		/obj/machinery/disposal,
-		/obj/effect/decal/cleanable/vomit
+		/obj/machinery/disposal
 	)))
 
 /obj/docking_port/mobile/supply
