@@ -151,9 +151,10 @@
 	destabilizer.hammer_synced = src
 	playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
 	destabilizer.fire()
-	charged = FALSE
-	update_appearance()
-	addtimer(CALLBACK(src, PROC_REF(Recharge)), charge_time)
+	if(charge_time > 0)
+		charged = FALSE
+		update_appearance()
+		addtimer(CALLBACK(src, PROC_REF(Recharge)), charge_time)
 
 /obj/item/kinetic_crusher/proc/Recharge()
 	if(!charged)
