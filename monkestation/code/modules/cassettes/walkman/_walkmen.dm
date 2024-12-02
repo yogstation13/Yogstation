@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(youtube_exempt, list(
 					///scrubbing the input before putting it in the shell
 					var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
 					///putting it in the shell
-					var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height <= 360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
+					var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height <= 360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist --extractor-args \"youtube:lang=en\" -- \"[shell_scrubbed_input]\"")
 					///any errors
 					var/errorlevel = output[SHELLEO_ERRORLEVEL]
 					///the standard output
