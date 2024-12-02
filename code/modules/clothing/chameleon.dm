@@ -102,15 +102,15 @@
 /datum/action/chameleon_outfit/proc/select_outfit(mob/user)
 	if(!user || !IsAvailable(feedback = FALSE))
 		return FALSE
-	var/datum/outfit/O
 	var/selected = tgui_input_list(user, "Select outfit to change into", "Chameleon Outfit", outfit_options)
 	if(!IsAvailable(feedback = FALSE) || QDELETED(src) || QDELETED(user))
 		return FALSE
 	var/outfit_type = outfit_options[selected]
 	if(!outfit_type)
 		return FALSE
-	O = new outfit_type()
+	var/datum/outfit/O = new outfit_type()
 	var/list/outfit_types = O.get_chameleon_disguise_info()
+
 	for(var/V in user.chameleon_item_actions)
 		var/datum/action/item_action/chameleon/change/A = V
 		var/done = FALSE
@@ -214,7 +214,8 @@
 	for(var/Y in types)
 		for(var/V in owner.chameleon_item_actions)
 			var/datum/action/item_action/chameleon/change/A = V
-			if(A.chameleon_blacklist[Y])
+			var/obj/item/I = Y
+			if(A.chameleon_blacklist[Y] || (initial(I.item_flags) & ABSTRACT || !initial(I.icon_state)))
 				continue
 			if(istype(Y, A.chameleon_type)) //Need to make sure it's the right type, wouldn't want to wear an armour vest on your head.
 				A.update_look(owner, Y)

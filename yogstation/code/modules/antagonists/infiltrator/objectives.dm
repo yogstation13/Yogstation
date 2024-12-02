@@ -166,15 +166,17 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/yogs/s
 		if(!considered_escaped(M))
 			continue
 		var/mob/living/carbon/human/H = M.current
+		var/mob/living/carbon/human/T = target.current
 		var/clothing = H.chameleon_item_actions.len //8 possible clothes: Head, suit, ears, glasses, uniform, shoes, gloves, backpack
 		var/copied = TRUE
 		for(var/datum/action/item_action/chameleon/change/V in H.chameleon_item_actions)
 			if(!V.copying)
 				clothing -= 1
-			if(V.copy_target != target)
+			if(V.copy_target != T)
 				clothing -= 1
 			if(clothing<3) //Some leniency if you don't have the required clothes or your target isn't wearing many, but not complete leniency
 				copied = FALSE
+				break
 		if(!copied)
 			continue
 		if(H.get_id_name() == target_real_name || target_missing_id)
