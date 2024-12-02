@@ -194,6 +194,8 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	else
 		to_chat(src, span_notice("The Message of the Day has not been set."))
 
+	config.ShowLobbyNotices(src) // monkestation edit
+
 /client/proc/self_notes()
 	set name = "View Admin Remarks"
 	set category = "OOC"

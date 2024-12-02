@@ -13,6 +13,7 @@ import { Inferno } from 'inferno';
 import { JOB2ICON } from './common/JobToIcon';
 import { deepMerge } from 'common/collections';
 import { BooleanLike } from 'common/react';
+import { LobbyNotices, LobbyNoticesType } from './common/LobbyNotices';
 
 type Job = {
   unavailable_reason: string | null;
@@ -37,6 +38,7 @@ type Data = {
   disable_jobs_for_non_observers: BooleanLike;
   priority: BooleanLike;
   round_duration: string;
+  notices: LobbyNoticesType;
 };
 
 export const JobEntry: Inferno.SFC<{
@@ -119,6 +121,7 @@ export const JobSelection = (props) => {
       }}
     >
       <Window.Content scrollable>
+        <LobbyNotices notices={data.notices} />
         <StyleableSection
           title={
             <>

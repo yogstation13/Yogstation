@@ -36,6 +36,10 @@
 	if(motd)
 		to_chat(src, "<div class=\"motd\">[motd]</div>", handle_whitespace=FALSE)
 
+	// MONKESTATION EDIT START - lobby notices
+	if (SSticker.current_state != GAME_STATE_STARTUP && length(config.lobby_notices))
+		config.ShowLobbyNotices(src)
+	// MONKESTATION END
 	if(GLOB.admin_notice)
 		to_chat(src, span_notice("<b>Admin Notice:</b>\n \t [GLOB.admin_notice]"))
 

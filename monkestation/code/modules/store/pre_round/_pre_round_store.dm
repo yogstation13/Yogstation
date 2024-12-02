@@ -23,7 +23,10 @@ GLOBAL_LIST_EMPTY(cached_preround_items)
 
 /datum/pre_round_store/ui_data(mob/user)
 	. = ..()
-	var/list/data = list()
+
+	var/list/data = list(
+		"notices" = config.lobby_notices
+	)
 	var/list/buyables = list()
 
 	if(!length(GLOB.cached_preround_items))

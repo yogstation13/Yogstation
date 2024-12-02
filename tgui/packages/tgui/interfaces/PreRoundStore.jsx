@@ -9,6 +9,7 @@ import {
   Section,
 } from '../components';
 import { Window } from '../layouts';
+import { LobbyNotices } from './common/LobbyNotices';
 
 const ItemListEntry = (props) => {
   const {
@@ -54,6 +55,7 @@ export const PreRoundStore = (_props) => {
     <Window resizable title="Pre Round Shop" width={450} height={700}>
       <Window.Content scrollable>
         <Section>
+          <LobbyNotices notices={data.notices} />
           <BlockQuote>
             Purchase an item that will spawn with you round start!
           </BlockQuote>

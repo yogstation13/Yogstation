@@ -96,6 +96,7 @@
 	if (fexists("[directory]/ezdb.txt"))
 		LoadEntries("ezdb.txt")
 	loadmaplist(CONFIG_MAPS_FILE)
+	LoadMisc() // Monkestation edit: other configuration stuff
 	LoadMOTD()
 	LoadPolicy()
 	LoadChatFilter()

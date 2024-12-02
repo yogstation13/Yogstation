@@ -62,3 +62,29 @@ th {
   vertical-align: baseline;
   text-align: left;
 }
+
+$border-color: #bbb;
+
+@mixin hr-style($width, $style) {
+  border: none;
+  border-top: $width $style $border-color;
+}
+
+hr {
+  &.dashed {
+    @include hr-style(3px, dashed);
+  }
+
+  &.dotted {
+    @include hr-style(2px, dotted);
+  }
+
+  &.solid {
+    @include hr-style(3px, solid);
+  }
+
+  &.rounded {
+    @include hr-style(8px, solid);
+    border-radius: 5px;
+  }
+}

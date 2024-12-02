@@ -45,6 +45,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 		"disable_jobs_for_non_observers" = SSlag_switch.measures[DISABLE_NON_OBSJOBS],
 		"round_duration" = DisplayTimeText(world.time - SSticker.round_start_time, round_seconds_to = 1),
 		"departments" = departments,
+		"notices" = config.lobby_notices, // monkestation edit - lobby notices
 	)
 	if(SSshuttle.emergency)
 		switch(SSshuttle.emergency.mode)
