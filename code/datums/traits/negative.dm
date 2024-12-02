@@ -988,7 +988,7 @@
 
 /datum/quirk/lactose_intolerance
 	name = "Lactose Intolerance"
-	desc = "You don't tolerate milk or other dairy products. Racist."
+	desc = "You don't tolerate milk or other dairy products."
 	icon = "utensils"
 	gain_text = span_danger("You suddenly feel intolerant towards milk.")
 	lose_text = span_notice("You feel like you could drink milk again.")
