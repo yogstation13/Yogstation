@@ -16,7 +16,7 @@
 	src.pixel_shift = pixel_shift
 
 	if(ismovable(target))
-		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved), override = TRUE) // temporary workaround. probably.
 
 	var/atom/atom_target = target
 	if(isturf(atom_target.loc))
