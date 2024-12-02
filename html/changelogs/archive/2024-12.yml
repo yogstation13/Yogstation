@@ -5,16 +5,46 @@
   Absolucy:
   - bugfix: Fixed some seemingly common runtime errors related to lighting.
   - balance: His Grace now provides immunity to pain effects while in use.
+  - qol: Web sounds (admin/curator music + walkmans) should now show the english title
+      if youtube provides one.
+  - rscadd: Drones now have built-in diagnostic HUDs.
+  - bugfix: Proto-kinetic crushers with zero or negative recharge times will just
+      not de-charge at all.
+  Absolucy, GoldenAlpharex:
+  - qol: Grown logs no longer spam your chat when cut into planks, instead displaying
+      balloon alerts informing you of how many planks were made!
+  - qol: Cotton and Durathread bundles no longer spam your chat either, and display
+      a balloon alert instead.
+  - bugfix: Cotton and Durathread bundles no longer runtime when creating raw cotton/durathread
+      from the created stack having been merged with an existing one.
   Absolucy, Melbert:
   - qol: Cockroaches, butterflies, chickens, and similarly small mobs can't bump open
       (public access) airlocks unless they are controlled by a player.
   - qol: Tweaked the sizes of a few mobs.
+  - bugfix: Hopefully fixed FPS lag relating to large amounts of blood on-screen.
+  Absolucy, Y0SH1M4S73R:
+  - qol: The asteroid on Tramstation can now have areas expanded into or created within.
+  Eagletanker:
+  - rscadd: Added the CommDrobe (Command Outfitting Station) to the maps which lacked
+      it. These can be found in the bridge.
   Gw0sty:
   - rscadd: Added biomass links to Box's xenobio.
   - bugfix: Replaced caravan space ruin arm-mounted implant with a toolset implant.
+  Marabout2:
+  - rscadd: 'Added a version of the space hotel ruin, that actually work as a hotel.
+      With ghost roles.
+
+      :cl:'
+  - rscadd: Added three new Syndicate ghost roles in the Deep_storage ruin inculding
+      a comms agent
   Shoddd:
   - rscadd: Map votes now auto start when the round ends
   Wisemonster:
   - rscadd: Added a request console boards to the telecomms of Blueshift, Delta, Meta,
       and Theseus.
   - balance: Signal Technicians can now use the request consoles' announcement system
+  - rscadd: The HoP will now spawn with his HoP backpacks, rather than the standard
+      grey ones.
+  flleeppyy:
+  - server: Adds the ability to add lobby notices. These will show in the pre-round
+      shop, latejoin menu, and in chat when you first join.

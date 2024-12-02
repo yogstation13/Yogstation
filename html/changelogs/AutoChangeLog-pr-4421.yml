@@ -1,4 +1,0 @@
-author: "Absolucy, Melbert"
-delete-after: True
-changes:
-  - bugfix: "Hopefully fixed FPS lag relating to large amounts of blood on-screen."
