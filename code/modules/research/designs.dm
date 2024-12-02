@@ -22,7 +22,7 @@ other types of metals and chemistry for reagents).
 
 /datum/design						//Datum for object designs, used in construction
 	var/name = "Name"					//Name of the created object.
-	var/desc = "Desc"					//Description of the created object.
+	var/desc = null					//Description of the created object.
 	var/id = DESIGN_ID_IGNORE						//ID of the created object for easy refernece. Alphanumeric, lower-case, no symbols
 	var/build_type = null				//Flag as to what kind machine the design is built in. See defines.
 	var/list/materials = list()			//List of materials. Format: "id" = amount.
@@ -66,6 +66,12 @@ other types of metals and chemistry for reagents).
 	var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/research_designs)
 	sheet.send(user)
 	return sheet.icon_tag(id)
+
+/// Returns the description of the design
+/datum/design/proc/get_description()
+	var/obj/object_build_item_path = build_path
+
+	return isnull(desc) ? initial(object_build_item_path.desc) : desc
 
 ////////////////////////////////////////
 //Disks for transporting design datums//
