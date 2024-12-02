@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Proto-kinetic crushers with zero or negative recharge times will just not de-charge at all."
