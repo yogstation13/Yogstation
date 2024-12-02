@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Web sounds (admin/curator music + walkmans) should now show the english title if youtube provides one."
