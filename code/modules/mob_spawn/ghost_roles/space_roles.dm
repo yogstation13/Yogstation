@@ -171,3 +171,36 @@
 	mask = /obj/item/clothing/mask/cigarette/cigar/havana
 	l_pocket = /obj/item/melee/energy/sword/saber/red
 	r_pocket = /obj/item/melee/baton/telescopic
+
+
+/// Deep Storage Syndicate base
+
+/obj/effect/mob_spawn/ghost_role/human/deepstorage_syndicate/comms
+	name = "Syndicate Comms Agent"
+	prompt_name = "a syndicate comms agent"
+	you_are_text = "You are a syndicate comms agent, employed in a remote research bunker."
+	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has a station in this sector. Monitor enemy activity as best you can, and try to keep a low profile. Use the communication equipment to provide support to any field agents, and sow disinformation to throw Nanotrasen off your trail. Do not let the base fall into enemy hands!"
+	important_text = "DO NOT abandon the base. However, you may freely explore your surrounding within your current space quadrant (Z-Level)"
+	outfit = /datum/outfit/lavaland_syndicate/comms
+
+/obj/effect/mob_spawn/ghost_role/human/deepstorage_syndicate
+	name = "Syndicate Bioweapon Scientist"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	prompt_name = "a syndicate science technician"
+	you_are_text = "You are a syndicate science technician, employed in a remote research bunker developing biological weapons."
+	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has a station in this sector. Continue your research as best you can, and try to keep a low profile."
+	important_text = "DO NOT abandon the base or let it fall into enemy hands! However, you may freely explore your surrounding within your current space quadrant (Z-Level)"
+	outfit = /datum/outfit/deepstorage_syndicate
+
+/datum/outfit/deepstorage_syndicate
+	name = "Deep Storage Syndicate Agent"
+	id = /obj/item/card/id/advanced/chameleon
+	id_trim = /datum/id_trim/chameleon/operative
+	uniform = /obj/item/clothing/under/syndicate
+	suit = /obj/item/clothing/suit/toggle/labcoat/nova/interdyne_labcoat/white
+	back = /obj/item/storage/backpack
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	ears = /obj/item/radio/headset/syndicate/alt
+	shoes = /obj/item/clothing/shoes/combat
+	r_pocket = /obj/item/gun/ballistic/automatic/pistol

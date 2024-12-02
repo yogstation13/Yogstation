@@ -185,6 +185,9 @@
 /area/ruin/space/has_grav/deepstorage/pharmacy
 	name = "\improper Deep Storage Pharmacy"
 
+/area/ruin/space/has_grav/deepstorage/xenobiology
+	name = "\improper Deep Storage Xenobiology"
+
 //Ruin of Abandoned Zoo
 
 /area/ruin/space/has_grav/abandonedzoo
