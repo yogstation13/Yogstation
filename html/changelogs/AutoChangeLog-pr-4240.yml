@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added a request console boards to the telecomms of Blueshift, Delta, Meta, and Theseus."
+  - balance: "Signal Technicians can now use the request consoles' announcement system"
