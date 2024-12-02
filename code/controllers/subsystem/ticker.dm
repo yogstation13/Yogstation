@@ -248,7 +248,11 @@ SUBSYSTEM_DEF(ticker)
 				declare_completion(force_ending)
 				check_maprotate()
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-
+//MONKESTATION ADDITION START
+				if(SSmapping.map_voted || SSmapping.map_force_chosen == TRUE)
+					return
+				SSmapping.mapvote()
+//MONKESTATION ADDITION END
 
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, span_boldannounce("Starting game..."))
