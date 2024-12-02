@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added biomass links to Box's xenobio."
+  - bugfix: "Replaced caravan space ruin arm-mounted implant with a toolset implant."
