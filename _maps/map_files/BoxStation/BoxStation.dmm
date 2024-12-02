@@ -25768,6 +25768,7 @@
 	},
 /obj/item/wirecutters,
 /obj/item/vacuum_pack,
+/obj/item/disk/vacuum_upgrade/biomass,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "isa" = (
