@@ -201,7 +201,7 @@
 /datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(M.dna?.species?.toxic_food & DAIRY)
-		M.adjust_disgust(5)
+		M.adjust_disgust(min(volume / 2, 5))
 
 /datum/reagent/consumable/milk/coconut
 	name = "Coconut Milk"
