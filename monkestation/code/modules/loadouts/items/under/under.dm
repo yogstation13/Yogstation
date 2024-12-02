@@ -159,6 +159,10 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	name = "Recolorable Sundress"
 	item_path = /obj/item/clothing/under/dress/sundress
 
+/datum/loadout_item/under/miscellaneous/wlpinafore
+	name = "Recolorable Wonderland Pinafore"
+	item_path = /obj/item/clothing/under/dress/wlpinafore
+
 /datum/loadout_item/under/miscellaneous/kilt
 	name = "Kilt"
 	item_path = /obj/item/clothing/under/costume/kilt
@@ -283,7 +287,7 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	item_path = /obj/item/clothing/under/suit/beige
 
 /datum/loadout_item/under/formal/ballgown
-	name = "Ball gown"
+	name = "Recolorable Ball Gown"
 	item_path = /obj/item/clothing/under/dress/ballgown
 
 /datum/loadout_item/under/formal/black_suit
