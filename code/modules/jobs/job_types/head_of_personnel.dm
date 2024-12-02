@@ -66,6 +66,12 @@
 	suit = /obj/item/clothing/suit/armor/vest/hop
 	implants = list(/obj/item/implant/mindshield)
 
+	//monkestation addition start:
+	backpack = /obj/item/storage/backpack/head_of_personnel
+	satchel = /obj/item/storage/backpack/satchel/head_of_personnel
+	duffelbag = /obj/item/storage/backpack/duffelbag/head_of_personnel
+	//monkestation addition end
+
 	chameleon_extras = list(
 		/obj/item/gun/energy/e_gun,
 		/obj/item/stamp/head/hop,
