@@ -1,0 +1,4 @@
+author: "13spacemen"
+delete-after: true 
+changes: 
+  - bugfix: "Vox spawn with the correct tank and mask at roundstart"
