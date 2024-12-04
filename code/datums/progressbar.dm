@@ -26,7 +26,7 @@
 	var/progress_ended = FALSE
 
 
-/datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE, skill_check)
+/datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE, datum/callback/extra_checks, skill_check)
 	. = ..()
 	if (!istype(target))
 		stack_trace("Invalid target [target] passed in")
@@ -50,6 +50,7 @@
 		SET_PLANE_EXPLICIT(skill_icon, ABOVE_HUD_PLANE, User)
 		skill_icon.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	user = User
+	src.extra_checks = extra_checks
 
 	LAZYADDASSOCLIST(user.progressbars, bar_loc, src)
 	var/list/bars = user.progressbars[bar_loc]
