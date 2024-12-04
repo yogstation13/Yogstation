@@ -74,9 +74,7 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "bM" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable/layer1,
+/obj/item/kirbyplants/random,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "co" = (
@@ -145,7 +143,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
 /obj/machinery/button/door/directional/south{
-	id = "engsm";
+	id = "eng_sm";
 	name = "Radiation Shutters Control";
 	req_access = list("engineering")
 	},
@@ -192,7 +190,12 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"fm" = (
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/dark,
+/area/station/engineering/main)
 "fp" = (
+/obj/machinery/light/small/directional/south,
 /obj/structure/cable,
 /obj/machinery/power/smes/engineering,
 /turf/open/floor/iron/dark,
@@ -307,6 +310,10 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"iV" = (
+/obj/machinery/light/small/directional/north,
+/turf/open/floor/iron/dark,
+/area/station/engineering/main)
 "iZ" = (
 /obj/structure/rack,
 /obj/item/crowbar/red,
@@ -347,12 +354,8 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "kx" = (
-/obj/structure/table,
-/obj/machinery/camera/directional/north{
-	c_tag = "Engineering - SMES, Engine";
-	name = "engineering camera"
-	},
-/turf/open/floor/iron/dark,
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
 /area/station/engineering/main)
 "kz" = (
 /obj/machinery/meter,
@@ -448,14 +451,9 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
-"oi" = (
-/obj/effect/spawner/structure/window/reinforced/plasma,
-/turf/open/floor/plating,
-/area/station/engineering/main)
 "ou" = (
-/obj/machinery/light/small/directional/south,
-/obj/structure/cable,
-/obj/item/kirbyplants/random,
+/obj/structure/rack,
+/obj/item/crowbar/red,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "oO" = (
@@ -693,6 +691,9 @@
 /area/station/engineering/supermatter)
 "yK" = (
 /obj/structure/cable/layer1,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "ze" = (
@@ -745,6 +746,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "Ao" = (
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
@@ -809,7 +811,7 @@
 	},
 /obj/structure/cable/multilayer/connected,
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "engsm";
+	id = "eng_sm";
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
@@ -941,8 +943,13 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "FD" = (
-/obj/structure/table,
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/box,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/cable/layer1,
+/obj/machinery/holopad,
+/turf/open/floor/iron/dark/smooth_large,
 /area/station/engineering/main)
 "FF" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -978,7 +985,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/radiation/preopen{
-	id = "engsm";
+	id = "eng_sm";
 	name = "Radiation Chamber Shutters"
 	},
 /turf/open/floor/plating,
@@ -999,13 +1006,6 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
-"HF" = (
-/obj/machinery/light/small/directional/south,
-/obj/structure/cable,
-/obj/structure/extinguisher_cabinet/directional/south,
-/obj/item/kirbyplants/random,
-/turf/open/floor/iron/dark,
-/area/station/engineering/main)
 "HQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1031,7 +1031,11 @@
 /turf/open/floor/plating,
 /area/station/engineering/supermatter/room)
 "Ik" = (
-/obj/structure/chair,
+/obj/structure/rack,
+/obj/item/storage/toolbox/electrical{
+	pixel_y = 7
+	},
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "Iz" = (
@@ -1068,6 +1072,12 @@
 /obj/structure/table,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"JB" = (
+/obj/machinery/light/small/directional/north,
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/iron/dark,
+/area/station/engineering/main)
 "JK" = (
 /obj/structure/cable,
 /obj/structure/cable/layer1,
@@ -1128,9 +1138,15 @@
 /area/station/engineering/supermatter/room)
 "Lk" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 8
+/obj/machinery/power/terminal,
+/obj/structure/table,
+/obj/item/stock_parts/cell/upgraded{
+	pixel_y = 10
 	},
+/obj/item/stock_parts/cell/upgraded{
+	pixel_y = 5
+	},
+/obj/item/stock_parts/cell/upgraded,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "Lm" = (
@@ -1149,25 +1165,9 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "Mu" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
+/obj/structure/chair{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable/layer1,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Engine SMES Room"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
-/turf/open/floor/iron/dark/textured,
-/area/station/engineering/main)
-"MB" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable/layer1,
-/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "MM" = (
@@ -1318,11 +1318,17 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "QO" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/obj/machinery/power/terminal{
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable/layer1,
+/turf/open/floor/iron/dark/textured,
 /area/station/engineering/main)
 "QS" = (
 /obj/structure/cable,
@@ -1383,7 +1389,7 @@
 "Tg" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/airalarm/directional/north,
-/obj/structure/table,
+/obj/structure/rack,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "Tk" = (
@@ -1479,13 +1485,24 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "VI" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+/obj/structure/cable,
+/obj/machinery/power/terminal{
 	dir = 1
 	},
+/obj/structure/table,
+/obj/machinery/cell_charger,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "Wh" = (
+/obj/machinery/camera/directional/west{
+	c_tag = "Engineering - SMES, Engine";
+	name = "engineering camera"
+	},
+/obj/structure/noticeboard/directional/west,
 /obj/structure/cable/multilayer/connected,
+/obj/structure/table,
+/obj/item/paper/fluff/stations/boxstation/station_engine_smes,
+/obj/item/paper/fluff/stations/boxstation/station_pa_wiring,
 /turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "Wi" = (
@@ -1578,11 +1595,11 @@
 /area/station/engineering/supermatter/room)
 
 (1,1,1) = {"
-GP
-oO
-oO
-oO
-GP
+JB
+VI
+Wh
+Lk
+fp
 GP
 xP
 hE
@@ -1606,11 +1623,11 @@ xP
 xP
 "}
 (2,1,1) = {"
-Mu
-bM
-MB
 gO
-HF
+oO
+yK
+oO
+gO
 GP
 Kd
 TK
@@ -1634,12 +1651,12 @@ xP
 xP
 "}
 (3,1,1) = {"
-GP
-EU
 tm
-oO
-fp
-GP
+tm
+FD
+Ao
+gO
+kX
 xP
 TK
 DM
@@ -1662,12 +1679,12 @@ xP
 xP
 "}
 (4,1,1) = {"
-GP
-FD
+EU
+oO
 tm
-VI
-Lk
-kX
+oO
+oO
+GP
 Kd
 TK
 DM
@@ -1690,12 +1707,12 @@ oW
 xP
 "}
 (5,1,1) = {"
-GP
-Tg
+iV
+oO
 tm
-yK
-Wh
-kX
+oO
+fm
+GP
 xP
 TK
 DM
@@ -1720,10 +1737,10 @@ xP
 (6,1,1) = {"
 GP
 kx
-uh
-Ao
 QO
-kX
+kx
+GP
+GP
 Kd
 TK
 DM
@@ -1747,11 +1764,11 @@ xP
 "}
 (7,1,1) = {"
 GP
-Ik
+ou
 uh
-oO
-fp
+Mu
 GP
+xP
 xP
 TK
 DM
@@ -1775,11 +1792,11 @@ oW
 "}
 (8,1,1) = {"
 GP
-Ik
+Tg
 uh
-gO
-ou
-GP
+bM
+kX
+Kd
 Kd
 TK
 DM
@@ -1805,9 +1822,9 @@ xP
 GP
 Ik
 uh
-oO
-FD
+Mu
 GP
+xP
 xP
 TK
 NW
@@ -1831,11 +1848,11 @@ xP
 "}
 (10,1,1) = {"
 GP
-oi
+kX
 Iz
-oi
+kX
 GP
-GP
+BL
 BL
 ny
 BL

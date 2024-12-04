@@ -68,3 +68,18 @@
 			from where you sent them off from in several minutes time. Don't worry, we give you a cut of what we get paid. We pay this into whatever
 			ID card you have equipped, on top of the TC payment we give.</p>
 			<p>Good luck agent. You can burn this document with the supplied lighter.</p>"}
+
+/obj/item/paper/fluff/stations/boxstation/station_engine_smes
+	name = "Subject: Station-side Engine SMES Units"
+	default_raw_text = "<br>From: CentCom Engineering, Station Design Division<br><br>To: Station Engineers<br><br>The SMES units in this room are NOT to be used like the main SMES units.<br>Do NOT connect these SMES units to the main power grid.<br>These SMES units provide power ONLY to the ENGINE AREA and/or ENGINE EQUIPMENT.<br>"
+
+/obj/item/paper/fluff/stations/boxstation/station_pa_wiring
+	name = "Subject: Station-side PA Wiring"
+	default_raw_text = "<br>From: CentCom Engineering, Station Design Division<br><br>To: Station Engineers<br><br>The cables in the station-side Particle Accelerator and pre-built engine area are to NOT be hardwired to the station power grid.<br>Likewise, do NOT hardwire any part of this setup into itself.<br>The red cables FEED power to the station-side Engine and Main SMES units.<br>The yellow cables TRANSFER power to the machinery, with the exception of the ones beneath the collectors.<br>"
+/obj/item/paper/fluff/stations/boxstation/external_engine_smes
+	name = "Subject: External Engine SMES Units"
+	default_raw_text = "<br>From: CentCom Engineering, Station Design Division<br><br>To: Station Engineers<br><br>The SMES units on the platform are NOT to be used like the main SMES units.<br>Do NOT connect those SMES units to the main power grid.<br>Those SMES units are to provide power ONLY to the ENGINE AREA and/or ENGINE EQUIPMENT.<br>"
+
+/obj/item/paper/fluff/stations/boxstation/external_pa_wiring
+	name = "Subject: External PA Wiring"
+	default_raw_text = "<br>From: CentCom Engineering, Station Design Division<br><br>To: Station Engineers<br><br>The cables in the external Particle Accelerator and pre-built engine area are to NOT be hardwired to the station power grid.<br>Likewise, do NOT hardwire any part of this setup into itself.<br>The red cables FEED power to the external Engine and Main SMES units.<br>The yellow cables TRANSFER power to the machinery, with the exception of the ones beneath the collectors.<br>"

@@ -2,39 +2,12 @@
 "a" = (
 /turf/open/floor/iron,
 /area/station/engineering/main)
-"b" = (
-/obj/machinery/light/small/directional/south,
-/turf/open/floor/iron/dark,
-/area/station/engineering/main)
-"c" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron,
-/area/station/engineering/main)
-"e" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron,
-/area/station/engineering/main)
 "f" = (
 /turf/template_noop,
 /area/template_noop)
 "h" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
-"i" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Engine Room"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
-/turf/open/floor/iron/dark/textured,
-/area/station/engineering/main)
 "l" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -53,10 +26,8 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "o" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
 /area/station/engineering/main)
 "r" = (
 /obj/structure/lattice/catwalk,
@@ -66,10 +37,6 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
-/turf/open/floor/iron,
-/area/station/engineering/main)
-"v" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "z" = (
@@ -89,12 +56,6 @@
 "C" = (
 /turf/closed/wall/r_wall,
 /area/station/maintenance/department/engineering/central)
-"D" = (
-/obj/machinery/light/directional/north,
-/obj/machinery/airalarm/directional/north,
-/obj/structure/table,
-/turf/open/floor/iron/dark,
-/area/station/engineering/main)
 "E" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -115,13 +76,24 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "J" = (
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Engine Room"
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Engine SMES Room"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
+/turf/open/floor/iron/dark/textured,
+/area/station/engineering/main)
+"L" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
+"M" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -130,35 +102,8 @@
 	},
 /turf/open/floor/iron/dark/textured,
 /area/station/engineering/main)
-"K" = (
-/obj/structure/table,
-/turf/open/floor/iron/dark,
-/area/station/engineering/main)
-"L" = (
-/obj/structure/grille,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
-"M" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/station/engineering/main)
-"N" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron,
-/area/station/engineering/main)
-"Q" = (
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/iron/dark,
-/area/station/engineering/main)
 "R" = (
 /turf/closed/wall/r_wall,
-/area/station/engineering/main)
-"W" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
 /area/station/engineering/main)
 "Y" = (
 /obj/effect/spawner/structure/window/reinforced/plasma,
@@ -170,11 +115,11 @@
 /area/station/maintenance/department/engineering/central)
 
 (1,1,1) = {"
-R
 B
 B
 B
-R
+B
+B
 R
 f
 A
@@ -198,11 +143,11 @@ f
 f
 "}
 (2,1,1) = {"
-i
-M
-M
 B
-b
+B
+B
+B
+B
 R
 A
 A
@@ -226,12 +171,12 @@ f
 f
 "}
 (3,1,1) = {"
-R
-Q
-M
 B
 B
-R
+B
+B
+B
+E
 f
 A
 m
@@ -254,12 +199,12 @@ f
 f
 "}
 (4,1,1) = {"
-R
-K
-M
-W
 B
-E
+B
+B
+B
+B
+R
 A
 A
 m
@@ -282,12 +227,12 @@ m
 f
 "}
 (5,1,1) = {"
+B
+B
+B
+B
+B
 R
-D
-M
-B
-B
-E
 f
 A
 m
@@ -311,11 +256,11 @@ f
 "}
 (6,1,1) = {"
 R
-K
+o
 M
 o
-B
-E
+R
+R
 A
 A
 m
@@ -340,10 +285,10 @@ f
 (7,1,1) = {"
 R
 B
-M
 B
 B
 R
+f
 f
 A
 m
@@ -368,10 +313,10 @@ m
 (8,1,1) = {"
 R
 B
-M
 B
-b
-R
+B
+E
+A
 A
 A
 m
@@ -396,19 +341,19 @@ f
 (9,1,1) = {"
 R
 B
-M
 B
 B
 R
 f
+f
 A
-m
 A
-m
 A
-m
 A
-m
+A
+A
+A
+A
 A
 f
 f
@@ -423,9 +368,9 @@ f
 "}
 (10,1,1) = {"
 R
-Y
+E
 J
-Y
+E
 R
 R
 R
@@ -436,7 +381,7 @@ R
 Y
 Y
 R
-A
+f
 f
 f
 f
@@ -452,7 +397,7 @@ f
 (11,1,1) = {"
 R
 a
-c
+a
 a
 a
 a
@@ -480,7 +425,7 @@ A
 (12,1,1) = {"
 R
 a
-c
+a
 a
 a
 a
@@ -508,7 +453,7 @@ f
 (13,1,1) = {"
 Y
 a
-c
+a
 a
 a
 a
@@ -536,7 +481,7 @@ f
 (14,1,1) = {"
 Y
 a
-c
+a
 a
 a
 a
@@ -564,7 +509,7 @@ A
 (15,1,1) = {"
 R
 a
-c
+a
 a
 a
 a
@@ -591,8 +536,8 @@ f
 "}
 (16,1,1) = {"
 R
-v
-c
+a
+a
 a
 a
 a
@@ -620,7 +565,7 @@ f
 (17,1,1) = {"
 F
 a
-e
+a
 a
 a
 a
@@ -648,7 +593,7 @@ A
 (18,1,1) = {"
 Y
 a
-e
+a
 a
 a
 a
@@ -676,7 +621,7 @@ f
 (19,1,1) = {"
 F
 a
-e
+a
 a
 a
 a
@@ -703,8 +648,8 @@ A
 "}
 (20,1,1) = {"
 R
-N
-e
+a
+a
 a
 a
 a
