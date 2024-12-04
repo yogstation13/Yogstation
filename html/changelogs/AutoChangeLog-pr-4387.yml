@@ -1,0 +1,9 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - rscadd: "Adds wound armor to smithed armor."
+  - rscadd: "Smithed armor can hold makeshift and smithed weapons in suit storage."
+  - rscadd: "Smithed daggers can be used as knives."
+  - balance: "Remove stamina cost from smithed weapons."
+  - bugfix: "SMITHED SPEARS DO POINTY DAMAGE"
+  - bugfix: "Weak weapon trait also reduces throwing damage."
