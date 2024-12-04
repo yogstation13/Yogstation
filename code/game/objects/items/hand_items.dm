@@ -225,6 +225,12 @@
 	user.do_attack_animation(slapped)
 
 	var/slap_volume = 50
+	//MONKESTATION EDIT START
+	var/feeble = HAS_TRAIT(slapped, TRAIT_FEEBLE)
+	var/no_harm = feeble && HAS_TRAIT(user, TRAIT_PACIFISM) && slapped != user
+	if(no_harm)
+		slap_volume *= 0.5
+	//MONKESTATION EDIT END
 	var/datum/status_effect/offering/kiss_check = slapped.has_status_effect(/datum/status_effect/offering)
 	if(kiss_check && istype(kiss_check.offered_item, /obj/item/hand_item/kisser) && (user in kiss_check.possible_takers))
 		user.visible_message(
@@ -268,11 +274,29 @@
 				)
 	else
 		user.visible_message(
-			span_danger("[user] slaps [slapped]!"),
-			span_notice("You slap [slapped]!"),
-			span_hear("You hear a slap."),
+			//MONKESTATION EDIT START
+			// span_danger("[user] slaps [slapped]!"), - MONKESTATION EDIT ORIGINAL
+			// span_notice("You slap [slapped]!"), - MONKESTATION EDIT ORIGINAL
+			// span_hear("You hear a slap."), - MONKESTATION EDIT ORIGINAL
+			span_danger("[user] [no_harm?"gently ":""]slaps [slapped]!"),
+			span_notice("You [no_harm?"gently ":""]slap [slapped]!"),
+			span_hear("You hear a [no_harm?"light ":""]slap."),
+			//MONKESTATION EDIT END
 		)
 	playsound(slapped, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
+	//MONKESTATION EDIT START
+	if (feeble && !no_harm)
+		var/damage = 5
+		var/attack_direction = get_dir(user, slapped)
+		var/obj/item/bodypart/affecting = slapped.get_bodypart(slapped.get_random_valid_zone(user.zone_selected))
+		var/armor_block = slapped.run_armor_check(affecting, MELEE)
+		slapped.apply_damage(damage, BRUTE, affecting, armor_block, attack_direction = attack_direction)
+
+		slapped.visible_message(
+			span_danger("[user] hurt [slapped]!"),
+			span_userdanger("[user]'s slap really hurt!"),
+		)
+	//MONKESTATION EDIT END
 	return
 
 /obj/item/hand_item/slapper/pre_attack_secondary(atom/target, mob/living/user, params)

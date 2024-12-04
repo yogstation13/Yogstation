@@ -194,6 +194,10 @@
 
 /turf/open/floor/proc/pry_tile(obj/item/I, mob/user, silent = FALSE)
 	I.play_tool_sound(src, 80)
+	//MONKESTATION EDIT START
+	if(feeble_quirk_slow_interact(user, "remove", src))
+		return
+	//MONKESTATION EDIT END
 	return remove_tile(user, silent)
 
 /turf/open/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)

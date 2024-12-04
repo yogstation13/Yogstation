@@ -48,11 +48,14 @@
 /datum/component/limbless_aid/proc/add_support(mob/living/user)
 	ADD_TRAIT(user, TRAIT_NO_LEG_AID, "[REF(src)]_aid")
 	RegisterSignal(user, COMSIG_LIVING_LIMBLESS_MOVESPEED_UPDATE, PROC_REF(modify_movespeed), override = TRUE)
+	RegisterSignal(user, COMSIG_LIVING_FEEBLE_MOVESPEED_UPDATE, PROC_REF(modify_movespeed_feeble), override = TRUE)
 	RegisterSignal(user, COMSIG_CARBON_PAINED_STEP, PROC_REF(pain_step), override = TRUE)
 	RegisterSignal(user, COMSIG_CARBON_LIMPING, PROC_REF(limp_check), override = TRUE)
 	RegisterSignal(user, COMSIG_LIVING_RESIST, PROC_REF(self_brace), override = TRUE)
 	user.update_limbless_locomotion()
 	user.update_limbless_movespeed_mod()
+	if(HAS_TRAIT(user, TRAIT_FEEBLE))
+		feeble_quirk_update_slowdown(user)
 
 /datum/component/limbless_aid/proc/on_drop(obj/item/source, mob/living/user)
 	SIGNAL_HANDLER
@@ -63,11 +66,14 @@
 	REMOVE_TRAIT(user, TRAIT_NO_LEG_AID, "[REF(src)]_aid")
 	un_self_brace(user)
 	UnregisterSignal(user, COMSIG_LIVING_LIMBLESS_MOVESPEED_UPDATE)
+	UnregisterSignal(user, COMSIG_LIVING_FEEBLE_MOVESPEED_UPDATE)
 	UnregisterSignal(user, COMSIG_CARBON_PAINED_STEP)
 	UnregisterSignal(user, COMSIG_CARBON_LIMPING)
 	UnregisterSignal(user, COMSIG_LIVING_RESIST)
 	user.update_limbless_locomotion()
 	user.update_limbless_movespeed_mod()
+	if(HAS_TRAIT(user, TRAIT_FEEBLE))
+		feeble_quirk_update_slowdown(user)
 
 /datum/component/limbless_aid/proc/modify_movespeed(mob/living/source, list/modifiers)
 	SIGNAL_HANDLER
@@ -75,6 +81,10 @@
 	var/obj/item/bodypart/leg = get_braced_leg(source)
 	if(isnull(leg) || leg.bodypart_disabled)
 		modifiers += movespeed_mod
+
+/datum/component/limbless_aid/proc/modify_movespeed_feeble(mob/living/source, list/modifiers)
+	SIGNAL_HANDLER
+	modifiers += movespeed_mod * 0.9
 
 /datum/component/limbless_aid/proc/pain_step(mob/living/source, obj/item/affected_leg, footstep_count)
 	SIGNAL_HANDLER

@@ -144,7 +144,20 @@
 	var/ingredient_count = 0
 
 	for (var/atom/movable/ingredient as anything in ingredients)
+		//MONKESTATION EDIT START
+		// quick hack to make any living mobs in the microwave be drawn lying down
+		// hopefully this wont't break anything
+		var/mob/living/L = ingredient
+		var/lying_angle
+		if(istype(L))
+			lying_angle = L.get_lying_angle()
+			L.set_lying_angle(90)
+		//MONKESTATION EDIT END
 		var/image/ingredient_overlay = image(ingredient, src)
+		//MONKESTATION EDIT START
+		if(istype(L))
+			L.set_lying_angle(lying_angle)
+		//MONKESTATION EDIT END
 
 		var/icon/ingredient_icon = icon(ingredient.icon, ingredient.icon_state)
 
@@ -324,6 +337,11 @@
 		update_appearance()
 		return
 
+	//MONKESTATION EDIT START
+	if (istype(O, /obj/item/riding_offhand))
+		var/obj/item/riding_offhand/riding = O
+		return stuff_mob_in(riding.rider, user)
+	//MONKESTATION EDIT END
 	return ..()
 
 /obj/machinery/microwave/attack_hand_secondary(mob/user, list/modifiers)

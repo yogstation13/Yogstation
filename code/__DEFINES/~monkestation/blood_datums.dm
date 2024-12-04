@@ -19,3 +19,6 @@
 
 /// Updating a mob's movespeed when lacking limbs. (list/modifiers)
 #define COMSIG_LIVING_LIMBLESS_MOVESPEED_UPDATE "living_get_movespeed_modifiers"
+
+/// Updating a mob's movespeed when they have the feeble trait. (list/modifiers)
+#define COMSIG_LIVING_FEEBLE_MOVESPEED_UPDATE "living_get_movespeed_modifiers_feeble"

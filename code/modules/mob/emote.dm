@@ -20,6 +20,13 @@
 		act = copytext(act, 1, custom_param)
 
 	act = lowertext(act)
+
+	//MONKESTATION EDIT START
+	// not a fan of this but I don't think there's a less hacky way to do it without changing how emotes work
+	if (HAS_TRAIT(src, TRAIT_FEEBLE) && !intentional && (act in list("scream", "screech", "screams", "screeches")))
+		act = pick("whimper", "cry")
+	//MONKESTATION EDIT END
+
 	var/list/key_emotes = GLOB.emote_list[act]
 
 	if(!length(key_emotes))

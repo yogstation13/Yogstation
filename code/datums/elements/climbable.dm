@@ -68,10 +68,12 @@
 		adjusted_climb_time *= 0.25 //aliens are terrifyingly fast
 	if(HAS_TRAIT(user, TRAIT_FREERUNNING)) //do you have any idea how fast I am???
 		adjusted_climb_time *= 0.8
-	//monkestation edit - CYBERNETICS
+	//MONKESTATION EDIT START
+	if(HAS_TRAIT(user, TRAIT_FEEBLE)) //do you have any idea how slow I am???
+		adjusted_climb_time *= 1.25
 	if(HAS_TRAIT(user,TRAIT_FAST_CLIMBER)) //How it feels to chew 5 gum
 		adjusted_climb_time *= 0.3
-	//monkestation edit - CYBERNETICS
+	//MONKESTATION EDIT END
 	LAZYADDASSOCLIST(current_climbers, climbed_thing, user)
 	if(do_after(user, adjusted_climb_time, climbed_thing, interaction_key = DOAFTER_SOURCE_CLIMBING)) // monkestation edit: add an interaction key
 		if(QDELETED(climbed_thing)) //Checking if structure has been destroyed
