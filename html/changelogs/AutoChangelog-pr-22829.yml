@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - rscadd: "Adds lactose intolerance quirk"
+  - tweak: "Lizards are now lactose intolerant instead of not liking vegetables and sugar"

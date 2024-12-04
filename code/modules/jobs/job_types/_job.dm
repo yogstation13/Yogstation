@@ -189,7 +189,7 @@
 	if(outfit_override || outfit)
 		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)
 
-	H.dna.species.after_equip_job(src, H, visualsOnly)
+	H.dna.species.after_equip_job(src, H, preference_source)
 
 	for(var/skill in base_skills)
 		H.adjust_skill(skill, base_skills[skill])

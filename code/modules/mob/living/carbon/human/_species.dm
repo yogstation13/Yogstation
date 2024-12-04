@@ -1457,7 +1457,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H, client/preference_source)
 	H.update_mutant_bodyparts()
 
 // Do species-specific reagent handling here
