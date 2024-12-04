@@ -1,0 +1,5 @@
+author: "ThePooba"
+delete-after: True
+changes:
+  - rscadd: "Added Rayne Lamp to company imports tab. It provides some light and a bit of warmth, worn in the neck slot."
+  - rscadd: "Added Rayne Corporation to company imports."
