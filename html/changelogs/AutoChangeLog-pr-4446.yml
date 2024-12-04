@@ -1,0 +1,4 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - rscadd: "Implemented the Feeble quirk"
