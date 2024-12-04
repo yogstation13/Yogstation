@@ -65,7 +65,8 @@
 		ENERGY = min(round((material_stats.refractiveness / 1.75) * (smithed_quality/100)),60),
 		FIRE = min(round(((100-material_stats.thermal)/1.75) * (smithed_quality/100)),60),
 		LASER = min(round(((material_stats.refractiveness + material_stats.density)/3.5) * (smithed_quality/100)),60),
-		MELEE = min(round(((material_stats.density + material_stats.hardness)/1.75) * (smithed_quality/100)),60)
+		MELEE = min(round(((material_stats.density + material_stats.hardness)/1.75) * (smithed_quality/100)),60),
+		WOUND = min(round((material_stats.density/3.5) * (smithed_quality/100)),60)
 	)))
 	QDEL_NULL(temp) //Thanks now back to the void with you
 
@@ -121,7 +122,15 @@
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/tank/internals/plasmaman,
 		/obj/item/tank/jetpack/oxygen/captain,
-		/obj/item/storage/belt/holster
+		/obj/item/storage/belt/holster,
+		/obj/item/smithed_part,
+		/obj/item/gun/ballistic/rifle/boltaction/pipegun,
+		/obj/item/gun/energy/laser/musket,
+		/obj/item/gun/energy/disabler/smoothbore,
+		/obj/item/shield/buckler,
+		/obj/item/spear,
+		/obj/item/melee/baton/security/cattleprod,
+		/obj/item/melee/baseball_bat
 		)
 
 	base_name = "suit"

@@ -14,7 +14,6 @@
 	AddComponent(/datum/component/multi_hit, icon_state = "stab", height = 2)
 
 	attack_speed = CLICK_CD_LIGHT_WEAPON
-	stamina_cost = round(20 * (100 / smithed_quality))
 
 	force = round(((material_stats.density + material_stats.hardness) / 9.75) * (smithed_quality * 0.01))
 	throwforce = force * 0.9

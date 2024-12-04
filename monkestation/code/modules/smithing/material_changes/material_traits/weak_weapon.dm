@@ -8,3 +8,6 @@
 		var/obj/obj = parent
 		obj.force *= 0.5
 		obj.force = round(obj.force)
+
+		obj.throwforce *= 0.5
+		obj.force = round(obj.throwforce)

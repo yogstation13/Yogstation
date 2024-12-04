@@ -18,7 +18,6 @@
 	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BACK
 
 	attack_speed = CLICK_CD_LARGE_WEAPON
-	stamina_cost = round(30 * (100 / smithed_quality))
 
 	force = round(((material_stats.density + material_stats.hardness) / 8) * (smithed_quality * 0.01))
 	throwforce = force * 0.1 // good luck whipping a staff at something

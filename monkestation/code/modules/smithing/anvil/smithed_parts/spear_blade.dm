@@ -10,15 +10,13 @@
 	worn_icon_state = "spear_back"
 
 /obj/item/smithed_part/weapon_part/spear_blade/finish_weapon()
-	sharpness = SHARP_EDGED
+	sharpness = SHARP_POINTY
 	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "embed_chance" = 65, "fall_chance" = 10, "ignore_throwspeed_threshold" = TRUE)
 	armour_penetration = 30 * (smithed_quality / 100)
 	reach = 2
 	AddComponent(/datum/component/multi_hit, icon_state = "stab", height = 2)
 
 	slot_flags = ITEM_SLOT_SUITSTORE | ITEM_SLOT_BACK
-
-	stamina_cost = round(25 * (100 / smithed_quality))
 
 	force = round(((material_stats.density + material_stats.hardness) / 9) * (smithed_quality * 0.01))
 	throwforce = force * 1.25

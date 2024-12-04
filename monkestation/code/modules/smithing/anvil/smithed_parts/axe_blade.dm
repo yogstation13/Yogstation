@@ -12,8 +12,6 @@
 	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
 	armour_penetration = 30 * (smithed_quality / 100)
 
-	stamina_cost = round(15 * (100 / smithed_quality))
-
 	tool_behaviour = TOOL_SAW
 
 	force = round(((material_stats.density + material_stats.hardness) / 8.9) * (smithed_quality * 0.01))
