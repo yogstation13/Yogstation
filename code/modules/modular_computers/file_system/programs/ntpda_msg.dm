@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		return FALSE
 	
 	// Show ghosts (and admins)
-	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> [recipient.username]): [span_message(message)]", user, user, speaker_key = user.ckey)
+	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> [recipient.username]): [span_message(message)]", user, user, speaker_key = user.ckey, message_type = DEADCHAT_PDA)
 	computer.visible_message(span_notice("Message sent!"), null, null, 1)
 	message_history += list(list(username, message, REF(src), signal))
 	return TRUE
@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(NTPDAMessages)
 		return FALSE
 	
 	// Show ghosts (and admins)
-	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> <b>Everyone</b>): [span_message(message)]", user, user, speaker_key = user.ckey)
+	deadchat_broadcast(" sent an <b>NTPDA Message</b> ([username] --> <b>Everyone</b>): [span_message(message)]", user, user, speaker_key = user.ckey, message_type = DEADCHAT_PDA)
 	computer.visible_message(span_notice("Message sent!"), null, null, 1)
 	message_history += list(list(username, message, REF(src), signal))
 	return TRUE
