@@ -244,12 +244,12 @@
 
 // Hardened vests negate any and all projectile armor penetration, in exchange for having mid af bullet armor
 /datum/armor/armor_sf_hardened
-	melee = ARMOR_LEVEL_WEAK
-	bullet = ARMOR_LEVEL_MID
+	melee = ARMOR_LEVEL_TINY //It's anti-armor piercing projectile armor, it shouldn't be good against melee.
+	bullet = ARMOR_LEVEL_WEAK
 	laser = ARMOR_LEVEL_WEAK
 	energy = ARMOR_LEVEL_TINY
 	bomb = ARMOR_LEVEL_WEAK
-	fire = ARMOR_LEVEL_MID
+	fire = ARMOR_LEVEL_WEAK
 	acid = ARMOR_LEVEL_WEAK
 	wound = WOUND_ARMOR_WEAK
 
