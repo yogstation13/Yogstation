@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - refactor: "Refactored how some internal stuff regarding Patreon and Twitch ranks are handled."
