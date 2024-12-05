@@ -68,6 +68,7 @@
 		return
 	if(get_dist_euclidian(here,there) <= minimum_range)
 		. += "pinon[alert ? "alert" : ""]direct"
+		
 	else
 		setDir(get_dir(here, there))
 		switch(get_dist(here, there))

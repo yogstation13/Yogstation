@@ -67,7 +67,9 @@
 
 	if(!client)
 		return FALSE
-
+		
+	//We do this here to prevent hanging refs from ghostize or whatever, since if we were in another mob before this'll take care of it
+	enable_client_mobs_in_contents(client)
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
 	if (client && key != client.key)
