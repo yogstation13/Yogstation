@@ -48,3 +48,30 @@
   flleeppyy:
   - server: Adds the ability to add lobby notices. These will show in the pre-round
       shop, latejoin menu, and in chat when you first join.
+2024-12-05:
+  Gboster-0:
+  - rscadd: Added the amogus potion to nuclear operative uplinks for 10 TC, do not
+      drink it at 3 AM!!!!!
+  Sorenon:
+  - rscadd: Implemented the Feeble quirk
+  The-Black-Screen:
+  - rscadd: added papers to the engineering notice boards in the engine smes room
+      and the large airlock next to it, miscellaneous things
+  - rscdel: removed miscellaneous things
+  - bugfix: fixed the cloning lab, the xenobiology lab, lighting in a few areas, miscellaneous
+      things
+  - code_imp: added boxstation specific papers to monkestation/code/modules/_paperwork/paper_premade.dm
+  ThePooba:
+  - rscadd: Added Rayne Lamp to company imports tab. It provides some light and a
+      bit of warmth, worn in the neck slot.
+  - rscadd: Added Rayne Corporation to company imports.
+  Uristthedorf:
+  - rscadd: Adds wound armor to smithed armor.
+  - rscadd: Smithed armor can hold makeshift and smithed weapons in suit storage.
+  - rscadd: Smithed daggers can be used as knives.
+  - balance: Remove stamina cost from smithed weapons.
+  - bugfix: SMITHED SPEARS DO POINTY DAMAGE
+  - bugfix: Weak weapon trait also reduces throwing damage.
+  - balance: Reduce Muur/Archangel bullet and melee armor.
+  lemonycake:
+  - rscadd: Added yellow cake.

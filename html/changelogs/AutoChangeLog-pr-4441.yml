@@ -1,7 +1,0 @@
-author: "The-Black-Screen"
-delete-after: True
-changes:
-  - rscadd: "added papers to the engineering notice boards in the engine smes room and the large airlock next to it, miscellaneous things"
-  - rscdel: "removed miscellaneous things"
-  - bugfix: "fixed the cloning lab, the xenobiology lab, lighting in a few areas, miscellaneous things"
-  - code_imp: "added boxstation specific papers to monkestation/code/modules/_paperwork/paper_premade.dm"
