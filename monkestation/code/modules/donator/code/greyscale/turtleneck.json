@@ -1,0 +1,17 @@
+{
+
+	"donatorgrayscaleturtleneck" : [
+		{
+			"type": "icon_state",
+			"icon_state": "donatorgrayscaleturtleneck_top",
+			"blend_mode": "overlay",
+			"color_ids": [ 1 ]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "donatorgrayscaleturtleneck_pants",
+			"blend_mode": "overlay",
+			"color_ids": [ 2 ]
+		}
+	]
+}

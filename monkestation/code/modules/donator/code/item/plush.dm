@@ -68,7 +68,6 @@
 	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
 	icon_state = "gumball_goblin"
 
-
 /obj/item/toy/plush/glep
 	name = "glep plush"
 	desc = "A plush of Glep."
@@ -148,6 +147,18 @@
 
 /obj/item/toy/plush/trax_the_coward
 	name = "trax the coward plush"
-	desc = "A plushie of trax the coward. They're wearing a captains uniform."
+	desc = "A plushie of Trax the Coward. They're wearing a captains uniform."
 	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
 	icon_state = "trax_the_coward"
+
+/obj/item/toy/plush/bubblesmothy
+	name = "bubbles mothy plush"
+	desc = "A plushie of Bubbles Mothy. They're wearing a revolutionary coat. They also wield a sword and a sign that you can't read that well."
+	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
+	icon_state = "bubblesmothy"
+
+/obj/item/toy/plush/donator_xsi
+	name = "xsi plush"
+	desc = "A plushie of XSI. It's a robot!"
+	icon = 'monkestation/code/modules/donator/icons/obj/plushes.dmi'
+	icon_state = "xsi"

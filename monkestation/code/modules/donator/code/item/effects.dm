@@ -116,6 +116,20 @@
 //Eacles13
 /obj/item/effect_granter/donator/albino_ghost_ian
 	name = "ghost ian transformation"
-	icon = 'monkestation/code/modules/donator/icons/mob/pets_32x48.dmi'
-	icon_state = "ghastly_evil_demon"
+	icon = 'monkestation/code/modules/donator/icons/mob/pets.dmi'
+	icon_state = "albino_ghost_ian"
 	animal_transformation = /mob/living/basic/pet/albino_ghost_ian
+
+//Jason Farqiour
+/obj/item/effect_granter/donator/fluffydonator
+	name = "fluffy"
+	icon = 'monkestation/code/modules/donator/icons/mob/pets.dmi'
+	icon_state = "fluffy"
+	animal_transformation = /mob/living/basic/pet/fluffydonator
+
+//TheSpecialSnowflake
+/obj/item/effect_granter/donator/robottoything
+	name = "robot toy"
+	icon = 'monkestation/code/modules/donator/icons/mob/pets.dmi'
+	icon_state = "robottoything"
+	animal_transformation = /mob/living/basic/pet/robottoything

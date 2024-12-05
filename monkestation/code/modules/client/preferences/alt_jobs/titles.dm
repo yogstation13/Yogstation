@@ -67,6 +67,7 @@
 		"Herbalist",
 		"Florist",
 		"Rancher",
+		"Druid",
 	)
 
 /datum/job/brig_physician
