@@ -29,6 +29,10 @@
 	var/datum/interaction_mode/imode
 	var/context_menu_requires_shift = FALSE
 
+	///these persist between logins/logouts during the same round.
+	var/datum/player_details/player_details
+	var/reconnecting = FALSE
+
 /datum/client_interface/proc/IsByondMember()
 	return FALSE
 
@@ -37,6 +41,14 @@
 	if(key)
 		src.key = key
 		ckey = ckey(key)
+		if(GLOB.player_details[ckey])
+			reconnecting = TRUE
+			player_details = GLOB.player_details[ckey]
+		else
+			player_details = new(ckey)
+			player_details.byond_version = world.byond_version
+			player_details.byond_build = world.byond_build
+			GLOB.player_details[ckey] = player_details
 
 /datum/client_interface/proc/set_macros()
 	return

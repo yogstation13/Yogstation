@@ -44,16 +44,16 @@
 		max_round_coins -= amount
 
 	//Patreon Flat Roundend Bonus
-	if((parent.patreon?.has_access(2)) && donator_multipler)
+	if((parent.player_details.patreon?.has_access(2)) && donator_multipler)
 		amount += DONATOR_ROUNDEND_BONUS
 
 	//Twitch Flat Roundend Bonus
-	if((parent.twitch?.has_access(1)) && donator_multipler)
+	if((parent.player_details.twitch?.has_access(1)) && donator_multipler)
 		amount += DONATOR_ROUNDEND_BONUS
 
 	//Donator Multiplier
 	if(amount > 0 && donator_multipler)
-		switch(parent.patreon.access_rank)
+		switch(parent.player_details.patreon.access_rank)
 			if(ACCESS_COMMAND_RANK)
 				amount *= 1.5
 			if(ACCESS_TRAITOR_RANK)

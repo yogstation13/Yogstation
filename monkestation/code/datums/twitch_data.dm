@@ -1,9 +1,6 @@
-/client
-	var/datum/twitch_data/twitch
-
 /datum/twitch_data
-	///the client that owns this data
-	var/client/owner
+	/// The details of the linked player.
+	var/datum/player_details/owner
 	///the stored twitch client key for the information
 	var/client_key
 	///the stored twitch rank collected from the server
@@ -11,35 +8,23 @@
 	///access rank in numbers
 	var/access_rank = 0
 
-
-
-
-/datum/twitch_data/New(client/created_client)
+/datum/twitch_data/New(datum/player_details/owner)
 	. = ..()
-	if(!created_client)
+	if(!owner)
 		return
-
+	src.owner = owner
 	if(!SSdbcore.IsConnected())
 		owned_rank = ACCESS_TWITCH_SUB_TIER_3 ///this is a testing variable
 		return
 
-	owner = created_client
-
-	fetch_rank(owner.ckey)
-
+	fetch_rank()
 	assign_twitch_rank()
 
-
-/datum/twitch_data/proc/fetch_rank(ckey)
-	var/datum/db_query/query_get_rank = SSdbcore.NewQuery("SELECT twitch_rank FROM [format_table_name("player")] WHERE ckey = '[ckey]'")
+/datum/twitch_data/proc/fetch_rank()
+	var/datum/db_query/query_get_rank = SSdbcore.NewQuery("SELECT twitch_rank FROM [format_table_name("player")] WHERE ckey = :ckey", list("ckey" = owner.ckey))
 	if(query_get_rank.warn_execute())
 		if(query_get_rank.NextRow())
-			if(query_get_rank.item[1])
-				owned_rank = query_get_rank.item[1]
-				if(owned_rank == "")
-					owned_rank = NO_TWITCH_SUB
-			else
-				owned_rank = NO_TWITCH_SUB
+			owned_rank = query_get_rank.item[1] || NO_TWITCH_SUB
 	qdel(query_get_rank)
 
 
@@ -60,6 +45,4 @@
 	return FALSE
 
 /datum/twitch_data/proc/is_donator()
-	if(owned_rank != NO_TWITCH_SUB)
-		return TRUE
-	return FALSE
+	return owned_rank != NO_TWITCH_SUB

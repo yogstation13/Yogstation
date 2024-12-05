@@ -106,13 +106,14 @@ SUBSYSTEM_DEF(vote)
 	// monkestation start
 	if(!current_vote.can_vote(voter))
 		return
+	var/patreon_rank = get_player_details(voter)?.patreon?.access_rank
 	// monkestation end
 
 	// If user has already voted, remove their specific vote
 	if(voter.ckey in current_vote.choices_by_ckey)
 		var/their_old_vote = current_vote.choices_by_ckey[voter.ckey]
 		//monkestation edit start
-		if(current_vote.donator_multiplier && voter?.client?.patreon?.access_rank >= 3)
+		if(current_vote.donator_multiplier && patreon_rank >= 3)
 			current_vote.choices[their_old_vote] -= current_vote.donator_multiplier
 		else
 			current_vote.choices[their_old_vote]--
@@ -122,7 +123,7 @@ SUBSYSTEM_DEF(vote)
 
 	current_vote.choices_by_ckey[voter.ckey] = their_vote
 	//monkestation edit start
-	if(current_vote.donator_multiplier && voter?.client?.patreon?.access_rank >= 3)
+	if(current_vote.donator_multiplier && patreon_rank >= 3)
 		current_vote.choices[their_vote] += current_vote.donator_multiplier
 	else
 		current_vote.choices[their_vote]++
@@ -140,6 +141,7 @@ SUBSYSTEM_DEF(vote)
 	// monkestation start
 	if(!current_vote.can_vote(voter))
 		return
+	var/patreon_rank = get_player_details(voter)?.patreon?.access_rank
 	// monkestation end
 	if(CONFIG_GET(flag/no_dead_vote) && voter.stat == DEAD && !voter.client?.holder)
 		return
@@ -149,7 +151,7 @@ SUBSYSTEM_DEF(vote)
 	if(current_vote.choices_by_ckey[voter.ckey + their_vote] == 1)
 		current_vote.choices_by_ckey[voter.ckey + their_vote] = 0
 		//monkestation edit start
-		if(current_vote.donator_multiplier && voter?.client?.patreon?.access_rank >= 3)
+		if(current_vote.donator_multiplier && patreon_rank >= 3)
 			current_vote.choices[their_vote] -= current_vote.donator_multiplier
 		else
 			current_vote.choices[their_vote]--
@@ -158,7 +160,7 @@ SUBSYSTEM_DEF(vote)
 	else
 		current_vote.choices_by_ckey[voter.ckey + their_vote] = 1
 		//monkestation edit start
-		if(current_vote.donator_multiplier && voter?.client?.patreon?.access_rank >= 3)
+		if(current_vote.donator_multiplier && patreon_rank >= 3)
 			current_vote.choices[their_vote] += current_vote.donator_multiplier
 		else
 			current_vote.choices[their_vote]++
