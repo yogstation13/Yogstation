@@ -75,3 +75,16 @@
   - balance: Reduce Muur/Archangel bullet and melee armor.
   lemonycake:
   - rscadd: Added yellow cake.
+2024-12-06:
+  Absolucy:
+  - refactor: Refactored how some internal stuff regarding Patreon and Twitch ranks
+      are handled.
+  - rscadd: Added a chat message when using the lobby buttons to connect to another
+      server to make things more clear.
+  - bugfix: Updated the connection port for the MRP lobby button.
+  Jason Farqiour:
+  - rscadd: Added more items to the medical room in centcom.
+  - rscadd: Added rooms and a IPC/Borg repair room.
+  - rscdel: Removed the old bubble room up top for extra space to expand Centcom.
+  - qol: Pretty up medical centcom while trimming the wasted space as well as add
+      extra stuff.

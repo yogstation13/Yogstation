@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscadd: "Added a chat message when using the lobby buttons to connect to another server to make things more clear."
-  - bugfix: "Updated the connection port for the MRP lobby button."

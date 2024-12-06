@@ -1,7 +1,0 @@
-author: "Jason Farqiour"
-delete-after: True
-changes:
-  - rscadd: "Added more items to the medical room in centcom."
-  - rscadd: "Added rooms and a IPC/Borg repair room."
-  - rscdel: "Removed the old bubble room up top for extra space to expand Centcom."
-  - qol: "Pretty up medical centcom while trimming the wasted space as well as add extra stuff."
