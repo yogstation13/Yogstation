@@ -56,8 +56,7 @@
 
 /obj/effect/landmark/start/assaultop
 	name = "assaultop"
-	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "snukeop_spawn"
+	icon_state = "Assault Operatives"
 	delete_after_roundstart = FALSE
 
 /obj/effect/landmark/start/assaultop/Initialize(mapload)

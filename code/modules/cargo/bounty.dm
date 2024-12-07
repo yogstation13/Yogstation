@@ -44,8 +44,11 @@
 		switch(bounty_num)
 			if(CIV_JOB_BASIC)
 				chosen_type = pick(subtypesof(/datum/bounty/item/assistant))
-			if(CIV_JOB_ROBO)
-				chosen_type = pick(subtypesof(/datum/bounty/item/mech))
+			if(CIV_JOB_ROBO) //monkestation edit: bot bounties
+				if(prob(50))
+					chosen_type = pick(subtypesof(/datum/bounty/item/mech))
+				else
+					chosen_type = pick(subtypesof(/datum/bounty/item/bot))
 			if(CIV_JOB_CHEF)
 				chosen_type = pick(subtypesof(/datum/bounty/item/chef) + subtypesof(/datum/bounty/reagent/chef))
 			if(CIV_JOB_SEC)
@@ -67,6 +70,17 @@
 					chosen_type = pick(subtypesof(/datum/bounty/item/science))
 				else
 					chosen_type = pick(subtypesof(/datum/bounty/item/slime))
+			if(CIV_JOB_SCI_HEAD) //monkestation addition : RD bounties. 50% for science bounty, 50% for robo bounty.
+				if(prob(50))
+					if(prob(50))
+						chosen_type = pick(subtypesof(/datum/bounty/item/science))
+					else
+						chosen_type = pick(subtypesof(/datum/bounty/item/slime))
+				else
+					if(prob(50))
+						chosen_type = pick(subtypesof(/datum/bounty/item/mech))
+					else
+						chosen_type = pick(subtypesof(/datum/bounty/item/bot))
 			if(CIV_JOB_ENG)
 				chosen_type = pick(subtypesof(/datum/bounty/item/engineering))
 			if(CIV_JOB_MINE)

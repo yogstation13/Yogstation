@@ -31,7 +31,7 @@
 	liver_traits = list(TRAIT_ROYAL_METABOLISM, TRAIT_BALLMER_SCIENTIST)
 
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
-	bounty_types = CIV_JOB_SCI
+	bounty_types = CIV_JOB_SCI_HEAD
 
 	mail_goodies = list(
 		/obj/item/storage/box/monkeycubes = 30,

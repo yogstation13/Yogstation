@@ -576,6 +576,9 @@
 	acid = 50
 
 // MONKESTATION ADDITION START
+/obj/item/clothing/gloves/chameleon
+	clothing_traits = list(TRAIT_CAN_SIGN_ON_COMMS)
+	
 /obj/item/clothing/gloves/chameleon/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_MULTITOOL)
 		return ..()

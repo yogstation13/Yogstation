@@ -110,6 +110,11 @@
 		/obj/item/trash,
 		/obj/item/food/deadmouse,
 		/obj/effect/decal/remains,
+		//monkestation addition: start
+		/obj/item/cigbutt,
+		/obj/item/storage/box/foodpack,
+		/obj/item/ammo_casing,
+		//monkestation addition: end
 	))
 	///drawings we hunt
 	var/static/list/cleanable_drawings = typecacheof(list(/obj/effect/decal/cleanable/crayon))
