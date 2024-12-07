@@ -7497,6 +7497,7 @@
 #include "monkestation\code\modules\mining\accelerators\shotgun.dm"
 #include "monkestation\code\modules\mining\lavaland\megafauna_loot.dm"
 #include "monkestation\code\modules\mining\lavaland\tendril_loot.dm"
+#include "monkestation\code\modules\mob\inventory.dm"
 #include "monkestation\code\modules\mob\login.dm"
 #include "monkestation\code\modules\mob\mob.dm"
 #include "monkestation\code\modules\mob\mob_defines.dm"
