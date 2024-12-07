@@ -50,6 +50,7 @@
 	voice_of_god_power = 1.4 //Command staff has authority
 
 	alt_titles = list(
+		"Nanotrasen Representative",
 		"Corporate Liaison",
 		"Nanotrasen Fax Operater",
 		"Nanotrasen Official",
