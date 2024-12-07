@@ -94,8 +94,8 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 		message_admins("Failed insert mhelp into mhelp DB. Check the SQL error logs for more details.")
 	qdel(add_mhelp_query)
 	if(ckey in SSYogs.mentortickets)
-			var/datum/mentorticket/T = SSYogs.mentortickets[ckey]
-			T.log += "<b>[from]:</b> [msg]"
+		var/datum/mentorticket/T = SSYogs.mentortickets[ckey]
+		T.log += "<b>[from]:</b> [msg]"
 	to_chat(C, "<font color='purple'>Mentor PM from-<b>[discord_mentor_link(from, from_id)]</b>: [msg]</font>", confidential = TRUE)
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.permissions.admins)
