@@ -20,3 +20,29 @@
 	RETURN_TYPE(/datum/admins)
 	var/client/client = CLIENT_FROM_VAR(doohickey)
 	return client?.holder
+
+/proc/should_be_interviewing(mob/target)
+	. = FALSE
+	if(QDELETED(target))
+		return
+	. = target.client?.interviewee
+	var/ckey = target.ckey
+	if(ckey)
+		if(ckey in GLOB.interviews.approved_ckeys)
+			return FALSE
+		var/datum/interview/interview = GLOB.interviews.open_interviews[ckey]
+		if(interview && interview.status != INTERVIEW_APPROVED)
+			return TRUE
+		if(ckey in GLOB.interviews.cooldown_ckeys)
+			return TRUE
+
+/proc/interview_safety(mob/target, context)
+	. = should_be_interviewing(target)
+	if(.)
+		message_admins(span_danger("<b>WARNING</b>: [ADMIN_SUSINFO(target)] has seemingly bypassed an interview! (context: [context]) <i>note: this detection is still wip, tell absolucy if it's causing false positives</i>"))
+		log_admin_private("[key_name(target)] has seemingly bypassed an interview! (context: [context])")
+		if(isnewplayer(target))
+			var/mob/dead/new_player/dingbat = target
+			if(dingbat.ready == PLAYER_READY_TO_PLAY)
+				dingbat.ready = PLAYER_NOT_READY
+				qdel(dingbat.client)

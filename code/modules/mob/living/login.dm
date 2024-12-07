@@ -3,6 +3,10 @@
 	if(!. || !client)
 		return FALSE
 
+	if(interview_safety(src, "client in living mob"))
+		qdel(client)
+		return FALSE
+
 	//Mind updates
 	sync_mind()
 

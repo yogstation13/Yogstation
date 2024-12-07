@@ -1,4 +1,7 @@
 /mob/dead/observer/Login()
+	if(interview_safety(src, "observing"))
+		qdel(client)
+		return FALSE
 	. = ..()
 	if(!. || !client)
 		return FALSE

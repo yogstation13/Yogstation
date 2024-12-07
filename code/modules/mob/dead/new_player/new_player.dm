@@ -67,6 +67,10 @@
 		ready = PLAYER_NOT_READY
 		return FALSE
 
+	if(interview_safety(src, "attempting to observe"))
+		qdel(client)
+		return FALSE
+
 	var/less_input_message
 	if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
 		less_input_message = " - Notice: Observer freelook is currently disabled."
@@ -143,6 +147,10 @@
 	return JOB_AVAILABLE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
+	if(interview_safety(src, "attempting to latejoin"))
+		qdel(client)
+		return FALSE
+
 	var/error = IsJobUnavailable(rank)
 	if(error != JOB_AVAILABLE)
 		tgui_alert(usr, get_job_unavailable_error_message(error, rank))

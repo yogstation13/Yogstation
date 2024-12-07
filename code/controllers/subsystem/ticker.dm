@@ -399,6 +399,10 @@ SUBSYSTEM_DEF(ticker)
 	for(var/i in GLOB.new_player_list)
 		var/mob/dead/new_player/player = i
 		if(player.ready == PLAYER_READY_TO_PLAY && player.mind)
+			if(interview_safety(player, "readied up"))
+				player.ready = PLAYER_NOT_READY
+				QDEL_IN(player.client, 0)
+				continue
 			GLOB.joined_player_list += player.ckey
 			var/chosen_title = player.client?.prefs.alt_job_titles[player.mind.assigned_role.title] || player.mind.assigned_role.title
 			var/atom/destination = player.mind.assigned_role.get_roundstart_spawn_point(chosen_title)

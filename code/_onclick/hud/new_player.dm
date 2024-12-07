@@ -169,6 +169,7 @@
 			if(!new_client.readied_store)
 				new_client.readied_store = new(new_player)
 			new_client.readied_store.ui_interact(new_player)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(interview_safety), new_player, "readied up"), 1 SECONDS, TIMER_UNIQUE)
 	else
 		new_player.ready = PLAYER_NOT_READY
 		base_icon_state = "not_ready"
