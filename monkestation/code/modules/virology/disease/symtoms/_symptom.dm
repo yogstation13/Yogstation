@@ -32,6 +32,9 @@
 	var/datum/symptom_varient/attached_varient
 		// This is our attached varient used for updating desc and Symptom copy code.
 
+/datum/symptom/Destroy(force)
+	QDEL_NULL(attached_varient)
+	return ..()
 
 /datum/symptom/proc/minormutate()
 	if (prob(20))

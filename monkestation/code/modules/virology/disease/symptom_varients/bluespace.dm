@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(bluespace_varient_list, list())
+GLOBAL_LIST_EMPTY_TYPED(bluespace_varient_list, /datum/symptom_varient/bluespace)
 
 /datum/symptom_varient/bluespace
 	name = "Quantumly Entangled"
@@ -10,11 +10,12 @@ GLOBAL_LIST_INIT(bluespace_varient_list, list())
 	var/bluespace_id = 0
 	var/static/last_bluespace_id = 0
 
-/datum/symptom_varient/bluespace/New(datum/symptom/host)
+/datum/symptom_varient/bluespace/New(datum/symptom/host, bluespace_id)
 	. = ..()
 	GLOB.bluespace_varient_list += src
-	last_bluespace_id++
-	bluespace_id = last_bluespace_id
+	if(isnull(bluespace_id))
+		bluespace_id = last_bluespace_id++
+	src.bluespace_id = bluespace_id
 
 /datum/symptom_varient/bluespace/Destroy(force)
 	GLOB.bluespace_varient_list -= src
@@ -24,15 +25,11 @@ GLOBAL_LIST_INIT(bluespace_varient_list, list())
 	. = ..()
 	RegisterSignal(host_symptom, COMSIG_SYMPTOM_TRIGGER, PROC_REF(propagate))
 
+/datum/symptom_varient/bluespace/Copy(datum/symptom/new_symp)
+	return new /datum/symptom_varient/bluespace(new_symp, bluespace_id)
+
 /datum/symptom_varient/bluespace/proc/propagate()
 	for(var/datum/symptom_varient/bluespace/bluespace as anything in GLOB.bluespace_varient_list)
-		if(bluespace_id != bluespace.bluespace_id)
+		if(QDELETED(bluespace) || bluespace_id != bluespace.bluespace_id)
 			continue
-		COOLDOWN_START(bluespace, host_cooldown, cooldown_time)
-
-	for(var/datum/symptom_varient/bluespace/bluespace as anything in GLOB.bluespace_varient_list)
-		if(bluespace_id != bluespace.bluespace_id)
-			continue
-		if(!bluespace.host_disease)
-			continue
-		bluespace.host_symptom.run_effect(bluespace.host_disease.return_parent(), bluespace.host_disease)
+		bluespace.trigger_symptom()

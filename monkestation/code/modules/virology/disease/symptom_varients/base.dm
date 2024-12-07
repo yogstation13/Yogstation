@@ -51,6 +51,7 @@
 		return FALSE
 	host_symptom.run_effect(host_disease.affected_mob, host_disease)
 	COOLDOWN_START(src, host_cooldown, cooldown_time)
+	return TRUE
 
 /datum/symptom_varient/proc/Copy(datum/symptom/new_symp)
 	return new type(new_symp)
