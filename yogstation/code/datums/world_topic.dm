@@ -86,6 +86,16 @@ GLOBAL_VAR_INIT(mentornoot, FALSE)
 		SEND_SOUND(C, sound('sound/misc/nootnoot.ogg'))
 	else
 		SEND_SOUND(C, sound('sound/items/bikehorn.ogg'))
+	var/datum/DBQuery/add_mhelp_query = SSdbcore.NewQuery(
+		"INSERT INTO `[format_table_name("mentor_interactions")]` (round_id, ckey, ckey_mentor, target_ckey, target_mentor, message) VALUES (:round, :send, :smentor, :receive, :rmentor, :msg);",
+		list("round" = GLOB.round_id, "send" = from, "smentor" = TRUE, "receive" = C.ckey, "rmentor" = C.is_mentor(), "msg" = msg)
+	)
+	if(!add_mhelp_query.Execute())
+		message_admins("Failed insert mhelp into mhelp DB. Check the SQL error logs for more details.")
+	qdel(add_mhelp_query)
+	if(C.ckey in SSYogs.mentortickets)
+		var/datum/mentorticket/T = SSYogs.mentortickets[C.ckey]
+		T.log += "<b>[from]:</b> [msg]"
 	to_chat(C, "<font color='purple'>Mentor PM from-<b>[discord_mentor_link(from, from_id)]</b>: [msg]</font>", confidential = TRUE)
 	var/show_char_recip = !C.is_mentor() && CONFIG_GET(flag/mentors_mobname_only)
 	for(var/client/X in GLOB.mentors | GLOB.permissions.admins)
