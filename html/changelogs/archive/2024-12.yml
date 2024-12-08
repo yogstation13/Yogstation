@@ -101,6 +101,15 @@
   - bugfix: Clean up the inventory/items of players becoming roundstart nuke/clown
       operatives more thoroughly and quietly.
   - refactor: Cleaned up code related to roundstart nuke/clown operatives.
+  - bugfix: Heretics healing on rust via Leeching Walk or rust ascension now properly
+      updates health.
+  - qol: Heretics healing on rust via Leeching Walk or rust ascension scales with
+      the world's delta time, making its rate independent of subsystem lag.
+  - admin: Added a warning+confirmation if an admin try to run a specifically laggy
+      proc.
+  Absolucy, SmArtKar, Kapu:
+  - code_imp: Implemented caching for icon sizes which should significantly improve
+      mob health performance due to HUDs constantly fetching icons.
   Gw0sty:
   - rscadd: Gave Chameleon gloves the property to transmit radio for sign language.
   - rscadd: Research directors now get a mixture of scientist and roboticist bounties.
