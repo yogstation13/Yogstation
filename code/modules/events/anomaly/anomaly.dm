@@ -16,7 +16,7 @@
 	announce_when = ANOMALY_ANNOUNCE_HARMFUL_TIME
 	var/area/impact_area
 	var/datum/anomaly_placer/placer = new()
-	var/obj/effect/anomaly/anomaly_path = /obj/effect/anomaly/flux
+	var/obj/effect/anomaly/anomaly_path = /obj/effect/anomaly/flux/explosion
 	///The admin-chosen spawn location.
 	var/turf/spawn_location
 
