@@ -1,7 +1,7 @@
 /obj/item/flashlight/lantern/rayne
 	name = "lantern"
-	icon_state = "lantern"
-	inhand_icon_state = "lantern"
+	icon = 'monkestation/icons/obj/rayne_corp/rayne.dmi'
+	icon_state = "rayne_lantern"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	desc = "A lantern that hangs off the shoulder providing some warmth and lighting with an incandescent heat lamp. \
@@ -9,12 +9,10 @@
 			It is stamped with a Rayne Corp logo on the bottom."
 	light_outer_range = 5// luminosity when on
 	light_system = OVERLAY_LIGHT
-	icon = 'monkestation/icons/obj/rayne_corp/rayne.dmi'
-	icon_state = "rayne_lantern"
-	inhand_icon_state = "lantern" // todo
+	inhand_icon_state = "rayne_lantern"
 	worn_icon = 'monkestation/icons/obj/rayne_corp/rayne.dmi'
 	worn_icon_state = "rayne_lantern_worn"
-	slot_flags = ITEM_SLOT_NECK
+	slot_flags = ITEM_SLOT_NECK | ITEM_SLOT_BELT
 
 /obj/item/flashlight/lantern/rayne/process(seconds_per_tick)
 
