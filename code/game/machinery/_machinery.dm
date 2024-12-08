@@ -513,7 +513,7 @@ Class Procs:
 	if(panel_open && I.tool_behaviour == TOOL_WRENCH)
 		I.play_tool_sound(src, 50)
 		setDir(turn(dir,-90))
-		to_chat(user, span_notice("You rotate [src] facing [dir]."))
+		to_chat(user, span_notice("You rotate [src] facing [dir2text(dir)]."))
 		return TRUE
 	return FALSE
 
