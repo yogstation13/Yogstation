@@ -233,11 +233,17 @@
 	)
 	return ..()
 
-//for inside one of the nukie lockers
+//for inside one of the nukie lockers and the ones infiltrators spawn with
 /obj/item/modular_computer/tablet/pda/preset/syndicate
 	desc = "Based off Nanotrasen's PDAs, this one has been reverse-engineered and loaded with illegal software provided by the Syndicate."
 	greyscale_config = /datum/greyscale_config/tablet/stripe_thick
 	greyscale_colors = "#A80001#5C070F#000000"
+	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
+								/obj/item/stock_parts/cell/computer,
+								/obj/item/computer_hardware/hard_drive/small/syndicate,
+								/obj/item/computer_hardware/network_card/advanced,
+								/obj/item/computer_hardware/card_slot,
+								/obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/pda/preset/syndicate/Initialize(mapload)
 	obj_flags |= EMAGGED //starts emagged

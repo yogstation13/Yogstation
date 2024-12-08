@@ -1,13 +1,16 @@
-/datum/outfit/infiltrator // RIP
+/datum/outfit/infiltrator // We're so back
 	name = "Syndicate Infiltrator"
 
 	uniform = /obj/item/clothing/under/chameleon/syndicate
+	suit = /obj/item/clothing/suit/chameleon/syndicate
+	glasses = /obj/item/clothing/glasses/chameleon/syndicate
 	shoes = /obj/item/clothing/shoes/chameleon/noslip/syndicate
 	gloves = /obj/item/clothing/gloves/chameleon/syndicate
 	back = /obj/item/storage/backpack/chameleon/syndicate
 	ears = /obj/item/radio/headset/chameleon/syndicate
 	id = /obj/item/card/id/syndicate
 	mask = /obj/item/clothing/mask/chameleon/syndicate
+	head = /obj/item/clothing/head/chameleon/syndicate
 	belt = /obj/item/modular_computer/tablet/pda/preset/syndicate
 	box = /obj/item/storage/box/survival/engineer
 	backpack_contents = list(/obj/item/kitchen/knife/combat/survival=1,\
@@ -42,3 +45,15 @@
 	var/obj/item/modular_computer/worn_computer = H.belt
 	if(istype(worn_computer))
 		worn_computer.update_label(card)
+
+/datum/outfit/infiltrator_preview
+	name = "Syndicate Infiltrator (Preview)"
+	uniform = /obj/item/clothing/under/chameleon/syndicate
+	glasses = /obj/item/clothing/glasses/chameleon/syndicate
+	shoes = /obj/item/clothing/shoes/chameleon/noslip/syndicate
+	gloves = /obj/item/clothing/gloves/chameleon/syndicate
+	back = /obj/item/storage/backpack/chameleon/syndicate
+	ears = /obj/item/radio/headset/chameleon/syndicate
+	id = /obj/item/card/id/syndicate
+	mask = /obj/item/clothing/mask/chameleon/syndicate
+	belt = /obj/item/modular_computer/tablet/pda/preset/syndicate
