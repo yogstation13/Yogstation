@@ -210,7 +210,7 @@
 			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			return 1
-	else if(!user.combat_mode) // can't drop the item but not in combat mode, try deconstructing instead
+	else if(!user.combat_mode && !(I.item_flags & ABSTRACT)) // can't drop the item but not in combat mode, try deconstructing instead
 		return attackby_secondary(I, user, params)
 	else
 		return ..()
