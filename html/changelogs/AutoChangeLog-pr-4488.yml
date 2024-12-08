@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Heretics healing on rust via Leeching Walk or rust ascension now properly updates health."
+  - qol: "Heretics healing on rust via Leeching Walk or rust ascension scales with the world's delta time, making its rate independent of subsystem lag."
