@@ -41,19 +41,6 @@
 
 // Various software-specific vars
 
-	var/temp				// General error reporting text contained here will typically be shown once and cleared
-	var/screen				// Which screen our main window displays
-	var/subscreen			// Which specific function of the main screen is being displayed
-
-	var/secHUD = 0			// Toggles whether the Security HUD is active or not
-	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
-
-	var/datum/data/record/medicalActive1		// Datacore record declarations for record software
-	var/datum/data/record/medicalActive2
-
-	var/datum/data/record/securityActive1		// Could probably just combine all these into one
-	var/datum/data/record/securityActive2
-
 	var/obj/machinery/door/hackdoor		// The airlock being hacked
 	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
 
@@ -64,10 +51,14 @@
 	var/obj/machinery/newscaster			//pAI Newscaster
 	var/obj/item/healthanalyzer/hostscan				//pAI healthanalyzer
 
+	//Whether the pAI has bought the encryption slot module or not
 	var/encryptmod = FALSE
 	var/holoform = FALSE
+	//Can pAI use their holoprojector?
 	var/canholo = TRUE
+	//Can pAI transmit radio messages?
 	var/can_transmit = TRUE
+	//Can pAI receive radio messages?
 	var/can_receive = TRUE
 	var/obj/item/card/id/access_card = null
 	var/chassis = "repairbot"
@@ -153,7 +144,6 @@
 	if(cable && cable.machine && istype(cable.machine, /obj/machinery/door) && cable.machine == hackdoor && get_dist(src, hackdoor) <= 1)
 		hackprogress = clamp(hackprogress + 20, 0, 100)
 	else
-		temp = "Door Jack: Connection to airlock has been lost. Hack aborted."
 		hackprogress = 0
 		hacking = FALSE
 		hackdoor = null
@@ -283,6 +273,10 @@
 /mob/living/silicon/pai/examine(mob/user)
 	. = ..()
 	. += "A personal AI in holochassis mode. Its master ID string seems to be [master]."
+	if(software && isobserver(user))
+		. += "<b>[src] has the following modules:"
+		for(var/list/module in software)
+			. += "[module["module_name"]]"
 
 /mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stat == DEAD)
@@ -307,7 +301,7 @@
 	emitterhealth = clamp((emitterhealth + (emitter_regen_per_second * delta_time)), -50, emittermaxhealth)
 
 /obj/item/computer_hardware/paicard/attackby(obj/item/W, mob/user, params)
-	..()
+	. = ..()
 	user.set_machine(src)
 	if(pai.encryptmod == TRUE)
 		if(W.tool_behaviour == TOOL_SCREWDRIVER)

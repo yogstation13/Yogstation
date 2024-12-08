@@ -10,6 +10,43 @@ type Module = {
   cost: number;
 }
 
+type MedRecord = { /* This should probably be cut down, but it's all valid medical record information */
+  name: string;
+  id: string;
+  gender: string;
+  age: number;
+  fingerprint: string;
+  p_state: string;
+  m_state: string;
+  blood_type: string;
+  dna: string;
+  minor_disabilities: string;
+  minor_disabilities_details: string;
+  major_disabilities: string;
+  major_disabilities_details: string;
+  allergies: string;
+  allergies_details: string;
+  current_diseases: string;
+  current_diseases_details: string;
+  important_notes: string;
+  comments: string[];
+}
+
+type SecRecord = {
+  name: string;
+  id: string;
+  gender: string;
+  age: number;
+  rank: string;
+  fingerprint: string;
+  p_state: string;
+  m_state: string;
+  criminal_status: string;
+  crimes: string[];
+  important_notes: string;
+  comments: string[];
+}
+
 type Data = {
   modules: Data[];
   modules_list: Module[];
@@ -31,6 +68,8 @@ type Data = {
   minFrequency: number;
   maxFrequency: number;
   color: string;
+  med_records: MedRecord[];
+  sec_records: SecRecord[];
 }
 
 export const AirlockJackTextSwitch = params => {

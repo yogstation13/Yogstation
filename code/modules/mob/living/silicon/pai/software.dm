@@ -15,8 +15,8 @@
 															list("module_name" = "atmosphere sensor", "tab"=TRUE, "title"="Atmospheric sensor", "cost" = 5),
 															list("module_name" = "photography module", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "remote signaller", "tab"=TRUE, "title"="Remote signaller", "cost" = 10),
-															//list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
-															//list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
+															list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
+															list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
 															list("module_name" = "camera zoom", "tab"=FALSE, "cost" = 10),
 															list("module_name" = "host scan", "tab"=TRUE, "title"="Host Bioscan settings", "cost" = 10),
 															//"camera jack" = 10,
@@ -40,6 +40,9 @@
 /mob/living/silicon/pai/var/gases
 
 /mob/living/silicon/pai/var/cable_status = "Retracted"
+
+/mob/living/silicon/pai/var/med_record = list()
+/mob/living/silicon/pai/var/sec_record = list()
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -78,6 +81,30 @@
 	data["minFrequency"] = MIN_FREE_FREQ
 	data["maxFrequency"] = MAX_FREE_FREQ
 	data["color"] = signaler.label_color
+	if(GLOB.data_core.general && GLOB.data_core.medical)
+		for(var/datum/data/record/M in sortRecord(GLOB.data_core.medical))
+			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+				if(R.fields["name"] == M.fields["name"])
+					var/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "m_state" = R.fields["m_state"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
+					med_record += list(new_record)
+					qdel(new_record)
+					break
+	if(GLOB.data_core.general && GLOB.data_core.security)
+		for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
+			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+				if(R.fields["name"] == S.fields["name"])
+					var/list/crimes = list()
+					for(var/datum/data/crime/crime in S.fields["crimes"])
+						crimes += list("[crime.crimeName]: [crime.crimeDetails]")
+					var/list/comments = list()
+					for(var/datum/data/comment/comment in S.fields["comments"])
+						comments += list("[comment.commentText] - [comment.author] [comment.time]")
+					var/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
+					sec_record += list(new_record)
+					qdel(new_record)
+					break
+	data["med_records"] = med_record
+	data["sec_records"] = sec_record
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
