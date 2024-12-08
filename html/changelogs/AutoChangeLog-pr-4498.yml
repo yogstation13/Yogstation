@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - admin: "Added a warning+confirmation if an admin try to run a specifically laggy proc."
