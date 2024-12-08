@@ -1,4 +1,0 @@
-author: "SirNightKnight"
-delete-after: True
-changes:
-  - bugfix: "Fixed Nanotrasen Representative's alt title options excluding the original title once picked."

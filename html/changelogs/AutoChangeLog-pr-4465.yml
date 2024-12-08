@@ -1,7 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Clown operative leaders now properly spawn with their gear."
-  - bugfix: "Anime quirk appearance prefs now properly transfer when becoming a roundstart nuke/clown operative."
-  - bugfix: "Clean up the inventory/items of players becoming roundstart nuke/clown operatives more thoroughly and quietly."
-  - refactor: "Cleaned up code related to roundstart nuke/clown operatives."

@@ -1,9 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Gave Chameleon gloves the property to transmit radio for sign language."
-  - rscadd: "Research directors now get a mixture of scientist and roboticist bounties."
-  - rscadd: "Added craft able cleanbot variation, Scrubs Junior, a cleanbot that medical doctors can access."
-  - rscadd: "New bounty types for roboticists, bots, requiring various station bots that do not spawn roundstart."
-  - bugfix: "Renamed Late Join to Late Arrival"
-  - qol: "Cleanbots will now burn cigarbutts, loose ammo casings, and food wrappers"

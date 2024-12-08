@@ -88,3 +88,32 @@
   - rscdel: Removed the old bubble room up top for extra space to expand Centcom.
   - qol: Pretty up medical centcom while trimming the wasted space as well as add
       extra stuff.
+2024-12-08:
+  Absolucy:
+  - bugfix: The recursive symptom varient should now work as intended rather than
+      cascading horribly.
+  - bugfix: The "Quantumly Entangled" (bluespace) symptom varient should work properly
+      now.
+  - bugfix: Symptoms being deleted properly cleanup their attached varients now.
+  - bugfix: Clown operative leaders now properly spawn with their gear.
+  - bugfix: Anime quirk appearance prefs now properly transfer when becoming a roundstart
+      nuke/clown operative.
+  - bugfix: Clean up the inventory/items of players becoming roundstart nuke/clown
+      operatives more thoroughly and quietly.
+  - refactor: Cleaned up code related to roundstart nuke/clown operatives.
+  Gw0sty:
+  - rscadd: Gave Chameleon gloves the property to transmit radio for sign language.
+  - rscadd: Research directors now get a mixture of scientist and roboticist bounties.
+  - rscadd: Added craft able cleanbot variation, Scrubs Junior, a cleanbot that medical
+      doctors can access.
+  - rscadd: New bounty types for roboticists, bots, requiring various station bots
+      that do not spawn roundstart.
+  - bugfix: Renamed Late Join to Late Arrival
+  - qol: Cleanbots will now burn cigarbutts, loose ammo casings, and food wrappers
+  SirNightKnight:
+  - bugfix: Fixed Nanotrasen Representative's alt title options excluding the original
+      title once picked.
+  Wisemonster:
+  - spellcheck: Clarified NT representative's description as being more an "Observe
+      and report" role, and that they cannot give orders to command (They can still
+      make suggestions).

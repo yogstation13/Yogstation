@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "The recursive symptom varient should now work as intended rather than cascading horribly."
-  - bugfix: "The \"Quantumly Entangled\" (bluespace) symptom varient should work properly now."
-  - bugfix: "Symptoms being deleted properly cleanup their attached varients now."
