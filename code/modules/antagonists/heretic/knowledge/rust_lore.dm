@@ -111,9 +111,8 @@
 	var/turf/mover_turf = get_turf(source)
 	if(HAS_TRAIT(mover_turf, TRAIT_RUSTY))
 		ADD_TRAIT(source, TRAIT_BATON_RESISTANCE, type)
-		return
-
-	REMOVE_TRAIT(source, TRAIT_BATON_RESISTANCE, type)
+	else
+		REMOVE_TRAIT(source, TRAIT_BATON_RESISTANCE, type)
 
 /**
  * Signal proc for [COMSIG_LIVING_LIFE].
@@ -129,16 +128,20 @@
 		return
 
 	// Heals all damage + Stamina
-	source.adjustBruteLoss(-2, FALSE)
-	source.adjustFireLoss(-2, FALSE)
-	source.adjustToxLoss(-2, FALSE, forced = TRUE) // Slimes are people to
-	source.adjustOxyLoss(-0.5, FALSE)
-	source.stamina.adjust(2)
+	var/delta_time = DELTA_WORLD_TIME(SSmobs)
+	var/needs_update = FALSE // Optimization, if nothing changes then don't update our owner's health.
+	needs_update += source.adjustBruteLoss(-2 * delta_time, updating_health = FALSE)
+	needs_update += source.adjustFireLoss(-2 * delta_time, updating_health = FALSE)
+	needs_update += source.adjustToxLoss(-2 * delta_time, updating_health = FALSE, forced = TRUE) // Slimes are people too
+	needs_update += source.adjustOxyLoss(-0.5 * delta_time, updating_health = FALSE)
+	if(needs_update)
+		source.updatehealth()
+	source.stamina.adjust(2 * delta_time)
 	// Reduces duration of stuns/etc
-	source.AdjustAllImmobility(-0.5 SECONDS)
+	source.AdjustAllImmobility(-0.5 SECONDS * delta_time)
 	// Heals blood loss
 	if(source.blood_volume < BLOOD_VOLUME_NORMAL)
-		source.blood_volume += 2.5 * seconds_per_tick
+		source.blood_volume += 2.5 * delta_time
 
 /datum/heretic_knowledge/mark/rust_mark
 	name = "Mark of Rust"
@@ -305,11 +308,15 @@
 	if(!HAS_TRAIT(our_turf, TRAIT_RUSTY))
 		return
 
-	source.adjustBruteLoss(-4, FALSE)
-	source.adjustFireLoss(-4, FALSE)
-	source.adjustToxLoss(-4, FALSE, forced = TRUE)
-	source.adjustOxyLoss(-4, FALSE)
-	source.stamina.adjust(20)
+	var/delta_time = DELTA_WORLD_TIME(SSmobs)
+	var/needs_update = FALSE
+	needs_update += source.adjustBruteLoss(-4 * delta_time, updating_health = FALSE)
+	needs_update += source.adjustFireLoss(-4 * delta_time, updating_health = FALSE)
+	needs_update += source.adjustToxLoss(-4 * delta_time, updating_health = FALSE, forced = TRUE)
+	needs_update += source.adjustOxyLoss(-4 * delta_time, updating_health = FALSE)
+	if(needs_update)
+		source.updatehealth()
+	source.stamina.adjust(20 * delta_time)
 
 /**
  * #Rust spread datum
