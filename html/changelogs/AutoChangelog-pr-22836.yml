@@ -1,0 +1,5 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed movement canceling certain timed actions when it shouldn't"
+  - bugfix: "Fixed containers not picking up and emptying items properly"
