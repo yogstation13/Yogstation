@@ -493,6 +493,7 @@
 	max_integrity = 200
 	resistance_flags = FLAMMABLE
 	armor_type = /datum/armor/vest_durathread
+	body_parts_covered = CHEST|ARMS //Monke: Durathread covers arms.
 	dog_fashion = null
 
 /datum/armor/vest_durathread
