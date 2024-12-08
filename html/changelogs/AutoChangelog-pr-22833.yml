@@ -1,4 +1,0 @@
-author: "ToasterBiome"
-delete-after: true 
-changes: 
-  - bugfix: "Ghost \"Enable PDA notifications\" setting will now function correctly"
