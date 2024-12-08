@@ -47,12 +47,13 @@
 		plant(user)
 		to_chat(user, span_notice("You plant the kudzu. You monster."))
 
-/obj/item/seeds/kudzu/get_analyzer_text()
+/obj/item/seeds/kudzu/get_analyzer_text(mob/user, check_skills = FALSE)
 	var/text = ..()
-	var/text_string = ""
-	for(var/datum/spacevine_mutation/SM in mutations)
-		text_string += "[(text_string == "") ? "" : ", "][SM.name]"
-	text += "\n Plant Mutations: [(text_string == "") ? "None" : text_string]"
+	if(!check_skills || user.skill_check(SKILL_SCIENCE, EXP_HIGH))
+		var/text_string = ""
+		for(var/datum/spacevine_mutation/SM in mutations)
+			text_string += "[(text_string == "") ? "" : ", "][SM.name]"
+		text += "\n Plant Mutations: [(text_string == "") ? "None" : text_string]"
 	return text
 
 /obj/item/seeds/kudzu/on_chem_reaction(datum/reagents/S)

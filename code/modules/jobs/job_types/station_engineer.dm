@@ -24,6 +24,15 @@
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 	minimal_character_age = 22 //You need to know a lot of complicated stuff about engines, could theoretically just have a traditional bachelor's
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/engineering,
 	)

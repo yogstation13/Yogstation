@@ -57,7 +57,7 @@
 				fullpower = TRUE
 				H.physiology.punchdamagehigh_bonus += 4
 				H.physiology.punchdamagelow_bonus += 4
-				H.physiology.punchstunthreshold_bonus += 1				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
+				H.physiology.punchstunchance_bonus += 0.4				//Makes standard punches 5-14 with higher stun chance (1-10, stun on 10 -> 5-14, stun on 11-14)
 				H.physiology.brute_mod *= 0.6
 				H.physiology.burn_mod *= 0.6
 				H.physiology.heat_mod *= 0.6
@@ -103,7 +103,7 @@
 		H.remove_movespeed_modifier(MOVESPEED_ID_NECRO_VIRUS_SLOWDOWN)
 		H.physiology.punchdamagehigh_bonus -= 4
 		H.physiology.punchdamagelow_bonus -= 4
-		H.physiology.punchstunthreshold_bonus -= 1
+		H.physiology.punchstunchance_bonus -= 0.4
 		H.physiology.brute_mod /= 0.6
 		H.physiology.burn_mod /= 0.6
 		H.physiology.heat_mod /= 0.6

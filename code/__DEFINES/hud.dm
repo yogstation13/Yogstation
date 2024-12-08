@@ -106,6 +106,7 @@
 #define ui_borg_radio "EAST-1:28,SOUTH+1:7"
 #define ui_borg_intents "EAST-2:26,SOUTH:5"
 #define ui_language_menu "EAST-5:20,SOUTH:21"
+#define ui_skill_menu "EAST-5:20,SOUTH:5"
 #define ui_move_up "EAST-4:22, SOUTH:21"
 #define ui_move_down "EAST-4:22, SOUTH:5"
 
