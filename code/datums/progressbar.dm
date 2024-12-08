@@ -22,7 +22,7 @@
 	var/progress_ended = FALSE
 
 
-/datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE)
+/datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE, datum/callback/extra_checks)
 	. = ..()
 	if (!istype(target))
 		stack_trace("Invalid target [target] passed in")
@@ -42,6 +42,7 @@
 	SET_PLANE_EXPLICIT(bar, ABOVE_HUD_PLANE, User) //yogs change, increased so it draws ontop of ventcrawling overlays
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	user = User
+	src.extra_checks = extra_checks
 
 	LAZYADDASSOCLIST(user.progressbars, bar_loc, src)
 	var/list/bars = user.progressbars[bar_loc]
@@ -59,7 +60,7 @@
 		var/obj/mecha/mech = user.loc
 		if(ismecha(user.loc) && user == mech.occupant)
 			RegisterSignal(mech, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
-	if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE))
+	if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target != user)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	if(!(timed_action_flags & IGNORE_HELD_ITEM))
 		var/obj/item/held = user.get_active_held_item()
@@ -70,6 +71,9 @@
 			RegisterSignal(user, COMSIG_MOB_PICKUP_ITEM, PROC_REF(end_progress))
 		RegisterSignal(user, COMSIG_MOB_SWAPPING_HANDS, PROC_REF(end_progress))
 	if(!(timed_action_flags & IGNORE_INCAPACITATED))
+		if(HAS_TRAIT(user, TRAIT_INCAPACITATED))
+			end_progress()
+			return
 		RegisterSignal(user, SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), PROC_REF(end_progress))
 
 
