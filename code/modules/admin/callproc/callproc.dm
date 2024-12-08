@@ -219,6 +219,17 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 	if(target == GLOBAL_PROC)
 		return call("/proc/[procname]")(arglist(arguments))
 	else if(target != world)
+		// monkestation start: anti-lag
+		if(isatom(target) && procname == "Shake")
+			var/confirmation = UNLINT(tgui_alert(
+				user = usr,
+				message = "Are you SURE you want to call Shake()?\nThis has a VERY HIGH CHANCE of causing immense lag or even a crash!",
+				title = "OH GOD WHY",
+				buttons = list("I'm sure!", "Nope."),
+			))
+			if(confirmation != "I'm sure!")
+				return
+		// monkestation end
 		return call(target, procname)(arglist(arguments))
 	else
 		log_admin("[key_name(usr)] attempted to call world/proc/[procname] with arguments: [english_list(arguments)]")
