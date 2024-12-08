@@ -113,6 +113,9 @@
   SirNightKnight:
   - bugfix: Fixed Nanotrasen Representative's alt title options excluding the original
       title once picked.
+  Uristthedorf:
+  - balance: Durathread vests now cover your arms.
+  - image: Worn durathread vest sprites show your arms being covered.
   Wisemonster:
   - spellcheck: Clarified NT representative's description as being more an "Observe
       and report" role, and that they cannot give orders to command (They can still
