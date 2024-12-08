@@ -1,0 +1,5 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - balance: "Durathread vests now cover your arms."
+  - image: "Worn durathread vest sprites show your arms being covered."
