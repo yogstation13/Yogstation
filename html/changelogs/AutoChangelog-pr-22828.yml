@@ -1,0 +1,4 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed an exploit where you could use the cursed stomach to vomitcrawl to Centcomm"
