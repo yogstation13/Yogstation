@@ -128,8 +128,7 @@
 		if(underlay_file)
 			status_underlay = mutable_appearance(underlay_file, "[underlay_state][stacks]")
 
-		var/icon/I = icon(owner.icon, owner.icon_state, owner.dir)
-		var/icon_height = I.Height()
+		var/icon_height = owner.get_cached_height()
 
 		if(status_overlay)
 			status_overlay.pixel_x = -owner.pixel_x
