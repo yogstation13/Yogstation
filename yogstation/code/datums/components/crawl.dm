@@ -447,5 +447,5 @@ GLOBAL_LIST_EMPTY(vomit_spots)
 
 /obj/effect/dummy/crawling/vomit/proc/follow_vomit()
 	var/turf/T = get_turf(currentvomit)
-	if(T)
+	if(T && !(is_centcom_level(T.z)||is_reserved_level(T.z)))
 		forceMove(T)
