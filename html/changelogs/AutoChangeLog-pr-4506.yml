@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - rscadd: "Satyr headbutt now checks for hands and mobility"
