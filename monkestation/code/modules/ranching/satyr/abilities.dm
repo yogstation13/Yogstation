@@ -1,6 +1,7 @@
 /datum/action/cooldown/mob_cooldown/dash/headbutt
 	name = "Headbutt"
 	desc = "Dashes 3 tiles in a direction headbutting anyone in the last tile. (You can overshoot your dash!)"
+	check_flags = AB_CHECK_INCAPACITATED | AB_CHECK_HANDS_BLOCKED | AB_CHECK_CONSCIOUS | AB_CHECK_IMMOBILE
 	cooldown_time = 1 MINUTES
 	dash_range = 3
 
