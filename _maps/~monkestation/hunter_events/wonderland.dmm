@@ -7,11 +7,11 @@
 	dir = 4
 	},
 /obj/item/toy/plush/goatplushie,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "aR" = (
 /obj/item/clothing/shoes/costume_2021/doll_shoes,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "bf" = (
 /obj/structure/chess/blackrook,
@@ -23,7 +23,7 @@
 /area/ruin/space/has_grav/wonderland)
 "bZ" = (
 /obj/item/clothing/head/costume_2021/doll_hat,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "cj" = (
 /obj/structure/chess/blackbishop,
@@ -61,7 +61,7 @@
 /area/ruin/space/has_grav/wonderland)
 "gc" = (
 /obj/structure/blood_fountain,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "gw" = (
 /obj/structure/chess/blackrook,
@@ -70,7 +70,7 @@
 "hK" = (
 /obj/structure/flora/bush/flowers_br/style_2,
 /obj/structure/flora/tree/jungle,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "jT" = (
 /obj/structure/chess/whiteking,
@@ -88,12 +88,12 @@
 /obj/structure/flora/bush/flowers_yw,
 /obj/structure/flora/bush/flowers_br/style_2,
 /mob/living/basic/rabbit,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "oC" = (
 /obj/structure/chair/wood,
 /obj/item/clothing/head/collectable/tophat,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "oF" = (
 /turf/open/floor/black,
@@ -105,7 +105,7 @@
 "rr" = (
 /obj/structure/flora/bush/flowers_yw,
 /obj/structure/flora/bush/flowers_br/style_2,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "sr" = (
 /obj/item/grenade/jack,
@@ -122,26 +122,26 @@
 /area/ruin/space/has_grav/wonderland)
 "wY" = (
 /mob/living/basic/rabbit,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "yW" = (
 /obj/structure/flora/bush/flowers_pp/style_2,
 /obj/item/clothing/under/costume_2021/doll_suit,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Av" = (
 /obj/structure/flora/bush/flowers_yw,
 /mob/living/basic/rabbit,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "AH" = (
 /obj/structure/flora/bush/flowers_yw,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Ck" = (
 /obj/structure/flora/bush/flowers_yw,
 /obj/structure/flora/bush/flowers_br,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Cw" = (
 /obj/structure/chess/whitebishop,
@@ -155,11 +155,11 @@
 /area/space)
 "FO" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Gl" = (
 /obj/structure/mineral_door/wood,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Gs" = (
 /obj/structure/table/wood,
@@ -176,7 +176,7 @@
 /area/ruin/space/has_grav/wonderland)
 "Jy" = (
 /obj/structure/flora/tree/dead/style_6,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "JP" = (
 /obj/structure/chess/whitebishop,
@@ -192,11 +192,11 @@
 /area/ruin/space/has_grav/wonderland)
 "Mo" = (
 /obj/structure/flora/tree/dead,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Mw" = (
 /obj/structure/flora/bush/flowers_br/style_2,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "PU" = (
 /obj/structure/chess/redqueen,
@@ -206,12 +206,12 @@
 "RW" = (
 /obj/structure/flora/bush/flowers_pp/style_2,
 /mob/living/basic/rabbit,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Se" = (
 /obj/structure/flora/bush/flowers_yw,
 /obj/structure/flora/bush/flowers_pp,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Sy" = (
 /turf/open/floor/wood/large,
@@ -219,12 +219,12 @@
 "Tc" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/mug,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "UO" = (
 /obj/structure/flora/bush/flowers_yw,
 /obj/structure/flora/bush/flowers_pp/style_2,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Wb" = (
 /turf/open/misc/ashplanet/wateryrock{
@@ -241,27 +241,27 @@
 /area/ruin/space/has_grav/wonderland)
 "Xr" = (
 /obj/structure/closet/crate/grave/filled,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Xt" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
 /obj/effect/landmark/wonderland_mark,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Xv" = (
 /obj/structure/flora/bush/flowers_yw,
 /obj/structure/flora/bush/flowers_br,
 /mob/living/basic/rabbit,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "XC" = (
 /obj/structure/chair/wood{
 	dir = 8
 	},
 /obj/item/toy/plush/goatplushie,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "Yf" = (
 /obj/effect/landmark/wonderchess_mark,
@@ -273,10 +273,10 @@
 /area/ruin/space/has_grav/wonderland)
 "Yp" = (
 /obj/structure/flora/bush/flowers_pp/style_2,
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 "ZA" = (
-/turf/open/misc/grass/jungle,
+/turf/open/misc/grass/jungle/planet,
 /area/ruin/space/has_grav/wonderland)
 
 (1,1,1) = {"
