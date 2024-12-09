@@ -355,7 +355,24 @@ GLOBAL_LIST_INIT(chem_master_containers, list(
 		return TRUE
 
 	if(action == "selectContainer")
-		selected_container = params["ref"]
+		var/obj/item/reagent_containers/target = locate(params["ref"])
+
+		//is this even a valid type path
+		if(!ispath(target))
+			return FALSE
+
+		//are we printing a valid container
+		var/container_found = FALSE
+		for(var/category in printable_containers)
+			for(var/obj/item/reagent_containers/container as anything in printable_containers[category])
+				if(target == container)
+					container_found = TRUE
+					break
+		if(!container_found)
+			return FALSE
+
+		//set the container
+		selected_container = target
 		return TRUE
 
 	if(action == "create")
