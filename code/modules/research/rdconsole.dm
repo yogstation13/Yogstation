@@ -30,7 +30,7 @@ Nothing else in the console has ID requirements.
 	/// The stored design disk, if present
 	var/obj/item/disk/design_disk/d_disk
 	/// Determines if the console is locked, and consequently if actions can be performed with it
-	var/locked = FALSE
+	var/locked = TRUE //Monkestation edit.
 	/// Used for compressing data sent to the UI via static_data as payload size is of concern
 	var/id_cache = list()
 	/// Sequence var for the id cache
