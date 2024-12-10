@@ -118,9 +118,9 @@
 				pai.key = candidate.key
 
 				card.setPersonality(pai)
-				candidates.Remove(candidate)
-				candidate = list("name" = candidate.name, "description"=candidate.description, "prefrole"=candidate.role, "ooccomments"=candidate.comments)
 				SSpai.candidates.Remove(candidate)
+				candidate = list("name" = candidate.name, "description"=candidate.description, "prefrole"=candidate.role, "ooccomments"=candidate.comments)
+				candidates.Remove(candidate)
 		if("setlaws")
 			var/newlaw = stripped_multiline_input(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.laws.supplied[1], MAX_MESSAGE_LEN)
 			if(newlaw && pai)

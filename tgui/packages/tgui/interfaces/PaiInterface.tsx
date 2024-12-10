@@ -126,6 +126,7 @@ const PaiBox = (props, context) => {
   const { pressure, gases, temperature } = data;
   const { hacking, hackprogress, cable, door } = data;
   const { code, frequency, minFrequency, maxFrequency, color } = data;
+  const { med_records, sec_records } = data;
   switch(modules_tabs[selectedMainTab].module_name) {
     case "directives":
       return (
@@ -343,6 +344,12 @@ const PaiBox = (props, context) => {
               onClick={() => act("signallersignal")} />
             </Stack.Item>
           </Stack>
+        </Section>
+      );
+    case "medical records":
+      return (
+        <Section title={modules_tabs[selectedMainTab].title}>
+          {med_records[0].name}
         </Section>
       );
     case "host scan":

@@ -41,8 +41,8 @@
 
 /mob/living/silicon/pai/var/cable_status = "Retracted"
 
-/mob/living/silicon/pai/var/med_record = list()
-/mob/living/silicon/pai/var/sec_record = list()
+/mob/living/silicon/pai/var/list/med_record = list()
+/mob/living/silicon/pai/var/list/sec_record = list()
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -82,14 +82,21 @@
 	data["maxFrequency"] = MAX_FREE_FREQ
 	data["color"] = signaler.label_color
 	if(GLOB.data_core.general && GLOB.data_core.medical)
+		med_record = list() //Important to reset it here so it doesn't readd records endlessly
 		for(var/datum/data/record/M in sortRecord(GLOB.data_core.medical))
 			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 				if(R.fields["name"] == M.fields["name"])
-					var/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "m_state" = R.fields["m_state"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
+					message_admins("Made new med record")
+					message_admins("Name: [R.fields["name"]]")
+					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "m_state" = R.fields["m_state"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
+					message_admins("New record name: [new_record["name"]]")
 					med_record += list(new_record)
 					qdel(new_record)
 					break
+	message_admins("Len: [med_record.len]")
+	message_admins("Record test: [med_record[0]")
 	if(GLOB.data_core.general && GLOB.data_core.security)
+		sec_record = list()
 		for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
 			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 				if(R.fields["name"] == S.fields["name"])
@@ -99,7 +106,7 @@
 					var/list/comments = list()
 					for(var/datum/data/comment/comment in S.fields["comments"])
 						comments += list("[comment.commentText] - [comment.author] [comment.time]")
-					var/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
+					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
 					sec_record += list(new_record)
 					qdel(new_record)
 					break
