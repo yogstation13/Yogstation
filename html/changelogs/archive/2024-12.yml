@@ -129,3 +129,13 @@
   - spellcheck: Clarified NT representative's description as being more an "Observe
       and report" role, and that they cannot give orders to command (They can still
       make suggestions).
+2024-12-10:
+  Gw0sty:
+  - rscadd: R&D consoles are now locked by default when built.
+  Loiosh42:
+  - bugfix: You can now print AP shells at the ammo workbench
+  Shoddd:
+  - bugfix: Wonderland grass no longer has chasms underneath
+  - rscadd: Satyr headbutt now checks for hands and mobility
+  SirNightKnight:
+  - balance: Rebalance debilitated to be more tame.
