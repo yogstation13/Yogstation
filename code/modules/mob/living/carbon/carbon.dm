@@ -874,8 +874,9 @@
 /mob/living/carbon/proc/can_defib(careAboutGhost = TRUE) //yogs start
 	if(suiciding || hellbound || HAS_TRAIT(src, TRAIT_HUSK)) //can't revive
 		return FALSE
-	if((world.time - timeofdeath) > DEFIB_TIME_LIMIT) //too late
-		return FALSE
+	if(!reagents.has_reagent(/datum/reagent/gas/healium))
+		if((world.time - timeofdeath) > DEFIB_TIME_LIMIT) //too late
+			return FALSE
 	if((getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE) || !can_be_revived()) //too damaged
 		return FALSE
 	if(!getorgan(/obj/item/organ/heart)) //what are we even shocking

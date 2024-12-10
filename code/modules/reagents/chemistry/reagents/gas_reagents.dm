@@ -255,11 +255,18 @@
 			organs.applyOrganDamage(-20)
 			if(organs.organ_flags & ORGAN_FAILING)
 				organs.organ_flags &= ~ORGAN_FAILING
-	if(L.stat == DEAD)
+	if(L.stat == DEAD) //Healium kicks harder if the body is dead
 		if(L.getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE)
 			L.adjustBruteLoss(-(L.getBruteLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
 		if(L.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE)
 			L.adjustFireLoss(-(L.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
+		if(health <= HEALTH_THRESHOLD_DEAD)
+			if(L.getOxyLoss())
+				L.adjustOxyLoss(-50)
+			if(L.getToxLoss())
+				L.adjustToxLoss(-50)
+			if(L.getCloneLoss())
+				L.adjustCloneLoss(-50)
 	ADD_TRAIT(L, TRAIT_PRESERVED_ORGANS, "healium")
 
 /datum/reagent/gas/healium/on_mob_delete(mob/living/carbon/L)
