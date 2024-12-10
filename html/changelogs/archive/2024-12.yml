@@ -130,6 +130,8 @@
       and report" role, and that they cannot give orders to command (They can still
       make suggestions).
 2024-12-10:
+  Absolucy:
+  - bugfix: Fixed not being able to select container/pill/patch type in ChemMasters.
   Gw0sty:
   - rscadd: R&D consoles are now locked by default when built.
   Loiosh42:
