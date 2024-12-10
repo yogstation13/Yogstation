@@ -2,9 +2,6 @@
 //	- Potentially roll HUDs and Records into one
 //	- Shock collar/lock system for prisoner pAIs?
 //  - Camera jack
-#define PAI_CABLE_RETRACTED 0
-#define PAI_CABLE_EXTENDED 1
-
 /mob/living/silicon/pai/var/list/available_software = list(
 															//Nightvision
 															//T-Ray
@@ -40,7 +37,7 @@
 /mob/living/silicon/pai/var/pressure
 /mob/living/silicon/pai/var/gases
 
-/mob/living/silicon/pai/var/cable_status = PAI_CABLE_RETRACTED
+/mob/living/silicon/pai/var/cable_status = "Retracted"
 
 /mob/living/silicon/pai/var/list/med_record = list()
 /mob/living/silicon/pai/var/list/sec_record = list()
@@ -73,10 +70,7 @@
 	data["hacking"] = hacking
 	data["hackprogress"] = hackprogress
 	data["cable"] = cable_status
-	if(isnull(cable))
-		data["door"] = null
-	else
-		data["door"] = cable.machine
+	data["door"] = isnull(cable) ? null : cable.machine
 	data["code"] = signaler.code
 	data["frequency"] = signaler.frequency
 	data["minFrequency"] = MIN_FREE_FREQ
@@ -87,15 +81,9 @@
 		for(var/datum/data/record/M in sortRecord(GLOB.data_core.medical))
 			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
 				if(R.fields["name"] == M.fields["name"])
-					message_admins("Made new med record")
-					message_admins("Name: [R.fields["name"]]")
-					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "m_state" = R.fields["m_state"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
-					message_admins("New record name: [new_record["name"]]")
+					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
 					med_record += list(new_record)
-					qdel(new_record)
 					break
-	message_admins("Len: [med_record.len]")
-	message_admins("Record test: [med_record[0]]")
 	if(GLOB.data_core.general && GLOB.data_core.security)
 		sec_record = list()
 		for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
@@ -107,9 +95,8 @@
 					var/list/comments = list()
 					for(var/datum/data/comment/comment in S.fields["comments"])
 						comments += list("[comment.commentText] - [comment.author] [comment.time]")
-					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_state"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
+					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
 					sec_record += list(new_record)
-					qdel(new_record)
 					break
 	data["med_records"] = med_record
 	data["sec_records"] = sec_record
@@ -134,6 +121,8 @@
 					return
 				software.Add(params["name"])
 				ram -= params["cost"]
+				if(params["name"] == "digital messenger")
+					create_modularInterface()
 				if(params["name"] == "medical HUD")
 					var/datum/atom_hud/med = GLOB.huds[med_hud]
 					med.show_to(src)
@@ -213,7 +202,7 @@
 				internal_instrument = new(src)
 			internal_instrument.interact(src)
 		if("cable")
-			if(cable_status == PAI_CABLE_EXTENDED)
+			if(cable_status == "Extended")
 				return
 			var/turf/T = get_turf(loc)
 			cable = new /obj/item/pai_cable(T)
@@ -221,7 +210,7 @@
 				var/mob/living/carbon/human/H = get(card, /mob/living/carbon/human)
 				H.put_in_hands(cable)
 			T.visible_message(span_warning("A port on [src] opens to reveal [cable], which promptly falls to the floor."), span_italics("You hear the soft click of something light and hard falling to the ground."))
-			cable_status = PAI_CABLE_EXTENDED
+			cable_status = "Extended"
 		if("jack")
 			if(cable && cable.machine)
 				hackdoor = cable.machine
@@ -234,7 +223,7 @@
 			qdel(cable)
 			hackdoor = null
 			cable = null
-			cable_status = PAI_CABLE_RETRACTED
+			cable_status = "Retracted"
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)

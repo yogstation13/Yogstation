@@ -7,7 +7,7 @@
 	hud_type = /datum/hud/pai
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be deactivated."
+	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be activated."
 	weather_immunities = WEATHER_STORM
 	light_on = FALSE
 	light_flags = LIGHT_ATTACHED
@@ -118,7 +118,6 @@
 
 	. = ..()
 
-	create_modularInterface()
 	emittersemicd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
@@ -274,9 +273,9 @@
 	. = ..()
 	. += "A personal AI in holochassis mode. Its master ID string seems to be [master ? master : "empty"]."
 	if(software && isobserver(user))
-		. += "<b>[src] has the following modules:"
-		for(var/list/module in software)
-			. += "[module["module_name"]]"
+		. += "<b>[src] has the following modules:</b>"
+		for(var/module in software)
+			. += "[module]"
 
 /mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stat == DEAD)
@@ -287,7 +286,7 @@
 			T.visible_message(span_warning("[src.cable] rapidly retracts back into its spool."), span_italics("You hear a click and the sound of wire spooling rapidly."))
 			qdel(src.cable)
 			cable = null
-			cable_status = PAI_CABLE_RETRACTED
+			cable_status = "Retracted"
 	silent = max(silent - 1, 0)
 	. = ..()
 
@@ -319,5 +318,5 @@
 		copy_access(id_card, user)
 
 /mob/living/silicon/pai/proc/copy_access(obj/item/card/id/ID, mob/user)
-	pai.access_card.access += ID.access
+	access_card.access += ID.access
 	to_chat(user, "Copied access from [ID]!")
