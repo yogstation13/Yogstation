@@ -260,7 +260,7 @@
 			L.adjustBruteLoss(-(L.getBruteLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
 		if(L.getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE)
 			L.adjustFireLoss(-(L.getFireLoss() - MAX_REVIVE_FIRE_DAMAGE + 50))
-		if(health <= HEALTH_THRESHOLD_DEAD)
+		if(L.health <= HEALTH_THRESHOLD_DEAD)
 			if(L.getOxyLoss())
 				L.adjustOxyLoss(-50)
 			if(L.getToxLoss())
