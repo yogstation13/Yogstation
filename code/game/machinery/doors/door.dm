@@ -120,6 +120,7 @@
 		qdel(spark_system)
 		spark_system = null
 	air_update_turf()
+	lose_hearing_sensitivity() // used by password door, hopefully clears
 	return ..()
 
 /obj/machinery/door/Bumped(atom/movable/AM)

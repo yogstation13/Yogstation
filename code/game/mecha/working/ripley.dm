@@ -32,6 +32,7 @@
 		A.forceMove(drop_location())
 		step_rand(A)
 	cargo.Cut()
+	lose_hearing_sensitivity()
 	return ..()
 
 /obj/mecha/working/ripley/go_out()
@@ -61,6 +62,7 @@
 /obj/mecha/working/ripley/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/armor_plate,3,/obj/item/stack/sheet/animalhide/goliath_hide,list(MELEE = 10, BULLET = 5, LASER = 5))
+	become_hearing_sensitive()
 
 /obj/mecha/working/ripley/firefighter
 	desc = "Autonomous Power Loader Unit MK-II. This model is fitted with a pressurized cabin and thermal protection."
@@ -74,7 +76,7 @@
 	step_in = 3
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	weather_protection = WEATHER_LAVA|WEATHER_STORM
-	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	enclosed = TRUE
 	enter_delay = 40
