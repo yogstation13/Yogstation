@@ -88,7 +88,7 @@
 		var/initial_config = greyscale_config
 		var/list/allowed_configs = list("[/datum/greyscale_config/pressure_tank]")
 		if(isnull(initial_config))
-			return FALSE
+			return
 
 		var/datum/greyscale_modify_menu/menu = new(
 			src, usr, allowed_configs, CALLBACK(src, PROC_REF(recolor)),
