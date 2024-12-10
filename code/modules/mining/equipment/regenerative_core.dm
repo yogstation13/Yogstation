@@ -79,6 +79,8 @@
 	if(proximity_flag && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/turf/user_turf = get_turf(user)
+		if(isipc(target))
+			return
 		if(inert)
 			to_chat(user, span_notice("[src] has decayed and can no longer be used to heal."))
 			return
@@ -117,6 +119,8 @@
 
 /obj/item/organ/regenerative_core/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	. = ..()
+	if(isipc(M))
+		return
 	if(!preserved && !inert)
 		preserved(TRUE)
 		owner.visible_message(span_notice("[src] stabilizes as it's inserted."))

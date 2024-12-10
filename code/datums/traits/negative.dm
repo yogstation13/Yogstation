@@ -985,3 +985,35 @@
 	if(!old_limb.is_organic_limb())
 		cybernetics_level--
 		update_mood()
+
+/datum/quirk/lactose_intolerance
+	name = "Lactose Intolerance"
+	desc = "You don't tolerate milk or other dairy products."
+	icon = "utensils"
+	gain_text = span_danger("You suddenly feel intolerant towards milk.")
+	lose_text = span_notice("You feel like you could drink milk again.")
+	medical_record_text = "Patient is lactose intolerant."
+	value = -1
+
+/datum/quirk/lactose_intolerance/check_quirk(datum/preferences/prefs)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+	if(initial(species_type.toxic_food) & DAIRY)
+		return "You're already lactose intolerant!"
+	species_type = new species_type()
+	if((TRAIT_POWERHUNGRY in species_type.inherent_traits) || (TRAIT_NOHUNGER in species_type.inherent_traits))
+		return "You don't eat food!"
+	return FALSE
+
+/datum/quirk/lactose_intolerance/add()
+	if(!ishuman(quirk_holder))
+		return
+	var/mob/living/carbon/carbon_holder = quirk_holder
+	var/datum/species/spec = carbon_holder.dna.species
+	spec.toxic_food |= DAIRY
+	RegisterSignal(carbon_holder, COMSIG_SPECIES_GAIN, PROC_REF(on_species_gain))
+
+/datum/quirk/lactose_intolerance/remove()
+	UnregisterSignal(quirk_holder, COMSIG_SPECIES_GAIN)
+
+/datum/quirk/lactose_intolerance/proc/on_species_gain(datum/source, datum/species/new_species)
+	new_species.toxic_food |= DAIRY // no escape from your terrible fate

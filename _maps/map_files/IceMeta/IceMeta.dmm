@@ -4176,8 +4176,17 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "biJ" = (
-/obj/machinery/computer/secure_data{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8
+	},
+/obj/item/stamp/hop{
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -26216,14 +26225,10 @@
 	c_tag = "Head of Personnel's Office";
 	dir = 1
 	},
-/obj/structure/table/wood,
-/obj/item/storage/box/PDAs{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/storage/box/silver_ids,
-/obj/item/storage/box/ids,
 /obj/machinery/light,
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "hIs" = (
@@ -26398,12 +26403,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"hJv" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "hJK" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
@@ -33279,12 +33278,6 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "jJb" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/modular_computer/console/preset/command/hop{
-	dir = 4
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "jJf" = (
@@ -42224,9 +42217,6 @@
 /area/security/brig)
 "mkZ" = (
 /obj/structure/chair/office/dark,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/light_switch{
 	pixel_x = 38;
 	pixel_y = -35
@@ -42643,17 +42633,8 @@
 /turf/open/floor/plasteel,
 /area/construction/storage_wing)
 "mqP" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stamp/hop{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/storage/pencil_holder/crew/fancy{
-	pixel_x = 8
+/obj/machinery/modular_computer/console/preset/command/hop{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -47816,12 +47797,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"nMh" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "nMi" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -54347,19 +54322,6 @@
 /area/medical/storage)
 "pES" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 1;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/window/northleft{
-	dir = 2;
-	name = "Reception Window"
-	},
 /obj/machinery/door/poddoor/preopen{
 	id = "hop";
 	name = "privacy shutters"
@@ -54373,6 +54335,14 @@
 	pixel_y = -3
 	},
 /obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 1
+	},
+/obj/machinery/door/window/eastright{
+	dir = 2;
+	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	name = "Head of Personnel's Desk";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -57622,13 +57592,28 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
 "qEA" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
+/obj/machinery/inspector_booth,
+/obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Reception Window"
 	},
-/turf/open/floor/carpet,
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 1;
+	name = "Head of Personnel's Desk"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "hop";
+	name = "privacy shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "qEG" = (
 /obj/machinery/conveyor_switch/oneway{
@@ -57783,9 +57768,6 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "qGb" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "hopqueue";
 	name = "HoP Queue Shutters"
@@ -60702,7 +60684,7 @@
 /area/solar/port/aft/icemoon)
 "rzP" = (
 /obj/structure/window/reinforced,
-/obj/machinery/computer/cargo/request{
+/obj/machinery/computer/cargo{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -66455,9 +66437,6 @@
 /turf/open/floor/plasteel/white,
 /area/security/prison/hallway)
 "tcV" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
@@ -85414,9 +85393,6 @@
 /turf/open/floor/wood,
 /area/library)
 "ylr" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/flasher{
 	id = "hopflash";
 	pixel_x = 28;
@@ -240822,7 +240798,7 @@ hMv
 sYq
 jkl
 bjT
-nMh
+ibB
 biJ
 sYq
 iPW
@@ -241079,9 +241055,9 @@ kHW
 sYq
 mTR
 ibB
-qEA
+ibB
 jJb
-tKY
+qEA
 bjk
 eUW
 kvD
@@ -241336,7 +241312,7 @@ qVI
 sYq
 uEW
 ibB
-hJv
+ibB
 mkZ
 pES
 ylr

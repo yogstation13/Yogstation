@@ -763,9 +763,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -10050,9 +10047,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
@@ -19047,9 +19041,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29185,12 +29176,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -38448,20 +38439,13 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
 "lip" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "hop";
 	name = "Privacy Shutters"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
@@ -42144,6 +42128,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 9
 	},
+/obj/machinery/modular_computer/console/preset/command/hop,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "mpS" = (
@@ -43308,9 +43293,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
@@ -54087,7 +54069,6 @@
 /obj/machinery/door/window/brigdoor{
 	base_state = "rightsecure";
 	dir = 4;
-	icon_state = "rightsecure";
 	name = "Head of Personnel's Desk"
 	},
 /obj/machinery/door/window/northleft{
@@ -54105,9 +54086,6 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -54122,10 +54100,16 @@
 /obj/item/storage/pencil_holder/crew{
 	pixel_y = 9
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
 /obj/effect/mapping_helpers/windoor/access/all/service/hop{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "pUG" = (
 /obj/machinery/door/firedoor/border_only,
@@ -63777,20 +63761,28 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "sMb" = (
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/obj/machinery/inspector_booth{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	name = "Head of Personnel's Desk"
+	},
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 4
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
-	},
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "hop";
-	name = "Privacy Shutters"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
@@ -72272,9 +72264,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "vwa" = (
-/obj/machinery/modular_computer/console/preset/command/hop{
-	dir = 1
-	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower{
 	dir = 8
 	},
@@ -73022,9 +73011,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -74332,9 +74318,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -74388,9 +74371,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 5
