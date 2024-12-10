@@ -26,6 +26,15 @@
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 	minimal_character_age = 22 //Understanding of forensics, crime analysis, and theory. Less of a grunt officer and more of an intellectual, theoretically, despite how this is never reflected in-game
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = 2
+
 	departments_list = list(
 		/datum/job_department/security,
 	)

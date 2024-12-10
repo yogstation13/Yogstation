@@ -17,6 +17,15 @@
 	exp_type_department = EXP_TYPE_ENGINEERING
 	alt_titles = list("Engineering Director", "Head of Engineering", "Senior Engineer", "Chief Engineering Officer")
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 4 // lots of different skills required
+
 	outfit = /datum/outfit/job/ce
 
 	added_access = list(ACCESS_CAPTAIN, ACCESS_AI_MASTER)

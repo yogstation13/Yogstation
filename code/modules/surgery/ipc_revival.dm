@@ -24,6 +24,7 @@
 	time = 5 SECONDS
 	repeatable = TRUE // so you don't have to restart the whole thing if it fails
 	implements = list(TOOL_MULTITOOL = 100, TOOL_WIRECUTTER = 50)
+	difficulty = EXP_HIGH
 	preop_sound = 'sound/items/tape_flip.ogg'
 	success_sound = 'sound/items/taperecorder_close.ogg'
 	failure_sound = 'sound/machines/defib_zap.ogg'

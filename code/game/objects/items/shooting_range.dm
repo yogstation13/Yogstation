@@ -25,6 +25,12 @@
 	if(pinnedLoc)
 		pinnedLoc.forceMove(loc)
 
+/obj/item/target/bullet_act(obj/projectile/P)
+	. = ..()
+	if(iscarbon(P.firer)) // gain a bit of experience from shooting targets, based on distance
+		var/mob/shooter = P.firer
+		shooter.add_exp(SKILL_FITNESS, max(initial(P.range) - P.range, 1) * 2)
+
 /obj/item/target/welder_act(mob/living/user, obj/item/I)
 	if(I.use_tool(src, user, 0, volume=40))
 		removeOverlays()
