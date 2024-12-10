@@ -2,7 +2,8 @@
 //	- Potentially roll HUDs and Records into one
 //	- Shock collar/lock system for prisoner pAIs?
 //  - Camera jack
-
+#define PAI_CABLE_RETRACTED 0
+#define PAI_CABLE_EXTENDED 1
 
 /mob/living/silicon/pai/var/list/available_software = list(
 															//Nightvision
@@ -39,7 +40,7 @@
 /mob/living/silicon/pai/var/pressure
 /mob/living/silicon/pai/var/gases
 
-/mob/living/silicon/pai/var/cable_status = "Retracted"
+/mob/living/silicon/pai/var/cable_status = PAI_CABLE_RETRACTED
 
 /mob/living/silicon/pai/var/list/med_record = list()
 /mob/living/silicon/pai/var/list/sec_record = list()
@@ -94,7 +95,7 @@
 					qdel(new_record)
 					break
 	message_admins("Len: [med_record.len]")
-	message_admins("Record test: [med_record[0]")
+	message_admins("Record test: [med_record[0]]")
 	if(GLOB.data_core.general && GLOB.data_core.security)
 		sec_record = list()
 		for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
@@ -212,13 +213,15 @@
 				internal_instrument = new(src)
 			internal_instrument.interact(src)
 		if("cable")
+			if(cable_status == PAI_CABLE_EXTENDED)
+				return
 			var/turf/T = get_turf(loc)
 			cable = new /obj/item/pai_cable(T)
 			if(get(card, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = get(card, /mob/living/carbon/human)
 				H.put_in_hands(cable)
 			T.visible_message(span_warning("A port on [src] opens to reveal [cable], which promptly falls to the floor."), span_italics("You hear the soft click of something light and hard falling to the ground."))
-			cable_status = "Extended"
+			cable_status = PAI_CABLE_EXTENDED
 		if("jack")
 			if(cable && cable.machine)
 				hackdoor = cable.machine
@@ -231,7 +234,7 @@
 			qdel(cable)
 			hackdoor = null
 			cable = null
-			cable_status = "Retracted"
+			cable_status = PAI_CABLE_RETRACTED
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)

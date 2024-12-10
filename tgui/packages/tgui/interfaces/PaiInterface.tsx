@@ -61,7 +61,7 @@ type Data = {
   temperature: number;
   hacking: boolean;
   hackprogress: number;
-  cable: string;
+  cable: boolean;
   door: string[];
   code: number;
   frequency: number;
@@ -381,17 +381,17 @@ const PaiBox = (props, context) => {
               maxValue={100}>
                 {AirlockJackTextSwitch(hackprogress)}
             </ProgressBar>
-            {cable === "Retracted" && (
+            {cable === false && (
               <Button onClick={() => act("cable")}>
                 Extend cable
               </Button>
             )}
-            {cable === "Extended" && (
+            {cable === true && (
               <Button onClick={() => act("retract")}>
                 Retract cable
               </Button>
             )}
-            {cable === "Extended" && door !== null && (
+            {cable === true && door !== null && (
               hacking ? (
                 <Button onClick={() => act("cancel")}>
                   Cancel Airlock Jack

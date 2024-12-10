@@ -272,7 +272,7 @@
 
 /mob/living/silicon/pai/examine(mob/user)
 	. = ..()
-	. += "A personal AI in holochassis mode. Its master ID string seems to be [master]."
+	. += "A personal AI in holochassis mode. Its master ID string seems to be [master ? master : "empty"]."
 	if(software && isobserver(user))
 		. += "<b>[src] has the following modules:"
 		for(var/list/module in software)
@@ -287,7 +287,7 @@
 			T.visible_message(span_warning("[src.cable] rapidly retracts back into its spool."), span_italics("You hear a click and the sound of wire spooling rapidly."))
 			qdel(src.cable)
 			cable = null
-			cable_status = "Retracted"
+			cable_status = PAI_CABLE_RETRACTED
 	silent = max(silent - 1, 0)
 	. = ..()
 
@@ -303,10 +303,21 @@
 /obj/item/computer_hardware/paicard/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	user.set_machine(src)
-	if(pai.encryptmod == TRUE)
-		if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	if(W.tool_behaviour == TOOL_SCREWDRIVER||istype(W, /obj/item/encryptionkey))
+		if(pai.encryptmod == TRUE)
 			pai.radio.attackby(W, user, params)
-		else if(istype(W, /obj/item/encryptionkey))
-			pai.radio.attackby(W, user, params)
-	else
-		to_chat(user, "Encryption Key ports not configured.")
+		else
+			to_chat(user, "Encryption Key ports not configured.")
+	else if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/id_card = W
+		pai.copy_access(id_card, user)
+
+/mob/living/silicon/pai/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/id_card = W
+		copy_access(id_card, user)
+
+/mob/living/silicon/pai/proc/copy_access(obj/item/card/id/ID, mob/user)
+	pai.access_card.access += ID.access
+	to_chat(user, "Copied access from [ID]!")
