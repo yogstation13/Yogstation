@@ -62,14 +62,9 @@
 	data["master"] = master
 	data["masterdna"] = master_dna
 	data["ram"] = ram
-	if(!isnull(environment))
-		data["pressure"] = round(pressure,0.1)
-		data["gases"] = gases
-		data["temperature"] = round(environment.return_temperature()-T0C)
-	else
-		data["pressure"] = pressure
-		data["gases"] = gases
-		data["temperature"] = null
+	data["pressure"] = !isnull(environment) ? round(pressure,0.1) : pressure
+	data["gases"] = gases
+	data["temperature"] = !isnull(environment) ? round(environment.return_temperature()-T0C) : null
 	data["hacking"] = hacking
 	data["hackprogress"] = hackprogress
 	data["cable"] = cable_status
@@ -114,7 +109,6 @@
 				CheckDNA(get(card, /mob/living/carbon/human), src) //you should only be able to check when directly in hand, muh immersions?
 			else
 				to_chat(src, "You are not being carried by anyone!")
-				return 0 // FALSE ? If you return here you won't call paiinterface() below
 		if("update_image")
 			card.setEmotion(params["updated_image"])
 		if("buy")
