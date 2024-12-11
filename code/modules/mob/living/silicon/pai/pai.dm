@@ -23,33 +23,44 @@
 	var/network = "ss13"
 	var/obj/machinery/camera/current = null
 
-	var/ram = 100	// Used as currency to purchase different abilities
+	// Used as currency to purchase different abilities
+	var/ram = 100	
 	var/list/software = list()
-	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/computer_hardware/paicard/card	// The card we inhabit
-	var/hacking = FALSE		//Are we hacking a door?
+	// The DNA string of our assigned user
+	var/userDNA		
+	// The card we inhabit
+	var/obj/item/computer_hardware/paicard/card	
+	//Are we hacking a door?
+	var/hacking = FALSE		
 
 	var/speakStatement = "states"
 	var/speakExclamation = "declares"
 	var/speakDoubleExclamation = "alarms"
 	var/speakQuery = "queries"
 
-	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
+	// The cable we produce and use when door or camera jacking
+	var/obj/item/pai_cable/cable		
 
-	var/master				// Name of the one who commands us
-	var/master_dna			// DNA string for owner verification
+	// Name of the one who commands us
+	var/master				
+	// DNA string for owner verification
+	var/master_dna			
 
 // Various software-specific vars
 
-	var/obj/machinery/door/hackdoor		// The airlock being hacked
-	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
+	// The airlock being hacked
+	var/obj/machinery/door/hackdoor		
+	// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
+	var/hackprogress = 0				
 
 	/// Remote signaler
 	var/obj/item/assembly/signaler/internal/signaler
 
 	var/obj/item/instrument/piano_synth/internal_instrument
-	var/obj/machinery/newscaster			//pAI Newscaster
-	var/obj/item/healthanalyzer/hostscan				//pAI healthanalyzer
+	//pAI Newscaster
+	var/obj/machinery/newscaster		
+	//pAI healthanalyzer	
+	var/obj/item/healthanalyzer/hostscan				
 
 	//Whether the pAI has bought the encryption slot module or not
 	var/encryptmod = FALSE
@@ -72,7 +83,8 @@
 	var/emittersemicd = FALSE
 
 	var/overload_ventcrawl = 0
-	var/overload_bulletblock = 0	//Why is this a good idea?
+	//Why is this a good idea?
+	var/overload_bulletblock = 0	
 	var/overload_maxhealth = 0
 	var/silent = FALSE
 	var/brightness_power = 5
