@@ -52,7 +52,7 @@
 			lavaland = Z
 			break
 	radio = new /obj/item/radio/(src)
-	radio.frequency = radio_freq
+	radio.set_frequency(radio_freq)
 	update_appearance()
 
 /obj/machinery/sci_bombardment/Destroy()

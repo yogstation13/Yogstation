@@ -181,7 +181,7 @@
 
 	radio = new(src)
 	radio.keyslot = new radio_key
-	radio.listening = FALSE
+	radio.set_listening(FALSE)
 	radio.recalculateChannels()
 	investigate_log("has been created.", INVESTIGATE_HYPERTORUS)
 

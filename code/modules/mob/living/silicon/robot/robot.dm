@@ -13,6 +13,8 @@
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_on = FALSE
 
+	radio = /obj/item/radio/borg
+	
 	var/custom_name = ""
 	var/braintype = "Cyborg"
 	var/obj/item/mmi/mmi = null
@@ -119,7 +121,6 @@
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-
 	wires = new /datum/wires/robot(src)
 	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
 
@@ -142,7 +143,7 @@
 
 	update_law_history() //yogs
 
-	radio = new /obj/item/radio/borg(src)
+	
 	if(!scrambledcodes && !builtInCamera)
 		builtInCamera = new (src)
 		builtInCamera.c_tag = real_name
@@ -211,9 +212,9 @@
 	if(shell)
 		GLOB.available_ai_shells -= src
 	else
-		if(T && istype(radio) && istype(radio.keyslot))
-			radio.keyslot.forceMove(T)
-			radio.keyslot = null
+		if(T && istype(radio) && istype(radio?.keyslot))
+			radio?.keyslot?.forceMove(T)
+			radio?.keyslot = null
 	qdel(wires)
 	qdel(module)
 	qdel(eye_lights)
@@ -869,17 +870,21 @@
 		for(b=0, b!=2, b++)
 			var/obj/item/assembly/flash/handheld/F = new /obj/item/assembly/flash/handheld(T)
 			F.burn_out()
-		if (cell) //Sanity check.
+		if		(cell) //Sanity check.
 			cell.forceMove(T)
 			cell = null
+		if	(radio)
+			radio?.keyslot?.forceMove(T)
+			radio?.keyslot = null
 	qdel(src)
 
 /mob/living/silicon/robot/modules
-	var/set_module = null
+	var/set_module = /obj/item/robot_module
 
 /mob/living/silicon/robot/modules/Initialize(mapload)
 	. = ..()
-	module.transform_to(set_module)
+	INVOKE_ASYNC(module, TYPE_PROC_REF(/obj/item/robot_module, transform_to), set_module, TRUE)
+
 
 /mob/living/silicon/robot/modules/standard
 	set_module = /obj/item/robot_module/standard
