@@ -1,10 +1,12 @@
 /datum/round_event_control/bad_wizard
 	name = "Bad Wizard"
 	typepath = /datum/round_event/ghost_role/bad_wizard
-	gamemode_blacklist = list("wizard")
 	max_occurrences = 1
 	min_players = 20
 	weight = 5
+	track = EVENT_TRACK_MAJOR
+	tags = list(TAG_DESTRUCTIVE, TAG_MAGICAL)
+	description = "spawns a shitty wizard."
 
 /datum/round_event/ghost_role/bad_wizard
 	minimum_required = 1

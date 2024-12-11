@@ -4,6 +4,10 @@
 	weight = 10
 	max_occurrences = 2
 	min_players = 1
+	min_wizard_trigger_potency = 0
+	max_wizard_trigger_potency = 2
+	track = EVENT_TRACK_MUNDANE
+	tags = list(TAG_COMMUNAL, TAG_MAGICAL)
 
 /datum/round_event/mass_hallucination
 	fakeable = FALSE

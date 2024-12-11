@@ -614,11 +614,11 @@ There are several things that need to be remembered:
 			overlays_standing[BACK_LAYER] = back_overlay
 		apply_overlay(BACK_LAYER)
 
-/proc/wear_female_version(t_color, icon, layer, type, greyscale_colors)
-	var/index = "[t_color]-[greyscale_colors]"
+/proc/wear_female_version(t_color, icon, layer, type, greyscale_colors, flat)
+	var/index = "[t_color]-[greyscale_colors]-[flat]"
 	var/icon/female_clothing_icon = GLOB.female_clothing_icons[index]
 	if(!female_clothing_icon) 	//Create standing/laying icons if they don't exist
-		generate_female_clothing(index, t_color, icon, type)
+		generate_female_clothing(index, t_color, icon, type, flat)
 	return mutable_appearance(GLOB.female_clothing_icons[index], layer = -layer) //Grab the standing/laying icons once/if they do exist
 
 /proc/wear_skinny_version(t_color, icon, layer, type, greyscale_colors)
@@ -726,7 +726,7 @@ generate/load female uniform sprites matching all previously decided variables
 		if(HAS_TRAIT(H, TRAIT_SKINNY) && (H.underwear == "Nude"))
 			standing = wear_skinny_version(t_state, file2use, layer2use, femaleuniform, greyscale_colors)
 		else
-			standing = wear_female_version(t_state, file2use, layer2use, femaleuniform, greyscale_colors)
+			standing = wear_female_version(t_state, file2use, layer2use, femaleuniform, greyscale_colors, !!(H.mob_biotypes & MOB_REPTILE)) // lizards 
 	if(!standing)
 		standing = mutable_appearance(file2use, t_state, -layer2use)
 

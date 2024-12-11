@@ -39,7 +39,7 @@
 	include_objectives = list(/datum/objective/hijack)
 
 /datum/uplink_item/stealthy_tools/mulligan
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/traitor/internal_affairs)
+	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP, ROLE_INTERNAL_AFFAIRS)
 
 /datum/uplink_item/device_tools/fakenucleardisk
 	surplus_nullcrates = 0
@@ -56,7 +56,7 @@
 	item = /obj/item/doorCharge
 	cost = 2
 	surplus = 10
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_antags = list(ROLE_OPERATIVE)
 
 
 /datum/uplink_item/device_tools/arm
@@ -65,7 +65,7 @@
 	item = /obj/item/bodypart/l_arm //doesn't actually spawn an arm, but it needs an object to show up in the menu :^)
 	cost = 5
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_antags = list(ROLE_OPERATIVE)
 	illegal_tech = FALSE // ARMS ARE NOT ILLEGAL
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
@@ -124,7 +124,7 @@
 	cost = 7
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 20
-	exclude_modes = list(/datum/game_mode/infiltration)
+	exclude_antags = list(ROLE_INFILTRATOR)
 
 /datum/uplink_item/implants/greytide
 	name = "Greytide Implant"

@@ -845,6 +845,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(underwear)
 				if(HAS_TRAIT(H, TRAIT_SKINNY))
 					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
+				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
+					standing += wear_female_version(underwear.icon_state, underwear.icon, BODY_LAYER, flat = !!(H.mob_biotypes & MOB_REPTILE)) // lizards
 				else
 					var/mutable_appearance/underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 					if(H.dna.species.id in underwear.sprite_sheets)
@@ -858,7 +860,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
-					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER, flat = !!(H.mob_biotypes & MOB_REPTILE)) // lizards
 				else
 					var/mutable_appearance/undershirt_overlay = mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 					if(H.dna.species.id in undershirt.sprite_sheets)
@@ -1420,7 +1422,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!disable_warning)
 					to_chat(H, "The [I.name] is too big to attach.") //should be src?
 				return FALSE
-			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+			if( istype(I, /obj/item/modular_computer/tablet/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_HANDCUFFED)
@@ -1455,7 +1457,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H, client/preference_source)
 	H.update_mutant_bodyparts()
 
 // Do species-specific reagent handling here

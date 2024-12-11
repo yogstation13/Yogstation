@@ -1167,6 +1167,26 @@
 
 	return total_bleed_rate
 
+/mob/living/carbon/ZImpactDamage(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= SEND_SIGNAL(src, COMSIG_LIVING_Z_IMPACT, levels, impacted_turf)
+	if(impact_flags & ZIMPACT_CANCEL_DAMAGE)
+		return impact_flags
+	Knockdown(levels * 3 SECONDS)
+	if(!(impact_flags & ZIMPACT_NO_MESSAGE))
+		visible_message(
+			span_danger("[src] crashes into [impacted_turf] with a sickening noise!"),
+			span_userdanger("You crash into [impacted_turf] with a sickening noise!"),
+		)
+	var/obj/item/bodypart/damaged_limb = pick(bodyparts)
+	if(!damaged_limb)
+		CRASH("[src] has no bodyparts!")
+	var/fall_damage = (levels * 5) ** 1.5
+	if(damaged_limb.can_dismember() && prob(fall_damage * 3) && HAS_TRAIT(src, TRAIT_EASYDISMEMBER))
+		damaged_limb.dismember(BRUTE, FALSE)
+		apply_damage(fall_damage, BRUTE, BODY_ZONE_CHEST, sharpness = SHARP_NONE)
+	else
+		damaged_limb.receive_damage(fall_damage, 0, 0, getarmor(damaged_limb.body_zone, BOMB), TRUE, wound_bonus = 30, sharpness = SHARP_NONE)
+
 /**
   * generate_fake_scars()- for when you want to scar someone, but you don't want to hurt them first. These scars don't count for temporal scarring (hence, fake)
   *
