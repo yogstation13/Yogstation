@@ -2,12 +2,13 @@
 //	- Potentially roll HUDs and Records into one
 //	- Shock collar/lock system for prisoner pAIs?
 //  - Camera jack
+
+
 /mob/living/silicon/pai/var/list/available_software = list(
 															//Nightvision
 															//T-Ray
 															//radiation eyes
 															//chem goggs
-															//mesons
 															list("module_name" = "crew manifest", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "digital messenger", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "atmosphere sensor", "tab"=TRUE, "title"="Atmospheric sensor", "cost" = 5),
@@ -21,6 +22,8 @@
 															//"heartbeat sensor" = 10,
 															//"projection array" = 15,
 															list("module_name" = "medical HUD", "tab"=FALSE, "cost" = 20),
+															list("module_name" = "meson HUD", "tab"=FALSE, "cost" = 20),
+															list("module_name" = "nightvision HUD", "tab"=FALSE, "cost" = 20),
 															list("module_name" = "security HUD", "tab"=FALSE, "cost" = 20),
 															list("module_name" = "loudness booster", "tab"=TRUE, "title"="Sound Synthesizer", "cost" = 20),
 															list("module_name" = "newscaster", "tab"=FALSE, "cost" = 20),
@@ -126,6 +129,10 @@
 				if(params["name"] == "medical HUD")
 					var/datum/atom_hud/med = GLOB.huds[med_hud]
 					med.show_to(src)
+				if(params["name"] == "meson HUD")
+					sight |= SEE_TURFS
+				if(params["name"] == "nightvision HUD")
+					lighting_cutoff = LIGHTING_CUTOFF_HIGH
 				if(params["name"] == "security HUD")
 					var/datum/atom_hud/sec = GLOB.huds[sec_hud]
 					sec.show_to(src)

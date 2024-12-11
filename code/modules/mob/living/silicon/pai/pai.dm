@@ -60,7 +60,7 @@
 	var/can_transmit = TRUE
 	//Can pAI receive radio messages?
 	var/can_receive = TRUE
-	var/obj/item/card/id/access_card = null
+	var/obj/item/card/id/access_card = new /obj/item/card/id
 	var/chassis = "repairbot"
 	var/list/possible_chassis = list("cat" = TRUE, "mouse" = TRUE, "monkey" = TRUE, "corgi" = FALSE, "fox" = FALSE, "repairbot" = TRUE, "rabbit" = TRUE, "frog" = TRUE)		//assoc value is whether it can be picked up.
 
@@ -319,4 +319,12 @@
 
 /mob/living/silicon/pai/proc/copy_access(obj/item/card/id/ID, mob/user)
 	access_card.access += ID.access
-	to_chat(user, "Copied access from [ID]!")
+	to_chat(user, span_info("Copied access from [ID]!"))
+	to_chat(src, span_notice("Data transfer complete: New access encryption keys stored in memory."))
+
+/mob/living/silicon/pai/Bump(atom/A) //Copied from bot.dm
+	. = ..()
+	if((istype(A, /obj/machinery/door/airlock) ||  istype(A, /obj/machinery/door/window)) && (!isnull(access_card)))
+		var/obj/machinery/door/D = A
+		if(D.check_access(access_card))
+			D.open()
