@@ -321,6 +321,17 @@
 			gas_reagent.reaction_mob(mob_occupant, VAPOR|BREATH, 2, permeability = 1)
 			air1.adjust_moles(gas_id, -0.1 / efficiency)
 			qdel(gas_reagent)
+		if(C && C.stat == DEAD && C.reagents.has_reagent(/datum/reagent/gas/healium)) // attempts to cycle healium in the body to a reviable state
+			if(!C.can_defib(FALSE))
+				C.reagents.del_reagent(/datum/reagent/gas/healium)
+			else
+				set_on(FALSE)
+				playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
+				var/msg = "Dead body has been patched up to a reviable state."
+				if(autoeject) // Eject if configured.
+					msg += " Auto ejecting body now."
+					open_machine()
+				radio.talk_into(src, msg, radio_channel)
 
 	return TRUE
 
