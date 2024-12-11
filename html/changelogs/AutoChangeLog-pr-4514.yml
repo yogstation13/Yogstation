@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscdel: "Removed the Tower of Babel wizard event."
+  - rscdel: "Staff of Babel is now admin-only."
