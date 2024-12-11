@@ -10,7 +10,7 @@
 	var/storage_capacity = 80
 	//Sound made when an item is dispensed
 	var/dispense_sound = 'sound/machines/click.ogg'
-	//List for items to be shown in UI
+	//List used to show items in UI
 	var/list/ui_list = list()
 
 /obj/machinery/food_cart_TGUI/ui_interact(mob/user, datum/tgui/ui)
@@ -73,8 +73,9 @@
 	if(istype(A, /obj/item/reagent_containers/food))
 		storage_single(A)
 
-/obj/machinery/food_cart_TGUI/proc/dispense_item(received_item, mob/user = usr)
+	..()
 
+/obj/machinery/food_cart_TGUI/proc/dispense_item(received_item, mob/user = usr)
 	//Make a variable for checking the type of the selected item
 	var/obj/item/reagent_containers/food/ui_item = new received_item
 
@@ -128,7 +129,6 @@
 	return amount
 
 /obj/machinery/food_cart_TGUI/proc/last_index(obj/item/search_item)
-
 	var/obj/item/reagent_containers/food/snacks/item_index = null
 
 	//Search for the same item path in storage
