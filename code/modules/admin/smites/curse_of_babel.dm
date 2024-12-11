@@ -1,3 +1,4 @@
+/* monkestation removal. if you REALLY want to do this for some reason, call the proc yourself.
 /// Strikes the target with a lightning bolt
 /datum/smite/curse_of_babel
 	name = "Curse of Babel"
@@ -15,3 +16,4 @@
 
 	target.apply_status_effect(/datum/status_effect/tower_of_babel, duration)
 	to_chat(target, span_userdanger("The gods have punished you for your sins!"), confidential = TRUE)
+monkestation end */

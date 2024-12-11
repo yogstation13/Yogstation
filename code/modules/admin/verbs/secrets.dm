@@ -294,6 +294,7 @@ GLOBAL_DATUM(everyone_an_antag, /datum/everyone_is_an_antag_controller)
 
 			summon_magic(holder.mob, survivor_probability)
 
+/* monkestation removal: if you REALLY want to do this for some reason, call the proc yourself.
 		if("towerOfBabel")
 			if(!is_funmin)
 				return
@@ -305,6 +306,7 @@ GLOBAL_DATUM(everyone_an_antag, /datum/everyone_is_an_antag_controller)
 			if(!is_funmin)
 				return
 			holder.tower_of_babel_undo()
+monkestation end */
 
 		if("events")
 			if(!is_funmin)

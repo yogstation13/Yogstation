@@ -25,7 +25,7 @@
 	var/list/heavy_smites = list(/datum/smite/berforate, /datum/smite/bloodless, /datum/smite/boneless, /datum/smite/brain_damage, /datum/smite/bread, /datum/smite/bsa, \
 								 /datum/smite/fireball, /datum/smite/gib, /datum/smite/lightning, /datum/smite/nugget, /datum/smite/puzzgrid, /datum/smite/puzzle)
 	//list of smites that have a low effect on the target
-	var/list/light_smites = list(/datum/smite/bad_luck, /datum/smite/curse_of_babel, /datum/smite/fake_bwoink, /datum/smite/fat, /datum/smite/ghost_control, /datum/smite/immerse, \
+	var/list/light_smites = list(/datum/smite/bad_luck, /datum/smite/fake_bwoink, /datum/smite/fat, /datum/smite/ghost_control, /datum/smite/immerse, \
 								 /datum/smite/knot_shoes, /datum/smite/ocky_icky, /datum/smite/scarify)
 
 /datum/action/cooldown/spell/pointed/smite/is_valid_target(atom/cast_on)
@@ -61,10 +61,6 @@
 			var/datum/smite/berforate/shoot_smite = new picked_smite
 			shoot_smite.hatred = "A lot"
 			do_smite(shoot_smite, cast_on)
-		if(/datum/smite/curse_of_babel)
-			var/datum/smite/curse_of_babel/babel_smite = new picked_smite
-			babel_smite.duration = 5 MINUTES
-			do_smite(babel_smite, cast_on)
 		if(/datum/smite/puzzgrid)
 			var/datum/smite/puzzgrid/puzz_smite = new picked_smite
 			puzz_smite.gib_on_loss = TRUE

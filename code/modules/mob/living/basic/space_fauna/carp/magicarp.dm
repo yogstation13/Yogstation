@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(magicarp_spell_types, list(
 	/obj/projectile/magic/resurrection = "vital",
 	/obj/projectile/magic/spellblade = "vorpal",
 	/obj/projectile/magic/teleport = "warping",
-	/obj/projectile/magic/babel = "babbling",
+	/* /obj/projectile/magic/babel = "babbling", [monkestation removal: staff of babel is admin-only now] */
 ))
 
 /// A reduced list of spells for magicarp spawned in xenobiology, less disruptive
@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(magicarp_spell_colours, list(
 	/obj/projectile/magic/resurrection = COLOR_CARP_PALE_GREEN,
 	/obj/projectile/magic/spellblade = COLOR_CARP_SILVER,
 	/obj/projectile/magic/teleport = COLOR_CARP_GRAPE,
-	/obj/projectile/magic/babel = COLOR_CARP_BROWN,
+	/*  /obj/projectile/magic/babel = COLOR_CARP_BROWN, [monkestation removal: staff of babel is admin-only now] */
 ))
 
 /**

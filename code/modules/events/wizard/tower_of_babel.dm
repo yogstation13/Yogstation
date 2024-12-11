@@ -1,3 +1,4 @@
+/* monkestation removal. if you REALLY want to do this for some reason, call the proc yourself.
 /datum/round_event_control/wizard/tower_of_babel
 	name = "Tower of Babel"
 	weight = 3
@@ -10,4 +11,4 @@
 
 /datum/round_event/wizard/tower_of_babel/start()
 	GLOB.tower_of_babel = new /datum/tower_of_babel()
-
+monkestation end */
