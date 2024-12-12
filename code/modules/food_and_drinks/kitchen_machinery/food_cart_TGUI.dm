@@ -12,7 +12,7 @@
 	var/glass_quantity = 10
 	//Max amount of drink glasses the cart can have
 	var/glass_capacity = 30
-	//Max amount of reagents that can be in cart's mixer
+	//Max amount of reagents that can be in cart's storage
 	var/reagent_capacity = 200
 	//Sound made when an item is dispensed
 	var/dispense_sound = 'sound/machines/click.ogg'
@@ -21,11 +21,7 @@
 	//List of transfer amounts for reagents
 	var/list/transfer_list = list(5, 10, 15, 20, 30, 50)
 	//What transfer amount is currently selected
-	var/selected_transfer
-	//List used to show reagents in cart's reagent storage
-	var/list/drink_ui_list = list()
-	//List used to show reagents in mixer's reagent storage
-	var/list/mixer_ui_list = list()
+	var/selected_transfer = null
 	//Mixer for dispencing drinks
 	var/obj/item/reagent_containers/mixer
 
@@ -106,7 +102,6 @@
 /obj/machinery/food_cart_TGUI/ui_act(action, list/params)
 	. = ..()
 	if(.)
-
 		return
 
 	switch(action)
@@ -114,13 +109,18 @@
 			var/itemPath = text2path(params["itemPath"])
 			dispense_item(itemPath)
 		if("amount")
-			selected_transfer = text2num(params["dispenceAmount"])
+			selected_transfer = params["dispenceAmount"]
+		if("purge")
+			return
+		if("addMixer")
+			src.reagents.trans_id_to(mixer, text2path(params["itemPath"]),selected_transfer)
+
 
 /obj/machinery/food_cart_TGUI/Initialize(mapload)
 	. = ..()
 	//Create reagents holder for drinks
 	create_reagents(reagent_capacity, OPENCONTAINER | NO_REACT)
-	mixer = new /obj/item/reagent_containers(src, 100)
+	mixer = new /obj/item/reagent_containers(src, 50)
 
 /obj/machinery/food_cart_TGUI/Destroy()
 	QDEL_NULL(mixer)

@@ -323,6 +323,7 @@ const DrinkTransferRow = (props, context) => {
         grow={1}
         mr={0.5}>
           <Button
+            key={amount}
             fluid
             content={amount}
             textAlign="center"
