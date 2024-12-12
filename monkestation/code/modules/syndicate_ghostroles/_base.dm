@@ -1,0 +1,8 @@
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/special(mob/living/new_spawn)
+	. = ..()
+	to_chat(new_spawn, "<b>Code Phrases</b>: [span_blue(jointext(GLOB.syndicate_code_phrase, ", "))]")
+	to_chat(new_spawn, "<b>Code Responses</b>: [span_red("[jointext(GLOB.syndicate_code_response, ", ")]")]")
+	new_spawn.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_phrase_regex, "blue")
+	new_spawn.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_response_regex, "red")
+	new_spawn.add_mob_memory(/datum/memory/key/codewords)
+	new_spawn.add_mob_memory(/datum/memory/key/codewords/responses)

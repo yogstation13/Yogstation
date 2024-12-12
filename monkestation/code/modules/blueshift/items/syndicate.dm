@@ -148,6 +148,8 @@
 	user.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_response_regex, "red", src)
 	to_chat(user, "<b>Code Phrases</b>: [jointext(GLOB.syndicate_code_phrase, ", ")]")
 	to_chat(user, "<b>Code Responses</b>: [span_red("[jointext(GLOB.syndicate_code_response, ", ")]")]")
+	user.add_mob_memory(/datum/memory/key/codewords)
+	user.add_mob_memory(/datum/memory/key/codewords/responses)
 
 	use_charge(user)
 
@@ -171,6 +173,8 @@
 		to_chat(attacked_mob, span_boldnotice("You feel suddenly imparted with the knowledge of the following code words:"))
 		to_chat(attacked_mob, "<b>Code Phrases</b>: [span_blue("[jointext(GLOB.syndicate_code_phrase, ", ")]")]")
 		to_chat(attacked_mob, "<b>Code Responses</b>: [span_red("[jointext(GLOB.syndicate_code_response, ", ")]")]")
+		attacked_mob.add_mob_memory(/datum/memory/key/codewords)
+		attacked_mob.add_mob_memory(/datum/memory/key/codewords/responses)
 		use_charge(user)
 
 
