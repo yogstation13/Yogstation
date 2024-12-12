@@ -330,7 +330,7 @@
 /obj/item/seeds/proc/randomize_plant_stat(plant_stat, inaccuracy = 0, hash_offset = 0)
 	if(!inaccuracy)
 		return plant_stat
-	hash_offset += 1 + (GLOB.round_id % 16)
+	hash_offset += 1 + (text2num(GLOB.round_id) % 16)
 	var/raw_hash = copytext(md5("[potency]/[yield]/[maturation]/[production]/[endurance]/[lifespan]/[weed_rate]/[weed_chance]/[inaccuracy]/[REF(src)]"), \
 		hash_offset, hash_offset + 2)
 	var/random_offset = round(inaccuracy * hex2num(raw_hash) / 255)
