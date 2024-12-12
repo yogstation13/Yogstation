@@ -4086,7 +4086,6 @@
 #include "yogstation\code\game\gamemodes\clean_this_shit_up\blood_cult.dm"
 #include "yogstation\code\game\gamemodes\clean_this_shit_up\clock_cult.dm"
 #include "yogstation\code\game\gamemodes\clean_this_shit_up\other.dm"
-#include "yogstation\code\game\gamemodes\infiltration\infiltration.dm"
 #include "yogstation\code\game\machinery\suit_storage_unit.dm"
 #include "yogstation\code\game\machinery\computer\arcade.dm"
 #include "yogstation\code\game\machinery\computer\atmos_sim.dm"
