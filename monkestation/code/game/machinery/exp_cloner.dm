@@ -130,7 +130,7 @@
 		mob_occupant.mind.add_antag_datum(antag_object)
 		mob_occupant.grant_language(/datum/language/codespeak) // So you don't have to remember to grant each and every identical clone codespeak with the manual.
 		mob_occupant.remove_blocked_language(/datum/language/codespeak, source=LANGUAGE_ALL) // All the effects the codespeak manual would have.
-		ADD_TRAIT(mob_occupant, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT)
+		ADD_TRAIT(mob_occupant.mind, TRAIT_TOWER_OF_BABEL, MAGIC_TRAIT)
 		var/obj/item/implant/radio/syndicate/imp = new(src)
 		imp.implant(mob_occupant)
 		mob_occupant.faction |= ROLE_SYNDICATE
