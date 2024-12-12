@@ -141,3 +141,7 @@
   - rscadd: Satyr headbutt now checks for hands and mobility
   SirNightKnight:
   - balance: Rebalance debilitated to be more tame.
+2024-12-12:
+  Absolucy:
+  - rscdel: Removed the Tower of Babel wizard event.
+  - rscdel: Staff of Babel is now admin-only.
