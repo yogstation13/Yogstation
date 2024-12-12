@@ -1,3 +1,9 @@
+/obj/item/autosurgeon/organ/syndicate/Initialize(mapload)
+	. = ..()
+	if(istype(stored_organ, /obj/item/organ/internal/cyberimp))
+		var/obj/item/organ/internal/cyberimp/starting_implant = stored_organ
+		starting_implant.organ_flags |= ORGAN_HIDDEN
+
 /obj/item/autosurgeon/organ/syndicate/ammo_counter
 	starting_organ = /obj/item/organ/internal/cyberimp/arm/ammo_counter/syndicate
 

@@ -76,6 +76,7 @@
 	name = "deep-vein emergency morale rejuvenator"
 	desc = "Dangerous implant used by the syndicate to reinforce their assault forces that go on suicide missions."
 	implant_color = "#74942a"
+	organ_flags = parent_type::organ_flags | ORGAN_HIDDEN
 	encode_info = AUGMENT_SYNDICATE_LEVEL
 	reagent_list = list(
 		/datum/reagent/determination = 5,

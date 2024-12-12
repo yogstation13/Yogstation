@@ -204,6 +204,7 @@
 	update_hud_elements()
 
 /obj/item/organ/internal/cyberimp/arm/ammo_counter/syndicate
+	organ_flags = parent_type::organ_flags | ORGAN_HIDDEN
 	encode_info = AUGMENT_SYNDICATE_LEVEL
 
 /obj/item/organ/internal/cyberimp/arm/cooler
