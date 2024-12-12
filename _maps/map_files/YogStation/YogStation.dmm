@@ -9494,7 +9494,7 @@
 /area/crew_quarters/toilet)
 "buX" = (
 /obj/machinery/camera{
-	c_tag = "Arrivals Escape Pod 2";
+	c_tag = "Arrivals Escape Pod 1";
 	dir = 8
 	},
 /obj/machinery/light/small,
@@ -23210,7 +23210,7 @@
 /area/science/misc_lab)
 "fuj" = (
 /obj/machinery/camera{
-	c_tag = "Arrivals Escape Pod 1";
+	c_tag = "Arrivals Escape Pod 2";
 	dir = 8
 	},
 /obj/machinery/light/small,
