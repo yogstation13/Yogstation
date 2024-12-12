@@ -523,27 +523,33 @@ SUBSYSTEM_DEF(ticker)
 
 	return output
 
+/datum/controller/subsystem/ticker/proc/transfer_single_character(mob/dead/new_player/player)
+	var/mob/living = player.transfer_character()
+	if(!living)
+		return
+	qdel(player)
+	ADD_TRAIT(living, TRAIT_NO_TRANSFORM, SS_TICKER_TRAIT)
+	if(living.client)
+		var/atom/movable/screen/splash/splash = new(null, living.client, TRUE)
+		splash.Fade(TRUE)
+		living.client?.init_verbs()
+	. = living
+	var/datum/player_details/details = get_player_details(living)
+	if(details)
+		SSchallenges.apply_challenges(details)
+		for(var/processing_reward_bitflags in bitflags_to_reward)//you really should use department bitflags if possible
+			if(living.mind.assigned_role.departments_bitflags & processing_reward_bitflags)
+				details.roundend_monkecoin_bonus += 150
+		for(var/processing_reward_jobs in jobs_to_reward)//just in case you really only want to reward a specific job
+			if(living.job == processing_reward_jobs)
+				details.roundend_monkecoin_bonus += 150
+
 /datum/controller/subsystem/ticker/proc/transfer_characters()
 	var/list/livings = list()
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
-		var/mob/living = player.transfer_character()
-		if(living)
-			qdel(player)
-			ADD_TRAIT(living, TRAIT_NO_TRANSFORM, SS_TICKER_TRAIT)
-			if(living.client)
-				var/atom/movable/screen/splash/S = new(null, living.client, TRUE)
-				S.Fade(TRUE)
-				living.client.init_verbs()
-			livings += living
-			if(living.client && length(living.client?.active_challenges))
-				SSchallenges.apply_challenges(living.client)
-			for(var/processing_reward_bitflags in bitflags_to_reward)//you really should use department bitflags if possible
-				if(living.mind.assigned_role.departments_bitflags & processing_reward_bitflags)
-					living.client.reward_this_person += 150
-			for(var/processing_reward_jobs in jobs_to_reward)//just in case you really only want to reward a specific job
-				if(living.job == processing_reward_jobs)
-					living.client.reward_this_person += 150
-	if(livings.len)
+		livings += transfer_single_character(player)
+	list_clear_nulls(livings)
+	if(length(livings))
 		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 3 SECONDS, TIMER_CLIENT_TIME)
 
 /datum/controller/subsystem/ticker/proc/release_characters(list/livings)

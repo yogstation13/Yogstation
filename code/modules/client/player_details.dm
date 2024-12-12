@@ -27,6 +27,12 @@ GLOBAL_LIST_EMPTY_TYPED(player_details, /datum/player_details)
 	src.ckey = ckey(player_key)
 	achievements = new(src.ckey)
 
+/datum/player_details/Destroy(force)
+	if(!force)
+		stack_trace("Something is trying to delete player details for [ckey]")
+		return QDEL_HINT_LETMELIVE
+	return ..()
+
 /// Returns the full version string (i.e 515.1642) of the BYOND version and build.
 /datum/player_details/proc/full_byond_version()
 	if(!byond_version)

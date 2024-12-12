@@ -275,9 +275,6 @@
 	/// Does this client have typing indicators enabled?
 	var/typing_indicators = FALSE
 
-	/// used for rewarding players monkecoins at round end
-	var/reward_this_person = 0
-
 	/// Does this client's mob need to rebuild its plane masters after login?
 	/// This is currently only used so a client can switch between 515 and 516 without breaking their rendering.
 	var/rebuild_plane_masters = FALSE
