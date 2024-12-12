@@ -18,6 +18,10 @@
 	var/dispense_sound = 'sound/machines/click.ogg'
 	//List used to show food items in UI
 	var/list/food_ui_list = list()
+	//List of transfer amounts for reagents
+	var/list/transfer_list = list(5, 10, 15, 20, 30, 50)
+	//What transfer amount is currently selected
+	var/selected_transfer
 	//List used to show reagents in cart's reagent storage
 	var/list/drink_ui_list = list()
 	//List used to show reagents in mixer's reagent storage
@@ -90,6 +94,8 @@
 	data["storage_capacity"] = contents_capacity
 	data["glass_quantity"] = glass_quantity
 	data["glass_capacity"] = glass_capacity
+	data["dispence_options"] = transfer_list
+	data["dispence_selected"] = selected_transfer
 	//Add the total_volumne of both cart and mixer storage for quantity
 	data["drink_quantity"] = mixer.reagents.total_volume + reagents.total_volume
 	data["drink_capacity"] = reagent_capacity
@@ -107,6 +113,8 @@
 		if("dispense")
 			var/itemPath = text2path(params["itemPath"])
 			dispense_item(itemPath)
+		if("amount")
+			selected_transfer = text2num(params["dispenceAmount"])
 
 /obj/machinery/food_cart_TGUI/Initialize(mapload)
 	. = ..()

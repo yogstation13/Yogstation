@@ -1,7 +1,7 @@
 import { storage } from 'common/storage';
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Section, Table, Tabs, Box, TextArea, Stack, Tooltip } from '../components';
+import { Button, Section, Table, Tabs, Box, TextArea, Stack, Tooltip, Flex } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
@@ -46,6 +46,8 @@ type StorageStats = {
   glass_capacity: number;
   drink_quantity: number;
   drink_capacity: number;
+  dispence_options: number[];
+  dispence_selected: number;
 }
 
 export const FoodCart = (props, context) => {
@@ -183,7 +185,7 @@ const FoodRow = (props, context) => {
                 item.item_quantity === 0
               )}
               onClick={() => act("dispense", {
-              itemPath: item.item_type_path,
+                itemPath: item.item_type_path,
               })}
               />
               </Table.Cell>
@@ -210,36 +212,56 @@ const FoodRow = (props, context) => {
 const DrinkTab = (props, context) => {
   // For organizing the food tab's information
   return (
-  <Stack vertical>
-    <Stack.Item>
-      <Section
-      title="Glass Storage"
-      textAlign="center">
-        <GlassRow />
-      </Section>
-    </Stack.Item>
-    <Stack.Item>
-      <Section
-      title="Drink Capacity"
-      textAlign="center">
-        <DrinkCapacityRow />
-      </Section>
-    </Stack.Item>
-    <Stack.Item>
-      <Section
-      title="Cart Drink Storage"
-      textAlign="center">
-        <MainDrinkRow />
-      </Section>
-    </Stack.Item>
-    <Stack.Item>
-      <Section
-      title="Cart Mixer Storage"
-      textAlign="center">
-        <MixerDrinkRow />
-      </Section>
-    </Stack.Item>
-  </Stack>
+    <Stack vertical>
+      <Stack.Item>
+        <Section
+        title="Glass Storage"
+        textAlign="center">
+          <GlassRow />
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section
+        title="Drink Capacity"
+        textAlign="center">
+          <DrinkCapacityRow />
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section
+        title="Transfer Amount"
+        textAlign="center"
+        buttons={<Button
+          circular
+          tooltip="Amount of reagents to be transfered or purged"
+          icon="info"/>}
+        >
+          <DrinkTransferRow />
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section
+        title="Cart Drink Storage"
+        textAlign="center"
+        buttons={<Button
+          circular
+          tooltip="Main reagent storage for the cart"
+          icon="info"/>}>
+          <MainDrinkRow />
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <Section
+        title="Cart Mixer Storage"
+        textAlign="center"
+        buttons={<Button
+          circular
+          tooltip="Reagents to be poured into drinking glasses"
+          icon="info"/>}>
+          <MixerDrinkRow />
+        </Section>
+      </Stack.Item>
+    </Stack>
   );
 };
 
@@ -252,15 +274,15 @@ const GlassRow = (props, context) => {
 
   return (
     <Table>
-    <Table.Row>
-      <Table.Cell
-      fontSize="14px"
-      textAlign="center"
-      bold>
-        {glass_quantity}/{glass_capacity}
-      </Table.Cell>
-    </Table.Row>
-  </Table>
+      <Table.Row>
+        <Table.Cell
+        fontSize="14px"
+        textAlign="center"
+        bold>
+          {glass_quantity}/{glass_capacity}
+        </Table.Cell>
+      </Table.Row>
+    </Table>
   );
 };
 
@@ -285,6 +307,36 @@ const DrinkCapacityRow = (props, context) => {
   );
 }
 
+const DrinkTransferRow = (props, context) => {
+  // Get data from ui_data in backend code
+  const { act, data } = useBackend<StorageStats>(context);
+  // Get data for buttons
+  const { dispence_options = [] } = data;
+  const { dispence_selected } = data;
+
+  return(
+    <Flex
+    align="center"
+    justify="center">
+      {dispence_options.map(amount => (
+        <Flex.Item
+        grow={1}
+        mr={0.5}>
+          <Button
+            fluid
+            content={amount}
+            textAlign="center"
+            selected={amount === dispence_selected}
+            onClick={() => act("amount", {
+              dispenceAmount: amount,
+            })}/>
+        </Flex.Item>
+      ))}
+    </Flex>
+  );
+
+}
+
 const MainDrinkRow = (props, context) => {
   // Get data from ui_data in backend code
   const { act, data } = useBackend<Tab>(context);
@@ -302,11 +354,13 @@ const MainDrinkRow = (props, context) => {
           key={reagent.drink_name}
           fontSize="14px">
               <Table.Cell
-                bold>
+              width="75px"
+              bold>
                 {/* Get name */}
                 {capitalize(reagent.drink_name)}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell
+              textAlign="left">
                 {/* Get amount of reagent in storage */}
                 {reagent.drink_quantity}u
               </Table.Cell>
@@ -325,7 +379,7 @@ const MainDrinkRow = (props, context) => {
                   reagent.drink_quantity === 0
                 )}
                 onClick={() => act("purge", {
-                itemPath: reagent.drink_type_path,
+                  itemPath: reagent.drink_type_path,
                 })}
                 />
               </Table.Cell>
@@ -342,7 +396,7 @@ const MainDrinkRow = (props, context) => {
                   reagent.drink_quantity === 0
                 )}
                 onClick={() => act("addMixer", {
-                itemPath: reagent.drink_type_path,
+                  itemPath: reagent.drink_type_path,
                 })}
                 />
               </Table.Cell>
@@ -404,7 +458,7 @@ const MixerDrinkRow = (props, context) => {
                   reagent.drink_quantity === 0
                 )}
                 onClick={() => act("transferBack", {
-                itemPath: reagent.drink_type_path,
+                  itemPath: reagent.drink_type_path,
                 })}
                 />
               </Table.Cell>
@@ -419,7 +473,7 @@ const MixerDrinkRow = (props, context) => {
                   reagent.drink_quantity === 0
                 )}
                 onClick={() => act("pour", {
-                itemPath: reagent.drink_type_path,
+                  itemPath: reagent.drink_type_path,
                 })}
                 />
               </Table.Cell>
