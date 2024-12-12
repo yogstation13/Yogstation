@@ -197,6 +197,8 @@
 		Reality will soon be torn, the Spider Gate opened! WITNESS ME!"
 	required_atoms = list(/mob/living/carbon/human = 3)
 	route = PATH_KNOCK
+	announcement_text = "Delta-class dimensional anomaly detec%SPOOKY% Reality rended, torn. Gates open, doors open, %NAME% has ascended! Fear the tide! %SPOOKY%"
+	announcement_sound = 'sound/ambience/antag/heretic/ascend_knock.ogg'
 
 /datum/heretic_knowledge/ultimate/knock_final/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
 	. = ..()
@@ -220,14 +222,6 @@
 
 /datum/heretic_knowledge/ultimate/knock_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
-	priority_announce(
-		text = "Delta-class dimensional anomaly detec[generate_heretic_text()] Reality rended, torn. Gates open, doors open, [user.real_name] has ascended! Fear the tide! [generate_heretic_text()]",
-		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_knock.ogg',
-		color_override = "pink",
-	)
-	user.client?.give_award(/datum/award/achievement/misc/knock_ascension, user)
-
 	// buffs
 	var/datum/action/cooldown/spell/shapeshift/eldritch/ascension/transform_spell = new(user.mind)
 	transform_spell.Grant(user)

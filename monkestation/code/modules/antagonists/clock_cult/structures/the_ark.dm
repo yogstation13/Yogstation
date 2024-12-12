@@ -90,7 +90,7 @@ GLOBAL_VAR_INIT(ratvar_risen, FALSE)
 				for(var/obj/effect/portal/clockcult/portal in GLOB.portals)
 					qdel(portal)
 				SSshuttle.clearHostileEnvironment(src)
-				SSsecurity_level.set_level(2)
+				SSsecurity_level.set_level(SEC_LEVEL_RED)
 		qdel(src)
 
 /obj/structure/destructible/clockwork/the_ark/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
@@ -161,7 +161,7 @@ GLOBAL_VAR_INIT(ratvar_risen, FALSE)
 		servant_antag?.add_forbearance(servant_mob)
 
 	sound_to_playing_players('sound/magic/clockwork/invoke_general.ogg', 50)
-	SSsecurity_level.set_level(3)
+	SSsecurity_level.set_level(SEC_LEVEL_DELTA)
 	addtimer(CALLBACK(src, PROC_REF(begin_assault)), ARK_GRACE_PERIOD)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(send_station_support_package), /obj/item/turf_demolisher/reebe), 10 SECONDS)
 

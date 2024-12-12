@@ -225,6 +225,9 @@
 	gain_text = "Champion of rust. Corruptor of steel. Fear the dark, for the RUSTBRINGER has come! \
 		The Blacksmith forges ahead! Rusted Hills, CALL MY NAME! WITNESS MY ASCENSION!"
 	route = PATH_RUST
+	ascension_achievement = /datum/award/achievement/misc/rust_ascension
+	announcement_text = "%SPOOKY% Fear the decay, for the Rustbringer, %NAME% has ascended! None shall escape the corrosion! %SPOOKY%"
+	announcement_sound = 'sound/ambience/antag/heretic/ascend_rust.ogg'
 	/// If TRUE, then immunities are currently active.
 	var/immunities_active = FALSE
 	/// A typepath to an area that we must finish the ritual in.
@@ -264,12 +267,6 @@
 
 /datum/heretic_knowledge/ultimate/rust_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
-	priority_announce(
-		text = "[generate_heretic_text()] Fear the decay, for the Rustbringer, [user.real_name] has ascended! None shall escape the corrosion! [generate_heretic_text()]",
-		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_rust.ogg',
-		color_override = "pink",
-	)
 	new /datum/rust_spread(loc)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	RegisterSignal(user, COMSIG_LIVING_LIFE, PROC_REF(on_life))

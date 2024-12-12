@@ -234,6 +234,9 @@
 		I closed my eyes with my head laid against their form. I was safe. \
 		WITNESS MY ASCENSION!"
 	route = PATH_COSMIC
+	ascension_achievement = /datum/award/achievement/misc/cosmic_ascension
+	announcement_text = "%SPOOKY% A Star Gazer has arrived into the station, %NAME% has ascended! This station is the domain of the Cosmos! %SPOOKY%"
+	announcement_sound = 'sound/ambience/antag/heretic/ascend_cosmic.ogg'
 	/// A static list of command we can use with our mob.
 	var/static/list/star_gazer_commands = list(
 		/datum/pet_command/idle,
@@ -252,12 +255,6 @@
 
 /datum/heretic_knowledge/ultimate/cosmic_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
-	priority_announce(
-		text = "[generate_heretic_text()] A Star Gazer has arrived into the station, [user.real_name] has ascended! This station is the domain of the Cosmos! [generate_heretic_text()]",
-		title = "[generate_heretic_text()]",
-		sound = 'sound/ambience/antag/heretic/ascend_cosmic.ogg',
-		color_override = "pink",
-	)
 	var/mob/living/basic/heretic_summon/star_gazer/star_gazer_mob = new /mob/living/basic/heretic_summon/star_gazer(loc)
 	star_gazer_mob.maxHealth = INFINITY
 	star_gazer_mob.health = INFINITY
