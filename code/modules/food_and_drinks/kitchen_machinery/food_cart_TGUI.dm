@@ -9,7 +9,7 @@
 	//Max amount of items that can be in the cart's contents list
 	var/contents_capacity = 80
 	//How many drinking glasses the cart has
-	var/glass_quantity = 0
+	var/glass_quantity = 10
 	//Max amount of drink glasses the cart can have
 	var/glass_capacity = 30
 	//Max amount of reagents that can be in cart's mixer
@@ -90,6 +90,9 @@
 	data["storage_capacity"] = contents_capacity
 	data["glass_quantity"] = glass_quantity
 	data["glass_capacity"] = glass_capacity
+	//Add the total_volumne of both cart and mixer storage for quantity
+	data["drink_quantity"] = mixer.reagents.total_volume + reagents.total_volume
+	data["drink_capacity"] = reagent_capacity
 
 	//Send stored information to UI	
 	return data

@@ -44,6 +44,8 @@ type StorageStats = {
   storage_capacity: number;
   glass_quantity: number;
   glass_capacity: number;
+  drink_quantity: number;
+  drink_capacity: number;
 }
 
 export const FoodCart = (props, context) => {
@@ -218,6 +220,13 @@ const DrinkTab = (props, context) => {
     </Stack.Item>
     <Stack.Item>
       <Section
+      title="Drink Capacity"
+      textAlign="center">
+        <DrinkCapacityRow />
+      </Section>
+    </Stack.Item>
+    <Stack.Item>
+      <Section
       title="Cart Drink Storage"
       textAlign="center">
         <MainDrinkRow />
@@ -248,7 +257,6 @@ const GlassRow = (props, context) => {
       fontSize="14px"
       textAlign="center"
       bold>
-        {/* Show the vat's current contents and its max contents */}
         {glass_quantity}/{glass_capacity}
       </Table.Cell>
     </Table.Row>
@@ -256,9 +264,30 @@ const GlassRow = (props, context) => {
   );
 };
 
+const DrinkCapacityRow = (props, context) => {
+  // Get data from ui_data in backend code
+  const { data } = useBackend<StorageStats>(context);
+  // Get needed variables from StorageStats
+  const { drink_quantity } = data;
+  const { drink_capacity } = data;
+
+  return (
+    <Table>
+    <Table.Row>
+      <Table.Cell
+      fontSize="14px"
+      textAlign="center"
+      bold>
+        {drink_quantity}/{drink_capacity}
+      </Table.Cell>
+    </Table.Row>
+  </Table>
+  );
+}
+
 const MainDrinkRow = (props, context) => {
   // Get data from ui_data in backend code
-    const { act, data } = useBackend<Tab>(context);
+  const { act, data } = useBackend<Tab>(context);
   // Get drink information for cart's container from data
   const { mainDrinks = [] } = data;
 
@@ -287,6 +316,7 @@ const MainDrinkRow = (props, context) => {
                 {/* Remove from cart storage */}
                 <Button
                 fluid
+                color="red"
                 content="Purge"
                 textAlign="center"
                 fontSize="16px"
@@ -338,7 +368,7 @@ const MainDrinkRow = (props, context) => {
 
 const MixerDrinkRow = (props, context) => {
   // Get data from ui_data in backend code
-    const { act, data } = useBackend<Tab>(context);
+  const { act, data } = useBackend<Tab>(context);
   // Get drink information for cart's container from data
   const { mixerDrinks = [] } = data;
 
