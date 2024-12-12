@@ -12,6 +12,8 @@ type Data = {
 
 type Tab = {
   food: FoodStats[];
+  mainDrinks: MainDrinkStats[];
+  mixerDrinks: MixerDrinkStats[];
   storage: StorageStats[];
 }
 
@@ -21,12 +23,27 @@ type FoodStats = {
   item_name: string;
   item_quantity: number;
   item_type_path: string;
-  selected_item: string;
+}
+
+// Stats for reagents in cart's reagent holder
+type MainDrinkStats = {
+  drink_name: string;
+  drink_quantity: number;
+  drink_type_path: string;
+}
+
+// Stats for reagents in mixer's reagent holder
+type MixerDrinkStats = {
+  drink_name: string;
+  drink_quantity: number;
+  drink_type_path: string;
 }
 
 type StorageStats = {
   contents_length: number;
   storage_capacity: number;
+  glass_quantity: number;
+  glass_capacity: number;
 }
 
 export const FoodCart = (props, context) => {
@@ -50,12 +67,21 @@ export const FoodCart = (props, context) => {
               selected={selectedMainTab === 0}
               // Set selectedMainTab to 0 when the food tab is clicked
               onClick={() => setMainTab(0)}>
-              {/* Put 'Food' in the tab to differentiate it from other tabs */}
               Food
+            </Tabs.Tab>
+            <Tabs.Tab
+            icon="glass-martini"
+            bold
+            // Show the drink tab when the selectedMainTab is 1
+            selected={selectedMainTab === 1}
+            // Set selectedMainTab to 0 when the food tab is clicked
+            onClick={() => setMainTab(1)}>
+              Drinks
             </Tabs.Tab>
           </Tabs>
           {/* If selectedMainTab is 0, show the UI elements in FoodTab */}
           {selectedMainTab === 0 && <FoodTab />}
+          {selectedMainTab === 1 && <DrinkTab />}
       </Window.Content>
     </Window>
   );
@@ -110,7 +136,7 @@ const CapacityRow = (props, context) => {
 const FoodRow = (props, context) => {
   // Get data from ui_data in backend code
   const { act, data } = useBackend<Tab>(context);
-  // Get cones information from data
+  // Get food information from data
   const { food = [] } = data;
 
   if(food.length > 0) {
@@ -171,7 +197,215 @@ const FoodRow = (props, context) => {
           fontSize="14px"
           textAlign="center"
           bold>
-            Put something in you daft fool!
+            Food Storage Empty
+          </Table.Cell>
+        </Table.Row>
+      </Table>
+    );
+  }
+};
+
+const DrinkTab = (props, context) => {
+  // For organizing the food tab's information
+  return (
+  <Stack vertical>
+    <Stack.Item>
+      <Section
+      title="Glass Storage"
+      textAlign="center">
+        <GlassRow />
+      </Section>
+    </Stack.Item>
+    <Stack.Item>
+      <Section
+      title="Cart Drink Storage"
+      textAlign="center">
+        <MainDrinkRow />
+      </Section>
+    </Stack.Item>
+    <Stack.Item>
+      <Section
+      title="Cart Mixer Storage"
+      textAlign="center">
+        <MixerDrinkRow />
+      </Section>
+    </Stack.Item>
+  </Stack>
+  );
+};
+
+const GlassRow = (props, context) => {
+  // Get data from ui_data in backend code
+  const { data } = useBackend<StorageStats>(context);
+  // Get needed variables from StorageStats
+  const { glass_quantity } = data;
+  const { glass_capacity } = data;
+
+  return (
+    <Table>
+    <Table.Row>
+      <Table.Cell
+      fontSize="14px"
+      textAlign="center"
+      bold>
+        {/* Show the vat's current contents and its max contents */}
+        {glass_quantity}/{glass_capacity}
+      </Table.Cell>
+    </Table.Row>
+  </Table>
+  );
+};
+
+const MainDrinkRow = (props, context) => {
+  // Get data from ui_data in backend code
+    const { act, data } = useBackend<Tab>(context);
+  // Get drink information for cart's container from data
+  const { mainDrinks = [] } = data;
+
+  if(mainDrinks.length > 0) {
+    return (
+      // Create Table for horizontal format
+      <Table>
+        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
+        {mainDrinks.map(reagent => (
+          // Start row for holding ui elements and given data
+          <Table.Row
+          key={reagent.drink_name}
+          fontSize="14px">
+              <Table.Cell
+                bold>
+                {/* Get name */}
+                {capitalize(reagent.drink_name)}
+              </Table.Cell>
+              <Table.Cell>
+                {/* Get amount of reagent in storage */}
+                {reagent.drink_quantity}u
+              </Table.Cell>
+              <Table.Cell
+              // Limit width for
+              width="75px">
+                {/* Remove from cart storage */}
+                <Button
+                fluid
+                content="Purge"
+                textAlign="center"
+                fontSize="16px"
+                // Dissable if there is none of the reagent in storage
+                disabled={(
+                  reagent.drink_quantity === 0
+                )}
+                onClick={() => act("purge", {
+                itemPath: reagent.drink_type_path,
+                })}
+                />
+              </Table.Cell>
+              <Table.Cell
+              width="125px">
+                {/* Move to mixer */}
+                <Button
+                fluid
+                content="Add to Mixer"
+                textAlign="center"
+                fontSize="16px"
+                // Dissable if there is none of the reagent in storage
+                disabled={(
+                  reagent.drink_quantity === 0
+                )}
+                onClick={() => act("addMixer", {
+                itemPath: reagent.drink_type_path,
+                })}
+                />
+              </Table.Cell>
+          </Table.Row>
+      ))}
+      </Table>
+    );
+  } else {
+    return (
+      <Table>
+        <Table.Row>
+          <Table.Cell
+          fontSize="14px"
+          textAlign="center"
+          bold>
+            Drink Storage Empty
+          </Table.Cell>
+        </Table.Row>
+      </Table>
+    );
+  }
+};
+
+const MixerDrinkRow = (props, context) => {
+  // Get data from ui_data in backend code
+    const { act, data } = useBackend<Tab>(context);
+  // Get drink information for cart's container from data
+  const { mixerDrinks = [] } = data;
+
+  if(mixerDrinks.length > 0) {
+    return (
+      // Create Table for horizontal format
+      <Table>
+        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
+        {mixerDrinks.map(reagent => (
+          // Start row for holding ui elements and given data
+          <Table.Row
+          key={reagent.drink_name}
+          fontSize="14px">
+              <Table.Cell
+                bold>
+                {/* Get name */}
+                {capitalize(reagent.drink_name)}
+              </Table.Cell>
+              <Table.Cell
+                textAlign="right">
+                {/* Get amount of reagent in storage */}
+                {reagent.drink_quantity}u
+              </Table.Cell>
+              <Table.Cell>
+                {/* Make dispense button */}
+                <Button
+                fluid
+                content="Transfer Back"
+                textAlign="center"
+                fontSize="16px"
+                // Dissable if there is none of the reagent in storage
+                disabled={(
+                  reagent.drink_quantity === 0
+                )}
+                onClick={() => act("transferBack", {
+                itemPath: reagent.drink_type_path,
+                })}
+                />
+              </Table.Cell>
+              <Table.Cell>
+                <Button
+                fluid
+                content="Pour in glass"
+                textAlign="center"
+                fontSize="16px"
+                // Dissable if there is none of the reagent in storage
+                disabled={(
+                  reagent.drink_quantity === 0
+                )}
+                onClick={() => act("pour", {
+                itemPath: reagent.drink_type_path,
+                })}
+                />
+              </Table.Cell>
+          </Table.Row>
+      ))}
+      </Table>
+    );
+  } else {
+    return (
+      <Table>
+        <Table.Row>
+          <Table.Cell
+          fontSize="14px"
+          textAlign="center"
+          bold>
+            Mixer Storage Empty
           </Table.Cell>
         </Table.Row>
       </Table>

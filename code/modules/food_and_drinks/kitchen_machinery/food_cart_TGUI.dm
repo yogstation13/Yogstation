@@ -6,12 +6,24 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
-	//Max amount of items that can be in cart's storage
-	var/storage_capacity = 80
+	//Max amount of items that can be in the cart's contents list
+	var/contents_capacity = 80
+	//How many drinking glasses the cart has
+	var/glass_quantity = 0
+	//Max amount of drink glasses the cart can have
+	var/glass_capacity = 30
+	//Max amount of reagents that can be in cart's mixer
+	var/reagent_capacity = 200
 	//Sound made when an item is dispensed
 	var/dispense_sound = 'sound/machines/click.ogg'
-	//List used to show items in UI
-	var/list/ui_list = list()
+	//List used to show food items in UI
+	var/list/food_ui_list = list()
+	//List used to show reagents in cart's reagent storage
+	var/list/drink_ui_list = list()
+	//List used to show reagents in mixer's reagent storage
+	var/list/mixer_ui_list = list()
+	//Mixer for dispencing drinks
+	var/obj/item/reagent_containers/mixer
 
 /obj/machinery/food_cart_TGUI/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -26,9 +38,8 @@
 	data["food"] = list()
 	data["storage"] = list()
 
-	//Loop through starting list for data to send to main tab
-	for(var/item_detail in ui_list)
-
+	//Loop through food list for data to send to food tab
+	for(var/item_detail in food_ui_list)
 		//Create needed list and variable for geting data for UI
 		var/list/details = list()
 		var/obj/item/reagent_containers/food/item = new item_detail
@@ -49,9 +60,36 @@
 		//Add to food list
 		data["food"] += list(details)
 
+	//Loop through drink list for data to send to cart's reagent storage tab
+	for(var/datum/reagent/drink in reagents.reagent_list)
+		var/list/details = list()
+
+		//Get information for UI
+		details["drink_name"] = drink.name
+		details["drink_quantity"] = drink.volume
+		details["drink_type_path"] = drink.type
+
+		//Add to drink list
+		data["mainDrinks"] += list(details)
+	
+	//Loop through drink list for data to send to cart's reagent mixer tab
+	for(var/datum/reagent/drink in mixer.reagents.reagent_list)
+		var/list/details = list()
+
+		//Get information for UI
+		details["drink_name"] = drink.name
+		details["drink_quantity"] = drink.volume
+		details["drink_type_path"] = drink.type
+		
+		//Add to drink list
+		data["mixerDrinks"] += list(details)
+
 	//Get content and capacity data
-	data["contents_length"] = contents.len
-	data["storage_capacity"] = storage_capacity
+	//Have to subtract contents.len by 1 due to reagents container being in contents
+	data["contents_length"] = contents.len - 1
+	data["storage_capacity"] = contents_capacity
+	data["glass_quantity"] = glass_quantity
+	data["glass_capacity"] = glass_capacity
 
 	//Send stored information to UI	
 	return data
@@ -67,11 +105,30 @@
 			var/itemPath = text2path(params["itemPath"])
 			dispense_item(itemPath)
 
-//For adding items to storage
+/obj/machinery/food_cart_TGUI/Initialize(mapload)
+	. = ..()
+	//Create reagents holder for drinks
+	create_reagents(reagent_capacity, OPENCONTAINER | NO_REACT)
+	mixer = new /obj/item/reagent_containers(src, 100)
+
+/obj/machinery/food_cart_TGUI/Destroy()
+	QDEL_NULL(mixer)
+	return ..()
+
+//For adding items and reagents to storage
 /obj/machinery/food_cart_TGUI/attackby(obj/item/A, mob/user, params)
-	//Check to make sure it is a food item
-	if(istype(A, /obj/item/reagent_containers/food))
+	//Depending on the item, either attempt to store it or ignore it
+	if(istype(A, /obj/item/reagent_containers/food/snacks))
 		storage_single(A)
+	else if(istype(A, /obj/item/reagent_containers/food/drinks/drinkingglass))
+		//Check if glass is empty
+		if(!A.reagents.total_volume)
+			qdel(A)
+			glass_quantity++
+			user.visible_message(span_notice("[user] inserts [A] into [src]."), span_notice("You insert [A] into [src]."))
+			playsound(src, 'sound/effects/rustle2.ogg', 50, TRUE, extrarange = -3)
+	else if(A.is_drainable())
+		return
 
 	..()
 
@@ -90,17 +147,17 @@
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 		//If the last one was dispenced, remove from UI
 		if(find_amount(ui_item) == 0)
-			LAZYREMOVE(ui_list, received_item)
+			LAZYREMOVE(food_ui_list, received_item)
 	else
 		//For Alt click and because UI buttons are slow to disable themselves
 		user.balloon_alert(user, "All out!")
 
 /obj/machinery/food_cart_TGUI/proc/storage_single(obj/item/target_item, mob/user = usr)
 	//Check if there is room
-	if(contents.len < storage_capacity)
-		//If item's typepath is not already in  ui_list, add it
-		if(!LAZYFIND(ui_list, target_item.type))
-			LAZYADD(ui_list, target_item.type)
+	if(contents.len - 1 < contents_capacity)
+		//If item's typepath is not already in  food_ui_list, add it
+		if(!LAZYFIND(food_ui_list, target_item.type))
+			LAZYADD(food_ui_list, target_item.type)
 		//Move item to content
 		target_item.forceMove(src)
 		user.visible_message(span_notice("[user] inserts [target_item] into [src]."), span_notice("You insert [target_item] into [src]."))
