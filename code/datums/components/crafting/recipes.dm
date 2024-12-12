@@ -27,6 +27,8 @@
 	var/always_available = TRUE
 	/// Should only one object exist on the same turf?
 	var/one_per_turf = FALSE
+	/// What skill levels are required to craft this? ex. list(SKILL_MECHANICAL = EXP_HIGH, SKILL_SCIENCE = EXP_LOW)
+	var/list/skill_requirements = list()
 
 /datum/crafting_recipe/New()
 	if(!(result in reqs))
