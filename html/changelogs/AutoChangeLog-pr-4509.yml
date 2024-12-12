@@ -1,0 +1,4 @@
+author: "Absolucy, JohnFulpWillard"
+delete-after: True
+changes:
+  - bugfix: "Shaft Miners and Explorers are now alerted of icemoon storms, Clowns are naive, and Curators are immune to the Tower of Babel again."
