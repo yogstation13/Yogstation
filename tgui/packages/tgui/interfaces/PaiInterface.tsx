@@ -350,6 +350,51 @@ const PaiBox = (props, context) => {
       return (
         <Section title={modules_tabs[selectedMainTab].title}>
           {med_records[0].name}
+          <Table>
+            <Table.Row>
+              <Table.Cell>
+                Name:
+              </Table.Cell>
+              <Table.Cell>
+                ID:
+              </Table.Cell>
+              <Table.Cell>
+                Fingerprint:
+              </Table.Cell>
+              <Table.Cell>
+                Blood type:
+              </Table.Cell>
+              <Table.Cell>
+                Physical state:
+              </Table.Cell>
+              <Table.Cell>
+                Mental state:
+              </Table.Cell>
+            </Table.Row>
+            {med_records.map(MedRecord => (
+              <Table.Row
+                key={MedRecord}>
+                <Table.Cell>
+                  {MedRecord.name}
+                </Table.Cell>
+                <Table.Cell>
+                  {MedRecord.id}
+                </Table.Cell>
+                <Table.Cell>
+                  {MedRecord.fingerprint}
+                </Table.Cell>
+                <Table.Cell>
+                  {MedRecord.blood_type}
+                </Table.Cell>
+                <Table.Cell>
+                  {MedRecord.p_state}
+                </Table.Cell>
+                <Table.Cell>
+                  {MedRecord.m_state}
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table>
         </Section>
       );
     case "host scan":
