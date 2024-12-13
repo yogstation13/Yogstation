@@ -25,9 +25,6 @@
 	//Mixer for dispencing drinks
 	var/obj/item/reagent_containers/mixer
 
-	var/list/drink_list
-	var/list/mixer_list
-
 /obj/machinery/food_cart_TGUI/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -39,10 +36,7 @@
 	var/list/data = list()
 	data["food"] = list()
 	data["storage"] = list()
-
-	drink_list = reagents.reagent_list
-	mixer_list = mixer.reagents.reagent_list
-
+	
 	//Loop through food list for data to send to food tab
 	for(var/item_detail in food_ui_list)
 		//Create needed list and variable for geting data for UI
@@ -66,7 +60,7 @@
 		data["food"] += list(details)
 
 	//Loop through drink list for data to send to cart's reagent storage tab
-	for(var/datum/reagent/drink in drink_list)
+	for(var/datum/reagent/drink in reagents.reagent_list)
 		var/list/details = list()
 
 		//Get information for UI
@@ -78,7 +72,7 @@
 		data["mainDrinks"] += list(details)
 	
 	//Loop through drink list for data to send to cart's reagent mixer tab
-	for(var/datum/reagent/drink in mixer_list)
+	for(var/datum/reagent/drink in mixer.reagents.reagent_list)
 		var/list/details = list()
 
 		//Get information for UI
@@ -88,6 +82,13 @@
 		
 		//Add to drink list
 		data["mixerDrinks"] += list(details)
+
+	//Force respective data lists to be empty if condition met to fix updating bug
+	//Thanks bug eating lizard and offbeatwitch for helping solve this
+	if(reagents.reagent_list.len == 0)
+		data["mainDrinks"] = list()
+	if(mixer.reagents.reagent_list.len == 0)
+		data["mixerDrinks"] = list()
 
 	//Get content and capacity data
 	//Have to subtract contents.len by 1 due to reagents container being in contents
