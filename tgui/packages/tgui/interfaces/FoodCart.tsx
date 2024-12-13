@@ -2,7 +2,7 @@ import { storage } from 'common/storage';
 import { capitalize } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Section, Table, Tabs, Box, TextArea, Stack, Tooltip, Flex } from '../components';
+import { Button, Section, Table, Tabs, Box, TextArea, Stack, Tooltip, Flex, ProgressBar } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
@@ -15,7 +15,7 @@ type Tab = {
   food: FoodStats[];
   mainDrinks: MainDrinkStats[];
   mixerDrinks: MixerDrinkStats[];
-  storage: StorageStats[];
+  storage: StorageStats;
 }
 
 // Stats for food item
@@ -370,10 +370,11 @@ const MainDrinkRow = (props, context) => {
                 {/* Get name */}
                 {capitalize(reagent.drink_name)}
               </Table.Cell>
-              <Table.Cell
-              textAlign="left">
-                {/* Get amount of reagent in storage */}
-                {reagent.drink_quantity}u
+              <Table.Cell>
+                <ProgressBar
+                value={reagent.drink_quantity/200}>
+                  {reagent.drink_quantity}u
+                </ProgressBar>
               </Table.Cell>
               <Table.Cell
               // Limit width for
@@ -517,33 +518,35 @@ const MixerDrinkRow1 = (props, context) => {
   if(mixerDrinks.length > 0) {
     return (
       // Create Table for horizontal format
-      <Flex
-      direction="column">
-        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
+      <Stack
+      direction="column"
+      justify="space-around"
+      fontSize="14px">
+      {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
         {mixerDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Stack
-          key={reagent.drink_name}
-          justify="space-around"
-          fontSize="14px">
+            key={reagent.drink_name}
+            direction="row"
+            justify="space-around"
+            fill>
             <Stack.Item
-            textAlign="left"
-            bold>
+            bold
+            align="right">
               {/* Get name */}
-               {capitalize(reagent.drink_name)}
+              {capitalize(reagent.drink_name)}
             </Stack.Item>
             <Stack.Item>
               {/* Get amount of reagent in storage */}
               {reagent.drink_quantity}u
             </Stack.Item>
-            <Stack.Item>
+            <Stack.Item
+            justify="left">
               {/* Make dispense button */}
               <Button
               fluid
               content="Transfer Back"
-              textAlign="center"
               fontSize="16px"
-              width="175px"
               // Disable if there is none of the reagent in storage
               disabled={(
                 reagent.drink_quantity === 0
@@ -555,19 +558,16 @@ const MixerDrinkRow1 = (props, context) => {
             </Stack.Item>
           </Stack>
         ))}
-      <Table.Row
-       justify="center">
-         <Table.Cell>
-           <Button
-            fluid
-            content="Pour glass"
-            textAlign="center"
-            fontSize="16px"
-            onClick={() => act("pour")}
-            />
-          </Table.Cell>
-        </Table.Row>
-      </Flex>
+        <Stack.Item>
+          <Button
+          fluid
+          content="Pour glass"
+          textAlign="center"
+          fontSize="16px"
+          onClick={() => act("pour")}
+          />
+        </Stack.Item>
+      </Stack>
     );
   } else {
     return (
