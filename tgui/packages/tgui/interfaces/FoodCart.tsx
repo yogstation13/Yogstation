@@ -1,11 +1,12 @@
 import { storage } from 'common/storage';
 import { capitalize } from 'common/string';
+import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Table, Tabs, Box, TextArea, Stack, Tooltip, Flex } from '../components';
 import { Window } from '../layouts';
 import { resolveAsset } from './../assets';
 
-// Store data for cones and scoops within Data
+// Store data for UI elements within Data
 type Data = {
   tabs: Tab[];
 }
@@ -39,6 +40,7 @@ type MixerDrinkStats = {
   drink_type_path: string;
 }
 
+// Stats for all storage information
 type StorageStats = {
   contents_length: number;
   storage_capacity: number;
@@ -328,7 +330,7 @@ const DrinkTransferRow = (props, context) => {
             content={amount}
             textAlign="center"
             selected={amount === dispence_selected}
-            onClick={() => act("amount", {
+            onClick={() => act("transferNum", {
               dispenceAmount: amount,
             })}/>
         </Flex.Item>
@@ -375,7 +377,7 @@ const MainDrinkRow = (props, context) => {
                 content="Purge"
                 textAlign="center"
                 fontSize="16px"
-                // Dissable if there is none of the reagent in storage
+                // Disable if there is none of the reagent in storage
                 disabled={(
                   reagent.drink_quantity === 0
                 )}
@@ -430,56 +432,54 @@ const MixerDrinkRow = (props, context) => {
   if(mixerDrinks.length > 0) {
     return (
       // Create Table for horizontal format
-      <Table>
+      <Table
+      direction="column">
         {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
         {mixerDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Table.Row
+          direction="row"
           key={reagent.drink_name}
           fontSize="14px">
-              <Table.Cell
-                bold>
-                {/* Get name */}
-                {capitalize(reagent.drink_name)}
-              </Table.Cell>
-              <Table.Cell
-                textAlign="right">
-                {/* Get amount of reagent in storage */}
-                {reagent.drink_quantity}u
-              </Table.Cell>
-              <Table.Cell>
-                {/* Make dispense button */}
-                <Button
-                fluid
-                content="Transfer Back"
-                textAlign="center"
-                fontSize="16px"
-                // Dissable if there is none of the reagent in storage
-                disabled={(
-                  reagent.drink_quantity === 0
-                )}
-                onClick={() => act("transferBack", {
-                  itemPath: reagent.drink_type_path,
-                })}
-                />
-              </Table.Cell>
-              <Table.Cell>
-                <Button
-                fluid
-                content="Pour in glass"
-                textAlign="center"
-                fontSize="16px"
-                // Dissable if there is none of the reagent in storage
-                disabled={(
-                  reagent.drink_quantity === 0
-                )}
-                onClick={() => act("pour", {
-                  itemPath: reagent.drink_type_path,
-                })}
-                />
-              </Table.Cell>
+            <Table.Cell
+            bold>
+              {/* Get name */}
+               {capitalize(reagent.drink_name)}
+            </Table.Cell>
+            <Table.Cell
+            textAlign="left">
+              {/* Get amount of reagent in storage */}
+              {reagent.drink_quantity}u
+            </Table.Cell>
+            <Table.Cell>
+              {/* Make dispense button */}
+              <Button
+              fluid
+              content="Transfer Back"
+              textAlign="center"
+              fontSize="16px"
+              width="175px"
+              // Disable if there is none of the reagent in storage
+              disabled={(
+                reagent.drink_quantity === 0
+              )}
+              onClick={() => act("transferBack", {
+                itemPath: reagent.drink_type_path,
+              })}
+              />
+            </Table.Cell>
           </Table.Row>
-      ))}
+        ))}
+        <Table.Row
+        align="center">
+          <Button
+          fluid
+          content="Pour glass"
+          textAlign="center"
+          fontSize="16px"
+          onClick={() => act("pour")}
+          />
+        </Table.Row>
       </Table>
     );
   } else {

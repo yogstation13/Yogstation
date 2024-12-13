@@ -21,7 +21,7 @@
 	//List of transfer amounts for reagents
 	var/list/transfer_list = list(5, 10, 15, 20, 30, 50)
 	//What transfer amount is currently selected
-	var/selected_transfer = null
+	var/selected_transfer = 0
 	//Mixer for dispencing drinks
 	var/obj/item/reagent_containers/mixer
 
@@ -105,15 +105,25 @@
 		return
 
 	switch(action)
+		//Dispense food item
 		if("dispense")
 			var/itemPath = text2path(params["itemPath"])
 			dispense_item(itemPath)
-		if("amount")
+		//Change selected_transfer
+		if("transferNum")
 			selected_transfer = params["dispenceAmount"]
+		//Remove reagent from cart
 		if("purge")
-			return
+			reagents.remove_reagent(text2path(params["itemPath"]), selected_transfer)
+		//Add reagent to mixer
 		if("addMixer")
-			src.reagents.trans_id_to(mixer, text2path(params["itemPath"]),selected_transfer)
+			src.reagents.trans_id_to(mixer, text2path(params["itemPath"]), selected_transfer)
+		//Return reagent to storage
+		if("transferBack")
+			mixer.reagents.trans_id_to(src, text2path(params["itemPath"]), selected_transfer)
+		//Pour glass
+		if("pour")
+			pour_glass()
 
 
 /obj/machinery/food_cart_TGUI/Initialize(mapload)
@@ -178,7 +188,20 @@
 	else
 		//Warn about full capacity
 		user.balloon_alert(user, "No space!")
-		
+
+/obj/machinery/food_cart_TGUI/proc/pour_glass(mob/user = usr)
+	//Check if there are any glasses in storage
+	if(glass_quantity > 0)
+		glass_quantity -= 0
+		//Create new glass
+		var/obj/item/reagent_containers/food/drinks/drinkingglass/drink = new(loc)
+		//Move all reagents in mixer to glass
+		mixer.reagents.trans_to(drink, mixer.reagents.total_volume)
+		//Attempt to put glass into user's hand
+		user.put_in_hands(drink)
+	else
+		user.balloon_alert(user, "No Drinking Glasses!")
+
 /obj/machinery/food_cart_TGUI/proc/find_amount(obj/item/counting_item, target_name = null, list/target_list = null)
 	var/amount = 0
 
