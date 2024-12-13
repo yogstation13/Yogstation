@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - mapping: "On Boxstation, the cameras for escape pod 1 and 2 are now correctly labelled"
