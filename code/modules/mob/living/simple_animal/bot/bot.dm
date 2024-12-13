@@ -298,7 +298,8 @@
 	visible_message(span_boldnotice("[src] blows apart!"))
 	do_sparks(3, TRUE, src)
 	var/atom/location_destroyed = drop_location()
-	if(prob(50))
+
+	if(prob(50) && (bot_type != HONK_BOT))
 		drop_part(robot_arm, location_destroyed)
 	qdel(src)
 

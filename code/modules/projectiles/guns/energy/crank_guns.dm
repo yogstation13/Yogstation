@@ -15,7 +15,6 @@
 
 /obj/item/gun/energy/laser/musket/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/two_handed, require_twohands = TRUE, force_wielded = 10)
 	AddComponent( \
 		/datum/component/gun_crank, \
 		charging_cell = get_cell(), \
@@ -23,6 +22,7 @@
 		cooldown_time = 3 SECONDS, \
 		charge_sound = 'sound/weapons/laser_crank.ogg', \
 		charge_sound_cooldown_time = 1.8 SECONDS, \
+		charge_move = IGNORE_USER_LOC_CHANGE, \
 		)
 
 /obj/item/gun/energy/laser/musket/prime
@@ -62,6 +62,7 @@
 		cooldown_time = 2 SECONDS, \
 		charge_sound = 'sound/weapons/laser_crank.ogg', \
 		charge_sound_cooldown_time = 1.8 SECONDS, \
+		charge_move = IGNORE_USER_LOC_CHANGE, \
 		)
 
 /obj/item/gun/energy/disabler/smoothbore/add_seclight_point()

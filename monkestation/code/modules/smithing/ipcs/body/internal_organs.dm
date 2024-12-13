@@ -18,7 +18,8 @@
 
 	var/mob/living/carbon/human/user_human = brain_owner
 	if(HAS_TRAIT(user_human, TRAIT_REVIVES_BY_HEALING) && user_human.health > SYNTH_BRAIN_WAKE_THRESHOLD)
-		user_human.revive(FALSE)
+		if(!HAS_TRAIT(user_human, TRAIT_DEFIB_BLACKLISTED))
+			user_human.revive(FALSE)
 
 /obj/item/organ/internal/brain/synth/emp_act(severity) // EMP act against the posi, keep the cap far below the organ health
 	. = ..()

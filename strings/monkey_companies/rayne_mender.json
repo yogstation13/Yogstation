@@ -1,0 +1,99 @@
+{
+	"pickup":[
+		"Thank you for choosing Rayne Corp for all your personal health needs.",
+		"I'm a medkit, not a doctor, what the hell do you want me to do about this?",
+		"You're lucky I'm here to patch up this tragedy.",
+		"Try not to get hurt next time, genius. Or do. I don't really care.",
+		"You're lucky im here or you would be a goner, probably.",
+		"I can fix anything! Except for whatever the hell THAT is."
+	],
+
+	"putdown":[
+		"Talk soon.",
+		"You'll be back",
+		"Not so rough asshole!",
+		"Nap time"
+	],
+
+	"podnerd":[
+		"This is a plant. Water it.",
+		"I think plants need fertilizer or something I dont know",
+		"Why are you scanning a plant.",
+		"A shrubbery!"
+	],
+
+	"lowblood":[
+		"Blood volume is low. Recommend transfusion.",
+		"Not enough hemoglobin to sustain respiration.",
+		"Looking a bit like a juiced lemon, recommend Iron intake.",
+		"You are bleeding more than a vampire at a blood bank."
+	],
+
+	"onfire": [
+		"WHY ARE YOU SCANNING THEM!!!",
+		"THEY ARE ON FIRE!!!",
+		"GET A FIRE EXTINGUISHER MORON"
+	],
+
+	"oxy":[
+		"The subject cannot breath. I recommend salbutamol, or air.",
+		"Did you huff helium or something?"
+	],
+
+	"brute":[
+		"The subject looks like they got mugged with a tyre iron.",
+		"Just a flesh wound, apply sutures.",
+		"Nanotrasen doesnt pay you to be a punching bag.",
+		"You look like a sack of potatoes that's been beaten with a baseball bat."
+	],
+
+	"burn":[
+		"The subject is a bit charred, debridle and apply ointment to burns.",
+		"Well then, looks like someone got a little toasty.",
+		"You shouldn't stick your fingers in light sockets."
+	],
+
+	"tox":[
+		"The subject was eating rat poison or something.",
+		"It looks like you have been sunbathing in the SM chamber, again.",
+		"You look like you've eaten a bad burrito. And by bad, I mean really bad."
+	],
+
+	"braindamage":[
+		"The subject's brain looks a bit smooth, recommend roughing it up a bit.",
+		"The subject's brain has sustained serious damage, provide Mannitol."
+	],
+
+	"fuckedup":[
+		"The subject is absolutely fucked up...",
+		"This fleshy mass was a person?",
+		"Just breathe and you'll be fine. Or not. Who knows?"
+	],
+
+	"fine":[
+		"Subject is operating nominally.",
+		"Seem fine to me, might be in their head.",
+		"No functional issues detected, that i care about",
+		"Mostly alive"
+	],
+
+	"organ":[
+		"Well, this is a gut wrenching sight. Pun intended.",
+		"Your insides look like a blender exploded, and you're the smoothie."
+	],
+
+	"nobrain":[
+		"The subject has no brain.",
+		"Zero IQ detected."
+	],
+
+	"dead":[
+		"Subject is dead but whole.",
+		"Reviving recommended if possible.",
+		"Subject is dead but ready to function",
+		"Subject has yee'd their last haw"
+	]
+
+
+
+}

@@ -62,7 +62,7 @@
 	inhand_icon_state = "hostrench"
 	resistance_flags = NONE
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/gun/ballistic/revolver/c38/detective, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/gun/ballistic/revolver/c38/detective, /obj/item/gun/energy/laser/musket, /obj/item/gun/ballistic/rifle/boltaction/pipegun, /obj/item/radio)
 	species_exception = list(/datum/species/golem/bone) //bad to the bone
 
 /obj/item/clothing/suit/jacket/leather/biker
@@ -98,7 +98,7 @@
 	desc = "A canvas jacket styled after classical American military garb. Feels sturdy, yet comfortable."
 	icon_state = "militaryjacket"
 	inhand_icon_state = null
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/radio)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/gun/energy/laser/musket, /obj/item/gun/ballistic/rifle/boltaction/pipegun, /obj/item/radio) //monkestation edit
 
 /obj/item/clothing/suit/jacket/letterman
 	name = "letterman jacket"
@@ -119,6 +119,7 @@
 	desc = "Oddly, this jacket seems to have a large S on the back..."
 	icon_state = "letterman_s"
 	inhand_icon_state = null
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/ballistic/automatic/pistol, /obj/item/gun/ballistic/revolver, /obj/item/gun/energy/laser/musket, /obj/item/gun/ballistic/rifle/boltaction/pipegun, /obj/item/radio) //monkestation edit
 	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/jacket/letterman_nanotrasen

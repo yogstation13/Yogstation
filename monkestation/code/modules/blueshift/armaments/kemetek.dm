@@ -5,3 +5,4 @@
 
 /datum/armament_entry/company_import/kemetek/checkback
 	subcategory = "Check back soon! ™"
+
