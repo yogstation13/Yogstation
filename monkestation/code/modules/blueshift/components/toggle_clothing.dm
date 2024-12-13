@@ -24,4 +24,5 @@
 	toggled = !toggled
 	source.icon_state = (toggled ? toggled_icon_state : initial(source.icon_state))
 	to_chat(clicker, "You toggle \the [source]!")
+	source.update_slot_icon()
 	clicker.update_appearance()
