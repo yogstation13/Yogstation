@@ -237,5 +237,6 @@ h1.alert, h2.alert		{color: #000000;}
 .orange 				{color: #b8761a;}
 .yellow					{color: #c7b72c;}
 .cyan					{color: #0ea1e6;}
+.uncommonradio			{color: #78a1b1;}
 // MONKESTATION ADDITION END
 </style>"}

@@ -99,6 +99,7 @@
 	///blood we can clean
 	var/static/list/cleanable_blood = typecacheof(list(
 		/obj/effect/decal/cleanable/blood,
+		/obj/effect/decal/cleanable/xenoblood, // monkestation addition
 	))
 	///pests we hunt
 	var/static/list/huntable_pests = typecacheof(list(

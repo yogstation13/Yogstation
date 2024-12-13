@@ -106,6 +106,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 			"centcom" = FREQ_CENTCOM,
 			"aiprivate" = FREQ_AI_PRIVATE,
 			"radio" = FREQ_RADIO,
+			"uncommon" = FREQ_UNCOMMON,
 		))
 	)
 

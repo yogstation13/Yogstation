@@ -28,6 +28,7 @@ $_channel_map: (
   'Supp': #b88646,
   'Svc': #6ca729,
   'Synd': #8f4a4b,
+  'Uncom': #78a1b1,
 );
 
 $channel_keys: map.keys($_channel_map) !default;

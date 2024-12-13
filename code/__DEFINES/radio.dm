@@ -57,6 +57,9 @@
 #define RADIO_CHANNEL_CTF_GREEN "Green Team"
 #define RADIO_CHANNEL_CTF_YELLOW "Yellow Team"
 
+#define RADIO_CHANNEL_UNCOMMON "Uncommon"
+#define RADIO_KEY_UNCOMMON "f"
+#define RADIO_TOKEN_UNCOMMON ":f"
 
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
@@ -76,6 +79,7 @@
 #define FREQ_ENGINEERING 1357 // Engineering comms frequency, orange
 #define FREQ_SECURITY 1359 // Security comms frequency, red
 #define FREQ_RADIO 1361 //monkestation edit
+#define FREQ_UNCOMMON 1363 //monkestation addition, Light gray
 
 #define FREQ_HOLOGRID_SOLUTION 1433
 #define FREQ_STATUS_DISPLAYS 1435
