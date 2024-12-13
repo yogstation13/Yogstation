@@ -45,7 +45,7 @@
 			change_pipe_connection(!anchored)
 			return
 	else
-		to_chat(user, span_warning("[panel_open? "Open the panel first!" : "Too much gas inside, make sure it's below 1000 moles!"]"))
+		to_chat(user, span_warning("[panel_open? "Too much gas inside, make sure it's below 1000 moles!" : "Open the panel first!"]"))
 		return
 	return ..()
 
