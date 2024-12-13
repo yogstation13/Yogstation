@@ -216,18 +216,27 @@ const DrinkTab = (props, context) => {
   return (
     <Stack vertical>
       <Stack.Item>
-        <Section
-        title="Glass Storage"
-        textAlign="center">
-          <GlassRow />
-        </Section>
-      </Stack.Item>
-      <Stack.Item>
-        <Section
-        title="Drink Capacity"
-        textAlign="center">
-          <DrinkCapacityRow />
-        </Section>
+        <Flex
+        justify="center">
+          <Flex.Item
+          grow={1}
+          mr={1}>
+            <Section
+            title="Glass Storage"
+            textAlign="center">
+              <GlassRow />
+            </Section>
+          </Flex.Item>
+          <Flex.Item
+          grow={1}
+          mr={1}>
+            <Section
+            title="Drink Capacity"
+            textAlign="center">
+              <DrinkCapacityRow />
+            </Section>
+          </Flex.Item>
+        </Flex>
       </Stack.Item>
       <Stack.Item>
         <Section
@@ -260,7 +269,7 @@ const DrinkTab = (props, context) => {
           circular
           tooltip="Reagents to be poured into drinking glasses"
           icon="info"/>}>
-          <MixerDrinkRow />
+          <MixerDrinkRow1 />
         </Section>
       </Stack.Item>
     </Stack>
@@ -318,7 +327,6 @@ const DrinkTransferRow = (props, context) => {
 
   return(
     <Flex
-    align="center"
     justify="center">
       {dispence_options.map(amount => (
         <Flex.Item
@@ -470,15 +478,17 @@ const MixerDrinkRow = (props, context) => {
             </Table.Cell>
           </Table.Row>
         ))}
-        <Table.Row
-        align="center">
-          <Button
-          fluid
-          content="Pour glass"
-          textAlign="center"
-          fontSize="16px"
-          onClick={() => act("pour")}
-          />
+      <Table.Row
+       justify="center">
+         <Table.Cell>
+           <Button
+            fluid
+            content="Pour glass"
+            textAlign="center"
+            fontSize="16px"
+            onClick={() => act("pour")}
+            />
+          </Table.Cell>
         </Table.Row>
       </Table>
     );
@@ -497,3 +507,80 @@ const MixerDrinkRow = (props, context) => {
     );
   }
 };
+
+const MixerDrinkRow1 = (props, context) => {
+  // Get data from ui_data in backend code
+  const { act, data } = useBackend<Tab>(context);
+  // Get drink information for cart's container from data
+  const { mixerDrinks = [] } = data;
+
+  if(mixerDrinks.length > 0) {
+    return (
+      // Create Table for horizontal format
+      <Flex
+      direction="column">
+        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
+        {mixerDrinks.map(reagent => (
+          // Start row for holding ui elements and given data
+          <Stack
+          key={reagent.drink_name}
+          justify="space-around"
+          fontSize="14px">
+            <Stack.Item
+            textAlign="left"
+            bold>
+              {/* Get name */}
+               {capitalize(reagent.drink_name)}
+            </Stack.Item>
+            <Stack.Item>
+              {/* Get amount of reagent in storage */}
+              {reagent.drink_quantity}u
+            </Stack.Item>
+            <Stack.Item>
+              {/* Make dispense button */}
+              <Button
+              fluid
+              content="Transfer Back"
+              textAlign="center"
+              fontSize="16px"
+              width="175px"
+              // Disable if there is none of the reagent in storage
+              disabled={(
+                reagent.drink_quantity === 0
+              )}
+              onClick={() => act("transferBack", {
+                itemPath: reagent.drink_type_path,
+              })}
+              />
+            </Stack.Item>
+          </Stack>
+        ))}
+      <Table.Row
+       justify="center">
+         <Table.Cell>
+           <Button
+            fluid
+            content="Pour glass"
+            textAlign="center"
+            fontSize="16px"
+            onClick={() => act("pour")}
+            />
+          </Table.Cell>
+        </Table.Row>
+      </Flex>
+    );
+  } else {
+    return (
+      <Table>
+        <Table.Row>
+          <Table.Cell
+          fontSize="14px"
+          textAlign="center"
+          bold>
+            Mixer Storage Empty
+          </Table.Cell>
+        </Table.Row>
+      </Table>
+    );
+  }
+}

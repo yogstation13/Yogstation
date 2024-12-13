@@ -25,18 +25,23 @@
 	//Mixer for dispencing drinks
 	var/obj/item/reagent_containers/mixer
 
+	var/list/drink_list
+	var/list/mixer_list
+
 /obj/machinery/food_cart_TGUI/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "FoodCart", name)
 		ui.open()
-		ui.set_autoupdate(TRUE)
 
 /obj/machinery/food_cart_TGUI/ui_data(mob/user)
 	//Define variables from UI
 	var/list/data = list()
 	data["food"] = list()
 	data["storage"] = list()
+
+	drink_list = reagents.reagent_list
+	mixer_list = mixer.reagents.reagent_list
 
 	//Loop through food list for data to send to food tab
 	for(var/item_detail in food_ui_list)
@@ -61,7 +66,7 @@
 		data["food"] += list(details)
 
 	//Loop through drink list for data to send to cart's reagent storage tab
-	for(var/datum/reagent/drink in reagents.reagent_list)
+	for(var/datum/reagent/drink in drink_list)
 		var/list/details = list()
 
 		//Get information for UI
@@ -73,7 +78,7 @@
 		data["mainDrinks"] += list(details)
 	
 	//Loop through drink list for data to send to cart's reagent mixer tab
-	for(var/datum/reagent/drink in mixer.reagents.reagent_list)
+	for(var/datum/reagent/drink in mixer_list)
 		var/list/details = list()
 
 		//Get information for UI
