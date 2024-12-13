@@ -156,3 +156,6 @@
   Absolucy, JohnFulpWillard:
   - bugfix: Shaft Miners and Explorers are now alerted of icemoon storms, Clowns are
       naive, and Curators are immune to the Tower of Babel again.
+2024-12-13:
+  Absolucy:
+  - refactor: Challenge and monkecoin reward code is now more resilient.
