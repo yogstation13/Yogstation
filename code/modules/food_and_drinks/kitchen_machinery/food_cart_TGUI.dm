@@ -125,7 +125,6 @@
 		if("pour")
 			pour_glass()
 
-
 /obj/machinery/food_cart_TGUI/Initialize(mapload)
 	. = ..()
 	//Create reagents holder for drinks
@@ -192,7 +191,7 @@
 /obj/machinery/food_cart_TGUI/proc/pour_glass(mob/user = usr)
 	//Check if there are any glasses in storage
 	if(glass_quantity > 0)
-		glass_quantity -= 0
+		glass_quantity -= 1
 		//Create new glass
 		var/obj/item/reagent_containers/food/drinks/drinkingglass/drink = new(loc)
 		//Move all reagents in mixer to glass
