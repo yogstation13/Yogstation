@@ -38,17 +38,14 @@
 	set_piping_layer(piping_layer)
 
 /obj/machinery/atmospherics/components/unary/tank/attackby(obj/item/I, mob/user, params)
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		panel_open = !panel_open
-		user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
-		I.play_tool_sound(src, 50)
-		return
-	if(panel_open)
+	var/datum/gas_mixture/air_contents = airs[1]
+	default_deconstruction_screwdriver(user, icon_state, icon_state, I)
+	if(panel_open || air_contents.total_moles() < 1000)
 		if(default_unfasten_wrench(user, I, 10))
 			change_pipe_connection(!anchored)
 			return
 	else
-		to_chat(user, span_warning("Open the panel first."))
+		to_chat(user, span_warning("[panel_open? "Open the panel first!" : "Too much gas inside, make sure it's below 1000 moles!"]"))
 		return
 	return ..()
 
