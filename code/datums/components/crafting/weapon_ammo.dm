@@ -12,6 +12,36 @@
 	time = 0.5 SECONDS
 	category = CAT_WEAPON_AMMO
 
+/datum/crafting_recipe/paperball
+	name = "Paper Ball"
+	result = /obj/item/ammo_casing/rebar/paperball
+	reqs = list(
+		/obj/item/paper = 1,
+	)
+	time = 0.1 SECONDS
+	category = CAT_WEAPON_AMMO
+
+/datum/crafting_recipe/rebarsyndie
+	name = "jagged iron rod"
+	always_available = FALSE
+	result = /obj/item/ammo_casing/rebar/syndie
+	reqs = list(
+		/obj/item/stack/rods = 1,
+	)
+	tool_behaviors = list(TOOL_WIRECUTTER)
+	time = 0.5 SECONDS
+	time = 0.1 SECONDS
+	category = CAT_WEAPON_AMMO
+
+/datum/crafting_recipe/healium_bolt
+	name = "healium crystal crossbow bolt"
+	result = /obj/item/ammo_casing/rebar/healium
+	reqs = list(
+		/obj/item/grenade/gas_crystal/healium_crystal = 1
+	)
+	time = 0.1 SECONDS
+	category = CAT_WEAPON_AMMO
+
 /datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
 	result = /obj/item/ammo_casing/shotgun/pulseslug

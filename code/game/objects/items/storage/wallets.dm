@@ -30,7 +30,6 @@
 		/obj/item/gbp_punchcard,
 		/obj/item/implanter,
 		/obj/item/lighter,
-		/obj/item/lipstick,
 		/obj/item/match,
 		/obj/item/paper,
 		/obj/item/pen,

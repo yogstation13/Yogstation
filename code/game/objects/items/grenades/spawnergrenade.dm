@@ -71,3 +71,15 @@
 	inhand_icon_state = null
 	spawner_type = /mob/living/basic/clown/mutant
 	deliveryamt = 5
+
+/obj/item/grenade/spawnergrenade/cat
+	name = "Catnade"
+	desc = "You can hear faint meowing and the sounds of claws on metal coming from within."
+	spawner_type = list(/mob/living/simple_animal/hostile/feral, /mob/living/simple_animal/hostile/feraltabby)
+	deliveryamt = 5
+
+/obj/item/grenade/spawnergrenade/cat/syndicate
+	name = "Syndicatnade"
+	desc = "You can hear aggressive meowing and the sounds of sharpened claws on metal coming from within."
+	spawner_type = /mob/living/simple_animal/hostile/syndicat
+	deliveryamt = 3

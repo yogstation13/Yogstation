@@ -32,3 +32,20 @@
 	max_ammo = 1
 	caliber = CALIBER_HARPOON
 	ammo_type = /obj/item/ammo_casing/caseless/harpoon
+
+/obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/normal
+	name = "single round magazine"
+	max_ammo = 1
+	caliber = CALIBER_REBAR
+	ammo_type = /obj/item/ammo_casing/rebar
+
+/obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/force
+	name = "two round magazine"
+	max_ammo = 2
+	caliber = CALIBER_REBAR_FORCED
+	ammo_type = /obj/item/ammo_casing/rebar
+
+/obj/item/ammo_box/magazine/internal/boltaction/rebarxbow/syndie
+	max_ammo = 3
+	caliber = CALIBER_REBAR_SYNDIE
+	ammo_type = /obj/item/ammo_casing/rebar

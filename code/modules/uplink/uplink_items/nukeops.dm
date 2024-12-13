@@ -521,6 +521,14 @@
 	surplus = 35
 	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 
+/datum/uplink_item/dangerous/syndicat
+	name = "Syndie cat grenade"
+	desc = "This grenade is filled with 3 trained angry cats in special syndicate modsuits. Upon activation, the Syndicate cats are awoken and unleashed unto unlucky bystanders."
+	item = /obj/item/grenade/spawnergrenade/cat/syndicate
+	cost = 20
+	surplus = 50
+	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
+
 /datum/uplink_item/explosives/pinata
 	name = "Weapons Grade Pinata Kit"
 	desc = "A pinata filled with both candy and explosives as well as two belts to carry them on, crack it open and see what you get!"

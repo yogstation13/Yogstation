@@ -281,7 +281,7 @@
 		hitx = target.pixel_x + rand(-8, 8)
 		hity = target.pixel_y + rand(-8, 8)
 
-	if((isturf(target) || (isobj(target) && target.density)) && hitsound_wall)
+	if(isturf(target_turf) && hitsound_wall)
 		var/volume = clamp(vol_by_damage() + 20, 0, 100)
 		if(suppressed)
 			volume = 5
@@ -293,11 +293,7 @@
 		if(damage > 0 && (damage_type == BRUTE || damage_type == BURN) && iswallturf(target_turf) && prob(75))
 			var/turf/closed/wall/target_wall = target_turf
 			target_wall.add_dent(WALL_DENT_SHOT, hitx, hity)
-		if(isturf(target) && hitsound_wall)
-			var/volume = clamp(vol_by_damage() + 20, 0, 100)
-			if(suppressed)
-				volume = 5
-			playsound(loc, hitsound_wall, volume, TRUE, -1)
+
 		return BULLET_ACT_HIT
 
 	var/mob/living/living_target = target
