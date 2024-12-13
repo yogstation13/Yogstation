@@ -44,6 +44,8 @@
 
 /mob/living/silicon/pai/var/list/med_record = list()
 /mob/living/silicon/pai/var/list/sec_record = list()
+/mob/living/silicon/pai/var/selected_med_record
+/mob/living/silicon/pai/var/selected_sec_record
 
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -78,7 +80,7 @@
 		med_record = list() //Important to reset it here so it doesn't readd records endlessly
 		for(var/datum/data/record/M in sortRecord(GLOB.data_core.medical))
 			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
-				if(R.fields["name"] == M.fields["name"])
+				if(R.fields["id"] == M.fields["id"])
 					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
 					med_record += list(new_record)
 					break
@@ -98,6 +100,8 @@
 					break
 	data["med_records"] = med_record
 	data["sec_records"] = sec_record
+	data["selected_med_record"] = selected_med_record
+	data["selected_sec_record"] = selected_sec_record
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
@@ -225,6 +229,20 @@
 			hackdoor = null
 			cable = null
 			cable_status = "Retracted"
+		if("med_record")
+			if(!GLOB.data_core.general||!GLOB.data_core.medical)
+				return
+			for(var/datum/data/record/M in sortRecord(GLOB.data_core.medical))
+				var/done = FALSE
+				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+					if(M.fields["id"] == params["record"])
+						selected_med_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
+						done = TRUE
+						break
+				if(done)
+					break
+		if("med_record back")
+			selected_med_record = null
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)
