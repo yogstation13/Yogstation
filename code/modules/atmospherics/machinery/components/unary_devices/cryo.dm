@@ -1,4 +1,4 @@
-8///Max temperature allowed inside the cryotube, should break before reaching this heat
+///Max temperature allowed inside the cryotube, should break before reaching this heat
 #define MAX_TEMPERATURE 4000
 
 /// This is a visual helper that shows the occupant inside the cryo cell.
