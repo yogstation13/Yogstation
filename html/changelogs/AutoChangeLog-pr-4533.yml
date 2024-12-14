@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Fixed some loadout clothing not updating after alt-clicking while worn"
