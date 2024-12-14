@@ -1,4 +1,4 @@
-///Max temperature allowed inside the cryotube, should break before reaching this heat
+8///Max temperature allowed inside the cryotube, should break before reaching this heat
 #define MAX_TEMPERATURE 4000
 
 /// This is a visual helper that shows the occupant inside the cryo cell.
@@ -327,7 +327,7 @@
 			else
 				set_on(FALSE)
 				playsound(src, 'sound/machines/cryo_warning.ogg', volume) // Bug the doctors.
-				var/msg = "Dead body has been patched up to a reviable state."
+				var/msg = "Dead body has been patched up to a revivable state."
 				if(autoeject) // Eject if configured.
 					msg += " Auto ejecting body now."
 					open_machine()
