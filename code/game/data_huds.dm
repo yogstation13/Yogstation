@@ -171,7 +171,7 @@ Medical HUD! Basic mode needs suit sensors on.
 			return
 		if(tod)
 			var/tdelta = round(world.time - timeofdeath)
-			if(tdelta < (DEFIB_TIME_LIMIT))
+			if(tdelta < (DEFIB_TIME_LIMIT) || reagents.has_reagent(/datum/reagent/gas/healium))
 				holder.icon_state = "huddefib"
 				return
 		holder.icon_state = "huddead"

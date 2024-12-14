@@ -54,8 +54,9 @@
 		return
 
 	// Wait a bit before decaying
-	if(world.time - C.timeofdeath < 2 MINUTES)
-		return
+	if(!C.reagents.has_reagent(/datum/reagent/gas/healium))
+		if(world.time - C.timeofdeath < 2 MINUTES)
+			return
 
 	// Properly stored corpses shouldn't create miasma
 	if(istype(C.loc, /obj/structure/closet/crate/coffin)|| istype(C.loc, /obj/structure/closet/body_bag) || istype(C.loc, /obj/structure/bodycontainer))
