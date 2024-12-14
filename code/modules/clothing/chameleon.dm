@@ -145,7 +145,8 @@
 
 /datum/action/cooldown/chameleon_copy
 	name = "Copy person"
-	button_icon_state = "default" //Temporary, just to test it works
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "chameleon_copy"
 	var/target_range = 3
 	var/syndicate = FALSE
 	var/active = FALSE
