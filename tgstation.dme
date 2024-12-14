@@ -7603,6 +7603,7 @@
 #include "monkestation\code\modules\mob_spawn\ghost_roles\space_roles\oldsci.dm"
 #include "monkestation\code\modules\mob_spawn\ghost_roles\space_roles\oldsec.dm"
 #include "monkestation\code\modules\mod\mod_control.dm"
+#include "monkestation\code\modules\mod\mod_theme.dm"
 #include "monkestation\code\modules\mod\mod_types.dm"
 #include "monkestation\code\modules\mod\modules\modules_antag.dm"
 #include "monkestation\code\modules\modular_bartending\modglass.dm"
