@@ -1,4 +1,0 @@
-author: "Siro"
-delete-after: True
-changes:
-  - rscadd: "Added an ability for dead oozelings, \"Membrane Murmur\", allowing them to vocalize a short-range cry for help from their core every so often."
