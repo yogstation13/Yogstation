@@ -54,9 +54,8 @@
 		return
 
 	// Wait a bit before decaying
-	if(!C.reagents.has_reagent(/datum/reagent/gas/healium))
-		if(world.time - C.timeofdeath < 2 MINUTES)
-			return
+	if(world.time - C.timeofdeath < 2 MINUTES)
+		return
 
 	// Properly stored corpses shouldn't create miasma
 	if(istype(C.loc, /obj/structure/closet/crate/coffin)|| istype(C.loc, /obj/structure/closet/body_bag) || istype(C.loc, /obj/structure/bodycontainer))
@@ -68,6 +67,10 @@
 
 	// Also no decay if corpse chilled or not organic/undead
 	if(C.bodytemperature <= T0C-10 || (!(C.mob_biotypes & (MOB_ORGANIC & MOB_UNDEAD))))
+		return
+
+	// Healium prevents body from rotting
+	if(C.reagents.has_reagent(/datum/reagent/gas/healium))
 		return
 
 	..()
