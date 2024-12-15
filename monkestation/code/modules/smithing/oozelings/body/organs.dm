@@ -69,10 +69,17 @@
 	var/rebuilt = TRUE
 	var/coredeath = TRUE
 
+	var/datum/action/cooldown/membrane_murmur/membrane_mur
+
 /obj/item/organ/internal/brain/slime/Initialize(mapload, mob/living/carbon/organ_owner, list/examine_list)
 	. = ..()
+	membrane_mur = new /datum/action/cooldown/membrane_murmur()
 	colorize()
 	transform.Scale(2, 2)
+
+/obj/item/organ/internal/brain/slime/Destroy(force)
+	QDEL_NULL(membrane_mur)
+	return ..()
 
 /obj/item/organ/internal/brain/slime/examine()
 	. = ..()
@@ -165,6 +172,7 @@
 		AddComponent(/datum/component/gps, "[victim]'s Core")
 
 	if(brainmob)
+		membrane_mur.Grant(brainmob)
 		var/datum/antagonist/changeling/target_ling = brainmob.mind?.has_antag_datum(/datum/antagonist/changeling)
 
 		if(target_ling)
@@ -283,6 +291,7 @@
 		new_body.visible_message(span_warning("[new_body]'s body fully forms from [new_body.p_their()] core!"))
 		to_chat(owner, span_purple("Your body fully forms from your core!"))
 
+	membrane_mur.Remove(brainmob)
 	brainmob?.mind?.transfer_to(new_body)
 	new_body.grab_ghost()
 	transfer_observers_to(new_body)
