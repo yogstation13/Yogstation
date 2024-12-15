@@ -34,9 +34,11 @@
 
 
 /// Runs byond's html encoding sanitization proc, after replacing new-lines and tabs for the # character.
-/proc/sanitize(text)
+/proc/sanitize(text, encode = TRUE)
 	var/static/regex/regex = regex(@"[\n\t]", "g")
-	return html_encode(regex.Replace(text, "#"))
+	. = replacetext(text, regex, "#")
+	if(encode)
+		return html_encode(.)
 
 
 /// Runs STRIP_HTML_SIMPLE and sanitize.

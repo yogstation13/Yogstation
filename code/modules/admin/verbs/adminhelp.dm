@@ -252,7 +252,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	else
 		SSplexora.aticket_new(src, msg_raw, is_bwoink, urgent) // monkestation edit: PLEXORA
 		MessageNoRecipient(msg_raw, urgent)
-		send_message_to_tgs(msg, urgent)
+		send_message_to_tgs(html_decode(msg), urgent)
 	GLOB.ahelp_tickets.active_tickets += src
 
 /datum/admin_help/proc/format_embed_discord(message)
@@ -798,7 +798,7 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 	if(user_client.current_ticket)
 		user_client.current_ticket.TimeoutVerb()
 		if(urgent)
-			var/sanitized_message = sanitize(copytext_char(message, 1, MAX_MESSAGE_LEN))
+			var/sanitized_message = sanitize(trim(message, MAX_MESSAGE_LEN), encode = FALSE)
 			user_client.current_ticket.send_message_to_tgs(sanitized_message, urgent = TRUE)
 		user_client.current_ticket.MessageNoRecipient(message, urgent)
 		return

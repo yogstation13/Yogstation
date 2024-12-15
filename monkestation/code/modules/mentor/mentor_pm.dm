@@ -146,7 +146,7 @@
 				html = "<font color='green'>Mentor PM to-<b>[key_name_mentor(chosen_client, chosen_client, TRUE, FALSE)]</b>: <span class='message linkify'>[msg]</span></font>",
 				confidential = TRUE)
 			var/datum/request/request = GLOB.mentor_requests.requests[chosen_client.ckey][length(GLOB.mentor_requests.requests[chosen_client.ckey])]
-			SSplexora.mticket_pm(request, src.mob, chosen_client.mob, msg)
+			SSplexora.mticket_pm(request, src.mob, chosen_client.mob, html_decode(msg))
 
 
 
