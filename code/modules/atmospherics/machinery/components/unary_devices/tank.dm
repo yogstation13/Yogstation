@@ -63,7 +63,11 @@
 	for(var/gas_id in contents.get_gases())
 		var/gas_removed = contents.get_moles(gas_id)
 		contents.adjust_moles(gas_id, -gas_removed)
-		pipe.air.adjust_moles(gas_id, gas_removed)
+		if(pipe)
+			pipe.air.adjust_moles(gas_id, gas_removed)
+		else
+			var/turf/T = get_turf(src)
+			T.assume_air(contents)
 
 /obj/machinery/atmospherics/components/unary/tank/default_change_direction_wrench(mob/user, obj/item/I)
 	if(!..())
