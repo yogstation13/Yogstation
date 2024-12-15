@@ -1,5 +1,0 @@
-author: "TheColorCyan"
-delete-after: True
-changes:
-  - bugfix: "Random lipstick now has proper icon upon spawn."
-  - rscdel: "Syndie lipstick can no longer spawn as a random lipstick color."

@@ -218,3 +218,6 @@
       break.'
   - sound: The newers ERTs now have a greet sound.
   - code_imp: Changed the logic ordering of the  mech hydraulic clamp.
+  TheColorCyan:
+  - bugfix: Random lipstick now has proper icon upon spawn.
+  - rscdel: Syndie lipstick can no longer spawn as a random lipstick color.
