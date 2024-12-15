@@ -25,7 +25,7 @@
 	)
 
 	var/volume = 10000 //in liters
-	var/gas_type = 0
+	var/gas_type = null
 
 /obj/machinery/atmospherics/components/unary/tank/Initialize(mapload)
 	. = ..()
@@ -39,10 +39,12 @@
 
 /obj/machinery/atmospherics/components/unary/tank/attackby(obj/item/I, mob/user, params)
 	var/datum/gas_mixture/air_contents = airs[1]
-	default_deconstruction_screwdriver(user, icon_state, icon_state, I)
-	if(panel_open || air_contents.total_moles() < 1000)
+	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
+		change_pipe_connection(!anchored)
+		return
+	if(panel_open)
 		if(default_unfasten_wrench(user, I, 10))
-			change_pipe_connection(!anchored)
+			dump_gas()
 			return
 	else
 		to_chat(user, span_warning("[panel_open? "Too much gas inside, make sure it's below 1000 moles!" : "Open the panel first!"]"))
@@ -50,11 +52,19 @@
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/tank/attackby_secondary(obj/item/I, mob/user, params)
-	if(!anchored)
+	if(panel_open)
 		if(default_change_direction_wrench(user, I))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	else
 		return SECONDARY_ATTACK_CALL_NORMAL
+
+/obj/machinery/atmospherics/components/unary/tank/proc/dump_gas()
+	var/datum/gas_mixture/contents = airs[1]
+	var/datum/pipeline/pipe = parents[1]
+	for(var/gas_id in contents.get_gases())
+		var/gas_removed = contents.get_moles(gas_id)
+		contents.adjust_moles(gas_id, -gas_removed)
+		pipe.air.adjust_moles(gas_id, gas_removed)
 
 /obj/machinery/atmospherics/components/unary/tank/default_change_direction_wrench(mob/user, obj/item/I)
 	if(!..())
