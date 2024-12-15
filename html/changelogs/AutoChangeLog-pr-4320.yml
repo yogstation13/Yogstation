@@ -1,0 +1,10 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - rscadd: "Nanotrasen has found the budget to improve on it's Emergency Response Corps."
+  - balance: "Nanotrasen has re-evaluated it's pulse weaponry and has lowered the explosive impact of pulse beams after finding the resulting damage too costly to repair."
+  - balance: "FEAR THE DEATH-RIPLEY!!"
+  - bugfix: "Shuttle decals properly rotate on shuttle move."
+  - bugfix: " Made the tactical combat uniforms unadjustable so their sprite doesn't break."
+  - sound: "The newers ERTs now have a greet sound."
+  - code_imp: "Changed the logic ordering of the  mech hydraulic clamp."
