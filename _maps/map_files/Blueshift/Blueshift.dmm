@@ -24305,6 +24305,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/xmastree,
 /turf/open/floor/iron,
 /area/station/hallway/primary/upper)
 "eGI" = (
@@ -58421,6 +58422,10 @@
 	dir = 9
 	},
 /area/station/hallway/secondary/exit)
+"loV" = (
+/obj/effect/spawner/xmastree,
+/turf/open/floor/stone,
+/area/station/hallway/primary/central)
 "loW" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
@@ -157046,7 +157051,7 @@ jKx
 bBd
 bOT
 gCJ
-gCJ
+loV
 gCJ
 dGC
 bGm
