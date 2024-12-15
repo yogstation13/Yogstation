@@ -27,7 +27,7 @@
 	var/volume = 10000 //in liters
 	var/gas_type = null
 
-/obj/machinery/atmospherics/components/unary/tank/Initialize(mapload)
+/obj/machinery/atmospherics/components/unary/tank/New()
 	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_volume(volume)
@@ -38,22 +38,21 @@
 	set_piping_layer(piping_layer)
 
 /obj/machinery/atmospherics/components/unary/tank/attackby(obj/item/I, mob/user, params)
-	var/datum/gas_mixture/air_contents = airs[1]
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		change_pipe_connection(!anchored)
 		return
 	if(panel_open)
 		if(default_unfasten_wrench(user, I, 10))
 			dump_gas()
 			return
 	else
-		to_chat(user, span_warning("[panel_open? "Too much gas inside, make sure it's below 1000 moles!" : "Open the panel first!"]"))
+		to_chat(user, span_warning("Open the panel first!"))
 		return
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/tank/attackby_secondary(obj/item/I, mob/user, params)
 	if(panel_open)
 		if(default_change_direction_wrench(user, I))
+			change_pipe_connection(TRUE, TRUE)
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	else
 		return SECONDARY_ATTACK_CALL_NORMAL
@@ -113,48 +112,44 @@
 	greyscale_config = null
 	greyscale_colors = null
 
-/obj/machinery/atmospherics/components/unary/tank/air/Initialize(mapload)
+/obj/machinery/atmospherics/components/unary/tank/air/New()
 	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_moles(GAS_O2, AIR_CONTENTS * 0.2)
 	air_contents.set_moles(GAS_N2, AIR_CONTENTS * 0.8)
 
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide
-	name = "pressure tank (CO2)"
 	gas_type = GAS_CO2
 	greyscale_colors = "#2f2f38"
 
-/obj/machinery/atmospherics/components/unary/tank/carbon_dioxide/Initialize(mapload)
+/obj/machinery/atmospherics/components/unary/tank/carbon_dioxide/New()
 	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_moles(GAS_CO2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/plasma
-	name = "pressure tank (Plasma)"
 	gas_type = GAS_PLASMA
 	greyscale_colors = "#f05f16"
 
-/obj/machinery/atmospherics/components/unary/tank/plasma/Initialize(mapload)
+/obj/machinery/atmospherics/components/unary/tank/plasma/New()
 	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_moles(GAS_PLASMA, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen
-	name = "pressure tank (O2)"
 	gas_type = GAS_O2
 	greyscale_colors = "#148df4"
 
-/obj/machinery/atmospherics/components/unary/tank/oxygen/Initialize(mapload)
+/obj/machinery/atmospherics/components/unary/tank/oxygen/New()
 	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_moles(GAS_O2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/nitrogen
-	name = "pressure tank (N2)"
 	gas_type = GAS_N2
 	greyscale_colors = "#2d8f44"
 
-/obj/machinery/atmospherics/components/unary/tank/nitrogen/Initialize(mapload)
+/obj/machinery/atmospherics/components/unary/tank/nitrogen/New()
 	. = ..()
 	var/datum/gas_mixture/air_contents = airs[1]
 	air_contents.set_moles(GAS_N2, AIR_CONTENTS)

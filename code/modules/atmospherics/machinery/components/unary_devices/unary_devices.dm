@@ -26,10 +26,11 @@
 	uid = num2text(gl_uid++)
 	return uid
 
-/obj/machinery/atmospherics/components/unary/proc/change_pipe_connection(disconnect)
+/obj/machinery/atmospherics/components/unary/proc/change_pipe_connection(disconnect, reconnect=FALSE)
 	if(disconnect)
 		disconnect_pipes()
-		return
+		if(!reconnect)
+			return
 	connect_pipes()
 
 /obj/machinery/atmospherics/components/unary/proc/connect_pipes()
