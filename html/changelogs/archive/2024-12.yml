@@ -200,3 +200,21 @@
   - bugfix: Fixes a few bugs
   Wisemonster:
   - bugfix: Fixed some loadout clothing not updating after alt-clicking while worn
+2024-12-15:
+  Absolucy:
+  - bugfix: Fixed railing stacking.
+  - bugfix: Fixed some double-encodes related to relaying admin/mentor messages to
+      discord.
+  - rscadd: Added christmas tree spawners to Blueshift - one north of science on the
+      upper floor, one west of botany on the lower floor.
+  SirNightKnight:
+  - rscadd: Nanotrasen has found the budget to improve on it's Emergency Response
+      Corps.
+  - balance: Nanotrasen has re-evaluated it's pulse weaponry and has lowered the explosive
+      impact of pulse beams after finding the resulting damage too costly to repair.
+  - balance: FEAR THE DEATH-RIPLEY!!
+  - bugfix: Shuttle decals properly rotate on shuttle move.
+  - bugfix: ' Made the tactical combat uniforms unadjustable so their sprite doesn''t
+      break.'
+  - sound: The newers ERTs now have a greet sound.
+  - code_imp: Changed the logic ordering of the  mech hydraulic clamp.
