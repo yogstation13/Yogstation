@@ -20,7 +20,7 @@
 	idle_power_usage = 100
 	active_power_usage = 200
 
-	// Contains instances of /dish_incubator_dish.
+	// Contains instances of /datum/dish_incubator_dish.
 	var/list/dish_data = list(null, null, null)
 
 	var/on = FALSE
@@ -90,7 +90,7 @@
 	if (!user.transferItemToLoc(VD, src))
 		return
 
-	var/dish_incubator_dish/dish_datum = new
+	var/datum/dish_incubator_dish/dish_datum = new
 	dish_datum.dish = VD
 	dish_data[slot] = dish_datum
 
@@ -108,7 +108,7 @@
 		if ("power")
 			on = !on
 			if (on)
-				for (var/dish_incubator_dish/dish_datum in dish_data)
+				for (var/datum/dish_incubator_dish/dish_datum in dish_data)
 					if (dish_datum.dish.contained_virus)
 						dish_datum.dish.contained_virus.log += "<br />[ROUND_TIME()] Incubation started by [key_name(usr)]"
 
@@ -120,7 +120,7 @@
 			if (slot == null || slot < 1 || slot > dish_data.len)
 				return TRUE
 
-			var/dish_incubator_dish/dish_datum = dish_data[slot]
+			var/datum/dish_incubator_dish/dish_datum = dish_data[slot]
 			if (dish_datum == null)
 				return TRUE
 
@@ -154,7 +154,7 @@
 			if (slot == null || slot < 1 || slot > dish_data.len)
 				return TRUE
 
-			var/dish_incubator_dish/dish_datum = dish_data[slot]
+			var/datum/dish_incubator_dish/dish_datum = dish_data[slot]
 			if (dish_datum == null)
 				return TRUE
 
@@ -166,7 +166,7 @@
 			if (slot == null || slot < 1 || slot > dish_data.len)
 				return TRUE
 
-			var/dish_incubator_dish/dish_datum = dish_data[slot]
+			var/datum/dish_incubator_dish/dish_datum = dish_data[slot]
 			if (dish_datum == null)
 				return TRUE
 
@@ -176,7 +176,7 @@
 			var/slot = text2num(params["slot"])
 			if(slot == null || slot < 1 || slot > dish_data.len)
 				return TRUE
-			var/dish_incubator_dish/dish_datum = dish_data[slot]
+			var/datum/dish_incubator_dish/dish_datum = dish_data[slot]
 			if (dish_datum == null)
 				return TRUE
 			var/stage_to_focus = input(usr, "Choose a stage to focus on. This will block symptoms from other stages from being mutated. Input 0 to disable effect focusing.", "Choose a stage.") as num
@@ -195,7 +195,7 @@
 	if (machine_stat & (NOPOWER))
 		to_chat(user, span_notice("Deprived of power, \the [src] is unresponsive."))
 		for (var/i in 1 to dish_data.len)
-			var/dish_incubator_dish/dish_datum = dish_data[i]
+			var/datum/dish_incubator_dish/dish_datum = dish_data[i]
 			if (dish_datum == null)
 				continue
 
@@ -231,7 +231,7 @@
 	data["dishes"] = dish_ui_data
 
 	for (var/i = 1 to dish_data.len)
-		var/dish_incubator_dish/dish_datum = dish_data[i]
+		var/datum/dish_incubator_dish/dish_datum = dish_data[i]
 		var/list/dish_ui_datum = list()
 		// tfw no linq
 		dish_ui_data[++dish_ui_data.len] = dish_ui_datum
@@ -268,7 +268,7 @@
 
 	if (on)
 		use_power = ACTIVE_POWER_USE
-		for (var/dish_incubator_dish/dish_datum in dish_data)
+		for (var/datum/dish_incubator_dish/dish_datum in dish_data)
 			dish_datum.dish.incubate(mutatechance, growthrate, effect_focus)
 	else
 		use_power = IDLE_POWER_USE
@@ -277,7 +277,7 @@
 
 
 /obj/machinery/disease2/incubator/proc/find_dish_datum(obj/item/weapon/virusdish/dish)
-	for (var/dish_incubator_dish/dish_datum in dish_data)
+	for (var/datum/dish_incubator_dish/dish_datum in dish_data)
 		if (dish_datum.dish == dish)
 			return dish_datum
 
@@ -285,7 +285,7 @@
 
 
 /obj/machinery/disease2/incubator/proc/update_major(obj/item/weapon/virusdish/dish)
-	var/dish_incubator_dish/dish_datum = find_dish_datum(dish)
+	var/datum/dish_incubator_dish/dish_datum = find_dish_datum(dish)
 	if (dish_datum == null)
 		return
 
@@ -295,7 +295,7 @@
 
 
 /obj/machinery/disease2/incubator/proc/update_minor(obj/item/weapon/virusdish/dish, str=0, rob=0, eff=0)
-	var/dish_incubator_dish/dish_datum = find_dish_datum(dish)
+	var/datum/dish_incubator_dish/dish_datum = find_dish_datum(dish)
 	if (dish_datum == null)
 		return
 
@@ -342,7 +342,7 @@
 		if (dish_data[i] != null)
 			. += add_dish_sprite(dish_data[i], i)
 
-/obj/machinery/disease2/incubator/proc/add_dish_sprite(dish_incubator_dish/dish_datum, slot)
+/obj/machinery/disease2/incubator/proc/add_dish_sprite(datum/dish_incubator_dish/dish_datum, slot)
 	var/obj/item/weapon/virusdish/dish = dish_datum.dish
 	var/list/overlays = list()
 
@@ -459,7 +459,7 @@
 /obj/machinery/disease2/incubator/Destroy()
 	. = ..()
 	for (var/i in 1 to dish_data.len)
-		var/dish_incubator_dish/dish_datum = dish_data[i]
+		var/datum/dish_incubator_dish/dish_datum = dish_data[i]
 		if (dish_datum == null)
 			continue
 
@@ -468,7 +468,7 @@
 
 	..()
 
-/dish_incubator_dish
+/datum/dish_incubator_dish
 	// The inserted virus dish.
 	var/obj/item/weapon/virusdish/dish
 
