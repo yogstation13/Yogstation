@@ -34,7 +34,6 @@
 	air_contents.set_temperature(T20C)
 	if(gas_type)
 		air_contents.set_moles(gas_type, AIR_CONTENTS)
-		name = "[name] ([GLOB.gas_data.names[gas_type]])" // Automatically names them after gas type
 	set_piping_layer(piping_layer)
 
 /obj/machinery/atmospherics/components/unary/tank/attackby(obj/item/I, mob/user, params)
@@ -62,12 +61,12 @@
 	var/datum/pipeline/pipe = parents[1]
 	for(var/gas_id in contents.get_gases())
 		var/gas_removed = contents.get_moles(gas_id)
-		contents.adjust_moles(gas_id, -gas_removed)
 		if(pipe)
 			pipe.air.adjust_moles(gas_id, gas_removed)
 		else
 			var/turf/T = get_turf(src)
 			T.assume_air(contents)
+		contents.adjust_moles(gas_id, -gas_removed)
 
 /obj/machinery/atmospherics/components/unary/tank/default_change_direction_wrench(mob/user, obj/item/I)
 	if(!..())
@@ -123,6 +122,7 @@
 	air_contents.set_moles(GAS_N2, AIR_CONTENTS * 0.8)
 
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide
+	name = "pressure tank (CO2)"
 	gas_type = GAS_CO2
 	greyscale_colors = "#2f2f38"
 
@@ -132,6 +132,7 @@
 	air_contents.set_moles(GAS_CO2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/plasma
+	name = "pressure tank (Plasma)"
 	gas_type = GAS_PLASMA
 	greyscale_colors = "#f05f16"
 
@@ -141,6 +142,7 @@
 	air_contents.set_moles(GAS_PLASMA, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/oxygen
+	name = "pressure tank (O2)"
 	gas_type = GAS_O2
 	greyscale_colors = "#148df4"
 
@@ -150,6 +152,7 @@
 	air_contents.set_moles(GAS_O2, AIR_CONTENTS)
 
 /obj/machinery/atmospherics/components/unary/tank/nitrogen
+	name = "pressure tank (N2)"
 	gas_type = GAS_N2
 	greyscale_colors = "#2d8f44"
 
