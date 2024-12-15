@@ -98,7 +98,10 @@
 		else
 			add_objective(/datum/objective/assassinate)
 	else
-		add_objective(/datum/objective/steal)
+		if(prob(60))
+			add_objective(/datum/objective/steal)
+		else
+			add_objective(/datum/objective/break_machinery)
 
 /datum/team/infiltrator/proc/add_objective(type)
 	var/datum/objective/O = type
