@@ -61,6 +61,7 @@
 	icon_state = "military"
 	inhand_icon_state = "bl_suit"
 	armor_type = /datum/armor/centcom_military
+	can_adjust = FALSE //monkestation edit
 
 /datum/armor/centcom_military
 	melee = 10

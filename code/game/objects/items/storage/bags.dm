@@ -281,7 +281,7 @@
 	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
-	worn_icon_state = "satchel"
+	worn_icon_state = "construction_bag" //monkestation edit
 
 	var/capacity = 300; //the number of sheets it can carry.
 

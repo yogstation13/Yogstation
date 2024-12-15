@@ -20,6 +20,12 @@
 	var/datum/map_template/ert_template
 	/// If we should actually _use_ the ert_template custom shuttle
 	var/use_custom_shuttle = TRUE
+	//MONKESTATION EDIT START
+	//If we want a custom name for the poll title
+	var/poll_title = "Emergency Response Team"
+	//If we want a custom poll icon
+	var/poll_icon = /obj/item/clothing/head/helmet/space/ert
+	//MONKESTATION EDIT END
 
 /datum/ert/New()
 	if (!polldesc)
@@ -126,3 +132,144 @@
 	mission = "Having heard the station's request for aid, assist the crew in defending themselves."
 	polldesc = "an independent station defense militia"
 	random_names = TRUE
+
+//MONKESTATION EDIT START
+/datum/ert/code
+	leader_role = /datum/antagonist/ert/generic/commander
+	roles = list(
+		/datum/antagonist/ert/generic,
+	)
+	teamsize = 6
+	opendoors = FALSE
+	polldesc = "an Uncoded Emergency Response Team"
+	ert_template = /datum/map_template/shuttle/ert/dropship
+
+/datum/ert/code/green
+	leader_role = /datum/antagonist/ert/generic/commander
+	roles = list(
+		/datum/antagonist/ert/generic/medical,
+		/datum/antagonist/ert/generic/security,
+		/datum/antagonist/ert/generic/engineer,
+		/datum/antagonist/ert/generic/janitor,
+		/datum/antagonist/ert/generic/chaplain,
+	)
+	code = "Green"
+	polldesc = NONE
+	opendoors = FALSE
+	ert_template = /datum/map_template/shuttle/ert/generic
+
+/datum/ert/code/green/with_clown
+	teamsize = 7
+	roles = list(
+		/datum/antagonist/ert/generic/medical,
+		/datum/antagonist/ert/generic/security,
+		/datum/antagonist/ert/generic/engineer,
+		/datum/antagonist/ert/generic/janitor,
+		/datum/antagonist/ert/generic/chaplain,
+		/datum/antagonist/ert/generic/clown, // Honk
+	)
+
+/datum/ert/code/blue
+	leader_role = /datum/antagonist/ert/generic/commander/blue
+	roles = list(
+		/datum/antagonist/ert/generic/medical/blue,
+		/datum/antagonist/ert/generic/security/blue,
+		/datum/antagonist/ert/generic/engineer/blue,
+		/datum/antagonist/ert/generic/janitor/blue,
+		/datum/antagonist/ert/generic/chaplain/blue,
+	)
+	code = "Blue"
+	polldesc = NONE
+	opendoors = FALSE
+	ert_template = /datum/map_template/shuttle/ert/generic
+
+/datum/ert/code/blue/with_clown
+	teamsize = 7
+	roles = list(
+		/datum/antagonist/ert/generic/medical/blue,
+		/datum/antagonist/ert/generic/security/blue,
+		/datum/antagonist/ert/generic/engineer/blue,
+		/datum/antagonist/ert/generic/janitor/blue,
+		/datum/antagonist/ert/generic/chaplain/blue,
+		/datum/antagonist/ert/generic/clown/funny, // Honk
+	)
+
+/datum/ert/code/red
+	leader_role = /datum/antagonist/ert/generic/commander/red
+	roles = list(
+		/datum/antagonist/ert/generic/medical/red,
+		/datum/antagonist/ert/generic/security/red,
+		/datum/antagonist/ert/generic/engineer/red,
+		/datum/antagonist/ert/generic/janitor/red,
+		/datum/antagonist/ert/generic/chaplain/red,
+	)
+	code = "Red"
+	polldesc = NONE
+	opendoors = TRUE
+	ert_template = /datum/map_template/shuttle/ert/generic
+
+/datum/ert/code/red/with_clown
+	teamsize = 7
+	roles = list(
+		/datum/antagonist/ert/generic/medical/red,
+		/datum/antagonist/ert/generic/security/red,
+		/datum/antagonist/ert/generic/engineer/red,
+		/datum/antagonist/ert/generic/janitor/red,
+		/datum/antagonist/ert/generic/chaplain/red,
+		/datum/antagonist/ert/generic/clown/funnier, // Honk
+	)
+
+/datum/ert/code/honk
+	leader_role = /datum/antagonist/ert/generic/clown/funny
+	roles = list(
+		/datum/antagonist/ert/generic/clown,
+	)
+	code = "Honk"
+	polldesc = NONE
+	opendoors = FALSE
+	ert_template = /datum/map_template/shuttle/ert/dropship/clown
+
+/datum/ert/code/purple
+	leader_role = /datum/antagonist/ert/generic/janitor/blue
+	roles = list(
+		/datum/antagonist/ert/generic/janitor,
+	)
+	opendoors = FALSE
+	ert_template = /datum/map_template/shuttle/ert/dropship/janitor
+	mission = "Clean up EVERYTHING."
+	poll_icon = /obj/item/clothing/head/helmet/space/ert/janitor
+	polldesc = "a Nanotrasen Janitorial Response Team"
+
+/datum/ert/code/lambda
+	leader_role = /datum/antagonist/ert/generic/chaplain/red
+	roles = list(
+		/datum/antagonist/ert/generic/chaplain/red,
+	)
+	code = "Lambda"
+	polldesc = NONE
+	opendoors = FALSE
+	teamsize = 5
+	poll_icon = /obj/item/clothing/head/helmet/space/ert/chaplain
+	ert_template = /datum/map_template/shuttle/ert/dropship
+
+/datum/ert/code/epsilon
+	leader_role = /datum/antagonist/ert/generic/deathsquad
+	roles = list(
+		/datum/antagonist/ert/generic/deathsquad,
+	)
+	opendoors = FALSE
+	rename_team = "Deathsquad"
+	code = "Epsilon"
+	mission = "Leave no witnesses."
+	teamsize = 5
+	poll_title = "Deathsquad"
+	poll_icon = /obj/item/clothing/mask/gas/sechailer/swat
+	polldesc = "an elite Nanotrasen Strike Team"
+	ert_template = /datum/map_template/shuttle/ert/deathsquad
+
+/datum/ert/code/epsilon/dust
+	leader_role = /datum/antagonist/ert/generic/deathsquad/dust
+	roles = list(
+		/datum/antagonist/ert/generic/deathsquad/dust,
+	)
+//MONKESTATION EDIT END

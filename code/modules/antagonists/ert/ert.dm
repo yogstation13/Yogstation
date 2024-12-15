@@ -77,21 +77,21 @@
 /datum/antagonist/ert/security // kinda handled by the base template but here for completion
 
 /datum/antagonist/ert/security/red
-	outfit = /datum/outfit/centcom/ert/security/alert
+	outfit = /datum/outfit/centcom/ert/security/red
 
 /datum/antagonist/ert/engineer
 	role = "Engineer"
 	outfit = /datum/outfit/centcom/ert/engineer
 
 /datum/antagonist/ert/engineer/red
-	outfit = /datum/outfit/centcom/ert/engineer/alert
+	outfit = /datum/outfit/centcom/ert/engineer/red
 
 /datum/antagonist/ert/medic
 	role = "Medical Officer"
 	outfit = /datum/outfit/centcom/ert/medic
 
 /datum/antagonist/ert/medic/red
-	outfit = /datum/outfit/centcom/ert/medic/alert
+	outfit = /datum/outfit/centcom/ert/medic/red
 
 /datum/antagonist/ert/commander
 	role = "Commander"
@@ -99,7 +99,7 @@
 	plasmaman_outfit = /datum/outfit/plasmaman/centcom_commander
 
 /datum/antagonist/ert/commander/red
-	outfit = /datum/outfit/centcom/ert/commander/alert
+	outfit = /datum/outfit/centcom/ert/commander/red
 
 /datum/antagonist/ert/janitor
 	role = "Janitor"

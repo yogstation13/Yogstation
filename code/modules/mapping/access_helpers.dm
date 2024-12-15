@@ -502,6 +502,11 @@
 	access_list += list(ACCESS_CENT_CAPTAIN)
 	return access_list
 
+/obj/effect/mapping_helpers/airlock/access/any/admin/specops/get_access()
+	var/list/access_list = ..()
+	access_list += list(ACCESS_CENT_SPECOPS)
+	return access_list
+
 /obj/effect/mapping_helpers/airlock/access/any/admin/bar/get_access()
 	var/list/access_list = ..()
 	access_list += list(ACCESS_CENT_CAPTAIN)

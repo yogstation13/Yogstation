@@ -1,0 +1,389 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/chair/comfy/lime{
+	dir = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"b" = (
+/obj/structure/rack,
+/obj/item/storage/backpack/duffelbag/clown/cream_pie,
+/obj/item/storage/backpack/duffelbag/clown/cream_pie{
+	pixel_x = 0;
+	pixel_y = 9
+	},
+/obj/item/storage/backpack/duffelbag/clown/cream_pie{
+	pixel_x = 0;
+	pixel_y = 9
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"e" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/ert{
+	x_offset = 0;
+	y_offset = 10
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"f" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "ert_dropship_bridge-clown";
+	req_access = list("cent_general")
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"g" = (
+/obj/machinery/light/directional/west,
+/obj/vehicle/sealed/mecha/honker/dark/loaded/not_evil,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"h" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/spawner/directional/north,
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"l" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"m" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"p" = (
+/obj/structure/sign/poster/contraband/clown/directional/north,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"r" = (
+/obj/structure/railing{
+	dir = 1;
+	custom_materials = list(/datum/material/bananium = 100)
+	},
+/obj/vehicle/sealed/car/clowncar{
+	dir = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"s" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"t" = (
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"u" = (
+/obj/effect/landmark/ert_shuttle_brief_spawn,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"w" = (
+/turf/closed/wall/mineral/bananium,
+/area/shuttle/ert/powered)
+"x" = (
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"y" = (
+/turf/open/space/basic,
+/area/template_noop)
+"z" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"A" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "ert_dropship_bridge-clown"
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"C" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/machinery/light/directional/east,
+/obj/item/sbeacondrop/clownbomb{
+	pixel_x = -4;
+	pixel_y = 13
+	},
+/obj/item/sbeacondrop/clownbomb{
+	pixel_x = 7;
+	pixel_y = 10
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"D" = (
+/mob/living/simple_animal/bot/secbot/honkbot,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"E" = (
+/obj/structure/chair/comfy/beige{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"F" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/obj/machinery/door/poddoor/preopen{
+	id = "ert_dropship_bridge-clown"
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"G" = (
+/obj/machinery/holopad,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"H" = (
+/obj/structure/chair/comfy/teal{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"K" = (
+/obj/structure/table/reinforced,
+/obj/item/toy/windup_toolbox{
+	pixel_x = 1;
+	pixel_y = 13
+	},
+/obj/item/bikehorn{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/bikehorn{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/bikehorn{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/item/bikehorn/airhorn{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"M" = (
+/obj/effect/mapping_helpers/airlock/access/any/admin/general,
+/obj/machinery/door/airlock/bananium/glass,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"N" = (
+/obj/machinery/computer/security,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"O" = (
+/obj/machinery/button/door/directional/south{
+	id = "ert_dropship_doors-clown";
+	req_access = list("cent_general")
+	},
+/obj/machinery/light/directional/south,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"P" = (
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"Q" = (
+/obj/machinery/vending/wallmed/directional/north,
+/obj/structure/rack,
+/obj/item/pneumatic_cannon/pie/selfcharge,
+/obj/item/pneumatic_cannon/pie/selfcharge{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/pneumatic_cannon/pie/selfcharge{
+	pixel_x = -2;
+	pixel_y = 1
+	},
+/obj/item/pneumatic_cannon/pie/selfcharge{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/pneumatic_cannon/pie/selfcharge{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/pneumatic_cannon/pie/selfcharge{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"R" = (
+/obj/effect/landmark/ert_shuttle_spawn,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"S" = (
+/obj/structure/chair/comfy/carp{
+	dir = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"T" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	dir = 8;
+	id = "ert_dropship_doors-clown"
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"U" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"V" = (
+/obj/structure/table/reinforced,
+/obj/item/inspector/clown/bananium,
+/obj/item/megaphone/clown,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"W" = (
+/obj/structure/railing{
+	dir = 1;
+	custom_materials = list(/datum/material/bananium = 100)
+	},
+/obj/machinery/portable_atmospherics/canister/helium,
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"X" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/turf/open/floor/mineral/bananium,
+/area/shuttle/ert/powered)
+"Y" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/obj/docking_port/mobile/ert{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+
+(1,1,1) = {"
+y
+y
+w
+w
+T
+T
+T
+T
+T
+T
+w
+w
+w
+w
+y
+"}
+(2,1,1) = {"
+A
+A
+w
+w
+p
+R
+R
+R
+R
+P
+r
+g
+b
+h
+U
+"}
+(3,1,1) = {"
+F
+N
+V
+w
+P
+t
+E
+H
+s
+P
+P
+P
+D
+h
+U
+"}
+(4,1,1) = {"
+F
+l
+z
+M
+O
+w
+m
+m
+w
+Q
+u
+G
+P
+h
+Y
+"}
+(5,1,1) = {"
+F
+e
+f
+w
+P
+S
+a
+x
+X
+P
+P
+P
+P
+h
+U
+"}
+(6,1,1) = {"
+A
+A
+w
+w
+p
+R
+R
+R
+R
+P
+W
+C
+K
+h
+U
+"}
+(7,1,1) = {"
+y
+y
+w
+w
+T
+T
+T
+T
+T
+T
+w
+w
+w
+w
+y
+"}

@@ -1,0 +1,459 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"b" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate,
+/mob/living/basic/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/ert/powered)
+"c" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"d" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/rack,
+/obj/item/watertank/janitor{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/item/watertank/janitor{
+	pixel_x = 1;
+	pixel_y = 0
+	},
+/obj/item/watertank/janitor{
+	pixel_x = -5;
+	pixel_y = -4
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"e" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/ert{
+	x_offset = 0;
+	y_offset = 10
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/blue,
+/area/shuttle/ert/powered)
+"f" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	id = "ert_dropship_bridge-janitor";
+	req_access = list("cent_general")
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"g" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/light/directional/west,
+/obj/structure/closet/crate,
+/mob/living/basic/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
+/mob/living/basic/bot/cleanbot,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/ert/powered)
+"h" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/spawner/directional/north,
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"i" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"j" = (
+/obj/effect/turf_decal/stripes/blue{
+	dir = 8
+	},
+/obj/effect/landmark/ert_shuttle_spawn,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"l" = (
+/obj/machinery/computer/shuttle/ert,
+/obj/effect/turf_decal/stripes,
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/tiled/blue,
+/area/shuttle/ert/powered)
+"m" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"n" = (
+/obj/structure/sign/nanotrasen,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/ert/powered)
+"p" = (
+/obj/effect/turf_decal/stripes/blue{
+	dir = 6
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"q" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"r" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/engineering,
+/obj/structure/liquid_pump,
+/obj/structure/liquid_pump,
+/obj/structure/liquid_pump,
+/obj/item/wrench/caravan,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/ert/powered)
+"s" = (
+/obj/effect/turf_decal/stripes/blue{
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"t" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"u" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/landmark/ert_shuttle_brief_spawn,
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"v" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"w" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/ert/powered)
+"x" = (
+/obj/effect/turf_decal/stripes/blue,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"y" = (
+/turf/open/space/basic,
+/area/template_noop)
+"z" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"A" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/obj/machinery/door/poddoor/preopen{
+	dir = 4;
+	id = "ert_dropship_bridge-janitor"
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"C" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/machinery/light/directional/east,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/ert/powered)
+"D" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"E" = (
+/obj/effect/turf_decal/caution/stand_clear/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/blue{
+	dir = 8
+	},
+/obj/effect/landmark/ert_shuttle_spawn,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"F" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/obj/machinery/door/poddoor/preopen{
+	id = "ert_dropship_bridge-janitor"
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"G" = (
+/obj/machinery/holopad,
+/obj/effect/turf_decal/box,
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"H" = (
+/obj/effect/turf_decal/stripes/blue{
+	dir = 4
+	},
+/obj/effect/landmark/ert_shuttle_spawn,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"J" = (
+/obj/effect/turf_decal/stripes/blue{
+	dir = 9
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"K" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger{
+	pixel_x = -7;
+	pixel_y = 0
+	},
+/obj/machinery/recharger{
+	pixel_x = 2;
+	pixel_y = 0
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 1;
+	pixel_y = 15
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/ert/powered)
+"L" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"M" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/airlock/access/any/admin/general,
+/obj/machinery/door/airlock/shuttle/glass,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/ert/powered)
+"N" = (
+/obj/machinery/computer/security,
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled/blue,
+/area/shuttle/ert/powered)
+"O" = (
+/obj/machinery/button/door/directional/south{
+	id = "ert_dropship_doors-janitor";
+	req_access = list("cent_general")
+	},
+/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/stripes/blue{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"P" = (
+/obj/effect/turf_decal/stripes/blue{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"Q" = (
+/obj/machinery/vending/wallmed/directional/north,
+/obj/structure/rack,
+/obj/item/storage/medkit{
+	pixel_x = 0;
+	pixel_y = 3
+	},
+/obj/effect/turf_decal/stripes/blue,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"R" = (
+/obj/effect/turf_decal/caution/stand_clear/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/blue{
+	dir = 4
+	},
+/obj/effect/landmark/ert_shuttle_spawn,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"S" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/ert/powered)
+"T" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/blue/box,
+/obj/machinery/door/poddoor{
+	dir = 8;
+	id = "ert_dropship_doors-janitor"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"U" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+"V" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/mineral/titanium/tiled,
+/area/shuttle/ert/powered)
+"W" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/mineral/titanium,
+/area/shuttle/ert/powered)
+"X" = (
+/obj/effect/turf_decal/stripes/blue{
+	dir = 5
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/ert/powered)
+"Y" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/obj/docking_port/mobile/ert{
+	dir = 2
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/ert/powered)
+
+(1,1,1) = {"
+y
+y
+w
+S
+T
+T
+T
+T
+T
+T
+w
+w
+w
+w
+y
+"}
+(2,1,1) = {"
+A
+A
+w
+n
+p
+E
+j
+j
+E
+X
+r
+g
+b
+h
+U
+"}
+(3,1,1) = {"
+F
+N
+V
+w
+P
+t
+t
+t
+t
+x
+L
+v
+D
+h
+U
+"}
+(4,1,1) = {"
+F
+l
+z
+M
+O
+w
+m
+m
+w
+Q
+u
+G
+c
+h
+Y
+"}
+(5,1,1) = {"
+F
+e
+f
+w
+P
+a
+a
+a
+a
+x
+i
+q
+d
+h
+U
+"}
+(6,1,1) = {"
+A
+A
+w
+n
+s
+R
+H
+H
+R
+J
+W
+C
+K
+h
+U
+"}
+(7,1,1) = {"
+y
+y
+w
+S
+T
+T
+T
+T
+T
+T
+w
+w
+w
+w
+y
+"}
