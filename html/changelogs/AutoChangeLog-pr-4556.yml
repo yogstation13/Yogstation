@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Added christmas tree spawners to Blueshift - one north of science on the upper floor, one west of botany on the lower floor."
