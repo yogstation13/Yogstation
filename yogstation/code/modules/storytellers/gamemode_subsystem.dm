@@ -604,26 +604,7 @@ SUBSYSTEM_DEF(gamemode)
 
 /datum/controller/subsystem/gamemode/proc/send_intercept()
 	var/intercepttext = "<b><i>Central Command Status Summary</i></b><hr>"
-	intercepttext += "<b>Central Command has intercepted and partially decoded a Syndicate transmission with vital information regarding their movements. The following report outlines the most \
-	likely threats to appear in your sector.</b>"
-	var/list/report_weights = config.mode_false_report_weight.Copy()
-	report_weights["invalid"] = 0 //Prevent the current mode from being falsely selected.
-	var/list/reports = list()
-	var/Count = 0 //To compensate for missing correct report
-	if(prob(65)) // 65% chance the actual mode will appear on the list
-		reports += config.mode_reports[report_type]
-		Count++
-	for(var/i in Count to rand(3,5)) //Between three and five wrong entries on the list.
-		var/false_report_type = pickweightAllowZero(report_weights)
-		report_weights[false_report_type] = 0 //Make it so the same false report won't be selected twice
-		reports += config.mode_reports[false_report_type]
-
-	reports = shuffle(reports) //Randomize the order, so the real one is at a random position.
-
-	for(var/report in reports)
-		intercepttext += "<hr>"
-		intercepttext += report
-
+	intercepttext += "<b>Central Command has intercepted and is attempting to decode a Syndicate transmission with vital information regarding their movements in this station's sector.</b>"
 	intercepttext += generate_station_goal_report()
 
 	if(CONFIG_GET(flag/auto_blue_alert))
