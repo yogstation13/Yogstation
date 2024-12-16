@@ -594,12 +594,45 @@ SUBSYSTEM_DEF(gamemode)
 			)
 			query_round_game_mode.Execute()
 			qdel(query_round_game_mode)
+	if(report)
+		addtimer(CALLBACK(src, PROC_REF(send_intercept), 0), rand(600, 1800))
 	generate_station_goals()
 	handle_post_setup_roundstart_events()
 	handle_post_setup_points()
 	roundstart_event_view = FALSE
 	return TRUE
 
+/datum/controller/subsystem/gamemode/proc/send_intercept()
+	var/intercepttext = "<b><i>Central Command Status Summary</i></b><hr>"
+	intercepttext += "<b>Central Command has intercepted and partially decoded a Syndicate transmission with vital information regarding their movements. The following report outlines the most \
+	likely threats to appear in your sector.</b>"
+	var/list/report_weights = config.mode_false_report_weight.Copy()
+	report_weights[report_type] = 0 //Prevent the current mode from being falsely selected.
+	var/list/reports = list()
+	var/Count = 0 //To compensate for missing correct report
+	if(prob(65)) // 65% chance the actual mode will appear on the list
+		reports += config.mode_reports[report_type]
+		Count++
+	for(var/i in Count to rand(3,5)) //Between three and five wrong entries on the list.
+		var/false_report_type = pickweightAllowZero(report_weights)
+		report_weights[false_report_type] = 0 //Make it so the same false report won't be selected twice
+		reports += config.mode_reports[false_report_type]
+
+	reports = shuffle(reports) //Randomize the order, so the real one is at a random position.
+
+	for(var/report in reports)
+		intercepttext += "<hr>"
+		intercepttext += report
+
+	intercepttext += generate_station_goal_report()
+
+	if(CONFIG_GET(flag/auto_blue_alert))
+		print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
+		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
+		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
+	else
+		print_command_report(intercepttext, "Central Command Status Summary")
 
 ///Handles late-join antag assignments
 /datum/controller/subsystem/gamemode/proc/make_antag_chance(mob/living/carbon/human/character)
