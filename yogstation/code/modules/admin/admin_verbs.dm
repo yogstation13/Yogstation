@@ -108,6 +108,6 @@
 	var/answer = input(src,"Which one do you choose?","Selection","Either") in l
 	if(!answer)
 		return
-	message_admins("[src] the next minetype was picked.")
+	message_admins("[src] set the next minetype to [answer].")
 	log_admin("[src] picked the next minetype.")
 	SSpersistence.SaveMinetype(l[answer])
