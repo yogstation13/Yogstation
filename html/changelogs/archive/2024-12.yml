@@ -224,3 +224,6 @@
   TheColorCyan:
   - bugfix: Random lipstick now has proper icon upon spawn.
   - rscdel: Syndie lipstick can no longer spawn as a random lipstick color.
+2024-12-16:
+  Shoddd:
+  - bugfix: bitrunning vending console now researchable
