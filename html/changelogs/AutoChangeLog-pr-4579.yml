@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed suiciding as a centcom ghost player spawning an extra catatonic body."
