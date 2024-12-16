@@ -75,6 +75,18 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
 
+//MONKESTATION ADDITION START
+/datum/design/board/bitrunning_order
+	name = "Bitrunning Vendor Console"
+	desc = "Allows for the construction of circuit boards used to build a Bitrunning Vendor Console."
+	id = "bitrunning_order"
+	build_path = /obj/item/circuitboard/computer/order_console/bitrunning
+
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING
+//MONKESTATION ADDITION END
 
 /datum/techweb_node/bitrunning
 	id = "bitrunning"
@@ -85,5 +97,6 @@
 		"byteforge",
 		"quantum_console",
 		"netpod",
+		"bitrunning_order", //MONKESTATION ADDITION
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
