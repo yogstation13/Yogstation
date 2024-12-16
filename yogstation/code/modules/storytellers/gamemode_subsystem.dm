@@ -607,7 +607,7 @@ SUBSYSTEM_DEF(gamemode)
 	intercepttext += "<b>Central Command has intercepted and partially decoded a Syndicate transmission with vital information regarding their movements. The following report outlines the most \
 	likely threats to appear in your sector.</b>"
 	var/list/report_weights = config.mode_false_report_weight.Copy()
-	report_weights[report_type] = 0 //Prevent the current mode from being falsely selected.
+	report_weights["invalid"] = 0 //Prevent the current mode from being falsely selected.
 	var/list/reports = list()
 	var/Count = 0 //To compensate for missing correct report
 	if(prob(65)) // 65% chance the actual mode will appear on the list
