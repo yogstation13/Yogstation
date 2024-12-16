@@ -109,5 +109,5 @@
 	if(!answer)
 		return
 	message_admins("[src] set the next minetype to [answer].")
-	log_admin("[src] picked the next minetype.")
+	log_admin("[src] set the next minetype to [answer].")
 	SSpersistence.SaveMinetype(l[answer])
