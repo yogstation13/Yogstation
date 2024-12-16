@@ -609,7 +609,7 @@ SUBSYSTEM_DEF(gamemode)
 
 	if(CONFIG_GET(flag/auto_blue_alert))
 		print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
-		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_announcement()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
+		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_report()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
 		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
 			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
 	else
