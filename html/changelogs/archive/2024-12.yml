@@ -227,3 +227,7 @@
 2024-12-16:
   Shoddd:
   - bugfix: bitrunning vending console now researchable
+2024-12-17:
+  Absolucy:
+  - bugfix: Fixed suiciding as a centcom ghost player spawning an extra catatonic
+      body.
