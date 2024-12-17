@@ -477,7 +477,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/space_heater/wall_mounted, 29)
 	base_icon_state = "wall_charger"
 	circuit = null
 	max_batteries = 3
-	charge_rate = 900 KW
 	/// The item we turn into when repacked
 	var/repacked_type = /obj/item/wallframe/cell_charger_multi
 
