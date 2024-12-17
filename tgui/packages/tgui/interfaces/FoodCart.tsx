@@ -13,7 +13,7 @@ type Data = {
   storage: StorageData;
 }
 
-// Stats for food item
+// Data for food item
 type FoodData = {
   image: string;
   name: string;
@@ -21,21 +21,21 @@ type FoodData = {
   type_path: string;
 }
 
-// Stats for reagents in cart's reagent holder
+// Data for reagents in cart's reagent holder
 type DrinkData = {
   name: string;
   quantity: number;
   type_path: string;
 }
 
-// Stats for reagents in mixer's reagent holder
+// Data for reagents in mixer's reagent holder
 type MixerDrinkData = {
   name: string;
   quantity: number;
   type_path: string;
 }
 
-// Stats for all storage information
+// Data for all storage information
 type StorageData = {
   contents_length: number;
   storage_capacity: number;
@@ -89,6 +89,12 @@ export const FoodCart = (props, context) => {
 };
 
 const FoodTab = (props, context) => {
+    // Get data from ui_data in backend code
+    const { data } = useBackend<Data>(context);
+    // Get needed variables from StorageData
+    const { storage } = data
+    const { contents_length } = storage;
+    const { storage_capacity } = storage;
 
   // For organizing the food tab's information
   return (
@@ -102,6 +108,15 @@ const FoodTab = (props, context) => {
     </Stack.Item>
     <Stack.Item>
       <Section
+      title="Storage Capacity"
+      textAlign="center">
+        <StorageRow
+        num1={1}
+        num2={10} />
+      </Section>
+    </Stack.Item>
+    <Stack.Item>
+      <Section
       title="Food Selection"
       textAlign="center">
         <FoodRow />
@@ -111,10 +126,26 @@ const FoodTab = (props, context) => {
   );
 };
 
+const StorageRow = (props, context, num1: number, num2: number) => {
+   return(
+    <Table>
+      <Table.Row>
+        <Table.Cell
+        fontSize="14px"
+        textAlign="center"
+        bold>
+          {/* Show numbers based on recieved arguments */}
+          {num1}/{num2}
+        </Table.Cell>
+      </Table.Row>
+    </Table>
+    );
+}
+
 const CapacityRow = (props, context) => {
   // Get data from ui_data in backend code
   const { data } = useBackend<Data>(context);
-  // Get needed variables from StorageStats
+  // Get needed variables from StorageData
   const { storage } = data
   const { contents_length } = storage;
   const { storage_capacity } = storage;
@@ -145,7 +176,7 @@ const FoodRow = (props, context) => {
     return (
       // Create Table for horizontal format
       <Table>
-        {/* Use map to create dynamic rows based on the contents of food, with item being the individual item and its stats */}
+        {/* Use map to create dynamic rows based on the contents of food, with item being the individual item and its data */}
         {food.map(item => (
           // Start row for holding ui elements and given data
           <Table.Row
@@ -275,7 +306,7 @@ const DrinkTab = (props, context) => {
 const GlassRow = (props, context) => {
   // Get data from ui_data in backend code
   const { data } = useBackend<Data>(context);
-  // Get needed variables from StorageStats
+  // Get needed variables from StorageData
   const { storage } = data
   const { glass_quantity } = storage;
   const { glass_capacity } = storage;
@@ -297,7 +328,7 @@ const GlassRow = (props, context) => {
 const DrinkCapacityRow = (props, context) => {
   // Get data from ui_data in backend code
   const { data } = useBackend<Data>(context);
-  // Get needed variables from StorageStats
+  // Get needed variables from StorageData
   const { storage } = data
   const { drink_quantity } = storage;
   const { drink_capacity } = storage;
@@ -358,7 +389,7 @@ const MainDrinkRow = (props, context) => {
     return (
       // Create Table for horizontal format
       <Table>
-        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
+        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its data */}
         {mainDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Table.Row
@@ -370,6 +401,7 @@ const MainDrinkRow = (props, context) => {
               bold>
                 {/* Get name */}
                 {capitalize(reagent.name)}
+                {props.bold}
               </Table.Cell>
               <Table.Cell>
                 <ProgressBar
@@ -378,7 +410,6 @@ const MainDrinkRow = (props, context) => {
                 </ProgressBar>
               </Table.Cell>
               <Table.Cell
-              // Limit width for
               width="75px">
                 {/* Remove from cart storage */}
                 <Button
@@ -443,7 +474,7 @@ const MixerDrinkRow = (props, context) => {
     return (
       // Create Table for horizontal format
       <Table>
-        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
+        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its data */}
         {mixerDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Table.Row
@@ -456,7 +487,8 @@ const MixerDrinkRow = (props, context) => {
               {/* Get name */}
                {capitalize(reagent.name)}
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell
+            width="230px">
                 <ProgressBar
                 value={reagent.quantity/50}>
                   {reagent.quantity}u
@@ -465,10 +497,10 @@ const MixerDrinkRow = (props, context) => {
             <Table.Cell>
               {/* Transfer reagents back to cart */}
               <Button
+              fluid
               content="Transfer Back"
               textAlign="center"
               fontSize="16px"
-              width="150px"
               // Disable if there is none of the reagent in storage
               disabled={(
                 reagent.quantity === 0
@@ -524,7 +556,7 @@ const MixerDrinkRow1 = (props, context) => {
       direction="column"
       justify="space-around"
       fontSize="14px">
-      {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
+      {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its data */}
         {mixerDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Stack
