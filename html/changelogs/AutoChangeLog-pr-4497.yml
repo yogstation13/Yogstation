@@ -1,0 +1,8 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - admin: "Admins will get notified whenever a player responds to OPFOR chat (if there is a handling admin, and they aren't afk, only they will be notified)"
+  - admin: "Added a yes/no confirmation to the \"Request OPFOR\" admin verb."
+  - qol: "Players will be notified when an admin responds to their OPFOR chat."
+  - bugfix: "Fixed some missing colored chat spans."
+  - bugfix: "OPFOR roundend reports won't show blank sections if the opfor had objectives or equipment if none of them were actually approved."
