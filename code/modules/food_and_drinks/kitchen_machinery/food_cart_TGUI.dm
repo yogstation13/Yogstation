@@ -44,9 +44,9 @@
 		var/obj/item/reagent_containers/food/item = new item_detail
 
 		//Get information for UI
-		details["item_name"] = item.name
-		details["item_quantity"] = find_amount(item)
-		details["item_type_path"] = item.type
+		details["name"] = item.name
+		details["quantity"] = find_amount(item)
+		details["type_path"] = item.type
 
 		//Get an image for the UI
 		var/icon/item_pic = getFlatIcon(item)
@@ -54,19 +54,22 @@
 		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
 			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
 		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
-		details["item_image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
+		details["image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 
 		//Add to food list
 		data["food"] += list(details)
+
+		//Delete food item to prevent server being overrun by ghost food
+		qdel(item)
 
 	//Loop through drink list for data to send to cart's reagent storage tab
 	for(var/datum/reagent/drink in reagents.reagent_list)
 		var/list/details = list()
 
 		//Get information for UI
-		details["drink_name"] = drink.name
-		details["drink_quantity"] = drink.volume
-		details["drink_type_path"] = drink.type
+		details["name"] = drink.name
+		details["quantity"] = drink.volume
+		details["type_path"] = drink.type
 
 		//Add to drink list
 		data["mainDrinks"] += list(details)
@@ -76,9 +79,9 @@
 		var/list/details = list()
 
 		//Get information for UI
-		details["drink_name"] = drink.name
-		details["drink_quantity"] = drink.volume
-		details["drink_type_path"] = drink.type
+		details["name"] = drink.name
+		details["quantity"] = drink.volume
+		details["type_path"] = drink.type
 		
 		//Add to drink list
 		data["mixerDrinks"] += list(details)
@@ -103,7 +106,7 @@
 	storageDetails["drink_quantity"] = mixer.reagents.total_volume + reagents.total_volume
 	storageDetails["drink_capacity"] = reagent_capacity
 
-	data["storage"] += list(storageDetails)
+	data["storage"] += storageDetails
 	//Send stored information to UI	
 	return data
 

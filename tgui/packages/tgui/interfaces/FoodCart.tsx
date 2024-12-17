@@ -1,4 +1,3 @@
-import { storage } from 'common/storage';
 import { capitalize } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
@@ -8,41 +7,41 @@ import { resolveAsset } from './../assets';
 
 // Store data for UI elements within Data
 type Data = {
-  food: FoodStats[];
-  mainDrinks: MainDrinkStats[];
-  mixerDrinks: MixerDrinkStats[];
-  storage: StorageStats;
+  food: FoodData[];
+  mainDrinks: DrinkData[];
+  mixerDrinks: MixerDrinkData[];
+  storage: StorageData;
 }
 
 // Stats for food item
-type FoodStats = {
-  item_image: string;
-  item_name: string;
-  item_quantity: number;
-  item_type_path: string;
+type FoodData = {
+  image: string;
+  name: string;
+  quantity: number;
+  type_path: string;
 }
 
 // Stats for reagents in cart's reagent holder
-type MainDrinkStats = {
-  drink_name: string;
-  drink_quantity: number;
-  drink_type_path: string;
+type DrinkData = {
+  name: string;
+  quantity: number;
+  type_path: string;
 }
 
 // Stats for reagents in mixer's reagent holder
-type MixerDrinkStats = {
-  drink_name: string;
-  drink_quantity: number;
-  drink_type_path: string;
+type MixerDrinkData = {
+  name: string;
+  quantity: number;
+  type_path: string;
 }
 
 // Stats for all storage information
-type StorageStats = {
+type StorageData = {
   contents_length: number;
   storage_capacity: number;
   glass_quantity: number;
   glass_capacity: number;
-  drink_quantity: number;
+  quantity: number;
   drink_capacity: number;
   dispence_options: number[];
   dispence_selected: number;
@@ -114,7 +113,7 @@ const FoodTab = (props, context) => {
 
 const CapacityRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { data } = useBackend<StorageStats>(context);
+  const { data } = useBackend<StorageData>(context);
   // Get needed variables from StorageStats
   const { contents_length } = data;
   const { storage_capacity } = data;
@@ -149,13 +148,13 @@ const FoodRow = (props, context) => {
         {food.map(item => (
           // Start row for holding ui elements and given data
           <Table.Row
-          key={item.item_name}
+          key={item.name}
           fontSize="14px">
               <Table.Cell>
               {/* Get image and then add it to the ui */}
                 <Box
                 as="img"
-                src={resolveAsset(item.item_image)}
+                src={resolveAsset(item.image)}
                 height="32px"
                 style={{
                   '-ms-interpolation-mode': 'nearest-neighbor',
@@ -164,12 +163,12 @@ const FoodRow = (props, context) => {
               <Table.Cell
                 bold>
                 {/* Get name */}
-                {capitalize(item.item_name)}
+                {capitalize(item.name)}
               </Table.Cell>
               <Table.Cell
                 textAlign="right">
                 {/* Get amount of item in storage */}
-                {item.item_quantity} in storage
+                {item.quantity} in storage
               </Table.Cell>
               <Table.Cell>
               {/* Make dispense button */}
@@ -180,10 +179,10 @@ const FoodRow = (props, context) => {
               fontSize="16px"
               // Dissable if there is none of the item in storage
               disabled={(
-                item.item_quantity === 0
+                item.quantity === 0
               )}
               onClick={() => act("dispense", {
-                itemPath: item.item_type_path,
+                itemPath: item.type_path,
               })}
               />
               </Table.Cell>
@@ -274,7 +273,7 @@ const DrinkTab = (props, context) => {
 
 const GlassRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { data } = useBackend<StorageStats>(context);
+  const { data } = useBackend<StorageData>(context);
   // Get needed variables from StorageStats
   const { glass_quantity } = data;
   const { glass_capacity } = data;
@@ -295,9 +294,9 @@ const GlassRow = (props, context) => {
 
 const DrinkCapacityRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { data } = useBackend<StorageStats>(context);
+  const { data } = useBackend<StorageData>(context);
   // Get needed variables from StorageStats
-  const { drink_quantity } = data;
+  const { quantity } = data;
   const { drink_capacity } = data;
 
   return (
@@ -307,7 +306,7 @@ const DrinkCapacityRow = (props, context) => {
       fontSize="14px"
       textAlign="center"
       bold>
-        {drink_quantity}/{drink_capacity}
+        {quantity}/{drink_capacity}
       </Table.Cell>
     </Table.Row>
   </Table>
@@ -316,7 +315,7 @@ const DrinkCapacityRow = (props, context) => {
 
 const DrinkTransferRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { act, data } = useBackend<StorageStats>(context);
+  const { act, data } = useBackend<StorageData>(context);
   // Get data for buttons
   const { dispence_options = [] } = data;
   const { dispence_selected } = data;
@@ -358,19 +357,19 @@ const MainDrinkRow = (props, context) => {
         {mainDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Table.Row
-          key={reagent.drink_name}
+          key={reagent.name}
           fontSize="14px"
           height="30px">
               <Table.Cell
               width="150px"
               bold>
                 {/* Get name */}
-                {capitalize(reagent.drink_name)}
+                {capitalize(reagent.name)}
               </Table.Cell>
               <Table.Cell>
                 <ProgressBar
-                value={reagent.drink_quantity/200}>
-                  {reagent.drink_quantity}u
+                value={reagent.quantity/200}>
+                  {reagent.quantity}u
                 </ProgressBar>
               </Table.Cell>
               <Table.Cell
@@ -385,10 +384,10 @@ const MainDrinkRow = (props, context) => {
                 fontSize="16px"
                 // Disable if there is none of the reagent in storage
                 disabled={(
-                  reagent.drink_quantity === 0
+                  reagent.quantity === 0
                 )}
                 onClick={() => act("purge", {
-                  itemPath: reagent.drink_type_path,
+                  itemPath: reagent.type_path,
                 })}
                 />
               </Table.Cell>
@@ -402,10 +401,10 @@ const MainDrinkRow = (props, context) => {
                 fontSize="16px"
                 // Dissable if there is none of the reagent in storage
                 disabled={(
-                  reagent.drink_quantity === 0
+                  reagent.quantity === 0
                 )}
                 onClick={() => act("addMixer", {
-                  itemPath: reagent.drink_type_path,
+                  itemPath: reagent.type_path,
                 })}
                 />
               </Table.Cell>
@@ -443,19 +442,19 @@ const MixerDrinkRow = (props, context) => {
         {mixerDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Table.Row
-          key={reagent.drink_name}
+          key={reagent.name}
           fontSize="14px"
           height="30px">
             <Table.Cell
             bold
             width="150px">
               {/* Get name */}
-               {capitalize(reagent.drink_name)}
+               {capitalize(reagent.name)}
             </Table.Cell>
             <Table.Cell>
                 <ProgressBar
-                value={reagent.drink_quantity/50}>
-                  {reagent.drink_quantity}u
+                value={reagent.quantity/50}>
+                  {reagent.quantity}u
                 </ProgressBar>
               </Table.Cell>
             <Table.Cell>
@@ -467,10 +466,10 @@ const MixerDrinkRow = (props, context) => {
               width="150px"
               // Disable if there is none of the reagent in storage
               disabled={(
-                reagent.drink_quantity === 0
+                reagent.quantity === 0
               )}
               onClick={() => act("transferBack", {
-                itemPath: reagent.drink_type_path,
+                itemPath: reagent.type_path,
               })}
               />
             </Table.Cell>
@@ -524,7 +523,7 @@ const MixerDrinkRow1 = (props, context) => {
         {mixerDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Stack
-            key={reagent.drink_name}
+            key={reagent.name}
             direction="row"
             justify="space-around"
             fill>
@@ -532,11 +531,11 @@ const MixerDrinkRow1 = (props, context) => {
             bold
             align="right">
               {/* Get name */}
-              {capitalize(reagent.drink_name)}
+              {capitalize(reagent.name)}
             </Stack.Item>
             <Stack.Item>
               {/* Get amount of reagent in storage */}
-              {reagent.drink_quantity}u
+              {reagent.quantity}u
             </Stack.Item>
             <Stack.Item
             justify="left">
@@ -547,10 +546,10 @@ const MixerDrinkRow1 = (props, context) => {
               fontSize="16px"
               // Disable if there is none of the reagent in storage
               disabled={(
-                reagent.drink_quantity === 0
+                reagent.quantity === 0
               )}
               onClick={() => act("transferBack", {
-                itemPath: reagent.drink_type_path,
+                itemPath: reagent.type_path,
               })}
               />
             </Stack.Item>
