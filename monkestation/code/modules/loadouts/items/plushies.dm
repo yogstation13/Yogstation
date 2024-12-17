@@ -108,11 +108,11 @@ GLOBAL_LIST_INIT(loadout_plushies, generate_loadout_items(/datum/loadout_item/pl
 /datum/loadout_item/plushies/durrcell
 	name = "Durrcell Plush"
 	item_path = /obj/item/toy/plush/durrcell
-
+/*
 /datum/loadout_item/plushies/Eeble
 	name = "Eeble Plushie"
 	item_path = /obj/item/toy/plush/Eeble
-
+*/
 /datum/loadout_item/plushies/big_bad_wolf
 	name = "Big And Will Be Bad Wolf Plushie"
 	item_path = /obj/item/toy/plush/lobotomy/big_bad_wolf
