@@ -41,7 +41,7 @@ type StorageData = {
   storage_capacity: number;
   glass_quantity: number;
   glass_capacity: number;
-  quantity: number;
+  drink_quantity: number;
   drink_capacity: number;
   dispence_options: number[];
   dispence_selected: number;
@@ -113,10 +113,11 @@ const FoodTab = (props, context) => {
 
 const CapacityRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { data } = useBackend<StorageData>(context);
+  const { data } = useBackend<Data>(context);
   // Get needed variables from StorageStats
-  const { contents_length } = data;
-  const { storage_capacity } = data;
+  const { storage } = data
+  const { contents_length } = storage;
+  const { storage_capacity } = storage;
 
   // Return a section with the tab's section_text
   return(
@@ -273,10 +274,11 @@ const DrinkTab = (props, context) => {
 
 const GlassRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { data } = useBackend<StorageData>(context);
+  const { data } = useBackend<Data>(context);
   // Get needed variables from StorageStats
-  const { glass_quantity } = data;
-  const { glass_capacity } = data;
+  const { storage } = data
+  const { glass_quantity } = storage;
+  const { glass_capacity } = storage;
 
   return (
     <Table>
@@ -294,10 +296,11 @@ const GlassRow = (props, context) => {
 
 const DrinkCapacityRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { data } = useBackend<StorageData>(context);
+  const { data } = useBackend<Data>(context);
   // Get needed variables from StorageStats
-  const { quantity } = data;
-  const { drink_capacity } = data;
+  const { storage } = data
+  const { drink_quantity } = storage;
+  const { drink_capacity } = storage;
 
   return (
     <Table>
@@ -306,7 +309,7 @@ const DrinkCapacityRow = (props, context) => {
       fontSize="14px"
       textAlign="center"
       bold>
-        {quantity}/{drink_capacity}
+        {drink_quantity}/{drink_capacity}
       </Table.Cell>
     </Table.Row>
   </Table>
@@ -315,10 +318,11 @@ const DrinkCapacityRow = (props, context) => {
 
 const DrinkTransferRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { act, data } = useBackend<StorageData>(context);
+  const { act, data } = useBackend<Data>(context);
   // Get data for buttons
-  const { dispence_options = [] } = data;
-  const { dispence_selected } = data;
+  const { storage } = data
+  const { dispence_options = [] } = storage;
+  const { dispence_selected } = storage;
 
   return(
     <Flex
@@ -348,6 +352,7 @@ const MainDrinkRow = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   // Get drink information for cart's container from data
   const { mainDrinks = [] } = data;
+  const { drink_capacity } = data.storage;
 
   if(mainDrinks.length > 0) {
     return (
@@ -368,7 +373,7 @@ const MainDrinkRow = (props, context) => {
               </Table.Cell>
               <Table.Cell>
                 <ProgressBar
-                value={reagent.quantity/200}>
+                value={reagent.quantity/drink_capacity}>
                   {reagent.quantity}u
                 </ProgressBar>
               </Table.Cell>
