@@ -219,16 +219,18 @@
 	return data
 
 /datum/opposing_force/ui_static_data(mob/user)
-	var/list/data = list()
-
-	data["opt_in_colors"] = GLOB.antag_opt_in_colors
-	data["opt_in_enabled"] = (!CONFIG_GET(flag/disable_antag_opt_in_preferences))
-
-	return data
+	return list(
+		"opt_in_colors" = GLOB.antag_opt_in_colors,
+		"opt_in_enabled" = !CONFIG_GET(flag/disable_antag_opt_in_preferences),
+	)
 
 /datum/opposing_force/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
+		return
+
+	var/mob/living/user = ui.user
+	if(QDELETED(user) || QDELETED(user.client))
 		return
 
 	var/datum/opposing_force_objective/edited_objective
@@ -240,32 +242,32 @@
 	switch(action)
 		// General control
 		if("set_backstory")
-			set_backstory(usr, params["backstory"])
+			set_backstory(user, params["backstory"])
 		if("request_update")
-			request_update(usr)
+			request_update(user)
 		if("modify_request")
-			modify_request(usr)
+			modify_request(user)
 		if("close_application")
-			close_application(usr)
+			close_application(user)
 		if("submit")
-			submit_to_subsystem(usr)
+			submit_to_subsystem(user)
 		if("send_message")
-			send_message(usr, params["message"])
-			if(!handling_admin && check_rights_for(usr.client, R_ADMIN) && usr != mind_reference)
-				handle(usr) // if an admin sends a message and it's not being handled, assign them as handling it
+			send_message(user, params["message"])
+			if(!handling_admin && check_rights_for(user.client, R_ADMIN) && user.mind != mind_reference)
+				handle(user) // if an admin sends a message and it's not being handled, assign them as handling it
 		// Objective control
 		if("add_objective")
-			add_objective(usr)
+			add_objective(user)
 		if("remove_objective")
-			remove_objective(usr, edited_objective)
+			remove_objective(user, edited_objective)
 		if("set_objective_title")
-			set_objective_title(usr, edited_objective, params["title"])
+			set_objective_title(user, edited_objective, params["title"])
 		if("set_objective_description")
-			set_objective_description(usr, edited_objective, params["new_desciprtion"])
+			set_objective_description(user, edited_objective, params["new_desciprtion"])
 		if("set_objective_justification")
-			set_objective_justification(usr, edited_objective, params["new_justification"])
+			set_objective_justification(user, edited_objective, params["new_justification"])
 		if("set_objective_intensity")
-			set_objective_intensity(usr, edited_objective, params["new_intensity_level"])
+			set_objective_intensity(user, edited_objective, params["new_intensity_level"])
 		// Equipment control
 		if("select_equipment")
 			var/datum/opposing_force_equipment/equipment
@@ -275,30 +277,30 @@
 					break
 			if(!equipment)
 				return
-			select_equipment(usr, equipment)
+			select_equipment(user, equipment)
 		if("remove_equipment")
 			var/datum/opposing_force_selected_equipment/equipment = locate(params["selected_equipment_ref"]) in selected_equipment
 			if(!equipment)
 				return
-			remove_equipment(usr, equipment)
+			remove_equipment(user, equipment)
 		if("set_equipment_reason")
 			var/datum/opposing_force_selected_equipment/equipment = locate(params["selected_equipment_ref"]) in selected_equipment
 			if(!equipment)
 				return
-			set_equipment_reason(usr, equipment, params["new_equipment_reason"])
+			set_equipment_reason(user, equipment, params["new_equipment_reason"])
 		if("set_equipment_count")
 			var/datum/opposing_force_selected_equipment/equipment = locate(params["selected_equipment_ref"]) in selected_equipment
 			if(!equipment)
 				return
-			set_equipment_count(usr, equipment, params["new_equipment_count"])
+			set_equipment_count(user, equipment, params["new_equipment_count"])
 
 		// JSON I/O control
 		if("import_json")
 			if(!length(SSopposing_force.equipment_list)) // sanity check
 				return
-			json_import(usr)
+			json_import(user)
 		if("export_json")
-			json_export(usr)
+			json_export(user)
 
 		//Admin protected procs
 		if("approve")
@@ -306,71 +308,71 @@
 				return
 			for(var/datum/opposing_force_objective/objective as anything in objectives)
 				if(objective.status == OPFOR_OBJECTIVE_STATUS_NOT_REVIEWED)
-					to_chat(usr, examine_block(span_command_headset(span_pink("OPFOR: ERROR, some objectives have not been reviewed. Please approve/deny all objectives."))))
+					to_chat(user, examine_block(span_command_headset(span_pink("OPFOR: ERROR, some objectives have not been reviewed. Please approve/deny all objectives."))))
 					return
 			for(var/datum/opposing_force_selected_equipment/equipment as anything in selected_equipment)
 				if(equipment.status == OPFOR_EQUIPMENT_STATUS_NOT_REVIEWED)
-					to_chat(usr, examine_block(span_command_headset(span_pink("OPFOR: ERROR, some equipment requests have not been reviewed. Please approve/deny all equipment requests."))))
+					to_chat(user, examine_block(span_command_headset(span_pink("OPFOR: ERROR, some equipment requests have not been reviewed. Please approve/deny all equipment requests."))))
 					return
-			SSopposing_force.approve(src, usr)
+			SSopposing_force.approve(src, user)
 		if("approve_all")
 			if(!check_rights(R_ADMIN))
 				return
-			approve_all(usr)
+			approve_all(user)
 		if("handle")
-			handle(usr)
+			handle(user)
 		if("issue_gear")
 			if(!check_rights(R_ADMIN))
 				return
-			issue_gear(usr)
+			issue_gear(user)
 		if("deny")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this application:")
+			var/denied_reason = tgui_input_text(user, "Denial Reason", "Enter a reason for denying this application:")
 			// Checking to see if the user is spamming the button, async and all.
 			if((status == OPFOR_STATUS_DENIED) || !denied_reason)
 				return
-			SSopposing_force.deny(src, denied_reason, usr)
+			SSopposing_force.deny(src, denied_reason, user)
 		if("mute_request_updates")
 			if(!check_rights(R_ADMIN))
 				return
-			mute_request_updates(usr)
+			mute_request_updates(user)
 		if("toggle_block")
 			if(!check_rights(R_ADMIN))
 				return
-			toggle_block(usr)
+			toggle_block(user)
 		if("approve_objective")
 			if(!check_rights(R_ADMIN))
 				return
-			approve_objective(usr, edited_objective)
+			approve_objective(user, edited_objective)
 		if("deny_objective")
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this objective:")
+			var/denied_reason = tgui_input_text(user, "Denial Reason", "Enter a reason for denying this objective:")
 			if(!denied_reason)
 				return
-			deny_objective(usr, edited_objective, denied_reason)
+			deny_objective(user, edited_objective, denied_reason)
 		if("approve_equipment")
 			var/datum/opposing_force_selected_equipment/equipment = locate(params["selected_equipment_ref"]) in selected_equipment
 			if(!equipment)
 				return
 			if(!check_rights(R_ADMIN))
 				return
-			approve_equipment(usr, equipment)
+			approve_equipment(user, equipment)
 		if("deny_equipment")
 			var/datum/opposing_force_selected_equipment/equipment = locate(params["selected_equipment_ref"]) in selected_equipment
 			if(!equipment)
 				return
 			if(!check_rights(R_ADMIN))
 				return
-			var/denied_reason = tgui_input_text(usr, "Denial Reason", "Enter a reason for denying this objective:")
+			var/denied_reason = tgui_input_text(user, "Denial Reason", "Enter a reason for denying this objective:")
 			if(!denied_reason)
 				return
-			deny_equipment(usr, equipment, denied_reason)
+			deny_equipment(user, equipment, denied_reason)
 		if("flw_user")
 			if(!check_rights(R_ADMIN))
 				return
-			flw_user(usr)
+			flw_user(user)
 
 /datum/opposing_force/proc/flw_user(mob/user)
 	user.client?.admin_follow(mind_reference.current)
@@ -501,7 +503,7 @@
 	// Subsystem checks, no point in bloating the system if it's not accepting more.
 	var/availability = SSopposing_force.check_availability()
 	if(availability != OPFOR_SUBSYSTEM_READY)
-		to_chat(usr, span_warning("Error, the OPFOR subsystem rejected your request. Reason: <b>[availability]</b>"))
+		to_chat(user, span_warning("Error, the OPFOR subsystem rejected your request. Reason: <b>[availability]</b>"))
 		return FALSE
 
 	var/queue_position = SSopposing_force.add_to_queue(src)
@@ -517,7 +519,7 @@
 	add_log(user.ckey, "Submitted to the OPFOR subsystem")
 	send_system_message("[user ? get_admin_ckey(user) : "The OPFOR subsystem"] has submitted the application for review")
 	send_admins_opfor_message(span_command_headset("SUBMISSION: [ADMIN_LOOKUPFLW(user)] has submitted their OPFOR application. They are number [queue_position] in the queue."))
-	to_chat(usr, examine_block(span_nicegreen(("You have been added to the queue for the OPFOR subsystem. You are number <b>[queue_position]</b> in line."))))
+	to_chat(user, examine_block(span_nicegreen("You have been added to the queue for the OPFOR subsystem. You are number <b>[queue_position]</b> in line.")))
 
 /datum/opposing_force/proc/modify_request(mob/user)
 	if(status == OPFOR_STATUS_CHANGES_REQUESTED)
@@ -710,8 +712,8 @@
 	modification_log += msg
 	log_admin(msg)
 
-/datum/opposing_force/proc/send_admins_opfor_message(message)
-	message = "[span_pink("OPFOR:")] [span_admin("[message] (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")]"
+/datum/opposing_force/proc/send_admins_opfor_message(message, prefix = "OPFOR:")
+	message = "[span_pink(prefix)] [span_admin("[message] (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")]"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = message,
@@ -751,10 +753,27 @@
 	message = STRIP_HTML_SIMPLE(message, OPFOR_TEXT_LIMIT_MESSAGE)
 	var/message_string
 	var/real_round_time = world.timeofday - SSticker.round_start_time
-	if(check_rights_for(user.client, R_ADMIN) && user != mind_reference)
-		message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] (ADMIN) [get_admin_ckey(user)]: " + message
+	if(check_rights_for(user.client, R_ADMIN) && user.mind != mind_reference)
+		var/admin_ckey = get_admin_ckey(user)
+		message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] (ADMIN) [admin_ckey]: " + message
+		to_chat(mind_reference.current, examine_block(span_pink("[span_prefix("OPFOR CHAT ([admin_ckey]):")] [message]")))
+		SEND_SOUND(mind_reference.current, sound('sound/machines/terminal_prompt.ogg'))
 	else
 		message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] (USER) [user.ckey]: " + message
+		var/admin_message = span_pink("[span_prefix("OPFOR CHAT ([user.ckey]):")] [message] (<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show Panel</a>)")
+		var/msg_target
+		if(handling_admin && GLOB.directory[handling_admin])
+			var/client/admin = GLOB.directory[handling_admin]
+			SEND_SOUND(admin, sound('sound/machines/terminal_prompt.ogg'))
+			if(!admin.is_afk())
+				msg_target = admin
+		to_chat(
+			target = msg_target || GLOB.admins,
+			html = admin_message,
+			type = MESSAGE_TYPE_ADMINLOG,
+			confidential = TRUE,
+		)
+
 	admin_chat += message_string
 
 	// We support basic commands, see run_command for compatible commands, the operator is /
@@ -764,12 +783,14 @@
 		run_command(user, command)
 
 	add_log(user.ckey, "Sent message: [message]")
+	SStgui.update_uis(src)
 
 
 /datum/opposing_force/proc/send_system_message(message)
 	var/real_round_time = world.timeofday - SSticker.round_start_time
 	var/message_string = "[time2text(real_round_time, "hh:mm:ss", 0)] SYSTEM: " + message
 	admin_chat += message_string
+	SStgui.update_uis(src)
 
 /datum/opposing_force/proc/run_command(mob/user, message)
 	var/list/params = splittext(message, " ")
@@ -857,7 +878,7 @@
 		send_system_message("ERROR: You do not have permission to do that.")
 		return
 	send_system_message("User pinged.")
-	to_chat(mind_reference.current, span_pink("OPFOR: [get_admin_ckey(user)] has pinged your OPFOR chat, check it!"))
+	to_chat(mind_reference.current, examine_block(span_pink("[span_prefix("OPFOR:")] [get_admin_ckey(user)] has pinged your OPFOR chat, check it!")))
 	SEND_SOUND(mind_reference.current, sound('sound/misc/bloop.ogg'))
 
 /datum/opposing_force/proc/roundend_report()
@@ -868,20 +889,24 @@
 		report += "<b>Had an approved OPFOR application with the following backstory:</b><br>"
 		report += "[set_backstory]<br>"
 
-	if(objectives.len)
+	var/list/datum/opposing_force_objective/approved_objectives = list()
+	for(var/datum/opposing_force_objective/opfor_objective in objectives)
+		if(opfor_objective.status == OPFOR_OBJECTIVE_STATUS_APPROVED)
+			approved_objectives += opfor_objective
+	if(length(approved_objectives))
 		report += "<b>And with the following objectives:</b><br>"
-		for(var/datum/opposing_force_objective/opfor_objective in objectives)
-			if(opfor_objective.status != OPFOR_OBJECTIVE_STATUS_APPROVED)
-				continue
+		for(var/datum/opposing_force_objective/opfor_objective as anything in approved_objectives)
 			report += "<b>Title:</b> [opfor_objective.title]<br>"
 			report += "<b>Description:</b> [opfor_objective.description]<br>"
 			report += "<br>"
 
-	if(selected_equipment.len)
+	var/list/datum/opposing_force_selected_equipment/approved_equipment = list()
+	for(var/datum/opposing_force_selected_equipment/opfor_equipment in selected_equipment)
+		if(opfor_equipment.status == OPFOR_EQUIPMENT_STATUS_APPROVED)
+			approved_equipment += opfor_equipment
+	if(length(approved_equipment))
 		report += "<b>And had the following approved equipment:</b><br>"
-		for(var/datum/opposing_force_selected_equipment/opfor_equipment in selected_equipment)
-			if(opfor_equipment.status != OPFOR_EQUIPMENT_STATUS_APPROVED)
-				continue
+		for(var/datum/opposing_force_selected_equipment/opfor_equipment as anything in approved_equipment)
 			report += "</b>[opfor_equipment.opposing_force_equipment.name]<b><br>"
 			report += "<br>"
 
@@ -1089,4 +1114,4 @@
 		var/datum/opposing_force/opposing_force = new(mind)
 		mind.opposing_force = opposing_force
 		SSopposing_force.new_opfor(opposing_force)
-	mind.opposing_force.ui_interact(usr)
+	mind.opposing_force.ui_interact(src)

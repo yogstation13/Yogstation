@@ -4,6 +4,8 @@
 	set desc = "Request players sign up for opfor if they have antag on."
 
 	var/asked = 0
+	if(tgui_alert(src, "Do you wish to notify all players that OPFORs are desired?", "Confirm Action", list("Yes", "No")) != "Yes")
+		return
 	for(var/mob/living/carbon/human/human in GLOB.alive_player_list)
 		to_chat(human, examine_block(span_greentext("The admins are looking for OPFOR players, if you're interested, sign up in the OOC tab!")))
 		asked++
