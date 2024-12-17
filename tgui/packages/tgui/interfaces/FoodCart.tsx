@@ -269,7 +269,7 @@ const DrinkTab = (props, context) => {
           circular
           tooltip="Reagents to be poured into drinking glasses"
           icon="info"/>}>
-          <MixerDrinkRow1 />
+          <MixerDrinkRow />
         </Section>
       </Stack.Item>
     </Stack>
@@ -353,6 +353,7 @@ const MainDrinkRow = (props, context) => {
   const { act, data } = useBackend<Tab>(context);
   // Get drink information for cart's container from data
   const { mainDrinks = [] } = data;
+  const { drink_capacity } = data.storage;
 
   if(mainDrinks.length > 0) {
     return (
@@ -363,9 +364,10 @@ const MainDrinkRow = (props, context) => {
           // Start row for holding ui elements and given data
           <Table.Row
           key={reagent.drink_name}
-          fontSize="14px">
+          fontSize="14px"
+          height="30px">
               <Table.Cell
-              width="75px"
+              width="150px"
               bold>
                 {/* Get name */}
                 {capitalize(reagent.drink_name)}
@@ -449,9 +451,11 @@ const MixerDrinkRow = (props, context) => {
           <Table.Row
           direction="row"
           key={reagent.drink_name}
-          fontSize="14px">
+          fontSize="14px"
+          height="30px">
             <Table.Cell
-            bold>
+            bold
+            width="150px">
               {/* Get name */}
                {capitalize(reagent.drink_name)}
             </Table.Cell>
