@@ -34,8 +34,8 @@
 /obj/machinery/food_cart_TGUI/ui_data(mob/user)
 	//Define variables from UI
 	var/list/data = list()
-	data["food"] = list()
-	data["storage"] = list()
+	//data["food"] = list()
+	//data["storage"] = list()
 	
 	//Loop through food list for data to send to food tab
 	for(var/item_detail in food_ui_list)
@@ -91,17 +91,19 @@
 		data["mixerDrinks"] = list()
 
 	//Get content and capacity data
+	var/list/storageDetails = list()
 	//Have to subtract contents.len by 1 due to reagents container being in contents
-	data["contents_length"] = contents.len - 1
-	data["storage_capacity"] = contents_capacity
-	data["glass_quantity"] = glass_quantity
-	data["glass_capacity"] = glass_capacity
-	data["dispence_options"] = transfer_list
-	data["dispence_selected"] = selected_transfer
+	storageDetails["contents_length"] = contents.len - 1
+	storageDetails["storage_capacity"] = contents_capacity
+	storageDetails["glass_quantity"] = glass_quantity
+	storageDetails["glass_capacity"] = glass_capacity
+	storageDetails["dispence_options"] = transfer_list
+	storageDetails["dispence_selected"] = selected_transfer
 	//Add the total_volumne of both cart and mixer storage for quantity
-	data["drink_quantity"] = mixer.reagents.total_volume + reagents.total_volume
-	data["drink_capacity"] = reagent_capacity
+	storageDetails["drink_quantity"] = mixer.reagents.total_volume + reagents.total_volume
+	storageDetails["drink_capacity"] = reagent_capacity
 
+	data["storage"] += list(storageDetails)
 	//Send stored information to UI	
 	return data
 

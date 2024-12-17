@@ -349,7 +349,6 @@ const MainDrinkRow = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   // Get drink information for cart's container from data
   const { mainDrinks = [] } = data;
-  const { storage } = data;
 
   if(mainDrinks.length > 0) {
     return (
@@ -370,7 +369,7 @@ const MainDrinkRow = (props, context) => {
               </Table.Cell>
               <Table.Cell>
                 <ProgressBar
-                value={reagent.drink_quantity/storage.drink_capacity}>
+                value={reagent.drink_quantity/200}>
                   {reagent.drink_quantity}u
                 </ProgressBar>
               </Table.Cell>
