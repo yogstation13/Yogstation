@@ -8,10 +8,6 @@ import { resolveAsset } from './../assets';
 
 // Store data for UI elements within Data
 type Data = {
-  tabs: Tab[];
-}
-
-type Tab = {
   food: FoodStats[];
   mainDrinks: MainDrinkStats[];
   mixerDrinks: MixerDrinkStats[];
@@ -141,7 +137,7 @@ const CapacityRow = (props, context) => {
 
 const FoodRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { act, data } = useBackend<Tab>(context);
+  const { act, data } = useBackend<Data>(context);
   // Get food information from data
   const { food = [] } = data;
 
@@ -350,10 +346,10 @@ const DrinkTransferRow = (props, context) => {
 
 const MainDrinkRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { act, data } = useBackend<Tab>(context);
+  const { act, data } = useBackend<Data>(context);
   // Get drink information for cart's container from data
   const { mainDrinks = [] } = data;
-  const { drink_capacity } = data.storage;
+  const { storage } = data;
 
   if(mainDrinks.length > 0) {
     return (
@@ -374,7 +370,7 @@ const MainDrinkRow = (props, context) => {
               </Table.Cell>
               <Table.Cell>
                 <ProgressBar
-                value={reagent.drink_quantity/200}>
+                value={reagent.drink_quantity/storage.drink_capacity}>
                   {reagent.drink_quantity}u
                 </ProgressBar>
               </Table.Cell>
@@ -436,20 +432,18 @@ const MainDrinkRow = (props, context) => {
 
 const MixerDrinkRow = (props, context) => {
   // Get data from ui_data in backend code
-  const { act, data } = useBackend<Tab>(context);
+  const { act, data } = useBackend<Data>(context);
   // Get drink information for cart's container from data
   const { mixerDrinks = [] } = data;
 
   if(mixerDrinks.length > 0) {
     return (
       // Create Table for horizontal format
-      <Table
-      direction="column">
+      <Table>
         {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its stats */}
         {mixerDrinks.map(reagent => (
           // Start row for holding ui elements and given data
           <Table.Row
-          direction="row"
           key={reagent.drink_name}
           fontSize="14px"
           height="30px">
@@ -459,19 +453,19 @@ const MixerDrinkRow = (props, context) => {
               {/* Get name */}
                {capitalize(reagent.drink_name)}
             </Table.Cell>
-            <Table.Cell
-            textAlign="left">
-              {/* Get amount of reagent in storage */}
-              {reagent.drink_quantity}u
-            </Table.Cell>
             <Table.Cell>
-              {/* Make dispense button */}
+                <ProgressBar
+                value={reagent.drink_quantity/50}>
+                  {reagent.drink_quantity}u
+                </ProgressBar>
+              </Table.Cell>
+            <Table.Cell>
+              {/* Transfer reagents back to cart */}
               <Button
-              fluid
               content="Transfer Back"
               textAlign="center"
               fontSize="16px"
-              width="175px"
+              width="150px"
               // Disable if there is none of the reagent in storage
               disabled={(
                 reagent.drink_quantity === 0
@@ -483,14 +477,15 @@ const MixerDrinkRow = (props, context) => {
             </Table.Cell>
           </Table.Row>
         ))}
-      <Table.Row
-       justify="center">
-         <Table.Cell>
+      <Table.Row>
+         <Table.Cell
+         justify="center">
+          {/* Dispence reagents into glass */}
            <Button
-            fluid
             content="Pour glass"
             textAlign="center"
             fontSize="16px"
+            width="100%"
             onClick={() => act("pour")}
             />
           </Table.Cell>
@@ -515,7 +510,7 @@ const MixerDrinkRow = (props, context) => {
 
 const MixerDrinkRow1 = (props, context) => {
   // Get data from ui_data in backend code
-  const { act, data } = useBackend<Tab>(context);
+  const { act, data } = useBackend<Data>(context);
   // Get drink information for cart's container from data
   const { mixerDrinks = [] } = data;
 
