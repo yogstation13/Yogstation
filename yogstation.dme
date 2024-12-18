@@ -2861,6 +2861,7 @@
 #include "code\modules\mob\living\status_procs.dm"
 #include "code\modules\mob\living\taste.dm"
 #include "code\modules\mob\living\ventcrawling.dm"
+#include "code\modules\mob\living\zlook.dm"
 #include "code\modules\mob\living\brain\brain.dm"
 #include "code\modules\mob\living\brain\brain_item.dm"
 #include "code\modules\mob\living\brain\death.dm"
