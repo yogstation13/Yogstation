@@ -1,5 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Engi Wire knowledge can now see Air alarms and vending machines wires"
-  - rscadd: "Robo Wire knowledge can now see Modsuit and Mulebot wires"

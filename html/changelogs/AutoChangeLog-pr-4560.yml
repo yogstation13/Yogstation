@@ -1,8 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - bugfix: "Made red HOS mantle show up instead of the blue"
-  - bugfix: "Spraypaint the sm should now work! I don't know why you still would!"
-  - bugfix: "Bronze can now be ejected from autolathes."
-  - bugfix: "Maintence door in artsci is now visible to our robotic overloads on metastation"
-  - balance: "Made the multi cell wall charger not charge at KW instead of W"

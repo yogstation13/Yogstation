@@ -231,3 +231,22 @@
   Absolucy:
   - bugfix: Fixed suiciding as a centcom ghost player spawning an extra catatonic
       body.
+2024-12-18:
+  Absolucy:
+  - admin: Admins will get notified whenever a player responds to OPFOR chat (if there
+      is a handling admin, and they aren't afk, only they will be notified)
+  - admin: Added a yes/no confirmation to the "Request OPFOR" admin verb.
+  - qol: Players will be notified when an admin responds to their OPFOR chat.
+  - bugfix: Fixed some missing colored chat spans.
+  - bugfix: OPFOR roundend reports won't show blank sections if the opfor had objectives
+      or equipment if none of them were actually approved.
+  Gw0sty:
+  - rscadd: Engi Wire knowledge can now see Air alarms and vending machines wires
+  - rscadd: Robo Wire knowledge can now see Modsuit and Mulebot wires
+  - bugfix: Made red HOS mantle show up instead of the blue
+  - bugfix: Spraypaint the sm should now work! I don't know why you still would!
+  - bugfix: Bronze can now be ejected from autolathes.
+  - bugfix: Maintence door in artsci is now visible to our robotic overloads on metastation
+  - balance: Made the multi cell wall charger not charge at KW instead of W
+  ThePooba:
+  - rscdel: Eeble plush removed.
