@@ -439,7 +439,7 @@
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/a_gift/anything
+	var/gift_type = /obj/item/a_gift
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
 
@@ -462,9 +462,15 @@
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
+	if(prob(50))
+		user.put_in_hands(new gift_type(drop_location()))
+		return
+	if(prob(1))
+		new /mob/living/carbon/human/species/monkey/angry(drop_location())
+		to_chat(user, span_warning("A live monkey crawls out of the gift... its PISSED!!!"))
+		return
+	user.put_in_hands(new /obj/item/a_gift/anything(drop_location()))
 
-	var/obj/item/G = new gift_type(src)
-	user.put_in_hands(G)
 
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
 	desc = "A wonderous decorated Christmas tree. It has a seemly endless supply of presents!"
