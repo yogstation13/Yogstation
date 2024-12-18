@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "Clown spawner artifacts will no longer spawn another spawner if the previous one still exists."
