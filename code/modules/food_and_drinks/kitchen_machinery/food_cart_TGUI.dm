@@ -34,8 +34,7 @@
 /obj/machinery/food_cart_TGUI/ui_data(mob/user)
 	//Define variables from UI
 	var/list/data = list()
-	//data["food"] = list()
-	//data["storage"] = list()
+	data["food"] = list()
 	
 	//Loop through food list for data to send to food tab
 	for(var/item_detail in food_ui_list)
