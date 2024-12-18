@@ -88,14 +88,16 @@
 		sec_record = list()
 		for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
 			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
-				if(R.fields["name"] == S.fields["name"])
+				if(R.fields["id"] == S.fields["id"])
 					var/list/crimes = list()
 					for(var/datum/data/crime/crime in S.fields["crimes"])
-						crimes += list("[crime.crimeName]: [crime.crimeDetails]")
+						crime = list("crime_name" = crime.crimeName, "crime_details" = crime.crimeDetails, "author" = crime.author, "time_added" = crime.time)
+						crimes += list(crime)
 					var/list/comments = list()
 					for(var/datum/data/comment/comment in S.fields["comments"])
-						comments += list("[comment.commentText] - [comment.author] [comment.time]")
-					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
+						comment = list("comment_text" = comment.commentText, "author" = comment.author, "time" = comment.time)
+						comments += list(comment)
+					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
 					sec_record += list(new_record)
 					break
 	data["med_records"] = med_record
@@ -243,6 +245,28 @@
 					break
 		if("med_record back")
 			selected_med_record = null
+		if("sec_record")
+			if(!GLOB.data_core.general||!GLOB.data_core.medical)
+				return
+			for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
+				var/done = FALSE
+				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+					if(S.fields["id"] == params["record"])
+						var/list/crimes = list()
+						for(var/datum/data/crime/crime in S.fields["crimes"])
+							crime = list("crime_name" = crime.crimeName, "crime_details" = crime.crimeDetails, "author" = crime.author, "time_added" = crime.time)
+							crimes += list(crime)
+						var/list/comments = list()
+						for(var/datum/data/comment/comment in S.fields["comments"])
+							comment = list("comment_text" = comment.commentText, "author" = comment.author, "time" = comment.time)
+							comments += list(comment)
+						selected_sec_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
+						done = TRUE
+						break
+				if(done)
+					break
+		if("sec_record back")
+			selected_sec_record = null
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)

@@ -1,7 +1,7 @@
 import { toFixed } from 'common/math';
 import { capitalize } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote, Table, Dropdown, ProgressBar, NumberInput } from '../components';
+import { Box, Button, Section, Flex, Tabs, Stack, BlockQuote, Table, Dropdown, ProgressBar, NumberInput, Icon } from '../components';
 import { Window } from '../layouts';
 
 type Module = {
@@ -42,13 +42,26 @@ type SecRecord = {
   p_state: string;
   m_state: string;
   criminal_status: string;
-  crimes: string[];
+  crimes: Crime[];
   important_notes: string;
-  comments: string[];
+  comments: Comment[];
+}
+
+type Crime = {
+  crime_name: string;
+  crime_details: string;
+  author: string;
+  time_added: string;
+}
+
+type Comment = {
+  comment_text: string;
+  author: string;
+  time: string;
 }
 
 type Data = {
-  modules: Data[];
+  modules: string[];
   modules_list: Module[];
   modules_tabs: Module[];
   laws_zeroth: string;
@@ -70,11 +83,11 @@ type Data = {
   color: string;
   med_records: MedRecord[];
   sec_records: SecRecord[];
-  selected_med_record: MedRecord[];
-  selected_sec_record: SecRecord[];
+  selected_med_record: MedRecord;
+  selected_sec_record: SecRecord;
 }
 
-export const AirlockJackTextSwitch = params => {
+const AirlockJackTextSwitch = params => {
   switch (params) {
     case 0:
       return "Connection handshake";
@@ -101,12 +114,54 @@ export const MedRecordColour = (mental, physical) => {
   }
 };
 
+export const SecRecordColour = criminal_status => {
+  switch (criminal_status) {
+    case "Arrest":
+      return "#990000;";
+    case "Discharged":
+      return "#5C4949;";
+    case "None":
+      return "#740349;";
+    case "Search":
+      return "#5C4949;";
+    case "Parole":
+      return "#046713;";
+    case "Incarcerated":
+      return "#181818;";
+    case "Suspected":
+      return "#CD6500;";
+  }
+};
+
+const SecRecordIcon = criminal_status => {
+  switch (criminal_status) {
+    case "Arrest":
+      return "fingerprint";
+    case "Discharged":
+      return "dove";
+    case "None":
+      return "";
+    case "Search":
+      return "search";
+    case "Parole":
+      return "unlink";
+    case "Incarcerated":
+      return "dungeon";
+    case "Suspected":
+      return "exclamation";
+  }
+  return "";
+};
+
+let custom_width;
+custom_width = 650;
+
 export const PaiInterface = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const { modules_tabs = [] } = data;
   const [selectedMainTab, setMainTab] = useLocalState(context, "selectedMainTab", 0);
   return (
-    <Window width={650} height={550}> {/* Width matters for medical records, height matters for download more software */}
+    <Window width={custom_width} height={550}> {/* Width matters for records, height matters for download more software */}
       <Window.Content>
         <Flex>
           <Flex.Item grow={1}>
@@ -141,8 +196,17 @@ const PaiBox = (props, context) => {
   const { hacking, hackprogress, cable, door } = data;
   const { code, frequency, minFrequency, maxFrequency, color } = data;
   const { med_records, sec_records } = data;
-  const [record_view, set_record_view] = useLocalState(context, "record_view", 0);
-  const { selected_med_record } = data;
+  const { selected_med_record, selected_sec_record } = data;
+  switch(modules_tabs[selectedMainTab].module_name) { // To actually make records readable without extending every other module unnecessarily
+    case "medical records":
+      custom_width = 960;
+      break;
+    case "security records":
+      custom_width = 850;
+      break;
+    default:
+      custom_width = 650;
+  }
   switch(modules_tabs[selectedMainTab].module_name) {
     case "directives":
       return (
@@ -438,6 +502,9 @@ const PaiBox = (props, context) => {
                     ID:
                   </Table.Cell>
                   <Table.Cell textAlign={"center"} bold={1}>
+                    Fingerprints (F) | DNA (D):
+                  </Table.Cell>
+                  <Table.Cell textAlign={"center"} bold={1}>
                     Blood type:
                   </Table.Cell>
                   <Table.Cell textAlign={"center"} bold={1}>
@@ -461,6 +528,10 @@ const PaiBox = (props, context) => {
                       {MedRecord.id}
                     </Table.Cell>
                     <Table.Cell backgroundColor={MedRecordColour(MedRecord.m_state, MedRecord.p_state)} textAlign={"center"}>
+                      <Box>F: {MedRecord.fingerprint}</Box>
+                      <Box>D: {MedRecord.dna}</Box>
+                    </Table.Cell>
+                    <Table.Cell backgroundColor={MedRecordColour(MedRecord.m_state, MedRecord.p_state)} textAlign={"center"}>
                       {MedRecord.blood_type}
                     </Table.Cell>
                     <Table.Cell backgroundColor={MedRecordColour(MedRecord.m_state, MedRecord.p_state)} textAlign={"center"}>
@@ -475,6 +546,166 @@ const PaiBox = (props, context) => {
             </Section>
           );
         }
+    case "security records":
+      if(selected_sec_record) {
+        const { crimes } = data.selected_sec_record;
+        const { comments } = data.selected_sec_record;
+        return (
+          <Section title={modules_tabs[selectedMainTab].title}>
+            <Button icon="arrow-left"
+              onClick={() => act("sec_record back")}>
+                Back
+            </Button>
+            <Stack vertical ml={2}>
+              <Stack.Item>
+                Name: {selected_sec_record.name}
+              </Stack.Item>
+              <Stack.Item>
+                ID: {selected_sec_record.id}
+              </Stack.Item>
+              <Stack.Item>
+                Gender: {selected_sec_record.gender}
+              </Stack.Item>
+              <Stack.Item>
+                Age: {selected_sec_record.age}
+              </Stack.Item>
+              <Stack.Item>
+                Rank: {selected_sec_record.rank}
+              </Stack.Item>
+              <Stack.Item>
+                Fingerprint: {selected_sec_record.fingerprint}
+              </Stack.Item>
+              <Stack.Item>
+                Physical Status: {selected_sec_record.p_state}
+              </Stack.Item>
+              <Stack.Item>
+                Mental Status: {selected_sec_record.m_state}
+              </Stack.Item>
+              <br />
+              <Stack.Item>
+                Criminal Status: <Button backgroundColor={SecRecordColour(selected_sec_record.criminal_status)}>{selected_sec_record.criminal_status}</Button>
+              </Stack.Item>
+              <br />
+              <Table>
+                <Table.Row>
+                  <Table.Cell textAlign={"center"} bold={1}>
+                    Crime:
+                  </Table.Cell>
+                  <Table.Cell textAlign={"center"} bold={1}>
+                    Details:
+                  </Table.Cell>
+                  <Table.Cell textAlign={"center"} bold={1}>
+                    Author:
+                  </Table.Cell>
+                  <Table.Cell textAlign={"center"} bold={1}>
+                    Time Added:
+                  </Table.Cell>
+                </Table.Row>
+                {crimes.map(crime => (
+                  <Table.Row
+                    key={crime}>
+                    <Table.Cell>
+                      {crime.crime_name}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {crime.crime_details}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {crime.author}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {crime.time_added}
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table>
+              <br />
+              <Table>
+                <Table.Row>
+                  <Table.Cell textAlign={"center"} bold={1}>
+                    Comment:
+                  </Table.Cell>
+                  <Table.Cell textAlign={"center"} bold={1}>
+                    Author:
+                  </Table.Cell>
+                  <Table.Cell textAlign={"center"} bold={1}>
+                    Time Added:
+                  </Table.Cell>
+                </Table.Row>
+                {comments.map(comment => (
+                  <Table.Row
+                    key={comment}>
+                    <Table.Cell>
+                      {comment.comment_text}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {comment.author}
+                    </Table.Cell>
+                    <Table.Cell>
+                      {comment.time}
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table>
+            </Stack>
+          </Section>
+        );
+      } else {
+        return (
+          <Section title={modules_tabs[selectedMainTab].title}>
+            <Table>
+              <Table.Row>
+                <Table.Cell textAlign={"center"} bold={1}>
+                  Name:
+                </Table.Cell>
+                <Table.Cell textAlign={"center"} bold={1}>
+                  ID:
+                </Table.Cell>
+                <Table.Cell textAlign={"center"} bold={1}>
+                  Rank:
+                </Table.Cell>
+                <Table.Cell textAlign={"center"} bold={1}>
+                  Fingerprints:
+                </Table.Cell>
+                <Table.Cell textAlign={"center"} bold={1}>
+                  Criminal Status:
+                </Table.Cell>
+              </Table.Row>
+              {sec_records.map(SecRecord => (
+                <Table.Row
+                  key={SecRecord}
+                  height={3}>
+                    <Table.Cell backgroundColor={SecRecordColour(SecRecord.criminal_status)}>
+                      <Button
+                        onClick={() => act("sec_record", { record: SecRecord.id })} m={1}>
+                          {SecRecord.name}
+                      </Button>
+                    </Table.Cell>
+                    <Table.Cell backgroundColor={SecRecordColour(SecRecord.criminal_status)}>
+                      {SecRecord.id}
+                    </Table.Cell>
+                    <Table.Cell backgroundColor={SecRecordColour(SecRecord.criminal_status)}>
+                      {SecRecord.rank}
+                    </Table.Cell>
+                    <Table.Cell backgroundColor={SecRecordColour(SecRecord.criminal_status)}>
+                      {SecRecord.fingerprint}
+                    </Table.Cell>
+                    <Table.Cell backgroundColor={SecRecordColour(SecRecord.criminal_status)}>
+                      <Box textAlign="center" bold>
+                        {SecRecord.criminal_status}
+                      </Box>
+                      {SecRecordIcon(SecRecord.criminal_status) && (
+                        <Box textAlign="center" bold>
+                          <Icon name={SecRecordIcon(SecRecord.criminal_status)} />
+                        </Box>
+                      )}
+                    </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table>
+          </Section>
+        );
+      }
     case "host scan":
       return (
         <Section title={modules_tabs[selectedMainTab].title}>
@@ -572,5 +803,5 @@ const PaiBox = (props, context) => {
           );
         }
       }
-  return null;
+  return null; // Necessary to avoid "PaiBox cannot be used as a JSX Element. It's Return type 'Element | Undefined' is not a valid JSX component" runtiming
   };
