@@ -36,6 +36,7 @@ type MixerDrinkData = {
 }
 
 // Data for all storage information
+// Thanks bug eating lizard and Obelisk for helping me figure out how to reference this correctly
 type StorageData = {
   contents_length: number;
   storage_capacity: number;
@@ -91,28 +92,19 @@ export const FoodCart = (props, context) => {
 const FoodTab = (props, context) => {
     // Get data from ui_data in backend code
     const { data } = useBackend<Data>(context);
-    // Get needed variables from StorageData
-    const { storage } = data
-    const { contents_length } = storage;
-    const { storage_capacity } = storage;
+    // Get needed variable for StorageRow
+    const { storage } = data;
 
   // For organizing the food tab's information
   return (
   <Stack vertical>
     <Stack.Item>
       <Section
-      title="Storage Capacity"
-      textAlign="center">
-        <CapacityRow />
-      </Section>
-    </Stack.Item>
-    <Stack.Item>
-      <Section
-      title="Storage Capacity"
+      title="Food Capacity"
       textAlign="center">
         <StorageRow
-        num1={1}
-        num2={10} />
+        quantity={storage.contents_length}
+        capacity={storage.storage_capacity} />
       </Section>
     </Stack.Item>
     <Stack.Item>
@@ -126,7 +118,11 @@ const FoodTab = (props, context) => {
   );
 };
 
-const StorageRow = (props, context, num1: number, num2: number) => {
+const StorageRow = (props, context) => {
+  // Make constants for input
+  const { quantity } = props;
+  const { capacity } = props;
+
    return(
     <Table>
       <Table.Row>
@@ -135,36 +131,12 @@ const StorageRow = (props, context, num1: number, num2: number) => {
         textAlign="center"
         bold>
           {/* Show numbers based on recieved arguments */}
-          {num1}/{num2}
+          {quantity}/{capacity}
         </Table.Cell>
       </Table.Row>
     </Table>
     );
 }
-
-const CapacityRow = (props, context) => {
-  // Get data from ui_data in backend code
-  const { data } = useBackend<Data>(context);
-  // Get needed variables from StorageData
-  const { storage } = data
-  const { contents_length } = storage;
-  const { storage_capacity } = storage;
-
-  // Return a section with the tab's section_text
-  return(
-  <Table>
-    <Table.Row>
-      <Table.Cell
-      fontSize="14px"
-      textAlign="center"
-      bold>
-        {/* Show the vat's current contents and its max contents */}
-        {contents_length}/{storage_capacity}
-      </Table.Cell>
-    </Table.Row>
-  </Table>
-  );
-};
 
 const FoodRow = (props, context) => {
   // Get data from ui_data in backend code
@@ -239,28 +211,35 @@ const FoodRow = (props, context) => {
 };
 
 const DrinkTab = (props, context) => {
-  // For organizing the food tab's information
+  // Get data from ui_data in backend code
+  const { data } = useBackend<Data>(context);
+  // Get needed variable for StorageRow
+  const { storage } = data
+
+  // For organizing the Drink tab's information
   return (
     <Stack vertical>
       <Stack.Item>
-        <Flex
-        justify="center">
+        <Flex>
           <Flex.Item
-          grow={1}
+          grow
           mr={1}>
             <Section
             title="Glass Storage"
             textAlign="center">
-              <GlassRow />
+              <StorageRow
+              quantity={storage.glass_quantity}
+              capacity={storage.glass_capacity} />
             </Section>
           </Flex.Item>
           <Flex.Item
-          grow={1}
-          mr={1}>
+          grow>
             <Section
             title="Drink Capacity"
             textAlign="center">
-              <DrinkCapacityRow />
+              <StorageRow
+              quantity={storage.drink_quantity}
+              capacity={storage.drink_capacity} />
             </Section>
           </Flex.Item>
         </Flex>
@@ -303,50 +282,6 @@ const DrinkTab = (props, context) => {
   );
 };
 
-const GlassRow = (props, context) => {
-  // Get data from ui_data in backend code
-  const { data } = useBackend<Data>(context);
-  // Get needed variables from StorageData
-  const { storage } = data
-  const { glass_quantity } = storage;
-  const { glass_capacity } = storage;
-
-  return (
-    <Table>
-      <Table.Row>
-        <Table.Cell
-        fontSize="14px"
-        textAlign="center"
-        bold>
-          {glass_quantity}/{glass_capacity}
-        </Table.Cell>
-      </Table.Row>
-    </Table>
-  );
-};
-
-const DrinkCapacityRow = (props, context) => {
-  // Get data from ui_data in backend code
-  const { data } = useBackend<Data>(context);
-  // Get needed variables from StorageData
-  const { storage } = data
-  const { drink_quantity } = storage;
-  const { drink_capacity } = storage;
-
-  return (
-    <Table>
-    <Table.Row>
-      <Table.Cell
-      fontSize="14px"
-      textAlign="center"
-      bold>
-        {drink_quantity}/{drink_capacity}
-      </Table.Cell>
-    </Table.Row>
-  </Table>
-  );
-}
-
 const DrinkTransferRow = (props, context) => {
   // Get data from ui_data in backend code
   const { act, data } = useBackend<Data>(context);
@@ -360,7 +295,7 @@ const DrinkTransferRow = (props, context) => {
     justify="center">
       {dispence_options.map(amount => (
         <Flex.Item
-        grow={1}
+        grow
         mr={0.5}>
           <Button
             key={amount}
@@ -387,31 +322,37 @@ const MainDrinkRow = (props, context) => {
 
   if(mainDrinks.length > 0) {
     return (
-      // Create Table for horizontal format
-      <Table>
-        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its data */}
+      // Create Stack and use vertical property for horizontal format
+      <Stack
+      fontSize="14px"
+      vertical>
+        {/* Use map to create dynamic rows based on the given array, with reagent being an individual index and its data */}
         {mainDrinks.map(reagent => (
-          // Start row for holding ui elements and given data
-          <Table.Row
+          // Start a new stack for holding ui elements and given data
+          <Stack
           key={reagent.name}
-          fontSize="14px"
-          height="30px">
-              <Table.Cell
-              width="150px"
-              bold>
-                {/* Get name */}
+          direction="row"
+          justify="space-between"
+          height="40px">
+              <Stack.Item
+              bold
+              textAlign="left"
+              width="25%">
+                {/* Get reagent's name */}
                 {capitalize(reagent.name)}
                 {props.bold}
-              </Table.Cell>
-              <Table.Cell>
+              </Stack.Item>
+              <Stack.Item
+              grow>
                 <ProgressBar
                 value={reagent.quantity/drink_capacity}>
+                  {/* Get amount of reagent in storage */}
                   {reagent.quantity}u
                 </ProgressBar>
-              </Table.Cell>
-              <Table.Cell
+              </Stack.Item>
+              <Stack.Item
               width="75px">
-                {/* Remove from cart storage */}
+                {/* Purge from cart's storage */}
                 <Button
                 fluid
                 color="red"
@@ -426,10 +367,10 @@ const MainDrinkRow = (props, context) => {
                   itemPath: reagent.type_path,
                 })}
                 />
-              </Table.Cell>
-              <Table.Cell
+              </Stack.Item>
+              <Stack.Item
               width="125px">
-                {/* Move to mixer */}
+                {/* Move to mixer's storage */}
                 <Button
                 fluid
                 content="Add to Mixer"
@@ -443,10 +384,10 @@ const MainDrinkRow = (props, context) => {
                   itemPath: reagent.type_path,
                 })}
                 />
-              </Table.Cell>
-          </Table.Row>
+              </Stack.Item>
+          </Stack>
       ))}
-      </Table>
+      </Stack>
     );
   } else {
     return (
@@ -472,113 +413,38 @@ const MixerDrinkRow = (props, context) => {
 
   if(mixerDrinks.length > 0) {
     return (
-      // Create Table for horizontal format
-      <Table>
-        {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its data */}
-        {mixerDrinks.map(reagent => (
-          // Start row for holding ui elements and given data
-          <Table.Row
-          key={reagent.name}
-          fontSize="14px"
-          height="30px">
-            <Table.Cell
-            bold
-            width="150px">
-              {/* Get name */}
-               {capitalize(reagent.name)}
-            </Table.Cell>
-            <Table.Cell
-            width="230px">
-                <ProgressBar
-                value={reagent.quantity/50}>
-                  {reagent.quantity}u
-                </ProgressBar>
-              </Table.Cell>
-            <Table.Cell>
-              {/* Transfer reagents back to cart */}
-              <Button
-              fluid
-              content="Transfer Back"
-              textAlign="center"
-              fontSize="16px"
-              // Disable if there is none of the reagent in storage
-              disabled={(
-                reagent.quantity === 0
-              )}
-              onClick={() => act("transferBack", {
-                itemPath: reagent.type_path,
-              })}
-              />
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      <Table.Row>
-         <Table.Cell
-         justify="center">
-          {/* Dispence reagents into glass */}
-           <Button
-            content="Pour glass"
-            textAlign="center"
-            fontSize="16px"
-            width="100%"
-            onClick={() => act("pour")}
-            />
-          </Table.Cell>
-        </Table.Row>
-      </Table>
-    );
-  } else {
-    return (
-      <Table>
-        <Table.Row>
-          <Table.Cell
-          fontSize="14px"
-          textAlign="center"
-          bold>
-            Mixer Storage Empty
-          </Table.Cell>
-        </Table.Row>
-      </Table>
-    );
-  }
-};
-
-const MixerDrinkRow1 = (props, context) => {
-  // Get data from ui_data in backend code
-  const { act, data } = useBackend<Data>(context);
-  // Get drink information for cart's container from data
-  const { mixerDrinks = [] } = data;
-
-  if(mixerDrinks.length > 0) {
-    return (
-      // Create Table for horizontal format
+      // Create Stack and use vertical property for horizontal format
       <Stack
-      direction="column"
-      justify="space-around"
-      fontSize="14px">
-      {/* Use map to create dynamic rows based on the contents of drinks, with drink being the individual item and its data */}
+      fontSize="14px"
+      vertical>
+      {/* Use map to create dynamic rows based on the given array, with reagent being an individual index and its data */}
         {mixerDrinks.map(reagent => (
-          // Start row for holding ui elements and given data
+          // Start a new stack for holding ui elements and given data
           <Stack
             key={reagent.name}
             direction="row"
-            justify="space-around"
-            fill>
+            justify="space-between"
+            height="40px">
             <Stack.Item
             bold
-            align="right">
-              {/* Get name */}
+            textAlign="left"
+            width="25%">
+              {/* Get reagent's name */}
               {capitalize(reagent.name)}
             </Stack.Item>
-            <Stack.Item>
-              {/* Get amount of reagent in storage */}
-              {reagent.quantity}u
+            <Stack.Item
+            grow>
+              <ProgressBar
+              value={reagent.quantity/50}>
+                {/* Get amount of reagent in storage */}
+                {reagent.quantity}u
+              </ProgressBar>
             </Stack.Item>
             <Stack.Item
             justify="left">
-              {/* Make dispense button */}
+              {/* Transfer back to main storage */}
               <Button
-              fluid
+              width="205px"
               content="Transfer Back"
               fontSize="16px"
               // Disable if there is none of the reagent in storage
@@ -592,9 +458,11 @@ const MixerDrinkRow1 = (props, context) => {
             </Stack.Item>
           </Stack>
         ))}
+        {/* Pour a glass with all of mixer's reagents */}
         <Stack.Item>
           <Button
           fluid
+          color="green"
           content="Pour glass"
           textAlign="center"
           fontSize="16px"
