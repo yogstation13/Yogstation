@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "The cargo imports UI now shows the correct price when the station has strong or distant supply lines."
+  - bugfix: "Ordering from cargo imports now actually checks to see if you have the correct amount of money when the station has strong or distant supply lines."
