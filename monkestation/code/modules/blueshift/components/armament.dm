@@ -392,7 +392,7 @@
 					"ref" = REF(armament_entry),
 					"icon" = armament_entry.cached_base64,
 					"name" = armament_entry.name,
-					"cost" = armament_entry.cost,
+					"cost" = cost_calculate(armament_entry.cost),
 					"buyable_ammo" = armament_entry.magazine ? TRUE : FALSE,
 					"magazine_cost" = armament_entry.magazine_cost,
 					"purchased" = purchased_items[armament_entry] ? purchased_items[armament_entry] : 0,
@@ -492,7 +492,8 @@
 	if(!ishuman(user) && !issilicon(user))
 		return
 
-	if(!buyer.has_money(armament_entry.cost))
+	var/actual_cost = cost_calculate(armament_entry.cost)
+	if(!buyer.has_money(actual_cost))
 		to_chat(user, span_warning("Not enough money!"))
 		return
 
@@ -524,7 +525,7 @@
 
 	var/datum/supply_pack/armament/created_pack = new
 	created_pack.name = initial(armament_entry.item_type.name)
-	created_pack.cost = cost_calculate(armament_entry.cost) //Paid for seperately
+	created_pack.cost = actual_cost //Paid for seperately
 	created_pack.contains = list(armament_entry.item_type)
 
 	var/rank
