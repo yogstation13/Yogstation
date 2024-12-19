@@ -6062,6 +6062,7 @@
 #include "monkestation\code\game\objects\items\cirno_plush.dm"
 #include "monkestation\code\game\objects\items\emags.dm"
 #include "monkestation\code\game\objects\items\gravity_gun.dm"
+#include "monkestation\code\game\objects\items\holosign_creator.dm"
 #include "monkestation\code\game\objects\items\jukebox_beacon.dm"
 #include "monkestation\code\game\objects\items\miningweapons.dm"
 #include "monkestation\code\game\objects\items\mop.dm"
