@@ -24,7 +24,12 @@
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_RESISTLOWPRESSURE,
 		TRAIT_TOXIMMUNE,
+		// monkestation addition: pain system
+		TRAIT_ABATES_SHOCK,
+		TRAIT_ANALGESIA,
 		TRAIT_NO_PAIN_EFFECTS,
+		TRAIT_NO_SHOCK_BUILDUP,
+		// monkestation end
 		// HIGH FUNCTIONING UNIQUE
 		TRAIT_NOBLOOD,
 		TRAIT_SUCCUMB_OVERRIDE,
@@ -103,7 +108,12 @@
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_RESISTLOWPRESSURE,
 		TRAIT_TOXIMMUNE,
+		// monkestation addition: pain system
+		TRAIT_ABATES_SHOCK,
+		TRAIT_ANALGESIA,
 		TRAIT_NO_PAIN_EFFECTS,
+		TRAIT_NO_SHOCK_BUILDUP,
+		// monkestation end
 		// INFECTIOUS UNIQUE
 		TRAIT_STABLEHEART, // Replacement for noblood. Infectious zombies can bleed but don't need their heart.
 		TRAIT_STABLELIVER, // Not necessary but for consistency with above

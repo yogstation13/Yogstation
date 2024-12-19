@@ -7,31 +7,38 @@
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	armor_type = /datum/armor/hardsuit/juggernaut
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT | HEADINTERNALS
+	clothing_traits = list(
+		TRAIT_SNOWSTORM_IMMUNE,
+		TRAIT_ABATES_SHOCK,
+		TRAIT_ANALGESIA,
+		TRAIT_NO_PAIN_EFFECTS,
+		TRAIT_NO_SHOCK_BUILDUP,
+	)
 	actions_types = null
+	var/static/list/huds_shown = list(
+		DATA_HUD_DIAGNOSTIC_BASIC,
+		DATA_HUD_SECURITY_BASIC,
+		DATA_HUD_MEDICAL_ADVANCED,
+	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/juggernaut/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/radiation_protected_clothing)
 
 /obj/item/clothing/head/helmet/space/hardsuit/juggernaut/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == ITEM_SLOT_HEAD)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
-		var/datum/atom_hud/SHUD = GLOB.huds[DATA_HUD_SECURITY_BASIC]
-		var/datum/atom_hud/MHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-		DHUD.show_to(user)
-		SHUD.show_to(user)
-		MHUD.show_to(user)
+	. = ..()
+	if(slot == ITEM_SLOT_HEAD)
+		for(var/hud_type in huds_shown)
+			var/datum/atom_hud/hud = GLOB.huds[hud_type]
+			hud.show_to(user)
+		user.update_sight()
 
 /obj/item/clothing/head/helmet/space/hardsuit/juggernaut/dropped(mob/living/carbon/human/user)
-	..()
-	if (user.head == src)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
-		var/datum/atom_hud/SHUD = GLOB.huds[DATA_HUD_SECURITY_BASIC]
-		var/datum/atom_hud/MHUD = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-		DHUD.hide_from(user)
-		SHUD.hide_from(user)
-		MHUD.hide_from(user)
+	. = ..()
+	if(user.head == src)
+		for(var/hud_type in huds_shown)
+			var/datum/atom_hud/hud = GLOB.huds[hud_type]
+			hud.hide_from(user)
 		user.update_sight()
 
 /datum/action/item_action/toggle_suit_flashlight //monkestation addition
@@ -44,6 +51,13 @@
 	icon_state = "hardsuit-juggernaut"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	clothing_flags = BLOCKS_SHOVE_KNOCKDOWN | STOPSPRESSUREDAMAGE | THICKMATERIAL //you are a walking wall you can't shove a wall down!
+	clothing_traits = list(
+		TRAIT_SNOWSTORM_IMMUNE,
+		TRAIT_ABATES_SHOCK,
+		TRAIT_ANALGESIA,
+		TRAIT_NO_PAIN_EFFECTS,
+		TRAIT_NO_SHOCK_BUILDUP,
+	)
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
 	allowed = list(
 		/obj/item/ammo_box,

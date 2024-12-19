@@ -17,15 +17,28 @@
 	sol_multiplier = 3
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
+	/// Base traits granted by fortitude.
+	var/static/list/base_traits = list(
+		TRAIT_PIERCEIMMUNE,
+		TRAIT_NODISMEMBER,
+		TRAIT_PUSHIMMUNE,
+		TRAIT_NO_SPRINT,
+		TRAIT_ABATES_SHOCK,
+		TRAIT_ANALGESIA,
+		TRAIT_NO_PAIN_EFFECTS,
+		TRAIT_NO_SHOCK_BUILDUP,
+	)
+	/// Upgraded traits granted by fortitude.
+	var/static/list/upgraded_traits = list(TRAIT_STUNIMMUNE, TRAIT_CANT_STAMCRIT)
 
 /datum/action/cooldown/bloodsucker/fortitude/ActivatePower(trigger_flags)
 	. = ..()
 	owner.balloon_alert(owner, "fortitude turned on.")
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
-	owner.add_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_ANALGESIA, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_NO_SPRINT), FORTITUDE_TRAIT)
+	owner.add_traits(base_traits, FORTITUDE_TRAIT)
 	if(level_current >= 4)
-		owner.add_traits(list(TRAIT_STUNIMMUNE, TRAIT_CANT_STAMCRIT), FORTITUDE_TRAIT) // They'll get stun resistance + this, who cares.
+		owner.add_traits(upgraded_traits, FORTITUDE_TRAIT) // They'll get stun resistance + this, who cares.
 	var/mob/living/carbon/human/bloodsucker_user = owner
 	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
 		fortitude_resist = max(0.3, 0.7 - level_current * 0.1)
@@ -50,7 +63,7 @@
 		user.balloon_alert(user, "you attempt to run, crushing yourself.")
 		user.take_overall_damage(brute = rand(5, 15))
 	/// We don't want people using fortitude being able to use vehicles
-	if(user.buckled && istype(user.buckled, /obj/vehicle))
+	if(istype(user.buckled, /obj/vehicle))
 		user.buckled.unbuckle_mob(src, force=TRUE)
 
 /datum/action/cooldown/bloodsucker/fortitude/DeactivatePower()
@@ -62,7 +75,7 @@
 		if(!HAS_TRAIT_FROM(bloodsucker_user, TRAIT_STUNIMMUNE, FORTITUDE_TRAIT))
 			bloodsucker_user.physiology.stamina_mod /= fortitude_resist
 	// Remove Traits & Effects
-	owner.remove_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_ANALGESIA, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE, TRAIT_NO_SPRINT, TRAIT_STUNIMMUNE, TRAIT_CANT_STAMCRIT), FORTITUDE_TRAIT)
+	owner.remove_traits(base_traits + upgraded_traits, FORTITUDE_TRAIT)
 
 	if(was_running && bloodsucker_user.m_intent == MOVE_INTENT_WALK)
 		bloodsucker_user.set_move_intent(MOVE_INTENT_RUN)

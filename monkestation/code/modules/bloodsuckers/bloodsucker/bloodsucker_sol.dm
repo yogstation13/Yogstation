@@ -124,24 +124,31 @@
 	return HAS_TRAIT_FROM(owner.current, TRAIT_NODEATH, TORPOR_TRAIT)
 
 /datum/antagonist/bloodsucker/proc/torpor_begin()
-	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
+	var/mob/living/current = owner.current
+	if(QDELETED(current))
+		return
+	to_chat(current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
 	// Force them to go to sleep
-	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
+	REMOVE_TRAIT(current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	// Without this, you'll just keep dying while you recover.
-	owner.current.add_traits(torpor_traits, TORPOR_TRAIT)
-	owner.current.set_timed_status_effect(0 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
+	current.add_traits(torpor_traits, TORPOR_TRAIT)
+	current.set_timed_status_effect(0 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	// Disable ALL Powers
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/torpor_end()
-	owner.current.remove_status_effect(/datum/status_effect/bloodsucker_sol)
-	owner.current.grab_ghost()
-	to_chat(owner.current, span_warning("You have recovered from Torpor."))
-	owner.current.remove_traits(torpor_traits, TORPOR_TRAIT)
-	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
-		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
+	var/mob/living/current = owner.current
+	if(QDELETED(current))
+		return
+	current.remove_status_effect(/datum/status_effect/bloodsucker_sol)
+	current.grab_ghost()
+	to_chat(current, span_warning("You have recovered from Torpor."))
+	current.remove_traits(torpor_traits, TORPOR_TRAIT)
+	if(!HAS_TRAIT(current, TRAIT_MASQUERADE))
+		ADD_TRAIT(current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	heal_vampire_organs()
-	owner.current.update_stat()
+	current.pain_controller?.remove_all_pain()
+	current.update_stat()
 	SEND_SIGNAL(src, BLOODSUCKER_EXIT_TORPOR)
 
 /datum/status_effect/bloodsucker_sol
@@ -159,6 +166,7 @@
 		return FALSE
 	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_owner_moved))
+	owner.set_pain_mod(id, 1.5)
 	owner.add_traits(sol_traits, id)
 	owner.remove_filter(id)
 	owner.add_filter(id, 2, drop_shadow_filter(x = 0, y = 0, size = 3, offset = 1.5, color = "#ee7440"))
@@ -182,6 +190,7 @@
 /datum/status_effect/bloodsucker_sol/on_remove()
 	UnregisterSignal(SSsunlight, COMSIG_SOL_END)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	owner.unset_pain_mod(id)
 	owner.remove_traits(sol_traits, id)
 	owner.remove_filter(id)
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/bloodsucker_sol)
