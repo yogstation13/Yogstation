@@ -22,6 +22,10 @@
 	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_EXTERNAL, TAG_ALIEN)
 	checks_antag_cap = TRUE
 
+/datum/round_event_control/antagonist/solo/blob_infection
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_EXTERNAL, TAG_ALIEN)
+	checks_antag_cap = TRUE
+	
 /datum/round_event_control/brain_trauma
 	track = EVENT_TRACK_MUNDANE
 	tags = list(TAG_TARGETED, TAG_MAGICAL) //im putting magical on this because I think this can give the magic brain traumas

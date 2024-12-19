@@ -225,7 +225,9 @@ Medical HUD! Basic mode needs suit sensors on.
 
 	var/virus_threat = check_virus()
 	holder.pixel_y = get_cached_height() - world.icon_size
-	if(HAS_TRAIT(src, TRAIT_XENO_HOST))
+	if(HAS_TRAIT(src, TRAIT_BLOB_ALLY)) //Monkestation edit: In the edge where case a blob host has a xeno in them. I think the fact they are a blob host is more important.
+		holder.icon_state = "hudill5"
+	else if(HAS_TRAIT(src, TRAIT_XENO_HOST))
 		holder.icon_state = "hudxeno"
 	else if(stat == DEAD || (HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 		if((key || get_ghost(FALSE, TRUE)) && (can_defib() & DEFIB_REVIVABLE_STATES))
