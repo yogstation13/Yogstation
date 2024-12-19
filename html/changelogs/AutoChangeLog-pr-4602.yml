@@ -1,0 +1,4 @@
+author: "Gboster-0"
+delete-after: True
+changes:
+  - qol: "Made pride pins display their pride in the name, like \"transexual pride pin\" instead of \"pride pin\""
