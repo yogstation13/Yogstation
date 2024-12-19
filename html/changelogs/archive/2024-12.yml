@@ -250,3 +250,24 @@
   - balance: Made the multi cell wall charger not charge at KW instead of W
   ThePooba:
   - rscdel: Eeble plush removed.
+2024-12-19:
+  Absolucy:
+  - bugfix: Zombies and nightmares should now properly be immune to pain.
+  - balance: The Cybersun Juggernaut suit now provides the wearer with immunity to
+      pain and its effects.
+  - balance: Florida Man is now immune to pain and its effects.
+  - balance: Ascended rust heretics, while on rusted tiles, are immune to pain and
+      its effects.
+  - balance: Ascended blade heretic lifesteal now heals pain and reduce shock buildup.
+  - balance: Bloodsuckers are now fully immune to pain and its effects while Fortitude
+      is active.
+  - balance: Bloodsuckers now heal off pain while in torpor.
+  - balance: Bloodsuckers gain a 50% *increase* in pain from the debuff applied while
+      out during Sol.
+  - code_imp: Added some additional sanity checks to pain code, to prevent potential
+      runtime errors.
+  - balance: Clown spawner artifacts will no longer spawn another spawner if the previous
+      one still exists.
+  ThePooba:
+  - bugfix: nerfs christmas presents and allows the real chrimas presents to spawn
+  - bugfix: blob zombie event wont spawn you on asteroids and shit anymore
