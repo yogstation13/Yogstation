@@ -59,6 +59,10 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 /datum/meta_token_holder/proc/convert_list_to_tokens(list/saved_tokens)
 	if(!length(saved_tokens))
 		return
+	for(var/token in saved_tokens)
+		if(isnull(saved_tokens[token]))
+			saved_tokens[token] = 0
+
 	total_low_threat_tokens = saved_tokens["low_threat"]
 	total_medium_threat_tokens = saved_tokens["medium_threat"]
 	total_high_threat_tokens = saved_tokens["high_threat"]
@@ -92,13 +96,14 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	if(!patreon?.has_access(ACCESS_COMMAND_RANK))
 		return FALSE
 	var/month_number = text2num(time2text(world.time, "MM"))
-	owner.prefs.token_month = month_number
 	if(owner.prefs.token_month != month_number)
 		owner.prefs.adjust_metacoins(owner?.ckey, 10000, "Monthly Monkecoin rations.", TRUE, FALSE, FALSE)
 	if(!patreon.has_access(ACCESS_TRAITOR_RANK))
 		owner.prefs.save_preferences()
+		owner.prefs.token_month = month_number
 		return FALSE
 	if(owner.prefs.token_month == month_number)
+		owner.prefs.token_month = month_number
 		return FALSE
 	donator_token++
 	owner.prefs.token_month = month_number
