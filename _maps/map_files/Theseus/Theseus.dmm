@@ -4443,6 +4443,15 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/security/range)
+"bqW" = (
+/obj/effect/turf_decal/tile/neutral/full,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/closet/emcloset,
+/turf/open/floor/iron,
+/area/station/security/processing)
 "brm" = (
 /obj/machinery/chem_master/condimaster{
 	name = "CondiMaster Neo"
@@ -9450,7 +9459,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Gulag Shuttle Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /turf/open/floor/plating,
 /area/station/security/processing)
 "cQj" = (
@@ -19743,10 +19751,6 @@
 /turf/open/floor/iron,
 /area/station/construction)
 "fVH" = (
-/obj/machinery/computer/prisoner/gulag_teleporter_computer{
-	dir = 8
-	},
-/obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
@@ -19756,6 +19760,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/gulag_teleporter,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/directional/east,
 /turf/open/floor/iron,
 /area/station/security/processing)
 "fVQ" = (
@@ -21898,21 +21905,16 @@
 /turf/open/floor/iron/dark,
 /area/station/security/warden)
 "gFe" = (
-/obj/machinery/gulag_teleporter,
-/obj/effect/turf_decal/bot,
-/obj/machinery/gulag_item_reclaimer{
-	pixel_x = 31
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/neutral/half{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/trimline/red/filled/corner,
+/obj/effect/turf_decal/trimline/red/filled/corner{
+	dir = 4
+	},
 /turf/open/floor/iron,
 /area/station/security/processing)
 "gFf" = (
@@ -33984,6 +33986,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/xmastree,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
 "kgT" = (
@@ -42128,13 +42131,15 @@
 /turf/closed/wall,
 /area/station/commons/fitness/recreation/entertainment)
 "mxA" = (
-/obj/structure/closet/emcloset,
-/obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 6
 	},
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
+/obj/machinery/computer/prisoner/gulag_teleporter_computer{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/station/security/processing)
 "mxD" = (
@@ -55293,12 +55298,13 @@
 /area/station/hallway/primary/central/fore)
 "qtB" = (
 /obj/structure/table,
-/obj/item/knife{
+/obj/item/knife/kitchen{
 	pixel_x = -1;
 	pixel_y = 5
 	},
-/obj/item/knife{
-	pixel_x = -10
+/obj/item/knife/kitchen{
+	pixel_x = -10;
+	pixel_y = 0
 	},
 /obj/item/reagent_containers/cup/rag{
 	pixel_y = 5;
@@ -58457,6 +58463,17 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/central)
+"roL" = (
+/obj/machinery/door/airlock/security,
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/end{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/station/maintenance/port/fore)
 "rpb" = (
 /turf/open/floor/engine/plasma,
 /area/station/engineering/atmos)
@@ -67254,7 +67271,6 @@
 /turf/open/floor/carpet,
 /area/station/hallway/secondary/exit/departure_lounge)
 "tQX" = (
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -67263,6 +67279,10 @@
 	},
 /obj/structure/cable,
 /obj/machinery/camera/directional/east,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/gulag_item_reclaimer{
+	pixel_x = 31
+	},
 /turf/open/floor/iron,
 /area/station/security/processing)
 "tQY" = (
@@ -77835,7 +77855,6 @@
 /obj/machinery/door/airlock/external{
 	name = "Gulag Shuttle Airlock"
 	},
-/obj/effect/mapping_helpers/airlock/access/all/security/brig,
 /obj/machinery/light/floor/has_bulb,
 /turf/open/floor/plating,
 /area/station/security/processing)
@@ -109295,7 +109314,7 @@ fTB
 ctl
 fTB
 rtt
-cze
+bqW
 mBO
 gxT
 xhM
@@ -110066,7 +110085,7 @@ ijL
 ijL
 ijL
 ijL
-ijL
+roL
 ijL
 ijL
 xhM

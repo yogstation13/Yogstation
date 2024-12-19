@@ -204,7 +204,7 @@
 /obj/item/radio/headset/headset_bs
 	name = "\proper the blueshield's headset"
 	desc = "The headset of the guy who keeps the administration alive."
-	icon = 'monkestation/code/modules/blueshield/icons/radio.dmi'
+	icon = 'monkestation/icons/obj/radio.dmi'
 	worn_icon = 'monkestation/code/modules/blueshift/icons/mob/clothing/ears.dmi'
 	icon_state = "bshield_headset"
 	worn_icon_state = "bshield_headset"

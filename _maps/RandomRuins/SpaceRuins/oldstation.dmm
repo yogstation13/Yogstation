@@ -4847,10 +4847,13 @@
 /area/ruin/space/ancientstation/beta/medbay)
 "ui" = (
 /obj/effect/decal/cleanable/shreds,
-/obj/structure/alien/weeds,
 /obj/structure/closet/crate/secure/science{
 	req_access = list("away_science")
 	},
+/obj/item/encryptionkey/headset_uncommon,
+/obj/item/encryptionkey/headset_uncommon,
+/obj/item/encryptionkey/headset_uncommon,
+/obj/structure/alien/weeds,
 /obj/item/transfer_valve,
 /obj/item/raw_anomaly_core/bluespace,
 /obj/item/raw_anomaly_core/random,
@@ -8624,13 +8627,13 @@
 /turf/open/floor/iron/solarpanel/airless,
 /area/ruin/space/solars/ancientstation/charlie/solars)
 "Uh" = (
-/obj/machinery/power/supermatter_crystal/shard,
 /obj/structure/closet/crate/engineering{
 	name = "supermatter shard crate";
 	secure = 1;
 	locked = 1;
 	icon_state = "engi_secure_crate"
 	},
+/obj/machinery/power/supermatter_crystal/shard/oldstation,
 /turf/open/floor/iron/white/textured,
 /area/ruin/space/ancientstation/delta/proto)
 "Uj" = (

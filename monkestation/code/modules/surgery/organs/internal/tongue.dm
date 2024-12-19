@@ -38,3 +38,57 @@
 
 /obj/item/organ/internal/tongue/arachnid/get_possible_languages()
 	return ..() + /datum/language/buzzwords
+
+/obj/item/organ/internal/tongue/jelly
+	zone = BODY_ZONE_CHEST
+	organ_flags = ORGAN_UNREMOVABLE
+
+/obj/item/organ/internal/tongue/jelly/get_possible_languages()
+	return ..() + /datum/language/slime
+
+/obj/item/organ/internal/tongue/synth
+	name = "synthetic voicebox"
+	desc = "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	icon = 'monkestation/code/modules/smithing/icons/ipc_organ.dmi'
+	icon_state = "cybertongue"
+	say_mod = "beeps"
+	attack_verb_continuous = list("beeps", "boops")
+	attack_verb_simple = list("beep", "boop")
+	modifies_speech = TRUE
+	taste_sensitivity = 25 // not as good as an organic tongue
+	maxHealth = 100 //RoboTongue!
+	zone = BODY_ZONE_HEAD
+	slot = ORGAN_SLOT_TONGUE
+	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES
+
+/obj/item/organ/internal/tongue/synth/get_scream_sound()
+	return 'monkestation/sound/voice/screams/silicon/scream_silicon.ogg'
+
+/obj/item/organ/internal/tongue/synth/get_laugh_sound()
+	return pick(
+		'monkestation/sound/voice/laugh/silicon/laugh_siliconE1M0.ogg',
+		'monkestation/sound/voice/laugh/silicon/laugh_siliconE1M1.ogg',
+		'monkestation/sound/voice/laugh/silicon/laugh_siliconM2.ogg',
+	)
+
+/obj/item/organ/internal/tongue/synth/can_speak_language(language)
+	return TRUE
+
+/obj/item/organ/internal/tongue/synth/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
+
+/datum/design/synth_tongue
+	name = "Synthetic Tongue"
+	desc = "A fully-functional synthetic tongue, encased in soft silicone. Features include high-resolution vocals and taste receptors."
+	id = "synth_tongue"
+	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
+	construction_time = 4 SECONDS
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/organ/internal/tongue/synth
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_1
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE

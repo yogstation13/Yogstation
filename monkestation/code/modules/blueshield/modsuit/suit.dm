@@ -1,6 +1,6 @@
 /obj/item/mod/control/pre_equipped/blueshield
-	worn_icon = 'monkestation/code/modules/blueshield/icons/worn_praetorian.dmi'
-	icon = 'monkestation/code/modules/blueshield/icons/praetorian.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/worn_modsuit.dmi'
+	icon = 'monkestation/icons/obj/clothing/modsuits/modsuit.dmi'
 	icon_state = "praetorian-control"
 	theme = /datum/mod_theme/blueshield
 	applied_cell = /obj/item/stock_parts/cell/high

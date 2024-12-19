@@ -50,3 +50,51 @@
 	name = "tundra moth eyes"
 	eye_icon_state = "tundramotheyes"
 	icon_state = "eyeballs-tundramoth"
+
+/obj/item/organ/internal/eyes/jelly
+	name = "photosensitive eyespots"
+	zone = BODY_ZONE_CHEST
+	organ_flags = ORGAN_UNREMOVABLE
+
+/obj/item/organ/internal/eyes/roundstartslime
+	name = "photosensitive eyespots"
+	zone = BODY_ZONE_CHEST
+	organ_flags = ORGAN_UNREMOVABLE
+
+/obj/item/organ/internal/eyes/synth
+	name = "optical sensors"
+	icon_state = "cybernetic_eyeballs"
+	desc = "A very basic set of optical sensors with no extra vision modes or functions."
+	maxHealth = 1 * STANDARD_ORGAN_THRESHOLD
+	flash_protect = FLASH_PROTECTION_WELDER
+	organ_flags = ORGAN_ROBOTIC | ORGAN_SYNTHETIC_FROM_SPECIES | ORGAN_DOESNT_PROTECT_AGAINST_CONVERSION
+
+/obj/item/organ/internal/eyes/synth/emp_act(severity)
+	. = ..()
+
+	if(!owner || . & EMP_PROTECT_SELF)
+		return
+
+	switch(severity)
+		if(EMP_HEAVY)
+			to_chat(owner, span_warning("Alert:Severe electromagnetic interference clouds your optics with static. Error Code: I-CS6"))
+			apply_organ_damage(SYNTH_ORGAN_HEAVY_EMP_DAMAGE, maxHealth, required_organtype = ORGAN_ROBOTIC)
+		if(EMP_LIGHT)
+			to_chat(owner, span_warning("Alert: Mild interference clouds your optics with static. Error Code: I-CS0"))
+			apply_organ_damage(SYNTH_ORGAN_LIGHT_EMP_DAMAGE, maxHealth, required_organtype = ORGAN_ROBOTIC)
+
+/datum/design/synth_eyes
+	name = "Optical Sensors"
+	desc = "A very basic set of optical sensors with no extra vision modes or functions."
+	id = "synth_eyes"
+	build_type = PROTOLATHE | AWAY_LATHE | MECHFAB
+	construction_time = 4 SECONDS
+	materials = list(
+		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/organ/internal/eyes/synth
+	category = list(
+		RND_CATEGORY_CYBERNETICS + RND_SUBCATEGORY_CYBERNETICS_ORGANS_1
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL | DEPARTMENT_BITFLAG_SCIENCE

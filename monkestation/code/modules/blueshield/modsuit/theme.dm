@@ -22,8 +22,8 @@
 	)
 	skins = list(
 		"praetorian" = list(
-			MOD_ICON_OVERRIDE = 'monkestation/code/modules/blueshield/icons/praetorian.dmi',
-			MOD_WORN_ICON_OVERRIDE = 'monkestation/code/modules/blueshield/icons/worn_praetorian.dmi',
+			MOD_ICON_OVERRIDE = 'monkestation/icons/obj/clothing/modsuits/modsuit.dmi',
+			MOD_WORN_ICON_OVERRIDE = 'monkestation/icons/mob/clothing/worn_modsuit.dmi',
 			HELMET_FLAGS = list(
 				UNSEALED_LAYER = null,
 				UNSEALED_CLOTHING = SNUG_FIT|THICKMATERIAL,
