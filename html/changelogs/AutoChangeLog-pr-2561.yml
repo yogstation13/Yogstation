@@ -1,0 +1,4 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - rscadd: "EMPing a holosign creator, will destroy all of the holosigns."
