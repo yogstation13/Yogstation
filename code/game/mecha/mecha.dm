@@ -12,7 +12,6 @@
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_range = 8
 	light_on = FALSE
-	flags_1 = HEAR_1
 	demolition_mod = 3 // mech punch go brr
 	var/weather_protection = WEATHER_STORM
 	var/ruin_mecha = FALSE //if the mecha starts on a ruin, don't automatically give it a tracking beacon to prevent metagaming.
@@ -171,6 +170,7 @@
 	diag_hud_set_mechoverheat()
 	RegisterSignal(src, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
 	ADD_TRAIT(src, TRAIT_SHIELDBUSTER, INNATE_TRAIT) // previously it didn't even check shields at all, now it still doesn't but does some fun stuff in the process
+	become_hearing_sensitive()
 
 /// Special light eater handling
 /obj/mecha/proc/on_light_eater(obj/vehicle/sealed/source, datum/light_eater)
@@ -203,6 +203,7 @@
 		else
 			M.forceMove(loc)
 	force_eject_occupant()
+	lose_hearing_sensitivity()
 	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 		E.detach(loc)
 		qdel(E)
@@ -537,7 +538,7 @@
 /obj/mecha/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(speaker == occupant)
-		if(radio?.broadcasting)
+		if(radio?.get_broadcasting())
 			radio.talk_into(speaker, text, , spans, message_language, message_mods)
 		//flick speech bubble
 		var/list/speech_bubble_recipients = list()
