@@ -1,0 +1,10 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "brought the Christmas spirit (tree) to Thesues!"
+  - rscadd: "Gave Ancient/charlie/oldstation a supermatter shard that gives its warnings on Uncommon frequency"
+  - rscadd: "Added three uncommon radio keys to the science box on charlie so borgs can get the frequency"
+  - bugfix: "Replaced knifes in Theseus's kitchen with kitchen knives. Now (nothing changes) chefs can use their knifes in peace."
+  - bugfix: "Made it so you can actually leave the Theseus Gulag shuttle."
+  - bugfix: "added missing job to Icons for alt title jobs."
+  - bugfix: "Ipc surgery research now works as intended"
