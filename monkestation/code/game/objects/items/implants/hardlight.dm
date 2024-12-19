@@ -189,6 +189,7 @@
 	righthand_file = 'monkestation/icons/mob/inhands/polearms_righthand.dmi'
 	slot_flags = null
 	can_charge = FALSE //ITS A SPEAR
+	interaction_flags_item = NONE
 	item_flags = NEEDS_PERMIT | DROPDEL | ABSTRACT | NO_MAT_REDEMPTION
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	light_system = OVERLAY_LIGHT
@@ -197,6 +198,10 @@
 	max_charges = 1
 	var/spears_left = 5
 	ammo_type = /obj/item/ammo_casing/magic/hardlight_spear
+
+//obj/item/gun/magic/hardlight_spear/attack_hand(mob/user, list/modifiers)
+//	. = ..()
+
 
 /obj/item/gun/magic/hardlight_spear/Initialize(mapload)
 	. = ..()

@@ -97,7 +97,7 @@
 /datum/artifact_effect/bomb/explosive/payload()
 	if(!..())
 		return FALSE
-	explosion(our_artifact.holder, devast,heavy,light,light*1.5)
+	explosion(our_artifact.holder.loc, devast,heavy,light,light*1.5)
 	on_destroy(src)
 
 /// DEVESTATING BOMB

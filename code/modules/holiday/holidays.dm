@@ -816,8 +816,7 @@
 		list(
 			/obj/item/toy/xmas_cracker = 3,
 			/obj/item/clothing/head/costume/santa = 1,
-			/obj/item/a_gift/anything = 1,
-			/obj/item/a_gift = 4
+			/obj/item/a_gift/anything = 1
 		) = maint_holiday_weight,
 	)
 

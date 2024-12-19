@@ -43,7 +43,7 @@
 			active = FALSE
 			var/turf/open/tile = get_turf(src)
 			if(istype(tile))
-				tile.atmos_spawn_air("o2=10;plasma=1;TEMP=3000")
+				tile.atmos_spawn_air("o2=45;plasma=15;TEMP=6000")
 			return
 
 		var/mob/living/basic/pet/chosen_pet = pick(pet_type_cache)

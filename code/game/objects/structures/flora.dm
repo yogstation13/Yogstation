@@ -462,10 +462,10 @@
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
-	if(prob(50))
+	if(prob(5))
 		user.put_in_hands(new gift_type(drop_location()))
 		return
-	if(prob(1))
+	if(prob(1)) //evil pooba monke moment
 		new /mob/living/carbon/human/species/monkey/angry(drop_location())
 		to_chat(user, span_warning("A live monkey crawls out of the gift... its PISSED!!!"))
 		return

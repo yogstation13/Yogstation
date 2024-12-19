@@ -116,17 +116,24 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		//
 		// Subtypes of these items will also be blocked.
 		var/list/blocked_items = list(
-			// Can crash people if too many are spawned.
-			// NOTE: Not likely to be an issue if the amount is kept low - perhaps a limited variant
-			// of this (i.e. can only spawn up to 25 humans) could be added for players to use?
-			/obj/item/debug/human_spawner,
 			// Just leaves the coordinates everywhere
 			/obj/item/gps/visible_debug,
 			// Can lag the hell out of the server
 			/obj/item/gun/energy/recharge/kinetic_accelerator/meme,
 			// Per Biddi's suggestion; plus doesn't seem to do much anyways?
 			/obj/item/research,
-		)
+			//only upsets people consistantly
+			/obj/item/gun/magic/wand/death,
+			/obj/item/gun/magic/wand/resurrection/debug,
+			//holy fuck why was this enabled
+			/obj/item/debug,
+			/obj/item/storage/box/debugtools,
+			/obj/item/gun/energy/beam_rifle/debug,
+			/obj/item/multitool/field_debug,
+			/obj/item/bounty_cube/debug_cube,
+			/obj/item/organ/internal/cyberimp/brain/nif/debug,
+			/obj/item/spellbook_charge/debug,
+			)
 		for(var/blocked_item as anything in blocked_items)
 			// Block the item listed, and any subtypes too.
 			gift_types_list -= typesof(blocked_item)
