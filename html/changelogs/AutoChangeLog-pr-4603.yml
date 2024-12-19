@@ -1,6 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Added Blob Infections as a triggerable event. A dormant host containing acting as the vessel of a Overmind in them."
-  - balance: "Infected Blob hosts will show as sick no matter their active state."
-  - balance: "Lowered the weight of blobs spawning."

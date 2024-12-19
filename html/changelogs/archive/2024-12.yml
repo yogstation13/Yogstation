@@ -268,6 +268,49 @@
       runtime errors.
   - balance: Clown spawner artifacts will no longer spawn another spawner if the previous
       one still exists.
+  - bugfix: The cargo imports UI now shows the correct price when the station has
+      strong or distant supply lines.
+  - bugfix: Ordering from cargo imports now actually checks to see if you have the
+      correct amount of money when the station has strong or distant supply lines.
+  - qol: There is now a chat notice and a visual indicator in the lobby for when there's
+      a non-standard overflow.
+  - qol: Added a preference (disabled by default) to confirm readying up when there's
+      a non-standard overflow.
+  - bugfix: Fixed a bug where the overflow station trait could roll assistants, which
+      just did... nothing.
+  Gboster-0:
+  - qol: Made pride pins display their pride in the name, like "transexual pride pin"
+      instead of "pride pin"
+  Gw0sty:
+  - rscadd: brought the Christmas spirit (tree) to Thesues!
+  - rscadd: Gave Ancient/charlie/oldstation a supermatter shard that gives its warnings
+      on Uncommon frequency
+  - rscadd: Added three uncommon radio keys to the science box on charlie so borgs
+      can get the frequency
+  - bugfix: Replaced knifes in Theseus's kitchen with kitchen knives. Now (nothing
+      changes) chefs can use their knifes in peace.
+  - bugfix: Made it so you can actually leave the Theseus Gulag shuttle.
+  - bugfix: added missing job to Icons for alt title jobs.
+  - bugfix: Ipc surgery research now works as intended
+  - rscadd: Added Blob Infections as a triggerable event. A dormant host containing
+      acting as the vessel of a Overmind in them.
+  - balance: Infected Blob hosts will show as sick no matter their active state.
+  - balance: Lowered the weight of blobs spawning.
+  - balance: Research directors remote now has AI upload access.
+  Loiosh42:
+  - balance: Tweaks AP shotgun shells, and gives them pierce
+  - balance: Nerfs the Bobr
+  - balance: Gives the Wylom AM rifle pierce
   ThePooba:
   - bugfix: nerfs christmas presents and allows the real chrimas presents to spawn
   - bugfix: blob zombie event wont spawn you on asteroids and shit anymore
+  - balance: christmas presents from 50% to 5% chance to get the "toys only" christmas
+      present so you gusy get your op bullshit back, but added some stinky stuff to
+      blacklist like the item spawner wand and the var edit wand(what the fuck)
+  - balance: thermonuclear catsplosion more dangerous, twice as likely
+  - bugfix: Added no interact to hardlight spears so you cant switch them in hand
+      and hardlock yourself
+  - bugfix: i think tiny artifacts can now detonate properly now i couldnt get them
+      to spawn properly
+  Uristthedorf:
+  - rscadd: EMPing a holosign creator, will destroy all of the holosigns.

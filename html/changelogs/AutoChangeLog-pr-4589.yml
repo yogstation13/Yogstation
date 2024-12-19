@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - qol: "There is now a chat notice and a visual indicator in the lobby for when there's a non-standard overflow."
-  - qol: "Added a preference (disabled by default) to confirm readying up when there's a non-standard overflow."
-  - bugfix: "Fixed a bug where the overflow station trait could roll assistants, which just did... nothing."
