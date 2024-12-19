@@ -195,6 +195,18 @@ GLOBAL_LIST_INIT(pride_pin_reskins, list(
 	. = ..()
 	unique_reskin = GLOB.pride_pin_reskins
 
+/obj/item/clothing/accessory/pride/reskin_obj(mob/M)
+	. = ..()
+	post_reskin(M)
+
+/obj/item/clothing/accessory/pride/post_reskin(mob/our_mob)
+	for(var/pride_name as anything in GLOB.pride_pin_reskins)
+		if(GLOB.pride_pin_reskins[pride_name] == icon_state)
+			name = "[lowertext(pride_name)] pin"
+			return
+
+	name = initial(name) // If we somehow fail to find our pride in the global list, just make us generic
+
 ///Awarded for being dutiful and extinguishing the debt from the "Indebted" quirk.
 /obj/item/clothing/accessory/debt_payer_pin
 	name = "debt payer pin"

@@ -18,6 +18,7 @@
 
 	pin.current_skin = pride_choice
 	pin.icon_state = pride_reskin
+	pin.post_reskin()
 	//MONKESTATION EDIT START
 	var/mob/living/carbon/human/H = quirk_holder
 	if (istype(H))
