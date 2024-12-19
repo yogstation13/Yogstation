@@ -19367,6 +19367,11 @@
 	},
 /turf/open/floor/carpet/red,
 /area/cruiser_dock)
+"bhS" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "bip" = (
 /obj/effect/spawner/random/vending/snackvend,
 /obj/effect/turf_decal/bot_white,
@@ -19542,6 +19547,12 @@
 	},
 /turf/open/water/arena,
 /area/centcom/central_command_areas/admin)
+"bxX" = (
+/obj/effect/spawner/random/trash/hobo_squat,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "bys" = (
 /obj/structure/sign/departments/chemistry/alt/directional/east,
 /obj/effect/turf_decal/tile/orange/half/contrasted{
@@ -19738,6 +19749,20 @@
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/hall)
+"bYc" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/effect/spawner/random/trash/caution_sign,
+/turf/open/floor/grass,
+/area/centcom/central_command_areas/admin)
+"bYp" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/spawner/random/trash/caution_sign,
+/turf/open/floor/grass,
+/area/centcom/central_command_areas/admin)
 "bYA" = (
 /obj/machinery/light/neon_lining{
 	dir = 1;
@@ -20170,6 +20195,11 @@
 	},
 /turf/open/floor/iron/white/textured,
 /area/centcom/central_command_areas/admin)
+"cYr" = (
+/obj/structure/bonfire/prelit,
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "dbJ" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Veth's Plantery"
@@ -20686,6 +20716,13 @@
 "exa" = (
 /turf/open/floor/sandy_dirt,
 /area/centcom/central_command_areas/admin)
+"exj" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/cigbutt,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "exk" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -21732,6 +21769,25 @@
 /obj/item/clothing/under/costume/gondola,
 /turf/open/floor/eighties/red,
 /area/centcom/central_command_areas/admin)
+"gUv" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/graffiti,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/cigbutt,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
+"gWc" = (
+/obj/effect/turf_decal/caution/red{
+	pixel_y = -15
+	},
+/obj/effect/turf_decal/caution/red,
+/obj/effect/turf_decal/caution/red{
+	pixel_y = -8
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/centcom/central_command_areas/admin)
 "gXp" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -22224,6 +22280,13 @@
 	dir = 8
 	},
 /area/centcom/central_command_areas/adminroom)
+"hPF" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/effect/spawner/random/trash/caution_sign,
+/turf/open/floor/grass,
+/area/centcom/central_command_areas/admin)
 "hQH" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L13"
@@ -23029,6 +23092,13 @@
 /obj/structure/fake_stairs/wood/directional/north,
 /turf/open/misc/dirt/station,
 /area/centcom/central_command_areas/retirement_yard)
+"jUo" = (
+/obj/machinery/computer/camera_advanced{
+	dir = 8
+	},
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "jUG" = (
 /mob/living/basic/xenofauna/meatbeast,
 /turf/open/floor/material/meat,
@@ -23351,6 +23421,10 @@
 /obj/machinery/light/directional/north,
 /turf/open/water/arena,
 /area/centcom/central_command_areas/admin)
+"kSK" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "kSU" = (
 /obj/structure/mineral_door/wood{
 	color = "543e27";
@@ -23773,6 +23847,12 @@
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/adminroom)
+"msE" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "mvd" = (
 /obj/effect/decal/cleanable/blood/gibs/limb{
 	dir = 8;
@@ -24164,6 +24244,12 @@
 /obj/machinery/scanner_gate,
 /turf/open/floor/sandy_dirt,
 /area/centcom/central_command_areas/admin)
+"nGN" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "nHl" = (
 /obj/structure/flora/grass/jungle/b/style_2,
 /turf/open/misc/dirt/station,
@@ -24473,6 +24559,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/admin)
+"oBb" = (
+/obj/structure/barricade/wooden/crude,
+/turf/closed/indestructible/fakeglass,
+/area/centcom/central_command_areas/adminroom)
 "oBm" = (
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 4
@@ -24759,6 +24849,13 @@
 /obj/structure/mop_bucket,
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"ptP" = (
+/obj/machinery/computer/communications/syndicate{
+	dir = 8
+	},
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "pvq" = (
 /obj/machinery/biomass_recycler,
 /obj/item/stack/biomass,
@@ -25342,6 +25439,13 @@
 	},
 /turf/open/misc/sandy_dirt,
 /area/centcom/central_command_areas/admin)
+"qNR" = (
+/obj/structure/chair/comfy/teal{
+	dir = 4
+	},
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "qOJ" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -25972,6 +26076,10 @@
 	},
 /turf/open/floor/carpet/neon/simple/green/nodots,
 /area/centcom/central_command_areas/admin)
+"sHS" = (
+/obj/structure/bed/maint,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "sIk" = (
 /obj/machinery/light/floor/has_bulb,
 /obj/structure/window/reinforced/spawner/directional/west{
@@ -26029,6 +26137,12 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/centcom/central_command_areas/admin)
+"sRa" = (
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "sRv" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 1
@@ -26036,6 +26150,11 @@
 /obj/structure/shipping_container/vitezstvi,
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"sSL" = (
+/obj/structure/barricade/wooden/crude,
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/closed/indestructible/fakeglass,
+/area/centcom/central_command_areas/adminroom)
 "sTV" = (
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 4
@@ -26688,6 +26807,14 @@
 	},
 /turf/open/floor/glass/plasma,
 /area/centcom/central_command_areas/adminroom)
+"uFf" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/mess,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "uGL" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/turf_decal/bot_white,
@@ -26696,6 +26823,13 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/cruiser_dock)
+"uHB" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "uIG" = (
 /obj/machinery/door/airlock/centcom{
 	name = "NT Helpdesk"
@@ -26740,6 +26874,12 @@
 /obj/effect/mapping_helpers/airlock/access/any/admin/captain,
 /turf/open/floor/iron/dark/smooth_large,
 /area/centcom/central_command_areas/admin)
+"uPO" = (
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/cigbutt,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "uPS" = (
 /obj/effect/turf_decal/siding/dark_green{
 	dir = 8
@@ -26751,6 +26891,12 @@
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/admin)
+"uRb" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/graffiti,
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "uSs" = (
 /obj/structure/statue/sandstone/venus{
 	dir = 1;
@@ -27079,6 +27225,16 @@
 "vFm" = (
 /turf/open/floor/mineral/titanium/purple,
 /area/centcom/central_command_areas/adminroom)
+"vFv" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "vFK" = (
 /obj/structure/window/reinforced/spawner/directional/south,
 /obj/machinery/chem_heater/debug,
@@ -27318,11 +27474,23 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/evacuation)
+"wdA" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/cigbutt,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "wel" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/flora/bush/pale/style_3,
 /turf/open/misc/dirt/station,
 /area/centcom/central_command_areas/admin)
+"wfx" = (
+/obj/structure/barricade/wooden/crude,
+/obj/structure/curtain/cloth,
+/turf/closed/indestructible/fakeglass,
+/area/centcom/central_command_areas/adminroom)
 "wge" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -27660,6 +27828,11 @@
 	dir = 8
 	},
 /area/cruiser_dock)
+"wTG" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/iron/vaporwave,
+/area/centcom/central_command_areas/adminroom)
 "wTZ" = (
 /obj/machinery/vending/coffee,
 /obj/effect/turf_decal/bot_white,
@@ -27992,6 +28165,14 @@
 	},
 /turf/closed/indestructible/wood,
 /area/centcom/central_command_areas/admin)
+"xQP" = (
+/obj/effect/spawner/random/trash/bacteria,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/garbage,
+/obj/effect/spawner/random/trash/cigbutt,
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/plating/rust,
+/area/centcom/central_command_areas/adminroom)
 "xRr" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -53192,17 +53373,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aOn
+aOn
+aOn
+aOn
+aOn
+kpH
+kpH
+kpH
+kpH
+kpH
+kpH
 aaa
 aaa
 aaa
@@ -53449,17 +53630,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aOn
+yhF
+mUv
+yhF
+bYp
+wfx
+exj
+uHB
+vFv
+cYr
+kpH
 aaa
 aaa
 aaa
@@ -53706,17 +53887,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aOn
+yhF
+mUv
+yhF
+bYc
+wfx
+msE
+uFf
+xQP
+wTG
+kpH
 aaa
 aaa
 aaa
@@ -53963,17 +54144,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aOn
+yhF
+mUv
+yhF
+gWc
+kSK
+nGN
+uRb
+sRa
+bhS
+kpH
 aaa
 aaa
 aaa
@@ -54220,17 +54401,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aOn
+yhF
+mUv
+yhF
+hPF
+wfx
+bxX
+qNR
+gUv
+wdA
+kpH
 aaa
 aaa
 aaa
@@ -54477,17 +54658,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aOn
+yhF
+mUv
+yhF
+bYp
+wfx
+uPO
+ptP
+jUo
+sHS
+kpH
 aaa
 aaa
 aaa
@@ -54735,14 +54916,14 @@ kpH
 kpH
 kpH
 aOn
-aOn
-aOn
-aOn
+yhF
+mUv
+yhF
 aOn
 kpH
+sSL
 kpH
-kpH
-kpH
+oBb
 kpH
 kpH
 aaa
