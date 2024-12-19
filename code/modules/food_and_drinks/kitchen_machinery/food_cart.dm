@@ -1,7 +1,3 @@
-#define STORAGE_CAPACITY 30
-#define LIQUID_CAPACIY 200
-#define MIXER_CAPACITY 100
-
 /obj/machinery/food_cart
 	name = "food cart"
 	desc = "New generation hot dog stand."
@@ -10,151 +6,258 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
-	var/food_stored = 0
-	var/glasses = 0
-	var/portion = 10
-	var/selected_drink
-	var/list/stored_food = list()
+	//Max amount of items that can be in the cart's contents list
+	var/contents_capacity = 80
+	//How many drinking glasses the cart has
+	var/glass_quantity = 10
+	//Max amount of drink glasses the cart can have
+	var/glass_capacity = 30
+	//Max amount of reagents that can be in cart's storage
+	var/reagent_capacity = 200
+	//Sound made when an item is dispensed
+	var/dispense_sound = 'sound/machines/click.ogg'
+	//Sound made when an item is inserted
+	var/insert_sound = 'sound/effects/rustle2.ogg'
+	//Sound made when selecting/deselecting an item
+	var/select_sound = 'sound/machines/doorclick.ogg'
+	//List used to show food items in UI
+	var/list/food_ui_list = list()
+	//List of transfer amounts for reagents
+	var/list/transfer_list = list(5, 10, 15, 20, 30, 50)
+	//What transfer amount is currently selected
+	var/selected_transfer = 0
+	//Mixer for dispencing drinks
 	var/obj/item/reagent_containers/mixer
+
+/obj/machinery/food_cart/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "FoodCart", name)
+		ui.open()
+
+/obj/machinery/food_cart/ui_data(mob/user)
+	//Define data for sending info to UI
+	var/list/data = list()
+
+	//Define lists for each property of data so that they send to UI regardless of what happens
+	//Thanks bug eating lizard and offbeatwitch for helping solve UI updating issue
+	data["food"] = list()
+	data["mainDrinks"] = list()
+	data["mixerDrinks"] = list()
+	data["storage"] = list()
+
+	
+	//Loop through food list for data to send to food tab
+	for(var/item_detail in food_ui_list)
+		//Create needed list and variable for geting data for UI
+		var/list/details = list()
+		var/obj/item/reagent_containers/food/item = new item_detail
+
+		//Get information for UI
+		details["name"] = item.name
+		details["quantity"] = find_amount(item)
+		details["type_path"] = item.type
+
+		//Get an image for the UI
+		var/icon/item_pic = getFlatIcon(item)
+		var/md5 = md5(fcopy_rsc(item_pic))
+		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
+			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
+		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
+		details["image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
+
+		//Add to food list
+		data["food"] += list(details)
+
+		//Delete food item to prevent server being overrun by ghost food
+		qdel(item)
+
+	//Loop through drink list for data to send to cart's reagent storage tab
+	for(var/datum/reagent/drink in reagents.reagent_list)
+		var/list/details = list()
+
+		//Get information for UI
+		details["name"] = drink.name
+		details["quantity"] = drink.volume
+		details["type_path"] = drink.type
+
+		//Add to drink list
+		data["mainDrinks"] += list(details)
+	
+	//Loop through drink list for data to send to cart's reagent mixer tab
+	for(var/datum/reagent/drink in mixer.reagents.reagent_list)
+		var/list/details = list()
+
+		//Get information for UI
+		details["name"] = drink.name
+		details["quantity"] = drink.volume
+		details["type_path"] = drink.type
+		
+		//Add to drink list
+		data["mixerDrinks"] += list(details)
+
+	//Get content and capacity data
+	var/list/storageDetails = list()
+	//Have to subtract contents.len by 1 due to reagents container being in contents
+	storageDetails["contents_length"] = contents.len - 1
+	storageDetails["storage_capacity"] = contents_capacity
+	storageDetails["glass_quantity"] = glass_quantity
+	storageDetails["glass_capacity"] = glass_capacity
+	storageDetails["dispence_options"] = transfer_list
+	storageDetails["dispence_selected"] = selected_transfer
+	//Add the total_volumne of both cart and mixer storage for quantity
+	storageDetails["drink_quantity"] = mixer.reagents.total_volume + reagents.total_volume
+	storageDetails["drink_capacity"] = reagent_capacity
+
+	data["storage"] += storageDetails
+	//Send stored information to UI	
+	return data
+
+/obj/machinery/food_cart/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		//Dispense food item
+		if("dispense")
+			var/itemPath = text2path(params["itemPath"])
+			dispense_item(itemPath)
+		//Change selected_transfer
+		if("transferNum")
+			selected_transfer = params["dispenceAmount"]
+			playsound(src, select_sound, 50, TRUE, extrarange = -3)
+		//Remove reagent from cart
+		if("purge")
+			reagents.remove_reagent(text2path(params["itemPath"]), selected_transfer)
+			playsound(src, select_sound, 50, TRUE, extrarange = -3)
+		//Add reagent to mixer
+		if("addMixer")
+			src.reagents.trans_id_to(mixer, text2path(params["itemPath"]), selected_transfer)
+			playsound(src, select_sound, 50, TRUE, extrarange = -3)
+		//Return reagent to storage
+		if("transferBack")
+			mixer.reagents.trans_id_to(src, text2path(params["itemPath"]), selected_transfer)
+			playsound(src, select_sound, 50, TRUE, extrarange = -3)
+		//Pour glass
+		if("pour")
+			pour_glass()
 
 /obj/machinery/food_cart/Initialize(mapload)
 	. = ..()
-	create_reagents(LIQUID_CAPACIY, OPENCONTAINER | NO_REACT)
-	mixer = new /obj/item/reagent_containers(src, MIXER_CAPACITY)
-	mixer.name = "Mixer"
+	//Create reagents holder for drinks
+	create_reagents(reagent_capacity, OPENCONTAINER | NO_REACT)
+	mixer = new /obj/item/reagent_containers(src, 50)
+	mixer.reagent_flags = NO_REACT | SPILLABLE
 
 /obj/machinery/food_cart/Destroy()
+	//Increase the mixer's volume to hold all of cart's reagents and set its name to cart's name
+	mixer.volume += reagent_capacity
+	mixer.name = name
+	//Move all reagents in cart to mixer
+	src.reagents.trans_to(mixer, reagent_capacity)
+	mixer.loc = src.loc
+	//Spill the contents of the mixer
+	mixer.SplashReagents(src.loc, TRUE)
+	//Reduce mixer to dust
 	QDEL_NULL(mixer)
-	stored_food.Cut()
 	return ..()
 
-/obj/machinery/food_cart/ui_interact(mob/user)
-	. = ..()
-	var/dat
-	dat += "<br><b>STORED INGREDIENTS AND DRINKS</b><br><div class='statusDisplay'>"
-	dat += "Remaining glasses: [glasses]<br>"
-	dat += "Portion: <a href='?src=[REF(src)];portion=1'>[portion]</a><br>"
-	for(var/datum/reagent/R in reagents.reagent_list)
-		dat += "[R.name]: [R.volume] "
-		dat += "<a href='?src=[REF(src)];disposeI=[R.type]'>Purge</a>"
-		if (glasses > 0)
-			dat += "<a href='?src=[REF(src)];pour=[R.type]'>Pour in a glass</a>"
-		dat += "<a href='?src=[REF(src)];mix=[R.type]'>Add to the mixer</a><br>"
-	dat += "</div><br><b>MIXER CONTENTS</b><br><div class='statusDisplay'>"
-	for(var/datum/reagent/R in mixer.reagents.reagent_list)
-		dat += "[R.name]: [R.volume] "
-		dat += "<a href='?src=[REF(src)];transfer=[R.type]'>Transfer back</a>"
-		if (glasses > 0)
-			dat += "<a href='?src=[REF(src)];m_pour=[R.type]'>Pour in a glass</a>"
-		dat += "<br>"
-	dat += "</div><br><b>STORED FOOD</b><br><div class='statusDisplay'>"
-	for(var/V in stored_food)
-		if(stored_food[V] > 0)
-			dat += "<b>[V]: [stored_food[V]]</b> <a href='?src=[REF(src)];dispense=[V]'>Dispense</a><br>"
-	dat += "</div><br><a href='?src=[REF(src)];refresh=1'>Refresh</a> <a href='?src=[REF(src)];close=1'>Close</a>"
+//For adding items and reagents to storage
+/obj/machinery/food_cart/attackby(obj/item/A, mob/user, params)
+	//Depending on the item, either attempt to store it or ignore it
+	if(istype(A, /obj/item/reagent_containers/food/snacks))
+		storage_single(A)
+		return
+	else if(istype(A, /obj/item/reagent_containers/food/drinks/drinkingglass))
+		//Check if glass is empty
+		if(!A.reagents.total_volume)
+			//Delete glass and increment glass_quantity by 1
+			qdel(A)
+			glass_quantity++
+			user.visible_message(span_notice("[user] inserts [A] into [src]."), span_notice("You insert [A] into [src]."))
+			playsound(src, insert_sound, 50, TRUE, extrarange = -3)
+		return
+	else if(A.is_drainable())
+		return
 
-	var/datum/browser/popup = new(user, "foodcart","Food Cart", 500, 350, src)
-	popup.set_content(dat)
-	popup.open()
+	..()
 
-/obj/machinery/food_cart/proc/isFull()
-	return food_stored >= STORAGE_CAPACITY
+/obj/machinery/food_cart/proc/dispense_item(received_item, mob/user = usr)
+	//Make a variable for checking the type of the selected item
+	var/obj/item/reagent_containers/food/ui_item = new received_item
 
-/obj/machinery/food_cart/attackby(obj/item/O, mob/user, params)
-	if(O.tool_behaviour == TOOL_WRENCH)
-		default_unfasten_wrench(user, O, 0)
-		return TRUE
-	if(istype(O, /obj/item/reagent_containers/food/drinks/drinkingglass))
-		var/obj/item/reagent_containers/food/drinks/drinkingglass/DG = O
-		if(!DG.reagents.total_volume) //glass is empty
-			qdel(DG)
-			glasses++
-			to_chat(user, span_notice("[src] accepts the drinking glass, sterilizing it."))
-	else if(istype(O, /obj/item/reagent_containers/food/snacks))
-		if(isFull())
-			to_chat(user, span_warning("[src] is at full capacity."))
-		else
-			var/obj/item/reagent_containers/food/snacks/S = O
-			if(!user.transferItemToLoc(S, src))
-				return
-			if(stored_food[sanitize(S.name)])
-				stored_food[sanitize(S.name)]++
-			else
-				stored_food[sanitize(S.name)] = 1
-	else if(istype(O, /obj/item/stack/sheet/glass))
-		var/obj/item/stack/sheet/glass/G = O
-		if(G.get_amount() >= 1)
-			G.use(1)
-			glasses += 4
-			to_chat(user, span_notice("[src] accepts a sheet of glass."))
-	else if(istype(O, /obj/item/storage/bag/tray))
-		var/obj/item/storage/bag/tray/T = O
-		for(var/obj/item/reagent_containers/food/snacks/S in T.contents)
-			if(isFull())
-				to_chat(user, span_warning("[src] is at full capacity."))
-				break
-			else
-				if(SEND_SIGNAL(T, COMSIG_TRY_STORAGE_TAKE, S, src))
-					if(stored_food[sanitize(S.name)])
-						stored_food[sanitize(S.name)]++
-					else
-						stored_food[sanitize(S.name)] = 1
-	else if(O.is_drainable())
+	//If the vat has some of the desired item, dispense it
+	if(find_amount(ui_item) > 0)
+		//Select the last(most recent) of desired item
+		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(ui_item))
+		//Drop it on the floor and then move it into the user's hands
+		dispensed_item.forceMove(loc)
+		user.put_in_hands(dispensed_item)
+		user.visible_message(span_notice("[user] dispenses [ui_item.name] from [src]."), span_notice("You dispense [ui_item.name] from [src]."))
+		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
+		//If the last one was dispenced, remove from UI
+		if(find_amount(ui_item) == 0)
+			LAZYREMOVE(food_ui_list, received_item)
+	else
+		//For Alt click and because UI buttons are slow to disable themselves
+		user.balloon_alert(user, "All out!")
+
+/obj/machinery/food_cart/proc/storage_single(obj/item/target_item, mob/user = usr)
+	//Check if there is room
+	if(contents.len - 1 < contents_capacity)
+		//If item's typepath is not already in  food_ui_list, add it
+		if(!LAZYFIND(food_ui_list, target_item.type))
+			LAZYADD(food_ui_list, target_item.type)
+		//Move item to content
+		target_item.forceMove(src)
+		user.visible_message(span_notice("[user] inserts [target_item] into [src]."), span_notice("You insert [target_item] into [src]."))
+		playsound(src, insert_sound, 50, TRUE, extrarange = -3)
+
 		return
 	else
-		. = ..()
-	updateDialog()
+		//Warn about full capacity
+		user.balloon_alert(user, "No space!")
 
-/obj/machinery/food_cart/Topic(href, href_list)
-	if(..())
-		return
+/obj/machinery/food_cart/proc/pour_glass(mob/user = usr)
+	//Check if there are any glasses in storage
+	if(glass_quantity > 0)
+		glass_quantity -= 1
+		//Create new glass
+		var/obj/item/reagent_containers/food/drinks/drinkingglass/drink = new(loc)
+		//Move all reagents in mixer to glass
+		mixer.reagents.trans_to(drink, mixer.reagents.total_volume)
+		//Attempt to put glass into user's hand
+		user.put_in_hands(drink)
+		user.visible_message(span_notice("[user] pours [drink] from [src]."), span_notice("You pour [drink] from [src]."))
+		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
+	else
+		user.balloon_alert(user, "No Drinking Glasses!")
 
-	if(href_list["disposeI"])
-		reagents.del_reagent(href_list["disposeI"])
+/obj/machinery/food_cart/proc/find_amount(obj/item/counting_item, target_name = null, list/target_list = null)
+	var/amount = 0
 
-	if(href_list["dispense"])
-		if(stored_food[href_list["dispense"]]-- <= 0)
-			stored_food[href_list["dispense"]] = 0
-		else
-			for(var/obj/O in contents)
-				if(sanitize(O.name) == href_list["dispense"])
-					O.forceMove(drop_location())
-					break
+	//If target_list is null, search contents for type paths
+	if(!target_list)
+		//Loop through contents, counting every instance of the given target
+		for(var/obj/item/list_item in contents)
+			if(list_item.type == counting_item.type)
+				amount += 1
+	//Else, search target_list
+	else
+		for(var/list_item in target_list)
+			if(list_item == target_name)
+				amount += 1
 
-	if(href_list["portion"])
-		portion = clamp(input("How much drink do you want to dispense per glass?") as num, 0, 50)
+	return amount
 
-	if(href_list["pour"] || href_list["m_pour"])
-		if(glasses-- <= 0)
-			to_chat(usr, span_warning("There are no glasses left!"))
-			glasses = 0
-		else
-			var/obj/item/reagent_containers/food/drinks/drinkingglass/DG = new(loc)
-			if(href_list["pour"])
-				reagents.trans_id_to(DG, href_list["pour"], portion)
-			if(href_list["m_pour"])
-				mixer.reagents.trans_id_to(DG, href_list["m_pour"], portion)
+/obj/machinery/food_cart/proc/last_index(obj/item/search_item)
+	var/obj/item/reagent_containers/food/snacks/item_index = null
 
-	if(href_list["mix"])
-		if(reagents.trans_id_to(mixer, href_list["mix"], portion) == 0)
-			to_chat(usr, span_warning("[mixer] is full!"))
-
-	if(href_list["transfer"])
-		if(mixer.reagents.trans_id_to(src, href_list["transfer"], portion) == 0)
-			to_chat(usr, span_warning("[src] is full!"))
-
-	updateDialog()
-
-	if(href_list["close"])
-		usr.unset_machine()
-		usr << browse(null,"window=foodcart")
-	return
-
-/obj/machinery/food_cart/deconstruct(disassembled = TRUE)
-	if(!(flags_1 & NODECONSTRUCT_1))
-		new /obj/item/stack/sheet/metal(loc, 4)
-	qdel(src)
-
-#undef STORAGE_CAPACITY
-#undef LIQUID_CAPACIY
-#undef MIXER_CAPACITY
+	//Search for the same item path in storage
+	for(var/i in 1 to LAZYLEN(contents))
+		//Loop through entire list to get last/most recent item
+		if(contents[i].type == search_item.type)
+			item_index = i
+	
+	return item_index
