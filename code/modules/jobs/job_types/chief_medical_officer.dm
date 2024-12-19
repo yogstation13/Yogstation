@@ -32,6 +32,15 @@
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	minimal_character_age = 30 //Do you knoW HOW MANY JOBS YOU HAVE TO KNOW TO DO?? This should really be like 35 or something
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_MID,
+		SKILL_FITNESS = EXP_LOW,
+	)
+	skill_points = 4
+
 	departments_list = list(
 		/datum/job_department/medical,
 		/datum/job_department/command,
