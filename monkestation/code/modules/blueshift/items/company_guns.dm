@@ -963,6 +963,8 @@
 	icon_state = "bobr"
 	fire_sound = 'monkestation/code/modules/blueshift/sounds/revolver_fire.ogg'
 	spread = SAWN_OFF_ACC_PENALTY
+	projectile_damage_multiplier = 0.75 /// No way in hell a handgun with a 3 inch barrel should fire the same cartridge with the same force as a full-length barrel
+	projectile_wound_bonus = -5  /// In addition, this should help with the balance issues around the Bobr, it being a concealable shotgun with near-instant reload
 
 /obj/item/gun/ballistic/revolver/shotgun_revolver/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_SZOT)

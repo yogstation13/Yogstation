@@ -865,6 +865,18 @@
 	// We do 80 total damage to anything robotic, namely borgs, and robotic simplemobs
 	AddElement(/datum/element/bane, target_type = /mob/living, mob_biotypes = MOB_ROBOTIC, damage_multiplier = 0, added_damage = anti_materiel_damage_addition)
 
+/obj/projectile/bullet/p60strela/pierce/on_hit(atom/target, blocked = 0, pierce_hit)  /// If anyone is deranged enough to use it on soft targets, you may as well let them have fun
+	if(isliving(target))
+		// If the bullet has already gone through 3 people, stop it on this hit
+		if(pierces > 3)
+			projectile_piercing = NONE
+
+			if(damage > 10) // Lets just be safe with this one
+				damage -= 10
+			armour_penetration -= 10
+
+	return ..()
+
 /obj/item/ammo_box/magazine/m10mm/rifle
 	name = "rifle magazine (10mm)"
 	desc = "A well-worn magazine fitted for the surplus rifle."
