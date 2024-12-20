@@ -27190,9 +27190,6 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/delivery,
-/obj/item/gun/energy/taser,
-/obj/item/gun/energy/taser,
-/obj/item/gun/energy/taser,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/ai_monitored/security/armory)
 "hPi" = (

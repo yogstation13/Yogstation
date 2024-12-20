@@ -58,3 +58,10 @@
 	contraband = TRUE
 	contains = list(/obj/item/cortical_cage)
 	crate_name = "anti-borer crate"
+
+/datum/supply_pack/security/armory/taser
+	name = "Taser Crate"
+	desc = "Contains two tasers, ready to tase criminals."
+	cost = CARGO_CRATE_VALUE * 15
+	contains = list(/obj/item/gun/energy/taser = 2)
+	crate_name = "taser crate"

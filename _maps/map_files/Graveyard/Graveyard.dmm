@@ -32366,9 +32366,6 @@
 /obj/item/gun/ballistic/automatic/pistol/paco/no_mag{
 	pixel_y = 6
 	},
-/obj/item/gun/energy/taser,
-/obj/item/gun/energy/taser,
-/obj/item/gun/energy/taser,
 /obj/effect/turf_decal/tile/dark_red/half{
 	dir = 1
 	},

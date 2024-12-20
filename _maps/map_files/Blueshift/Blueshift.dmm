@@ -52113,9 +52113,6 @@
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 8
 	},
-/obj/item/gun/energy/taser,
-/obj/item/gun/energy/taser,
-/obj/item/gun/energy/taser,
 /turf/open/floor/iron/dark/textured,
 /area/station/ai_monitored/security/armory)
 "kdO" = (
