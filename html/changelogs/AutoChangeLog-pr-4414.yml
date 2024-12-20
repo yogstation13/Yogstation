@@ -1,0 +1,9 @@
+author: "Siro"
+delete-after: True
+changes:
+  - rscadd: "Refunding of unreviewed mixtapes at round end"
+  - rscadd: "Cassette Manager interface"
+  - rscadd: "Admin.Games Review Cassettes to the admin menu"
+  - rscdel: "tgui alert for already reviewed cassettes"
+  - bugfix: "tgui alert spamming the client when attempting to review an already reviewed cassette."
+  - bugfix: "Runtime error on cassette_review Destroy proc"
