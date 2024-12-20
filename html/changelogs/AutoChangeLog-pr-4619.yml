@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Slime in vents/slime grinders/etc will no longer secrete ooze on the floor."
