@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added a disabler to QM's locker. It has a cargo-locked firing pin that can only be used in the cargo's warehouse and storage."
