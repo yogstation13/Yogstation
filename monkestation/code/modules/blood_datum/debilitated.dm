@@ -5,7 +5,7 @@
 /datum/status_effect/stacking/debilitated
 	id = "debilitated"
 	stacks = 0
-	max_stacks = 10
+	max_stacks = 20
 	tick_interval = 5 SECONDS
 	delay_before_decay = 30 SECONDS
 	consumed_on_threshold = FALSE
@@ -15,7 +15,7 @@
 	///our base stamina loss multiplier
 	var/loss_multiplier = 1
 	///our per stack increase to stamina loss
-	var/per_stack_multiplier_increase = 0.1
+	var/per_stack_multiplier_increase = 0.05
 
 /datum/status_effect/stacking/debilitated/on_apply()
 	. = ..()

@@ -29,7 +29,7 @@
 	damage = 35
 	stamina = 60
 
-/obj/projectile/beam/disabler/smoothbore/prime
+/obj/projectile/beam/disabler/smoothbore/prime  /// ????????? why is this here *and* in beams ???????
 	stamina = 65
 
 /obj/item/ammo_casing/energy/laser/musket
@@ -47,3 +47,5 @@
 	weak_against_armour = FALSE
 	armour_penetration = 25 //less powerful than armor piercing rounds
 	wound_bonus = 10
+	debilitating = TRUE
+	debilitate_mult = 2

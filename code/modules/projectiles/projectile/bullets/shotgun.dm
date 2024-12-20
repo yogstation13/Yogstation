@@ -126,6 +126,8 @@
 	ricochet_incidence_leeway = 75
 	/// Subtracted from the ricochet chance for each tile traveled
 	var/tile_dropoff_ricochet = 4
+	debilitating = TRUE
+	debilitate_mult = 1
 
 /obj/projectile/bullet/pellet/shotgun_rubbershot/Range()
 	if(ricochet_chance > 0)

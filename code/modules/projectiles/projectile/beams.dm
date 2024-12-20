@@ -118,18 +118,23 @@
 	tracer_type = /obj/effect/projectile/tracer/disabler
 	muzzle_type = /obj/effect/projectile/muzzle/disabler
 	impact_type = /obj/effect/projectile/impact/disabler
+	debilitating = TRUE
+	debilitate_mult = 3
 
 /obj/projectile/beam/disabler/weak
 	stamina = 15
+	debilitate_mult = 1.5
 
 /obj/projectile/beam/disabler/smoothbore
 	name = "unfocused disabler beam"
 	weak_against_armour = TRUE
+	debilitate_mult = 2
 
 /obj/projectile/beam/disabler/smoothbore/prime
 	name = "focused disabler beam"
 	weak_against_armour = FALSE
 	stamina = 35
+	debilitate_mult = 3.5
 
 /obj/projectile/beam/pulse
 	name = "pulse"
