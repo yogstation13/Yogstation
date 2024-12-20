@@ -156,6 +156,7 @@
 	limb_id = SPECIES_SLIMEPERSON
 	is_dimorphic = TRUE
 	composition_effects = list(/datum/element/soft_landing = 0.5)
+	wing_types = list(/obj/item/organ/external/wings/functional/slime)
 	palette = /datum/color_palette/generic_colors
 	palette_key = MUTANT_COLOR
 
@@ -199,6 +200,7 @@
 	biological_state = (BIO_FLESH|BIO_BLOODED)
 	limb_id = SPECIES_LUMINESCENT
 	is_dimorphic = TRUE
+	wing_types = list(/obj/item/organ/external/wings/functional/slime)
 	palette = /datum/color_palette/generic_colors
 	palette_key = MUTANT_COLOR
 
