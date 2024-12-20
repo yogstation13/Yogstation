@@ -33,13 +33,14 @@
 	//nukies
 	var/station_was_nuked = FALSE
 	var/nuke_off_station = FALSE
+	var/nuke_self_destruct = FALSE
 
 	// dunno what this one did
 	var/allow_persistence_save = FALSE
 
 	// rewrite this to be objective track stuff instead
 	var/list/datum/station_goal/station_goals = list()
-	
+
 	/// Associative list of current players, in order: living players, living antagonists, dead players and observers.
 	var/list/list/current_players = list(CURRENT_LIVING_PLAYERS = list(), CURRENT_LIVING_ANTAGS = list(), CURRENT_DEAD_PLAYERS = list(), CURRENT_OBSERVERS = list())
 
@@ -297,7 +298,8 @@
 
 	return round_credits
 
-/datum/controller/subsystem/gamemode/proc/OnNukeExplosion(off_station)
+/datum/controller/subsystem/gamemode/proc/OnNukeExplosion(off_station, is_self_destruct = FALSE)
 	nuke_off_station = off_station
 	if(off_station < 2)
 		station_was_nuked = TRUE //Will end the round on next check.
+	nuke_self_destruct = is_self_destruct
