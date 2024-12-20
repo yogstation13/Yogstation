@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "The xenobio Slimeperson and Luminscent subspecies will now properly get slime wings from drinking a flight potion."
