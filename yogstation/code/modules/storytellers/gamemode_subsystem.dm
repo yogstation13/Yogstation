@@ -594,12 +594,26 @@ SUBSYSTEM_DEF(gamemode)
 			)
 			query_round_game_mode.Execute()
 			qdel(query_round_game_mode)
+	if(report)
+		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(600, 1800))
 	generate_station_goals()
 	handle_post_setup_roundstart_events()
 	handle_post_setup_points()
 	roundstart_event_view = FALSE
 	return TRUE
 
+/datum/controller/subsystem/gamemode/proc/send_intercept()
+	var/intercepttext = "<b><i>Central Command Status Summary</i></b><hr>"
+	intercepttext += "<b>Central Command has intercepted and is attempting to decode a Syndicate transmission with vital information regarding their movements in this station's sector.</b>"
+	intercepttext += generate_station_goal_report()
+
+	if(CONFIG_GET(flag/auto_blue_alert))
+		print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
+		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_report()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
+		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
+	else
+		print_command_report(intercepttext, "Central Command Status Summary")
 
 ///Handles late-join antag assignments
 /datum/controller/subsystem/gamemode/proc/make_antag_chance(mob/living/carbon/human/character)
