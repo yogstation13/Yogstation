@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - rscadd: "Explorer now has 6 slots"
