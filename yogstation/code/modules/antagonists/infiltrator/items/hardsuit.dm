@@ -6,7 +6,7 @@
 	syndicate = TRUE
 	var/current_disguise = /obj/item/clothing/suit/space/hardsuit/infiltration
 	var/new_type = "engineering"
-	var/list/bad_hardsuits = list(
+	var/static/list/bad_hardsuits = list(
 		/obj/item/clothing/suit/space/hardsuit/darktemplar, 
 		/obj/item/clothing/suit/space/hardsuit/darktemplar/chap, 
 		/obj/item/clothing/suit/space/hardsuit/cult, 
