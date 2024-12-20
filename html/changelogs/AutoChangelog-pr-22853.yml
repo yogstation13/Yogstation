@@ -1,0 +1,4 @@
+author: "JohnFulpWillard"
+delete-after: true 
+changes: 
+  - bugfix: "Your head inventory slot icon now updates even if you don't have a backpack slot icon."
