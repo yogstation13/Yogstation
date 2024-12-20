@@ -173,10 +173,10 @@
 	else if(istype(A, /obj/item/reagent_containers/food/drinks/drinkingglass))
 		//Check if glass is empty
 		if(!A.reagents.total_volume)
-			//Delete glass and increment glass_quantity by 1
-			qdel(A)
+			//Increment glass_quantity by 1 and then delete glass
 			glass_quantity++
 			user.visible_message(span_notice("[user] inserts [A] into [src]."), span_notice("You insert [A] into [src]."))
+			qdel(A)
 			playsound(src, insert_sound, 50, TRUE, extrarange = -3)
 		return
 	else if(A.is_drainable())
@@ -185,7 +185,7 @@
 	..()
 
 /obj/machinery/food_cart/proc/dispense_item(received_item, mob/user = usr)
-	//Make a variable for checking the type of the selected item
+	//Make a variable for checking amount of item
 	var/obj/item/reagent_containers/food/ui_item = new received_item
 
 	//If the vat has some of the desired item, dispense it
@@ -201,9 +201,12 @@
 		if(find_amount(ui_item) == 0)
 			LAZYREMOVE(food_ui_list, received_item)
 	else
-		//For Alt click and because UI buttons are slow to disable themselves
+		//Incase the UI buttons are slow to disable themselves
 		user.balloon_alert(user, "All out!")
 
+	//Delete instance
+	qdel(ui_item)
+	
 /obj/machinery/food_cart/proc/storage_single(obj/item/target_item, mob/user = usr)
 	//Check if there is room
 	if(contents.len - 1 < contents_capacity)
