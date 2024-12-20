@@ -136,7 +136,7 @@ const StorageRow = (props, context) => {
       </Table.Row>
     </Table>
     );
-}
+};
 
 const FoodRow = (props, context) => {
   // Get data from ui_data in backend code
@@ -214,7 +214,7 @@ const DrinkTab = (props, context) => {
   // Get data from ui_data in backend code
   const { data } = useBackend<Data>(context);
   // Get needed variable for StorageRow
-  const { storage } = data
+  const { storage } = data;
 
   // For organizing the Drink tab's information
   return (
@@ -251,7 +251,7 @@ const DrinkTab = (props, context) => {
         buttons={<Button
           circular
           tooltip="Amount of reagents to be transfered or purged"
-          icon="info"/>}
+          icon="info" />}
         >
           <DrinkTransferRow />
         </Section>
@@ -263,7 +263,7 @@ const DrinkTab = (props, context) => {
         buttons={<Button
           circular
           tooltip="Main reagent storage for the cart"
-          icon="info"/>}>
+          icon="info" />}>
           <MainDrinkRow />
         </Section>
       </Stack.Item>
@@ -274,7 +274,7 @@ const DrinkTab = (props, context) => {
         buttons={<Button
           circular
           tooltip="Reagents to be poured into drinking glasses"
-          icon="info"/>}>
+          icon="info" />}>
           <MixerDrinkRow />
         </Section>
       </Stack.Item>
@@ -286,7 +286,7 @@ const DrinkTransferRow = (props, context) => {
   // Get data from ui_data in backend code
   const { act, data } = useBackend<Data>(context);
   // Get data for buttons
-  const { storage } = data
+  const { storage } = data;
   const { dispence_options = [] } = storage;
   const { dispence_selected } = storage;
 
@@ -295,23 +295,23 @@ const DrinkTransferRow = (props, context) => {
     justify="center">
       {dispence_options.map(amount => (
         <Flex.Item
+        key={amount}
         grow
         mr={0.5}>
           <Button
-            key={amount}
             fluid
             content={amount}
             textAlign="center"
             selected={amount === dispence_selected}
             onClick={() => act("transferNum", {
               dispenceAmount: amount,
-            })}/>
+            })} />
         </Flex.Item>
       ))}
     </Flex>
   );
 
-}
+};
 
 const MainDrinkRow = (props, context) => {
   // Get data from ui_data in backend code
@@ -485,4 +485,4 @@ const MixerDrinkRow = (props, context) => {
       </Table>
     );
   }
-}
+};
