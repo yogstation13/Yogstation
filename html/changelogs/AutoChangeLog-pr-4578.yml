@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - refactor: "The effect from a monster hunter's blood vial is now just a status effect, rather than a weird combination between a status effect and a reagent."
