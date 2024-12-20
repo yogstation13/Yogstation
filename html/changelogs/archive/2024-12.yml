@@ -314,3 +314,26 @@
       to spawn properly
   Uristthedorf:
   - rscadd: EMPing a holosign creator, will destroy all of the holosigns.
+2024-12-20:
+  Absolucy:
+  - bugfix: The xenobio Slimeperson and Luminscent subspecies will now properly get
+      slime wings from drinking a flight potion.
+  - bugfix: Slime in vents/slime grinders/etc will no longer secrete ooze on the floor.
+  - admin: Added a new mapping verb, Export Lighting Info (behind Mapping Verbs -
+      Enable) that exports the lighting info of z levels into a json file.
+  Siro:
+  - rscadd: Refunding of unreviewed mixtapes at round end
+  - rscadd: Cassette Manager interface
+  - rscadd: Admin.Games Review Cassettes to the admin menu
+  - rscdel: tgui alert for already reviewed cassettes
+  - bugfix: tgui alert spamming the client when attempting to review an already reviewed
+      cassette.
+  - bugfix: Runtime error on cassette_review Destroy proc
+  Wisemonster, Jacquerel:
+  - rscdel: Being sacrificed by a Heretic no longer gives you an incurable phobia.
+  - rscadd: Being sacrificed by a Heretic will drop 2-4 of your organs on the ground
+      and replace them with "corrupt organs" with negative effects which can be suppressed
+      with Holy Water.
+  - rscadd: Players who have been sacrificed by Heretics will experience additional
+      and rapidly lethal consequences for attempting to fight someone who previously
+      sacrificed them, as long as that person is wearing a focus.
