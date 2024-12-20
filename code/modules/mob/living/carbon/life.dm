@@ -56,6 +56,7 @@
 	if(HAS_TRAIT(src, TRAIT_NOBREATH))
 		setOxyLoss(0) //idk how because spec life should cover this
 		losebreath = 0
+		failed_last_breath = 0
 		return
 
 	var/next_breath = 4
