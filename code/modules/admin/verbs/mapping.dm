@@ -55,6 +55,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
 	/client/proc/station_food_debug,
 	/client/proc/station_stack_debug,
 	/client/proc/check_for_obstructed_atmospherics,
+	/client/proc/export_lighting_info, // monkestation addition
 ))
 GLOBAL_PROTECT(admin_verbs_debug_mapping)
 
