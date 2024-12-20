@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - admin: "Added a new mapping verb, Export Lighting Info (behind Mapping Verbs - Enable) that exports the lighting info of z levels into a json file."
