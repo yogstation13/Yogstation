@@ -185,6 +185,12 @@ GLOBAL_LIST_EMPTY_TYPED(slime_pen_controllers, /obj/machinery/slime_pen_controll
 /obj/machinery/slime_pen_controller/multitool_act(mob/living/user, obj/item/multitool/multitool)
 	if(!multitool_check_buffer(user, multitool) || QDELETED(multitool.buffer))
 		return
+	if(linked_oozesucker(multitool.buffer, linked_data))  // Linking a new ooze sucker instead of a pen.
+		balloon_alert_to_viewers("linked sucker")
+		multitool.buffer.balloon_alert_to_viewers("linked to controller")
+		to_chat(user, span_notice("You link the [multitool.buffer] to the [src]."))
+		return TRUE
+
 	var/obj/machinery/corral_corner/pad = multitool.buffer
 	if(!istype(pad) || !pad.connected_data)
 		return
@@ -197,6 +203,23 @@ GLOBAL_LIST_EMPTY_TYPED(slime_pen_controllers, /obj/machinery/slime_pen_controll
 	to_chat(user, span_notice("You link the [pad] to the [src]."))
 	return TRUE
 
+/obj/machinery/slime_pen_controller/proc/linked_oozesucker(obj/machinery/plumbing/ooze_sucker/target, datum/corral_data/linked_pen)
+	if(!istype(target) || !istype(linked_pen))
+		return
+	if(get_turf(target.loc) in linked_pen.corral_turfs)
+		if(linked_sucker)
+			UnregisterSignal(linked_sucker, COMSIG_QDELETING)
+		linked_sucker = target
+		target.linked_controller = src
+		RegisterSignal(linked_sucker, COMSIG_QDELETING, PROC_REF(clear_sucker_data))
+		return TRUE
+	return
+
 /obj/machinery/slime_pen_controller/proc/clear_data()
 	UnregisterSignal(linked_data, COMSIG_QDELETING)
 	linked_data = null
+
+/obj/machinery/slime_pen_controller/proc/clear_sucker_data()
+	UnregisterSignal(linked_sucker, COMSIG_QDELETING)
+	linked_sucker.linked_controller = null
+	linked_sucker = null
