@@ -67,7 +67,7 @@
 		details["image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 
 		//Add to food list
-		data["food"] += list(details)
+		data["food"].Add(details)
 
 		//Delete food item to prevent server being overrun by ghost food
 		qdel(item)
