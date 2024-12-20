@@ -367,7 +367,7 @@
 			parts += "<B>The crew of [station_name()] gave [syndicate_name] operatives back their bomb! The syndicate base was destroyed!</B> Next time, don't lose the nuke!"
 		if(NUKE_RESULT_SELF_DESTRUCT)
 			parts += "<span class='greentext big'>Humiliating Crew Defeat</span>"
-			parts += "<B>As far as Nanotrasen cares, the crew of [station_name()] activated its self destruct device for unknown reasons.</B> Surviving crew will be interrogated and heavily penalized."
+			parts += "<B>As far as Nanotrasen cares, the crew of [station_name()] activated their self destruct device for unknown reasons.</B> Surviving crew will be interrogated and heavily penalized."
 		if(NUKE_RESULT_NUKE_WIN)
 			parts += "<span class='greentext big'>Syndicate Major Victory!</span>"
 			parts += "<B>[syndicate_name] operatives have destroyed [station_name()]!</B>"
