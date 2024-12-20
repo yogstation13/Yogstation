@@ -19,6 +19,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/reload_admins,
 	/client/proc/requests,
 	/client/proc/secrets,
+	/client/proc/review_cassettes, /*monkestation addition Opens the Cassette Review menu*/
 	/client/proc/stop_sounds,
 	/client/proc/tag_datum_mapview,
 	)
@@ -159,7 +160,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/toggle_random_events,
 	))
 GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel, /client/proc/spawn_mixtape)) //Monkestation Addition: mixtape spawner
+GLOBAL_LIST_INIT(admin_verbs_spawn, list(/datum/admins/proc/spawn_atom, /datum/admins/proc/podspawn_atom, /datum/admins/proc/spawn_cargo, /datum/admins/proc/spawn_objasmob, /client/proc/respawn_character, /datum/admins/proc/beaker_panel, /client/proc/spawn_mixtape,)) //Monkestation Addition: mixtape spawner
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 GLOBAL_PROTECT(admin_verbs_server)

@@ -36,3 +36,26 @@
 			total_payout += listed_challenge.challenge_payout
 		if(total_payout)
 			client?.prefs?.adjust_metacoins(client?.ckey, total_payout, "Challenge rewards.")
+
+/datum/controller/subsystem/ticker/proc/refund_cassette()
+	if(!length(GLOB.cassette_reviews))
+		return
+
+	for(var/id in GLOB.cassette_reviews)
+		var/datum/cassette_review/review = GLOB.cassette_reviews[id]
+		if(!review || review.action_taken) // Skip if review doesn't exist or already handled (denied / approved)
+			continue
+
+		var/ownerckey = review.submitted_ckey // ckey of who made the cassette.
+		if(!ownerckey)
+			continue
+
+		var/client/client = GLOB.directory[ownerckey] // Use directory for direct lookup (Client might be a differnet mob than when review was made.)
+		if(client && !QDELETED(client?.prefs))
+			var/adjusted = client?.prefs?.adjust_metacoins(
+				client?.ckey, 5000,
+				reason = "No action taken on cassette:\[[review.submitted_tape.name]\] before round end.",
+				announces = TRUE, donator_multipler = FALSE
+			)
+			if(adjusted)
+				qdel(review)
