@@ -1,0 +1,5 @@
+author: "Coll6"
+delete-after: True
+changes:
+  - rscadd: "Ooze sucker machinery can be stored in multi tool buffer."
+  - bugfix: "Allows ooze suckers to be linked if its inside a valid pen, that is also linked to the same controller."
