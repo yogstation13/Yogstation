@@ -67,7 +67,7 @@
 		details["image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 
 		//Add to food list
-		data["food"].Add(details)
+		data["food"] += list(details)
 
 		//Delete food item to prevent server being overrun by ghost food
 		qdel(item)
@@ -206,7 +206,7 @@
 
 	//Delete instance
 	qdel(ui_item)
-	
+
 /obj/machinery/food_cart/proc/storage_single(obj/item/target_item, mob/user = usr)
 	//Check if there is room
 	if(contents.len - 1 < contents_capacity)
