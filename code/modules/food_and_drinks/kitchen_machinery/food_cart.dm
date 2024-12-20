@@ -133,7 +133,7 @@
 			playsound(src, select_sound, 50, TRUE, extrarange = -3)
 		//Add reagent to mixer
 		if("addMixer")
-			src.reagents.trans_id_to(mixer, text2path(params["itemPath"]), selected_transfer)
+			reagents.trans_id_to(mixer, text2path(params["itemPath"]), selected_transfer)
 			playsound(src, select_sound, 50, TRUE, extrarange = -3)
 		//Return reagent to storage
 		if("transferBack")
@@ -148,19 +148,19 @@
 	//Create reagents holder for drinks
 	create_reagents(reagent_capacity, OPENCONTAINER | NO_REACT)
 	mixer = new /obj/item/reagent_containers(src, 50)
-	mixer.reagent_flags = NO_REACT | SPILLABLE
+	mixer.create_reagents(50, NO_REACT)
 
 /obj/machinery/food_cart/Destroy()
-	//Increase the mixer's volume to hold all of cart's reagents and set its name to cart's name
-	mixer.volume += reagent_capacity
-	mixer.name = name
-	//Move all reagents in cart to mixer
-	src.reagents.trans_to(mixer, reagent_capacity)
-	mixer.loc = src.loc
-	//Spill the contents of the mixer
-	mixer.SplashReagents(src.loc, TRUE)
+	//Only alert others if the cart or mixer has any reagents
+	if(mixer.reagents.total_volume > 0 || reagents.total_volume > 0)
+		visible_message(span_alert("[src] spills all of its liquids onto the floor!"))
+	//Spill reagents on the cart's turf
+	var/turf/spill_area = loc
+	spill_area.add_liquid_from_reagents(mixer.reagents, FALSE, mixer.reagents.chem_temp)
+	spill_area.add_liquid_from_reagents(reagents, FALSE, mixer.reagents.chem_temp)
 	//Reduce mixer to dust
 	QDEL_NULL(mixer)
+	
 	return ..()
 
 //For adding items and reagents to storage
