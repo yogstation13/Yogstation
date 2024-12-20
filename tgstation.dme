@@ -6409,6 +6409,7 @@
 #include "monkestation\code\modules\antagonists\monster_hunters\monsters\monster_effects\killer_rabbit_effects.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\monsters\monster_effects\white_rabbit.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\monsters\monster_powers\killer_rabbit_powers.dm"
+#include "monkestation\code\modules\antagonists\monster_hunters\tools\blood_vial.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\tools\bnuuy_mask.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\tools\jack_bomb.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\tools\rabbit_eye.dm"
