@@ -43,6 +43,10 @@
 	mutant_bodyparts = list("tail_polysmorph", "dome", "dorsal_tubes", "teeth")
 	default_features = list("tail_polysmorph" = "Polys", "dome" = "None", "dorsal_tubes" = "No", "teeth" = "None")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
+	
+	latency_chance = 90
+	possible_faculties = list(PSI_COERCION, PSI_PSYCHOKINESIS)
+	starting_psi_level = PSI_RANK_LATENT
 
 	smells_like = "charred, acidic meat"
 
