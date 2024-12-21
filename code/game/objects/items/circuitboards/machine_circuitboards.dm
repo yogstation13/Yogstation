@@ -1129,8 +1129,7 @@
 	name = "Rack Creator (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/rack_creator
-	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
+	req_components = list(/obj/item/stock_parts/manipulator = 2)
 	var/unlocked = FALSE
 
 /obj/item/circuitboard/machine/rack_creator/multitool_act(mob/living/user, obj/item/I)
