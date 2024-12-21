@@ -343,7 +343,7 @@
 	. = ..()
 	var/hide_weapon = locate(/obj/item/mecha_parts/concealed_weapon_bay) in contents
 	var/obj/item/mecha_parts/mecha_equipment/melee_weapon/hidden_melee_weapon = locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in equipment
-	if(hidden_melee_weapon && !(hidden_melee_weapon.mech_flags ~= EXOSUIT_MODULE_COMBAT))
+	if(hidden_melee_weapon && !(hidden_melee_weapon.mech_flags & EXOSUIT_MODULE_COMBAT))
 		hidden_melee_weapon = null
 	var/hidden_weapon = hide_weapon ? (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in equipment)||hidden_melee_weapon : null
 	var/list/visible_equipment = equipment - hidden_weapon
