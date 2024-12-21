@@ -148,7 +148,7 @@
 	say("The decontamination process is completed, thank you for your patience.")
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 	if(mob_occupant)
-		visible_message(span_notice("[src]'s door slides open, ejecting [mob_occupant] out."), span_notice("[src]'s gate slides open, ejecting you out."))
+		visible_message(span_notice("[src]'s door slides open, ejecting [mob_occupant] out."))
 		mob_occupant.radiation = 0
 	else
 		visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
