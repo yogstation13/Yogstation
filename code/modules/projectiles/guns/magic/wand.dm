@@ -28,6 +28,11 @@
 	icon_state = "[base_icon_state][charges ? null : "-drained"]"
 	return ..()
 
+/obj/item/gun/magic/wand/can_trigger_gun(mob/living/user, akimbo_usage)
+	if(akimbo_usage)
+		return FALSE
+	return ..()
+
 /obj/item/gun/magic/wand/attack(atom/target, mob/living/user)
 	if(target == user)
 		return
