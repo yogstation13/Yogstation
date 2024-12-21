@@ -174,7 +174,6 @@
 #define TRAIT_BADMAIL			"badmail"	//Your mail is going to be worse than average
 #define TRAIT_SHORT_TELOMERES	"short_telomeres" //You cannot be CLOONED
 #define TRAIT_LONG_TELOMERES	"long_telomeres" //You get CLOONED faster!!!
-#define TRAIT_BLINDSPOT "blindspot" // cant see behind you
 
 
 ////////////////////////////////////////////////////////////////////////////////////
