@@ -984,6 +984,10 @@
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/sheet/glass = 1)
 
+/obj/item/circuitboard/machine/mechfab/ruin
+	desc = "This board is unofficial, and can be linked experimental R&D console, do not lose this because it's very expensive to accquire."
+	build_path = /obj/machinery/mecha_part_fabricator/ruin
+
 /obj/item/circuitboard/machine/monkey_recycler
 	name = "Monkey Recycler (Machine Board)"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
@@ -1128,6 +1132,17 @@
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/reagent_containers/glass/beaker = 2)
+	var/unlocked = FALSE
+
+/obj/item/circuitboard/machine/rack_creator/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
+	user.visible_message(span_notice("[user] fiddles with [src]."), span_notice( "You fiddle with [src]."))
+	if(I.use_tool(src, user, 2 SECONDS, volume = 75))
+		var/datum/effect_system/spark_spread/p = new /datum/effect_system/spark_spread
+		p.set_up(6, 1, user)
+		p.start()
+		unlocked = !unlocked
+		to_chat(user, span_notice("You changed [src] to [unlocked? "unofficial type" : "official type"]."))
 
 /obj/item/circuitboard/machine/plort
 	name = "Plort Redemption Machine (Machine Board)"
