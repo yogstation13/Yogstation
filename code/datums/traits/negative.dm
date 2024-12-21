@@ -678,7 +678,7 @@
 	gain_text = span_danger("You remember your allergic reaction to a common medicine.")
 	lose_text = span_notice("You no longer are allergic to medicine.")
 
-	var/allergy_chem_list = list(	
+	var/allergy_chem_list = list(
 		/datum/reagent/medicine/inacusiate,
 		/datum/reagent/medicine/silver_sulfadiazine,
 		/datum/reagent/medicine/styptic_powder,
@@ -707,7 +707,7 @@
 	var/reagent_id
 	COOLDOWN_DECLARE(allergies)
 	/// how long allergies last after getting rid of the allergen
-	var/cooldown_duration = 10 SECONDS 
+	var/cooldown_duration = 10 SECONDS
 	/// Wether the person is experiencing anaphylatic shock or not
 	COOLDOWN_DECLARE(anaphylaxis)
 	/// How long anaphylactic shock lasts
@@ -751,7 +751,7 @@
 
 	else if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
 		//external indicator that it's happening
-		if(prob(50)) 
+		if(prob(50))
 			switch(rand(0, 2))
 				if(0)
 					H.emote("cough")
@@ -1017,3 +1017,28 @@
 
 /datum/quirk/lactose_intolerance/proc/on_species_gain(datum/source, datum/species/new_species)
 	new_species.toxic_food |= DAIRY // no escape from your terrible fate
+
+/datum/quirk/blindspot
+	name = "Blindspot"
+	desc = "You lack the sixth sense and cannot see behind yourself."
+	icon = "arrows-to-eye"
+	gain_text = span_danger("You can't see behind yourself anymore.")
+	lose_text = span_notice("You can see behind yourself again.")
+	value = -2
+	medical_record_text = "Patient has trouble with spatial awareness."
+
+/datum/quirk/blindspot/add()
+	quirk_holder.overlay_fullscreen("blindspot", /atom/movable/screen/fullscreen/blindspot)
+	quirk_holder.blindspot_overlay = WEAKREF(quirk_holder.screens["blindspot"])
+	RegisterSignal(quirk_holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(change_dir))
+
+/datum/quirk/blindspot/remove()
+	quirk_holder.clear_fullscreen("blindspot")
+	quirk_holder.blindspot_overlay = null
+	UnregisterSignal(quirk_holder, COMSIG_ATOM_DIR_CHANGE)
+
+/datum/quirk/blindspot/proc/change_dir(atom/movable/source, olddir, newdir)
+	SIGNAL_HANDLER
+	var/atom/movable/screen/fullscreen/blindspot/fs_ov = quirk_holder.blindspot_overlay?.resolve()
+	if(istype(fs_ov))
+		fs_ov.dir = newdir
