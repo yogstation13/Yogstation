@@ -1038,18 +1038,22 @@
 	quirk_holder.overlay_fullscreen(BLINDSPOT_SOUTH, /atom/movable/screen/fullscreen/blindspot)
 	quirk_holder.overlay_fullscreen(BLINDSPOT_EAST, /atom/movable/screen/fullscreen/blindspot)
 	quirk_holder.overlay_fullscreen(BLINDSPOT_WEST, /atom/movable/screen/fullscreen/blindspot)
-	quirk_holder.blindspot_overlay[NORTH] = WEAKREF(quirk_holder.screens[BLINDSPOT_NORTH])
-	quirk_holder.blindspot_overlay[SOUTH] = WEAKREF(quirk_holder.screens[BLINDSPOT_SOUTH])
-	quirk_holder.blindspot_overlay[EAST] = WEAKREF(quirk_holder.screens[BLINDSPOT_EAST])
-	quirk_holder.blindspot_overlay[WEST] = WEAKREF(quirk_holder.screens[BLINDSPOT_WEST])
-	quirk_holder.screens[BLINDSPOT_NORTH].dir = NORTH
-	quirk_holder.screens[BLINDSPOT_SOUTH].dir = SOUTH
-	quirk_holder.screens[BLINDSPOT_EAST].dir = EAST
-	quirk_holder.screens[BLINDSPOT_WEST].dir = WEST
-	quirk_holder.screens[BLINDSPOT_NORTH].alpha = (quirk_holder.dir == NORTH) * 255
-	quirk_holder.screens[BLINDSPOT_SOUTH].alpha = (quirk_holder.dir == SOUTH) * 255
-	quirk_holder.screens[BLINDSPOT_EAST].alpha = (quirk_holder.dir == EAST) * 255
-	quirk_holder.screens[BLINDSPOT_WEST].alpha = (quirk_holder.dir == WEST) * 255
+	var/atom/movable/screen/fullscreen/blindspot/north_blindspot = quirk_holder.screens[BLINDSPOT_NORTH]
+	var/atom/movable/screen/fullscreen/blindspot/south_blindspot = quirk_holder.screens[BLINDSPOT_SOUTH]
+	var/atom/movable/screen/fullscreen/blindspot/east_blindspot = quirk_holder.screens[BLINDSPOT_EAST]
+	var/atom/movable/screen/fullscreen/blindspot/west_blindspot = quirk_holder.screens[BLINDSPOT_WEST]
+	quirk_holder.blindspot_overlay[NORTH] = WEAKREF(north_blindspot)
+	quirk_holder.blindspot_overlay[SOUTH] = WEAKREF(south_blindspot)
+	quirk_holder.blindspot_overlay[EAST] = WEAKREF(east_blindspot)
+	quirk_holder.blindspot_overlay[WEST] = WEAKREF(west_blindspot)
+	north_blindspot.dir = NORTH
+	south_blindspot.dir = SOUTH
+	east_blindspot.dir = EAST
+	west_blindspot.dir = WEST
+	north_blindspot.alpha = (quirk_holder.dir == NORTH) * 255
+	south_blindspot.alpha = (quirk_holder.dir == SOUTH) * 255
+	east_blindspot.alpha = (quirk_holder.dir == EAST) * 255
+	west_blindspot.alpha = (quirk_holder.dir == WEST) * 255
 	RegisterSignal(quirk_holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(change_dir))
 
 /datum/quirk/blindspot/remove()
