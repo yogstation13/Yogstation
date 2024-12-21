@@ -18,9 +18,15 @@
 
 	var/datum/component/remote_materials/rmat
 	var/efficiency_coeff = 1
-
+	var/datum/techweb/stored_research
 
 /obj/machinery/rack_creator/Initialize(mapload)
+	var/obj/item/circuitboard/machine/rack_creator/rack_creator = circuit
+	if(rack_creator.unlocked)
+		stored_research = SSresearch.ruin_tech
+		desc += " This one is unofficial, you shouldn't let the NT officicals see this."
+	else
+		stored_research = SSresearch.science_tech
 	rmat = AddComponent(/datum/component/remote_materials, "rackcreator", mapload)
 	rmat.set_local_size(200000)
 	RefreshParts()
@@ -104,7 +110,7 @@
 				materials_string += "[M.name]: [D.materials[mat] / efficiency_coeff]"
 			else
 				materials_string += ", [M.name]: [D.materials[mat] / efficiency_coeff]"
-		data["possible_ram"] += list(list("name" = D.name, "capacity" = D.capacity, "cost" = materials_string,"id" = D.id, "unlocked" = SSresearch.science_tech.isDesignResearchedID(D.id) ? TRUE : FALSE))
+		data["possible_ram"] += list(list("name" = D.name, "capacity" = D.capacity, "cost" = materials_string,"id" = D.id, "unlocked" = stored_research.isDesignResearchedID(D.id) ? TRUE : FALSE))
 
 	data["unlocked_ram"] = 1
 	data["unlocked_cpu"] = 1
@@ -192,23 +198,23 @@
 		if(1)
 			. = TRUE
 		if(2)
-			. = SSresearch.science_tech.isNodeResearchedID("ai_cpu_2")
+			. = stored_research.isNodeResearchedID("ai_cpu_2")
 		if(3)
-			. = SSresearch.science_tech.isNodeResearchedID("ai_cpu_3")
+			. = stored_research.isNodeResearchedID("ai_cpu_3")
 
 		if(4)
-			. = SSresearch.science_tech.isNodeResearchedID("ai_cpu_4")
+			. = stored_research.isNodeResearchedID("ai_cpu_4")
 
 /obj/machinery/rack_creator/proc/slotUnlockedRAM(slot_number)
 	switch(slot_number)
 		if(1)
 			. = TRUE
 		if(2)
-			. = SSresearch.science_tech.isNodeResearchedID("ai_ram_2")
+			. = stored_research.isNodeResearchedID("ai_ram_2")
 		if(3)
-			. = SSresearch.science_tech.isNodeResearchedID("ai_ram_3")
+			. = stored_research.isNodeResearchedID("ai_ram_3")
 		if(4)
-			. = SSresearch.science_tech.isNodeResearchedID("ai_ram_4")
+			. = stored_research.isNodeResearchedID("ai_ram_4")
 
 
 /obj/machinery/rack_creator/ui_act(action, params)
@@ -252,7 +258,7 @@
 			var/ram_type = params["ram_type"]
 			if(!ram_type)
 				return
-			var/datum/design/ram/D = SSresearch.science_tech.isDesignResearchedID(ram_type)
+			var/datum/design/ram/D = stored_research.isDesignResearchedID(ram_type)
 			if(!D)
 				return
 			if(slotUnlockedRAM(ram_expansions.len + 1))
