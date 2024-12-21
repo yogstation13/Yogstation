@@ -389,18 +389,16 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	if(imp && imp.radio.on)
 		if(message_mods[MODE_HEADSET])
 			if(radio?.use_command)
-				radio.radio.talk_into(src, message, null, spans, language, message_mods)
-				return ITALICS | REDUCE_RANGE
+				radio.talk_into(src, message, null, spans, language, message_mods)
 			else
 				imp.radio.talk_into(src, message, null, spans, language, message_mods)
-				return ITALICS | REDUCE_RANGE
+			return ITALICS | REDUCE_RANGE
 		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in imp.radio.channels))
 			if(radio?.use_command)
-				radio.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-				return ITALICS | REDUCE_RANGE
+				radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			else
 				imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-				return ITALICS | REDUCE_RANGE
+			return ITALICS | REDUCE_RANGE
 
 	switch(message_mods[RADIO_EXTENSION])
 		if(MODE_RADIO)
