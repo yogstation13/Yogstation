@@ -148,10 +148,10 @@
 	say("The decontamination process is completed, thank you for your patience.")
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 	if(mob_occupant)
-		visible_message(span_notice("[src]'s gate slides open, ejecting [mob_occupant] out."), span_notice("[src]'s gate slides open, ejecting you out."))
+		visible_message(span_notice("[src]'s door slides open, ejecting [mob_occupant] out."), span_notice("[src]'s gate slides open, ejecting you out."))
 		mob_occupant.radiation = 0
 	else
-		visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
+		visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
 	var/list/things_to_clear = list() //Done this way since using get_all_contents on the SSU itself would include circuitry and such.
 	if(occupant)
 		things_to_clear += occupant
