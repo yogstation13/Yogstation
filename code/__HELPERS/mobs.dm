@@ -450,7 +450,7 @@ GLOBAL_LIST_EMPTY(species_list)
 				if(prefs.toggles & DISABLE_ARRIVALRATTLE)
 					continue
 			if(DEADCHAT_PDA)
-				if(prefs.chat_toggles & CHAT_GHOSTPDA)
+				if(!(prefs.chat_toggles & CHAT_GHOSTPDA))
 					continue
 
 		if(isobserver(M))
