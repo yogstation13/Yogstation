@@ -70,9 +70,13 @@
 	. = dos_failure
 	dos_failure = new_value
 
-/obj/machinery/ntnet_relay/update_icon_state()
-	icon_state = "bus[is_operational() ? null : "_off"]"
-	return ..()
+/obj/machinery/ntnet_relay/update_overlays()
+	. = ..()
+	if(!is_operational())
+		return
+	var/mutable_appearance/on_overlay
+	on_overlay = mutable_appearance(icon, "[initial(icon_state)]_on")
+	. += on_overlay
 
 /obj/machinery/ntnet_relay/process(seconds_per_tick)
 	if(is_operational())
