@@ -387,17 +387,13 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 	var/obj/item/implant/radio/imp = locate() in src
 	var/obj/item/radio/radio = get_item_by_slot(ITEM_SLOT_EARS)
 	if(imp && imp.radio.on)
+		if(radio?.use_command)
+			spans |= SPAN_COMMAND
 		if(message_mods[MODE_HEADSET])
-			if(radio?.use_command)
-				radio.talk_into(src, message, null, spans, language, message_mods)
-			else
-				imp.radio.talk_into(src, message, null, spans, language, message_mods)
+			imp.radio.talk_into(src, message, null, spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in imp.radio.channels))
-			if(radio?.use_command)
-				radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
-			else
-				imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+			imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
 	switch(message_mods[RADIO_EXTENSION])
