@@ -1,5 +1,0 @@
-author: "Uristthedorf"
-delete-after: True
-changes:
-  - rscdel: "Removes tasers from the armory."
-  - rscadd: "Tasers can be bought at cargo."

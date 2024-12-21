@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Heretic sacrifice targets will have their blood restored and cleared of chems if they are sent to the mansus."

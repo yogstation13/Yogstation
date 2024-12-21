@@ -337,3 +337,28 @@
   - rscadd: Players who have been sacrificed by Heretics will experience additional
       and rapidly lethal consequences for attempting to fight someone who previously
       sacrificed them, as long as that person is wearing a focus.
+2024-12-21:
+  Absolucy:
+  - refactor: The effect from a monster hunter's blood vial is now just a status effect,
+      rather than a weird combination between a status effect and a reagent.
+  Coll6:
+  - rscadd: Ooze sucker machinery can be stored in multi tool buffer.
+  - bugfix: Allows ooze suckers to be linked if its inside a valid pen, that is also
+      linked to the same controller.
+  Loiosh42:
+  - balance: Reworks Debilitated, and by extension buffs disablers
+  Shoddd:
+  - rscadd: Explorer now has 6 slots
+  TheColorCyan:
+  - bugfix: interdyne MOD no longer looks off when worn by people without digitigrade
+      legs
+  ThePooba:
+  - bugfix: fixes the CANT... BREATH... moodlet but when you could breathe fine
+  Uristthedorf:
+  - rscdel: Removes tasers from the armory.
+  - rscadd: Tasers can be bought at cargo.
+  Wisemonster:
+  - rscadd: Added a disabler to QM's locker. It has a cargo-locked firing pin that
+      can only be used in the cargo's warehouse and storage.
+  - bugfix: Heretic sacrifice targets will have their blood restored and cleared of
+      chems if they are sent to the mansus.
