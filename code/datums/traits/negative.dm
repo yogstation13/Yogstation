@@ -1027,18 +1027,55 @@
 	value = -2
 	medical_record_text = "Patient has trouble with spatial awareness."
 
+#define BLINDSPOT_NORTH "blindspotN"
+#define BLINDSPOT_SOUTH "blindspotS"
+#define BLINDSPOT_EAST "blindspotE"
+#define BLINDSPOT_WEST "blindspotW"
+
 /datum/quirk/blindspot/add()
-	quirk_holder.overlay_fullscreen("blindspot", /atom/movable/screen/fullscreen/blindspot)
-	quirk_holder.blindspot_overlay = WEAKREF(quirk_holder.screens["blindspot"])
+	quirk_holder.blindspot_overlay = new/list(10)
+	quirk_holder.overlay_fullscreen(BLINDSPOT_NORTH, /atom/movable/screen/fullscreen/blindspot)
+	quirk_holder.overlay_fullscreen(BLINDSPOT_SOUTH, /atom/movable/screen/fullscreen/blindspot)
+	quirk_holder.overlay_fullscreen(BLINDSPOT_EAST, /atom/movable/screen/fullscreen/blindspot)
+	quirk_holder.overlay_fullscreen(BLINDSPOT_WEST, /atom/movable/screen/fullscreen/blindspot)
+	quirk_holder.blindspot_overlay[NORTH] = WEAKREF(quirk_holder.screens[BLINDSPOT_NORTH])
+	quirk_holder.blindspot_overlay[SOUTH] = WEAKREF(quirk_holder.screens[BLINDSPOT_SOUTH])
+	quirk_holder.blindspot_overlay[EAST] = WEAKREF(quirk_holder.screens[BLINDSPOT_EAST])
+	quirk_holder.blindspot_overlay[WEST] = WEAKREF(quirk_holder.screens[BLINDSPOT_WEST])
+	quirk_holder.screens[BLINDSPOT_NORTH].dir = NORTH
+	quirk_holder.screens[BLINDSPOT_SOUTH].dir = SOUTH
+	quirk_holder.screens[BLINDSPOT_EAST].dir = EAST
+	quirk_holder.screens[BLINDSPOT_WEST].dir = WEST
+	quirk_holder.screens[BLINDSPOT_NORTH].alpha = (quirk_holder.dir == NORTH) * 255
+	quirk_holder.screens[BLINDSPOT_SOUTH].alpha = (quirk_holder.dir == SOUTH) * 255
+	quirk_holder.screens[BLINDSPOT_EAST].alpha = (quirk_holder.dir == EAST) * 255
+	quirk_holder.screens[BLINDSPOT_WEST].alpha = (quirk_holder.dir == WEST) * 255
 	RegisterSignal(quirk_holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(change_dir))
 
 /datum/quirk/blindspot/remove()
-	quirk_holder.clear_fullscreen("blindspot")
+	quirk_holder.clear_fullscreen(BLINDSPOT_NORTH)
+	quirk_holder.clear_fullscreen(BLINDSPOT_SOUTH)
+	quirk_holder.clear_fullscreen(BLINDSPOT_EAST)
+	quirk_holder.clear_fullscreen(BLINDSPOT_WEST)
 	quirk_holder.blindspot_overlay = null
 	UnregisterSignal(quirk_holder, COMSIG_ATOM_DIR_CHANGE)
 
 /datum/quirk/blindspot/proc/change_dir(atom/movable/source, olddir, newdir)
 	SIGNAL_HANDLER
-	var/atom/movable/screen/fullscreen/blindspot/fs_ov = quirk_holder.blindspot_overlay?.resolve()
-	if(istype(fs_ov))
-		fs_ov.dir = newdir
+	if(olddir == 0 || newdir == 0)
+		return
+	if(olddir == newdir)
+		return
+	if(!quirk_holder.blindspot_overlay)
+		return
+	var/atom/movable/screen/fullscreen/blindspot/old_spot = quirk_holder.blindspot_overlay[olddir]?.resolve()
+	var/atom/movable/screen/fullscreen/blindspot/new_spot = quirk_holder.blindspot_overlay[newdir]?.resolve()
+	if(!istype(old_spot) || !istype(new_spot))
+		return
+	animate(old_spot, 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, alpha = 0)
+	animate(new_spot, 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, alpha = 255)
+
+#undef BLINDSPOT_NORTH
+#undef BLINDSPOT_SOUTH
+#undef BLINDSPOT_EAST
+#undef BLINDSPOT_WEST
