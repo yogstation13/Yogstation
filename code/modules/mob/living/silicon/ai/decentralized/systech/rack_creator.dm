@@ -21,19 +21,18 @@
 	var/datum/techweb/stored_research
 
 /obj/machinery/rack_creator/Initialize(mapload)
-	. = ..()
+	rmat = AddComponent(/datum/component/remote_materials, "rackcreator", mapload)
+	rmat.set_local_size(200000)
+	RefreshParts()
+	return ..()
+
+/obj/machinery/rack_creator/RefreshParts()
 	var/obj/item/circuitboard/machine/rack_creator/rack_creator = circuit
 	if(rack_creator.unlocked)
 		stored_research = SSresearch.ruin_tech
 		desc += " This one is unofficial, you shouldn't let the NT officicals see this."
 	else
 		stored_research = SSresearch.science_tech
-	rmat = AddComponent(/datum/component/remote_materials, "rackcreator", mapload)
-	rmat.set_local_size(200000)
-	RefreshParts()
-
-
-/obj/machinery/rack_creator/RefreshParts()
 	calculate_efficiency()
 
 /obj/machinery/rack_creator/proc/calculate_efficiency()
