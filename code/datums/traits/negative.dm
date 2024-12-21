@@ -1034,14 +1034,10 @@
 
 /datum/quirk/blindspot/add()
 	quirk_holder.blindspot_overlay = new/list(10)
-	quirk_holder.overlay_fullscreen(BLINDSPOT_NORTH, /atom/movable/screen/fullscreen/blindspot)
-	quirk_holder.overlay_fullscreen(BLINDSPOT_SOUTH, /atom/movable/screen/fullscreen/blindspot)
-	quirk_holder.overlay_fullscreen(BLINDSPOT_EAST, /atom/movable/screen/fullscreen/blindspot)
-	quirk_holder.overlay_fullscreen(BLINDSPOT_WEST, /atom/movable/screen/fullscreen/blindspot)
-	var/atom/movable/screen/fullscreen/blindspot/north_blindspot = quirk_holder.screens[BLINDSPOT_NORTH]
-	var/atom/movable/screen/fullscreen/blindspot/south_blindspot = quirk_holder.screens[BLINDSPOT_SOUTH]
-	var/atom/movable/screen/fullscreen/blindspot/east_blindspot = quirk_holder.screens[BLINDSPOT_EAST]
-	var/atom/movable/screen/fullscreen/blindspot/west_blindspot = quirk_holder.screens[BLINDSPOT_WEST]
+	var/atom/movable/screen/fullscreen/blindspot/north_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_NORTH, /atom/movable/screen/fullscreen/blindspot)
+	var/atom/movable/screen/fullscreen/blindspot/south_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_SOUTH, /atom/movable/screen/fullscreen/blindspot)
+	var/atom/movable/screen/fullscreen/blindspot/east_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_EAST, /atom/movable/screen/fullscreen/blindspot)
+	var/atom/movable/screen/fullscreen/blindspot/west_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_WEST, /atom/movable/screen/fullscreen/blindspot)
 	quirk_holder.blindspot_overlay[NORTH] = WEAKREF(north_blindspot)
 	quirk_holder.blindspot_overlay[SOUTH] = WEAKREF(south_blindspot)
 	quirk_holder.blindspot_overlay[EAST] = WEAKREF(east_blindspot)
