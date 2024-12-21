@@ -4177,8 +4177,17 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "biJ" = (
-/obj/machinery/computer/secure_data{
-	dir = 1
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/storage/pencil_holder/crew/fancy{
+	pixel_x = 8
+	},
+/obj/item/stamp/hop{
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -15675,7 +15684,7 @@
 /area/aisat)
 "eFc" = (
 /obj/structure/table,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "eFd" = (
@@ -26217,14 +26226,10 @@
 	c_tag = "Head of Personnel's Office";
 	dir = 1
 	},
-/obj/structure/table/wood,
-/obj/item/storage/box/PDAs{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/storage/box/silver_ids,
-/obj/item/storage/box/ids,
 /obj/machinery/light,
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "hIs" = (
@@ -26399,12 +26404,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"hJv" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "hJK" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable/yellow{
@@ -27511,6 +27510,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 4
 	},
+/obj/item/tank/internals/emergency_oxygen/vox,
+/obj/item/clothing/mask/breath/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "iej" = (
@@ -29666,9 +29667,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
-"iJR" = (
-/turf/open/openspace/icemoon/keep_below,
-/area/icemoon/surface/outdoors)
 "iJS" = (
 /turf/open/floor/plating/snowed/colder,
 /area/mine/abandoned)
@@ -31491,6 +31489,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"jkl" = (
+/obj/item/radio/intercom{
+	pixel_y = 21
+	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
 "jky" = (
 /obj/machinery/button/flasher{
 	id = "holdingflash";
@@ -33274,12 +33279,6 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "jJb" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/modular_computer/console/preset/command/hop{
-	dir = 4
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "jJf" = (
@@ -34311,7 +34310,7 @@
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/wood,
 /area/library)
 "jZd" = (
@@ -42219,9 +42218,6 @@
 /area/security/brig)
 "mkZ" = (
 /obj/structure/chair/office/dark,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/light_switch{
 	pixel_x = 38;
 	pixel_y = -35
@@ -42638,17 +42634,8 @@
 /turf/open/floor/plasteel,
 /area/construction/storage_wing)
 "mqP" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -2;
-	pixel_y = 4
-	},
-/obj/item/stamp/hop{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/storage/pencil_holder/crew/fancy{
-	pixel_x = 8
+/obj/machinery/modular_computer/console/preset/command/hop{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
@@ -47811,12 +47798,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
-"nMh" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "nMi" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -49333,7 +49314,7 @@
 /obj/item/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = 4
 	},
 /obj/machinery/firealarm{
@@ -54342,19 +54323,6 @@
 /area/medical/storage)
 "pES" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 1;
-	icon_state = "rightsecure";
-	name = "Head of Personnel's Desk"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/window/northleft{
-	dir = 2;
-	name = "Reception Window"
-	},
 /obj/machinery/door/poddoor/preopen{
 	id = "hop";
 	name = "privacy shutters"
@@ -54368,6 +54336,14 @@
 	pixel_y = -3
 	},
 /obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 1
+	},
+/obj/machinery/door/window/eastright{
+	dir = 2;
+	name = "Reception Window"
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	name = "Head of Personnel's Desk";
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -56433,7 +56409,7 @@
 /area/storage/tools)
 "qnr" = (
 /obj/structure/table,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/item/folder/white{
 	pixel_x = 4;
 	pixel_y = -3
@@ -57617,13 +57593,28 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/dorms)
 "qEA" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
+/obj/machinery/inspector_booth,
+/obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 1
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Reception Window"
 	},
-/turf/open/floor/carpet,
+/obj/machinery/door/window/brigdoor{
+	base_state = "rightsecure";
+	dir = 1;
+	name = "Head of Personnel's Desk"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "hop";
+	name = "privacy shutters"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "qEG" = (
 /obj/machinery/conveyor_switch/oneway{
@@ -57778,9 +57769,6 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "qGb" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "hopqueue";
 	name = "HoP Queue Shutters"
@@ -60697,7 +60685,7 @@
 /area/solar/port/aft/icemoon)
 "rzP" = (
 /obj/structure/window/reinforced,
-/obj/machinery/computer/cargo/request{
+/obj/machinery/computer/cargo{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -66450,9 +66438,6 @@
 /turf/open/floor/plasteel/white,
 /area/security/prison/hallway)
 "tcV" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
@@ -74723,13 +74708,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
-"vue" = (
-/obj/machinery/vending/cart,
-/obj/item/radio/intercom{
-	pixel_y = 21
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/heads/hop)
 "vuj" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/item/radio/intercom{
@@ -80548,7 +80526,7 @@
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	desc = "A real Nanotrasen success, these personal AIs provide all of the companionship of an AI without any law related red-tape.";
 	name = "Nanotrasen-brand personal AI device exhibit"
 	},
@@ -85420,9 +85398,6 @@
 /turf/open/floor/wood,
 /area/library)
 "ylr" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/machinery/flasher{
 	id = "hopflash";
 	pixel_x = 28;
@@ -161870,7 +161845,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -164185,7 +164160,7 @@ oVp
 oVp
 oVp
 oVp
-ekK
+oVp
 oVp
 oVp
 oVp
@@ -165992,7 +165967,7 @@ oVp
 oVp
 wMi
 wMi
-iJR
+wMi
 wMi
 wMi
 wMi
@@ -240826,9 +240801,9 @@ jfG
 byf
 hMv
 sYq
-vue
+jkl
 bjT
-nMh
+ibB
 biJ
 sYq
 iPW
@@ -241085,9 +241060,9 @@ kHW
 sYq
 mTR
 ibB
-qEA
+ibB
 jJb
-tKY
+qEA
 bjk
 eUW
 kvD
@@ -241342,7 +241317,7 @@ qVI
 sYq
 uEW
 ibB
-hJv
+ibB
 mkZ
 pES
 ylr
@@ -265286,7 +265261,7 @@ tRh
 tRh
 tRh
 tRh
-orI
+tRh
 tRh
 tRh
 tRh

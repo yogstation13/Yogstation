@@ -49,6 +49,10 @@
 		sitting = FALSE
 	update_appearance(UPDATE_ICON_STATE)
 
+/mob/living/simple_animal/pet/cat/ZImpactDamage(turf/T, levels)
+	visible_message(span_notice("[src] lands completely unharmed!"))
+	return ZIMPACT_CANCEL_DAMAGE|ZIMPACT_NO_MESSAGE|ZIMPACT_NO_SPIN
+
 /mob/living/simple_animal/pet/cat/space
 	name = "space cat"
 	desc = "It's a cat... in space!"

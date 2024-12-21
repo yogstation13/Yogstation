@@ -320,7 +320,7 @@
 "aff" = (
 /obj/structure/table/wood,
 /obj/item/pizzabox/vegetable,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -8310,7 +8310,7 @@
 /area/space)
 "awV" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/wood,
 /area/centcom/syndicate_mothership/control)
 "awW" = (
@@ -22032,23 +22032,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"hSa" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/door/airlock/centcom{
-	name = "CentCom"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/admin/general,
-/turf/open/floor/plasteel/dark,
-/area/centcom/control)
 "hUh" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/plasteel/bluespace,
@@ -22806,10 +22789,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership)
-"oxc" = (
-/obj/structure/fans/tiny,
-/turf/open/floor/plasteel,
-/area/centcom/control)
 "oxS" = (
 /obj/item/clothing/shoes/combat/coldres{
 	pixel_x = 6;
@@ -70538,7 +70517,7 @@ aiu
 aiu
 aio
 aiu
-oxc
+itu
 aiu
 aiu
 aiu
@@ -70795,7 +70774,7 @@ als
 aiC
 akZ
 aiC
-hSa
+aiC
 aiL
 aiT
 aiT

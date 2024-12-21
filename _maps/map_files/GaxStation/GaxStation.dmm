@@ -10357,7 +10357,7 @@
 /obj/machinery/keycard_auth{
 	pixel_x = 24
 	},
-/obj/item/paicard{
+/obj/item/computer_hardware/paicard{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -11082,6 +11082,7 @@
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/port/aft)
 "fgB" = (
+/obj/effect/spawner/lootdrop/mob/kitchen_animal,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "fgN" = (
@@ -14144,12 +14145,6 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "gCk" = (
-/obj/machinery/modular_computer/console/preset/command/hop{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "gCt" = (
@@ -15561,10 +15556,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "hnx" = (
-/obj/machinery/firealarm{
-	pixel_y = 28
+/obj/machinery/modular_computer/console/preset/command/hop{
+	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "hnH" = (
@@ -16553,6 +16547,10 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/crew_quarters/bar)
+"hJy" = (
+/mob/living/carbon/monkey/punpun,
+/turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "hJB" = (
 /obj/effect/turf_decal/trimline/green/filled/line/lower{
@@ -17658,12 +17656,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
 /obj/machinery/photocopier/faxmachine{
 	department = "Head of Personnel";
 	name = "Head of Personnel's Fax Machine"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -18261,6 +18259,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "izV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "iAA" = (
@@ -22519,8 +22518,24 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "kJB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/carpet/blue,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "hop";
+	name = "Privacy Shutters"
+	},
+/obj/machinery/inspector_booth{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/eastright{
+	name = "Head of Personnel's Desk"
+	},
+/obj/machinery/door/window/northleft{
+	dir = 8;
+	name = "Reception Window"
+	},
+/obj/effect/mapping_helpers/windoor/access/all/service/hop{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "kJU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -24205,6 +24220,8 @@
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
 	dir = 9
 	},
+/obj/item/clothing/mask/breath/vox,
+/obj/item/tank/internals/emergency_oxygen/vox,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "lzE" = (
@@ -28187,6 +28204,9 @@
 	dir = 1
 	},
 /obj/machinery/pdapainter,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "nzN" = (
@@ -28525,9 +28545,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "nHs" = (
@@ -28837,7 +28854,7 @@
 /area/security/execution/transfer)
 "nOj" = (
 /obj/structure/table/wood,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "nOx" = (
@@ -32538,7 +32555,6 @@
 /obj/machinery/door/window/brigdoor{
 	base_state = "rightsecure";
 	dir = 4;
-	icon_state = "rightsecure";
 	name = "Head of Personnel's Desk"
 	},
 /obj/machinery/flasher{
@@ -37230,6 +37246,10 @@
 /area/medical/storage)
 "rWx" = (
 /obj/structure/closet/secure_closet/hop,
+/obj/structure/sign/painting{
+	persistence_id = "public";
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "rWP" = (
@@ -41825,13 +41845,11 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "ulW" = (
-/obj/machinery/vending/cart,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/Ian,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "umn" = (
@@ -41967,11 +41985,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "urY" = (
-/obj/structure/bed/dogbed/ian,
-/mob/living/simple_animal/pet/dog/corgi/Ian,
 /obj/machinery/light_switch{
 	pixel_x = 24
 	},
+/obj/machinery/vending/wardrobe/hop_wardrobe,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "usc" = (
@@ -91758,7 +91775,7 @@ eAn
 kfu
 oas
 lzl
-bfP
+hJy
 rAA
 kfu
 fmk
@@ -95098,7 +95115,7 @@ xPn
 tCL
 xdL
 pKI
-mUc
+kJB
 mUc
 omw
 omw
@@ -95612,7 +95629,7 @@ qot
 hXw
 xdL
 hnx
-kJB
+gCk
 nHr
 gqN
 omw

@@ -21,7 +21,7 @@
 	if(!..())
 		return
 	var/mob/living/silicon/pai/pAI = usr
-	pAI.paiInterface()
+	pAI.ui_interact(usr)
 
 /atom/movable/screen/pai/shell
 	name = "Toggle Holoform"

@@ -23,7 +23,7 @@
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
 	///A pAI currently loaded into the modular computer.
-	var/obj/item/paicard/inserted_pai
+	var/obj/item/computer_hardware/paicard/inserted_pai
 
 	/// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_active_power_usage = 50
@@ -656,8 +656,8 @@
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 
-/obj/item/modular_computer/proc/parent_moved()
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)
+/obj/item/modular_computer/proc/parent_moved(datum/source, atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE, interrupting = TRUE)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs, momentum_change, interrupting)
 
 /obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
 	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE

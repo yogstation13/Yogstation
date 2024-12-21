@@ -177,7 +177,7 @@
 	if(outfit_override || outfit)
 		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)
 
-	H.dna.species.after_equip_job(src, H, visualsOnly)
+	H.dna.species.after_equip_job(src, H, preference_source)
 
 	if(H.psi && H.psi.has_rank_above(PSI_RANK_OPERANT))
 		var/obj/item/implant/psi_control/I = new(H)

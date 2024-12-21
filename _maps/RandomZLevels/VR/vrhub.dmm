@@ -2447,7 +2447,7 @@
 /area/awaymission/vr/syndicate)
 "Jl" = (
 /obj/structure/table,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /turf/open/indestructible,
 /area/awaymission/vr/syndicate)
 "Jz" = (

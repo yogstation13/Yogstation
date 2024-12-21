@@ -59,7 +59,7 @@
 /// This person is crying
 #define TRAIT_CRYING "crying"
 /// you cannot put this in any container, backpack, box etc
-#define TRAIT_NO_STORAGE		"no-storage" 
+#define TRAIT_NO_STORAGE		"no-storage"
 /// Crafts items using the crafting menu faster
 #define TRAIT_CRAFTY			"crafty"
 /// Gets a more detailed reagent breakdown when examining
@@ -130,6 +130,7 @@
 #define TRAIT_DIGITIGRADE		"digitigrade" // the funny lizard legs
 /// If the legs are to be displayed like regular legs
 #define TRAIT_DIGI_SQUISH       "didi_squish"
+#define TRAIT_IGNORE_SHAREDFOOD "ignore_shared_food" // don't get negative moodlet from sharing a plate
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------Quirk defines----------------------------------//

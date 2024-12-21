@@ -47,7 +47,7 @@
 					mood.add_event(null, "fav_food", /datum/mood_event/favorite_food)
 				last_check_time = world.time
 				return
-	..()
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/donut/chaos
 	name = "chaos donut"
