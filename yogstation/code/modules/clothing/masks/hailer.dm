@@ -23,7 +23,7 @@
 	GLOB.sechailers += src
 	radio = new(src)
 	radio.keyslot = new radio_key
-	radio.listening = FALSE
+	radio.set_listening(FALSE)
 	radio.recalculateChannels()
 
 /obj/item/clothing/mask/gas/sechailer/Destroy()

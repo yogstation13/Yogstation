@@ -9,7 +9,7 @@
 	. = ..()
 	radio = new(src)
 	radio.keyslot = new/obj/item/encryptionkey/syndicate // Should broadcast exclusively on the syndicate channel.
-	radio.listening = FALSE
+	radio.set_listening(FALSE)
 	radio.recalculateChannels()
 
 /obj/item/implant/biosig_gorlex/activate(cause)

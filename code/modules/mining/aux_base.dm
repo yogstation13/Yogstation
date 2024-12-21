@@ -47,7 +47,7 @@
 /obj/machinery/computer/auxiliary_base/Initialize(mapload)
 	. = ..()
 	radio = new /obj/item/radio(src)
-	radio.frequency = radio_freq
+	radio.set_frequency(radio_freq)
 	AddComponent(/datum/component/gps, "NT_AUX")
 
 /obj/machinery/computer/auxiliary_base/Destroy()

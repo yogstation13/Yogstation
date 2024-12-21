@@ -605,7 +605,6 @@
 	icon_state = "unalive-vest"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
-	flags_1 = HEAR_1
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF //stop trying to get it off
 	var/listening = FALSE
 	var/activation_phrase = ""
@@ -628,6 +627,7 @@
 		return
 	say("Now recording.")
 	listening = TRUE
+	become_hearing_sensitive() //to replace depreciated HEAR 1 
 
 /obj/item/clothing/suit/unalivevest/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods)
 	. = ..()
@@ -663,3 +663,4 @@
 		var/mob/living/L = loc
 		L.gib(no_brain = TRUE, no_items = TRUE)
 	qdel(src)
+	lose_hearing_sensitivity()

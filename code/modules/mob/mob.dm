@@ -86,6 +86,7 @@
 	. = ..()
 	update_config_movespeed()
 	update_movespeed(TRUE)
+	become_hearing_sensitive()
 
 /mob/New()
 	// This needs to happen IMMEDIATELY. I'm sorry :(
@@ -691,6 +692,12 @@
 	if(I)
 		I.attack_self(src)
 		update_inv_hands()
+
+///clears the client mob in our client_mobs_in_contents list
+/mob/proc/clear_client_in_contents()
+	if(client?.movingmob)
+		LAZYREMOVE(client.movingmob.client_mobs_in_contents, src)
+		client.movingmob = null
 
 /**
   * Get the notes of this mob

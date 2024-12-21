@@ -13,7 +13,7 @@
 	uplink.set_antagonist(ROLE_INFILTRATOR)
 	alert_radio = new(src)
 	alert_radio.make_syndie()
-	alert_radio.listening = FALSE
+	alert_radio.set_listening(FALSE)
 	alert_radio.canhear_range = 0
 	alert_radio.set_frequency(FREQ_SYNDICATE)
 	alert_radio.name = "infiltration cruiser autopilot"

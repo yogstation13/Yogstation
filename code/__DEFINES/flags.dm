@@ -28,45 +28,43 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 
 /// item has priority to check when entering or leaving
 #define ON_BORDER_1					(1<<1)
-/// This flag is what recursive_hear_check() uses to determine wether to add an item to the hearer list or not.
-#define HEAR_1						(1<<2)
 /// Projectiels will check ricochet on things impacted that have this.
-#define CHECK_RICOCHET_1			(1<<3)
+#define CHECK_RICOCHET_1			(1<<2)
 ///specifies that this atom is a hologram that isnt real
-#define HOLOGRAM_1					(1<<4)
+#define HOLOGRAM_1					(1<<3)
 ///Whether /atom/Initialize(mapload) has already run for the object
-#define INITIALIZED_1				(1<<5)
+#define INITIALIZED_1				(1<<4)
 /// was this spawned by an admin? used for stat tracking stuff.
-#define ADMIN_SPAWNED_1 			(1<<6)
+#define ADMIN_SPAWNED_1 			(1<<5)
 /// For machines and structures that should not break into parts, eg, holodeck stuff
-#define NODECONSTRUCT_1				(1<<7)
+#define NODECONSTRUCT_1				(1<<6)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
-#define PREVENT_CLICK_UNDER_1		(1<<9)
+#define PREVENT_CLICK_UNDER_1		(1<<7)
 /// Can players recolor this in-game via vendors (and maybe more if support is added)?
-#define IS_PLAYER_COLORABLE_1 (1<<10)
+#define IS_PLAYER_COLORABLE_1		(1<<8)
 /// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
-#define TESLA_IGNORE_1				(1<<11)
+#define TESLA_IGNORE_1				(1<<9)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1				(1<<12)
+#define CAN_BE_DIRTY_1				(1<<10)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 		(1<<13)
+#define HTML_USE_INITAL_ICON_1 		(1<<11)
 /// conducts electricity (metal etc.)
-#define CONDUCT_1					(1<<14)
+#define CONDUCT_1					(1<<12)
 /// should not get harmed if this gets caught by an explosion?
-#define PREVENT_CONTENTS_EXPLOSION_1 (1<<15)
+#define PREVENT_CONTENTS_EXPLOSION_1 (1<<13)
 /// should the contents of this atom be acted upon
-#define RAD_PROTECT_CONTENTS_1 		(1<<16)
+#define RAD_PROTECT_CONTENTS_1 		(1<<14)
 /// should this object be allowed to be contaminated
-#define RAD_NO_CONTAMINATE_1 		(1<<17)
+#define RAD_NO_CONTAMINATE_1 		(1<<15)
 /// Prevents most radiation on this turf from leaving it
-#define RAD_CONTAIN_CONTENTS 		(1<<18)
+#define RAD_CONTAIN_CONTENTS 		(1<<16)
 /// Is the thing currently spinning?
-#define IS_SPINNING_1 				(1<<19)
+#define IS_SPINNING_1 				(1<<17)
 /// If this atom has experienced a decal element "init finished" sourced appearance update
 /// We use this to ensure stacked decals don't double up appearance updates for no rasin
 /// Flag as an optimization, don't make this a trait without profiling
 /// Yes I know this is a stupid flag, no you can't take him from me
-#define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<20)
+#define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<18)
 
 //TURF FLAGS
 /// If a turf cant be jaunted through.

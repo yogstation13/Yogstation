@@ -7,7 +7,6 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	flags_1 = HEAR_1
 	slot_flags = ITEM_SLOT_BELT
 	materials = list(/datum/material/iron=60, /datum/material/glass=30)
 	force = 2
@@ -28,7 +27,7 @@
 	if(starting_tape_type)
 		mytape = new starting_tape_type(src)
 	update_appearance(UPDATE_ICON)
-
+	become_hearing_sensitive()
 
 /obj/item/taperecorder/examine(mob/user)
 	. = ..()

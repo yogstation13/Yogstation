@@ -12,7 +12,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
-	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -58,6 +58,8 @@
 		armor = getArmor()
 	else if(!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during [type] Initialize()")
+	if(ispath(radio))
+		radio = new radio(src)
 	diag_hud_set_status()
 	diag_hud_set_health()
 	ADD_TRAIT(src, TRAIT_FORCED_STANDING, "cyborg") // not CYBORG_ITEM_TRAIT because not an item
@@ -69,8 +71,8 @@
 	return //we use a different hud
 
 /mob/living/silicon/Destroy()
-	radio = null
-	aicamera = null
+	QDEL_NULL(radio)
+	QDEL_NULL(aicamera)
 	QDEL_NULL(builtInCamera)
 	GLOB.silicon_mobs -= src
 	return ..()
@@ -248,7 +250,7 @@
 		return
 	if(Autochan == "Default") //Autospeak on whatever frequency to which the radio is set, usually Common.
 		radiomod = ";"
-		Autochan += " ([radio.frequency])"
+		Autochan += " ([radio.get_frequency()])"
 	else if(Autochan == "None") //Prevents use of the radio for automatic annoucements.
 		radiomod = ""
 	else	//For department channels, if any, given by the internal radio.
