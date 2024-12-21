@@ -409,7 +409,7 @@ ipc martial arts stuff
 	armor = 10
 	punchdamagelow = 5
 	punchdamagehigh = 12
-	punchstunthreshold = 12
+	punchstunchance = 0.2
 	mutant_organs = list()
 	inherent_traits = list(
 		TRAIT_RESISTCOLD,
@@ -576,7 +576,7 @@ ipc martial arts stuff
 	speedmod = -0.2
 	punchdamagelow = 10
 	punchdamagehigh = 19
-	punchstunthreshold = 14 //about 50% chance to stun
+	punchstunchance = 0.5 //50% chance to stun
 	disguise_fail_health = 35
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN //admin only... sorta
 

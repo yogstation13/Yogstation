@@ -20,6 +20,15 @@
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 	minimal_character_age = 24 //Intense understanding of thermodynamics, gas law, gas interaction, construction and safe containment of gases, creation of new ones, math beyond your wildest imagination
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_LOW,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/engineering,
 	)

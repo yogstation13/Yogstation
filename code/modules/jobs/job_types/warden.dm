@@ -30,6 +30,15 @@
 	display_order = JOB_DISPLAY_ORDER_WARDEN
 	minimal_character_age = 20 //You're a sergeant, probably has some experience in the field
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = 2
+
 	departments_list = list(
 		/datum/job_department/security,
 	)

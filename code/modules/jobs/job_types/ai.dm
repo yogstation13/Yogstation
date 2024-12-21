@@ -15,6 +15,15 @@
 	display_order = JOB_DISPLAY_ORDER_AI
 	var/do_special_check = TRUE
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MASTER,
+		SKILL_MECHANICAL = EXP_MASTER,
+		SKILL_TECHNICAL = EXP_MASTER,
+		SKILL_SCIENCE = EXP_MASTER,
+		SKILL_FITNESS = EXP_NONE, // it can't fucking MOVE
+	)
+	skill_points = 0
+
 	departments_list = list(
 		/datum/job_department/silicon,
 	)

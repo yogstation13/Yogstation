@@ -41,19 +41,13 @@
 /datum/surgery_step/fix_brain
 	name = "fix brain"
 	implements = list(TOOL_HEMOSTAT = 85, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15) //don't worry, pouring some alcohol on their open brain will get that chance to 100
+	difficulty = EXP_MASTER // do NOT attempt this without experience!
 	repeatable = TRUE
 	time = 12 SECONDS //long and complicated
 	preop_sound = 'sound/surgery/hemostat1.ogg'
 	success_sound = 'sound/surgery/hemostat1.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
 	fuckup_damage = 20
-
-/datum/surgery_step/fix_brain/positron
-	name = "recalibrate brain"
-	implements = list(TOOL_MULTITOOL = 100, TOOL_SCREWDRIVER = 40, TOOL_HEMOSTAT = 25) //sterilizine doesn't work on IPCs so they get 100% chance, besides it's likely easier than fixing an organic brain
-	preop_sound = 'sound/items/tape_flip.ogg'
-	success_sound = 'sound/items/taperecorder_close.ogg'
-	failure_sound = 'sound/machines/defib_zap.ogg'
 
 /datum/surgery/brain_surgery/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
@@ -95,3 +89,15 @@
 	else
 		user.visible_message("<span class='warning'>[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore.", span_warning("You suddenly notice that the brain you were working on is not there anymore."))
 	return FALSE
+
+/datum/surgery_step/fix_brain/positron
+	name = "recalibrate brain"
+	implements = list(TOOL_MULTITOOL = 100, TOOL_SCREWDRIVER = 40, TOOL_HEMOSTAT = 25) //sterilizine doesn't work on IPCs so they get 100% chance, besides it's likely easier than fixing an organic brain
+	preop_sound = 'sound/items/tape_flip.ogg'
+	success_sound = 'sound/items/taperecorder_close.ogg'
+	failure_sound = 'sound/machines/defib_zap.ogg'
+
+/datum/surgery_step/fix_brain/positron/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	. = ..()
+	if(. && user.skill_check(SKILL_TECHNICAL, EXP_MASTER)) // not really any chance 
+		target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
