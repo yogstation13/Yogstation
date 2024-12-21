@@ -21,6 +21,7 @@
 	var/datum/techweb/stored_research
 
 /obj/machinery/rack_creator/Initialize(mapload)
+	. = ..()
 	var/obj/item/circuitboard/machine/rack_creator/rack_creator = circuit
 	if(rack_creator.unlocked)
 		stored_research = SSresearch.ruin_tech
@@ -30,7 +31,6 @@
 	rmat = AddComponent(/datum/component/remote_materials, "rackcreator", mapload)
 	rmat.set_local_size(200000)
 	RefreshParts()
-	return ..()
 
 
 /obj/machinery/rack_creator/RefreshParts()
