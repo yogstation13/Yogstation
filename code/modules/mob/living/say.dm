@@ -385,7 +385,10 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
 	var/obj/item/implant/radio/imp = locate() in src
+	var/obj/item/radio/radio = get_item_by_slot(ITEM_SLOT_EARS)
 	if(imp && imp.radio.on)
+		if(radio?.use_command)
+			spans |= SPAN_COMMAND
 		if(message_mods[MODE_HEADSET])
 			imp.radio.talk_into(src, message, null, spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
