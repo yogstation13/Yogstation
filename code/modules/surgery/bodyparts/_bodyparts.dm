@@ -518,24 +518,27 @@
 	var/armor_ablation = 0
 	var/injury_mod = 0
 
-	if(owner && ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+	if(owner)
+		if(owner.psi)
+			armor_ablation += owner.psi.get_armour(WOUND)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
 
-		if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
-			armor_ablation += H.physiology.armor.getRating(WOUND)
+			if(H?.physiology?.armor?.wound)//if there is any innate wound armor (poly or genetics)
+				armor_ablation += H.physiology.armor.getRating(WOUND)
 
-		var/list/clothing = H.clothingonpart(body_part)
-		for(var/c in clothing)
-			var/obj/item/clothing/C = c
-			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
-			armor_ablation += C.armor.getRating(WOUND)
-			if(wounding_type == WOUND_SLASH)
-				C.take_damage_zone(body_zone, damage, BRUTE)
-			else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
-				C.take_damage_zone(body_zone, damage, BURN)
+			var/list/clothing = H.clothingonpart(body_part)
+			for(var/c in clothing)
+				var/obj/item/clothing/C = c
+				// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
+				armor_ablation += C.armor.getRating(WOUND)
+				if(wounding_type == WOUND_SLASH)
+					C.take_damage_zone(body_zone, damage, BRUTE)
+				else if(wounding_type == WOUND_BURN && damage >= 10) // lazy way to block freezing from shredding clothes without adding another var onto apply_damage()
+					C.take_damage_zone(body_zone, damage, BURN)
 
-		if(!armor_ablation)
-			injury_mod += bare_wound_bonus
+	if(!armor_ablation)
+		injury_mod += bare_wound_bonus
 
 	injury_mod -= armor_ablation
 	injury_mod += wound_bonus

@@ -1017,3 +1017,21 @@
 
 /datum/quirk/lactose_intolerance/proc/on_species_gain(datum/source, datum/species/new_species)
 	new_species.toxic_food |= DAIRY // no escape from your terrible fate
+
+
+/datum/quirk/psionically_deafened
+	name = "Psionically Deafened"
+	desc = "You were born within a region of space with no known bluespace activity. You cannot awaken as a psionic with this quirk."
+	icon = "hand-back-fist"
+	value = -1
+	mob_trait = TRAIT_PSIONICALLY_DEAFENED
+	gain_text = span_notice("You feel a sense of numbness in your thoughts.")
+	lose_text = span_notice("You feel like a weight has receeded from your mind.")
+	medical_record_text = "Patient demonstrates unusually stagnant brain patterns."
+
+/datum/quirk/psionically_deafened/check_quirk(datum/preferences/prefs)
+	var/datum/species/species_type = prefs.read_preference(/datum/preference/choiced/species)
+
+	if(species_type == /datum/species/ipc) // IPCs cant use psionics normally
+		return "You have no brain!"
+	return FALSE
