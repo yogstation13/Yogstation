@@ -31,7 +31,7 @@
 
 /datum/status_effect/void_chill/lasting
 	id = "lasting_void_chill"
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 
 /datum/movespeed_modifier/void_chill
 	multiplicative_slowdown = 0.3
@@ -199,7 +199,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/heretic_lastresort
 	duration = 12 SECONDS
 	status_type = STATUS_EFFECT_REPLACE
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 
 /atom/movable/screen/alert/status_effect/heretic_lastresort
 	name = "Last Resort"
@@ -219,7 +219,7 @@
 /datum/status_effect/moon_converted
 	id = "moon converted"
 	alert_type = /atom/movable/screen/alert/status_effect/moon_converted
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	status_type = STATUS_EFFECT_REPLACE
 	///used to track damage
 	var/damage_sustained = 0

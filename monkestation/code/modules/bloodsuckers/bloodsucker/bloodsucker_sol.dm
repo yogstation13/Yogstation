@@ -153,7 +153,7 @@
 
 /datum/status_effect/bloodsucker_sol
 	id = "bloodsucker_sol"
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = /atom/movable/screen/alert/status_effect/bloodsucker_sol
 	var/list/datum/action/cooldown/bloodsucker/burdened_actions
 	var/static/list/sol_traits = list(

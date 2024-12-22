@@ -18,7 +18,7 @@
 
 /datum/status_effect/mayhem
 	show_duration = TRUE
-	tick_interval = 0 // Just pass me the SSfastprocess ticks please.
+	tick_interval = STATUS_EFFECT_NO_TICK // Just pass me the SSfastprocess ticks please.
 
 	alert_type = /atom/movable/screen/alert/status_effect/mayhem
 

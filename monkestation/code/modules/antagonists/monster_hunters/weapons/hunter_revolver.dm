@@ -39,7 +39,7 @@
 /datum/status_effect/silver_bullet
 	id = "silver_bullet"
 	duration = 8 SECONDS
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/silver_bullet
 

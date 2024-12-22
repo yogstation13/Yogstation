@@ -1,6 +1,6 @@
 /datum/status_effect/borer_sugar
 	id = "borer_sugar"
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/borer_sugar
 

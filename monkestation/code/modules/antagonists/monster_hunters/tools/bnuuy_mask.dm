@@ -55,7 +55,7 @@
 /datum/status_effect/bnuuy_mask
 	id = "bnuuy_mask"
 	alert_type = null
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	var/datum/component/glitching_state/wondershift
 
 /datum/status_effect/bnuuy_mask/on_apply()

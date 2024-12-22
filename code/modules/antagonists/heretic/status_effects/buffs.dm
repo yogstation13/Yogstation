@@ -109,7 +109,7 @@
 	id = "Silver Knives"
 	alert_type = null
 	status_type = STATUS_EFFECT_MULTIPLE
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	/// The number of blades we summon up to.
 	var/max_num_blades = 4
 	/// The radius of the blade's orbit.
@@ -242,7 +242,7 @@
 /datum/status_effect/caretaker_refuge
 	id = "Caretaker’s Last Refuge"
 	status_type = STATUS_EFFECT_REFRESH
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
 	var/static/list/caretaking_traits = list(TRAIT_HANDS_BLOCKED, TRAIT_IGNORESLOWDOWN, TRAIT_SECLUDED_LOCATION)
 

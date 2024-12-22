@@ -6,7 +6,7 @@
 	/// When set initially / in on_creation, this is how long the status effect lasts in deciseconds.
 	/// While processing, this becomes the world.time when the status effect will expire.
 	/// -1 = infinite duration.
-	var/duration = -1
+	var/duration = STATUS_EFFECT_PERMANENT
 	/// When set initially / in on_creation, this is how long between [proc/tick] calls in deciseconds.
 	/// While processing, this becomes the world.time when the next tick will occur.
 	/// -1 = will stop processing, if duration is also unlimited (-1).

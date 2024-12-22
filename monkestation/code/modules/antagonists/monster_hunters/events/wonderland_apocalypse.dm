@@ -123,7 +123,7 @@
 /datum/status_effect/wonderland_district
 	id = "wonderland_district"
 	alert_type = /atom/movable/screen/alert/status_effect/wonderland_district
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	/// List of /datum/action instance that we've registered `COMSIG_ACTION_TRIGGER` on.
 	var/list/datum/action/registered_actions
 	/// Typecache of spells to NOT trigger the effect on.

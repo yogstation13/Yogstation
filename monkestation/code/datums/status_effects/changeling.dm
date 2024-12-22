@@ -19,7 +19,7 @@
 	id = "changeling_adrenaline"
 	duration = 20 SECONDS
 	show_duration = TRUE
-	tick_interval = 0
+	tick_interval = 0.2 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/changeling/adrenaline
 	status_type = STATUS_EFFECT_REFRESH
 
@@ -69,7 +69,7 @@
 	id = "changeling_panacea"
 	duration = 1 MINUTE
 	show_duration = TRUE
-	tick_interval = 0
+	tick_interval = 0.2 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/changeling/panacea
 	status_type = STATUS_EFFECT_REFRESH
 
@@ -158,7 +158,7 @@
 
 /datum/status_effect/changeling_muscles
 	id = "changeling_muscles"
-	tick_interval = 0
+	tick_interval = 1 SECONDS
 	processing_speed = STATUS_EFFECT_NORMAL_PROCESS
 	alert_type = /atom/movable/screen/alert/status_effect/changeling/muscles
 

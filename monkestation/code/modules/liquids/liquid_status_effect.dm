@@ -1,7 +1,7 @@
 /datum/status_effect/water_affected
 	id = "wateraffected"
 	alert_type = null
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 
 /datum/status_effect/water_affected/on_apply()
 	//We should be inside a liquid turf if this is applied
@@ -36,8 +36,9 @@
 	blacklisted_movetypes = FLOATING | FLYING
 
 /datum/status_effect/ocean_affected
+	id = "ocean_affected"
+	duration = STATUS_EFFECT_PERMANENT
 	alert_type = null
-	duration = -1
 
 /datum/status_effect/ocean_affected/tick()
 	var/turf/ocean_turf = get_turf(owner)

@@ -15,7 +15,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/hunters_sense
 	minimum_range = HUNTER_MINIMUM_RANGE
 	tick_interval = HUNTER_PING_TIME
-	duration = -1
+	duration = STATUS_EFFECT_PERMANENT
 	range_fuzz_factor = HUNTER_FUZZ_FACTOR
 
 ///Attempting to locate a nearby target to scan and point towards.

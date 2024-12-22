@@ -1,7 +1,7 @@
 /datum/status_effect/slime_regen_cooldown
 	id = "slime_regen_cooldown"
 	status_type = STATUS_EFFECT_MULTIPLE
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = null
 	remove_on_fullheal = TRUE
 	heal_flag_necessary = HEAL_ADMIN

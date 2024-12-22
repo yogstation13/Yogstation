@@ -1,6 +1,6 @@
 /datum/status_effect/centcom_grace
 	id = "centcom_grace"
-	tick_interval = -1
+	tick_interval = STATUS_EFFECT_NO_TICK
 	alert_type = null
 	var/last_active = FALSE
 

@@ -1,8 +1,8 @@
 /datum/status_effect/food
+	id = STATUS_EFFECT_ID_ABSTRACT
 	duration = 10 MINUTES
 	status_type = STATUS_EFFECT_REPLACE
 	show_duration = TRUE
-
 
 /datum/status_effect/food/proc/apply_quality(quality)
 	return

@@ -116,7 +116,7 @@
 
 /datum/status_effect/cosmic_beam
 	id = "cosmic_beam"
-	tick_interval = 0.1 SECONDS
+	tick_interval = 0.2 SECONDS
 	duration = 1 MINUTES
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null

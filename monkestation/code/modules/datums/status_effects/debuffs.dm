@@ -3,6 +3,9 @@
 	desc = "You've been hit with an EMP! You're malfunctioning!"
 	icon_state = "hypnosis"
 
+/datum/status_effect/ipc
+	id = STATUS_EFFECT_ID_ABSTRACT
+
 /datum/status_effect/ipc/emp
 	id = "ipc_emp"
 	duration = 120 SECONDS

@@ -1,8 +1,8 @@
 /datum/status_effect/lungless
 	id = "no_lungs"
 	alert_type = null
-	duration = -1
-	tick_interval = -1
+	duration = STATUS_EFFECT_PERMANENT
+	tick_interval = STATUS_EFFECT_NO_TICK
 
 /datum/status_effect/lungless/on_apply()
 	if(!iscarbon(owner))

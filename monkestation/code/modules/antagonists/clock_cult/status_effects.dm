@@ -2,7 +2,7 @@
 	id = "interdicted"
 	duration = 2.5 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
-	tick_interval = 1
+	tick_interval = 0.2 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/interdiction
 	/// If we kicked the owner out of running mode
 	var/running_toggled = FALSE
