@@ -363,5 +363,18 @@
   - bugfix: Heretic sacrifice targets will have their blood restored and cleared of
       chems if they are sent to the mansus.
 2024-12-22:
+  Absolucy:
+  - bugfix: Properly marked the message type and confidentiality of a few admin/mentor-related
+      notifications.
+  - bugfix: The map selected for the next round should actually always be the map
+      that loads next round.
+  - rscadd: Added tinyfans to the arrivals shuttle and public mining shuttle doors
+      on Blueshift.
+  - qol: All ghosts now see PDA messages, not just observers.
+  Absolucy, Melbert:
+  - bugfix: You should be afflicted by the "Curse of Mundanity" far, far less.
   Shoddd:
   - bugfix: you can no longer akimbo and fire a wand forever
+  Tractor Mann:
+  - admin: Admins will no longer be told you dusted someone with power gloves when
+      you didnt, and that you shocked someone with power gloves when you dust them.

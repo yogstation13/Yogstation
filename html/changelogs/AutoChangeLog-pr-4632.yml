@@ -1,4 +1,0 @@
-author: "Tractor Mann"
-delete-after: True
-changes:
-  - admin: "Admins will no longer be told you dusted someone with power gloves when you didnt, and that you shocked someone with power gloves when you dust them."

@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Properly marked the message type and confidentiality of a few admin/mentor-related notifications."
