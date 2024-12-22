@@ -460,7 +460,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		add_admin_verbs()
 		var/memo_message = get_message_output("memo")
 		if(memo_message)
-			to_chat(src, memo_message)
+			to_chat(src, memo_message, type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
 		adminGreet()
 	if (mob && reconnecting)
 		var/stealth_admin = mob.client?.holder?.fakekey
@@ -479,7 +479,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/time_stamp = query_last_connected.item[1]
 		var/unread_notes = get_message_output("note", ckey, FALSE, time_stamp)
 		if(unread_notes)
-			to_chat(src, unread_notes)
+			to_chat(src, unread_notes, type = MESSAGE_TYPE_ADMINPM, confidential = TRUE)
 	qdel(query_last_connected)
 
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
@@ -517,7 +517,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].")
 		if (CONFIG_GET(flag/irc_first_connection_alert))
 			send2tgs_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1?"":"s")] old, created on [account_join_date].")
-	get_message_output("watchlist entry", ckey)
 	if(check_overwatch() && CONFIG_GET(flag/vpn_kick))
 		return
 	validate_key_in_db()
@@ -546,7 +545,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		convert_notes_sql(ckey)
 	var/user_messages = get_message_output("message", ckey)
 	if(user_messages)
-		to_chat(src, user_messages)
+		to_chat(src, user_messages, type = MESSAGE_TYPE_ADMINPM, confidential = TRUE)
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, span_warning("Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you."))
 

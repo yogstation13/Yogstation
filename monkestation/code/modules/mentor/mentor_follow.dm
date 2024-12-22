@@ -8,8 +8,8 @@
 	mentor_datum.following = followed_guy
 	usr.reset_perspective(followed_guy)
 	add_verb(src, /client/proc/mentor_unfollow)
-	to_chat(GLOB.admins, span_adminooc("<span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is now following <EM>[key_name(followed_guy)]</span>"))
-	to_chat(usr, span_info("Click the \"Stop Following\" button in the Mentor tab to stop following [key_name(followed_guy)]."))
+	to_chat(GLOB.admins, span_adminooc("<span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is now following <EM>[key_name(followed_guy)]</span>"), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
+	to_chat(src, span_info("Click the \"Stop Following\" button in the Mentor tab to stop following [key_name(followed_guy)]."), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
 	log_mentor("[key_name(usr)] began following [key_name(followed_guy)]")
 
 /client/proc/mentor_unfollow()
@@ -19,6 +19,6 @@
 
 	remove_verb(src, /client/proc/mentor_unfollow)
 	usr.reset_perspective()
-	to_chat(GLOB.admins, span_adminooc("<span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(mentor_datum.following)]</span>"))
+	to_chat(GLOB.admins, span_adminooc("<span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(mentor_datum.following)]</span>"), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE)
 	log_mentor("[key_name(usr)] stopped following [key_name(mentor_datum.following)]")
 	mentor_datum.following = null
