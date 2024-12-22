@@ -61,7 +61,7 @@ Always compile, always use that verb, and always make sure that it works for wha
 #define MAP_MAXZ 6
 
 /// Path for the next_map.json file, if someone, for some messed up reason, wants to change it.
-#define PATH_TO_NEXT_MAP_JSON "data/next_map.json"
+#define PATH_TO_NEXT_MAP_JSON (world.GetConfig("env", "AUXTOOLS_DEBUG_DLL") ? "data/next_map.json" : "data/next_map.[world.port].json") // monkestation edit: messed up cat here, i changed it (added world.port to it if there's no debugger attached)
 
 /// List of directories we can load map .json files from
 #define MAP_DIRECTORY_MAPS "_maps"
