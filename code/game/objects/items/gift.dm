@@ -50,6 +50,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		M.investigate_log("has unwrapped a present containing [I.type].", INVESTIGATE_PRESENTS)
 		M.put_in_hands(I)
 		I.add_fingerprint(M)
+		I.AddComponent(/datum/component/gift_item, M) // monkestation edit: gift item info component
 	else
 		M.visible_message(span_danger("Oh no! The present that [M] opened had nothing inside it!"))
 

@@ -45,6 +45,18 @@
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"
 		body += "<br>\[<b>Byond version:</b> [full_version]\]<br>"
 
+	// monkestation start: gift info
+	var/list/gifts = M.get_all_gift_contents()
+	var/gift_amt = length(gifts)
+	if(gift_amt)
+		body += "<br><br><b>Gift items in contents:</b><br>"
+		for(var/idx in 1 to gift_amt)
+			var/obj/item/gift = gifts[idx]
+			body += VV_HREF_TARGET(gift, VV_HK_EXAMINE_GIFT, "<b>[gift.name]</b> (<i>[gift.type]</i>)")
+			if(idx < gift_amt)
+				body += "<br>"
+	// monkestation end
+
 
 	body += "<br><br>\[ "
 	body += "<a href='?_src_=vars;[HrefToken()];Vars=[REF(M)]'>VV</a> - "

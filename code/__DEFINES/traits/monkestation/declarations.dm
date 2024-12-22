@@ -121,6 +121,8 @@
 #define TRAIT_BYPASS_COMPRESS_CHECK	"can_compress_anyways"
 /// This item is considered "trash" (and will be eaten by cleaner slimes)
 #define TRAIT_TRASH_ITEM			"trash_item"
+/// This item came from a gift.
+#define TRAIT_GIFT_ITEM				"gift_item"
 
 // /atom/movable
 /// Things with this trait can pass through wooden barricades.
