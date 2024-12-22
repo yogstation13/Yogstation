@@ -1072,7 +1072,7 @@
 	var/atom/movable/screen/fullscreen/blindspot/new_spot = quirk_holder.blindspot_overlay[newdir]?.resolve()
 	if(!istype(old_spot) || !istype(new_spot))
 		return
-	animate(old_spot, 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, alpha = 0)
+	animate(old_spot, 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = 0)
 	animate(new_spot, 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, alpha = 255)
 
 #undef BLINDSPOT_NORTH
