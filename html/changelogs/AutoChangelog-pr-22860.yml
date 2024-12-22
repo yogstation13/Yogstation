@@ -1,0 +1,4 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - tweak: "Set next minetype verb is now more clear and actually tells you what minetype is set."
