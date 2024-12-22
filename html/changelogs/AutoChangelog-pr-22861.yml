@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - rscadd: "Allows foam to spread through density objects"
