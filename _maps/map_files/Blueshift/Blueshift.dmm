@@ -4701,6 +4701,10 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
+"aWw" = (
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/station/hallway/secondary/entry)
 "aWA" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/hangover,
@@ -55519,6 +55523,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/station/hallway/secondary/entry)
 "kKp" = (
@@ -170231,7 +170236,7 @@ ahn
 cXo
 cXo
 rMe
-ivx
+aWw
 rMe
 gLc
 gLc
