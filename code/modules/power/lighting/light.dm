@@ -196,10 +196,10 @@
 
 /obj/machinery/light/proc/handle_fire(area/source, new_fire)
 	SIGNAL_HANDLER
-	update()
+	update(dont_burn_out = TRUE)
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(trigger = TRUE)
+/obj/machinery/light/proc/update(trigger = TRUE, dont_burn_out = FALSE)
 	switch(status)
 		if(LIGHT_BROKEN,LIGHT_BURNED,LIGHT_EMPTY)
 			on = FALSE
@@ -230,11 +230,13 @@
 			brightness_set = bulb_outer_range * bulb_major_emergency_brightness_mul
 		var/matching = light && brightness_set == light.light_outer_range && power_set == light.light_power && color_set == light.light_color && FC == light.light_falloff_curve && IR == light.light_inner_range
 		if(!matching)
-			switchcount++
-			if( prob( min(60, (switchcount**2)*0.01) ) )
-				if(trigger)
+			var/should_set = TRUE
+			if(!dont_burn_out)
+				switchcount++
+				if(trigger && prob(min(60, (switchcount ** 2) * 0.01)))
 					burn_out()
-			else
+					should_set = FALSE
+			if(should_set)
 				use_power = ACTIVE_POWER_USE
 				set_light(
 					l_outer_range = brightness_set,
@@ -242,7 +244,7 @@
 					l_power = power_set,
 					l_falloff_curve = FC,
 					l_color = color_set
-					)
+				)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		use_power = IDLE_POWER_USE
 		low_power_mode = TRUE
