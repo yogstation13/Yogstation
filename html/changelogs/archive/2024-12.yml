@@ -362,3 +362,6 @@
       can only be used in the cargo's warehouse and storage.
   - bugfix: Heretic sacrifice targets will have their blood restored and cleared of
       chems if they are sent to the mansus.
+2024-12-22:
+  Shoddd:
+  - bugfix: you can no longer akimbo and fire a wand forever
