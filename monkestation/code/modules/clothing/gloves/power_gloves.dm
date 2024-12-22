@@ -47,10 +47,10 @@
 
 	if(power >= dust_power) //Dusts if there's enough in the grid
 		electrocute_victim.dust(TRUE, FALSE, TRUE)
-		log_combat(owner, target, "zapped", /obj/item/clothing/gloves/color/yellow/power_gloves, "[power] watts were used resulting in [shock_damage] damage.")
+		log_combat(owner, target, "zapped", /obj/item/clothing/gloves/color/yellow/power_gloves, "[power] watts were used resulting in the target dusting.")
 	else
 		electrocute_victim.electrocute_act(shock_damage, source, 1, SHOCK_TESLA | ((zap_flags & ZAP_MOB_STUN) ? NONE : SHOCK_NOSTUN))
-		log_combat(owner, target, "zapped", /obj/item/clothing/gloves/color/yellow/power_gloves, "[power] watts were used resulting in the target dusting.")
+		log_combat(owner, target, "zapped", /obj/item/clothing/gloves/color/yellow/power_gloves, "[power] watts were used resulting in [shock_damage] damage.")
 		return
 
 
