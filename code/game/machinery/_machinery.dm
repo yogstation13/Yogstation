@@ -392,6 +392,7 @@ Class Procs:
 	return _try_interact(user, modifiers)
 
 /obj/machinery/attack_tk(mob/user, modifiers)
+	new /obj/effect/temp_visual/telekinesis(get_turf(src))
 	return attack_hand(user, modifiers)
 
 /obj/machinery/attack_ai(mob/user, modifiers)
