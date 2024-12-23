@@ -260,7 +260,7 @@
 		if(!LAZYLEN(M.chameleon_item_actions))
 			var/datum/action/chameleon_outfit/O = locate(/datum/action/chameleon_outfit) in M.actions
 			qdel(O)
-			var/datum/action/chameleon_copy/C = locate(/datum/action/chameleon_copy) in M.actions
+			var/datum/action/cooldown/chameleon_copy/C = locate(/datum/action/cooldown/chameleon_copy) in M.actions
 			qdel(C)
 	return ..()
 
