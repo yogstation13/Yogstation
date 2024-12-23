@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - admin: "Admins can now much more easily see which of a player's items came from a gift."
-  - rscadd: "Ghosts, santa, and anyone after roundend can an examine an item to see if its a gift, who opened it, and how long ago they did so."
-  - rscadd: "Closely examining (double-examining) an item will now tell you if it was from a gift."
