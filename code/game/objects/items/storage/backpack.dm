@@ -121,11 +121,11 @@
 	if(M.mind && HAS_TRAIT(M.mind, TRAIT_CANNOT_OPEN_PRESENTS))
 		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 		var/turf/floor = get_turf(src)
-		var/obj/item/I = new /obj/item/a_gift/anything(floor)
-		if(STR.can_be_inserted(I, stop_messages=TRUE))
-			STR.handle_item_insertion(I, prevent_warning=TRUE)
+		var/obj/item/a_gift/anything/personal/new_gift = new(floor)
+		if(STR.can_be_inserted(new_gift, stop_messages=TRUE))
+			STR.handle_item_insertion(new_gift, prevent_warning=TRUE)
 		else
-			qdel(I)
+			qdel(new_gift)
 
 
 /obj/item/storage/backpack/cultpack
