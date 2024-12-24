@@ -1,0 +1,4 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "fix NTNET quantum relay sprite being invisible when disabled"
