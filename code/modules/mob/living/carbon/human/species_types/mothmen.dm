@@ -19,7 +19,7 @@
 	burnmod = 1.25 //Fluffy and flammable
 	brutemod = 0.9 //Evasive buggers
 	punchdamagehigh = 9 //Weird fluffy bug fist
-	punchstunthreshold = 10 //No stun punches
+	punchstunchance = 0 //No stun punches
 	mutanteyes = /obj/item/organ/eyes/moth
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	species_language_holder = /datum/language_holder/mothmen

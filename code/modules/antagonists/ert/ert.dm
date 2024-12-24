@@ -261,6 +261,8 @@
 	if(!istype(H))
 		return
 	H.equipOutfit(outfit)
+	H.add_skill_points(EXP_GENIUS) // 5 skill points to allocate, you can put it all into fitness or specialize as a medic or pilot
+	ADD_TRAIT(owner, TRAIT_EXCEPTIONAL_SKILL, type) // allowed to allocate 5 points into a single skill
 
 /datum/antagonist/ert/greet()
 	if(!ert_team)
