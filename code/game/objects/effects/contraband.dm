@@ -469,11 +469,6 @@
 	desc = "A poster about traitors begging for more."
 	icon_state = "poster46"
 
-/obj/structure/sign/poster/contraband/nickvr628 //Made at request for yogstation council
-	name = "A famous Spaceman"
-	desc = "Astronaut, Pilot, Engineer. What more could you want?"
-	icon_state = "poster50"
-
 /obj/structure/sign/poster/official
 	poster_item_name = "motivational poster"
 	poster_item_desc = "An official Nanotrasen-issued poster to foster a compliant and obedient workforce. It comes with state-of-the-art adhesive backing, for easy pinning to any vertical surface."
