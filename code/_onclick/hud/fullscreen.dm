@@ -14,7 +14,7 @@
 	if (client && screen.should_show_to(src))
 		screen.update_for_view(client.view)
 		client.screen += screen
-	
+
 	if(screen.needs_offsetting)
 		SET_PLANE_EXPLICIT(screen, PLANE_TO_TRUE(screen.plane), src)
 
@@ -241,3 +241,9 @@
 	icon_state = "blue_eye"
 	plane = FULLSCREEN_PLANE
 	layer = CURSE_LAYER
+
+/// Blindspot quirk - has 4 directions
+/atom/movable/screen/fullscreen/blindspot
+	icon_state = "blindspot"
+	plane = FULLSCREEN_PLANE
+	layer = BLIND_LAYER
