@@ -827,7 +827,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(supermatter_blob)
 		if(!check_containment(src, 5))
 			if(!debug_inhibitor)
-				powerloss_inhibitor = 0.001
+				powerloss_inhibitor = 0
 			power += 10000
 			if(prob(2))
 				empulse(src, 10, 5)
@@ -917,7 +917,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(!antinoblium_safety())
 				bypass_containment = TRUE
 		if(support_integrity<10)
-			powerloss_inhibitor = 0.001 //ensure big explosion
+			powerloss_inhibitor = 0 //ensure big explosion
 			surging = 100000
 			if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
