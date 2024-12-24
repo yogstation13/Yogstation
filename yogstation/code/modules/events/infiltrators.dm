@@ -2,9 +2,9 @@
 	name = "Infiltrators"
 	typepath = /datum/round_event/ghost_role/infiltrators
 
-	weight = 0
+	weight = 5
 	max_occurrences = 1
-	earliest_start = 30 MINUTES
+	earliest_start = 50 MINUTES
 	track = EVENT_TRACK_MAJOR
 	tags = list(TAG_COMBAT, TAG_EXTERNAL)
 	description = "Infiltrators will... infiltrate."
