@@ -120,7 +120,7 @@
 		UnarmedAttack(A, FALSE, modifiers)
 		return
 	
-	if(grab_mode && pulled(A))
+	if(grab_mode && pulled(A) && !in_throw_mode)
 		return
 
 	if(in_throw_mode)
