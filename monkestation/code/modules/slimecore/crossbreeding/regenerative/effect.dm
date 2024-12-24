@@ -93,7 +93,7 @@
 		ordered_wounds[1]?.remove_wound()
 
 /datum/status_effect/regenerative_extract/get_examine_text()
-	return "[owner.p_They()] have a subtle, gentle glow to [owner.p_their()] skin, with slime soothing [owner.p_their()] wounds."
+	return "[owner.p_They()] [owner.p_have()] a subtle, gentle glow to [owner.p_their()] skin, with slime soothing [owner.p_their()] wounds."
 
 /atom/movable/screen/alert/status_effect/regen_extract
 	name = "Slime Regeneration"
