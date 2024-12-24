@@ -233,25 +233,10 @@
 
 /datum/round_event/portal_storm/resonance_cascade/tick()
 	var/turf/T = get_safe_random_station_turf()
-
-	if(spawn_hostile())
-		var/type = pick(hostile_types)
-		hostile_types[type] = hostile_types[type] - 1
-		spawn_mob(T, type, hostiles_spawn)
-		if(!hostile_types[type])
-			hostile_types -= type
-
-	if(spawn_boss())
-		var/type = pick(boss_types)
-		boss_types[type] = boss_types[type] - 1
-		spawn_mob(T, type, boss_spawn)
-		if(!boss_types[type])
-			boss_types -= type
-
 	var/anomaly = pick(anomaly_types)
 	anomaly_types[anomaly] = anomaly_types[anomaly] - 1
 	supermatter_anomaly_gen(T, anomaly, rand(5, 10), has_weak_lifespan = TRUE)
 	if(!anomaly_types[anomaly])
 		anomaly_types -= anomaly
-
-	time_to_end()
+	
+	return ..()
