@@ -164,6 +164,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/noblium_suppressed = FALSE		// or is it?
 	var/bypass_containment = FALSE      // If support_integrity is below 30, setting up a containment field at this point is useless
 	var/debug_inhibitor = FALSE
+
 	// Blob related shit
 	var/supermatter_blob = FALSE // Well say sike rn
 
@@ -437,7 +438,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 						priority_announce("RESONANCE CASCADE IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
 					resonance_cascading = TRUE
 					sound_to_playing_players('sound/magic/lightning_chargeup.ogg', 50, FALSE) // yogs end
-					add_overlay(mutable_appearance("icons/obj/tesla_engine/energy_ball.dmi", "smenergy_ball", LIGHTING_PRIMARY_LAYER))
+					add_overlay(mutable_appearance('icons/obj/tesla_engine/energy_ball.dmi', "smenergy_ball", /obj/singularity/energy_ball, LIGHTING_PRIMARY_LAYER, MASSIVE_OBJ_PLANE))
 				if(supermatter_blob)
 					if(!check_containment(src, 5))
 						priority_announce("LEVEL 5 BIOHAZARD OUTBREAK IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
@@ -603,8 +604,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			powerloss_dynamic_scaling = clamp(powerloss_dynamic_scaling - 0.05,0, 1)
 
-		if((support_integrity >= 20 && (!supermatter_blob || check_containment(src, 5))) || !debug_inhibitor)
-			powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
+		if(!debug_inhibitor)
+			if(support_integrity >= 20 && (!supermatter_blob || check_containment(src, 5)))
+				powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
 
 		if(matter_power)
 			var/removed_matter = max(matter_power/MATTER_POWER_CONVERSION, 40)
@@ -821,7 +823,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//blob SM HAMMM
 	if(supermatter_blob)
 		if(!check_containment(src, 5))
-			powerloss_inhibitor = 0.01
+			if(!debug_inhibitor)
+				powerloss_inhibitor = 0.01
 			power += 10000
 			if(prob(2))
 				empulse(src, 10, 5)
@@ -833,6 +836,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				supermatter_zap(src, 5, power)
 				for(var/i = 1 to 20)
 					fire_nuclear_particle()
+		else if(prob(30))
+			for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
+				Beam(gens, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY, beam_color="#bb0074")
 		if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 			damage += DAMAGE_HARDCAP * explosion_point
 
@@ -884,19 +890,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_zap(src, 7, 2000)
 			antinoblium_safety()
 			if(support_integrity<3)
-				var/emp_power = round(explosion_power * (1+(1-(support_integrity/3))),1)
-				empulse(src, emp_power)
+				if(!antinoblium_safety())
+					var/emp_power = round(explosion_power * (1+(1-(support_integrity/3))),1)
+					empulse(src, emp_power)
 				supermatter_zap(src, 7, 2000+power)
-				antinoblium_safety()
 		if(support_integrity<100)
 			power += round((100-support_integrity)/2,1)
 			supermatter_zap(src, 7, 2000+power)
-			antinoblium_safety()
 		if(support_integrity<70)
 			if(prob(30+round((100-support_integrity)/2,1)))
 				playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
 				supermatter_zap(src, 7, 2000+min(power*2, 20000))
-				antinoblium_safety()
 		if(support_integrity<40)
 			if(prob(10))
 				T.hotspot_expose(max(((100-support_integrity)*2)+FIRE_MINIMUM_TEMPERATURE_TO_EXIST,T.return_air().return_temperature()), 100)
@@ -905,7 +909,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
 				for(var/i = 1 to ballcount)
 					fire_nuclear_particle()
-					antinoblium_safety()
 					supermatter_zap(src, 7, 2000+power)
 		if(support_integrity<=20)
 			if(!antinoblium_safety())
@@ -918,7 +921,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(prob(2))
 				empulse(src, 10-support_integrity) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
 			if(prob(30))
-				antinoblium_safety()
 				supermatter_zap(src, 7, 2000+power)
 	
 	// I FUCKING LOVE DATA!!!!!!
