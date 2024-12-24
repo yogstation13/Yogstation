@@ -197,8 +197,8 @@
 /turf/open/floor/engine,
 /area/ruin/syndicate_lava_base/testlab)
 "rX" = (
-/obj/machinery/atmospherics/components/unary/passive_vent,
 /obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on,
 /turf/template_noop,
 /area/ruin/syndicate_lava_base/testlab)
 "sa" = (
