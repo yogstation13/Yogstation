@@ -18,6 +18,7 @@
 		transfer_percentage = 80
 
 /datum/vote/transfer_vote/can_be_initiated(mob/by_who, forced)
+	. = ..()
 	return TRUE
 
 /datum/vote/transfer_vote/get_vote_result(list/non_voters)
