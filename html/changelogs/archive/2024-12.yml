@@ -387,3 +387,8 @@
   - rscadd: Closely examining (double-examining) an item will now tell you if it was
       from a gift.
   - qol: Fire alarms no longer burn out lights.
+2024-12-25:
+  Shoddd:
+  - bugfix: fixes a typo in regen extract
+  Wisemonster:
+  - bugfix: Fixed the syndicate lavaland base delamming if they spawned with an SM

@@ -1,4 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - bugfix: "Fixed the syndicate lavaland base delamming if they spawned with an SM"
