@@ -8,6 +8,7 @@
 	max_integrity = 300
 	circuit = /obj/item/circuitboard/machine/decontamination_unit
 	layer = OBJ_LAYER
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OFFLINE
 								// if you add more storage slots, update cook() to clear their radiation too.
 
 	var/max_n_of_items = 53
@@ -147,10 +148,10 @@
 	say("The decontamination process is completed, thank you for your patience.")
 	playsound(src, 'sound/machines/decon/decon-open.ogg', 50, TRUE)
 	if(mob_occupant)
-		visible_message(span_notice("[src]'s gate slides open, ejecting you out."))
+		visible_message(span_notice("[src]'s door slides open, ejecting [mob_occupant] out."))
 		mob_occupant.radiation = 0
 	else
-		visible_message(span_notice("[src]'s gate slides open. The glowing yellow lights dim to a gentle green."))
+		visible_message(span_notice("[src]'s door slides open. The glowing yellow lights dim to a gentle green."))
 	var/list/things_to_clear = list() //Done this way since using get_all_contents on the SSU itself would include circuitry and such.
 	if(occupant)
 		things_to_clear += occupant
@@ -390,6 +391,8 @@
 			locked = !locked
 			. = TRUE
 		if("uv")
+			if(!is_operational())
+				return
 			var/mob/living/mob_occupant = occupant
 			if(!occupant && !contents.len)
 				return
@@ -471,6 +474,9 @@
 		return
 	if(panel_open)
 		to_chat(user, span_warning("Close the panel first!"))
+		return
+	if(locked)
+		to_chat(user, span_warning("It's locked!"))
 		return
 	if(uv)
 		to_chat(user, span_warning("You cannot open the gate while the cycle is running!"))
