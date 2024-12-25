@@ -24,6 +24,8 @@
 	var/listindex = 0
 	///Whether progress has already been ended.
 	var/progress_ended = FALSE
+	///Which skill this uses
+	var/skill_check
 
 
 /datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE, datum/callback/extra_checks, skill_check)
@@ -49,6 +51,7 @@
 		skill_icon = image('icons/mob/skills.dmi', bar_loc, "[skill_check]_small", pixel_x = SKILL_ICON_OFFSET_X)
 		SET_PLANE_EXPLICIT(skill_icon, ABOVE_HUD_PLANE, User)
 		skill_icon.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		src.skill_check = skill_check
 	user = User
 	src.extra_checks = extra_checks
 
@@ -184,6 +187,8 @@
 
 	if(last_progress != goal)
 		bar.icon_state = "[bar.icon_state]_fail"
+	else if(skill_check) // get better at things by practicing them
+		user.add_exp(skill_check, goal)
 
 	animate(bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 	if(skill_icon)

@@ -355,9 +355,6 @@ GLOBAL_LIST_EMPTY(species_list)
 			. = FALSE
 			break
 
-	if(skill_check) // get better at things by practicing them
-		user.add_exp(skill_check, delay)
-
 	if(!QDELETED(progbar))
 		progbar.end_progress()
 
