@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(shuttle)
 	/// Did the supermatter start a cascade event?
 	var/supermatter_cascade = FALSE
 	/// Has any transfer votes been started, ongoing, or finished?
-	var/transfer_votes_done
+	var/transfer_votes_done = 0
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	order_number = rand(1, 9000)
