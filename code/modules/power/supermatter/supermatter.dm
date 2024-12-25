@@ -438,7 +438,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 						priority_announce("RESONANCE CASCADE IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
 					resonance_cascading = TRUE
 					sound_to_playing_players('sound/magic/lightning_chargeup.ogg', 50, FALSE) // yogs end
-					var/mutable_appearance/sm_ball = mutable_appearance('icons/obj/tesla_engine/energy_ball.dmi', "smenergy_ball", /obj/singularity/energy_ball, LIGHTING_PRIMARY_LAYER)
+					var/mutable_appearance/sm_ball = mutable_appearance('icons/obj/tesla_engine/energy_ball.dmi', "smenergy_ball", LIGHTING_PRIMARY_LAYER)
 					sm_ball.pixel_x -= 32
 					sm_ball.pixel_y -= 32
 					add_overlay(sm_ball)
