@@ -205,7 +205,7 @@
 				A.visible_message(span_userdanger("[A] overloads and makes a huge arc!"))
 				tesla_zap(A, 5, 10000) // woe
 	message_centcom("Alert, a large scale of abnormal activity has been detected on [station_name()]. Investigate and send the special forces to the station immediately.", "Central Command Higher Dimensional Affairs")
-	priority_announce("Unknown anomalous portals detected on a large scale of the station. There is no additional data.", "Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES)
+	priority_announce("Unknown anomalous portals detected on a large scale of the station. There is no additional data.", "Central Command Higher Dimensional Affairs", ANNOUNCER_SPANOMALIES, color_override="red")
 	addtimer(CALLBACK(src, PROC_REF(call_shuttle)), 4 SECONDS) //Wait till the annoucement finishes till the the next one so the sounds dont overlap each other
 
 /datum/round_event/portal_storm/resonance_cascade/proc/call_shuttle()
@@ -216,11 +216,10 @@
 		return
 	priority_announce("Attention all personnel, this is an emergency announcement on [station_name()]. \
 		An evacuation is immediately underway due to abnormal hostile activity detected on the premises. \
-		A distress signal has been sent to Central Command to alert them of the situation. In addition to that, \
-		we have observed a substantial number of meteors approaching the station on a large scale. \
+		A distress signal has been sent to Central Command to alert them of the situation. \
 		Please remain calm and follow the evacuation procedures provided. \
 		Proceed to the designated evacuation points swiftly and orderly. To ensure your safety, \
-		please avoid areas with abnormal activity and refrain from going outside the station to minimize the risk of collisions with meteors. \
+		please avoid areas with abnormal activity. \
 		Security personnel are present to assist and ensure your safety. \
 		Cooperate with their instructions and refrain from engaging with any hostiles. \
 		Central Command is actively responding and coordinating a comprehensive emergency response. \
@@ -229,29 +228,15 @@
 		Assistance is on the way.",
 		title = "Central Command Higher Dimensional Affairs",
 		sound = 'sound/misc/airraid.ogg',
+		color_override="red",
 	)
 
 /datum/round_event/portal_storm/resonance_cascade/tick()
 	var/turf/T = get_safe_random_station_turf()
-
-	if(spawn_hostile())
-		var/type = pick(hostile_types)
-		hostile_types[type] = hostile_types[type] - 1
-		spawn_mob(T, type, hostiles_spawn)
-		if(!hostile_types[type])
-			hostile_types -= type
-
-	if(spawn_boss())
-		var/type = pick(boss_types)
-		boss_types[type] = boss_types[type] - 1
-		spawn_mob(T, type, boss_spawn)
-		if(!boss_types[type])
-			boss_types -= type
-
 	var/anomaly = pick(anomaly_types)
 	anomaly_types[anomaly] = anomaly_types[anomaly] - 1
 	supermatter_anomaly_gen(T, anomaly, rand(5, 10), has_weak_lifespan = TRUE)
 	if(!anomaly_types[anomaly])
 		anomaly_types -= anomaly
-
-	time_to_end()
+	
+	return ..()
