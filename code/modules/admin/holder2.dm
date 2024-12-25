@@ -407,7 +407,7 @@ GLOBAL_PROTECT(href_token)
 /datum/admins/proc/try_give_devtools()
 	if(!(rank_flags() & R_DEBUG) || owner.byond_version < 516)
 		return
-	winset(owner, null, "browser-options=byondstorage,find,devtools")
+	winset(owner, null, "browser-options=byondstorage,find,refresh,devtools")
 
 /datum/admins/proc/try_give_profiling()
 	if (CONFIG_GET(flag/forbid_admin_profiling))

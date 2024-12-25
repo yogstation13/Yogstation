@@ -8,7 +8,7 @@
 			//this is used over window.location because window.location has a character limit in IE.
 			function sendbyond(text) {
 				var xhr = new XMLHttpRequest();
-				xhr.open('GET', '?'+text, true);
+				xhr.open('GET', 'byond://?' + text, true);
 				xhr.send(null);
 			}
 			var xhr = new XMLHttpRequest();
@@ -24,6 +24,6 @@
 			};
 			xhr.send(null);
 			</script>
-	
+
 </body>
 </html>
