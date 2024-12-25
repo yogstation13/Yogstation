@@ -808,7 +808,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(antinoblium_attached)
 				if(support_integrity <= 10)
 					if(!antinoblium_safety())
-						radio.talk_into(src, "WARNING: CONTROLLED ANTINOBLIUM CONCENTRATION DE, PROCEED WITH CAUTION.", engineering_channel)
+						radio.talk_into(src, "WARNING: DANGER: RESONANCE CASCADE IMMINENT.", engineering_channel)
 						log_game("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.") // yogs start - Logs SM chatter
 						investigate_log("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.", INVESTIGATE_SUPERMATTER) // yogs end
 					else
@@ -912,9 +912,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
 				for(var/i = 1 to ballcount)
 					fire_nuclear_particle()
-		if(support_integrity<=20)
-			if(!antinoblium_safety())
-				bypass_containment = TRUE
 		if(support_integrity<10)
 			powerloss_inhibitor = 0 //ensure big explosion
 			surging = 100000
