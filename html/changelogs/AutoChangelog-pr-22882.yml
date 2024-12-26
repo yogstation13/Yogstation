@@ -1,0 +1,4 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - tweak: "Admin orbit menu now correctly shows Antagonist section title instead of Ghost-visible antagonists."
