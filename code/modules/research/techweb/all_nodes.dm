@@ -85,6 +85,7 @@
 		"oven_tray",
 		"packagewrap",
 		"pet_carrier",
+		"pglasses", //Monkestation
 		"plasmaglass",
 		"plasmaman_gas_filter",
 		"plasmareinforcedglass",
