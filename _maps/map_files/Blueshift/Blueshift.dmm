@@ -87516,7 +87516,7 @@
 "qYQ" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/transit_tube/station/dispenser/flipped{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/aisat/exterior)
