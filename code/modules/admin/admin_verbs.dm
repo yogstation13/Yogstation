@@ -551,6 +551,9 @@ GLOBAL_PROTECT(admin_verbs_poll)
 		mob.alpha = 0 //JUUUUST IN CASE
 		mob.name = " "
 		mob.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+		var/image/invisible = image(icon = 'icons/mob/simple/mob.dmi', icon_state = null, loc = mob)
+		invisible.override = TRUE
+		mob.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/actually_everyone, "stealthmin", invisible)
 
 	ADD_TRAIT(mob, TRAIT_ORBITING_FORBIDDEN, STEALTH_MODE_TRAIT)
 	QDEL_NULL(mob.orbiters)
@@ -561,6 +564,7 @@ GLOBAL_PROTECT(admin_verbs_poll)
 /client/proc/disable_stealth_mode()
 	holder.fakekey = null
 	if(isobserver(mob))
+		mob.remove_alt_appearance("stealthmin")
 		mob.invisibility = initial(mob.invisibility)
 		mob.alpha = initial(mob.alpha)
 		if(mob.mind)

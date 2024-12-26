@@ -6011,6 +6011,7 @@
 #include "monkestation\code\datums\wires\mulebot.dm"
 #include "monkestation\code\datums\wires\particle_accelerator.dm"
 #include "monkestation\code\datums\wires\vending.dm"
+#include "monkestation\code\game\alternate_appearance.dm"
 #include "monkestation\code\game\atom.dm"
 #include "monkestation\code\game\say.dm"
 #include "monkestation\code\game\sound.dm"
