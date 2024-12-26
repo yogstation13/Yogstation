@@ -55,6 +55,6 @@ l
 	client?.tgui_panel?.window?.send_asset(get_asset_datum(/datum/asset/spritesheet/job_icons))
 	to_chat(
 		target = client,
-		html = examine_block(span_big(span_info("Current overflow role is [icon_tag][span_name(html_encode(picked_job.title))], make sure to check your job preferences!"))),
+		html = boxed_message(span_big(span_info("Current overflow role is [icon_tag][span_name(html_encode(picked_job.title))], make sure to check your job preferences!"))),
 		type = MESSAGE_TYPE_INFO,
 	)

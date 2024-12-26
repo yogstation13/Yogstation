@@ -204,7 +204,7 @@
 		var/time_left = round(max(fish.breeding_wait - world.time, 0)/10)
 		render_list += "<span class='info ml-1'>Time until it can breed: [time_left] seconds</span>"
 
-	to_chat(user, examine_block(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
+	to_chat(user, boxed_message(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
 
 /**
  * Called when a fish or a menu choice is left-clicked.
@@ -239,4 +239,4 @@
 		if(index != evolution_len)
 			render_list += "\n"
 
-	to_chat(user, examine_block(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
+	to_chat(user, boxed_message(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)

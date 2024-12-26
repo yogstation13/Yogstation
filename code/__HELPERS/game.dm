@@ -295,16 +295,16 @@
  * Tips that starts with the @ character won't be html encoded. That's necessary for any tip containing markup tags,
  * just make sure they don't also have html characters like <, > and ' which will be garbled.
  */
-/proc/send_tip_of_the_round(target, selected_tip)
+/proc/send_tip_of_the_round(target, selected_tip, source = "Tip of the round")
 	var/message
 	if(selected_tip)
 		message = selected_tip
 	else
 		var/list/randomtips = world.file2list("strings/tips.txt")
 		var/list/memetips = world.file2list("strings/sillytips.txt")
-		if(randomtips.len && prob(95))
+		if(length(randomtips) && prob(95))
 			message = pick(randomtips)
-		else if(memetips.len)
+		else if(length(memetips))
 			message = pick(memetips)
 
 	if(!message)
@@ -313,4 +313,4 @@
 		message = html_encode(message)
 	else
 		message = copytext(message, 2)
-	to_chat(target, span_purple(examine_block("<span class='oocplain'><b>Tip of the round: </b>[message]</span>")))
+	to_chat(target, custom_boxed_message("purple_box", span_purple("<span class='oocplain'><b>[source]: </b>[message]</span>")))

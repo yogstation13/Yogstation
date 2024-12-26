@@ -756,6 +756,14 @@ em {
   font-size: 60%;
 }
 
+.smaller {
+  font-size: 90%;
+}
+
+.slightly_larger {
+  font-size: 115%;
+}
+
 .big {
   font-size: 185%;
 }
@@ -949,16 +957,111 @@ em {
   margin-left: 3em;
 }
 
-.examine_block {
-  background: #1b1c1e;
-  border: 1px solid #a4bad6;
-  margin: 0.5em;
-  padding: 0.5em 0.75em;
-}
-
 .tooltip {
   font-style: italic;
-  border-bottom: 1px dashed #fff;
+  border-bottom: 1px dashed;
+}
+
+.fieldset_legend {
+  position: relative;
+  max-width: 95%;
+  font-size: 120%;
+  padding: 0.2em 0.33em;
+  background: #151515; // Chat background color
+  border: 1px solid;
+  border-color: inherit;
+  border-radius: 0.33em;
+  z-index: 0;
+
+  // "Mask" a half of the border
+  // It very rough but it only possible way i see with IE compat
+  // Replace it with normal mask-image when 516 got stable
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 1.15em;
+    width: 100%;
+    background: #151515; // Chat background color
+    transform: translateY(-50%) scaleX(1.05);
+    z-index: -1;
+  }
+}
+
+.boxed_message {
+  background: hsl(220, 10%, 10%);
+  border: calc(1em * (1 / 12)) solid;
+  border-left: calc(1em * (4 / 12)) solid;
+  border-color: hsla(220, 40%, 75%, 0.25);
+  margin: 0.5em 0;
+  padding: 0.5em 0.75em;
+  border-radius: 0.33em;
+
+  &.red_box {
+    background: hsl(0, 20%, 10%);
+    border-color: hsla(0, 100%, 50%, 0.5);
+  }
+
+  &.green_box {
+    background: hsl(140, 20%, 10%);
+    border-color: hsla(120, 100%, 50%, 0.5);
+  }
+
+  &.blue_box {
+    background: hsl(220, 20%, 10%);
+    border-color: hsla(225, 90%, 65%, 0.5);
+  }
+
+  &.purple_box {
+    background: hsl(260, 25%, 12.5%);
+    border-color: hsla(260, 100%, 75%, 0.5);
+  }
+
+  hr {
+    margin: 0.5em -0.75em;
+    border-color: inherit;
+  }
+}
+
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid hsl(213.6, 37.9%, 74.1%);
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
+// Used to display images besides text
+.img_by_text_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img_by_text_container img {
+  width: 3em; // a css guru can probably dehardcode this later
+  height: auto;
+  margin-right: 12px;
+  margin-top: 6px;
+}
+
+.img_by_text_container .img_text {
+  flex-grow: 1;
 }
 
 $alert-stripe-colors: (
@@ -1115,11 +1218,11 @@ $border-width-px: $border-width * 1px;
   }
 
   .chat_alert_#{$color-name} .minor_announcement_text {
-    background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
+    background-color: darken(map.get($alert-stripe-colors, $color-name), 5%);
   }
 
   .chat_alert_#{$color-name} .major_announcement_text {
-    background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
+    background-color: darken(map.get($alert-stripe-colors, $color-name), 5%);
   }
 }
 

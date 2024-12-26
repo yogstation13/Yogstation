@@ -225,7 +225,7 @@
 	return ..()
 
 /datum/antagonist/clock_cultist/eminence/greet()
-	to_chat(owner.current, examine_block("[span_bigbrass("You are the Eminence, a being bound to Rat'var. By his light you are able to influence nearby space and time.")] <br/>\
+	to_chat(owner.current, boxed_message("[span_bigbrass("You are the Eminence, a being bound to Rat'var. By his light you are able to influence nearby space and time.")] <br/>\
 								[span_brass("As the Eminence you have access to various abilities, they are as follows. <br/>\
 								You may click on various machines to interface with them or a servant to mark them. <br/>\
 								Purge Reagents: Remove all reagents from the bloodstream of a marked servant, this is useful for a servant who is being deconverted by holy water. <br/>\

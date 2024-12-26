@@ -24,7 +24,7 @@
 	parts += span_changeling("You are loyal to <b>nobody</b>, except the forces of chaos itself.")
 	parts += span_info("You are able to easily vault tables and ventcrawl, however you cannot use many things like guns, batons, and you are also illiterate and quite fragile.")
 	parts += span_hypnophrase("<span style='font-size: 125%'>Spread misery and chaos upon the station.</span>")
-	to_chat(owner.current, examine_block(parts.Join("\n")), type = MESSAGE_TYPE_INFO)
+	to_chat(owner.current, boxed_message(parts.Join("\n")), type = MESSAGE_TYPE_INFO)
 
 /datum/antagonist/teratoma/can_be_owned(datum/mind/new_owner)
 	if(!isteratoma(new_owner.current))

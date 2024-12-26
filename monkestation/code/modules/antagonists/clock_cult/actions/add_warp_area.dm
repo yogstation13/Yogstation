@@ -87,7 +87,7 @@
 	button_icon_state = "console_info"
 
 /datum/action/innate/clockcult/show_warpable_areas/Activate()
-	to_chat(owner, examine_block(span_brass("Current areas observation consoles can warp to: [english_list(GLOB.clock_warp_areas)] <br/>\
+	to_chat(owner, boxed_message(span_brass("Current areas observation consoles can warp to: [english_list(GLOB.clock_warp_areas)] <br/>\
 				You can add additional areas with the \"Add Warp Area\" action."))) //anyone who has this action should also have add warp area
 
 #undef AREAS_TO_IGNORE_FOR_COST

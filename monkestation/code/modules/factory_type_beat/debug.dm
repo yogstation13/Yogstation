@@ -75,4 +75,4 @@ SUBSYSTEM_DEF(memory_stats)
 #else
 	var/result = span_danger("Memory statistics not supported on OpenDream, sorry!")
 #endif
-	to_chat(src, examine_block(result), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)
+	to_chat(src, boxed_message(result), avoid_highlighting = TRUE, type = MESSAGE_TYPE_DEBUG, confidential = TRUE)

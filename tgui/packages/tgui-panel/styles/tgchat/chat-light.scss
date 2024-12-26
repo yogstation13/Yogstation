@@ -979,16 +979,83 @@ h2.alert {
   margin-left: 3em;
 }
 
-.examine_block {
-  background: #f2f7fa;
-  border: 1px solid #111a27;
-  margin: 0.5em;
-  padding: 0.5em 0.75em;
-}
-
 .tooltip {
   font-style: italic;
-  border-bottom: 1px dashed #000;
+  border-bottom: 1px dashed;
+}
+
+.fieldset_legend {
+  background: #ffffff; // Chat background color
+
+  &:before {
+    background: #ffffff; // Chat background color
+  }
+}
+
+.boxed_message {
+  background: hsl(220, 100%, 97.5%);
+  border-color: hsla(220, 75%, 25%, 0.5);
+
+  &.red_box {
+    background: hsl(0, 100%, 97.5%);
+    border-color: hsla(0, 100%, 50%, 0.5);
+  }
+
+  &.green_box {
+    background: hsl(140, 100%, 97.5%);
+    border-color: hsl(120, 100%, 33%, 0.5);
+  }
+
+  &.blue_box {
+    background: hsl(220, 100%, 97.5%);
+    border-color: hsla(225, 100%, 50%, 0.5);
+  }
+
+  &.purple_box {
+    background: hsl(260, 100%, 97.5%);
+    border-color: hsla(260, 100%, 50%, 0.5);
+  }
+}
+
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid hsl(215.5, 39.3%, 11%);
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
+// Used to display images besides text
+.img_by_text_container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img_by_text_container img {
+  width: 2.5em; // a css guru can probably dehardcode this later
+  height: auto;
+  margin-right: 12px;
+  margin-top: 6px;
+}
+
+.img_by_text_container .img_text {
+  flex-grow: 1;
 }
 
 $alert-stripe-colors: (
@@ -1139,14 +1206,14 @@ $border-width-px: $border-width * 1px;
   .chat_alert_#{$color-name} .minor_announcement_text {
     background-color: lighten(
       map.get($alert-stripe-alternate-colors, $color-name),
-      5
+      5%
     );
   }
 
   .chat_alert_#{$color-name} .major_announcement_text {
     background-color: lighten(
       map.get($alert-stripe-alternate-colors, $color-name),
-      5
+      5%
     );
   }
 }

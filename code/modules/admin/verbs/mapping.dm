@@ -375,7 +375,7 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 		messages += "<tr><td>[part.Join("</td><td>")]</td></tr>"
 	messages += "</table>"
 
-	to_chat(src, examine_block(messages.Join("")), confidential = TRUE)
+	to_chat(src, boxed_message(messages.Join("")), confidential = TRUE)
 
 /client/proc/station_food_debug()
 	set name = "Count Station Food"

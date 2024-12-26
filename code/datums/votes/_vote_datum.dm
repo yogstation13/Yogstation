@@ -172,22 +172,58 @@
  * Return a formatted string of text to be displayed to everyone.
  */
 /datum/vote/proc/get_result_text(list/all_winners, real_winner, list/non_voters)
-	if(length(all_winners) <= 0 || !real_winner)
-		return span_bold("Vote Result: Inconclusive - No Votes!")
-
+	var/title_text = ""
 	var/returned_text = ""
 	if(override_question)
-		returned_text += span_bold(override_question)
+		title_text += span_bold(override_question)
 	else
-		returned_text += span_bold("[capitalize(name)] Vote")
+		title_text += span_bold("[capitalize(name)] Vote")
 
+	/*
+	returned_text += "Winner Selection: "
+	switch(winner_method)
+		if(VOTE_WINNER_METHOD_NONE)
+			returned_text += "None"
+		if(VOTE_WINNER_METHOD_WEIGHTED_RANDOM)
+			returned_text += "Weighted Random"
+		else
+			returned_text += "Simple"
+	*/
+
+	var/total_votes = 0 // for determining percentage of votes
 	for(var/option in choices)
+		total_votes += choices[option]
 		returned_text += "\n[span_bold(option)]: [choices[option]]"
+
+	if(total_votes <= 0)
+		return span_bold("Vote Result: Inconclusive - No Votes!")
+
+	/*
+	if (display_statistics)
+		returned_text += "\nResults:"
+		for(var/option in choices)
+			returned_text += "\n"
+			var/votes = choices[option]
+			var/percentage_text = ""
+			if(votes > 0)
+				var/actual_percentage = round((votes / total_votes) * 100, 0.1)
+				var/text = "[actual_percentage]"
+				var/spaces_needed = 5 - length(text)
+				for(var/_ in 1 to spaces_needed)
+					returned_text += " "
+				percentage_text += "[text]%"
+			else
+				percentage_text = "    0%"
+			returned_text += "[percentage_text] | [span_bold(option)]: [choices[option]]"
+	*/
+
+	if(!real_winner) // vote has no winner or cannot be won, but still had votes
+		return returned_text
 
 	returned_text += "\n"
 	returned_text += get_winner_text(all_winners, real_winner, non_voters)
 
-	return returned_text
+	return fieldset_block(title_text, returned_text, "boxed_message purple_box")
 
 /**
  * Gets the text that displays the winning options within the result text.

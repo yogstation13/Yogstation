@@ -205,11 +205,6 @@
 		iter_count++
 		if(iter_count >= ENQUEUE_SANITY)
 			var/msg = "[src] subsystem has likely entered an infinite enqueue loop, restarting MC immediately!"
-			to_chat_immediate(
-				GLOB.admins,
-				examine_block(span_userdanger("ERROR: [msg]")),
-				type = MESSAGE_TYPE_DEBUG
-			)
 			/* log_enqueue(msg, list("enqueue_log" = enqueue_log.Copy())) */
 			SSplexora.mc_alert("[src] has likely entered an infinite loop in enqueue(), we're restarting the MC immediately!")
 			stack_trace("enqueue() entered an infinite loop, we're restarting the MC!")

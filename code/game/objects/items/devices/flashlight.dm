@@ -147,7 +147,7 @@
 						render_list += "<span class='danger ml-1'>[M.p_their(TRUE)] pupils give an eerie glow!</span>\n"//mob has X-ray vision
 
 				//display our packaged information in an examine block for easy reading
-				to_chat(user, examine_block(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
+				to_chat(user, boxed_message(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
 
 			if(BODY_ZONE_PRECISE_MOUTH)
 
@@ -240,7 +240,7 @@
 					render_list += "<span class='notice ml-1'>Color returns quickly.</span>\n"//they're okay :D
 
 				//display our packaged information in an examine block for easy reading
-				to_chat(user, examine_block(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
+				to_chat(user, boxed_message(jointext(render_list, "")), type = MESSAGE_TYPE_INFO)
 
 	else
 		return ..()

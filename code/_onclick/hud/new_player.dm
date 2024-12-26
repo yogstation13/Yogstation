@@ -516,7 +516,7 @@
 		var/server_link = "byond://[server_ip]:[server_port]"
 		to_chat_immediate(
 			target = hud.mymob,
-			html = examine_block(span_info(span_big("Connecting you to [server_name]\nIf nothing happens, try manually connecting to the server ([server_link]), or the server may be down!"))),
+			html = boxed_message(span_info(span_big("Connecting you to [server_name]\nIf nothing happens, try manually connecting to the server ([server_link]), or the server may be down!"))),
 			type = MESSAGE_TYPE_INFO,
 		)
 		hud.mymob.client << link(server_link)

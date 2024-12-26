@@ -1062,7 +1062,7 @@
 /datum/pain/proc/debug_print_pain()
 
 	var/list/final_print = list()
-	final_print += "<div class='examine_block'><span class='info'>DEBUG PRINTOUT PAIN: [REF(src)]"
+	final_print += "<div class='boxed_message'><span class='info'>DEBUG PRINTOUT PAIN: [REF(src)]"
 	final_print += "[parent] has an average pain of [get_average_pain()]."
 	final_print += "[parent] has a pain modifier of [pain_modifier]."
 	final_print += " - - - - "

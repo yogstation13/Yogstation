@@ -80,19 +80,19 @@
 /obj/item/plant_analyzer/proc/do_plant_stats_scan(atom/scan_target, mob/user)
 	if(scan_target.GetComponent(/datum/component/plant_growing))
 		var/obj/item/seeds/seed = locate(/obj/item/seeds) in scan_target.contents
-		to_chat(user, examine_block(scan_tray_stats(seed, scan_target.GetComponent(/datum/component/plant_growing))))
+		to_chat(user, boxed_message(scan_tray_stats(seed, scan_target.GetComponent(/datum/component/plant_growing))))
 		return TRUE
 	if(istype(scan_target, /obj/structure/glowshroom))
 		var/obj/structure/glowshroom/shroom_plant = scan_target
-		to_chat(user, examine_block(scan_plant_stats(shroom_plant.myseed)))
+		to_chat(user, boxed_message(scan_plant_stats(shroom_plant.myseed)))
 		return TRUE
 	if(istype(scan_target, /obj/item/graft))
-		to_chat(user, examine_block(get_graft_text(scan_target)))
+		to_chat(user, boxed_message(get_graft_text(scan_target)))
 		return TRUE
 	if(isitem(scan_target))
 		var/obj/item/scanned_object = scan_target
 		if(scanned_object.get_plant_seed() || istype(scanned_object, /obj/item/seeds))
-			to_chat(user, examine_block(scan_plant_stats(scanned_object)))
+			to_chat(user, boxed_message(scan_plant_stats(scanned_object)))
 			return TRUE
 	if(isliving(scan_target))
 		var/mob/living/L = scan_target
@@ -114,19 +114,19 @@
 /obj/item/plant_analyzer/proc/do_plant_chem_scan(atom/scan_target, mob/user)
 	if(scan_target.GetComponent(/datum/component/plant_growing))
 		var/obj/item/seeds/seed = locate(/obj/item/seeds) in scan_target.contents
-		to_chat(user, examine_block(scan_tray_chems(scan_target, seed)))
+		to_chat(user, boxed_message(scan_tray_chems(scan_target, seed)))
 		return TRUE
 	if(istype(scan_target, /obj/structure/glowshroom))
 		var/obj/structure/glowshroom/shroom_plant = scan_target
-		to_chat(user, examine_block(scan_plant_chems(shroom_plant.myseed)))
+		to_chat(user, boxed_message(scan_plant_chems(shroom_plant.myseed)))
 		return TRUE
 	if(istype(scan_target, /obj/item/graft))
-		to_chat(user, examine_block(get_graft_text(scan_target)))
+		to_chat(user, boxed_message(get_graft_text(scan_target)))
 		return TRUE
 	if(isitem(scan_target))
 		var/obj/item/scanned_object = scan_target
 		if(scanned_object.get_plant_seed() || istype(scanned_object, /obj/item/seeds))
-			to_chat(user, examine_block(scan_plant_chems(scanned_object)))
+			to_chat(user, boxed_message(scan_plant_chems(scanned_object)))
 			return TRUE
 	if(isliving(scan_target))
 		var/mob/living/L = scan_target

@@ -181,7 +181,7 @@ SUBSYSTEM_DEF(polling)
 			var/surrounding_icon
 			if(surrounding_image)
 				surrounding_icon = icon2html(surrounding_image, candidate_mob, extra_classes = "bigicon")
-			var/final_message =  examine_block("<span style='text-align:center;display:block'>[surrounding_icon] <span style='font-size:1.2em'>[span_ooc(question)]</span> [surrounding_icon]\n[act_jump]      [act_signup]      [act_never]</span>")
+			var/final_message =  boxed_message("<span style='text-align:center;display:block'>[surrounding_icon] <span style='font-size:1.2em'>[span_ooc(question)]</span> [surrounding_icon]\n[act_jump]      [act_signup]      [act_never]</span>")
 			to_chat(candidate_mob, final_message)
 
 		// Start processing it so it updates visually the timer

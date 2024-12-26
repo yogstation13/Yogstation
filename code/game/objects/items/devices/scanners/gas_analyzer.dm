@@ -212,7 +212,7 @@
 			message += span_bold("Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.")
 			message += span_notice("Power of the last fusion reaction: [fusion_power]\n This power indicates it was a [tier]-tier fusion reaction.")
 	// we let the join apply newlines so we do need handholding
-	to_chat(user, examine_block(jointext(message, "\n")), type = MESSAGE_TYPE_INFO)
+	to_chat(user, boxed_message(jointext(message, "\n")), type = MESSAGE_TYPE_INFO)
 	return TRUE
 
 /proc/fusionpower2text(power) //used when displaying fusion power on analyzers
