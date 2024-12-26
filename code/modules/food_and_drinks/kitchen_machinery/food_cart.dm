@@ -46,9 +46,23 @@
 	data["mixerDrinks"] = list()
 	data["storage"] = list()
 
+	//Make sure food_ui_list has desired contents
+	//This, combined with the find_amount() bellow, allow parmesan cheese to show in the UI after maturing
+	for(var/obj/list_element in contents)
+		//Only check food items
+		if(istype(list_element, /obj/item/reagent_containers/food))
+			//Add to list if not already in it
+			if(!LAZYFIND(food_ui_list, list_element.type))
+				LAZYADD(food_ui_list, list_element.type)
+
 	
 	//Loop through food list for data to send to food tab
 	for(var/item_detail in food_ui_list)
+		//If none are found in contents, remove from list and move on to next element
+		if(find_amount(item_detail) == 0)
+			LAZYREMOVE(food_ui_list, item_detail)
+			continue
+
 		//Create needed list and variable for geting data for UI
 		var/list/details = list()
 		var/obj/item/reagent_containers/food/item = new item_detail
@@ -195,7 +209,7 @@
 		//Drop it on the floor and then move it into the user's hands
 		dispensed_item.forceMove(loc)
 		user.put_in_hands(dispensed_item)
-		user.visible_message(span_notice("[user] dispenses [ui_item.name] from [src]."), span_notice("You dispense [ui_item.name] from [src]."))
+		user.visible_message(span_notice("[user] dispenses [dispensed_item.name] from [src]."), span_notice("You dispense [dispensed_item.name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 		//If the last one was dispenced, remove from UI
 		if(find_amount(ui_item) == 0)
