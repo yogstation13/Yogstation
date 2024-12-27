@@ -78,7 +78,7 @@
 	max_ammo = 16
 	multiple_sprites = AMMO_BOX_PER_BULLET
 	multiple_sprite_use_base = TRUE
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_box/magazine/m35/update_icon_state()
 	. = ..()
@@ -105,6 +105,7 @@
 	icon_state = "35r"
 	base_icon_state = "35r"
 	ammo_type = /obj/item/ammo_casing/c35/rubber
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_casing/c35/rubber
 	name = ".35 Auto rubber bullet casing"
