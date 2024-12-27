@@ -158,7 +158,7 @@ const FoodRow = (props, context) => {
               {/* Get image and then add it to the ui */}
                 <Box
                 as="img"
-                src={resolveAsset(item.image)}
+                src={`data:image/jpeg;base64,${item.image}`}
                 height="32px"
                 style={{
                   '-ms-interpolation-mode': 'nearest-neighbor',

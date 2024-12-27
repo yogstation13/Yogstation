@@ -1,3 +1,13 @@
+///For sending images to the UI with base 64
+/datum/data/ui_image
+	///Image to be shown in UI
+	var/image = null
+
+//Thanks hedgehog1029 for the help on this
+/datum/data/ui_image/New(obj/item/I)
+	var/icon/icon = icon(I.icon, I.icon_state, SOUTH, 1)
+	image = icon2base64(icon)
+
 /obj/machinery/food_cart
 	name = "food cart"
 	desc = "New generation hot dog stand."
@@ -73,18 +83,21 @@
 		details["type_path"] = item.type
 
 		//Get an image for the UI
-		var/icon/item_pic = getFlatIcon(item)
-		var/md5 = md5(fcopy_rsc(item_pic))
-		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
-			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
-		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
-		details["image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
+		// var/icon/item_pic = getFlatIcon(item)
+		// var/md5 = md5(fcopy_rsc(item_pic))
+		// if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
+		// 	SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
+		// SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
+		// details["image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
+		var/datum/data/ui_image/ui_image = new /datum/data/ui_image(item)
+		details["image"] = ui_image.image
 
 		//Add to food list
 		data["food"] += list(details)
 
-		//Delete food item to prevent server being overrun by ghost food
+		//Delete instances to prevent server being overrun by spoopy ghost items
 		qdel(item)
+		qdel(ui_image)
 
 	//Loop through drink list for data to send to cart's reagent storage tab
 	for(var/datum/reagent/drink in reagents.reagent_list)
