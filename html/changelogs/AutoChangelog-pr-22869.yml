@@ -1,4 +1,0 @@
-author: "warface1234455"
-delete-after: true 
-changes: 
-  - bugfix: "Fix cannot click off mobs to let go in combat mode and throw mobs when in grab mode"
