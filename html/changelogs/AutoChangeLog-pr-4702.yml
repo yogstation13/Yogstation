@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - admin: "Added the \"Delete All Glowshrooms\" and \"Toggle Glowshroom Spreading\" admin verbs."
