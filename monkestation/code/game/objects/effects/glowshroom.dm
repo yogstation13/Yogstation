@@ -86,7 +86,7 @@
 	AddElement(/datum/element/atmos_sensitive, mapload)
 	COOLDOWN_START(src, spread_cooldown, rand(min_delay_spread, max_delay_spread))
 
-	SSglowshrooms.glowshrooms += src // new_glowshrooms will update lighting first, and then move it to the normal glowshrooms processing list
+	SSglowshrooms.glowshrooms += src
 
 	var/static/list/hovering_item_typechecks = list(
 		/obj/item/plant_analyzer = list(
@@ -100,7 +100,6 @@
 /obj/structure/glowshroom/Destroy()
 	if(isatom(myseed))
 		QDEL_NULL(myseed)
-	//SSglowshrooms.new_glowshrooms -= src
 	SSglowshrooms.glowshrooms -= src
 	return ..()
 

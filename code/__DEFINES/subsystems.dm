@@ -205,6 +205,8 @@
 #define FIRE_PRIORITY_RESEARCH 10
 #define FIRE_PRIORITY_VIS 10
 #define FIRE_PRIORITY_AMBIENCE 10
+#define FIRE_PRIORITY_GLOWSHROOMS 10 // monkestation addition: glowshroom processing subsystem
+#define FIRE_PRIORITY_MEMORY_STATS 10 // monkestation addition: memory stats subsystem. uses a low priority as it takes a moment to fully profile memory.
 #define FIRE_PRIORITY_GARBAGE 15
 #define FIRE_PRIORITY_DATABASE 16
 #define FIRE_PRIORITY_WET_FLOORS 20

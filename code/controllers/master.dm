@@ -236,21 +236,11 @@ GLOBAL_REAL(Master, /datum/controller/master)
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, GLOBAL_PROC_REF(cmp_subsystem_display))
 	var/start_timeofday = REALTIMEOFDAY
+
 	for (var/current_init_stage in 1 to INITSTAGE_MAX)
-
 		// Initialize subsystems.
-		for (var/datum/controller/subsystem/subsystem in stage_sorted_subsystems[current_init_stage])
+		for(var/datum/controller/subsystem/subsystem in stage_sorted_subsystems[current_init_stage])
 			init_subsystem(subsystem)
-			#ifndef OPENDREAM
-			if(world.system_type == MS_WINDOWS)
-				var/ss_name = "[subsystem.name]"
-				var/memory_summary = call_ext("memorystats", "get_memory_stats")()
-				var/file = file("data/mem_stat/[GLOB.round_id]-memstat.txt")
-
-				var/string = "[ss_name] [memory_summary]"
-				WRITE_FILE(file, string)
-			#endif
-
 			CHECK_TICK
 		current_initializing_subsystem = null
 		init_stage_completed = current_init_stage

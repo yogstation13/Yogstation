@@ -204,7 +204,6 @@
 	for (queue_node = Master.queue_head; queue_node; queue_node = queue_node.queue_next)
 		iter_count++
 		if(iter_count >= ENQUEUE_SANITY)
-			var/msg = "[src] subsystem has likely entered an infinite enqueue loop, restarting MC immediately!"
 			/* log_enqueue(msg, list("enqueue_log" = enqueue_log.Copy())) */
 			SSplexora.mc_alert("[src] has likely entered an infinite loop in enqueue(), we're restarting the MC immediately!")
 			stack_trace("enqueue() entered an infinite loop, we're restarting the MC!")

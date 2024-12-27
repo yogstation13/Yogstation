@@ -3,7 +3,7 @@
 	var/regex/whitelist_regex
 	if(whitelist)
 		// try not to look at it too hard. yes i wrote this by hand.
-		whitelist_regex = new("(?:\[\\/\\\\\]$|(?:^|\\\\|\\/)(?:[regex_quote_list(whitelist)]|(?:profiler|sendmaps)-\[0-9_\\-\]+)\\.(?:[regex_quote_list(valid_extensions)])$)", "i")
+		whitelist_regex = new("(?:\[\\/\\\\\]$|(?:^|\\\\|\\/)(?:[regex_quote_list(whitelist)]|(?:profiler|sendmaps|memstat)-(?:init|\[0-9_\\-\]+))\\.(?:[regex_quote_list(valid_extensions)])$)", "i")
 
 	// wow why was this ever a parameter
 	var/root = "data/logs/"
