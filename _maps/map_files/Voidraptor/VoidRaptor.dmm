@@ -27266,7 +27266,9 @@
 	},
 /area/station/security/checkpoint/customs)
 "hQk" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /obj/machinery/camera/directional/east{
 	c_tag = "Science - Ordnance Storage";
 	name = "science camera";
@@ -40833,7 +40835,9 @@
 /turf/open/floor/catwalk_floor/iron_smooth,
 /area/station/maintenance/aft/upper)
 "lxx" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /obj/structure/sign/warning/no_smoking/circle/directional/east,
 /obj/machinery/light/cold/directional/east,
 /turf/open/floor/engine,
@@ -69761,7 +69765,9 @@
 	},
 /area/station/security/prison)
 "trl" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/station/science/ordnance/storage)
 "tru" = (

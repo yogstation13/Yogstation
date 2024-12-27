@@ -97970,10 +97970,6 @@
 /mob/living/carbon/human/species/monkey,
 /turf/open/floor/iron/white,
 /area/station/medical/pathology)
-"xop" = (
-/obj/machinery/atmospherics/components/tank,
-/turf/open/floor/iron/dark,
-/area/station/science/ordnance/storage)
 "xoI" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/effect/turf_decal/stripes/line{
@@ -133206,8 +133202,8 @@ qMB
 wtS
 dQq
 hIB
-xop
-xop
+pGi
+pGi
 eam
 rHp
 rSR
@@ -133463,8 +133459,8 @@ vUe
 sav
 pNH
 hIB
-xop
-xop
+pGi
+pGi
 ehk
 kLi
 kLi
@@ -133721,7 +133717,7 @@ eNE
 xXR
 hIB
 pGi
-xop
+pGi
 ehk
 agq
 hbA

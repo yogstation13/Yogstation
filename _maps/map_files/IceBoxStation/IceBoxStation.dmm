@@ -28909,7 +28909,9 @@
 /area/station/security/prison)
 "jlj" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "jlq" = (
@@ -29607,7 +29609,9 @@
 /turf/open/floor/plating,
 /area/station/cargo/storage)
 "jxJ" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -39566,7 +39570,9 @@
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
 "mHu" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "mHw" = (
@@ -52711,7 +52717,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance)
 "qKx" = (

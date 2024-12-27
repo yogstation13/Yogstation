@@ -3917,12 +3917,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/maintenance/port/aft)
-"biD" = (
-/obj/machinery/atmospherics/components/tank{
-	dir = 1
-	},
-/turf/open/floor/iron/dark/smooth_large,
-/area/station/science/ordnance)
 "biO" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -5512,10 +5506,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/evidence)
-"bEJ" = (
-/obj/machinery/atmospherics/components/tank,
-/turf/open/floor/iron/dark/smooth_large,
-/area/station/science/ordnance)
 "bEK" = (
 /obj/effect/turf_decal/tile/purple/opposingcorners{
 	dir = 1
@@ -20333,8 +20323,8 @@
 /area/station/hallway/secondary/command)
 "gcs" = (
 /obj/machinery/airalarm/directional/north,
-/obj/machinery/atmospherics/components/tank{
-	dir = 1
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
 	},
 /obj/machinery/light/cold/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
@@ -59272,7 +59262,9 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison/safe)
 "rzH" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /obj/machinery/light/cold/directional/south,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/science/ordnance)
@@ -103258,9 +103250,9 @@ vhx
 uZB
 con
 bev
-bEJ
-biD
-bEJ
+ebQ
+ebQ
+ebQ
 bev
 qlO
 laO

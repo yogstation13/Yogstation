@@ -18392,7 +18392,9 @@
 /turf/open/floor/iron,
 /area/station/security/holding_cell)
 "gHw" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
 	},
@@ -25881,7 +25883,9 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/aft)
 "jcw" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/storage)
 "jcy" = (
@@ -39384,7 +39388,9 @@
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "nDw" = (
-/obj/machinery/atmospherics/components/tank,
+/obj/machinery/atmospherics/components/tank/oxygen{
+	dir = 4
+	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
@@ -44452,13 +44458,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/fore)
-"pth" = (
-/obj/machinery/atmospherics/components/tank,
-/obj/effect/turf_decal/siding/purple{
-	dir = 1
-	},
-/turf/open/floor/iron/dark,
-/area/station/science/ordnance/storage)
 "pti" = (
 /obj/structure/closet/secure_closet/security/sec,
 /obj/effect/turf_decal/tile/red/anticorner/contrasted,
@@ -99942,7 +99941,7 @@ kzQ
 gwf
 pJl
 rYI
-pth
+ltm
 jcw
 uBF
 iyc
