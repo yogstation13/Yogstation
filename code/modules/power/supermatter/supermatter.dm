@@ -381,15 +381,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	return distort
 
 /obj/machinery/power/supermatter_crystal/proc/antinoblium_safety() //Used for checking containment during antinoblium delamination, if false, things will go south and trigger resonance cascade event
-	if(bypass_containment) //Containment is uselesss at this point
+	if(antinoblium_attached)
+		if(bypass_containment) //Containment is uselesss at this point
+			for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
+				explosion(gens, heavy_impact_range = 2, light_impact_range = 3)
+			return FALSE
+		if(!check_containment(get_turf(src), 5) || corruptor_attached)
+			return FALSE
 		for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
-			explosion(gens, heavy_impact_range = 2, light_impact_range = 3)
-		return FALSE
-	if(!check_containment(get_turf(src), 5) || corruptor_attached)
-		return FALSE
-	for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
-		Beam(gens, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY, beam_color="#fdd700")
-	return TRUE
+			Beam(gens, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY, beam_color="#fdd700")
+		return TRUE
+	return FALSE
 
 /obj/machinery/power/supermatter_crystal/proc/countdown()
 	set waitfor = FALSE
@@ -733,11 +735,11 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_pull(src, power/750)
 		if(prob(5) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_FLUX, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(1) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
+		if((power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) && !antinoblium_safety()) || prob(1) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_GRAVITATIONAL, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
+		if((power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) && !antinoblium_safety()) || prob(0.3) && power > POWER_PENALTY_THRESHOLD || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_PYRO, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(0.5) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
+		if((power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) && !antinoblium_safety()) || prob(0.5) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_RADIATION, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
