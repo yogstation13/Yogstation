@@ -388,8 +388,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			return FALSE
 		if(!check_containment(get_turf(src), 5) || corruptor_attached)
 			return FALSE
-		for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
-			Beam(gens, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY, beam_color="#fdd700")
 		return TRUE
 	return FALSE
 
@@ -893,7 +891,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			support_integrity -= 1
 			radiation_pulse(src, (100-support_integrity)*2, 4)
 			if(prob(30))
-				antinoblium_safety()
+				for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
+					Beam(gens, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY, beam_color="#fdd700")
 			if(support_integrity<3)
 				if(!antinoblium_safety())
 					var/emp_power = round(explosion_power * (1+(1-(support_integrity/3))),1)
