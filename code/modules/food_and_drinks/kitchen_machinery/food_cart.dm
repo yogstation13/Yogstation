@@ -83,12 +83,6 @@
 		details["type_path"] = item.type
 
 		//Get an image for the UI
-		// var/icon/item_pic = getFlatIcon(item)
-		// var/md5 = md5(fcopy_rsc(item_pic))
-		// if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
-		// 	SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
-		// SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
-		// details["image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
 		var/datum/data/ui_image/ui_image = new /datum/data/ui_image(item)
 		details["image"] = ui_image.image
 
