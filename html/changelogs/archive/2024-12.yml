@@ -398,9 +398,19 @@
       much more visible in the chat.
   - qol: Boxed messages in chat (like examine), has been restyled.
 2024-12-27:
+  Absolucy:
+  - admin: Added the "Delete All Glowshrooms" and "Toggle Glowshroom Spreading" admin
+      verbs.
   DexeeXI:
   - bugfix: 'Blueshift: fixed the transit tube station in AI sat.'
+  - bugfix: Metastation armory now has atmos working in it again.
+  - balance: all maps excluding Blueshift and Tramstation have their ordnance oxygen
+      tanks contain even more oxygen. Not for assistant use.
+  Marabout2:
+  - balance: Modified the size of the paco's magazine from small to normal
   Shoddd:
   - qol: Traitor Kiboko starts with lethals
+  ThePooba:
+  - image: changes atmos and engi hardsuit sprites to be more colourful
   Uristthedorf:
   - bugfix: You can now print prescription glasses.
