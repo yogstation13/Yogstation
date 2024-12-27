@@ -89,15 +89,16 @@
 	return ..()
 
 /obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
-	if(anchored && !panel_open)
+	if(!panel_open)
+		if(anchored)
+			stored_power += power
+			if(istype(linked_account))
+				linked_account.adjust_money(money_per_zap)
+			if(istype(linked_techweb))
+				linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
 		obj_flags |= BEING_SHOCKED
-		stored_power += power
 		flick("[base_icon_state]hit", src)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
-		if(istype(linked_account))
-			linked_account.adjust_money(money_per_zap)
-		if(istype(linked_techweb))
-			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
 		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
 	else
