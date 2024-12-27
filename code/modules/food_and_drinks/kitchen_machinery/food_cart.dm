@@ -6,27 +6,27 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
-	//Max amount of items that can be in the cart's contents list
+	///Max amount of items that can be in the cart's contents list
 	var/contents_capacity = 80
-	//How many drinking glasses the cart has
+	///How many drinking glasses the cart has
 	var/glass_quantity = 10
-	//Max amount of drink glasses the cart can have
+	///Max amount of drink glasses the cart can have
 	var/glass_capacity = 30
-	//Max amount of reagents that can be in cart's storage
+	///Max amount of reagents that can be in cart's storage
 	var/reagent_capacity = 200
-	//Sound made when an item is dispensed
+	///Sound made when an item is dispensed
 	var/dispense_sound = 'sound/machines/click.ogg'
-	//Sound made when an item is inserted
+	///Sound made when an item is inserted
 	var/insert_sound = 'sound/effects/rustle2.ogg'
-	//Sound made when selecting/deselecting an item
+	///Sound made when selecting/deselecting an item
 	var/select_sound = 'sound/machines/doorclick.ogg'
-	//List used to show food items in UI
+	///List used to show food items in UI
 	var/list/food_ui_list = list()
-	//List of transfer amounts for reagents
+	///List of transfer amounts for reagents
 	var/list/transfer_list = list(5, 10, 15, 20, 30, 50)
-	//What transfer amount is currently selected
+	///What transfer amount is currently selected
 	var/selected_transfer = 0
-	//Mixer for dispencing drinks
+	///Mixer for dispencing drinks
 	var/obj/item/reagent_containers/mixer
 
 /obj/machinery/food_cart/ui_interact(mob/user, datum/tgui/ui)
@@ -36,7 +36,7 @@
 		ui.open()
 
 /obj/machinery/food_cart/ui_data(mob/user)
-	//Define data for sending info to UI
+	///Define data for sending info to UI
 	var/list/data = list()
 
 	//Define lists for each property of data so that they send to UI regardless of what happens
