@@ -397,3 +397,10 @@
   - qol: AdminPMs, admin tickets, vote results and started vote notification are now
       much more visible in the chat.
   - qol: Boxed messages in chat (like examine), has been restyled.
+2024-12-27:
+  DexeeXI:
+  - bugfix: 'Blueshift: fixed the transit tube station in AI sat.'
+  Shoddd:
+  - qol: Traitor Kiboko starts with lethals
+  Uristthedorf:
+  - bugfix: You can now print prescription glasses.
