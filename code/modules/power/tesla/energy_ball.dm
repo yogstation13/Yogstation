@@ -163,6 +163,7 @@
 	else
 		EB = new /obj/singularity/energy_ball(loc, 0, TRUE)
 		EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
+	energy *= EB.energy
 
 	var/icon/I = icon(icon,icon_state,dir)
 
