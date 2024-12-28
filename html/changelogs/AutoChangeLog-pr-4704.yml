@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - refactor: "Cleaned up and reorganized some monster hunter code."
-  - bugfix: "The monster hunter Beast Claw now properly sets its wound bonus when (de)activated."

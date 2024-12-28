@@ -414,3 +414,22 @@
   - image: changes atmos and engi hardsuit sprites to be more colourful
   Uristthedorf:
   - bugfix: You can now print prescription glasses.
+2024-12-28:
+  Absolucy:
+  - balance: Mark of Rust now arms grenades instead of instantly detonating them.
+      A balloon alert indicates this to the victim and witnesses, altho the heretic
+      will see which grenades were activated.
+  - refactor: Cleaned up and reorganized some monster hunter code.
+  - bugfix: The monster hunter Beast Claw now properly sets its wound bonus when (de)activated.
+  Gw0sty:
+  - qol: Predefined heartworms as a dangerous disease.
+  KittyNoodle:
+  - qol: The assops interrogator can no longer cause brain damage.
+  Shoddd:
+  - bugfix: Adds carbon check to flipping tables, no more imaginary friends and roaches
+      flipping tables
+  ThePooba:
+  - bugfix: atmos and engi hardsuit sprites updated again courtesy of waffles
+  Tractor Mann:
+  - bugfix: Circuit Nerds, rejoice, for it has finally happened, the Access Checker
+      Components ID menu now works again.

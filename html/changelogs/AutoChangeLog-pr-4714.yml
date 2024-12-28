@@ -1,4 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - bugfix: "Adds carbon check to flipping tables, no more imaginary friends and roaches flipping tables"
