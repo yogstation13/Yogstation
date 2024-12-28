@@ -59,26 +59,21 @@
 	//Give Hunter Objective
 	if(give_objectives)
 		find_monster_targets()
-	var/datum/map_template/wonderland/wonder = new()
-	if(!wonder.load_new_z())
-		message_admins("The wonderland failed to load.")
-		CRASH("Failed to initialize wonderlandmind_traits, !")
-
+	INVOKE_ASYNC(src, PROC_REF(load_wonderland))
 	owner.add_traits(mind_traits, HUNTER_TRAIT)
-
 	//Teach Stake crafting
 	owner.teach_crafting_recipe(/datum/crafting_recipe/hardened_stake)
 	owner.teach_crafting_recipe(/datum/crafting_recipe/silver_stake)
 	var/mob/living/carbon/criminal = owner.current
-	var/obj/item/rabbit_locator/card = new(get_turf(criminal), src)
-	var/list/slots = list ("backpack" = ITEM_SLOT_BACKPACK, "left pocket" = ITEM_SLOT_LPOCKET, "right pocket" = ITEM_SLOT_RPOCKET)
-	if(!criminal.equip_in_one_of_slots(card, slots))
-		var/obj/item/rabbit_locator/droppod_card = new()
-		grant_drop_ability(droppod_card)
-	var/obj/item/hunting_contract/contract = new(get_turf(criminal), src)
-	if(!criminal.equip_in_one_of_slots(contract, slots))
-		var/obj/item/hunting_contract/droppod_contract = new()
-		grant_drop_ability(droppod_contract)
+	var/obj/item/rabbit_locator/card = new(criminal.drop_location(), src)
+	var/list/slots = list("backpack" = ITEM_SLOT_BACKPACK, "left pocket" = ITEM_SLOT_LPOCKET, "right pocket" = ITEM_SLOT_RPOCKET)
+	if(!criminal.equip_in_one_of_slots(card, slots, qdel_on_fail = FALSE))
+		card.moveToNullspace()
+		grant_drop_ability(card)
+	var/obj/item/hunting_contract/contract = new(criminal.drop_location(), src)
+	if(!criminal.equip_in_one_of_slots(contract, slots, qdel_on_fail = FALSE))
+		contract.moveToNullspace()
+		grant_drop_ability(contract)
 	RegisterSignal(src, COMSIG_GAIN_INSIGHT, PROC_REF(insight_gained))
 	RegisterSignal(src, COMSIG_BEASTIFY, PROC_REF(turn_beast))
 	for(var/i in 1 to 5)
@@ -88,8 +83,29 @@
 	gun_holder.drop_gun = TRUE
 	var/datum/action/cooldown/spell/track_monster/track = new
 	track.Grant(owner.current)
-
 	return ..()
+
+/datum/antagonist/monsterhunter/on_removal()
+	UnregisterSignal(src, list(COMSIG_GAIN_INSIGHT, COMSIG_BEASTIFY))
+	owner.remove_traits(mind_traits, HUNTER_TRAIT)
+	QDEL_LIST(rabbits)
+	locator?.hunter = null
+	locator = null
+	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
+	return ..()
+
+/datum/antagonist/monsterhunter/proc/load_wonderland()
+	var/static/wonderland_loaded = FALSE
+	if(wonderland_loaded)
+		return
+
+	wonderland_loaded = TRUE
+	var/datum/map_template/wonderland/wonderland_template = new
+	if(!wonderland_template.load_new_z())
+		wonderland_loaded = FALSE
+		QDEL_NULL(wonderland_template)
+		message_admins("Failed to load Wonderland z-level!")
+		CRASH("Failed to load Wonderland z-level!")
 
 /datum/antagonist/monsterhunter/proc/setup_bnuuy_images()
 	SIGNAL_HANDLER
@@ -107,23 +123,7 @@
 
 /datum/antagonist/monsterhunter/proc/grant_drop_ability(obj/item/tool)
 	var/datum/action/droppod_item/summon_contract = new(tool)
-	if(istype(tool, /obj/item/rabbit_locator))
-		var/obj/item/rabbit_locator/locator = tool
-		locator.hunter = src
-	if(istype(tool, /obj/item/hunting_contract))
-		var/obj/item/hunting_contract/contract = tool
-		contract.owner = src
 	summon_contract.Grant(owner.current)
-
-/datum/antagonist/monsterhunter/on_removal()
-	UnregisterSignal(src, list(COMSIG_GAIN_INSIGHT, COMSIG_BEASTIFY))
-	owner.remove_traits(mind_traits, HUNTER_TRAIT)
-	QDEL_LIST(rabbits)
-	locator?.hunter = null
-	locator = null
-	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
-	return ..()
-
 
 /datum/antagonist/monsterhunter/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
@@ -133,8 +133,8 @@
 
 /datum/antagonist/monsterhunter/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/hunter = new
-	var/icon/white_rabbit = icon('monkestation/icons/bloodsuckers/rabbit.dmi', "white_rabbit")
-	var/icon/red_rabbit = icon('monkestation/icons/bloodsuckers/rabbit.dmi', "killer_rabbit")
+	var/icon/white_rabbit = icon('monkestation/icons/mob/rabbit.dmi', "white_rabbit")
+	var/icon/red_rabbit = icon('monkestation/icons/mob/rabbit.dmi', "killer_rabbit")
 	var/icon/hunter_icon = render_preview_outfit(/datum/outfit/monsterhunter, hunter)
 
 	var/icon/final_icon = hunter_icon
@@ -201,7 +201,7 @@
 	to_chat(owner.current, span_announce("While we can kill anyone in our way to destroy the monsters lurking around, <b>causing property damage is unacceptable</b>."))
 	to_chat(owner.current, span_announce("However, security WILL detain us if they discover our mission."))
 	to_chat(owner.current, span_announce("In exchange for our services, it shouldn't matter if a few items are gone missing for our... personal collection."))
-	owner.current.playsound_local(null, 'monkestation/sound/bloodsuckers/monsterhunterintro.ogg', vol = 100, vary = FALSE, pressure_affected = FALSE)
+	owner.current.playsound_local(null, 'monkestation/sound/ambience/antag/monster_hunter.ogg', vol = 100, vary = FALSE, pressure_affected = FALSE)
 	owner.announce_objectives()
 
 /datum/antagonist/monsterhunter/proc/insight_gained()
@@ -272,9 +272,8 @@
 
 /obj/item/clothing/mask/monster_preview_mask
 	name = "Monster Preview Mask"
-	worn_icon = 'monkestation/icons/bloodsuckers/worn_mask.dmi'
+	worn_icon = 'monkestation/icons/mob/mask.dmi'
 	worn_icon_state = "monoclerabbit"
-
 
 /datum/antagonist/monsterhunter/roundend_report()
 	var/list/parts = list()
@@ -310,28 +309,24 @@
 	desc = "Summon specific monster hunter tools that will aid us with our hunt."
 	button_icon = 'icons/obj/device.dmi'
 	button_icon_state = "beacon"
-	///path of item we are spawning
-	var/item_path
 
-/datum/action/droppod_item/New(obj/item/tool)
+/datum/action/droppod_item/New(obj/item/target)
 	. = ..()
-	button_icon = tool.icon
-	button_icon_state = tool.icon_state
+	button_icon = target.icon
+	button_icon_state = target.icon_state
 	build_all_button_icons(UPDATE_BUTTON_ICON)
-	item_path = tool
 
 /datum/action/droppod_item/Trigger(trigger_flags)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	podspawn(list(
 		"target" = get_turf(owner),
 		"style" = STYLE_SYNDICATE,
-		"spawn" = item_path,
-		))
+		"spawn" = target,
+	))
 	qdel(src)
 	return TRUE
-
 
 /datum/action/cooldown/spell/track_monster
 	name = "Hunter Vision"
@@ -394,7 +389,7 @@
 	copied_appearance.appearance = input
 	if(istype(input, /mob/living))
 		copied_appearance.cut_overlays()
-		copied_appearance.icon = 'monkestation/icons/bloodsuckers/rabbit.dmi'
+		copied_appearance.icon = 'monkestation/icons/mob/rabbit.dmi'
 		copied_appearance.icon_state = "white_rabbit"
 	copied_appearance.color = black_white_matrix
 	copied_appearance.filters += outline_filter(size = 1, color = COLOR_WHITE)

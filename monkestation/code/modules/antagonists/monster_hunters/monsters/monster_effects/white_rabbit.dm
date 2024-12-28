@@ -1,7 +1,7 @@
 /obj/effect/bnnuy
 	name = "white rabbit"
 	desc = span_big(span_hypnophrase("FEED YOUR HEAD."))
-	icon = 'monkestation/icons/bloodsuckers/512x512.dmi'
+	icon = 'monkestation/icons/effects/512x512.dmi'
 	anchored = TRUE
 	interaction_flags_atom = INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND | INTERACT_ATOM_NO_FINGERPRINT_INTERACT
 	resistance_flags = parent_type::resistance_flags | SHUTTLE_CRUSH_PROOF
@@ -55,7 +55,7 @@
 	being_used = TRUE
 	spotted(user)
 	SEND_SIGNAL(hunter_antag, COMSIG_GAIN_INSIGHT)
-	icon = 'monkestation/icons/bloodsuckers/rabbit.dmi'
+	icon = 'monkestation/icons/mob/rabbit.dmi'
 	real_icon_state = "rabbit_hole"
 	pixel_x = 0
 	pixel_y = 0

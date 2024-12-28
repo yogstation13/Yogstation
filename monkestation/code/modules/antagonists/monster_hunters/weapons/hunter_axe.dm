@@ -2,7 +2,7 @@
 	name = "Hunter's Axe"
 	base_name = "Hunter's Axe"
 	desc = "A brute's tool of choice."
-	icon_state = "hunteraxe0"
+	icon_state = "hunteraxe"
 	base_icon_state = "hunteraxe"
 	w_class = WEIGHT_CLASS_SMALL
 	block_chance = 20
@@ -19,13 +19,13 @@
 	. = ..()
 	force = base_force
 	AddComponent(/datum/component/two_handed, \
+		wieldsound = 'sound/magic/clockwork/fellowship_armory.ogg', \
+		force_wielded = on_force, \
 		force_unwielded = base_force, \
-		force_wielded= on_force, \
-		icon_wielded = "[base_icon_state]1", \
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	RegisterSignal(src, WEAPON_UPGRADE, PROC_REF(upgrade_weapon))
+	RegisterSignal(src, COMSIG_WEAPON_UPGRADE, PROC_REF(upgrade_weapon))
 
 /obj/item/melee/trick_weapon/hunter_axe/upgrade_weapon()
 	upgrade_level++
@@ -34,15 +34,10 @@
 	handed.force_unwielded = upgraded_val(base_force, upgrade_level)
 	force = handed.force_unwielded
 
-/obj/item/melee/trick_weapon/hunter_axe/update_icon_state()
-	icon_state = "[base_icon_state]0"
-	playsound(src, 'sound/magic/clockwork/fellowship_armory.ogg', vol = 50)
-	return ..()
-
 /obj/item/melee/trick_weapon/hunter_axe/proc/on_wield(obj/item/source)
 	enabled = TRUE
 	block_chance = 75
 
 /obj/item/melee/trick_weapon/hunter_axe/proc/on_unwield(obj/item/source)
 	enabled = FALSE
-	block_chance = 20
+	block_chance = src::block_chance

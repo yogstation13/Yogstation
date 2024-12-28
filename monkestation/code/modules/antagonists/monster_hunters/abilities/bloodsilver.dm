@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/conjure_item/blood_silver
 	name = "Create bloodsilver bullet"
 	desc = "Wield your blood and mold it into a bloodsilver bullet"
-	button_icon = 'monkestation/icons/bloodsuckers/weapons.dmi'
+	button_icon = 'monkestation/icons/obj/guns/ammo.dmi'
 	button_icon_state = "bloodsilver"
 	cooldown_time = 2 MINUTES
 	item_type = /obj/item/ammo_casing/silver

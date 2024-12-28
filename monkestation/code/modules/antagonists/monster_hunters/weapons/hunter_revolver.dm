@@ -2,7 +2,7 @@
 	name = "\improper Hunter's Revolver"
 	desc = "While doing minimal physical damage, the bullets will force a monster to carry the weight of their impure sins for a short while, greatly slowing them down."
 	icon_state = "revolver"
-	icon = 'monkestation/icons/bloodsuckers/weapons.dmi'
+	icon = 'monkestation/icons/obj/guns/guns.dmi'
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/cylinder/bloodsilver
 	initial_caliber = CALIBER_BLOODSILVER
 
@@ -21,7 +21,7 @@
 	name = "Bloodsilver casing"
 	desc = "A Bloodsilver bullet casing."
 	icon_state = "bloodsilver"
-	icon = 'monkestation/icons/bloodsuckers/weapons.dmi'
+	icon = 'monkestation/icons/obj/guns/ammo.dmi'
 	projectile_type = /obj/projectile/bullet/bloodsilver
 	caliber = CALIBER_BLOODSILVER
 

@@ -479,6 +479,7 @@
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_global.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_guns.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_item.dm"
+#include "code\__DEFINES\~monkestation\dcs\signals\signals_monster_hunter.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_object.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_traitor.dm"
 #include "code\__DEFINES\~monkestation\dcs\signals\signals_mob\signals_mob_main.dm"

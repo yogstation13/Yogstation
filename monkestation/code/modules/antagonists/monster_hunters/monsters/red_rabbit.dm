@@ -1,7 +1,7 @@
 /mob/living/basic/red_rabbit
 	name = "jabberwocky"
 	desc = "Servant of the moon."
-	icon = 'monkestation/icons/bloodsuckers/red_rabbit.dmi'
+	icon = 'monkestation/icons/mob/red_rabbit.dmi'
 	icon_state = "red_rabbit"
 
 	health = 500

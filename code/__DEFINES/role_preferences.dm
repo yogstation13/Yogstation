@@ -47,6 +47,7 @@
 #define ROLE_DRIFTING_CONTRACTOR "Drifting Contractor"
 #define ROLE_FLORIDA_MAN "Florida Man"
 #define ROLE_SLASHER "Slasher"
+#define ROLE_MONSTERHUNTER "Monster Hunter"
 
 // Latejoin roles
 #define ROLE_HERETIC_SMUGGLER "Heretic Smuggler"

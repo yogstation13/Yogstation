@@ -2,7 +2,7 @@
 	name = "Rabbit Eye"
 	desc = "An item that resonates with trick weapons."
 	icon_state = "rabbit_eye"
-	icon = 'monkestation/icons/bloodsuckers/weapons.dmi'
+	icon = 'monkestation/icons/obj/items/monster_hunter.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
@@ -13,8 +13,8 @@
 	if(weapon.enabled)
 		user.balloon_alert(user, "weapon must be in base form!")
 		return
-	SEND_SIGNAL(weapon, WEAPON_UPGRADE)
+	SEND_SIGNAL(weapon, COMSIG_WEAPON_UPGRADE)
 	weapon.name = "[weapon.base_name] +[weapon.upgrade_level]"
 	balloon_alert(user, "[src] crumbles away...")
-	playsound(src, 'monkestation/sound/bloodsuckers/weaponsmithing.ogg', vol = 50)
+	playsound(src, 'monkestation/sound/effects/weaponsmithing.ogg', vol = 50)
 	qdel(src)

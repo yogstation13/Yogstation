@@ -7,7 +7,7 @@
 	button_icon_state = "killer_rabbit"
 	desc = "Give birth to a bunch of cute bunnies eager to suicide bomb the nearest enemy!"
 	cooldown_time = 3 SECONDS
-	button_icon = 'monkestation/icons/bloodsuckers/rabbit.dmi'
+	button_icon = 'monkestation/icons/mob/rabbit.dmi'
 	button_icon_state = "killer_rabbit"
 	spell_requirements = NONE
 
@@ -29,7 +29,7 @@
 	button_icon_state = "hole_effect_button"
 	cooldown_time = 3 SECONDS
 	desc = "Trip down enemies through the rabbit holes!"
-	button_icon = 'monkestation/icons/bloodsuckers/rabbit.dmi'
+	button_icon = 'monkestation/icons/mob/rabbit.dmi'
 	button_icon_state = "hole_effect_button"
 	spell_requirements = NONE
 
@@ -58,7 +58,7 @@
 
 /obj/projectile/red_rabbit
 	name = "Red Queen"
-	icon = 'monkestation/icons/bloodsuckers/weapons.dmi'
+	icon = 'monkestation/icons/obj/items/monster_hunter.dmi'
 	icon_state = "locator"
 	damage = 20
 	armour_penetration = 100

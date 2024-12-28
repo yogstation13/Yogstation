@@ -2,8 +2,8 @@
 	name = "\improper Beast Claw"
 	base_name = "\improper Beast Claw"
 	desc = "The bones seem to still be twitching."
-	icon_state = "Bone_Claw"
-	base_icon_state = "Claw"
+	icon_state = "beast_claw"
+	base_icon_state = "beast_claw"
 	w_class =  WEIGHT_CLASS_SMALL
 	block_chance = 20
 	base_force = 18
@@ -23,17 +23,18 @@
 	force = base_force
 	AddComponent(/datum/component/transforming, \
 		force_on = on_force, \
-		w_class_on = WEIGHT_CLASS_BULKY)
+		w_class_on = WEIGHT_CLASS_BULKY, \
+	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
-	RegisterSignal(src,WEAPON_UPGRADE, PROC_REF(upgrade_weapon))
+	RegisterSignal(src, COMSIG_WEAPON_UPGRADE, PROC_REF(upgrade_weapon))
 
 /obj/item/melee/trick_weapon/beast_claw/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 	balloon_alert(user, active ? "extended" : "collapsed")
-	inhand_icon_state = active ? "Claw" : "BoneClaw"
 	if(active)
 		playsound(src, 'sound/weapons/fwoosh.ogg', vol = 50)
 	enabled = active
-	active = wound_bonus ? 45 : initial(wound_bonus)
+	wound_bonus = enabled ? 45 : src::block_chance
 	force = active ? upgraded_val(on_force, upgrade_level) : upgraded_val(base_force, upgrade_level)
+	update_appearance(UPDATE_ICON_STATE)
 	return COMPONENT_NO_DEFAULT_MESSAGE

@@ -3,7 +3,8 @@
 	base_name = "Darkmoon Greatsword"
 	desc = "Ahh my guiding moonlight, you were by my side all along."
 	icon_state = "darkmoon"
-	inhand_icon_state = "darkmoon_hilt"
+	base_icon_state = "darkmoon"
+	inhand_icon_state = "darkmoon"
 	w_class = WEIGHT_CLASS_SMALL
 	block_chance = 20
 	on_force = 20
@@ -29,20 +30,21 @@
 		throwforce_on = 20, \
 		throw_speed_on = throw_speed, \
 		sharpness_on = SHARP_EDGED, \
-		w_class_on = WEIGHT_CLASS_BULKY)
+		w_class_on = WEIGHT_CLASS_BULKY, \
+	)
 	RegisterSignal(src, COMSIG_TRANSFORMING_ON_TRANSFORM, PROC_REF(on_transform))
-	RegisterSignal(src, WEAPON_UPGRADE, PROC_REF(upgrade_weapon))
+	RegisterSignal(src, COMSIG_WEAPON_UPGRADE, PROC_REF(upgrade_weapon))
 
 
 /obj/item/melee/trick_weapon/darkmoon/proc/on_transform(obj/item/source, mob/user, active)
 	SIGNAL_HANDLER
 	balloon_alert(user, active ? "extended" : "collapsed")
 	if(active)
-		playsound(src, 'monkestation/sound/bloodsuckers/moonlightsword.ogg', vol = 50)
-	inhand_icon_state = active ? "darkmoon" : "darkmoon_hilt"
+		playsound(src, 'monkestation/sound/weapons/moonlightsword.ogg', vol = 50)
 	enabled = active
 	set_light_on(active)
 	force = active ? upgraded_val(on_force, upgrade_level) : upgraded_val(base_force, upgrade_level)
+	update_appearance(UPDATE_ICON_STATE)
 	return COMPONENT_NO_DEFAULT_MESSAGE
 
 /obj/item/melee/trick_weapon/darkmoon/attack_secondary(atom/target, mob/living/user, clickparams)
@@ -69,7 +71,7 @@
 	var/obj/projectile/moonbeam/moon = new(proj_turf)
 	moon.preparePixelProjectile(target, user, modifiers)
 	moon.firer = user
-	playsound(src, 'monkestation/sound/bloodsuckers/moonlightbeam.ogg', vol = 50)
+	playsound(src, 'monkestation/sound/weapons/moonlightbeam.ogg', vol = 50)
 	moon.fire()
 
 /obj/projectile/moonbeam

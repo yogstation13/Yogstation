@@ -1,7 +1,7 @@
 /obj/structure/blood_fountain
 	name = "blood fountain"
 	desc = "A huge resevoir of thick blood, perhaps drinking some of it would restore some vigor..."
-	icon = 'monkestation/icons/bloodsuckers/blood_fountain.dmi'
+	icon = 'monkestation/icons/obj/blood_fountain.dmi'
 	icon_state = "blood_fountain"
 	plane = ABOVE_GAME_PLANE
 	anchored = TRUE
@@ -24,7 +24,7 @@
 /obj/item/blood_vial
 	name = "blood vial"
 	desc = "Used to collect samples of blood from the dead-still blood fountain."
-	icon = 'monkestation/icons/bloodsuckers/weapons.dmi'
+	icon = 'monkestation/icons/obj/items/monster_hunter.dmi'
 	base_icon_state = "blood_vial"
 	icon_state = "blood_vial_empty"
 	inhand_icon_state = "beaker"
@@ -48,10 +48,16 @@
 	filled = FALSE
 	user.apply_status_effect(/datum/status_effect/cursed_blood)
 	update_appearance(UPDATE_ICON_STATE)
-	playsound(src, 'monkestation/sound/bloodsuckers/blood_vial_slurp.ogg', vol = 50)
+	playsound(src, 'monkestation/sound/items/blood_vial_slurp.ogg', vol = 50)
+
+/obj/item/blood_vial/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(proximity_flag && target == user)
+		attack_self(user)
+		. |= AFTERATTACK_PROCESSED_ITEM
 
 /obj/item/blood_vial/update_icon_state()
-	icon_state = filled ? base_icon_state : "[base_icon_state]_empty"
+	icon_state = "[base_icon_state][filled ? "" : "_empty"]"
 	return ..()
 
 /datum/status_effect/cursed_blood

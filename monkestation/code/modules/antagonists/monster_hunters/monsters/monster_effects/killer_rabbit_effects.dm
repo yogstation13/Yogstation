@@ -1,6 +1,6 @@
 /obj/effect/rabbit_hole
 	name = "Rabbit Hole"
-	icon = 'monkestation/icons/bloodsuckers/rabbit.dmi'
+	icon = 'monkestation/icons/mob/rabbit.dmi'
 	icon_state = "hole_effect"
 	layer = BELOW_MOB_LAYER
 	plane = GAME_PLANE
@@ -27,9 +27,7 @@
 	addtimer(CALLBACK(src, PROC_REF(generate_holes)), 0.5 SECONDS)
 
 /obj/effect/rabbit_hole/first/proc/generate_holes()
-	var/list/directions = GLOB.cardinals.Copy()
-	for(var/i in 1 to 4)
-		var/spawndir = pick_n_take(directions)
-		var/turf/hole = get_step(src, spawndir)
+	for(var/dir in GLOB.cardinals)
+		var/turf/hole = get_step(src, dir)
 		if(hole)
 			new /obj/effect/rabbit_hole(hole)

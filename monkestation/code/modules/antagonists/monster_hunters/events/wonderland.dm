@@ -47,5 +47,5 @@ GLOBAL_LIST_EMPTY(wonderland_marks)
 /obj/structure/chess/redqueen
 	name = "\improper Red Queen"
 	desc = "What is this doing here?"
-	icon = 'monkestation/icons/bloodsuckers/rabbit.dmi'
+	icon = 'monkestation/icons/mob/rabbit.dmi'
 	icon_state = "red_queen"
