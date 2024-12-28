@@ -1,0 +1,4 @@
+author: "Tractor Mann"
+delete-after: True
+changes:
+  - bugfix: "Circuit Nerds, rejoice, for it has finally happened, the Access Checker Components ID menu now works again."
