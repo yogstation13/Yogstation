@@ -10,7 +10,7 @@
 	description = "Infiltrators will... infiltrate."
 	map_flags = EVENT_SPACE_ONLY
 
-	min_players = 23
+	min_players = 15 //Temporary, only for testmerge
 
 /datum/round_event_control/infiltrators/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
 	. = ..()
