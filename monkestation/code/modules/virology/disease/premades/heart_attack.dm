@@ -13,3 +13,4 @@
 	infectionchance = 0
 	infectionchance_base = 0
 	stage_variance = 0
+	severity = DISEASE_SEVERITY_DANGEROUS
