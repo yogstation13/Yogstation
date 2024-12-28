@@ -96,6 +96,8 @@
 				linked_account.adjust_money(money_per_zap)
 			if(istype(linked_techweb))
 				linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
+		else
+			tesla_zap(src, 3, power, tesla_flags, shocked_targets, zap_gib)
 		obj_flags |= BEING_SHOCKED
 		flick("[base_icon_state]hit", src)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
