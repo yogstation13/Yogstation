@@ -176,7 +176,7 @@
 		return
 	to_chat(human_occupant, span_userdanger("You feel a sharp pain as a drill penetrates your skull, it's unbearable!"))
 	human_occupant.emote("scream")
-	human_occupant.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
+	human_occupant.adjustBruteLoss(30)
 	playsound(src, 'sound/effects/wounds/blood1.ogg', 100)
 	playsound(src, 'sound/items/drill_use.ogg', 100)
 	say("Stage two complete!")
@@ -189,7 +189,7 @@
 		return
 	to_chat(human_occupant, span_userdanger("You feel something penetrating your brain, it feels as though your childhood memories are fading! Please, make it stop! After a moment of silence, you realize you can't remember what happened to you!"))
 	human_occupant.emote("scream")
-	human_occupant.apply_damage(20, BRUTE, BODY_ZONE_HEAD)
+	human_occupant.adjustBruteLoss(30)
 	human_occupant.set_jitter_if_lower(3 MINUTES)
 	human_occupant.Unconscious(1 MINUTES)
 	playsound(src, 'sound/effects/dismember.ogg', 100)
