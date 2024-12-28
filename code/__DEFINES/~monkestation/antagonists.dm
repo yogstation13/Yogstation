@@ -55,3 +55,6 @@
 #define BORER_HIDING (1<<3)
 /// If the borer can produce eggs without a host
 #define BORER_ALONE_PRODUCTION (1<<4)
+
+/// How much heretic Mark of Rust mark does to items
+#define RUST_MARK_DAMAGE	50

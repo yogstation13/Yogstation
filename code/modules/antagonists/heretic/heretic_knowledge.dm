@@ -343,7 +343,7 @@
 	if(!istype(mark))
 		return FALSE
 
-	mark.on_effect()
+	mark.on_effect(source) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/on_effect()
 	return TRUE
 
 /**

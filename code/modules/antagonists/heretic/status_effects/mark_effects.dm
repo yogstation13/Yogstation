@@ -44,7 +44,7 @@
 /**
  * Called when the mark is activated by the heretic.
  */
-/datum/status_effect/eldritch/proc/on_effect()
+/datum/status_effect/eldritch/proc/on_effect(mob/living/activator) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/on_effect()
 	SHOULD_CALL_PARENT(TRUE)
 
 	playsound(owner, 'sound/magic/repulse.ogg', 75, TRUE)
@@ -57,7 +57,7 @@
 /datum/status_effect/eldritch/flesh
 	effect_icon_state = "emark1"
 
-/datum/status_effect/eldritch/flesh/on_effect()
+/datum/status_effect/eldritch/flesh/on_effect(mob/living/activator) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/on_effect()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		var/obj/item/bodypart/bodypart = pick(human_owner.bodyparts)
@@ -76,7 +76,7 @@
 	. = ..()
 	src.repetitions = max(1, repetition)
 
-/datum/status_effect/eldritch/ash/on_effect()
+/datum/status_effect/eldritch/ash/on_effect(mob/living/activator) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/on_effect()
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
 		carbon_owner.stamina.adjust(-6 * repetitions) // first one = 30 stam
@@ -94,6 +94,7 @@
 /datum/status_effect/eldritch/rust
 	effect_icon_state = "emark3"
 
+/* monkestation removal: reimplemented in [monkestation/code/modules/antagonists/heretic/status_effects/mark_effects.dm]
 /datum/status_effect/eldritch/rust/on_effect()
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
@@ -119,13 +120,14 @@
 					thing.take_damage(50) //monkestation edit end
 
 	return ..()
+monkestation end */
 
 // MARK OF VOID
 
 /datum/status_effect/eldritch/void
 	effect_icon_state = "emark4"
 
-/datum/status_effect/eldritch/void/on_effect()
+/datum/status_effect/eldritch/void/on_effect(mob/living/activator) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/on_effect()
 	owner.apply_status_effect(/datum/status_effect/void_chill/major)
 	owner.adjust_silence(10 SECONDS)
 	return ..()
@@ -235,7 +237,7 @@
 	QDEL_NULL(cosmic_diamond)
 	return ..()
 
-/datum/status_effect/eldritch/cosmic/on_effect()
+/datum/status_effect/eldritch/cosmic/on_effect(mob/living/activator) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/on_effect()
 	owner.adjust_confusion(7 SECONDS) //monkestation edit
 	new teleport_effect(get_turf(owner))
 	new /obj/effect/forcefield/cosmic_field(get_turf(owner))
@@ -295,7 +297,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, id)
 	owner.balloon_alert(owner, "you feel able to once again strike!")
 
-/datum/status_effect/eldritch/moon/on_effect()
+/datum/status_effect/eldritch/moon/on_effect(mob/living/activator) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/
 	owner.adjust_confusion(30 SECONDS)
 	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25, 160)
 	owner.emote(pick("giggle", "laugh"))
