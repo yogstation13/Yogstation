@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "Mark of Rust now arms grenades instead of instantly detonating them. A balloon alert indicates this to the victim and witnesses, altho the heretic will see which grenades were activated."
