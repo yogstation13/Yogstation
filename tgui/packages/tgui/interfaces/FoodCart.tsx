@@ -262,7 +262,7 @@ const DrinkTab = (props, context) => {
         textAlign="center"
         buttons={<Button
           circular
-          tooltip="Main reagent storage for the cart"
+          tooltip="Main reagent storage for the cart. Reagents do not react while in it"
           icon="info" />}>
           <MainDrinkRow />
         </Section>
@@ -273,7 +273,7 @@ const DrinkTab = (props, context) => {
         textAlign="center"
         buttons={<Button
           circular
-          tooltip="Reagents to be poured into drinking glasses"
+          tooltip="Reagents to be poured into drinking glasses. Reagents do not react while in it and will instead react when poured"
           icon="info" />}>
           <MixerDrinkRow />
         </Section>
