@@ -424,7 +424,7 @@
 	if(uses_integrity)
 		playsound(src, P.hitsound, 50, 1)
 		visible_message(span_danger("[src] is hit by \a [P]!"), null, null, COMBAT_MESSAGE_RANGE)
-		if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
+		if(!QDELETED(src) && !P.nodamage) //Bullet on_hit effect might have already destroyed this object
 			take_damage(P.damage * P.demolition_mod, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
 
 ///Return true if we're inside the passed in atom
