@@ -360,70 +360,81 @@ const PaiBox = (props, context) => {
     case "remote signaller":
       return (
         <Section title={modules_tabs[selectedMainTab].title}>
-          <Stack vertical>
-            <Stack.Item>
-              Frequency:
-              <NumberInput
-                  animate
-                  unit="kHz"
-                  step={0.2}
-                  stepPixelSize={6}
-                  minValue={minFrequency / 10}
-                  maxValue={maxFrequency / 10}
-                  value={frequency / 10}
-                  format={value => toFixed(value, 1)}
-                  width="80px"
-                  onDrag={(e, value) => act('signallerfreq', {
-                    freq: value,
-                  })} />
-              <Button
-                ml={1.3}
-                icon="sync"
-                content="Reset"
-                onClick={() => act("signallerreset", {
-                  reset: "freq",
-                })} />
-            </Stack.Item>
-            <Stack.Item>
-              Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <NumberInput
-                animate
-                step={1}
-                stepPixelSize={6}
-                minValue={1}
-                maxValue={100}
-                value={code}
-                width="80px"
-                onDrag={(e, value) => act("signallercode", {
-                  code: value,
-                })} />
-              <Button
-                ml={1.1}
-                icon="sync"
-                content="Reset"
-                onClick={() => act("signallerreset", {
-                  reset: "code",
-                })} />
-            </Stack.Item>
-            <Stack.Item>
-              Color:
-              <Button
-                ml={5.2}
-                icon="sync"
-                width={13.1}
-                color={color}
-                content={color}
-                onClick={() => act("signallercolor")} />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
+          <Table>
+            <Table.Row>
+              <Table.Cell>
+                Frequency:
+              </Table.Cell>
+              <Table.Cell>
+                <NumberInput
+                      animate
+                      unit="kHz"
+                      step={0.2}
+                      stepPixelSize={6}
+                      minValue={minFrequency / 10}
+                      maxValue={maxFrequency / 10}
+                      value={frequency / 10}
+                      format={value => toFixed(value, 1)}
+                      width="80px"
+                      onDrag={(e, value) => act('signallerfreq', {
+                        freq: value,
+                      })} />
+              </Table.Cell>
+              <Table.Cell>
+                <Button
+                      icon="sync"
+                      content="Reset"
+                      onClick={() => act("signallerreset", {
+                        reset: "freq",
+                      })} />
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                Code:
+              </Table.Cell>
+              <Table.Cell>
+                <NumberInput
+                    animate
+                    step={1}
+                    stepPixelSize={6}
+                    minValue={1}
+                    maxValue={100}
+                    value={code}
+                    width="80px"
+                    onDrag={(e, value) => act("signallercode", {
+                      code: value,
+                    })} />
+              </Table.Cell>
+              <Table.Cell>
+                <Button
+                      icon="sync"
+                      content="Reset"
+                      onClick={() => act("signallerreset", {
+                        reset: "code",
+                      })} />
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                Color:
+              </Table.Cell>
+              <Table.Cell>
+                <Button
+                    icon="sync"
+                    width={13.1}
+                    color={color}
+                    content={color}
+                    onClick={() => act("signallercolor")} />
+              </Table.Cell>
+            </Table.Row>
+          </Table>
+          <Button
               mb={-0.1}
               icon="arrow-up"
               content="Send Signal"
               textAlign="center"
               onClick={() => act("signallersignal")} />
-            </Stack.Item>
-          </Stack>
         </Section>
       );
     case "medical records":
