@@ -1,0 +1,5 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - rscadd: "Added crew transfer votes."
+  - tweak: "Shuttle autocall will now trigger at 3 hours."
