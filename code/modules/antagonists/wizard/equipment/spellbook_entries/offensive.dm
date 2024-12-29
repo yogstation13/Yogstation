@@ -143,7 +143,7 @@
 
 /datum/spellbook_entry/magic_arrows
 	name = "Summon Magic Arrows"
-	desc =" summons  magic arrows"
+	desc ="A spell that summons a homing arrow in the user's hand, ready to be shot out of a bow that quickly becomes dull after hitting something.Can be quickly casted by pressing the 'quick-equip' key on an empty hand"
 	spell_type = /datum/action/cooldown/spell/conjure_item/arrow/magic
 	category = "Offensive"
 	cost = 1
