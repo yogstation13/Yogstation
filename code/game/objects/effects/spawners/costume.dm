@@ -57,7 +57,7 @@
 	items = list(
 		/obj/item/clothing/under/dress/skirt,
 		/obj/effect/spawner/random/clothing/beret_or_rabbitears,
-		/obj/item/clothing/glasses/blindfold,
+	//	/obj/item/clothing/glasses/blindfold, MONKESTATION REMOVAL something something erp, I was told to do this
 	)
 
 
