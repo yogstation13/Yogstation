@@ -1,0 +1,9 @@
+author: "Addust"
+delete-after: True
+changes:
+  - rscadd: "A Syndicate logistics depot has recently been detected in the sector. Avoid approach if at all possible."
+  - rscadd: "other syndicate fax machines may contact the Listening Post now"
+  - bugfix: "the deep storage outpost the syndies have now only has 1 big-ass bomb and also now has actual writing implements."
+  - bugfix: "blueshift's netmin computer room is no longer a hazardous unventilated space"
+  - bugfix: "a metastation surgery room is now airtight"
+  - bugfix: "disposal chutes shouldnt obliterate you as frequently now"
