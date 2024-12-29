@@ -1,0 +1,56 @@
+{
+    "map_name": "MiniStation",
+    "map_path": "map_files/MiniStation",
+    "map_file": "MiniStation.dmm",
+    "shuttles": {
+	    "emergency": "emergency_box",
+	    "ferry": "ferry_fancy",
+	    "cargo": "cargo_box",
+	    "whiteship": "whiteship_box"
+	},
+  	"cryo_spawn": true,
+	"traits": [
+		{
+			"Up": true,
+			"Linkage": null
+		},
+		{
+			"Down": true,
+			"Baseturf": "/turf/open/openspace",
+			"Linkage": "Cross"
+		}
+	],
+	"job_changes": {
+		"Captain": {
+			"special_charter": "asteroid"
+		},
+		"Artist": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Lawyer": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Brig Physician": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Clerk": {
+			"spawn_positions": 0,
+			"total_positions": 0
+		},
+		"Paramedic": {
+			"spawn_positions": 1,
+			"total_positions": 1
+		},
+		"Cook": {
+			"spawn_positions": 1,
+			"total_positions": 1
+		},
+		"Chemist": {
+			"spawn_positions": 1,
+			"total_positions": 1
+		}
+	}
+}

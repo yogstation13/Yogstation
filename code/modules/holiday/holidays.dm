@@ -103,10 +103,10 @@
 		if(PATTERN_RAINBOW)
 			var/datum/holiday/pride_week/rainbow_datum = new()
 			return rainbow_datum.get_holiday_colors(thing_to_color, PATTERN_DEFAULT)
-	if(!length(GLOB.holidays))
+	if(!length(SSgamemode.holidays))
 		return
-	for(var/holiday_key in GLOB.holidays)
-		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
+	for(var/holiday_key in SSgamemode.holidays)
+		var/datum/holiday/holiday_real = SSgamemode.holidays[holiday_key]
 		if(!holiday_real.holiday_colors)
 			continue
 		return holiday_real.get_holiday_colors(thing_to_color, pattern || holiday_real.holiday_pattern)
@@ -518,7 +518,6 @@
 		"https://www.youtube.com/watch?v=fixc63xMXeY", // Plok Boss Theme - HD Remastered
 		"https://www.youtube.com/watch?v=bRLML36HnzU" // Monster Mash
 		)
-	holiday_colors = list(COLOR_MOSTLY_PURE_ORANGE, COLOR_PRISONER_BLACK)
 
 /datum/holiday/halloween/shouldCelebrate(dd, mm, yy, ww, ddd)
 	. = ..()

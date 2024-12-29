@@ -7,6 +7,7 @@
 	antag_hud_name = "clockwork"
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/cult
+	count_towards_antag_cap = TRUE
 	var/datum/action/innate/hierophant/hierophant_network = new()
 	var/datum/team/clockcult/clock_team
 	var/make_team = TRUE //This should be only false for tutorial scarabs
@@ -61,7 +62,7 @@
 
 /datum/antagonist/clockcult/on_gain()
 	var/mob/living/current = owner.current
-	SSticker.mode.servants_of_ratvar += owner
+	SSgamemode.servants_of_ratvar += owner
 	owner.special_role = ROLE_SERVANT_OF_RATVAR
 	owner.current.log_message("has been converted to the cult of Ratvar!", LOG_ATTACK, color="#BE8700")
 	if(issilicon(current))
@@ -168,7 +169,7 @@
 	REMOVE_TRAIT(current, TRAIT_UNHOLY, type)
 
 /datum/antagonist/clockcult/on_removal()
-	SSticker.mode.servants_of_ratvar -= owner
+	SSgamemode.servants_of_ratvar -= owner
 	for(var/datum/action/item_action/clock/quickbind/existing_binds in owner.current.actions)
 		existing_binds.Remove(owner.current) //regenerate all our quickbound scriptures
 	if(!silent)
@@ -196,7 +197,7 @@
 	.["Equip Cultist"] = CALLBACK(src, PROC_REF(admin_equip))
 
 /datum/antagonist/clockcult/proc/admin_equip(mob/admin)
-	if(!SSticker.mode.equip_servant(owner.current))
+	if(!SSgamemode.equip_servant(owner.current))
 		to_chat(admin, span_warning("Failed to outfit [owner.current]!"))
 	else
 		to_chat(admin, span_notice("Successfully gave [owner.current] servant equipment!"))
@@ -228,7 +229,7 @@
 	if(check_clockwork_victory())
 		parts += "<span class='greentext big'>Ratvar's servants defended the Ark until its activation!</span>"
 		parts += "<span class='heavy_brass'>The Servants of Ratvar find themselves once more on the station, filled with a sense of pride and accomplishment. The vents beneath them hiss with steam as walls turn to brass, yet they do not feel content. Though Rat’var is free, they know that this is but the beginning of their duty. In the cold, dark expanse surrounding the new City of Cogs, there lay a billion stars, each waiting to be a part of Ratvars empire; their battle had just begun.</span>"
-		for(var/mind in SSticker.mode.servants_of_ratvar)
+		for(var/mind in SSgamemode.servants_of_ratvar)
 			var/datum/mind/M = mind
 			if(M.current?.client)
 				SSachievements.unlock_achievement(/datum/achievement/greentext/ratvar,M.current.client)

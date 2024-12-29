@@ -335,7 +335,10 @@
 	var/mob/living/user = hud?.mymob
 	if(!istype(user) || !user.client)
 		return
-	icon_state = user.combat_mode ? "combat" : "combat_off" //Treats the combat_mode
+	if(user.grab_mode)
+		icon_state = "grab" // indicate that you're grabbing instead of whatever else
+	else
+		icon_state = user.combat_mode ? "combat" : "combat_off" //Treats the combat_mode
 
 //Version of the combat toggle with the flashy overlay
 /atom/movable/screen/combattoggle/flashy
@@ -807,3 +810,24 @@
 	name = "stamina"
 	icon_state = "stamina0"
 	screen_loc = ui_stamina
+
+/atom/movable/screen/move
+	name = "move up"
+	icon_state = "move_up"
+	screen_loc = ui_move_up
+	var/direction = UP
+
+/atom/movable/screen/move/Click(location, control, params)
+	. = ..()
+	var/mob/M = usr
+	switch(direction)
+		if(UP)
+			M.up()
+		if(DOWN)
+			M.down()
+
+/atom/movable/screen/move/down
+	name = "move down"
+	icon_state = "move_down"
+	screen_loc = ui_move_down
+	direction = DOWN

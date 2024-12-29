@@ -531,16 +531,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
-"jT" = (
-/obj/structure/ethernet_cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/ai/networking{
-	label = "Computer Science - 2";
-	roundstart_connection = "Subcontroller"
-	},
-/turf/open/floor/circuit/green/telecomms,
-/area/ai_monitored/turret_protected/ai)
 "jY" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /turf/open/floor/circuit/green/telecomms/mainframe,
@@ -969,6 +959,16 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark/telecomms,
+/area/ai_monitored/turret_protected/ai)
+"qx" = (
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/ai/networking{
+	label = "Main Core";
+	roundstart_connection = "Computer Science"
+	},
+/turf/open/floor/circuit/green/telecomms,
 /area/ai_monitored/turret_protected/ai)
 "rm" = (
 /obj/machinery/power/terminal{
@@ -4738,7 +4738,7 @@ jR
 PH
 kY
 PH
-jT
+qx
 AS
 uV
 zW

@@ -13,7 +13,6 @@
 
 	/// The Master Bloodsucker's antag datum.
 	var/datum/antagonist/bloodsucker/master
-	var/datum/game_mode/blooodsucker
 	/// List of all Purchased Powers, like Bloodsuckers.
 	var/list/datum/action/powers = list()
 	///Whether this vassal is already a special type of Vassal.

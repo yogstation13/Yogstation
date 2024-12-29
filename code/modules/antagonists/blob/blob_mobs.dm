@@ -32,7 +32,7 @@
 /mob/living/simple_animal/hostile/blob/Initialize(mapload)
 	. = ..()
 	if(!independent) //no pulling people deep into the blob
-		verbs -= /mob/living/verb/pulled
+		verbs -= /mob/verb/pulled
 	else
 		pass_flags &= ~PASSBLOB
 

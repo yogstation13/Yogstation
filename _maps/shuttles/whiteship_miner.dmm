@@ -562,6 +562,7 @@
 /obj/item/clothing/gloves/color/black,
 /obj/item/pickaxe,
 /obj/item/mining_scanner,
+/obj/item/mining_voucher,
 /turf/open/floor/carpet/cyan,
 /area/shuttle/abandoned)
 "uF" = (

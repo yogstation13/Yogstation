@@ -8,8 +8,7 @@
 #define MSG_MON_SCREEN_MAIN 		0
 #define MSG_MON_SCREEN_LOGS 		1
 #define MSG_MON_SCREEN_HACKED 		2
-#define MSG_MON_SCREEN_CUSTOM_MSG 	3
-#define MSG_MON_SCREEN_REQUEST_LOGS 4
+#define MSG_MON_SCREEN_REQUEST_LOGS 3
 
 // The monitor itself.
 /obj/machinery/computer/message_monitor
@@ -32,11 +31,6 @@
 	var/message = span_notice("System bootup complete. Please select an option.")	// The message that shows on the main menu.
 	var/auth = FALSE // Are they authenticated?
 	var/optioncount = 7
-	// Custom Message Properties
-	var/customsender = "System Administrator"
-	var/obj/item/pda/customrecepient = null
-	var/customjob		= "Admin"
-	var/custommessage 	= "This is a test, please ignore."
 
 	light_color = LIGHT_COLOR_GREEN
 
@@ -120,7 +114,6 @@
 					dat += "<dd><A href='?src=[REF(src)];clear_logs=1'>&#09;[++i]. Clear Message Logs</a><br></dd>"
 					dat += "<dd><A href='?src=[REF(src)];clear_requests=1'>&#09;[++i]. Clear Request Console Logs</a><br></dd>"
 					dat += "<dd><A href='?src=[REF(src)];pass=1'>&#09;[++i]. Set Custom Key</a><br></dd>"
-					dat += "<dd><A href='?src=[REF(src)];msg=1'>&#09;[++i]. Send Admin Message</a><br></dd>"
 			else
 				for(var/n = ++i; n <= optioncount; n++)
 					dat += "<dd><font color='blue'>&#09;[n]. ---------------</font><br></dd>"
@@ -193,24 +186,6 @@
 				10010000001110100011010000110000101110100001000000111010<br>
 				001101001011011010110010100101110"}
 
-		//Fake messages
-		if(MSG_MON_SCREEN_CUSTOM_MSG)
-			dat += "<center><A href='?src=[REF(src)];back=1'>Back</a> - <A href='?src=[REF(src)];Reset=1'>Reset</a></center><hr>"
-
-			dat += {"<table border='1' width='100%'>
-					<tr><td width='20%'><A href='?src=[REF(src)];select=Sender'>Sender</a></td>
-					<td width='20%'><A href='?src=[REF(src)];select=RecJob'>Sender's Job</a></td>
-					<td width='20%'><A href='?src=[REF(src)];select=Recepient'>Recipient</a></td>
-					<td width='300px' word-wrap: break-word><A href='?src=[REF(src)];select=Message'>Message</a></td></tr>"}
-				//Sender  - Sender's Job  - Recepient - Message
-				//Al Green- Your Dad	  - Your Mom  - WHAT UP!?
-
-			dat += {"<tr><td width='20%'>[customsender]</td>
-			<td width='20%'>[customjob]</td>
-			<td width='20%'>[customrecepient ? customrecepient.owner : "NONE"]</td>
-			<td width='300px'>[custommessage]</td></tr>"}
-			dat += "</table><br><center><A href='?src=[REF(src)];select=Send'>Send</a>"
-
 		//Request Console Logs
 		if(MSG_MON_SCREEN_REQUEST_LOGS)
 
@@ -253,12 +228,6 @@
 
 /obj/machinery/computer/message_monitor/proc/UnmagConsole()
 	obj_flags &= ~EMAGGED
-
-/obj/machinery/computer/message_monitor/proc/ResetMessage()
-	customsender 	= "System Administrator"
-	customrecepient = null
-	custommessage 	= "This is a test, please ignore."
-	customjob 		= "Admin"
 
 /obj/machinery/computer/message_monitor/Topic(href, href_list)
 	if(..())
@@ -369,70 +338,6 @@
 				else //if(istype(href_list["delete_logs"], /datum/data_pda_msg))
 					linkedServer.rc_msgs -= locate(href_list["delete_requests"]) in linkedServer.rc_msgs
 					message = span_notice("NOTICE: Log Deleted!")
-		//Create a custom message
-		if (href_list["msg"])
-			if(LINKED_SERVER_NONRESPONSIVE)
-				message = noserver
-			else if(auth)
-				screen = MSG_MON_SCREEN_CUSTOM_MSG
-		//Fake messaging selection - KEY REQUIRED
-		if (href_list["select"])
-			if(LINKED_SERVER_NONRESPONSIVE)
-				message = noserver
-				screen = MSG_MON_SCREEN_MAIN
-			else
-				switch(href_list["select"])
-
-					//Reset
-					if("Reset")
-						ResetMessage()
-
-					//Select Your Name
-					if("Sender")
-						customsender = stripped_input(usr, "Please enter the sender's name.") || customsender
-
-					//Select Receiver
-					if("Recepient")
-						//Get out list of viable PDAs
-						var/list/obj/item/pda/sendPDAs = get_viewable_pdas()
-						if(GLOB.PDAs && GLOB.PDAs.len > 0)
-							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortUsernames(sendPDAs)
-						else
-							customrecepient = null
-
-					//Enter custom job
-					if("RecJob")
-						customjob = stripped_input(usr, "Please enter the sender's job.") || customjob
-
-					//Enter message
-					if("Message")
-						custommessage = stripped_input(usr, "Please enter your message.") || custommessage
-
-					//Send message
-					if("Send")
-						if(isnull(customsender) || customsender == "")
-							customsender = "UNKNOWN"
-
-						if(isnull(customrecepient))
-							message = span_notice("NOTICE: No recepient selected!")
-							return attack_hand(usr)
-
-						if(isnull(custommessage) || custommessage == "")
-							message = span_notice("NOTICE: No message entered!")
-							return attack_hand(usr)
-
-						var/datum/signal/subspace/messaging/pda/signal = new(src, list(
-							"name" = "[customsender]",
-							"job" = "[customjob]",
-							"message" = custommessage,
-							"language" = usr.get_selected_language(), // PDAs now use the language system!
-							"targets" = list("[customrecepient.owner] ([customrecepient.ownjob])")
-						))
-						// this will log the signal and transmit it to the target
-						linkedServer.receive_information(signal, null)
-						usr.log_message("(PDA: [name] | [usr.real_name]) sent \"[custommessage]\" to [signal.format_target()]", LOG_PDA)
-
-
 		//Request Console Logs - KEY REQUIRED
 		if(href_list["view_requests"])
 			if(LINKED_SERVER_NONRESPONSIVE)
@@ -448,7 +353,6 @@
 #undef MSG_MON_SCREEN_MAIN
 #undef MSG_MON_SCREEN_LOGS
 #undef MSG_MON_SCREEN_HACKED
-#undef MSG_MON_SCREEN_CUSTOM_MSG
 #undef MSG_MON_SCREEN_REQUEST_LOGS
 
 #undef LINKED_SERVER_NONRESPONSIVE

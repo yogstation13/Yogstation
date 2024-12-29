@@ -1067,8 +1067,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				v = SSshuttle
 			if("SSmapping")
 				v = SSmapping
-			if("SSevents")
-				v = SSevents
+			if("SSgamemode")
+				v = SSgamemode
 			if("SSeconomy")
 				v = SSeconomy
 			//End

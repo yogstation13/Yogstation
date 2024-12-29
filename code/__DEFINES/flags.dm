@@ -99,6 +99,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define MEGAFAUNA_SPAWN_ALLOWED (1<<5)
 /// Are you forbidden from teleporting to the area? (centcom, mobs, wizard, hand teleporter)
 #define NOTELEPORT (1<<6)
+/// Protected from certain events
+#define EVENT_PROTECTED (1<<7)
 
 // Update flags for [/atom/proc/update_appearance]
 /// Update the atom's name

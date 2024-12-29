@@ -36,11 +36,13 @@
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		AltClickOn(A)
 		return
-	if(modifiers["ctrl"])
-		CtrlClickOn(A)
+	if(modifiers["ctrl"] && CtrlClickOn(A))
 		return
 
 	if(next_move >= world.time)
+		return
+
+	if(grab_mode && pulled(A))
 		return
 
 	face_atom(A) // change direction to face what you clicked on
@@ -106,7 +108,7 @@
 /mob/living/silicon/robot/ShiftClickOn(atom/A)
 	A.BorgShiftClick(src)
 /mob/living/silicon/robot/CtrlClickOn(atom/A)
-	A.BorgCtrlClick(src)
+	return A.BorgCtrlClick(src)
 /mob/living/silicon/robot/AltClickOn(atom/A)
 	A.BorgAltClick(src)
 
@@ -131,25 +133,25 @@
 
 
 /atom/proc/BorgCtrlClick(mob/living/silicon/robot/user) //forward to human click if not overridden
-	CtrlClick(user)
+	return CtrlClick(user)
 
 /obj/machinery/door/airlock/BorgCtrlClick(mob/living/silicon/robot/user) // Bolts doors. Forwards to AI code.
 	if(get_dist(src,user) <= user.interaction_range)
-		AICtrlClick()
+		return AICtrlClick()
 	else
-		..()
+		return ..()
 
 /obj/machinery/power/apc/BorgCtrlClick(mob/living/silicon/robot/user) // turns off/on APCs. Forwards to AI code.
 	if(get_dist(src,user) <= user.interaction_range)
-		AICtrlClick()
+		return AICtrlClick()
 	else
-		..()
+		return ..()
 
 /obj/machinery/turretid/BorgCtrlClick(mob/living/silicon/robot/user) //turret control on/off. Forwards to AI code.
 	if(get_dist(src,user) <= user.interaction_range)
-		AICtrlClick()
+		return AICtrlClick()
 	else
-		..()
+		return ..()
 
 /atom/proc/BorgAltClick(mob/living/silicon/robot/user)
 	AltClick(user)

@@ -286,10 +286,9 @@
 			return
 
 	// OTHER
-	if((istype(I, /obj/item/paper) || istype(I, /obj/item/pda)) && isliving(user))
+	if(istype(I, /obj/item/paper) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/paper/X = null
-		var/obj/item/pda/P = null
 
 		var/itemname = ""
 		var/info = ""
@@ -297,10 +296,6 @@
 			X = I
 			itemname = X.name
 			info = X.info
-		else
-			P = I
-			itemname = P.name
-			info = P.notehtml
 		to_chat(U, span_notice("You hold \the [itemname] up to the camera..."))
 		U.changeNext_move(CLICK_CD_MELEE)
 		for(var/mob/O in GLOB.player_list)

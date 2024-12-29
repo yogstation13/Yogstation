@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/toy/beach_ball/holoball,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/deus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosia/vulgaris,
-		/obj/item/paicard,
+		/obj/item/computer_hardware/paicard,
 		/obj/item/instrument/violin,
 		/obj/item/instrument/guitar,
 		/obj/item/storage/belt/utility/full,

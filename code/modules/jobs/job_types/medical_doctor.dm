@@ -77,4 +77,3 @@
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
-	pda_type = /obj/item/pda/medical

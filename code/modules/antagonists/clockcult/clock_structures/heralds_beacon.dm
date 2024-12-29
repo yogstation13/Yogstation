@@ -25,15 +25,10 @@
 	. = ..()
 
 /obj/structure/destructible/clockwork/heralds_beacon/process()
-	if(!available)
-		if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
-			available = TRUE
-		else
-			return
-	if(!SSticker.mode.servants_of_ratvar.len)
+	if(!SSgamemode.servants_of_ratvar.len)
 		return
 	if(!votes_needed)
-		var/servants = SSticker.mode.servants_of_ratvar.len
+		var/servants = SSgamemode.servants_of_ratvar.len
 		if(servants)
 			votes_needed = round(servants * 0.66)
 	time_remaining--

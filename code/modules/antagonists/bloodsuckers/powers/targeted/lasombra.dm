@@ -75,8 +75,8 @@
 		target_atom.visible_message(span_warning("Shadows harden into a translucent wall, blocking passage!"))
 	
 /datum/action/cooldown/bloodsucker/targeted/lasombra/proc/disintegrate(obj/item/O)
-	if(istype(O, /obj/item/pda))
-		var/obj/item/pda/PDA = O
+	if(istype(O, /obj/item/modular_computer/tablet/pda))
+		var/obj/item/modular_computer/tablet/pda/PDA = O
 		PDA.set_light_on(FALSE)
 		PDA.update_appearance(UPDATE_ICON)
 		O.visible_message(span_danger("The light in [PDA] shorts out!"))

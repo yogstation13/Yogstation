@@ -45,5 +45,10 @@
 			"No Parallax": true
 		}
 	],
-	"minetype": "none"
+	"minetype": "none",
+	"job_changes": {
+		"Captain": {
+			"special_charter": "moon"
+		}
+	}
 }

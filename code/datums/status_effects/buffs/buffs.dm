@@ -247,7 +247,7 @@
 	if(!QDELETED(GLOB.cult_narsie))
 		return //if Nar'sie is alive, don't even worry about it
 	var/area/A = get_area(owner)
-	for(var/datum/mind/B in SSticker.mode.cult)
+	for(var/datum/mind/B in SSgamemode.cult)
 		if(isliving(B.current))
 			var/mob/living/M = B.current
 			SEND_SOUND(M, sound('sound/hallucinations/veryfar_noise.ogg'))
@@ -421,6 +421,8 @@
 			var/mob/living/simple_animal/hostile/retaliate/poison/snake/healSnake = new(owner.loc)
 			healSnake.poison_type = /datum/reagent/medicine/omnizine/godblood
 			healSnake.poison_per_bite = 5
+			healSnake.melee_damage_upper = 2
+			healSnake.melee_damage_lower = 1	//It's not supposed to hurt that much
 			healSnake.name = "Asclepius's Snake"
 			healSnake.real_name = "Asclepius's Snake"
 			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."

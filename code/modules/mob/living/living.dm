@@ -37,15 +37,25 @@
 	QDEL_LIST(surgeries)
 	return ..()
 
-/mob/living/onZImpact(turf/T, levels)
-	ZImpactDamage(T, levels)
-	return ..()
+/mob/living/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= SEND_SIGNAL(impacted_turf, COMSIG_TURF_MOB_FALL, src, levels, impact_flags)
+	if(!isgroundlessturf(impacted_turf))
+		impact_flags |= ZImpactDamage(impacted_turf, levels, impact_flags)
 
-/mob/living/proc/ZImpactDamage(turf/T, levels)
-	SEND_SIGNAL(T, COMSIG_TURF_MOB_FALL, src)
-	visible_message(span_danger("[src] crashes into [T] with a sickening noise!"))
+	return ..(impacted_turf, levels, impact_flags)
+
+/mob/living/proc/ZImpactDamage(turf/impacted_turf, levels, impact_flags)
+	impact_flags |= SEND_SIGNAL(src, COMSIG_LIVING_Z_IMPACT, levels, impacted_turf)
+	if(impact_flags & ZIMPACT_CANCEL_DAMAGE)
+		return impact_flags
+	if(!(impact_flags & ZIMPACT_NO_MESSAGE))
+		visible_message(
+			span_danger("[src] crashes into [impacted_turf] with a sickening noise!"),
+			span_userdanger("You crash into [impacted_turf] with a sickening noise!"),
+		)
 	adjustBruteLoss((levels * 5) ** 1.5)
-	Knockdown(levels * 50)
+	Knockdown(levels * 3 SECONDS)
+	return impact_flags
 
 /mob/living/proc/OpenCraftingMenu()
 	return
@@ -342,14 +352,23 @@
 
 //mob verbs are a lot faster than object verbs
 //for more info on why this is not atom/pull, see examinate() in mob.dm
-/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+/mob/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+	set name = "Pull"
+	set category = "Object"
+	return FALSE
+
+/mob/living/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
 	set category = "Object"
 
+	if(contains_atom(AM)) // don't pull stuff in your inventory
+		return FALSE
+
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
-	else if(!combat_mode)
+	else if(!in_throw_mode)
 		stop_pulling()
+	return TRUE
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))
@@ -1030,7 +1049,7 @@
 		mind.soulOwner = mind
 
 /mob/living/proc/has_bane(banetype)
-	var/datum/antagonist/devil/devilInfo = is_devil(src)
+	var/datum/antagonist/devil/devilInfo = IS_DEVIL(src)
 	return devilInfo && banetype == devilInfo.bane
 
 /mob/living/proc/check_weakness(obj/item/weapon, mob/living/attacker)

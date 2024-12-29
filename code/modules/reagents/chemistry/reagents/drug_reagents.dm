@@ -15,7 +15,7 @@
 	overdose_threshold = 30
 
 /datum/reagent/drug/space_drugs/on_mob_life(mob/living/carbon/M)
-	M.set_drugginess(15)
+	M.adjust_drugginess_up_to(3 SECONDS, 15 SECONDS)
 	if(isturf(M.loc) && !isspaceturf(M.loc))
 		if(M.mobility_flags & MOBILITY_MOVE)
 			if(prob(10))
@@ -283,7 +283,7 @@
 
 /datum/reagent/drug/bath_salts/on_mob_metabolize(mob/living/L)
 	..()
-	
+
 	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
 	if(iscarbon(L))
 		var/mob/living/carbon/human/H = L
@@ -566,7 +566,7 @@
 	L.next_move_modifier *= 0.8
 	L.action_speed_modifier *= 0.5
 	tele_teleport(L)
-	..()	
+	..()
 
 /datum/reagent/drug/red_eye/on_mob_end_metabolize(mob/living/L)
 	L.next_move_modifier *= 1.25
@@ -707,7 +707,7 @@
 	addiction_threshold = 30
 	metabolization_rate = 1.3 * REAGENTS_METABOLISM
 	var/original_eye_color = "000" //so we can return it to normal eye on end metabolism
-	
+
 /datum/reagent/drug/blue_eye/on_mob_metabolize(mob/living/L)
 	..()
 	if(prob(50))
@@ -722,7 +722,7 @@
 		H.eye_color = "5b5beb"
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		H.update_body()
-	if(!is_wizard(M))
+	if(!IS_WIZARD(M))
 		M.set_blue_eye(17)
 		M.adjust_jitter(2 SECONDS)
 		M.adjustStaminaLoss(-2, 0)
@@ -745,7 +745,7 @@
 
 /datum/reagent/drug/blue_eye/overdose_process(mob/living/M)
 	M.adjustToxLoss(1, 0)
-	if(!is_wizard(M))
+	if(!IS_WIZARD(M))
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.4, 0.5, 0.6))
 	else
 		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, pick(0.2, 0.3, 0.4))
@@ -788,7 +788,7 @@
 			step(M, pick(GLOB.cardinals))
 	M.adjust_jitter(15 SECONDS)
 	M.adjust_dizzy(15)
-	if(!is_wizard(M))
+	if(!IS_WIZARD(M))
 		M.adjustToxLoss(3, 0)
 	if(prob(50))
 		M.emote(pick("twitch","drool","moan","giggle"))

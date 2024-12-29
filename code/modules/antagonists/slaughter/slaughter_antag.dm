@@ -5,6 +5,7 @@
 	job_rank = ROLE_ALIEN
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
+	count_towards_antag_cap = TRUE
 	var/fluff = "You're a Demon of Wrath, often dragged into reality by wizards to terrorize their enemies."
 	var/objective_verb = "Kill"
 	var/datum/mind/summoner

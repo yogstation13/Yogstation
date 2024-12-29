@@ -55,6 +55,8 @@
 		bloody_shoes = mutable_appearance('icons/effects/blood.dmi', "shoeblood")
 		if(species_fitted && icon_exists(bloody_shoes.icon, "shoeblood_[species_fitted]")) 
 			bloody_shoes.icon_state = "shoeblood_[species_fitted]"
+		else if(HAS_TRAIT(loc, TRAIT_DIGITIGRADE) && !HAS_TRAIT(loc, TRAIT_DIGI_SQUISH))
+			bloody_shoes.icon_state = "shoeblood_digi"
 	bloody_shoes.color = get_blood_dna_color(return_blood_DNA())
 	. += bloody_shoes
 

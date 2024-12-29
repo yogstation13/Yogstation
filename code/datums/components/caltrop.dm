@@ -94,6 +94,9 @@
 	if(HAS_TRAIT(digitigrade_fan, TRAIT_LIGHT_STEP))
 		damage *= 0.75
 	
+	if(HAS_TRAIT(digitigrade_fan, TRAIT_DIGITIGRADE))	//They're used to it
+		damage *= 0.75
+
 	digitigrade_fan.apply_damage(damage, BRUTE, picked_def_zone, wound_bonus = CANT_WOUND)
 
 	if(cooldown < world.time - 10) //cooldown to avoid message spam.
@@ -105,7 +108,13 @@
 					span_userdanger("You slide on [parent]!"))
 
 		cooldown = world.time
-	digitigrade_fan.Paralyze(paralyze_duration)
+
+	if(damage >= 5)	//If you have any resistance to caltrops you won't eat shit stepping on a glass shard. Punji sticks hurt enough that they don't care.
+		digitigrade_fan.Paralyze(paralyze_duration)
+	else
+		digitigrade_fan.add_movespeed_modifier("caltrop", update=TRUE, priority=100, multiplicative_slowdown=1)	//ow fuck that still hurt
+		addtimer(CALLBACK(digitigrade_fan, TYPE_PROC_REF(/mob, remove_movespeed_modifier), "caltrop"), paralyze_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+
 	if(!soundfile)
 		return
 	playsound(digitigrade_fan, soundfile, 15, TRUE, -3)

@@ -52,8 +52,14 @@ All foods are distributed among various categories. Use common sense.
 	var/list/bonus_reagents //the amount of reagents (usually nutriment and vitamin) added to crafted/cooked snacks, on top of the ingredients reagents.
 	var/customfoodfilling = 1 // whether it can be used as filling in custom food
 	var/list/tastes  // for example list("crisps" = 2, "salt" = 1)
+	var/list/datum/weakref/who_bit
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
+
+/obj/item/reagent_containers/food/snacks/Initialize(mapload)
+	. = ..()
+	if(who_bit == null)
+		who_bit = list()
 
 /obj/item/reagent_containers/food/snacks/add_initial_reagents()
 	if(tastes && tastes.len)
@@ -70,6 +76,7 @@ All foods are distributed among various categories. Use common sense.
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/living/eater)
 	if(!eater)
 		return
+	who_bit |= WEAKREF(eater)
 	if(!reagents.total_volume)
 		var/mob/living/location = loc
 		var/obj/item/trash_item = generate_trash(location)
@@ -137,6 +144,16 @@ All foods are distributed among various categories. Use common sense.
 
 	return 0
 
+/obj/item/reagent_containers/food/snacks/checkLiked(fraction, mob/M)
+	. = ..()
+	if(.)
+		// ewww someone else bit this
+		var/someone_else_bit = islist(who_bit) && ((length(who_bit) > 0 && who_bit[1].resolve() != M) || length(who_bit) > 1)
+		// (most) junky snacks are meant to be shared!
+		if(someone_else_bit && !HAS_TRAIT(M, TRAIT_AGEUSIA) && !HAS_TRAIT(M, TRAIT_IGNORE_SHAREDFOOD) && junkiness <= 0)
+			to_chat(M, span_notice("Eww... Someone else bit this..."))
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "shared_food", /datum/mood_event/shared_food)
+
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
 	switch (bitecount)
@@ -148,6 +165,9 @@ All foods are distributed among various categories. Use common sense.
 			. += "[src] was bitten [bitecount] times!"
 		else
 			. += "[src] was bitten multiple times!"
+	var/someone_else_bit = islist(who_bit) && ((length(who_bit) > 0 && who_bit[1].resolve() != user) || length(who_bit) > 1)
+	if(someone_else_bit && junkiness <= 0)
+		. += span_notice("You recognize some bites as not your own.")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/storage))
