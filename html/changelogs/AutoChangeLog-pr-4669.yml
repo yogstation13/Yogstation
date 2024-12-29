@@ -1,0 +1,5 @@
+author: "DexeeXI"
+delete-after: True
+changes:
+  - bugfix: "changed frames for machine frames on the ghost variant of the Space Hotel."
+  - bugfix: "fixed all the doors and shutters. the buttons should actually do what they say they do."
