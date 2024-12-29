@@ -140,6 +140,8 @@ SUBSYSTEM_DEF(shuttle)
 	var/shuttle_loading
 	/// Did the supermatter start a cascade event?
 	var/supermatter_cascade = FALSE
+	/// Has any transfer votes been started, ongoing, or finished?
+	var/transfer_votes_done = 0
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	order_number = rand(1, 9000)
@@ -239,8 +241,16 @@ SUBSYSTEM_DEF(shuttle)
 				priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
 				emergency.request(null, set_coefficient = ALERT_COEFF_AUTOEVAC_CRITICAL)
 				return
-	if(world.time >= 2 HOURS) //auto call the shuttle after 2 hours 
-		emergency_no_recall = TRUE //no recalling after 2 hours
+	if(world.time >= 2 HOURS && transfer_votes_done < 1) 
+		transfer_votes_done += 1
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic crew transfer", forced = TRUE)
+	if(world.time >= 2.5 HOURS && transfer_votes_done < 2)
+		transfer_votes_done += 1
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic crew transfer", forced = TRUE)
+	if(world.time >= 3 HOURS) //auto call the shuttle after 3 hours 
+		emergency_no_recall = TRUE //no recalling after 3 hours
 		if(EMERGENCY_IDLE_OR_RECALLED)
 			var/msg = "Automatically dispatching shuttle due to lack of shift end response."
 			message_admins(msg)
