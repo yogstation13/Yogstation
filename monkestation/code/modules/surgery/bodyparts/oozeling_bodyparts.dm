@@ -36,6 +36,8 @@
 	icon_greyscale = 'monkestation/icons/mob/species/oozeling/bodyparts.dmi'
 	limb_id = SPECIES_OOZELING
 	biological_state = BIO_INORGANIC
+
+	dmg_overlay_type = null
 	composition_effects = list(/datum/element/soft_landing = 0.5)
 	palette = /datum/color_palette/generic_colors
 	palette_key = MUTANT_COLOR

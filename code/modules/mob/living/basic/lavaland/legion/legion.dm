@@ -59,6 +59,9 @@
 
 /mob/living/basic/mining/legion/death(gibbed)
 	if (isnull(stored_mob))
+		for(var/obj/item/organ/internal/brain/slime in contents) // If oozling brain in contents eject instead of corpse.
+			slime.forceMove(get_turf(slime))
+			return ..()
 		new corpse_type(loc)
 	return ..()
 

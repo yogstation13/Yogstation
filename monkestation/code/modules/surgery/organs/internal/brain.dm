@@ -15,6 +15,11 @@
 	if(prob(5) && !robust)
 		SEND_SOUND(owner, sound('sound/ambience/ambiruin3.ogg', volume = 25))
 
+#ifdef QUIRK_DONT_CLONE
+#define QUIRK_BRIGHT_EYES    /datum/quirk/cybernetics_quirk/bright_eyes
+#else
+#define QUIRK_BRIGHT_EYES    /datum/quirk/bright_eyes
+#endif
 /obj/item/organ/internal/brain/slime
 	name = "core"
 	desc = "The center core of a slimeperson, technically their 'extract.' Where the cytoplasm, membrane, and organelles come from; perhaps this is also a mitochondria?"
@@ -31,7 +36,48 @@
 
 	var/datum/dna/stored_dna
 
+///////
+/// Core storage
+//
+	var/list/stored_quirks = list()
 	var/list/stored_items = list()
+	///Item types that should never be stored in core and will drop on death. Takes priority over allowed lists.
+	var/static/list/bannedcore = typecacheof(list(/obj/item/disk/nuclear,))
+	//Allowed implants usually given by cases and injectors
+	var/static/list/allowed_implants = typecacheof(list(
+		//obj/item/implant
+	))
+	//Extraneous organs not of oozling origin. Usually cyber implants.
+	var/static/list/allowed_organ_types = typecacheof(list(
+		/obj/item/organ/internal/cyberimp,
+		/obj/item/organ/external/wings,
+		/obj/item/organ/external/tail,
+		/obj/item/organ/external/frills,
+		/obj/item/organ/external/horns,
+		/obj/item/organ/external/snout,
+		/obj/item/organ/external/antennae,
+		/obj/item/organ/external/spines,
+		/obj/item/organ/internal/eyes/robotic/glow
+	))
+	//Quirks that roll unique effects or gives items to each new body should be saved between bodies.
+	var/static/list/saved_quirks = typecacheof(list(
+		/datum/quirk/item_quirk/family_heirloom,
+		/datum/quirk/item_quirk/nearsighted,
+		/datum/quirk/item_quirk/photographer,
+		/datum/quirk/item_quirk/pride_pin,
+		/datum/quirk/item_quirk/bald,
+		/datum/quirk/item_quirk/clown_enjoyer,
+		/datum/quirk/item_quirk/mime_fan,
+		/datum/quirk/item_quirk/musician,
+		/datum/quirk/item_quirk/poster_boy,
+		/datum/quirk/item_quirk/tagger,
+		//datum/quirk/item_quirk/signer, // Needs to "add component" on proc add not on_unique
+		/datum/quirk/phobia,
+		/datum/quirk/indebted,
+		/datum/quirk/item_quirk/allergic,
+		/datum/quirk/item_quirk/brainproblems,
+		/datum/quirk/item_quirk/junkie,
+	))
 
 	var/rebuilt = TRUE
 	var/coredeath = TRUE
@@ -53,27 +99,35 @@
 	if(gps_active)
 		. += span_notice("A dim light lowly pulsates from the center of the core, indicating an outgoing signal from a tracking microchip.")
 		. += span_red("You could probably snuff that out.")
-	. += span_hypnophrase("You remember that pouring plasma on it, if it's non-embodied, would make it regrow one.")
+	if((brainmob && (brainmob.client || brainmob.get_ghost())) || decoy_override)
+		. += span_hypnophrase("You remember that pouring plasma on it, if it's non-embodied, would make it regrow one.")
 
 /obj/item/organ/internal/brain/slime/attack_self(mob/living/user) // Allows a player (presumably an antag) to deactivate the GPS signal on a slime core
-	if(!(gps_active))
-		return
-	user.visible_message(span_warning("[user] begins jamming their hand into a slime core! Slime goes everywhere!"),
-	span_notice("You jam your hand into the core, feeling for the densest point! Slime covers your arm."),
-	span_notice("You hear an obscene squelching sound.")
-	)
+	user.visible_message(
+		span_warning("[user] begins jamming their hand into a slime core! Slime goes everywhere!"),
+		gps_active ? span_notice("You jam your hand into the core, feeling for the densest point! Slime covers your arm.") : span_notice("You jam your hand into the core, feeling for any dense objects. Slime covers your arm."),
+		span_notice("You hear an obscene squelching sound.")
+    )
 	playsound(user, 'sound/surgery/organ1.ogg', 80, TRUE)
 
 	if(!do_after(user, 30 SECONDS, src))
 		user.visible_message(span_warning("[user]'s hand slips out of the core before they can cause any harm!'"),
-		span_warning("Your hand slips out of the goopy core before you can find it's densest point."),
+		gps_active ? span_notice("Your hand slips out of the goopy core before you can find it's densest point.") : span_notice("Your hand slips out of the goopy core before you can find any dense points."),
 		span_notice("You hear a resounding plop.")
 		)
 		return
 
-	user.visible_message(span_warning("[user] crunches something deep in the slime core! It gradually stops glowing."),
-	span_notice("You find the densest point, crushing it in your palm. The blinking light in the core slowly dissapates and items start to come out."),
-	span_notice("You hear a wet crunching sound."))
+	if((gps_active))
+		user.visible_message(span_warning("[user] crunches something deep in the slime core! It gradually stops glowing."),
+		span_notice("You find the densest point, crushing it in your palm. The blinking light in the core slowly dissapates and items start to come out."),
+		span_notice("You hear a wet crunching sound."))
+		gps_active =  FALSE
+		qdel(GetComponent(/datum/component/gps))//Actually remove the gps signal
+
+	else
+		user.visible_message(span_warning("[user] crunches something deep in the slime core! It gradually stops glowing."),
+		span_notice("You find several dense objects, forcing them out of the core, items start to spill."),
+		span_notice("You hear a wet sqlenching sounds."))
 	playsound(user, 'sound/effects/wounds/crackandbleed.ogg', 80, TRUE)
 
 	drop_items_to_ground(get_turf(user))
@@ -115,20 +169,31 @@
 	if(QDELETED(stored_dna))
 		stored_dna = new
 
-	victim.dna.copy_dna(stored_dna)
+	if(victim.dna)
+		victim.dna.copy_dna(stored_dna)
+	else
+		src.stored_dna = null
 	core_ejected = TRUE
 	victim.visible_message(span_warning("[victim]'s body completely dissolves, collapsing outwards!"), span_notice("Your body completely dissolves, collapsing outwards!"), span_notice("You hear liquid splattering."))
 	var/turf/death_turf = get_turf(victim)
+	var/mob/living/basic/mining/legion/legionbody = victim.loc
 
-	for(var/atom/movable/item as anything in victim.get_equipped_items(include_pockets = TRUE))
-		victim.dropItemToGround(item)
-		stored_items |= item
-		item.forceMove(src)
+	for(var/datum/quirk/quirk in victim.quirks) // Store certain quirks safe to transfer between bodies.
+		if(is_type_in_typecache(quirk, saved_quirks))
+			quirk.remove_from_current_holder(quirk_transfer = TRUE)
+			stored_quirks |= quirk
+
+	process_items(victim) // Start moving items before anything else can touch them.
 
 	if(victim.get_organ_slot(ORGAN_SLOT_BRAIN) == src)
 		Remove(victim)
-	if(death_turf)
-		forceMove(death_turf)
+	//Make this check more generalized later. For antags that eat people as they kill. Make sure they drop their
+	//contents after death; that is if that is how that item or antag works.
+	if(legionbody)
+		src.forceMove(legionbody)
+	else
+		if(death_turf)
+			forceMove(death_turf)
 	src.wash(CLEAN_WASH)
 	new death_melt_type(death_turf, victim.dir)
 
@@ -154,6 +219,12 @@
 				target_bloodsucker.bloodsucker_blood_volume -= (OOZELING_MIN_REVIVE_BLOOD_THRESHOLD * 0.5)
 
 	rebuilt = FALSE
+	if(src.stored_dna)
+		victim.transfer_observers_to(src)
+	else //Gibbing is usually what causes this. No dna to get from a destroyed body.
+		drop_items_to_ground(get_turf(src), TRUE)
+		Destroy()
+		qdel()
 	victim.transfer_observers_to(src)
 	Remove(victim)
 	qdel(victim)
@@ -198,9 +269,63 @@
 		return TRUE
 	return ..()
 
-/obj/item/organ/internal/brain/slime/proc/drop_items_to_ground(turf/turf)
+///////
+/// PROCESS ITEMS FOR CORE EJECTION
+/// Processes different types of items and prepares them to be stored when the core is ejected.
+
+/obj/item/organ/internal/brain/slime/proc/process_items(mob/living/carbon/human/victim) // Handle all items to be stored into core.
+	var/list/focus_slots = list(
+    	ITEM_SLOT_SUITSTORE,
+    	ITEM_SLOT_BELT,
+    	ITEM_SLOT_ID,
+    	ITEM_SLOT_LPOCKET,
+    	ITEM_SLOT_RPOCKET
+	)
+	for(var/islot in focus_slots) // Focus on storage items and any others that drop when uniform is unequiped
+		process_and_store_item(victim.get_item_by_slot(islot), victim)
+
+	process_and_store_item(victim.back, victim)// Jank to handle modsuit covering items, so it's removed first. Fix this.
+
+	var/obj/item/bodypart/chest/target_chest = victim.get_bodypart(BODY_ZONE_CHEST)// Store chest cavity item
+	process_and_store_item(target_chest.cavity_item, victim)
+
+	for(var/atom/movable/item in victim.get_equipped_items(include_pockets = TRUE)) // Store rest of equipment
+		process_and_store_item(item, victim)
+
+	for(var/obj/item/implant/curimplant in victim.implants) // Process and store implants
+		if(is_type_in_typecache(curimplant, allowed_implants))
+			if(curimplant.removed(victim))
+				var/obj/item/implantcase/case =  new /obj/item/implantcase
+				case.imp = curimplant
+				curimplant.forceMove(case) //Recase implant it doesn't like to be moved without it.
+				case.update_appearance()
+				process_and_store_item(case, victim)
+
+	for(var/obj/item/organ/organ in victim.organs) // Process and store organ implants and related organs
+		if(is_type_in_typecache(organ, allowed_organ_types))
+			organ.Remove(victim)
+			process_and_store_item(organ, victim)
+
+/obj/item/organ/internal/brain/slime/proc/process_and_store_item(atom/movable/item, mob/living/carbon/human/victim) // Helper proc to finally move items
+	if(!item)
+		return
+	if(!isnull(item.contents))
+		for(var/atom/movable/content_item in item.get_all_contents())
+			if(is_type_in_typecache(content_item, bannedcore))
+				content_item.forceMove(get_turf(victim)) // Move item from container to victims turf if banned
+	if(is_type_in_typecache(item, bannedcore))
+		item.forceMove(get_turf(victim)) // Move banned item from victim to the victim's turf if banned.
+	else
+		item.forceMove(src)
+		stored_items |= item
+
+/obj/item/organ/internal/brain/slime/proc/drop_items_to_ground(turf/turf, explode = FALSE)
 	for(var/atom/movable/item as anything in stored_items)
-		item.forceMove(turf)
+		if(explode)
+			var/mob/living/explodedcore = src.brainmob
+			explodedcore.dropItemToGround(item, violent = TRUE)
+		else
+			item.forceMove(turf)
 	stored_items.Cut()
 
 /obj/item/organ/internal/brain/slime/proc/rebuild_body(mob/user, nugget = TRUE) as /mob/living/carbon/human
@@ -242,19 +367,36 @@
 	new_body.blood_volume = nugget ? (BLOOD_VOLUME_SAFE + 60) : BLOOD_VOLUME_NORMAL
 	REMOVE_TRAIT(new_body, TRAIT_NO_TRANSFORM, REF(src))
 	if(!QDELETED(brainmob))
-		SSquirks.AssignQuirks(new_body, brainmob.client)
+		if(!isnull(stored_quirks))
+			for(var/datum/quirk/quirk in stored_quirks)
+				quirk.add_to_holder(new_body, quirk_transfer = TRUE) // Return their old quirk to them.
+			stored_quirks.Cut()
+		SSquirks.AssignQuirks(new_body, brainmob.client) // Still need to copy over the rest of their quirks.
 	var/obj/item/organ/internal/brain/new_body_brain = new_body.get_organ_slot(ORGAN_SLOT_BRAIN)
 	qdel(new_body_brain)
 	forceMove(new_body)
 	Insert(new_body)
 	if(nugget)
-		for(var/obj/item/bodypart as anything in new_body.bodyparts)
+		for(var/obj/item/bodypart/bodypart as anything in new_body.bodyparts)
 			if(istype(bodypart, /obj/item/bodypart/chest))
 				continue
-			qdel(bodypart)
+			if(istype(bodypart, /obj/item/bodypart/head))
+				// Living mobs eyes are stored in the body so remove the organs properly for their effect to work.
+				if(new_body.has_quirk(QUIRK_BRIGHT_EYES)) // Either they have their eyes in their core or they are destroyed dont spawn another.
+					var/obj/item/organ/internal/eyes/eyes = new_body.get_organ_slot(ORGAN_SLOT_EYES)
+					eyes.Remove(new_body)
+					qdel(eyes)
+			bodypart.drop_limb() // Drop limb should delete the limb for oozlings unless someone changes it.
 		new_body.visible_message(span_warning("[new_body]'s torso \"forms\" from [new_body.p_their()] core, yet to form the rest."))
 		to_chat(owner, span_purple("Your torso fully forms out of your core, yet to form the rest."))
+		//Make oozlings revive similar to other species.
+		new_body.set_jitter_if_lower(200 SECONDS)
+		new_body.emote("scream")
 	else
+		if(new_body.has_quirk(QUIRK_BRIGHT_EYES)) // Either they have their eyes in core or they are destroyed don't spawn another.
+			var/obj/item/organ/new_organ = new_body.dna.species.get_mutant_organ_type_for_slot(ORGAN_SLOT_EYES)
+			new_organ = SSwardrobe.provide_type(new_organ)
+			new_organ.Insert(new_body, special = TRUE, drop_if_replaced = FALSE)
 		new_body.visible_message(span_warning("[new_body]'s body fully forms from [new_body.p_their()] core!"))
 		to_chat(owner, span_purple("Your body fully forms from your core!"))
 

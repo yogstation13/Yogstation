@@ -616,7 +616,7 @@ GLOBAL_LIST_INIT(english_to_zombie, list())
 	name = "jelly tongue"
 	desc = "Ah... That's not the sound I expected it to make. Sounds like a Space Autumn Bird."
 	say_mod = "chirps"
-	liked_foodtypes = MEAT | BUGS
+	liked_foodtypes = MEAT | BUGS | TOXIC
 	disliked_foodtypes = GROSS
 	toxic_foodtypes = NONE
 

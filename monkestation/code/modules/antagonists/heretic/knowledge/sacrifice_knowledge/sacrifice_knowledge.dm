@@ -187,8 +187,10 @@
 		else if(istype(sacrifice_candidate, /obj/item/organ/internal/brain/slime))
 			var/obj/item/organ/internal/brain/slime/core = sacrifice_candidate
 			sacrifice = core.rebuild_body(nugget = FALSE)
-			selected_atoms -= core
-			break
+			if(!sacrifice && core.brainmob)
+				sacrifice = core.brainmob
+				selected_atoms -= core
+				break
 	if(!sacrifice)
 		CRASH("[type] sacrifice_process didn't have a human in the atoms list. How'd it make it so far?")
 	if(!heretic_datum.can_sacrifice(sacrifice))
@@ -199,7 +201,13 @@
 	heretic_datum.remove_sacrifice_target(sacrifice)
 
 	var/feedback = "Your patrons accept your offer"
-	var/sac_department_flag = sacrifice.mind?.assigned_role?.departments_bitflags | sacrifice.last_mind?.assigned_role?.departments_bitflags
+	var/sac_department_flag = 0
+
+	if(sacrifice.mind)
+		sac_department_flag |= sacrifice.mind.assigned_role?.departments_bitflags
+	if(istype(sacrifice, /mob/living/carbon/human) && sacrifice.last_mind) // If mob even has a last mind. Oozling issue.
+		sac_department_flag |= sacrifice.last_mind.assigned_role?.departments_bitflags
+
 	if(sac_department_flag & DEPARTMENT_BITFLAG_COMMAND)
 		heretic_datum.knowledge_points++
 		heretic_datum.high_value_sacrifices++
@@ -209,10 +217,20 @@
 	heretic_datum.total_sacrifices++
 	heretic_datum.knowledge_points += 2
 
-	sacrifice.apply_status_effect(/datum/status_effect/heretic_curse, user)
+	if(!istype(sacrifice, /mob/living/carbon/human))
+		notify_ghosts(	// Sorry for copy paste. Trying to keep consistency
+			"[heretic_mind.name] has sacrificed [sacrifice] to the Mansus!",
+			source = sacrifice,
+			action = NOTIFY_ORBIT,
+			notify_flags = NOTIFY_CATEGORY_NOFLASH,
+			header = "Oozling core Sacrificed to Mansus.",
+			)
+		log_combat(heretic_mind.current, sacrifice, "sacrificed")
+	else
+		sacrifice.apply_status_effect(/datum/status_effect/heretic_curse, user)
 
-	if(!begin_sacrifice(sacrifice))
-		disembowel_target(sacrifice)
+		if(!begin_sacrifice(sacrifice))
+			disembowel_target(sacrifice)
 
 /**
  * This proc is called from [proc/sacrifice_process] after the heretic successfully sacrifices [sac_target].)

@@ -28,6 +28,11 @@
 	user.remove_status_effect(/datum/status_effect/slime_washing)
 	user.visible_message(span_notice("[user]'s outer membrane returns to normal, no longer cleaning [user.p_their()] surroundings."), span_notice("Your outer membrane returns to normal, filth no longer being cleansed."))
 
+/datum/action/cooldown/spell/slime_washing/Remove(mob/living/remove_from) // If we lose the spell make sure to remove its effects
+	. = ..()
+	if(remove_from.has_status_effect(/datum/status_effect/slime_washing))
+		remove_from.remove_status_effect(/datum/status_effect/slime_washing)
+
 /datum/status_effect/slime_washing
 	id = "slime_washing"
 	alert_type = null
@@ -103,50 +108,11 @@
 /datum/status_effect/slime_hydrophobia/get_examine_text()
 	return span_notice("[owner.p_They()] is oozing out an oily coating onto [owner.p_their()] outer membrane, water rolling right off.")
 
-
-/// REGENERATE LIMBS
-/datum/action/innate/regenerate_limbs
-	name = "Regenerate Limbs"
-	check_flags = AB_CHECK_CONSCIOUS
-	button_icon_state = "slimeheal"
-	button_icon = 'icons/mob/actions/actions_slime.dmi'
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-
-/datum/action/innate/regenerate_limbs/IsAvailable(feedback = FALSE)
+/datum/action/cooldown/spell/slime_hydrophobia/Remove(mob/living/remove_from) // If we lose the spell make sure to remove its effects
 	. = ..()
-	if(!.)
-		return
-	var/mob/living/carbon/human/H = owner
-	var/list/limbs_to_heal = H.get_missing_limbs()
-	if(!length(limbs_to_heal))
-		return FALSE
-	if(H.blood_volume >= BLOOD_VOLUME_OKAY+40)
-		return TRUE
-
-/datum/action/innate/regenerate_limbs/Activate()
-	var/mob/living/carbon/human/H = owner
-	var/list/limbs_to_heal = H.get_missing_limbs()
-	if(!length(limbs_to_heal))
-		to_chat(H, span_notice("You feel intact enough as it is."))
-		return
-	to_chat(H, span_notice("You focus intently on your missing [length(limbs_to_heal) >= 2 ? "limbs" : "limb"]..."))
-	if(H.blood_volume >= 40*length(limbs_to_heal)+BLOOD_VOLUME_OKAY)
-		H.regenerate_limbs()
-		H.blood_volume -= 40*length(limbs_to_heal)
-		to_chat(H, span_notice("...and after a moment you finish reforming!"))
-		return
-	else if(H.blood_volume >= 40)//We can partially heal some limbs
-		while(H.blood_volume >= BLOOD_VOLUME_OKAY+40)
-			var/healed_limb = pick(limbs_to_heal)
-			H.regenerate_limb(healed_limb)
-			var/obj/item/bodypart/limb = H.get_bodypart(healed_limb)
-			limb.update_disabled() // we toggle these
-			limbs_to_heal -= healed_limb
-			H.blood_volume -= 40
-		to_chat(H, span_warning("...but there is not enough of you to fix everything! You must attain more mass to heal completely!"))
-		return
-	to_chat(H, span_warning("...but there is not enough of you to go around! You must attain more mass to heal!"))
+	if(remove_from.has_status_effect(/datum/status_effect/slime_hydrophobia))
+		REMOVE_TRAIT(remove_from, TRAIT_SLIME_HYDROPHOBIA, ACTION_TRAIT)
+		remove_from.remove_status_effect(/datum/status_effect/slime_hydrophobia)
 
 /**
  * Toggle Death Signal simply adds and removes the trait required for slimepeople to transmit a GPS signal upon core ejection.

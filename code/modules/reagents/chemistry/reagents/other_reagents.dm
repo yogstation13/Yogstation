@@ -253,10 +253,6 @@
  */
 /datum/reagent/water/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume)//Splashing people with water can help put them out!
 	. = ..()
-	if(isoozeling(exposed_mob))
-		exposed_mob.blood_volume = max(exposed_mob.blood_volume - 30, 0)
-		to_chat(exposed_mob, span_warning("The water causes you to melt away!"))
-		return
 	if(methods & TOUCH)
 		exposed_mob.extinguish_mob() // extinguish removes all fire stacks
 		exposed_mob.adjust_wet_stacks(reac_volume * WATER_TO_WET_STACKS_FACTOR_TOUCH) // Water makes you wet, at a 50% water-to-wet-stacks ratio. Which, in turn, gives you some mild protection from being set on fire!

@@ -1,5 +1,6 @@
 #define DAMAGE_WATER_STACKS 5
 #define REGEN_WATER_STACKS 1
+#define HEALTH_HEALED 2.5
 
 /datum/species/oozeling
 	name = "\improper Oozeling"
@@ -87,8 +88,6 @@
 
 /datum/species/oozeling/spec_life(mob/living/carbon/human/slime, seconds_per_tick, times_fired)
 	. = ..()
-	if(slime.stat != CONSCIOUS)
-		return
 
 	var/datum/status_effect/fire_handler/wet_stacks/wetness = locate() in slime.status_effects
 	if(HAS_TRAIT(slime, TRAIT_SLIME_HYDROPHOBIA))
@@ -99,9 +98,20 @@
 			slime.visible_message(span_danger("[slime]'s form begins to lose cohesion, seemingly diluting with the water!"), span_warning("The water starts to dilute your body, dry it off!"))
 
 	if(istype(wetness) && wetness.stacks > (REGEN_WATER_STACKS))
-		if (SPT_PROB(25, seconds_per_tick))
-			to_chat(slime, span_warning("You can't pull your body together and regenerate with water inside it!"))
+		if (SPT_PROB(25, seconds_per_tick)) //Used for old healing system. Maybe use later? For now increase loss for being soaked.
+			//to_chat(slime, span_warning("You can't pull your body together and regenerate with water inside it!"))
+			to_chat(slime, span_warning("You can't pull your body together it is dripping wet!"))
 			slime.blood_volume -= 1 * seconds_per_tick
+
+//////
+/// DEATH OF BODY SECTION
+///	Handles gibbing
+
+/datum/species/oozeling/spec_death(gibbed, mob/living/carbon/human/H)
+	. = ..()
+
+	if(gibbed)
+		H.dna = null
 
 ///////
 /// CHEMICAL HANDLING
@@ -118,9 +128,17 @@
 		ORGAN_SLOT_EARS,
 	)
 	if(chem.type == /datum/reagent/toxin/plasma || chem.type == /datum/reagent/toxin/hot_ice)
-		for(var/datum/wound/iter_wound as anything in slime.all_wounds)
-			iter_wound.on_xadone(4 * REM * seconds_per_tick)
-			slime.reagents.remove_reagent(chem.type, min(chem.volume * 0.22, 10))
+		var/brute_damage = slime.get_current_damage_of_type(damagetype = BRUTE)
+		var/burn_damage = slime.get_current_damage_of_type(damagetype = BURN)
+		var/remaining_heal = HEALTH_HEALED
+		if(brute_damage + burn_damage > 0)
+			if(!HAS_TRAIT(slime, TRAIT_SLIME_HYDROPHOBIA) && slime.get_skin_temperature() > slime.bodytemp_cold_damage_limit)
+				// Make sure to double check this later.
+				remaining_heal -= abs(slime.heal_damage_type(rand(0, remaining_heal) * REM * seconds_per_tick, BRUTE))
+				slime.heal_damage_type(remaining_heal * REM * seconds_per_tick, BURN)
+				slime.reagents.remove_reagent(chem.type, min(chem.volume * 0.22, 10))
+			else
+				to_chat(slime, span_purple("Your membrane is too viscous to mend its wounds"))
 		if(slime.blood_volume > BLOOD_VOLUME_SLIME_SPLIT)
 			slime.adjustOrganLoss(
 			pick(organs_we_mend),
@@ -140,6 +158,16 @@
 
 	return ..()
 
+/datum/reagent/water/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume)
+	//Flat blood loss damage from being touched by water
+	. = ..()
+
+	if(isoozeling(exposed_mob))
+		if(HAS_TRAIT(exposed_mob, TRAIT_SLIME_HYDROPHOBIA))
+			to_chat(exposed_mob, span_warning("Water splashes against your oily membrane and rolls right off your body!"))
+			return
+		exposed_mob.blood_volume = max(exposed_mob.blood_volume - 30, 0)
+		to_chat(exposed_mob, span_warning("The water causes you to melt away!"))
 
 /datum/reagent/toxin/slimeooze
 	name = "Slime Ooze"
@@ -172,7 +200,7 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "burn",
-			SPECIES_PERK_NAME = "incombustible",
+			SPECIES_PERK_NAME = "Incombustible",
 			SPECIES_PERK_DESC = "[plural_form] cannot be set aflame.",
 		),
 		list(
@@ -190,8 +218,8 @@
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "tint",
-			SPECIES_PERK_NAME = "Liquid Being",
-			SPECIES_PERK_DESC = "[plural_form] will melt away when in contact with water.",
+			SPECIES_PERK_NAME = "Water Soluble",
+			SPECIES_PERK_DESC = "[plural_form] will dissolve away when in contact with water.",
 		),
 		list(
             SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
