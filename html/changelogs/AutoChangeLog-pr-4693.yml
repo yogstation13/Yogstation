@@ -1,0 +1,6 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - bugfix: "fixed runtimes caused by 64x64 clothing icons"
+  - bugfix: "fixed clipping experienced by some masks, eyewear and earwear worn by tall players"
+  - bugfix: "fixed a few minor related bugs"
