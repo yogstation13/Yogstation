@@ -202,7 +202,7 @@ const PaiBox = (props, context) => {
       custom_width = 960;
       break;
     case "security records":
-      custom_width = 850;
+      custom_width = 960;
       break;
     default:
       custom_width = 650;
