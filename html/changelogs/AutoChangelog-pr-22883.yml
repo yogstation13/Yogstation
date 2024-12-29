@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - tweak: "Santa's gifts now select a random living crew member to be opened by."
