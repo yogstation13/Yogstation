@@ -434,6 +434,8 @@
   - bugfix: Circuit Nerds, rejoice, for it has finally happened, the Access Checker
       Components ID menu now works again.
 2024-12-29:
+  Absolucy:
+  - bugfix: Fix the radio frequency not being heard by some types of radios/intercoms.
   Addust:
   - rscadd: A Syndicate logistics depot has recently been detected in the sector.
       Avoid approach if at all possible.
@@ -448,6 +450,10 @@
   - bugfix: changed frames for machine frames on the ghost variant of the Space Hotel.
   - bugfix: fixed all the doors and shutters. the buttons should actually do what
       they say they do.
+  Gw0sty:
+  - bugfix: Removed unneeded security access on Blueshift departures.
+  Loiosh42:
+  - balance: Most costume armors now have the same storage as security armor
   Siro:
   - bugfix: 'Some Quirks that give unique items or random rolled effects will be transferred
       between bodies. Fixes #2247 and Fixes #2354'
@@ -479,6 +485,11 @@
   - rscadd: Added filters to Oozling core storage to prevent certain items (e.g.,
       Nuclear Authentication Disk) from being stored. Fixes issues with protected
       items.
+  Sorenon:
+  - bugfix: fixed runtimes caused by 64x64 clothing icons
+  - bugfix: fixed clipping experienced by some masks, eyewear and earwear worn by
+      tall players
+  - bugfix: fixed a few minor related bugs
   TheColorCyan:
   - rscadd: blueshield's mantis blades are now replaced with shield blades. They have
       less offensive utility, but allow you to go into defensive stance to be able
