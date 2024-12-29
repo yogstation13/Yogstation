@@ -111,6 +111,8 @@
 #define REACTION_REAL_TIME_SPLIT (1<<7)
 ///Should this reaction use purity
 #define REACTION_USES_PURITY (1<<8)
+/// This reaction should never occur in grown plants (monkestation addition)
+#define REACTION_NOT_IN_PLANTS (1<<9)
 
 ///Used for overheat_temp - This sets the overheat so high it effectively has no overheat temperature.
 #define NO_OVERHEAT 99999

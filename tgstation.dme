@@ -7927,6 +7927,7 @@
 #include "monkestation\code\modules\reagents\chemistry\reagents\drug_reagents.dm"
 #include "monkestation\code\modules\reagents\chemistry\reagents\other_reagents.dm"
 #include "monkestation\code\modules\reagents\chemistry\reagents\drinks\glass_styles\mixed_drinks.dm"
+#include "monkestation\code\modules\reagents\chemistry\recipes\others.dm"
 #include "monkestation\code\modules\reagents\fun\austrialium.dm"
 #include "monkestation\code\modules\reagents\fun\liquid_justice.dm"
 #include "monkestation\code\modules\reagents\fun\shakeium.dm"

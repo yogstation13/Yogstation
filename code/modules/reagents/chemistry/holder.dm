@@ -913,6 +913,12 @@
 			if((reaction.reaction_flags & REACTION_NON_INSTANT))
 				granularity = CHEMICAL_VOLUME_MINIMUM
 
+			// monkestation start
+			var/banned_due_to_plant = FALSE
+			if((reaction.reaction_flags & REACTION_NOT_IN_PLANTS) && istype(cached_my_atom, /obj/item/food/grown))
+				banned_due_to_plant = TRUE
+			// monkestation end
+
 			for(var/req_reagent in cached_required_reagents)
 				if(!has_reagent(req_reagent, (cached_required_reagents[req_reagent]*granularity)))
 					break
@@ -947,7 +953,7 @@
 			else
 				meets_ph_requirement = TRUE
 
-			if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other)
+			if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other && !banned_due_to_plant)
 				if(meets_temp_requirement && meets_ph_requirement)
 					possible_reactions += reaction
 				else
