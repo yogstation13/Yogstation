@@ -1,0 +1,10 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Reduced movement speed of many jungleland mobs"
+  - tweak: "Reduced speed of jungle dryad projectiles"
+  - tweak: "Overhauled Tar King boss fight"
+  - tweak: "Corrupted dryad cores no longer stun when used"
+  - bugfix: "Fixed Wrath of Gaia/Corruption having no cooldown for spawning mobs"
+  - bugfix: "Fixed non-player-controlled mobs having weird movement"
+  - bugfix: "Fixed mining charges not going away after detonating on jungleland turfs"
