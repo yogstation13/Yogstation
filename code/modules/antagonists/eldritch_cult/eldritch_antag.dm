@@ -21,6 +21,7 @@
 	can_hijack = HIJACK_HIJACKER
 	show_to_ghosts = TRUE
 	preview_outfit = /datum/outfit/heretic
+	count_towards_antag_cap = TRUE
 	var/give_equipment = TRUE
 	var/list/researched_knowledge = list()
 	var/list/transmutations = list()

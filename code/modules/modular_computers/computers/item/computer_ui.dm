@@ -76,6 +76,8 @@
 	var/obj/item/computer_hardware/card_slot/secondarycardholder = all_components[MC_CARD2]
 	if(secondarycardholder?.stored_card)
 		data["removable_media"] += "secondary RFID card"
+	if(all_components[MC_PAI])
+		data["removable_media"] += "personal AI device"
 
 	data["programs"] = list()
 	var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
@@ -221,6 +223,13 @@
 						return
 					cardholder.try_eject(user)
 					playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
+				if("personal AI device")
+					var/obj/item/computer_hardware/paicard/paicard = all_components[MC_PAI]
+					if(!paicard)
+						return
+					if(uninstall_component(paicard, usr))
+						user.put_in_hands(paicard)
+						playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50)
 
 
 		else

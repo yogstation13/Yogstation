@@ -8,14 +8,14 @@ GLOBAL_LIST(end_titles)
 /proc/RollCredits()
 	set waitfor = FALSE
 	if(!GLOB.end_titles)
-		GLOB.end_titles = SSticker.mode.generate_credit_text()
+		GLOB.end_titles = SSgamemode.generate_credit_text()
 		GLOB.end_titles += "<br>"
 		GLOB.end_titles += "<br>"
 
 		GLOB.end_titles += "<center><h1>Thanks for playing!</h1>"
 	for(var/client/C in GLOB.clients)
 		if(C.prefs.read_preference(/datum/preference/toggle/show_credits))
-			C.screen += new /atom/movable/screen/credit/title_card(null, null, SSticker.mode.title_icon)
+			C.screen += new /atom/movable/screen/credit/title_card(null, null, SSgamemode.title_icon)
 	sleep(CREDIT_SPAWN_SPEED * 3)
 	for(var/i in 1 to GLOB.end_titles.len)
 		var/C = GLOB.end_titles[i]

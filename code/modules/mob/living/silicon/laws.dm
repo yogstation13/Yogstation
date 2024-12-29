@@ -539,6 +539,10 @@
 	// This usually gives the power to add/delete/edit the laws. Some exceptions apply (like being a pAI)!
 	data["admin"] = is_admin(user)
 
+	// Causes admins who (are not deadmined and) are also the owner to not view the admin version of the Law Manager.
+	if(is_admin(user) && owner == user)
+		data["admin"] = FALSE
+
 	handle_laws(data, owner.laws)
 	handle_channels(data)
 	data["zeroth_law"] = zeroth_law

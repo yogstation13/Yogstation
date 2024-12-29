@@ -71,10 +71,7 @@
 						I.pixel_x = initial(I.pixel_x)
 						I.pixel_y = initial(I.pixel_y)
 						I.transform = initial(I.transform)
-						//If() explanation: if we have a mind and a martial art that we can use, check if it has a block or deflect chance or it's sleeping carp
-						//Assuming any of that isnt true, then throw mode isnt helpful and it gets turned off. Otherwise, it stays on.
-						if(!(mind && mind.martial_art && mind.martial_art.can_use(src) && (mind.martial_art.deflection_chance || mind.martial_art.block_chance || mind.martial_art.id == "sleeping carp")))
-							throw_mode_off()
+						throw_mode_off()
 						return TRUE
 	..()
 

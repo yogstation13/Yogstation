@@ -198,6 +198,11 @@
 	glass_desc = "White and nutritious goodness!"
 	default_container = /obj/item/reagent_containers/food/condiment/milk
 
+/datum/reagent/consumable/milk/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.dna?.species?.toxic_food & DAIRY)
+		M.adjust_disgust(min(volume / 2, 5))
+
 /datum/reagent/consumable/milk/coconut
 	name = "Coconut Milk"
 	description = "An opaque white liquid produced by the mammary glands of a coconut... wait what?"

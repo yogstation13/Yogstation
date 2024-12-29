@@ -180,7 +180,7 @@
 // For silicon integrated tablets.
 /obj/item/computer_hardware/hard_drive/small/integrated/install_default_programs()
 	..()
-	var/datum/computer_file/program/pdamessager/P = store_file(new/datum/computer_file/program/pdamessager(src))
+	var/datum/computer_file/program/pdamessager/P = store_file(new /datum/computer_file/program/pdamessager(src))
 	var/obj/item/modular_computer/stored = holder
 	if(!stored && istype(loc, /obj/item/modular_computer))
 		stored = loc
@@ -203,6 +203,13 @@
 		P.receiving = TRUE
 	if(istype(stored?.loc, /mob/living/silicon/robot)) // RoboTact is for cyborgs only, not AIs
 		store_file(new /datum/computer_file/program/robotact(src))
+
+/obj/item/computer_hardware/hard_drive/small/integrated/pai
+	//does not come with an ntnet store.
+	default_programs = list(
+		/datum/computer_file/program/computerconfig,
+		/datum/computer_file/program/filemanager,
+	)
 
 // Syndicate variant - very slight better
 /obj/item/computer_hardware/hard_drive/small/syndicate

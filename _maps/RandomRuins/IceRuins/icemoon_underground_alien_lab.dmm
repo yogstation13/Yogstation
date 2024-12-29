@@ -31,7 +31,7 @@
 "iW" = (
 /obj/structure/flora/tree/dead,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 "kT" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/blood/gibs/down,
@@ -44,7 +44,7 @@
 "lN" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 "mS" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /obj/structure/bed/abductor,
@@ -59,7 +59,7 @@
 "rg" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 "rY" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/abductor,
@@ -82,9 +82,8 @@
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
 "wa" = (
-/obj/structure/door_assembly/door_assembly_abductor,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 "wD" = (
 /mob/living/simple_animal/hostile/abomination/altform2,
 /turf/open/floor/plating/abductor,
@@ -125,7 +124,7 @@
 /area/ruin/powered/alien_lab)
 "AZ" = (
 /obj/effect/spawner/structure/window,
-/turf/open/floor/plating/abductor,
+/turf/open/floor/plating,
 /area/ruin/powered/alien_lab)
 "Be" = (
 /mob/living/simple_animal/hostile/asteroid/wolf,
@@ -232,7 +231,7 @@
 "QC" = (
 /obj/structure/flora/tree/dead/jungle,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 "TX" = (
 /obj/machinery/clonepod{
 	icon_state = "pod_g"
@@ -295,8 +294,9 @@
 /turf/open/floor/plating/abductor,
 /area/ruin/powered/alien_lab)
 "YZ" = (
+/obj/structure/door_assembly/door_assembly_abductor,
 /turf/open/floor/grass/snow,
-/area/ruin/powered/alien_lab)
+/area/icemoon/underground/explored)
 
 (1,1,1) = {"
 fW
@@ -383,7 +383,7 @@ Jn
 Jn
 Jn
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -415,7 +415,7 @@ Nv
 Yw
 aw
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -447,7 +447,7 @@ Nv
 Nv
 Nv
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -511,7 +511,7 @@ Nv
 xi
 Nv
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -543,7 +543,7 @@ Nv
 Mw
 vi
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -575,7 +575,7 @@ NG
 Jn
 Jn
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -927,12 +927,12 @@ Nv
 Nv
 Nv
 Jn
-YZ
+wa
 Jn
 Xn
 Mz
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -959,12 +959,12 @@ Nv
 Nv
 AR
 Jn
-YZ
+wa
 Jn
 Jn
 Jn
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -991,11 +991,11 @@ Nv
 be
 Nv
 Jn
-YZ
-YZ
-YZ
-YZ
-YZ
+wa
+wa
+wa
+wa
+wa
 QC
 fW
 fW
@@ -1023,7 +1023,7 @@ Nv
 Nv
 Nv
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -1055,7 +1055,7 @@ Nv
 Nv
 Nv
 Jn
-YZ
+wa
 fW
 fW
 fW
@@ -1087,8 +1087,8 @@ Nv
 TX
 Nv
 Jn
-YZ
-YZ
+wa
+wa
 fW
 fW
 fW
@@ -1119,8 +1119,8 @@ lN
 Nv
 rY
 Jn
-YZ
-YZ
+wa
+wa
 fW
 fW
 fW
@@ -1146,12 +1146,12 @@ fW
 fW
 Jn
 Jn
-YZ
-YZ
-YZ
+wa
+wa
+wa
 Jn
 Jn
-YZ
+wa
 rg
 fW
 fW
@@ -1173,17 +1173,17 @@ fW
 fW
 fW
 fW
-YZ
-YZ
+wa
+wa
 fW
+wa
+wa
+wa
 YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
+wa
+wa
+wa
+wa
 fW
 fW
 fW
@@ -1206,16 +1206,16 @@ fW
 fW
 fW
 rg
-YZ
-YZ
-YZ
-YZ
-YZ
+wa
+wa
+wa
+wa
+wa
+wa
+wa
 wa
 QC
-YZ
-YZ
-YZ
+wa
 fW
 fW
 fW

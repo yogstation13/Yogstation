@@ -23,6 +23,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
+"c" = (
+/obj/effect/turf_decal/trimline/blue/filled/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/template_noop)
 "d" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -52,13 +58,6 @@
 	pixel_x = -2;
 	pixel_y = -14
 	},
-/turf/open/floor/plasteel/white,
-/area/template_noop)
-"h" = (
-/obj/effect/turf_decal/trimline/blue/corner/lower{
-	dir = 4
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
 /turf/open/floor/plasteel/white,
 /area/template_noop)
 "i" = (
@@ -157,6 +156,14 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/stump,
 /turf/open/floor/grass,
+/area/template_noop)
+"u" = (
+/obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/item/broken_bottle{
+	pixel_x = 10;
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/template_noop)
 "v" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower{
@@ -307,17 +314,6 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/plating,
 /area/template_noop)
-"K" = (
-/obj/effect/turf_decal/trimline/blue/corner/lower{
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/blue/filled/line,
-/obj/item/broken_bottle{
-	pixel_x = 10;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/template_noop)
 "L" = (
 /obj/effect/turf_decal/trimline/blue/filled/line/lower,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -385,13 +381,6 @@
 /obj/structure/sign/painting{
 	persistence_id = "public";
 	pixel_y = -32
-	},
-/turf/open/floor/plasteel/white,
-/area/template_noop)
-"S" = (
-/obj/effect/turf_decal/trimline/blue/corner/lower,
-/obj/effect/turf_decal/trimline/blue/filled/corner{
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/template_noop)
@@ -469,11 +458,11 @@ m
 H
 "}
 (5,1,1) = {"
-S
+c
 W
 v
 P
-h
+l
 "}
 (6,1,1) = {"
 L
@@ -487,7 +476,7 @@ Y
 g
 y
 y
-K
+u
 "}
 (8,1,1) = {"
 B

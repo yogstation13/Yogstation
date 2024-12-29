@@ -175,7 +175,9 @@
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
-	severity -= EMP_HEAVY * (100 - armor.getRating(ENERGY)) / 100 // energy armor is subtractive so that it's less effective against stronger EMPs and more against weaker ones
+	severity -= EMP_HEAVY * armor.getRating(ENERGY) / 100 // energy armor is subtractive so that it's less effective against stronger EMPs and more against weaker ones
+	if(severity <= 0)
+		return
 	if(get_charge())
 		use_power(cell.charge * severity / 40)
 	if(overheat < OVERHEAT_EMP_MAX)
@@ -200,6 +202,11 @@
 	if(exposed_temperature>max_temperature)
 		log_message("Exposed to dangerous temperature.", LOG_MECHA, color="red")
 		take_damage(5, BURN, 0, 1)
+
+/obj/mecha/tool_act(mob/living/user, obj/item/tool, tool_type, params)
+	if(istype(tool, /obj/item/mecha_parts/mecha_equipment) && !ismecha(tool.loc))
+		return FALSE
+	return ..()
 
 /obj/mecha/welder_act(mob/living/user, obj/item/tool, modifiers)
 	if(user.combat_mode)

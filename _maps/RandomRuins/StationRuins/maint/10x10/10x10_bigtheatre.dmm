@@ -3,7 +3,9 @@
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "c" = (
-/turf/open/floor/plasteel/stairs/old,
+/turf/open/floor/plasteel/stairs/goon/wood_stairs_alone{
+	dir = 1
+	},
 /area/template_noop)
 "e" = (
 /turf/open/floor/wood,
@@ -30,6 +32,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/template_noop)
 "l" = (
@@ -47,6 +50,10 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/template_noop)
 "p" = (
@@ -55,14 +62,38 @@
 /area/template_noop)
 "q" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/cola,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
 /turf/open/floor/carpet/red,
 /area/template_noop)
 "r" = (
 /obj/item/trash/cheesie,
 /turf/open/floor/carpet/red,
 /area/template_noop)
+"t" = (
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/template_noop)
+"u" = (
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/carpet/red,
+/area/template_noop)
 "v" = (
 /obj/item/trash/popcorn,
+/turf/open/floor/wood,
+/area/template_noop)
+"x" = (
+/obj/structure/chair/comfy/brown,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/template_noop)
 "z" = (
@@ -70,6 +101,10 @@
 /obj/item/reagent_containers/food/snacks/popcorn,
 /obj/structure/window/reinforced{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/template_noop)
@@ -81,6 +116,13 @@
 /obj/item/reagent_containers/food/snacks/beans,
 /turf/open/floor/carpet/red,
 /area/template_noop)
+"E" = (
+/obj/item/trash/candy,
+/obj/effect/turf_decal/ramp_corner{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/template_noop)
 "P" = (
 /obj/machinery/light_switch{
 	pixel_x = 27
@@ -88,10 +130,20 @@
 /obj/structure/cloth_curtain,
 /turf/open/floor/wood,
 /area/template_noop)
+"R" = (
+/obj/effect/turf_decal/ramp_corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/template_noop)
 "S" = (
 /obj/structure/chair/comfy/brown,
 /obj/structure/window/reinforced{
 	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/template_noop)
@@ -101,6 +153,18 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/template_noop)
+"W" = (
+/obj/structure/chair/comfy/brown,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/template_noop)
 "Y" = (
@@ -109,14 +173,15 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/template_noop)
 
 (1,1,1) = {"
 a
-S
+W
 p
-S
+W
 D
 a
 f
@@ -126,10 +191,10 @@ e
 "}
 (2,1,1) = {"
 a
-S
+x
 q
-S
-a
+x
+R
 a
 f
 e
@@ -139,9 +204,9 @@ e
 (3,1,1) = {"
 a
 c
-a
+u
 c
-a
+u
 e
 e
 e
@@ -151,9 +216,9 @@ e
 (4,1,1) = {"
 l
 z
-m
+E
 z
-a
+t
 v
 e
 e
@@ -162,9 +227,9 @@ e
 "}
 (5,1,1) = {"
 m
-S
+W
 a
-S
+W
 a
 e
 e
@@ -174,9 +239,9 @@ e
 "}
 (6,1,1) = {"
 a
-S
+W
 r
-S
+W
 a
 e
 e
@@ -186,10 +251,10 @@ e
 "}
 (7,1,1) = {"
 a
-S
-a
+x
+R
 T
-a
+R
 e
 e
 e
@@ -199,9 +264,9 @@ e
 (8,1,1) = {"
 a
 c
-a
+u
 c
-a
+u
 e
 e
 e
@@ -211,9 +276,9 @@ e
 (9,1,1) = {"
 a
 o
-a
+t
 S
-a
+t
 a
 f
 e

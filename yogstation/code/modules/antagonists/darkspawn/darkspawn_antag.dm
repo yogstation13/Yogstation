@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(sacrament_done, FALSE)
+
 /datum/antagonist/darkspawn
 	name = "Darkspawn"
 	roundend_category = "darkspawn"
@@ -6,6 +8,7 @@
 	antag_hud_name = "darkspawn"
 	ui_name = "AntagInfoDarkspawn"
 	antag_moodlet = /datum/mood_event/sling
+	count_towards_antag_cap = TRUE
 
 	//team used for all the darkspawns, thralls, and the objective
 	var/datum/team/darkspawn/team
@@ -704,3 +707,27 @@
 		. += "<b>Upgrades:</b><br>"
 		for(var/datum/psi_web/ability as anything in class.learned_abilities)
 			. += "[ability.name]<br>"
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Mob assign procs---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/mob/living/proc/add_darkspawn()
+	if(!istype(mind))
+		return FALSE		
+	return mind.add_antag_datum(/datum/antagonist/darkspawn)
+
+/mob/living/proc/remove_darkspawn()
+	if(!istype(mind))
+		return FALSE
+	return mind.remove_antag_datum(/datum/antagonist/darkspawn)
+
+/mob/living/proc/add_thrall()
+	if(!istype(mind))
+		return FALSE
+	return mind.add_antag_datum(/datum/antagonist/thrall)
+
+/mob/living/proc/remove_thrall()
+	if(!istype(mind))
+		return FALSE
+	return mind.remove_antag_datum(/datum/antagonist/thrall)

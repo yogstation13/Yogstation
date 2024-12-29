@@ -27,10 +27,12 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_ATOM_HITBY, PROC_REF(hitby))
 	RegisterSignal(parent, COMSIG_ATOM_ENTERED, PROC_REF(Entered))
+	RegisterSignal(parent, COMSIG_TURF_MOB_FALL, PROC_REF(kersplash))
 
 /datum/component/lingering/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATOM_HITBY)
 	UnregisterSignal(parent, COMSIG_ATOM_ENTERED)
+	UnregisterSignal(parent, COMSIG_TURF_MOB_FALL)
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 	
@@ -48,6 +50,17 @@
 /datum/component/lingering/process(delta_time)
 	if(!affect_stuff(delta_time))
 		STOP_PROCESSING(SSobj, src)
+
+/datum/component/lingering/proc/kersplash(datum/source, atom/movable/fallen_atom, turf/impacted_turf, levels = 1, impact_flags = NONE)
+	fallen_atom.visible_message(
+		span_danger("[fallen_atom] plunges into [parent]!"),
+		span_userdanger("You plunge into [parent]!")
+	)
+	playsound(parent, 'yogstation/sound/effects/splash.ogg', 50, 0)
+	if(isliving(fallen_atom))
+		var/mob/living/cannonball = fallen_atom
+		cannonball.Knockdown(2 SECONDS)
+	return ZIMPACT_CANCEL_DAMAGE
 
 ////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------safety check-----------------------------------//

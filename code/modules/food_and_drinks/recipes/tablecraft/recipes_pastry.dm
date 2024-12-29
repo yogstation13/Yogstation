@@ -31,6 +31,12 @@
 	result = /obj/item/reagent_containers/food/snacks/donut
 	category = CAT_PASTRY
 
+/datum/crafting_recipe/food/donut/on_craft_completion(mob/user, atom/result)
+	. = ..()
+	var/obj/item/reagent_containers/food/snacks/donut/donut_result = result
+	if(donut_result.is_frosted)
+		donut_result.reagents.add_reagent(/datum/reagent/consumable/sprinkles, 2)
+
 /datum/crafting_recipe/food/jellydonut
 	name = "Jelly Donut"
 	reqs = list(
@@ -389,6 +395,15 @@ datum/crafting_recipe/food/donut/meat
 		/datum/reagent/consumable/cinnamon = 5
 	)
 	result = /obj/item/reagent_containers/food/snacks/churro
+	category = CAT_PASTRY
+
+/datum/crafting_recipe/food/chocolatechurro
+	name = "Chocolate-Dipped Churro"
+	reqs = list(
+		/obj/item/reagent_containers/food/snacks/churro = 1,
+		/obj/item/reagent_containers/food/snacks/chocolatebar = 1
+	)
+	result = /obj/item/reagent_containers/food/snacks/chocolatechurro
 	category = CAT_PASTRY
 
 /datum/crafting_recipe/food/cinnamonroll

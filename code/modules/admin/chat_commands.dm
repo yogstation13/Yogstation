@@ -2,7 +2,7 @@
 
 /datum/tgs_chat_command/ircstatus
 	name = "status"
-	help_text = "Gets the admincount, playercount, gamemode, and true game mode of the server"
+	help_text = "Gets the admincount, playercount, and storyteller of the server"
 	admin_only = TRUE
 	var/last_irc_status = 0
 
@@ -14,7 +14,7 @@
 	var/list/adm = get_admin_counts()
 	var/list/allmins = adm["total"]
 	var/status = "Admins: [allmins.len] (Active: [english_list(adm["present"])] AFK: [english_list(adm["afk"])] Stealth: [english_list(adm["stealth"])] Skipped: [english_list(adm["noflags"])]). "
-	status += "Players: [GLOB.clients.len] (Active: [get_active_player_count(0,1,0)]). Mode: [SSticker.mode ? SSticker.mode.name : "Not started"]."
+	status += "Players: [GLOB.clients.len] (Active: [get_active_player_count(0,1,0)]). Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "Not started"]."
 	return status
 
 /datum/tgs_chat_command/irccheck

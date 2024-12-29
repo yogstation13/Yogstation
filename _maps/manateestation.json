@@ -1,0 +1,16 @@
+{
+	"map_name": "ManateeStation",
+	"map_path": "map_files/ManateeStation",
+	"map_file": "ManateeStation.dmm",
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_box",
+		"emergency": "emergency_box"
+	},
+	"job_changes": {
+		"Captain": {
+			"special_charter": "asteroid"
+		}
+	}
+  }

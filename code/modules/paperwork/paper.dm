@@ -135,7 +135,7 @@
 
 /obj/item/paper/attack_self(mob/user)
 	user.examinate(src)
-	if(rigged && (SSevents.holidays && SSevents.holidays[APRIL_FOOLS]))
+	if(rigged && (SSgamemode.holidays && SSgamemode.holidays[APRIL_FOOLS]))
 		if(!spam_flag)
 			spam_flag = TRUE
 			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)

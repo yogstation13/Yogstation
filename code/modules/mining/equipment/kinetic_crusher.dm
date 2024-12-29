@@ -529,3 +529,9 @@
 		It does little to aid any but the most skilled and/or suicidal miners against local fauna."
 
 	projectile_type = /obj/projectile/destabilizer/mega
+
+/obj/item/kinetic_crusher/mega/glacite
+	icon_state = "glacite_crusher0"
+	base_icon_state = "glacite_crusher"
+	desc = "An early design of the proto-kinetic accelerator, it is now a combination of various mining tools infused with plasma glacite, forming a high-tech club, increasing its capacity as a mining tool. \
+		It does little to aid any but the most skilled and/or suicidal miners against local fauna."

@@ -537,6 +537,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/pickup(mob/user)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
+	SEND_SIGNAL(user, COMSIG_MOB_PICKUP_ITEM, src)
 	item_flags |= IN_INVENTORY
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.

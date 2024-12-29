@@ -14,7 +14,7 @@
 	RegisterSignal(user, COMSIG_HERETIC_MANSUS_GRASP_ATTACK, PROC_REF(on_mansus_grasp))
 	ADD_TRAIT(user, TRAIT_RESISTCOLD, INNATE_TRAIT)
 	ADD_TRAIT(user, TRAIT_NOSLIPICE, INNATE_TRAIT)
-	
+
 
 	var/datum/action/cooldown/spell/basic_jaunt = locate(/datum/action/cooldown/spell/jaunt/ethereal_jaunt/basic) in user.actions
 	if(basic_jaunt)
@@ -99,7 +99,7 @@
 	cost = 1
 	route = PATH_VOID
 	tier = TIER_2
-	
+
 /datum/eldritch_knowledge/cold_snap/on_gain(mob/user, datum/antagonist/heretic/our_heretic)
 	. = ..()
 	user.add_traits(list(TRAIT_NOBREATH, TRAIT_RESISTCOLD, TRAIT_NOSLIPICE), type)
@@ -162,7 +162,7 @@
 	desc = "Allows you to transmute any ballistic weapon, with \
 		a plank of wood, a piece of gold and a camera to create the Lionhunter's rifle. \
 		The Lionhunter's Rifle is a long ranged ballistic weapon with three shots. \
-		These shots function as normal, albeit weak high caliber mutitions when fired from \
+		These shots function as normal, albeit weak high-caliber munitions when fired from \
 		close range or at inanimate objects. You can aim the rifle at distant foes, \
 		causing the shot to deal massively increased damage and hone in on them. \
 		You can create more ammo with three casings and five bars of silver."

@@ -200,6 +200,9 @@
 		chassis.default_melee_attack(target)
 	return TRUE
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/plasma/use(used)
+	return chassis?.cell?.use(used * energy_drain)
+
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/mecha_kineticgun
 	equip_cooldown = 10
 	name = "Exosuit Proto-kinetic Accelerator"

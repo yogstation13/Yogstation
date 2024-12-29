@@ -514,6 +514,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
+	if(!(C.voice_type?.can_use(id)))
+		C.voice_type = get_random_valid_voice(id)
 
 /datum/species/proc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	if(C.dna.species.exotic_bloodtype)
@@ -843,6 +845,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(underwear)
 				if(HAS_TRAIT(H, TRAIT_SKINNY))
 					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
+				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
+					standing += wear_female_version(underwear.icon_state, underwear.icon, BODY_LAYER, flat = !!(H.mob_biotypes & MOB_REPTILE)) // lizards
 				else
 					var/mutable_appearance/underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 					if(H.dna.species.id in underwear.sprite_sheets)
@@ -856,7 +860,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
-					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
+					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER, flat = !!(H.mob_biotypes & MOB_REPTILE)) // lizards
 				else
 					var/mutable_appearance/undershirt_overlay = mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 					if(H.dna.species.id in undershirt.sprite_sheets)
@@ -1418,7 +1422,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!disable_warning)
 					to_chat(H, "The [I.name] is too big to attach.") //should be src?
 				return FALSE
-			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+			if( istype(I, /obj/item/modular_computer/tablet/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_HANDCUFFED)
@@ -1453,7 +1457,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H)
+/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H, client/preference_source)
 	H.update_mutant_bodyparts()
 
 // Do species-specific reagent handling here
@@ -1926,6 +1930,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(attacker, COMSIG_MOB_ATTACK_HAND, attacker, defender, attacker_style, modifiers)
 	if(disarming)
 		disarm(attacker, defender, attacker_style)
+	else if(attacker.grab_mode)
+		grab(attacker, defender, attacker_style)
 	else if(attacker.combat_mode)
 		harm(attacker, defender, attacker_style)
 	else
@@ -2029,7 +2035,9 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	return TRUE
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, attack_direction = null)
-	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness, attack_direction) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal)
+	if(SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, damage, damagetype, def_zone, blocked, wound_bonus, bare_wound_bonus, sharpness, attack_direction) & COMPONENT_NO_APPLY_DAMAGE) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal)
+		return FALSE
+
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
 	if(!damage || hit_percent <= 0)
@@ -2079,7 +2087,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		if(H.buckled && istype(H.buckled, /obj/structure))//prevent buckling corpses to chairs to make indestructible projectile walls
 			var/obj/structure/sitter = H.buckled
 			sitter.take_damage(damage, damagetype)
-	return 1
+	return damage * hit_percent
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	// called when hit by a projectile

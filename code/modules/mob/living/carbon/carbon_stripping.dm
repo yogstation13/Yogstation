@@ -7,7 +7,18 @@
 	item_slot = ITEM_SLOT_BACK
 
 /datum/strippable_item/mob_item_slot/back/get_alternate_action(atom/source, mob/user)
+	. = ..()
+	if (.)
+		return
+
 	return get_strippable_alternate_action_internals(get_item(source), source)
+
+/datum/strippable_item/mob_item_slot/back/alternate_action(atom/source, mob/user)
+	. = ..()
+	if (.)
+		return
+
+	return strippable_alternate_action_internals(get_item(source), source, user)
 
 /datum/strippable_item/mob_item_slot/mask
 	key = STRIPPABLE_ITEM_MASK
@@ -113,7 +124,7 @@
 
 	return start_unequip_mob(get_item(source), source, user)
 
-/datum/strippable_item/hand/finish_unequip(atom/source, mob/user)
+/datum/strippable_item/hand/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
 	var/obj/item/item = get_item(source)
 	if (isnull(item))
 		return FALSE
@@ -121,7 +132,7 @@
 	if (!ismob(source))
 		return FALSE
 
-	return finish_unequip_mob(item, source, user)
+	return finish_unequip_mob(item, source, user, place_in_hand)
 
 /datum/strippable_item/hand/left
 	key = STRIPPABLE_ITEM_LHAND

@@ -741,6 +741,8 @@
 		qdel(active_hotspot)
 	if(turf_fire)
 		qdel(turf_fire)
+	if(liquids?.fire_state > LIQUID_FIRE_STATE_NONE) //extinguish any liquids with any level of fire in our turf
+		liquids.liquid_group.extinguish(src)
 
 /turf/open/proc/set_flammability(new_flammability)
 	if(isnull(new_flammability))
