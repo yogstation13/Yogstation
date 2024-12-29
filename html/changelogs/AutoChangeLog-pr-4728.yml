@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Reactions such as Life, Corgium, etc are now banned from occuring in grown plants, to prevent massive lag."
