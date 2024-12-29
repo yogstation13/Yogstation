@@ -78,3 +78,10 @@
 	cost = 8
 	item = /obj/item/clothing/gloves/color/yellow/power_gloves
 	restricted_roles = list(JOB_STATION_ENGINEER, JOB_CHIEF_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN)
+
+/datum/uplink_item/role_restricted/tunnel_khans
+	name = "Tunnel Khans Care Package"
+	desc = "A... questionably packed box written on with gray crayon. It's really hard to read. We hope that your assistant mind can comprehend it better than us."
+	cost = 13
+	item = /obj/item/storage/box/syndie_kit/khan_package
+	restricted_roles = list(JOB_ASSISTANT)
