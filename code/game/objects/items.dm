@@ -59,9 +59,9 @@
 
 		!!!!!!!!!!!!!!! IMPORTANT !!!!!!!!!!!!!! */
 
-	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	///Dimensions of the sprite used when this item is worn. Used to center sprites which aren't 32x32 on mobs
 	var/worn_x_dimension = 32
-	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	///Dimensions of the sprite used when this item is worn. Used to center sprites which aren't 32x32 on mobs
 	var/worn_y_dimension = 32
 	///Same as for [worn_x_dimension][/obj/item/var/worn_x_dimension] but for inhands, uses the lefthand_ and righthand_ file vars
 	var/inhand_x_dimension = 32

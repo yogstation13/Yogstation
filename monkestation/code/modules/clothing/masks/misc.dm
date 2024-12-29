@@ -64,7 +64,7 @@
 /obj/item/clothing/mask/breath/sec_bandana
 	desc = "An incredibly dense synthetic thread bandana that can be used as an internals mask."
 	name = "sec bandana"
-	worn_icon = 'monkestation/icons/mob/mask.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/mask.dmi'
 	icon = 'monkestation/icons/obj/clothing/masks.dmi'
 	icon_state = "sec_bandana_default"
 	var/obj/item/clothing/suit/armor/secduster/suit

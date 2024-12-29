@@ -14,7 +14,7 @@
 	slowdown = SHOES_SLOWDOWN
 	strip_delay = 1 SECONDS
 	blood_overlay_type = "shoe"
-	var/offset = 0
+	// var/offset = 0 MONKESTATION REMOVAL - dead code
 	var/equipped_before_drop = FALSE
 	///Whether these shoes have laces that can be tied/untied
 	var/can_be_tied = TRUE
@@ -66,6 +66,7 @@
 	else if(tied == SHOES_KNOTTED)
 		. += "The shoelaces are all knotted together."
 
+/* MONKESTATION REMOVAL - dead code
 /obj/item/clothing/shoes/visual_equipped(mob/user, slot)
 	..()
 	if(offset && (slot_flags & slot))
@@ -73,6 +74,7 @@
 		worn_y_dimension -= (offset * 2)
 		user.update_worn_shoes()
 		equipped_before_drop = TRUE
+*/
 
 /obj/item/clothing/shoes/equipped(mob/user, slot)
 	. = ..()
@@ -80,10 +82,12 @@
 		our_alert_ref = WEAKREF(user.throw_alert(ALERT_SHOES_KNOT, /atom/movable/screen/alert/shoes/untied))
 		RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(check_trip), override=TRUE)
 
+/* MONKESTATION REMOVAL - dead code
 /obj/item/clothing/shoes/proc/restore_offsets(mob/user)
 	equipped_before_drop = FALSE
 	user.pixel_y -= offset
 	worn_y_dimension = world.icon_size
+*/
 
 /obj/item/clothing/shoes/dropped(mob/user)
 	var/atom/movable/screen/alert/our_alert = our_alert_ref?.resolve()
@@ -91,8 +95,10 @@
 		our_alert_ref = null
 	if(our_alert?.owner == user)
 		user.clear_alert(ALERT_SHOES_KNOT)
+	/* MONKESTATION REMOVAL - dead code
 	if(offset && equipped_before_drop)
 		restore_offsets(user)
+	*/
 	. = ..()
 
 /obj/item/clothing/shoes/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)

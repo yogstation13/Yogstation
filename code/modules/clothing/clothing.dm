@@ -605,9 +605,14 @@ BLIND     // can't see anything
 
 	if(blood_overlay_type && appears_bloody())
 		var/mutable_appearance/blood_overlay
+		//MONKESTATION EDIT START
+		/* - MONKESTATION EDIT ORIGINAL -
 		if(clothing_flags & LARGE_WORN_ICON)
 			blood_overlay = mutable_appearance('icons/effects/64x64.dmi', "[blood_overlay_type]blood_large")
 		else
 			blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
+		*/
+		blood_overlay = mutable_appearance('icons/effects/blood.dmi', "[blood_overlay_type]blood")
+		//MONKESTATION EDIT END
 		blood_overlay.color = get_blood_dna_color()
 		. += blood_overlay

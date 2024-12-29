@@ -72,8 +72,12 @@
 #define ANTI_TINFOIL_MANEUVER (1<<10)
 /// Clothes that cause a larger notification when placed on a person.
 #define DANGEROUS_OBJECT (1<<11)
+//MONKESTATION REMOVAL START - Flag is no longer necessary
+/*
 /// Clothes that use large icons, for applying the proper overlays like blood
 #define LARGE_WORN_ICON (1<<12)
+*/
+//MONKESTATION REMOVAL END
 /// Clothes that block speech (i.e the muzzle). Can be applied to any clothing piece.
 #define BLOCKS_SPEECH (1<<13)
 /// prevents from placing on plasmaman helmet
