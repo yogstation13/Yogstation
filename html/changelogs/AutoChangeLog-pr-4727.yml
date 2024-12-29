@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - bugfix: "Removed unneeded security access on Blueshift departures."
