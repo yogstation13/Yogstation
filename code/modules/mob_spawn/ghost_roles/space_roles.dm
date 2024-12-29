@@ -175,7 +175,7 @@
 
 /// Deep Storage Syndicate base
 
-/obj/effect/mob_spawn/ghost_role/human/deepstorage_syndicate/comms
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/deepstorage/comms
 	name = "Syndicate Comms Agent"
 	prompt_name = "a syndicate comms agent"
 	you_are_text = "You are a syndicate comms agent, employed in a remote research bunker."
@@ -183,7 +183,7 @@
 	important_text = "DO NOT abandon the base. However, you may freely explore your surrounding within your current space quadrant (Z-Level)"
 	outfit = /datum/outfit/lavaland_syndicate/comms
 
-/obj/effect/mob_spawn/ghost_role/human/deepstorage_syndicate
+/obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/deepstorage
 	name = "Syndicate Bioweapon Scientist"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
@@ -204,3 +204,6 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 	shoes = /obj/item/clothing/shoes/combat
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
+
+/datum/outfit/deepstorage_syndicate/post_equip(mob/living/carbon/human/syndicate, visualsOnly = FALSE)
+	syndicate.faction |= ROLE_SYNDICATE

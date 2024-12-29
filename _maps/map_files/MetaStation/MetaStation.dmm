@@ -67201,12 +67201,13 @@
 /turf/open/space,
 /area/space/nearstation)
 "xnd" = (
-/obj/machinery/smartfridge/organ,
 /obj/machinery/door/poddoor/preopen{
 	id = "surgeryc";
 	name = "Privacy Shutter"
 	},
-/turf/open/floor/iron/dark,
+/obj/effect/spawner/structure/window,
+/obj/machinery/smartfridge/organ,
+/turf/open/floor/plating,
 /area/station/medical/surgery/aft)
 "xnk" = (
 /obj/structure/disposalpipe/segment{

@@ -7944,7 +7944,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/spawner/directional/south,
-/obj/structure/disposalpipe/trunk,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},

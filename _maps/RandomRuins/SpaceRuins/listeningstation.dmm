@@ -3,12 +3,12 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/structure/table/reinforced,
 /obj/item/stack/cable_coil{
-	pixel_x = -1;
-	pixel_y = 1
+	pixel_x = -8;
+	pixel_y = 13
 	},
 /obj/item/storage/toolbox/syndicate{
 	pixel_x = 6;
-	pixel_y = 7
+	pixel_y = 16
 	},
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
@@ -87,7 +87,7 @@
 /turf/open/misc/asteroid,
 /area/ruin/space/has_grav/listeningstation/asteroid)
 "bH" = (
-/turf/closed/wall/rust,
+/turf/closed/wall/r_wall/rust,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "bK" = (
 /obj/structure/fluff/minepost,
@@ -116,7 +116,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/warning/vacuum/external/directional/west,
 /obj/structure/sign/poster/official/safety_internals/directional/east,
-/turf/closed/wall/r_wall,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "cj" = (
 /turf/closed/wall/rust,
@@ -145,15 +145,17 @@
 /area/ruin/space/has_grav/listeningstation/support)
 "dg" = (
 /obj/effect/turf_decal/sand/plating,
-/obj/machinery/door/airlock/external/glass/ruin{
-	name = "Excavation Access"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/external/glass/ruin{
+	name = "Excavation Access";
+	id_tag = "lpost_eastern_excavation"
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/lounge)
 "dt" = (
@@ -166,10 +168,15 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/listeningstation/medical)
 "dW" = (
-/obj/machinery/hydroponics/soil,
-/obj/machinery/hydroponics/soil,
 /obj/machinery/light/small/maintenance/directional/north,
-/turf/open/misc/asteroid,
+/obj/machinery/porta_turret/syndicate/depot{
+	dir = 10
+	},
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 10
+	},
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/asteroid)
 "ep" = (
 /mob/living/basic/mining/hivelord,
@@ -233,7 +240,8 @@
 /area/ruin/space/has_grav/listeningstation/asteroid)
 "gl" = (
 /obj/machinery/door/airlock/external/glass/ruin{
-	name = "Excavation Access"
+	name = "Excavation Access";
+	id_tag = "lpost_western_excavation"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -242,6 +250,7 @@
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/support)
 "go" = (
@@ -316,7 +325,8 @@
 "iE" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/door/airlock/external/glass/ruin{
-	name = "Excavation Access"
+	name = "Excavation Access";
+	id_tag = "lpost_eastern_excavation"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -324,6 +334,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/lounge)
 "iN" = (
@@ -343,10 +354,8 @@
 /turf/open/floor/circuit/red/anim,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "jq" = (
-/obj/machinery/power/smes{
-	charge = 5e+006
-	},
 /obj/structure/cable,
+/obj/machinery/power/smes/super/full,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/support)
 "jr" = (
@@ -461,6 +470,11 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/support)
+"nc" = (
+/obj/item/storage/bag/trash/filled,
+/obj/machinery/hydroponics/soil,
+/turf/open/misc/asteroid,
+/area/ruin/space/has_grav/listeningstation/asteroid)
 "nB" = (
 /obj/structure/toilet{
 	pixel_y = 18
@@ -598,25 +612,27 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/listeningstation/support)
 "qD" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lpost_entrance"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/lobby)
+"qV" = (
 /obj/machinery/door/window/brigdoor{
-	dir = 8;
 	req_access = list("syndicate");
 	name = "Emergency Self Destruct Access"
 	},
-/obj/structure/sign/warning/explosives/alt/directional/east,
+/obj/structure/sign/warning/explosives/alt/directional/north,
 /obj/machinery/syndicatebomb/self_destruct{
 	anchored = 1
 	},
 /turf/open/floor/circuit/red/anim,
-/area/ruin/space/has_grav/listeningstation/lounge)
-"qV" = (
-/obj/machinery/firealarm/directional/west,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/obj/machinery/microwave,
-/obj/item/storage/backpack/satchel/flat/listening_post_secret_stash,
-/turf/open/floor/iron/small,
-/area/ruin/space/has_grav/listeningstation/lounge)
+/area/ruin/space/has_grav/listeningstation/support)
 "rx" = (
 /obj/structure/sign/nanotrasen{
 	pixel_y = 32
@@ -628,7 +644,7 @@
 /area/ruin/space/has_grav/listeningstation/support)
 "rF" = (
 /obj/effect/baseturf_helper/asteroid/airless,
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "rG" = (
 /turf/closed/wall,
@@ -702,6 +718,13 @@
 /obj/item/assembly/prox_sensor,
 /turf/open/misc/asteroid,
 /area/ruin/space/has_grav/listeningstation/asteroid)
+"vc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/item/storage/backpack/satchel/flat/listening_post_secret_stash,
+/turf/open/floor/iron/small,
+/area/ruin/space/has_grav/listeningstation/lounge)
 "vm" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/blue,
@@ -801,7 +824,8 @@
 	pixel_x = 10;
 	pixel_y = -22;
 	id = "lpost_bathroom";
-	name = "Bathroom Lock"
+	name = "Bathroom Lock";
+	specialfunctions = 4
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/ruin/space/has_grav/listeningstation/lobby)
@@ -876,10 +900,7 @@
 /obj/machinery/light/small/directional/west,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/bin,
-/obj/effect/spawner/random/trash/food_packaging,
-/obj/effect/spawner/random/trash/cigbutt,
-/obj/effect/decal/cleanable/ash,
+/obj/machinery/photocopier/gratis,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/listeningstation/comms)
 "Ag" = (
@@ -1033,6 +1054,17 @@
 /obj/structure/closet/crate/bin,
 /obj/item/storage/bag/trash,
 /obj/machinery/light/small/red/directional/north,
+/obj/machinery/button/door/directional/east{
+	id = "lpost_eastern_excavation";
+	normaldoorcontrol = 1;
+	name = "Excavation Door Bolts";
+	req_access = list("syndicate");
+	pixel_x = 24;
+	pixel_y = -9;
+	specialfunctions = 4
+	},
+/obj/effect/spawner/random/trash/cigbutt,
+/obj/effect/spawner/random/trash/food_packaging,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/listeningstation/lounge)
 "Cm" = (
@@ -1056,6 +1088,10 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/machinery/door/airlock/external/ruin{
+	id_tag = "lpost_entrance"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "DB" = (
@@ -1107,6 +1143,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/closet/firecloset,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/support)
 "EC" = (
@@ -1224,6 +1261,15 @@
 /obj/structure/table,
 /obj/item/paper/pamphlet/centcom/visitor_info,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/button/door/directional/south{
+	normaldoorcontrol = 1;
+	pixel_x = -7;
+	pixel_y = 8;
+	id = "lpost_entrance";
+	name = "Door Lock";
+	req_access = list("syndicate");
+	specialfunctions = 4
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "IK" = (
@@ -1306,6 +1352,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/support)
+"KI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/duct,
+/obj/structure/cable,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/iron/small,
+/area/ruin/space/has_grav/listeningstation/lounge)
 "Lk" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light_switch/directional/north,
@@ -1362,6 +1417,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/turretid{
+	req_access = list("syndicate");
+	pixel_x = 31;
+	pixel_y = 3;
+	control_area = "/area/ruin/space/has_grav/listeningstation/asteroid";
+	name = "base turret control panel";
+	lethal = 1;
+	icon_state = "control_kill"
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/listeningstation/comms)
 "ME" = (
@@ -1385,7 +1449,8 @@
 "MT" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall,
+/obj/machinery/light/small/red/directional/west,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "MV" = (
 /obj/structure/cable,
@@ -1411,14 +1476,16 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/listeningstation/lobby)
 "Ni" = (
-/obj/machinery/door/airlock/external/glass/ruin{
-	name = "Excavation Access"
-	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/machinery/door/airlock/external/glass/ruin{
+	name = "Excavation Access";
+	id_tag = "lpost_western_excavation"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/listeningstation/support)
 "NI" = (
@@ -1446,6 +1513,15 @@
 /obj/machinery/airalarm/directional/south,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/machinery/duct,
+/obj/machinery/button/door/directional/north{
+	id = "lpost_western_excavation";
+	normaldoorcontrol = 1;
+	name = "Excavation Door Bolts";
+	req_access = list("syndicate");
+	pixel_x = -7;
+	pixel_y = 23;
+	specialfunctions = 4
+	},
 /turf/open/floor/iron/smooth_half,
 /area/ruin/space/has_grav/listeningstation/support)
 "NY" = (
@@ -1526,6 +1602,16 @@
 "Po" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation/dorms)
+"Pq" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 5
+	},
+/obj/machinery/porta_turret/syndicate/depot{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/listeningstation/asteroid)
 "Pz" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/listeningstation/support)
@@ -1677,14 +1763,13 @@
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/machinery/light/small/directional/east,
 /obj/structure/table/reinforced,
+/obj/item/paper/fluff/ruins/listeningstation/briefing,
+/obj/item/paper/fluff/ruins/listeningstation/engineer,
 /obj/machinery/fax{
 	syndicate_network = 1;
-	visible_to_network = 0;
 	name = "listening post fax machine";
 	fax_name = "Syndicate Listening Post"
 	},
-/obj/item/paper/fluff/ruins/listeningstation/briefing,
-/obj/item/paper/fluff/ruins/listeningstation/engineer,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/listeningstation/comms)
 "Tq" = (
@@ -1921,6 +2006,7 @@
 /obj/effect/turf_decal/tile/blue/anticorner/contrasted,
 /obj/machinery/iv_drip,
 /obj/structure/bed/medical/emergency,
+/obj/machinery/defibrillator_mount/loaded/directional/east,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/listeningstation/medical)
 
@@ -2284,7 +2370,7 @@ go
 go
 go
 Sx
-go
+Pq
 go
 rE
 au
@@ -2553,8 +2639,8 @@ Po
 Po
 LU
 Po
-Pz
-Pz
+LP
+qV
 xR
 Kt
 SI
@@ -2591,8 +2677,8 @@ BX
 ME
 PC
 Va
-qV
-Pz
+OT
+LP
 MV
 Gr
 ME
@@ -2629,7 +2715,7 @@ Po
 ME
 XC
 hs
-hs
+KI
 Yf
 mm
 ED
@@ -2666,7 +2752,7 @@ Cc
 Uw
 Lq
 zV
-gJ
+vc
 AP
 TK
 Cd
@@ -2703,7 +2789,7 @@ ac
 JB
 JB
 OT
-qD
+gJ
 OT
 OT
 IK
@@ -2789,7 +2875,7 @@ BT
 dg
 OT
 bi
-kt
+nc
 go
 go
 QI
@@ -2851,7 +2937,7 @@ NY
 xY
 NY
 cG
-MT
+qD
 MT
 ch
 Dv
@@ -2894,7 +2980,7 @@ BT
 BT
 BT
 BT
-rG
+BT
 Es
 BA
 BT

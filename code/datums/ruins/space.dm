@@ -466,3 +466,9 @@
 	suffix = "infested_frigate.dmm"
 	name = "SYN-C Brutus"
 	description = "This wasn't an outbreak, this was a repelled attack."
+
+/datum/map_template/ruin/space/syndicate_depot
+	id = "syndicate_depot"
+	suffix = "syndicate_depot.dmm"
+	name = "Syndicate Depot"
+	description = "A small depot ran by the Syndicate sitting out in space, responsible for logistics across the vast reaches of space."
