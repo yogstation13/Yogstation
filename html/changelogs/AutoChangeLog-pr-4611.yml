@@ -1,6 +1,0 @@
-author: "TheColorCyan"
-delete-after: True
-changes:
-  - rscadd: "blueshield's mantis blades are now replaced with shield blades. They have less offensive utility, but allow you to go into defensive stance to be able to block most of attacks, for the cost of slowdown and inability to attack things yourself."
-  - rscdel: "mantis blades can no longer pry airlocks open."
-  - rscadd: "syndicate mantis blades will now be able to pry airlocks open instead."

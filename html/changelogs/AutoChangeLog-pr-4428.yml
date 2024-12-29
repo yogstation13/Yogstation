@@ -1,7 +1,0 @@
-author: "ven1883"
-delete-after: True
-changes:
-  - rscadd: "Adds The Tunnel Arts, a traitor assistant exclusive martial arts with some anime-esque style."
-  - rscadd: "Also adds a cool new jacket available in the bundle."
-  - code_imp: "Martial Arts module now has a misc folder for Stuff."
-  - code_imp: "There is a new status effect, No Gravity, which temporarily disables gravity for the victim. It's only used in TTA."

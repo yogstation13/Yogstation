@@ -434,7 +434,62 @@
   - bugfix: Circuit Nerds, rejoice, for it has finally happened, the Access Checker
       Components ID menu now works again.
 2024-12-29:
+  Addust:
+  - rscadd: A Syndicate logistics depot has recently been detected in the sector.
+      Avoid approach if at all possible.
+  - rscadd: other syndicate fax machines may contact the Listening Post now
+  - bugfix: the deep storage outpost the syndies have now only has 1 big-ass bomb
+      and also now has actual writing implements.
+  - bugfix: blueshift's netmin computer room is no longer a hazardous unventilated
+      space
+  - bugfix: a metastation surgery room is now airtight
+  - bugfix: disposal chutes shouldnt obliterate you as frequently now
   DexeeXI:
   - bugfix: changed frames for machine frames on the ghost variant of the Space Hotel.
   - bugfix: fixed all the doors and shutters. the buttons should actually do what
       they say they do.
+  Siro:
+  - bugfix: 'Some Quirks that give unique items or random rolled effects will be transferred
+      between bodies. Fixes #2247 and Fixes #2354'
+  - bugfix: Oozling ability status effects like Slime Cleaning and Hydrophobia slow
+      down will be removed upon ability loss.
+  - bugfix: Oozling core no longer broadcasts GPS after being crushed.
+  - bugfix: 'Dnr Oozling sacrifice runtime due to brainmob not having a last_mind
+      field Fixes #4219'
+  - bugfix: Resolved issue where Oozling cores could prevent core item ejection during
+      core destruction.
+  - bugfix: 'Head regeneration fixes no eyes blindness. Fixes #2777'
+  - bugfix: 'Gibbing deaths (which is a bigger list for oozlings) will now correctly
+      delete the Oozling core rather than dropping one with no soul attached. Fixes
+      #2540 and similar instances. Few rare cases exist like emagged Recyclers.'
+  - rscadd: Oozlings now scream and have the jitter status applied to them when nugget
+      revived. Similar to human revival.
+  - rscadd: 'Foreign objects, such as organ implants and features, are now pulled
+      into the core instead of being deleted outright. Fixes #3665'
+  - rscadd: Ooozlings now like toxic foods. Slime Jelly rolls anyone?
+  - balance: 'Restored the wetness system: 1 blood randomly above 1 stack. Above 5
+      lose 2 blood constantly'
+  - code_imp: 'Ensured items are handled and moved into the core first before other
+      object-move mechanics can take place. Fixes unintended duplication and deletion
+      bugs (e.g., chasms). Fixes #4107'
+  - bugfix: 'Addressed revival visual/HUD/gameplay bugs, by properly removing the
+      limbs on nugget revival. Fixes #2485'
+  - balance: Re-added healing, reduced from 2 burn 2 brute to 2.5 shared to both.
+      Must stay warm and Hydrophobia off.
+  - rscadd: Added filters to Oozling core storage to prevent certain items (e.g.,
+      Nuclear Authentication Disk) from being stored. Fixes issues with protected
+      items.
+  TheColorCyan:
+  - rscadd: blueshield's mantis blades are now replaced with shield blades. They have
+      less offensive utility, but allow you to go into defensive stance to be able
+      to block most of attacks, for the cost of slowdown and inability to attack things
+      yourself.
+  - rscdel: mantis blades can no longer pry airlocks open.
+  - rscadd: syndicate mantis blades will now be able to pry airlocks open instead.
+  ven1883:
+  - rscadd: Adds The Tunnel Arts, a traitor assistant exclusive martial arts with
+      some anime-esque style.
+  - rscadd: Also adds a cool new jacket available in the bundle.
+  - code_imp: Martial Arts module now has a misc folder for Stuff.
+  - code_imp: There is a new status effect, No Gravity, which temporarily disables
+      gravity for the victim. It's only used in TTA.
