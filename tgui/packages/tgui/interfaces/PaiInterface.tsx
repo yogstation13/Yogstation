@@ -379,10 +379,9 @@ const PaiBox = (props, context) => {
                       onDrag={(e, value) => act('signallerfreq', {
                         freq: value,
                       })} />
-              </Table.Cell>
-              <Table.Cell>
                 <Button
                       icon="sync"
+                      ml={2.1}
                       content="Reset"
                       onClick={() => act("signallerreset", {
                         reset: "freq",
@@ -405,10 +404,9 @@ const PaiBox = (props, context) => {
                     onDrag={(e, value) => act("signallercode", {
                       code: value,
                     })} />
-              </Table.Cell>
-              <Table.Cell>
                 <Button
                       icon="sync"
+                      ml={2.1}
                       content="Reset"
                       onClick={() => act("signallerreset", {
                         reset: "code",
