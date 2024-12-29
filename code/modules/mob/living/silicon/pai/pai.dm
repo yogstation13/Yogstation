@@ -23,14 +23,14 @@
 	var/network = "ss13"
 	var/obj/machinery/camera/current = null
 
-	// Used as currency to purchase different abilities
+	///Used as currency to purchase different abilities
 	var/ram = 100	
 	var/list/software = list()
-	// The DNA string of our assigned user
+	///The DNA string of our assigned user
 	var/userDNA		
-	// The card we inhabit
+	///The card we inhabit
 	var/obj/item/computer_hardware/paicard/card	
-	//Are we hacking a door?
+	///Are we hacking a door?
 	var/hacking = FALSE		
 
 	var/speakStatement = "states"
@@ -38,38 +38,38 @@
 	var/speakDoubleExclamation = "alarms"
 	var/speakQuery = "queries"
 
-	// The cable we produce and use when door or camera jacking
+	///The cable we produce and use when door or camera jacking
 	var/obj/item/pai_cable/cable		
 
-	// Name of the one who commands us
+	///Name of the one who commands us
 	var/master				
-	// DNA string for owner verification
+	///DNA string for owner verification
 	var/master_dna			
 
 // Various software-specific vars
 
-	// The airlock being hacked
+	///The airlock being hacked
 	var/obj/machinery/door/hackdoor		
-	// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
+	///Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
 	var/hackprogress = 0				
 
-	/// Remote signaler
+	///Remote signaler
 	var/obj/item/assembly/signaler/internal/signaler
 
 	var/obj/item/instrument/piano_synth/internal_instrument
-	//pAI Newscaster
+	///pAI Newscaster
 	var/obj/machinery/newscaster		
-	//pAI healthanalyzer	
+	///pAI healthanalyzer	
 	var/obj/item/healthanalyzer/hostscan				
 
-	//Whether the pAI has bought the encryption slot module or not
+	///Whether the pAI has bought the encryption slot module or not
 	var/encryptmod = FALSE
 	var/holoform = FALSE
-	//Can pAI use their holoprojector?
+	///Can pAI use their holoprojector?
 	var/canholo = TRUE
-	//Can pAI transmit radio messages?
+	///Can pAI transmit radio messages?
 	var/can_transmit = TRUE
-	//Can pAI receive radio messages?
+	///Can pAI receive radio messages?
 	var/can_receive = TRUE
 	var/obj/item/card/id/access_card = new /obj/item/card/id
 	var/chassis = "repairbot"
