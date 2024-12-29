@@ -90,13 +90,15 @@
 	/// If TRUE, will set the icon in initializations.
 	VAR_PRIVATE/should_update_icon = FALSE
 
-	///Range that they can listen from different than canhear_range
+	/// Range that they can listen from different than canhear_range
 	var/listening_range
-	///can we radio host
+	/// Can we radio host?
 	var/radio_host = FALSE
-
 	/// If TRUE, then this message will always be received intact, regardless of exospheric anomalies / processor issues.
 	var/lossless = FALSE
+	/// If TRUE, then this radio will always use universal_transmission, bypassing tcomms servers, allowing everyone on connected z-levels to hear it.
+	/// Implies `lossless = TRUE` too.
+	var/universal = FALSE
 
 /obj/item/radio/Initialize(mapload)
 	set_wires(new /datum/wires/radio(src))
@@ -304,7 +306,7 @@
 
 	// From the channel, determine the frequency and get a reference to it.
 	var/freq
-	if(channel && channels && channels.len > 0)
+	if(channel && length(channels))
 		if(channel == MODE_DEPARTMENT)
 			channel = channels[1]
 		freq = secure_radio_connections[channel]
@@ -331,9 +333,9 @@
 		signal.levels = list(0)
 		signal.broadcast()
 		return
-	// monkestation edit: "lossless" var, radio host stuff
-	if(radio_host)
-		backup_transmission(signal) // just immediately do direct signal transmission
+	// monkestation edit: "lossless" and "universal" vars
+	if(universal)
+		universal_transmission(signal) // just immediately do direct signal transmission
 		return
 	else if(lossless)
 		signal.data["compression"] = 0

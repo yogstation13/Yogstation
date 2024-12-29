@@ -6,6 +6,7 @@
 	icon_state = "unce_machine"
 
 	radio_host = TRUE
+	universal = TRUE
 	command = TRUE
 
 	lossless = TRUE
