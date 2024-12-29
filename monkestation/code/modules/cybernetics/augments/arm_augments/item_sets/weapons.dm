@@ -86,10 +86,20 @@
 /obj/item/organ/internal/cyberimp/arm/item_set/mantis
 	name = "C.H.R.O.M.A.T.A. mantis blade implants"
 	desc = "High tech mantis blade implants, easily portable weapon, that has a high wound potential."
-	items_to_create = list(/obj/item/mantis_blade/chromata)
+	items_to_create = list(/obj/item/mantis_blade)
 	encode_info = AUGMENT_TG_LEVEL
 
 /obj/item/organ/internal/cyberimp/arm/item_set/mantis/l
+	zone = BODY_ZONE_L_ARM
+
+
+/obj/item/organ/internal/cyberimp/arm/item_set/mantis/shield
+	name = "S.A.Y.A. arm defense system implants"
+	desc = "Shield blade implants that allow user to block upcoming attacks at the cost of mobility and offense."
+	items_to_create = list(/obj/item/mantis_blade/shield)
+	encode_info = AUGMENT_NT_LOWLEVEL
+
+/obj/item/organ/internal/cyberimp/arm/item_set/mantis/shield/l
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/internal/cyberimp/arm/item_set/syndie_mantis

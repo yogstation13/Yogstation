@@ -162,6 +162,8 @@
 	return SECONDARY_ATTACK_CALL_NORMAL
 
 /obj/attackby(obj/item/attacking_item, mob/user, params)
+	if (HAS_TRAIT(user, TRAIT_CANT_ATTACK))
+		return
 	return ..() || ((obj_flags & CAN_BE_HIT) && attacking_item.attack_atom(src, user, params))
 
 /mob/living/proc/can_perform_surgery(mob/living/user, params)
@@ -230,6 +232,10 @@
 
 	if(damtype != STAMINA && force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
+		return
+
+	if(damtype != STAMINA && force && HAS_TRAIT(user, TRAIT_CANT_ATTACK))
+		to_chat(user, span_warning("You can not attack in this state!"))
 		return
 
 	if(!force && !HAS_TRAIT(src, TRAIT_CUSTOM_TAP_SOUND))

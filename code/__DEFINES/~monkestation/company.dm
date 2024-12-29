@@ -31,6 +31,8 @@
 
 #define COMPANY_ASHENFORGE "It has a <b>[span_green("unlit forge")]</b> engraved into it along with the words <b>[span_grey("The Ashen Forge")] below it."
 
+#define COMPANY_MURAMASA "It has <b>[span_blue("Muramasa Munitions")]</b> stamped onto it."
+
 #define span_emote(str) ("<span class='emote'>" + str + "</span>")
 #define span_maptext(str) ("<span class='maptext'>" + str + "</span>")
 #define span_mentor(str) ("<span class='mentor'>" + str + "</span>")

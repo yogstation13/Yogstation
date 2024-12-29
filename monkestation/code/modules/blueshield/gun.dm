@@ -70,7 +70,7 @@
 		"Custom Hellfire Laser Rifle" = /obj/item/gun/energy/laser/hellgun/blueshield,
 		"Bogseo Submachinegun Gunset" = /obj/item/storage/toolbox/guncase/skyrat/xhihao_large_case/bogseo,
 		"Tech-9" = /obj/item/storage/toolbox/guncase/skyrat/pistol/tech_9,
-		"C.H.R.O.M.A.T.A. Mantis Blade Cyberset" = /obj/item/storage/box/mantis_blade,
+		"S.A.Y.A. Arm Defense System Cyberset" = /obj/item/storage/box/shield_blades,
 	)
 
 	return selectable_gun_types
@@ -113,12 +113,12 @@
 /obj/item/gun/ballistic/automatic/pistol/tech_9/no_mag
 	spawnwithmagazine = FALSE
 
-/obj/item/storage/box/mantis_blade
-	name = "C.H.R.O.M.A.T.A. Mantis Blades Cyberset"
-	desc = "A box full essentials for C.H.R.O.M.A.T.A. Blades quick implentation and installation. A deadly and a very personal weapon."
+/obj/item/storage/box/shield_blades
+	name = "S.A.Y.A. Arm Defense System Cyberset"
+	desc = "A box with essentials for S.A.Y.A. Arm Defense System. Blades that serve protection purposes, while being harder to swing and dealing less wounds to the target."
 	icon_state = "cyber_implants"
 
-/obj/item/storage/box/mantis_blade/PopulateContents()
-	new /obj/item/autosurgeon/organ/cyberlink_terragov(src)
-	new /obj/item/autosurgeon/organ/mantis_blade(src)
-	new /obj/item/autosurgeon/organ/mantis_blade/l(src)
+/obj/item/storage/box/shield_blades/PopulateContents()
+	new /obj/item/autosurgeon/organ/cyberlink_nt_low(src)
+	new /obj/item/autosurgeon/organ/shield_blade(src)
+	new /obj/item/autosurgeon/organ/shield_blade/l(src)
