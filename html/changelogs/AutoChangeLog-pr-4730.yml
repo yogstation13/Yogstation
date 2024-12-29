@@ -1,0 +1,4 @@
+author: "KittyNoodle"
+delete-after: True
+changes:
+  - bugfix: "Fixes ethereal eyes not having their own sprite.\n:cl:"
