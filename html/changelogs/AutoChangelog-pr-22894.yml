@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - bugfix: "Fixes the tar king altar never spawning"
+  - tweak: "Makes the tar biome slightly more common"
