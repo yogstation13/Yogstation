@@ -1,0 +1,8 @@
+author: "warface1234455"
+delete-after: true 
+changes: 
+  - bugfix: "fix \"The advanced decontamination storage unit's gate slides open, ejecting you out.\" when actually ejecting someone else"
+  - spellcheck: "rename \"gate\" to \"door\""
+  - tweak: "SSU and ADSU can be interacted if there's no power but you still need power to operate it"
+  - bugfix: "fix being able to open locked SSU/ADSU with altclick"
+  - tweak: "destroyed SSU no longer delete contents inside"
