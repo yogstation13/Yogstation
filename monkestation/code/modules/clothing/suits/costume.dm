@@ -98,6 +98,10 @@
 	worn_icon_state = "helldiver_armor"
 	flags_inv = HIDEJUMPSUIT
 
+/obj/item/clothing/suit/helldiverarmor/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /datum/loadout_item/suit/helldiverarmor
 	name = "Helldiver Armor"
 	item_path = /obj/item/clothing/suit/helldiverarmor

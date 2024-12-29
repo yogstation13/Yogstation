@@ -67,6 +67,10 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor_type = /datum/armor/costume_justice
 
+/obj/item/clothing/suit/costume/justice/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 /datum/armor/costume_justice
 	melee = 35
 	bullet = 30
@@ -553,12 +557,21 @@
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 
+/obj/item/clothing/suit/costume/soviet/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
+
 /obj/item/clothing/suit/costume/yuri
 	name = "yuri initiate coat"
 	desc = "Yuri is master! Sponsored by DonkSoft Co. for historical reenactment of the Third World War!"
 	icon_state = "yuri_coat"
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|ARMS
+
+/obj/item/clothing/suit/costume/yuri/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/costume/tmc
 	name = "\improper Lost M.C. cut"
@@ -583,3 +596,7 @@
 	inhand_icon_state = null
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
+/obj/item/clothing/suit/costume/irs/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed

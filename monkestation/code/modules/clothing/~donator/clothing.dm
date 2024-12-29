@@ -443,6 +443,10 @@
 	supports_variations_flags = NONE
 	armor_type = /datum/armor/none
 
+/obj/item/clothing/suit/armor/vest/darkcarapace/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
+
 // Donation reward for inferno707
 /obj/item/clothing/mask/hheart
 	name = "Hollow Heart"
@@ -542,6 +546,10 @@
 	worn_icon = 'monkestation/icons/donator/mob/clothing/suit.dmi'
 	worn_icon_state = "scraparmor"
 	body_parts_covered = CHEST
+
+/obj/item/clothing/suit/scraparmour/Initialize(mapload)
+	. = ..()
+	allowed += GLOB.security_vest_allowed
 
 // Donation reward for Enzoman
 /obj/item/clothing/mask/luchador/enzo
