@@ -333,7 +333,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 10, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
+	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 0, "embedded_fall_chance" = 10, "embedded_ignore_throwspeed_threshold" = TRUE)
 	force = 27 //Total of 54 damage = death in two clicks (probably) PLUS it doesn't care about anti-magic
 	throwforce = 45 //Can't return if it hits anti-magic
 	armour_penetration = 50 //Enchanted blade of fuck you
