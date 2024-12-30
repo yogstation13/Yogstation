@@ -90,7 +90,7 @@
 		
 	var/datum/DBQuery/add_mhelp_query = SSdbcore.NewQuery(
 		"INSERT INTO `[format_table_name("mentor_interactions")]` (round_id, ckey, ckey_mentor, target_ckey, target_mentor, message) VALUES (:round, :send, :smentor, :receive, :rmentor, :msg);",
-		list("round" = GLOB.round_id, "send" = ckey, "smentor" = is_mentor(), "receive" = C.ckey, "rmentor" = C.is_mentor(), "msg" = msg)
+		list("round" = GLOB.round_id, "send" = ckey, "smentor" = is_mentor(), "receive" = discord_id ? whom : C.ckey, "rmentor" = discord_id ? TRUE : C.is_mentor(), "msg" = msg)
 	)
 	if(!add_mhelp_query.Execute())
 		message_admins("Failed insert mhelp into mhelp DB. Check the SQL error logs for more details.")
