@@ -221,15 +221,15 @@
 
 	return amount
 
-/obj/machinery/icecream_vat/proc/dispense_item(obj/item/reagent_containers/food/snacks/received_item, mob/user = usr)
+/obj/machinery/icecream_vat/proc/dispense_item(obj/item/reagent_containers/food/snacks/received_item_type, mob/user = usr)
 	//If the vat has some of the desired item, dispense it
-	if(find_amount(received_item) > 0)
+	if(find_amount(received_item_type) > 0)
 		//Select the last(most recent) of desired item
-		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(received_item))
+		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(received_item_type))
 		//Drop it on the floor and then move it into the user's hands
 		dispensed_item.forceMove(loc)
 		user.put_in_hands(dispensed_item)
-		user.visible_message(span_notice("[user] dispenses [received_item::name] from [src]."), span_notice("You dispense [received_item::name] from [src]."))
+		user.visible_message(span_notice("[user] dispenses [received_item_type::name] from [src]."), span_notice("You dispense [received_item_type::name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 	else
 		//For Alt click and because UI buttons are slow to disable themselves
@@ -237,7 +237,7 @@
 
 /obj/machinery/icecream_vat/proc/select_item(obj/item/reagent_containers/food/snacks/received_item_type, mob/user = usr)
 	//Deselecting
-	if(istype(received_item_type, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+	if(ispath(received_item_type, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 		if(selected_cone_type == received_item_type)
 			user.visible_message(span_notice("[user] deselects [received_item_type::name] from [src]."), span_notice("You deselect [received_item_type::name] from [src]."))
 			selected_cone_type = null
@@ -253,7 +253,7 @@
 	//Selecting
 	if(find_amount(received_item_type) > 0)
 		//Set item to selected based on its type
-		if(istype(received_item_type, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+		if(ispath(received_item_type, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 			selected_cone_type = received_item_type
 		else
 			selected_scoop_type = received_item_type
