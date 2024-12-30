@@ -32,6 +32,11 @@
 		w_class = round((seed.potency / 100) * 2, 1) + 1 //more potent plants are larger
 		add_juice()
 
+/obj/item/grown/examine(mob/user)
+	. = ..()
+	if(user.skill_check(SKILL_SCIENCE, EXP_LOW))
+		. += seed.get_analyzer_text(user, TRUE)
+
 /// Ghost attack proc
 /obj/item/grown/attack_ghost(mob/user)
 	..()

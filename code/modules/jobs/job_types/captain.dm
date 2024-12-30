@@ -30,6 +30,15 @@
 		/datum/job_department/command,
 	)
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = 2
+
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
 	mail_goodies = list(

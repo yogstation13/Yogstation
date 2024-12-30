@@ -325,6 +325,7 @@
 		approaching_target = TRUE
 	else
 		approaching_target = FALSE
+	set_glide_size(DELAY_TO_GLIDE_SIZE(delay))
 	walk_to(src, target, minimum_distance, delay)
 
 /mob/living/simple_animal/hostile/adjustHealth(amount, updating_health = TRUE, forced = FALSE)

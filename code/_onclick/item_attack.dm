@@ -160,32 +160,32 @@
  * Called from [/mob/living/proc/attackby]
  *
  * Arguments:
- * * mob/living/M - The mob being hit by this item
+ * * mob/living/target - The mob being hit by this item
  * * mob/living/user - The mob hitting with this item
  * * params - Click params of this attack
  */
-/obj/item/proc/attack(mob/living/M, mob/living/user, params)
-	var/signal_return = SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user, params)
+/obj/item/proc/attack(mob/living/target, mob/living/user, params)
+	var/signal_return = SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, target, user, params)
 	if(signal_return & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
 	if(signal_return & COMPONENT_SKIP_ATTACK)
 		return
 
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user, params)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, target, user, params)
 	if(item_flags & NOBLUDGEON)
 		return
 
 	if(tool_behaviour && !user.combat_mode) // checks for combat mode with surgery tool
 		var/list/modifiers = params2list(params)
-		if(attempt_initiate_surgery(src, M, user, modifiers))
+		if(attempt_initiate_surgery(src, target, user, modifiers))
 			return TRUE
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
 			for(var/i in C.all_wounds)
 				var/datum/wound/W = i
 				if(W.try_treating(src, user))
 					return TRUE
-		to_chat(user, span_warning("You can't perform any surgeries on [M]'s [parse_zone(user.zone_selected)]!")) //yells at you
+		to_chat(user, span_warning("You can't perform any surgeries on [target]'s [parse_zone(user.zone_selected)]!")) //yells at you
 		return TRUE
 
 	if(force && !synth_check(user, SYNTH_ORGANIC_HARM))
@@ -199,16 +199,17 @@
 	else if(hitsound)
 		playsound(loc, hitsound, get_clamped_volume(), 1, -1)
 
-	M.lastattacker = user.real_name
-	M.lastattackerckey = user.ckey
+	target.lastattacker = user.real_name
+	target.lastattackerckey = user.ckey
 
 	if(force)
-		M.last_damage = name
+		target.last_damage = name
 
-	user.do_attack_animation(M)
-	M.attacked_by(src, user)
+	user.do_attack_animation(target)
+	user.add_exp(SKILL_FITNESS, target.stat == CONSCIOUS ? force : force / 5) // attacking things that can't move isn't very good experience
+	target.attacked_by(src, user)
 
-	log_combat(user, M, "attacked", src.name, "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(damtype)])")
+	log_combat(user, target, "attacked", src.name, "(COMBAT MODE: [user.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
 	var/force_multiplier = 1
 	if(ishuman(user))
@@ -233,6 +234,7 @@
 	user.changeNext_move(CLICK_CD_MELEE * weapon_stats[SWING_SPEED] * (range_cooldown_mod ? (dist > 0 ? min(dist, weapon_stats[REACH]) * range_cooldown_mod : range_cooldown_mod) : 1)) //range increases attack cooldown by swing speed
 	user.do_attack_animation(attacked_atom)
 	attacked_atom.attacked_by(src, user)
+	user.add_exp(SKILL_FITNESS, force / 5)
 	user.weapon_slow(src)
 	var/force_multiplier = 1
 	if(ishuman(user))

@@ -7,6 +7,7 @@
 	for(var/atom in GLOB.crafting_recipes_atoms)
 		add_atom_icon(atom, id++)
 	add_tool_icons()
+	InsertAll("", 'icons/mob/skills.dmi', list(SOUTH))
 
 /datum/asset/spritesheet/crafting/cooking
 	name = "cooking"

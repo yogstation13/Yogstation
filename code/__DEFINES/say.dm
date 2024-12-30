@@ -79,6 +79,7 @@
 #define SPAN_CULTLARGE "cultlarge"
 #define SPAN_HELIUM "small"
 #define SPAN_PROGENITOR "progenitor"
+#define SPAN_COLOSSUS "colossus"
 
 //bitflag #defines for return value of the radio() proc.
 #define ITALICS			(1<<0)

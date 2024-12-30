@@ -366,7 +366,7 @@
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
-	else if(!combat_mode)
+	else if(!in_throw_mode)
 		stop_pulling()
 	return TRUE
 

@@ -363,7 +363,7 @@
 
 	if(!appears_dead)
 		if(src != user)
-			if(HAS_TRAIT(user, TRAIT_EMPATH))
+			if(HAS_TRAIT(user, TRAIT_EMPATH) || user.skill_check(SKILL_PHYSIOLOGY, EXP_MID))
 				if (combat_mode)
 					msg += "[t_He] seem[p_s()] to be on guard.\n"
 				if (getOxyLoss() >= 10)

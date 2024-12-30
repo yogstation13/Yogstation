@@ -168,6 +168,8 @@ Nothing else in the console has ID requirements.
 			SSblackbox.record_feedback("associative", "science_techweb_unlock", 1, list("id" = "[id]", "name" = TN.display_name, "price" = "[json_encode(price)]", "time" = SQLtime()))
 		if(stored_research.research_node_id(id))
 			say("Successfully researched [TN.display_name].")
+			for(var/point_type in price)
+				user.add_exp(SKILL_SCIENCE, price[point_type] / 200)
 			var/logname = "Unknown"
 			if(isAI(user))
 				logname = "AI: [user.name]"
