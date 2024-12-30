@@ -1265,9 +1265,8 @@
 /obj/item/storage/bag/quiver{
 	pixel_x = -10
 	},
-/obj/item/gun/ballistic/bow,
-/obj/item/gun/ballistic/bow{
-	pixel_y = 0;
+/obj/item/gun/ballistic/bow/longbow,
+/obj/item/gun/ballistic/bow/longbow{
 	pixel_x = 5
 	},
 /turf/open/misc/asteroid/basalt/lava_land_surface,
