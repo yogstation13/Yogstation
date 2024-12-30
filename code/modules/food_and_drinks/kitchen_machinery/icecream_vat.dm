@@ -87,6 +87,9 @@
 			details["selected_item"] = selected_cone
 			data["cones"] += list(details)
 
+		//Delete item instance
+		qdel(item)
+
 	//Loop through children of /datum/info_tab/icecream_vat for data to send to info tab
 	for(var/info_detail in subtypesof(/datum/info_tab/icecream_vat))
 		
@@ -100,6 +103,9 @@
 
 		//Add info to data
 		data["info_tab"] += list(details)
+
+		//Delete item instance
+		qdel(item)
 
 	//Get content and capacity data
 	data["contents_length"] = contents.len
@@ -155,6 +161,8 @@
 	else
 		var/obj/item/reagent_containers/food/snacks/examine_cone = new selected_cone
 		. += span_notice("<b>Alt Click</b> to dispense [examine_cone.name].")
+		//Delete item instance
+		qdel(examine_cone)
 
 	//Selected scoops
 	if(selected_scoop == null)
@@ -162,6 +170,8 @@
 	else
 		var/obj/item/reagent_containers/food/snacks/examine_scoop = new selected_scoop
 		. += span_notice("[examine_scoop.name] is currently selected.")
+		//Delete item instance
+		qdel(examine_scoop)
 
 	//Scooping cone instruction
 	. += span_notice("<b>Right Click</b> to add a scoop to a cone.")
@@ -240,6 +250,9 @@
 		//For Alt click and because UI buttons are slow to disable themselves
 		user.balloon_alert(user, "All out!")
 
+	//Delete item instance
+	qdel(ui_item)
+
 /obj/machinery/icecream_vat/proc/select_item(received_item, mob/user = usr)
 
 	//Make a variable for checking the type of the selected item
@@ -272,6 +285,9 @@
 	//Prevent them from selecting items that the vat does not have
 	else
 		user.balloon_alert(user, "All out!")
+
+	//Delete item instance
+	qdel(received_item)
 
 /obj/machinery/icecream_vat/proc/last_index(obj/item/search_item)
 
