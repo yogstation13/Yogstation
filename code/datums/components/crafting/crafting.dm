@@ -148,6 +148,17 @@
 
 	return TRUE
 
+/datum/component/personal_crafting/proc/check_skills(atom/source, datum/crafting_recipe/recipe)
+	if(!recipe.skill_requirements?.len)
+		return TRUE
+	if(!ismob(source))
+		return TRUE
+	var/mob/user = source
+	for(var/skill in recipe.skill_requirements)
+		if(!user.skill_check(skill, recipe.skill_requirements[skill]))
+			return FALSE
+	return TRUE
+
 /datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
 	var/list/contents = get_surroundings(a, R.blacklist)
 	var/send_feedback = 1
@@ -155,12 +166,14 @@
 		return ", missing component."
 	if(!check_tools(a, R, contents))
 		return ", missing tool."
+	if(!check_skills(a, R))
+		return ", inadequate skills."
 	var/timer = R.time
+	var/mob/user_mob
 	if(ismob(a))
-		var/mob/mob = a
-		if(mob && HAS_TRAIT(mob, TRAIT_CRAFTY))
-			timer *= 0.75
-	if(!do_after(a, timer, a))
+		user_mob = a
+		timer *= (10 - (user_mob.get_skill(SKILL_MECHANICAL) + HAS_TRAIT(user_mob, TRAIT_CRAFTY)*2)) / 10
+	if(!do_after(a, timer, a, IGNORE_SKILL_DELAY, skill_check = SKILL_MECHANICAL))
 		return "."
 	contents = get_surroundings(a, R.blacklist) // Double checking since items could no longer be there after the do_after().
 	if(!check_contents(a, R, contents))
@@ -170,6 +183,9 @@
 	var/list/parts = del_reqs(R, a)
 	var/atom/movable/I = new R.result(get_turf(a.loc))
 	I.CheckParts(parts, R)
+	if(user_mob && R.skill_requirements.len)
+		for(var/skill in R.skill_requirements)
+			user_mob.add_exp(skill, R.skill_requirements[skill] * 10)
 	if(send_feedback)
 		SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
 	return I
@@ -332,7 +348,7 @@
 	for(var/datum/crafting_recipe/recipe as anything in (mode ? GLOB.cooking_recipes : GLOB.crafting_recipes))
 		if(!is_recipe_available(recipe, user))
 			continue
-		if(check_contents(user, recipe, surroundings) && check_tools(user, recipe, surroundings))
+		if(check_contents(user, recipe, surroundings) && check_tools(user, recipe, surroundings) && check_skills(user, recipe))
 			craftability["[REF(recipe)]"] = TRUE
 		if(display_craftable_only) // for debugging only
 			craftability["[REF(recipe)]"] = TRUE
@@ -476,6 +492,15 @@
 		for(var/req_atom in recipe.reqs)
 			var/id = atoms.Find(req_atom)
 			data["reqs"]["[id]"] = recipe.reqs[req_atom]
+
+	// Skills
+	if(recipe.skill_requirements?.len)
+		data["skill_requirements"] = list()
+		for(var/skill in recipe.skill_requirements)
+			data["skill_requirements"] += list(list(
+				"skill" = skill,
+				"level" = recipe.skill_requirements[skill],
+			))
 
 	return data
 

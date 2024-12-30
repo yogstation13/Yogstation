@@ -24,6 +24,15 @@
 	display_order = JOB_DISPLAY_ORDER_CHEMIST
 	minimal_character_age = 24 //A lot of experimental drugs plus understanding the facilitation and purpose of several subtances; what treats what and how to safely manufacture it
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_MID,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/medical,
 	)

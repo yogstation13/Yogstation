@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(species_list)
  * given `delay`. Returns `TRUE` on success or `FALSE` on failure.
  * Interaction_key is the assoc key under which the do_after is capped, with max_interact_count being the cap. Interaction key will default to target if not set.
  */
-/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1)
+/proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1, skill_check = null)
 	if(!user)
 		return FALSE
 	if(!isnum(delay))
@@ -335,10 +335,13 @@ GLOBAL_LIST_EMPTY(species_list)
 
 	if(!(timed_action_flags & IGNORE_SLOWDOWNS))
 		delay *= user.action_speed_modifier * user.do_after_coefficent() //yogs: darkspawn
+	
+	if(skill_check && user.mind && !(timed_action_flags & IGNORE_SKILL_DELAY))
+		delay *= (12 - user.get_skill(skill_check)) / 10
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new(user, delay, target || user, timed_action_flags, extra_checks)
+		progbar = new(user, delay, target || user, timed_action_flags, extra_checks, skill_check)
 
 	SEND_SIGNAL(user, COMSIG_DO_AFTER_BEGAN)
 

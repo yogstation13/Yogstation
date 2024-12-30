@@ -161,7 +161,7 @@
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
 	qdel(src)
 
-/datum/surgery/proc/get_probability_multiplier()
+/datum/surgery/proc/get_probability_multiplier(mob/user, datum/surgery_step/surgery_step, skill_checked = SKILL_PHYSIOLOGY)
 	var/probability = 0.5
 	var/turf/T = get_turf(target)
 
@@ -171,7 +171,7 @@
 			probability = SB.success_chance
 			break
 
-	return probability + success_multiplier
+	return probability + success_multiplier + ((user.get_skill(skill_checked) - surgery_step.difficulty) / 10)
 
 /datum/surgery/proc/get_icon()
 	var/mutable_appearance/new_icon = mutable_appearance(icon, icon_state)

@@ -17,6 +17,7 @@
 	name = "reshape ligaments"
 	accept_hand = TRUE
 	time = 12.5 SECONDS
+	difficulty = EXP_HIGH
 	preop_sound = 'sound/surgery/bone1.ogg'
 	success_sound = 'sound/surgery/bone3.ogg'
 
