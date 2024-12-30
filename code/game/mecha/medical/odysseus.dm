@@ -5,6 +5,7 @@
 	step_in = 2
 	max_temperature = 15000
 	max_integrity = 240
+	integrity_failure = 120
 	internal_damage_threshold = 35
 	deflect_chance = 15
 
