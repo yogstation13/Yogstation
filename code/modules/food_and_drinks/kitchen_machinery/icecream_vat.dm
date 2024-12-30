@@ -97,6 +97,7 @@
 		var/list/details = list()
 
 		//Get info from children
+		//Use of : to get info without instancing thanks to JohnFulpWillard
 		details["section_title"] = info_detail:section
 		details["section_text"] = info_detail:section_text
 
