@@ -95,17 +95,13 @@
 		
 		//Create needed list and variable for geting data for UI
 		var/list/details = list()
-		var/datum/info_tab/icecream_vat/item = new info_detail
 
 		//Get info from children
-		details["section_title"] = item.section
-		details["section_text"] = item.section_text
+		details["section_title"] = info_detail:section
+		details["section_text"] = info_detail:section_text
 
 		//Add info to data
 		data["info_tab"] += list(details)
-
-		//Delete item instance
-		qdel(item)
 
 	//Get content and capacity data
 	data["contents_length"] = contents.len
@@ -159,19 +155,13 @@
 	if(selected_cone == null)
 		. += span_notice("You can <b>Alt Click</b> to dispense a cone once one is selected.")
 	else
-		var/obj/item/reagent_containers/food/snacks/examine_cone = new selected_cone
-		. += span_notice("<b>Alt Click</b> to dispense [examine_cone.name].")
-		//Delete item instance
-		qdel(examine_cone)
+		. += span_notice("<b>Alt Click</b> to dispense [selected_cone:name].")
 
 	//Selected scoops
 	if(selected_scoop == null)
 		. += span_notice("No ice cream scoop currently selected.")
 	else
-		var/obj/item/reagent_containers/food/snacks/examine_scoop = new selected_scoop
-		. += span_notice("[examine_scoop.name] is currently selected.")
-		//Delete item instance
-		qdel(examine_scoop)
+		. += span_notice("[selected_scoop:name] is currently selected.")
 
 	//Scooping cone instruction
 	. += span_notice("<b>Right Click</b> to add a scoop to a cone.")
@@ -244,7 +234,7 @@
 		//Drop it on the floor and then move it into the user's hands
 		dispensed_item.forceMove(loc)
 		user.put_in_hands(dispensed_item)
-		user.visible_message(span_notice("[user] dispenses [ui_item.name] from [src]."), span_notice("You dispense [ui_item.name] from [src]."))
+		user.visible_message(span_notice("[user] dispenses [received_item:name] from [src]."), span_notice("You dispense [received_item:name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 	else
 		//For Alt click and because UI buttons are slow to disable themselves
@@ -261,13 +251,13 @@
 	//Deselecting
 	if(istype(ui_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 		if(selected_cone == ui_item.type)
-			user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
+			user.visible_message(span_notice("[user] deselects [received_item:name] from [src]."), span_notice("You deselect [received_item:name] from [src]."))
 			selected_cone = null
 			playsound(src, select_sound, 25, TRUE, extrarange = -3)
 
 			return
 	else if(selected_scoop == ui_item.type)
-		user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
+		user.visible_message(span_notice("[user] deselects [received_item:name] from [src]."), span_notice("You deselect [received_item:name] from [src]."))
 		selected_scoop = null
 		playsound(src, select_sound, 25, TRUE, extrarange = -3)
 
@@ -281,7 +271,7 @@
 		else
 			selected_scoop = ui_item.type
 		playsound(src, select_sound, 25, TRUE, extrarange = -3)
-		user.visible_message(span_notice("[user] sets [src] to dispense [ui_item.name]s."), span_notice("You set [src] to dispense [ui_item.name]s."))
+		user.visible_message(span_notice("[user] sets [src] to dispense [received_item:name]s."), span_notice("You set [src] to dispense [received_item:name]s."))
 	//Prevent them from selecting items that the vat does not have
 	else
 		user.balloon_alert(user, "All out!")
