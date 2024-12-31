@@ -10,7 +10,6 @@
 /datum/psionic_power/psychokinesis/psiblade
 	name =            "Psiblade/Psibaton"
 	cost =            10
-	cooldown =        3 SECONDS
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "psy_blade"
 	use_description = "Click on yourself with an empty hand to summon a psiblade, or psibaton if the user is a pacifist. The power the blade/baton will vary based on your mastery of the faculty."
@@ -62,7 +61,6 @@
 /datum/psionic_power/psychokinesis/tinker
 	name =            "Tinker"
 	cost =            5
-	cooldown =        10
 	min_rank =        PSI_RANK_OPERANT
 	icon_state = "psy_tinker"
 	use_description = "Click on yourself with an empty hand to summon psionic tinker tool. Use it in-hand to switch between tool types, different tools are available at different psi levels."
