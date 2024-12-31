@@ -1,0 +1,4 @@
+author: "ynot01"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed xenos & monkeys being unable to strip"
