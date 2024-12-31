@@ -107,6 +107,38 @@
 		TRAIT_RESISTDAMAGESLOWDOWN,
 	)
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------Gain--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+///Called when you get the antag datum, called only ONCE per antagonist.
+/datum/antagonist/bloodsucker/on_gain()
+	RegisterSignal(SSsunlight, COMSIG_SOL_RANKUP_BLOODSUCKERS, PROC_REF(sol_rank_up))
+	RegisterSignal(SSsunlight, COMSIG_SOL_NEAR_START, PROC_REF(sol_near_start))
+	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
+	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
+	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
+
+	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_blood))
+	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_blood))
+
+	if(IS_FAVORITE_VASSAL(owner.current)) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
+		bloodsucker_level_unspent = 0
+		show_in_roundend = FALSE
+	else
+		// Start Sunlight if first Bloodsucker
+		check_start_sunlight()
+		// Name and Titles
+		SelectFirstName()
+		SelectTitle(am_fledgling = TRUE)
+		SelectReputation(am_fledgling = TRUE)
+		// Objectives
+		forge_bloodsucker_objectives()
+
+	. = ..()
+	// Assign Powers
+	give_starting_powers()
+	assign_starting_stats()
+
 /**
  * Apply innate effects is everything given to the mob
  * When a body is tranferred, this is called on the new mob
@@ -118,6 +150,7 @@
 	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
 	ADD_TRAIT(current_mob, TRAIT_UNHOLY, type)
@@ -131,6 +164,38 @@
 	new /obj/structure/closet/crate/coffin(user_loc)
 	new /obj/structure/bloodsucker/vassalrack(user_loc)
 #endif
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Hud Handling----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/bloodsucker/proc/on_hud_created(datum/source)
+	SIGNAL_HANDLER
+
+	var/datum/hud/bloodsucker_hud = owner.current.hud_used
+
+	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(bloodsucker_hud)
+	bloodsucker_hud.infodisplay += blood_display
+
+	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(bloodsucker_hud)
+	bloodsucker_hud.infodisplay += vamprank_display
+
+	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(bloodsucker_hud)
+	bloodsucker_hud.infodisplay += sunlight_display
+
+	INVOKE_ASYNC(bloodsucker_hud, TYPE_PROC_REF(/datum/hud/, show_hud), bloodsucker_hud.hud_version)
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Removal-------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
+/datum/antagonist/bloodsucker/on_removal()
+	/// End Sunlight? (if last Vamp)
+	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
+	UnregisterSignal(owner, list(COMSIG_MIND_CHECK_ANTAG_RESOURCE, COMSIG_MIND_SPEND_ANTAG_RESOURCE))
+	clear_powers_and_stats()
+	check_cancel_sunlight() //check if sunlight should end
+	return ..()
 
 /**
  * Remove innate effects is everything given to the mob
@@ -155,94 +220,9 @@
 		QDEL_NULL(vamprank_display)
 		QDEL_NULL(sunlight_display)
 
-/datum/antagonist/bloodsucker/proc/on_hud_created(datum/source)
-	SIGNAL_HANDLER
-
-	var/datum/hud/bloodsucker_hud = owner.current.hud_used
-
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(bloodsucker_hud)
-	bloodsucker_hud.infodisplay += blood_display
-
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(bloodsucker_hud)
-	bloodsucker_hud.infodisplay += vamprank_display
-
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(bloodsucker_hud)
-	bloodsucker_hud.infodisplay += sunlight_display
-
-	INVOKE_ASYNC(bloodsucker_hud, TYPE_PROC_REF(/datum/hud/, show_hud), bloodsucker_hud.hud_version)
-
-/datum/antagonist/bloodsucker/get_admin_commands()
-	. = ..()
-	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp))
-	if(bloodsucker_level_unspent >= 1)
-		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
-
-	if(broke_masquerade)
-		.["Fix Masquerade"] = CALLBACK(src, PROC_REF(fix_masquerade))
-	else
-		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
-
-	if(!my_clan)
-		.["Force Clan"] = CALLBACK(src, PROC_REF(force_clan))
-
-/datum/antagonist/bloodsucker/proc/force_clan(mob/admin)
-	if(my_clan)	
-		return
-
-	var/list/clans = list()
-	for(var/datum/bloodsucker_clan/all_clans as anything in typesof(/datum/bloodsucker_clan))
-		if(initial(all_clans.joinable_clan))
-			clans |= all_clans
-	clans |= "vvv Not regularly joinable vvv"
-	clans |= typesof(/datum/bloodsucker_clan)
-		
-	var/chosen = tgui_input_list(admin, "Select which clan to force on the target.", "Select Clan", clans)
-	if(!chosen || !ispath(chosen, /datum/bloodsucker_clan))
-		return
-	
-	if(QDELETED(src) || QDELETED(owner.current))
-		return
-	if(my_clan)
-		to_chat(admin, span_warning("error, clan already picked"))
-		return
-
-	my_clan = new chosen(src)
-	owner.announce_objectives()
-
-///Called when you get the antag datum, called only ONCE per antagonist.
-/datum/antagonist/bloodsucker/on_gain()
-	RegisterSignal(SSsunlight, COMSIG_SOL_RANKUP_BLOODSUCKERS, PROC_REF(sol_rank_up))
-	RegisterSignal(SSsunlight, COMSIG_SOL_NEAR_START, PROC_REF(sol_near_start))
-	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
-	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
-	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
-
-	if(IS_FAVORITE_VASSAL(owner.current)) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
-		bloodsucker_level_unspent = 0
-		show_in_roundend = FALSE
-	else
-		// Start Sunlight if first Bloodsucker
-		check_start_sunlight()
-		// Name and Titles
-		SelectFirstName()
-		SelectTitle(am_fledgling = TRUE)
-		SelectReputation(am_fledgling = TRUE)
-		// Objectives
-		forge_bloodsucker_objectives()
-
-	. = ..()
-	// Assign Powers
-	give_starting_powers()
-	assign_starting_stats()
-
-/// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
-/datum/antagonist/bloodsucker/on_removal()
-	/// End Sunlight? (if last Vamp)
-	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
-	clear_powers_and_stats()
-	check_cancel_sunlight() //check if sunlight should end
-	return ..()
-
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Body Transfer----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
 	. = ..()
 	if(istype(new_body, /mob/living/simple_animal/hostile/bloodsucker) || istype(old_body, /mob/living/simple_animal/hostile/bloodsucker))
@@ -286,7 +266,9 @@
 		old_body.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 	new_body.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
 
-
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Greet and farewell--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
 	var/fullname = return_full_name(TRUE)
@@ -299,12 +281,31 @@
 
 /datum/antagonist/bloodsucker/farewell()
 	to_chat(owner.current, span_userdanger("<FONT size = 3>With a snap, your curse has ended. You are no longer a Bloodsucker. You live once more!</FONT>"))
-	// Refill with Blood so they don't instantly die.
-	if(ishuman(owner.current))
-		var/mob/living/carbon/user = owner.current
-		if(!LAZYFIND(user.dna.species.species_traits, NOBLOOD))
-			owner.current.blood_volume = max(owner.current.blood_volume, BLOOD_VOLUME_NORMAL(owner.current))
 
+////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------Ability use----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/bloodsucker/proc/has_blood(datum/mind, flag = ANTAG_RESOURCE_BLOODSUCKER, amt)
+	SIGNAL_HANDLER
+	if(flag != ANTAG_RESOURCE_BLOODSUCKER)
+		return FALSE
+	return bloodsucker_blood_volume >= amt
+
+/datum/antagonist/bloodsucker/proc/use_psi(datum/mind, list/resource_costs)
+	SIGNAL_HANDLER
+	if(!LAZYLEN(resource_costs))
+		return
+	var/amount = resource_costs[ANTAG_RESOURCE_BLOODSUCKER]
+	if(!amount)
+		return
+	if(!has_blood(amt = amount))
+		return
+	bloodsucker_blood_volume -= amount
+	update_hud()
+	return TRUE
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Admin Tools-------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 // Called when using admin tools to give antag status, admin spawned bloodsuckers don't get turned human if plasmaman.
 /datum/antagonist/bloodsucker/admin_add(datum/mind/new_owner, mob/admin)
 	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Bloodsucker Rank", bloodsucker_level_unspent) as null | num
@@ -315,6 +316,61 @@
 	message_admins("[key_name_admin(usr)][msg]")
 	log_admin("[key_name(usr)][msg]")
 	new_owner.add_antag_datum(src)
+
+/datum/antagonist/bloodsucker/get_admin_commands()
+	. = ..()
+	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp))
+	if(bloodsucker_level_unspent >= 1)
+		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
+
+	if(broke_masquerade)
+		.["Fix Masquerade"] = CALLBACK(src, PROC_REF(fix_masquerade))
+	else
+		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
+
+	if(!my_clan)
+		.["Force Clan"] = CALLBACK(src, PROC_REF(force_clan))
+
+/datum/antagonist/bloodsucker/proc/force_clan(mob/admin)
+	if(my_clan)	
+		return
+
+	var/list/clans = list()
+	for(var/datum/bloodsucker_clan/all_clans as anything in typesof(/datum/bloodsucker_clan))
+		if(initial(all_clans.joinable_clan))
+			clans |= all_clans
+	clans |= "vvv Not regularly joinable vvv"
+	clans |= typesof(/datum/bloodsucker_clan)
+		
+	var/chosen = tgui_input_list(admin, "Select which clan to force on the target.", "Select Clan", clans)
+	if(!chosen || !ispath(chosen, /datum/bloodsucker_clan))
+		return
+	
+	if(QDELETED(src) || QDELETED(owner.current))
+		return
+	if(my_clan)
+		to_chat(admin, span_warning("error, clan already picked"))
+		return
+
+	my_clan = new chosen(src)
+	owner.announce_objectives()
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Bloodsucker UI-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/bloodsucker/ui_static_data(mob/user)
+	var/list/data = list()
+	//we don't need to update this that much.
+	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+		var/list/power_data = list()
+
+		power_data["power_name"] = power.name
+		power_data["power_explanation"] = power.power_explanation
+		power_data["power_icon"] = power.button_icon_state
+
+		data["power"] += list(power_data)
+
+	return data + ..()
 
 /datum/antagonist/bloodsucker/ui_data(mob/user)
 	var/list/data = list()
@@ -330,25 +386,6 @@
 
 	return data
 
-/datum/antagonist/bloodsucker/ui_static_data(mob/user)
-	var/list/data = list()
-	//we don't need to update this that much.
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		var/list/power_data = list()
-
-		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power.power_explanation
-		power_data["power_icon"] = power.button_icon_state
-
-		data["power"] += list(power_data)
-
-	return data + ..()
-
-/datum/antagonist/bloodsucker/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/simple/bloodsucker_icons),
-	)
-
 /datum/antagonist/bloodsucker/ui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
@@ -360,6 +397,14 @@
 			ui?.send_full_update(force = TRUE)
 			return
 
+/datum/antagonist/bloodsucker/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/bloodsucker_icons),
+	)
+
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Roundend report-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/bloodsucker/roundend_report()
 	var/list/report = list()
 
@@ -410,6 +455,9 @@
 
 	return report.Join("<br>")
 
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Credits flavour---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /// Evaluates the conditions of the bloodsucker at the end of each round to pick a flavor message to add
 /datum/antagonist/bloodsucker/proc/get_flavor(objectives_complete, optional_objectives_complete)
 	var/list/flavor = list()
@@ -418,63 +466,60 @@
 	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"
+
 	//i used pick() in case anyone wants to add more messages as time goes on
-	if(objectives_complete && optional_objectives_complete && broke_masquerade && escaped)
-		//finish all objectives, break masquerade, evac
-		flavor_message += pick(list(
-			"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. \
-			News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
-		))
-		message_color = "#008000"
-	else if(objectives_complete && optional_objectives_complete && broke_masquerade && alive)
-		//finish all objectives, break masquerade, don't evac
-		flavor_message += pick(list(
-			"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. \
-			Let the Camarilla and the witchers come. You will be waiting."
-		))
-		message_color = "#008000"
-	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && escaped)
-		//finish all objectives, don't break masquerade, escape
-		flavor_message += pick(list(
-			"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. \
-			High society awaits: a delicacy you have earned."
-		))
-		message_color = "#008000"
-	else if(objectives_complete && optional_objectives_complete && !broke_masquerade && alive)
-		//finish all objectives, don't break masquerade, don't escape
-		flavor_message += pick(list(
-			"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. \
-			Who knows? If they prove to elevate your power enough, perhaps a new bloodline might be founded here."
-		))
-		message_color = "#008000"
-	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && escaped)
-		//finish primary objectives only, break masquerade, escape
-		flavor_message += pick(list(
-			"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
-		))
-		message_color = "#517fff"
-	else if(objectives_complete && !optional_objectives_complete && broke_masquerade && alive)
-		//finish primary objectives only, break masquerade, don't escape
-		flavor_message += pick(list(
-			"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
-		))
-	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && escaped)
-		//finish primary objectives only, don't break masquerade, escape
-		flavor_message += pick(list(
-			"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
-		))
-		message_color = "#517fff"
-	else if(objectives_complete && !optional_objectives_complete && !broke_masquerade && alive)
-		//finish primary objectives only, don't break masquerade, don't escape
-		flavor_message += pick(list(
-			"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
-		))
-		message_color = "#517fff"
-	else
-		//perish or just fuck up and fail your primary objectives
+	if(objectives_complete)
+		if(optional_objectives_complete)
+			message_color = "#008000"
+			if(broke_masquerade)
+				if(escaped)
+					flavor_message += pick(list(
+						"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. \
+						News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
+					))
+				else if(alive)
+					flavor_message += pick(list(
+						"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. \
+						Let the Camarilla and the witchers come. You will be waiting."
+					))
+			else
+				if(escaped)
+					flavor_message += pick(list(
+						"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. \
+						High society awaits: a delicacy you have earned."
+					))
+				else if(alive)
+					flavor_message += pick(list(
+						"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. \
+						Who knows? If they prove to elevate your power enough, perhaps a new bloodline might be founded here."
+					))
+		else
+			message_color = "#517fff"
+			if(broke_masquerade)
+				if(escaped)
+					flavor_message += pick(list(
+						"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
+					))
+				else if(alive)
+					flavor_message += pick(list(
+						"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
+					))
+			else
+				if(escaped)
+					flavor_message += pick(list(
+						"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
+					))
+				else if(alive)
+					flavor_message += pick(list(
+						"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
+					))
+
+	if(!message_color || (!alive && !escaped)) //perish or just fuck up and fail your primary objectives
+		message_color = "#ef2f3c"
 		flavor_message += pick(list(
 			"Thus ends the story of [return_full_name(TRUE)]. No doubt future generations will look back on your legacy and reflect on the lessons of the past. If they remember you at all."
 		))
+
 	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
 	return "<div>[flavor.Join("<br>")]</div>"
 

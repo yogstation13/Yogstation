@@ -414,11 +414,8 @@
 	target.resting = FALSE
 	target.apply_status_effect(STATUS_EFFECT_SPEEDBOOST, -0.5, 15 SECONDS, type)
 	target.visible_message(span_danger("Streaks of velvet light crack out of [target]'s skin."), span_velvet("Power roars through you like a raging storm, pushing you to your absolute limits."))
-	var/obj/item/cuffs = target.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
-	var/obj/item/legcuffs = target.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
-	if(target.handcuffed || target.legcuffed)
-		target.clear_cuffs(cuffs, TRUE, TRUE)
-		target.clear_cuffs(legcuffs, TRUE, TRUE)
+	if(target.uncuff())
+		target.uncuff()
 	playsound(get_turf(target),'yogstation/sound/creatures/darkspawn_death.ogg', 80, 1)
 	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(owner)
 	if(darkspawn)

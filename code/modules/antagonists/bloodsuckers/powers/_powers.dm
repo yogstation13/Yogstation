@@ -43,6 +43,7 @@
 	///Path to the ascended version of the power. For Lasombra bloodsucker powers
 	var/ascended_power = null
 
+
 // Modify description to add cost.
 /datum/action/cooldown/bloodsucker/New(Target)
 	. = ..()
@@ -87,29 +88,6 @@
 	ActivatePower()
 	if(!(power_flags & BP_AM_TOGGLE) || !active)
 		StartCooldown()
-	return TRUE
-
-/datum/action/cooldown/bloodsucker/proc/can_pay_cost()
-	if(!owner || !owner.mind)
-		return FALSE
-	// Cooldown?
-	if(!COOLDOWN_FINISHED(src, next_use_time))
-		owner.balloon_alert(owner, "power unavailable!")
-		to_chat(owner, "[src] on cooldown!")
-		return FALSE
-	if(!bloodsuckerdatum_power)
-		var/mob/living/living_owner = owner
-		if(living_owner.blood_volume < bloodcost)
-			to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
-			return FALSE
-		return TRUE
-
-	// Have enough blood? Bloodsuckers in a Frenzy don't need to pay them
-	if(bloodsuckerdatum_power.frenzied)
-		return TRUE
-	if(bloodsuckerdatum_power.bloodsucker_blood_volume < bloodcost)
-		to_chat(owner, span_warning("You need at least [bloodcost] blood to activate [name]"))
-		return FALSE
 	return TRUE
 
 ///Called when the Power is upgraded.
@@ -234,3 +212,9 @@
 /datum/action/cooldown/bloodsucker/proc/remove_after_use()
 	bloodsuckerdatum_power?.powers -= src
 	Remove(owner)
+
+
+
+/datum/bloodsucker_power
+	var/ability_path
+	var/datum/action/cooldown/spell/instance

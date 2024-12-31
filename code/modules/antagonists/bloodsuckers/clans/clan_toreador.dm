@@ -11,20 +11,6 @@
 	control_type = BLOODSUCKER_CONTROL_METAL
 
 
-/datum/objective/toreador_clan_objective
-	name = "leader"
-	martyr_compatible = TRUE
-
-/datum/objective/toreador_clan_objective/New()
-	target_amount = rand(2, 3)
-	..()
-	update_explanation_text()
-
-/datum/objective/toreador_clan_objective/check_completion()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(LAZYLEN(bloodsuckerdatum?.vassals) >= target_amount)
-		return TRUE
-	return FALSE
 
 
 /datum/bloodsucker_clan/toreador/New(datum/antagonist/bloodsucker/owner_datum)
@@ -46,9 +32,6 @@
 	UnregisterSignal(SSdcs, COMSIG_BLOODSUCKER_BROKE_MASQUERADE)
 	return ..()
 
-/datum/bloodsucker_clan/toreador/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
-	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/mesmerize)
-
 /datum/bloodsucker_clan/toreador/proc/on_bloodsucker_broke_masquerade(datum/antagonist/bloodsucker/masquerade_breaker)
 	SIGNAL_HANDLER
 	to_chat(bloodsuckerdatum.owner.current, span_userdanger("[masquerade_breaker.owner.current] has broken the Masquerade! Ensure [masquerade_breaker.owner.current.p_they()] [masquerade_breaker.owner.current.p_are()] eliminated at all costs!"))
@@ -58,3 +41,27 @@
 	masquerade_objective.explanation_text = "Ensure [masquerade_breaker.owner.current], who has broken the Masquerade, succumbs to Final Death."
 	bloodsuckerdatum.objectives += masquerade_objective
 	bloodsuckerdatum.owner.announce_objectives()
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Vassal----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/bloodsucker_clan/toreador/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
+	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/mesmerize)
+
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Objective--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/objective/toreador_clan_objective
+	name = "leader"
+	martyr_compatible = TRUE
+
+/datum/objective/toreador_clan_objective/New()
+	target_amount = rand(2, 3)
+	..()
+	update_explanation_text()
+
+/datum/objective/toreador_clan_objective/check_completion()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.current.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(LAZYLEN(bloodsuckerdatum?.vassals) >= target_amount)
+		return TRUE
+	return FALSE

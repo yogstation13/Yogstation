@@ -49,6 +49,9 @@
 	var/mob/living/carbon/human/user = owner
 	bloodsuckerdatum = IS_BLOODSUCKER(user)
 
+	if(!bloodsuckerdatum)
+		return FALSE
+
 	// Disable ALL Powers and notify their entry
 	bloodsuckerdatum.DisableAllPowers(forced = TRUE)
 	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! Your skin starts sizzling...."))
@@ -60,9 +63,11 @@
 
 	// Give the other Frenzy effects
 	owner.add_traits(list(TRAIT_MUTE, TRAIT_DEAF, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_STUNIMMUNE), FRENZY_TRAIT)
+
 	if(user.IsAdvancedToolUser())
 		was_tooluser = TRUE
 		ADD_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
+		
 	owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
 	bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)

@@ -31,7 +31,6 @@
 	// Standard Updates
 	SEND_SIGNAL(src, COMSIG_BLOODSUCKER_ON_LIFETICK)
 	INVOKE_ASYNC(src, PROC_REF(HandleStarving))
-	INVOKE_ASYNC(src, PROC_REF(update_blood))
 
 	INVOKE_ASYNC(src, PROC_REF(update_hud))
 
@@ -241,37 +240,9 @@
 	
 	// Good to go!
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//			DEATH
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/// FINAL DEATH
-/datum/antagonist/bloodsucker/proc/HandleDeath()
-	// Not "Alive"?
-	if(!owner.current)
-		FinalDeath()
-		return
-	// Fire Damage and Fledgeling? (above double health)
-	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2 && bloodsucker_level < 4)
-		FinalDeath()
-		return
-	// Fire Damage and Daytime?
-	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2 && (SSsunlight.sunlight_active || frenzied))
-		FinalDeath()
-		return
-	// Staked while "Temp Death" or Asleep
-	if(owner.current.StakeCanKillMe() && owner.current.am_staked())
-		FinalDeath()
-		return
-	// Temporary Death? Convert to Torpor.
-	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
-		return
-	to_chat(owner.current, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
-	check_begin_torpor(TRUE)
-
-
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Starvation------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/bloodsucker/proc/HandleStarving() // I am thirsty for blood!
 	// Nutrition - The amount of blood is how full we are.
 	owner.current.set_nutrition(min(bloodsucker_blood_volume, NUTRITION_LEVEL_FED))
@@ -292,46 +263,7 @@
 	if(bloodsucker_blood_volume < (FRENZY_THRESHOLD_ENTER + humanity_lost * 10) && !frenzied)
 		if(!iscarbon(owner.current))
 			return
-		if(my_clan?.get_clan() == CLAN_GANGREL)
-			var/mob/living/carbon/user = owner.current
-			switch(frenzies)
-				if(0)
-					owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
-				if(1)
-					to_chat(owner, span_warning("You start feeling hungrier, you feel like a normal frenzy won't satiate it enough anymore."))
-					owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
-				if(2 to INFINITY)
-					if(do_after(user, 2 SECONDS, user, IGNORE_ALL))
-						playsound(user.loc, 'sound/weapons/slash.ogg', 25, 1)
-						to_chat(user, span_warning("<i><b>You skin rips and tears.</b></i>"))
-						if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
-							playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
-							to_chat(user, span_warning("<i><b>You heart pumps blackened blood into your veins as your skin turns into fur.</b></i>"))
-							if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
-								playsound(user.loc, 'sound/weapons/slice.ogg', 25, 1)
-								to_chat(user, span_boldnotice("<i><b><FONT size = 3>YOU HAVE AWOKEN.</b></i>"))
-								var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
-								if(!ww || ww.stat == DEAD)
-									AddBloodVolume(560 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
-									ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
-									user.forceMove(ww)
-									ww.bloodsucker = user
-									user.mind.transfer_to(ww)
-									var/list/wolf_powers = list(new /datum/action/cooldown/bloodsucker/targeted/feast,)
-									for(var/datum/action/cooldown/bloodsucker/power in powers)
-										if(istype(power, /datum/action/cooldown/bloodsucker/fortitude))
-											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/wolfortitude
-										if(istype(power, /datum/action/cooldown/bloodsucker/targeted/lunge))
-											wolf_powers += new /datum/action/cooldown/bloodsucker/targeted/pounce
-										if(istype(power, /datum/action/cooldown/bloodsucker/cloak))
-											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/howl
-										if(istype(power, /datum/action/cooldown/bloodsucker/targeted/trespass))
-											wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/rabidism
-									for(var/datum/action/cooldown/bloodsucker/power in wolf_powers) 
-										power.Grant(ww)
-								frenzies ++
-		else
-			owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+		INVOKE_ASYNC(src, PROC_REF(enter_frenzy))
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD(owner.current))
 		additional_regen = 0.1
 	else if(bloodsucker_blood_volume < BLOOD_VOLUME_OKAY(owner.current))
@@ -343,6 +275,50 @@
 	else
 		additional_regen = 0.5
 
+/datum/antagonist/bloodsucker/proc/enter_frenzy()
+	if(!my_clan?.get_clan() || my_clan?.get_clan() != CLAN_GANGREL)
+		owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+		return
+	var/mob/living/carbon/user = owner.current
+	switch(frenzies)
+		if(0)
+			owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+		if(1)
+			to_chat(owner, span_warning("You start feeling hungrier, you feel like a normal frenzy won't satiate it enough anymore."))
+			owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
+		if(2 to INFINITY)
+			if(do_after(user, 2 SECONDS, user, IGNORE_ALL))
+				playsound(user.loc, 'sound/weapons/slash.ogg', 25, 1)
+				to_chat(user, span_warning("<i><b>You skin rips and tears.</b></i>"))
+				if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
+					playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
+					to_chat(user, span_warning("<i><b>You heart pumps blackened blood into your veins as your skin turns into fur.</b></i>"))
+					if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
+						playsound(user.loc, 'sound/weapons/slice.ogg', 25, 1)
+						to_chat(user, span_boldnotice("<i><b><FONT size = 3>YOU HAVE AWOKEN.</b></i>"))
+						var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
+						if(!ww || ww.stat == DEAD)
+							AddBloodVolume(560 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
+							ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
+							user.forceMove(ww)
+							ww.bloodsucker = user
+							user.mind.transfer_to(ww)
+							var/list/wolf_powers = list(new /datum/action/cooldown/bloodsucker/targeted/feast)
+							for(var/datum/action/cooldown/bloodsucker/power in powers)
+								if(istype(power, /datum/action/cooldown/bloodsucker/fortitude))
+									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/wolfortitude
+								if(istype(power, /datum/action/cooldown/bloodsucker/targeted/lunge))
+									wolf_powers += new /datum/action/cooldown/bloodsucker/targeted/pounce
+								if(istype(power, /datum/action/cooldown/bloodsucker/cloak))
+									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/howl
+								if(istype(power, /datum/action/cooldown/bloodsucker/targeted/trespass))
+									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/rabidism
+							for(var/datum/action/cooldown/bloodsucker/power in wolf_powers) 
+								power.Grant(ww)
+
+////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------Day night cycle---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /// Cycle through all vamp antags and check if they're inside a closet.
 /datum/antagonist/bloodsucker/proc/handle_sol()
 	SIGNAL_HANDLER
@@ -438,6 +414,9 @@
 		message_admins("Sol has been deleted due to the lack of Bloodsuckers")
 		SSsunlight.can_fire = FALSE
 
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Torpor--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/bloodsucker/proc/check_begin_torpor(SkipChecks = FALSE)
 	/// Are we entering Torpor via Sol/Death? Then entering it isnt optional!
 	if(SkipChecks)
@@ -468,48 +447,63 @@
 			torpor_end()
 
 /datum/antagonist/bloodsucker/proc/torpor_begin()
-	var/mob/living/carbon/human/bloodsucker = owner.current
 	to_chat(owner.current, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
+
+	var/mob/living/carbon/human/bloodsucker = owner.current
+	if(istype(bloodsucker))
+		bloodsucker.physiology.brute_mod *= 0
+		bloodsucker.physiology.burn_mod *= 0.75
+		
 	// Force them to go to sleep
 	REMOVE_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 	// Without this, you'll just keep dying while you recover.
 	owner.current.add_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
-	bloodsucker.physiology.brute_mod *= 0
-	bloodsucker.physiology.burn_mod *= 0.75
 	owner.current.set_timed_status_effect(0 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
 	// Disable ALL Powers
 	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/torpor_end()
 	var/mob/living/carbon/human/bloodsucker = owner.current
-	owner.current.grab_ghost()
-	to_chat(owner.current, span_warning("You have recovered from Torpor."))
-	bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
-	bloodsucker.physiology.burn_mod = initial(bloodsucker.physiology.brute_mod)
+	if(istype(bloodsucker))
+		bloodsucker.physiology.brute_mod = initial(bloodsucker.physiology.brute_mod)
+		bloodsucker.physiology.burn_mod = initial(bloodsucker.physiology.brute_mod)
+
 	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
 	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
 		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
+
 	heal_vampire_organs()
+	owner.current.grab_ghost()
+	to_chat(owner.current, span_warning("You have recovered from Torpor."))
 
 	SEND_SIGNAL(src, BLOODSUCKER_EXIT_TORPOR)
 
-/// Makes your blood_volume look like your bloodsucker blood, unless you're Masquerading.
-/datum/antagonist/bloodsucker/proc/update_blood()
-	if(!iscarbon(owner.current))
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------DEATH---------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/// FINAL DEATH
+/datum/antagonist/bloodsucker/proc/HandleDeath()
+	// Not "Alive"?
+	if(!owner.current)
+		FinalDeath()
 		return
-	var/mob/living/carbon/bloodsucker = owner.current
-	if(LAZYFIND(bloodsucker.dna.species.species_traits, NOBLOOD))
+	// Fire Damage and Fledgeling? (above double health)
+	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2 && bloodsucker_level < 4)
+		FinalDeath()
 		return
-	//If we're on Masquerade, we appear to have full blood, unless we are REALLY low, in which case we don't look as bad.
-	if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
-		if(bloodsucker_blood_volume >= BLOOD_VOLUME_OKAY(owner.current))
-			owner.current.blood_volume = initial(bloodsucker_blood_volume)
-		else if(bloodsucker_blood_volume >= BLOOD_VOLUME_BAD(owner.current))
-			owner.current.blood_volume = BLOOD_VOLUME_SAFE(owner.current)
-		else
-			owner.current.blood_volume = BLOOD_VOLUME_OKAY(owner.current)
+	// Fire Damage and Daytime?
+	if(owner.current.getFireLoss() >= owner.current.maxHealth * 2 && (SSsunlight.sunlight_active || frenzied))
+		FinalDeath()
 		return
-	owner.current.blood_volume = bloodsucker_blood_volume
+	// Staked while "Temp Death" or Asleep
+	if(owner.current.StakeCanKillMe() && owner.current.am_staked())
+		FinalDeath()
+		return
+	// Temporary Death? Convert to Torpor.
+	if(HAS_TRAIT(owner.current, TRAIT_NODEATH))
+		return
+	to_chat(owner.current, span_danger("Your immortal body will not yet relinquish your soul to the abyss. You enter Torpor."))
+	check_begin_torpor(TRUE)
 
 /// Gibs the Bloodsucker, roundremoving them.
 /datum/antagonist/bloodsucker/proc/FinalDeath()
@@ -519,15 +513,17 @@
 
 	free_all_vassals()
 	DisableAllPowers(forced = TRUE)
-	if(!iscarbon(owner.current))
-		owner.current.gib(TRUE, FALSE, FALSE)
+	if(!iscarbon(user))
+		user.gib(TRUE, FALSE, FALSE)
 		return
+
 	// Drop anything in us and play a tune
 	var/mob/living/carbon/user = owner.current
-	owner.current.drop_all_held_items()
-	owner.current.unequip_everything()
+	user.drop_all_held_items()
+	user.unequip_everything()
 	user.remove_all_embedded_objects()
-	playsound(owner.current, 'sound/effects/tendril_destroyed.ogg', 40, TRUE)
+	playsound(user, 'sound/effects/tendril_destroyed.ogg', 40, TRUE)
+
 	var/unique_death = SEND_SIGNAL(src, BLOODSUCKER_FINAL_DEATH)
 	if(unique_death & DONT_DUST)
 		return
@@ -547,6 +543,9 @@
 		user.gib(TRUE, FALSE, FALSE)
 
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------MOODLETS--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 // Bloodsuckers moodlets //
 /datum/mood_event/drankblood
 	description = "<span class='nicegreen'>I have fed greedily from that which nourishes me.</span>\n"

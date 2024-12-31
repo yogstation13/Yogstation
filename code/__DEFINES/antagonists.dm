@@ -208,3 +208,4 @@
 // Antag resource defines
 #define ANTAG_RESOURCE_DARKSPAWN "psi"
 #define ANTAG_RESOURCE_VAMPIRE "blood"
+#define ANTAG_RESOURCE_BLOODSUCKER "blood" //these having the same name means that if someone gets both antags, they'll consume both resource types, which isn't ideal, but they're both blood so idk
