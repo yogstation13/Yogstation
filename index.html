@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(946 modules,
-    3288/11275 macros, 29.2%)</aside></h3>
+    3304/11297 macros, 29.2%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -181,6 +181,7 @@ General Public License version 3.
     <li><a href="code/__DEFINES/security.html" title="code&#x2F;__DEFINES&#x2F;security">security</a></li>
     <li><a href="code/__DEFINES/shuttles.html" title="code&#x2F;__DEFINES&#x2F;shuttles">shuttles</a></li>
     <li><a href="code/__DEFINES/sight.html" title="code&#x2F;__DEFINES&#x2F;sight">sight</a></li>
+    <li><a href="code/__DEFINES/skills.html" title="code&#x2F;__DEFINES&#x2F;skills">skills</a></li>
     <li><a href="code/__DEFINES/sort_types.html" title="code&#x2F;__DEFINES&#x2F;sort_types">sort_types</a></li>
     <li><a href="code/__DEFINES/sound.html" title="code&#x2F;__DEFINES&#x2F;sound">sound</a></li>
     <li><a href="code/__DEFINES/space.html" title="code&#x2F;__DEFINES&#x2F;space">space</a></li>
@@ -359,7 +360,6 @@ SPDX-License-Identifier: MIT</li>
     <li><a href="code/datums/components/internal_cam.html" title="code&#x2F;datums&#x2F;components&#x2F;internal_cam">internal_cam</a></li>
     <li><a href="code/datums/components/light_eater.html" title="code&#x2F;datums&#x2F;components&#x2F;light_eater">light_eater</a></li>
     <li><a href="code/datums/components/material_container.html" title="code&#x2F;datums&#x2F;components&#x2F;material_container">material_container</a> - This datum should be used for handling mineral contents of machines and whatever else is supposed to hold minerals and make use of them.</li>
-    <li><a href="code/datums/components/mech_pilot.html" title="code&#x2F;datums&#x2F;components&#x2F;mech_pilot">mech_pilot</a></li>
     <li><a href="code/datums/components/mind_linker.html" title="code&#x2F;datums&#x2F;components&#x2F;mind_linker">mind_linker</a></li>
     <li><a href="code/datums/components/overlay_lighting.html" title="code&#x2F;datums&#x2F;components&#x2F;overlay_lighting">overlay_lighting</a></li>
     <li><a href="code/datums/components/phylactery.html" title="code&#x2F;datums&#x2F;components&#x2F;phylactery">phylactery</a></li>
@@ -1364,7 +1364,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1357 detailed/2299 documented/31015 total, 7.4%)</aside></h3>
+<aside>(1357 detailed/2299 documented/31016 total, 7.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1895,7 +1895,6 @@ Applied to the plane master group that owns them</li>
     <li><a href="datum/component/lingering.html" title="&#x2F;datum&#x2F;component&#x2F;lingering">lingering</a></li>
     <li><a href="datum/component/liquids_interaction.html" title="&#x2F;datum&#x2F;component&#x2F;liquids_interaction">liquids_interaction</a> - This element allows for items to interact with liquids on turfs.</li>
     <li><a href="datum/component/material_container.html" title="&#x2F;datum&#x2F;component&#x2F;material_container">material_container</a></li>
-    <li><a href="datum/component/mech_pilot.html" title="&#x2F;datum&#x2F;component&#x2F;mech_pilot">mech_pilot</a> - A component for clothes that affect one's ability to pilot mechs</li>
     <li><a href="datum/component/mind_linker.html" title="&#x2F;datum&#x2F;component&#x2F;mind_linker">Mind Linker</a> - A component that handles linking multiple player's minds
 into one network which allows them to talk directly to one another.
 Like telepathy but for multiple people at once!</li>
@@ -3421,7 +3420,7 @@ REQ ANY ///</li>
     <li><a href="obj/effect/meteor/cluster.html" title="&#x2F;obj&#x2F;effect&#x2F;meteor&#x2F;cluster">cluster meteor</a></li>
     </ul></li>
     <li><a href="obj/effect/mine.html" title="&#x2F;obj&#x2F;effect&#x2F;mine">dummy mine</a></li>
-    <li class="has-children"><span class="no-substance">mob_spawn&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human">human</span><ul class="index-tree">
+    <li class="has-children"><span class="no-substance">mob_spawn&#x2F;</span><a href="obj/effect/mob_spawn/human.html" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human">human</a><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;bridgeofficer">Bridge Officer</span> - Officers+Nanotrasen Security</li>
     <li><span class="no-substance">corpse&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;corpse&#x2F;assistant">Assistant</span> - Civilians</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;mob_spawn&#x2F;human&#x2F;gasstation_clerk">Gas Station Clerk</span> - Gas Station Clerk</li>
@@ -4547,7 +4546,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/e205931367ff9b753362092ec289fb5d1c5a5d2b">e205931</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/51d07b5aae4cce8f11bbad9a8087f5fc83027657">51d07b5</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
