@@ -3926,6 +3926,7 @@
 #include "code\modules\tgui\states\physical.dm"
 #include "code\modules\tgui\states\pilot.dm"
 #include "code\modules\tgui\states\self.dm"
+#include "code\modules\tgui\states\strip.dm"
 #include "code\modules\tgui\states\zlevel.dm"
 #include "code\modules\tgui_input\alert.dm"
 #include "code\modules\tgui_input\checkboxes.dm"
