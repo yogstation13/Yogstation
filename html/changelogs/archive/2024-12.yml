@@ -514,3 +514,8 @@
       :cl:'
   Shoddd:
   - rscdel: Removed blindfold from maid costume
+2024-12-31:
+  DexeeXI:
+  - bugfix: made the bows in ashieland actually longbows like they should be.
+  Shoddd:
+  - bugfix: hypo and hyper algesia quirk now incompat
