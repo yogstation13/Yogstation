@@ -30,6 +30,7 @@
 	antagpanel_category = "Drifting Contractor"
 	preview_outfit = /datum/outfit/contractor_preview
 	job_rank = ROLE_DRIFTING_CONTRACTOR
+	hud_icon = 'monkestation/icons/mob/huds/antag_hud.dmi'
 	antag_hud_name = "contractor"
 	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE

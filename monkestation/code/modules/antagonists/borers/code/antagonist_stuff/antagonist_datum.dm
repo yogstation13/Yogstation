@@ -61,6 +61,7 @@
 	return finish_preview_icon(icon('monkestation/code/modules/antagonists/borers/icons/animal.dmi', "brainslug"))
 
 /datum/antagonist/cortical_borer/hivemind
+	name = "Hivemind Cortical Borer"
 	roundend_category = "cortical borers"
 	borer_mob_type = /mob/living/basic/cortical_borer
 

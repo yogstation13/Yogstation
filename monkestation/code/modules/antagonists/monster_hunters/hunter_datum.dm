@@ -3,7 +3,7 @@
 	roundend_category = "Monster Hunters"
 	antagpanel_category = "Monster Hunter"
 	job_rank = ROLE_MONSTERHUNTER
-	hud_icon = 'monkestation/icons/mob/huds/antags/monster_hunter.dmi'
+	hud_icon = 'monkestation/icons/mob/huds/antag_hud.dmi'
 	antag_hud_name = "hunter"
 	preview_outfit = /datum/outfit/monsterhunter
 	antag_moodlet = /datum/mood_event/monster_hunter

@@ -6227,6 +6227,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/duct,
 /turf/open/floor/iron/dark,
 /area/station/science/xenobiology)
 "bUQ" = (
@@ -14319,11 +14320,10 @@
 /turf/open/floor/engine/n2,
 /area/station/engineering/atmos)
 "elp" = (
-/obj/structure/disposaloutlet,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
 /obj/structure/lattice/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/space/basic,
 /area/space/nearstation)
 "elt" = (
@@ -18763,7 +18763,6 @@
 	name = "Blueshield's Office"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
-/obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "fGn" = (
@@ -19378,14 +19377,14 @@
 	name = "Secure Environment";
 	id = "SecureEnvironment"
 	},
-/obj/machinery/button/door/directional/south{
-	pixel_y = -25;
-	pixel_x = 6;
-	id = "Blueshield"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
+/obj/machinery/button/curtain{
+	pixel_x = 5;
+	id = "blueshieldcurtain";
+	pixel_y = -25
+	},
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/blueshield)
 "fQi" = (
@@ -19785,6 +19784,7 @@
 /area/station/commons/fitness/recreation)
 "fWz" = (
 /obj/structure/chair/comfy/brown,
+/obj/effect/landmark/start/blueshield,
 /turf/open/floor/carpet,
 /area/station/command/meeting_room/council)
 "fWG" = (
@@ -26578,6 +26578,7 @@
 /obj/effect/turf_decal/trimline/purple/corner{
 	dir = 4
 	},
+/obj/machinery/duct,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "hYg" = (
@@ -26971,6 +26972,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/nanotrasen_representative,
 /turf/open/floor/carpet,
 /area/station/command/meeting_room/council)
 "idx" = (
@@ -29392,6 +29394,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/iron,
 /area/station/service/janitor)
+"iNS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/dark_purple/half/contrasted{
+	dir = 4
+	},
+/obj/machinery/duct,
+/turf/open/floor/iron/dark,
+/area/station/science/xenobiology)
 "iOf" = (
 /obj/item/shovel/spade,
 /obj/machinery/growing/tray,
@@ -34016,7 +34028,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/machinery/light/directional/south,
 /obj/machinery/plumbing/ooze_compressor,
-/obj/machinery/duct,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -43103,6 +43114,13 @@
 "mNb" = (
 /turf/closed/wall,
 /area/station/cargo/quartermaster)
+"mNe" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/station/maintenance/department/medical)
 "mNg" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "L8"
@@ -48318,7 +48336,7 @@
 /obj/machinery/button/door/directional/east{
 	pixel_x = -17;
 	pixel_y = 30;
-	name = "Captain Office Shutters";
+	name = "Captain Office Blast Doors";
 	id = "cap"
 	},
 /turf/open/floor/carpet,
@@ -48970,6 +48988,7 @@
 /obj/effect/turf_decal/trimline/blue/corner{
 	dir = 1
 	},
+/obj/machinery/duct,
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "ozX" = (
@@ -56049,7 +56068,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "blueshieldcurtain";
+	id = "capcurtain";
 	name = "curtain"
 	},
 /turf/open/floor/plating,
@@ -62729,7 +62748,6 @@
 	},
 /obj/machinery/duct,
 /obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
-/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "sCg" = (
@@ -63332,6 +63350,10 @@
 	},
 /obj/machinery/light/warm/directional/west,
 /obj/effect/landmark/start/captain,
+/obj/machinery/button/curtain{
+	pixel_x = -25;
+	id = "capcurtain"
+	},
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/captain/private)
 "sLj" = (
@@ -68743,6 +68765,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
+"umv" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/disposaloutlet,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "umx" = (
 /obj/structure/cable,
 /obj/machinery/firealarm/directional/north,
@@ -68813,7 +68843,8 @@
 /obj/machinery/button/door/directional/east{
 	pixel_x = 26;
 	pixel_y = 8;
-	name = "Captain Office Shutters"
+	name = "Captain Office Blast Doors";
+	id = "cap"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -69220,7 +69251,7 @@
 /obj/structure/curtain/cloth/fancy/mechanical{
 	icon_state = "bounty-open";
 	icon_type = "bounty";
-	id = "blueshieldcurtain";
+	id = "capcurtain";
 	name = "curtain"
 	},
 /turf/open/floor/plating,
@@ -73088,7 +73119,6 @@
 	name = "Representative's Office"
 	},
 /obj/effect/mapping_helpers/airlock/access/any/command/nt_rep,
-/obj/effect/mapping_helpers/airlock/access/any/command/blueshield,
 /turf/open/floor/wood/parquet,
 /area/station/command/heads_quarters/nt_rep)
 "vxI" = (
@@ -74710,14 +74740,6 @@
 	dir = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/gloves{
-	pixel_x = 6;
-	pixel_y = 10
-	},
-/obj/item/storage/box/gloves{
-	pixel_x = 1;
-	pixel_y = 3
-	},
 /obj/item/radio/headset/headset_medsci{
 	pixel_x = -7;
 	pixel_y = 4
@@ -74726,6 +74748,14 @@
 	pixel_x = 10
 	},
 /obj/structure/sign/poster/official/anniversary_vintage_reprint/directional/north,
+/obj/item/storage/box/disks{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/storage/box/disks{
+	pixel_x = 1;
+	pixel_y = 3
+	},
 /turf/open/floor/iron/white,
 /area/station/science/genetics)
 "vWE" = (
@@ -99047,7 +99077,7 @@ bAq
 nQr
 tgK
 hmB
-nhC
+lcz
 dJY
 ntu
 dJY
@@ -103016,10 +103046,10 @@ kcK
 jds
 jds
 wNU
-jds
-jds
-cCw
 iZm
+iZm
+cCw
+jds
 mAs
 pHU
 pHU
@@ -103533,7 +103563,7 @@ wNU
 ekb
 iZm
 iZm
-iZm
+jds
 ndA
 oOv
 eei
@@ -104044,10 +104074,10 @@ azH
 azH
 azH
 clx
-isk
-isk
-isk
-isk
+iNS
+iNS
+iNS
+iNS
 isk
 jpT
 pUY
@@ -104304,7 +104334,7 @@ srf
 xhl
 iZm
 iZm
-iZm
+jds
 xWO
 kkg
 eei
@@ -104815,10 +104845,10 @@ qgD
 jds
 jds
 srf
-jds
-jds
-mim
 iZm
+iZm
+mim
+jds
 iZm
 pHU
 pHU
@@ -107906,8 +107936,8 @@ nhC
 nhC
 nhC
 nhC
-nhC
-nhC
+kQv
+umv
 nhC
 nhC
 nhC
@@ -108162,10 +108192,10 @@ nhC
 nhC
 nhC
 nhC
-nhC
-nhC
-nhC
-nhC
+lXw
+elp
+lXw
+lXw
 nhC
 nhC
 nhC
@@ -108420,8 +108450,8 @@ lXw
 lXw
 lXw
 lXw
-kQv
 elp
+lXw
 lXw
 lXw
 nhC
@@ -108677,7 +108707,7 @@ rwL
 rwL
 rwL
 rwL
-edF
+mNe
 edF
 rwL
 lXw

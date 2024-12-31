@@ -3,6 +3,8 @@
 	roundend_category = "Florida Men"
 	antagpanel_category = "Florida Man"
 	job_rank = ROLE_FLORIDA_MAN
+	hud_icon = 'monkestation/icons/mob/huds/antag_hud.dmi'
+	antag_hud_name = "usa"
 	objectives = list()
 	show_to_ghosts = TRUE
 	preview_outfit = /datum/outfit/florida_man_one

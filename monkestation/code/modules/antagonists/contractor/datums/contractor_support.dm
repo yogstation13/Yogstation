@@ -1,6 +1,9 @@
 /datum/antagonist/traitor/contractor_support
 	name = "Contractor Support Unit"
 	antag_moodlet = /datum/mood_event/focused
+	antagpanel_category = "Drifting Contractor"
+	hud_icon = 'monkestation/icons/mob/huds/antag_hud.dmi'
+	antag_hud_name = "contractor"
 
 	show_in_roundend = FALSE // We're already adding them in to the contractor's roundend.
 	give_uplink = FALSE
