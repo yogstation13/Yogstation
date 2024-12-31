@@ -1,0 +1,10 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added missing Antag symbols for Space Ninja, Contractor, Florida Man."
+  - qol: "Medium threat Cortical borer's are now labeled as \"Hivemind Cortical Borer\" in information and panels"
+  - bugfix: "Theseus's virology disposals now leads to space instead of maintenance."
+  - bugfix: "Theseus's NT rep should now be able to use their bathroom without the blueshield's help."
+  - bugfix: "Theseus's captain and blueshield room should have functional curtain and blast door buttons."
+  - bugfix: "Theseus's xenobiology ooze suckers now all function"
+  - bugfix: "Theseus's genetics now has data disk boxes instead of Nitrile gloves"
