@@ -4,20 +4,22 @@
 /datum/action/cooldown/bloodsucker/feed
 	name = "Feed"
 	desc = "Feed blood off of a living creature."
+	transparent_when_unavailable = TRUE
+	buttontooltipstyle = "cult"
+
+	background_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
+	background_icon_state = "vamp_power_off"
+	button_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	button_icon_state = "power_feed"
-	power_explanation = "Feed:\n\
-		Feed can't be used until you reach your first Bloodsucker level.\n\
-		Activate Feed while next to someone and you will begin to feed blood off of them.\n\
-		The time needed before you start feeding speeds up the higher level you are.\n\
-		Feeding off of someone while you have them aggressively grabbed will put them to sleep.\n\
-		While feeding, you can't speak, as your mouth is covered.\n\
-		Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction\n\
-		If you get too many Masquerade Infractions, you will break the Masquerade.\n\
-		If you are in desperate need of blood, mice can be fed off of, at a cost."
-	power_flags = BP_AM_TOGGLE|BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_STAKED|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = BLOODSUCKER_CAN_BUY|BLOODSUCKER_DEFAULT_POWER
-	bloodcost = 0
+	// power_explanation = "Feed:\n\
+	// 	Feed can't be used until you reach your first Bloodsucker level.\n\
+	// 	Activate Feed while next to someone and you will begin to feed blood off of them.\n\
+	// 	The time needed before you start feeding speeds up the higher level you are.\n\
+	// 	Feeding off of someone while you have them aggressively grabbed will put them to sleep.\n\
+	// 	While feeding, you can't speak, as your mouth is covered.\n\
+	// 	Feeding while nearby (2 tiles away from) a mortal who is unaware of Bloodsuckers' existence, will cause a Masquerade Infraction\n\
+	// 	If you get too many Masquerade Infractions, you will break the Masquerade.\n\
+	// 	If you are in desperate need of blood, mice can be fed off of, at a cost."
 	cooldown_time = 15 SECONDS
 	///Amount of blood taken, reset after each Feed. Used for logging.
 	var/blood_taken = 0

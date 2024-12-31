@@ -318,15 +318,7 @@
 	antimagic_flags = NONE
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = SPELL_REQUIRES_HUMAN
-	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 1)
-		
-/datum/action/cooldown/spell/toggle/creep/process()
-	if(active)
-		if(!SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, resource_costs[ANTAG_RESOURCE_DARKSPAWN]))
-			Activate(owner)
-		else
-			SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
-	return ..()
+	maintain_costs = list(ANTAG_RESOURCE_DARKSPAWN = 1)
 
 /datum/action/cooldown/spell/toggle/creep/Enable()
 	owner.balloon_alert(owner, "Odeahz")
@@ -360,21 +352,16 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	spell_requirements = NONE
 	cooldown_time = 1 SECONDS
-	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 1)
+	maintain_costs = list(ANTAG_RESOURCE_DARKSPAWN = 1)
 	///Boolean, if the user was running before activating this spell
 	var/was_running
 	///List of traits applied during the effect
 	var/list/traits = list(TRAIT_STUNIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_NODEATH, TRAIT_IGNOREDAMAGESLOWDOWN)
 		
 /datum/action/cooldown/spell/toggle/indomitable/process()
-	if(active)
-		if(!SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, ANTAG_RESOURCE_DARKSPAWN, resource_costs[ANTAG_RESOURCE_DARKSPAWN]))
-			Activate(owner)
-		else
-			SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, resource_costs)
+	. = ..()
 	if(active && owner.m_intent != MOVE_INTENT_WALK)
 		owner.toggle_move_intent()
-	return ..()
 
 /datum/action/cooldown/spell/toggle/indomitable/Enable()
 	owner.balloon_alert(owner, "Zhaedo")

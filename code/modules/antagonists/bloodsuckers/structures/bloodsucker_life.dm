@@ -309,7 +309,7 @@
 									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/wolfortitude
 								if(istype(power, /datum/action/cooldown/bloodsucker/targeted/lunge))
 									wolf_powers += new /datum/action/cooldown/bloodsucker/targeted/pounce
-								if(istype(power, /datum/action/cooldown/bloodsucker/cloak))
+								if(istype(power, /datum/action/cooldown/spell/toggle/cloak))
 									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/howl
 								if(istype(power, /datum/action/cooldown/bloodsucker/targeted/trespass))
 									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/rabidism
