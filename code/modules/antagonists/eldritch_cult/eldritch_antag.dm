@@ -351,7 +351,6 @@
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"
 	
-	//Stolen from chubby's bloodsucker code, but without support for lists
 	
 	if(is_ash()) //Ash epilogues
 

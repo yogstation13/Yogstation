@@ -1602,11 +1602,6 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		/datum/objective/debrain,
 		/datum/objective/protect,
 		/datum/objective/assist,
-		// Fulp edit START - Bloodsuckers
-		// DEFAULT OBJECTIVES //
-		/datum/objective/bloodsucker_lair,
-		/datum/objective/survive/bloodsucker,
-		// Fulp edit END
 		/datum/objective/destroy,
 		/datum/objective/hijack,
 		/datum/objective/escape,

@@ -600,9 +600,6 @@
 				src.visible_message(span_danger("[src] stares ahead blankly, blinking a few times, as if they are trying to remember something."))
 				log_combat(src, src, "was revived with memory loss")
 			B.decay_progress = 0
-		if(IS_BLOODSUCKER(src))
-			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-			bloodsuckerdatum.heal_vampire_organs()
 
 	// The signal is called after everything else so components can properly check the updated values
 	SEND_SIGNAL(src, COMSIG_LIVING_REVIVE, full_heal, admin_revive)

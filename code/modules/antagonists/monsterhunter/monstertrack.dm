@@ -1,34 +1,36 @@
-/// From 'Cellular Emporium'... somehow?
-/datum/action/cooldown/bloodsucker/trackvamp
+#define HUNTER_SCAN_MIN_DISTANCE 8
+#define HUNTER_SCAN_MAX_DISTANCE 15
+/// 5s update time
+#define HUNTER_SCAN_PING_TIME 20
+
+/datum/action/cooldown/spell/trackmonster
 	name = "Track Monster"
 	desc = "Take a moment to look for clues of any nearby monsters.<br>These creatures are slippery, and often look like the crew."
 	background_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	button_icon = 'icons/mob/actions/actions_bloodsucker.dmi'
 	background_icon_state = "vamp_power_off"
 	button_icon_state = "power_hunter"
-	power_flags = BP_AM_STATIC_COOLDOWN
-	check_flags = BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	purchase_flags = NONE
+	spell_requirements = null
 	cooldown_time = 30 SECONDS
-	bloodcost = 0
 	/// Removed, set to TRUE to re-add, either here to be a default function, or in-game through VV for neat Admin stuff -Willard
 	var/give_pinpointer = FALSE
 
-/datum/action/cooldown/bloodsucker/trackvamp/ActivatePower()
-	. = ..()
-	/// Return text indicating direction
+/datum/action/cooldown/spell/trackmonster/before_cast(atom/cast_on)
 	to_chat(owner, span_notice("You look around, scanning your environment and discerning signs of any filthy, wretched affronts to the natural order..."))
 	if(!do_after(owner, 6 SECONDS))
 		to_chat(owner,span_warning("You were interrupted and lost the tracks!"))
-		DeactivatePower()
-		return
+		return SPELL_CANCEL_CAST
+	return ..()
+	
+/datum/action/cooldown/spell/trackmonster/cast()
+	. = ..()
+	/// Return text indicating direction
+	display_proximity()
 	if(give_pinpointer)
 		var/mob/living/user = owner
 		user.apply_status_effect(/datum/status_effect/agent_pinpointer/hunter_edition)
-	display_proximity()
-	DeactivatePower()
 
-/datum/action/cooldown/bloodsucker/trackvamp/proc/display_proximity()
+/datum/action/cooldown/spell/trackmonster/proc/display_proximity()
 	/// Pick target
 	var/turf/my_loc = get_turf(owner)
 	var/closest_dist = 9999
@@ -39,24 +41,11 @@
 	for(var/mob/living/carbon/all_carbons in GLOB.alive_mob_list)
 		if(all_carbons == owner) //don't track ourselves!
 			continue
-		if(!all_carbons.mind)
-			continue
-		var/datum/mind/carbon_minds = all_carbons.mind
-		if(IS_HERETIC(all_carbons) || IS_BLOODSUCKER(all_carbons) || iscultist(all_carbons) || is_servant_of_ratvar(all_carbons) || IS_WIZARD(all_carbons))
-			monsters += carbon_minds
-		if(carbon_minds.has_antag_datum(/datum/antagonist/changeling))
-			monsters += carbon_minds
-		if(carbon_minds.has_antag_datum(/datum/antagonist/sinfuldemon))
-			monsters += carbon_minds
-		if(carbon_minds.has_antag_datum(/datum/antagonist/ashwalker))
-			monsters += carbon_minds
-		if(carbon_minds.has_antag_datum(/datum/antagonist/vampire)) //yogs, still supporting vampires!
-			monsters += carbon_minds
-		if(carbon_minds.has_antag_datum(/datum/antagonist/darkspawn)) //yogs, darkspawns
-			monsters += carbon_minds
+		if(IS_MONSTERHUNTER_TARGET(all_carbons))
+			monsters += all_carbons
 
 	for(var/datum/mind/monster_minds in monsters)
-		if(!monster_minds.current || monster_minds.current == owner) // || !get_turf(M.current) || !get_turf(owner))
+		if(!monster_minds.current || monster_minds.current == owner)
 			continue
 		for(var/antag_datums in monster_minds.antag_datums)
 			var/datum/antagonist/antag_datum = antag_datums
@@ -79,3 +68,40 @@
 	/// Will yield a "?"
 	else
 		to_chat(owner, span_notice("There are no monsters nearby."))
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Monster Hunter Pinpointer---------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/status_effect/agent_pinpointer/hunter_edition
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
+	minimum_range = HUNTER_SCAN_MIN_DISTANCE
+	tick_interval = HUNTER_SCAN_PING_TIME
+	duration = 10 SECONDS
+	range_fuzz_factor = 5 //PINPOINTER_EXTRA_RANDOM_RANGE
+
+/atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
+	name = "Monster Tracking"
+	desc = "You always know where the hellspawn are."
+
+/datum/status_effect/agent_pinpointer/hunter_edition/scan_for_target()
+	var/turf/my_loc = get_turf(owner)
+
+	var/list/mob/living/carbon/monsters = list()
+	for(var/datum/antagonist/monster in GLOB.antagonists)
+		var/datum/mind/brain = monster.owner
+		if(brain == owner || !brain)
+			continue
+		if(IS_MONSTERHUNTER_TARGET(brain.current))
+			monsters += brain
+
+	if(monsters.len)
+		/// Point at a 'random' monster, biasing heavily towards closer ones.
+		scan_target = pickweight(monsters)
+		to_chat(owner, span_warning("You detect signs of monsters to the <b>[dir2text(get_dir(my_loc,get_turf(scan_target)))]!</b>"))
+	else
+		scan_target = null
+
+/datum/status_effect/agent_pinpointer/hunter_edition/Destroy()
+	if(scan_target)
+		to_chat(owner, span_notice("You've lost the trail."))
+	. = ..()

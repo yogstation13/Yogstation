@@ -496,7 +496,6 @@
 			/datum/antagonist/rev,
 			// Additional
 			/datum/antagonist/clockcult, // Same as bloodcult.
-			/datum/antagonist/bloodsucker,
 			/datum/antagonist/vampire
 		)
 		for(var/antag_datum in blacklisted_antag_datums)

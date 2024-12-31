@@ -43,7 +43,6 @@
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
 #define ROLE_INFILTRATOR		"Infiltrator" // Yogs
 #define ROLE_ZOMBIE				"Zombie"
-#define ROLE_BLOODSUCKER		"Bloodsucker"
 #define ROLE_MONSTERHUNTER		"Monster Hunter"
 #define ROLE_SPACE_DRAGON		"Space Dragon"
 #define ROLE_GOLEM				"Golem"
@@ -84,7 +83,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 
 	//Roundstart or Midround
 	ROLE_VAMPIRE = /datum/antagonist/vampire, // Yogs
-	ROLE_BLOODSUCKER = /datum/antagonist/bloodsucker,
 	ROLE_TRAITOR = /datum/antagonist/traitor,
 	ROLE_CHANGELING	= /datum/antagonist/changeling,
 	ROLE_HERETIC = /datum/antagonist/heretic,

@@ -51,17 +51,6 @@
 
 #undef BLOODBAG_GULP_SIZE
 
-///Bloodbag of Bloodsucker blood (used by Vassals only)
-/obj/item/reagent_containers/blood/o_minus/bloodsucker
-	name = "blood pack"
-	unique_blood = /datum/reagent/blood/bloodsucker
-
-/obj/item/reagent_containers/blood/o_minus/bloodsucker/examine(mob/user)
-	. = ..()
-	if(user.mind.has_antag_datum(/datum/antagonist/ex_vassal) || user.mind.has_antag_datum(/datum/antagonist/vassal/revenge))
-		. += span_notice("Seems to be just about the same color as your Master's...")
-
-
 /obj/item/reagent_containers/blood/Initialize(mapload)
 	. = ..()
 	if(blood_type != null)

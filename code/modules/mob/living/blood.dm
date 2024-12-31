@@ -28,12 +28,6 @@
 	if((NOBLOOD in dna.species.species_traits) || bleedsuppress || (HAS_TRAIT(src, TRAIT_FAKEDEATH)) || (STABLEBLOOD in dna.species.species_traits))
 		return
 
-	if(mind && IS_BLOODSUCKER(src)) // Prevents Bloodsuckers from naturally regenerating Blood - Even while on masquerade
-		return
-
-	if(HAS_TRAIT(src, TRAIT_NOPULSE)) // Fulpstation Bloodsuckers edit - Dont regenerate blood, damnmit!
-		return
-
 	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 
 		//Blood regeneration if there is some space
@@ -221,9 +215,6 @@
 		amount = total_amount * blood_proportion
 		chems_amount = total_amount * (1 - blood_proportion)
 
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
-	if(bloodsuckerdatum)
-		bloodsuckerdatum.bloodsucker_blood_volume -= amount
 	blood_volume -= amount
 
 	var/list/blood_data = get_blood_data(blood_id)

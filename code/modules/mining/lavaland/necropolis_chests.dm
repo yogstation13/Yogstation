@@ -212,7 +212,7 @@ GLOBAL_LIST_EMPTY(aide_list)
 	if(hasholos.len)
 		to_chat(user, span_warning("The pendant refuses to work with a guardian spirit..."))
 		return
-	if(IS_BLOODSUCKER(user))
+	if(IS_VAMPIRE(user))
 		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
 		return
 	to_chat(user, span_warning("You feel your life being drained by the pendant..."))

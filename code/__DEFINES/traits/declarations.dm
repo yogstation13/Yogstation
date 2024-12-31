@@ -261,8 +261,6 @@
 #define GUARDIAN_TRAIT "guardian_trait"
 #define STARGAZER_TRAIT "stargazer"
 #define MADE_UNCLONEABLE "made-uncloneable"
-/// Source trait for Bloodsuckers-related traits
-#define BLOODSUCKER_TRAIT "bloodsucker_trait"
 /// Source trait for Monster Hunter-related traits
 #define HUNTER_TRAIT "monsterhunter_trait"
 /// Source trait during a Frenzy

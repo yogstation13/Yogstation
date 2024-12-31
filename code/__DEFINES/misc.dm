@@ -394,9 +394,6 @@ GLOBAL_LIST_INIT(donor_pdas, list(PDA_COLOR_NORMAL, PDA_COLOR_TRANSPARENT, PDA_C
 #define ALIGNMENT_NEUT "neutral"
 #define ALIGNMENT_EVIL "evil"
 
-/// Whether we have succesfully hidden out blood level
-#define BLOODSUCKER_HIDE_BLOOD "hide_blood_volume"
-#define BLOODSUCKER_SHOW_BLOOD "show_blood_volume"
 /// 1 tile down
 #define ui_blood_display "WEST:6,CENTER-1:0"
 /// 2 tiles down

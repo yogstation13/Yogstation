@@ -79,11 +79,6 @@
 		to_chat(D, span_danger("Their arm tears through your demonic form!"))
 		D.apply_damage(stake_damagehigh, BRUTE, BODY_ZONE_CHEST)
 		return TRUE
-	if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
-		to_chat(D, span_cultlarge("Their arm stakes straight into your undead flesh!"))
-		D.apply_damage(A.get_punchdamagehigh() + 10, BURN)				//20 damage
-		D.apply_damage(A.get_punchdamagehigh(), BRUTE, BODY_ZONE_CHEST)	//10 damage
-		return TRUE
 	else
 		D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE, BODY_ZONE_CHEST)	//15 damage
 	return TRUE
@@ -110,9 +105,6 @@
 			to_chat(D, span_cultlarge("The power of the Codex Cicatrix flares as we are swiftly put to sleep!"))
 			D.apply_damage(A.get_punchdamagehigh() + 5, BRUTE, BODY_ZONE_HEAD)	//15 damage
 			D.SetSleeping(40)
-			return TRUE
-		if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
-			to_chat(D, span_warning("Your undead form protects you from being put to sleep!"))
 			return TRUE
 		if(D.mind.has_antag_datum(/datum/antagonist/sinfuldemon))
 			to_chat(D, span_warning("Your demonic form protects you from being put to sleep!"))
@@ -141,9 +133,6 @@
 		D.apply_damage(holykick_hereticburn, BURN)
 		D.apply_damage(holykick_staminadamage, STAMINA)
 		D.Paralyze(20)
-		return TRUE
-	if(D.mind.has_antag_datum(/datum/antagonist/bloodsucker))
-		to_chat(D, span_warning("This just seems like regular water..."))
 		return TRUE
 	if(D.mind.has_antag_datum(/datum/antagonist/cult))
 		for(var/datum/action/innate/cult/blood_magic/BD in D.actions)

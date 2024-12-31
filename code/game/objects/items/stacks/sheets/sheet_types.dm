@@ -281,32 +281,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 				return
 	return ..()
 
-/obj/item/stack/sheet/mineral/wood/attackby(obj/item/item, mob/user, params)
-	if(!item.get_sharpness())
-		return ..()
-	user.visible_message(
-		span_notice("[user] begins whittling [src] into a pointy object."),
-		span_notice("You begin whittling [src] into a sharp point at one end."),
-		span_hear("You hear wood carving."),
-	)
-	// 5 Second Timer
-	if(!do_after(user, 5 SECONDS, src, timed_action_flags = IGNORE_HELD_ITEM))
-		return
-	// Make Stake
-	var/obj/item/stake/new_item = new(user.loc)
-	user.visible_message(
-		span_notice("[user] finishes carving a stake out of [src]."),
-		span_notice("You finish carving a stake out of [src]."),
-	)
-	// Prepare to Put in Hands (if holding wood)
-	var/obj/item/stack/sheet/mineral/wood/wood_stack = src
-	var/replace = (user.get_inactive_held_item() == wood_stack)
-	// Use Wood
-	wood_stack.use(1)
-	// If stack depleted, put item in that hand (if it had one)
-	if(!wood_stack && replace)
-		user.put_in_hands(new_item)
-
 /obj/item/stack/sheet/mineral/wood/ten
 	amount = 10
 /obj/item/stack/sheet/mineral/wood/fifty

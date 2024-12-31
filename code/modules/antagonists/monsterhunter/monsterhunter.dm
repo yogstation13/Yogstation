@@ -1,8 +1,3 @@
-#define HUNTER_SCAN_MIN_DISTANCE 8
-#define HUNTER_SCAN_MAX_DISTANCE 15
-/// 5s update time
-#define HUNTER_SCAN_PING_TIME 20
-
 /datum/antagonist/monsterhunter
 	name = "\improper Monster Hunter"
 	roundend_category = "Monster Hunters"
@@ -13,31 +8,20 @@
 	var/list/datum/action/powers = list()
 	var/datum/martial_art/hunterfu/my_kungfu = new
 	var/give_objectives = TRUE
-	var/datum/action/cooldown/bloodsucker/trackvamp = new /datum/action/cooldown/bloodsucker/trackvamp()
-	var/datum/action/cooldown/bloodsucker/fortitude = new /datum/action/cooldown/bloodsucker/fortitude/hunter()
+	var/datum/action/cooldown/spell/trackmonster/tracking
+	var/datum/action/cooldown/spell/toggle/flow/fortitude
+	var/list/passive_traits = list(TRAIT_NOSOFTCRIT, TRAIT_NOCRITDAMAGE)
 
-/datum/antagonist/monsterhunter/apply_innate_effects(mob/living/mob_override)
-	.  = ..()
-	var/mob/living/current_mob = mob_override || owner.current
-	ADD_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
-	ADD_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
-	owner.unconvertable = TRUE
-	my_kungfu.teach(current_mob, make_temporary = FALSE)
-
-/datum/antagonist/monsterhunter/remove_innate_effects(mob/living/mob_override)
-	. = ..()
-	var/mob/living/current_mob = mob_override || owner.current
-	REMOVE_TRAIT(current_mob, TRAIT_NOSOFTCRIT, BLOODSUCKER_TRAIT)
-	REMOVE_TRAIT(current_mob, TRAIT_NOCRITDAMAGE, BLOODSUCKER_TRAIT)
-	owner.unconvertable = FALSE
-	if(my_kungfu)
-		my_kungfu.remove(current_mob)
-
-
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------Gain and application--------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/monsterhunter/on_gain()
 	//Give Monster Hunter powers
-	trackvamp.Grant(owner.current)
+	tracking = new(owner)
+	tracking.Grant(owner.current)
+	fortitude = new(owner)
 	fortitude.Grant(owner.current)
+
 	if(give_objectives)
 		//Give Hunter Objective
 		var/datum/objective/monsterhunter/monsterhunter_objective = new
@@ -49,23 +33,35 @@
 		steal_objective.find_target()
 		objectives += steal_objective
 
-	//Teach Stake crafting
-	owner.teach_crafting_recipe(/datum/crafting_recipe/hardened_stake)
-	owner.teach_crafting_recipe(/datum/crafting_recipe/silver_stake)
 	return ..()
 
+/datum/antagonist/monsterhunter/apply_innate_effects(mob/living/mob_override)
+	.  = ..()
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.add_traits(passive_traits, type)
+	owner.unconvertable = TRUE
+	my_kungfu.teach(current_mob, make_temporary = FALSE)
+
+////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------Loss and removal---------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/monsterhunter/on_removal()
 	//Remove Monster Hunter powers
-	trackvamp.Remove(owner.current)
+	tracking.Remove(owner.current)
+	qdel(tracking)
 	fortitude.Remove(owner.current)
+	qdel(fortitude)
+	
 	to_chat(owner.current, span_userdanger("Your hunt has ended: You enter retirement once again, and are no longer a Monster Hunter."))
 	return ..()
 
-/datum/antagonist/monsterhunter/on_body_transfer(mob/living/old_body, mob/living/new_body)
+/datum/antagonist/monsterhunter/remove_innate_effects(mob/living/mob_override)
 	. = ..()
-	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
-		all_powers.Remove(old_body)
-		all_powers.Grant(new_body)
+	var/mob/living/current_mob = mob_override || owner.current
+	current_mob.remove_traits(passive_traits, type)
+	owner.unconvertable = FALSE
+	if(my_kungfu)
+		my_kungfu.remove(current_mob)
 
 /// Mind version
 /datum/mind/proc/make_monsterhunter()
@@ -81,6 +77,9 @@
 		remove_antag_datum(/datum/antagonist/monsterhunter)
 		special_role = null
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Admin tools-----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /// Called when using admin tools to give antag status
 /datum/antagonist/monsterhunter/admin_add(datum/mind/new_owner, mob/admin)
 	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
@@ -110,54 +109,44 @@
 	owner.current.playsound_local(null, 'sound/effects/his_grace_ascend.ogg', 100, FALSE, pressure_affected = FALSE)
 	owner.announce_objectives()
 
-//////////////////////////////////////////////////////////////////////////
-//			Monster Hunter Pinpointer
-//////////////////////////////////////////////////////////////////////////
 
-/// TAKEN FROM: /datum/action/changeling/pheromone_receptors    // pheromone_receptors.dm    for a version of tracking that Changelings have!
-/datum/status_effect/agent_pinpointer/hunter_edition
-	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
-	minimum_range = HUNTER_SCAN_MIN_DISTANCE
-	tick_interval = HUNTER_SCAN_PING_TIME
-	duration = 10 SECONDS
-	range_fuzz_factor = 5 //PINPOINTER_EXTRA_RANDOM_RANGE
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Objective-------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/objective/monsterhunter
+	name = "destroymonsters"
+	explanation_text = "Destroy all monsters on ."
 
-/atom/movable/screen/alert/status_effect/agent_pinpointer/hunter_edition
-	name = "Monster Tracking"
-	desc = "You always know where the hellspawn are."
+/datum/objective/monsterhunter/New()
+	update_explanation_text()
+	..()
 
-/datum/status_effect/agent_pinpointer/hunter_edition/scan_for_target()
-	var/turf/my_loc = get_turf(owner)
+// EXPLANATION
+/datum/objective/monsterhunter/update_explanation_text()
+	. = ..()
+	explanation_text = "Destroy all monsters on [station_name()]."
 
-	var/list/mob/living/carbon/monsters = list()
+// WIN CONDITIONS?
+/datum/objective/monsterhunter/check_completion()
+	var/list/datum/mind/monsters = list()
 	for(var/datum/antagonist/monster in GLOB.antagonists)
 		var/datum/mind/brain = monster.owner
-		if(brain == owner || !brain)
+		if(!brain || brain == owner)
 			continue
-		if(IS_HERETIC(brain.current) || IS_BLOODSUCKER(brain.current) || iscultist(brain.current) || is_servant_of_ratvar(brain.current) || IS_WIZARD(brain.current))
+		if(!brain.current || brain.current.stat == DEAD)
+			continue
+		if(IS_MONSTERHUNTER_TARGET(brain.current))
 			monsters += brain
-		if(brain.has_antag_datum(/datum/antagonist/changeling))
-			monsters += brain
-		if(brain.has_antag_datum(/datum/antagonist/ashwalker))
-			monsters += brain
+	return completed || !monsters.len
 
-	if(monsters.len)
-		/// Point at a 'random' monster, biasing heavily towards closer ones.
-		scan_target = pickweight(monsters)
-		to_chat(owner, span_warning("You detect signs of monsters to the <b>[dir2text(get_dir(my_loc,get_turf(scan_target)))]!</b>"))
-	else
-		scan_target = null
-
-/datum/status_effect/agent_pinpointer/hunter_edition/Destroy()
-	if(scan_target)
-		to_chat(owner, span_notice("You've lost the trail."))
-	. = ..()
-
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------------Outfit--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/outfit/monsterhunter
 	name = "Monster Hunter"
 
 	head = /obj/item/clothing/head/helmet/chaplain/witchunter_hat
 	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	suit = /obj/item/clothing/suit/armor/riot/chaplain/witchhunter
-	l_hand = /obj/item/stake
-	r_hand = /obj/item/stake/hardened/silver
+	l_hand = /obj/item/reagent_containers/food/drinks/bottle/holywater
+	r_hand = /obj/item/nullrod/whip

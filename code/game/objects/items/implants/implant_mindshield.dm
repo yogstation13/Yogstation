@@ -37,14 +37,6 @@
 			removed(target, TRUE)
 			return FALSE
 
-		if(IS_VASSAL(target))
-			if(IS_FAVORITE_VASSAL(target))
-				if(!silent)
-					target.visible_message(span_warning("[target] seems to resist the implant!"), span_warning("You feel something interfering with your mental conditioning, but you resist it!"))
-				removed(target, TRUE)
-				return FALSE
-			target.mind.remove_antag_datum(/datum/antagonist/vassal)
-
 		var/datum/antagonist/rev/rev = target.mind.has_antag_datum(/datum/antagonist/rev)
 		if(rev)
 			rev.remove_revolutionary(FALSE, user)
