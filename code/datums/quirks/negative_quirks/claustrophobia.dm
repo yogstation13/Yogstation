@@ -5,19 +5,18 @@
 	value = -4
 	medical_record_text = "Patient demonstrates a fear of tight spaces."
 	hardcore_value = 5
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
+	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_PROCESSES
+	minimum_process_stat = CONSCIOUS
 	mail_goodies = list(/obj/item/reagent_containers/syringe/convermol) // to help breathing
+	process_update_signals = list(
+		SIGNAL_ADDTRAIT(TRAIT_FEARLESS),
+		SIGNAL_REMOVETRAIT(TRAIT_FEARLESS),
+	)
 
 /datum/quirk/claustrophobia/remove()
 	quirk_holder.clear_mood_event("claustrophobia")
 
 /datum/quirk/claustrophobia/process(seconds_per_tick)
-	if(quirk_holder.stat != CONSCIOUS || quirk_holder.IsSleeping() || quirk_holder.IsUnconscious())
-		return
-
-	if(HAS_TRAIT(quirk_holder, TRAIT_FEARLESS))
-		return
-
 	var/nick_spotted = FALSE
 
 	for(var/mob/living/carbon/human/possible_claus in view(5, quirk_holder))
@@ -37,6 +36,9 @@
 		else
 			to_chat(quirk_holder, span_warning("You feel trapped!  Must escape... can't breathe..."))
 
+/datum/quirk/claustrophobia/should_process()
+	return ..() && !HAS_TRAIT(quirk_holder, TRAIT_FEARLESS)
+
 ///investigates whether possible_saint_nick possesses a high level of christmas cheer
 /datum/quirk/claustrophobia/proc/evaluate_jolly_levels(mob/living/carbon/human/possible_saint_nick)
 	if(!istype(possible_saint_nick))
@@ -45,7 +47,7 @@
 	if(istype(possible_saint_nick.back, /obj/item/storage/backpack/santabag))
 		return TRUE
 
-	if(istype(possible_saint_nick.head, /obj/item/clothing/head/costume/santa) || istype(possible_saint_nick.head,  /obj/item/clothing/head/helmet/space/santahat))
+	if(istype(possible_saint_nick.head, /obj/item/clothing/head/costume/santa) || istype(possible_saint_nick.head, /obj/item/clothing/head/helmet/space/santahat))
 		return TRUE
 
 	if(istype(possible_saint_nick.wear_suit, /obj/item/clothing/suit/space/santa))

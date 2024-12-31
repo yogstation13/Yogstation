@@ -580,9 +580,10 @@
 	R.fields["features"] = dna.features
 	R.fields["factions"] = mob_occupant.faction
 	R.fields["quirks"] = list()
-	for(var/V in mob_occupant.quirks)
-		var/datum/quirk/T = V
-		R.fields["quirks"][T.type] = T.clone_data()
+	for(var/datum/quirk/quirk as anything in mob_occupant.quirks)
+		if(quirk.quirk_flags & QUIRK_DONT_CLONE)
+			continue
+		R.fields["quirks"][quirk.type] = quirk.clone_data()
 
 	R.fields["traumas"] = list()
 	if(ishuman(mob_occupant))

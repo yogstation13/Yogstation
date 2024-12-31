@@ -186,6 +186,10 @@
 	ADD_TRAIT(H, TRAIT_NOCRITDAMAGE, CLONING_POD_TRAIT)
 	H.Unconscious(80)
 
+	var/clone_ckey
+	if(clonemind?.key)
+		clone_ckey = ckey(clonemind.key)
+
 	if(!empty)
 		clonemind.transfer_to(H)
 
@@ -200,9 +204,15 @@
 	if(H)
 		H.faction |= factions
 
-		for(var/V in quirks)
-			var/datum/quirk/Q = new V(H)
-			Q.on_clone(quirks[V])
+		for(var/datum/quirk/quirk_type as anything in quirks)
+			if(!ispath(quirk_type, /datum/quirk))
+				stack_trace("non-quirk path [quirk_type] somehow in cloning data")
+				continue
+			if(quirk_type::quirk_flags & QUIRK_DONT_CLONE)
+				stack_trace("quirk with QUIRK_DONT_CLONE ([quirk_type]) somehow in cloning data!")
+				continue
+			var/datum/quirk/quirk = new quirk_type
+			quirk.on_clone(H, clone_ckey ? GLOB.directory[clone_ckey] : null, quirks[quirk_type])
 
 		for(var/t in traumas)
 			var/datum/brain_trauma/BT = t

@@ -9,7 +9,9 @@
 	mail_goodies = list(/obj/item/taperecorder, /obj/item/clothing/head/frenchberet, /obj/item/clothing/mask/fakemoustache/italian)
 
 /datum/quirk/bilingual/add_unique(client/client_source)
-	var/wanted_language = client_source?.prefs.read_preference(/datum/preference/choiced/language)
+	var/wanted_language = client_source?.prefs?.read_preference(/datum/preference/choiced/language)
+	if(isnull(wanted_language))
+		return
 	var/datum/language/language_type
 	if(wanted_language == "Random")
 		language_type = pick(GLOB.roundstart_languages)

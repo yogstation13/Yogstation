@@ -33,11 +33,14 @@
 	/// The base weight for the each quirk's mail goodies list to be selected is 5
 	/// then the item selected is determined by pick(selected_quirk.mail_goodies)
 	var/list/mail_goodies = list() //Monkestation Edit BLOOD_DATUM: Why? this is already a list all this does is mess confuse us.
+	/// The minimum stat where this quirk can process (if it has QUIRK_PROCESSES)
+	var/minimum_process_stat = HARD_CRIT
+	/// A list of additional signals to register with update_process()
+	var/list/process_update_signals
 
 /datum/quirk/Destroy()
 	if(quirk_holder)
 		remove_from_current_holder()
-
 	return ..()
 
 /// Called when quirk_holder is qdeleting. Simply qdels this datum and lets Destroy() handle the rest.
@@ -78,7 +81,11 @@
 	add(client_source)
 
 	if(quirk_flags & QUIRK_PROCESSES)
-		START_PROCESSING(SSquirks, src)
+		RegisterSignal(quirk_holder, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
+		if(process_update_signals)
+			RegisterSignals(quirk_holder, process_update_signals, PROC_REF(update_process))
+		if(should_process())
+			START_PROCESSING(SSquirks, src)
 
 	if(!quirk_transfer)
 		if(gain_text)
@@ -99,7 +106,9 @@
 	if(!quirk_holder)
 		CRASH("Attempted to remove quirk from the current holder when it has no current holder.")
 
-	UnregisterSignal(quirk_holder, list(COMSIG_MOB_LOGIN, COMSIG_QDELETING))
+	UnregisterSignal(quirk_holder, list(COMSIG_MOB_STATCHANGE, COMSIG_MOB_LOGIN, COMSIG_QDELETING))
+	if(process_update_signals)
+		UnregisterSignal(quirk_holder, process_update_signals)
 
 	quirk_holder.quirks -= src
 
@@ -124,10 +133,10 @@
  * Used when the quirk has been gained and no client is attached to the mob.
  */
 /datum/quirk/proc/on_quirk_holder_first_login(mob/living/source)
-		SIGNAL_HANDLER
+	SIGNAL_HANDLER
 
-		UnregisterSignal(source, COMSIG_MOB_LOGIN)
-		post_add()
+	UnregisterSignal(source, COMSIG_MOB_LOGIN)
+	post_add()
 
 /// Any effect that should be applied every single time the quirk is added to any mob, even when transferred.
 /datum/quirk/proc/add(client/client_source)
@@ -148,13 +157,25 @@
 /datum/quirk/proc/post_add()
 	return
 
-/// return additional data that should be remembered by cloning
-/datum/quirk/proc/clone_data()
-	return
+/// Returns if the quirk holder should process currently or not.
+/datum/quirk/proc/should_process()
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_BE_PURE(TRUE)
+	return (quirk_flags & QUIRK_PROCESSES) && !QDELETED(quirk_holder) && quirk_holder.stat <= minimum_process_stat
 
-/// create the quirk from clone data
-/datum/quirk/proc/on_clone(data)
-	return
+/// Checks to see if the quirk should be processing, and starts/stops it.
+/datum/quirk/proc/update_process()
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(should_process())
+		START_PROCESSING(SSquirks, src)
+	else
+		STOP_PROCESSING(SSquirks, src)
+
+/// Updates processing status whenever the mob's stat changes.
+/datum/quirk/proc/on_stat_changed(mob/living/source, new_stat)
+	SIGNAL_HANDLER
+	update_process()
 
 /// Subtype quirk that has some bonus logic to spawn items for the player.
 /datum/quirk/item_quirk
@@ -212,7 +233,7 @@
 /mob/living/proc/get_quirk_string(medical = FALSE, category = CAT_QUIRK_ALL, from_scan = FALSE)
 	var/list/dat = list()
 	for(var/datum/quirk/candidate as anything in quirks)
-		if(from_scan & candidate.quirk_flags & QUIRK_HIDE_FROM_SCAN)
+		if((from_scan && (candidate.quirk_flags & QUIRK_HIDE_FROM_SCAN)) || (medical && !candidate.medical_record_text))
 			continue
 		switch(category)
 			if(CAT_QUIRK_MAJOR_DISABILITY)
@@ -226,7 +247,7 @@
 					continue
 		dat += medical ? candidate.medical_record_text : candidate.name
 
-	if(!dat.len)
+	if(!length(dat))
 		return medical ? "No issues have been declared." : "None"
 	return medical ?  dat.Join("<br>") : dat.Join(", ")
 

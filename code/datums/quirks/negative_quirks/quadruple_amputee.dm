@@ -5,7 +5,7 @@
 	value = -6
 	medical_record_text = "During physical examination, patient was found to have all low-budget prosthetic limbs."
 	hardcore_value = 6
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
+	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_CHANGES_APPEARANCE | QUIRK_DONT_CLONE // monkestation edit: QUIRK_DONT_CLONE
 	mail_goodies = list(/obj/item/weldingtool/mini, /obj/item/stack/cable_coil/five)
 
 /datum/quirk/quadruple_amputee/add_unique(client/client_source)

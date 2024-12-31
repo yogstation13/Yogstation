@@ -83,7 +83,7 @@
 #define TRAIT_CAT				"cat"
 #define TRAIT_FEEBLE			"feeble"
 #define TRAIT_GOURMAND			"gourmand"
-#define TRAIT_HIDDEN_CLOWN		"clown_disbelief"
+#define TRAIT_CLOWN_DISBELIEVER	"clown_disbeliever"
 #define TRAIT_HIDDEN_IMAGE		"generic-hidden-image"
 #define TRAIT_JAILBIRD			"jailbird"
 #define TRAIT_LOUD_ASS			"loud_ass"

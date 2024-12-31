@@ -15,11 +15,6 @@
 	if(prob(5) && !robust)
 		SEND_SOUND(owner, sound('sound/ambience/ambiruin3.ogg', volume = 25))
 
-#ifdef QUIRK_DONT_CLONE
-#define QUIRK_BRIGHT_EYES    /datum/quirk/cybernetics_quirk/bright_eyes
-#else
-#define QUIRK_BRIGHT_EYES    /datum/quirk/bright_eyes
-#endif
 /obj/item/organ/internal/brain/slime
 	name = "core"
 	desc = "The center core of a slimeperson, technically their 'extract.' Where the cytoplasm, membrane, and organelles come from; perhaps this is also a mitochondria?"
@@ -382,7 +377,7 @@
 				continue
 			if(istype(bodypart, /obj/item/bodypart/head))
 				// Living mobs eyes are stored in the body so remove the organs properly for their effect to work.
-				if(new_body.has_quirk(QUIRK_BRIGHT_EYES)) // Either they have their eyes in their core or they are destroyed dont spawn another.
+				if(new_body.has_quirk(/datum/quirk/cybernetics_quirk/bright_eyes)) // Either they have their eyes in their core or they are destroyed dont spawn another.
 					var/obj/item/organ/internal/eyes/eyes = new_body.get_organ_slot(ORGAN_SLOT_EYES)
 					eyes.Remove(new_body)
 					qdel(eyes)
@@ -393,7 +388,7 @@
 		new_body.set_jitter_if_lower(200 SECONDS)
 		new_body.emote("scream")
 	else
-		if(new_body.has_quirk(QUIRK_BRIGHT_EYES)) // Either they have their eyes in core or they are destroyed don't spawn another.
+		if(new_body.has_quirk(/datum/quirk/cybernetics_quirk/bright_eyes)) // Either they have their eyes in core or they are destroyed don't spawn another.
 			var/obj/item/organ/new_organ = new_body.dna.species.get_mutant_organ_type_for_slot(ORGAN_SLOT_EYES)
 			new_organ = SSwardrobe.provide_type(new_organ)
 			new_organ.Insert(new_body, special = TRUE, drop_if_replaced = FALSE)

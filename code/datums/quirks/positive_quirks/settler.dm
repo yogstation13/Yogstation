@@ -8,7 +8,7 @@
 	icon = FA_ICON_HOUSE
 	value = 4
 	mob_trait = TRAIT_SETTLER
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_CHANGES_APPEARANCE
+	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_CHANGES_APPEARANCE
 	medical_record_text = "Patient appears to be abnormally stout."
 	mail_goodies = list(
 		/obj/item/clothing/shoes/workboots/mining,

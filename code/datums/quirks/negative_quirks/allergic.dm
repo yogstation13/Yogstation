@@ -7,8 +7,12 @@
 	lose_text = span_notice("You feel your immune system phase back into perfect shape.")
 	medical_record_text = "Patient's immune system responds violently to certain chemicals."
 	hardcore_value = 3
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
+	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_PROCESSES
 	mail_goodies = list(/obj/item/reagent_containers/hypospray/medipen) // epinephrine medipen stops allergic reactions
+	process_update_signals = list(
+		SIGNAL_ADDTRAIT(TRAIT_STASIS),
+		SIGNAL_REMOVETRAIT(TRAIT_STASIS),
+	)
 	var/list/allergies = list()
 	var/list/blacklist = list(
 		/datum/reagent/medicine/c2,
@@ -20,7 +24,7 @@
 		/datum/reagent/medicine/diphenhydramine,
 		/datum/reagent/medicine/changelingadrenaline,
 		/datum/reagent/medicine/spaceacillin
-		)
+	)
 	var/allergy_string
 
 /datum/quirk/item_quirk/allergic/add_unique(client/client_source)
@@ -45,15 +49,6 @@
 	to_chat(quirk_holder, span_boldnotice("You are allergic to [allergy_string], make sure not to consume any of these!"))
 
 /datum/quirk/item_quirk/allergic/process(seconds_per_tick)
-	if(!iscarbon(quirk_holder))
-		return
-
-	if(HAS_TRAIT(quirk_holder, TRAIT_STASIS))
-		return
-
-	if(quirk_holder.stat == DEAD)
-		return
-
 	var/mob/living/carbon/carbon_quirk_holder = quirk_holder
 	for(var/allergy in allergies)
 		var/datum/reagent/instantiated_med = carbon_quirk_holder.reagents.has_reagent(allergy)
@@ -69,3 +64,6 @@
 		if(SPT_PROB(10, seconds_per_tick))
 			carbon_quirk_holder.vomit()
 			carbon_quirk_holder.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_APPENDIX,ORGAN_SLOT_LUNGS,ORGAN_SLOT_HEART,ORGAN_SLOT_LIVER,ORGAN_SLOT_STOMACH),10)
+
+/datum/quirk/item_quirk/allergic/should_process()
+	return iscarbon(quirk_holder) && ..() && !HAS_TRAIT(quirk_holder, TRAIT_STASIS)

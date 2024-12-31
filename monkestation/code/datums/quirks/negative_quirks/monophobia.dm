@@ -3,7 +3,7 @@
 	desc = "You are extremely stressed when left alone, leading to potentially lethal levels of anxiety."
 	value = -6
 	icon = FA_ICON_USER_FRIENDS
-	medical_record_text = "Patient has an irrational fear of something."
+	medical_record_text = "Patient has an irrational fear of being alone."
 	mail_goodies = list(/obj/item/choice_beacon/pet)
 
 /datum/quirk/monophobia/add(client/client_source)

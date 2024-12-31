@@ -6,7 +6,8 @@
 	gain_text = span_notice("You feel like a drink would do you good.")
 	lose_text = span_danger("You no longer feel like drinking would ease your pain.")
 	medical_record_text = "Patient has unusually efficient liver metabolism and can slowly regenerate wounds by drinking alcoholic beverages."
-	quirk_flags = QUIRK_HUMAN_ONLY|QUIRK_PROCESSES
+	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_PROCESSES
+	minimum_process_stat = DEAD // it processed before while dead, so I'm keeping it that way
 	mail_goodies = list(/obj/effect/spawner/random/food_or_drink/booze)
 
 /datum/quirk/drunkhealing/process(seconds_per_tick)
