@@ -182,11 +182,11 @@
 // 	if(_codeword)
 // 		codeword = _codeword
 // 	else
-// 		codeword = pick(strings("ion_laws.json", "ionabstract")\
-// 			| strings("ion_laws.json", "ionobjects")\
-// 			| strings("ion_laws.json", "ionadjectives")\
-// 			| strings("ion_laws.json", "ionthreats")\
-// 			| strings("ion_laws.json", "ionfood")\
+// 		codeword = pick(strings("ion_laws.json", "ionabstract")
+// 			| strings("ion_laws.json", "ionobjects")
+// 			| strings("ion_laws.json", "ionadjectives")
+// 			| strings("ion_laws.json", "ionthreats")
+// 			| strings("ion_laws.json", "ionfood")
 // 			| strings("ion_laws.json", "iondrinks"))
 
 // /datum/brain_trauma/severe/split_personality/brainwashing/on_gain()
