@@ -1,7 +1,0 @@
-author: "Oblisk234"
-delete-after: true 
-changes: 
-  - bugfix: "Mentorwho will no longer remind you that mentorhelps are also sent to discord multiplied by the amount of mentors that are on the server."
-  - bugfix: "You can now see your messages to mentors on discord again."
-  - bugfix: "Mentor-maintainers/issue hunters' OOC tag will no longer evaporate into [] after readminning, deadminning, and rementoring."
-  - bugfix: "Discord mentor messages are now recorded in mhelp database and mentor tickets."
