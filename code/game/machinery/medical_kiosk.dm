@@ -401,4 +401,4 @@
 
 /obj/item/clothing/gloves/patient_bracelet/examine(mob/user)
 	. = ..()
-	. += "Patient: <b>[bracelet.patient_name]</b>\n\"[bracelet.patient_issue]\""
+	. += "Patient: <b>[patient_name]</b>\n\"[patient_issue]\""
