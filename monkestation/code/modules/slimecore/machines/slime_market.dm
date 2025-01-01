@@ -6,6 +6,7 @@
 	base_icon_state = "market_pad"
 	density = TRUE
 	use_power = IDLE_POWER_USE
+	interaction_flags_machine = INTERACT_MACHINE_OPEN|INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_OFFLINE|INTERACT_MACHINE_OPEN_SILICON|INTERACT_MACHINE_SET_MACHINE|INTERACT_MACHINE_WIRES_IF_OPEN
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION
 	circuit = /obj/item/circuitboard/machine/slime_market_pad
@@ -42,15 +43,16 @@
 			break
 
 /obj/machinery/slime_market_pad/attackby(obj/item/item, mob/living/user, params)
-	. = ..()
-	if(. || !can_interact(user))
-		return
+	if(HAS_TRAIT(user, TRAIT_CANT_ATTACK) || !can_interact(user))
+		return ..() // Little wasteful to call HAS_TRAIT twice here and parent but the parent will apply damage if we call it
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, item))
-		user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
+		user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."))
 		update_appearance()
 		return TRUE
 	if(default_unfasten_wrench(user, item) || default_deconstruction_crowbar(item))
 		return TRUE
+	if(machine_stat & (NOPOWER|BROKEN))
+		return ..()
 	if(QDELETED(console))
 		to_chat(user, span_warning("[src] does not have a console linked to it!"))
 		return
@@ -74,7 +76,8 @@
 			sold_extracts++
 		if(sold_extracts > 0)
 			user.balloon_alert_to_viewers("sold [sold_extracts] extracts")
-		return
+		return TRUE
+	return ..()
 
 /obj/machinery/slime_market_pad/proc/sell_extract(obj/item/slime_extract/extract)
 	SSresearch.xenobio_points += round(SSresearch.slime_core_prices[extract.type])

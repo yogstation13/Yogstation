@@ -91,7 +91,6 @@
 	. += mutable_appearance(icon, "slime_grinder_overlay", layer + 0.1, src)
 
 /obj/machinery/plumbing/slime_grinder/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-	. = ..()
 	if(isslime(AM))
 		if(!poster_boy)
 			poster_boy = AM
@@ -102,3 +101,5 @@
 		soon_to_be_crushed |= AM
 		AM.forceMove(src)
 		update_appearance()
+		return // Stops slime from actually hitting the machine
+	return ..() // If it is anything else handle being hit normally.
