@@ -1,0 +1,5 @@
+author: "Syndie Kate"
+delete-after: True
+changes:
+  - rscadd: "Adds explosive flashes, available in the syndicate uplink for 2 TC."
+  - rscadd: "Adds door charges, available in the syndicate uplink for 5 TC.\n:cl:"
