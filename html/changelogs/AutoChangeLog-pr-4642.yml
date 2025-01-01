@@ -1,7 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - refactor: "Cleaned up and refactored quite a bit of code related to quirks."
-  - bugfix: "Quirks should properly transfer on cloning now."
-  - bugfix: "Fixed the dwarfism and gigantism quirks being broken with bloodsuckers and such."
-  - bugfix: "Stowaways should no longer have the chance to spawn in lockers where they will immediately die from no air or something."

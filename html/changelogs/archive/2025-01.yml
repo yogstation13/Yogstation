@@ -1,0 +1,19 @@
+2025-01-01:
+  Absolucy:
+  - refactor: Cleaned up and refactored quite a bit of code related to quirks.
+  - bugfix: Quirks should properly transfer on cloning now.
+  - bugfix: Fixed the dwarfism and gigantism quirks being broken with bloodsuckers
+      and such.
+  - bugfix: Stowaways should no longer have the chance to spawn in lockers where they
+      will immediately die from no air or something.
+  Gw0sty:
+  - rscadd: Added missing Antag symbols for Space Ninja, Contractor, Florida Man.
+  - qol: Medium threat Cortical borer's are now labeled as "Hivemind Cortical Borer"
+      in information and panels
+  - bugfix: Theseus's virology disposals now leads to space instead of maintenance.
+  - bugfix: Theseus's NT rep should now be able to use their bathroom without the
+      blueshield's help.
+  - bugfix: Theseus's captain and blueshield room should have functional curtain and
+      blast door buttons.
+  - bugfix: Theseus's xenobiology ooze suckers now all function
+  - bugfix: Theseus's genetics now has data disk boxes instead of Nitrile gloves
