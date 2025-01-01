@@ -17,7 +17,7 @@
 	melee = 20
 	bullet = 20
 	laser = 20
-	energy = 100
+	energy = 20
 	fire = 50
 	acid = 50
 	electric = 100
