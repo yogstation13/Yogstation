@@ -1,7 +1,0 @@
-author: "Siro"
-delete-after: True
-changes:
-  - bugfix: "Successful tool use on the Market pad will not damage it."
-  - bugfix: "Allows maintenance on market pad while unpowered or broken. Fixes #3176"
-  - bugfix: "Prevents slimes launched (usually by xenobio vacuum) from damaging the slime grinder when hitting it."
-  - rscdel: "Removes double text when opening the Market Pad Maintenance hatch."

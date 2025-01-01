@@ -17,3 +17,36 @@
       blast door buttons.
   - bugfix: Theseus's xenobiology ooze suckers now all function
   - bugfix: Theseus's genetics now has data disk boxes instead of Nitrile gloves
+  PotatoTomahto:
+  - rscadd: adds ATP engineer mask to loadouts for 5000 monkecoin.
+  Shoddd:
+  - bugfix: Shock Touch no longer forces people with no shock buildup to drop items
+  - spellcheck: Fixed a typo in the subdermal splint applicator.
+  Siro:
+  - qol: Xenobiology Slime Vacuum no longer breaks lights.
+  - bugfix: Successful tool use on the Market pad will not damage it.
+  - bugfix: 'Allows maintenance on market pad while unpowered or broken. Fixes #3176'
+  - bugfix: Prevents slimes launched (usually by xenobio vacuum) from damaging the
+      slime grinder when hitting it.
+  - rscdel: Removes double text when opening the Market Pad Maintenance hatch.
+  SmArtKar & JohnFulpWillard:
+  - balance: Body cameras no longer shut off when you take the suit off, and can be
+      equipped to any vest, though they now visibly show up on any vest they are equipped
+      to. They can also now be EMP'ed to remove it from the camera net entirely.
+  - balance: Radio jammers can remotely turn off radios/body cameras on anyone in
+      a 7 tile radius by clicking on them. Default behavior is now on Right-click.
+  - balance: Headsets now don't talk over the radio by default with the microphone
+      on, the microphone now instead decides whether the headset can be used to speak
+      over the radio at all (this is what radio jammers turn off to prevent you from
+      speaking over comms).
+  Syndie Kate:
+  - rscadd: Adds explosive flashes, available in the syndicate uplink for 2 TC.
+  - rscadd: 'Adds door charges, available in the syndicate uplink for 5 TC.
+
+      :cl:'
+  TheColorCyan:
+  - rscadd: added straw hat and straw coat to loadout store
+  Uristthedorf:
+  - rscadd: Experimental cloner corruption event is now more common.
+  - rscdel: Disables "peaceful" evil clone objective.
+  - bugfix: Evil clone event gives all cloners the same event.

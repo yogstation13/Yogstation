@@ -1,6 +1,0 @@
-author: "SmArtKar & JohnFulpWillard"
-delete-after: True
-changes:
-  - balance: "Body cameras no longer shut off when you take the suit off, and can be equipped to any vest, though they now visibly show up on any vest they are equipped to. They can also now be EMP'ed to remove it from the camera net entirely."
-  - balance: "Radio jammers can remotely turn off radios/body cameras on anyone in a 7 tile radius by clicking on them. Default behavior is now on Right-click."
-  - balance: "Headsets now don't talk over the radio by default with the microphone on, the microphone now instead decides whether the headset can be used to speak over the radio at all (this is what radio jammers turn off to prevent you from speaking over comms)."
