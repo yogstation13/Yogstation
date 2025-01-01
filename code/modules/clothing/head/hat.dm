@@ -305,3 +305,9 @@
 	name = "red nightcap"
 	desc = "A red nightcap for all the sleepyheads and dozers out there."
 	icon_state = "sleep_red"
+
+/obj/item/clothing/head/costume/straw_hat
+	name = "Straw Fukaamigasa"
+	desc = "Traditional wide-brimmed straw hat."
+	worn_icon = 'icons/mob/clothing/head/straw.dmi'
+	icon_state = "straw_hat"

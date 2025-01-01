@@ -288,6 +288,10 @@ GLOBAL_LIST_INIT(store_head, generate_store_items(/datum/store_item/head))
 	item_path = /obj/item/clothing/head/soft/propeller_hat
 	item_cost = 10000
 
+/datum/store_item/head/straw_hat
+	name = "Straw Hat"
+	item_path = /obj/item/clothing/head/costume/straw_hat
+	item_cost = 3000
 
 /*
 *	JOB-LOCKED

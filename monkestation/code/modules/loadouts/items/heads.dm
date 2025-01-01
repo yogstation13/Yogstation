@@ -199,6 +199,9 @@ GLOBAL_LIST_INIT(loadout_helmets, generate_loadout_items(/datum/loadout_item/hea
 	name = "Headdress of Nemes"
 	item_path = /obj/item/clothing/head/costume/nemes
 
+/datum/loadout_item/head/straw_hat
+	name = "Straw Hat"
+	item_path = /obj/item/clothing/head/costume/straw_hat
 /*
 *	CHRISTMAS
 */

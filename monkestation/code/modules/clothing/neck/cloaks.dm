@@ -197,3 +197,12 @@
 	name = "Ornate Coat"
 	item_path = /obj/item/clothing/neck/linjacket
 	item_cost = 5000
+
+/obj/item/clothing/neck/straw_coat
+	name = "Straw Coat"
+	desc = "Traditional raincoat woven from straw."
+	icon = 'monkestation/icons/obj/clothing/necks.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/neck.dmi'
+	icon_state = "straw_coat"
+	worn_icon_state = "straw_coat"
+
