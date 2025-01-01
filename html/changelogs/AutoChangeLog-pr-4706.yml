@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "Shock Touch no longer forces people with no shock buildup to drop items"
