@@ -151,6 +151,7 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 	var/obj/machinery/target_machine_path
 	/// The time it takes to deploy the bomb.
 	var/deploy_time = 10 SECONDS
+	var/component_datum = /datum/component/interaction_booby_trap
 
 /obj/item/traitor_machine_trapper/examine(mob/user)
 	. = ..()
@@ -168,7 +169,7 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 	if(!do_after(user, delay = deploy_time, target = src, interaction_key = DOAFTER_SOURCE_PLANTING_DEVICE))
 		return TRUE
 	target.AddComponent(\
-		/datum/component/interaction_booby_trap,\
+		component_datum,\
 		additional_triggers = list(COMSIG_ORM_COLLECTED_ORE),\
 		on_triggered_callback = CALLBACK(src, PROC_REF(on_triggered)),\
 		on_defused_callback = CALLBACK(src, PROC_REF(on_defused)),\
