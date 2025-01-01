@@ -47,7 +47,7 @@ On **2021-01-04** we changed the way to compile the codebase.
 
 [Interested in some starting lore?](https://github.com/tgstation/common_core)
 
-[Coding guidelines](https://hackmd.io/@6bZZ5ZJFRQOMKo7S8GgCdg/SyQ77aZL1g) - How and how not to code
+[Coding guidelines](https://hackmd.io/@MonkestationPooba/code_guidelines) - How and how not to code for Monkestation
 
 ## LICENSE
 
