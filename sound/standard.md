@@ -2,7 +2,7 @@ Standard audio file format is:
 Ogg Vorbis on quality 5 preset, 44.1khz sample rate
 Audio which plays with a source and direction (via playsound()) should be downmixed to mono, otherwise byond will do it itself.
 Other sounds can be stereo
-aaa
+
 If you don't know what this means, here's a brief guide on how to do things right in audacity:
 
 Project Rate (Hz) in the bottom right should be set to 44100 before exporting
