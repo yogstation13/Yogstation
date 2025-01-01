@@ -51,7 +51,7 @@
 /datum/action/cooldown/spell/touch/shock/cast_on_hand_hit(obj/item/melee/touch_attack/hand, atom/victim, mob/living/carbon/caster)
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		if(carbon_victim.electrocute_act(15, caster, 1, SHOCK_NOGLOVES | SHOCK_NOSTUN))//doesnt stun. never let this stun
+		if(carbon_victim.electrocute_act(15, caster, 1, SHOCK_NOGLOVES | SHOCK_NOSTUN) && !HAS_TRAIT(carbon_victim, TRAIT_NO_SHOCK_BUILDUP) && !HAS_TRAIT(carbon_victim, TRAIT_SHOCKIMMUNE))//doesnt stun. never let this stun MONKESTATION ADDITION: HAS TRAIT
 			carbon_victim.dropItemToGround(carbon_victim.get_active_held_item())
 			carbon_victim.dropItemToGround(carbon_victim.get_inactive_held_item())
 			carbon_victim.adjust_confusion(15 SECONDS)
