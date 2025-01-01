@@ -1,0 +1,4 @@
+author: "Siro"
+delete-after: True
+changes:
+  - qol: "Xenobiology Slime Vacuum no longer breaks lights."
