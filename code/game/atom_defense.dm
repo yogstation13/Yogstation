@@ -108,10 +108,6 @@
 		tesla_zap(src, zap_range - 1, power * 0.67, tesla_flags, shocked_targets)
 	return TRUE
 
-/// Returns whether or not the atom can be targeted by a tesla bolt
-/atom/proc/get_conductivity()
-	return 1
-
 /atom/proc/reset_shocked()
 	REMOVE_TRAIT(src, TRAIT_TESLA_IGNORE, WAS_SHOCKED)
 
