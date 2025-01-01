@@ -14,9 +14,9 @@
 	name = "minion"
 	explanation_text = "Find the most evil being you can, and become their minion."
 
-/datum/objective/evil_clone/dud // Relies on more destructive objectives, to create conflict from crew hating evil clones because they MIGHT have a more evil objective.
-	name = "peaceful clone"
-	explanation_text = "You find it really mean that some people don't like you because of your red eyes."
+///datum/objective/evil_clone/dud // Relies on more destructive objectives, to create conflict from crew hating evil clones because they MIGHT have a more evil objective. //
+//	name = "peaceful clone"
+//	explanation_text = "You find it really mean that some people don't like you because of your red eyes." //Disabled because it doesn't cause any conflict in my experience. Security is not allowed to validhunt them.
 
 /datum/objective/evil_clone/tide
 	name = "tider"
