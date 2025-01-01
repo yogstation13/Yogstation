@@ -1,0 +1,6 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - rscadd: "Experimental cloner corruption event is now more common."
+  - rscdel: "Disables \"peaceful\" evil clone objective."
+  - bugfix: "Evil clone event gives all cloners the same event."
