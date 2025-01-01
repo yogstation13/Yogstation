@@ -72,6 +72,10 @@
 	A.setDir(dir)
 	qdel(src)
 
+/obj/structure/chair/tesla_act(source, power, tesla_flags, shocked_targets)
+	. = ..()
+	tesla_buckle_check(power)
+
 /obj/structure/chair/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
 		to_chat(user, span_notice("You start deconstructing [src]..."))

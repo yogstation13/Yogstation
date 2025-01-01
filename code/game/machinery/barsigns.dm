@@ -20,6 +20,7 @@
 	energy = 100
 	fire = 50
 	acid = 50
+	electric = 100
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/barsign, 32)
 

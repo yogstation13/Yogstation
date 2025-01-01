@@ -202,6 +202,8 @@
 #define TRAIT_PUSHIMMUNE "push_immunity"
 /// Are we immune to shocks?
 #define TRAIT_SHOCKIMMUNE "shock_immunity"
+/// Completely ignored by tesla zaps
+#define TRAIT_TESLA_IGNORE "tesla_ignore"
 /// Immunity to low temperature damage
 #define TRAIT_RESISTCOLD "resist_cold"
 /// Immunity to high temperature damage

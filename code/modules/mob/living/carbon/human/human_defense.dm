@@ -449,7 +449,7 @@
 
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE)
 	if(!override)
 		siemens_coeff *= physiology.siemens_coeff
 	. = ..()

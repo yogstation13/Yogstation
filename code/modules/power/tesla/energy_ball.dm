@@ -6,6 +6,11 @@
 	pixel_x = -32
 	pixel_y = -32
 	current_size = STAGE_TWO
+	light_range = 10
+	light_power = 3
+	light_on = FALSE
+	light_color = "#EEEEFF"
+	light_system = MOVABLE_LIGHT
 	move_self = 1
 	grav_pull = 0
 	contained = 0
@@ -20,8 +25,9 @@
 	var/energy_to_lower = -20
 	var/max_balls = 10
 	var/zap_range = 7
-	///Boolean that, if TRUE, will not lose energy and tesla zap will dust you
-	var/hypercharged = FALSE
+	var/zap_flags = TESLA_DEFAULT_FLAGS
+	var/zap_power = TESLA_DEFAULT_POWER
+	var/mini_type = /obj/singularity/energy_ball
 
 	///List of all energy balls that's orbiting this one.
 	var/list/obj/singularity/energy_ball/orbiting_balls = list()
@@ -30,7 +36,9 @@
 	miniball = is_miniball
 	. = ..()
 	if(!is_miniball)
-		set_light(10, 7, "#EEEEFF")
+		set_light_on(TRUE)
+	else if(energy < TESLA_DEFAULT_POWER)
+		transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
 
 /obj/singularity/energy_ball/supermatter
 	name = "hypercharged supermatter energy ball"
@@ -38,13 +46,21 @@
 	icon_state = "smenergy_ball"
 	energy = 10000
 	max_balls = 20
+	dissipate = 0
 	zap_range = 7
-	hypercharged = TRUE
+	zap_flags = TESLA_DEFAULT_FLAGS | TESLA_MOB_GIB
+	zap_power = TESLA_HYPERCHARGED_POWER
+	mini_type = /obj/singularity/energy_ball/supermatter/small_crystals
 
 /obj/singularity/energy_ball/supermatter/small_crystals
 	name = "floating hypercharged supermatter crystal"
 	desc = "The crystal emanates an otherworldly radiance, casting a soft, ethereal glow that illuminates the space around it. It hovers around the supermatter energy ball in a precise orbit, defying gravity with an elegant, weightless dance. Sparks of energy occasionally arc between the crystal and the energy ball, crackling with a captivating yet dangerous allure."
 	icon_state = "smcrystal1"
+	zap_power = TESLA_DEFAULT_POWER
+
+/obj/singularity/energy_ball/supermatter/small_crystals/Initialize(mapload, starting_energy, is_miniball)
+	icon_state = "smcrystal[rand(1,3)]"
+	return ..()
 
 /obj/singularity/energy_ball/ex_act(severity, target)
 	return
@@ -75,10 +91,7 @@
 	pixel_x = 0
 	pixel_y = 0
 
-	if(hypercharged)
-		tesla_zap(src, zap_range, TESLA_HYPERCHARGED_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
-	else
-		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
+	tesla_zap(src, zap_range, zap_power, zap_flags)
 
 	pixel_x = -32
 	pixel_y = -32
@@ -91,10 +104,7 @@
 	for (var/obj/singularity/energy_ball/ball as anything in orbiting_balls)
 		if(prob(80)) //tesla nerf/reducing lag, each miniball now has only 20% to trigger the zap
 			continue
-		if(ball.hypercharged)
-			tesla_zap(ball, zap_range, TESLA_DEFAULT_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
-		else
-			tesla_zap(ball, rand(2, zap_range), TESLA_MINI_POWER)
+		tesla_zap(ball, zap_range, ball.zap_power, ball.zap_flags)
 
 /obj/singularity/energy_ball/examine(mob/user)
 	. = ..()
@@ -144,8 +154,6 @@
 		qdel(Orchiectomy_target)
 
 	else if(orbiting_balls.len)
-		if(hypercharged)
-			dissipate = 0
 		dissipate() //sing code has a much better system.
 
 /obj/singularity/energy_ball/proc/new_mini_ball()
@@ -156,14 +164,7 @@
 	if(orbiting_balls.len >= max_balls)
 		return
 
-	var/obj/singularity/energy_ball/EB
-	if(hypercharged)
-		EB = new /obj/singularity/energy_ball/supermatter/small_crystals(loc, 0, TRUE)
-		EB.icon_state = "smcrystal[rand(1,3)]"
-	else
-		EB = new /obj/singularity/energy_ball(loc, 0, TRUE)
-		EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
-
+	var/obj/singularity/energy_ball/EB = new mini_type(loc, 0, TRUE)
 	var/icon/I = icon(icon,icon_state,dir)
 
 	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
@@ -226,29 +227,26 @@
 	var/mob/living/carbon/C = A
 	C.dust()
 
-/proc/tesla_zap(atom/source, zap_range = 3, power, tesla_flags = TESLA_DEFAULT_FLAGS, list/shocked_targets, zap_gib = FALSE)
+/proc/tesla_zap(atom/source, zap_range = 3, power, tesla_flags = TESLA_DEFAULT_FLAGS, list/shocked_targets)
 	. = source.dir
 	if(power < 1000)
 		return
 
-	var/closest_dist = 0
-	var/closest_atom
-	var/obj/machinery/power/tesla_coil/closest_tesla_coil
-	var/obj/machinery/power/grounding_rod/closest_grounding_rod
-	var/mob/living/closest_mob
-	var/obj/machinery/closest_machine
-	var/obj/structure/closest_structure
-	var/obj/structure/blob/closest_blob
 	var/static/things_to_shock = typecacheof(list(
 		/obj/machinery,
 		/mob/living,
 		/obj/structure,
+		/obj/mecha,
+	))
+	var/static/grounded_targets = typecacheof(list(
+		/obj/machinery/power/tesla_coil,
+		/obj/machinery/power/grounding_rod,
 	))
 	var/static/blacklisted_tesla_types = typecacheof(list(
+		/obj/machinery/atmospherics/components,
 		/obj/machinery/atmospherics/pipe,
 		/obj/machinery/power/emitter,
 		/obj/machinery/field/generator,
-		/mob/living/simple_animal/hostile,
 		/mob/living/simple_animal/slime,
 		/obj/machinery/particle_accelerator/control_box,
 		/obj/structure/particle_accelerator/fuel_chamber,
@@ -267,101 +265,52 @@
 		/obj/structure/lattice,
 		/obj/machinery/the_singularitygen/tesla,
 		/obj/structure/frame/machine,
+		/obj/structure/cable,
+		/obj/structure/window,
+		/obj/structure/grille,
+		/obj/structure/table,
+		/obj/structure/table_frame,
 	))
 
-	// +3 to range specifically to include grounding rods that are zap_range+3 away
-	for(var/A in typecache_filter_multi_list_exclusion(oview(source, zap_range+3), things_to_shock, blacklisted_tesla_types))
-		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES) && LAZYACCESS(shocked_targets, A))
+	var/list/targets_to_shock = typecache_filter_multi_list_exclusion(
+		oview(zap_range + 3, source),
+		things_to_shock,
+		blacklisted_tesla_types,
+	)
+
+	var/list/targets = list()
+	var/list/all_coils = list()
+	var/grounded = FALSE
+	for(var/atom/possible_target in targets_to_shock)
+		if(istype(possible_target, /obj/machinery/power/grounding_rod) && !grounded)
+			var/obj/machinery/power/grounding_rod/rod = possible_target
+			if(rod.anchored && !rod.panel_open && get_dist(source, rod) <= zap_range + 3)
+				grounded = TRUE
+				tesla_flags |= TESLA_NO_CHAINING
+				targets = list()
+		if(HAS_TRAIT(possible_target, TRAIT_TESLA_IGNORE))
 			continue
-
-		var/dist = get_dist(source, A)
-
-		if(istype(A, /obj/machinery/power/tesla_coil))
-			var/obj/machinery/power/tesla_coil/C = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(C.obj_flags & BEING_SHOCKED))
-				closest_dist = dist
-
-				//we use both of these to save on istype and typecasting overhead later on
-				//while still allowing common code to run before hand
-				closest_tesla_coil = C
-				closest_atom = C
-
-		else if(closest_tesla_coil)
-			continue //no need checking these other things
-
-		else if(istype(A, /obj/machinery/power/grounding_rod))
-			if(dist < closest_dist || !closest_grounding_rod)
-				closest_grounding_rod = A
-				closest_atom = A
-				closest_dist = dist
-
-		else if(closest_grounding_rod)
+		if(istype(possible_target, /obj/machinery/power/tesla_coil))
+			all_coils += possible_target
+		if(grounded && !istype(possible_target, /obj/machinery/power/grounding_rod))
 			continue
+		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES) && LAZYACCESS(shocked_targets, possible_target))	
+			continue
+		var/new_distance = get_dist(source, possible_target)
+		if(new_distance > zap_range)
+			continue
+		LAZYSET(targets, possible_target, ((4 + zap_range - new_distance)**5) * (ismob(possible_target) ? 2 : 1))
 
-		else if(isliving(A))
-			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != DEAD && !(L.status_flags & GODMODE) && !(L.mob_biotypes & MOB_SPIRIT) && !(L.flags_1 & TESLA_IGNORE_1))
-				closest_mob = L
-				closest_atom = A
-				closest_dist = dist
-
-		else if(ismachinery(A))
-			var/obj/machinery/M = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_machine) && !(M.obj_flags & BEING_SHOCKED))
-				closest_machine = M
-				closest_atom = A
-				closest_dist = dist
-
-		else if(istype(A, /obj/structure/blob))
-			var/obj/structure/blob/B = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(B.obj_flags & BEING_SHOCKED))
-				closest_blob = B
-				closest_atom = A
-				closest_dist = dist
-
-		else if(isstructure(A))
-			var/obj/structure/S = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_tesla_coil) && !(S.obj_flags & BEING_SHOCKED))
-				closest_structure = S
-				closest_atom = A
-				closest_dist = dist
-
-	//Alright, we've done our loop, now lets see if was anything interesting in range
-	if(closest_atom)
-		//common stuff
-		if(zap_gib)
-			source.Beam(closest_atom, icon_state = "solar_beam", time = 5, maxdistance = INFINITY)
-		else
-			source.Beam(closest_atom, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY)
+	if(targets.len)
+		var/atom/target = pickweight(targets)
+		var/beam_icon = (tesla_flags & TESLA_MOB_GIB) ? "solar_beam" : "lightning[rand(1,12)]"
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES))
-			LAZYSET(shocked_targets, closest_atom, TRUE)
-		var/zapdir = get_dir(source, closest_atom)
-		if(zapdir)
-			. = zapdir
-
-	//per type stuff:
-	if(closest_tesla_coil)
-		closest_tesla_coil.tesla_act(power, tesla_flags, shocked_targets)
-
-	else if(closest_grounding_rod)
-		closest_grounding_rod.tesla_act(power, tesla_flags, shocked_targets)
-
-	else if(closest_mob)
-		var/shock_damage = (tesla_flags & TESLA_MOB_DAMAGE)? (min(round(power/600), 90) + rand(-5, 5)) : 0
-		closest_mob.electrocute_act(shock_damage, source, 1, zone=null, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN), gib = zap_gib)
-		if(issilicon(closest_mob))
-			var/mob/living/silicon/S = closest_mob
-			if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))
-				S.emp_act(EMP_LIGHT)
-			tesla_zap(S, 7, power / 1.5, tesla_flags, shocked_targets, zap_gib) // metallic folks bounce it further
+			LAZYSET(shocked_targets, target, TRUE)
+		if(grounded && all_coils.len) // special beam behavior for grounding rods to pretend it's passing through the coils
+			var/atom/intermediate_coil = get_closest_atom_to_group(/obj/machinery/power/tesla_coil, all_coils, list(source, target))
+			source.Beam(intermediate_coil, icon_state = beam_icon, time = 5, maxdistance = INFINITY)
+			intermediate_coil.Beam(target, icon_state = beam_icon, time = 5, maxdistance = INFINITY)
+			intermediate_coil.tesla_act(source, power, zap_range, tesla_flags | TESLA_NO_CHAINING, shocked_targets)
 		else
-			tesla_zap(closest_mob, 5, power / 1.5, tesla_flags, shocked_targets, zap_gib)
-
-	else if(closest_machine)
-		closest_machine.tesla_act(power*1.9, tesla_flags, shocked_targets, zap_gib)
-
-	else if(closest_blob)
-		closest_blob.tesla_act(power, tesla_flags, shocked_targets, zap_gib)
-
-	else if(closest_structure)
-		closest_structure.tesla_act(power, tesla_flags, shocked_targets, zap_gib)
+			source.Beam(target, icon_state = beam_icon, time = 5, maxdistance = INFINITY)
+		target.tesla_act(source, power, zap_range, tesla_flags, shocked_targets)

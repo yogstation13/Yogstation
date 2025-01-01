@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		normalize_cardinal_directions()
 	nodes = new(device_type)
 	if (!armor)
-		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 100, ACID = 70)
+		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 100, RAD = 100, FIRE = 100, ACID = 70, ELECTRIC = 100)
 	init_processing = process
 	..()
 	set_init_directions()
