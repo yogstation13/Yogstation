@@ -27,6 +27,9 @@
 	var/mob/living/carbon/human/altPatient   //If scanning someone else, this will be the target.
 	var/obj/item/card/id/C          //the account of the person using the console.
 
+	COOLDOWN_DECLARE(bracelet_print)
+	var/bracelet_print_cd = 5 SECONDS
+
 /obj/machinery/medical_kiosk/Initialize(mapload) //loaded subtype for mapping use
 	. = ..()
 	scanner_wand = new/obj/item/scanner_wand(src)
@@ -328,7 +331,7 @@
 	data["active_status_4"] = scan_active_4	// Radio-Neuro Scan Check
 	return data
 
-/obj/machinery/medical_kiosk/ui_act(action,active)
+/obj/machinery/medical_kiosk/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return
 	switch(action)
@@ -356,3 +359,46 @@
 			altPatient = null
 			clearScans()
 			. = TRUE
+		if("printBracelet")
+			if(!isliving(usr))
+				return
+			var/mob/living/living_user = usr
+			var/issue = trim(sanitize(living_user.treat_message(tgui_input_text(living_user, "Enter your medical issue.", "Medical Wristband", "I have a boo-boo.", 60))), 60)
+			if(!istext(issue) || !issue || issue == "")
+				to_chat(living_user, span_warning("Error, no issue written."))
+				return
+			if(!Adjacent(living_user))
+				to_chat(living_user, span_warning("Error, you are too far away from the kiosk."))
+				return
+			if(!COOLDOWN_FINISHED(src, bracelet_print))
+				to_chat(living_user, span_warning("Error, bracelet printed too recently. Please wait [(COOLDOWN_TIMELEFT(src, bracelet_print) / 10)] seconds."))
+				return
+			if(!(altPatient?.name))
+				to_chat(living_user, span_warning("Error, no patient detected."))
+				return
+			if(isnotpretty(issue))
+				to_chat(living_user, "<span class='notice'>Your fingers slip. <a href='https://forums.yogstation.net/help/rules/#rule-0_1'>See rule 0.1</a>.</span>")
+				var/log_message = "[key_name(living_user)] just tripped a pretty filter: '[issue]'."
+				message_admins(log_message)
+				log_say(log_message)
+				return
+			COOLDOWN_START(src, bracelet_print, bracelet_print_cd)
+			var/obj/item/clothing/gloves/patient_bracelet/new_bracelet = new
+			new_bracelet.patient_name = altPatient.name
+			new_bracelet.patient_issue = issue
+			living_user.put_in_hands(new_bracelet)
+			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
+
+/// Mob examine code in code/modules/mob/living/carbon/human/examine.dm
+/obj/item/clothing/gloves/patient_bracelet
+	name = "patient wristbands"
+	desc = "A pair of advanced patient wristbands used to identify patients and assist in triage. To be worn on the wrist."
+	icon_state = "gloves_cell"
+	worn_icon = 'icons/mob/clothing/hands/hands.dmi'
+	worn_icon_state = "latex"
+	var/patient_name = "Unknown"
+	var/patient_issue = "Not listed."
+
+/obj/item/clothing/gloves/patient_bracelet/examine(mob/user)
+	. = ..()
+	. += "Patient: <b>[bracelet.patient_name]</b>\n\"[bracelet.patient_issue]\""

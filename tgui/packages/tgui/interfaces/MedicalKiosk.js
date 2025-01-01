@@ -137,6 +137,15 @@ const MedicalKioskInstructions = (props, context) => {
         color="average"
         onClick={() => act('clearTarget')}
         content="Reset Scanner" />
+      <Button
+        inline
+        mt={1}
+        tooltip={multiline`
+          Prints out a medical wristband that helps with triage & speeds up treatment.
+        `}
+        icon="print"
+        onClick={() => act('printBracelet')}
+        content="Print Wristband" />
     </Section>
   );
 };

@@ -118,6 +118,10 @@ const SCANNER_GATE_ROUTES = {
     title: 'Scanner Mode: Nanites',
     component: () => ScannerGateNanites,
   },
+  Bracelet: {
+    title: 'Scanner Mode: Wristband',
+    component: () => ScannerGateBracelet,
+  },
 };
 
 const ScannerGateControl = (props, context) => {
@@ -323,6 +327,20 @@ const ScannerGateNanites = (props, context) => {
               })} />
           </LabeledList.Item>
         </LabeledList>
+      </Box>
+      <ScannerGateMode />
+    </>
+  );
+};
+
+const ScannerGateBracelet = (props, context) => {
+  const { data } = useBackend(context);
+  const { reverse } = data;
+  return (
+    <>
+      <Box mb={2}>
+        Trigger if the person scanned {reverse ? 'does not have' : 'has'}
+        {' '}a patient wristband.
       </Box>
       <ScannerGateMode />
     </>

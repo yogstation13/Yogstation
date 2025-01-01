@@ -128,6 +128,11 @@
 			badwings = "Weaponized "
 		. += "[t_He] [t_has] a pair of [span_warning(badwings)][(dna.features["wings"])] wings on [t_his] back"
 
+	//Patient bracelet
+	if(gloves && !(ITEM_SLOT_GLOVES in obscured) && istype(gloves, /obj/item/clothing/gloves/patient_bracelet))
+		var/obj/item/clothing/gloves/patient_bracelet/bracelet = gloves
+		. += span_notice("[icon2html(gloves, user)] - Patient: <b>[bracelet.patient_name]</b>\n\"[bracelet.patient_issue]\"")
+
 	if(user?.mind && HAS_TRAIT(user.mind, TRAIT_PSYCH) && LAZYLEN(get_traumas()))
 		var/highest_trauma = 0
 		for(var/datum/brain_trauma/B in get_traumas())
