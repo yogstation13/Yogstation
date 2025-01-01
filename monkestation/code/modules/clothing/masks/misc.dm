@@ -136,3 +136,40 @@
 	visor_flags_inv = HIDEFACE|HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
 	slot_flags = ITEM_SLOT_MASK
+
+/obj/item/clothing/mask/gas/atp
+	name = "\improper A.T.P. engineer mask"
+	desc = "Not rated for bullets, stop trying. Also not rated for killer clowns with stop signs."
+	icon = 'monkestation/icons/obj/clothing/masks.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/mask.dmi'
+	icon_state = "atp_mask"
+	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+//	inhand_icon_state = "gas_alt"
+	modifies_speech = TRUE
+	COOLDOWN_DECLARE(spamcheck)
+
+/obj/item/clothing/mask/gas/atp/handle_speech(datum/source, list/speech_args)
+	if(COOLDOWN_FINISHED(src, spamcheck))
+		var/speaksound = pick('monkestation/sound/items/atp_speak1.ogg', 'monkestation/sound/items/atp_speak2.ogg', 'monkestation/sound/items/atp_speak3.ogg', 'monkestation/sound/items/atp_speak4.ogg', 'monkestation/sound/items/atp_speak5.ogg')
+		playsound(src, speaksound, 35, FALSE, SHORT_RANGE_SOUND_EXTRARANGE-2, falloff_exponent = 0, ignore_walls = FALSE, use_reverb = FALSE)
+		COOLDOWN_START(src, spamcheck, 3 SECONDS)
+
+/obj/item/clothing/mask/gas/atp/equipped(mob/living/equipee, slot)
+	. = ..()
+	if(slot & ITEM_SLOT_MASK)
+		RegisterSignal(equipee, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(item_removed))
+		RegisterSignal(equipee, COMSIG_LIVING_DEATH, PROC_REF(death_sound))
+		if(istype(equipee))
+			equipee.bubble_icon = "atp"
+
+/obj/item/clothing/mask/gas/atp/proc/item_removed(mob/living/wearer, obj/item/dropped_item)
+	SIGNAL_HANDLER
+	if(dropped_item != src)
+		return
+	UnregisterSignal(wearer, list(COMSIG_MOB_UNEQUIPPED_ITEM, COMSIG_LIVING_DEATH))
+	if(istype(wearer))
+		wearer.bubble_icon = initial(wearer.bubble_icon)
+
+/obj/item/clothing/mask/gas/atp/proc/death_sound(mob/living/equipee)
+	SIGNAL_HANDLER
+	playsound(src, 'monkestation/sound/items/atp_death_sound.ogg', 20, FALSE, SHORT_RANGE_SOUND_EXTRARANGE, ignore_walls = FALSE)

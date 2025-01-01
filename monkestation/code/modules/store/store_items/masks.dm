@@ -41,6 +41,11 @@ GLOBAL_LIST_INIT(store_masks, generate_store_items(/datum/store_item/mask))
 	item_path = /obj/item/clothing/mask/gas
 	item_cost = 4000
 
+/datum/store_item/mask/atp_mask
+	name = "ATP Engineer Mask"
+	item_path = /obj/item/clothing/mask/gas/atp
+	item_cost = 5000
+
 /*
 *	JOB-LOCKED
 */
