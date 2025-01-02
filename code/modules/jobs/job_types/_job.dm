@@ -224,6 +224,9 @@
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
+	var/isexempt = C.prefs.db_flags & DB_FLAG_EXEMPT //if we're exempt from job EXP requirements we also should be exempt from account age probably
+	if(isexempt)
+		return TRUE
 	if(available_in_days(C) == 0)
 		return TRUE	//Available in 0 days = available right now = player is old enough to play.
 	return FALSE
