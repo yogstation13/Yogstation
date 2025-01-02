@@ -162,7 +162,7 @@
 			playsound(src, select_sound, 50, TRUE, extrarange = -3)
 		//Pour glass
 		if("pour")
-			pour_glass()
+			pour_glass(usr)
 
 /obj/machinery/food_cart/Initialize(mapload)
 	. = ..()
@@ -243,7 +243,7 @@
 		//Warn about full capacity
 		user.balloon_alert(user, "No space!")
 
-/obj/machinery/food_cart/proc/pour_glass(mob/user = usr)
+/obj/machinery/food_cart/proc/pour_glass(mob/user)
 	//Check if there are any glasses in storage
 	if(glass_quantity > 0)
 		glass_quantity -= 1
