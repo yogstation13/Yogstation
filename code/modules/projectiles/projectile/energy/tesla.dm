@@ -16,7 +16,6 @@
 
 /obj/projectile/energy/tesla/on_hit(atom/target, blocked)
 	. = ..()
-	var/atom/firer_location = get_atom_on_turf(firer)
 	tesla_zap(target, zap_range, power, tesla_flags)
 	target.tesla_act(src, power, zap_range, tesla_flags | TESLA_NO_CHAINING)
 	qdel(src)
