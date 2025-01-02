@@ -177,7 +177,7 @@
 		visible_message(span_alert("[src] spills all of its liquids onto the floor!"))
 	//Spill reagents on the cart's turf
 	//Thanks baiomu for telling me how to spill reagents
-	var/turf/spill_area = loc
+	var/turf/spill_area = get_turf(src)
 	spill_area.add_liquid_from_reagents(mixer.reagents, FALSE, mixer.reagents.chem_temp)
 	spill_area.add_liquid_from_reagents(reagents, FALSE, mixer.reagents.chem_temp)
 	//Reduce mixer to dust
