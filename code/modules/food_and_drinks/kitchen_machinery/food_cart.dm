@@ -213,8 +213,7 @@
 	if(find_amount(ui_item) > 0)
 		//Select the last(most recent) of desired item
 		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(ui_item))
-		//Drop it on the floor and then move it into the user's hands
-		dispensed_item.forceMove(loc)
+		//Move it into the user's hands or drop it on the floor
 		user.put_in_hands(dispensed_item)
 		user.visible_message(span_notice("[user] dispenses [dispensed_item.name] from [src]."), span_notice("You dispense [dispensed_item.name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
@@ -229,7 +228,7 @@
 	qdel(ui_item)
 
 /obj/machinery/food_cart/proc/storage_single(obj/item/target_item, mob/user = usr)
-	//Check if there is room
+	//Check if there is room, subtract by 1 since the cart's reagent container is added to its contents
 	if(contents.len - 1 < contents_capacity)
 		//If item's typepath is not already in  food_ui_list, add it
 		if(!LAZYFIND(food_ui_list, target_item.type))
