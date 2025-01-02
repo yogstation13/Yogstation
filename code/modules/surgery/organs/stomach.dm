@@ -106,6 +106,7 @@
 	maxHealth = 3 * STANDARD_ORGAN_THRESHOLD
 	var/nutriment_stashed = 0
 	disgust_metabolism = 2		//Twice as efficient as stabilizing itself
+	cybernetic_quality = 1
 
 /obj/item/organ/stomach/cybernetic/upgraded/on_life()
 	if(owner.nutrition >= NUTRITION_LEVEL_FULL && nutriment_stashed < NUTRI_STASH_MAX)

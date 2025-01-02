@@ -195,7 +195,7 @@
 	if(cybernetic_type)
 		var/obj/item/organ/cybernetic = new cybernetic_type()
 		// Timer is needed because doing it immediately doesn't REPLACE organs for some unknown reason, so got to do it next tick or whatever.
-		addtimer(CALLBACK(cybernetic, TYPE_PROC_REF(/obj/item/organ, Insert), living_mob), 1)
+		addtimer(CALLBACK(cybernetic, TYPE_PROC_REF(/obj/item/organ, Insert), living_mob, 0, TRUE), 1)
 		return
 
 	if(isAI(living_mob))

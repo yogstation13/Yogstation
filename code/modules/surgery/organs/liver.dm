@@ -106,6 +106,7 @@
 	healing_factor = 2 * STANDARD_ORGAN_HEALING //Can regenerate from damage quicker
 	toxTolerance = 20
 	toxLethality = 0.007
+	cybernetic_quality = 1
 
 /obj/item/organ/liver/cybernetic/upgraded/on_life()
 	. = ..()

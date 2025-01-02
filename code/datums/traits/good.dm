@@ -331,7 +331,7 @@
 	var/obj/item/organ/prosthetic = new organ_type(quirk_holder)
 	var/obj/item/organ/old_part = H.getorganslot(prosthetic.slot)
 	slot_string = prosthetic.slot
-	prosthetic.Insert(H)
+	prosthetic.Insert(H, 0, TRUE)
 	qdel(old_part)
 	H.regenerate_icons()
 
