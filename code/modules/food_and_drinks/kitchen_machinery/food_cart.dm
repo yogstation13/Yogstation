@@ -219,7 +219,7 @@
 		user.visible_message(span_notice("[user] dispenses [dispensed_item.name] from [src]."), span_notice("You dispense [dispensed_item.name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 		//If the last one was dispenced, remove from UI
-		if(find_amount(ui_item) == 0)
+		if(!find_amount(ui_item))
 			LAZYREMOVE(food_ui_list, received_item)
 	else
 		//Incase the UI buttons are slow to disable themselves
