@@ -105,10 +105,13 @@
 
 // STEALING RESEARCH HDD
 /obj/item/paper/guides/antag/hdd_extraction
+
+/obj/item/paper/guides/antag/hdd_extraction/Initialize(mapload)
+	..()
 	info = "<h1>Source Code Theft & You - The Idiot's Guide to Crippling Nanotrasen Research & Development</h1><br>\
 	Rumour has it that Nanotrasen are using their R&D servers to perform theoretical simulations into alternate universes!<br>\
 	Recently, Nanotrasen has determined the existence of a universe similar to ours, and have been working to bridge the gap between the two.<br>\
-	They have compiled a one-of-a-kind scan of the extant universe into a project designated under the codename <b>Project Bee</b>.<br>\
+	They have compiled a one-of-a-kind scan of the extant universe into a project designated under the codename <b>[GLOB.hdd_research_project]</b>.<br>\
 	This cannot be allowed to stand. Below is all our intel for stealing their source code and crippling their research efforts:<br>\
 	<ul>\
 	<li>Locate the physical R&D Server mainframes. Intel suggests these are stored in specially cooled rooms deep within their Science department.</li>\
@@ -134,10 +137,23 @@
 
 /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
 	name = "r&d server hard disk drive"
-	desc = "The hard drive containing sensitive data on alternate universes. Holding it up to your ear you can faintly hear the hum of millions of bees."
+	desc = "The hard drive containing sensitive data on alternate universes."
 	icon = 'icons/obj/nuke_tools.dmi'
 	icon_state = "project_bee" //hi bee!
 	max_capacity = 512
+
+/obj/item/computer_hardware/hard_drive/cluster/hdd_theft/Initialize(mapload)
+	..()
+	switch(GLOB.hdd_research_project)
+		if("Project Shiptest")
+			icon_state = "project_shiptest"
+			desc += " Holding it up to your ear you can faintly hear rocks thumping dully against the inside of the case."
+		if("Project Monke")
+			icon_state = "project_monke"
+			desc += " Holding it up to your ear you can faintly hear thousands of monkeys farting."
+		else //default route: connecting to beestation
+			desc += " Holding it up to your ear you can faintly hear the hum of millions of bees."
+	
 
 // STEALING SUPERMATTER
 
