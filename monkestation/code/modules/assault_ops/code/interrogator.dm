@@ -23,6 +23,7 @@
 	state_open = FALSE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_REQUIRES_DEXTERITY
 	/// Is the door locked?
 	var/locked = FALSE
 	/// Is the system currently processing?
@@ -60,9 +61,7 @@
 
 /obj/machinery/interrogator/AltClick(mob/user)
 	. = ..()
-	if(!can_interact(user))
-		return
-	if(user == occupant)
+	if(!can_interact(user) || contains(user))
 		return
 	if(!processing)
 		attempt_extract(user)
@@ -70,25 +69,30 @@
 		stop_extract(user)
 
 /obj/machinery/interrogator/interact(mob/user)
-	if(user == occupant)
+	. = ..()
+	if(.)
 		return
 	if(state_open)
 		close_machine()
-		return
-	if(!processing && !locked)
+		return TRUE
+	else if(!processing && !locked)
 		open_machine()
-		return
+		return TRUE
 
 /obj/machinery/interrogator/update_icon_state()
-	. = ..()
 	if(occupant)
 		icon_state = processing ? "interrogator_on" : "interrogator_off"
 	else
 		icon_state = state_open ? "interrogator_open" : "interrogator_closed"
+	return ..()
 
 /obj/machinery/interrogator/container_resist_act(mob/living/user)
+	if(user != human_occupant)
+		return
 	if(!locked)
 		open_machine()
+	else
+		balloon_alert(user, "locked!")
 
 /obj/machinery/interrogator/open_machine(drop = TRUE, density_to_set = FALSE)
 	. = ..()
