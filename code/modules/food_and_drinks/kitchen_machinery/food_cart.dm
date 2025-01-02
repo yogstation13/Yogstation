@@ -173,7 +173,7 @@
 
 /obj/machinery/food_cart/Destroy()
 	//Only alert others if the cart or mixer has any reagents
-	if(mixer.reagents.total_volume > 0 || reagents.total_volume > 0)
+	if(mixer.reagents.total_volume || reagents.total_volume)
 		visible_message(span_alert("[src] spills all of its liquids onto the floor!"))
 	//Spill reagents on the cart's turf
 	//Thanks baiomu for telling me how to spill reagents
