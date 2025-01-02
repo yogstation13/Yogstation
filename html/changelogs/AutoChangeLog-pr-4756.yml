@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "(uaioy) Cyborgs do not deathgasp twice when dying anymore"
+  - bugfix: "(Melbert) Lizards and Moths don't deathgasp twice when they die"
