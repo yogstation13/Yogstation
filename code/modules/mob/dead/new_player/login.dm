@@ -23,7 +23,7 @@
 	sight |= SEE_TURFS
 
 	new_player_panel()
-	client?.playtitlemusic()
+	
 
 	if(GLOB.admin_event)
 		GLOB.admin_event.show_info(src)
@@ -36,3 +36,5 @@
 		else
 			postfix = "soon"
 		to_chat(src, "Please set up your character and select \"Ready\". The game will start [postfix].")
+
+	spawn(3 SECONDS) client?.playtitlemusic()
