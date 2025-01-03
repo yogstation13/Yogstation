@@ -38,6 +38,10 @@
 	swimming_component = /datum/component/swimming/ethereal
 	wings_icon = "Ethereal"
 	wings_detail = "Etherealdetails"
+	
+	latency_chance = 90
+	possible_faculties = list(PSI_ENERGISTICS, PSI_REDACTION)
+	starting_psi_level = PSI_RANK_LATENT
 
 	var/max_range = 5
 	var/max_power = 2

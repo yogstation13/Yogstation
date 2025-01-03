@@ -485,6 +485,20 @@
 			return
 		cmd_admin_mute(href_list["mute"], text2num(href_list["mute_type"]))
 
+	else if(href_list["remove_psionics"])
+		var/mob/living/psyker = locate(href_list["remove_psionics"])
+		if(psyker?.psi && !QDELETED(psyker.psi))
+			to_chat(psyker, span_notice("<b>Your psionic powers vanish abruptly, leaving you cold and empty.</b>"))
+			log_admin("[key_name(usr)] removed all psionics from [key_name(psyker)].")
+			message_admins(span_adminnotice("[key_name_admin(usr)] removed all psionics from [key_name(psyker)]."))
+			QDEL_NULL(psyker.psi)
+
+	else if(href_list["trigger_psi_latencies"])
+		var/datum/psi_complexus/psi = locate(href_list["trigger_psi_latencies"])
+		log_admin("[key_name(usr)] triggered psi latencies for [key_name(psi.owner)].")
+		message_admins(span_adminnotice("[key_name_admin(usr)] triggered psi latencies for [key_name(psi.owner)]."))
+		psi.check_latency_trigger(100, "outside intervention", force = TRUE)
+
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))
 			return

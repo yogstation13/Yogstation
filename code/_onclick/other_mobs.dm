@@ -5,6 +5,9 @@
 	Otherwise pretty standard.
 */
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity, modifiers)
+	if(psi)
+		if(SEND_SIGNAL(src, COMSIG_PSI_INVOKE, A, proximity, modifiers))
+			return
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		if(src == A)
 			check_self_for_injuries()
@@ -47,6 +50,10 @@
 
 	A.attack_hand(src, modifiers)
 
+/mob/living/carbon/human/RangedAttack(atom/A, params)
+	if(psi)
+		SEND_SIGNAL(src, COMSIG_PSI_INVOKE, A, FALSE, params)
+
 //Return TRUE to cancel other attack hand effects that respect it.
 /atom/proc/attack_hand(mob/user, modifiers)
 	. = FALSE
@@ -56,6 +63,9 @@
 		. = TRUE
 	if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
 		. = _try_interact(user, modifiers)
+
+/mob/proc/attack_empty_hand(hand)
+	return
 
 /// When the user uses their hand on an item while holding right-click
 /// Returns a SECONDARY_ATTACK_* value.

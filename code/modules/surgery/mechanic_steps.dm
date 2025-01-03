@@ -18,7 +18,7 @@
 
 /datum/surgery_step/mechanic_open/tool_check(mob/user, obj/item/tool)
 	if(istype(tool))
-		if(!tool.is_sharp())
+		if(implement_type == /obj/item && !tool.is_sharp())
 			return FALSE
 		if(tool.usesound)
 			preop_sound = tool.usesound
@@ -45,7 +45,7 @@
 
 /datum/surgery_step/mechanic_close/tool_check(mob/user, obj/item/tool)
 	if(istype(tool))
-		if(!tool.is_sharp())
+		if(implement_type == /obj/item && !tool.is_sharp())
 			return FALSE
 		if(tool.usesound)
 			preop_sound = tool.usesound
