@@ -915,3 +915,12 @@
 	var/obj/item/bodybag/environmental/prisoner/syndicate/pbag = new(src)
 	var/obj/item/syndicate_prisoner_remote/remote = new(src)
 	remote.bag = pbag
+
+/obj/item/storage/box/syndie_kit/attachments
+	real_name = "attachment kit"
+
+/obj/item/storage/box/syndie_kit/attachments/PopulateContents()
+	new /obj/item/attachment/scope/holo(src)
+	new /obj/item/attachment/scope/infrared(src)
+	new /obj/item/attachment/grip/vertical(src)
+	new /obj/item/attachment/laser_sight(src)
