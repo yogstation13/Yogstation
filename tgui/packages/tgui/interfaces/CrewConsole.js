@@ -40,6 +40,10 @@ const speciesmap = {
     "icon": "feather-alt",
     "color": "#ffebb8",
   },
+  "Vox": {
+    "icon": "crow",
+    "color": "#13c230",
+  },
   "Lizard": {
     "icon": "dragon",
     "color": "#8bf76a",
