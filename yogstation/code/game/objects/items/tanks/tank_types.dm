@@ -24,3 +24,6 @@
 
 /obj/item/tank/internals/emergency_oxygen/vox/populate_gas()
 	air_contents.set_moles(GAS_N2, (10*ONE_ATMOSPHERE)* volume/(R_IDEAL_GAS_EQUATION*T20C))
+
+/obj/item/tank/internals/emergency_oxygen/vox/empty/populate_gas()
+	return
