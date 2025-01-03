@@ -2144,6 +2144,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	// Nukies have no use for this and their autosurgeons are already multi-use
 	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
 
+/datum/uplink_item/implants/skill_injector
+	name = "Skilltrainer"
+	desc = "A single-use neural enhancement injector. Once activated, the nanites will enable the host to perform as if they had been professionally trained."
+	item = /obj/item/skill_injector
+	manufacturer = /datum/corporation/traitor/cybersun
+	cost = 2
+	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+
+/datum/uplink_item/implants/skill_injector/nukies
+	item = /obj/item/skill_injector/advanced
+	manufacturer = /datum/corporation/traitor/cybersun
+	cost = 5
+	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+
 /datum/uplink_item/implants/adrenal
 	name = "Adrenal Implant"
 	desc = "An implant injected into the body, and later activated at the user's will. It will inject a chemical \
