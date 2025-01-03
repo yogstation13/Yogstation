@@ -6,6 +6,7 @@
 #define SCANGATE_WANTED			"Wanted"
 #define SCANGATE_SPECIES		"Species"
 #define SCANGATE_NUTRITION		"Nutrition"
+#define SCANGATE_BRACELET		"Wristband"
 
 #define SCANGATE_HUMAN			"human"
 #define SCANGATE_LIZARD			"lizard"
@@ -161,6 +162,11 @@
 					beep = TRUE
 				if(H.nutrition >= detect_nutrition && detect_nutrition == NUTRITION_LEVEL_FAT)
 					beep = TRUE
+		if(SCANGATE_BRACELET)
+			if(ishuman(M))
+				var/mob/living/carbon/human/human_target = M
+				if(istype(human_target.gloves, /obj/item/clothing/gloves/patient_bracelet))
+					beep = TRUE
 
 	if(reverse)
 		beep = !beep
@@ -249,6 +255,7 @@
 #undef SCANGATE_WANTED
 #undef SCANGATE_SPECIES
 #undef SCANGATE_NUTRITION
+#undef SCANGATE_BRACELET
 
 #undef SCANGATE_HUMAN
 #undef SCANGATE_LIZARD
