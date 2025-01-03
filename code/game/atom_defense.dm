@@ -104,7 +104,7 @@
 		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
 	if(power < TESLA_MINI_POWER) //tesla bolts bounce twice, tesla miniball bolts bounce only once
 		return TRUE
-	if(!(tesla_flags & TESLA_NO_CHAINING) && power >= 1500 && zap_range > 1)
+	if(!(tesla_flags & TESLA_NO_CHAINING) && power >= 1500 && zap_range > 3)
 		tesla_zap(src, zap_range - 1, power * 0.67, tesla_flags, shocked_targets)
 	return TRUE
 
