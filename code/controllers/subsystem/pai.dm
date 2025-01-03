@@ -9,27 +9,6 @@ SUBSYSTEM_DEF(pai)
 	var/list/paicard_list = list()
 
 /datum/controller/subsystem/pai/Topic(href, href_list[])
-	if(href_list["download"])
-		var/datum/paiCandidate/candidate = locate(href_list["candidate"]) in candidates
-		var/obj/item/computer_hardware/paicard/card = locate(href_list["device"]) in paicard_list
-		if(card.pai)
-			return
-		if(istype(card, /obj/item/computer_hardware/paicard) && istype(candidate, /datum/paiCandidate))
-			if(check_ready(candidate) != candidate)
-				return FALSE
-			var/mob/living/silicon/pai/pai = new(card)
-			if(!candidate.name)
-				pai.name = pick(GLOB.ninja_names)
-			else
-				pai.name = candidate.name
-			pai.real_name = pai.name
-			pai.key = candidate.key
-
-			card.setPersonality(pai)
-
-			candidates -= candidate
-			usr << browse(null, "window=findPai")
-
 	if(href_list["new"])
 		var/datum/paiCandidate/candidate = locate(href_list["candidate"]) in candidates
 		var/option = href_list["option"]
