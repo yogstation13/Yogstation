@@ -502,19 +502,8 @@
 /datum/strip_menu/ui_host(mob/user)
 	return owner
 
-/datum/strip_menu/ui_status(mob/user, datum/ui_state/state)
-	. = ..()
-
-	if (isliving(user))
-		var/mob/living/living_user = user
-
-		if (
-			. == UI_UPDATE \
-			&& user.stat == CONSCIOUS \
-			&& living_user.body_position == LYING_DOWN \
-			&& user.Adjacent(owner)
-		)
-			return UI_INTERACTIVE
+/datum/strip_menu/ui_state(mob/user)
+	return GLOB.strip_state
 
 /// Creates an assoc list of keys to /datum/strippable_item
 /proc/create_strippable_list(types)
