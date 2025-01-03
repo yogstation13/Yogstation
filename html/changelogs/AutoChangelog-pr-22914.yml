@@ -1,4 +1,0 @@
-author: "Ethan4303"
-delete-after: true 
-changes: 
-  - mapping: "Fixed a tile being plating instead of floor tile in nanites on IceMeta"
