@@ -2152,6 +2152,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
 
+/datum/uplink_item/implants/skill_injector/New()
+	var/obj/item/skill_injector/typed_item = item
+	desc += " This one grants [initial(typed_item.amount_to_give)] points."
+
 /datum/uplink_item/implants/skill_injector/nukies
 	item = /obj/item/skill_injector/advanced
 	manufacturer = /datum/corporation/traitor/cybersun
