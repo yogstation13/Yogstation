@@ -76,7 +76,7 @@
 	pixel_y = 0
 
 	if(hypercharged)
-		tesla_zap(src, zap_range, TESLA_HYPERCHARGED_POWER, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
+		tesla_zap(src, zap_range, TESLA_HYPERCHARGED_POWER+energy, TESLA_DEFAULT_FLAGS | TESLA_ALLOW_DUPLICATES, zap_gib = TRUE)
 	else
 		tesla_zap(src, zap_range, TESLA_DEFAULT_POWER)
 
@@ -160,6 +160,7 @@
 	if(hypercharged)
 		EB = new /obj/singularity/energy_ball/supermatter/small_crystals(loc, 0, TRUE)
 		EB.icon_state = "smcrystal[rand(1,3)]"
+		energy *= EB.energy
 	else
 		EB = new /obj/singularity/energy_ball(loc, 0, TRUE)
 		EB.transform *= pick(0.3, 0.4, 0.5, 0.6, 0.7)
