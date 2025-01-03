@@ -462,7 +462,7 @@
 		if(!target.is_injectable(user))
 			to_chat(user, span_warning("You cannot directly fill [target]!"))
 			return
-	
+
 	//The actual reagent transfer
 	var/fraction = min(transfer_amount/container.reagents.total_volume, 1)
 	container.reagents.reaction(C, INJECT, fraction)
@@ -524,7 +524,7 @@
 	var/transfered_amount = 0
 	//Drawing from a mob
 	var/mob/living/L = target
-	if(istype(L)) 
+	if(istype(L))
 		transfered_amount = container.reagents.maximum_volume - container.reagents.total_volume
 		if(target != user)
 			target.visible_message(span_danger("[user] is trying to take a blood sample from [target]!"), \
@@ -539,7 +539,7 @@
 			to_chat(user, span_warning("You are unable to draw any blood from [L]!"))
 
 	//If not mob
-	else 
+	else
 		if(!target?.reagents?.total_volume)
 			to_chat(user, span_warning("[target] is empty!"))
 			return
@@ -572,7 +572,7 @@
 	container = /obj/item/reagent_containers/glass/bottle/adminordrazine
 	upgrade_flags = PIERCING
 	possible_transfer_amounts = list(0.1, 1, 5, 10, 15, 20, 30, 50, 100)
-  
+
 /obj/item/hypospray/combat
 	name = "combat hypospray"
 	desc = "A combat-ready deluxe hypospray that acts almost instantly."
