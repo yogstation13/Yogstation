@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "The In-TERROR-gator properly checks whether mobs can interact with it or not."

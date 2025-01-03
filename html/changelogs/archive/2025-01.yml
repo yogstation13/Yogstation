@@ -50,3 +50,9 @@
   - rscadd: Experimental cloner corruption event is now more common.
   - rscdel: Disables "peaceful" evil clone objective.
   - bugfix: Evil clone event gives all cloners the same event.
+2025-01-03:
+  Absolucy:
+  - bugfix: The In-TERROR-gator properly checks whether mobs can interact with it
+      or not.
+  - bugfix: (uaioy) Cyborgs do not deathgasp twice when dying anymore
+  - bugfix: (Melbert) Lizards and Moths don't deathgasp twice when they die
