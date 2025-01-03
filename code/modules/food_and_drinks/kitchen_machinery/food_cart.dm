@@ -1,10 +1,17 @@
-///For sending images to the UI with base 64
-/datum/data/ui_image
+///Holding info for UI elements
+/datum/data/cart_item
+	///Amount of item in contents
+	var/amount = null
+	///Item's type path
+	var/type_path = null
 	///Image to be shown in UI
 	var/image = null
 
-//Thanks hedgehog1029 for the help on this
-/datum/data/ui_image/New(obj/item/I)
+//Thanks hedgehog1029 for the help on base64 icon
+/datum/data/cart_item/New(obj/item/I)
+	name = I.name
+	amount = 1
+	type_path = I.type
 	var/icon/icon = icon(I.icon, I.icon_state, SOUTH, 1)
 	image = icon2base64(icon)
 
@@ -57,41 +64,45 @@
 	data["storage"] = list()
 
 	//Make sure food_ui_list has desired contents
-	//This, combined with the find_amount() bellow, allow parmesan cheese to show in the UI after maturing
-	for(var/obj/list_element in contents)
+	//This, along with contents check for food_ui_list, allows parmesan cheese to show in the UI after maturing
+	var/in_list
+	for(var/obj/item/content_item in contents)
+		in_list = FALSE
 		//Only check food items
-		if(istype(list_element, /obj/item/reagent_containers/food))
-			//Add to list if not already in it
-			if(!LAZYFIND(food_ui_list, list_element.type))
-				LAZYADD(food_ui_list, list_element.type)
+		if(istype(content_item, /obj/item/reagent_containers/food/snacks))
+			//Loop through all datums in ui list to check if item is in the UI
+			for(var/datum/data/cart_item/item in food_ui_list)
+				if(item.type_path == content_item.type)
+					in_list = TRUE
+					break
+			//If not already in food_ui_list, add to it
+			if(!in_list)
+				LAZYADD(food_ui_list, new /datum/data/cart_item(content_item))
 
-	
 	//Loop through food list for data to send to food tab
-	for(var/item_detail in food_ui_list)
+	for(var/datum/data/cart_item/item_detail in food_ui_list)
+		in_list = FALSE
 		//If none are found in contents, remove from list and move on to next element
-		if(find_amount(item_detail) == 0)
+		for(var/obj/content_item in contents)
+			if(content_item.type == item_detail.type_path)
+				in_list = TRUE
+		if(!in_list)
 			LAZYREMOVE(food_ui_list, item_detail)
-			continue
+			break
 
 		//Create needed list and variable for geting data for UI
 		var/list/details = list()
-		var/obj/item/reagent_containers/food/item = new item_detail
 
 		//Get information for UI
-		details["name"] = item.name
-		details["quantity"] = find_amount(item)
-		details["type_path"] = item.type
+		details["name"] = item_detail.name
+		details["quantity"] = item_detail.amount
+		details["type_path"] = item_detail.type_path
 
 		//Get an image for the UI
-		var/datum/data/ui_image/ui_image = new /datum/data/ui_image(item)
-		details["image"] = ui_image.image
+		details["image"] = item_detail.image
 
 		//Add to food list
 		data["food"] += list(details)
-
-		//Delete instances to prevent server being overrun by spoopy ghost items
-		qdel(item)
-		qdel(ui_image)
 
 	//Loop through drink list for data to send to cart's reagent storage tab
 	for(var/datum/reagent/drink in reagents.reagent_list)
@@ -206,33 +217,47 @@
 	..()
 
 /obj/machinery/food_cart/proc/dispense_item(received_item, mob/user = usr)
-	//Make a variable for checking amount of item
-	var/obj/item/reagent_containers/food/ui_item = new received_item
-
-	//If the vat has some of the desired item, dispense it
-	if(find_amount(ui_item) > 0)
-		//Select the last(most recent) of desired item
-		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(ui_item))
-		//Move it into the user's hands or drop it on the floor
-		user.put_in_hands(dispensed_item)
-		user.visible_message(span_notice("[user] dispenses [dispensed_item.name] from [src]."), span_notice("You dispense [dispensed_item.name] from [src]."))
-		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
-		//If the last one was dispenced, remove from UI
-		if(!find_amount(ui_item))
-			LAZYREMOVE(food_ui_list, received_item)
+	//Get list item for recieved_item
+	var/datum/data/cart_item/ui_item = null
+	for(var/datum/data/cart_item/item in food_ui_list)
+		if(received_item == item.type_path)
+			ui_item = item
+			break
+	//Continue if ui_item is not null
+	if(ui_item)
+		//If the vat has some of the desired item, dispense it
+		if(ui_item.amount > 0)
+			//Select the last(most recent) of desired item
+			var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(ui_item.type_path))
+			//Decrease amount by 1
+			ui_item.amount -= 1
+			//Move it into the user's hands or drop it on the floor
+			user.put_in_hands(dispensed_item)
+			user.visible_message(span_notice("[user] dispenses [dispensed_item.name] from [src]."), span_notice("You dispense [dispensed_item.name] from [src]."))
+			playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
+			//If the last one was dispenced, remove from UI
+			if(ui_item.amount == 0)
+				LAZYREMOVE(food_ui_list, ui_item)
+		else
+			//Incase the UI buttons are slow to disable themselves
+			user.balloon_alert(user, "All out!")
 	else
-		//Incase the UI buttons are slow to disable themselves
 		user.balloon_alert(user, "All out!")
-
-	//Delete instance
-	qdel(ui_item)
 
 /obj/machinery/food_cart/proc/storage_single(obj/item/target_item, mob/user = usr)
 	//Check if there is room, subtract by 1 since the cart's reagent container is added to its contents
 	if(contents.len - 1 < contents_capacity)
-		//If item's typepath is not already in  food_ui_list, add it
-		if(!LAZYFIND(food_ui_list, target_item.type))
-			LAZYADD(food_ui_list, target_item.type)
+		//If item is not already in  food_ui_list, add it
+		var/in_list = FALSE
+		for(var/datum/data/cart_item/item in food_ui_list)
+			if(item.type_path == target_item.type)
+				//Increment amount by 1
+				item.amount += 1
+				//Set in_list to true and end loop
+				in_list = TRUE
+				break
+		if(!in_list)
+			LAZYADD(food_ui_list, new /datum/data/cart_item(target_item))
 		//Move item to content
 		target_item.forceMove(src)
 		user.visible_message(span_notice("[user] inserts [target_item] into [src]."), span_notice("You insert [target_item] into [src]."))
@@ -257,23 +282,6 @@
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 	else
 		user.balloon_alert(user, "No Drinking Glasses!")
-
-/obj/machinery/food_cart/proc/find_amount(obj/item/counting_item, target_name = null, list/target_list = null)
-	var/amount = 0
-
-	//If target_list is null, search contents for type paths
-	if(!target_list)
-		//Loop through contents, counting every instance of the given target
-		for(var/obj/item/list_item in contents)
-			if(list_item.type == counting_item.type)
-				amount += 1
-	//Else, search target_list
-	else
-		for(var/list_item in target_list)
-			if(list_item == target_name)
-				amount += 1
-
-	return amount
 
 /obj/machinery/food_cart/proc/last_index(obj/item/search_item)
 	var/obj/item/reagent_containers/food/snacks/item_index = null
