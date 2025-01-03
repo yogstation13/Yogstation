@@ -95,6 +95,22 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
 
+/// Called when the atom is hit by a tesla bolt.
+/atom/proc/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
+	if(HAS_TRAIT(src, TRAIT_TESLA_IGNORE))
+		return FALSE
+	if(!(tesla_flags & TESLA_ALLOW_DUPLICATES))
+		ADD_TRAIT(src, TRAIT_TESLA_IGNORE, WAS_SHOCKED)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 10)
+	if(power < TESLA_MINI_POWER) //tesla bolts bounce twice, tesla miniball bolts bounce only once
+		return TRUE
+	if(!(tesla_flags & TESLA_NO_CHAINING) && power >= 1500 && zap_range > 3)
+		tesla_zap(src, zap_range - 1, power * 0.67, tesla_flags, shocked_targets)
+	return TRUE
+
+/atom/proc/reset_shocked()
+	REMOVE_TRAIT(src, TRAIT_TESLA_IGNORE, WAS_SHOCKED)
+
 /// Called after the atom takes damage and integrity is below integrity_failure level
 /atom/proc/atom_break(damage_flag)
 	SHOULD_CALL_PARENT(TRUE)

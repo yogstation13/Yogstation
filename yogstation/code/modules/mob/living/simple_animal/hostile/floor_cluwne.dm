@@ -151,7 +151,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return
 
 
-/mob/living/simple_animal/hostile/floor_cluwne/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)//prevents runtimes with machine fuckery
+/mob/living/simple_animal/hostile/floor_cluwne/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE)//prevents runtimes with machine fuckery
 	return FALSE
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Found_You()

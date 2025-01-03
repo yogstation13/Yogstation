@@ -22,7 +22,7 @@
 					/obj/item/storage/firstaid/hypospray/toxin = 3,
 					/obj/item/storage/firstaid/hypospray/oxygen = 3)
 	extra_price = 50
-	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50, ELECTRIC = 100)
 	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/wallhypo
 	payment_department = ACCOUNT_MED

@@ -94,11 +94,16 @@
 		return
 	return ..()
 
-/mob/living/silicon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+/mob/living/silicon/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
+	if((tesla_flags & TESLA_MOB_STUN) && (tesla_flags & TESLA_MOB_DAMAGE))
+		emp_act(EMP_LIGHT)
+	return ..()
+
+/mob/living/silicon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE)
 	if(buckled_mobs)
 		for(var/mob/living/M in buckled_mobs)
 			unbuckle_mob(M)
-			M.electrocute_act(shock_damage/100, source, siemens_coeff, zone, override, tesla_shock, illusion, stun, gib)	//Hard metal shell conducts!
+			M.electrocute_act(shock_damage/100, source, siemens_coeff, zone, override, tesla_shock, illusion, stun)	//Hard metal shell conducts!
 	return 0 //So borgs they don't die trying to fix wiring
 
 /mob/living/silicon/emp_act(severity)

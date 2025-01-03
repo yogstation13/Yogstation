@@ -10,10 +10,12 @@
 	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(0, 4), TEXT_WEST = list( 0, 4)))
 	D.vehicle_move_delay = 0
 
-/obj/vehicle/ridden/bicycle/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE) // :::^^^)))
+/obj/vehicle/ridden/bicycle/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets) // :::^^^)))
+	. = ..()
 	name = "fried bicycle"
 	desc = "Well spent."
 	color = rgb(63, 23, 4)
 	can_buckle = FALSE
+	tesla_buckle_check(power)
 	for(var/m in buckled_mobs)
 		unbuckle_mob(m,1)

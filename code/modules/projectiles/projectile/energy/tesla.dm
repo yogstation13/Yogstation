@@ -10,12 +10,14 @@
 
 /obj/projectile/energy/tesla/fire(setAngle)
 	if(firer)
-		chain = firer.Beam(src, icon_state = "lightning[rand(1, 12)]", time = INFINITY, maxdistance = INFINITY)
+		var/atom/beam_start = get_atom_on_turf(firer)
+		chain = beam_start.Beam(src, icon_state = "lightning[rand(1, 12)]", time = INFINITY, maxdistance = INFINITY)
 	..()
 
-/obj/projectile/energy/tesla/on_hit(atom/target)
+/obj/projectile/energy/tesla/on_hit(atom/target, blocked)
 	. = ..()
 	tesla_zap(target, zap_range, power, tesla_flags)
+	target.tesla_act(src, power, zap_range, tesla_flags | TESLA_NO_CHAINING)
 	qdel(src)
 
 /obj/projectile/energy/tesla/Destroy()

@@ -55,7 +55,7 @@
 
 	integrity_failure = 50
 	max_integrity = 100
-	armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 0, ACID = 0)
+	armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 100, RAD = 100, FIRE = 0, ACID = 0, ELECTRIC = 100)
 
 	light_system = MOVABLE_LIGHT
 	light_range = 3

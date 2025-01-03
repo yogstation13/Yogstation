@@ -5,20 +5,19 @@
 #define IN_USE					(1<<1) // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 #define CAN_BE_HIT				(1<<2) //can this be bludgeoned by items?
 #define DANGEROUS_POSSESSION	(1<<3) //Admin possession yes/no
-#define BEING_SHOCKED			(1<<4) // Whether this thing is currently (already) being shocked by a tesla
-#define BLOCK_Z_OUT_DOWN 		(1<<5)  // Should this object block z falling from loc?
-#define BLOCK_Z_OUT_UP 			(1<<6) // Should this object block z uprise from loc?
-#define BLOCK_Z_IN_DOWN 		(1<<7) // Should this object block z falling from above?
-#define BLOCK_Z_IN_UP 			(1<<8) // Should this object block z uprise from below?
-#define BLOCKS_CONSTRUCTION 	(1<<9) //! Does this object prevent things from being built on it?
-#define BLOCKS_CONSTRUCTION_DIR (1<<10) //! Does this object prevent same-direction things from being built on it?
-#define IGNORE_DENSITY 			(1<<11) //! Can we ignore density when building on this object? (for example, directional windows and grilles)
-#define ON_BLUEPRINTS			(1<<12)  //Are we visible on the station blueprints at roundstart?
-#define UNIQUE_RENAME			(1<<13) // can you customize the name of the thing?
-#define USES_TGUI				(1<<14)	//put on things that use tgui on ui_interact instead of custom/old UI.
-#define FROZEN					(1<<15)
-#define UNIQUE_REDESC			(1<<16) // can you customize the description of the thing?
-#define CMAGGED					(1<<17)
+#define BLOCK_Z_OUT_DOWN 		(1<<4)  // Should this object block z falling from loc?
+#define BLOCK_Z_OUT_UP 			(1<<5) // Should this object block z uprise from loc?
+#define BLOCK_Z_IN_DOWN 		(1<<6) // Should this object block z falling from above?
+#define BLOCK_Z_IN_UP 			(1<<7) // Should this object block z uprise from below?
+#define BLOCKS_CONSTRUCTION 	(1<<8) //! Does this object prevent things from being built on it?
+#define BLOCKS_CONSTRUCTION_DIR (1<<9) //! Does this object prevent same-direction things from being built on it?
+#define IGNORE_DENSITY 			(1<<10) //! Can we ignore density when building on this object? (for example, directional windows and grilles)
+#define ON_BLUEPRINTS			(1<<11)  //Are we visible on the station blueprints at roundstart?
+#define UNIQUE_RENAME			(1<<12) // can you customize the name of the thing?
+#define USES_TGUI				(1<<13)	//put on things that use tgui on ui_interact instead of custom/old UI.
+#define FROZEN					(1<<14)
+#define UNIQUE_REDESC			(1<<15) // can you customize the description of the thing?
+#define CMAGGED					(1<<16)
 
 // If you add new ones, be sure to add them to /obj/Initialize as well for complete mapping support
 

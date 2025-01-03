@@ -1385,3 +1385,11 @@
 		if(destination)
 			forceMove(destination)
 			return TRUE
+
+//The surgeon general warns that being buckled to certain objects receiving powerful shocks is greatly hazardous to your health
+///Only tesla coils and grounding rods currently call this because mobs are already targeted over all other objects, but this might be useful for more things later.
+/atom/movable/proc/tesla_buckle_check(strength)
+	if(has_buckled_mobs())
+		for(var/m in buckled_mobs)
+			var/mob/living/buckled_mob = m
+			buckled_mob.electrocute_act((clamp(round(strength/400), 10, 90) + rand(-5, 5)), src, tesla_shock = TRUE)

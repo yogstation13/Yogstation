@@ -374,8 +374,8 @@
 		if(!(BP.emp_act(severity, emp_message) & EMP_PROTECT_SELF))
 			emp_message = FALSE // if the EMP was successful, don't spam the chat with more messages
 
-/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
-	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE)
+	if(tesla_shock && HAS_TRAIT(src, TRAIT_TESLA_IGNORE))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE
@@ -409,11 +409,10 @@
 	adjust_stutter(stuntime / 2)
 	adjust_jitter(stuntime * 2)
 
-	var/should_stun = !tesla_shock || (tesla_shock && siemens_coeff > 0.5)
-	if(stun && should_stun)
+	if(stun && (!tesla_shock || (tesla_shock && siemens_coeff > 0.5)))
 		Paralyze(min(stuntime, 4 SECONDS))
 		if(stuntime > 2 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(secondary_shock), should_stun, stuntime - (2 SECONDS)), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(Paralyze), stuntime - (2 SECONDS)), 2 SECONDS)
 
 	if(stat == DEAD && can_defib()) //yogs: ZZAPP
 		if(!illusion && (shock_damage * siemens_coeff >= 1) && prob(80))
@@ -424,14 +423,6 @@
 			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 			adjust_jitter(10 SECONDS)
 			adjustOrganLoss(ORGAN_SLOT_BRAIN, 100, 199)
-
-	if(gib && siemens_coeff > 0 && stat >= SOFT_CRIT)
-		visible_message(
-			span_danger("[src] body is emitting a loud noise!"), \
-			span_userdanger("You feel like you are about to explode!"), \
-			span_italics("You hear a loud noise!"), \
-		)
-		addtimer(CALLBACK(src, PROC_REF(supermatter_tesla_gib)), 4 SECONDS) //yogs end
 
 	if(undergoing_cardiac_arrest() && !illusion)
 		if(shock_damage * siemens_coeff >= 1 && prob(25))
@@ -444,11 +435,6 @@
 		return override
 	else
 		return shock_damage
-
-///Called slightly after electrocute act to apply a secondary stun.
-/mob/living/carbon/proc/secondary_shock(should_stun, stuntime = 6 SECONDS)
-	if(should_stun)
-		Paralyze(stuntime)
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(try_extinguish(M))

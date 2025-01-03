@@ -380,8 +380,21 @@
 	take_bodypart_damage(acidpwr * min(1, acid_volume * 0.1))
 	return 1
 
-/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
-	if(tesla_shock && (flags_1 & TESLA_IGNORE_1))
+/mob/living/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
+	var/shock_damage = (tesla_flags & TESLA_MOB_DAMAGE) ? (min(round(power/600), 90) + rand(-5, 5)) : 0
+	shock_damage = electrocute_act(shock_damage, source, zone=null, tesla_shock = 1, stun = (tesla_flags & TESLA_MOB_STUN))
+	if(shock_damage && (tesla_flags & TESLA_MOB_GIB) && health < crit_threshold && stat)
+		visible_message(
+			span_danger("[src] vaporizes from the sheer energy!"), \
+			span_userdanger("The sheer energy vaporizes you!"), \
+			span_italics("You hear a deafening electric shock, followed by a loud splatter!"), \
+		)
+		tesla_zap()
+		addtimer(CALLBACK(src, PROC_REF(gib)), 1)
+	return ..()
+
+/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE)
+	if(tesla_shock && HAS_TRAIT(src, TRAIT_TESLA_IGNORE))
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SHOCKIMMUNE))
 		return FALSE

@@ -105,6 +105,15 @@
 	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
 
+/obj/mecha/tesla_act(source, power, tesla_flags, shocked_targets)
+	. = ..()
+	if((tesla_flags & TESLA_MOB_DAMAGE|TESLA_OBJ_DAMAGE))
+		var/effects_scaling = (power/160)**(1/3)
+		take_damage(round(3 * effects_scaling), BURN, ELECTRIC)
+		adjust_overheat(min(effects_scaling * (100 - armor.getRating(ELECTRIC)) / 100, OVERHEAT_EMP_MAX - overheat))
+	if(wrecked && (tesla_flags & TESLA_MACHINE_EXPLOSIVE))
+		ADD_TRAIT(src, TRAIT_TESLA_IGNORE, INNATE_TRAIT)
+		detonate(2, FALSE)
 
 /obj/mecha/bullet_act(obj/projectile/incoming)
 	if((!enclosed || incoming.penetration_flags & PENETRATE_OBJECTS) && occupant && !silicon_pilot && !incoming.force_hit && (incoming.def_zone == BODY_ZONE_HEAD || incoming.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
@@ -492,11 +501,12 @@
 		playsound(src, 'sound/machines/triple_beep.ogg', 75, TRUE)
 		addtimer(CALLBACK(src, PROC_REF(detonate), self_destruct), 0.5 SECONDS)
 
-/obj/mecha/proc/detonate(explosion_size)
+/obj/mecha/proc/detonate(explosion_size, self_delete = TRUE)
 	if(QDELETED(src))
 		return
 	explosion(get_turf(src), round(explosion_size / 4), round(explosion_size / 2), round(explosion_size))
-	qdel(src)
+	if(self_delete)
+		qdel(src)
 
 /obj/mecha/atom_fix()
 	. = ..()
