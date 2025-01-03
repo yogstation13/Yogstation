@@ -16,6 +16,8 @@
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
 		JOB_BRIG_PHYSICIAN,
+		JOB_CHIEF_ENGINEER,
+		JOB_RESEARCH_DIRECTOR
 	)
 	required_enemies = 3
 	enemy_roles = list(
@@ -25,6 +27,7 @@
 		JOB_SECURITY_OFFICER,
 		JOB_WARDEN,
 		JOB_CHAPLAIN,
+		JOB_CHIEF_ENGINEER
 	)
 	base_antags = 2
 	maximum_antags = 4
