@@ -210,6 +210,7 @@ GLOBAL_VAR(changeling_team_objective_type)
 	if(ishuman(C) && ((NO_DNA_COPY in C.dna.species.species_traits) || !C.has_dna() || (NOHUSK in C.dna.species.species_traits)))
 		to_chat(C, span_userdanger("You have been made a human, as your original race had incompatible DNA."))
 		C.set_species(/datum/species/human, TRUE, TRUE)
+		C.dna.features["flavor_text"] = ""
 		if(C.client?.prefs?.read_preference(/datum/preference/name/backup_human) && !is_banned_from(C.client?.ckey, "Appearance"))
 			C.fully_replace_character_name(C.dna.real_name, C.client.prefs.read_preference(/datum/preference/name/backup_human))
 		else

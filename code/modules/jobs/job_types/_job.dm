@@ -173,6 +173,7 @@
 		if(H.dna.species.id != SPECIES_HUMAN)
 			H.set_species(/datum/species/human)
 			H.apply_pref_name(/datum/preference/name/backup_human, preference_source)
+			H.dna.features["flavor_text"] = ""
 	
 	if(forced_species)
 		H.set_species(forced_species)
