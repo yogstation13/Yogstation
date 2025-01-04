@@ -17,6 +17,9 @@
 		if(is_type_in_list(banned_power, powerstoremove))
 			bloodsuckerdatum.RemovePower(banned_power)
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Vassal----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/bloodsucker_clan/tzimisce/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	if(!ishuman(vassaldatum.owner.current))
 		return

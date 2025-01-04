@@ -18,10 +18,15 @@
 	bloodsuckerdatum.owner.current.faction |= "bloodhungry"
 	bloodsuckerdatum.owner.current.update_body()
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Vassal----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/bloodsucker_clan/hecata/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/hecata/spiritcall)
 
-
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Objective--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/hecata_clan_objective
 	name = "necromance"
 

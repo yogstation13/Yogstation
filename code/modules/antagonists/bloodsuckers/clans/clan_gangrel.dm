@@ -18,10 +18,16 @@
 	for(var/datum/action/cooldown/bloodsucker/masquerade/masquerade_power in bloodsuckerdatum.powers)
 		bloodsuckerdatum.RemovePower(masquerade_power)
 
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Vassal----------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /datum/bloodsucker_clan/gangrel/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	var/datum/action/cooldown/spell/shapeshift/bat/batform = new(vassaldatum.owner || vassaldatum.owner.current)
 	batform.Grant(vassaldatum.owner.current)
 
+////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------Objective--------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
 /// Enter Frenzy repeatedly
 /datum/objective/gangrel_clan_objective
 	name = "frenzy"

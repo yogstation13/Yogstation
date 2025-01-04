@@ -73,6 +73,7 @@
 	var/turf/my_turf = get_turf(owner)
 
 	user.uncuff()
+	user.uncuff()
 	user.visible_message(
 		span_warning("[user]'s form dissipates into a cloud of mist!"),
 		span_notice("You dissipate into formless mist."),

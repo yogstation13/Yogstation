@@ -2,6 +2,8 @@
 /datum/action/cooldown/spell/toggle
 	/// Whether we're active or not
 	var/active = FALSE
+	/// An associative list of all resource costs for maintaining this ability
+	var/list/maintain_costs
 	
 /datum/action/cooldown/spell/toggle/New()
 	. = ..()
@@ -18,6 +20,15 @@
 
 /datum/action/cooldown/spell/toggle/process()
 	build_all_button_icons(ALL) //so as to be consistent with situational requirements, keep the button updated
+
+	if(active && owner.mind && !bypass_cost && LAZYLEN(maintain_costs))
+		for(var/i in maintain_costs)
+			if(SEND_SIGNAL(owner.mind, COMSIG_MIND_CHECK_ANTAG_RESOURCE, i, maintain_costs[i]))
+				SEND_SIGNAL(owner.mind, COMSIG_MIND_SPEND_ANTAG_RESOURCE, maintain_costs)
+				continue
+			Activate(owner)
+			return FALSE
+	return TRUE
 
 /datum/action/cooldown/spell/toggle/cast(atom/cast_on)
 	active = !active

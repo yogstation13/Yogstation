@@ -37,7 +37,6 @@
 #define ROLE_LAVALAND			"Lavaland"
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
 #define ROLE_FUGITIVE           "Fugitive"
-#define ROLE_VAMPIRE			"Vampire" // Yogs
 #define ROLE_DARKSPAWN			"Darkspawn" // Yogs
 #define ROLE_HOLOPARASITE		"Holoparasite" // Yogs
 #define ROLE_HORROR				"Eldritch Horror" // Yogs
@@ -83,7 +82,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SERVANT_OF_RATVAR = /datum/antagonist/clockcult,
 
 	//Roundstart or Midround
-	ROLE_VAMPIRE = /datum/antagonist/vampire, // Yogs
 	ROLE_BLOODSUCKER = /datum/antagonist/bloodsucker,
 	ROLE_TRAITOR = /datum/antagonist/traitor,
 	ROLE_CHANGELING	= /datum/antagonist/changeling,

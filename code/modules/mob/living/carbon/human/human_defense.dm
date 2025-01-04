@@ -178,8 +178,6 @@
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.combat_mode && handle_vamp_biting(H)) // yogs start -- vampire biting
-			return // yogs end
 		if(H.combat_mode)
 			last_damage = "fist"
 		dna.species.spec_attack_hand(H, src, user.mind?.martial_art, modifiers)
