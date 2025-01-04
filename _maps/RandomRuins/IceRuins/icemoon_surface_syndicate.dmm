@@ -5798,18 +5798,6 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/syndicate_icemoon/reactor)
-"En" = (
-/obj/effect/turf_decal/trimline/purple/filled/line/lower{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	pixel_y = 27
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/syndicate_icemoon/xenobio)
 "Eo" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
@@ -6927,6 +6915,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/engine)
+"Kt" = (
+/obj/effect/turf_decal/trimline/purple/filled/line/lower{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/syndicate_icemoon/xenobio)
 "Kv" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/mineral/random/snow,
@@ -12829,7 +12826,7 @@ bP
 Lk
 oV
 DM
-En
+Kt
 tv
 qH
 ac
