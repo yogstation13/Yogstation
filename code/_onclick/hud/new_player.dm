@@ -467,6 +467,8 @@
 	icon_state = "you_are_here"
 	screen_loc = "TOP,CENTER:-61"
 
+INITIALIZE_IMMEDIATE(/atom/movable/screen/lobby/youarehere)
+
 //Explanation: It gets the port then sets the "here" var in /movable/screen/lobby to the port number
 // and if the port number matches it makes clicking the button do nothing so you dont spam reconnect to the server your in
 /atom/movable/screen/lobby/youarehere/Initialize(mapload)
@@ -492,6 +494,8 @@
 	var/server_ip = "play.monkestation.com"
 	/// The port of this server.
 	var/server_port
+
+INITIALIZE_IMMEDIATE(/atom/movable/screen/lobby/button/server)
 
 /atom/movable/screen/lobby/button/server/Initialize(mapload)
 	. = ..()
