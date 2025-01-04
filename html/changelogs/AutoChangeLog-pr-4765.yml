@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "The server and \"you are here\" lobby buttons now properly setup during init."
