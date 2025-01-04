@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(all_scripture)
 #define SCRIPTURE_APPLICATION "Application"
 
 //Various costs related to power.
-///The max power in W that the cult can stockpile
+///The max power in kJ that the cult can stockpile
 #define MAX_CLOCKWORK_POWER 50000
 /// Scripts will unlock if the total power reaches this amount
 #define SCRIPT_UNLOCK_THRESHOLD 25000
