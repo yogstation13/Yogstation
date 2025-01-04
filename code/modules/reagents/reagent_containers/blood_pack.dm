@@ -40,9 +40,6 @@
 			span_notice("[user] puts the [src] up to their mouth."),
 			span_notice("You take a sip from the [src]."),
 		)
-		if(IS_VAMPIRE(user))
-			var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
-			V.usable_blood += BLOODBAG_GULP_SIZE / 4 //they should really be drinking from people, yknow, be antagonistic?
 
 		reagents.reaction(user, INGEST, fraction)
 		reagents.trans_to(user, BLOODBAG_GULP_SIZE, transfered_by = user)

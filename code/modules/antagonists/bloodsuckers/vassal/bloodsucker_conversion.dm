@@ -37,10 +37,6 @@
 	var/mob/living/master = conversion_target.mind.enslaved_to?.resolve()
 	if(!master || (master == owner.current))
 		return TRUE
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = master.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(bloodsuckerdatum?.broke_masquerade)
-		//vassal stealing
-		return TRUE
 	to_chat(owner.current, span_danger("[conversion_target]'s mind is overwhelmed with too much external force to put your own!"))
 	return FALSE
 

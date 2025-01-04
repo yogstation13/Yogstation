@@ -136,14 +136,9 @@
 				highest_absolute_mood = absmood
 
 	if(!conflicting_moodies.len && owner.mind) //no special icons- go to the normal icon states
-		var/datum/antagonist/bloodsucker/bloodsuckerdatum = owner.mind.has_antag_datum(/datum/antagonist/bloodsucker) //bloodsucker edit
 		if(sanity < 25)
 			screen_obj.icon_state = "mood_insane"
-			if(IS_BLOODSUCKER(owner) && bloodsuckerdatum.my_clan?.get_clan() == CLAN_TOREADOR)
-				screen_obj.add_overlay("teeth_insane")
 		else
-			if(IS_BLOODSUCKER(owner) && bloodsuckerdatum.my_clan?.get_clan() == CLAN_TOREADOR)
-				screen_obj.add_overlay("teeth[mood_level]")
 			screen_obj.icon_state = "mood[mood_level]"
 		screen_obj_sanity.icon_state = "sanity[sanity_level]"
 		return

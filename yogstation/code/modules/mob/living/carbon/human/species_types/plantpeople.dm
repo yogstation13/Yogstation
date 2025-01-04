@@ -64,8 +64,6 @@
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
 	if(H.stat == DEAD || H.stat == UNCONSCIOUS)
 		return
-	if(IS_BLOODSUCKER(H) && !HAS_TRAIT(H, TRAIT_MASQUERADE))
-		return
 	var/turf/T = get_turf(H)
 	if(!T)
 		return

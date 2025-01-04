@@ -113,10 +113,6 @@ const BloodsuckerIntro = () => {
                 <span className={'color-red'}> Frenzy</span>!
               </span>
               <br />
-              <span>
-                Avoid using your Feed ability while near others, or else you
-                will risk <i>breaking the Masquerade</i>!
-              </span>
             </Stack.Item>
           </Stack>
         </Section>
@@ -128,9 +124,6 @@ const BloodsuckerIntro = () => {
               Rest in a <b>Coffin</b> to claim it, and that area, as your lair.
               <br />
               Examine your new structures to see how they function!
-              <br />
-              Medical and Genetic Analyzers can sell you out, your Masquerade
-              ability will hide your identity to prevent this.
               <br />
             </Stack.Item>
             <Stack.Item>

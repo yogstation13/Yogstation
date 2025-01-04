@@ -352,14 +352,8 @@
 	in_use = FALSE
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(target)
 	// Are we a Bloodsucker | Are we on Masquerade. If one is true, they will fail.
-	if(IS_BLOODSUCKER(target) && !HAS_TRAIT(target, TRAIT_MASQUERADE))
-		if(bloodsuckerdatum.broke_masquerade)
-			to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.return_full_name()]', is indeed a Bloodsucker, but you already knew this."))
-			return
+	if(IS_BLOODSUCKER(target))
 		to_chat(user, span_warning("[target], also known as '[bloodsuckerdatum.return_full_name()]', [bloodsuckerdatum.my_clan ? "is part of the [bloodsuckerdatum.my_clan]!" : "is not part of a clan."] You quickly note this information down, memorizing it."))
-		bloodsuckerdatum.break_masquerade()
-	else
-		to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Bloodsucker."))
 
 /obj/item/book/kindred/attack_self(mob/living/user)
 	ui_interact(user)

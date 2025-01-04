@@ -207,9 +207,6 @@
 	// Step 2 NOTE: Giving passive organ regeneration will cause Torpor to spam /datum/client_colour/monochrome at the Bloodsucker, permanently making them colorblind!
 	for(var/obj/item/organ/organ as anything in bloodsuckeruser.internal_organs)
 		organ.setOrganDamage(0)
-	if(!HAS_TRAIT(bloodsuckeruser, TRAIT_MASQUERADE))
-		var/obj/item/organ/heart/current_heart = bloodsuckeruser.getorganslot(ORGAN_SLOT_HEART)
-		current_heart.beating = FALSE
 	var/obj/item/organ/eyes/current_eyes = bloodsuckeruser.getorganslot(ORGAN_SLOT_EYES)
 	if(current_eyes)
 		current_eyes.flash_protect = max(initial(current_eyes.flash_protect) - 1, - 1)
@@ -253,7 +250,7 @@
 	if(bloodsucker_blood_volume >= (FRENZY_THRESHOLD_EXIT + humanity_lost * 10) && frenzied)
 		owner.current.remove_status_effect(STATUS_EFFECT_FRENZY)
 	// BLOOD_VOLUME_BAD: [224] - Jitter
-	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD(owner.current) && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && !HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
+	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD(owner.current) && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		owner.current.adjust_jitter(3 SECONDS)
 	// BLOOD_VOLUME_SURVIVE: [122] - Blur Vision
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_SURVIVE(owner.current))
@@ -469,8 +466,7 @@
 		bloodsucker.physiology.burn_mod = initial(bloodsucker.physiology.brute_mod)
 
 	owner.current.remove_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
-	if(!HAS_TRAIT(owner.current, TRAIT_MASQUERADE))
-		ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
+	ADD_TRAIT(owner.current, TRAIT_SLEEPIMMUNE, BLOODSUCKER_TRAIT)
 
 	heal_vampire_organs()
 	owner.current.grab_ghost()
@@ -513,8 +509,8 @@
 
 	free_all_vassals()
 	DisableAllPowers(forced = TRUE)
-	if(!iscarbon(user))
-		user.gib(TRUE, FALSE, FALSE)
+	if(!iscarbon(owner.current))
+		owner.current.gib(TRUE, FALSE, FALSE)
 		return
 
 	// Drop anything in us and play a tune

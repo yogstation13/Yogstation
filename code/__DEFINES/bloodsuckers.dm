@@ -72,6 +72,7 @@
 #define CLAN_LASOMBRA "Lasombra Clan"
 #define CLAN_TZIMISCE "Tzimisce Clan"
 #define CLAN_HECATA "Hecata Clan"
+#define CLAN_TEPES "Tepes Clan"
 
 #define TREMERE_VASSAL "tremere_vassal"
 #define FAVORITE_VASSAL "favorite_vassal"

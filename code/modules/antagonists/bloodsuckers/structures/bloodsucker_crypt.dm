@@ -291,7 +291,7 @@
 
 	if(bloodsuckerdatum.clanpoints)
 		var/list/upgradablepowers = list()
-		var/list/unupgradablepowers = list(/datum/action/cooldown/bloodsucker/feed, /datum/action/cooldown/bloodsucker/masquerade, /datum/action/cooldown/bloodsucker/veil)
+		var/list/unupgradablepowers = list(/datum/action/cooldown/bloodsucker/feed, /datum/action/cooldown/bloodsucker/veil)
 		for(var/datum/action/cooldown/bloodsucker/power as anything in bloodsuckerdatum.powers)
 			if(initial(power.purchase_flags) & BLOODSUCKER_CAN_BUY)
 				upgradablepowers += power
@@ -868,11 +868,6 @@
 		balloon_alert(user, "already interacting!")
 		return
 	var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	if(IS_VASSAL(target))
-		var/datum/antagonist/vassal/vassaldatum = target.mind.has_antag_datum(/datum/antagonist/vassal)
-		if(!vassaldatum.master.broke_masquerade)
-			balloon_alert(user, "someone else's vassal!")
-			return FALSE
 
 	var/disloyalty_requires = RequireDisloyalty(user, target)
 	if(disloyalty_requires == VASSALIZATION_BANNED)

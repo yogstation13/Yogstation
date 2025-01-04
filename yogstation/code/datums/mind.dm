@@ -2,44 +2,6 @@
 	var/quiet_round = FALSE //Won't be picked as target in most cases
 	var/accent_name = null // The name of the accent this guy has. NULL implies no accent
 
-
-/datum/mind/proc/vampire_hook()
-	var/text = "vampire"
-	text = "<i><b>[text]</b></i>: "
-	if(IS_VAMPIRE(current))
-		text += "<b>VAMPIRE</b> | <a href='?src=\ref[src];vampire=clear'>human</a> | <a href='?src=\ref[src];vampire=full'>full-power</a>"
-	else
-		text += "<a href='?src=\ref[src];vampire=vampire'>vampire</a> | <b>HUMAN</b> | <a href='?src=\ref[src];vampire=full'>full-power</a>"
-	if(current && current.client && (ROLE_VAMPIRE in current.client.prefs.be_special))
-		text += " | Enabled in Prefs"
-	else
-		text += " | Disabled in Prefs"
-	return text
-
-/datum/mind/proc/vampire_href(href, mob/M)
-	switch(href)
-		if("clear")
-			remove_vampire(current)
-			message_admins("[key_name_admin(usr)] has de-vampired [current].")
-			log_admin("[key_name(usr)] has de-vampired [current].")
-		if("vampire")
-			if(!IS_VAMPIRE(current))
-				message_admins("[key_name_admin(usr)] has vampired [current].")
-				log_admin("[key_name(usr)] has vampired [current].")
-				add_vampire(current)
-			else
-				to_chat(usr, span_warning("[current] is already a vampire!"))
-		if("full")
-			message_admins("[key_name_admin(usr)] has full-vampired [current].")
-			log_admin("[key_name(usr)] has full-vampired [current].")
-			if(!IS_VAMPIRE(current))
-				add_vampire(current)
-			var/datum/antagonist/vampire/V = has_antag_datum(ANTAG_DATUM_VAMPIRE)
-			if(V)
-				V.total_blood = 1500
-				V.usable_blood = 1500
-				V.check_vampire_upgrade()
-
 /datum/mind/proc/handle_speech(datum/source, mob/speech_args)
 	var/static/list/accents_name2regexes // Key is the name of the accent, value is a length-2 list of lists.
 	//The first list contains all the regexes marked as being word or phrase replacements. They are replaced first.

@@ -41,7 +41,6 @@
 #define TRAIT_BLOODY_MESS_LITE	"bloody_mess_lite" //weak heparin, otherwise the same
 #define TRAIT_NO_BLOOD_REGEN	"no_blood_regen" //prevents regenerating blood
 #define TRAIT_NOPULSE           "nopulse" // Your heart doesn't beat
-#define TRAIT_MASQUERADE        "masquerade" // Falsifies Health analyzer blood levels
 #define TRAIT_NOCLONE			"noclone" // No cloning
 #define TRAIT_NODEFIB			"nodefib" // No defibbing
 #define TRAIT_COLDBLOODED       "coldblooded" // Your body is literal room temperature. Does not make you immune to the temp

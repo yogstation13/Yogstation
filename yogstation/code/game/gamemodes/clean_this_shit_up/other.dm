@@ -23,9 +23,6 @@
 	var/list/target_list = list()
 	var/list/late_joining_list = list()
 
-	//vampire
-	var/list/datum/mind/vampires = list()
-
 	//devils
 	var/list/datum/mind/devils = list()
 	var/devil_ascended = 0 // Number of arch devils on station

@@ -4,7 +4,7 @@ import { multiline } from "common/string";
 export const BLOODSUCKER_MECHANICAL_DESCRIPTION
    = multiline`
       Develop your own power and establish Vassals to accomplish your goals.
-			Avoid Sol's harsh rays, siphon blood, and maintain the Masquerade to excel.
+			Avoid Sol's harsh rays, and siphon blood to excel.
    `;
 
 

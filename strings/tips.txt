@@ -257,7 +257,6 @@ When crafting most items, you can either manually combine parts or use the craft
 Suit storage units not only remove blood and dirt from clothing, but also radiation!
 Remote devices will work when used through cameras. For example: Bluespace RPEDs and door remotes.
 You can light a cigar on a supermatter crystal.
-YOU CAN SUCK BLOOD AS A VAMPIRE BY HARM INTENTING THE HEAD
 Click the ‘resist’ button to get out of a chair.
 Using a multitool on a flux-wave anomaly does not fix it. Stop shocking yourself on it.
 Normal analysers can determine a blob's type, the code to neutralize an anomaly, and the composition of gas in both the atmosphere or a tank/canister.

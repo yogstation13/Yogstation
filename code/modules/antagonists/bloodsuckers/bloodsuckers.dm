@@ -27,10 +27,6 @@
 
 	///Amount of Humanity lost
 	var/humanity_lost = 0
-	///Have we been broken the Masquerade?
-	var/broke_masquerade = FALSE
-	///How many Masquerade Infractions do we have?
-	var/masquerade_infractions = 0
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
@@ -104,7 +100,7 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
-		TRAIT_RESISTDAMAGESLOWDOWN,
+		TRAIT_RESISTDAMAGESLOWDOWN
 	)
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -323,11 +319,6 @@
 	if(bloodsucker_level_unspent >= 1)
 		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
 
-	if(broke_masquerade)
-		.["Fix Masquerade"] = CALLBACK(src, PROC_REF(fix_masquerade))
-	else
-		.["Break Masquerade"] = CALLBACK(src, PROC_REF(break_masquerade))
-
 	if(!my_clan)
 		.["Force Clan"] = CALLBACK(src, PROC_REF(force_clan))
 
@@ -354,6 +345,31 @@
 
 	my_clan = new chosen(src)
 	owner.announce_objectives()
+
+/datum/antagonist/bloodsucker/proc/assign_clan_and_bane()
+	if(my_clan)	
+		return
+	var/list/options = list()
+	var/list/radial_display = list()
+	for(var/datum/bloodsucker_clan/all_clans as anything in typesof(/datum/bloodsucker_clan))
+		if(!initial(all_clans.joinable_clan)) //flavortext only
+			continue
+		options[initial(all_clans.name)] = all_clans
+		var/datum/radial_menu_choice/option = new
+		option.image = image(icon = initial(all_clans.join_icon), icon_state = initial(all_clans.join_icon_state))
+		option.info = "[initial(all_clans.name)] - [span_boldnotice(initial(all_clans.join_description))]"
+		radial_display[initial(all_clans.name)] = option
+
+	var/chosen_clan = show_radial_menu(owner.current, owner.current, radial_display)
+	chosen_clan = options[chosen_clan]
+	if(QDELETED(src) || QDELETED(owner.current))
+		return FALSE
+	if(!chosen_clan)
+		to_chat(owner, span_announce("You choose to remain ignorant, for now."))
+		return
+	my_clan = new chosen_clan(src)
+	owner.announce_objectives()
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Bloodsucker UI-----------------------------------//
@@ -642,16 +658,6 @@
 		user_eyes.color_cutoffs = initial(user_eyes.color_cutoffs)
 	user.update_sight()
 
-/datum/antagonist/bloodsucker/proc/give_masquerade_infraction()
-	if(broke_masquerade)
-		return
-	masquerade_infractions++
-	if(masquerade_infractions >= 3)
-		break_masquerade()
-	else
-		to_chat(owner.current, span_cultbold("You violated the Masquerade! Break the Masquerade [3 - masquerade_infractions] more times and you will become a criminal to the Bloodsucker's Cause!"))
-
-
 /datum/antagonist/bloodsucker/proc/RankUp()
 	if(!owner || !owner.current || IS_FAVORITE_VASSAL(owner.current))
 		return
@@ -821,25 +827,6 @@
 
 	return fullname
 
-///When a Bloodsucker breaks the Masquerade, they get their HUD icon changed.
-/datum/antagonist/bloodsucker/proc/break_masquerade()
-	if(broke_masquerade)
-		return
-	owner.current.playsound_local(null, 'sound/effects/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
-	to_chat(owner.current, span_cultboldtalic("You have broken the Masquerade!"))
-	to_chat(owner.current, span_warning("Bloodsucker Tip: When you break the Masquerade, you become open for termination by fellow Bloodsuckers, and your Vassals are no longer completely loyal to you, as other Bloodsuckers can steal them for themselves!"))
-	broke_masquerade = TRUE
-	antag_hud_name = "masquerade_broken"
-	add_team_hud(owner.current)
-	SEND_GLOBAL_SIGNAL(COMSIG_BLOODSUCKER_BROKE_MASQUERADE)
-
-///This is admin-only of reverting a broken masquerade.
-/datum/antagonist/bloodsucker/proc/fix_masquerade()
-	if(!broke_masquerade)
-		return
-	to_chat(owner.current, span_cultboldtalic("You have re-entered the Masquerade."))
-	broke_masquerade = FALSE
-
 /datum/antagonist/bloodsucker/get_preview_icon()
 	var/icon/final_icon = render_preview_outfit(/datum/outfit/bloodsucker_outfit)
 	final_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
@@ -857,3 +844,20 @@
 
 	enrico.update_body()
 	enrico.update_hair()
+
+
+/datum/asset/simple/bloodsucker_icons
+
+/datum/asset/simple/bloodsucker_icons/register()
+	for(var/datum/bloodsucker_clan/clans as anything in typesof(/datum/bloodsucker_clan))
+		if(!initial(clans.joinable_clan))
+			continue
+		add_bloodsucker_icon(initial(clans.join_icon), initial(clans.join_icon_state))
+
+	for(var/datum/action/cooldown/bloodsucker/power as anything in subtypesof(/datum/action/cooldown/bloodsucker))
+		add_bloodsucker_icon(initial(power.button_icon), initial(power.button_icon_state))
+
+	return ..()
+
+/datum/asset/simple/bloodsucker_icons/proc/add_bloodsucker_icon(bloodsucker_icon, bloodsucker_icon_state)
+	assets[sanitize_filename("bloodsucker.[bloodsucker_icon_state].png")] = icon(bloodsucker_icon, bloodsucker_icon_state)

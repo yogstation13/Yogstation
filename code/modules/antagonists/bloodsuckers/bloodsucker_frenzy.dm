@@ -41,10 +41,6 @@
 	icon_state = "power_recover"
 	alerttooltipstyle = "cult"
 
-/atom/movable/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
-	desc = initial(desc)
-	return ..()
-
 /datum/status_effect/frenzy/on_apply()
 	var/mob/living/carbon/human/user = owner
 	bloodsuckerdatum = IS_BLOODSUCKER(user)

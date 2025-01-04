@@ -496,8 +496,7 @@
 			/datum/antagonist/rev,
 			// Additional
 			/datum/antagonist/clockcult, // Same as bloodcult.
-			/datum/antagonist/bloodsucker,
-			/datum/antagonist/vampire
+			/datum/antagonist/bloodsucker
 		)
 		for(var/antag_datum in blacklisted_antag_datums)
 			if(firstOccupant.mind?.has_antag_datum(antag_datum) || secondOccupant.mind?.has_antag_datum(antag_datum))

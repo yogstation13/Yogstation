@@ -288,21 +288,6 @@
 			M.remove_status_effect(/datum/status_effect/speech/stutter)
 			holder.remove_reagent(type, volume)	// maybe this is a little too perfect and a max() cap on the statuses would be better??
 			return
-	if(ishuman(M) && IS_VAMPIRE(M) && prob(80)) // Yogs Start
-		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
-		if(!V.get_ability(/datum/vampire_passive/full))
-			switch(data)
-				if(1 to 4)
-					to_chat(M, span_warning("Something sizzles in your veins!"))
-					M.adjustFireLoss(0.5)
-				if(5 to 12)
-					to_chat(M, span_danger("You feel an intense burning inside of you!"))
-					M.adjustFireLoss(1)
-				if(13 to INFINITY)
-					M.visible_message("<span class='danger'>[M] suddenly bursts into flames!<span>", span_userdanger("You suddenly ignite in a holy fire!"))
-					M.adjust_fire_stacks(3)
-					M.ignite_mob()            //Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
-					M.adjustFireLoss(3)        //Hence the other damages... ain't I a bastard? // Yogs End
 	if(ishuman(M) && is_sinfuldemon(M) && prob(80))
 		switch(data)
 			if(1 to 4)

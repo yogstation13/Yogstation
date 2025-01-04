@@ -4,7 +4,6 @@ GLOBAL_LIST_INIT(monster_hunter_prey_antags, typecacheof(list(
 	/datum/antagonist/bloodsucker,
 	/datum/antagonist/changeling,
 	/datum/antagonist/heretic,
-	/datum/antagonist/vampire,
 	/datum/antagonist/darkspawn
 )))
 
