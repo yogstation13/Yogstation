@@ -82,7 +82,7 @@
 	owner.enslave_mind_to_creator(master.owner.current)
 	owner.current.log_message("has been vassalized by [master.owner.current]!", LOG_ATTACK, color="#960000")
 	/// Give Recuperate Power
-	BuyPower(new /datum/action/cooldown/bloodsucker/recuperate)
+	//BuyPower(new /datum/action/cooldown/bloodsucker/recuperate)
 	/// Give Objectives
 	var/datum/objective/vassal_objective/vassal_objective = new
 	vassal_objective.owner = owner
@@ -104,19 +104,13 @@
 	for(var/all_status_traits in owner.current._status_traits)
 		REMOVE_TRAIT(owner.current, all_status_traits, BLOODSUCKER_TRAIT)
 	//Remove Recuperate Power
-	while(powers.len)
-		var/datum/action/cooldown/bloodsucker/power = pick(powers)
-		powers -= power
-		power.Remove(owner.current)
+	// while(powers.len)
+	// 	var/datum/action/cooldown/bloodsucker/power = pick(powers)
+	// 	powers -= power
+	// 	power.Remove(owner.current)
 	//Remove Language & Hud
 	owner.current.remove_language(/datum/language/vampiric)
 	return ..()
-
-/datum/antagonist/vassal/on_body_transfer(mob/living/old_body, mob/living/new_body)
-	. = ..()
-	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
-		all_powers.Remove(old_body)
-		all_powers.Grant(new_body)
 
 /datum/antagonist/vassal/proc/add_objective(datum/objective/added_objective)
 	objectives += added_objective
@@ -200,13 +194,13 @@
 	vassal.remove_antag_datum(/datum/antagonist/vassal)
 
 /// Used when your Master teaches you a new Power.
-/datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
-	powers += power
-	power.Grant(owner.current)
+// /datum/antagonist/vassal/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
+// 	powers += power
+// 	power.Grant(owner.current)
 
-/datum/antagonist/vassal/proc/LevelUpPowers()
-	for(var/datum/action/cooldown/bloodsucker/power in powers)
-		power.level_current++
+// /datum/antagonist/vassal/proc/LevelUpPowers()
+// 	for(var/datum/action/cooldown/bloodsucker/power in powers)
+// 		power.level_current++
 
 /// Called when we are made into the Favorite Vassal
 /datum/antagonist/vassal/proc/make_special(datum/antagonist/vassal/vassal_type)

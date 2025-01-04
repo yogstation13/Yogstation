@@ -34,8 +34,6 @@
 	///How many times have we used a blood altar
 	var/altar_uses = 0
 
-	///ALL Powers currently owned
-	var/list/datum/action/cooldown/bloodsucker/powers = list()
 	///Frenzy Grab Martial art given to Bloodsuckers in a Frenzy
 	var/datum/martial_art/frenzygrab/frenzygrab = new
 	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
@@ -76,8 +74,6 @@
 	///Sunlight timer HUD
 	var/atom/movable/screen/bloodsucker/sunlight_counter/sunlight_display
 
-	/// Static typecache of all bloodsucker powers.
-	var/static/list/all_bloodsucker_powers = typecacheof(/datum/action/cooldown/bloodsucker, TRUE)
 	/// Antagonists that cannot be Vassalized no matter what
 	var/static/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
@@ -217,52 +213,6 @@
 		QDEL_NULL(sunlight_display)
 
 ////////////////////////////////////////////////////////////////////////////////////
-//---------------------------------Body Transfer----------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/bloodsucker/on_body_transfer(mob/living/old_body, mob/living/new_body)
-	. = ..()
-	if(istype(new_body, /mob/living/simple_animal/hostile/bloodsucker) || istype(old_body, /mob/living/simple_animal/hostile/bloodsucker))
-		return
-	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
-		all_powers.Remove(old_body)
-		all_powers.Grant(new_body)
-	var/old_punchdamagelow
-	var/old_punchdamagehigh
-	var/old_punchstunchance
-	var/old_species_punchdamagelow
-	var/old_species_punchdamagehigh
-	var/old_species_punchstunchance
-	if(ishuman(old_body))
-		var/mob/living/carbon/human/old_user = old_body
-		var/datum/species/old_species = old_user.dna.species
-		old_species.species_traits -= DRINKSBLOOD
-		//Keep track of what they were
-		old_punchdamagelow = old_species.punchdamagelow
-		old_punchdamagehigh = old_species.punchdamagehigh
-		old_punchstunchance = old_species.punchstunchance
-		//Then reset them
-		old_species.punchdamagelow = initial(old_species.punchdamagelow)
-		old_species.punchdamagehigh = initial(old_species.punchdamagehigh)
-		old_species.punchstunchance = initial(old_species.punchstunchance)
-		//Then save the new, old, original species values so we can use them in the next part. This is starting to get convoluted.
-		old_species_punchdamagelow = old_species.punchdamagelow
-		old_species_punchdamagehigh = old_species.punchdamagehigh
-		old_species_punchstunchance = old_species.punchstunchance
-	if(ishuman(new_body))
-		var/mob/living/carbon/human/new_user = new_body
-		var/datum/species/new_species = new_user.dna.species
-		new_species.species_traits += DRINKSBLOOD
-		//Adjust new species punch damage
-		new_species.punchdamagelow += (old_punchdamagelow - old_species_punchdamagelow)			//Takes whatever DIFFERENCE you had between your punch damage and that of the baseline species
-		new_species.punchdamagehigh += (old_punchdamagehigh - old_species_punchdamagehigh)		//and adds it to your new species, thus preserving whatever bonuses you got
-		new_species.punchstunchance += (old_punchstunchance - old_species_punchstunchance)
-
-	//Give Bloodsucker Traits
-	if(old_body)
-		old_body.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
-	new_body.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
-
-////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Greet and farewell--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/bloodsucker/greet()
@@ -377,14 +327,14 @@
 /datum/antagonist/bloodsucker/ui_static_data(mob/user)
 	var/list/data = list()
 	//we don't need to update this that much.
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		var/list/power_data = list()
+	// for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+	// 	var/list/power_data = list()
 
-		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power.power_explanation
-		power_data["power_icon"] = power.button_icon_state
+	// 	power_data["power_name"] = power.name
+	// 	power_data["power_explanation"] = power.power_explanation
+	// 	power_data["power_icon"] = power.button_icon_state
 
-		data["power"] += list(power_data)
+	// 	data["power"] += list(power_data)
 
 	return data + ..()
 
@@ -483,52 +433,52 @@
 	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
 	var/message_color = "#ef2f3c"
 
-	//i used pick() in case anyone wants to add more messages as time goes on
-	if(objectives_complete)
-		if(optional_objectives_complete)
-			message_color = "#008000"
-			if(broke_masquerade)
-				if(escaped)
-					flavor_message += pick(list(
-						"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. \
-						News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
-					))
-				else if(alive)
-					flavor_message += pick(list(
-						"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. \
-						Let the Camarilla and the witchers come. You will be waiting."
-					))
-			else
-				if(escaped)
-					flavor_message += pick(list(
-						"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. \
-						High society awaits: a delicacy you have earned."
-					))
-				else if(alive)
-					flavor_message += pick(list(
-						"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. \
-						Who knows? If they prove to elevate your power enough, perhaps a new bloodline might be founded here."
-					))
-		else
-			message_color = "#517fff"
-			if(broke_masquerade)
-				if(escaped)
-					flavor_message += pick(list(
-						"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
-					))
-				else if(alive)
-					flavor_message += pick(list(
-						"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
-					))
-			else
-				if(escaped)
-					flavor_message += pick(list(
-						"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
-					))
-				else if(alive)
-					flavor_message += pick(list(
-						"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
-					))
+	flavor_message += "flavour texts are a work in progress, stay tuned."
+	// if(objectives_complete)
+	// 	if(optional_objectives_complete)
+	// 		message_color = "#008000"
+	// 		if(broke_masquerade)
+	// 			if(escaped)
+	// 				flavor_message += pick(list(
+	// 					"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. \
+	// 					News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
+	// 				))
+	// 			else if(alive)
+	// 				flavor_message += pick(list(
+	// 					"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. \
+	// 					Let the Camarilla and the witchers come. You will be waiting."
+	// 				))
+	// 		else
+	// 			if(escaped)
+	// 				flavor_message += pick(list(
+	// 					"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. \
+	// 					High society awaits: a delicacy you have earned."
+	// 				))
+	// 			else if(alive)
+	// 				flavor_message += pick(list(
+	// 					"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. \
+	// 					Who knows? If they prove to elevate your power enough, perhaps a new bloodline might be founded here."
+	// 				))
+	// 	else
+	// 		message_color = "#517fff"
+	// 		if(broke_masquerade)
+	// 			if(escaped)
+	// 				flavor_message += pick(list(
+	// 					"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
+	// 				))
+	// 			else if(alive)
+	// 				flavor_message += pick(list(
+	// 					"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
+	// 				))
+	// 		else
+	// 			if(escaped)
+	// 				flavor_message += pick(list(
+	// 					"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
+	// 				))
+	// 			else if(alive)
+	// 				flavor_message += pick(list(
+	// 					"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
+	// 				))
 
 	if(!message_color || (!alive && !escaped)) //perish or just fuck up and fail your primary objectives
 		message_color = "#ef2f3c"
@@ -556,151 +506,43 @@
 ///Called when Sol is near starting.
 /datum/antagonist/bloodsucker/proc/sol_near_start(atom/source)
 	SIGNAL_HANDLER
-	if(bloodsucker_lair_area && !(locate(/datum/action/cooldown/bloodsucker/gohome) in powers))
-		BuyPower(new /datum/action/cooldown/bloodsucker/gohome)
-	if(my_clan?.get_clan() == CLAN_GANGREL && !(locate(/datum/action/cooldown/bloodsucker/gangrel/transform) in powers))
-		BuyPower(new /datum/action/cooldown/bloodsucker/gangrel/transform)
+	// if(bloodsucker_lair_area && !(locate(/datum/action/cooldown/bloodsucker/gohome) in powers))
+	// 	BuyPower(new /datum/action/cooldown/bloodsucker/gohome)
+	// if(my_clan?.get_clan() == CLAN_GANGREL && !(locate(/datum/action/cooldown/bloodsucker/gangrel/transform) in powers))
+	// 	BuyPower(new /datum/action/cooldown/bloodsucker/gangrel/transform)
 
 ///Called when Sol first ends.
 /datum/antagonist/bloodsucker/proc/on_sol_end(atom/source)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(check_end_torpor))
-	for(var/datum/action/cooldown/bloodsucker/power in powers)
-		if(istype(power, /datum/action/cooldown/bloodsucker/gohome))
-			RemovePower(power)
+	// for(var/datum/action/cooldown/bloodsucker/power in powers)
+	// 	if(istype(power, /datum/action/cooldown/bloodsucker/gohome))
+	// 		RemovePower(power)
 	if(altar_uses)
 		to_chat(owner, span_boldnotice("Your Altar uses have been reset!"))
 		altar_uses = 0
 
 /// Buying powers
-/datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
-	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
-		if(current_powers.type == power.type)
-			return FALSE
-	powers += power
-	power.Grant(owner.current)
-	return TRUE
+// /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
+// 	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
+// 		if(current_powers.type == power.type)
+// 			return FALSE
+// 	powers += power
+// 	power.Grant(owner.current)
+// 	return TRUE
 
-/datum/antagonist/bloodsucker/proc/RemovePower(datum/action/cooldown/bloodsucker/power)
-	if(power.active)
-		power.DeactivatePower()
-	powers -= power
-	power.Remove(owner.current)
+// /datum/antagonist/bloodsucker/proc/RemovePower(datum/action/cooldown/bloodsucker/power)
+// 	if(power.active)
+// 		power.DeactivatePower()
+// 	powers -= power
+// 	power.Remove(owner.current)
 
-/datum/antagonist/bloodsucker/proc/give_starting_powers()
-	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in all_bloodsucker_powers)
-		if(!(initial(all_powers.purchase_flags) & BLOODSUCKER_DEFAULT_POWER))
-			continue
-		BuyPower(new all_powers)
+// /datum/antagonist/bloodsucker/proc/give_starting_powers()
+// 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in all_bloodsucker_powers)
+// 		if(!(initial(all_powers.purchase_flags) & BLOODSUCKER_DEFAULT_POWER))
+// 			continue
+// 		BuyPower(new all_powers)
 
-/datum/antagonist/bloodsucker/proc/assign_starting_stats()
-	// Traits: Species
-	var/mob/living/carbon/human/user = owner.current
-	if(ishuman(owner.current))
-		var/datum/species/user_species = user.dna.species
-		user_species.species_traits += DRINKSBLOOD
-		user.dna?.remove_all_mutations()
-		user_species.punchdamagelow += 1 //lowest possible punch damage - 0
-		user_species.punchdamagehigh += 1 //highest possible punch damage - 9
-		user_species.punchstunchance += 1	//To not change rng knockdowns
-	/// Give Bloodsucker Traits
-	owner.current.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
-	/// No Skittish "People" allowed
-	if(HAS_TRAIT(owner.current, TRAIT_SKITTISH))
-		REMOVE_TRAIT(owner.current, TRAIT_SKITTISH, ROUNDSTART_TRAIT)
-	// Tongue & Language
-	owner.current.grant_all_languages(FALSE, FALSE, TRUE)
-	owner.current.grant_language(/datum/language/vampiric)
-	/// Clear Disabilities & Organs
-	heal_vampire_organs()
-
-/**
- * ##clear_power_and_stats()
- *
- * Removes all Bloodsucker related Powers/Stats changes, setting them back to pre-Bloodsucker
- * Order of steps and reason why:
- * Remove clan - Clans like Nosferatu give Powers on removal, we have to make sure this is given before removing Powers.
- * Powers - Remove all Powers, so things like Masquerade are off.
- * Species traits, Traits, MaxHealth, Language - Misc stuff, has no priority.
- * Organs - At the bottom to ensure everything that changes them has reverted themselves already.
- * Update Sight - Done after Eyes are regenerated.
- */
-/datum/antagonist/bloodsucker/proc/clear_powers_and_stats()
-	// Remove clan first
-	if(my_clan)
-		QDEL_NULL(my_clan)
-	// Powers
-	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in powers)
-		RemovePower(all_powers)
-	/// Stats
-	if(ishuman(owner.current))
-		var/mob/living/carbon/human/human_user = owner.current
-		var/datum/species/user_species = human_user.dna.species
-		user_species.species_traits -= DRINKSBLOOD
-		// Clown
-		if(istype(human_user) && owner.assigned_role == "Clown")
-			human_user.dna.add_mutation(CLOWNMUT)
-	// Remove all bloodsucker traits
-	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
-	// Update Health
-	owner.current.setMaxHealth(initial(owner.current.maxHealth))
-	// Language
-	owner.current.remove_language(/datum/language/vampiric)
-	// Heart & Eyes
-	var/mob/living/carbon/user = owner.current
-	var/obj/item/organ/heart/newheart = owner.current.getorganslot(ORGAN_SLOT_HEART)
-	if(newheart)
-		newheart.beating = initial(newheart.beating)
-	var/obj/item/organ/eyes/user_eyes = user.getorganslot(ORGAN_SLOT_EYES)
-	if(user_eyes)
-		user_eyes.flash_protect = initial(user_eyes.flash_protect)
-		user_eyes.sight_flags = initial(user_eyes.sight_flags)
-		user_eyes.color_cutoffs = initial(user_eyes.color_cutoffs)
-	user.update_sight()
-
-/datum/antagonist/bloodsucker/proc/RankUp()
-	if(!owner || !owner.current || IS_FAVORITE_VASSAL(owner.current))
-		return
-	bloodsucker_level_unspent++
-	if(!my_clan)
-		to_chat(owner.current, span_notice("You have gained a rank. Join a Clan to spend it."))
-		return
-	passive_blood_drain -= 0.03 * bloodsucker_level //do something. It's here because if you are gaining points through other means you are doing good
-	// Spend Rank Immediately?
-	if(!istype(owner.current.loc, /obj/structure/closet/crate/coffin))
-		to_chat(owner, span_notice("<EM>You have grown more ancient! Sleep in a coffin that you have claimed to thicken your blood and become more powerful.</EM>"))
-		if(bloodsucker_level_unspent >= 2)
-			to_chat(owner, span_announce("Bloodsucker Tip: If you cannot find or steal a coffin to use, you can build one from wood or metal."))
-		return
-	SpendRank()
-
-/datum/antagonist/bloodsucker/proc/RankDown()
-	bloodsucker_level_unspent--
-
-/datum/antagonist/bloodsucker/proc/remove_nondefault_powers(return_levels = FALSE)
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		if(istype(power, /datum/action/cooldown/bloodsucker/feed) || istype(power, /datum/action/cooldown/bloodsucker/masquerade) || istype(power, /datum/action/cooldown/bloodsucker/veil))
-			continue
-		RemovePower(power)
-		if(return_levels)
-			bloodsucker_level_unspent++
-
-/datum/antagonist/bloodsucker/proc/LevelUpPowers()
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		power.level_current++
-		power.UpdateDesc()
-
-///Disables all powers, accounting for torpor
-/datum/antagonist/bloodsucker/proc/DisableAllPowers(forced = FALSE)
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		if(forced || ((power.check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(owner.current, TRAIT_NODEATH)))
-			if(power.active)
-				power.DeactivatePower()
-
-/datum/antagonist/bloodsucker/proc/SpendRank(mob/living/carbon/human/target, cost_rank = TRUE, blood_cost, ask = TRUE)
-	if(!owner || !owner.current || !owner.current.client || (cost_rank && bloodsucker_level_unspent <= 0.5))
-		return
-	SEND_SIGNAL(src, BLOODSUCKER_RANK_UP, target, cost_rank, blood_cost, ask)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -846,18 +688,18 @@
 	enrico.update_hair()
 
 
-/datum/asset/simple/bloodsucker_icons
+// /datum/asset/simple/bloodsucker_icons
 
-/datum/asset/simple/bloodsucker_icons/register()
-	for(var/datum/bloodsucker_clan/clans as anything in typesof(/datum/bloodsucker_clan))
-		if(!initial(clans.joinable_clan))
-			continue
-		add_bloodsucker_icon(initial(clans.join_icon), initial(clans.join_icon_state))
+// /datum/asset/simple/bloodsucker_icons/register()
+// 	for(var/datum/bloodsucker_clan/clans as anything in typesof(/datum/bloodsucker_clan))
+// 		if(!initial(clans.joinable_clan))
+// 			continue
+// 		add_bloodsucker_icon(initial(clans.join_icon), initial(clans.join_icon_state))
 
-	for(var/datum/action/cooldown/bloodsucker/power as anything in subtypesof(/datum/action/cooldown/bloodsucker))
-		add_bloodsucker_icon(initial(power.button_icon), initial(power.button_icon_state))
+// 	for(var/datum/action/cooldown/bloodsucker/power as anything in subtypesof(/datum/action/cooldown/bloodsucker))
+// 		add_bloodsucker_icon(initial(power.button_icon), initial(power.button_icon_state))
 
-	return ..()
+// 	return ..()
 
-/datum/asset/simple/bloodsucker_icons/proc/add_bloodsucker_icon(bloodsucker_icon, bloodsucker_icon_state)
-	assets[sanitize_filename("bloodsucker.[bloodsucker_icon_state].png")] = icon(bloodsucker_icon, bloodsucker_icon_state)
+// /datum/asset/simple/bloodsucker_icons/proc/add_bloodsucker_icon(bloodsucker_icon, bloodsucker_icon_state)
+// 	assets[sanitize_filename("bloodsucker.[bloodsucker_icon_state].png")] = icon(bloodsucker_icon, bloodsucker_icon_state)

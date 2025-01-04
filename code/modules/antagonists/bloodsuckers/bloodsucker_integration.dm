@@ -110,21 +110,3 @@
 
 	returnString += "</span>\]" // \n"  Don't need spacers. Using . += "" in examine.dm does this on its own.
 	return returnIcon + returnString
-
-/// Am I "pale" when examined? - Bloodsuckers on Masquerade will hide this.
-/mob/living/carbon/human/proc/ShowAsPaleExamine(mob/living/user, blood_volume)
-	if(!mind)
-		return BLOODSUCKER_SHOW_BLOOD
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
-	// Not a Bloodsucker?
-	if(!bloodsuckerdatum)
-		return BLOODSUCKER_SHOW_BLOOD
-	// Blood level too low to be hidden?
-	if(blood_volume <= BLOOD_VOLUME_BAD(user) || bloodsuckerdatum.frenzied)
-		return BLOODSUCKER_SHOW_BLOOD
-	// Special check: Nosferatu will always be Pale Death
-	if(HAS_TRAIT(src, TRAIT_MASQUERADE))
-		return BLOODSUCKER_HIDE_BLOOD
-	return BLOODSUCKER_SHOW_BLOOD
-	// If a Bloodsucker is malnourished, AND if his temperature matches his surroundings (aka he hasn't fed recently and looks COLD)
-//	return blood_volume < BLOOD_VOLUME_OKAY // && !(bodytemperature <= get_temperature() + 2)

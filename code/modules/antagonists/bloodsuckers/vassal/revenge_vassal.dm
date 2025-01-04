@@ -43,14 +43,14 @@
 
 /datum/antagonist/vassal/revenge/ui_static_data(mob/user)
 	var/list/data = list()
-	for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-		var/list/power_data = list()
+	// for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+	// 	var/list/power_data = list()
 
-		power_data["power_name"] = power.name
-		power_data["power_explanation"] = power.power_explanation
-		power_data["power_icon"] = power.button_icon_state
+	// 	power_data["power_name"] = power.name
+	// 	power_data["power_explanation"] = power.power_explanation
+	// 	power_data["power_icon"] = power.button_icon_state
 
-		data["power"] += list(power_data)
+	// 	data["power"] += list(power_data)
 
 	return data + ..()
 
@@ -60,12 +60,12 @@
 	show_in_roundend = TRUE
 	for(var/datum/objective/all_objectives as anything in objectives)
 		objectives -= all_objectives
-	BuyPower(new /datum/action/cooldown/bloodsucker/vassal_blood)
-	for(var/datum/action/cooldown/bloodsucker/master_powers as anything in bloodsuckerdatum.powers)
-		if(master_powers.purchase_flags & BLOODSUCKER_DEFAULT_POWER)
-			continue
-		master_powers.Grant(owner.current)
-		owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
+	// BuyPower(new /datum/action/cooldown/bloodsucker/vassal_blood)
+	// for(var/datum/action/cooldown/bloodsucker/master_powers as anything in bloodsuckerdatum.powers)
+	// 	if(master_powers.purchase_flags & BLOODSUCKER_DEFAULT_POWER)
+	// 		continue
+	// 	master_powers.Grant(owner.current)
+	// 	owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/vassal_edition)
 
 	var/datum/objective/survive/new_objective = new
 	new_objective.name = "Avenge Bloodsucker"

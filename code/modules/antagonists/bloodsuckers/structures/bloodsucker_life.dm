@@ -115,8 +115,8 @@
 /// Constantly runs on Bloodsucker's LifeTick, and is increased by being in Torpor/Coffins
 /datum/antagonist/bloodsucker/proc/HandleHealing(mult = 1)
 	var/actual_regen = bloodsucker_regen_rate + additional_regen
-	// Don't heal if I'm staked or on Masquerade (+ not in a Coffin). Masqueraded Bloodsuckers in a Coffin however, will heal.
-	if(owner.current.am_staked() || (HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && !HAS_TRAIT(owner.current, TRAIT_NODEATH) && my_clan?.get_clan() != CLAN_TOREADOR))
+
+	if(owner.current.am_staked() || !HAS_TRAIT(owner.current, TRAIT_NODEATH) && my_clan?.get_clan() != CLAN_TOREADOR)
 		return FALSE
 	owner.current.adjustCloneLoss(-1 * (actual_regen * 4) * mult, 0)
 	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * (actual_regen * 4) * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
@@ -129,10 +129,6 @@
 	/// Checks if you're in a coffin here, additionally checks for Torpor right below it.
 	var/amInCoffin = istype(user.loc, /obj/structure/closet/crate/coffin)
 	if(amInCoffin && HAS_TRAIT(user, TRAIT_NODEATH))
-		if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, bloodsucker_spam_healing)))
-			to_chat(user, span_alert("You do not heal while your Masquerade ability is active."))
-			COOLDOWN_START(src, bloodsucker_spam_healing, BLOODSUCKER_SPAM_MASQUERADE)
-			return
 		fireheal = min(user.getFireLoss(), actual_regen)
 		mult *= 8 // Increase multiplier if we're sleeping in a coffin.
 		costMult *= 0 // No cost if we're sleeping in a coffin.
@@ -273,45 +269,7 @@
 		additional_regen = 0.5
 
 /datum/antagonist/bloodsucker/proc/enter_frenzy()
-	if(!my_clan?.get_clan() || my_clan?.get_clan() != CLAN_GANGREL)
-		owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
-		return
-	var/mob/living/carbon/user = owner.current
-	switch(frenzies)
-		if(0)
-			owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
-		if(1)
-			to_chat(owner, span_warning("You start feeling hungrier, you feel like a normal frenzy won't satiate it enough anymore."))
-			owner.current.apply_status_effect(STATUS_EFFECT_FRENZY)
-		if(2 to INFINITY)
-			if(do_after(user, 2 SECONDS, user, IGNORE_ALL))
-				playsound(user.loc, 'sound/weapons/slash.ogg', 25, 1)
-				to_chat(user, span_warning("<i><b>You skin rips and tears.</b></i>"))
-				if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
-					playsound(user.loc, 'sound/weapons/slashmiss.ogg', 25, 1)
-					to_chat(user, span_warning("<i><b>You heart pumps blackened blood into your veins as your skin turns into fur.</b></i>"))
-					if(do_after(user, 1 SECONDS, user, IGNORE_ALL))
-						playsound(user.loc, 'sound/weapons/slice.ogg', 25, 1)
-						to_chat(user, span_boldnotice("<i><b><FONT size = 3>YOU HAVE AWOKEN.</b></i>"))
-						var/mob/living/simple_animal/hostile/bloodsucker/werewolf/ww
-						if(!ww || ww.stat == DEAD)
-							AddBloodVolume(560 - user.blood_volume) //so it doesn't happen multiple times and refills your blood when you get out again
-							ww = new /mob/living/simple_animal/hostile/bloodsucker/werewolf(user.loc)
-							user.forceMove(ww)
-							ww.bloodsucker = user
-							user.mind.transfer_to(ww)
-							var/list/wolf_powers = list(new /datum/action/cooldown/bloodsucker/targeted/feast)
-							for(var/datum/action/cooldown/bloodsucker/power in powers)
-								if(istype(power, /datum/action/cooldown/bloodsucker/fortitude))
-									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/wolfortitude
-								if(istype(power, /datum/action/cooldown/bloodsucker/targeted/lunge))
-									wolf_powers += new /datum/action/cooldown/bloodsucker/targeted/pounce
-								if(istype(power, /datum/action/cooldown/spell/toggle/cloak))
-									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/howl
-								if(istype(power, /datum/action/cooldown/bloodsucker/targeted/trespass))
-									wolf_powers += new /datum/action/cooldown/bloodsucker/gangrel/rabidism
-							for(var/datum/action/cooldown/bloodsucker/power in wolf_powers) 
-								power.Grant(ww)
+	to_chat(world, "frenzy not implemented")
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Day night cycle---------------------------------//
