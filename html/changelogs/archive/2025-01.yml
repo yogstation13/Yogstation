@@ -56,3 +56,7 @@
       or not.
   - bugfix: (uaioy) Cyborgs do not deathgasp twice when dying anymore
   - bugfix: (Melbert) Lizards and Moths don't deathgasp twice when they die
+2025-01-04:
+  SirNightKnight:
+  - bugfix: Kudzu can't be grown in CentCom.
+  - bugfix: Let go of fully of Pete's servitude in death contract.
