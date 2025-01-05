@@ -1128,7 +1128,7 @@
 
 	var/blocked = getarmor(null, RAD)
 	if(psi)
-		blocked = min(armor + psi.get_armour(RAD), 100)
+		blocked = min(blocked + psi.get_armour(RAD), 100)
 
 	if(amount > RAD_BURN_THRESHOLD)
 		apply_damage((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, BURN, null, blocked)

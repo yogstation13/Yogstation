@@ -18,10 +18,16 @@
 	if(!use_psi_armour || !can_use_passive())
 		return 0
 	
+	var/rating_amount = clamp( 4*rating, 0, 20) //get armour based on how strong of a psionic you are
+	var/rank_multiplier = get_rank(SSpsi.armour_faculty_by_type[armourtype])
+	var/stamina_multiplier = stamina/max_stamina
+
+	var/final_amount = round(clamp(rating * rank_multiplier, 0, 100) * stamina_multiplier)
+
 	/**
 	 * rating multiplied by the rank of that specific faculty, multiplied by stamina percentage
 	 */
-	return round(clamp(clamp(4 * rating, 0, 20) * get_rank(SSpsi.armour_faculty_by_type[armourtype]), 0, 100) * (stamina/max_stamina))
+	return final_amount
 
 /datum/psi_complexus/proc/handle_block_chance(obj/projectile/projectile)
 	if(!use_psi_armour || !can_use_passive())
