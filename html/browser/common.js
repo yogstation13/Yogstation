@@ -10,7 +10,7 @@ if(document.addEventListener && window.location) { // hey maybe some bozo is sti
 		if(e.which) {
 			if(!anti_spam[e.which]) {
 				anti_spam[e.which] = true;
-				let href = "?__keydown=" + e.which;
+				let href = "byond://?__keydown=" + e.which;
 				if(e.ctrlKey === false) href += "&ctrlKey=0"
 				else if(e.ctrlKey === true) href += "&ctrlKey=1"
 				window.location.href = href;
@@ -24,7 +24,7 @@ if(document.addEventListener && window.location) { // hey maybe some bozo is sti
 			return;
 		if(e.which) {
 			anti_spam[e.which] = false;
-			let href = "?__keyup=" + e.which;
+			let href = "byond://?__keyup=" + e.which;
 			if(e.ctrlKey === false) href += "&ctrlKey=0"
 			else if(e.ctrlKey === true) href += "&ctrlKey=1"
 			window.location.href = href;

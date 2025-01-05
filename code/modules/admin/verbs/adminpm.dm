@@ -326,7 +326,7 @@
 		confidential = TRUE)
 	to_chat(initiator,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = span_adminsay("Admin PM from-<b><a href='?priv_msg=$[ckey]'>[ckey]</A></b>: [msg]"),
+		html = span_adminsay("Admin PM from-<b><a href='byond://?priv_msg=$[ckey]'>[ckey]</A></b>: [msg]"),
 		confidential = TRUE) // yogs - Yog Tickets
 	to_chat(initiator,
 		type = MESSAGE_TYPE_ADMINPM,
@@ -426,7 +426,7 @@
 		confidential = TRUE)
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = span_adminsay("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"),
+		html = span_adminsay("Admin PM from-<b><a href='byond://?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"),
 		confidential = TRUE) // yogs - Yog Tickets
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,

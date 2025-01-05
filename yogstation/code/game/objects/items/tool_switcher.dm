@@ -130,22 +130,22 @@
 	var/dat = "<b>Programs:</b> <div>"
 	for(var/I in 1 to programs.len)
 		var/datum/tool_switcher_program/program = programs[I]
-		dat += "<a href='?src=[REF(src)];change_program=[I]' class='[program == current_program ? "linkOn" : ""]'>[program.name]</a>"
+		dat += "<a href='byond://?src=[REF(src)];change_program=[I]' class='[program == current_program ? "linkOn" : ""]'>[program.name]</a>"
 	dat += "</div><hr>"
 	if(current_program)
 		dat += "<table>"
 		for(var/I in 1 to current_program.tools_list.len)
 			var/obj/item/tool_type = current_program.tools_list[I]
 			var/no_tool = (locate(tool_type) in src) == null
-			dat += "<tr><td><a href='?src=[REF(src)];change_tool=[I]' style='[no_tool ? "color:red" : ""]' class='[I == current_program.current_index ? "linkOn" : ""]'>[initial(tool_type.name)]</a></td>"
-			dat += "<td><a href='?src=[REF(src)];remove_tool=[I]'>X</a></td>"
+			dat += "<tr><td><a href='byond://?src=[REF(src)];change_tool=[I]' style='[no_tool ? "color:red" : ""]' class='[I == current_program.current_index ? "linkOn" : ""]'>[initial(tool_type.name)]</a></td>"
+			dat += "<td><a href='byond://?src=[REF(src)];remove_tool=[I]'>X</a></td>"
 			if(current_program.can_edit)
-				dat += "<td><a href='?src=[REF(src)];move_tool=[I];move_tool_dir=1' class='[I == current_program.tools_list.len ? "linkOff" : ""]'>&#8595</a></td>"
-				dat += "<td><a href='?src=[REF(src)];move_tool=[I];move_tool_dir=0' class='[I == 1 ? "linkOff" : ""]'>&#8593</a></td>"
+				dat += "<td><a href='byond://?src=[REF(src)];move_tool=[I];move_tool_dir=1' class='[I == current_program.tools_list.len ? "linkOff" : ""]'>&#8595</a></td>"
+				dat += "<td><a href='byond://?src=[REF(src)];move_tool=[I];move_tool_dir=0' class='[I == 1 ? "linkOff" : ""]'>&#8593</a></td>"
 			dat += "</tr>"
 		dat += "</table>"
 		if(current_program.can_edit)
-			dat += "<div><a href='?src=[REF(src)];add_tool=1'>Add to Sequence</a>"
+			dat += "<div><a href='byond://?src=[REF(src)];add_tool=1'>Add to Sequence</a>"
 	var/datum/browser/popup = new(user, "tool_switcher", name, 350, 500)
 	popup.set_content(dat)
 	popup.open()

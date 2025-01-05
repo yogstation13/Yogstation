@@ -64,11 +64,11 @@
 // 		return
 // 	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/group/permissions)
 // 	asset_cache_datum.send(usr)
-// 	var/list/output = list("<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url("panels.css")]'><a href='?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
+// 	var/list/output = list("<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url("panels.css")]'><a href='byond://?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
 // 	if(action)
-// 		output += " | <a href='?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a><hr style='background:#000000; border:0; height:3px'>"
+// 		output += " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a><hr style='background:#000000; border:0; height:3px'>"
 // 	else
-// 		output += "<br><a href='?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a>"
+// 		output += "<br><a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a>"
 // 	if(action == 1)
 // 		var/logcount = 0
 // 		var/logssperpage = 20
@@ -87,7 +87,7 @@
 // 		if(logcount > logssperpage)
 // 			output += "<br><b>Page: </b>"
 // 			while(logcount > 0)
-// 				output += "|<a href='?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightstarget=[target];editrightsoperation=[operation];editrightspage=[pagecount]'>[pagecount == page ? "<b>\[[pagecount]\]</b>" : "\[[pagecount]\]"]</a>"
+// 				output += "|<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightstarget=[target];editrightsoperation=[operation];editrightspage=[pagecount]'>[pagecount == page ? "<b>\[[pagecount]\]</b>" : "\[[pagecount]\]"]</a>"
 // 				logcount -= logssperpage
 // 				pagecount++
 // 			output += "|"
@@ -126,7 +126,7 @@
 // 		<body onload='selectTextField();updateSearch();'>
 // 		<div id='main'><table id='searchable' cellspacing='0'>
 // 		<tr class='title'>
-// 		<th style='width:150px;'>CKEY <a class='small' href='?src=[REF(src)];[HrefToken()];editrights=add'>\[+\]</a></th>
+// 		<th style='width:150px;'>CKEY <a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=add'>\[+\]</a></th>
 // 		<th style='width:125px;'>RANK</th>
 // 		<th style='width:40%;'>PERMISSIONS</th>
 // 		</tr>
@@ -141,13 +141,13 @@
 // 			if(D.owner)
 // 				adm_ckey = D.owner.key
 // 			if (D.deadmined)
-// 				deadminlink = " <a class='small' href='?src=[REF(src)];[HrefToken()];editrights=activate;key=[adm_ckey]'>\[RA\]</a>"
+// 				deadminlink = " <a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=activate;key=[adm_ckey]'>\[RA\]</a>"
 // 			else
-// 				deadminlink = " <a class='small' href='?src=[REF(src)];[HrefToken()];editrights=deactivate;key=[adm_ckey]'>\[DA\]</a>"
+// 				deadminlink = " <a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=deactivate;key=[adm_ckey]'>\[DA\]</a>"
 // 			output += "<tr>"
-// 			output += "<td style='text-align:center;'>[adm_ckey]<br>[deadminlink]<a class='small' href='?src=[REF(src)];[HrefToken()];editrights=remove;key=[adm_ckey]'>\[-\]</a><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=mfareset;key=[adm_ckey]'>\[2FA\]</a></td>"
-// 			output += "<td><a href='?src=[REF(src)];[HrefToken()];editrights=rank;key=[adm_ckey]'>[D.rank_name()]</a></td>"
-// 			output += "<td><a class='small' href='?src=[REF(src)];[HrefToken()];editrights=permissions;key=[adm_ckey]'>[rights2text(D.rights," ")]</a></td>"
+// 			output += "<td style='text-align:center;'>[adm_ckey]<br>[deadminlink]<a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=remove;key=[adm_ckey]'>\[-\]</a><a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=mfareset;key=[adm_ckey]'>\[2FA\]</a></td>"
+// 			output += "<td><a href='byond://?src=[REF(src)];[HrefToken()];editrights=rank;key=[adm_ckey]'>[D.rank_name()]</a></td>"
+// 			output += "<td><a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=permissions;key=[adm_ckey]'>[rights2text(D.rights," ")]</a></td>"
 // 			output += "</tr>"
 // 		output += "</table></div><div id='top'><b>Search:</b> <input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'></div></body>"
 // 	if(QDELETED(usr))

@@ -259,9 +259,9 @@
 			downloading = target
 
 			if(!downloading.mind && downloading.deployed_shell.mind)
-				to_chat(downloading.deployed_shell, span_userdanger("Warning! Someone is attempting to download you from [get_area(computer.physical)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
+				to_chat(downloading.deployed_shell, span_userdanger("Warning! Someone is attempting to download you from [get_area(computer.physical)]! (<a href='byond://?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
 			else
-				to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(computer.physical)]! (<a href='?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
+				to_chat(downloading, span_userdanger("Warning! Someone is attempting to download you from [get_area(computer.physical)]! (<a href='byond://?src=[REF(downloading)];instant_download=1;console=[REF(src)]'>Click here to finish download instantly</a>)"))
 			user_downloading = user
 			download_progress = 0
 			. = TRUE

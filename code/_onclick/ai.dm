@@ -222,9 +222,9 @@
 				to_chat(user, span_warning("Unable to track 'Unknown' persons! Their name must be visible."))
 				return
 			if(src == user.cameraMemoryTarget)
-				to_chat(user, span_warning("Stop tracking this individual? <a href='?src=[REF(user)];stopTrackHuman=1'>\[UNTRACK\]</a>"))
+				to_chat(user, span_warning("Stop tracking this individual? <a href='byond://?src=[REF(user)];stopTrackHuman=1'>\[UNTRACK\]</a>"))
 			else
-				to_chat(user, span_warning("Track this individual? <a href='?src=[REF(user)];trackHuman=[src.name]'>\[TRACK\]</a>"))
+				to_chat(user, span_warning("Track this individual? <a href='byond://?src=[REF(user)];trackHuman=[src.name]'>\[TRACK\]</a>"))
 	return
 
 //

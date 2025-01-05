@@ -13,7 +13,7 @@
 
 	var/list/dat = list("Logged in as: ")
 	if(authenticated)
-		dat += {"<a href='?src=[REF(src)];choice=Logout'>[authenticated]</a><hr>"}
+		dat += {"<a href='byond://?src=[REF(src)];choice=Logout'>[authenticated]</a><hr>"}
 		if(current)
 			var/background
 			var/notice = ""
@@ -64,7 +64,7 @@
 				<td>[c.time]</td>"}
 				if(owed > 0)
 					dat += {"<td>$[owed]</td>
-					<td><A href='?src=[REF(src)];choice=Pay;field=citation_pay;cdataid=[c.dataId]'>\[Pay\]</A></td>"}
+					<td><A href='byond://?src=[REF(src)];choice=Pay;field=citation_pay;cdataid=[c.dataId]'>\[Pay\]</A></td>"}
 				else
 					dat += "<td colspan='2'>All Paid Off</td>"
 				dat += "</tr>"
@@ -88,7 +88,7 @@
 		else
 			dat += {"<span>** No security record found for this ID **</span>"}
 	else
-		dat += {"<a href='?src=[REF(src)];choice=Login'>------------</a><hr>"}
+		dat += {"<a href='byond://?src=[REF(src)];choice=Login'>------------</a><hr>"}
 
 	var/datum/browser/popup = new(user, "warrant", "Security Warrant Console", 600, 400)
 	popup.set_content(dat.Join())

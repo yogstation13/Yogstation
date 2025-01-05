@@ -49,8 +49,8 @@
 				data += "<br>Redeemed by <b>[denying_admin]</b>"
 
 			if(!redeemed)
-				data += "<br><a href='?_src_=holder;[HrefToken()];redeem_token_id=[id]'>Redeem</a>"
-				data += "<a href='?_src_=holder;[HrefToken()];deny_token_id=[id]'>Deny</a>"
+				data += "<br><a href='byond://?_src_=holder;[HrefToken()];redeem_token_id=[id]'>Redeem</a>"
+				data += "<a href='byond://?_src_=holder;[HrefToken()];deny_token_id=[id]'>Deny</a>"
 			data += "</div>"
 		qdel(query_antag_token)
 
@@ -274,7 +274,7 @@
 	var/list/data = list()
 	while(query_antag_token.NextRow())
 		var/ckey = query_antag_token.item[1]
-		data += "<a href='?_src_=holder;[HrefToken()];searchAntagTokenByKey=[ckey]'>[ckey]</a>"
+		data += "<a href='byond://?_src_=holder;[HrefToken()];searchAntagTokenByKey=[ckey]'>[ckey]</a>"
 		data += "<br>"
 	qdel(query_antag_token)
 

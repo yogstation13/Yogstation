@@ -284,21 +284,21 @@
 
 	switch(state)
 		if(AIRLOCK_STATE_INOPEN)
-			state_options = {"<A href='?src=[REF(src)];command=cycle_closed'>Close Interior Airlock</A><BR>
-<A href='?src=[REF(src)];command=cycle_exterior'>Cycle to Exterior Airlock</A><BR>"}
+			state_options = {"<A href='byond://?src=[REF(src)];command=cycle_closed'>Close Interior Airlock</A><BR>
+<A href='byond://?src=[REF(src)];command=cycle_exterior'>Cycle to Exterior Airlock</A><BR>"}
 			current_status = "Interior Airlock Open<BR>[span_good("Chamber Pressurized")]"
 		if(AIRLOCK_STATE_PRESSURIZE)
-			state_options = "<A href='?src=[REF(src)];command=abort'>Abort Cycling</A><BR>"
+			state_options = "<A href='byond://?src=[REF(src)];command=abort'>Abort Cycling</A><BR>"
 			current_status = "Cycling to Interior Airlock<BR>[span_average("Chamber Pressurizing")]"
 		if(AIRLOCK_STATE_CLOSED)
-			state_options = {"<A href='?src=[REF(src)];command=cycle_interior'>Open Interior Airlock</A><BR>
-<A href='?src=[REF(src)];command=cycle_exterior'>Open Exterior Airlock</A><BR>"}
+			state_options = {"<A href='byond://?src=[REF(src)];command=cycle_interior'>Open Interior Airlock</A><BR>
+<A href='byond://?src=[REF(src)];command=cycle_exterior'>Open Exterior Airlock</A><BR>"}
 		if(AIRLOCK_STATE_DEPRESSURIZE)
-			state_options = "<A href='?src=[REF(src)];command=abort'>Abort Cycling</A><BR>"
+			state_options = "<A href='byond://?src=[REF(src)];command=abort'>Abort Cycling</A><BR>"
 			current_status = "Cycling to Exterior Airlock<BR>[span_average("Chamber Depressurizing")]"
 		if(AIRLOCK_STATE_OUTOPEN)
-			state_options = {"<A href='?src=[REF(src)];command=cycle_interior'>Cycle to Interior Airlock</A><BR>
-<A href='?src=[REF(src)];command=cycle_closed'>Close Exterior Airlock</A><BR>"}
+			state_options = {"<A href='byond://?src=[REF(src)];command=cycle_interior'>Cycle to Interior Airlock</A><BR>
+<A href='byond://?src=[REF(src)];command=cycle_closed'>Close Exterior Airlock</A><BR>"}
 			current_status = "Exterior Airlock Open<BR>[span_bad("Chamber Depressurized")]"
 
 	var/output = {"<h3>Airlock Status</h3>

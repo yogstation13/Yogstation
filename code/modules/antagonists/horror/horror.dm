@@ -427,7 +427,7 @@
 	for(var/path in subtypesof(/datum/horror_chem))
 		var/datum/horror_chem/chem = path
 		if(path in horror_chems)
-			content += "<tr><td><a class='chem-select' href='?_src_=\ref[src];src=\ref[src];horror_use_chem=[initial(chem.chemname)]'>[initial(chem.chemname)] ([initial(chem.chemuse)])</a><p>[initial(chem.chem_desc)]</p></td></tr>"
+			content += "<tr><td><a class='chem-select' href='byond://?_src_=\ref[src];src=\ref[src];horror_use_chem=[initial(chem.chemname)]'>[initial(chem.chemname)] ([initial(chem.chemuse)])</a><p>[initial(chem.chem_desc)]</p></td></tr>"
 
 	content += "</table>"
 
