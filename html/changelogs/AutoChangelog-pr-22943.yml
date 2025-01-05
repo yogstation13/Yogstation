@@ -1,0 +1,4 @@
+author: "AMyriad"
+delete-after: true 
+changes: 
+  - bugfix: "Fixed AI chamber door buttons on MiniStation, similar to the bug with the AI whale"
