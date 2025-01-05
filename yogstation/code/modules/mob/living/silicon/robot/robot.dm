@@ -8,7 +8,7 @@
 		if(module.name == "Default")
 			to_chat(src, "Please choose a module first! (Standard works too)")
 			return FALSE
-		if(ROLE_SYNDICATE in faction)
+		if(ROLE_ANTAG in faction)
 			to_chat(src, span_warning("You cannot reskin as a syndicate cyborg!"))
 			return FALSE
 		var/datum/borg_skin/skins = list("default" = icon(icon = src.icon, icon_state = module.cyborg_base_icon))

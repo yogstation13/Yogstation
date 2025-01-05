@@ -270,10 +270,7 @@
 	fitted = NO_FEMALE_UNIFORM
 	alternate_worn_layer = GLOVES_LAYER //covers hands but gloves can go over it. This is how these things work in my head.
 	can_adjust = FALSE
-
-/obj/item/clothing/under/costume/mech_suit/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/mech_pilot, 0.9)
+	clothing_traits = list(TRAIT_SKILLED_PILOT)
 
 /obj/item/clothing/under/costume/mech_suit/white
 	name = "white mech pilot's suit"

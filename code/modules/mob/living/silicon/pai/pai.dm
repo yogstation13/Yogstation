@@ -26,7 +26,7 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/computer_hardware/paicard/card	// The card we inhabit
 	var/hacking = FALSE		//Are we hacking a door?
 
 	var/speakStatement = "states"
@@ -57,7 +57,8 @@
 	var/obj/machinery/door/hackdoor		// The airlock being hacked
 	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
 
-	var/obj/item/integrated_signaler/signaler // AI's signaller
+	/// Remote signaler
+	var/obj/item/assembly/signaler/internal/signaler
 
 	var/obj/item/instrument/piano_synth/internal_instrument
 	var/obj/machinery/newscaster			//pAI Newscaster
@@ -85,6 +86,8 @@
 	var/silent = FALSE
 	var/brightness_power = 5
 
+	var/atom/movable/screen/ai/mod_pc/interfaceButton
+
 /mob/living/silicon/pai/can_unbuckle()
 	return FALSE
 
@@ -102,13 +105,13 @@
 	return ..()
 
 /mob/living/silicon/pai/Initialize(mapload)
-	var/obj/item/paicard/P = loc
+	var/obj/item/computer_hardware/paicard/P = loc
 	START_PROCESSING(SSfastprocess, src)
 	GLOB.pai_list += src
 	make_laws()
 	if(!istype(P)) //when manually spawning a pai, we create a card to put it into.
 		var/newcardloc = P
-		P = new /obj/item/paicard(newcardloc)
+		P = new /obj/item/computer_hardware/paicard(newcardloc)
 		P.setPersonality(src)
 	forceMove(P)
 	card = P
@@ -122,20 +125,27 @@
 		aicamera = new /obj/item/camera/siliconcam/ai_camera(src)
 		aicamera.flash_enabled = TRUE
 
-	//PDA
-	aiPDA = new/obj/item/pda/ai(src)
-	aiPDA.owner = real_name
-	aiPDA.ownjob = "pAI Messenger"
-	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
-
 	. = ..()
 
+	create_modularInterface()
 	emittersemicd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
 /mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(hacking)
 		process_hack()
+	return ..()
+
+/mob/living/silicon/pai/can_interact_with(atom/target)
+	if(target == signaler) // Bypass for signaler
+		return TRUE
+	if(target == modularInterface)
+		return TRUE
+	return ..()
+
+/mob/living/silicon/pai/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/tablet/integrated/pai(src)
 	return ..()
 
 /mob/living/silicon/pai/proc/process_hack()
@@ -148,8 +158,6 @@
 		hacking = FALSE
 		hackdoor = null
 		return
-	if(screen == "doorjack" && subscreen == 0) // Update our view, if appropriate
-		paiInterface()
 	if(hackprogress >= 100)
 		hackprogress = 0
 		var/obj/machinery/door/D = cable.machine
@@ -165,7 +173,6 @@
 
 /mob/living/silicon/pai/Login()
 	..()
-	usr << browse_rsc('html/paigrid.png')			// Go ahead and cache the interface resources as early as possible
 	if(client)
 		client.perspective = EYE_PERSPECTIVE
 		if(holoform)
@@ -193,7 +200,7 @@
 	return TRUE
 
 /mob/proc/makePAI(delold)
-	var/obj/item/paicard/card = new /obj/item/paicard(get_turf(src))
+	var/obj/item/computer_hardware/paicard/card = new /obj/item/computer_hardware/paicard(get_turf(src))
 	var/mob/living/silicon/pai/pai = new /mob/living/silicon/pai(card)
 	pai.key = key
 	pai.name = name
@@ -219,7 +226,7 @@
 
 /datum/action/innate/pai/software/Trigger()
 	..()
-	P.paiInterface()
+	P.ui_interact(usr)
 
 /datum/action/innate/pai/shell
 	name = "Toggle Holoform"
@@ -286,6 +293,7 @@
 			T.visible_message(span_warning("[src.cable] rapidly retracts back into its spool."), span_italics("You hear a click and the sound of wire spooling rapidly."))
 			qdel(src.cable)
 			cable = null
+			cable_status = "Retracted"
 	silent = max(silent - 1, 0)
 	. = ..()
 
@@ -298,7 +306,7 @@
 /mob/living/silicon/pai/process(delta_time)
 	emitterhealth = clamp((emitterhealth + (emitter_regen_per_second * delta_time)), -50, emittermaxhealth)
 
-/obj/item/paicard/attackby(obj/item/W, mob/user, params)
+/obj/item/computer_hardware/paicard/attackby(obj/item/W, mob/user, params)
 	..()
 	user.set_machine(src)
 	if(pai.encryptmod == TRUE)

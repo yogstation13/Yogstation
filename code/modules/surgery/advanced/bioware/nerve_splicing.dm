@@ -16,6 +16,7 @@
 	name = "splice nerves"
 	accept_hand = TRUE
 	time = 15.5 SECONDS
+	difficulty = EXP_HIGH
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
 

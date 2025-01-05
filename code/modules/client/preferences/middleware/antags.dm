@@ -59,14 +59,13 @@
 /datum/preference_middleware/antags/proc/get_antag_bans()
 	var/list/antag_bans = list()
 
-	for (var/datum/dynamic_ruleset/dynamic_ruleset as anything in subtypesof(/datum/dynamic_ruleset))
-		var/antag_flag = initial(dynamic_ruleset.antag_flag)
-		var/antag_flag_override = initial(dynamic_ruleset.antag_flag_override)
+	for(var/datum/round_event_control/antagonist/solo/event as anything in subtypesof(/datum/round_event_control/antagonist/solo))
+		var/antag_flag = initial(event.antag_flag)
 
 		if (isnull(antag_flag))
 			continue
 
-		if (is_banned_from(preferences.parent.ckey, list(antag_flag_override || antag_flag, ROLE_SYNDICATE)))
+		if (is_banned_from(preferences.parent.ckey, list(antag_flag, ROLE_ANTAG)))
 			antag_bans += serialize_antag_name(antag_flag)
 
 	return antag_bans
@@ -77,16 +76,11 @@
 
 	var/list/antag_days_left = list()
 
-	for (var/datum/dynamic_ruleset/dynamic_ruleset as anything in subtypesof(/datum/dynamic_ruleset))
-		var/antag_flag = initial(dynamic_ruleset.antag_flag)
-		//var/antag_flag_override = initial(dynamic_ruleset.antag_flag_override)
+	for(var/datum/round_event_control/antagonist/solo/event as anything in subtypesof(/datum/round_event_control/antagonist/solo))
+		var/antag_flag = initial(event.antag_flag)
 
 		if (isnull(antag_flag))
 			continue
-
-		/*var/days_needed = preferences.parent?.get_remaining_days(
-			GLOB.special_roles[antag_flag_override || antag_flag]
-		)*/
 
 		var/days_needed = 0
 
@@ -120,14 +114,6 @@
 	
 	var/list/antagonists = GLOB.special_roles.Copy()
 
-	/*for (var/datum/dynamic_ruleset/ruleset as anything in subtypesof(/datum/dynamic_ruleset))
-		var/datum/antagonist/antagonist_type = initial(ruleset.antag_datum)
-		if (isnull(antagonist_type))
-			continue
-
-		// antag_flag is guaranteed to be unique by unit tests.
-		antagonists[initial(ruleset.antag_flag)] = antagonist_type
-	*/
 	var/list/generated_icons = list()
 	var/list/to_insert = list()
 

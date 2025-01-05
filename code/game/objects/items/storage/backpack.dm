@@ -121,11 +121,11 @@
 	if(M.mind && HAS_TRAIT(M.mind, TRAIT_CANNOT_OPEN_PRESENTS))
 		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 		var/turf/floor = get_turf(src)
-		var/obj/item/I = new /obj/item/a_gift/anything(floor)
-		if(STR.can_be_inserted(I, stop_messages=TRUE))
-			STR.handle_item_insertion(I, prevent_warning=TRUE)
+		var/obj/item/a_gift/anything/personal/new_gift = new(floor)
+		if(STR.can_be_inserted(new_gift, stop_messages=TRUE))
+			STR.handle_item_insertion(new_gift, prevent_warning=TRUE)
 		else
-			qdel(I)
+			qdel(new_gift)
 
 
 /obj/item/storage/backpack/cultpack
@@ -693,25 +693,6 @@
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 60
 	STR.set_holdable(list(/obj/item/clothing))
-
-/obj/item/storage/backpack/duffelbag/clothing/hop
-	name = "Head of Personnels clothing duffelbag"
-	desc = "A large duffel bag filled with clothing."
-
-/obj/item/storage/backpack/duffelbag/clothing/hop/PopulateContents()
-	new /obj/item/clothing/under/rank/command/head_of_personnel(src)
-	new /obj/item/clothing/under/rank/command/head_of_personnel/skirt(src)
-	new /obj/item/clothing/under/rank/command/head_of_personnel/turtleneck(src)
-	new /obj/item/clothing/under/rank/command/head_of_personnel/skirt/turtleneck(src)
-	new /obj/item/clothing/head/hopcap(src)
-	new /obj/item/clothing/head/beret/hop(src)
-	new /obj/item/clothing/shoes/sneakers/brown(src)
-	new /obj/item/clothing/shoes/xeno_wraps/command(src)
-	new /obj/item/clothing/suit/armor/vest/rurmcoat(src)
-	new /obj/item/clothing/suit/armor/vest/sovietcoat(src)
-	new /obj/item/clothing/suit/armor/vest/hop_formal(src)
-	new /obj/item/clothing/under/yogs/hopcasual(src)
-	new /obj/item/clothing/suit/hooded/wintercoat/hop(src)
 
 /obj/item/storage/backpack/duffelbag/clothing/rd
 	name = "Research Directors clothing duffelbag"

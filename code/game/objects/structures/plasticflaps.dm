@@ -15,6 +15,7 @@
 	. = ..()
 	alpha = 0
 	gen_overlay()
+	air_update_turf()
 
 /obj/structure/plasticflaps/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	if(same_z_layer)
@@ -40,14 +41,19 @@
 		return TRUE
 	add_fingerprint(user)
 	var/action = anchored ? "unscrews [src] from" : "screws [src] to"
-	var/uraction = anchored ? "unscrew [src] from " : "screw [src] to"
+	var/uraction = anchored ? "unscrew [src] from" : "screw [src] to"
 	user.visible_message(span_warning("[user] [action] the floor."), span_notice("You start to [uraction] the floor..."), "You hear rustling noises.")
-	if(W.use_tool(src, user, 100, volume=100, extra_checks = CALLBACK(src, PROC_REF(check_anchored_state), anchored)))
-		setAnchored(!anchored)
-		to_chat(user, span_notice(" You [anchored ? "unscrew" : "screw"] [src] from the floor."))
+	if(!W.use_tool(src, user, 100, volume=100, extra_checks = CALLBACK(src, PROC_REF(check_anchored_state), anchored)))
 		return TRUE
-	else
-		return TRUE
+	setAnchored(!anchored)
+	update_atmos_behaviour()
+	air_update_turf()
+	to_chat(user, span_notice(" You [anchored ? "unscrew" : "screw"] [src] from the floor."))
+	return TRUE
+
+///Update the flaps behaviour to gases, if not anchored will let air pass through
+/obj/structure/plasticflaps/proc/update_atmos_behaviour()
+	can_atmos_pass = anchored ? ATMOS_PASS_YES : ATMOS_PASS_NO
 
 /obj/structure/plasticflaps/wirecutter_act(mob/living/user, obj/item/W)
 	if(!anchored)
@@ -112,10 +118,6 @@
 	if(!(flags_1 & NODECONSTRUCT_1))
 		new /obj/item/stack/sheet/plastic/five(loc)
 	qdel(src)
-
-/obj/structure/plasticflaps/Initialize(mapload)
-	. = ..()
-	air_update_turf()
 
 /obj/structure/plasticflaps/Destroy()
 	var/atom/oldloc = loc

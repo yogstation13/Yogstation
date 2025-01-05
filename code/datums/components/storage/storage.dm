@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		to_chat(M, span_notice("You failed to pick up anything with [parent]."))
 		return
 	var/list/rejections = list()
-	while(do_after(M, 1 SECONDS, parent, TRUE, FALSE, CALLBACK(src, PROC_REF(handle_mass_pickup), things, I.loc, rejections)))
+	while(do_after(M, 1 SECONDS, parent, NONE, TRUE, CALLBACK(src, PROC_REF(handle_mass_pickup), things, I.loc, rejections)))
 		continue
 	to_chat(M, span_notice("You put everything you could [insert_preposition] [parent]."))
 
@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	to_chat(M, span_notice("You start dumping out [parent]."))
 	var/turf/T = get_turf(A)
 	var/list/things = contents()
-	while (do_after(M, 1 SECONDS, T, TRUE, FALSE, CALLBACK(src, PROC_REF(mass_remove_from_storage), T, things)))
+	while (do_after(M, 1 SECONDS, T, NONE, TRUE, CALLBACK(src, PROC_REF(mass_remove_from_storage), T, things)))
 		continue
 
 /datum/component/storage/proc/mass_remove_from_storage(atom/target, list/things, trigger_on_found = TRUE)

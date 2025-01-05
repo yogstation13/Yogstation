@@ -106,8 +106,7 @@
 		objectives_left += "jealous"//if they have no coworkers, jealousy will pick someone else on the station. this will never be a free objective, nice.
 
 	for(var/i in 1 to 3)
-		var/chosen_objective = pick(objectives_left)
-		objectives_left.Remove(chosen_objective)
+		var/chosen_objective = pick_n_take(objectives_left)
 		switch(chosen_objective)
 			if("spendtime")
 				var/datum/objective/spendtime/spendtime = new

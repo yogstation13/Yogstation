@@ -9,15 +9,15 @@
 
 /datum/info_tab/icecream_vat/vat_instructions
 	section = "Vat Instructions"
-	section_text = "The ice cream vat allows you to select and dispense both ice cream scoops and cones, along with scooping ice cream scoops onto cones. The selected scoop will be scooped into cones, while the selected cone is what is dispensed by alt-clicking the vat. To scoop a cone, select a scoop type and then right-click the vat with an empty cone. Cones can only have one scoop of ice cream."
+	section_text = "The ice cream vat allows you to select and dispense both ice cream scoops and cones, along with scooping ice cream scoops onto cones. The selected scoop will be scooped into cones, while the selected cone is what is dispensed by alt-clicking the vat. To scoop a cone, select a scoop type and then right-click the vat with an empty cone. Beware: after a cone gets four scoops, adding more has a chance of destroying it."
 
 /datum/info_tab/icecream_vat/restocking
 	section = "Restocking"
-	section_text = "The ice cream vat can be restocked with new ice cream scoops and cones by left-clicking on the vat with said item. The vat can also be restocked by left-clicking on the vat with an ice cream carton with scoops. Doing so will transfer the scoops into the vat."
+	section_text = "The ice cream vat can be restocked with new ice cream scoops and cones by left-clicking on the vat with said item. The vat can also be restocked by left-clicking on the vat with an ice cream carton or a cone box. Doing so will transfer its contents into the vat."
 
 /datum/info_tab/icecream_vat/storage_capacity
 	section = "Storage Capacity"
-	section_text = "The ice cream vat has a storage capacity of 120 scoops and cones combined."
+	section_text = "The ice cream vat has a storage capacity of 80 scoops and cones combined. This can be increased by upgrading its matter bin."
 
 /datum/info_tab/icecream_vat/new_scoops
 	section = "Creating New Scoops"

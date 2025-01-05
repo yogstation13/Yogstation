@@ -28,6 +28,15 @@
 		/datum/job_department/medical,
 	)
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_HIGH,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 3
+
 	mail_goodies = list(
 		/obj/item/healthanalyzer/advanced = 15,
 		/obj/effect/spawner/lootdrop/surgery_tool_advanced = 6,
@@ -77,4 +86,3 @@
 	l_hand = /obj/item/storage/firstaid/medical
 	suit_store = /obj/item/flashlight/pen
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile
-	pda_type = /obj/item/pda/medical

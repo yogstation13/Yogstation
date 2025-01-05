@@ -170,6 +170,9 @@
 	area_flags = FLORA_ALLOWED
 	blob_allowed = FALSE
 	mining_speed = TRUE
+	ambient_buzz = null // stillness.
+	ambience_index = AMBIENCE_ICEMOON
+	sound_environment = SOUND_ENVIRONMENT_FOREST
 
 /area/icemoon/top_layer
 	name = "Icemoon Surface"
@@ -180,7 +183,6 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambience_index = AMBIENCE_MINING
 	uses_daylight = TRUE
 	daylight_multiplier = 0.7
 
@@ -208,7 +210,6 @@
 	power_equip = FALSE
 	power_light = FALSE
 	requires_power = TRUE
-	ambience_index = AMBIENCE_MINING
 
 /area/icemoon/surface/outdoors
 	name = "Icemoon Wastes"
@@ -235,7 +236,6 @@
 	power_environ = FALSE
 	power_equip = FALSE
 	power_light = FALSE
-	ambience_index = AMBIENCE_MINING
 
 /area/icemoon/underground/unexplored // mobs and megafauna and ruins spawn here
 	name = "Icemoon Caves"

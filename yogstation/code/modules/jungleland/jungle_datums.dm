@@ -537,6 +537,15 @@
 	var/old_stage = 1
 	var/alert_type = /atom/movable/screen/alert/status_effect/toxic_buildup
 
+/datum/reagent/toxic_metabolites/reaction_mob(mob/living/exposed_mob, methods, reac_volume, show_message, permeability)
+	if(isliving(exposed_mob) && exposed_mob.reagents)
+		var/modifier = (100 - exposed_mob.getarmor(null, BIO)) / 100
+		var/amount = round(max(reac_volume - exposed_mob.reagents.get_reagent_amount(type), 0) * modifier, 0.1) // no reagent duplication on mobs
+		if(amount >= 0.5)
+			exposed_mob.reagents.add_reagent(type, amount)
+		return TRUE
+	return FALSE
+
 // consumes 2 every 2 seconds
 /datum/reagent/toxic_metabolites/on_mob_life(mob/living/carbon/M)
 	. = ..()

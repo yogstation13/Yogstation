@@ -24,7 +24,6 @@
 	speedmod = -0.1 //apex predator humanoid hybrid
 	inert_mutation = ACIDSPIT
 	punchdamagehigh = 11 //slightly better high end of damage
-	punchstunthreshold = 11 //technically slightly worse stunchance
 	damage_overlay_type = "polysmorph"
 	species_gibs = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'

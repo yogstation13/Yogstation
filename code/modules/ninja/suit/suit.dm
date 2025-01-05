@@ -98,7 +98,7 @@ Contents:
 /obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
-	if(do_gib && !is_ninja(H)) // yogs
+	if(do_gib && !IS_SPACE_NINJA(H)) // yogs
 		to_chat(H, span_danger("<B>fÄTaL ÈÈRRoR</B>: 382200-*#00CÖDE <B>RED</B>\nUNAUHORIZED USÈ DETÈCeD\nCoMMÈNCING SUB-R0UIN3 13...\nTÈRMInATING U-U-USÈR..."))
 		H.gib()
 		return FALSE

@@ -2,12 +2,13 @@
 /obj/item/clothing/under/rank/security/officer/grey/amber/occupying
 	name = "peacekeeping officer jumpsuit"
 	desc = "A Peacekeeper uniform with red marking denoting officers and heavies."
+	worn_icon = 'icons/mob/clothing/uniform/centcom.dmi'
 	icon_state = "occuniformofficer"
 	item_state = "occuniformofficer"
 
 /obj/item/clothing/under/rank/security/officer/grey/amber/occupying/commander
 	name = "peacekeeping commander jumpsuit"
-	desc = "A Peacekeeper uniform with blue markings denoting commanders"
+	desc = "A Peacekeeper uniform with blue markings denoting commanders."
 	icon_state = "occuniformcommander"
 	item_state = "occuniformcommander"
 
@@ -99,7 +100,7 @@
 	r_pocket = /obj/item/storage/fancy/cigarettes
 	id = /obj/item/card/id/ert/occupying
 	implants = list(/obj/item/implant/mindshield, /obj/item/implant/biosig_ert)
-	
+
 
 /datum/outfit/occupying/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -107,7 +108,7 @@
 
 	H.facial_hair_style = "None" // Everyone in the Peacekeeping force is bald and has no facial hair
 	H.hair_style = "None"
-	
+
 	var/obj/item/radio/R = H.ears
 	R.set_frequency(FREQ_CENTCOM)
 	R.freqlock = TRUE
@@ -141,5 +142,5 @@
 	head = /obj/item/clothing/head/helmet/riot/raised/occupying
 	suit = /obj/item/clothing/suit/armor/riot/occupying
 	mask = /obj/item/clothing/mask/breath/tactical
-	suit_store = /obj/item/melee/baton/loaded 
-	glasses = /obj/item/clothing/glasses/sunglasses 
+	suit_store = /obj/item/melee/baton/loaded
+	glasses = /obj/item/clothing/glasses/sunglasses

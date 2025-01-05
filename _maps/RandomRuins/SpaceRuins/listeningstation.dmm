@@ -32,10 +32,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel/stairs/goon/white_stairs_alone{
-	dir = 1
-	},
+/turf/open/floor/plasteel/stairs/goon/white_stairs_alone,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "ag" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -801,13 +798,9 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel/stairs/goon/stairs_alone{
-	dir = 1
-	},
+/turf/open/floor/plasteel/stairs/goon/stairs_alone,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "gf" = (
 /obj/structure/cable{
@@ -878,10 +871,9 @@
 /area/ruin/space/has_grav/listeningstation/quarters)
 "hp" = (
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/turf_decal/ramp_middle{
+/turf/open/floor/plasteel/stairs/goon/white_stairs_alone{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/white_stairs_alone,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "hr" = (
 /obj/structure/cable{
@@ -1462,16 +1454,14 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/ramp_middle{
+/turf/open/floor/plasteel/stairs/goon/stairs_alone{
 	dir = 1
 	},
-/turf/open/floor/plasteel/stairs/goon/stairs_alone,
 /area/ruin/space/has_grav/listeningstation/quarters)
 "rW" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,

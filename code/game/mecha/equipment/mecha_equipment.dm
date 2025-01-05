@@ -148,7 +148,7 @@
 	if(!chassis)
 		return FALSE
 	set_ready_state(FALSE)
-	. = do_after(chassis.occupant, equip_cooldown * check_eva(), target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), target, chassis.loc))
+	. = do_after(chassis.occupant, equip_cooldown * check_eva(), target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), target))
 	set_ready_state(TRUE)
 	if(!.)
 		return
@@ -158,16 +158,14 @@
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_mecha(atom/target, delay)
 	if(!chassis)
 		return
-	return do_after(chassis.occupant, delay * check_eva(), target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), target, chassis.loc))
+	return do_after(chassis.occupant, delay * check_eva(), target, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), target))
 
-/obj/item/mecha_parts/mecha_equipment/proc/do_after_checks(atom/target, atom/old_loc)
+/obj/item/mecha_parts/mecha_equipment/proc/do_after_checks(atom/target)
 	if(!chassis)
-		return FALSE
-	if(chassis.loc != old_loc || chassis.inertia_dir)
 		return FALSE
 	if(src != chassis.selected)
 		return FALSE
-	if(!(chassis.omnidirectional_attacks || (get_dir(chassis, target) & chassis.dir)))
+	if(target && !(chassis.omnidirectional_attacks || (get_dir(chassis, target) & chassis.dir)))
 		return FALSE
 	return TRUE
 
@@ -248,8 +246,8 @@
 	return 0
 
 // Is the occupant wearing a pilot suit?
-/obj/item/mecha_parts/mecha_equipment/proc/check_eva()
-	return chassis?.check_eva()
+/obj/item/mecha_parts/mecha_equipment/proc/check_eva(mob/pilot)
+	return chassis?.check_eva(pilot)
 
 // Some equipment can be used as tools
 /obj/item/mecha_parts/mecha_equipment/tool_use_check(mob/living/user, amount)

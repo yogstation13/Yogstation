@@ -144,7 +144,6 @@
 #define INIT_ORDER_STATION			75
 #define INIT_ORDER_RESEARCH			74
 #define INIT_ORDER_QUIRKS 			73
-#define INIT_ORDER_EVENTS			70
 #define INIT_ORDER_JOBS				65
 #define INIT_ORDER_PATH				61
 #define INIT_ORDER_TICKER			55
@@ -162,9 +161,10 @@
 #define INIT_ORDER_AIR				-1
 #define INIT_ORDER_PERSISTENCE 		-2
 #define INIT_ORDER_PERSISTENT_PAINTINGS -3 // Assets relies on this
-#define INIT_ORDER_ASSETS			-4
-#define INIT_ORDER_ICON_SMOOTHING	-5
-#define INIT_ORDER_OVERLAY			-6
+#define INIT_ORDER_VOTE -4 // Needs to be after persistence so that recent maps are not loaded. (yogs: technically not, since we don't have map blocking like tg does)
+#define INIT_ORDER_ASSETS			-5
+#define INIT_ORDER_ICON_SMOOTHING	-6
+#define INIT_ORDER_OVERLAY			-7
 #define INIT_ORDER_XKEYSCORE		-10
 #define INIT_ORDER_STICKY_BAN		-10
 #define INIT_ORDER_ECHELON			-10
@@ -333,6 +333,12 @@
 //Wardrobe callback master list indexes
 #define WARDROBE_CALLBACK_INSERT 1
 #define WARDROBE_CALLBACK_REMOVE 2
+
+// Vote subsystem counting methods
+/// First past the post. One selection per person, and the selection with the most votes wins.
+#define VOTE_COUNT_METHOD_SINGLE 1
+/// Approval voting. Any number of selections per person, and the selection with the most votes wins.
+#define VOTE_COUNT_METHOD_MULTI 2
 
 ///liquid defines
 #define SSLIQUIDS_RUN_TYPE_TURFS 1

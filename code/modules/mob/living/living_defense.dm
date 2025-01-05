@@ -117,6 +117,14 @@
 	else
 		playsound_local(src, 'sound/misc/ui_toggleoffcombat.ogg', 25, FALSE, pressure_affected = FALSE) //Slightly modified version of the above
 
+/mob/living/proc/set_grab_mode(new_mode)
+	if(grab_mode == new_mode)
+		return
+	. = grab_mode
+	grab_mode = new_mode
+	if(hud_used?.action_intent)
+		hud_used.action_intent.update_appearance()
+
 /mob/living/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)
 	return
 
@@ -429,7 +437,7 @@
 	if(GLOB.cult_narsie && GLOB.cult_narsie.souls_needed[src])
 		GLOB.cult_narsie.souls_needed -= src
 		GLOB.cult_narsie.souls += 1
-		if((GLOB.cult_narsie.souls == GLOB.cult_narsie.soul_goal) && (GLOB.cult_narsie.resolved == FALSE))
+		if((GLOB.cult_narsie.souls >= GLOB.cult_narsie.soul_goal) && (GLOB.cult_narsie.resolved == FALSE))
 			GLOB.cult_narsie.resolved = TRUE
 			sound_to_playing_players('sound/machines/alarm.ogg')
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), 1), 120)
