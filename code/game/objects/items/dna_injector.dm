@@ -389,11 +389,11 @@
 
 /obj/item/dnainjector/olfaction
 	name = "\improper DNA injector (Olfaction)"
-	add_mutations = list(OLFACTION)
+	//add_mutations = list(OLFACTION)
 
 /obj/item/dnainjector/antiolfaction
 	name = "\improper DNA injector (Anti-Olfaction)"
-	remove_mutations = list(OLFACTION)
+	//remove_mutations = list(OLFACTION)
 
 /obj/item/dnainjector/insulated
 	name = "\improper DNA injector (Insulated)"

@@ -85,9 +85,7 @@
 	if(target.reagents && target.reagents.total_volume)
 		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
 	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
-	total_blood_drank += blood_taken
-	if(frenzied)
-		frenzy_blood_drank += blood_taken
+
 	if(has_task)
 		if(target.mind)
 			task_blood_drank += blood_taken

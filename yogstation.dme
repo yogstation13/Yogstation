@@ -1793,6 +1793,7 @@
 #include "code\modules\antagonists\blob\structures\resource.dm"
 #include "code\modules\antagonists\blob\structures\shield.dm"
 #include "code\modules\antagonists\blood_contract\blood_contract.dm"
+#include "code\modules\antagonists\bloodsuckers\bloodsucker_flavour.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsucker_frenzy.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsucker_hud.dm"
 #include "code\modules\antagonists\bloodsuckers\bloodsucker_integration.dm"

@@ -164,11 +164,11 @@
 	new_owner.add_antag_datum(src)
 	to_chat(choice, span_notice("Through divine intervention, you've gained a new vassal!"))
 
-/datum/antagonist/vassal/proc/toreador_levelup_mesmerize() //Don't need stupid args
-	for(var/datum/action/cooldown/bloodsucker/targeted/mesmerize/mesmerize_power in powers)
-		if(!istype(mesmerize_power))
-			continue
-		mesmerize_power.level_current = max(master.bloodsucker_level, 1)
+// /datum/antagonist/vassal/proc/toreador_levelup_mesmerize() //Don't need stupid args
+// 	for(var/datum/action/cooldown/bloodsucker/targeted/mesmerize/mesmerize_power in powers)
+// 		if(!istype(mesmerize_power))
+// 			continue
+// 		mesmerize_power.level_current = max(master.bloodsucker_level, 1)
 
 /// If we weren't created by a bloodsucker, then we cannot be a vassal (assigned from antag panel)
 /datum/antagonist/vassal/can_be_owned(datum/mind/new_owner)

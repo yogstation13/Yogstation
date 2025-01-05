@@ -10,7 +10,6 @@
 			. += ""
 			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER]"
 			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT]"
-			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
 			if(bloodsuckerdatum.has_task)
 				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
 

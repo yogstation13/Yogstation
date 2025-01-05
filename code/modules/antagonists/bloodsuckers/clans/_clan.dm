@@ -39,7 +39,7 @@
 	src.bloodsuckerdatum = owner_datum
 
 	RegisterSignal(bloodsuckerdatum, COMSIG_BLOODSUCKER_ON_LIFETICK, PROC_REF(handle_clan_life))
-	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
+	//RegisterSignal(bloodsuckerdatum, BLOODSUCKER_RANK_UP, PROC_REF(on_spend_rank))
 
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_PRE_MAKE_FAVORITE, PROC_REF(on_offer_favorite))
 	RegisterSignal(bloodsuckerdatum, BLOODSUCKER_MAKE_FAVORITE, PROC_REF(on_favorite_vassal))
@@ -173,4 +173,4 @@
  */
 /datum/bloodsucker_clan/proc/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/vassaldatum)
 	SIGNAL_HANDLER
-	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/brawn)
+	//vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/targeted/brawn)

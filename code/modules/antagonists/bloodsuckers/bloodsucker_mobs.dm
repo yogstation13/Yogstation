@@ -185,82 +185,82 @@
 ///      Werewolf       ///
 ///////////////////////////
 
-/mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
-	. = ..()
-	if(bloodsucker)
-		if(ishuman(bloodsucker))
-			var/mob/living/carbon/human/user = bloodsucker
-			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-			if(user.blood_volume < FRENZY_THRESHOLD_EXIT + bloodsuckerdatum.humanity_lost * 10)
-				user.blood_volume += 10
-		adjustFireLoss(2.5)
-		updatehealth() //3 minutes to die
+// /mob/living/simple_animal/hostile/bloodsucker/werewolf/Life(delta_time = (SSmobs.wait/10), times_fired)
+// 	. = ..()
+// 	if(bloodsucker)
+// 		if(ishuman(bloodsucker))
+// 			var/mob/living/carbon/human/user = bloodsucker
+// 			var/datum/antagonist/bloodsucker/bloodsuckerdatum = src.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+// 			if(user.blood_volume < FRENZY_THRESHOLD_EXIT)
+// 				user.blood_volume += 10
+// 		adjustFireLoss(2.5)
+// 		updatehealth() //3 minutes to die
 
-	if(satiation >= 3)
-		to_chat(src, span_notice("It has been fed. You turn back to normal."))
-		qdel(src)
-	return
+// 	if(satiation >= 3)
+// 		to_chat(src, span_notice("It has been fed. You turn back to normal."))
+// 		qdel(src)
+// 	return
 
-/mob/living/simple_animal/hostile/bloodsucker/werewolf/Destroy()
-	. = ..()
-	if(ishuman(bloodsucker))
-		var/mob/living/carbon/human/user = bloodsucker
-		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
-		var/datum/species/user_species = user.dna.species
-		var/mutation = ""
-		var/slot = ""
-		var/additionalmessage = ""
-		bloodsuckerdatum.clanprogress++
-		switch(bloodsuckerdatum.clanprogress)
-			if(1)
-				additionalmessage = "You have mutated a collar made out of fur!"
-				user_species.armor += 10
-				mutation = /obj/item/clothing/neck/wolfcollar
-				slot = ITEM_SLOT_NECK
-			if(2)
-				additionalmessage = "You have mutated werewolf ears!"
-				mutation = /obj/item/radio/headset/wolfears
-				slot = ITEM_SLOT_EARS
-			if(3)
-				additionalmessage = "You have mutated werewolf claws!"
-				user.physiology.punchdamagehigh_bonus += 2.5
-				user.physiology.punchdamagelow_bonus += 2.5
-				mutation = /obj/item/clothing/gloves/wolfclaws
-				slot = ITEM_SLOT_GLOVES
-			if(4)
-				additionalmessage = "You have mutated werewolf legs!"
-				mutation = /obj/item/clothing/shoes/wolflegs
-				slot = ITEM_SLOT_FEET
-				if(HAS_TRAIT(user, TRAIT_DIGITIGRADE))
-					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
-			if(5 to INFINITY)
-				to_chat(user, span_danger("The beast inside of you seems satisfied with your current form."))
-				return
-		to_chat(user, span_danger("After returning to normal, you feel strange. [additionalmessage]"))
-		var/obj/item/pastdrip = user.get_item_by_slot(slot)
-		user.dropItemToGround(pastdrip)
-		user.equip_to_slot_or_del(new mutation(user), slot)
+// /mob/living/simple_animal/hostile/bloodsucker/werewolf/Destroy()
+// 	. = ..()
+// 	if(ishuman(bloodsucker))
+// 		var/mob/living/carbon/human/user = bloodsucker
+// 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = user.mind.has_antag_datum(/datum/antagonist/bloodsucker)
+// 		var/datum/species/user_species = user.dna.species
+// 		var/mutation = ""
+// 		var/slot = ""
+// 		var/additionalmessage = ""
+// 		bloodsuckerdatum.clanprogress++
+// 		switch(bloodsuckerdatum.clanprogress)
+// 			if(1)
+// 				additionalmessage = "You have mutated a collar made out of fur!"
+// 				user_species.armor += 10
+// 				mutation = /obj/item/clothing/neck/wolfcollar
+// 				slot = ITEM_SLOT_NECK
+// 			if(2)
+// 				additionalmessage = "You have mutated werewolf ears!"
+// 				mutation = /obj/item/radio/headset/wolfears
+// 				slot = ITEM_SLOT_EARS
+// 			if(3)
+// 				additionalmessage = "You have mutated werewolf claws!"
+// 				user.physiology.punchdamagehigh_bonus += 2.5
+// 				user.physiology.punchdamagelow_bonus += 2.5
+// 				mutation = /obj/item/clothing/gloves/wolfclaws
+// 				slot = ITEM_SLOT_GLOVES
+// 			if(4)
+// 				additionalmessage = "You have mutated werewolf legs!"
+// 				mutation = /obj/item/clothing/shoes/wolflegs
+// 				slot = ITEM_SLOT_FEET
+// 				if(HAS_TRAIT(user, TRAIT_DIGITIGRADE))
+// 					mutation = /obj/item/clothing/shoes/xeno_wraps/wolfdigilegs
+// 			if(5 to INFINITY)
+// 				to_chat(user, span_danger("The beast inside of you seems satisfied with your current form."))
+// 				return
+// 		to_chat(user, span_danger("After returning to normal, you feel strange. [additionalmessage]"))
+// 		var/obj/item/pastdrip = user.get_item_by_slot(slot)
+// 		user.dropItemToGround(pastdrip)
+// 		user.equip_to_slot_or_del(new mutation(user), slot)
 
-////////////////////////
-///      Armor       ///
-////////////////////////
-/mob/living/simple_animal/hostile/bloodsucker/possessedarmor/ListTargets()
-	. = ..()
-	for(var/mob/living/carbon/letsnotmeet in .)
-		if(!istype(letsnotmeet))
-			continue
-		if(IS_BLOODSUCKER(letsnotmeet) || IS_VASSAL(letsnotmeet)) //don't attack our owners!
-			. -= letsnotmeet
-		if(letsnotmeet.restrained()) //or any guests!
-			. -= letsnotmeet
+// ////////////////////////
+// ///      Armor       ///
+// ////////////////////////
+// /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/ListTargets()
+// 	. = ..()
+// 	for(var/mob/living/carbon/letsnotmeet in .)
+// 		if(!istype(letsnotmeet))
+// 			continue
+// 		if(IS_BLOODSUCKER(letsnotmeet) || IS_VASSAL(letsnotmeet)) //don't attack our owners!
+// 			. -= letsnotmeet
+// 		if(letsnotmeet.restrained()) //or any guests!
+// 			. -= letsnotmeet
 
-/mob/living/simple_animal/hostile/bloodsucker/possessedarmor/death()
-	. = ..()
-	if(upgraded)
-		new /obj/structure/bloodsucker/possessedarmor/upgraded(src.loc)
-	else
-		new /obj/structure/bloodsucker/possessedarmor(src.loc)
-	qdel(src)
+// /mob/living/simple_animal/hostile/bloodsucker/possessedarmor/death()
+// 	. = ..()
+// 	if(upgraded)
+// 		new /obj/structure/bloodsucker/possessedarmor/upgraded(src.loc)
+// 	else
+// 		new /obj/structure/bloodsucker/possessedarmor(src.loc)
+// 	qdel(src)
 
 //Wraith - Hecata mob
 

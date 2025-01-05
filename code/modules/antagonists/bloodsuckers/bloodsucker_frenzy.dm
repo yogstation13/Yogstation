@@ -47,7 +47,6 @@
 		ADD_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
 		
 	owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-0.4, blacklisted_movetypes=(FLYING|FLOATING))
-	bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
 	var/obj/item/cuffs = user.get_item_by_slot(ITEM_SLOT_HANDCUFFED)
 	var/obj/item/legcuffs = user.get_item_by_slot(ITEM_SLOT_LEGCUFFED)
@@ -55,8 +54,6 @@
 		user.clear_cuffs(cuffs, TRUE, TRUE)
 		user.clear_cuffs(legcuffs, TRUE, TRUE)
 	// Keep track of how many times we've entered a Frenzy.
-	bloodsuckerdatum.frenzies++
-	bloodsuckerdatum.frenzied = TRUE
 	return ..()
 
 /datum/status_effect/frenzy/on_remove()
@@ -67,13 +64,10 @@
 		REMOVE_TRAIT(owner, TRAIT_MONKEYLIKE, SPECIES_TRAIT)
 		was_tooluser = FALSE
 	owner.remove_movespeed_modifier(type)
-	bloodsuckerdatum.frenzygrab.remove(user)
 	owner.remove_client_colour(/datum/client_colour/cursed_heart_blood)
 	owner.adjust_dizzy(3 SECONDS)
 	owner.Paralyze(2 SECONDS)
 	user.physiology.stamina_mod /= 0.4
-
-	bloodsuckerdatum.frenzied = FALSE
 	return ..()
 
 /datum/status_effect/frenzy/tick()
@@ -84,6 +78,4 @@
 		user.clear_cuffs(cuffs, TRUE, TRUE)
 		user.clear_cuffs(legcuffs, TRUE, TRUE)
 		user.balloon_alert_to_viewers("snaps [user.p_their()] restraints!", "you break free of your restraints!")
-	if(!bloodsuckerdatum.frenzied)
-		return
-	user.adjustFireLoss(min(0.5 + (bloodsuckerdatum.humanity_lost / 15), bloodsuckerdatum.my_clan?.get_clan() == CLAN_GANGREL ? 2 : 100)) //:D
+	user.adjustFireLoss(0.5)

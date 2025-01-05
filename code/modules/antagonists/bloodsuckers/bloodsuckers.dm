@@ -18,21 +18,18 @@
 	///Timer between alerts for Healing messages
 	COOLDOWN_DECLARE(static/bloodsucker_spam_healing)
 
-	///Used for assigning your name
-	var/bloodsucker_name
-	///Used for assigning your title
-	var/bloodsucker_title
-	///Used for assigning your reputation
-	var/bloodsucker_reputation
-
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
 	var/has_task = FALSE
 	///How many times have we used a blood altar
 	var/altar_uses = 0
+	var/task_heart_required = 0
+	var/task_blood_required = 0
+	var/task_blood_drank = 0
 
 	// give TRAIT_STRONG_GRABBER during frenzy
+
 	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
 	var/clanpoints = 0
 	///How much progress have you done on your clan
@@ -58,12 +55,6 @@
 	// Used for Bloodsucker Objectives
 	var/area/bloodsucker_lair_area
 	var/obj/structure/closet/crate/coffin
-	var/total_blood_drank = 0
-	var/frenzy_blood_drank = 0
-	var/task_heart_required = 0
-	var/task_blood_required = 0
-	var/task_blood_drank = 0
-	var/frenzies = 0
 	///Blood display HUD
 	var/atom/movable/screen/bloodsucker/blood_counter/blood_display
 	///Vampire level display HUD
@@ -180,7 +171,6 @@
 	/// End Sunlight? (if last Vamp)
 	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
 	UnregisterSignal(owner, list(COMSIG_MIND_CHECK_ANTAG_RESOURCE, COMSIG_MIND_SPEND_ANTAG_RESOURCE))
-	clear_powers_and_stats()
 	check_cancel_sunlight() //check if sunlight should end
 	return ..()
 
@@ -260,9 +250,9 @@
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()
-	.["Give Level"] = CALLBACK(src, PROC_REF(RankUp))
-	if(bloodsucker_level_unspent >= 1)
-		.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
+	// .["Give Level"] = CALLBACK(src, PROC_REF(RankUp))
+	// if(bloodsucker_level_unspent >= 1)
+	// 	.["Remove Level"] = CALLBACK(src, PROC_REF(RankDown))
 
 	if(!my_clan)
 		.["Force Clan"] = CALLBACK(src, PROC_REF(force_clan))
@@ -416,73 +406,6 @@
 
 	return report.Join("<br>")
 
-////////////////////////////////////////////////////////////////////////////////////
-//--------------------------------Credits flavour---------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/// Evaluates the conditions of the bloodsucker at the end of each round to pick a flavor message to add
-/datum/antagonist/bloodsucker/proc/get_flavor(objectives_complete, optional_objectives_complete)
-	var/list/flavor = list()
-	var/flavor_message
-	var/alive = owner?.current?.stat != DEAD //Technically not necessary because of Final Death objective?
-	var/escaped = ((owner.current.onCentCom() || owner.current.onSyndieBase()) && alive)
-	flavor += "<div><font color='#6d6dff'>Epilogue: </font>"
-	var/message_color = "#ef2f3c"
-
-	flavor_message += "flavour texts are a work in progress, stay tuned."
-	// if(objectives_complete)
-	// 	if(optional_objectives_complete)
-	// 		message_color = "#008000"
-	// 		if(broke_masquerade)
-	// 			if(escaped)
-	// 				flavor_message += pick(list(
-	// 					"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. 
-	// 					News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
-	// 				))
-	// 			else if(alive)
-	// 				flavor_message += pick(list(
-	// 					"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. 
-	// 					Let the Camarilla and the witchers come. You will be waiting."
-	// 				))
-	// 		else
-	// 			if(escaped)
-	// 				flavor_message += pick(list(
-	// 					"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. 
-	// 					High society awaits: a delicacy you have earned."
-	// 				))
-	// 			else if(alive)
-	// 				flavor_message += pick(list(
-	// 					"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. 
-	// 					Who knows? If they prove to elevate your power enough, perhaps a new bloodline might be founded here."
-	// 				))
-	// 	else
-	// 		message_color = "#517fff"
-	// 		if(broke_masquerade)
-	// 			if(escaped)
-	// 				flavor_message += pick(list(
-	// 					"Your mission accomplished, you step off the spacecraft, feeling the mark of exile on your neck. Your allies gone, your veins thrum with a singular purpose: survival."
-	// 				))
-	// 			else if(alive)
-	// 				flavor_message += pick(list(
-	// 					"You survived, but you broke the Masquerade, your blood-stained presence clear and your power limited. No doubt death in the form of claw or stake hails its approach. Perhaps it's time to understand the cattles' fascinations with the suns."
-	// 				))
-	// 		else
-	// 			if(escaped)
-	// 				flavor_message += pick(list(
-	// 					"A low profile has always suited you best, conspiring enough to satiate the clan and keep your head low. It's not luxorious living, though death is a less kind alternative. On to the next station."
-	// 				))
-	// 			else if(alive)
-	// 				flavor_message += pick(list(
-	// 					"You completed your mission and kept your identity free of heresy, though your mark here is not strong enough to lay a claim. Best stow away when the next shuttle comes around."
-	// 				))
-
-	if(!message_color || (!alive && !escaped)) //perish or just fuck up and fail your primary objectives
-		message_color = "#ef2f3c"
-		flavor_message += pick(list(
-			"Thus ends the story of [return_full_name(TRUE)]. No doubt future generations will look back on your legacy and reflect on the lessons of the past. If they remember you at all."
-		))
-
-	flavor += "<font color=[message_color]>[flavor_message]</font></div>"
-	return "<div>[flavor.Join("<br>")]</div>"
 
 /**
  *	# Vampire Clan
@@ -496,7 +419,7 @@
 /datum/antagonist/bloodsucker/proc/sol_rank_up(atom/source)
 	SIGNAL_HANDLER
 
-	INVOKE_ASYNC(src, PROC_REF(RankUp))
+	//INVOKE_ASYNC(src, PROC_REF(RankUp))
 
 ///Called when Sol is near starting.
 /datum/antagonist/bloodsucker/proc/sol_near_start(atom/source)
@@ -513,9 +436,10 @@
 	// for(var/datum/action/cooldown/bloodsucker/power in powers)
 	// 	if(istype(power, /datum/action/cooldown/bloodsucker/gohome))
 	// 		RemovePower(power)
-	if(altar_uses)
-		to_chat(owner, span_boldnotice("Your Altar uses have been reset!"))
-		altar_uses = 0
+
+	// if(altar_uses)
+	// 	to_chat(owner, span_boldnotice("Your Altar uses have been reset!"))
+	// 	altar_uses = 0
 
 /// Buying powers
 // /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
@@ -567,102 +491,6 @@
 		return "<font color=red>Final Death</font>"
 	return ..()
 
-/*
- *	# Bloodsucker Names
- *
- *	All Bloodsuckers get a name, and gets a better one when they hit Rank 4.
- */
-
-/// Names
-/datum/antagonist/bloodsucker/proc/SelectFirstName()
-	if(owner.current.gender == MALE)
-		bloodsucker_name = pick(
-			"Desmond","Rudolph","Dracula","Vlad","Pyotr","Gregor",
-			"Cristian","Christoff","Marcu","Andrei","Constantin",
-			"Gheorghe","Grigore","Ilie","Iacob","Luca","Mihail","Pavel",
-			"Vasile","Octavian","Sorin","Sveyn","Aurel","Alexe","Iustin",
-			"Theodor","Dimitrie","Octav","Damien","Magnus","Caine","Abel", // Romanian/Ancient
-			"Lucius","Gaius","Otho","Balbinus","Arcadius","Romanos","Alexios","Vitellius", // Latin
-			"Melanthus","Teuthras","Orchamus","Amyntor","Axion", // Greek
-			"Thoth","Thutmose","Osorkon,","Nofret","Minmotu","Khafra", // Egyptian
-			"Dio",
-		)
-	else
-		bloodsucker_name = pick(
-			"Islana","Tyrra","Greganna","Pytra","Hilda",
-			"Andra","Crina","Viorela","Viorica","Anemona",
-			"Camelia","Narcisa","Sorina","Alessia","Sophia",
-			"Gladda","Arcana","Morgan","Lasarra","Ioana","Elena",
-			"Alina","Rodica","Teodora","Denisa","Mihaela",
-			"Svetla","Stefania","Diyana","Kelssa","Lilith", // Romanian/Ancient
-			"Alexia","Athanasia","Callista","Karena","Nephele","Scylla","Ursa", // Latin
-			"Alcestis","Damaris","Elisavet","Khthonia","Teodora", // Greek
-			"Nefret","Ankhesenpep", // Egyptian
-		)
-
-/datum/antagonist/bloodsucker/proc/SelectTitle(am_fledgling = 0, forced = FALSE)
-	// Already have Title
-	if(!forced && bloodsucker_title != null)
-		return
-	// Titles [Master]
-	if(!am_fledgling)
-		if(owner.current.gender == MALE)
-			bloodsucker_title = pick ("Count","Baron","Viscount","Prince","Duke","Tzar","Dreadlord","Lord","Master")
-		else
-			bloodsucker_title = pick ("Countess","Baroness","Viscountess","Princess","Duchess","Tzarina","Dreadlady","Lady","Mistress")
-		to_chat(owner, span_announce("You have earned a title! You are now known as <i>[return_full_name(TRUE)]</i>!"))
-	// Titles [Fledgling]
-	else
-		bloodsucker_title = null
-
-/datum/antagonist/bloodsucker/proc/SelectReputation(am_fledgling = FALSE, forced = FALSE)
-	// Already have Reputation
-	if(!forced && bloodsucker_reputation != null)
-		return
-
-	if(am_fledgling)
-		bloodsucker_reputation = pick(
-			"Crude","Callow","Unlearned","Neophyte","Novice","Unseasoned",
-			"Fledgling","Young","Neonate","Scrapling","Untested","Unproven",
-			"Unknown","Newly Risen","Born","Scavenger","Unknowing","Unspoiled",
-			"Disgraced","Defrocked","Shamed","Meek","Timid","Broken","Fresh",
-		)
-	else if(owner.current.gender == MALE && prob(10))
-		bloodsucker_reputation = pick("King of the Damned", "Blood King", "Emperor of Blades", "Sinlord", "God-King")
-	else if(owner.current.gender == FEMALE && prob(10))
-		bloodsucker_reputation = pick("Queen of the Damned", "Blood Queen", "Empress of Blades", "Sinlady", "God-Queen")
-	else
-		bloodsucker_reputation = pick(
-			"Butcher","Blood Fiend","Crimson","Red","Black","Terror",
-			"Nightman","Feared","Ravenous","Fiend","Malevolent","Wicked",
-			"Ancient","Plaguebringer","Sinister","Forgotten","Wretched","Baleful",
-			"Inqisitor","Harvester","Reviled","Robust","Betrayer","Destructor",
-			"Damned","Accursed","Terrible","Vicious","Profane","Vile",
-			"Depraved","Foul","Slayer","Manslayer","Sovereign","Slaughterer",
-			"Forsaken","Mad","Dragon","Savage","Villainous","Nefarious",
-			"Inquisitor","Marauder","Horrible","Immortal","Undying","Overlord",
-			"Corrupt","Hellspawn","Tyrant","Sanguineous",
-		)
-
-	to_chat(owner, span_announce("You have earned a reputation! You are now known as <i>[return_full_name(TRUE)]</i>!"))
-
-
-/datum/antagonist/bloodsucker/proc/AmFledgling()
-	return !bloodsucker_title
-
-/datum/antagonist/bloodsucker/proc/return_full_name(include_rep = FALSE)
-
-	var/fullname
-	// Name First
-	fullname = (bloodsucker_name ? bloodsucker_name : owner.current.name)
-	// Title
-	if(bloodsucker_title)
-		fullname = bloodsucker_title + " " + fullname
-	// Rep
-	if(include_rep && bloodsucker_reputation)
-		fullname = fullname + " the " + bloodsucker_reputation
-
-	return fullname
 
 /datum/antagonist/bloodsucker/get_preview_icon()
 	var/icon/final_icon = render_preview_outfit(/datum/outfit/bloodsucker_outfit)
