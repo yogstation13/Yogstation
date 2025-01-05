@@ -230,6 +230,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
+	
+	if(byond_version >= 516)
+		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
 
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
@@ -296,10 +299,19 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(GLOB.player_details[ckey])
 		player_details = GLOB.player_details[ckey]
-		player_details.byond_version = full_version
+		var/old_version = player_details.byond_version
+		player_details.byond_version = byond_version
+		player_details.byond_build = byond_build
+
+#if MIN_COMPILER_VERSION > 516
+	#warn Fully change default relay_loc to "1,1" rather than changing it based on client version
+#endif
+		if(old_version != byond_version)
+			rebuild_plane_masters = TRUE
 	else
-		player_details = new
-		player_details.byond_version = full_version
+		player_details = new(ckey)
+		player_details.byond_version = byond_version
+		player_details.byond_build = byond_build
 		GLOB.player_details[ckey] = player_details
 
 	if (prefs.unlock_content & DONOR_YOGS)

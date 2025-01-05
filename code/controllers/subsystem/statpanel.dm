@@ -45,6 +45,12 @@ SUBSYSTEM_DEF(statpanels)
 			"Station Time: [station_time_timestamp()]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)
+#if MIN_COMPILER_VERSION > 515
+	#warn Since 516 is the server version, the below message should probably be removed
+#endif
+		var/static/list/beta_notice = list("", "You are on the BYOND 516 beta, verious UIs and such may be broken!", "Please report issues, and switch back to BYOND 515 if things are causing too many issues for you.")
+		if(target.byond_version > 516)
+			global_data += beta_notice
 
 		if(SSshuttle.emergency)
 			var/ETA = SSshuttle.emergency.getModeStr()

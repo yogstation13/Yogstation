@@ -84,5 +84,10 @@ do
         st=1
     fi
 done
+if grep -P "href[\s='\"\\\\]*\?" code/**/*.dm ; then
+	echo
+	echo "ERROR: BYOND requires internal href links to begin with \"byond://\"."
+	st=1
+fi;
 
 exit $st

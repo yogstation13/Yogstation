@@ -1138,3 +1138,15 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 	_debug_ai_networks()
+
+/client/proc/allow_broswer_inspect()
+	set category = "Misc.Server Debug"
+	set name = "Allow Broser Inspect"
+	set desc = "allow Browser debugging via inspect"
+	if(!check_rights(R_DEBUG))
+		return
+	if(user.byond_version < 516)
+		to_chat(user, span_warning("You can only use this on 516!"))
+		return
+	to_chat(user, span_notice("You can now right click to use inspect on browsers."))
+	winset(user, null, list("broswer-options" = "+devtools"))

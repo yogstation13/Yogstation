@@ -7,6 +7,14 @@
 <meta http-equiv="Cache-Control" content="max-age=15; must-revalidate" />
 <link id="goonStyle" rel="stylesheet" type="text/css" href="browserOutput_white.css" media="all" />
 <style>
+	.light:root {
+		--scrollbar-base: #f2f2f2;
+		--scrollbar-thumb: #a7a7a7;
+	}
+	html,
+	body {
+		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-base);
+	}
 	body {
 		font-family: Verdana, Geneva, Tahoma, sans-serif;
 		font-size: 12px !important;
@@ -14,8 +22,12 @@
 		padding: 0 !important;
 	}
 
+	.dark:root {
+		--scrollbar-base: #151515;
+		--scrollbar-thumb: #363636;
+	}
 	body.dark {
-		background-color: #131313;
+		background-color: #151515;
 		color: #abc6ec;
 	}
 
@@ -26,7 +38,7 @@
 	}
 
 	.dark #menu {
-		background-color: #202020;
+		background-color: #151515;
 	}
 
 	#statcontent {
@@ -1024,9 +1036,11 @@ function draw_verbs(cat){
 function set_theme(which) {
 	if (which == "light") {
 		document.body.className = "";
+		document.documentElement.className = 'light';
 		set_style_sheet("browserOutput_white");
 	} else if (which == "dark") {
 		document.body.className = "dark";
+		document.documentElement.className = 'dark';
 		set_style_sheet("browserOutput");
 	}
 }
