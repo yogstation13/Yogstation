@@ -15,6 +15,7 @@
 	atom_storage.max_specific_storage = WEIGHT_CLASS_BULKY
 	atom_storage.max_total_storage = 7 //enough to hold ONE bulky gun and the ammo boxes
 	atom_storage.max_slots = 4
+	atom_storage.set_holdable(list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/suppressor, /obj/item/microfusion_phase_emitter, /obj/item/microfusion_gun_attachment))
 
 /obj/item/storage/toolbox/guncase/PopulateContents()
 	new weapon_to_spawn (src)
