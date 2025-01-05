@@ -23,7 +23,7 @@
 		JOB_CYBORG,
 	)
 	min_players = 20
-	weight = 10
+	weight = 8
 	maximum_antags = 2
 	event_icon_state = "vampires"
 

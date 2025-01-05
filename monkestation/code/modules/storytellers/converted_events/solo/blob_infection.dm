@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist/solo/blob_infection
 	name = "Blob Infection"
-	weight = 4
+	weight = 6
 	antag_flag = ROLE_BLOB_INFECTION
 	antag_datum = /datum/antagonist/blob/infection
 	min_players = 35
