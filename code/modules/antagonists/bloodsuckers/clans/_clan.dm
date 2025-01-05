@@ -24,6 +24,8 @@
 	///Same as join_icon, but the state
 	var/join_icon_state = "caitiff"
 
+	var/max_vassals = 1
+
 	///The clan objective that is required to greentext.
 	var/datum/objective/clan_objective
 	
