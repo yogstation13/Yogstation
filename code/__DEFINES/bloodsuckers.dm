@@ -18,9 +18,7 @@
 #define BLOODSUCKER_DRINK_NORMAL "bloodsucker_drink_normal"
 ///Drinks blood but is snobby, refusing to drink from mindless
 #define BLOODSUCKER_DRINK_SNOBBY "bloodsucker_drink_snobby"
-///Drinks blood from disgusting creatures without Humanity consequences.
-#define BLOODSUCKER_DRINK_INHUMANELY "bloodsucker_drink_imhumanely"
-///Drinks blood only from aggressive or higher grabs, no silent feeding.
+///Drinks blood only from grabs, no silent feeding.
 #define BLOODSUCKER_DRINK_PAINFUL "bloodsucker_drink_painful"
 
 ///Controls blood, just like all Bloodsuckers do
@@ -31,8 +29,6 @@
 #define BLOODSUCKER_CONTROL_METAL 4
 ///Controls the inner machinations of one's being, being able to use the vassalrack and sculpt flesh monsters
 #define BLOODSUCKER_CONTROL_FLESH 8
-
-#define BLOODSUCKER_RANK_UP_NORMAL "bloodsucker_rank_up_normal"
 
 #define DANGER_LEVEL_FIRST_WARNING 1
 #define DANGER_LEVEL_SECOND_WARNING 2
@@ -61,7 +57,7 @@
 /**
  * Clan defines
  */
-#define CLAN_NONE "Caitiff"
+#define CLAN_CAITIFF "Caitiff"
 #define CLAN_BRUJAH "Brujah Clan"
 #define CLAN_NOSFERATU "Nosferatu Clan"
 #define CLAN_TREMERE "Tremere Clan"
@@ -136,10 +132,11 @@
 ///Called when a new Vassal is successfully made: (datum/bloodsucker_datum)
 #define BLOODSUCKER_MADE_VASSAL "bloodsucker_made_vassal"
 
-///Called when a Bloodsucker exits Torpor.
-#define BLOODSUCKER_EXIT_TORPOR "bloodsucker_exit_torpor"
 ///Called when a Bloodsucker reaches Final Death.
 #define BLOODSUCKER_FINAL_DEATH "bloodsucker_final_death"
+
+///Called when a Bloodsucker reaches low enough blood to trigger frenzy
+#define BLOODSUCKER_TRIGGER_FRENZY "bloodsucker_trigger_frenzy"
 
 #define COMSIG_BLOODSUCKER_BROKE_MASQUERADE "comsig_bloodsucker_broke_masquerade"
 

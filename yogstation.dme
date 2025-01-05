@@ -1803,6 +1803,7 @@
 #include "code\modules\antagonists\bloodsuckers\bloodsuckers_objects.dm"
 #include "code\modules\antagonists\bloodsuckers\subsystem_sunlight.dm"
 #include "code\modules\antagonists\bloodsuckers\clans\_clan.dm"
+#include "code\modules\antagonists\bloodsuckers\powers\_powers.dm"
 #include "code\modules\antagonists\bloodsuckers\structures\bloodsucker_life.dm"
 #include "code\modules\antagonists\bloodsuckers\vassal\bloodsucker_conversion.dm"
 #include "code\modules\antagonists\bloodsuckers\vassal\favorite_vassal.dm"

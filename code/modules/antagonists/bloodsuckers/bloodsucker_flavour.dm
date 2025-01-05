@@ -1,10 +1,14 @@
 /datum/antagonist/bloodsucker
-	///Used for assigning your name
-	var/bloodsucker_name
 	///Used for assigning your title
 	var/bloodsucker_title
 	///Used for assigning your reputation
 	var/bloodsucker_reputation
+
+///Called when you get the antag datum, called only ONCE per antagonist.
+/datum/antagonist/bloodsucker/on_gain()
+	. = ..()
+	SelectTitle(am_fledgling = TRUE)
+	SelectReputation(am_fledgling = TRUE)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //--------------------------------Credits flavour---------------------------------//
@@ -80,34 +84,6 @@
  *
  *	All Bloodsuckers get a name, and gets a better one when they hit Rank 4.
  */
-
-/// Names
-/datum/antagonist/bloodsucker/proc/SelectFirstName()
-	if(owner.current.gender == MALE)
-		bloodsucker_name = pick(
-			"Desmond","Rudolph","Dracula","Vlad","Pyotr","Gregor",
-			"Cristian","Christoff","Marcu","Andrei","Constantin",
-			"Gheorghe","Grigore","Ilie","Iacob","Luca","Mihail","Pavel",
-			"Vasile","Octavian","Sorin","Sveyn","Aurel","Alexe","Iustin",
-			"Theodor","Dimitrie","Octav","Damien","Magnus","Caine","Abel", // Romanian/Ancient
-			"Lucius","Gaius","Otho","Balbinus","Arcadius","Romanos","Alexios","Vitellius", // Latin
-			"Melanthus","Teuthras","Orchamus","Amyntor","Axion", // Greek
-			"Thoth","Thutmose","Osorkon,","Nofret","Minmotu","Khafra", // Egyptian
-			"Dio",
-		)
-	else
-		bloodsucker_name = pick(
-			"Islana","Tyrra","Greganna","Pytra","Hilda",
-			"Andra","Crina","Viorela","Viorica","Anemona",
-			"Camelia","Narcisa","Sorina","Alessia","Sophia",
-			"Gladda","Arcana","Morgan","Lasarra","Ioana","Elena",
-			"Alina","Rodica","Teodora","Denisa","Mihaela",
-			"Svetla","Stefania","Diyana","Kelssa","Lilith", // Romanian/Ancient
-			"Alexia","Athanasia","Callista","Karena","Nephele","Scylla","Ursa", // Latin
-			"Alcestis","Damaris","Elisavet","Khthonia","Teodora", // Greek
-			"Nefret","Ankhesenpep", // Egyptian
-		)
-
 /datum/antagonist/bloodsucker/proc/SelectTitle(am_fledgling = 0, forced = FALSE)
 	// Already have Title
 	if(!forced && bloodsucker_title != null)
@@ -130,9 +106,8 @@
 
 /datum/antagonist/bloodsucker/proc/return_full_name(include_rep = FALSE)
 
-	var/fullname
+	var/fullname = owner.current.name
 	// Name First
-	fullname = (bloodsucker_name ? bloodsucker_name : owner.current.name)
 	// Title
 	if(bloodsucker_title)
 		fullname = bloodsucker_title + " " + fullname

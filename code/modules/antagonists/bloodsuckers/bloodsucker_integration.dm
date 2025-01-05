@@ -10,8 +10,8 @@
 			. += ""
 			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER]"
 			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT]"
-			if(bloodsuckerdatum.has_task)
-				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
+			// if(bloodsuckerdatum.has_task)
+			// 	. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
 
 // EXAMINING
 /mob/living/carbon/proc/return_vamp_examine(mob/living/viewer)

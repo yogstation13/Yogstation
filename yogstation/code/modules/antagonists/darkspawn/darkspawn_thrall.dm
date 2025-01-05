@@ -178,7 +178,7 @@
 	to_chat(owner, span_notice("<i>Use <b>.[MODE_KEY_DARKSPAWN]</b> before your messages to speak over the Mindlink.</i>"))
 	to_chat(owner, span_notice("<i>Blending in with regular crewmembers will generate willpower for your masters.</i>"))
 	to_chat(owner, span_notice("<i>Ask for help from your masters or fellows if you're new to this role.</i>"))
-	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/become_veil.ogg', volume = 50))
+	SEND_SOUND(owner.current, sound ('yogstation/sound/ambience/antag/thrall.ogg', volume = 50))
 	flash_color(owner, flash_color = COLOR_VELVET, flash_time = 10 SECONDS)
 
 /datum/antagonist/thrall/roundend_report()

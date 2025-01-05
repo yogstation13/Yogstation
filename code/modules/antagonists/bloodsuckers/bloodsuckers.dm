@@ -3,11 +3,10 @@
 	show_in_antagpanel = TRUE
 	roundend_category = "bloodsuckers"
 	antagpanel_category = "Bloodsucker"
-	job_rank = ROLE_BLOODSUCKER
 	antag_hud_name = "bloodsucker"
+	job_rank = ROLE_BLOODSUCKER
 	show_to_ghosts = TRUE
 	show_name_in_check_antagonists = TRUE
-	can_coexist_with_others = FALSE
 	ui_name = "AntagInfoBloodsucker"
 	preview_outfit = /datum/outfit/bloodsucker_outfit
 	count_towards_antag_cap = TRUE
@@ -20,13 +19,10 @@
 
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
-	///If we have a task assigned
-	var/has_task = FALSE
+	///The current task we have assigned, if any
+	var/datum/altar_task/current_task
 	///How many times have we used a blood altar
 	var/altar_uses = 0
-	var/task_heart_required = 0
-	var/task_blood_required = 0
-	var/task_blood_drank = 0
 
 	// give TRAIT_STRONG_GRABBER during frenzy
 
@@ -42,8 +38,9 @@
 
 	var/bloodsucker_level = 1
 	var/bloodsucker_level_unspent = 1
+
 	var/passive_blood_drain = -0.1
-	var/additional_regen
+	var/additional_regen = 0
 	var/bloodsucker_regen_rate = 0.3
 	/// How much blood we have, starting off at default blood levels.
 	var/bloodsucker_blood_volume = BLOOD_VOLUME_GENERIC
@@ -85,7 +82,8 @@
 		TRAIT_VIRUSIMMUNE,
 		TRAIT_TOXIMMUNE,
 		TRAIT_HARDLY_WOUNDED,
-		TRAIT_RESISTDAMAGESLOWDOWN
+		TRAIT_RESISTDAMAGESLOWDOWN,
+		TRAIT_UNHOLY
 	)
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -102,18 +100,10 @@
 	RegisterSignal(owner, COMSIG_MIND_CHECK_ANTAG_RESOURCE, PROC_REF(has_blood))
 	RegisterSignal(owner, COMSIG_MIND_SPEND_ANTAG_RESOURCE, PROC_REF(use_blood))
 
-	if(IS_FAVORITE_VASSAL(owner.current)) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
-		bloodsucker_level_unspent = 0
-		show_in_roundend = FALSE
-	else
-		// Start Sunlight if first Bloodsucker
-		check_start_sunlight()
-		// Name and Titles
-		SelectFirstName()
-		SelectTitle(am_fledgling = TRUE)
-		SelectReputation(am_fledgling = TRUE)
-		// Objectives
-		forge_bloodsucker_objectives()
+	// Start Sunlight if first Bloodsucker
+	check_start_sunlight()
+	// Objectives
+	forge_bloodsucker_objectives()
 
 	return ..()
 
@@ -128,15 +118,16 @@
 	RegisterSignal(current_mob, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+	current_mob.add_traits(bloodsucker_traits, type)
 
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
-	ADD_TRAIT(current_mob, TRAIT_UNHOLY, type)
 
 	if(current_mob.hud_used)
 		on_hud_created()
 	else
 		RegisterSignal(current_mob, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+
 #ifdef BLOODSUCKER_TESTING
 	var/turf/user_loc = get_turf(current_mob)
 	new /obj/structure/closet/crate/coffin(user_loc)
@@ -144,24 +135,6 @@
 #endif
 
 
-////////////////////////////////////////////////////////////////////////////////////
-//----------------------------------Hud Handling----------------------------------//
-////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/bloodsucker/proc/on_hud_created(datum/source)
-	SIGNAL_HANDLER
-
-	var/datum/hud/bloodsucker_hud = owner.current.hud_used
-
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(bloodsucker_hud)
-	bloodsucker_hud.infodisplay += blood_display
-
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(bloodsucker_hud)
-	bloodsucker_hud.infodisplay += vamprank_display
-
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(bloodsucker_hud)
-	bloodsucker_hud.infodisplay += sunlight_display
-
-	INVOKE_ASYNC(bloodsucker_hud, TYPE_PROC_REF(/datum/hud/, show_hud), bloodsucker_hud.hud_version)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------Removal-------------------------------------//
@@ -184,7 +157,7 @@
 	. = ..()
 	var/mob/living/current_mob = mob_override || owner.current
 	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH))
-	REMOVE_TRAIT(current_mob, TRAIT_UNHOLY, type)
+	current_mob.remove_traits(bloodsucker_traits, type)
 
 	if(current_mob.hud_used)
 		var/datum/hud/hud_used = current_mob.hud_used
@@ -205,13 +178,30 @@
 	var/fullname = return_full_name(TRUE)
 	to_chat(owner, span_userdanger("You are [fullname], a strain of vampire known as a Bloodsucker!"))
 	owner.announce_objectives()
-	if(bloodsucker_level_unspent >= 2)
-		to_chat(owner, span_announce("As a latejoiner, you have [bloodsucker_level_unspent] bonus Ranks, entering your claimed coffin allows you to spend a Rank."))
 	owner.current.playsound_local(null, 'sound/ambience/antag/bloodsuckeralert.ogg', 100, FALSE, pressure_affected = FALSE)
 	antag_memory += "Although you were born a mortal, in undeath you earned the name <b>[fullname]</b>.<br>"
 
 /datum/antagonist/bloodsucker/farewell()
 	to_chat(owner.current, span_userdanger("<FONT size = 3>With a snap, your curse has ended. You are no longer a Bloodsucker. You live once more!</FONT>"))
+
+////////////////////////////////////////////////////////////////////////////////////
+//----------------------------------Hud Handling----------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/datum/antagonist/bloodsucker/proc/on_hud_created(datum/source)
+	SIGNAL_HANDLER
+
+	var/datum/hud/bloodsucker_hud = owner.current.hud_used
+
+	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(bloodsucker_hud)
+	bloodsucker_hud.infodisplay += blood_display
+
+	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(bloodsucker_hud)
+	bloodsucker_hud.infodisplay += vamprank_display
+
+	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(bloodsucker_hud)
+	bloodsucker_hud.infodisplay += sunlight_display
+
+	INVOKE_ASYNC(bloodsucker_hud, TYPE_PROC_REF(/datum/hud/, show_hud), bloodsucker_hud.hud_version)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------Ability use----------------------------------//
@@ -360,7 +350,7 @@
 	var/list/report = list()
 
 	// Vamp name
-	report += "<br>[span_header("<b>\[[return_full_name(TRUE)]\]</b>")]</span>"
+	report += "<br>[span_header("<b>\[name\]</b>")]</span>"
 	report += printplayer(owner)
 	if(my_clan)
 		report += "They were part of the <b>[my_clan.name]</b>!"
@@ -441,27 +431,6 @@
 	// 	to_chat(owner, span_boldnotice("Your Altar uses have been reset!"))
 	// 	altar_uses = 0
 
-/// Buying powers
-// /datum/antagonist/bloodsucker/proc/BuyPower(datum/action/cooldown/bloodsucker/power)
-// 	for(var/datum/action/cooldown/bloodsucker/current_powers as anything in powers)
-// 		if(current_powers.type == power.type)
-// 			return FALSE
-// 	powers += power
-// 	power.Grant(owner.current)
-// 	return TRUE
-
-// /datum/antagonist/bloodsucker/proc/RemovePower(datum/action/cooldown/bloodsucker/power)
-// 	if(power.active)
-// 		power.DeactivatePower()
-// 	powers -= power
-// 	power.Remove(owner.current)
-
-// /datum/antagonist/bloodsucker/proc/give_starting_powers()
-// 	for(var/datum/action/cooldown/bloodsucker/all_powers as anything in all_bloodsucker_powers)
-// 		if(!(initial(all_powers.purchase_flags) & BLOODSUCKER_DEFAULT_POWER))
-// 			continue
-// 		BuyPower(new all_powers)
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -482,7 +451,7 @@
 
 /// Name shown on antag list
 /datum/antagonist/bloodsucker/antag_listing_name()
-	return ..() + "([return_full_name(TRUE)])"
+	return ..() + "(name)"
 
 /// Whatever interesting things happened to the antag admins should know about
 /// Include additional information about antag in this part

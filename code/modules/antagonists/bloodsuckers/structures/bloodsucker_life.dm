@@ -59,49 +59,15 @@
 	var/vamp_examine = carbon_source.return_vamp_examine(examiner)
 	examine_text += vamp_examine
 
-/// mult: SILENT feed is 1/3 the amount
-/datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level)
-	// Starts at 15 (now 8 since we doubled the Feed time)
-	var/feed_amount = 15 + (power_level * 2)
-	var/blood_taken = min(feed_amount, target.blood_volume) * mult
-	target.blood_volume -= blood_taken
-
-	///////////
-	// Shift Body Temp (toward Target's temp, by volume taken)
-	owner.current.bodytemperature = ((bloodsucker_blood_volume * owner.current.bodytemperature) + (blood_taken * target.bodytemperature)) / (bloodsucker_blood_volume + blood_taken)
-	// our volume * temp, + their volume * temp, / total volume
-	///////////
-	// Reduce Value Quantity
-	if(target.stat == DEAD) // Penalty for Dead Blood
-		blood_taken /= 4
-	if(!ishuman(target)) // Penalty for Non-Human Blood
-		blood_taken /= 3
-	if(!target.mind && !target.client)
-		blood_taken /= 5 // Penalty for Catatonics / Braindead
-	//if (!iscarbon(target)) // Penalty for Animals (they're junk food)
-	// Apply to Volume
-	AddBloodVolume(blood_taken)
-	// Reagents (NOT Blood!)
-	if(target.reagents && target.reagents.total_volume)
-		target.reagents.trans_to(owner.current, INGEST, 1) // Run transfer of 1 unit of reagent from them to me.
-	owner.current.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, 1) // Play THIS sound for user only. The "null" is where turf would go if a location was needed. Null puts it right in their head.
-
-	if(has_task)
-		if(target.mind)
-			task_blood_drank += blood_taken
-		else
-			to_chat(owner, span_warning("[target] is catatonic and won't yield any usable blood for tasks!"))
-	return blood_taken
 
 /**
  * ## HEALING
  */
-
 /// Constantly runs on Bloodsucker's LifeTick, and is increased by being in Torpor/Coffins
 /datum/antagonist/bloodsucker/proc/HandleHealing(mult = 1)
 	var/actual_regen = bloodsucker_regen_rate + additional_regen
 
-	if(owner.current.am_staked() || !HAS_TRAIT(owner.current, TRAIT_NODEATH) && my_clan?.get_clan() != CLAN_TOREADOR)
+	if(owner.current.am_staked() || !HAS_TRAIT(owner.current, TRAIT_NODEATH))
 		return FALSE
 	owner.current.adjustCloneLoss(-1 * (actual_regen * 4) * mult, 0)
 	owner.current.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1 * (actual_regen * 4) * mult) //adjustBrainLoss(-1 * (actual_regen * 4) * mult, 0)
@@ -195,10 +161,6 @@
 		current_eyes.sight_flags = SEE_MOBS
 
 		current_eyes.setOrganDamage(0) //making sure
-		if(my_clan?.get_clan() == CLAN_LASOMBRA && ishuman(bloodsuckeruser))
-			var/mob/living/carbon/human/bloodsucker = bloodsuckeruser
-			bloodsucker.eye_color = BLOODCULT_EYE
-			bloodsuckeruser.update_body()
 	bloodsuckeruser.update_sight()
 
 	// Step 3
@@ -412,8 +374,6 @@
 	heal_vampire_organs()
 	owner.current.grab_ghost()
 	to_chat(owner.current, span_warning("You have recovered from Torpor."))
-
-	SEND_SIGNAL(src, BLOODSUCKER_EXIT_TORPOR)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------DEATH---------------------------------------//
