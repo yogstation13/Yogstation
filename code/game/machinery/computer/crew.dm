@@ -153,14 +153,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Machinery and the target should be on the same level or different levels of the same station
 		if(!(z in SSmapping.get_connected_levels(pos)) && !HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
-			
+
 		var/jammed = FALSE
 		for(var/obj/item/jammer/jammer in GLOB.active_jammers)
 			var/turf/jammer_turf = get_turf(jammer)
 			if(pos.z == jammer_turf.z && (get_dist(pos, jammer_turf) <= jammer.range))
 				jammed = TRUE
 				break
-		if(jammed) // radio jammers prevent suit sensors 
+		if(jammed) // radio jammers prevent suit sensors
 			continue
 
 		idcard = tracked_mob.wear_id ? tracked_mob.wear_id.GetID() : null
@@ -184,7 +184,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			assignment_title = ""
 			assignment = ""
 			ijob = 80
-					
+
 		if (forced_sensors || uniform.sensor_mode >= SENSOR_LIVING)
 			life_status = tracked_mob.stat < DEAD
 		else
@@ -213,6 +213,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				species = "Polysmorph"
 			if (ismoth(tracked_mob))
 				species = "Moth"
+			if (isvox(tracked_mob))
+				species = "Vox"
 			if (isflyperson(tracked_mob))
 				species = "Fly"
 			if (iscatperson(tracked_mob))
@@ -237,7 +239,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					is_wounded = TRUE
 			if(length(tracked_mob.get_missing_limbs())) //check if has missing limbs
 				is_disabled = TRUE
-					
+
 			//check if has generic wounds except for bone one
 			if(locate(/datum/wound/slash) in tracked_mob.all_wounds)
 				is_wounded = TRUE
@@ -250,9 +252,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 			if(locate(/datum/wound/blunt) in tracked_mob.all_wounds) //check if has bone wounds
 				is_bonecrack = TRUE
-								
+
 			if(tracked_mob.radiation > RAD_MOB_SAFE) //safe level before sending alert
-				is_irradiated = TRUE					
+				is_irradiated = TRUE
 
 			if(HAS_TRAIT(tracked_mob, TRAIT_HUSK)) //check if husked
 				is_husked = TRUE
