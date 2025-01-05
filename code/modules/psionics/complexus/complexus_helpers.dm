@@ -22,7 +22,7 @@
 	var/rank_multiplier = get_rank(SSpsi.armour_faculty_by_type[armourtype])
 	var/stamina_multiplier = stamina/max_stamina
 
-	var/final_amount = round(clamp(rating * rank_multiplier, 0, 100) * stamina_multiplier)
+	var/final_amount = round(clamp(rating_amount * rank_multiplier, 0, 100) * stamina_multiplier)
 
 	/**
 	 * rating multiplied by the rank of that specific faculty, multiplied by stamina percentage
