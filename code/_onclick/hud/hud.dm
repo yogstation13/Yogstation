@@ -106,6 +106,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	// They typically use * in their render target. They exist solely so we can reuse them,
 	// and avoid needing to make changes to all idk 300 consumers if we want to change the appearance
 	var/list/asset_refs_for_reuse = list()
+	
+	/// The BYOND version of the client that was last logged inot this mob.______qdel_list_wrapper(list/L)
+	/// Currently used to rebuild all plane master groups when going between 515 and 516
+	var/last_byond_version
 
 /datum/hud/New(mob/owner)
 	mymob = owner
@@ -154,13 +158,17 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 /datum/hud/proc/client_refresh(datum/source)
 	SIGNAL_HANDLER
 	var/client/client = mymob.canon_client
-	if(client.rebuild_plane_masters)
-		var/new_relay_loc = (client.byond_version > 515) ? "1,1" : "CENTER"
+	var/new_byond_version = client.byond_version
+#if MIN_COMPILER_VERSION > 515
+	#warn Fully change default relay_log to 1,1 rather than usign client version
+#endif
+	if(!isnull(last_byond_version) && new_byond_version != last_byond_version)
+		var/new_relay_loc = (new_byond_version > 515) ? "1,1" : "CENTER"
 		for(var/group_key as anything in master_groups)
 			var/datum/plane_master_group/group = master_groups[group_key]
 			group.relay_loc = new_relay_loc
-			group.rebuild_plane_masters()
-		client.rebuild_plane_masters = FALSE
+			group.rebuild_hud()
+	last_byond_version = new_byond_version
 	RegisterSignal(mymob.canon_client, COMSIG_CLIENT_SET_EYE, PROC_REF(on_eye_change))
 	on_eye_change(null, null, mymob.canon_client.eye)
 

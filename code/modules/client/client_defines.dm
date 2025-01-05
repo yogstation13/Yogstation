@@ -202,5 +202,3 @@
 	 * Format: list(<mapname> = list(/atom/movable/screen))
 	 */
 	var/list/screen_maps = list()
-	
-	var/rebuild_plane_masters = FALSE
