@@ -43895,7 +43895,7 @@
 /area/hallway/primary/central)
 "wqg" = (
 /obj/machinery/doorButtons/access_button{
-	idDoor = "ai_core_airlock_interior";
+	idDoor = "ai_core_airlock_exterior";
 	idSelf = "ai_core_airlock_control";
 	pixel_x = 8;
 	pixel_y = -24;
