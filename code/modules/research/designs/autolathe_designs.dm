@@ -337,7 +337,7 @@
 	category = list("hacked","Miscellaneous","Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
-/datum/design/plasmaman_tank_belt
+/datum/design/vox_tank
 	name = "Vox Nitrogen Tank"
 	id = "vox_tank"
 	build_type = AUTOLATHE | PROTOLATHE
