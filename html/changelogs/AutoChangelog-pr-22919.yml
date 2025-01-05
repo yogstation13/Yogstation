@@ -1,4 +1,0 @@
-author: "adamsong"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed flavor text pontentially mentioning incorrect details about a character when the game force changes their species."
