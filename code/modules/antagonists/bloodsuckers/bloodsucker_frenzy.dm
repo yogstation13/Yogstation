@@ -1,20 +1,3 @@
-
-/**
- * # FrenzyGrab
- *
- * The martial art given to Bloodsuckers so they can instantly aggressively grab people.
- */
-/datum/martial_art/frenzygrab
-	name = "Frenzy Grab"
-	id = MARTIALART_FRENZYGRAB
-
-/datum/martial_art/frenzygrab/grab_act(mob/living/user, mob/living/target)
-	if(user != target)
-		target.grabbedby(user)
-		target.grippedby(user, instant = TRUE)
-		return TRUE
-	return ..()
-
 /**
  * # Status effect
  *
@@ -49,7 +32,6 @@
 		return FALSE
 
 	// Disable ALL Powers and notify their entry
-	bloodsuckerdatum.DisableAllPowers(forced = TRUE)
 	to_chat(owner, span_userdanger("<FONT size = 3>Blood! You need Blood, now! You enter a total Frenzy! Your skin starts sizzling...."))
 	to_chat(owner, span_announce("* Bloodsucker Tip: While in Frenzy, you instantly Aggresively grab, have stun resistance, and cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
 	owner.balloon_alert(owner, "you enter a frenzy!")

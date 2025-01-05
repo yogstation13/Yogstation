@@ -1,23 +1,6 @@
-
 /*
  * OVERWRITES
 */
-
-/datum/species/jelly/slime/spec_life(mob/living/carbon/human/user)
-	// Prevents Slimeperson 'gaming
-	if(IS_BLOODSUCKER(user))
-		return
-	. = ..()
-
-// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
-/mob/living/carbon/get_traumas()
-	if(!mind)
-		return ..()
-	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
-	if(bloodsuckerdatum && HAS_TRAIT(src, TRAIT_MASQUERADE))
-		return
-	. = ..()
-
 // Used to keep track of how much Blood we've drank so far
 /mob/living/get_status_tab_items()
 	. = ..()
@@ -25,28 +8,11 @@
 		var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
 		if(bloodsuckerdatum)
 			. += ""
-			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER + bloodsuckerdatum.humanity_lost * 10]"
-			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT + bloodsuckerdatum.humanity_lost * 10]"
+			. += "Current Frenzy Enter: [FRENZY_THRESHOLD_ENTER]"
+			. += "Current Frenzy Leave: [FRENZY_THRESHOLD_EXIT]"
 			. += "Blood Drank: [bloodsuckerdatum.total_blood_drank]"
 			if(bloodsuckerdatum.has_task)
 				. += "Task Blood Drank: [bloodsuckerdatum.task_blood_drank]"
-
-// INTEGRATION: Adding Procs and Datums to existing "classes" //
-
-/mob/living/proc/HaveBloodsuckerBodyparts(displaymessage = "") // displaymessage can be something such as "rising from death" for Torpid Sleep. givewarningto is the person receiving messages.
-	if(!getorganslot(ORGAN_SLOT_HEART))
-		if(displaymessage != "")
-			to_chat(src, span_warning("Without a heart, you are incapable of [displaymessage]."))
-		return FALSE
-	if(!get_bodypart(BODY_ZONE_HEAD))
-		if(displaymessage != "")
-			to_chat(src, span_warning("Without a head, you are incapable of [displaymessage]."))
-		return FALSE
-	if(!getorgan(/obj/item/organ/brain)) // NOTE: This is mostly just here so we can do one scan for all needed parts when creating a vamp. You probably won't be trying to use powers w/out a brain.
-		if(displaymessage != "")
-			to_chat(src, span_warning("Without a brain, you are incapable of [displaymessage]."))
-		return FALSE
-	return TRUE
 
 // EXAMINING
 /mob/living/carbon/proc/return_vamp_examine(mob/living/viewer)
@@ -64,7 +30,7 @@
 		return returnIcon + returnString
 	// Viewer not a Vamp AND not the target's vassal?
 	if(!viewer.mind.has_antag_datum((/datum/antagonist/bloodsucker)) && !(viewer in bloodsuckerdatum.vassals))
-		if(!(HAS_TRAIT(viewer, TRAIT_BLOODSUCKER_HUNTER) && bloodsuckerdatum.broke_masquerade))
+		if(!HAS_TRAIT(viewer, TRAIT_BLOODSUCKER_HUNTER))
 			return ""
 	// Default String
 	var/returnString = "\[<span class='warning'><EM>[bloodsuckerdatum.return_full_name(1)]</EM></span>\]"
@@ -95,7 +61,7 @@
 			returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "vassal")]"
 		// Am I someone ELSE'S Vassal?
 		else if(IS_BLOODSUCKER(viewer) || IS_MONSTERHUNTER(viewer))
-			returnString +=	"This [dna.species.name] bears the mark of <span class='boldwarning'>[vassaldatum.master.return_full_name(vassaldatum.master.owner.current,TRUE)][vassaldatum.master.broke_masquerade ? " who has broken the Masquerade" : ""]</span>"
+			returnString +=	"This [dna.species.name] bears the mark of <span class='boldwarning'>[vassaldatum.master.return_full_name(vassaldatum.master.owner.current,TRUE)]</span>"
 			returnIcon = "[icon2html('icons/mob/vampiric.dmi', world, "vassal_grey")]"
 		// Are you serving the same master as I am?
 		else if(viewer.mind.has_antag_datum(/datum/antagonist/vassal) in vassaldatum?.master.vassals)

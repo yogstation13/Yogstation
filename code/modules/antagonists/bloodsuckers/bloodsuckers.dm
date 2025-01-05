@@ -25,8 +25,6 @@
 	///Used for assigning your reputation
 	var/bloodsucker_reputation
 
-	///Amount of Humanity lost
-	var/humanity_lost = 0
 	///If we are currently in a Frenzy
 	var/frenzied = FALSE
 	///If we have a task assigned
@@ -34,8 +32,7 @@
 	///How many times have we used a blood altar
 	var/altar_uses = 0
 
-	///Frenzy Grab Martial art given to Bloodsuckers in a Frenzy
-	var/datum/martial_art/frenzygrab/frenzygrab = new
+	// give TRAIT_STRONG_GRABBER during frenzy
 	///How many clan points you have -> Used in clans in order to assert certain limits // Upgrades and stuff
 	var/clanpoints = 0
 	///How much progress have you done on your clan
@@ -46,7 +43,7 @@
 	///Special vassals I own, to not have double of the same type.
 	var/list/datum/antagonist/vassal/special_vassals = list()
 
-	var/bloodsucker_level
+	var/bloodsucker_level = 1
 	var/bloodsucker_level_unspent = 1
 	var/passive_blood_drain = -0.1
 	var/additional_regen
@@ -77,7 +74,8 @@
 	/// Antagonists that cannot be Vassalized no matter what
 	var/static/list/vassal_banned_antags = list(
 		/datum/antagonist/bloodsucker,
-		/datum/antagonist/monsterhunter,
+		/datum/antagonist/darkspawn,
+		/datum/antagonist/monsterhunter
 	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(
@@ -126,10 +124,7 @@
 		// Objectives
 		forge_bloodsucker_objectives()
 
-	. = ..()
-	// Assign Powers
-	give_starting_powers()
-	assign_starting_stats()
+	return ..()
 
 /**
  * Apply innate effects is everything given to the mob
@@ -237,7 +232,7 @@
 		return FALSE
 	return bloodsucker_blood_volume >= amt
 
-/datum/antagonist/bloodsucker/proc/use_psi(datum/mind, list/resource_costs)
+/datum/antagonist/bloodsucker/proc/use_blood(datum/mind, list/resource_costs)
 	SIGNAL_HANDLER
 	if(!LAZYLEN(resource_costs))
 		return
@@ -364,9 +359,9 @@
 			return
 
 /datum/antagonist/bloodsucker/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/simple/bloodsucker_icons),
-	)
+	// return list(
+	// 	get_asset_datum(/datum/asset/simple/bloodsucker_icons),
+	// )
 
 ////////////////////////////////////////////////////////////////////////////////////
 //------------------------------Roundend report-----------------------------------//
@@ -440,23 +435,23 @@
 	// 		if(broke_masquerade)
 	// 			if(escaped)
 	// 				flavor_message += pick(list(
-	// 					"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. \
+	// 					"What matters of the Masquerade to you? Let it crumble into dust as your tyranny whips forward to dine on more stations. 
 	// 					News of your butchering exploits will quickly spread, and you know what will encompass the minds of mortals and undead alike. Fear."
 	// 				))
 	// 			else if(alive)
 	// 				flavor_message += pick(list(
-	// 					"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. \
+	// 					"Blood still pumps in your veins as you lay stranded on the station. No doubt the wake of chaos left in your path will attract danger, but greater power than you've ever felt courses through your body. 
 	// 					Let the Camarilla and the witchers come. You will be waiting."
 	// 				))
 	// 		else
 	// 			if(escaped)
 	// 				flavor_message += pick(list(
-	// 					"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. \
+	// 					"You step off the spacecraft with a mark of pride at a superbly completed mission. Upon arriving back at CentCom, an unassuming assistant palms you an invitation stamped with the Camarilla seal. 
 	// 					High society awaits: a delicacy you have earned."
 	// 				))
 	// 			else if(alive)
 	// 				flavor_message += pick(list(
-	// 					"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. \
+	// 					"This station has become your own slice of paradise. Your mission completed, you turn on the others who were stranded, ripe for your purposes. 
 	// 					Who knows? If they prove to elevate your power enough, perhaps a new bloodline might be founded here."
 	// 				))
 	// 	else

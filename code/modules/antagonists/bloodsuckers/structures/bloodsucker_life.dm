@@ -59,19 +59,6 @@
 	var/vamp_examine = carbon_source.return_vamp_examine(examiner)
 	examine_text += vamp_examine
 
-/datum/antagonist/bloodsucker/proc/AddHumanityLost(value)
-	if(humanity_lost >= 500)
-		to_chat(owner.current, span_warning("You hit the maximum amount of lost Humanity, you are far from Human."))
-		return
-	if(my_clan?.get_clan() == CLAN_TOREADOR)
-		if(humanity_lost >= TOREADOR_MAX_HUMANITY_LOSS)
-			to_chat(owner.current, span_warning("Your morals prevent you from becoming more inhuman."))
-			SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman2)
-			return
-		SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, /datum/mood_event/toreador_inhuman)
-	humanity_lost += value
-	to_chat(owner.current, span_warning("You feel as if you lost some of your humanity, you will now enter Frenzy at [FRENZY_THRESHOLD_ENTER + humanity_lost * 10] Blood."))
-
 /// mult: SILENT feed is 1/3 the amount
 /datum/antagonist/bloodsucker/proc/handle_feeding(mob/living/carbon/target, mult=1, power_level)
 	// Starts at 15 (now 8 since we doubled the Feed time)
@@ -243,7 +230,7 @@
 	// BLOOD_VOLUME_GOOD: [336] - Pale
 //	handled in bloodsucker_integration.dm
 	// BLOOD_VOLUME_EXIT: [560] - Exit Frenzy (If in one) This is high because we want enough to kill the poor soul they feed off of.
-	if(bloodsucker_blood_volume >= (FRENZY_THRESHOLD_EXIT + humanity_lost * 10) && frenzied)
+	if(bloodsucker_blood_volume >= FRENZY_THRESHOLD_EXIT && frenzied)
 		owner.current.remove_status_effect(STATUS_EFFECT_FRENZY)
 	// BLOOD_VOLUME_BAD: [224] - Jitter
 	if(bloodsucker_blood_volume < BLOOD_VOLUME_BAD(owner.current) && prob(0.5) && !HAS_TRAIT(owner.current, TRAIT_NODEATH))
@@ -253,7 +240,7 @@
 		owner.current.adjust_eye_blur((8 - 8 * (bloodsucker_blood_volume / BLOOD_VOLUME_BAD(owner.current)))* 2 SECONDS)
 
 	// The more blood, the better the Regeneration, get too low blood, and you enter Frenzy.
-	if(bloodsucker_blood_volume < (FRENZY_THRESHOLD_ENTER + humanity_lost * 10) && !frenzied)
+	if(bloodsucker_blood_volume < FRENZY_THRESHOLD_ENTER && !frenzied)
 		if(!iscarbon(owner.current))
 			return
 		INVOKE_ASYNC(src, PROC_REF(enter_frenzy))
@@ -414,8 +401,6 @@
 	// Without this, you'll just keep dying while you recover.
 	owner.current.add_traits(list(TRAIT_NODEATH, TRAIT_FAKEDEATH, TRAIT_DEATHCOMA, TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE), BLOODSUCKER_TRAIT)
 	owner.current.set_timed_status_effect(0 SECONDS, /datum/status_effect/jitter, only_if_higher = TRUE)
-	// Disable ALL Powers
-	DisableAllPowers()
 
 /datum/antagonist/bloodsucker/proc/torpor_end()
 	var/mob/living/carbon/human/bloodsucker = owner.current
@@ -466,7 +451,6 @@
 		return
 
 	free_all_vassals()
-	DisableAllPowers(forced = TRUE)
 	if(!iscarbon(owner.current))
 		owner.current.gib(TRUE, FALSE, FALSE)
 		return
