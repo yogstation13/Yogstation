@@ -13,12 +13,6 @@
 	},
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/unpowered)
-"c" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plating/lavaland_baseturf{
-	icon_state = "panelscorched"
-	},
-/area/ruin/unpowered)
 "e" = (
 /obj/structure/railing{
 	dir = 8
@@ -29,16 +23,8 @@
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 "g" = (
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2{
-	dir = 1
-	},
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide2,
 /area/ruin/unpowered)
-"h" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
-/turf/open/lava/smooth/lava_land_surface,
-/area/template_noop)
 "j" = (
 /turf/open/floor/plating/lavaland_baseturf,
 /area/ruin/unpowered)
@@ -64,12 +50,6 @@
 "p" = (
 /turf/template_noop,
 /area/template_noop)
-"q" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel/lavaland,
-/area/ruin/unpowered)
 "t" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -82,9 +62,7 @@
 /turf/closed/wall/rust,
 /area/ruin/unpowered)
 "w" = (
-/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide{
-	dir = 1
-	},
+/turf/open/floor/plasteel/stairs/goon/dark_stairs_wide,
 /area/ruin/unpowered)
 "x" = (
 /turf/open/floor/plating/lavaland_baseturf{
@@ -92,21 +70,10 @@
 	},
 /area/template_noop)
 "y" = (
-/turf/open/floor/plasteel/stairs/goon/stairs_middle{
-	dir = 1
-	},
+/turf/open/floor/plasteel/stairs/goon/stairs_middle,
 /area/ruin/unpowered)
-"A" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/lava/smooth/lava_land_surface,
-/area/template_noop)
 "B" = (
 /turf/closed/wall/mineral/wood/nonmetal,
-/area/ruin/unpowered)
-"C" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
 "D" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -171,27 +138,9 @@
 /mob/living/simple_animal/hostile/syndicate/ranged,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
-"T" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel/lavaland,
-/area/ruin/unpowered)
-"U" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
-/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
-	dir = 1
-	},
-/area/ruin/unpowered)
 "W" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/lavaland,
-/area/ruin/unpowered)
-"X" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plating/lavaland_baseturf{
-	icon_state = "platingdmg3"
-	},
 /area/ruin/unpowered)
 
 (1,1,1) = {"
@@ -267,11 +216,11 @@ H
 v
 H
 H
-q
+E
 D
 H
 H
-h
+J
 J
 J
 J
@@ -289,11 +238,11 @@ v
 E
 E
 w
-C
+W
 W
 w
 w
-A
+J
 J
 J
 x
@@ -311,11 +260,11 @@ v
 E
 W
 g
-T
+E
 E
 g
 g
-c
+P
 P
 J
 J
@@ -408,7 +357,7 @@ E
 E
 y
 y
-T
+E
 I
 I
 L
@@ -429,8 +378,8 @@ W
 K
 j
 a
-U
-X
+a
+G
 I
 E
 L

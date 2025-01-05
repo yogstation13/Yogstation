@@ -61,7 +61,8 @@
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		AltClickOn(A)
 		return
-	if(modifiers["ctrl"] && CtrlClickOn(A)) // returns whether or not it should be overridden
+	if(modifiers["ctrl"])
+		CtrlClickOn(A)
 		return
 
 	if(world.time <= next_move)
@@ -105,7 +106,7 @@
 	A.AIShiftClick(src)
 
 /mob/living/silicon/ai/CtrlClickOn(atom/A)
-	return A.AICtrlClick(src)
+	A.AICtrlClick(src)
 
 /mob/living/silicon/ai/AltClickOn(atom/A)
 	A.AIAltClick(src)
@@ -131,17 +132,16 @@
 /* Airlocks */
 /obj/machinery/door/airlock/AICtrlClick() // Bolts doors
 	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
-		return FALSE
+		return
 
 	var/mob/living/silicon/ai/AI = usr
 	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
 		to_chat(AI, span_warning("No connection to subcontroller detected. Priming servos..."))
 		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
-			return TRUE
+			return
 
 	toggle_bolt(usr)
 	add_hiddenprint(usr)
-	return TRUE
 
 /obj/machinery/door/airlock/AIAltClick() // Eletrifies doors.
 	if((obj_flags & EMAGGED) || (obj_flags & CMAGGED))
@@ -185,14 +185,14 @@
 
 /* APC */
 /obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
+
 	var/mob/living/silicon/ai/AI = usr
 	if(istype(AI) && !AI.has_subcontroller_connection(get_area(src)))
 		to_chat(AI, span_warning("No connection to subcontroller detected. Polling APC..."))
 		if(!do_after(AI, 1 SECONDS, src, IGNORE_USER_LOC_CHANGE))
-			return TRUE
+			return
 	if(can_use(usr, 1))
 		toggle_breaker(usr)
-	return TRUE
 
 /* AI Turrets */
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
@@ -202,9 +202,8 @@
 
 /obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
 	if(ailock)
-		return TRUE
+		return
 	toggle_on(usr)
-	return TRUE
 
 /* Holopads */
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)

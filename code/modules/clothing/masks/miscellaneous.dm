@@ -206,7 +206,6 @@ GLOBAL_LIST_INIT(cursed_animal_masks, list(
 	item_state = "rat"
 	flags_inv = HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
-	clothing_flags = MASKINTERNALS
 
 /obj/item/clothing/mask/rat/fox
 	name = "fox mask"

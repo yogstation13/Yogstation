@@ -95,7 +95,6 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	job_rank = ROLE_DEVIL
 	antag_hud_name = "devil"
 	show_to_ghosts = TRUE
-	count_towards_antag_cap = TRUE
 	var/obligation
 	var/ban
 	var/bane
@@ -317,9 +316,9 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	if(A)
 		notify_ghosts("An arch devil has ascended in \the [A.name]. Reach out to the devil to be given a new shell for your soul.", source = owner.current, action=NOTIFY_ATTACK)
 	sleep(5 SECONDS)
-	if(!SSgamemode.devil_ascended)
+	if(!SSticker.mode.devil_ascended)
 		SSshuttle.emergency.request(null, set_coefficient = 0.3)
-	SSgamemode.devil_ascended++
+	SSticker.mode.devil_ascended++
 	form = ARCH_DEVIL
 
 /datum/antagonist/devil/proc/remove_spells()
@@ -600,17 +599,3 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	devil_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 
 	return devil_icon
-
-/proc/add_devil(mob/living/L, ascendable = FALSE)
-	if(!L || !L.mind)
-		return FALSE
-	var/datum/antagonist/devil/devil_datum = L.mind.add_antag_datum(/datum/antagonist/devil)
-	devil_datum.ascendable = ascendable
-	return devil_datum
-
-/proc/remove_devil(mob/living/L)
-	if(!L || !L.mind)
-		return FALSE
-	var/datum/antagonist/devil_datum = L.mind.has_antag_datum(/datum/antagonist/devil)
-	devil_datum.on_removal()
-	return TRUE

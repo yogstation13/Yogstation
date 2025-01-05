@@ -48,11 +48,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/procpath = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
 	if(!procpath)
 		return
-	//thanks paradise - https://github.com/ParadiseSS13/Paradise/pull/27327
-	if(findtextEx(trim(lowertext(procpath)), "rustg"))
-		message_admins("<span class='userdanger'>[key_name_admin(src)] attempted to proc call rust-g procs. Inform council/host <u>at once</u>.</span>")
-		log_admin("[key_name(src)] attempted to proc call rust-g procs. Inform council/host at once.")
-		return
 
 	//strip away everything but the proc name
 	var/list/proclist = splittext(procpath, "/")
@@ -454,9 +449,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			id.update_label()
 
 			if(worn)
-				if(istype(worn, /obj/item/modular_computer))
-					var/obj/item/modular_computer/worn_computer = worn
-					worn_computer.InsertID(id)
+				if(istype(worn, /obj/item/pda))
+					var/obj/item/pda/PDA = worn
+					PDA.id = id
+					id.forceMove(PDA)
 				else if(istype(worn, /obj/item/storage/wallet))
 					var/obj/item/storage/wallet/W = worn
 					W.front_id = id
@@ -1083,6 +1079,19 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	GLOB.error_cache.show_to(src)
+
+/client/proc/pump_random_event()
+	set category = "Misc.Server Debug"
+	set name = "Pump Random Event"
+	set desc = "Schedules the event subsystem to fire a new random event immediately. Some events may fire without notification."
+	if(!holder)
+		return
+
+	SSevents.scheduled = world.time
+
+	message_admins(span_adminnotice("[key_name_admin(src)] pumped a random event."))
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Pump Random Event")
+	log_admin("[key_name(src)] pumped a random event.")
 
 /client/proc/start_line_profiling()
 	set category = "Profile"

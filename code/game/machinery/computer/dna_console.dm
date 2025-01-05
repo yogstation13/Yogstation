@@ -357,9 +357,8 @@
 
 	. = TRUE
 
-	var/mob/user = usr
-	add_fingerprint(user)
-	user.set_machine(src)
+	add_fingerprint(usr)
+	usr.set_machine(src)
 
 	switch(action)
 		// Connect this DNA Console to a nearby DNA Scanner
@@ -374,7 +373,7 @@
 			if(!scanner_operational())
 				return
 
-			connected_scanner.toggle_open(user)
+			connected_scanner.toggle_open(usr)
 			return
 
 		// Toggle the door bolts on the attached DNA Scanner
@@ -396,7 +395,7 @@
 
 			scanner_occupant.dna.remove_all_mutations(list(MUT_NORMAL, MUT_EXTRA))
 			scanner_occupant.dna.generate_dna_blocks()
-			scrambleready = world.time + SCRAMBLE_TIMEOUT * (10 - user.get_skill(SKILL_SCIENCE)) / 10
+			scrambleready = world.time + SCRAMBLE_TIMEOUT
 			to_chat(usr,span_notice("DNA scrambled."))
 			scanner_occupant.radiation += RADIATION_STRENGTH_MULTIPLIER*50/(connected_scanner.damage_coeff ** 2)
 			return
@@ -423,7 +422,7 @@
 			if(!(scanner_occupant == connected_scanner.occupant))
 				return
 
-			check_discovery(params["alias"], usr)
+			check_discovery(params["alias"])
 			return
 
 		// Check all mutations of the occupant and check if any are discovered.
@@ -445,7 +444,7 @@
 			// Go over all standard mutations and check if they've been discovered.
 			for(var/mutation_type in scanner_occupant.dna.mutation_index)
 				var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(mutation_type)
-				check_discovery(HM.alias, usr)
+				check_discovery(HM.alias)
 
 			return
 
@@ -495,7 +494,7 @@
 			if((newgene == "J") && (jokerready < world.time))
 				var/truegenes = GET_SEQUENCE(path)
 				newgene = truegenes[genepos]
-				jokerready = world.time + (JOKER_TIMEOUT - (JOKER_UPGRADE * (connected_scanner.precision_coeff - 1))) * (8 - user.get_skill(SKILL_SCIENCE)) / 8
+				jokerready = world.time + JOKER_TIMEOUT - (JOKER_UPGRADE * (connected_scanner.precision_coeff-1))
 
 			// If the gene is an X, we want to update the default genes with the new
 			//  X to allow highlighting logic to work on the tgui interface.
@@ -521,7 +520,7 @@
 				return
 
 			// Check if we cracked a mutation
-			check_discovery(alias, usr)
+			check_discovery(alias)
 
 			return
 
@@ -625,9 +624,9 @@
 				//  to improve our injector's radiation generation
 				if(scanner_operational())
 					I.damage_coeff = connected_scanner.damage_coeff*4
-					injectorready = world.time + INJECTOR_TIMEOUT * (1 - (connected_scanner.precision_coeff + user.get_skill(SKILL_SCIENCE)) / 10)
+					injectorready = world.time + INJECTOR_TIMEOUT * (1 - 0.1 * connected_scanner.precision_coeff)
 				else
-					injectorready = world.time + INJECTOR_TIMEOUT * (1 - user.get_skill(SKILL_SCIENCE) / 10)
+					injectorready = world.time + INJECTOR_TIMEOUT
 			else
 				I.name = "[HM.name] mutator"
 				I.doitanyway = TRUE
@@ -635,9 +634,9 @@
 				//  to improve our injector's radiation generation
 				if(scanner_operational())
 					I.damage_coeff = connected_scanner.damage_coeff
-					injectorready = world.time + INJECTOR_TIMEOUT * 5 * (1 - (connected_scanner.precision_coeff + user.get_skill(SKILL_SCIENCE)) / 10)
+					injectorready = world.time + INJECTOR_TIMEOUT * 5 * (1 - 0.1 * connected_scanner.precision_coeff)
 				else
-					injectorready = world.time + INJECTOR_TIMEOUT * 5 * (1 - user.get_skill(SKILL_SCIENCE) / 10)
+					injectorready = world.time + INJECTOR_TIMEOUT * 5
 
 			return
 
@@ -1160,7 +1159,7 @@
 			// If we successfully created an injector, don't forget to set the new
 			//  ready timer.
 			if(I)
-				injectorready = world.time + INJECTOR_TIMEOUT * (1 - user.get_skill(SKILL_SCIENCE) / 10)
+				injectorready = world.time + INJECTOR_TIMEOUT
 
 			return
 
@@ -1257,7 +1256,7 @@
 					len = length(scanner_occupant.dna.unique_identity)
 				if("uf")
 					len = length(scanner_occupant.dna.unique_features)
-			rad_pulse_timer = world.time + (radduration * (10 - user.get_skill(SKILL_SCIENCE)))
+			rad_pulse_timer = world.time + (radduration*10)
 			rad_pulse_index = WRAP(text2num(params["index"]), 1, len+1)
 			begin_processing()
 			return
@@ -1347,9 +1346,9 @@
 			//  to improve our injector's radiation generation
 			if(scanner_operational())
 				I.damage_coeff = connected_scanner.damage_coeff
-				injectorready = world.time + INJECTOR_TIMEOUT * 8 * (1 - (connected_scanner.precision_coeff + user.get_skill(SKILL_SCIENCE)) / 10)
+				injectorready = world.time + INJECTOR_TIMEOUT * 8 * (1 - 0.1 * connected_scanner.precision_coeff)
 			else
-				injectorready = world.time + INJECTOR_TIMEOUT * 8 * (1 - user.get_skill(SKILL_SCIENCE) / 10)
+				injectorready = world.time + INJECTOR_TIMEOUT * 8
 
 			return
 
@@ -1908,7 +1907,7 @@
 	* Arguments:
   * * alias - Alias of the mutation to check (ie "Mutation 51" or "Mutation 12")
   */
-/obj/machinery/computer/scan_consolenew/proc/check_discovery(alias, mob/user)
+/obj/machinery/computer/scan_consolenew/proc/check_discovery(alias)
 	// Note - All code paths that call this have already done checks on the
 	//  current occupant to prevent cheese and other abuses. If you call this
 	//  proc please also do the following checks first:
@@ -1933,7 +1932,6 @@
 		var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(path)
 		stored_research.discovered_mutations += path
 		say("Successfully discovered [HM.name].")
-		user.add_exp(SKILL_SCIENCE, 100)
 		return TRUE
 
 	return FALSE

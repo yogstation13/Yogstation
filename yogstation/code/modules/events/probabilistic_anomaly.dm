@@ -2,15 +2,11 @@
 	name = "Probabilistic Anomaly"
 	typepath = /datum/round_event/prob_anomaly
 	weight = 10
-	description = "Sets rng seed for a duration."
-	min_wizard_trigger_potency = 0
-	max_wizard_trigger_potency = 3
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_COMMUNAL, TAG_MAGICAL)
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/prob_anomaly
-	announce_when = 1
-	end_when = 30
+	announceWhen	= 1
+	endWhen			= 30
 	var/seed = 0
 
 /datum/round_event/prob_anomaly/announce(fake)
@@ -19,7 +15,7 @@
 	priority_announce(alert)
 
 /datum/round_event/prob_anomaly/start()
-	end_when = rand(120,600) // About 2 to 10 minutes, more or less
+	endWhen = rand(120,600) // About 2 to 10 minutes, more or less
 	seed = rand(1,1e9)
 	rand_seed(seed)
 	

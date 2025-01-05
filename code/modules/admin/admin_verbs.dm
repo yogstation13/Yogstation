@@ -25,9 +25,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/clear_mfa,
 	/client/proc/show_rights,
 	/client/proc/remove_liquid,
-	/client/proc/spawn_liquid,
-	/client/proc/forceEvent, //Move to fun verbs before full merge
-	/client/proc/forceGamemode //Move to fun verbs before full merge
+	/client/proc/spawn_liquid
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -118,8 +116,10 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/one_click_antag,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/object_say,
+	/client/proc/toggle_random_events,
 	/client/proc/set_ooc,
 	/client/proc/reset_ooc,
+	/client/proc/forceEvent,
 	/client/proc/admin_change_sec_level,
 	/client/proc/toggle_nuke,
 	/client/proc/run_weather,
@@ -152,6 +152,7 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_debug_del_all,
+	/client/proc/toggle_random_events,
 	/client/proc/forcerandomrotate,
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
@@ -169,6 +170,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/SDQL2_query,
+	/client/proc/pump_random_event,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callproc_datum,
@@ -226,6 +228,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/cmd_change_command_name,
 	/client/proc/object_say,
+	/client/proc/toggle_random_events,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
@@ -718,7 +721,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	to_chat(src, span_interface("You are now a normal player."), confidential=TRUE)
 	
 	remove_mentor_verbs()
-	QDEL_NULL(mentor_datum)
+	mentor_datum = null
 	GLOB.mentors -= src
 	add_verb(src, /client/proc/rementor)
 	

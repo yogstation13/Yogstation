@@ -24,10 +24,6 @@
 /obj/structure/table/wood,
 /obj/item/tailclub,
 /obj/item/melee/spear/bonespear/chitinspear,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "j" = (
@@ -38,19 +34,9 @@
 /obj/structure/statue/diamond/captain,
 /turf/open/floor/holofloor/grass,
 /area/template_noop)
-"l" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
-/turf/open/floor/holofloor/asteroid,
-/area/template_noop)
 "m" = (
 /obj/structure/table/wood,
 /obj/item/melee/spear/bonespear/chitinspear,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "q" = (
@@ -59,16 +45,6 @@
 	name = "chain whip"
 	},
 /obj/item/melee/spear,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/turf/open/floor/holofloor/asteroid,
-/area/template_noop)
-"s" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
 /turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "t" = (
@@ -77,10 +53,6 @@
 	icon_state = "right"
 	},
 /turf/open/floor/holofloor/grass,
-/area/template_noop)
-"u" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "A" = (
 /obj/structure/chair/wood{
@@ -95,24 +67,18 @@
 	},
 /obj/item/scythe,
 /obj/item/melee/spear,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "D" = (
 /obj/structure/table/wood,
 /obj/item/scythe,
 /obj/item/melee/spear,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "E" = (
 /obj/structure/table/wood,
 /obj/item/tailclub,
 /obj/item/melee/spear,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "F" = (
@@ -122,7 +88,6 @@
 "I" = (
 /obj/structure/table/wood,
 /obj/item/melee/spear,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/holofloor/asteroid,
 /area/template_noop)
 "K" = (
@@ -142,10 +107,7 @@
 /area/template_noop)
 "T" = (
 /turf/open/floor/holofloor{
-	icon_state = "medstairs_alone";
-	icon = 'goon/icons/turfs/floors.dmi';
-	base_icon_state = "medstairs_alone";
-	dir = 1
+	icon_state = "stairs-old"
 	},
 /area/template_noop)
 "U" = (
@@ -177,7 +139,7 @@ A
 K
 F
 m
-s
+c
 c
 c
 c
@@ -189,7 +151,7 @@ A
 g
 t
 T
-u
+c
 c
 c
 c
@@ -201,7 +163,7 @@ A
 U
 F
 B
-l
+c
 c
 c
 c
@@ -225,7 +187,7 @@ A
 U
 F
 i
-s
+c
 c
 c
 c
@@ -237,7 +199,7 @@ A
 g
 a
 T
-u
+c
 c
 c
 c
@@ -249,7 +211,7 @@ A
 K
 F
 q
-l
+c
 c
 c
 c

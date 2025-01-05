@@ -170,11 +170,11 @@
 			break
 
 
-		if(index>length(tokens)) //End of File
+		if(index>tokens.len) //End of File
 			errors += new /datum/scriptError/EndOfFile()
 			break
 		var/datum/token/ntok
-		if(index+1<=length(tokens))
+		if(index+1<=tokens.len)
 			ntok=tokens[index+1]
 
 		if(istype(curToken, /datum/token/symbol) && curToken.value == "(") //Parse parentheses expression
@@ -274,7 +274,7 @@
 		if(istype(curToken, /datum/token/symbol) && curToken.value == ")")
 			return exp
 		exp.parameters += ParseParamExpression()
-		if(length(errors))
+		if(errors.len)
 			return exp
 		if(curToken.value == "," && istype(curToken, /datum/token/symbol))
 			NextToken()	//skip comma
@@ -302,7 +302,7 @@
 			exp.init_list[A.exp] = A.exp2
 		else
 			exp.init_list += E
-		if(length(errors))
+		if(errors.len)
 			return exp
 		if(curToken.value == "," && istype(curToken, /datum/token/symbol))
 			NextToken() //skip comma

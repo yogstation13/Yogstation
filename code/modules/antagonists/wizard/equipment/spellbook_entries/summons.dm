@@ -20,7 +20,11 @@
 		There is a good chance that they will shoot each other first."
 
 /datum/spellbook_entry/summon/guns/can_be_purchased()
-	// must be config enabled
+	// Summon Guns requires 100 threat.
+	var/datum/game_mode/dynamic/mode = SSticker.mode
+	if(mode?.threat_level < MINIMUM_THREAT_FOR_RITUALS)
+		return FALSE
+	// Also must be config enabled
 	return !CONFIG_GET(flag/no_summon_guns)
 
 /datum/spellbook_entry/summon/guns/buy_spell(mob/living/carbon/human/user,obj/item/spellbook/book)
@@ -34,7 +38,11 @@
 		why they aren't to be trusted with it at the same time."
 
 /datum/spellbook_entry/summon/magic/can_be_purchased()
-	// must be config enabled
+	// Summon Magic requires 100 threat.
+	var/datum/game_mode/dynamic/mode = SSticker.mode
+	if(!istype(mode) || mode.threat_level < MINIMUM_THREAT_FOR_RITUALS) //YOGS - secret gamemode
+		return FALSE
+	// Also must be config enabled
 	return !CONFIG_GET(flag/no_summon_magic)
 
 /datum/spellbook_entry/summon/magic/buy_spell(mob/living/carbon/human/user,obj/item/spellbook/book)
@@ -51,7 +59,11 @@
 	limit = 5 // Each purchase can intensify it.
 
 /datum/spellbook_entry/summon/events/can_be_purchased()
-	// must be config enabled
+	// Summon Events requires 100 threat.
+	var/datum/game_mode/dynamic/mode = SSticker.mode
+	if(!istype(mode) || mode.threat_level < MINIMUM_THREAT_FOR_RITUALS) //YOGS - secret gamemode
+		return FALSE
+	// Also, must be config enabled
 	return !CONFIG_GET(flag/no_summon_events)
 
 /datum/spellbook_entry/summon/events/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book)

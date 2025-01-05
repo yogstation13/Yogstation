@@ -281,6 +281,7 @@
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1 //Normally +1, strength chromosome increases it to +2
 	owner.physiology.punchdamagehigh_bonus += strength_punchpower
 	owner.physiology.punchdamagelow_bonus += strength_punchpower
+	owner.physiology.punchstunthreshold_bonus += strength_punchpower //So we dont change the stun chance
 	ADD_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
 
 /datum/mutation/human/strong/on_losing(mob/living/carbon/human/owner)
@@ -289,6 +290,7 @@
 	var/strength_punchpower = GET_MUTATION_POWER(src) * 2 - 1
 	owner.physiology.punchdamagehigh_bonus -= strength_punchpower
 	owner.physiology.punchdamagelow_bonus -= strength_punchpower
+	owner.physiology.punchstunthreshold_bonus -= strength_punchpower
 	REMOVE_TRAIT(owner, TRAIT_QUICKER_CARRY, src)
 
 //Yogs end

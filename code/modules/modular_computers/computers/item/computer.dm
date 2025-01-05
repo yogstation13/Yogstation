@@ -23,7 +23,7 @@
 	var/last_world_time = "00:00"
 	var/list/last_header_icons
 	///A pAI currently loaded into the modular computer.
-	var/obj/item/computer_hardware/paicard/inserted_pai
+	var/obj/item/paicard/inserted_pai
 
 	/// Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.
 	var/base_active_power_usage = 50
@@ -206,6 +206,21 @@
 		return card_slot.GetID()
 	return ..()
 
+/obj/item/modular_computer/RemoveID()
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	if(!card_slot)
+		return
+	return card_slot.RemoveID()
+
+/obj/item/modular_computer/InsertID(obj/item/inserting_item)
+	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
+	if(!card_slot)
+		return FALSE
+	var/obj/item/card/inserting_id = inserting_item.RemoveID()
+	if(!inserting_id)
+		return FALSE
+	return card_slot.try_insert(inserting_id)
+
 /obj/item/modular_computer/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
 	if((!istype(over_object, /atom/movable/screen)) && usr.canUseTopic(src, BE_CLOSE))
@@ -215,10 +230,9 @@
 /obj/item/modular_computer/CtrlClick()
 	var/mob/M = usr
 	if(ishuman(usr) && usr.CanReach(src) && usr.canUseTopic(src))
-		attack_self(M)
-		return TRUE
+		return attack_self(M)
 	else
-		return ..()
+		..()
 
 /obj/item/modular_computer/attack_hand(mob/living/user, modifiers)
 	if(modifiers?[RIGHT_CLICK])
@@ -302,15 +316,15 @@
 	. = ..()
 	update_appearance()
 
-/obj/item/modular_computer/proc/update_label(obj/item/card/id/override_card)
-	var/obj/item/card/id/stored_id = override_card || GetID()
+
+/obj/item/modular_computer/proc/update_label()
+	var/obj/item/card/id/stored_id = GetID()
 	if(id_rename && stored_id)
 		name = "[stored_id.registered_name]'s [initial(name)] ([stored_id.assignment])"
 		var/obj/item/computer_hardware/hard_drive/hard_drive = all_components[MC_HDD]
-		if(hard_drive)
-			var/datum/computer_file/program/pdamessager/msgr = hard_drive.find_file_by_name("pda_client")
-			if(istype(msgr))
-				msgr.username = "[stored_id.registered_name] ([stored_id.assignment])"
+		var/datum/computer_file/program/pdamessager/msgr = hard_drive.find_file_by_name("pda_client")
+		if(istype(msgr))
+			msgr.username = "[stored_id.registered_name] ([stored_id.assignment])"
 	else
 		name = initial(name)
 
@@ -656,8 +670,8 @@
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 
-/obj/item/modular_computer/proc/parent_moved(datum/source, atom/old_loc, movement_dir, forced, list/old_locs, momentum_change = TRUE, interrupting = TRUE)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs, momentum_change, interrupting)
+/obj/item/modular_computer/proc/parent_moved()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED)
 
 /obj/item/modular_computer/proc/uplink_check(mob/living/M, code)
 	return SEND_SIGNAL(src, COMSIG_NTOS_CHANGE_RINGTONE, M, code) & COMPONENT_STOP_RINGTONE_CHANGE

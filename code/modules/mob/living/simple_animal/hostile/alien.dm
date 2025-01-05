@@ -31,7 +31,6 @@
 	faction = list(ROLE_ALIEN)
 	status_flags = CANPUSH
 	minbodytemp = 0
-	weather_immunities = WEATHER_STORM
 	// Going for a dark purple here
 	lighting_cutoff_red = 30
 	lighting_cutoff_green = 15

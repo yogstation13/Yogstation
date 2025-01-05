@@ -4,12 +4,12 @@
 	max_occurrences = 1
 	min_players = 10
 	weight = 5
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_TARGETED, TAG_COMMUNAL, TAG_EXTERNAL, TAG_ALIEN, TAG_MAGICAL)
 
 /datum/round_event/disease_outbreak
-	announce_when	= 15
+	announceWhen	= 15
+
 	var/virus_type
+
 	var/max_severity = 3
 
 
@@ -17,8 +17,8 @@
 	priority_announce("Confirmed outbreak of level 7 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", ANNOUNCER_OUTBREAK7)
 
 /datum/round_event/disease_outbreak/setup()
-	announce_when = rand(15, 30)
-	setup = TRUE //storytellers
+	announceWhen = rand(15, 30)
+
 
 /datum/round_event/disease_outbreak/start()
 	var/advanced_virus = FALSE

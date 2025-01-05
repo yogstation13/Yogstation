@@ -31,7 +31,7 @@
 	if(proximity && istype(G) && G.Touch(A, 1, modifiers))
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A, proximity, modifiers) & COMPONENT_NO_ATTACK_HAND)
+	if(SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A, modifiers) & COMPONENT_NO_ATTACK_HAND)
 		return
 
 	var/override = 0
@@ -40,7 +40,7 @@
 	if(override)
 		return
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A, proximity, modifiers)
+	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A, modifiers)
 	if(modifiers[RIGHT_CLICK])
 		var/secondary_result = A.attack_hand_secondary(src, modifiers)
 		if(secondary_result == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN || secondary_result == SECONDARY_ATTACK_CONTINUE_CHAIN)

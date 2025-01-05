@@ -13,11 +13,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/carpet/black,
 /area/shuttle/escape)
-"dv" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "dO" = (
 /obj/machinery/computer/emergency_shuttle{
 	dir = 8
@@ -39,18 +34,6 @@
 /obj/structure/chair/sofa/left{
 	dir = 8;
 	pixel_x = 2
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"fd" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
-"fO" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
@@ -92,17 +75,12 @@
 /area/template_noop)
 "ip" = (
 /obj/machinery/vending/cigarette/beach,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "iY" = (
 /turf/open/floor/plasteel/stairs/goon/wood_stairs_middle{
 	dir = 1
 	},
-/area/shuttle/escape)
-"ki" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/wood,
 /area/shuttle/escape)
 "lR" = (
 /obj/structure/table/wood,
@@ -180,10 +158,6 @@
 /area/shuttle/escape)
 "sM" = (
 /obj/structure/bookcase/random/fiction,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "tG" = (
@@ -423,9 +397,6 @@
 /obj/docking_port/mobile/emergency{
 	name = "Cozy emergency shuttle"
 	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "JA" = (
@@ -443,7 +414,6 @@
 /area/shuttle/escape)
 "JN" = (
 /obj/machinery/vending/coffee,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "Kg" = (
@@ -752,14 +722,6 @@
 /obj/machinery/light,
 /turf/open/floor/carpet/royalblue,
 /area/shuttle/escape)
-"YN" = (
-/obj/structure/bookcase/random/fiction,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "Za" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/stack/sheet/mineral/wood/fifty,
@@ -825,7 +787,7 @@ ux
 Xz
 vj
 OQ
-ki
+Kw
 Bq
 Qs
 hS
@@ -849,7 +811,7 @@ ux
 vj
 LF
 OQ
-ki
+Kw
 Kw
 Qs
 Kw
@@ -922,7 +884,7 @@ PJ
 PJ
 xg
 sM
-fO
+Kw
 CN
 Fu
 VX
@@ -946,7 +908,7 @@ yr
 tG
 WM
 lS
-ki
+Kw
 CN
 VX
 VX
@@ -970,7 +932,7 @@ VX
 HV
 xw
 iY
-dv
+Hi
 Or
 MF
 ec
@@ -994,7 +956,7 @@ Su
 Xa
 bI
 gR
-ki
+Kw
 Qs
 Kw
 RE
@@ -1017,8 +979,8 @@ VX
 UD
 ha
 xg
-YN
-fd
+sM
+Kw
 Qs
 vd
 lR

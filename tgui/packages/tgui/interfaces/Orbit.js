@@ -84,7 +84,6 @@ export const Orbit = (props, context) => {
     auto_observe,
     dead,
     ghosts,
-    is_admin,
     misc,
     npcs,
   } = data;
@@ -165,7 +164,7 @@ export const Orbit = (props, context) => {
           </Flex>
         </Section>
         {antagonists.length > 0 && (
-          <Section title={is_admin ? "Antagonists" : "Ghost-Visible Antagonists"}>
+          <Section title="Ghost-Visible Antagonists">
             {sortedAntagonists.map(([name, antags]) => (
               <BasicSection
                 key={name}

@@ -180,8 +180,6 @@
 	desc = "A might pillar of ivory, untouched by time and corrosion. There is a large hole on the top, it's missing a key ingredient..."
 	icon = 'yogstation/icons/obj/jungle32x48.dmi'
 	icon_state = "tar_altar"
-	move_resist = INFINITY // tar king kept moving it
-	speech_span = SPAN_COLOSSUS
 	layer = ABOVE_ALL_MOB_LAYER
 	resistance_flags = INDESTRUCTIBLE
 	anchored = TRUE
@@ -199,8 +197,8 @@
 	for(var/mob/living/L in range(7,src))
 		shake_camera(L,1 SECONDS, 4)
 
-	animate(src,time = 10 SECONDS, color = "#1f0010")
-	sleep(12 SECONDS)
+	animate(src,time = 15 SECONDS, color = "#1f0010")
+	sleep(20 SECONDS)
 	visible_message(span_colossus("WHO DARES?"))
 
 	for(var/mob/living/L in range(7,src))
@@ -247,7 +245,7 @@
 	addtimer(CALLBACK(src,PROC_REF(explode)), delay)
 
 /obj/structure/herb/explosive_shrooms/proc/explode()
-	dyn_explosion(get_turf(src), 2, flame_range = 3) // nuh uh you don't get to destroy firing pins inside PKAs and plasmacutters
+	dyn_explosion(get_turf(src),4)
 	if(src && !QDELETED(src))
 		qdel(src)
 

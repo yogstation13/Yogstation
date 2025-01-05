@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
-/proc/get_uplink_items(antagonist = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
+/proc/get_uplink_items(datum/game_mode/gamemode = null, allow_sales = TRUE, allow_restricted = TRUE, uplink_type = "Uplink")
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
@@ -10,13 +10,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			continue
 		if(I.include_uplinks.len && !(uplink_type in I.include_uplinks))
 			continue
-		if(antagonist)
-			if(I.include_antags.len)
-				if(!(antagonist in I.include_antags))
-					continue
-			if(I.exclude_antags.len)
-				if(antagonist in I.exclude_antags)
-					continue
+		if(I.include_modes.len)
+			if(!gamemode && SSticker.mode && !(SSticker.mode.type in I.include_modes))
+				continue
+			if(gamemode && !(gamemode in I.include_modes))
+				continue
+		if(I.exclude_modes.len)
+			if(!gamemode && SSticker.mode && (SSticker.mode.type in I.exclude_modes))
+				continue
+			if(gamemode && (gamemode in I.exclude_modes))
+				continue
 		if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len)
 			continue
 		if (I.restricted && !allow_restricted)
@@ -29,7 +32,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			sale_items += I
 	if(allow_sales)
 		var/datum/team/nuclear/nuclear_team
-		if (antagonist == ROLE_OPERATIVE) 					// uplink code kind of needs a redesign
+		if (gamemode == /datum/game_mode/nuclear) 					// uplink code kind of needs a redesign
 			nuclear_team = locate() in GLOB.antagonist_teams	// the team discounts could be a in a GLOB with this design but it would make sense for them to be team specific...
 		if (!nuclear_team)
 			create_uplink_sales(3, "Discounted Gear", 1, sale_items, filtered_uplink_items)
@@ -94,8 +97,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/cant_discount = FALSE
 	var/limited_stock = -1 //Setting this above zero limits how many times this item can be bought by the same traitor in a round, -1 is unlimited
 	var/list/include_uplinks = list("Uplink") // Uplink types this is in
-	var/list/include_antags = list() // Game modes to allow this item in.
-	var/list/exclude_antags = list() // Game modes to disallow this item from.
+	var/list/include_modes = list() // Game modes to allow this item in.
+	var/list/exclude_modes = list() // Game modes to disallow this item from.
 	var/list/restricted_roles = list() //If this uplink item is only available to certain roles. Roles are dependent on the frequency chip or stored ID.
 	var/player_minimum //The minimum crew size needed for this item to be added to uplinks.
 	var/purchase_log_vis = TRUE // Visible in the purchase log?
@@ -151,7 +154,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle
 	cost = 30 // normally 42
 	manufacturer = /datum/corporation/traitor/donkco
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/bundles_TC/bulldog
 	name = "Bulldog bundle"
@@ -159,14 +162,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Bulldog shotgun, two 12g buckshot drums, and a pair of Thermal imaging goggles."
 	item = /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle
 	cost = 13 // normally 16
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/bundles_TC/c20r
 	name = "C-20r bundle"
 	desc = "Old Faithful: The classic C-20r, bundled with two magazines and a (surplus) suppressor at discount price."
 	item = /obj/item/storage/backpack/duffelbag/syndie/c20rbundle
 	cost = 14 // normally 16
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/bundles_TC/cyber_implants
 	name = "Cybernetic Implants Bundle"
@@ -174,7 +177,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/cyber_implants
 	cost = 40
 	manufacturer = /datum/corporation/traitor/cybersun
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/bundles_TC/medical
 	name = "Medical bundle"
@@ -182,7 +185,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			a Donksoft LMG, a box of riot darts and a pair of magboots to rescue your friends in no-gravity environments."
 	item = /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
 	cost = 15 // normally 20
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/bundles_TC/sniper
 	name = "Sniper bundle"
@@ -191,7 +194,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			We'll throw in a free red tie if you order NOW."
 	item = /obj/item/storage/briefcase/sniperbundle
 	cost = 20 // normally 26
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/bundles_TC/firestarter
 	name = "Spetsnaz Pyro bundle"
@@ -200,7 +203,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Order NOW and comrade Boris will throw in an extra tracksuit."
 	item = /obj/item/storage/backpack/duffelbag/syndie/firestarter
 	cost = 30
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/bundles_TC/contract_kit
 	name = "Contract Kit"
@@ -211,7 +214,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndicate/contract_kit
 	cost = 20
 	player_minimum = 20
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP, ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/contract_kit/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(is_species(user, /datum/species/plasmaman))
@@ -225,7 +228,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			you will receive. May contain discontinued and/or exotic items."
 	item = /obj/item/storage/box/syndicate/bundle_A
 	cost = 20 //These are 20 TC for a reason; sacrifice modularity for a pre-determined kit that will define your strategy
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
@@ -233,7 +236,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			In Syndi-kit Special, you will receive items used by famous Syndicate agents of the past. Collectively worth more than 20 telecrystals, the Syndicate loves a good throwback."
 	item = /obj/item/storage/box/syndicate/bundle_B
 	cost = 20 //See above
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/bundles_TC/surplus
 	name = "Syndicate Surplus Crate"
@@ -242,7 +245,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/structure/closet/crate
 	cost = 20
 	player_minimum = 25
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP, ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 	var/starting_crate_value = 50
 
 /datum/uplink_item/bundles_TC/surplus/super
@@ -256,7 +259,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/bundles_TC/surplus/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	. = ..()
 	var/obj/structure/closet/crate/spawned_crate = .
-	var/list/uplink_items = get_uplink_items(null, FALSE)
+	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null, FALSE)
 	var/crate_value = starting_crate_value
 	while(crate_value)
 		var/category = pick(uplink_items)
@@ -349,7 +352,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/rocketlauncher
 	cost = 8
 	surplus = 30
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/pie_cannon
 	name = "Banana Cream Pie Cannon"
@@ -358,7 +361,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	surplus = 0
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/bananashield
 	name = "Bananium Energy Shield"
@@ -368,7 +371,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/shield/energy/bananium
 	cost = 16
 	surplus = 0
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/clownsword
 	name = "Bananium Energy Sword"
@@ -377,7 +380,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/melee/transforming/energy/sword/bananium
 	cost = 3
 	surplus = 0
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/bioterror
 	name = "Biohazardous Chemical Sprayer"
@@ -387,7 +390,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	cost = 20
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/throwingweapons
 	name = "Box of Throwing Weapons"
@@ -403,7 +406,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/shotgun/bulldog
 	cost = 8
 	surplus = 40
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/smg
 	name = "C-20r Submachine Gun"
@@ -412,7 +415,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/c20r
 	cost = 10
 	surplus = 40
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/doublesword
 	name = "Double-Bladed Energy Sword"
@@ -421,7 +424,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/melee/dualsaber
 	player_minimum = 25
 	cost = 16
-	include_antags = list(ROLE_OPERATIVE) // yogs: infiltration
+	include_modes = list(/datum/game_mode/nuclear) // yogs: infiltration
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -432,7 +435,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			pocketed when inactive. Activating it produces a loud, distinctive noise."
 	item = /obj/item/melee/transforming/energy/sword/saber
 	cost = 8
-	exclude_antags = list(ROLE_CLOWNOP, ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/backstab
 	name = "Backstabbing Switchblade"
@@ -447,7 +450,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A wielded wooden staff that can be used to incapacitate opponents if intending to disarm."
 	item = /obj/item/melee/bostaff
 	cost = 8
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/shield
 	name = "Energy Shield"
@@ -456,7 +459,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/shield/energy
 	cost = 16
 	surplus = 20
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/flamethrower
 	name = "Flamethrower"
@@ -465,14 +468,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/flamethrower/full
 	cost = 4
 	surplus = 40
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/rapid
 	name = "Gloves of the North Star"
 	desc = "These gloves let the user punch people very fast. Does not improve weapon attack speed or the meaty fists of a hulk."
 	item = /obj/item/clothing/gloves/rapid
 	cost = 8
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/guardian
 	name = "Holoparasites"
@@ -482,7 +485,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 15
 	manufacturer = /datum/corporation/traitor/cybersun
 	surplus = 0
-	exclude_antags = list(ROLE_INFILTRATOR, ROLE_INTERNAL_AFFAIRS)
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/traitor/internal_affairs)
 	player_minimum = 25
 	restricted = TRUE
 	refundable = TRUE
@@ -490,8 +493,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 // nukies don't get the 3 TC discount
 /datum/uplink_item/dangerous/guardian/nuclear
 	cost = 15
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
-	exclude_antags = list()
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list()
 
 /datum/uplink_item/dangerous/machinegun
 	name = "L6 Squad Automatic Weapon"
@@ -500,7 +503,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/l6_saw
 	cost = 20
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/minigun
 	name = "M-546 Osprey"
@@ -512,7 +515,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 30
 	surplus = 0
 	cant_discount = TRUE
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/rifle
 	name = "M-90gl Rifle"
@@ -521,7 +524,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/m90
 	cost = 18
 	surplus = 50
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/powerfist
 	name = "Power Fist"
@@ -532,7 +535,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/gloves/powerfist
 	cost = 6
 	manufacturer = /datum/corporation/traitor/waffleco
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/dangerous/vxtvulhammer
 	name = "Vxtvul Hammer"
@@ -542,7 +545,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			do sizeable damage to mechs, or shatter people off of their feet. The battery is charged by the user's concentration."
 	item = /obj/item/melee/vxtvulhammer
 	cost = 8
-	include_antags = list(ROLE_OPERATIVE) //Only traitor preterni can buy the implant version
+	include_modes = list(/datum/game_mode/nuclear) //Only traitor preterni can buy the implant version
 
 /datum/uplink_item/dangerous/nukiedmr
 	name = "K-41s Designated Marksman Rifle"
@@ -550,7 +553,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			a short-range scope to better see over distances."
 	item = /obj/item/gun/ballistic/automatic/k41s
 	cost = 12
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
@@ -558,7 +561,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/rifle/sniper_rifle/syndicate
 	cost = 16
 	surplus = 25
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/pistol
 	name = "Stechkin Pistol"
@@ -566,7 +569,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			with suppressors. Ammo is included"
 	item = /obj/item/gun/ballistic/automatic/pistol
 	cost = 5
-	exclude_antags = list(ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/pistol/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(HAS_TRAIT_FROM(user, TRAIT_PACIFISM, ROUNDSTART_TRAIT))
@@ -579,7 +582,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A horribly outdated bolt action weapon. You've got to be desperate to use this."
 	item = /obj/item/gun/ballistic/rifle/boltaction
 	cost = 1
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/revolver
 	name = "Syndicate Revolver"
@@ -595,7 +598,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 5
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/foammachinegun
 	name = "Toy Machine Gun"
@@ -605,7 +608,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	manufacturer = /datum/corporation/traitor/donkco
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/foampistol
 	name = "Toy Pistol with Riot Darts"
@@ -632,7 +635,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	player_minimum = 25
 	surplus = 25
-	exclude_antags = list(ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/dangerous/nuclear_energy_fire_axe
 	name = "Energy Fire Axe"
@@ -640,7 +643,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Easier to store than a standard fire axe while inactive."
 	item = /obj/item/fireaxe/energy
 	cost = 10
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 	surplus = 0
 
 // Stealthy Weapons
@@ -653,7 +656,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			to learn the abilities of krav maga to the wearer."
 	item = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	cost = 5
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	surplus = 0
 
 /datum/uplink_item/stealthy_weapons/cqc
@@ -679,7 +682,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/toy/plush/carpplushie/dehy_carp
 	cost = 1
 	manufacturer = /datum/corporation/traitor/donkco
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/derringer
 	name = "Derringer Pistol"
@@ -687,7 +690,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/revolver/derringer
 	cost = 3
 	manufacturer = /datum/corporation/traitor/donkco
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/edagger
 	name = "Energy Dagger"
@@ -712,7 +715,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 14
 	player_minimum = 20
 	surplus = 0
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP, ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/crossbow
 	name = "Miniature Energy Crossbow"
@@ -725,7 +728,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
 	cost = 5
 	surplus = 30
-	exclude_antags = list(ROLE_OPERATIVE)
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/origami_kit
 	name = "Boxed Origami Kit"
@@ -735,7 +738,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 14
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
-	exclude_antags = list(ROLE_OPERATIVE) //clown ops intentionally left in, because that seems like some s-tier shenanigans.
+	exclude_modes = list(/datum/game_mode/nuclear) //clown ops intentionally left in, because that seems like some s-tier shenanigans.
 
 /datum/uplink_item/stealthy_weapons/traitor_chem_bottle
 	name = "Poison Kit"
@@ -754,7 +757,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 25
 	surplus = 0 //Hijack-only, don't let this exist in surplus
 	cant_discount = TRUE
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/stealthy_weapons/sleepy_pen
 	name = "Sleepy Pen"
@@ -765,7 +768,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pen/blue/sleepy
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
-	exclude_antags = list(ROLE_OPERATIVE)
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/suppressor
 	name = "Suppressor"
@@ -773,7 +776,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/suppressor
 	cost = 1
 	surplus = 10
-	exclude_antags = list(ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 // Ammunition
 /datum/uplink_item/ammo
@@ -785,7 +788,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A box that contains two additional 10-round 10mm magazines; compatible with the Stechkin Pistol."
 	item = /obj/item/storage/box/syndie_kit/pistolammo
 	cost = 1
-	exclude_antags = list(ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/pistol/random
 	name = "Random 10mm Handgun Magazines"
@@ -836,7 +839,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/shotgun/bag
 	name = "12g Ammo Duffel Bag"
@@ -893,7 +896,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A box with two .357 speed loaders. These speed loaders contain seven .357 rounds each; usable with the Syndicate revolver."
 	item = /obj/item/storage/box/syndie_kit/revolverammo
 	cost = 1
-	exclude_antags = list(ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
 
 /datum/uplink_item/ammo/revolver/random
@@ -938,7 +941,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			These bullets pack less punch than 7.12x82mm rounds, but they still offer more power than .45 ammo."
 	item = /obj/item/ammo_box/magazine/m556
 	cost = 4
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/rifle/ap
 	name = "5.56mm Armor-Piercing Toploader Magazine"
@@ -959,14 +962,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Your teammates will ask you to not shoot these down small hallways."
 	item = /obj/item/ammo_casing/a40mm
 	cost = 2
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/smg/bag
 	name = ".45 Ammo Duffel Bag"
 	desc = "A duffel bag containing five standard .45 magazines, two AP .45 magazines, and two HP .45 magazines for the C-20r submachine gun, bundled together at a discount."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/smg
 	cost = 20 //instead of 29 TC
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/smg/bag/random
 	name = "Randomized .45 Ammo Duffel Bag"
@@ -979,7 +982,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun."
 	item = /obj/item/ammo_box/magazine/smgm45
 	cost = 3
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/smg/ap
 	name = ".45 Armor-Piercing SMG Magazine"
@@ -1006,7 +1009,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A standard 11-round magazine for the K-41s DMR. Filled with 7.62 rounds."
 	item = /obj/item/ammo_box/magazine/ks762
 	cost = 3
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/nukiedmr/raze
 	name = "7.62 Raze Rifle Magazine"
@@ -1034,7 +1037,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional standard 6-round magazine for use with .50 sniper rifles."
 	item = /obj/item/ammo_box/magazine/sniper_rounds
 	cost = 4
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/sniper/penetrator
 	name = ".50 Penetrator Magazine"
@@ -1052,7 +1055,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/machinegun
 	cost = 6
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/machinegun/basic
 	name = "7.12x82mm Box Magazine"
@@ -1080,7 +1083,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/ammo_box/magazine/mm712x82/incen
 
 /datum/uplink_item/ammo/rocket
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/rocket/basic
 	name = "84mm HE Rocket"
@@ -1100,7 +1103,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 15-round 9mm magazine, compatible with the Stechkin APS pistol, found in the Spetsnaz Pyro bundle."
 	item = /obj/item/ammo_box/magazine/pistolm9mm
 	cost = 2
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/toydarts
 	name = "Box of Riot Darts"
@@ -1118,28 +1121,28 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/bioterror
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 6
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/ammo/bolt_action
 	name = "Surplus Rifle Clip"
 	desc = "A stripper clip used to quickly load bolt action rifles. Contains 5 rounds."
 	item = 	/obj/item/ammo_box/a762
 	cost = 1
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/dark_gygax/bag
 	name = "Dark Gygax Ammo Bag"
 	desc = "A duffel bag containing ammo for three full reloads of the incendiary carbine and flash bang launcher that are equipped on a standard Dark Gygax exosuit."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/dark_gygax
 	cost = 4
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/mauler/bag
 	name = "Mauler Ammo Bag"
 	desc = "A duffel bag containing ammo for three full reloads of the LMG, scattershot carbine, and SRM-8 missile launcher that are equipped on a standard Mauler exosuit."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/mauler
 	cost = 6
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 //Grenades and Explosives
 /datum/uplink_item/explosives
@@ -1153,7 +1156,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/chem_grenade/bioterrorfoam
 	cost = 5
 	surplus = 35
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/bombanana
 	name = "Bombanana"
@@ -1162,7 +1165,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/food/snacks/grown/banana/bombanana
 	cost = 4 //it is a bit cheaper than a minibomb because you have to take off your helmet to eat it, which is how you arm it
 	surplus = 0
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/buzzkill
 	name = "Buzzkill Grenade Box"
@@ -1172,7 +1175,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/bolsynpowell
 	surplus = 35
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/c4
 	name = "Composition C-4"
@@ -1188,7 +1191,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/c4
 	cost = 8 //20% discount!
 	cant_discount = TRUE
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/x4bag
 	name = "Bag of X-4 explosives"
@@ -1198,7 +1201,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/backpack/duffelbag/syndie/x4
 	cost = 4
 	cant_discount = TRUE
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/clown_bomb_clownops
 	name = "Clown Bomb"
@@ -1211,7 +1214,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 15
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/detomatix
 	name = "BomberMan Program"
@@ -1222,7 +1225,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	manufacturer = /datum/corporation/traitor/cybersun
 	restricted = TRUE
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/detomatix/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	. = ..()
@@ -1253,7 +1256,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/deployablemine/traitor
 	cost = 4
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/virus_grenade
 	name = "Fungal Tuberculosis Grenade"
@@ -1263,14 +1266,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/tuberculosisgrenade
 	cost = 12
 	surplus = 35
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
 
 /datum/uplink_item/explosives/grenadier
 	name = "Grenadier's belt"
 	desc = "A belt containing 26 lethally dangerous and destructive grenades. Comes with an extra multitool and screwdriver."
 	item = /obj/item/storage/belt/grenade/full
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 	cost = 22
 	surplus = 0
 
@@ -1281,7 +1284,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/deployablemine/traitor/bigboom
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/pizza_bomb
 	name = "Pizza Bomb"
@@ -1298,7 +1301,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/clusterbuster/soap
 	cost = 3
 	manufacturer = /datum/corporation/traitor/waffleco
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/syndicate_bomb
 	name = "Syndicate Bomb"
@@ -1310,7 +1313,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			The bomb core can be pried out and manually detonated with other explosives."
 	item = /obj/item/sbeacondrop/bomb
 	cost = 11
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/syndicate_bomb/emp
 	name = "Syndicate EMP Bomb"
@@ -1331,14 +1334,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			the blast radius before using the detonator."
 	item = /obj/item/syndicatedetonator
 	cost = 3
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/frag_grenade
 	name = "Frag Grenade"
 	desc = "Simple, but lethal. Anything adjacent when it explodes will be heavily damaged. Likely to cause a small hull breach."
 	item = /obj/item/grenade/syndieminibomb/concussion/frag
 	cost = 3
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/syndicate_minibomb
 	name = "Syndicate Minibomb"
@@ -1346,8 +1349,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			in addition to dealing high amounts of damage to nearby personnel."
 	item = /obj/item/grenade/syndieminibomb
 	cost = 6
-	include_antags = list(ROLE_OPERATIVE)
-	exclude_antags = list(ROLE_CLOWNOP, ROLE_INFILTRATOR) // yogs: infiltration
+	include_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/explosives/tearstache
 	name = "Tearstache Grenade"
@@ -1357,7 +1360,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/viscerators
 	name = "Viscerator Delivery Grenade"
@@ -1366,7 +1369,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/spawnergrenade/manhacks
 	cost = 5
 	surplus = 35
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/wheelchair
 	name = "Explosive Wheelchair"
@@ -1377,25 +1380,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	limited_stock = 1
 	include_objectives = list(/datum/objective/martyr)
 
-/datum/uplink_item/explosives/suicide_vest
-	name = "Suicide Vest"
-	desc = "An autolocking, voice activated suicide vest. The electronics inside are so crude it only functions in inclusive mode. Once it's on, it can never be removed."
-	item = /obj/item/clothing/suit/unalivevest
-	cost = 7
-	manufacturer = /datum/corporation/traitor/donkco
-
 //Support and Mechs
 /datum/uplink_item/support
 	category = UPLINK_CATEGORY_SUPPORT
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/support/clown_reinforcement
 	name = "Clown Reinforcements"
 	desc = "Call in an additional clown to share the fun, equipped with full starting gear, but no telecrystals."
 	item = /obj/item/antag_spawner/nuke_ops/clown
 	cost = 20
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
 
 /datum/uplink_item/support/reinforcement
@@ -1405,7 +1401,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/antag_spawner/nuke_ops
 	cost = 25
 	refundable = TRUE
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 	restricted = TRUE
 
 /datum/uplink_item/support/reinforcement/assault_borg
@@ -1450,7 +1446,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
 	item = /obj/mecha/combat/honker/dark/loaded
 	cost = 35 //Yogs change
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	cant_discount = TRUE
 
 /datum/uplink_item/support/mauler
@@ -1506,21 +1502,21 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			any actions for the 7 second duration."
 	item = /obj/item/pseudocider
 	cost = 8
-	exclude_antags = list(ROLE_OPERATIVE)
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/shadowcloak
 	name = "Cloaker Belt"
 	desc = "A tactical belt that renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
 	item = /obj/item/storage/belt/military/shadowcloak
 	cost = 10
-	exclude_antags = list(ROLE_OPERATIVE)
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/nuclearshadowcloak
 	name = "Cloaker Belt"
 	desc = "A tactical belt that renders the wearer invisible while active. Has a short charge that is refilled in darkness; only charges when in use."
 	item = /obj/item/storage/belt/military/shadowcloak
 	cost = 20
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/syndireverse
 	name = "Bluespace Projectile Weapon Disrupter"
@@ -1536,7 +1532,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/chameleon
 	cost = 2
 	manufacturer = /datum/corporation/traitor/cybersun
-	exclude_antags = list(ROLE_OPERATIVE)
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/chameleon/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(is_species(user, /datum/species/plasmaman))
@@ -1576,7 +1572,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat
 	cost = 6
 	surplus = 0
-	include_antags = list(ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/stealthy_tools/emplight
 	name = "EMP Flashlight"
@@ -1601,7 +1597,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4
 	manufacturer = /datum/corporation/traitor/vahlen
 	surplus = 30
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
 	name = "No-Slip Chameleon Shoes"
@@ -1610,13 +1606,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/shoes/chameleon/noslip/syndicate
 	cost = 2
 	manufacturer = /datum/corporation/traitor/waffleco
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
 	item = /obj/item/clothing/shoes/chameleon/noslip/syndicate
 	cost = 4
-	exclude_antags = list()
-	include_antags = list(ROLE_OPERATIVE)
+	exclude_modes = list()
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_tools/jammer
 	name = "Signal Jammer"
@@ -1668,7 +1664,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			sightings, however."
 	item = /obj/item/storage/box/syndie_kit/space
 	cost = 4
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/suits/hardsuit
 	name = "Syndicate Hardsuit"
@@ -1679,7 +1675,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Nanotrasen crew who spot these suits are known to panic."
 	item = /obj/item/clothing/suit/space/hardsuit/syndi
 	cost = 8
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_INFILTRATOR) //you can't buy it in nuke, because the elite hardsuit costs the same while being better // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration) //you can't buy it in nuke, because the elite hardsuit costs the same while being better // yogs: infiltration
 
 /datum/uplink_item/suits/hardsuit/elite
 	name = "Elite Syndicate Hardsuit"
@@ -1687,8 +1683,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			provides the user with superior armor and mobility compared to the standard Syndicate hardsuit."
 	item = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	cost = 8
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
-	exclude_antags = list()
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list()
 
 /datum/uplink_item/suits/hardsuit/shielded
 	name = "Shielded Syndicate Hardsuit"
@@ -1696,8 +1692,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			The shields can handle up to three impacts within a short duration and will rapidly recharge while not under fire."
 	item = /obj/item/clothing/suit/space/hardsuit/shielded/syndi
 	cost = 30
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
-	exclude_antags = list()
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list()
 
 // Devices and Tools
 /datum/uplink_item/device_tools
@@ -1728,7 +1724,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/assault_pod
 	cost = 30
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
 
 /datum/uplink_item/device_tools/binary
@@ -1772,7 +1768,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A robust seven-slot set of webbing that is capable of holding all manner of tactical equipment. This one is capable of disguising itself."
 	item = /obj/item/storage/belt/chameleon/syndicate
 	cost = 1
-	exclude_antags = list(ROLE_OPERATIVE)
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/device_tools/emag
 	name = "Cryptographic Sequencer"
@@ -1819,7 +1815,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/waffleco
 	surplus = 0
 	restricted = TRUE
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP, ROLE_INFILTRATOR) // Yogs: infiltration
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // Yogs: infiltration
 	illegal_tech = FALSE
 
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
@@ -1862,7 +1858,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/aiModule/hacked
 	cost = 4
 	manufacturer = /datum/corporation/traitor/cybersun
-	exclude_antags = list(ROLE_INFILTRATOR)
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
@@ -1876,7 +1872,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A design disk for an autolathe that permits it to print all types of 10mm and .357 ammunition."
 	item = /obj/item/disk/design_disk/illegal_ammo
 	cost = 4
-	exclude_antags = list(ROLE_OPERATIVE) //Buy your own ammo you lazy sods
+	exclude_modes = list(/datum/game_mode/nuclear) //Buy your own ammo you lazy sods
 
 /datum/uplink_item/device_tools/illegal_ammo_disk/New()
 	..()
@@ -1889,7 +1885,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			operatives in the fight, even while under fire. Don't cross the streams!"
 	item = /obj/item/gun/medbeam
 	cost = 8
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/medgun_uber
 	name = "Augmented Medbeam Gun"
@@ -1898,7 +1894,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This one comes uncharged, so be sure to give it a whirl before getting into combat. Goes well with a M-546 Osprey."
 	item = /obj/item/gun/medbeam/uber
 	cost = 25
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/mdrive
 	name = "Mirage Drive"
@@ -1920,7 +1916,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/roburger_recipe
 	name = "Roburger crafting recipe"
@@ -1930,7 +1926,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/crafting_recipe/roburgers
 	cost = 14
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs: give sole_survivors the roburger
-	exclude_antags = list(ROLE_INFILTRATOR)
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/supermatter_delaminator
 	name = "Antinoblium Shard"
@@ -1942,7 +1938,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	manufacturer = /datum/corporation/traitor/waffleco
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr, /datum/objective/nuclear) //yogs
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/powersink
 	name = "Power Sink"
@@ -1952,7 +1948,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/powersink
 	cost = 8
 	manufacturer = /datum/corporation/traitor/waffleco
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/rad_laser
 	name = "Radioactive Microlaser"
@@ -1979,7 +1975,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			dodging attacks, or suffering an EMP will reduce or remove the transperency temporarily."
 	item = /obj/item/clothing/neck/cloak/ranger/syndie
 	cost = 30
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/medkit
 	name = "Syndicate Combat Medic Kit"
@@ -1988,14 +1984,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and other supplies helpful for a field medic."
 	item = /obj/item/storage/firstaid/tactical
 	cost = 4
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/hypospray_kit
 	name = "Syndicate Combat Hypospray Kit"
 	desc = "An advanced kit containing a combat hypospray and a wide variety of vials containing \"perfectly legal chemicals\" to treat combatants."
 	item = /obj/item/storage/firstaid/hypospray/syndicate
 	cost = 5
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/device_tools/soap
 	name = "Syndicate Soap"
@@ -2048,7 +2044,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A potion recovered at great risk by undercover Syndicate operatives and then subsequently modified with Syndicate technology. \
 			Using it will make any animal sentient, and bound to serve you, as well as implanting an internal radio for communication and an internal ID card for opening doors."
 	cost = 4
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
 
 /datum/uplink_item/device_tools/potion/traitor
@@ -2058,8 +2054,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Using it will make any animal sentient, and bound to serve you in your dastardly deeds."
 	cost = 2
 	limited_stock = 2 //only buy two, prevents certain mushroom shenanigans
-	include_antags = list() //clear the list
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP, ROLE_INFILTRATOR) // yogs: infiltration
+	include_modes = list() //clear the list
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/suspiciousphone
 	name = "Protocol CRAB-17 Phone"
@@ -2069,7 +2065,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 7
 	manufacturer = /datum/corporation/traitor/waffleco
 	limited_stock = 1
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/device_tools/syndie_bodybag
 	name = "Syndicate Prisoner Transport Bag"
@@ -2120,7 +2116,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	// TODO: When /datum/corporation/self is pickable for non-AI traitors, add it here.
 	limited_stock = 1 // Might be too annoying if someone had mulitple.
 	cost = 5 // Lacks the precision that a hacked law board (at 4 TCs) would give, but can be used on the go.
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 
 // Implants
@@ -2142,7 +2138,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 5
 	// Nukies have no use for this and their autosurgeons are already multi-use
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/adrenal
 	name = "Adrenal Implant"
@@ -2178,7 +2174,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This will permanently destroy your body, however."
 	item = /obj/item/storage/box/syndie_kit/imp_microbomb
 	cost = 2
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/macrobomb
 	name = "Macrobomb Implant"
@@ -2186,7 +2182,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Upon death, releases a massive explosion that will wipe out everything nearby."
 	item = /obj/item/storage/box/syndie_kit/imp_macrobomb
 	cost = 20
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 	restricted = TRUE
 
 /datum/uplink_item/implants/radio
@@ -2205,7 +2201,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 8
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/stealthimplant
 	name = "Stealth Implant"
@@ -2228,7 +2224,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/thermal_eyes
 	cost = 8
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/uplink
 	name = "Uplink Implant"
@@ -2257,7 +2253,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/suspicious/xray_eyes
 	cost = 10
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/implants/mantis
 	name = "G.O.R.L.E.X. Mantis Blade"
@@ -2265,7 +2261,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/suspicious/syndie_mantis
 	cost = 6
 	surplus = 0
-	exclude_antags = list(ROLE_INFILTRATOR) // yogs: infiltration
+	exclude_modes = list(/datum/game_mode/infiltration) // yogs: infiltration
 
 /datum/uplink_item/implants/stechkin_implant
 	name = "Stechkin arm implant"
@@ -2292,12 +2288,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/autosurgeon/suspicious/spinalspeed
 	manufacturer = /datum/corporation/traitor/vahlen
 	cost = 12
-	exclude_antags = list(ROLE_INFILTRATOR, ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/spinal/nukie
 	cost = 20
-	exclude_antags = list()
-	include_antags = list(ROLE_INFILTRATOR, ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list()
+	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/implants/emp_shield
 	name = "EMP Shield Implant"
@@ -2310,7 +2306,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 // Events
 /datum/uplink_item/services
 	category = "Services"
-	include_antags = list(ROLE_INFILTRATOR, ROLE_OPERATIVE)
+	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear)
 	surplus = 0
 	restricted = TRUE
 
@@ -2342,7 +2338,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 //Infiltrator shit
 /datum/uplink_item/infiltration
 	category = UPLINK_CATEGORY_INFILTRATION
-	include_antags = list(ROLE_INFILTRATOR)
+	include_modes = list(/datum/game_mode/infiltration)
 	surplus = 0
 
 /datum/uplink_item/infiltration/extra_stealthsuit
@@ -2428,7 +2424,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = UPLINK_CATEGORY_ROLE
-	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	surplus = 0
 
 /datum/uplink_item/role_restricted/ancient_jumpsuit
@@ -2571,10 +2567,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			to create a few of the same type of spiders we found on the planets over there. They're a bit tame until you \
 			also give them a bit of sentience though."
 	item = /obj/item/reagent_containers/syringe/spider_extract
-	cost = 10
+	cost = 25 //yogs - increase price to reduce grief potential
 	manufacturer = /datum/corporation/traitor/waffleco
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
-	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs reduces grief potential
+	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs // >Increase price to reduce grief > limit it to hijack only :think:
 
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"
@@ -2790,7 +2786,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/costumes
 	surplus = 0
-	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	cost = 4
 	cant_discount = TRUE
 
@@ -3560,4 +3556,3 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "Omnizine infused gummy bears. Grape flavor. Chew throughly!"
 	item = /obj/item/storage/pill_bottle/gummies/omnizine
 	cost = 1
-

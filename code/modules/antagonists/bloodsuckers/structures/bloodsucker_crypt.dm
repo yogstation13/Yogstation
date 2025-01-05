@@ -468,8 +468,6 @@
 	else
 		to_chat(user, span_warning("There's no metal to retrieve in [src]."))
 	update_appearance(UPDATE_ICON)
-	return TRUE
-
 #undef METALLIMIT
 
 /obj/structure/bloodsucker/bloodstatue
@@ -855,7 +853,6 @@
 		to_chat(user, span_warning("There's no meat to retrieve in [src]"))
 	meat_amount = bigmeat + intermeat + mediummeat + smallmeat
 	update_appearance(UPDATE_ICON)
-	return TRUE
 
 /**
  *	Step One: Tick Down Conversion from 3 to 0

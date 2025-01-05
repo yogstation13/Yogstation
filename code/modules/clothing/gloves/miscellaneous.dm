@@ -61,7 +61,7 @@
 /obj/item/clothing/gloves/combat
 	name = "combat gloves"
 	desc = "These tactical gloves are fireproof and shock resistant."
-	icon_state = "combat"
+	icon_state = "black"
 	item_state = "blackgloves"
 	strip_delay = 80
 	cold_protection = HANDS

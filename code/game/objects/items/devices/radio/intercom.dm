@@ -29,14 +29,14 @@
 	. = ..()
 
 /obj/item/radio/intercom/ratvar/process()
-	if(SSgamemode.servants_of_ratvar.len)
-		invisibility = initial(invisibility)
-		alpha = initial(alpha)
-		emped = FALSE
-	else
+	if(!istype(SSticker.mode, /datum/game_mode/clockwork_cult))
 		invisibility = INVISIBILITY_OBSERVER
 		alpha = 125
 		emped = TRUE
+	else
+		invisibility = initial(invisibility)
+		alpha = initial(alpha)
+		emped = FALSE
 	..()
 
 /obj/item/radio/intercom/Initialize(mapload, ndir, building)

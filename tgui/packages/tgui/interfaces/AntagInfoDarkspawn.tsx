@@ -172,7 +172,7 @@ const FlavorSection = () => {
 
 const GuideSection = (props, context) => {
   const { data } = useBackend<Info>(context);
-  const { divulged, has_class } = data;
+  const { has_class } = data;
 
   return (
     <Stack vertical fontSize="16px">
@@ -182,12 +182,6 @@ const GuideSection = (props, context) => {
       {!has_class && (
       <Stack.Item>
         - Select a class in the selection tab to decide what kind of gameplay you want.
-      </Stack.Item>
-      )}
-      {!divulged && (
-      <Stack.Item>
-        - Once you are ready, retreat to a secluded location to divulge.
-        - Divulging removes your disguise while enabling you to learn new abilities via the research tab.
       </Stack.Item>
       )}
       <Stack.Item>

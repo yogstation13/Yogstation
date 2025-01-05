@@ -4,23 +4,17 @@
 	weight = 5
 	max_occurrences = 1
 	min_players = 25
-	description = "Spawns spider eggs, ready to hatch."
-	min_wizard_trigger_potency = 5
-	max_wizard_trigger_potency = 7
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_EXTERNAL, TAG_ALIEN)
-	checks_antag_cap = TRUE
+	dynamic_should_hijack = TRUE
 
 /datum/round_event/spider_infestation
-	announce_when	= 400
+	announceWhen	= 400
 
 	var/spawncount = 1
 
 
 /datum/round_event/spider_infestation/setup()
-	announce_when = rand(announce_when, announce_when + 50)
+	announceWhen = rand(announceWhen, announceWhen + 50)
 	spawncount = rand(5, 8)
-	setup = TRUE //storytellers
 
 /datum/round_event/spider_infestation/announce(fake)
 	priority_announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", ANNOUNCER_ALIENS)

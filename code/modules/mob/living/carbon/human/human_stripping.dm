@@ -46,20 +46,12 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	item_slot = ITEM_SLOT_ICLOTHING
 
 /datum/strippable_item/mob_item_slot/jumpsuit/get_alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	var/obj/item/clothing/under/jumpsuit = get_item(source)
 	if (!istype(jumpsuit))
 		return null
 	return jumpsuit?.can_adjust ? "adjust_jumpsuit" : null
 
 /datum/strippable_item/mob_item_slot/jumpsuit/alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	var/obj/item/clothing/under/jumpsuit = get_item(source)
 	if (!istype(jumpsuit))
 		return null
@@ -89,17 +81,9 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	item_slot = ITEM_SLOT_FEET
 
 /datum/strippable_item/mob_item_slot/feet/get_alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	return null
 
 /datum/strippable_item/mob_item_slot/feet/alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	return
 
 /datum/strippable_item/mob_item_slot/suit_storage
@@ -107,17 +91,9 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	item_slot = ITEM_SLOT_SUITSTORE
 
 /datum/strippable_item/mob_item_slot/suit_storage/get_alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	return get_strippable_alternate_action_internals(get_item(source), source)
 
 /datum/strippable_item/mob_item_slot/suit_storage/alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	return strippable_alternate_action_internals(get_item(source), source, user)
 
 /datum/strippable_item/mob_item_slot/id
@@ -129,17 +105,9 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	item_slot = ITEM_SLOT_BELT
 
 /datum/strippable_item/mob_item_slot/belt/get_alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	return get_strippable_alternate_action_internals(get_item(source), source)
 
 /datum/strippable_item/mob_item_slot/belt/alternate_action(atom/source, mob/user)
-	. = ..()
-	if (.)
-		return
-
 	return strippable_alternate_action_internals(get_item(source), source, user)
 
 /datum/strippable_item/mob_item_slot/pocket
@@ -159,9 +127,6 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	if (!.)
 		warn_owner(source)
 
-/datum/strippable_item/mob_item_slot/pocket/finish_unequip(atom/source, mob/user, place_in_hand = FALSE)
-	. = ..(source, user, TRUE)
-
 /datum/strippable_item/mob_item_slot/pocket/start_unequip(atom/source, mob/user)
 	var/obj/item/item = get_item(source)
 	if (isnull(item))
@@ -172,7 +137,7 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	var/log_message = "[key_name(source)] is being pickpocketed of [item] by [key_name(user)] ([pocket_side])"
 	source.log_message(log_message, LOG_ATTACK, color="red")
 	user.log_message(log_message, LOG_ATTACK, color="red", log_globally=FALSE)
-	item.add_fingerprint(user)
+	item.add_fingerprint(src)
 
 	var/result = start_unequip_mob(item, source, user, POCKET_STRIP_DELAY)
 
@@ -200,12 +165,11 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 
 	var/mob/living/carbon/carbon_source = source
 
-	var/obj/item/clothing/head = carbon_source.head
-	if (istype(head) && (head.clothing_flags & HEADINTERNALS) && istype(item, /obj/item/tank))
-		return isnull(carbon_source.internal) ? "enable_internals" : "disable_internals"
-
 	var/obj/item/clothing/mask = carbon_source.wear_mask
-	if (istype(mask) && (mask.clothing_flags & MASKINTERNALS) && istype(item, /obj/item/tank))
+	if (!istype(mask))
+		return
+
+	if ((mask.clothing_flags & MASKINTERNALS) && istype(item, /obj/item/tank))
 		return isnull(carbon_source.internal) ? "enable_internals" : "disable_internals"
 
 /proc/strippable_alternate_action_internals(obj/item/item, atom/source, mob/user)

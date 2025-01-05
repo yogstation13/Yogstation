@@ -196,8 +196,7 @@
 	CHECK_TICK
 
 	//Set news report and mode result
-	SSgamemode.round_end_report()
-	SSgamemode.store_roundend_data() // store data on roundend for next round
+	mode.set_round_result()
 
 	// Check whether the cargo king achievement was achieved
 	cargoking()
@@ -231,7 +230,7 @@
 				continue
 			if(SSpersistence.antag_rep_change[M.ckey] < 0) // don't want to punish antags for being alive hehe
 				continue
-			else if(M.onCentCom() || SSticker.force_ending || SSgamemode.station_was_nuked)
+			else if(M.onCentCom() || SSticker.force_ending || SSticker.mode.station_was_nuked)
 				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/escaped_alive_bonus) // Reward for escaping alive
 			else
 				SSpersistence.antag_rep_change[M.ckey] *= CONFIG_GET(number/stayed_alive_bonus) // Reward for staying alive
@@ -248,7 +247,7 @@
 	CHECK_TICK
 	SSdbcore.SetRoundEnd()
 	//Collects persistence features
-	if(SSgamemode.allow_persistence_save)
+	if(mode.allow_persistence_save)
 		SSpersistence.CollectData()
 
 	//stop collecting feedback during grifftime
@@ -303,7 +302,7 @@
 
 /datum/controller/subsystem/ticker/proc/standard_reboot()
 	if(ready_for_reboot)
-		if(SSgamemode.station_was_nuked)
+		if(mode.station_was_nuked)
 			Reboot("Station destroyed by Nuclear Device.", "nuke")
 		else
 			Reboot("Round ended.", "proper completion")
@@ -313,6 +312,11 @@
 //Common part of the report
 /datum/controller/subsystem/ticker/proc/build_roundend_report()
 	var/list/parts = list()
+
+	//Gamemode specific things. Should be empty most of the time.
+	parts += mode.special_report()
+
+	CHECK_TICK
 
 	//AI laws
 	parts += law_report()
@@ -347,17 +351,15 @@
 
 /datum/controller/subsystem/ticker/proc/survivor_report(popcount)
 	var/list/parts = list()
-
-	parts += "<div class='panel stationborder'><span class='header'>[("Storyteller: [SSgamemode.storyteller ? SSgamemode.storyteller.name : "N/A"]")]</span></div>"
-
 	var/station_evacuated = EMERGENCY_ESCAPED_OR_ENDGAMED
 
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[GLOB.TAB]Round ID: <b>[info]</b>"
+	parts += "[GLOB.TAB]Gamemode: <B>[SSticker.mode.name]</B>"
 	parts += "[GLOB.TAB]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[GLOB.TAB]Station Integrity: <B>[SSgamemode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
+	parts += "[GLOB.TAB]Station Integrity: <B>[mode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
 		parts+= "[GLOB.TAB]Total Population: <B>[total_players]</B>"
@@ -372,6 +374,13 @@
 			//ignore this comment, it fixes the broken sytax parsing caused by the " above
 			else
 				parts += "[GLOB.TAB]<i>Nobody died this shift!</i>"
+	if(istype(SSticker.mode, /datum/game_mode/dynamic))
+		var/datum/game_mode/dynamic/mode = SSticker.mode
+		parts += "[FOURSPACES]Threat level: [mode.threat_level]"
+		parts += "[FOURSPACES]Threat left: [mode.mid_round_budget]"
+		parts += "[FOURSPACES]Executed rules:"
+		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
+			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -479,8 +488,8 @@
 
 /datum/controller/subsystem/ticker/proc/station_goal_report()
 	var/list/parts = list()
-	if(SSgamemode.station_goals.len)
-		for(var/V in SSgamemode.station_goals)
+	if(mode.station_goals.len)
+		for(var/V in mode.station_goals)
 			var/datum/station_goal/G = V
 			parts += G.get_result()
 		return "<div class='panel stationborder'><ul>[parts.Join()]</ul></div>"

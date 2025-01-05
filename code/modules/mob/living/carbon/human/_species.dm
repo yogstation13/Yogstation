@@ -106,8 +106,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/punchdamagelow = 1
 	///highest possible punch damage
 	var/punchdamagehigh = 10
-	///chance for a punch to stun
-	var/punchstunchance = 0.1
+	///damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
+	var/punchstunthreshold = 10
 	///values of inaccuracy that adds to the spread of any ranged weapon
 	var/aiminginaccuracy = 0
 	///base electrocution coefficient
@@ -523,8 +523,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
-	if(!(C.voice_type?.can_use(id)))
-		C.voice_type = get_random_valid_voice(id)
 
 /datum/species/proc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	if(C.dna.species.exotic_bloodtype)
@@ -854,8 +852,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			if(underwear)
 				if(HAS_TRAIT(H, TRAIT_SKINNY))
 					standing += wear_skinny_version(underwear.icon_state, underwear.icon, BODY_LAYER) //Neat, this works
-				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
-					standing += wear_female_version(underwear.icon_state, underwear.icon, BODY_LAYER, flat = !!(H.mob_biotypes & MOB_REPTILE)) // lizards
 				else
 					var/mutable_appearance/underwear_overlay = mutable_appearance(underwear.icon, underwear.icon_state, -BODY_LAYER)
 					if(H.dna.species.id in underwear.sprite_sheets)
@@ -869,7 +865,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(HAS_TRAIT(H, TRAIT_SKINNY)) //Check for skinny first
 					standing += wear_skinny_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else if((H.gender == FEMALE && (FEMALE in possible_genders)) && H.dna.species.is_dimorphic)
-					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER, flat = !!(H.mob_biotypes & MOB_REPTILE)) // lizards
+					standing += wear_female_version(undershirt.icon_state, undershirt.icon, BODY_LAYER)
 				else
 					var/mutable_appearance/undershirt_overlay = mutable_appearance(undershirt.icon, undershirt.icon_state, -BODY_LAYER)
 					if(H.dna.species.id in undershirt.sprite_sheets)
@@ -1431,7 +1427,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 				if(!disable_warning)
 					to_chat(H, "The [I.name] is too big to attach.") //should be src?
 				return FALSE
-			if( istype(I, /obj/item/modular_computer/tablet/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
+			if( istype(I, /obj/item/pda) || istype(I, /obj/item/pen) || is_type_in_list(I, H.wear_suit.allowed) )
 				return TRUE
 			return FALSE
 		if(ITEM_SLOT_HANDCUFFED)
@@ -1466,7 +1462,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 /datum/species/proc/before_equip_job(datum/job/J, mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H, client/preference_source)
+/datum/species/proc/after_equip_job(datum/job/J, mob/living/carbon/human/H)
 	H.update_mutant_bodyparts()
 
 // Do species-specific reagent handling here
@@ -1512,7 +1508,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	// nutrition decrease and satiety
 	if (H.nutrition > 0 && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHUNGER))
 		// THEY HUNGER
-		var/hunger_rate = HUNGER_FACTOR * (EXP_MASTER + H.get_skill(SKILL_FITNESS)) / EXP_MASTER
+		var/hunger_rate = HUNGER_FACTOR
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(mood && mood.sanity > SANITY_DISTURBED)
 			hunger_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
@@ -1742,7 +1738,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(M)
 		M.handle_counter(target, user)
 		return FALSE
-	user.add_exp(SKILL_FITNESS, 5)
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
 	else
@@ -1753,8 +1748,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			atk_verb = "kick"
 			atk_effect = ATTACK_EFFECT_KICK
 		user.do_attack_animation(target, atk_effect)
-		var/percentile = rand()
-		var/damage = LERP(user.get_punchdamagelow(), user.get_punchdamagehigh(), percentile)
+		var/damage = rand(user.get_punchdamagelow(), user.get_punchdamagehigh())
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
@@ -1795,7 +1789,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
 			log_combat(user, target, "punched")
 
-		if((target.stat != DEAD) && percentile > (1 - user.get_punchstunchance()) && !HAS_TRAIT(user, TRAIT_NO_PUNCH_STUN))
+		if((target.stat != DEAD) && damage >= user.get_punchstunthreshold())
 			target.visible_message(span_danger("[user] has knocked [target] down!"), \
 							span_userdanger("[user] has knocked [target] down!"), null, COMBAT_MESSAGE_RANGE)
 			var/knockdown_duration = 40 + (target.getStaminaLoss() + (target.getBruteLoss()*0.5))*0.8 //50 total damage = 40 base stun + 40 stun modifier = 80 stun duration, which is the old base duration
@@ -1941,8 +1935,6 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	SEND_SIGNAL(attacker, COMSIG_MOB_ATTACK_HAND, attacker, defender, attacker_style, modifiers)
 	if(disarming)
 		disarm(attacker, defender, attacker_style)
-	else if(attacker.grab_mode)
-		grab(attacker, defender, attacker_style)
 	else if(attacker.combat_mode)
 		harm(attacker, defender, attacker_style)
 	else

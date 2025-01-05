@@ -175,8 +175,6 @@ export type PreferencesMenuData = {
 
   earned_skillcapes: string[];
 
-  available_voices: string[];
-
   window: Window;
 };
 

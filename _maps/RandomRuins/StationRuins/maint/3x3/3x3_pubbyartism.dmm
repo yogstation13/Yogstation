@@ -50,7 +50,9 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "G" = (
-/obj/structure/closet/l3closet/scientist,
+/obj/structure/closet/l3closet/scientist{
+	opened = 1
+	},
 /obj/item/book/manual/wiki/chemistry,
 /obj/machinery/light/small{
 	dir = 1

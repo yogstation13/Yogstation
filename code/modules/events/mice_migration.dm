@@ -2,10 +2,7 @@
 	name = "Mice Migration"
 	typepath = /datum/round_event/mice_migration
 	weight = 10
-	description = "A horde of mice arrives, and perhaps even the Rat King themselves."
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_DESTRUCTIVE, TAG_ALIEN) //not really alien but rat lords kind of are
-	event_group = /datum/event_group/guests
+	max_alert = SEC_LEVEL_DELTA
 
 /datum/round_event/mice_migration
 	var/minimum_mice = 5

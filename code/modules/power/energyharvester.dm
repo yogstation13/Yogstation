@@ -108,7 +108,8 @@ obj/item/energy_harvester/Initialize(mapload)
   * Uses REALTIMEOFDAY since that's what SSEconomy runs off. If using regular tick time, a lag spike will slow down the rate of power absorption and thus the money output.
   */
 /obj/item/energy_harvester/process()
-	if(!anchored || !manual_switch || !PN)
+	if(!anchored || !manual_switch ||!PN)
+		disconnect_from_network()
 		return PROCESS_KILL
 	if(PN.netexcess <= 0)
 		return

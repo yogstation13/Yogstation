@@ -30,7 +30,7 @@
 	return "<li>[name] : <span class='[check_completion() ? "greentext'>Complet" : "redtext'>Fail"]ed</span></li>"
 
 /datum/station_goal/Destroy()
-	SSgamemode.station_goals -= src
+	SSticker.mode.station_goals -= src
 	. = ..()
 
 /datum/station_goal/Topic(href, href_list)

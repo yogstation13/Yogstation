@@ -13,9 +13,6 @@
 	dir = 4;
 	layer = 2.9
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/holofloor{
 	dir = 9;
 	icon_state = "wood"
@@ -39,9 +36,6 @@
 	icon_state = "right";
 	layer = 3
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/holofloor{
 	dir = 9;
 	icon_state = "wood"
@@ -49,18 +43,6 @@
 /area/template_noop)
 "j" = (
 /obj/structure/window/reinforced,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
-/area/template_noop)
-"k" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 1
-	},
 /turf/open/floor/holofloor{
 	dir = 9;
 	icon_state = "wood"
@@ -90,9 +72,7 @@
 /area/template_noop)
 "p" = (
 /turf/open/floor/holofloor{
-	icon_state = "woodstairs2_wide";
-	icon = 'goon/icons/turfs/floors.dmi';
-	base_icon_state = "woodstairs2_wide"
+	icon_state = "stairs-r"
 	},
 /area/template_noop)
 "r" = (
@@ -103,14 +83,6 @@
 	icon_state = "wood"
 	},
 /area/template_noop)
-"u" = (
-/turf/open/floor/holofloor{
-	icon_state = "woodstairs_alone";
-	icon = 'goon/icons/turfs/floors.dmi';
-	base_icon_state = "woodstairs_alone";
-	dir = 4
-	},
-/area/template_noop)
 "v" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -119,9 +91,6 @@
 /obj/item/reagent_containers/food/drinks/shaker{
 	pixel_x = -12;
 	pixel_y = 1
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
 	},
 /turf/open/floor/holofloor{
 	dir = 9;
@@ -138,9 +107,6 @@
 	pixel_x = -1;
 	pixel_y = 8
 	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/holofloor{
 	dir = 9;
 	icon_state = "wood"
@@ -150,9 +116,6 @@
 /obj/structure/window/reinforced{
 	dir = 4;
 	layer = 2.9
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
 	},
 /turf/open/floor/holofloor{
 	dir = 9;
@@ -200,15 +163,6 @@
 /obj/structure/table/wood,
 /obj/item/instrument/guitar,
 /turf/open/floor/holofloor/carpet,
-/area/template_noop)
-"G" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/turf/open/floor/holofloor{
-	dir = 9;
-	icon_state = "wood"
-	},
 /area/template_noop)
 "H" = (
 /obj/structure/table/wood,
@@ -330,9 +284,7 @@
 /area/template_noop)
 "X" = (
 /turf/open/floor/holofloor{
-	icon_state = "woodstairs_wide";
-	icon = 'goon/icons/turfs/floors.dmi';
-	base_icon_state = "woodstairs_wide"
+	icon_state = "stairs-l"
 	},
 /area/template_noop)
 "Y" = (
@@ -373,7 +325,7 @@ g
 z
 z
 g
-k
+g
 y
 b
 x
@@ -389,7 +341,7 @@ j
 n
 h
 M
-u
+C
 E
 "}
 (5,1,1) = {"
@@ -397,7 +349,7 @@ R
 J
 V
 o
-G
+g
 X
 C
 U
@@ -409,7 +361,7 @@ R
 N
 Y
 o
-G
+g
 p
 C
 C

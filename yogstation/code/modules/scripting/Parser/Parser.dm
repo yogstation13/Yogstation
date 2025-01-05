@@ -22,7 +22,7 @@
 
 ///Sets <curToken> to the next token in the <tokens> list, or null if there are no more tokens.
 /datum/n_Parser/proc/NextToken()
-	if(index >= length(tokens))
+	if(index >= tokens.len)
 		curToken = null
 	else
 		curToken = tokens[++index]
@@ -43,7 +43,7 @@
 
 /datum/n_Parser/nS_Parser/Parse()
 	ASSERT(tokens)
-	for(,index <= length(tokens), index++)
+	for(,index <= tokens.len, index++)
 		curToken = tokens[index]
 		switch(curToken.type)
 			if(/datum/token/keyword)

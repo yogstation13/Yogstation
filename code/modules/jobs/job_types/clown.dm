@@ -12,7 +12,8 @@
 
 	alt_titles = list("Entertainer", "Comedian", "Jester", "Improv Artist")
 
-	base_access = list(ACCESS_SERVICE, ACCESS_THEATRE, ACCESS_MAINT_TUNNELS)
+	added_access = list(ACCESS_MAINT_TUNNELS)
+	base_access = list(ACCESS_SERVICE, ACCESS_THEATRE)
 
 	paycheck = PAYCHECK_MINIMAL
 	paycheck_department = ACCOUNT_SRV

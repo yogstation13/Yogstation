@@ -104,7 +104,6 @@
 	data["ghosts"] = ghosts
 	data["misc"] = misc
 	data["npcs"] = npcs
-	data["is_admin"] = is_admin(user)
 	return data
 
 /datum/orbit_menu/ui_assets()

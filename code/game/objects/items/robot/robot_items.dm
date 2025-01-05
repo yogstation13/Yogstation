@@ -864,8 +864,9 @@
 
 /obj/item/borg/gripper/CtrlClick(mob/user)
 	if(wrapped)
-		return wrapped.CtrlClick(user)
-	return ..()
+		wrapped.CtrlClick(user)
+		return
+	. = ..()
 
 /obj/item/borg/gripper/CtrlShiftClick(mob/user)
 	if(wrapped)

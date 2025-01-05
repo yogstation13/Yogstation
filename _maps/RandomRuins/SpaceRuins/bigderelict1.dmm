@@ -613,6 +613,7 @@
 /obj/item/ammo_casing/c45{
 	caliber = null;
 	desc = "A .45 bullet casing. This one is spent.";
+	icon_state = "s-casing";
 	name = "spent bullet casing"
 	},
 /obj/machinery/light{
@@ -923,6 +924,7 @@
 /area/ruin/space/has_grav/derelictoutpost)
 "ck" = (
 /obj/machinery/power/apc{
+	dir = 2;
 	name = "Tradepost APC";
 	pixel_y = -23;
 	start_charge = 0
@@ -1276,6 +1278,7 @@
 /obj/item/ammo_casing/c45{
 	caliber = null;
 	desc = "A .45 bullet casing. This one is spent.";
+	icon_state = "s-casing";
 	name = "spent bullet casing"
 	},
 /turf/open/floor/plasteel,
@@ -1342,6 +1345,7 @@
 /obj/item/ammo_casing/c45{
 	caliber = null;
 	desc = "A .45 bullet casing. This one is spent.";
+	icon_state = "s-casing";
 	name = "spent bullet casing"
 	},
 /obj/structure/alien/weeds{
@@ -1738,6 +1742,7 @@
 /obj/item/ammo_casing/c45{
 	caliber = null;
 	desc = "A .45 bullet casing. This one is spent.";
+	icon_state = "s-casing";
 	name = "spent bullet casing"
 	},
 /obj/structure/alien/weeds{
@@ -2114,8 +2119,14 @@
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
 	},
-/obj/item/computer_hardware/paicard,
+/obj/item/paicard,
 /obj/machinery/light,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
+"eC" = (
+/obj/structure/closet/crate,
+/obj/item/pda/clear,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
@@ -2578,7 +2589,7 @@ dV
 ej
 eo
 ex
-eF
+eC
 dL
 aR
 aZ

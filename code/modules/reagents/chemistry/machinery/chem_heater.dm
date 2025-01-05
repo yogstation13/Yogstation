@@ -29,10 +29,9 @@
 
 /obj/machinery/chem_heater/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
-		return FALSE
+		return
 	on = !on
 	update_appearance(UPDATE_ICON)
-	return TRUE
 
 /obj/machinery/chem_heater/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))

@@ -112,14 +112,10 @@
 /obj/effect/turf_decal/ramp_corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "dy" = (
 /obj/structure/rack,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "dD" = (
@@ -214,9 +210,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/goon/white_stairs_alone{
-	dir = 1
-	},
+/turf/open/floor/plasteel/stairs,
 /area/shuttle/escape)
 "gO" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -390,10 +384,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/shuttle/escape)
-"nC" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "nD" = (
 /obj/structure/railing{
 	dir = 1
@@ -560,7 +550,6 @@
 "sV" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "tg" = (
@@ -582,6 +571,7 @@
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "tx" = (
+/obj/structure/table/wood/fancy/royalblack,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -592,7 +582,9 @@
 	id = "4861tableshutters";
 	name = "Privacy Shutters"
 	},
-/obj/structure/table/wood/fancy/royalblack,
+/obj/effect/turf_decal/ramp_middle{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "tA" = (
@@ -1078,7 +1070,6 @@
 "JP" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "KX" = (
@@ -1233,7 +1224,6 @@
 "SE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks/beer,
-/obj/effect/turf_decal/ramp_middle,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "UD" = (
@@ -1253,7 +1243,8 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/goon/white_stairs_alone,
+/obj/effect/turf_decal/ramp_middle,
+/turf/open/floor/plasteel/stairs,
 /area/shuttle/escape)
 "Vm" = (
 /obj/structure/railing{
@@ -1505,7 +1496,7 @@ Xo
 (7,1,1) = {"
 da
 gz
-nC
+dn
 dn
 dX
 kx

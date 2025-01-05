@@ -106,6 +106,7 @@
 	visibility_flags = 0
 	agent = "Kongey Vibrion M-909"
 	new_form = /mob/living/carbon/monkey
+	bantype = ROLE_MONKEY
 
 
 	stage1	= list()
@@ -116,6 +117,8 @@
 	stage5	= list(span_warning("You feel like monkeying around."))
 
 /datum/disease/transformation/jungle_fever/do_disease_transformation(mob/living/carbon/affected_mob)
+	if(affected_mob.mind && !is_monkey(affected_mob.mind))
+		add_monkey(affected_mob.mind)
 	if(ishuman(affected_mob))
 		var/mob/living/carbon/monkey/M = affected_mob.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_KEEPSE)
 		M.ventcrawler = VENTCRAWLER_ALWAYS
@@ -134,6 +137,21 @@
 		if(4)
 			if(prob(3))
 				affected_mob.say(pick("Eeek, ook ook!", "Eee-eeek!", "Eeee!", "Ungh, ungh."), forced = "jungle fever")
+
+/datum/disease/transformation/jungle_fever/cure()
+	remove_monkey(affected_mob.mind)
+	..()
+
+/datum/disease/transformation/jungle_fever/monkeymode
+	visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC
+	disease_flags = CAN_CARRY //no vaccines! no cure!
+	cure_text = "Clown's Tears."
+	cures = list(/datum/reagent/consumable/clownstears)
+
+/datum/disease/transformation/jungle_fever/monkeymode/after_add()
+	if(affected_mob && !is_monkey_leader(affected_mob.mind))
+		visibility_flags = NONE
+
 
 /datum/disease/transformation/robot
 

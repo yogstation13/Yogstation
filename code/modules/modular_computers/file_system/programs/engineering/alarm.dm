@@ -47,16 +47,12 @@
 
 /datum/computer_file/program/alarm_monitor/New()
 	..()
-	GLOB.alarmdisplay |= src
+	GLOB.alarmdisplay += src
 
 /datum/computer_file/program/alarm_monitor/run_program(mob/user)
 	. = ..(user)
-	GLOB.alarmdisplay |= src
+	GLOB.alarmdisplay += src
 
 /datum/computer_file/program/alarm_monitor/kill_program(forced = FALSE)
 	GLOB.alarmdisplay -= src
 	..()
-
-/datum/computer_file/program/alarm_monitor/Destroy()
-	GLOB.alarmdisplay -= src
-	. = ..()

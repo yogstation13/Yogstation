@@ -20,7 +20,6 @@ export const ListInput = (props, context) => {
     title,
     message = '',
     buttons = [],
-    init_value,
     large_buttons,
     timeout,
   } = data;
@@ -41,7 +40,7 @@ export const ListInput = (props, context) => {
 
   // Selected Button
   const [selectedButton, setSelectedButton] = useLocalState(
-    context, 'selected_button', init_value);
+    context, 'selected_button', buttons[0]);
   // Dynamically changes the window height based on the message.
   const windowHeight =
     325 + Math.ceil(message.length / 3) + (large_buttons ? 5 : 0);

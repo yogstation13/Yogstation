@@ -7,7 +7,6 @@
 	var/datum/team/brother_team/team
 	antag_moodlet = /datum/mood_event/focused
 	can_hijack = HIJACK_HIJACKER
-	count_towards_antag_cap = TRUE
 
 /datum/antagonist/brother/create_team(datum/team/brother_team/new_team)
 	if(!new_team)
@@ -20,7 +19,7 @@
 	return team
 
 /datum/antagonist/brother/on_gain()
-	SSgamemode.brothers += owner
+	SSticker.mode.brothers += owner
 	owner.special_role = special_role
 	if(owner.current)
 		give_pinpointer()
@@ -34,9 +33,6 @@
 	W.on_reading_finished(brother)
 	qdel(W)
 
-	brother.add_skill_points(EXP_HIGH) // extra skills
-	ADD_TRAIT(owner, TRAIT_EXCEPTIONAL_SKILL, type)
-
 	if(istype(brother))
 		var/obj/item/storage/box/bloodbrother/T = new()
 		if(brother.equip_to_slot_or_del(T, ITEM_SLOT_BACKPACK))
@@ -47,7 +43,7 @@
 	to_chat(brother, span_userdanger("Unfortunately, you weren't able to get a keepsake box. This is bad and you should adminhelp (press F1)."))
 
 /datum/antagonist/brother/on_removal()
-	SSgamemode.brothers -= owner
+	SSticker.mode.brothers -= owner
 	if(owner.current)
 		to_chat(owner.current,span_userdanger("You are no longer the [special_role]!"))
 		owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer/brother)

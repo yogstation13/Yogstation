@@ -49,7 +49,8 @@
 /area/ruin/unpowered)
 "al" = (
 /obj/structure/chair/bananium{
-	dir = 8
+	dir = 8;
+	icon_state = "bananium_chair"
 	},
 /turf/open/floor/mineral/bananium,
 /area/ruin/unpowered)
@@ -61,8 +62,10 @@
 /obj/item/clothing/gloves/color/rainbow,
 /obj/item/clothing/mask/gas/clown_hat,
 /obj/item/clothing/shoes/clown_shoes,
+/obj/item/clothing/under/rank/clown,
 /obj/item/storage/backpack/clown,
 /obj/item/storage/backpack/duffelbag/clown,
+/obj/item/cartridge/virus/clown,
 /turf/open/floor/mineral/bananium,
 /area/ruin/unpowered)
 "ao" = (
@@ -70,7 +73,9 @@
 /turf/open/floor/mineral/bananium,
 /area/ruin/unpowered)
 "ap" = (
-/obj/structure/bed,
+/obj/structure/bed{
+	pixel_y = 0
+	},
 /obj/item/bedsheet/clown,
 /turf/open/floor/mineral/bananium,
 /area/ruin/unpowered)
@@ -345,13 +350,16 @@
 "bl" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -383,20 +391,24 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "br" = (
 /obj/item/grown/bananapeel,
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
+	dir = 8;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel/dark{
 	dir = 8
@@ -406,13 +418,16 @@
 /obj/effect/decal/cleanable/oil/streak,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -433,13 +448,16 @@
 /obj/item/paperplane,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -447,19 +465,23 @@
 /obj/item/coin/bananium,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "bx" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 8
+	dir = 8;
+	icon_state = "warningline"
 	},
 /turf/open/floor/plasteel/dark{
 	dir = 8
@@ -471,13 +493,16 @@
 /obj/item/pickaxe/drill,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -498,13 +523,16 @@
 /obj/structure/mecha_wreckage/honker,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -512,13 +540,16 @@
 /obj/effect/decal/cleanable/robot_debris,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
@@ -526,13 +557,16 @@
 /obj/effect/decal/cleanable/shreds,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)

@@ -18,17 +18,15 @@
 	//cycles colors
 	var/last_colour = 0
 	var/color_cycle = FALSE
-	var/fade_color
 	var/list/hsv
 
-/datum/component/after_image/Initialize(duration = 15, rest_time = 1, color_cycle = FALSE, fade_color)
+/datum/component/after_image/Initialize(duration = 15, rest_time = 1, color_cycle = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	owner = parent
 	src.rest_time = rest_time
 	src.duration = duration
 	src.color_cycle = color_cycle
-	src.fade_color = fade_color
 	last_colour = world.time
 
 /datum/component/after_image/RegisterWithParent()
@@ -77,10 +75,7 @@
 	F.pixel_x = (traveled * x_modifier) + owner.pixel_x
 	F.pixel_y = (traveled * y_modifier) + owner.pixel_y
 
-	//give them colors
-	if(fade_color)
-		F.color = fade_color
-		return
+	//give them a random colours
 	if(!color_cycle)
 		return
 	if(!hsv)

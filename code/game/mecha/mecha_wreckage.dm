@@ -30,12 +30,7 @@
 
 /obj/structure/mecha_wreckage/examine(mob/user)
 	. = ..()
-	var/damage_msg = "There was no capacitor to save this poor mecha from its doomed fate"
-	if(user.skill_check(SKILL_MECHANICAL, EXP_GENIUS) || user.skill_check(SKILL_MECHANICAL, EXP_GENIUS))
-		damage_msg = ", but you think you could get it working again..."
-	else
-		damage_msg = "! It cannot be repaired!"
-	. += span_warning(damage_msg)
+	. += span_danger("There was no capacitor to save this poor mecha from its doomed fate! It cannot be repaired!")
 
 /obj/structure/mecha_wreckage/gygax
 	name = "\improper Gygax wreckage"

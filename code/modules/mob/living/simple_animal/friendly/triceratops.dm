@@ -1,6 +1,6 @@
 /mob/living/simple_animal/triceratops
 	name = "Bismuth"
-	desc = "Ancient, Reliable, Good at Pathfinding."
+	desc = "Acient, Reliable, Good at Pathfinding."
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "bismuth"
 	icon_living = "bismuth"

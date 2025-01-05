@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(starlight)
 
 /turf/open/space/openspace
 	icon = 'icons/turf/floors.dmi'
-	icon_state = MAP_SWITCH("pure_white", "invisible")
+	icon_state = MAP_SWITCH("pure_white", "transparent")
 	plane = TRANSPARENT_FLOOR_PLANE
 
 /turf/open/space/openspace/Initialize(mapload) // handle plane and layer here so that they don't cover other obs/turfs in Dream Maker
@@ -280,10 +280,10 @@ GLOBAL_LIST_EMPTY(starlight)
 		UnregisterSignal(below, COMSIG_TURF_CHANGE)
 	return ..()
 
-/turf/open/space/openspace/zAirIn(direction, turf/source)
+/turf/open/space/openspace/zAirIn()
 	return TRUE
 
-/turf/open/space/openspace/zAirOut(direction, turf/source)
+/turf/open/space/openspace/zAirOut()
 	return TRUE
 
 /turf/open/space/openspace/zPassIn(direction)

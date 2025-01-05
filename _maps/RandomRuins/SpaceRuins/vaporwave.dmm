@@ -134,18 +134,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/plating{
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/ruin/unpowered/no_grav)
 "D" = (
 /obj/effect/turf_decal/sand,
-/obj/structure/railing{
-	dir = 4
-	},
 /turf/open/floor/plasteel/airless{
 	icon_state = "recharge_floor_asteroid"
 	},
@@ -159,9 +153,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
 /turf/open/floor/plating{
 	initial_gas_mix = "TEMP=2.7"
 	},
@@ -183,28 +174,26 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/unpowered/no_grav)
 "J" = (
-/turf/open/floor/plasteel/stairs/goon/stairs_wide{
-	dir = 1
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/airless{
+	icon_state = "stairs-l"
 	},
 /area/ruin/unpowered/no_grav)
 "K" = (
-/turf/open/floor/plasteel/stairs/goon/stairs_middle{
-	dir = 1
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/airless{
+	icon_state = "stairs-m"
 	},
 /area/ruin/unpowered/no_grav)
 "L" = (
-/turf/open/floor/plasteel/stairs/goon/stairs2_wide{
-	dir = 1
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plasteel/airless{
+	icon_state = "stairs-r"
 	},
 /area/ruin/unpowered/no_grav)
 "M" = (
 /obj/effect/overlay/palmtree_r,
 /turf/open/floor/plating/asteroid/airless,
-/area/ruin/unpowered/no_grav)
-"N" = (
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel/airless,
 /area/ruin/unpowered/no_grav)
 "O" = (
 /obj/structure/chair/comfy/black{
@@ -219,62 +208,11 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/vaporwave,
 /area/ruin/space/has_grav/powered/aesthetic)
-"Q" = (
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/unpowered/no_grav)
 "R" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand/plating,
-/turf/open/floor/plating{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/unpowered/no_grav)
-"S" = (
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
-/turf/open/floor/plating{
-	initial_gas_mix = "TEMP=2.7"
-	},
-/area/ruin/unpowered/no_grav)
-"U" = (
-/obj/effect/turf_decal/sand,
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/plasteel/airless{
-	icon_state = "recharge_floor_asteroid"
-	},
-/area/ruin/unpowered/no_grav)
-"V" = (
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/turf/open/floor/plasteel/airless,
-/area/ruin/unpowered/no_grav)
-"X" = (
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plasteel/airless,
-/area/ruin/unpowered/no_grav)
-"Z" = (
-/obj/effect/turf_decal/sand,
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
 /turf/open/floor/plating{
 	initial_gas_mix = "TEMP=2.7"
 	},
@@ -412,8 +350,8 @@ v
 P
 f
 C
-Q
-Z
+I
+A
 d
 "}
 (9,1,1) = {"
@@ -428,9 +366,9 @@ k
 k
 k
 f
-U
+D
 J
-X
+I
 d
 "}
 (10,1,1) = {"
@@ -447,7 +385,7 @@ k
 z
 E
 K
-N
+E
 I
 "}
 (11,1,1) = {"
@@ -464,7 +402,7 @@ k
 f
 D
 L
-N
+E
 I
 "}
 (12,1,1) = {"
@@ -480,8 +418,8 @@ w
 P
 g
 F
-V
-S
+I
+A
 A
 "}
 (13,1,1) = {"

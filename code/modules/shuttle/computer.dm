@@ -184,8 +184,7 @@
 				log_admin("[usr] attempted to href dock exploit on [src] with target location \"[params["shuttle_id"]]\"")
 				message_admins("[usr] just attempted to href dock exploit on [src] with target location \"[params["shuttle_id"]]\"")
 				return
-			var/mob/user = usr
-			switch(SSshuttle.moveShuttle(shuttleId, params["shuttle_id"], 1, (10 - user.get_skill(SKILL_TECHNICAL)) / 10))
+			switch(SSshuttle.moveShuttle(shuttleId, params["shuttle_id"], 1))
 				if(0)
 					say("Shuttle departing. Please stand away from the doors.")
 					return TRUE

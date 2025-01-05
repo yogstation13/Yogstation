@@ -77,7 +77,7 @@
 				H.adjustCloneLoss(light_burning)
 
 /datum/species/shadow/check_roundstart_eligible()
-	if(SSgamemode.holidays && SSgamemode.holidays[HALLOWEEN])
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
 	return ..()
 
@@ -206,7 +206,7 @@
 
 /datum/species/shadow/darkspawn/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
-	C.fully_replace_character_name(null, darkspawn_name())
+	C.fully_replace_character_name("[C.real_name]", darkspawn_name())
 
 /datum/species/shadow/darkspawn/spec_updatehealth(mob/living/carbon/human/H)
 	var/datum/antagonist/darkspawn/antag = isdarkspawn(H)

@@ -1,7 +1,5 @@
 //How often to check for promotion possibility
 #define HEAD_UPDATE_PERIOD 300
-#define REVOLUTION_VICTORY 1
-#define STATION_VICTORY 2
 
 /datum/antagonist/rev
 	name = "Revolutionary"
@@ -10,7 +8,6 @@
 	job_rank = ROLE_REV
 	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_name = "rev"
-	count_towards_antag_cap = TRUE
 	var/datum/team/revolution/rev_team
 
 /datum/antagonist/rev/can_be_owned(datum/mind/new_owner)
@@ -353,14 +350,6 @@
 			return FALSE
 	return TRUE
 
-/datum/team/revolution/proc/round_result(finished)
-	if (finished == REVOLUTION_VICTORY)
-		SSticker.mode_result = "win - heads killed"
-		SSticker.news_report = REVS_WIN
-	else if (finished == STATION_VICTORY)
-		SSticker.mode_result = "loss - rev heads killed"
-		SSticker.news_report = REVS_LOSE
-		
 /datum/team/revolution/roundend_report()
 	if(!members.len && !ex_headrevs.len)
 		return
@@ -375,7 +364,7 @@
 		if(survivor.ckey)
 			num_survivors++
 			if(survivor.mind)
-				if(IS_REVOLUTIONARY(survivor))
+				if(is_revolutionary(survivor))
 					num_revs++
 	if(num_survivors)
 		result += "Command's Approval Rating: <B>[100 - round((num_revs/num_survivors)*100, 0.1)]%</B><br>"
@@ -462,7 +451,7 @@
 	return common_part + heads_report
 
 /datum/team/revolution/is_gamemode_hero()
-	return SSgamemode.name == "revolution"
+	return SSticker.mode.name == "revolution"
 
 /datum/outfit/revolutionary
 	name = "Revolutionary (Preview only)"

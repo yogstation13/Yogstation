@@ -7,7 +7,6 @@
 	density = TRUE
 	max_integrity = 250
 	circuit = /obj/item/circuitboard/machine/suit_storage_unit
-	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OFFLINE
 
 	var/obj/item/clothing/suit/space/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
@@ -137,6 +136,13 @@
 	if(storage_type)
 		storage = new storage_type(src)
 	update_appearance(UPDATE_ICON)
+
+/obj/machinery/suit_storage_unit/Destroy()
+	QDEL_NULL(suit)
+	QDEL_NULL(helmet)
+	QDEL_NULL(mask)
+	QDEL_NULL(storage)
+	return ..()
 
 /obj/machinery/suit_storage_unit/update_overlays()
 	. = ..()
@@ -437,8 +443,6 @@
 			locked = !locked
 			. = TRUE
 		if("uv")
-			if(!is_operational())
-				return
 			var/mob/living/mob_occupant = occupant
 			if(!helmet && !mask && !suit && !storage && !occupant)
 				return
@@ -474,9 +478,6 @@
 		return
 	if(panel_open)
 		to_chat(user, span_warning("Close the panel first!"))
-		return
-	if(locked)
-		to_chat(user, span_warning("It's locked!"))
 		return
 	if(uv)
 		to_chat(user, span_warning("You cannot open the gate while the cycle is running!"))

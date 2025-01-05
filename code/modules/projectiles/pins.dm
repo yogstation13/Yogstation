@@ -171,7 +171,7 @@
 	selfdestruct = TRUE
 
 /obj/item/firing_pin/fucked/pin_auth(mob/living/user)
-	if(faction_check(user.faction, list(ROLE_ANTAG), FALSE))
+	if(faction_check(user.faction, list(ROLE_SYNDICATE), FALSE))
 		return TRUE
 	return FALSE
 

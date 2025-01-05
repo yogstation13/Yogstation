@@ -184,7 +184,8 @@
 /obj/item/antag_spawner/nuke_ops/borg_tele/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	var/mob/living/silicon/robot/R
 	var/datum/antagonist/nukeop/creator_op = user.has_antag_datum(/datum/antagonist/nukeop,TRUE)
-	if(!creator_op)
+	var/royaler = user.has_antag_datum(/datum/antagonist/battleroyale, TRUE)
+	if(!creator_op && !royaler)
 		return
 
 	switch(borg_to_spawn)
@@ -199,7 +200,7 @@
 	if(prob(50))
 		brainfirstname = pick(GLOB.first_names_female)
 	var/brainopslastname = pick(GLOB.last_names)
-	if(creator_op.nuke_team.syndicate_name)  //the brain inside the syndiborg has the same last name as the other ops.
+	if(!royaler && creator_op.nuke_team.syndicate_name)  //the brain inside the syndiborg has the same last name as the other ops.
 		brainopslastname = creator_op.nuke_team.syndicate_name
 	var/brainopsname = "[brainfirstname] [brainopslastname]"
 

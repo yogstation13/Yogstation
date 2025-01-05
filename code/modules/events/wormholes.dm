@@ -6,17 +6,11 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 	max_occurrences = 3
 	weight = 2
 	min_players = 2
-	description = "Space time anomalies appear on the station, randomly teleporting people who walk into them."
-	min_wizard_trigger_potency = 3
-	max_wizard_trigger_potency = 7
-	track = EVENT_TRACK_MODERATE
-	tags = list(TAG_COMMUNAL, TAG_MAGICAL)
-	event_group = /datum/event_group/anomalies
-	
+
 
 /datum/round_event/wormholes
-	announce_when = 10
-	end_when = 60
+	announceWhen = 10
+	endWhen = 60
 
 	var/list/pick_turfs = list()
 	var/list/wormholes = list()
@@ -24,9 +18,8 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 	var/number_of_wormholes = 400
 
 /datum/round_event/wormholes/setup()
-	announce_when = rand(0, 20)
-	end_when = rand(40, 80)
-	setup = TRUE //storytellers
+	announceWhen = rand(0, 20)
+	endWhen = rand(40, 80)
 
 /datum/round_event/wormholes/start()
 	for(var/turf/open/floor/T in world)

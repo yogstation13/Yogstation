@@ -340,18 +340,12 @@
 	density = 1
 	},
 /obj/effect/decal/fakelattice,
-/obj/effect/turf_decal/ramp_middle,
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
 /turf/open/floor/pod/light{
 	density = 1
 	},
 /area/ruin/powered/beach)
 "bM" = (
-/turf/open/floor/plasteel/stairs/goon/stairs_alone{
-	dir = 1
-	},
+/turf/open/floor/plasteel/stairs/old,
 /area/ruin/powered/beach)
 "bN" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -363,9 +357,6 @@
 /area/ruin/powered/beach)
 "bP" = (
 /obj/item/reagent_containers/food/drinks/beer,
-/obj/effect/turf_decal/ramp_corner{
-	dir = 8
-	},
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "bQ" = (
@@ -531,21 +522,6 @@
 	},
 /turf/open/floor/pod/light,
 /area/ruin/powered/beach)
-"qY" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
-/turf/open/floor/plating/beach/sand,
-/area/ruin/powered/beach)
-"rd" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 4
-	},
-/turf/open/floor/plating/beach/sand,
-/area/ruin/powered/beach)
 "ry" = (
 /obj/structure/table,
 /obj/item/storage/box/drinkingglasses,
@@ -554,12 +530,6 @@
 /obj/item/storage/box/donkpockets,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plating,
-/area/ruin/powered/beach)
-"rM" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 1
-	},
-/turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "sy" = (
 /obj/effect/turf_decal/caution{
@@ -572,21 +542,9 @@
 /obj/machinery/jukebox/disco/indestructible,
 /turf/open/floor/light/colour_cycle,
 /area/ruin/powered/beach)
-"tN" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 4
-	},
-/turf/open/floor/plating/beach/sand,
-/area/ruin/powered/beach)
 "vl" = (
 /obj/structure/closet/athletic_mixed,
 /turf/open/floor/pod/dark,
-/area/ruin/powered/beach)
-"vV" = (
-/obj/effect/turf_decal/ramp_middle{
-	dir = 8
-	},
-/turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "wz" = (
 /obj/structure/table/wood,
@@ -641,10 +599,6 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod/dark,
 /area/ruin/powered/beach)
-"PC" = (
-/obj/effect/turf_decal/ramp_middle,
-/turf/open/floor/plating/beach/sand,
-/area/ruin/powered/beach)
 "Qc" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -653,10 +607,6 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/beach)
-"Qk" = (
-/obj/effect/turf_decal/ramp_corner,
-/turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "QS" = (
 /obj/effect/turf_decal/sand,
@@ -684,12 +634,6 @@
 	name = "bar shutters"
 	},
 /turf/open/floor/wood,
-/area/ruin/powered/beach)
-"Wz" = (
-/obj/effect/turf_decal/ramp_corner{
-	dir = 1
-	},
-/turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "Xp" = (
 /obj/effect/turf_decal/sand,
@@ -1293,10 +1237,10 @@ aK
 aA
 ar
 ar
-Wz
-vV
-qY
-rd
+ar
+ar
+ch
+ar
 ar
 bR
 bT
@@ -1325,11 +1269,11 @@ aK
 aA
 ar
 ar
-rM
+ar
 bA
 bG
 bL
-rd
+ar
 bR
 bT
 bU
@@ -1357,11 +1301,11 @@ aK
 aA
 ar
 ar
-rM
+ar
 bB
 bH
 bM
-PC
+ar
 bR
 bT
 bU
@@ -1389,10 +1333,10 @@ aA
 aA
 ar
 ar
-Qk
-tN
-tN
-tN
+ar
+ar
+ar
+ar
 bP
 bR
 bT

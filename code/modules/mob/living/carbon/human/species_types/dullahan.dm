@@ -18,7 +18,7 @@
 
 
 /datum/species/dullahan/check_roundstart_eligible()
-	if(SSgamemode.holidays && SSgamemode.holidays[HALLOWEEN])
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
 	return FALSE
 

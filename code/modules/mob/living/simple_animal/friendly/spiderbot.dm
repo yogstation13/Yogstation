@@ -81,7 +81,7 @@
 		visible_message(span_notice("[user] has fixed some of the dents on [src]."))
 		return
 
-	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/modular_computer))
+	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/pda))
 		if (!mmi)
 			to_chat(user, span_warning("There's no reason to swipe your ID - the spiderbot has no brain to remove."))
 			return 0
@@ -90,8 +90,8 @@
 		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
-			var/obj/item/modular_computer/pda = O
-			id_card = pda.GetID()
+			var/obj/item/pda/pda = O
+			id_card = pda.id
 
 		if(req_access in id_card.GetAccess())
 			to_chat(user, span_notice("You swipe your access card and pop the brain out of [src]."))

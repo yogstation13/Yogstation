@@ -4,15 +4,12 @@
 	earliest_start = 10 MINUTES
 	min_players = 5
 	weight = 15
-	alert_observers = FALSE
-	track = EVENT_TRACK_MUNDANE
-	tags = list(TAG_SPOOKY, TAG_COMMUNAL)
-	event_group = /datum/event_group/error
+	alert_observers = 0
 
 /datum/round_event/electrical_storm
 	var/lightsoutAmount	= 1
 	var/lightsoutRange	= 25
-	announce_when	= 1
+	announceWhen	= 1
 
 /datum/round_event/electrical_storm/announce(fake)
 	priority_announce("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")

@@ -301,7 +301,7 @@
 		add_overlay(mutable_appearance('icons/obj/hydroponics/equipment.dmi', "over_harvest3"))
 
 
-/obj/machinery/hydroponics/examine(mob/user)
+/obj/machinery/hydroponics/examine(user)
 	. = ..()
 	if(myseed)
 		. += span_info("It has [span_name("[myseed.plantname]")] planted.")
@@ -311,9 +311,6 @@
 			. += span_info("It's ready to harvest.")
 		else if (plant_health <= (myseed.endurance / 2))
 			. += span_warning("It looks unhealthy.")
-
-		if(user.skill_check(SKILL_SCIENCE, EXP_LOW))
-			. += myseed.get_analyzer_text(user, TRUE)
 	else
 		. += span_info("It's empty.")
 
@@ -330,6 +327,8 @@
 		to_chat(user, span_warning("It's filled with weeds!"))
 	if(pestlevel >= 5)
 		to_chat(user, span_warning("It's filled with tiny worms!"))
+	to_chat(user, "" )
+
 
 /obj/machinery/hydroponics/proc/weedinvasion() // If a weed growth is sufficient, this happens.
 	dead = 0
@@ -984,9 +983,9 @@
 /obj/machinery/hydroponics/soil/update_icon_lights()
 	return // Has no lights
 
-/obj/machinery/hydroponics/soil/attackby_secondary(obj/item/weapon, mob/user, params)
-	if(weapon.tool_behaviour == TOOL_SHOVEL)
+/obj/machinery/hydroponics/soil/attackby(obj/item/O, mob/user, params)
+	if(O.tool_behaviour == TOOL_SHOVEL && !istype(O, /obj/item/shovel/spade)) //Doesn't include spades because of uprooting plants
 		to_chat(user, span_notice("You clear up [src]!"))
 		qdel(src)
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
-	return ..()
+	else
+		return ..()

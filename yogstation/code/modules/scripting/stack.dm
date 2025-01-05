@@ -5,16 +5,16 @@
 	contents += value
 
 /datum/stack/proc/Pop()
-	if(!length(contents))
+	if(!contents.len)
 		return null
-	. = contents[length(contents)]
+	. = contents[contents.len]
 	contents.len--
 
 ///returns the item on the top of the stack without removing it
 /datum/stack/proc/Top()
-	if(!length(contents))
+	if(!contents.len)
 		return null
-	return contents[length(contents)]
+	return contents[contents.len]
 
 /datum/stack/proc/Copy()
 	var/datum/stack/new_stack = new()

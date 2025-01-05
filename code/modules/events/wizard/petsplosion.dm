@@ -4,9 +4,6 @@
 	typepath = /datum/round_event/wizard/petsplosion
 	max_occurrences = 1 //Exponential growth is nothing to sneeze at!
 	earliest_start = 0 MINUTES
-	description = "Rapidly multiplies the animals on the station."
-	min_wizard_trigger_potency = 0
-	max_wizard_trigger_potency = 4
 	var/mobs_to_dupe = 0
 
 /datum/round_event_control/wizard/petsplosion/preRunEvent()
@@ -19,7 +16,7 @@
 	..()
 
 /datum/round_event/wizard/petsplosion
-	end_when = 61 //1 minute (+1 tick for end_when not to interfere with tick)
+	endWhen = 61 //1 minute (+1 tick for endWhen not to interfere with tick)
 	var/countdown = 0
 	var/mobs_duped = 0
 

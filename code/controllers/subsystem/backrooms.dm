@@ -17,16 +17,12 @@ SUBSYSTEM_DEF(backrooms)
 	)
 
 /datum/controller/subsystem/backrooms/Initialize(timeofday)
-	var/noNeed = FALSE
 #ifdef LOWMEMORYMODE
-	noNeed = TRUE
+	return SS_INIT_NO_NEED
 #endif
 #ifdef UNIT_TESTS // This whole subsystem just introduces a lot of odd confounding variables into unit test situations, so let's just not bother with doing an initialize here.
-	noNeed = TRUE
+	return SS_INIT_NO_NEED
 #endif
-
-	if(noNeed) //we do it this way so things can pass linter while in low memory mode or unit tests
-		return SS_INIT_NO_NEED
 
 	pick_theme()
 	generate_backrooms()

@@ -4,7 +4,6 @@
 	roundend_category = "space pirates"
 	antagpanel_category = "Pirate"
 	show_to_ghosts = TRUE
-	count_towards_antag_cap = TRUE
 	var/datum/team/pirate/crew
 
 	/// In the preview icon, the nukies who are behind the leader

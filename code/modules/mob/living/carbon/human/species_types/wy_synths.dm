@@ -58,7 +58,7 @@
 
 	punchdamagehigh = 12
 	punchdamagelow = 5
-	punchstunchance = 0.2
+	punchstunthreshold = 11
 
 	var/last_warned
 

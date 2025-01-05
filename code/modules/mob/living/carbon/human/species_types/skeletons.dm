@@ -26,7 +26,7 @@
 	limbs_id = SPECIES_SKELETON //they are just normal skeletons but weaker
 
 /datum/species/skeleton/lowcalcium/check_roundstart_eligible()
-	if(SSgamemode.holidays && SSgamemode.holidays[HALLOWEEN])
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
 		return TRUE
 	return ..()
 

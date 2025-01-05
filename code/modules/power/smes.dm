@@ -441,11 +441,10 @@
 
 /obj/machinery/power/smes/CtrlClick(mob/user)
 	if(!user.canUseTopic(src, !issilicon(user)))
-		return FALSE
+		return
 	output_attempt = !output_attempt
 	log_smes(user)
 	update_appearance(UPDATE_ICON)
-	return TRUE
 
 #undef SMES_OUTPUTTING
 #undef SMES_NOT_OUTPUTTING

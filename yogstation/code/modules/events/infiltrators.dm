@@ -5,14 +5,12 @@
 	weight = 0
 	max_occurrences = 1
 	earliest_start = 30 MINUTES
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_COMBAT, TAG_EXTERNAL)
-	description = "Infiltrators will... infiltrate."
-	map_flags = EVENT_SPACE_ONLY
 
 	min_players = 23
 
-/datum/round_event_control/infiltrators/canSpawnEvent(players_amt, allow_magic = FALSE, fake_check = FALSE)
+	gamemode_blacklist = list("nuclear","wizard","revolution","abduction","infiltration","gang","cult","clockcult","darkspawn","dynamic")
+
+/datum/round_event_control/infiltrators/canSpawnEvent(players_amt, gamemode)
 	. = ..()
 	if(!.)
 		return .

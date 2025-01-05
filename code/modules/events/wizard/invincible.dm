@@ -4,9 +4,6 @@
 	typepath = /datum/round_event/wizard/invincible
 	max_occurrences = 5
 	earliest_start = 0 MINUTES
-	description = "Everyone is invincible for a short time ticks."
-	min_wizard_trigger_potency = 0
-	max_wizard_trigger_potency = 7
 
 /datum/round_event/wizard/invincible/start()
 

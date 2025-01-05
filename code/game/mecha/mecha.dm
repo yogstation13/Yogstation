@@ -20,8 +20,10 @@
 	var/mob/living/carbon/occupant = null
 	var/step_in = 10 //make a step in step_in/10 sec.
 	var/dir_in = SOUTH //What direction will the mech face when entered/powered on? Defaults to South.
+	var/normal_step_energy_drain = 0 //How much energy the mech will consume each time it moves. This variable is a backup for when leg actuators affect the energy drain.
 	var/step_energy_drain = 0
 	var/melee_energy_drain = 15
+	var/overload_step_energy_drain_min = 100
 	max_integrity = 600 //max_integrity is base health plus the wreck limit
 	integrity_failure = 300 // the point at which this mech becomes a wreck
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
@@ -122,6 +124,8 @@
 	var/defence_mode = FALSE
 	var/defence_mode_deflect_chance = 15
 	var/leg_overload_mode = FALSE
+	var/coral_leg_overload_mode = FALSE
+	var/leg_overload_coeff = 100
 	var/zoom_mode = FALSE
 	var/smoke = 5
 	var/smoke_ready = 1
@@ -342,10 +346,7 @@
 /obj/mecha/examine(mob/user)
 	. = ..()
 	var/hide_weapon = locate(/obj/item/mecha_parts/concealed_weapon_bay) in contents
-	var/obj/item/mecha_parts/mecha_equipment/melee_weapon/hidden_melee_weapon = locate(/obj/item/mecha_parts/mecha_equipment/melee_weapon) in equipment
-	if(hidden_melee_weapon && !(hidden_melee_weapon.mech_flags & EXOSUIT_MODULE_COMBAT))
-		hidden_melee_weapon = null
-	var/hidden_weapon = hide_weapon ? (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in equipment)||hidden_melee_weapon : null
+	var/hidden_weapon = hide_weapon ? (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in equipment) : null
 	var/list/visible_equipment = equipment - hidden_weapon
 	if(visible_equipment.len)
 		. += "It's equipped with:"
@@ -377,7 +378,7 @@
 				. += span_danger("The capacitor did well in preventing too much damage. Repair will be manageable.")
 			if(4)
 				. += span_danger("The capacitor did such a good job in preserving the chassis that you could almost call it functional. But it isn't. Repair should be easy though.")
-		if(repair_hint && (capacitor?.rating || user.skill_check(SKILL_TECHNICAL, EXP_GENIUS) || user.skill_check(SKILL_MECHANICAL, EXP_GENIUS)))
+		if(repair_hint && capacitor?.rating)
 			. += repair_hint
 
 //Armor tag
@@ -593,7 +594,7 @@
 	else if(selected.action_checks(target) && selected.action(target, user, params))
 		selected.start_cooldown()
 
-/obj/mecha/proc/default_melee_attack(atom/target, cooldown_override = 0)
+/obj/mecha/proc/default_melee_attack(atom/target)
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(oview(1,src))
 	if(!melee_can_hit || !isatom(target))
@@ -605,7 +606,7 @@
 	target.mech_melee_attack(src, force, TRUE)
 	melee_can_hit = FALSE
 	adjust_overheat(punch_heat_cost)
-	addtimer(VARSET_CALLBACK(src, melee_can_hit, TRUE), cooldown_override ? cooldown_override : melee_cooldown)
+	addtimer(VARSET_CALLBACK(src, melee_can_hit, TRUE), melee_cooldown)
 	return TRUE
 
 /obj/mecha/proc/range_action(atom/target)
@@ -695,12 +696,9 @@
 
 	var/move_result = 0
 	var/oldloc = loc
-	var/step_time = step_in
+	var/step_time = step_in * check_eva()
 	if(overheat > OVERHEAT_THRESHOLD)
-		step_time += (min(overheat, OVERHEAT_MAXIMUM) - OVERHEAT_THRESHOLD) / OVERHEAT_THRESHOLD // up to 0.5 slower based on overheating
-	if(leg_overload_mode)
-		step_time = min(1, step_in / 2)
-	step_time *= check_eva()
+		can_move += (min(overheat, OVERHEAT_MAXIMUM) - OVERHEAT_THRESHOLD) / OVERHEAT_THRESHOLD // up to 0.5 slower based on overheating
 
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(step_time))
@@ -713,7 +711,7 @@
 	if(move_result || loc != oldloc)// halfway done diagonal move still returns false
 		use_power(step_energy_drain)
 		if(leg_overload_mode)
-			adjust_overheat(OVERLOAD_HEAT_COST * step_time)
+			adjust_overheat(OVERLOAD_HEAT_COST)
 		can_move = world.time + step_time
 		return TRUE
 	return FALSE
@@ -768,10 +766,13 @@
 	else
 		if(..()) //mech was thrown
 			return
-		if(bumpsmash && occupant && !equipment_disabled && melee_can_hit) //Need a pilot to push the PUNCH button.
-			default_melee_attack(obstacle, smashcooldown) //Non-equipment melee attack
-			if(!obstacle || obstacle.CanPass(src,newloc))
-				step(src,dir)
+		if(bumpsmash && occupant) //Need a pilot to push the PUNCH button.
+			if(!equipment_disabled)
+				if(nextsmash < world.time)
+					obstacle.mech_melee_attack(src, force, FALSE)	//Non-equipment melee attack
+					nextsmash = world.time + smashcooldown
+					if(!obstacle || obstacle.CanPass(src,newloc))
+						step(src,dir)
 		if(isobj(obstacle))
 			var/obj/O = obstacle
 			if(!O.anchored)
@@ -1041,7 +1042,7 @@
 
 	visible_message("[user] starts to climb into [name].")
 
-	if(do_after(user, round(enter_delay * (check_eva(user)**2)), src, IGNORE_SKILL_DELAY, skill_check = SKILL_TECHNICAL))
+	if(do_after(user, enter_delay, src))
 		if(atom_integrity <= 0)
 			to_chat(user, span_warning("You cannot get in the [name], it has been destroyed!"))
 		else if(occupant)
@@ -1160,7 +1161,7 @@
 /obj/mecha/container_resist(mob/living/user)
 	is_currently_ejecting = TRUE
 	to_chat(occupant, "<span class='notice'>You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting.<span>")
-	if(do_after(occupant, round(exit_delay * (check_eva(user)**2)), src, IGNORE_SKILL_DELAY, skill_check = SKILL_TECHNICAL))
+	if(do_after(occupant, exit_delay, src))
 		to_chat(occupant, "<span class='notice'>You exit the mech.<span>")
 		go_out()
 	else
@@ -1375,11 +1376,18 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(QDELETED(I))
 			return
 
-// Check the pilot for mech piloting skill
-/obj/mecha/proc/check_eva(mob/pilot)
-	if(!pilot)
-		pilot = occupant
-	var/effective_skill = pilot.get_skill(SKILL_TECHNICAL)
-	if(effective_skill < EXP_MASTER && HAS_TRAIT(pilot, TRAIT_SKILLED_PILOT))
-		effective_skill += EXP_LOW // mech pilot suit adds extra pilot skill, up to EXP_MASTER
-	return (12 - effective_skill) / 10
+// Checks the pilot and their clothing for mech speed buffs
+/obj/mecha/proc/check_eva()
+	var/evaNum = 1
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant //if the person is skilled
+		var/datum/component/mech_pilot/skill = H.GetComponent(/datum/component/mech_pilot)
+		if(skill)
+			evaNum *= skill.piloting_speed
+
+		var/obj/item/clothing/under/clothes = H.get_item_by_slot(ITEM_SLOT_ICLOTHING) //if the jumpsuit directly assists the pilot
+		if(clothes)
+			var/datum/component/mech_pilot/MP = clothes.GetComponent(/datum/component/mech_pilot)
+			if(MP)
+				evaNum *= MP.piloting_speed
+	return evaNum

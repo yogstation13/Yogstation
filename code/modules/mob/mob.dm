@@ -87,7 +87,7 @@
 	update_config_movespeed()
 	update_movespeed(TRUE)
 
-/mob/New(loc, ...)
+/mob/New()
 	// This needs to happen IMMEDIATELY. I'm sorry :(
 	GenerateTag()
 	return ..()
@@ -807,6 +807,32 @@
 		unset_machine()
 		src << browse(null, t1)
 
+
+	if(href_list["item"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY))
+		var/slot = text2num(href_list["item"])
+		var/hand_index = text2num(href_list["hand_index"])
+		var/obj/item/what
+		if(hand_index)
+			what = get_item_for_held_index(hand_index)
+			slot = list(slot,hand_index)
+		else
+			what = get_item_by_slot(slot)
+		if(what)
+			if(!(what.item_flags & ABSTRACT))
+				usr.stripPanelUnequip(what,src,slot)
+		else
+			usr.stripPanelEquip(what,src,slot)
+
+// The src mob is trying to strip an item from someone
+// Defined in living.dm
+/mob/proc/stripPanelUnequip(obj/item/what, mob/who)
+	return
+
+// The src mob is trying to place an item on someone
+// Defined in living.dm
+/mob/proc/stripPanelEquip(obj/item/what, mob/who)
+	return
+
 /**
   * Controls if a mouse drop succeeds (return null if it doesnt)
   */
@@ -1193,12 +1219,14 @@
 					break
 				search_id = 0
 
-		else if( search_pda && istype(A, /obj/item/modular_computer/tablet) )
-			var/obj/item/modular_computer/tablet/PDA_or_phone = A
-			PDA_or_phone.update_label()
-			if(!search_id)
-				break
-			search_pda = 0
+		else if( search_pda && istype(A, /obj/item/pda) )
+			var/obj/item/pda/PDA = A
+			if(PDA.owner == oldname)
+				PDA.owner = newname
+				PDA.update_label()
+				if(!search_id)
+					break
+				search_pda = 0
 
 /mob/proc/update_stat()
 	return

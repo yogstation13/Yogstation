@@ -75,6 +75,7 @@
 #include "component_tests.dm"
 #include "dcs_check_list_arguments.dm"
 #include "dragon_expiration.dm"
+#include "dynamic_ruleset_sanity.dm"
 #include "focus_only_tests.dm"
 #include "greyscale_config.dm"
 #include "map_landmarks.dm"

@@ -222,7 +222,7 @@
 		else
 			progress_flash_divisor--
 
-/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, skill_check)
+/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, robo_check)
 	if(amount)
 		var/mutable_appearance/sparks = mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", GASFIRE_LAYER, src, ABOVE_LIGHTING_PLANE)
 		target.add_overlay(sparks)
@@ -280,12 +280,6 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv/mega)
 	mod_capacity = 120
 
-/obj/item/gun/energy/plasmacutter/adv/mega/glacite
-	name = "mega plasma cutter"
-	icon_state = "adv_plasmacutter_g"
-	item_state = "plasmacutter_glacite"
-	desc = "A mining tool capable of expelling concentrated plasma bursts. You could use it to cut limbs off xenos! Or, you know, mine stuff. This one has been enhanced with plasma glacite."
-
 /obj/item/gun/energy/plasmacutter/scatter
 	name = "plasma cutter shotgun"
 	icon_state = "miningshotgun"
@@ -302,11 +296,6 @@
 	desc = "An industrial-grade, heavy-duty mining shotgun. This one seems... mega!"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/scatter/adv/mega)
 	mod_capacity = 120
-
-/obj/item/gun/energy/plasmacutter/scatter/mega/glacite
-	name = "mega plasma cutter shotgun"
-	icon_state = "miningshotgun_glacite"
-	item_state = "miningshotgun_glacite"
 
 /obj/item/gun/energy/plasmacutter/adv/cyborg
 	name = "cyborg advanced plasma cutter"

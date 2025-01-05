@@ -3,10 +3,10 @@
 
 /obj/vehicle/ridden/lavaboat
 	name = "lava boat"
-	desc = "A boat used for traversing lava and liquid plasma."
+	desc = "A boat used for traversing lava."
 	icon_state = "goliath_boat"
 	icon = 'icons/obj/lavaland/dragonboat.dmi'
-	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
+	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	can_buckle = TRUE
 	legs_required = 0
 	arms_required = 0
@@ -44,7 +44,6 @@
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 3)
 	time = 5 SECONDS
 	category = CAT_PRIMAL
-
 
 //Dragon Boat
 

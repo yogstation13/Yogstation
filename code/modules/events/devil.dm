@@ -54,5 +54,5 @@
 	var/datum/mind/Mind = new /datum/mind(key)
 	Mind.assigned_role = ROLE_DEVIL
 	Mind.special_role = ROLE_DEVIL
-	SSgamemode.devils |= Mind
+	SSticker.mode.devils |= Mind
 	return Mind

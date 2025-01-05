@@ -82,6 +82,5 @@
 
 GLOBAL_LIST_INIT(liquid_blacklist, list(
 	/datum/reagent/sorium,
-	/datum/reagent/liquid_dark_matter,
-	/datum/reagent/fluorosurfactant
+	/datum/reagent/liquid_dark_matter
 ))

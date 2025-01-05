@@ -4,11 +4,7 @@
 	max_occurrences = 1
 	min_players = 20
 	weight = 4
-	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_SPOOKY, TAG_COMBAT)
-	description = "spawns a zombie somewhere on the station."
-
-
+	dynamic_should_hijack = TRUE
 /datum/round_event/ghost_role/zombie
 	minimum_required = 1
 	role_name = "zombie"

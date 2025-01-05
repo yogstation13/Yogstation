@@ -46,11 +46,7 @@
 	tool_behaviors = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
 	time = 1.5 SECONDS
 	category = CAT_WEAPON_RANGED
-	skill_requirements = list(
-		SKILL_MECHANICAL = EXP_MID,
-		SKILL_TECHNICAL = EXP_HIGH,
-		SKILL_SCIENCE = EXP_LOW,
-	) // this is such a good idea
+	always_available = FALSE // This was such a bad idea.
 
 /datum/crafting_recipe/flamethrower
 	name = "Flamethrower"
@@ -61,10 +57,6 @@
 	parts = list(/obj/item/assembly/igniter = 1,
 				/obj/item/weldingtool = 1)
 	tool_behaviors = list(TOOL_SCREWDRIVER)
-	skill_requirements = list(
-		SKILL_MECHANICAL = EXP_LOW,
-		SKILL_SCIENCE = EXP_LOW,
-	)
 	time = 1 SECONDS
 	category = CAT_WEAPON_RANGED
 

@@ -45,11 +45,13 @@
 	duration = 80 SECONDS
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/corrupted_dryad
-	var/health_bonus = 50
+	var/health_multiplier = 1.5
+	var/initial_health = 100
 
 /datum/status_effect/corrupted_dryad/on_apply()
 	. = ..()
-	owner.setMaxHealth(owner.maxHealth + health_bonus)
+	initial_health = owner.maxHealth
+	owner.setMaxHealth(initial_health * health_multiplier)
 	owner.adjustBruteLoss(-50)
 	owner.adjustFireLoss(-50)
 	owner.remove_CC()
@@ -58,10 +60,11 @@
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad)
 
 /datum/status_effect/corrupted_dryad/on_remove()
-	owner.setMaxHealth(owner.maxHealth - health_bonus)
+	owner.setMaxHealth(initial_health)
 	if(iscarbon(owner))
 		var/mob/living/carbon/C = owner
-		C.vomit(10, TRUE, FALSE, 3)
+		C.vomit(10, TRUE, TRUE, 3)
+	owner.adjust_dizzy(30)
 	owner.adjust_jitter(30)
 	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, id)
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "corruption", /datum/mood_event/corrupted_dryad_bad)
