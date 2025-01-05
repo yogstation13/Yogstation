@@ -299,20 +299,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Bloodsucker UI-----------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/antagonist/bloodsucker/ui_static_data(mob/user)
-	var/list/data = list()
-	//we don't need to update this that much.
-	// for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
-	// 	var/list/power_data = list()
-
-	// 	power_data["power_name"] = power.name
-	// 	power_data["power_explanation"] = power.power_explanation
-	// 	power_data["power_icon"] = power.button_icon_state
-
-	// 	data["power"] += list(power_data)
-
-	return data + ..()
-
 /datum/antagonist/bloodsucker/ui_data(mob/user)
 	var/list/data = list()
 
@@ -324,6 +310,16 @@
 		clan_data["clan_icon"] = my_clan.join_icon_state
 
 	data["clan"] += list(clan_data)
+
+	//we don't need to update this that much.
+	// for(var/datum/action/cooldown/bloodsucker/power as anything in powers)
+	// 	var/list/power_data = list()
+
+	// 	power_data["power_name"] = power.name
+	// 	power_data["power_explanation"] = power.power_explanation
+	// 	power_data["power_icon"] = power.button_icon_state
+
+	// 	data["power"] += list(power_data)
 
 	return data
 

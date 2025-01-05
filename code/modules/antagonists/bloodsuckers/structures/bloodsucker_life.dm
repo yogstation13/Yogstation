@@ -168,6 +168,7 @@
 		bloodsuckeruser.revive(full_heal = FALSE, admin_revive = FALSE)
 	for(var/datum/wound/iter_wound as anything in bloodsuckeruser.all_wounds)
 		iter_wound.remove_wound()
+		
 	// From [powers/panacea.dm]
 	var/list/bad_organs = list(
 		bloodsuckeruser.getorgan(/obj/item/organ/body_egg),
