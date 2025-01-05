@@ -24,6 +24,15 @@
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 	minimal_character_age = 24 //Consider the level of knowledge that spans xenobio, nanites, and toxins
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_HIGH,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/science,
 	)

@@ -140,6 +140,8 @@ SUBSYSTEM_DEF(shuttle)
 	var/shuttle_loading
 	/// Did the supermatter start a cascade event?
 	var/supermatter_cascade = FALSE
+	/// Has any transfer votes been started, ongoing, or finished?
+	var/transfer_votes_done = 0
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	order_number = rand(1, 9000)
@@ -219,7 +221,6 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(!length(GLOB.joined_player_list)) //if there's nobody actually in the game...
 		return
-	var/call_time = SSshuttle.emergency_call_time * SSsecurity_level.current_security_level.shuttle_call_time_mod * SSshuttle.emergency?.engine_coeff
 	var/threshold = CONFIG_GET(number/emergency_shuttle_autocall_threshold)
 	if(threshold)
 		var/alive = 0
@@ -233,16 +234,24 @@ SUBSYSTEM_DEF(shuttle)
 
 		if(alive / total <= threshold)
 			emergency_no_recall = TRUE
-			if(emergency.timeLeft(1) > call_time)
+			if(EMERGENCY_IDLE_OR_RECALLED)
 				var/msg = "Automatically dispatching shuttle due to crew death."
 				message_admins(msg)
 				log_game("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
 				priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
 				emergency.request(null, set_coefficient = ALERT_COEFF_AUTOEVAC_CRITICAL)
 				return
-	if(world.time >= 2 HOURS) //auto call the shuttle after 2 hours 
-		emergency_no_recall = TRUE //no recalling after 2 hours
-		if(emergency.timeLeft(1) > call_time)
+	if(world.time >= 2 HOURS && transfer_votes_done < 1) 
+		transfer_votes_done += 1
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic crew transfer", forced = TRUE)
+	if(world.time >= 2.5 HOURS && transfer_votes_done < 2)
+		transfer_votes_done += 1
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic crew transfer", forced = TRUE)
+	if(world.time >= 3 HOURS) //auto call the shuttle after 3 hours 
+		emergency_no_recall = TRUE //no recalling after 3 hours
+		if(EMERGENCY_IDLE_OR_RECALLED)
 			var/msg = "Automatically dispatching shuttle due to lack of shift end response."
 			message_admins(msg)
 			priority_announce("Dispatching shuttle due to lack of shift end response.")
@@ -524,14 +533,14 @@ SUBSYSTEM_DEF(shuttle)
  * * dock_id - The ID of the destination (stationary docking port) to move to
  * * timed - If true, have the shuttle follow normal spool-up, jump, dock process. If false, immediately move to the new location.
  */
-/datum/controller/subsystem/shuttle/proc/moveShuttle(shuttle_id, dock_id, timed)
+/datum/controller/subsystem/shuttle/proc/moveShuttle(shuttle_id, dock_id, timed, skill_multiplier = 1)
 	var/obj/docking_port/mobile/shuttle_port = getShuttle(shuttle_id)
 	var/obj/docking_port/stationary/docking_target = getDock(dock_id)
 
 	if(!shuttle_port)
 		return DOCKING_NULL_SOURCE
 	if(timed)
-		if(shuttle_port.request(docking_target))
+		if(shuttle_port.request(docking_target, skill_multiplier))
 			return DOCKING_IMMOBILIZED
 	else
 		if(shuttle_port.initiate_docking(docking_target) != DOCKING_SUCCESS)

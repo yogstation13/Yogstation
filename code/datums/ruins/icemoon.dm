@@ -69,6 +69,15 @@
 
 // above and below ground together
 
+/datum/map_template/ruin/icemoon/underground/moonanvil
+	name = "Moon Anvil"
+	id = "moonanvil"
+	description = "An ancient anvil once used to make very powerful weapons."
+	suffix = "icemoon_underground_moonanvil.dmm"
+	always_place = TRUE
+	unpickable = TRUE
+	cost = 0
+
 /datum/map_template/ruin/icemoon/mining_site
 	name = "Mining Site"
 	id = "miningsite"
@@ -138,4 +147,3 @@
 	id = "alienlab"
 	description = "An abandoned abductor labaratory that reeks of iron."
 	suffix = "icemoon_underground_alien_lab.dmm"
-

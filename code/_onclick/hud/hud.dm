@@ -40,6 +40,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/rest_icon
 	var/atom/movable/screen/throw_icon
 	var/atom/movable/screen/module_store_icon
+	var/atom/movable/screen/skill_menu/skill_menu
 
 	var/list/static_inventory = list() //the screen objects which are static
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
@@ -94,6 +95,10 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/stamina
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/spacesuit
+
+	var/atom/movable/screen/move_up
+	var/atom/movable/screen/move_down
+
 	// subtypes can override this to force a specific UI style
 	var/ui_style
 
@@ -195,6 +200,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	SIGNAL_HANDLER
 	update_parallax_pref() // If your eye changes z level, so should your parallax prefs
 	var/turf/eye_turf = get_turf(eye)
+	SEND_SIGNAL(src, COMSIG_HUD_Z_CHANGED, eye_turf.z)
 	var/new_offset = GET_TURF_PLANE_OFFSET(eye_turf)
 	if(current_plane_offset == new_offset)
 		return
@@ -241,6 +247,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	blobpwrdisplay = null
 	alien_plasma_display = null
 	alien_queen_finder = null
+	move_up = null
+	move_down = null
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)

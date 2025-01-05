@@ -28,6 +28,7 @@
 	var/turf/T = get_turf(A)
 	if(T)
 		create_shield(T)
+	return TRUE
 
 /mob/camera/blob/AltClickOn(atom/A) //Remove a blob
 	var/turf/T = get_turf(A)

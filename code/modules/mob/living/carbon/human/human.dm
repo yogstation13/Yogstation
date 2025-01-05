@@ -91,11 +91,6 @@
 		. += "Cloaker Charge: [round(100*SC.charge/SC.max_charge, 1)]%"
 		. += "Lumens Count: [round(lumens, 0.01)]"
 
-	var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
-	if(hivemind)
-		. += ""
-		. += "Hivemind Vessels: [hivemind.hive_size] (+[hivemind.size_mod])"
-		. += "Psychic Link Duration: [(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds"
 	var/mob/living/simple_animal/horror/H = has_horror_inside()
 	if(H && H.controlling)
 		. += ""
@@ -118,11 +113,6 @@
 				var/crystallization_timer = round(COOLDOWN_TIMELEFT(eth_heart, crystalize_cooldown) / 10)
 				var/cooldown_finished = COOLDOWN_FINISHED(eth_heart, crystalize_cooldown)
 				. += "Crystallization Process Cooldown: [cooldown_finished ? "Ready" : "[crystallization_timer] seconds left"]"
-
-		var/datum/antagonist/zombie/zombie = mind.has_antag_datum(/datum/antagonist/zombie)
-		if(zombie)
-			if((zombie.evolutionTime - world.time) > 0)
-				. += "Time to Tier 2 Evolution: [(zombie.evolutionTime - world.time) / 10] seconds"
 
 
 	//NINJACODE
@@ -913,23 +903,34 @@
 	return (ishuman(target) && !(target.mobility_flags & MOBILITY_STAND))
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
-	var/carrydelay = 50 //if you have latex you are faster at grabbing
 	var/skills_space = null // Changes depending on glove type
+
+	var/nanochips = FALSE
+	var/effective_skill = get_skill(SKILL_FITNESS)
 	if(HAS_TRAIT(src, TRAIT_QUICKEST_CARRY))
-		carrydelay = 25
-		skills_space = "masterfully"
+		effective_skill += EXP_HIGH
+		nanochips = TRUE
 	else if(HAS_TRAIT(src, TRAIT_QUICKER_CARRY))
-		carrydelay = 30
-		skills_space = "expertly"
+		effective_skill += EXP_MID
+		nanochips = TRUE
 	else if(HAS_TRAIT(src, TRAIT_QUICK_CARRY))
-		carrydelay = 40
-		skills_space = "quickly"
+		effective_skill += EXP_LOW
+
+	var/carrydelay = (25 / (5 + effective_skill)) SECONDS
+	switch(effective_skill)
+		if(EXP_MASTER to INFINITY)
+			skills_space = "masterfully"
+		if(EXP_MID to EXP_MASTER)
+			skills_space = "expertly"
+		if(EXP_LOW to EXP_MID)
+			skills_space = "quickly"
+
 	if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE))
 		visible_message(span_notice("[src] starts [skills_space] lifting [target] onto their back.."),
 		//Joe Medic starts quickly/expertly lifting Grey Tider onto their back..
-		span_notice("[carrydelay < 35 ? "Using your gloves' nanochips, you" : "You"] [skills_space ? "[skills_space] " : ""]start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
+		span_notice("[nanochips ? "Using your gloves' nanochips, you" : "You"] [skills_space ? "[skills_space] " : ""]start to lift [target] onto your back[carrydelay == 40 ? ", while assisted by the nanochips in your gloves.." : "..."]"))
 		//(Using your gloves' nanochips, you/You) ( /quickly/expertly) start to lift Grey Tider onto your back(, while assisted by the nanochips in your gloves../...)
-		if(do_after(src, carrydelay, target))
+		if(do_after(src, carrydelay, target, IGNORE_SKILL_DELAY, skill_check = SKILL_FITNESS))
 			//Second check to make sure they're still valid to be carried
 			if(can_be_firemanned(target) && !incapacitated(FALSE, TRUE) && !target.buckled)
 				if(target.loc != loc)
@@ -1070,6 +1071,10 @@
 	if(NOBLOOD in dna.species.species_traits)
 		return FALSE
 	return ..()
+
+/mob/living/carbon/human/handle_skills(delta_time)
+	if(IS_SCIENCE(src)) // scientists give a small boost to science points based on science skill, more if they're the RD
+		SSresearch.science_tech.research_points[TECHWEB_POINT_TYPE_DEFAULT] += get_skill(SKILL_SCIENCE) * (IS_COMMAND(src) ? 2 : 1)
 
 /mob/living/carbon/human/species
 	var/race = null

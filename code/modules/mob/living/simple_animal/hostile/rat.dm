@@ -113,6 +113,7 @@
 	src.health = src.maxHealth
 
 /mob/living/simple_animal/hostile/rat/CtrlClickOn(atom/A)
+	. = TRUE
 	face_atom(A)
 	if(!isturf(loc))
 		return

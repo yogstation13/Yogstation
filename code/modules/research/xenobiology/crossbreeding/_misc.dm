@@ -240,7 +240,7 @@ Slimecrossing Items
 					mood.add_event(null,"gross_food", /datum/mood_event/gross_food)
 				last_check_time = world.time
 				return
-	..()
+	. = ..()
 
 //Ice stasis block - Chilling Dark Blue
 /obj/structure/ice_stasis
@@ -335,6 +335,6 @@ Slimecrossing Items
 		electrocute_mob(carbie, get_area(src), src)
 		qdel(src)
 		return
-	
+
 	stack_item.add(amt)
 	qdel(src)

@@ -163,7 +163,8 @@
 	vary = TRUE
 
 /datum/emote/living/carbon/human/tailthump/get_sound(mob/living/user)
-	return 'sound/voice/lizard/tailthump.ogg' // Source: https://freesound.org/people/TylerAM/sounds/389665/
+	var/obj/item/organ/tail/lizard/tail = user.getorganslot(ORGAN_SLOT_TAIL)
+	return tail?.sound_override || 'sound/voice/lizard/tailthump.ogg' // Source: https://freesound.org/people/TylerAM/sounds/389665/
 
 /datum/emote/living/carbon/human/tailthump/can_run_emote(mob/user, status_check = TRUE, intentional)
 	. = ..()

@@ -30,6 +30,15 @@
 		/datum/job_department/command,
 	)
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = 2
+
 	mind_traits = list(TRAIT_DISK_VERIFIER)
 
 	mail_goodies = list(
@@ -85,6 +94,32 @@
 	accessory = /obj/item/clothing/accessory/medal/gold/captain
 
 	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/captain)
+
+	var/special_charter
+
+/datum/outfit/job/captain/pre_equip(mob/living/carbon/human/H, visualsOnly)
+	. = ..()
+	special_charter = CHECK_MAP_JOB_CHANGE("Captain", "special_charter")
+	if(!special_charter)
+		return
+
+	backpack_contents -= /obj/item/station_charter
+
+	if(!l_hand)
+		l_hand = /obj/item/station_charter/flag
+	else if(!r_hand)
+		r_hand = /obj/item/station_charter/flag
+
+/datum/outfit/job/captain/post_equip(mob/living/carbon/human/equipped, visualsOnly)
+	. = ..()
+	if(visualsOnly || !special_charter)
+		return
+
+	var/obj/item/station_charter/flag/celestial_charter = locate() in equipped.held_items
+	if(isnull(celestial_charter))
+		// failed to give out the unique charter, plop on the ground
+		celestial_charter = new(get_turf(equipped))
+
 
 /datum/outfit/job/captain/hardsuit
 	name = "Captain (Hardsuit)"

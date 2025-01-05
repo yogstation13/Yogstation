@@ -3,12 +3,17 @@
 	typepath = /datum/round_event/brand_intelligence
 	weight = 5
 
+	min_wizard_trigger_potency = 2
+	max_wizard_trigger_potency = 6
 	min_players = 15
 	max_occurrences = 1
+	track = EVENT_TRACK_MODERATE
+	tags = list(TAG_DESTRUCTIVE, TAG_COMMUNAL)
+	event_group = /datum/event_group/bsod
 
 /datum/round_event/brand_intelligence
-	announceWhen	= 21
-	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
+	announce_when	= 21
+	end_when			= 1000	//Ends when all vending machines are subverted anyway.
 	var/list/obj/machinery/vending/vendingMachines = list()
 	var/list/obj/machinery/vending/infectedMachines = list()
 	var/obj/machinery/vending/originMachine

@@ -47,6 +47,7 @@
 #define AMBIENCE_DANGER "danger"
 #define AMBIENCE_RUINS "ruins"
 #define AMBIENCE_ENGI "engi"
+#define AMBIENCE_ICEMOON "icemoon"
 #define AMBIENCE_MINING "mining"
 #define AMBIENCE_JUNGLE "jungle"
 #define AMBIENCE_MEDICAL "med"

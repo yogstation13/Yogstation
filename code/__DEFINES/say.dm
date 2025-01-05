@@ -79,6 +79,7 @@
 #define SPAN_CULTLARGE "cultlarge"
 #define SPAN_HELIUM "small"
 #define SPAN_PROGENITOR "progenitor"
+#define SPAN_COLOSSUS "colossus"
 
 //bitflag #defines for return value of the radio() proc.
 #define ITALICS			(1<<0)
@@ -128,3 +129,6 @@
 
 
 #define MAX_FLAVOR_LEN 4096		//double the maximum message length.
+
+/// Default volume of speech sound effects (this is actually multiplied by 5 when used)
+#define DEFAULT_SPEECH_VOLUME 60

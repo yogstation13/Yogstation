@@ -10,7 +10,7 @@
 	gloves = /obj/item/clothing/gloves/color/red
 
 	box = /obj/item/storage/box/survival/engineer
-	backpack_contents = list(/obj/item/a_gift/anything = 5)
+	backpack_contents = list(/obj/item/a_gift/anything/personal = 5)
 
 /datum/outfit/santa/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

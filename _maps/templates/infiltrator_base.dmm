@@ -412,7 +412,7 @@
 "aV" = (
 /obj/structure/table/wood,
 /obj/item/pizzabox/vegetable,
-/obj/item/paicard,
+/obj/item/computer_hardware/paicard,
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1

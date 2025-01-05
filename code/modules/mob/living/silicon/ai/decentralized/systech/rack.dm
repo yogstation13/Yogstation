@@ -13,7 +13,7 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	materials = list(/datum/material/gold=50, /datum/material/iron=250)
+	materials = list(/datum/material/iron=250)
 
 	var/list/contained_cpus = list()
 	var/contained_ram = 0

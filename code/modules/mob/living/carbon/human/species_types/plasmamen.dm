@@ -20,7 +20,7 @@
 	burnmod = 0.9 //Plasma is a surprisingly good insulator if not around oxygen
 	heatmod = 1.5 //Don't let the plasma actually heat up though
 	punchdamagehigh = 7 //Bone punches are weak and usually inside soft suit gloves
-	punchstunthreshold = 7 //Stuns on max hit as usual, somewhat higher stun chance because math
+	punchstunchance = 0.15 //Stuns on max hit as usual, somewhat higher stun chance because math
 	species_gibs = "plasma"
 	breathid = GAS_PLASMA
 	damage_overlay_type = ""//let's not show bloody wounds or burns over bones.

@@ -32,3 +32,9 @@
 		/obj/item/stock_parts/capacitor/adv = 1,
 		/obj/item/stock_parts/micro_laser/high = 2,
 	)
+
+/obj/item/circuitboard/machine/icecream_vat
+	name = "Ice Cream Vat (Machine Board)"
+	build_path = /obj/machinery/icecream_vat/empty
+	req_components = list(/obj/item/stock_parts/matter_bin = 1)
+	needs_anchored = FALSE

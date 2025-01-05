@@ -366,12 +366,12 @@
 //Place monkey
 /turf/open/CtrlClick(mob/user)
 	SEND_SIGNAL(user, COMSIG_XENO_TURF_CLICK_CTRL, src)
-	..()
+	return ..()
 
 //Pick up monkey
 /mob/living/carbon/monkey/CtrlClick(mob/user)
 	SEND_SIGNAL(user, COMSIG_XENO_MONKEY_CLICK_CTRL, src)
-	..()
+	return ..()
 
 // Scans slime
 /obj/machinery/computer/camera_advanced/xenobio/proc/XenoSlimeClickCtrl(mob/living/user, mob/living/simple_animal/slime/S)

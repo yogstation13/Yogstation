@@ -199,6 +199,7 @@
 	var/unique = 0		//0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
 	var/title			//The real name of the book.
 	var/window_size = null // Specific window size for the book, i.e: "1920x1080", Size x Width
+	var/list/skill_gain
 
 
 /obj/item/book/attack_self(mob/user)

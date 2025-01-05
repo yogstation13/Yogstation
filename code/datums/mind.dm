@@ -50,6 +50,27 @@
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
 
+	/// The owner of this mind's ability to perform certain kinds of tasks.
+	var/list/skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+
+	/// Progress towards increasing their skill level
+	var/list/exp_progress = list(
+		SKILL_PHYSIOLOGY = 0,
+		SKILL_MECHANICAL = 0,
+		SKILL_TECHNICAL = 0,
+		SKILL_SCIENCE = 0,
+		SKILL_FITNESS = 0,
+	)
+
+	/// Free skill points to allocate
+	var/skill_points = 0
+
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
@@ -87,8 +108,6 @@
 	var/current_scar_slot
 	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
 	var/current_scar_slot_index
-	/// Is set to true if an antag was used to get this person picked as an antag
-	var/token_picked = FALSE
 
 	/// If they have used the afk verb recently
 	var/afk_verb_used = FALSE
@@ -263,68 +282,15 @@
 		else if(A.type == datum_type)
 			return A
 
-/*
-	Removes antag type's references from a mind.
-	objectives, uplinks, powers etc are all handled.
-*/
-
-/datum/mind/proc/remove_changeling()
-	var/datum/antagonist/changeling/C = has_antag_datum(/datum/antagonist/changeling)
-	if(C)
-		remove_antag_datum(/datum/antagonist/changeling)
-		special_role = null
-
-/datum/mind/proc/remove_traitor()
-	remove_antag_datum(/datum/antagonist/traitor)
-
-/datum/mind/proc/remove_brother()
-	if(src in SSticker.mode.brothers)
-		remove_antag_datum(/datum/antagonist/brother)
-
-/datum/mind/proc/remove_nukeop()
-	var/datum/antagonist/nukeop/nuke = has_antag_datum(/datum/antagonist/nukeop,TRUE)
-	if(nuke)
-		remove_antag_datum(nuke.type)
-		special_role = null
-
-/datum/mind/proc/remove_wizard()
-	remove_antag_datum(/datum/antagonist/wizard)
-	special_role = null
-
-/datum/mind/proc/remove_cultist()
-	if(src in SSticker.mode.cult)
-		SSticker.mode.remove_cultist(src, 0, 0)
-	special_role = null
-	remove_antag_equip()
-
-/datum/mind/proc/remove_rev()
-	var/datum/antagonist/rev/rev = has_antag_datum(/datum/antagonist/rev)
-	if(rev)
-		remove_antag_datum(rev.type)
-		special_role = null
-
-
-/datum/mind/proc/remove_antag_equip()
-	var/list/Mob_Contents = current.get_contents()
-	for(var/obj/item/I in Mob_Contents)
-		var/datum/component/uplink/O = I.GetComponent(/datum/component/uplink) //Todo make this reset signal
-		if(O)
-			O.unlock_code = null
-
-/datum/mind/proc/remove_all_antag() //For the Lazy amongst us.
-	remove_changeling()
-	remove_traitor()
-	remove_nukeop()
-	remove_wizard()
-	remove_cultist()
-	remove_rev()
-
 /datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
 	if(!current)
 		return
 	var/mob/living/carbon/human/traitor_mob = current
 	if (!istype(traitor_mob))
 		return
+
+	traitor_mob.add_skill_points(EXP_LOW) // one extra skill point
+	ADD_TRAIT(src, TRAIT_EXCEPTIONAL_SKILL, type)
 
 	var/list/all_contents = traitor_mob.get_all_contents()
 	var/obj/item/modular_computer/PDA = locate() in all_contents
@@ -431,16 +397,16 @@
 	RegisterSignal(creator.mind, COMSIG_ANTAGONIST_REMOVED, PROC_REF(remove_creator_antag)) //remove enslavement to the antag
 
 	if(iscultist(creator))
-		SSticker.mode.add_cultist(src)
+		current.add_cultist()
 
-	else if(is_revolutionary(creator))
+	else if(IS_REVOLUTIONARY(creator))
 		var/datum/antagonist/rev/converter = creator.mind.has_antag_datum(/datum/antagonist/rev,TRUE)
 		converter.add_revolutionary(src,FALSE)
 
 	else if(is_servant_of_ratvar(creator))
 		add_servant_of_ratvar(current)
 
-	else if(is_nuclear_operative(creator))
+	else if(IS_NUKE_OP(creator))
 		var/datum/antagonist/nukeop/converter = creator.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE)
 		var/datum/antagonist/nukeop/N = new()
 		N.send_to_spawnpoint = FALSE
@@ -757,8 +723,10 @@
 	if(quiet_round)
 		return
 	// yogs end
+	if(!current)
+		return
 	if(!has_antag_datum(/datum/antagonist/cult,TRUE))
-		SSticker.mode.add_cultist(src,FALSE,equip=TRUE)
+		current.add_cultist(FALSE, equip=TRUE)
 		special_role = ROLE_CULTIST
 		to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar'sie, The Geometer of Blood. You now see how flimsy your world is, you see that it should be open to the knowledge of Nar'sie.</b></i></font>")
 		to_chat(current, "<font color=\"purple\"><b><i>Assist your new brethren in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
@@ -824,6 +792,51 @@
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = TRUE		//indicates that the mind is currently synced with a client
+
+/// Returns the mob's skill level
+/mob/proc/get_skill(skill)
+	if(!mind)
+		return EXP_NONE
+	return mind.skills[skill]
+
+/// Adjusts the mob's skill level
+/mob/proc/adjust_skill(skill, amount=0, min_skill = EXP_NONE, max_skill = EXP_MASTER)
+	if(!mind)
+		return
+	mind.skills[skill] = clamp(mind.skills[skill] + amount, min_skill, max_skill)
+
+/// Checks if the mob's skill level meets a given threshold.
+/mob/proc/skill_check(skill, amount)
+	if(!mind)
+		return FALSE
+	return (mind.skills[skill] >= amount)
+
+/// Adds progress towards increasing skill level. Returns TRUE if it improved the skill.
+/mob/proc/add_exp(skill, amount)
+	if(!mind)
+		return FALSE
+	if(mind.skill_points > 0)
+		return FALSE
+	var/exp_required = EXPERIENCE_PER_LEVEL * (2**mind.skills[skill]) // exp required scales exponentially
+	if(mind.exp_progress[skill] + amount >= exp_required)
+		var/levels_gained = round(log(2, 1 + (mind.exp_progress[skill] + amount) / exp_required)) // in case you gained so much you go up more than one level
+		var/levels_allocated = hud_used?.skill_menu ? hud_used.skill_menu.allocated_skills[skill] : 0
+		if(levels_allocated > 0) // adjust any already allocated skills to prevent shenanigans (you know who you are)
+			hud_used.skill_menu.allocated_points -= min(levels_gained, levels_allocated)
+			hud_used.skill_menu.allocated_skills[skill] -= min(levels_gained, levels_allocated)
+		mind.exp_progress[skill] += amount - exp_required * (2**(levels_gained - 1))
+		adjust_skill(skill, levels_gained)
+		to_chat(src, span_boldnotice("Your [skill] skill is now level [get_skill(skill)]!"))
+		return TRUE
+	mind.exp_progress[skill] += amount
+	return FALSE
+
+/// Adds skill points to be allocated at will.
+/mob/proc/add_skill_points(amount)
+	if(!mind)
+		return
+	mind.skill_points += amount
+	throw_alert("skill points", /atom/movable/screen/alert/skill_up)
 
 /datum/mind/proc/has_martialart(string)
 	if(martial_art && martial_art.id == string)

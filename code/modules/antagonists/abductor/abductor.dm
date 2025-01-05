@@ -13,6 +13,7 @@
 	var/outfit
 	var/landmark_type
 	var/greet_text
+	count_towards_antag_cap = TRUE
 
 /datum/antagonist/abductor/get_preview_icon()
 	var/mob/living/carbon/human/dummy/consistent/scientist = new
@@ -90,6 +91,9 @@
 
 	H.real_name = "[team.name] [sub_role]"
 	H.equipOutfit(outfit)
+	H.adjust_skill(SKILL_PHYSIOLOGY, EXP_GENIUS, max_skill = EXP_GENIUS)
+	H.adjust_skill(SKILL_TECHNICAL, EXP_GENIUS, max_skill = EXP_GENIUS)
+	H.adjust_skill(SKILL_SCIENCE, EXP_GENIUS, max_skill = EXP_GENIUS)
 
 	//Teleport to ship
 	for(var/obj/effect/landmark/abductor/LM in GLOB.landmarks_list)

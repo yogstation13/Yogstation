@@ -603,7 +603,7 @@ GENE SCANNER
 
 /obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
-	scangasses(user)			//yogs start: Makes the gas scanning able to be used elseware
+	atmosanalyzer_scan(user, user.loc) //yogs start: Makes the gas scanning able to be used elseware	
 
 /obj/item/analyzer/afterattack(atom/target as obj, mob/user, proximity)
 	if(!proximity)
@@ -773,10 +773,10 @@ GENE SCANNER
 			else
 				combined_msg += span_notice("[target] is empty!")
 
-		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
-			var/instability = round(cached_scan_results["fusion"], 0.01)
+		if(cached_scan_results && cached_scan_results["fusion"] && user.skill_check(SKILL_SCIENCE, EXP_LOW)) //notify the user if a fusion reaction was detected
 			combined_msg += span_boldnotice("Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.")
-			combined_msg += span_notice("Instability of the last fusion reaction: [instability].")
+			if(user.skill_check(SKILL_SCIENCE, EXP_MID))
+				combined_msg += span_notice("Instability of the last fusion reaction: [round(cached_scan_results["fusion"], 0.01)].")
 	to_chat(user, examine_block(combined_msg.Join("\n")))
 	return TRUE
 

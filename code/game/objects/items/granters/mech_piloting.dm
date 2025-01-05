@@ -14,4 +14,4 @@
 
 /obj/item/book/granter/mechpiloting/on_reading_finished(mob/user)
 	. = ..()
-	user.AddComponent(/datum/component/mech_pilot, 0.8)
+	user.adjust_skill(SKILL_TECHNICAL, EXP_MID, max_skill = EXP_GENIUS)

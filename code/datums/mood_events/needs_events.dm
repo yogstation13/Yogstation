@@ -77,6 +77,11 @@
 	mood_change = -4
 	timeout = 4 MINUTES
 
+/datum/mood_event/shared_food
+	description = "<span class='warning'>I'm eating scraps like an animal...</span>\n"
+	mood_change = -2
+	timeout = 4 MINUTES
+
 /datum/mood_event/breakfast
 	description = "<span class='nicegreen'>Nothing like a hearty breakfast to start the shift.</span>\n"
 	mood_change = 2
