@@ -16546,11 +16546,6 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"fQY" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "fSn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/eastright{
@@ -18701,6 +18696,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/lower)
+"hcA" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/structure/sign/poster/official/work_for_a_future{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "hcQ" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -19070,13 +19075,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"hmC" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower{
-	dir = 4
-	},
-/obj/structure/table,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "hmD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -22252,12 +22250,6 @@
 /obj/effect/turf_decal/trimline/dark_blue/filled/line/lower,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
-"joV" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
-/obj/structure/table,
-/obj/item/electronics/airlock,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "joW" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -32575,6 +32567,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"pvF" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
+/obj/structure/table,
+/obj/machinery/modular_computer/telescreen/preset/engineering{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "pvL" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -36118,6 +36118,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"rIA" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
+/obj/structure/table,
+/obj/item/electronics/airlock,
+/obj/machinery/light_switch{
+	pixel_y = -20
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "rJg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -130277,7 +130286,7 @@ hUj
 hUj
 hUj
 aUx
-joV
+rIA
 aQW
 axh
 axh
@@ -130534,7 +130543,7 @@ afT
 afT
 afT
 oGT
-fQY
+pvF
 aQW
 axh
 axh
@@ -130787,7 +130796,7 @@ afR
 aQW
 uha
 wQW
-hmC
+hcA
 tFQ
 bys
 xOu
