@@ -77,6 +77,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug_all, list(
 	/client/proc/cmd_display_overlay_log,
 	/client/proc/reload_configuration,
 	/client/proc/debug_ai_networks,
+	/client/proc/allow_browser_inspect,
 	/datum/admins/proc/create_or_modify_area,
 	/client/proc/debug_typeof, // Yogs -- Adds a debug verb for getting the subtypes of something
 	/client/proc/toggle_cdn,

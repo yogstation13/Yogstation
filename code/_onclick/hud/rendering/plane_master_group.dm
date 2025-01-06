@@ -50,6 +50,9 @@
 	#if MIN_COMPILER_VERSION > 516
 		#warn Fully change default relay_loc to "1,1" rather than changing it based on client version
 	#endif
+	if(viewing_hud.mymob?.client?.byond_version > 515)
+		relay_loc = "1,1"
+		rebuild_plane_masters()
 
 	set_hud(viewing_hud)
 	our_hud.master_groups[key] = src

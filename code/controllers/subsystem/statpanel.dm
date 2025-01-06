@@ -45,12 +45,6 @@ SUBSYSTEM_DEF(statpanels)
 			"Station Time: [station_time_timestamp()]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)
-#if MIN_COMPILER_VERSION > 515
-	#warn Since 516 is the server version, the below message should probably be removed
-#endif
-		var/static/list/beta_notice = list("", "You are on the BYOND 516 beta, verious UIs and such may be broken!", "Please report issues, and switch back to BYOND 515 if things are causing too many issues for you.")
-		if(target.byond_version > 516)
-			global_data += beta_notice
 
 		if(SSshuttle.emergency)
 			var/ETA = SSshuttle.emergency.getModeStr()
@@ -115,8 +109,19 @@ SUBSYSTEM_DEF(statpanels)
 	if(!encoded_global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()
 		return
 
+#if MIN_COMPILER_VERSION > 515
+	#warn Since 516 is the server version, the below message should probably be removed
+#endif
+	var/static/list/beta_notice = list("", "You are on the BYOND 516 beta, verious UIs and such may be broken!", "Please report issues, and switch back to BYOND 515 if things are causing too many issues for you.")
+
 	var/ping_str = url_encode("Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)")
-	var/other_str = url_encode(json_encode(target.mob?.get_status_tab_items()))
+	var/list/other_items = list()
+	if(target.byond_version > 516)
+		other_items += beta_notice
+	var/list/mob_items = target.mob?.get_status_tab_items()
+	if(mob_items)
+		other_items += mob_items
+	var/other_str = url_encode(json_encode(other_items))
 	target << output("[encoded_global_data];[ping_str];[other_str]", "statbrowser:update")
 
 /datum/controller/subsystem/statpanels/proc/set_MC_tab(client/target)
