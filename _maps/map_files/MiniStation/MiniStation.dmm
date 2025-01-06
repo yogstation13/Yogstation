@@ -22042,12 +22042,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"jhu" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "jhE" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
@@ -23426,6 +23420,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+"kaF" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light_switch{
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "kbx" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/rglass{
@@ -25821,18 +25830,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"lKG" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "lLd" = (
 /obj/effect/spawner/lootdrop/trashbin,
 /turf/open/floor/plating,
@@ -26298,6 +26295,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"mbs" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "mcg" = (
 /obj/effect/turf_decal/trimline/secred/filled/line/lower{
 	dir = 4
@@ -37965,18 +37971,6 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
-"sQm" = (
-/obj/machinery/button/ignition{
-	id = "Incinerator";
-	pixel_x = -25;
-	pixel_y = -32
-	},
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "sQr" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 4
@@ -44222,6 +44216,21 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"wDR" = (
+/obj/machinery/button/ignition{
+	id = "Incinerator";
+	pixel_x = -25;
+	pixel_y = -32
+	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "wDU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -131305,7 +131314,7 @@ apj
 oKD
 peY
 aIK
-sQm
+wDR
 aVy
 eqE
 aVy
@@ -133101,10 +133110,10 @@ cqT
 wbP
 iBi
 wuu
-lKG
+kaF
 saL
 vyZ
-jhu
+mbs
 mJw
 apj
 sdw
@@ -133358,7 +133367,7 @@ vRs
 hkB
 afP
 afP
-afP
+apj
 apj
 apj
 apj
