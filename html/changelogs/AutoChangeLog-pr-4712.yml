@@ -1,0 +1,7 @@
+author: "ancient-engineer"
+delete-after: True
+changes:
+  - balance: "Satyrs get sober faster now"
+  - balance: "Satyrs don't take a few centuries to get drunk again"
+  - bugfix: "Satyrs don't flicker between being drunk and not anymore"
+  - bugfix: "Satyrs drunkness can no longer go negative"
