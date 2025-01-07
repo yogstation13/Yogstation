@@ -1,3 +1,5 @@
+/// Traits related to the comically large spoon's suicide.
+#define SPOON_SUICIDE_TRAIT "spoon_suicide"
 /// Traits given by mechs.
 #define MECH_TRAIT "mech_trait"
 /// Traits given by nanites.

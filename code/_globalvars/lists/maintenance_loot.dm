@@ -291,6 +291,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 
 	list(//MONKESTATION ADDITION: misc
 		/obj/item/vending_refill/plushvendor = 1,
+		/obj/item/comically_large_spoon = 1,
 		) = 2,
 
 	list(//fakeout items, keep this list at low relative weight
