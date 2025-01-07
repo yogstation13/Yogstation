@@ -97,3 +97,7 @@
 
 /// Generates a mob faction for the passed owner, used by stabilized pink extracts
 #define FACTION_PINK_EXTRACT(owner) "pink_[owner]"
+
+/// MONKESTATION ADDITIONS
+// Apids and Bees!!
+#define FACTION_HIVE "hive"

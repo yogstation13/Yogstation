@@ -96,10 +96,10 @@
 			SPECIES_PERK_DESC = "Goblins run faster than other species.",
 		),
 		list(
-			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "fist-raised",
-			SPECIES_PERK_NAME = "Hard to Keep Down",
-			SPECIES_PERK_DESC = "You get back up quicker from stuns.",
+			SPECIES_PERK_NAME = "Easy to Keep Down",
+			SPECIES_PERK_DESC = "You get back up from stuns slower.",
 		),
 	)
 

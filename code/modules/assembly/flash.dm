@@ -207,8 +207,8 @@
 
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		if(carbon_victim.get_eye_protection() < FLASH_PROTECTION_SENSITIVE) // If we have really bad flash sensitivity, usually due to really sensitive eyes, we get flashed from all directions
-			return DEVIATION_NONE
+		if(carbon_victim.get_eye_protection() < FLASH_PROTECTION_SENSITIVE || carbon_victim.get_organ_by_type(/obj/item/organ/internal/eyes/apid)) // If we have really bad flash sensitivity, usually due to really sensitive eyes, we get flashed from all directions
+			return DEVIATION_NONE // MONKESTATION ADDITION APID EYES
 
 	// Are they on the same tile? We'll return partial deviation. This may be someone flashing while lying down
 	// or flashing someone they're stood on the same turf as, or a borg flashing someone buckled to them.
