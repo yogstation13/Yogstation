@@ -1,0 +1,7 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - qol: "redesigned the lifeline program"
+  - bugfix: "improved consistency between the basic crew monitor and blueshield crew monitor"
+  - rscadd: "added NT Net backed tracking to the crew monitor and lifeline"
+  - qol: "minor crew monitor tweaks such as a prisoner colour and filtering by tracking"
