@@ -377,6 +377,26 @@
 	icon_state = "35box_shrapnel"
 	ammo_type = /obj/item/ammo_casing/c35sol/ripper
 
+//.35 sol pierce are the AP rounds for this weapon
+
+/obj/item/ammo_casing/c35sol/pierce
+	name = ".35 Sol Short armor piercing bullet casing"
+	desc = "A SolFed standard caseless armor piercing pistol round. Penetrates armor, but is rather weak against un-armored targets."
+	icon_state = "35sol_shrapnel"
+	projectile_type = /obj/projectile/bullet/c35sol/pierce
+
+/obj/projectile/bullet/c35sol/pierce
+	name = ".35 Sol Short armor piercing bullet"
+	damage = 13
+	bare_wound_bonus = -30
+	armour_penetration = 20
+
+/obj/item/ammo_box/c35sol/pierce
+	name = "ammo box (.35 Sol Short armor piercing)"
+	desc = "A box of .35 Sol Short pistol rounds, holds twenty-four rounds."
+	ammo_type = /obj/item/ammo_casing/c35sol/pierce
+
+
 // .40 Sol Long
 // Rifle caliber caseless ammo that kills people good
 

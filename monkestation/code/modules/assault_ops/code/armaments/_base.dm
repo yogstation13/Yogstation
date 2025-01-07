@@ -73,8 +73,11 @@
 /datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol_disabler
 	item_type = /obj/item/ammo_box/c35sol/incapacitator
 
-/datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol_pierce
+/datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol_ripper
 	item_type = /obj/item/ammo_box/c35sol/ripper
+
+/datum/armament_entry/assault_operatives/primary/submachinegun_ammo/c35sol_pierce
+	item_type = /obj/item/ammo_box/c35sol/pierce
 
 /datum/armament_entry/assault_operatives/primary/shotgun
 	subcategory = OPS_SUBCATEGORY_SHOTGUN
@@ -104,6 +107,9 @@
 
 /datum/armament_entry/assault_operatives/primary/shotgun_ammo/antitide
 	item_type = /obj/item/ammo_box/advanced/s12gauge/antitide
+
+/datum/armament_entry/assault_operatives/primary/shotgun_ammo/pierce
+	item_type = /obj/item/ammo_box/advanced/s12gauge/apds
 
 /datum/armament_entry/assault_operatives/primary/sniper
 	subcategory = OPS_SUBCATEGORY_SNIPER
