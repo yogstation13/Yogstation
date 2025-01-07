@@ -140,6 +140,9 @@
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/crew_manifest,
 		/datum/computer_file/program/robocontrol,
+		//MONKESTATION EDIT START
+		/datum/computer_file/program/lifeline
+		//MONKESTATION EDIT END
 	)
 
 /obj/item/modular_computer/pda/warden
@@ -219,7 +222,7 @@
 	name = "paramedic PDA"
 	starting_programs = list(
 		/datum/computer_file/program/records/medical,
-		/datum/computer_file/program/radar/lifeline,
+		/datum/computer_file/program/lifeline, // monkestation edit `/datum/computer_file/program/radar/lifeline` -> `/datum/computer_file/program/lifeline`
 	)
 
 /obj/item/modular_computer/pda/viro

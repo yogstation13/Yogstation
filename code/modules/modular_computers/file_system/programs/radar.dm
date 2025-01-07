@@ -197,6 +197,8 @@
 	if(computer.active_program == src)
 		START_PROCESSING(SSfastprocess, src)
 
+//MONKESTATION REMOVAL START
+/*
 ///////////////////
 //Suit Sensor App//
 ///////////////////
@@ -244,7 +246,8 @@
 			var/obj/item/clothing/under/uniform = humanoid.w_uniform
 			if(uniform.has_sensor && uniform.sensor_mode >= SENSOR_COORDS) // Suit sensors must be on maximum
 				return TRUE
-	return FALSE
+	return FALSE */
+//MONKESTATION REMOVAL END
 
 ///Tracks all janitor equipment
 /datum/computer_file/program/radar/custodial_locator

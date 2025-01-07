@@ -7,7 +7,7 @@
 		/datum/computer_file/program/records/medical,
 		/datum/computer_file/program/crew_manifest,
 		/datum/computer_file/program/robocontrol,
-		/datum/computer_file/program/radar/lifeline, // For finding security officers
+		/datum/computer_file/program/lifeline, // For finding security officers
 	)
 
 /obj/item/modular_computer/pda/engineering
@@ -43,7 +43,7 @@
 		/datum/computer_file/program/records/security,
 		/datum/computer_file/program/crew_manifest,
 		/datum/computer_file/program/robocontrol,
-		/datum/computer_file/program/radar/lifeline,
+		/datum/computer_file/program/lifeline,
 	)
 
 /obj/item/modular_computer/pda/signal

@@ -50,40 +50,14 @@ GLOBAL_DATUM_INIT(blueshield_crewmonitor, /datum/crewmonitor/blueshield, new)
 /datum/crewmonitor/blueshield/update_data(z)
 	if(data_by_z["[z]"] && last_update["[z]"] && world.time <= last_update["[z]"] + SENSORS_UPDATE_PERIOD)
 		return data_by_z["[z]"]
+	var/nt_net = GLOB.crewmonitor.get_ntnet_wireless_status(z)
 
 	var/list/results = list()
-	for(var/tracked_mob in GLOB.suit_sensors_list)
-		if(!tracked_mob)
-			stack_trace("Null entry in suit sensors list.")
+	for(var/tracked_mob in GLOB.suit_sensors_list | GLOB.nanite_sensors_list)
+		var/sensor_mode = GLOB.crewmonitor.get_tracking_level(tracked_mob, z, nt_net)
+		if (sensor_mode == SENSOR_OFF)
 			continue
-
 		var/mob/living/tracked_living_mob = tracked_mob
-
-		var/turf/pos = get_turf(tracked_living_mob)
-
-		if(!pos)
-			stack_trace("Tracked mob has no loc and is likely in nullspace: [tracked_living_mob] ([tracked_living_mob.type])")
-			continue
-
-		if(pos.z != z && (!is_station_level(pos.z) || !is_station_level(z)) && !HAS_TRAIT(tracked_living_mob, TRAIT_MULTIZ_SUIT_SENSORS))
-			continue
-
-		var/mob/living/carbon/human/tracked_human = tracked_living_mob
-
-		if(!ishuman(tracked_human))
-			stack_trace("Non-human mob is in suit_sensors_list: [tracked_living_mob] ([tracked_living_mob.type])")
-			continue
-
-		var/obj/item/clothing/under/uniform = tracked_human.w_uniform
-		if (!istype(uniform))
-			stack_trace("Human without a suit sensors compatible uniform is in suit_sensors_list: [tracked_human] ([tracked_human.type]) ([uniform?.type])")
-			continue
-
-		if((uniform.has_sensor <= NO_SENSORS) || !uniform.sensor_mode)
-			stack_trace("Human without active suit sensors is in suit_sensors_list: [tracked_human] ([tracked_human.type]) ([uniform.type])")
-			continue
-
-		var/sensor_mode = uniform.sensor_mode
 		var/list/entry = list()
 
 		var/obj/item/card/id/id_card = tracked_living_mob.get_idcard(hand_first = FALSE)
@@ -99,7 +73,7 @@ GLOBAL_DATUM_INIT(blueshield_crewmonitor, /datum/crewmonitor/blueshield, new)
 			else
 				continue
 
-			if (isipc(tracked_human))
+			if (isipc(tracked_living_mob))
 				entry["is_robot"] = TRUE
 
 			if (sensor_mode >= SENSOR_LIVING)

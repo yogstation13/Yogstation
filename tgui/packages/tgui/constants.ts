@@ -31,6 +31,7 @@ export const COLORS = {
     service: '#7cc46a',
     centcom: '#00c100',
     other: '#c38312',
+    prisoner: '#FFC2C2', // MONKESTATION EDIT ADDITION
   },
   // Damage type colors
   damageType: {
