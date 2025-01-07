@@ -62,6 +62,9 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	for(var/token in saved_tokens)
 		if(isnull(saved_tokens[token]))
 			saved_tokens[token] = 0
+		if(!("donator" in saved_tokens))
+			saved_tokens |= "donator"
+			saved_tokens["donator"] = 0
 
 	total_low_threat_tokens = saved_tokens["low_threat"]
 	total_medium_threat_tokens = saved_tokens["medium_threat"]
@@ -99,8 +102,8 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	if(owner.prefs.token_month != month_number)
 		owner.prefs.adjust_metacoins(owner?.ckey, 10000, "Monthly Monkecoin rations.", TRUE, FALSE, FALSE)
 	if(!patreon.has_access(ACCESS_TRAITOR_RANK))
-		owner.prefs.save_preferences()
 		owner.prefs.token_month = month_number
+		convert_tokens_to_list()
 		return FALSE
 	if(owner.prefs.token_month == month_number)
 		owner.prefs.token_month = month_number
@@ -108,6 +111,7 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	donator_token++
 	owner.prefs.token_month = month_number
 	convert_tokens_to_list()
+	return TRUE //this is so when its proccalled we can tell its working
 
 /datum/meta_token_holder/proc/spend_antag_token(tier, use_donor = FALSE)
 	if(use_donor)
