@@ -7919,7 +7919,7 @@
 /obj/machinery/airalarm/directional/west,
 /obj/structure/bed/dogbed/runtime,
 /obj/item/toy/cattoy,
-/mob/living/simple_animal/pet/cat/runtime,
+/mob/living/basic/pet/cat/runtime,
 /obj/effect/turf_decal/trimline/blue/filled/line{
 	dir = 8
 	},
@@ -48532,7 +48532,7 @@
 "pjN" = (
 /obj/effect/turf_decal/trimline/hot_pink/filled/line,
 /obj/structure/cable,
-/mob/living/simple_animal/pet/cat{
+/mob/living/basic/pet/cat{
 	name = "Pawtton";
 	desc = "Given as a sign of friendship by The Fleet, with love"
 	},

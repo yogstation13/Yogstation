@@ -1,17 +1,18 @@
-/// Find and attack corpses
-/datum/ai_planning_subtree/find_and_hunt_target/corpses
-	finding_behavior = /datum/ai_behavior/find_hunt_target/corpses
-	hunting_behavior = /datum/ai_behavior/hunt_target/unarmed_attack_target
-	hunt_targets = list(/mob/living)
+/datum/ai_planning_subtree/find_and_hunt_target/look_for_light_fixtures
+	target_key = BB_LOW_PRIORITY_HUNTING_TARGET
+	finding_behavior = /datum/ai_behavior/find_hunt_target/light_fixtures
+	hunting_behavior = /datum/ai_behavior/hunt_target/interact_with_target/light_fixtures
+	hunt_targets = list(/obj/machinery/light)
+	hunt_range = 7
 
-/// Find nearby dead mobs
-/datum/ai_behavior/find_hunt_target/corpses
+/datum/ai_behavior/hunt_target/interact_with_target/light_fixtures
+	hunt_cooldown = 10 SECONDS
+	always_reset_target = TRUE
 
-/datum/ai_behavior/find_hunt_target/corpses/valid_dinner(mob/living/source, mob/living/dinner, radius)
-	if (!isliving(dinner) || dinner.stat != DEAD)
+/datum/ai_behavior/find_hunt_target/light_fixtures
+
+/datum/ai_behavior/find_hunt_target/light_fixtures/valid_dinner(mob/living/source, obj/machinery/light/dinner, radius)
+	if(dinner.status == LIGHT_BROKEN) //light is already broken
 		return FALSE
-	return can_see(source, dinner, radius)
 
-/// Find and attack specifically human corpses
-/datum/ai_planning_subtree/find_and_hunt_target/corpses/human
-	hunt_targets = list(/mob/living/carbon/human)
+	return can_see(source, dinner, radius)

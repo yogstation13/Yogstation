@@ -21452,7 +21452,7 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/evacuation)
 "grU" = (
-/mob/living/simple_animal/pet/cat/kitten{
+/mob/living/basic/pet/cat/kitten{
 	name = "Kbity :3";
 	desc = "D'aaawwww. Fortune's best friend"
 	},
@@ -26383,7 +26383,7 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/medical)
 "twW" = (
-/mob/living/simple_animal/pet/cat/cak{
+/mob/living/basic/pet/cat/cak{
 	name = "Truffle";
 	desc = "She is a cat made out of cake. How the hell did this thing end up alive, much less here?!"
 	},

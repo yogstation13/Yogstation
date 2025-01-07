@@ -435,10 +435,6 @@
 	if(health <= 0)
 		set_status(FISH_DEAD)
 
-
-//Fish breeding stops if fish count exceeds this.
-#define AQUARIUM_MAX_BREEDING_POPULATION 20
-
 /obj/item/fish/proc/ready_to_reproduce(being_targeted = FALSE)
 	var/obj/structure/aquarium/aquarium = loc
 	if(!istype(aquarium))

@@ -39,7 +39,7 @@
 	if(active)
 
 		if(catsplosion)
-			new /mob/living/simple_animal/pet/cat(src.loc)
+			new /mob/living/basic/pet/cat(src.loc)
 			active = FALSE
 			var/turf/open/tile = get_turf(src)
 			if(istype(tile))

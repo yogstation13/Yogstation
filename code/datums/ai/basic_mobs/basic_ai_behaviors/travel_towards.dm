@@ -8,6 +8,8 @@
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_CAN_PLAN_DURING_EXECUTION
 	/// If true we will get rid of our target on completion
 	var/clear_target = FALSE
+	///should we use a different movement type?
+	var/new_movement_type
 
 /datum/ai_behavior/travel_towards/setup(datum/ai_controller/controller, target_key)
 	. = ..()
@@ -17,8 +19,7 @@
 	set_movement_target(controller, target)
 
 /datum/ai_behavior/travel_towards/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
-	. = ..()
-	finish_action(controller, TRUE, target_key)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/travel_towards/finish_action(datum/ai_controller/controller, succeeded, target_key)
 	. = ..()
@@ -44,5 +45,4 @@
 	set_movement_target(controller, target_atom)
 
 /datum/ai_behavior/travel_towards_atom/perform(seconds_per_tick, datum/ai_controller/controller, atom/target_atom)
-	. = ..()
-	finish_action(controller, TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED

@@ -50,4 +50,7 @@
 #define BB_HOARD_LOCATION_RANGE "hoard_location_range"
 /// key that holds items we arent interested in hoarding
 #define BB_IGNORE_ITEMS "ignore_items"
-
+///the name of our trick
+#define BB_TRICK_NAME "trick_name"
+///the sequence of our trick
+#define BB_TRICK_SEQUENCE "trick_sequence"

@@ -30,9 +30,12 @@
 	if(grill_time > 30)
 		this_food.AddComponent(/datum/component/edible, foodtypes = FRIED)
 
+	ADD_TRAIT(this_food, TRAIT_FOOD_BBQ_GRILLED, ELEMENT_TRAIT(type))
+
 /datum/element/grilled_item/Detach(atom/source, ...)
 	source.name = initial(source.name)
 	source.desc = initial(source.desc)
 	REMOVE_TRAIT(source, TRAIT_FOOD_GRILLED, ELEMENT_TRAIT(type))
 	qdel(source.GetComponent(/datum/component/edible)) // Don't care if it was initially edible
+	REMOVE_TRAIT(src, TRAIT_FOOD_BBQ_GRILLED, ELEMENT_TRAIT(type))
 	return ..()

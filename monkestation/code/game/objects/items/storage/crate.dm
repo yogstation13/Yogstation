@@ -96,7 +96,7 @@
 			new /obj/item/clothing/head/costume/kitty(src)
 			new /obj/item/clothing/under/costume/schoolgirl(src)
 			new /obj/item/clothing/neck/petcollar(src)
-			new /mob/living/simple_animal/pet/cat(src)
+			new /mob/living/basic/pet/cat(src)
 			new /obj/item/toy/cattoy(src)
 			new /obj/item/slimepotion/slime/sentience(src)
 		if(59,60,61)

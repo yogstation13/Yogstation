@@ -75,11 +75,11 @@
 /obj/item/grenade/spawnergrenade/cat
 	name = "Catnade"
 	desc = "You can hear faint meowing and the sounds of claws on metal coming from within."
-	spawner_type = list(/mob/living/simple_animal/hostile/feral, /mob/living/simple_animal/hostile/feraltabby)
+	spawner_type = list(/mob/living/basic/pet/cat/feral, /mob/living/basic/pet/cat/feraltabby)
 	deliveryamt = 5
 
 /obj/item/grenade/spawnergrenade/cat/syndicate
 	name = "Syndicatnade"
 	desc = "You can hear aggressive meowing and the sounds of sharpened claws on metal coming from within."
-	spawner_type = /mob/living/simple_animal/hostile/syndicat
+	spawner_type = /mob/living/basic/pet/cat/syndicat
 	deliveryamt = 3

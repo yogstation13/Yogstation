@@ -44,11 +44,13 @@
 /datum/ai_controller/basic_controller/giant_spider/pest
 	blackboard = list(
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/of_size/ours_or_smaller, // Hunt mobs our size
+		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_FLEE_TARGETING_STRATEGY = /datum/targeting_strategy/basic/of_size/larger, // Run away from mobs bigger than we are
 	)
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 
 	planning_subtrees = list(
+		/datum/ai_planning_subtree/pet_planning,
 		/datum/ai_planning_subtree/target_retaliate/to_flee,
 		/datum/ai_planning_subtree/flee_target/from_flee_key,
 		/datum/ai_planning_subtree/simple_find_target,
@@ -77,15 +79,14 @@
 	var/mob/living/spider = controller.pawn
 	var/atom/current_target = controller.blackboard[target_key]
 	if (current_target && !(locate(/obj/structure/spider/stickyweb) in current_target))
-		finish_action(controller, succeeded = FALSE) // Already got a target
-		return
+		// Already got a target
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	controller.clear_blackboard_key(target_key)
 	var/turf/our_turf = get_turf(spider)
 	if (is_valid_web_turf(our_turf))
 		controller.set_blackboard_key(target_key, our_turf)
-		finish_action(controller, succeeded = TRUE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 	var/list/turfs_by_range = list()
 	for (var/i in 1 to scan_range)
@@ -101,11 +102,10 @@
 			final_turfs = turfs_by_range[turf_list]
 			break
 	if (!length(final_turfs))
-		finish_action(controller, succeeded = FALSE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	controller.set_blackboard_key(target_key, pick(final_turfs))
-	finish_action(controller, succeeded = TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/find_unwebbed_turf/proc/is_valid_web_turf(turf/target_turf, mob/living/spider)
 	if (locate(/obj/structure/spider/stickyweb) in target_turf)
@@ -145,9 +145,10 @@
 	return ..()
 
 /datum/ai_behavior/spin_web/perform(seconds_per_tick, datum/ai_controller/controller, action_key, target_key)
-	. = ..()
 	var/datum/action/cooldown/web_action = controller.blackboard[action_key]
-	finish_action(controller, succeeded = web_action?.Trigger(), action_key = action_key, target_key = target_key)
+	if(web_action?.Trigger())
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 /datum/ai_behavior/spin_web/finish_action(datum/ai_controller/controller, succeeded, action_key, target_key)
 	controller.clear_blackboard_key(target_key)

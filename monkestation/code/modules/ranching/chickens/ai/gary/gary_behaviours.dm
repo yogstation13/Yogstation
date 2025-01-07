@@ -63,8 +63,7 @@
 	finish_action(controller, TRUE)
 
 /datum/ai_behavior/setup_hideout/perform(seconds_per_tick, datum/ai_controller/controller, ...)
-	. = ..()
-	finish_action(controller, TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/setup_hideout/finish_action(datum/ai_controller/controller, succeeded, ...)
 	. = ..()
@@ -83,8 +82,7 @@
 	set_movement_target(controller, controller.blackboard[BB_GARY_BARTER_ITEM])
 
 /datum/ai_behavior/gary_retrieve_item/perform(seconds_per_tick, datum/ai_controller/controller, ...)
-	. = ..()
-	finish_action(controller, TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/gary_retrieve_item/finish_action(datum/ai_controller/controller, succeeded, ...)
 	. = ..()
@@ -118,12 +116,10 @@
 	var/atom/target = ref.resolve()
 
 	if(!held_item) //if held_item is null, we pretend that action was succesful
-		finish_action(controller, TRUE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 	if(!target || !pawn.CanReach(target) || !isliving(target))
-		finish_action(controller, FALSE)
-		return
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	var/mob/living/living_target = target
 
@@ -141,8 +137,7 @@
 
 /datum/ai_behavior/gary_give_item/proc/try_to_give_item(datum/ai_controller/controller, mob/living/target, obj/item/held_item, actually_give)
 	if(QDELETED(held_item) || QDELETED(target))
-		finish_action(controller, FALSE)
-		return FALSE
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	var/has_left_pocket = target.can_equip(held_item, ITEM_SLOT_LPOCKET)
 	var/has_right_pocket = target.can_equip(held_item, ITEM_SLOT_RPOCKET)
@@ -158,8 +153,7 @@
 	if(!has_left_pocket && !has_right_pocket && !has_valid_hand)
 		held_item.forceMove(get_turf(target))
 		SEND_SIGNAL(held_item, COMSIG_ITEM_GARY_LOOTED, pawn)
-		finish_action(controller, FALSE)
-		return FALSE
+		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
 	if(!actually_give)
 		return TRUE
@@ -169,7 +163,7 @@
 	else
 		target.put_in_hands(held_item)
 	SEND_SIGNAL(held_item, COMSIG_ITEM_GARY_LOOTED, pawn)
-	finish_action(controller, TRUE)
+	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/gary_give_item/finish_action(datum/ai_controller/controller, succeeded, ...)
 	. = ..()

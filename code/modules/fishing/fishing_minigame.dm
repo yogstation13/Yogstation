@@ -5,8 +5,6 @@
 // UI minigame phase
 #define MINIGAME_PHASE 3
 
-/// The height of the minigame slider. Not in pixels, but minigame units.
-#define FISHING_MINIGAME_AREA 1000
 /// Any lower than this, and the target position of the fish is considered null
 #define FISH_TARGET_MIN_DISTANCE 6
 /// The friction applied to fish jumps, so that it decelerates over time

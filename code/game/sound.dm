@@ -536,6 +536,7 @@ GLOBAL_LIST_EMPTY(cached_mixer_channels)
 				soundin = pick('sound/effects/treechop1.ogg', 'sound/effects/treechop2.ogg', 'sound/effects/treechop3.ogg')
 			if(SFX_ROCK_TAP)
 				soundin = pick('sound/effects/rocktap1.ogg', 'sound/effects/rocktap2.ogg', 'sound/effects/rocktap3.ogg')
+
 			// monkestation start: more sound effects
 			if(SFX_BUTTON_CLICK)
 				soundin = 'monkestation/sound/effects/hl2/button-click.ogg'
@@ -544,4 +545,5 @@ GLOBAL_LIST_EMPTY(cached_mixer_channels)
 			if(SFX_LIGHTSWITCH)
 				soundin = 'monkestation/sound/effects/hl2/lightswitch.ogg'
 			// monkestation end
+
 	return soundin

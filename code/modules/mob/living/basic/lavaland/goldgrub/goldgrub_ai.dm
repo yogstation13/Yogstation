@@ -42,7 +42,7 @@
 ///consume food!
 /datum/ai_planning_subtree/find_and_hunt_target/hunt_ores
 	target_key = BB_ORE_TARGET
-	hunting_behavior = /datum/ai_behavior/hunt_target/unarmed_attack_target/hunt_ores
+	hunting_behavior = /datum/ai_behavior/hunt_target/interact_with_target/hunt_ores
 	finding_behavior = /datum/ai_behavior/find_hunt_target/hunt_ores
 	hunt_targets = list(/obj/item/stack/ore)
 	hunt_chance = 75
@@ -65,7 +65,7 @@
 
 	return can_see(source, target, radius)
 
-/datum/ai_behavior/hunt_target/unarmed_attack_target/hunt_ores
+/datum/ai_behavior/hunt_target/interact_with_target/hunt_ores
 	always_reset_target = TRUE
 
 ///find our child's egg and pull it!
