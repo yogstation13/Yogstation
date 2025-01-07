@@ -55,7 +55,11 @@
 				continue
 			numbers += num
 			var/list/unusuals = preference_source?.extra_stat_inventory["unusual"]
-			var/list/data = unusuals[text2num(num)]
+			var/unusual_idx = text2num(num)
+			if(length(unusuals) < unusual_idx)
+				stack_trace("tried to get unusual [unusual_idx] despite length being [length(unusuals)]")
+				continue
+			var/list/data = unusuals[unusual_idx]
 			var/item_path = text2path(data["unusual_type"])
 			var/obj/item/new_item = new item_path(briefcase)
 			new_item.AddComponent(/datum/component/unusual_handler, data)
@@ -79,7 +83,12 @@
 		equipOutfit(equipped_outfit, visuals_only)
 
 	for(var/num as anything in preference_source?.special_loadout_list["unusual"])
-		var/list/data = preference_source?.extra_stat_inventory["unusual"][text2num(num)]
+		var/list/unusuals = preference_source?.extra_stat_inventory["unusual"]
+		var/unusual_idx = text2num(num)
+		if(length(unusuals) < unusual_idx)
+			stack_trace("tried to get unusual [unusual_idx] despite length being [length(unusuals)]")
+			continue
+		var/list/data = unusuals[unusual_idx]
 		var/item_path = text2path(data["unusual_type"])
 		var/obj/item/new_item = new item_path
 		new_item.AddComponent(/datum/component/unusual_handler, data)
