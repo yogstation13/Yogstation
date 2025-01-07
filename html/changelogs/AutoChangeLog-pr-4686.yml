@@ -1,0 +1,16 @@
+author: "Syndicat-Meow"
+delete-after: True
+changes:
+  - rscadd: "Added actual cats"
+  - rscadd: "Added a cat house"
+  - rscadd: "Added a mechanic that lets cats and dogs treat bleeding and gorillas your dislocations"
+  - rscadd: "Added more traits"
+  - rscdel: "Removed old code paths of simple cats and such"
+  - qol: "some food related tags"
+  - qol: "certain cats can help with cooking now"
+  - balance: "rebalanced the Syndicat nukie uplink price and increased health by 10 due to low number of cats"
+  - balance: "Minebots got BUFFED"
+  - bugfix: "fixed ferals and syndicat cats not being actual cats"
+  - bugfix: "fixed simple_hostile AI causing actual pursuits on sight now"
+  - image: "modified some DMI as nessesary (mine bot shield)"
+  - refactor: "multiple mob codes and AI"
