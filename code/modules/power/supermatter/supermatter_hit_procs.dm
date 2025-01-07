@@ -34,7 +34,8 @@
 		if(damage_to_be > danger_point)
 			visible_message(span_notice("[src] compresses under stress, resisting further impacts!"))
 
-	playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
+	if(projectile.type != /obj/projectile/beam/emitter/hitscan) //monkestation edit
+		playsound(src, 'sound/effects/supermatter.ogg', 50, TRUE)
 	qdel(projectile)
 	return COMPONENT_BULLET_BLOCKED
 
