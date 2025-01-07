@@ -1,6 +1,0 @@
-author: "SirNightKnight"
-delete-after: True
-changes:
-  - balance: "Fire (status effect) is deadlier. Husked bodies go out faster."
-  - bugfix: "Fixed husked bodies not losing fire stacks."
-  - balance: "Halved the burning damage for flammable items."

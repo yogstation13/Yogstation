@@ -1,5 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "The interrogator will now return heads to a random spot on the station once the process is finished, along with giving them a deep-rooted trauma."
-  - balance: "When a goldeneye keycard is launched at the station, 3 minutes will be added onto the escape shuttle timer (if one is in transit)"

@@ -1,8 +1,0 @@
-author: "Syndie al gaib"
-delete-after: True
-changes:
-  - rscdel: "Removes most science-locked things from the imports menu"
-  - balance: "Rebalances the Bogseo"
-  - balance: "Plays around with some of the imports' numbers"
-  - rscdel: "Removes some of the more risque modular laser lines"
-  - rscadd: "Adds a few references that I thought were funny to the modular lasers\n:cl:"

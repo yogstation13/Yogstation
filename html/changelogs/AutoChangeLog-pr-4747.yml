@@ -1,7 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - bugfix: "IPC, Goblins, and florans negative traits are properly listed"
-  - balance: "Florans now heal .1 burn per tick instead of .25"
-  - balance: "Apids can be flashed from any direction and harmed by pest spray"
-  - rscadd: "List apid traits"

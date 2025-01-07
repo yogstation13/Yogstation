@@ -1,7 +1,0 @@
-author: "OliverOtter"
-delete-after: True
-changes:
-  - balance: "Blacklisted spesific antag and admin reagents from strange seeds."
-  - balance: "Changed the recipe for TWitch, making it effectivly impossible to get. If you somehow make it, you earned it."
-  - rscdel: "Removed the TWitch injector from a hacked ordering computer."
-  - admin: "Added a warning to the TWitch autoinjector OPFOR item."

@@ -67,3 +67,106 @@
 2025-01-06:
   Shoddd:
   - balance: Gun case can now only hold guns, ammo items, and gun attachments
+2025-01-07:
+  Absolucy:
+  - bugfix: Hopefully fixed weird runtime causing people to spawn naked.
+  - bugfix: Gave the plant growing subsystem a proper name.
+  - bugfix: Cleaned up some possible sources of hard deletes.
+  - bugfix: Regal rat minions are now immune to viruses, to prevent Lag'sie from being
+      summoned with large rat swarms.
+  - rscadd: Added a new AI lawset, "Jermov".
+  Absolucy, Flleeppyy:
+  - sound: Tweaked the sound for midround prompts.
+  Absolucy, cuackles, Moltijoe:
+  - rscadd: Added some new uncommon maints loot - a comically large spoon!
+  - rscadd: You can also obtain the spoon sometimes via a Black Market Uplink.
+  - rscadd: Something special may happen if you scoop up oil or blood puddles with
+      the spoon...
+  CannibalHunter:
+  - rscadd: Added new floor sign decals for mappers.
+  Coll6:
+  - rscadd: Lube and other similar sliding materials throwing human mobs into turfs
+      if their slide was blocked.
+  - rscadd: Disposal Bin flushes living mobs tossed into it.
+  - code_imp: Ends move_loop early if human movement was blocked. Sends signal to
+      mob that it was blocked.
+  - rscdel: Hard gibbed flag check
+  - code_imp: Removes cores from bodies that do not save DNA.
+  - rscadd: Core deletions will properly drop items in most cases. If core is in nullspace
+      they will be qdel instead.
+  Eagletanker:
+  - qol: Stamps in head offices are more consitent across the stations.
+  OliverOtter:
+  - balance: Blacklisted spesific antag and admin reagents from strange seeds.
+  - balance: Changed the recipe for TWitch, making it effectivly impossible to get.
+      If you somehow make it, you earned it.
+  - rscdel: Removed the TWitch injector from a hacked ordering computer.
+  - admin: Added a warning to the TWitch autoinjector OPFOR item.
+  Shoddd:
+  - bugfix: IPC, Goblins, and florans negative traits are properly listed
+  - balance: Florans now heal .1 burn per tick instead of .25
+  - balance: Apids can be flashed from any direction and harmed by pest spray
+  - rscadd: List apid traits
+  SirNightKnight:
+  - bugfix: Fixed emitter beams causing the SM to play the dusting sound.
+  - balance: Fire (status effect) is deadlier. Husked bodies go out faster.
+  - bugfix: Fixed husked bodies not losing fire stacks.
+  - balance: Halved the burning damage for flammable items.
+  Siro:
+  - rscadd: Admin logs
+  - qol: X on the old UI closes the window and the delete feature moved to a dedicated
+      button per cassette.
+  - code_imp: Removed "last" runtime
+  Sorenon:
+  - qol: redesigned the lifeline program
+  - bugfix: improved consistency between the basic crew monitor and blueshield crew
+      monitor
+  - rscadd: added NT Net backed tracking to the crew monitor and lifeline
+  - qol: minor crew monitor tweaks such as a prisoner colour and filtering by tracking
+  Syndicat-Meow:
+  - rscadd: Added actual cats
+  - rscadd: Added a cat house
+  - rscadd: Added a mechanic that lets cats and dogs treat bleeding and gorillas your
+      dislocations
+  - rscadd: Added more traits
+  - rscdel: Removed old code paths of simple cats and such
+  - qol: some food related tags
+  - qol: certain cats can help with cooking now
+  - balance: rebalanced the Syndicat nukie uplink price and increased health by 10
+      due to low number of cats
+  - balance: Minebots got BUFFED
+  - bugfix: fixed ferals and syndicat cats not being actual cats
+  - bugfix: fixed simple_hostile AI causing actual pursuits on sight now
+  - image: modified some DMI as nessesary (mine bot shield)
+  - refactor: multiple mob codes and AI
+  Syndie Kate:
+  - balance: 'Nerfs stun batons a bit
+
+      :cl:'
+  Syndie al gaib:
+  - rscdel: Removes most science-locked things from the imports menu
+  - balance: Rebalances the Bogseo
+  - balance: Plays around with some of the imports' numbers
+  - rscdel: Removes some of the more risque modular laser lines
+  - rscadd: 'Adds a few references that I thought were funny to the modular lasers
+
+      :cl:'
+  Uristthedorf:
+  - rscadd: Silicons and ghosts get a hud icon to show who isn't crew.
+  Wisemonster:
+  - balance: The interrogator will now return heads to a random spot on the station
+      once the process is finished, along with giving them a deep-rooted trauma.
+  - balance: When a goldeneye keycard is launched at the station, 3 minutes will be
+      added onto the escape shuttle timer (if one is in transit)
+  - rscadd: Added the eland revolver to assault ops sidearms
+  - rscdel: Removed the waspe pistols from assault ops
+  - rscdel: Removed the CQC book from assault ops
+  - balance: Replaced the assault ops telescopic baton with a contractor baton
+  - balance: Replaced the assault ops combat gloves+ with a krav maga implanter
+  - rscadd: Gave assault ops access to AP ammo for their smgs and shotguns
+  - rscadd: Added c35sol AP ammo
+  ancient-engineer:
+  - balance: Satyrs get sober faster now
+  - balance: Satyrs don't take a few centuries to get drunk again
+  - bugfix: Satyrs don't flicker between being drunk and not anymore
+  - bugfix: Satyrs drunkness can no longer go negative

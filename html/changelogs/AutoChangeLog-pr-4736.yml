@@ -1,6 +1,0 @@
-author: "Coll6"
-delete-after: True
-changes:
-  - rscdel: "Hard gibbed flag check"
-  - code_imp: "Removes cores from bodies that do not save DNA."
-  - rscadd: "Core deletions will properly drop items in most cases. If core is in nullspace they will be qdel instead."
