@@ -152,6 +152,7 @@ GLOBAL_DATUM_INIT(manifest, /datum/manifest, new)
 
 	person.mind.crewfile = crewfile
 	person.mind.lockfile = lockfile
+	person.crew_hud_set_crew_status() //MONKE, when someone is added to crew, set their crew hud status, to make hud know they're crew.
 
 	return
 
