@@ -1,0 +1,1274 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"af" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"ak" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Wanglius Engineering"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"aK" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"aL" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/obj/machinery/light/directional/south,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"be" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"bz" = (
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"cC" = (
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "wangliusboardingdoor";
+	name = "Wanglius Boarding Door"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"dF" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"dL" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"et" = (
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"eQ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"fr" = (
+/obj/machinery/door/window/brigdoor/security/cell/left/directional/east{
+	name = "Wanglius Brig"
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"fv" = (
+/obj/structure/window/reinforced/tinted/spawner/directional/west,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"fz" = (
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"fL" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"fN" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/mineral/plasma/five,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"fX" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/rglass{
+	amount = 50;
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/stack/sheet/plasteel{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/stack/sheet/iron,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"gB" = (
+/obj/machinery/door/window/left/directional/north{
+	name = "Captain's Sleeping Capsule"
+	},
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"hv" = (
+/obj/machinery/power/port_gen/pacman/pre_loaded,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shipbreak)
+"hE" = (
+/obj/machinery/light/directional/west,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"hF" = (
+/obj/structure/table,
+/obj/effect/spawner/random/entertainment/deck,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"id" = (
+/obj/structure/table,
+/obj/item/storage/fancy/donut_box,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"ig" = (
+/obj/structure/table,
+/obj/machinery/recharger{
+	active_power_usage = 0;
+	idle_power_usage = 0;
+	pixel_y = 4;
+	use_power = 0
+	},
+/obj/item/coin/iron,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"iw" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"lc" = (
+/obj/effect/spawner/random/trash,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"lK" = (
+/obj/structure/table/optable,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"mb" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/machinery/light/directional/south,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"mA" = (
+/obj/structure/cable,
+/obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"nk" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/item/restraints/handcuffs{
+	pixel_y = 3
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"nN" = (
+/turf/open/floor/carpet/orange,
+/area/shipbreak)
+"pb" = (
+/obj/effect/spawner/liquids_spawner{
+	reagent_list = list(/datum/reagent/ammonia/urine=600)
+	},
+/obj/effect/mob_spawn/corpse/human/clown,
+/obj/item/reagent_containers/cup/glass/waterbottle/large/empty{
+	pixel_x = -11;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/cup/glass/waterbottle/large/empty{
+	pixel_y = 7;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/cup/glass/waterbottle/large/empty,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"qh" = (
+/obj/structure/table,
+/obj/item/storage/medkit/regular{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/storage/medkit/brute,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"qn" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 3
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"qT" = (
+/obj/structure/window/reinforced/tinted/spawner/directional/east,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
+/obj/effect/spawner/random/structure/closet_private,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"rI" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"sB" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"tl" = (
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/structure/closet/crate{
+	name = "lifejackets"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"tt" = (
+/obj/structure/closet/crate{
+	name = "emergency supplies crate"
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
+/obj/item/flashlight/flare{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/flashlight/flare{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/crowbar,
+/obj/item/wrench,
+/obj/item/radio,
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron,
+/area/shipbreak)
+"tH" = (
+/obj/machinery/computer/old,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"tN" = (
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"uR" = (
+/obj/machinery/door/window/left/directional/east{
+	name = "Sleeping Capsule"
+	},
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"uW" = (
+/obj/machinery/light/directional/south,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"wn" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"wL" = (
+/obj/machinery/power/smes/full,
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"yp" = (
+/obj/effect/spawner/random/maintenance,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"yt" = (
+/obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"yx" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"yO" = (
+/obj/structure/window/reinforced/tinted/spawner/directional/east,
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"zo" = (
+/obj/effect/spawner/random/structure/crate,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"zD" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"zK" = (
+/obj/machinery/light/directional/west,
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"AK" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Wanglius Sick Bay"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"BF" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Wanglius Cargo Bay"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Ca" = (
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Ct" = (
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"CW" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"Dj" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light/directional/south,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Eh" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Er" = (
+/turf/template_noop,
+/area/shipbreak)
+"EN" = (
+/obj/item/coin/iron,
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"Fq" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"FA" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"FG" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"FY" = (
+/obj/machinery/button/door/directional/east{
+	id = "wangliusboardingdoor";
+	name = "Boarding Door Control"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Gv" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"Hl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"HG" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"HR" = (
+/obj/effect/spawner/random/structure/crate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"HZ" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Ia" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Jt" = (
+/obj/machinery/stasis,
+/obj/machinery/light/directional/south,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"JO" = (
+/obj/machinery/door/airlock/external{
+	name = "Wanglius Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "wangliusairlock"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"JZ" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Kg" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"KL" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"KT" = (
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
+/obj/structure/bed,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"La" = (
+/obj/effect/spawner/random/maintenance,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"MS" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"MU" = (
+/obj/effect/spawner/random/structure/crate,
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"Np" = (
+/obj/structure/closet/crate,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Nt" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"NJ" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Oc" = (
+/obj/effect/turf_decal/siding/dark/corner,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Of" = (
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"Oh" = (
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"OB" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"OI" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -3;
+	pixel_y = 1
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = -1
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 3;
+	pixel_y = -5
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"OP" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"PR" = (
+/obj/machinery/door/airlock/public{
+	name = "Wanglius Crew Quarters"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"PV" = (
+/obj/machinery/light/directional/north,
+/obj/structure/table,
+/obj/effect/spawner/random/food_or_drink/donkpockets{
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Qi" = (
+/obj/structure/cable,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"Qj" = (
+/obj/structure/rack,
+/obj/item/tank/internals/oxygen/red,
+/obj/item/clothing/suit/utility/fire/firefighter,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/head/utility/hardhat/red,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"QE" = (
+/obj/structure/bed,
+/obj/structure/window/reinforced/tinted/spawner/directional/east,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"Se" = (
+/obj/effect/spawner/random/structure/closet_private,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"SL" = (
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"Tl" = (
+/obj/effect/spawner/random/maintenance,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+"TN" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shipbreak)
+"UO" = (
+/obj/machinery/light/directional/north,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"Vb" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Vd" = (
+/obj/machinery/door/window/left/directional/south{
+	name = "Sleeping Capsule"
+	},
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"XN" = (
+/obj/machinery/light/directional/east,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"XV" = (
+/obj/structure/bed,
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
+/obj/structure/window/reinforced/tinted/spawner/directional/east,
+/obj/item/bedsheet/random,
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"XW" = (
+/obj/structure/table,
+/obj/item/defibrillator/loaded,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"Yx" = (
+/obj/structure/table,
+/obj/machinery/light/directional/west,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"YZ" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Zx" = (
+/obj/effect/spawner/random/trash,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/iron/dark/textured,
+/area/shipbreak)
+
+(1,1,1) = {"
+Er
+Er
+fz
+fz
+fz
+fz
+Er
+Er
+Er
+Er
+Er
+Er
+Er
+Er
+fz
+fz
+fz
+fz
+Er
+Er
+"}
+(2,1,1) = {"
+Er
+aK
+Of
+Of
+Of
+Of
+aK
+Er
+Er
+Er
+Er
+Er
+Er
+aK
+Of
+Of
+Of
+Of
+aK
+Er
+"}
+(3,1,1) = {"
+aK
+aK
+uR
+XV
+QE
+uR
+aK
+aK
+Er
+Er
+Er
+Er
+aK
+aK
+aK
+Qi
+wL
+Kg
+aK
+aK
+"}
+(4,1,1) = {"
+aK
+Vd
+et
+et
+et
+XN
+Se
+YZ
+Er
+Er
+Er
+Er
+YZ
+pb
+YZ
+Qi
+wn
+OB
+Nt
+aK
+"}
+(5,1,1) = {"
+YZ
+yO
+sB
+et
+fv
+aK
+aK
+aK
+aK
+UO
+Ct
+aK
+aK
+YZ
+aK
+mA
+wn
+rI
+hv
+YZ
+"}
+(6,1,1) = {"
+YZ
+KT
+hF
+et
+gB
+aK
+Vb
+nk
+aK
+JO
+JO
+aK
+zK
+yx
+YZ
+Qi
+wn
+rI
+hv
+YZ
+"}
+(7,1,1) = {"
+aK
+Vd
+et
+et
+qT
+aK
+dF
+fr
+aK
+tN
+tN
+aK
+bz
+bz
+ak
+Qi
+wn
+HG
+uW
+aK
+"}
+(8,1,1) = {"
+aK
+aK
+Se
+XN
+et
+PR
+tN
+tN
+aK
+JO
+JO
+aK
+yt
+tN
+YZ
+wn
+dL
+fN
+aK
+aK
+"}
+(9,1,1) = {"
+Er
+aK
+YZ
+aK
+YZ
+aK
+tN
+tN
+hE
+tN
+tN
+hE
+tN
+FG
+aK
+aK
+YZ
+YZ
+aK
+Er
+"}
+(10,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+aK
+zD
+tN
+Oc
+TN
+TN
+SL
+aK
+aK
+aK
+aK
+Er
+Er
+Er
+Er
+"}
+(11,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+aK
+PV
+tN
+Ca
+nN
+nN
+mb
+aK
+Yx
+lK
+aK
+Er
+Er
+Er
+Er
+"}
+(12,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+YZ
+qn
+Oc
+Eh
+nN
+nN
+af
+aK
+qh
+Gv
+aK
+Er
+Er
+Er
+Er
+"}
+(13,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+YZ
+tH
+Ca
+nN
+nN
+nN
+nN
+YZ
+Gv
+Gv
+YZ
+Er
+Er
+Er
+Er
+"}
+(14,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+YZ
+tH
+FA
+nN
+nN
+nN
+nN
+AK
+Gv
+Gv
+YZ
+Er
+Er
+Er
+Er
+"}
+(15,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+YZ
+ig
+fL
+ac
+nN
+nN
+NJ
+YZ
+Gv
+Gv
+YZ
+Er
+Er
+Er
+Er
+"}
+(16,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+aK
+id
+tN
+Ca
+nN
+nN
+iw
+aK
+Gv
+Jt
+aK
+Er
+Er
+Er
+Er
+"}
+(17,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+aK
+aK
+Ia
+fL
+HZ
+HZ
+aL
+aK
+XW
+aK
+aK
+Er
+Er
+Er
+Er
+"}
+(18,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+Er
+aK
+aK
+YZ
+BF
+aK
+BF
+aK
+aK
+aK
+Er
+Er
+Er
+Er
+Er
+"}
+(19,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+aK
+aK
+Qj
+tN
+tN
+hE
+tN
+tN
+OI
+aK
+aK
+Er
+Er
+Er
+Er
+"}
+(20,1,1) = {"
+Er
+Er
+Er
+Er
+aK
+aK
+be
+tN
+yp
+eQ
+eQ
+eQ
+La
+tN
+Dj
+aK
+aK
+Er
+Er
+Er
+"}
+(21,1,1) = {"
+Er
+Er
+Er
+Er
+YZ
+tl
+tN
+tN
+HR
+EN
+Fq
+Oh
+zo
+tN
+tN
+JZ
+YZ
+Er
+Er
+Er
+"}
+(22,1,1) = {"
+Er
+Er
+Er
+Er
+YZ
+Np
+tN
+tN
+Tl
+Oh
+Oh
+EN
+CW
+tN
+tN
+JZ
+YZ
+Er
+Er
+Er
+"}
+(23,1,1) = {"
+Er
+Er
+Er
+Er
+YZ
+fX
+tN
+tN
+lc
+Oh
+OP
+MU
+CW
+tN
+tN
+JZ
+YZ
+Er
+Er
+Er
+"}
+(24,1,1) = {"
+Er
+Er
+Er
+Er
+aK
+aK
+MS
+FY
+KL
+Hl
+Hl
+Hl
+Zx
+tN
+tt
+aK
+aK
+Er
+Er
+Er
+"}
+(25,1,1) = {"
+Er
+Er
+Er
+Er
+Er
+aK
+aK
+aK
+cC
+cC
+cC
+cC
+cC
+aK
+aK
+aK
+Er
+Er
+Er
+Er
+"}

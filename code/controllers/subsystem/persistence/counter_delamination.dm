@@ -4,6 +4,9 @@
 #define TRAM_COUNT_FILEPATH "data/tram_hits_last_round.txt"
 
 /datum/controller/subsystem/persistence/proc/load_delamination_counter()
+	if (!fexists(DELAMINATION_COUNT_FILEPATH))
+		return
+	rounds_since_engine_exploded = text2num(file2text(DELAMINATION_COUNT_FILEPATH))
 	if (fexists(DELAMINATION_HIGHSCORE_FILEPATH))
 		delam_highscore = text2num(file2text(DELAMINATION_HIGHSCORE_FILEPATH))
 	for (var/obj/machinery/incident_display/sign as anything in GLOB.map_delamination_counters)

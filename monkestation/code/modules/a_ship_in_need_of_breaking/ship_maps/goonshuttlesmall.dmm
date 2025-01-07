@@ -1,0 +1,476 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"b" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/emergency,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"c" = (
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/directional/east,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"d" = (
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/structure/closet/crate{
+	name = "lifejackets"
+	},
+/obj/machinery/light/directional/south,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"f" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/directional/south,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"g" = (
+/obj/machinery/door/airlock/medical/glass{
+	name = "Escape Shuttle Infirmary"
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"i" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"k" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Cockpit"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/command/general,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"l" = (
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"m" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"n" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/north,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"o" = (
+/obj/machinery/computer/old{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"p" = (
+/obj/structure/table,
+/obj/item/storage/medkit/regular,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"t" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/north,
+/obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"u" = (
+/obj/structure/sign/warning/no_smoking,
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"w" = (
+/obj/structure/table,
+/obj/item/storage/medkit/toxin{
+	pixel_x = -4
+	},
+/obj/item/storage/medkit/o2{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/storage/medkit/fire{
+	pixel_x = 4
+	},
+/obj/item/storage/medkit/regular{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"x" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/plating,
+/area/shipbreak)
+"y" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"z" = (
+/obj/machinery/door/airlock/security/glass{
+	name = "Brig"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/general,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"A" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/docking_port/mobile/emergency{
+	dir = 2;
+	name = "G00N-S emergency shuttle"
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"B" = (
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"C" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"F" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/south,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"G" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"I" = (
+/turf/template_noop,
+/area/shipbreak)
+"K" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/directional/south,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"N" = (
+/obj/machinery/vending/wallmed/directional/west{
+	products = null;
+	products_monke = null
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"P" = (
+/obj/machinery/stasis,
+/obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"Q" = (
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"R" = (
+/obj/machinery/camera/autoname/directional/north,
+/obj/machinery/light/directional/north,
+/obj/machinery/computer/old,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"T" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"U" = (
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"W" = (
+/obj/machinery/light/directional/south,
+/obj/machinery/computer/old{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"X" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
+"Y" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+
+(1,1,1) = {"
+I
+Q
+Q
+Q
+I
+Q
+Q
+Q
+I
+"}
+(2,1,1) = {"
+i
+c
+c
+c
+i
+c
+c
+c
+i
+"}
+(3,1,1) = {"
+i
+n
+B
+w
+i
+C
+C
+F
+i
+"}
+(4,1,1) = {"
+i
+P
+B
+X
+i
+C
+Y
+f
+i
+"}
+(5,1,1) = {"
+i
+i
+g
+i
+i
+i
+z
+i
+i
+"}
+(6,1,1) = {"
+m
+T
+T
+l
+N
+l
+T
+d
+i
+"}
+(7,1,1) = {"
+u
+G
+a
+a
+T
+a
+a
+a
+i
+"}
+(8,1,1) = {"
+x
+a
+a
+a
+T
+a
+a
+a
+x
+"}
+(9,1,1) = {"
+x
+a
+a
+a
+T
+a
+a
+a
+x
+"}
+(10,1,1) = {"
+x
+a
+a
+a
+T
+a
+a
+a
+x
+"}
+(11,1,1) = {"
+u
+t
+a
+a
+T
+a
+a
+K
+i
+"}
+(12,1,1) = {"
+A
+T
+T
+T
+T
+T
+T
+d
+i
+"}
+(13,1,1) = {"
+i
+i
+x
+i
+k
+i
+x
+i
+i
+"}
+(14,1,1) = {"
+I
+x
+p
+y
+U
+y
+b
+x
+I
+"}
+(15,1,1) = {"
+I
+i
+R
+y
+y
+y
+W
+i
+I
+"}
+(16,1,1) = {"
+I
+i
+i
+i
+o
+i
+i
+i
+I
+"}
+(17,1,1) = {"
+I
+I
+I
+i
+x
+i
+I
+I
+I
+"}

@@ -4,7 +4,7 @@
 		and wiring damage."
 	department_head = list(JOB_CHIEF_ENGINEER)
 	faction = FACTION_STATION
-	total_positions = 5
+	total_positions = 6
 	spawn_positions = 5
 	supervisors = SUPERVISOR_CE
 	exp_requirements = 60

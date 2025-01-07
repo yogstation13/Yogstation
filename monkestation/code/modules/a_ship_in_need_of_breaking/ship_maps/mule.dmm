@@ -1,0 +1,1283 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"bY" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/engineering/canister,
+/turf/open/floor/iron,
+/area/shipbreak)
+"cg" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron,
+/area/shipbreak)
+"dd" = (
+/obj/structure/shipping_container/donk_co,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/shipbreak)
+"dt" = (
+/obj/effect/spawner/random/structure/crate_loot,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/small/warm/directional/south,
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"eg" = (
+/obj/effect/spawner/random/contraband,
+/turf/open/floor/plating,
+/area/shipbreak)
+"gc" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/small/warm/directional/south,
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"gq" = (
+/obj/machinery/vending/coffee,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/very_dim/directional/north,
+/turf/open/floor/iron,
+/area/shipbreak)
+"gx" = (
+/obj/machinery/button/door/directional/west{
+	id = 2
+	},
+/obj/structure/sign/poster/contraband/donk_co/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/shipbreak)
+"gC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron,
+/area/shipbreak)
+"gD" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/shipbreak)
+"gY" = (
+/obj/structure/window/spawner/directional/south,
+/obj/structure/window/spawner/directional/west,
+/obj/structure/window/spawner/directional/east,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/bush/flowers_pp,
+/turf/open/floor/grass,
+/area/shipbreak)
+"hc" = (
+/obj/effect/spawner/random/structure/closet_empty/crate,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/shipbreak)
+"hq" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/artifact_spawner,
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"iI" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = 4
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"iO" = (
+/obj/structure/chair/sofa/right/brown{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/light/very_dim/directional/west,
+/turf/open/floor/iron,
+/area/shipbreak)
+"iZ" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"jz" = (
+/obj/effect/spawner/random/structure/closet_empty/crate/with_loot,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"jJ" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron,
+/area/shipbreak)
+"kf" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/critter,
+/mob/living/simple_animal/pet/cat,
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"kp" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/shipbreak)
+"kT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/light/very_dim/directional/east,
+/turf/open/floor/iron,
+/area/shipbreak)
+"kW" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = 5
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"lW" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/critter,
+/mob/living/basic/slugcat,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 6
+	},
+/area/shipbreak)
+"mG" = (
+/obj/machinery/button/door/directional/east{
+	id = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/shipbreak)
+"mU" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"mW" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/engineering/canister,
+/obj/machinery/light/small/warm/directional/south,
+/turf/open/floor/iron,
+/area/shipbreak)
+"nm" = (
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"oP" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/shipbreak)
+"pj" = (
+/obj/structure/chair/sofa/middle/brown{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/shipbreak)
+"pI" = (
+/obj/effect/turf_decal/bot,
+/mob/living/simple_animal/hostile/mimic/crate,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/shipbreak)
+"qk" = (
+/obj/structure/cable,
+/obj/machinery/light/small/warm/directional/north,
+/turf/open/floor/plating,
+/area/shipbreak)
+"qI" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = 2
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"rj" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/critter,
+/obj/machinery/light/small/warm/directional/south,
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"rl" = (
+/obj/structure/closet/crate/critter,
+/mob/living/basic/pet/dog/breaddog,
+/turf/open/floor/catwalk_floor/iron,
+/area/shipbreak)
+"sb" = (
+/obj/effect/spawner/random/engineering/canister,
+/turf/open/floor/catwalk_floor/iron,
+/area/shipbreak)
+"sC" = (
+/obj/structure/chair/sofa/corner/brown{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/shipbreak)
+"sW" = (
+/obj/machinery/power/shuttle_engine/huge,
+/turf/open/floor/plating,
+/area/shipbreak)
+"tn" = (
+/obj/structure/closet/crate/coffin,
+/turf/open/floor/plating,
+/area/shipbreak)
+"tO" = (
+/obj/structure/falsewall/titanium,
+/turf/open/floor/plating,
+/area/shipbreak)
+"tQ" = (
+/obj/machinery/door/airlock/mining/glass{
+	name = "Cargo Bay";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/shipbreak)
+"ul" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/spawner/random/structure/closet_empty/crate/with_loot,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side{
+	dir = 6
+	},
+/area/shipbreak)
+"uA" = (
+/obj/machinery/button/door/directional/west{
+	id = 2
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/shipbreak)
+"vo" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma/spawner/directional/west,
+/turf/open/floor/plating,
+/area/shipbreak)
+"vA" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = 5
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/shipbreak)
+"vX" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/carpet/neon/simple/black/nodots,
+/area/shipbreak)
+"xw" = (
+/obj/machinery/computer/old,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"yh" = (
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"yR" = (
+/turf/template_noop,
+/area/shipbreak)
+"zH" = (
+/obj/structure/window/spawner/directional/west,
+/obj/structure/window/spawner/directional/north,
+/obj/structure/window/spawner/directional/east,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/bush/flowers_br,
+/turf/open/floor/grass,
+/area/shipbreak)
+"zO" = (
+/obj/structure/bed/double{
+	dir = 4
+	},
+/obj/item/bedsheet/qm/double{
+	dir = 4
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Bq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"Bz" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/half{
+	dir = 1
+	},
+/area/shipbreak)
+"BK" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/small/warm/directional/north,
+/turf/open/floor/plating,
+/area/shipbreak)
+"BN" = (
+/obj/structure/chair/sofa/left/brown,
+/obj/machinery/light/very_dim/directional/north,
+/turf/open/floor/iron,
+/area/shipbreak)
+"BW" = (
+/obj/effect/spawner/random/structure/crate_loot,
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/shipbreak)
+"CB" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/light/very_dim/directional/east,
+/turf/open/floor/iron,
+/area/shipbreak)
+"CZ" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating,
+/area/shipbreak)
+"DL" = (
+/obj/effect/turf_decal/delivery,
+/obj/item/toy/plush/slimeplushie,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron/dark/side{
+	dir = 5
+	},
+/area/shipbreak)
+"Fg" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/turf/open/floor/plating,
+/area/shipbreak)
+"GZ" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/engineering/canister,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/shipbreak)
+"HS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron,
+/area/shipbreak)
+"IR" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/syndicate/holographic,
+/obj/item/storage/fancy/cigarettes/cigpack_shadyjims{
+	pixel_x = -4;
+	pixel_y = 11
+	},
+/obj/effect/spawner/random/entertainment/wallet_lighter,
+/turf/open/floor/carpet/orange,
+/area/shipbreak)
+"JE" = (
+/turf/open/floor/catwalk_floor/iron,
+/area/shipbreak)
+"Kb" = (
+/obj/structure/window/spawner/directional/west,
+/obj/structure/window/spawner/directional/east,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/bush/style_4,
+/obj/structure/flora/grass/green/style_3,
+/turf/open/floor/grass,
+/area/shipbreak)
+"KG" = (
+/turf/open/floor/iron,
+/area/shipbreak)
+"Lm" = (
+/obj/effect/spawner/random/contraband/landmine,
+/turf/open/floor/catwalk_floor/iron,
+/area/shipbreak)
+"Lt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/glass,
+/area/shipbreak)
+"LQ" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma/spawner/directional/east,
+/turf/open/floor/plating,
+/area/shipbreak)
+"MM" = (
+/obj/machinery/button/door/directional/east{
+	id = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/shipbreak)
+"Nx" = (
+/obj/structure/table/greyscale,
+/obj/item/storage/backpack/satchel/flat,
+/obj/effect/spawner/random/exotic/syndie,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"NF" = (
+/obj/machinery/power/smes/engineering,
+/turf/open/floor/plating,
+/area/shipbreak)
+"OQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/carpet/neon/simple/black/nodots,
+/area/shipbreak)
+"Pe" = (
+/obj/effect/turf_decal/delivery,
+/obj/effect/spawner/random/engineering/canister,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/shipbreak)
+"QE" = (
+/obj/machinery/button/door/directional/south{
+	id = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/machinery/light/very_dim/directional/south,
+/turf/open/floor/carpet/neon/simple/black/nodots,
+/area/shipbreak)
+"QZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Rw" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Rz" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/vending/donksofttoyvendor,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron/dark/side{
+	dir = 5
+	},
+/area/shipbreak)
+"RA" = (
+/obj/machinery/door/airlock/qm,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/shipbreak)
+"RN" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/machinery/light/very_dim/directional/west,
+/turf/open/floor/iron,
+/area/shipbreak)
+"RX" = (
+/obj/effect/spawner/random/contraband/prison,
+/obj/effect/spawner/random/contraband,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Sf" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"Sh" = (
+/obj/effect/spawner/random/contraband/plus,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Sn" = (
+/obj/effect/spawner/random/structure/crate_loot,
+/turf/open/floor/catwalk_floor/iron,
+/area/shipbreak)
+"Su" = (
+/obj/machinery/atmospherics/components/tank/air,
+/turf/open/floor/plating,
+/area/shipbreak)
+"SO" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/dark/side,
+/area/shipbreak)
+"Uo" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/syndicate/holographic,
+/turf/open/floor/carpet/orange,
+/area/shipbreak)
+"VT" = (
+/obj/structure/window/reinforced/tinted/spawner/directional/south,
+/obj/structure/table/greyscale,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets{
+	pixel_y = 3;
+	pixel_x = -10
+	},
+/obj/effect/spawner/random/food_or_drink/donkpockets{
+	pixel_y = 8;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/cup/glass/bottle/beer,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Wl" = (
+/turf/open/floor/glass,
+/area/shipbreak)
+"Wm" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/shipbreak)
+"Wq" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/closet/crate/critter,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/shipbreak)
+"Ww" = (
+/obj/machinery/vending/cigarette/syndicate,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron,
+/area/shipbreak)
+"WM" = (
+/turf/open/floor/plating,
+/area/shipbreak)
+"Xa" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shipbreak)
+"XH" = (
+/obj/structure/window/spawner/directional/west,
+/obj/structure/window/spawner/directional/east,
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/bush/leavy,
+/turf/open/floor/grass,
+/area/shipbreak)
+"Yo" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/shipbreak)
+"Zv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/machinery/light/very_dim/directional/south,
+/turf/open/floor/carpet/neon/simple/black/nodots,
+/area/shipbreak)
+
+(1,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(2,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(3,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(4,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(5,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+iI
+iI
+iI
+ah
+yR
+ah
+qI
+qI
+qI
+ah
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(6,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+Wq
+JE
+kf
+ah
+yR
+ah
+Yo
+Sn
+SO
+ah
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(7,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+ah
+ah
+Yo
+rl
+SO
+ah
+ah
+ah
+hc
+JE
+jz
+ah
+ah
+ah
+yR
+yR
+yR
+yR
+"}
+(8,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+tn
+ah
+pI
+JE
+rj
+ah
+RX
+ah
+Yo
+JE
+dt
+ah
+WM
+ah
+ah
+yR
+yR
+yR
+"}
+(9,1,1) = {"
+yR
+Xa
+ah
+ah
+ah
+yR
+ah
+eg
+ah
+DL
+kp
+lW
+ah
+tO
+ah
+Rz
+BW
+ul
+ah
+Rw
+iZ
+ah
+yR
+yR
+yR
+"}
+(10,1,1) = {"
+yR
+Xa
+VT
+zO
+ah
+yR
+ah
+tO
+ah
+ah
+tQ
+ah
+ah
+KG
+ah
+ah
+tQ
+ah
+ah
+qk
+NF
+ah
+yR
+yR
+yR
+"}
+(11,1,1) = {"
+Xa
+Xa
+yh
+nm
+ah
+yR
+ah
+sC
+pj
+iO
+gD
+uA
+KG
+KG
+KG
+RN
+gD
+gx
+ah
+Rw
+vo
+CZ
+yR
+yR
+yR
+"}
+(12,1,1) = {"
+Xa
+xw
+nm
+QE
+ah
+kW
+ah
+BN
+Uo
+IR
+Lt
+Lt
+Lt
+Lt
+Lt
+Lt
+dd
+KG
+ah
+Rw
+Fg
+WM
+WM
+sW
+yR
+"}
+(13,1,1) = {"
+Xa
+xw
+vX
+OQ
+RA
+QZ
+RA
+gC
+gC
+gC
+Lt
+zH
+Kb
+XH
+gY
+Wl
+gC
+gC
+cg
+QZ
+Fg
+WM
+WM
+WM
+yR
+"}
+(14,1,1) = {"
+Xa
+xw
+Nx
+Zv
+ah
+vA
+ah
+gq
+KG
+KG
+Lt
+Lt
+Lt
+Lt
+Lt
+Lt
+HS
+KG
+ah
+oP
+Fg
+WM
+WM
+WM
+yR
+"}
+(15,1,1) = {"
+Xa
+Xa
+nm
+nm
+ah
+mU
+ah
+Ww
+KG
+kT
+gD
+mG
+KG
+KG
+KG
+CB
+gD
+MM
+ah
+oP
+LQ
+CZ
+yR
+yR
+yR
+"}
+(16,1,1) = {"
+yR
+Xa
+nm
+nm
+ah
+yR
+ah
+tO
+ah
+ah
+tQ
+ah
+ah
+KG
+ah
+ah
+tQ
+ah
+ah
+BK
+Su
+ah
+yR
+yR
+yR
+"}
+(17,1,1) = {"
+yR
+Xa
+ah
+ah
+ah
+yR
+ah
+Sh
+ah
+Wm
+Bz
+Sf
+ah
+tO
+ah
+Wm
+Bz
+Pe
+ah
+oP
+Su
+ah
+yR
+yR
+yR
+"}
+(18,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+Sh
+ah
+Yo
+JE
+gc
+ah
+WM
+ah
+GZ
+Lm
+mW
+ah
+Bq
+ah
+ah
+yR
+yR
+yR
+"}
+(19,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+ah
+ah
+Yo
+JE
+SO
+ah
+ah
+ah
+GZ
+sb
+jJ
+ah
+ah
+ah
+yR
+yR
+yR
+yR
+"}
+(20,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+Yo
+JE
+hq
+ah
+yR
+ah
+GZ
+JE
+bY
+ah
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(21,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+ah
+iI
+iI
+iI
+ah
+yR
+ah
+iI
+iI
+iI
+ah
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(22,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(23,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(24,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}
+(25,1,1) = {"
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+"}

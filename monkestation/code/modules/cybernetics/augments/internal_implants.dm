@@ -38,6 +38,7 @@
 /obj/item/organ/internal/cyberimp/brain/anti_drop
 	name = "anti-drop implant"
 	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
+	icon_state = "brain_implant_antidrop"
 	var/active = FALSE
 	var/list/stored_items = list()
 	implant_color = "#DE7E00"
@@ -104,8 +105,9 @@
 	stored_items -= source
 
 /obj/item/organ/internal/cyberimp/brain/anti_stun
-	name = "CNS Rebooter implant"
+	name = "CNS rebooter implant"
 	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	icon_state = "brain_implant_rebooter"
 	implant_color = "#FFFF00"
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
 

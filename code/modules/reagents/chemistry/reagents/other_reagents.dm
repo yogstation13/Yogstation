@@ -496,6 +496,8 @@
 	taste_description = "burning"
 	ph = 0.1
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED|REAGENT_NO_RANDOM_RECIPE
+	process_flags = ORGANIC | SYNTHETIC
+
 
 /datum/reagent/hellwater/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	affected_mob.set_fire_stacks(min(affected_mob.fire_stacks + (1.5 * seconds_per_tick), 5))
@@ -650,6 +652,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM //metabolizes to prevent micro-dosage
 	taste_description = "slime"
 	var/race = /datum/species/human
+	process_flags = ORGANIC | SYNTHETIC
 	var/list/mutationtexts = list( "You don't feel very well." = MUT_MSG_IMMEDIATE,
 									"Your skin feels a bit abnormal." = MUT_MSG_IMMEDIATE,
 									"Your limbs begin to take on a different shape." = MUT_MSG_EXTENDED,
@@ -1010,6 +1013,7 @@
 	taste_description = "acid"
 	ph = 2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	process_flags = ORGANIC | SYNTHETIC
 
 /datum/reagent/fluorine/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	affected_mob.adjustToxLoss(0.5*REM*seconds_per_tick, 0)
@@ -1124,6 +1128,7 @@
 	taste_description = "the inside of a reactor"
 	/// How much tox damage to deal per tick
 	var/tox_damage = 0.5
+	process_flags = ORGANIC | SYNTHETIC
 	ph = 4
 	material = /datum/material/uranium
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1163,7 +1168,8 @@
 	reagent_state = SOLID
 	color = "#00CC00" // ditto
 	taste_description = "the colour blue and regret"
-	tox_damage = 1*REM
+	tox_damage = 2*REM
+	process_flags = ORGANIC | SYNTHETIC
 	material = null
 	ph = 10
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1187,6 +1193,7 @@
 	reagent_state = SOLID
 	color = "#0000CC"
 	taste_description = "fizzling blue"
+	process_flags = ORGANIC | SYNTHETIC
 	material = /datum/material/bluespace
 	ph = 12
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -1234,6 +1241,7 @@
 	taste_description = "gross metal"
 	penetrates_skin = NONE
 	ph = 4
+	process_flags = ORGANIC | SYNTHETIC
 	burning_temperature = 1725 //more refined than oil
 	burning_volume = 0.2
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED

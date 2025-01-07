@@ -6,6 +6,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	color = "#550000"
 	taste_description = "sweet tasting metal"
+	process_flags = ORGANIC | SYNTHETIC
 	turf_exposure = TRUE
 
 /datum/reagent/thermite/expose_turf(turf/exposed_turf, reac_volume)
@@ -42,6 +43,7 @@
 	taste_description = "burning"
 	penetrates_skin = NONE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+	process_flags = ORGANIC | SYNTHETIC
 	evaporation_rate = 100
 	turf_exposure = TRUE
 
@@ -166,6 +168,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/phlogiston/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
@@ -188,6 +191,7 @@
 	color = "#FA00AF"
 	taste_description = "burning"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 	penetrates_skin = NONE
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	liquid_fire_power = 1
@@ -214,6 +218,7 @@
 	taste_description = "icey bitterness"
 	purity = REAGENT_STANDARD_PURITY
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 	inverse_chem_val = 0.5
 	inverse_chem = /datum/reagent/inverse/cryostylane
 	burning_volume = 0.05
@@ -265,6 +270,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "bitterness"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 	burning_temperature = null
 	burning_volume = 0.05
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
@@ -289,6 +295,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "charged metal"
 	self_consuming = TRUE
+	process_flags = ORGANIC | SYNTHETIC
 	var/shock_timer = 0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 

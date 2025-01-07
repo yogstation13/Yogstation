@@ -15,9 +15,8 @@
 
 /datum/armament_entry/company_import/rayne/first_aid_kit/rayne_mender
 	item_type = /obj/item/storage/medkit/rayne
-	cost = PAYCHECK_COMMAND * 5
+	cost = PAYCHECK_COMMAND * 15
 
-//Rayne Corp Medkit: A portable medkit that contains a cynical artificial intelligence that can diagnose and treat your injuries, but also insults you and makes sarcastic comments about your condition.
 
 //Rayne Corp Sticky Tiles: A synthetic tile that has a special adhesive property that can cushion any fall and prevent serious damage,
 //but also traps you in place until you can free yourself or get help. The Sticky Tile is ideal for people who are clumsy and prone to accidents.

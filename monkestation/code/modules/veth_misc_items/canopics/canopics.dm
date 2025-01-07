@@ -252,3 +252,13 @@
 		/obj/item/stack/sheet/mineral/gold = 1,
 		/obj/item/stack/sheet/mineral/silver = 1)
 	category = CAT_CONTAINERS
+
+/obj/item/storage/box/canopic_box/stocked
+
+/obj/item/storage/box/canopic_box/stocked/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/storage/box/canopic_hawk = 1,
+		/obj/item/storage/box/canopic_human = 1,
+		/obj/item/storage/box/canopic_monke = 1,
+		/obj/item/storage/box/canopic_jackal = 1)
+	generate_items_inside(items_inside,src)

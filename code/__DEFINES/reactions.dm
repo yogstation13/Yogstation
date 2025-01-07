@@ -28,7 +28,7 @@
 /// The maximum ratio of water vapor to other gases miasma can be sterilized at.
 #define MIASTER_STERILIZATION_MAX_HUMIDITY 0.1
 /// The minimum amount of miasma that will be sterilized in a reaction tick.
-#define MIASTER_STERILIZATION_RATE_BASE 20
+#define MIASTER_STERILIZATION_RATE_BASE 5
 /// The temperature required to sterilize an additional mole of miasma in a reaction tick.
 #define MIASTER_STERILIZATION_RATE_SCALE 20
 /// The amount of energy released when a mole of miasma is sterilized.
