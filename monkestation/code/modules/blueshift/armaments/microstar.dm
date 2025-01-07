@@ -42,20 +42,6 @@
 	item_type = /obj/item/gun/energy/modular_laser_rifle
 	cost = PAYCHECK_COMMAND * 8
 
-// More expensive, unique energy weapons
-/datum/armament_entry/company_import/microstar/experimental_energy
-	subcategory = "Experimental Energy Weapons"
-	cost = PAYCHECK_COMMAND * 6
-	restricted = TRUE
-
-/datum/armament_entry/company_import/microstar/experimental_energy/hellfire
-	item_type = /obj/item/gun/energy/laser/hellgun
-
-/datum/armament_entry/company_import/microstar/experimental_energy/ion_carbine
+/datum/armament_entry/company_import/microstar/basic_energy_long_weapons/ion_carbine
 	item_type = /obj/item/gun/energy/ionrifle/carbine
-
-/datum/armament_entry/company_import/microstar/experimental_energy/xray_gun
-	item_type = /obj/item/gun/energy/xray
-
-/datum/armament_entry/company_import/microstar/experimental_energy/tesla_cannon
-	item_type = /obj/item/gun/energy/tesla_cannon
+	cost = PAYCHECK_COMMAND * 5

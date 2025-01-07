@@ -1,24 +1,19 @@
 {
 	"pickup": [
-		"Zǎo shàng hǎo.",
-		"Wǎn shàng hǎo.",
+		"GOOD MORNING VIETNAM!",
 		"What's the operation today, ah?",
 		"Let's get things started, heh-heh.",
 		"I'm feeling good about our chances today.",
-		"Hey, clean my damn lens later.",
-		"Little tighter around the handguard, @pick(operator)"
+		"Hey, clean my damn lens later."
 	],
 
 	"putdown": [
-		"...you'll hold me again soon, right? Right?",
+		"Michael... Don't leave me here",
 		"Don't you DARE leave me here!",
-		"Tch! Whatever... You'll come crawling back to point me around later.",
-		"Dàjiā ān.",
 		"Good night.",
 		"Entering sleep mode now.",
 		"Entering recharge cycle.",
-		"Yeah, yeah... entering recharge cycle...",
-		"Qù nǐ mā... never mind, entering sleep mode."
+		"Yeah, yeah... entering recharge cycle..."
 	],
 
 	"worn": [
@@ -26,17 +21,10 @@
 		"Lightweight, sold with a few backup magslings, what's not to love?",
 		"I can't see anything in front of you, this sucks.",
 		"I can't see shit from this angle...",
-		"We're going somewhere with this, right?",
-		"Don't fall over on top of me, okay?",
-		"Pretty cushy ride back here...",
-		"I could get used to this.",
-		"I can't see sh- ah, wait, maybe it's not so bad back here."
+		"We're going somewhere with this, right?"
 	],
 
 	"lowcharge": [
-		"Wǒ tài nán le...",
-		"Mā de...",
-		"Tā mā de...",
 		"I'm really drowsy here, pull back, won't you?",
 		"I'm running on fumes here, boss...",
 		"Outta charge, gotta rest...",
@@ -56,7 +44,6 @@
 
 	"combatmode": [
 		"I've been waaaiiitiiiing!",
-		"I was wondering how long you were planning on depriving me, @pick(operator).",
 		"Come on, come at me!",
 		"It's your lucky day!",
 		"Now the fun begins!",
@@ -64,8 +51,6 @@
 	],
 
 	"emp": [
-		"Tāmāde! Tāmāde!",
-		"Qì sǐ wǒle!",
 		"ELECTROM-",
 		"ELECTROMAGNETIC PULSE DETECTED, DISCHARGING-",
 		"ELECTROMAGNETIC PULSE, IT'S DISCHARGING MY BATTERY!",
@@ -73,8 +58,7 @@
 		"GO KILL THEM!",
 		"KILL THEM! KILL THEM! PUT THE SIGHTS ON THEM AND KILL THEM!",
 		"KILL THEM, KILL THEM!",
-		"I DON'T NEED CHARGE FOR BLADE MODE, PUT IT IN THEM AND TWIST!",
-		"Qù nǐ mā de ba!"
+		"I DON'T NEED CHARGE FOR BLADE MODE, PUT IT IN THEM AND TWIST!"
 	],
 
 	"incinerate": [
@@ -87,11 +71,9 @@
 	],
 
 	"blade": [
-		"Extending blade; up close and personal? I like that.",
 		"Extending blade; wipe me off after we're finished.",
 		"Extending blade, stab stab stab!",
 		"Swing the sword, swing the sword!",
-		"CQC mode initiated, stick me in there deep!",
 		"Eviscerate!",
 		"Show me your motivation...",
 		"I'll cut them in two!",
@@ -121,16 +103,15 @@
 		"Fabricating 'Balrog' energy flares; can you feel the fire?",
 		"Firestarter, twisted firestarter!",
 		"Apocalyptic meltdown!",
-		"Incendiary weapons are banned in numerous sectors; makes it kind of risqué..",
+		"Incendiary weapons are banned in numerous sectors!",
 		"Dragon breath!"
 	],
 
 	"shotgun": [
-		"Focusing lens, one shot, one kill!",
+		"Focusing lens, one shot, ten kills!",
 		"Focusing lens, let's go all the way through.",
 		"Focusing lens, aim for the head!",
 		"Let me show you what a real diffusion lens looks like...",
-		"Would it distract you if I told you about a shotgun's 'choke?'",
 		"I'll be your boomstick.",
 		"You should keep me handy for close encounters.",
 		"Is there something more iconic and awesome than a double-barrel? Yeah, me."

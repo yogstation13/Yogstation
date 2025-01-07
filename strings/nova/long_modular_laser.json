@@ -1,8 +1,6 @@
 {
 	"pickup": [
 		"Welcome back, @pick(operator).",
-		"Zǎo shàng hǎo.",
-		"Wǎn shàng hǎo.",
 		"Charge systems operational, entering combat mode.",
 		"@pick(operator), carp migrations have been reported in the sector.",
 		"@pick(operator), having a pleasant day?",
@@ -14,8 +12,6 @@
 	"putdown": [
 		"Understood, @pick(operator), entering sleep mode.",
 		"Good night, @pick(operator).",
-		"Wǎn`ān, hǎo mèng.",
-		"Dàjiā ān.",
 		"Good night.",
 		"Entering sleep mode now.",
 		"Entering recharge cycle."
@@ -51,8 +47,7 @@
 		"Switching to rapid-pattern assault.",
 		"Moving to dual-shot pattern.",
 		"Moving to close-quarters burst doctrine, lethal.",
-		"@pick(operator), please tightly control my recoil pattern.",
-		"@pick(operator), please hold me firmly to ensure accuracy."
+		"@pick(operator), please hold on firmly to ensure accuracy."
 	],
 
 	"sniper": [

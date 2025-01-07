@@ -1,13 +1,13 @@
 // Sacrificial armor has massive bullet protection, but gets damaged by being shot, thus, is sacrificing itself to protect the wearer
 /datum/armor/armor_sf_sacrificial
 	melee = ARMOR_LEVEL_WEAK
-	bullet = ARMOR_LEVEL_INSANE // When the level IV plates stop the bullet but not the energy transfer
+	bullet = ARMOR_LEVEL_WEAK // When the level IV plates stop the bullet but not the energy transfer
 	laser = ARMOR_LEVEL_TINY
 	energy = ARMOR_LEVEL_TINY
-	bomb = ARMOR_LEVEL_MID
-	fire = ARMOR_LEVEL_MID
+	bomb = ARMOR_LEVEL_WEAK
+	fire = ARMOR_LEVEL_WEAK
 	acid = ARMOR_LEVEL_WEAK
-	wound = WOUND_ARMOR_HIGH
+	wound = WOUND_ARMOR_WEAK
 
 /obj/item/clothing/suit/armor/sf_sacrificial
 	name = "'Val' sacrificial ballistic vest"
@@ -21,8 +21,8 @@
 	inhand_icon_state = "armor"
 	blood_overlay_type = "armor"
 	armor_type = /datum/armor/armor_sf_sacrificial
-	max_integrity = 200
-	limb_integrity = 200
+	max_integrity = 50
+	limb_integrity = 50
 	repairable_by = null // No being cheeky and keeping a pile of repair materials in your bag to fix it either
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
 	resistance_flags = FIRE_PROOF
@@ -54,8 +54,8 @@
 	worn_icon = 'monkestation/code/modules/blueshift/icons/specialist_armor/armor_worn.dmi'
 	inhand_icon_state = "helmet"
 	armor_type = /datum/armor/armor_sf_sacrificial
-	max_integrity = 200
-	limb_integrity = 200
+	max_integrity = 50
+	limb_integrity = 50
 	repairable_by = null // No being cheeky and keeping a pile of repair materials in your bag to fix it either
 	dog_fashion = null
 	flags_inv = null
@@ -169,13 +169,13 @@
 // The peacekeeper armors and helmets will be less effective at stopping bullet damage than bulletproof vests, but stronger against wounds especially, and some other damage types
 /datum/armor/armor_sf_peacekeeper
 	melee = ARMOR_LEVEL_WEAK
-	bullet = ARMOR_LEVEL_MID
+	bullet = ARMOR_LEVEL_WEAK
 	laser = ARMOR_LEVEL_TINY
 	energy = ARMOR_LEVEL_TINY
 	bomb = ARMOR_LEVEL_WEAK
-	fire = ARMOR_LEVEL_MID
+	fire = ARMOR_LEVEL_WEAK
 	acid = ARMOR_LEVEL_WEAK
-	wound = WOUND_ARMOR_HIGH
+	wound = WOUND_ARMOR_WEAK
 
 /obj/item/clothing/suit/armor/sf_peacekeeper
 	name = "'Touvou' peacekeeper armor vest"
@@ -245,12 +245,12 @@
 // Hardened vests negate any and all projectile armor penetration, in exchange for having mid af bullet armor
 /datum/armor/armor_sf_hardened
 	melee = ARMOR_LEVEL_TINY //It's anti-armor piercing projectile armor, it shouldn't be good against melee.
-	bullet = ARMOR_LEVEL_WEAK
-	laser = ARMOR_LEVEL_WEAK
+	bullet = ARMOR_LEVEL_TINY
+	laser = ARMOR_LEVEL_TINY
 	energy = ARMOR_LEVEL_TINY
-	bomb = ARMOR_LEVEL_WEAK
-	fire = ARMOR_LEVEL_WEAK
-	acid = ARMOR_LEVEL_WEAK
+	bomb = ARMOR_LEVEL_TINY
+	fire = ARMOR_LEVEL_TINY
+	acid = ARMOR_LEVEL_TINY
 	wound = WOUND_ARMOR_WEAK
 
 /obj/item/clothing/suit/armor/sf_hardened

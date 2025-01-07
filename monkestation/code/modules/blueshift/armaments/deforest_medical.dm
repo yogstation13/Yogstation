@@ -176,26 +176,9 @@
 	item_type = /obj/item/surgery_tray
 	cost = PAYCHECK_COMMAND
 
-/datum/armament_entry/company_import/deforest/equipment/advanced_health_analyer
-	item_type = /obj/item/healthanalyzer/advanced
-	cost = PAYCHECK_COMMAND * 3
-
 /datum/armament_entry/company_import/deforest/equipment/penlite_defib_mount
 	item_type = /obj/item/wallframe/defib_mount/charging
 	cost = PAYCHECK_CREW * 3
-
-/datum/armament_entry/company_import/deforest/equipment/advanced_scalpel
-	item_type = /obj/item/scalpel/advanced
-	cost = PAYCHECK_COMMAND * 3
-
-/datum/armament_entry/company_import/deforest/equipment/advanced_retractor
-	item_type = /obj/item/retractor/advanced
-	cost = PAYCHECK_COMMAND * 3
-
-/datum/armament_entry/company_import/deforest/equipment/advanced_cautery
-	item_type = /obj/item/cautery/advanced
-	cost = PAYCHECK_COMMAND * 3
-
 
 /datum/armament_entry/company_import/deforest/equipment/medstation
 	item_type = /obj/item/wallframe/frontier_medstation
@@ -212,10 +195,6 @@
 	item_type = /obj/item/nif_repair_kit
 	cost = PAYCHECK_COMMAND * 2
 
-/datum/armament_entry/company_import/deforest/cyber_implants/razorwire
-	name = "Razorwire Spool Implant"
-	item_type = /obj/item/organ/internal/cyberimp/arm/item_set/razorwire
-	cost = CARGO_CRATE_VALUE * 4
 // Modsuit Modules from the medical category, here instead of in Nakamura because nobody buys from this company
 
 /datum/armament_entry/company_import/deforest/medical_modules

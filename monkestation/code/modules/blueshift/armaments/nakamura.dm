@@ -75,10 +75,6 @@
 	item_type = /obj/item/mod/module/rad_protection
 	cost = PAYCHECK_CREW
 
-/datum/armament_entry/company_import/nakamura_modsuits/protection_modules/emp_shield
-	item_type = /obj/item/mod/module/emp_shield
-	cost = PAYCHECK_CREW
-
 /datum/armament_entry/company_import/nakamura_modsuits/protection_modules/armor_plates
 	item_type = /obj/item/mod/module/armor_booster/retractplates
 	cost = PAYCHECK_COMMAND * 3
@@ -147,10 +143,6 @@
 	item_type = /obj/item/mod/module/pathfinder
 	cost = PAYCHECK_CREW
 
-/datum/armament_entry/company_import/nakamura_modsuits/mobility_modules/disposals
-	item_type = /obj/item/mod/module/disposal_connector
-	cost = PAYCHECK_CREW
-
 /datum/armament_entry/company_import/nakamura_modsuits/mobility_modules/sphere
 	item_type = /obj/item/mod/module/sphere_transform
 	cost = PAYCHECK_COMMAND * 2
@@ -190,15 +182,3 @@
 /datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/hat_stabilizer
 	item_type = /obj/item/mod/module/hat_stabilizer
 	cost = PAYCHECK_CREW
-
-/datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/kinesis
-	item_type = /obj/item/mod/module/anomaly_locked/kinesis/prebuilt/locked
-	cost = PAYCHECK_COMMAND * 15
-
-/datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/antigrav
-	item_type = /obj/item/mod/module/anomaly_locked/antigrav/prebuilt/locked
-	cost = PAYCHECK_COMMAND * 15
-
-/datum/armament_entry/company_import/nakamura_modsuits/novelty_modules/teleporter
-	item_type = /obj/item/mod/module/anomaly_locked/teleporter/prebuilt/locked
-	cost = PAYCHECK_COMMAND * 20

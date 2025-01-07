@@ -633,7 +633,8 @@
 /obj/projectile/bullet/strilka310/ap
 	name = ".310 armor-piercing bullet"
 	damage = 50
-	armour_penetration = 60
+	armour_penetration = 50
+	wound_bonus = -20
 
 // .585 Trappiste
 // High caliber round used in large pistols and revolvers
@@ -716,8 +717,8 @@
 
 	weak_against_armour = TRUE
 
-	wound_bonus = 30
-	bare_wound_bonus = 40
+	wound_bonus = 10
+	bare_wound_bonus = 20
 
 /obj/item/ammo_box/c585trappiste/hollowpoint
 	name = "ammo box (.585 Trappiste hollowhead)"
@@ -748,9 +749,7 @@
 /obj/projectile/bullet/c27_54cesarzowa
 	name = ".27-54 Cesarzowa piercing bullet"
 	damage = 15
-	armour_penetration = 30
-	wound_bonus = -30
-	bare_wound_bonus = -10
+	armour_penetration = 15
 
 /obj/item/ammo_box/c27_54cesarzowa
 	name = "ammo box (.27-54 Cesarzowa piercing)"
@@ -874,8 +873,8 @@
 	speed = 0.4
 	damage = 50
 	armour_penetration = 50
-	wound_bonus = 20
-	bare_wound_bonus = 30
+	wound_bonus = 10
+	bare_wound_bonus = 10
 	demolition_mod = 1.8
 	/// How much damage we add to things that are weak to this bullet
 	var/anti_materiel_damage_addition = 30

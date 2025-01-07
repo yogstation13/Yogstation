@@ -55,20 +55,6 @@
 /datum/armament_entry/company_import/sol_defense/armor_hardened/emt_hardened_vest
 	item_type = /obj/item/clothing/suit/armor/sf_hardened/emt
 
-/datum/armament_entry/company_import/sol_defense/armor_sacrifice
-	subcategory = "Sacrifical Armor"
-	cost = PAYCHECK_CREW * 3
-
-/datum/armament_entry/company_import/sol_defense/armor_sacrifice/sacrificial_helmet
-	item_type = /obj/item/clothing/head/helmet/sf_sacrificial
-
-/datum/armament_entry/company_import/sol_defense/armor_sacrifice/face_shield
-	item_type = /obj/item/sacrificial_face_shield
-	cost = PAYCHECK_LOWER
-
-/datum/armament_entry/company_import/sol_defense/armor_sacrifice/sacrificial_vest
-	item_type = /obj/item/clothing/suit/armor/sf_sacrificial
-
 /datum/armament_entry/company_import/sol_defense/case
 	subcategory = "Weapon Cases"
 

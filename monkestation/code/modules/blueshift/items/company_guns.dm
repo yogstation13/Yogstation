@@ -423,15 +423,12 @@
 	suppressor_x_offset = 9
 
 	burst_size = 2
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.5 SECONDS
 	actions_types = list()
-
-	// Because we're firing a lot of these really fast, we want a lot less wound chance
-	projectile_wound_bonus = -20
-	spread = 12.5
+	spread = 14.5
 	// Hope you didn't need to see anytime soon
 	recoil = 2
-	wield_recoil = 0.5
+	wield_recoil = 1
 
 /obj/item/gun/ballistic/automatic/xhihao_smg/give_manufacturer_examine()
 	AddElement(/datum/element/manufacturer_examine, COMPANY_XHIHAO)
@@ -758,7 +755,6 @@
 	recoil = 1.5
 	wield_recoil = 0.5
 	spread = 2.5
-	projectile_wound_bonus = -20
 
 /obj/item/gun/ballistic/automatic/lanca/Initialize(mapload)
 	. = ..()

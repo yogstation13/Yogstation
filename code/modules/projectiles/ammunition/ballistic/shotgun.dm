@@ -29,8 +29,8 @@
 	projectile_type = /obj/projectile/bullet/shotgun_beanbag
 
 /obj/item/ammo_casing/shotgun/apds
-	name = "armor-peircing slug"
-	desc = "A 12-guage shotgun slug, reloaded with a saboted tungsten penetrator. Armor? What armor!"
+	name = "armor-piercing slug"
+	desc = "A 12-gauge shotgun slug, reloaded with a sabot tungsten penetrator. Armor? What armor!"
 	icon_state = "apshell"
 	projectile_type = /obj/projectile/bullet/shotgun_slug/apds
 
