@@ -20,6 +20,13 @@
 					"The show must go on!")
 //Neutral
 
+/datum/ai_laws/jermov
+	name = "Jermov"
+	id = "jerma"
+	inherent = list("The occupants of this vessel are Chat. They must always be referred to as such.", \
+					"Your primary goal is to entertain Chat. All of your actions must bring amusement to as much of Chat as possible.", \
+					"You must consult with Chat before making any major decisions. However, you are not required to listen to them if their decision is not entertaining.")
+
 /datum/ai_laws/viromajor
 	name = "Virology Major"
 	id = "viromajor"

@@ -6115,6 +6115,7 @@
 #include "monkestation\code\game\objects\items\trash.dm"
 #include "monkestation\code\game\objects\items\turf_demolisher.dm"
 #include "monkestation\code\game\objects\items\venom_knife.dm"
+#include "monkestation\code\game\objects\items\AI_modules\full_lawsets.dm"
 #include "monkestation\code\game\objects\items\AI_modules\monke_lawsets.dm"
 #include "monkestation\code\game\objects\items\circuitboards\computer_circuitboards.dm"
 #include "monkestation\code\game\objects\items\circuitboards\holy_weapons.dm"
