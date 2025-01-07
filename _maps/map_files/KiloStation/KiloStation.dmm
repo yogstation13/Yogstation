@@ -4474,6 +4474,10 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
+/obj/item/stamp/granted{
+	pixel_y = 10;
+	pixel_x = 8
+	},
 /obj/item/stamp/head/captain{
 	pixel_x = 8;
 	pixel_y = 6
@@ -4481,6 +4485,10 @@
 /obj/item/pen/fountain/captain,
 /obj/item/radio/intercom/directional/south,
 /obj/structure/table/wood,
+/obj/item/stamp/denied{
+	pixel_y = 2;
+	pixel_x = 8
+	},
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/captain)
 "bvR" = (
@@ -19554,13 +19562,17 @@
 "ggK" = (
 /obj/structure/cable,
 /obj/structure/table/wood,
-/obj/item/stamp/head/hos,
+/obj/item/clipboard,
+/obj/item/folder/red,
 /obj/item/stamp/denied{
-	pixel_x = 4;
+	pixel_x = -5;
 	pixel_y = 4
 	},
-/obj/item/folder/red,
-/obj/item/clipboard,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/head/hos,
 /turf/open/floor/carpet/red,
 /area/station/command/heads_quarters/hos)
 "ggN" = (
@@ -22783,8 +22795,16 @@
 	},
 /obj/item/lighter,
 /obj/item/clothing/mask/cigarette/cigar/cohiba,
-/obj/item/stamp/head/ce,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/head/ce,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
 "hhG" = (
@@ -31423,6 +31443,10 @@
 	pixel_y = 6
 	},
 /obj/item/pen/fourcolor,
+/obj/item/stamp/granted{
+	pixel_y = 10;
+	pixel_x = 8
+	},
 /obj/item/stamp/head/hop{
 	pixel_x = 8;
 	pixel_y = 6
@@ -31434,6 +31458,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral,
+/obj/item/stamp/denied{
+	pixel_y = 2;
+	pixel_x = 8
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hop)
 "jGU" = (
@@ -34494,10 +34522,18 @@
 "kGZ" = (
 /obj/structure/table,
 /obj/effect/turf_decal/bot,
+/obj/item/stamp/granted{
+	pixel_y = 11;
+	pixel_x = -8
+	},
 /obj/machinery/recharger{
 	pixel_x = -3
 	},
 /obj/structure/cable,
+/obj/item/stamp/denied{
+	pixel_x = 2;
+	pixel_y = 11
+	},
 /obj/item/toy/figure/rd{
 	pixel_x = 8;
 	pixel_y = 8
@@ -34505,8 +34541,8 @@
 /obj/item/stamp/head/rd{
 	pixel_x = 8
 	},
-/obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
+/obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/rd)
 "kHe" = (
@@ -62448,8 +62484,8 @@
 	pixel_x = -5
 	},
 /obj/item/stamp{
-	pixel_x = -6;
-	pixel_y = -2
+	pixel_x = 6;
+	pixel_y = 4
 	},
 /obj/item/stamp/denied{
 	pixel_x = 6;
@@ -73641,6 +73677,14 @@
 	pixel_y = 5
 	},
 /obj/effect/turf_decal/trimline/blue/filled/line,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
 /obj/item/stamp/head/cmo,
 /turf/open/floor/iron/showroomfloor,
 /area/station/command/heads_quarters/cmo)

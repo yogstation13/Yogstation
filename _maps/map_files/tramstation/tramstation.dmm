@@ -7864,13 +7864,20 @@
 /obj/item/folder/white{
 	pixel_x = 5
 	},
+/obj/item/pen/fountain{
+	pixel_x = -9;
+	pixel_y = 7
+	},
+/obj/item/stamp/granted{
+	pixel_y = 11;
+	pixel_x = 8
+	},
+/obj/item/stamp/denied{
+	pixel_y = 6
+	},
 /obj/item/stamp/head/rd{
 	pixel_x = 6;
 	pixel_y = 2
-	},
-/obj/item/pen/fountain{
-	pixel_x = -4;
-	pixel_y = 7
 	},
 /turf/open/floor/glass/reinforced,
 /area/station/command/heads_quarters/rd)
@@ -12283,6 +12290,14 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/item/stamp/denied{
+	pixel_y = 5;
+	pixel_x = -4
+	},
+/obj/item/stamp/granted{
+	pixel_x = 4;
+	pixel_y = 5
+	},
 /obj/item/stamp/head/cmo,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
@@ -26058,6 +26073,14 @@
 "hkU" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /obj/item/stamp/head/hos,
 /obj/item/food/spaghetti/pastatomato/soulful,
 /turf/open/floor/carpet,
@@ -31093,6 +31116,14 @@
 "iQx" = (
 /obj/structure/table/wood,
 /obj/item/folder/blue,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
 /obj/item/stamp/head/captain,
 /obj/machinery/door/window{
 	base_state = "right";
@@ -36045,6 +36076,14 @@
 	pixel_x = 5
 	},
 /obj/machinery/light/directional/west,
+/obj/item/stamp/granted{
+	pixel_y = 11;
+	pixel_x = -6
+	},
+/obj/item/stamp/denied{
+	pixel_x = -6;
+	pixel_y = 4
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "kqT" = (
@@ -55852,10 +55891,18 @@
 "qEv" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/yellow,
-/obj/item/stamp/head/ce,
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
 	},
+/obj/item/stamp{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/head/ce,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
 "qEw" = (
@@ -68513,7 +68560,7 @@
 	},
 /obj/item/stamp/denied{
 	pixel_x = -6;
-	pixel_y = 4
+	pixel_y = 9
 	},
 /obj/item/stamp{
 	pixel_x = -6

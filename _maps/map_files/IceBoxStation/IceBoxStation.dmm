@@ -5784,10 +5784,15 @@
 /obj/structure/table,
 /obj/item/folder/white,
 /obj/item/pen,
-/obj/item/stamp/head/rd{
-	pixel_x = 3;
-	pixel_y = -2
+/obj/item/stamp/granted{
+	pixel_x = 5;
+	pixel_y = 4
 	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/head/rd,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/rd)
 "bOg" = (
@@ -13427,6 +13432,14 @@
 /area/station/engineering/main)
 "efV" = (
 /obj/structure/table,
+/obj/item/stamp/granted{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /obj/item/stamp/head/qm,
 /turf/open/floor/carpet,
 /area/station/cargo/quartermaster)
@@ -30894,6 +30907,14 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -6;
+	pixel_y = 4
+	},
 /obj/item/stamp/head/hop,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hop)
@@ -32044,9 +32065,17 @@
 /obj/machinery/light/directional/east,
 /obj/structure/table/glass,
 /obj/item/folder/white,
-/obj/item/stamp/head/cmo,
 /obj/item/clothing/neck/stethoscope,
 /obj/effect/turf_decal/tile/blue/fourcorners,
+/obj/item/stamp/denied{
+	pixel_y = 5;
+	pixel_x = -4
+	},
+/obj/item/stamp/granted{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/stamp/head/cmo,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "klk" = (
@@ -42878,7 +42907,7 @@
 /obj/item/folder/blue,
 /obj/item/stamp/denied{
 	pixel_x = -6;
-	pixel_y = 4
+	pixel_y = 10
 	},
 /obj/item/stamp{
 	pixel_x = -6
@@ -51148,6 +51177,14 @@
 	},
 /obj/item/folder/blue{
 	pixel_x = 10
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /obj/item/stamp/head/captain,
 /turf/open/floor/carpet,
@@ -65899,6 +65936,10 @@
 	pixel_x = 8;
 	pixel_y = 3
 	},
+/obj/item/stamp/granted{
+	pixel_y = 10;
+	pixel_x = 10
+	},
 /obj/item/stamp/head/hos{
 	pixel_x = 10;
 	pixel_y = 6
@@ -65911,6 +65952,10 @@
 /obj/item/phone{
 	pixel_x = -9;
 	pixel_y = 7
+	},
+/obj/item/stamp/denied{
+	pixel_x = 10;
+	pixel_y = 2
 	},
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/hos)

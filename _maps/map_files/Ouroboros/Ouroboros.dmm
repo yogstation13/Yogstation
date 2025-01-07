@@ -13125,7 +13125,7 @@
 	},
 /obj/item/stamp{
 	pixel_x = -7;
-	pixel_y = 1
+	pixel_y = -1
 	},
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/requests_console/auto_name/directional/south,
@@ -14269,13 +14269,21 @@
 "ekC" = (
 /obj/structure/table/reinforced/rglass,
 /obj/item/folder/white,
+/obj/item/stamp/granted{
+	pixel_y = 11;
+	pixel_x = 8
+	},
 /obj/item/stamp/head/cmo{
-	pixel_y = 7;
+	pixel_y = 6;
 	pixel_x = 8
 	},
 /obj/item/flashlight/pen,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
+	},
+/obj/item/stamp/denied{
+	pixel_x = 8;
+	pixel_y = 1
 	},
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
@@ -35608,6 +35616,14 @@
 /obj/item/folder/yellow{
 	pixel_x = -3
 	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /obj/item/stamp/head/ce,
 /obj/machinery/button/door/directional/west{
 	id = "CEShutter";
@@ -52173,8 +52189,16 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/stamp/head/rd,
 /obj/machinery/light/cold/directional/west,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/head/rd,
 /turf/open/floor/carpet/purple,
 /area/station/command/heads_quarters/rd)
 "ptD" = (
@@ -55790,6 +55814,14 @@
 	pixel_x = 7;
 	pixel_y = 2
 	},
+/obj/item/stamp/denied{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/obj/item/stamp/granted{
+	pixel_y = 12;
+	pixel_x = -2
+	},
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/captain)
 "qur" = (
@@ -56161,11 +56193,19 @@
 	dir = 1
 	},
 /obj/item/folder/red,
-/obj/item/stamp/head/hos,
 /obj/item/paper_bin{
 	pixel_x = 16;
 	pixel_y = 7
 	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/head/hos,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/hos)
 "qyQ" = (

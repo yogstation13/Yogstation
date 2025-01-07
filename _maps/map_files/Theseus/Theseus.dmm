@@ -16702,6 +16702,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_y = 4;
+	pixel_x = -4
+	},
 /obj/item/stamp/head/hop,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
@@ -21234,6 +21242,14 @@
 	pixel_y = 15;
 	pixel_x = 4
 	},
+/obj/item/stamp/granted{
+	pixel_y = 11;
+	pixel_x = -6
+	},
+/obj/item/stamp/denied{
+	pixel_x = -14;
+	pixel_y = 11
+	},
 /turf/open/floor/carpet,
 /area/station/command/heads_quarters/captain/private)
 "gsZ" = (
@@ -24826,6 +24842,14 @@
 	},
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/item/folder/blue,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
 /obj/item/stamp/head/rd,
 /turf/open/floor/carpet/purple,
 /area/station/command/heads_quarters/rd)
@@ -41521,6 +41545,14 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
 /obj/item/stamp/head/ce,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
@@ -43823,9 +43855,11 @@
 	pixel_y = 10;
 	pixel_x = 7
 	},
-/obj/item/stamp/centcom{
-	pixel_x = -6;
-	pixel_y = 3
+/obj/item/stamp/granted{
+	pixel_y = 4
+	},
+/obj/item/stamp/denied{
+	pixel_y = -1
 	},
 /obj/structure/cable,
 /obj/item/radio/intercom/command/directional/north,
@@ -58943,10 +58977,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/table/reinforced/rglass,
-/obj/item/stamp/head/cmo{
-	pixel_y = 12;
-	pixel_x = -23
-	},
 /obj/item/paperwork/medical,
 /obj/item/toy/figure/cmo,
 /turf/open/floor/iron/dark,
@@ -68111,6 +68141,17 @@
 /obj/item/clothing/glasses/hud/health{
 	pixel_x = 6
 	},
+/obj/item/stamp/head/cmo{
+	pixel_y = 12;
+	pixel_x = 9
+	},
+/obj/item/stamp/granted{
+	pixel_y = 6;
+	pixel_x = 9
+	},
+/obj/item/stamp/denied{
+	pixel_x = 9
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "ucF" = (
@@ -69411,15 +69452,23 @@
 	pixel_y = 2;
 	pixel_x = -7
 	},
-/obj/item/stamp/head/hos{
-	pixel_x = 10;
-	pixel_y = -1
-	},
 /obj/machinery/recharger{
 	pixel_y = 7;
 	pixel_x = 6
 	},
 /obj/structure/closet/firecloset/wall/directional/north,
+/obj/item/stamp/granted{
+	pixel_y = 6;
+	pixel_x = 9
+	},
+/obj/item/stamp/denied{
+	pixel_x = 10;
+	pixel_y = 5
+	},
+/obj/item/stamp/head/hos{
+	pixel_x = 10;
+	pixel_y = -1
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
 "uwF" = (

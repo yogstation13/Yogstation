@@ -37112,10 +37112,6 @@
 	pixel_y = 6
 	},
 /obj/structure/table/wood,
-/obj/item/stamp/centcom{
-	pixel_x = 8;
-	pixel_y = 12
-	},
 /obj/item/stamp/granted{
 	pixel_y = 6;
 	pixel_x = 8
@@ -48847,6 +48843,15 @@
 /obj/item/clothing/neck/stethoscope,
 /obj/item/flashlight/pen,
 /obj/item/clothing/glasses/hud/health,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/head/cmo,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "pSn" = (
@@ -54681,9 +54686,17 @@
 	pixel_x = 7;
 	pixel_y = 5
 	},
+/obj/item/stamp/granted{
+	pixel_y = 11;
+	pixel_x = 7
+	},
 /obj/item/stamp/head/hos{
 	pixel_x = 7;
-	pixel_y = 6
+	pixel_y = 7
+	},
+/obj/item/stamp/denied{
+	pixel_x = 7;
+	pixel_y = 3
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hos)
@@ -67500,6 +67513,10 @@
 /obj/item/toy/figure/rd{
 	pixel_x = -13
 	},
+/obj/item/stamp/denied{
+	pixel_y = 5
+	},
+/obj/item/stamp/granted,
 /turf/open/floor/carpet/purple,
 /area/station/command/heads_quarters/rd)
 "vSE" = (
@@ -67591,6 +67608,14 @@
 /obj/item/paper_bin,
 /obj/item/folder/blue,
 /obj/item/pen/fountain,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
 /obj/item/stamp/head/captain,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain)
@@ -72591,6 +72616,14 @@
 	},
 /obj/item/pen{
 	pixel_y = 4
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
 	},
 /obj/item/stamp/head/ce,
 /turf/open/floor/iron,

@@ -11224,6 +11224,14 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /obj/item/stamp/head/ce,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/ce)
@@ -44220,10 +44228,15 @@
 /obj/item/pen/red{
 	pixel_x = 1
 	},
-/obj/item/stamp/head/hos{
-	pixel_x = 1;
-	pixel_y = -1
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
 	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/head/hos,
 /turf/open/floor/iron/grimy,
 /area/station/command/heads_quarters/hos)
 "kri" = (
@@ -55546,7 +55559,6 @@
 "nbs" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin/carbon,
-/obj/item/stamp/head/hop,
 /obj/machinery/requests_console/directional/north{
 	anon_tips_receiver = 1;
 	assistance_requestable = 1;
@@ -55554,6 +55566,15 @@
 	name = "Head of Personnel's Requests Console";
 	can_send_announcements = 1
 	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/head/hop,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "nbv" = (
@@ -68559,12 +68580,12 @@
 	},
 /obj/item/folder/blue,
 /obj/item/paper_bin/carbon,
-/obj/item/stamp{
-	pixel_x = -6
-	},
 /obj/item/stamp/denied{
 	pixel_x = -6;
-	pixel_y = 4
+	pixel_y = 8
+	},
+/obj/item/stamp{
+	pixel_x = -6
 	},
 /obj/item/pen/fountain{
 	pixel_y = 10
@@ -72220,6 +72241,14 @@
 /obj/item/folder/yellow,
 /obj/item/stamp/head/qm,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /turf/open/floor/iron,
 /area/station/cargo/quartermaster)
 "rfH" = (
@@ -79336,6 +79365,14 @@
 /obj/structure/table/wood,
 /obj/item/folder/blue,
 /obj/item/pen/fourcolor,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
 /obj/item/stamp/head/captain,
 /obj/machinery/door/window/brigdoor/left/directional/north{
 	name = "Captain's Desk";
@@ -85665,13 +85702,21 @@
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/blue/opposingcorners,
 /obj/item/paper_bin,
-/obj/item/stamp/head/cmo,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/head/cmo,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/cmo)
 "upB" = (
@@ -99427,6 +99472,14 @@
 "xEe" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/white,
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
 /obj/item/stamp/head/rd,
 /turf/open/floor/iron/white,
 /area/station/command/heads_quarters/rd)

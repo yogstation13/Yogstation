@@ -30094,7 +30094,7 @@
 	},
 /obj/item/stamp{
 	pixel_x = -7;
-	pixel_y = 1
+	pixel_y = 2
 	},
 /obj/item/folder/red{
 	pixel_x = 11;
@@ -39009,10 +39009,18 @@
 	pixel_x = -4;
 	pixel_y = 3
 	},
+/obj/structure/table/reinforced/rglass,
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /obj/item/stamp/head/cmo{
 	pixel_y = 3
 	},
-/obj/structure/table/reinforced/rglass,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
 "kXw" = (
@@ -44503,6 +44511,14 @@
 /obj/structure/table/reinforced/rglass,
 /obj/structure/cable,
 /obj/item/folder/white{
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
 	pixel_y = 4
 	},
 /obj/item/stamp/head/rd{
@@ -71967,13 +71983,20 @@
 	pixel_x = -2;
 	pixel_y = 3
 	},
-/obj/item/stamp/head/ce{
-	pixel_x = -2;
-	pixel_y = 3
-	},
 /obj/item/computer_disk/engineering{
 	pixel_x = 13;
 	pixel_y = 2
+	},
+/obj/item/stamp/denied{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/stamp/granted{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/item/stamp/head/ce{
+	pixel_y = 3
 	},
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/ce)
