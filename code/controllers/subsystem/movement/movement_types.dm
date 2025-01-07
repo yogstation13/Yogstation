@@ -129,6 +129,10 @@
 
 	SEND_SIGNAL(src, COMSIG_MOVELOOP_POSTPROCESS, result, delay * visual_delay)
 
+	if(result == MOVELOOP_FAILURE && ishuman(src.moving) && istype(src, /datum/move_loop/has_target/move_towards)) // Tell the mob we slipped and what happened
+		var/datum/move_loop/has_target/move_towards/collide_move = src
+		SEND_SIGNAL(src.moving, COMSIG_MOVELOOP_POSTPROCESS, result, delay * visual_delay, collide_move.moving_towards, src)
+
 	if(QDELETED(src) || result != MOVELOOP_SUCCESS) //Can happen
 		return
 
