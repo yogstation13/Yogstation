@@ -74,6 +74,10 @@
 	START_PROCESSING(SSplants, src)
 	SEND_SIGNAL(parent, COMSIG_GROWING_WATER_UPDATE, water_precent)
 
+/datum/component/plant_growing/Destroy(force)
+	STOP_PROCESSING(SSplants, src)
+	return ..()
+
 /datum/component/plant_growing/process(seconds_per_tick)
 	if(!length(managed_seeds))
 		return
