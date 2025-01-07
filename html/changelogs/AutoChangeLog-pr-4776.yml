@@ -1,0 +1,6 @@
+author: "Coll6"
+delete-after: True
+changes:
+  - rscadd: "Lube and other similar sliding materials throwing human mobs into turfs if their slide was blocked."
+  - rscadd: "Disposal Bin flushes living mobs tossed into it."
+  - code_imp: "Ends move_loop early if human movement was blocked. Sends signal to mob that it was blocked."
