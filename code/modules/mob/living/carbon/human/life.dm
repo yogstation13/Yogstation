@@ -111,3 +111,13 @@
 	// Tissues die without blood circulation
 	adjustBruteLoss(1 * seconds_per_tick)
 
+/mob/living/carbon/human/proc/get_thermal_protection()
+	var/thermal_protection = 0 //Simple check to estimate how protected we are against multiple temperatures
+	if(wear_suit)
+		if(wear_suit.max_heat_protection_temperature >= FIRE_SUIT_MAX_TEMP_PROTECT)
+			thermal_protection += wear_suit.max_heat_protection_temperature
+	if(head)
+		if((head.max_heat_protection_temperature >= FIRE_HELM_MAX_TEMP_PROTECT))
+			thermal_protection += head.max_heat_protection_temperature
+	thermal_protection = thermal_protection * 0.5
+	return thermal_protection

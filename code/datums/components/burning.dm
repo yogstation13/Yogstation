@@ -55,7 +55,7 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/e
 	if(atom_parent.resistance_flags & FIRE_PROOF)
 		atom_parent.extinguish()
 		return
-	atom_parent.take_damage(10 * seconds_per_tick, BURN, FIRE, FALSE)
+	atom_parent.take_damage(5 * seconds_per_tick, BURN, FIRE, FALSE) //monkestation edit: 10 to 5 damage
 
 /// Alerts any examiners that the parent is on fire (even though it should be rather obvious)
 /datum/component/burning/proc/on_examine(atom/source, mob/user, list/examine_list)
