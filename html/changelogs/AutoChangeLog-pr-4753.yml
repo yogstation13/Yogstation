@@ -1,0 +1,6 @@
+author: "Siro"
+delete-after: True
+changes:
+  - rscadd: "Admin logs"
+  - qol: "X on the old UI closes the window and the delete feature moved to a dedicated button per cassette."
+  - code_imp: "Removed \"last\" runtime"
