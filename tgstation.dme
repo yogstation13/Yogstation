@@ -7616,6 +7616,7 @@
 #include "monkestation\code\modules\mob\living\basic\pets\parrot\_parrot.dm"
 #include "monkestation\code\modules\mob\living\basic\pets\parrot\parrot_ai\parroting_action.dm"
 #include "monkestation\code\modules\mob\living\basic\space_fauna\carp\carp.dm"
+#include "monkestation\code\modules\mob\living\basic\space_fauna\regal_rat\regal_rat_actions.dm"
 #include "monkestation\code\modules\mob\living\basic\space_fauna\slugcat\slugcat.dm"
 #include "monkestation\code\modules\mob\living\basic\trooper\syndicate.dm"
 #include "monkestation\code\modules\mob\living\basic\vermin\frog.dm"
