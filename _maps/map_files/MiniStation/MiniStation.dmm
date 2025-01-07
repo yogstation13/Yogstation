@@ -8380,6 +8380,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"aYd" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "aYe" = (
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
@@ -14910,17 +14920,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/lower)
-"eMy" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/visible,
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	name = "Output to Port"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "eMH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -16475,6 +16474,36 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel,
 /area/escapepodbay)
+"fOp" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Output to Port"
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	id = "turbinevent";
+	name = "Turbine Vent Control";
+	pixel_x = 7;
+	pixel_y = -23;
+	req_access = list("atmospherics")
+	},
+/obj/machinery/button/door{
+	id = "auxincineratorvent";
+	name = "Auxiliary Vent Control";
+	pixel_x = -8;
+	pixel_y = -23;
+	req_access = list("atmospherics")
+	},
+/obj/machinery/button/ignition{
+	id = "Incinerator";
+	pixel_x = 7;
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel,
+/area/maintenance/disposal/incinerator)
 "fOy" = (
 /obj/structure/table/wood,
 /obj/item/toy/cards/deck{
@@ -18826,23 +18855,6 @@
 "hgO" = (
 /turf/template_noop,
 /area/maintenance/starboard/lower)
-"hgR" = (
-/obj/machinery/button/door{
-	id = "turbinevent";
-	name = "Turbine Vent Control";
-	pixel_x = 7;
-	pixel_y = -23;
-	req_access = list("atmospherics")
-	},
-/obj/machinery/button/door{
-	id = "auxincineratorvent";
-	name = "Auxiliary Vent Control";
-	pixel_x = -7;
-	pixel_y = -23;
-	req_access = list("atmospherics")
-	},
-/turf/closed/wall/r_wall,
-/area/maintenance/disposal/incinerator)
 "hgV" = (
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /obj/structure/cable{
@@ -34652,26 +34664,6 @@
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"qSn" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	name = "Mix to Incinerator"
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/sign/warning/fire{
-	pixel_y = 32
-	},
-/obj/machinery/doorButtons/access_button{
-	idDoor = "incinerator_airlock_exterior";
-	idSelf = "incinerator_access_control";
-	name = "Incinerator airlock control";
-	pixel_x = -8;
-	pixel_y = -24
-	},
-/turf/open/floor/engine,
-/area/maintenance/disposal/incinerator)
 "qSq" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -44225,21 +44217,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"wDR" = (
-/obj/machinery/button/ignition{
-	id = "Incinerator";
-	pixel_x = -25;
-	pixel_y = -32
-	},
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "wDU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -45154,6 +45131,23 @@
 /obj/structure/girder,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"xdS" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Mix to Incinerator"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/doorButtons/access_button{
+	idDoor = "incinerator_airlock_exterior";
+	idSelf = "incinerator_access_control";
+	name = "Incinerator airlock control";
+	pixel_x = -8;
+	pixel_y = -24
+	},
+/turf/open/floor/engine,
+/area/maintenance/disposal/incinerator)
 "xdY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -131066,7 +131060,7 @@ apj
 apj
 tQf
 uNd
-hgR
+apj
 apj
 apj
 apj
@@ -131323,7 +131317,7 @@ apj
 oKD
 peY
 aIK
-wDR
+aYd
 aVy
 eqE
 aVy
@@ -131837,9 +131831,9 @@ apj
 tlP
 mjJ
 sRK
-eMy
+fOp
 aRs
-qSn
+xdS
 aRs
 awY
 apj
@@ -132095,7 +132089,7 @@ sos
 wDe
 cri
 gLy
-apj
+aOO
 apj
 aHG
 apj
