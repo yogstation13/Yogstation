@@ -110,9 +110,6 @@
 /datum/species/oozeling/spec_death(gibbed, mob/living/carbon/human/H)
 	. = ..()
 
-	if(gibbed)
-		H.dna = null
-
 ///////
 /// CHEMICAL HANDLING
 /// Here's where slimes heal off plasma and where they hate drinking water.

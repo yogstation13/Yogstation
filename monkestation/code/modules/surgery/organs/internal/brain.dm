@@ -87,6 +87,14 @@
 
 /obj/item/organ/internal/brain/slime/Destroy(force)
 	QDEL_NULL(membrane_mur)
+	QDEL_NULL(stored_dna)
+	QDEL_LIST(stored_quirks)
+
+	if(stored_items)
+		if(!isnull(src.loc))
+			drop_items_to_ground(src.drop_location(), explode = TRUE)
+		else
+			QDEL_LIST(stored_items)
 	return ..()
 
 /obj/item/organ/internal/brain/slime/examine()
@@ -149,7 +157,7 @@
 
 	addtimer(CALLBACK(src, PROC_REF(core_ejection), victim), 0) // explode them after the current proc chain ends, to avoid weirdness
 
-/obj/item/organ/internal/brain/slime/proc/enable_coredeath()
+/obj/item/organ/internal/brain/slime/proc/enable_coredeath() // No longer used.
 	coredeath = TRUE
 	if(owner?.stat == DEAD)
 		addtimer(CALLBACK(src, PROC_REF(core_ejection), owner), 0)
@@ -164,10 +172,8 @@
 	if(QDELETED(stored_dna))
 		stored_dna = new
 
-	if(victim.dna)
-		victim.dna.copy_dna(stored_dna)
-	else
-		src.stored_dna = null
+	isnull(victim.dna) ? (stored_dna = null) : victim.dna.copy_dna(stored_dna)
+
 	core_ejected = TRUE
 	victim.visible_message(span_warning("[victim]'s body completely dissolves, collapsing outwards!"), span_notice("Your body completely dissolves, collapsing outwards!"), span_notice("You hear liquid splattering."))
 	var/turf/death_turf = get_turf(victim)
@@ -213,14 +219,12 @@
 				addtimer(CALLBACK(src, PROC_REF(rebuild_body), null, FALSE), 30 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_DELETE_ME)
 				target_bloodsucker.bloodsucker_blood_volume -= (OOZELING_MIN_REVIVE_BLOOD_THRESHOLD * 0.5)
 
-	rebuilt = FALSE
-	if(src.stored_dna)
+	if(stored_dna)
+		rebuilt = FALSE
 		victim.transfer_observers_to(src)
 	else //Gibbing is usually what causes this. No dna to get from a destroyed body.
-		drop_items_to_ground(get_turf(src), TRUE)
-		Destroy()
 		qdel()
-	victim.transfer_observers_to(src)
+
 	Remove(victim)
 	qdel(victim)
 
@@ -281,8 +285,9 @@
 
 	process_and_store_item(victim.back, victim)// Jank to handle modsuit covering items, so it's removed first. Fix this.
 
-	var/obj/item/bodypart/chest/target_chest = victim.get_bodypart(BODY_ZONE_CHEST)// Store chest cavity item
-	process_and_store_item(target_chest.cavity_item, victim)
+	var/obj/item/bodypart/chest/target_chest = victim.get_bodypart(BODY_ZONE_CHEST) // Store chest cavity item
+	if(istype(target_chest))
+		process_and_store_item(target_chest.cavity_item, victim)
 
 	for(var/atom/movable/item in victim.get_equipped_items(include_pockets = TRUE)) // Store rest of equipment
 		process_and_store_item(item, victim)
