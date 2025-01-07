@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(polling)
 			act_never = "[custom_link_style_start]<a href='byond://?src=[REF(poll_alert_button)];never=1'[custom_link_style_end]>\[Never For This Round\]</a>"
 
 		if(!duplicate_message_check(alert_poll)) //Only notify people once. They'll notice if there are multiple and we don't want to spam people.
-			SEND_SOUND(candidate_mob, sound('monkestation/sound/effects/prompt.ogg', volume = candidate_mob.client?.prefs?.channel_volume["[CHANNEL_SOUND_EFFECTS]"])) // monkestation edit: prompt sound
+			SEND_SOUND(candidate_mob, sound('sound/misc/prompt.ogg', volume = candidate_mob.client?.prefs?.channel_volume["[CHANNEL_SOUND_EFFECTS]"]))
 			var/surrounding_icon
 			if(surrounding_image)
 				surrounding_icon = icon2html(surrounding_image, candidate_mob, extra_classes = "bigicon")
