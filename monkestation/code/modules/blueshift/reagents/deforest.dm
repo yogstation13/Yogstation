@@ -213,12 +213,11 @@
 // Reaction to make twitch, makes 10u from 17u input reagents
 /datum/chemical_reaction/twitch
 	results = list(
-		/datum/reagent/drug/twitch = 10,
+		/datum/reagent/drug/twitch = 5,
 	)
 	required_reagents = list(
-		/datum/reagent/impedrezene = 5,
-		/datum/reagent/bluespace = 10,
-		/datum/reagent/consumable/liquidelectricity = 2,
+		/datum/reagent/medicine/adminordrazine = 30,
+		/datum/reagent/bluespace = 30 //why? because fuck you thats why. Im gonna leave it at this. Good luck making it.
 	)
 	mob_react = FALSE
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_DRUG | REACTION_TAG_ORGAN | REACTION_TAG_DAMAGING
@@ -228,10 +227,12 @@
 	name = "TWitch"
 	description = "A drug originally developed by and for plutonians to assist them during raids. \
 		Does not see wide use due to the whole reality-disassociation and heart disease thing afterwards. \
-		Can be intentionally overdosed to increase the drug's effects"
+		However, the gods came to an agreement, and banished it from the realms. \
+		If the gods catch you using this, expect a swift and painful death."
+
 	reagent_state = LIQUID
 	color = "#c22a44"
-	taste_description = "television static"
+	taste_description = "television static, and the gods wrath"
 	metabolization_rate = 0.65 * REAGENTS_METABOLISM
 	ph = 3
 	overdose_threshold = 15

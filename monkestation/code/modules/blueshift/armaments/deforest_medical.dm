@@ -150,11 +150,6 @@
 	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/synalvipitol
 	contraband = TRUE
 
-/datum/armament_entry/company_import/deforest/medpens_stim/twitch
-	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/twitch
-	cost = PAYCHECK_COMMAND * 3
-	contraband = TRUE
-
 /datum/armament_entry/company_import/deforest/medpens_stim/demoneye
 	item_type = /obj/item/reagent_containers/hypospray/medipen/deforest/demoneye
 	cost = PAYCHECK_COMMAND * 3
