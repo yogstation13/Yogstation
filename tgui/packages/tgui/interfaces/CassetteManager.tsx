@@ -26,7 +26,9 @@ export const CassetteManager = (props) => {
         <Section title="List of This Shift's Submissions">
           <CassetteTable
             entries={cassetteEntries}
-            onReview={(id: string) => act(id)}
+            onReview={(command: string, id: string) =>
+              act(command, { tape_id: id })
+            }
           />
         </Section>
       </Window.Content>
@@ -39,7 +41,7 @@ const CassetteTable = ({
   onReview,
 }: {
   entries: [string, CassetteDetails][];
-  onReview: (id: string) => void;
+  onReview: (command: string, id: string) => void;
 }) => {
   // If entries is not provided or is empty, show a message instead of the table.
   if (!entries || entries.length === 0) {
@@ -62,10 +64,15 @@ const CassetteTable = ({
           <Table.Cell>{cassette.tape_name}</Table.Cell>
           <Table.Cell>{cassette.reviewed ? 'Yes' : 'No'}</Table.Cell>
           <Table.Cell>
+            <Button
+              color="bad"
+              icon="trash"
+              onClick={() => onReview('delete_cassette', id)}
+            />
             <ReviewButton
               reviewed={cassette.reviewed}
               verdict={cassette.verdict}
-              onClick={() => onReview(id)}
+              onClick={() => onReview('review_cassette', id)}
             />
           </Table.Cell>
         </Table.Row>

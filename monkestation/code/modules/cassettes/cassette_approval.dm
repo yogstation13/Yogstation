@@ -76,19 +76,24 @@ GLOBAL_LIST_INIT(cassette_reviews, list())
 	var/verdict = "NONE"
 
 /datum/cassette_review/Destroy(force)
-	. = ..()
 	if(cassette_data)
-		QDEL_LIST(cassette_data)
-	submitter = null
+		cassette_data["side1"]["song_name"] = null
+		cassette_data["side1"]["song_url"] = null
+		cassette_data["side2"]["song_name"] = null
+		cassette_data["side2"]["song_url"] = null
+		cassette_data.Cut()
+		cassette_data = null
+	if(isnull(submitted_tape.loc))
+		QDEL_NULL(submitted_tape) // Remove any tapes in null_space. Denied or Pending condition.
 	if(id && (id in GLOB.cassette_reviews))
 		GLOB.cassette_reviews -= id // Remove the key
+	return 	..()
 
 /datum/cassette_review/ui_state(mob/user)
 	return GLOB.always_state
 
 /datum/cassette_review/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "CassetteReview", "[submitted_ckey]'s Cassette")
@@ -119,10 +124,6 @@ GLOBAL_LIST_INIT(cassette_reviews, list())
 			logger.Log(LOG_CATEGORY_MUSIC, "[submitter]'s tape has been rejected by [usr]", list("approver" = usr.name, "submitter" = submitter.name))
 			action_taken = TRUE
 			verdict = "DENIED"
-
-/datum/cassette_review/ui_close()// Don't leave orphaned datums laying around. Hopefully this handles timeouts?
-	. = ..()
-	qdel(src)
 
 /datum/cassette_review/proc/approve_review(mob/user)
 	if(!check_rights_for(user.client, R_FUN))
@@ -197,9 +198,25 @@ GLOBAL_LIST_INIT(cassette_reviews, list())
 	. = ..()
 	if(.)
 		return
-	if(!length(GLOB.cassette_reviews) || !GLOB.cassette_reviews[action])
+
+	if(!length(GLOB.cassette_reviews))
 		return
 
-	var/datum/cassette_review/cassette = GLOB.cassette_reviews[action]
-	cassette.ui_interact(ui.user)
+	var/tape_id = params["tape_id"]
+	if(!tape_id || !GLOB.cassette_reviews[tape_id])
+		return
+
+	if(action == "delete_cassette")
+		var/datum/cassette_review/cassette = GLOB.cassette_reviews[tape_id]
+		var/final_info = (cassette.action_taken ? "Action taken: True, verdict was [cassette.verdict]" : "Action taken: False")
+		message_admins("[key_name_admin(usr)] has deleted Cassette:[cassette.submitted_tape.name] with ID:[tape_id]. [final_info]")
+		log_admin("[key_name(usr)] sent \"[action]\" on [cassette.submitted_tape.name] with ID:[tape_id]. [final_info]")
+		qdel(cassette)
+		return
+
+	if(action == "review_cassette")
+		var/datum/cassette_review/cassette = GLOB.cassette_reviews[tape_id]
+		cassette.ui_interact(ui.user)
+		return
+
 

@@ -52,10 +52,13 @@
 
 		var/client/client = GLOB.directory[ownerckey] // Use directory for direct lookup (Client might be a differnet mob than when review was made.)
 		if(client && !QDELETED(client?.prefs))
+			var/prev_bal = client?.prefs?.metacoins
 			var/adjusted = client?.prefs?.adjust_metacoins(
 				client?.ckey, 5000,
 				reason = "No action taken on cassette:\[[review.submitted_tape.name]\] before round end.",
 				announces = TRUE, donator_multipler = FALSE
 			)
-			if(adjusted)
-				qdel(review)
+			if(!adjusted)
+				message_admins("Balance not adjusted for Cassette:[review.submitted_tape.name], Balance for [client]; Previous:[prev_bal], Expected:[prev_bal + 5000], Current:[client?.prefs?.metacoins]. Issue logged.")
+				log_admin("Balance not adjusted for Cassette:[review.submitted_tape.name], Balance for [client]; Previous:[prev_bal], Expected:[prev_bal + 5000], Current:[client?.prefs?.metacoins].")
+			qdel(review)
