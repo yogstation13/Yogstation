@@ -203,12 +203,22 @@
 	processing = FALSE
 	locked = FALSE
 	update_appearance()
+	human_occupant.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY) //A treat before being released back into the wild
+	return_victim()
 	addtimer(CALLBACK(src, PROC_REF(announce_creation)), ALERT_CREW_TIME)
 
 /obj/machinery/interrogator/proc/announce_creation()
 	priority_announce("CRITICAL SECURITY BREACH DETECTED! A GoldenEye authentication keycard has been illegally extracted and is being sent in somewhere on the station!", "GoldenEye Defence Network")
 	for(var/obj/item/pinpointer/nuke/disk_pinpointers in GLOB.pinpointer_list)
 		disk_pinpointers.switch_mode_to(TRACK_GOLDENEYE) //Pinpointer will track the newly created goldeneye key.
+
+	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
+		var/delaytime = 3 MINUTES
+		var/timer = SSshuttle.emergency.timeLeft(1) + delaytime
+		var/surplus = timer - (SSshuttle.emergency_call_time)
+		SSshuttle.emergency.setTimer(timer)
+		if(surplus > 0)
+			SSshuttle.block_recall(surplus)
 
 /obj/machinery/interrogator/proc/send_keycard()
 	var/turf/landingzone = find_drop_turf()
@@ -244,3 +254,17 @@
 	//Pick a turf to spawn at if we can
 	if(length(possible_turfs))
 		return pick(possible_turfs)
+
+///This proc attempts to return the head of staff back to the station after the interrogator finishes
+/obj/machinery/interrogator/proc/return_victim()
+	var/turf/open/floor/safe_turf = get_safe_random_station_turf()
+	var/obj/effect/landmark/observer_start/backup_loc = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
+	if(!safe_turf)
+		safe_turf = get_turf(backup_loc)
+		stack_trace("[type] - return_target was unable to find a safe turf for [human_occupant] to return to. Defaulting to observer start turf.")
+
+	if(!do_teleport(human_occupant, safe_turf, asoundout = 'sound/magic/blind.ogg', no_effects = TRUE, channel = TELEPORT_CHANNEL_QUANTUM, forced = TRUE))
+		safe_turf = get_turf(backup_loc)
+		human_occupant.forceMove(safe_turf)
+		stack_trace("[type] - return_target was unable to teleport [human_occupant] to the observer start turf. Forcemoving.")
+
