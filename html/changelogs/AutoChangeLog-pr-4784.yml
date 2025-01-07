@@ -1,0 +1,5 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Gave assault ops access to AP ammo for their smgs and shotguns"
+  - rscadd: "Added c35sol AP ammo"
