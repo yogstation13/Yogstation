@@ -1,0 +1,8 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - rscadd: "Added the eland revolver to assault ops sidearms"
+  - rscdel: "Removed the waspe pistols from assault ops"
+  - rscdel: "Removed the CQC book from assault ops"
+  - balance: "Replaced the assault ops telescopic baton with a contractor baton"
+  - balance: "Replaced the assault ops combat gloves+ with a krav maga implanter"
