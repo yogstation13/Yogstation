@@ -1,0 +1,4 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - bugfix: "Fixed emitter beams causing the SM to play the dusting sound."
