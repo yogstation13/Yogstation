@@ -13,13 +13,14 @@
 	var/max_size = 1
 
 
-/datum/component/mob_stacker/Initialize(...)
+/datum/component/mob_stacker/Initialize()
 	. = ..()
 	main_dude = parent
 	current_head = parent
 	max_size = rand(1, 7)
 	main_dude.max_buckled_mobs = max_size
-	addtimer(CALLBACK(src, PROC_REF(destroy_self)), rand(30 SECONDS, 120 SECONDS))
+	var/lifetime = rand(30 SECONDS, 120 SECONDS)
+	QDEL_IN(src, lifetime)
 
 /datum/component/mob_stacker/RegisterWithParent()
 	. = ..()
@@ -28,25 +29,27 @@
 	RegisterSignal(parent, COMSIG_LIVING_SET_BUCKLED, PROC_REF(check_collapse))
 	RegisterSignal(parent, COMSIG_MOBSTACKER_DESTROY, PROC_REF(destroy_self))
 
+/datum/component/mob_stacker/UnregisterFromParent()
+	UnregisterSignal(parent, list(
+		COMSIG_CHECK_CAN_ADD_NEW_STACK,
+		COMSIG_ATOM_JOIN_STACK,
+		COMSIG_LIVING_SET_BUCKLED,
+		COMSIG_MOBSTACKER_DESTROY
+	))
+
 /datum/component/mob_stacker/Destroy(force)
-	. = ..()
-	UnregisterSignal(main_dude, COMSIG_ATOM_JOIN_STACK)
-	UnregisterSignal(main_dude, COMSIG_LIVING_SET_BUCKLED)
-	UnregisterSignal(main_dude, COMSIG_CHECK_CAN_ADD_NEW_STACK)
-	if(main_dude.buckled)
-		main_dude.buckled.unbuckle_mob(main_dude, force=TRUE)
+	main_dude.buckled?.unbuckle_mob(main_dude, force = TRUE)
 	main_dude = null
 	current_head = null
 	for(var/mob/living/dude as anything in stacked_mobs)
 		if(isbasicmob(dude))
 			var/mob/living/basic/basic = dude
 			basic.ai_controller?.reset_ai_status()
-		REMOVE_TRAIT(dude, TRAIT_IN_STACK, "mob_stack")
-		UnregisterSignal(dude, COMSIG_ATOM_JOIN_STACK)
-		UnregisterSignal(dude, COMSIG_LIVING_SET_BUCKLED)
-		if(dude.buckled)
-			dude.buckled.unbuckle_mob(dude, force=TRUE)
-		stacked_mobs -= dude
+		REMOVE_TRAIT(dude, TRAIT_IN_STACK, REF(src))
+		UnregisterSignal(dude, list(COMSIG_ATOM_JOIN_STACK, COMSIG_LIVING_SET_BUCKLED))
+		dude.buckled?.unbuckle_mob(dude, force = TRUE)
+	stacked_mobs.len = 0
+	return ..()
 
 
 /datum/component/mob_stacker/proc/try_join_stack(datum/source, mob/living/joiner)
@@ -55,7 +58,7 @@
 		return
 
 	if(main_dude.buckle_mob(joiner, force = TRUE))
-		ADD_TRAIT(joiner, TRAIT_IN_STACK, "mob_stack")
+		ADD_TRAIT(joiner, TRAIT_IN_STACK, REF(src))
 		if(isbasicmob(joiner))
 			var/mob/living/basic/basic = joiner
 			basic.ai_controller?.set_ai_status(AI_STATUS_OFF)

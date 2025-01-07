@@ -24,27 +24,24 @@
 	src.hunger_restore = hunger_restore
 	src.stops_at_crit = stops_at_crit
 	src.check_and_replace = callback
-
 	if(!latch_target(loc_check = checks_loc))
 		return COMPONENT_INCOMPATIBLE
-
-	ADD_TRAIT(parent, TRAIT_FEEDING, LATCH_TRAIT)
-
 	START_PROCESSING(SSobj, src)
 
 /datum/component/latch_feeding/Destroy(force)
-	REMOVE_TRAIT(parent, TRAIT_FEEDING, LATCH_TRAIT)
+	STOP_PROCESSING(SSobj, src)
 	target = null
 	check_and_replace = null
 	return ..()
 
 /datum/component/latch_feeding/RegisterWithParent()
+	ADD_TRAIT(parent, TRAIT_FEEDING, REF(src))
 	RegisterSignal(parent, COMSIG_LIVING_SET_BUCKLED, PROC_REF(check_buckled))
 	RegisterSignal(parent, COMSIG_MOB_OVERATE, PROC_REF(stop_feeding))
 
 /datum/component/latch_feeding/UnregisterFromParent()
-	UnregisterSignal(parent, COMSIG_LIVING_SET_BUCKLED)
-	UnregisterSignal(parent, COMSIG_MOB_OVERATE)
+	REMOVE_TRAIT(parent, TRAIT_FEEDING, REF(src))
+	UnregisterSignal(parent, list(COMSIG_LIVING_SET_BUCKLED, COMSIG_MOB_OVERATE))
 
 /datum/component/latch_feeding/proc/latch_target(init = FALSE, loc_check = TRUE)
 	var/mob/basic_mob = parent

@@ -11,17 +11,16 @@
 /datum/component/friendship_container/Initialize(friendship_levels = list(), befriend_level)
 	. = ..()
 	if(!length(friendship_levels))
-		return FALSE
-
+		return COMPONENT_INCOMPATIBLE
 	src.friendship_levels = friendship_levels
 	src.befriend_level = befriend_level
 
 
 /datum/component/friendship_container/Destroy(force)
-	. = ..()
 	befriended_refs = null
 	weakrefed_friends = null
 	friendship_levels = null
+	return ..()
 
 /datum/component/friendship_container/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_FRIENDSHIP_CHECK_LEVEL, PROC_REF(check_friendship_level))

@@ -58,8 +58,8 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_HEAR, PROC_REF(hear_speech))
 
 /datum/component/emotion_buffer/Destroy(force)
-	. = ..()
 	host = null
+	return ..()
 
 /datum/component/emotion_buffer/UnregisterFromParent()
 	. = ..()

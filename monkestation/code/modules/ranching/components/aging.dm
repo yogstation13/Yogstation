@@ -10,7 +10,6 @@
 	///our old age callback
 	var/datum/callback/death_callback
 
-
 /datum/component/aging/Initialize(max_age = 100, age_cooldown = 30 SECONDS, death_callback)
 	. = ..()
 	src.max_age = max_age
@@ -20,17 +19,16 @@
 	START_PROCESSING(SSobj, src)
 
 /datum/component/aging/Destroy(force)
+	STOP_PROCESSING(SSobj, src)
 	death_callback = null
 	return ..()
 
 /datum/component/aging/RegisterWithParent()
-	. = ..()
 	RegisterSignal(parent, COMSIG_AGE_ADJUSTMENT, PROC_REF(adjust_age))
 	RegisterSignal(parent, COMSIG_AGE_RETURN_AGE, PROC_REF(return_age))
 
 /datum/component/aging/UnregisterFromParent()
-	. = ..()
-	UnregisterSignal(parent, COMSIG_AGE_ADJUSTMENT)
+	UnregisterSignal(parent, list(COMSIG_AGE_ADJUSTMENT, COMSIG_AGE_RETURN_AGE))
 
 /datum/component/aging/process(seconds_per_tick)
 	if(!COOLDOWN_FINISHED(src, current_cooldown))
@@ -38,9 +36,8 @@
 	COOLDOWN_START(src, current_cooldown, age_cooldown)
 	current_age++
 	if(max_age <= current_age)
-		if(death_callback)
-			death_callback.Invoke()
-		STOP_PROCESSING(SSobj, src)
+		death_callback?.Invoke()
+		return PROCESS_KILL
 
 /datum/component/aging/proc/adjust_age(datum/source, adjust)
 	current_age += adjust
