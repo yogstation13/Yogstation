@@ -16214,6 +16214,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"fBQ" = (
+/obj/machinery/atmospherics/pipe/simple/purple/visible,
+/obj/machinery/door/airlock/atmos/glass{
+	name = "Incinerator Access"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "fCo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18788,6 +18805,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"hel" = (
+/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
+/obj/structure/table,
+/obj/item/electronics/airlock,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "hen" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -21121,23 +21144,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"iBi" = (
-/obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/machinery/door/airlock/atmos/glass{
-	name = "Incinerator Access"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/atmos,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
 "iBy" = (
 /obj/effect/turf_decal/arrows/red{
 	dir = 4;
@@ -36110,15 +36116,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/escapepodbay)
-"rIA" = (
-/obj/effect/turf_decal/trimline/engiyellow/filled/line/lower,
-/obj/structure/table,
-/obj/item/electronics/airlock,
-/obj/machinery/light_switch{
-	pixel_y = -20
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "rJg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -128739,7 +128736,7 @@ mDM
 aSh
 gzs
 ydI
-auV
+aQW
 axh
 axh
 axh
@@ -128996,7 +128993,7 @@ aSh
 aSh
 vtt
 ydI
-aQW
+auV
 axh
 axh
 axh
@@ -129253,7 +129250,7 @@ kXi
 nbn
 eIW
 tDo
-aQW
+auV
 axh
 axh
 axh
@@ -129767,7 +129764,7 @@ hUj
 hUj
 aUx
 ovf
-aQW
+auV
 axh
 axh
 axh
@@ -130024,7 +130021,7 @@ wXO
 hUj
 aUx
 ybm
-aQW
+auV
 axh
 axh
 axh
@@ -130280,8 +130277,8 @@ hUj
 hUj
 hUj
 aUx
-rIA
-aQW
+hel
+auV
 axh
 axh
 axh
@@ -130553,7 +130550,7 @@ axh
 axh
 axh
 oMh
-sdw
+hJe
 oMh
 oMh
 oMh
@@ -130812,7 +130809,7 @@ axh
 axh
 eNL
 eNL
-sdw
+hJe
 oMh
 oMh
 oMh
@@ -131307,9 +131304,9 @@ axh
 axh
 axh
 axh
+axh
+axh
 aNi
-axh
-axh
 axh
 axh
 axh
@@ -132354,7 +132351,7 @@ axh
 axh
 eNL
 eNL
-sdw
+hJe
 oMh
 oMh
 oMh
@@ -132607,10 +132604,10 @@ aZM
 uNd
 axh
 axh
-sdw
-sdw
+hJe
+hJe
 eNL
-sdw
+hJe
 oMh
 oMh
 oMh
@@ -132865,7 +132862,7 @@ uNd
 axh
 oMh
 oMh
-sdw
+hJe
 eNL
 oMh
 oMh
@@ -133111,7 +133108,7 @@ aSv
 ppM
 cqT
 wbP
-iBi
+fBQ
 wuu
 kaF
 saL
@@ -133119,7 +133116,7 @@ vyZ
 mbs
 mJw
 apj
-sdw
+hJe
 oMh
 oMh
 oMh
@@ -133369,15 +133366,15 @@ nXK
 vRs
 hkB
 afP
-afP
 apj
 apj
 apj
 apj
 apj
 apj
-sdw
-sdw
+apj
+hJe
+hJe
 oMh
 oMh
 eNL
@@ -133890,7 +133887,7 @@ gTX
 gTX
 gRJ
 hJe
-sdw
+hJe
 oMh
 oMh
 oMh
@@ -134145,8 +134142,8 @@ sre
 xAA
 axh
 axh
-sdw
-sdw
+hJe
+hJe
 oMh
 oMh
 oMh
