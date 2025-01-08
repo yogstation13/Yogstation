@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/status_effect/fire_handler/shadowflame/tick(delta_time, times_fired)
-	adjust_stacks(-1 * delta_time SECONDS) //change this number to make it last a shorter duration
+	adjust_stacks(-0.75 * delta_time SECONDS) //change this number to make it last a shorter duration
 	if(stacks <= 0)
 		qdel(src)
 		return
