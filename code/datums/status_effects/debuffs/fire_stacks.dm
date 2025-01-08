@@ -133,6 +133,8 @@
 	var/on_fire = FALSE
 	/// Stores current fire overlay icon state, for optimisation purposes
 	var/last_icon_state
+	/// The typepath of the particle used
+	var/particle_type = /particles/embers
 	/// Reference to the mob light emitter itself
 	var/obj/effect/dummy/lighting_obj/moblight
 	/// Type of mob light emitter we use when on fire
@@ -164,7 +166,7 @@
 /datum/status_effect/fire_handler/fire_stacks/update_particles()
 	if(on_fire)
 		if(!particle_effect)
-			particle_effect = new(owner, /particles/embers)
+			particle_effect = new(owner, particle_type)
 		if(stacks > MOB_BIG_FIRE_STACK_THRESHOLD)
 			particle_effect.particles.spawning = 5
 		else
