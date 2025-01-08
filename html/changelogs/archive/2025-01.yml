@@ -170,3 +170,6 @@
   - balance: Satyrs don't take a few centuries to get drunk again
   - bugfix: Satyrs don't flicker between being drunk and not anymore
   - bugfix: Satyrs drunkness can no longer go negative
+2025-01-08:
+  ThePooba:
+  - bugfix: 8 atmos roundstart runtimes
