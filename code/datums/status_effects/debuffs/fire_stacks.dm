@@ -126,15 +126,13 @@
 	id = "fire_stacks" //fire_stacks and wet_stacks should have different IDs or else has_status_effect won't work
 	remove_on_fullheal = TRUE
 
-	enemy_types = list(/datum/status_effect/fire_handler/wet_stacks)
+	enemy_types = list(/datum/status_effect/fire_handler/wet_stacks, /datum/status_effect/fire_handler/shadowflame)
 	stack_modifier = 1
 
 	/// If we're on fire
 	var/on_fire = FALSE
 	/// Stores current fire overlay icon state, for optimisation purposes
 	var/last_icon_state
-	/// The typepath of the particle used
-	var/particle_type = /particles/embers
 	/// Reference to the mob light emitter itself
 	var/obj/effect/dummy/lighting_obj/moblight
 	/// Type of mob light emitter we use when on fire
@@ -166,7 +164,7 @@
 /datum/status_effect/fire_handler/fire_stacks/update_particles()
 	if(on_fire)
 		if(!particle_effect)
-			particle_effect = new(owner, particle_type)
+			particle_effect = new(owner, /particles/embers)
 		if(stacks > MOB_BIG_FIRE_STACK_THRESHOLD)
 			particle_effect.particles.spawning = 5
 		else
@@ -280,7 +278,7 @@
 /datum/status_effect/fire_handler/wet_stacks
 	id = "wet_stacks"
 
-	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks)
+	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks, /datum/status_effect/fire_handler/shadowflame)
 	stack_modifier = -1
 
 /datum/status_effect/fire_handler/wet_stacks/tick(delta_time, times_fired)

@@ -552,6 +552,8 @@
 	name = "echoing void"
 	icon = 'yogstation/icons/effects/effects.dmi'
 	icon_state = "nothing"
+	anchored = TRUE
+	move_resist = INFINITY
 
 /obj/effect/temp_visual/darkspawn/chasm //a slow field that eventually explodes
 	icon_state = "consuming"
@@ -698,77 +700,37 @@
 //----------------------I stole genetics fire breath--------------------//
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/cone/staggered/shadowflame
-	name = "Fire Breath"
-	desc = "You breathe a cone of fire directly in front of you."
-	button_icon_state = "fireball"
-	sound = 'sound/magic/demon_dies.ogg' //horrifying lizard noises
+	name = "Shadowflame Gout"
+	desc = "Release a burst of shadowflame, rapidly sapping the heat of any individual."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "veiling_touch"
+	panel = "Darkspawn"
+	sound = 'sound/magic/demon_dies.ogg'
 
 	school = SCHOOL_EVOCATION
-	cooldown_time = 40 SECONDS
 	invocation_type = INVOCATION_NONE
 	spell_requirements = NONE
-	antimagic_flags = NONE
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags =  AB_CHECK_CONSCIOUS
+	cooldown_time = 60 SECONDS
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100) //dangerous, high CC, and area denial
 
-	cone_levels = 3
+	delay_between_level = 0.3 SECONDS //longer delay
+	cone_levels = 5 //longer cone
 	respect_density = TRUE
-	/// The range our user is thrown backwards after casting the spell
-	var/self_throw_range = 1
-	/// The max point-blank damage dealt by the cone
-	var/max_damage = 25
 
 /datum/action/cooldown/spell/cone/staggered/shadowflame/do_turf_cone_effect(turf/target_turf, atom/caster, level)
-	new /obj/effect/abstract/turf_fire/shadow(target_turf, power, fire_color)
-	// Further turfs experience less exposed_temperature and exposed_volume
-	new /obj/effect/hotspot(target_turf) // for style
-	target_turf.hotspot_expose(max(500, 900 - (100 * level)), max(50, 200 - (50 * level)), 1)
+	target_turf.extinguish_turf()
+	new /obj/effect/temp_visual/darkspawn/shadowflame(target_turf) // for style
 
 /datum/action/cooldown/spell/cone/staggered/shadowflame/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
-	target_mob.adjust_fire_stacks(20, /datum/status_effect/fire_handler/fire_stacks/shadowflame)
-	target_mob.ignite_mob()
+	target_mob.set_wet_stacks(20, /datum/status_effect/fire_handler/shadowflame)
 
-
-/// Cold purple turf fire
-/obj/effect/abstract/turf_fire/shadow
-	light_power = -1.5
-	light_color = COLOR_VELVET
-	interact_with_atmos = FALSE //we don't interact with atmos, but we do lose power over time, despite technically being magical
-	hex_color = COLOR_VELVET
-
-
-//might be WAY too dark
-/particles/embers/shadow
-	gradient = list(COLOR_VELVET, COLOR_DARKSPAWN_PSI, COLOR_BLACK)
-
-
-//////////////////////////////////////////////////////////////////////////
-//--------------------------Cold Fire instead of hot--------------------//
-//////////////////////////////////////////////////////////////////////////
-/obj/effect/dummy/lighting_obj/moblight/shadowflame
-	name = "fire"
-	light_color = COLOR_VELVET
-	light_range = LIGHT_RANGE_FIRE
-	light_power = -1
-
-/datum/status_effect/fire_handler/fire_stacks/shadowflame
-	particle_type = /particles/embers/shadow
-	moblight_type = /obj/effect/dummy/lighting_obj/moblight/shadowflame
-	//how cold this fire is
-	var/temperature = 0
-
-//no hotspot
-/datum/status_effect/fire_handler/fire_stacks/shadowflame/deal_damage(seconds_per_tick)
-	if(is_team_darkspawn(owner))
-		return
-	owner.on_fire_stack(seconds_per_tick, src)
-
-/datum/status_effect/fire_handler/fire_stacks/shadowflame/harm_human(seconds_per_tick, no_protection = FALSE)
-	var/mob/living/carbon/human/victim = owner
-	var/thermal_multiplier = 1 - victim.get_cold_protection(temperature)
-
-	var/calculated_cooling = (BODYTEMP_COOLING_MAX - (stacks * 12)) * 0.5 * seconds_per_tick * thermal_multiplier
-	victim.adjust_bodytemperature(calculated_cooling, temperature)
-
-	if(HAS_TRAIT(victim, TRAIT_RESISTCOLD) || !calculated_cooling)
-		SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
-	else
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "on_fire", /datum/mood_event/on_fire)
+/datum/action/cooldown/spell/cone/staggered/shadowflame/calculate_cone_shape(current_level)
+	// This makes the cone shoot out into a 3 wide column of flames.
+	// You may be wondering, "that equation doesn't seem like it'd make a 3 wide column"
+	// well it does, and that's all that matters.
+	return (2 * current_level) - 1
