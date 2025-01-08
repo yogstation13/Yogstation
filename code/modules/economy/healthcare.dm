@@ -112,6 +112,12 @@
 	if(!victim || !istype(victim))
 		return FALSE
 
+	if(!victim.registered_account.has_money(-1050))
+		victim.registered_account.bank_card_talk("Severe debt fraud detected! This ID will now self-destruct. Please contact a member of command to be issued a new ID.", TRUE)
+		qdel(victim)
+		playsound(src.loc, 'sound/items/pshred.ogg', 75, TRUE)
+		return
+
 	victim.registered_account._adjust_money(-current_price) // can't pay? it's ok, you'll just go into debt
 	. = TRUE
 
@@ -138,13 +144,7 @@
 	selected_care = null
 
 	say("Thank you for your patronage, [victim.registered_account.account_holder]! Medical staff have been paid and notified. You are entitled to the following: [care]")
-
-	if(!victim.registered_account.has_money(-950)) // fraud prevention. id is shredded, debt remains on account
-		victim.registered_account.bank_card_talk("Severe debt fraud detected! This ID will now self-destruct. Please contact a member of command to be issued a new ID.", TRUE)
-		qdel(victim)
-		playsound(src.loc, 'sound/items/pshred.ogg', 75, TRUE)
-	else
-		playsound(src.loc, 'sound/effects/cashregister.ogg', 20, TRUE)
+	playsound(src.loc, 'sound/effects/cashregister.ogg', 20, TRUE)
 
 #undef CARE_BASIC_CHECKUP
 #undef CARE_VACCINATION
