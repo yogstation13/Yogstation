@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/thrall_mind
 	name = "Thrall mind"
-	desc = "Consume 1 willpower to thrall a target's mind. To be eligible, they must be alive and recently drained by Devour Will. Can also be used to revive deceased thralls.<br>Right-click to release thralls from your control."
+	desc = "Consume 1 willpower to thrall a target's mind.<br>To be eligible, they must be alive and recently drained by Devour Will.<br>Can also be used to revive deceased thralls.<br>Right-click to release thralls from your control."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
