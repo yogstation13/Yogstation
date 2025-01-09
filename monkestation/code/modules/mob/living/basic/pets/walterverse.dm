@@ -8,7 +8,13 @@
 	icon_dead = "saulter_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("barks!", "Hi, i'm Saul Goodman.", "Did you know you have rights?", "Based!")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/saulter/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("barks!", "Hi, i'm Saul Goodman.", "Did you know you have rights?", "Based!"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/negative
 	name = "Negative Walter"
@@ -20,7 +26,13 @@
 	icon_dead = "negative_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("skrab!", "sfoow!", "retlaW", "skcurterif", "skcurtretsnom")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/negative/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("skrab!", "sfoow!", "retlaW", "skcurterif", "skcurtretsnom"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/syndicate
 	name = "Syndicate Walter"
@@ -32,7 +44,13 @@
 	icon_dead = "syndie_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("barks!", "woofs!", "Walter", "Down with Nanotrasen!", "For the Syndicate!")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/syndicate/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("barks!", "woofs!", "Walter", "Down with Nanotrasen!", "For the Syndicate!"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/doom
 	name = "Doom Walter"
@@ -44,7 +62,13 @@
 	icon_dead = "doom_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("...")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/doom/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("..."))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/space
 	name = "Space Walter"
@@ -59,7 +83,13 @@
 	bodytemp_heat_damage_limit = 1500
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("barks!", "woofs!", "spess!", "Walter", "firetrucks", "monstertrucks", "spaceships")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/space/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("barks!", "woofs!", "spess!", "Walter", "firetrucks", "monstertrucks", "spaceships"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/sus
 	name = "Suspicious Walter"
@@ -71,10 +101,17 @@
 	icon_dead = "sus_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("barks!", "woofs!", "sus!", "Walter", "firetrucks", "monstertrucks", "tasks")
+
 /mob/living/basic/pet/dog/bullterrier/walter/sus/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/sus/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("barks!", "woofs!", "sus!", "Walter", "firetrucks", "monstertrucks", "tasks"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/clown
 	name = "Clown Walter"
@@ -86,8 +123,13 @@
 	icon_dead = "clown_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("barks!", "woofs!", "honks!", "Walter", "firetrucks", "monstertrucks")
 
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/clown/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("barks!", "woofs!", "honks!", "Walter", "firetrucks", "monstertrucks"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/french
 	name = "French Walter"
@@ -99,7 +141,13 @@
 	icon_dead = "french_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("aboiement!", "aboyer!", "Walter", "camions de pompiers", "camions monstres")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/french/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("aboiement!", "aboyer!", "Walter", "camions de pompiers", "camions monstres"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/british
 	name = "Bri'ish Wal'ah"
@@ -107,7 +155,13 @@
 	desc = "Nar'sie and like ra''var are naw'hin' compared 'o 'he migh' of 'hiz mons'er'ruck lovin' dog."
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("barks!", "woofs!", "Wal'ah", "fire'rucks", "mons'er'rucks")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/british/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("barks!", "woofs!", "Wal'ah", "fire'rucks", "mons'er'rucks"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/wizard
 	name = "Magic Walter"
@@ -119,7 +173,13 @@
 	icon_dead = "wizard_dead"
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("ONI SOMA", "CLANG!", "UN'LTD P'WAH", "AULIE OXIN FIERA", "GIN'YU`CAPAN")
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/wizard/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("ONI SOMA", "CLANG!", "UN'LTD P'WAH", "AULIE OXIN FIERA", "GIN'YU`CAPAN"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
 
 /mob/living/basic/pet/dog/bullterrier/walter/smallter
 	name = "Smallter"
@@ -127,8 +187,14 @@
 	desc = "Nar'sie and rat'var are nothing compared to the might of this tiny dog."
 	gold_core_spawnable = FRIENDLY_SPAWN
 	unique_pet = TRUE
-	//speak = list("barks", "woofs", "walter", "firetrucks", "monstertrucks")
 
 /mob/living/basic/pet/dog/bullterrier/walter/smallter/Initialize(mapload)
 	. = ..()
 	update_transform(0.5)
+
+///Updates dog speech and emotes for each walter
+/mob/living/basic/pet/dog/bullterrier/walter/smallter/update_dog_speech(datum/ai_planning_subtree/random_speech/speech)
+	speech.speech_chance = 5
+	speech.speak = string_list(list("barks", "woofs", "walter", "firetrucks", "monstertrucks"))
+	speech.emote_hear = string_list(list("barks!", "woofs!", "yaps.","pants."))
+	speech.emote_see = string_list(list("shakes [p_their()] head.", "chases [p_their()] tail.","shivers."))
