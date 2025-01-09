@@ -173,3 +173,6 @@
 2025-01-08:
   ThePooba:
   - bugfix: 8 atmos roundstart runtimes
+2025-01-09:
+  Siro:
+  - code_imp: Walter dogs now speak again and their chance to speak increased 1->5
