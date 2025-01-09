@@ -255,7 +255,9 @@
 /obj/machinery/plantgenes/Topic(href, list/href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+
+	var/mob/user = usr
+	user.set_machine(src)
 
 	if(href_list["eject_seed"] && !operation)
 		if (seed)
@@ -338,6 +340,9 @@
 								gene.value = max(gene.value, min_wrate)
 							else if(istype(G, /datum/plant_gene/core/weed_chance))
 								gene.value = max(gene.value, min_wchance)
+						if(G.extract_value && user.add_exp(SKILL_SCIENCE, G.extract_value, G.type))
+							user.playsound_local(get_turf(src), 'sound/machines/ping.ogg', 25, TRUE)
+							balloon_alert(user, "new trait catalogued: [lowertext(G.name)]")
 						disk.update_appearance()
 						qdel(seed)
 						seed = null

@@ -184,13 +184,15 @@
 		return TRUE
 	return FALSE
 
-/datum/wires/proc/cut(wire)
+/datum/wires/proc/cut(wire, mob/user)
 	if(is_cut(wire))
 		cut_wires -= wire
 		on_cut(wire, mend = TRUE)
 	else
 		cut_wires += wire
 		on_cut(wire, mend = FALSE)
+	if(user)
+		user.add_exp(SKILL_TECHNICAL, 50, "[wire]_[type]")
 
 /datum/wires/proc/cut_color(color)
 	cut(get_wire(color))
@@ -202,10 +204,12 @@
 	for(var/wire in wires)
 		cut(wire)
 
-/datum/wires/proc/pulse(wire, user)
+/datum/wires/proc/pulse(wire, mob/user)
 	if(is_cut(wire))
 		return
 	on_pulse(wire, user)
+	if(user)
+		user.add_exp(SKILL_TECHNICAL, 50, "[wire]_[type]")
 
 /datum/wires/proc/pulse_color(color, mob/living/user)
 	pulse(get_wire(color), user)

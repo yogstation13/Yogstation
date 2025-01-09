@@ -68,6 +68,9 @@
 		SKILL_FITNESS = 0,
 	)
 
+	/// One-time experience gains that have already been acquired
+	var/list/unique_exp = list()
+
 	/// Free skill points to allocate
 	var/skill_points = 0
 
@@ -804,12 +807,15 @@
 		return FALSE
 	return (mind.skills[skill] >= amount)
 
-/// Adds progress towards increasing skill level. Returns TRUE if it improved the skill.
-/mob/proc/add_exp(skill, amount)
+/// Adds progress towards increasing skill level. Returns TRUE if it added progress. Adding a source prevents gaining exp from that source again.
+/mob/proc/add_exp(skill, amount, source)
 	if(!mind)
 		return FALSE
-	if(mind.skill_points > 0)
+	if(!amount)
 		return FALSE
+	if(source && (source in mind.unique_exp))
+		return FALSE
+	mind.unique_exp.Add(source)
 	var/exp_required = EXPERIENCE_PER_LEVEL * (2**mind.skills[skill]) // exp required scales exponentially
 	if(mind.exp_progress[skill] + amount >= exp_required)
 		var/levels_gained = round(log(2, 1 + (mind.exp_progress[skill] + amount) / exp_required)) // in case you gained so much you go up more than one level
@@ -818,11 +824,17 @@
 			hud_used.skill_menu.allocated_points -= min(levels_gained, levels_allocated)
 			hud_used.skill_menu.allocated_skills[skill] -= min(levels_gained, levels_allocated)
 		mind.exp_progress[skill] += amount - exp_required * (2**(levels_gained - 1))
+		mind.skill_points = max(mind.skill_points - levels_gained, 0) // remove an equal amount of unallocated skill points to prevent exploits
 		adjust_skill(skill, levels_gained)
 		to_chat(src, span_boldnotice("Your [skill] skill is now level [get_skill(skill)]!"))
-		return TRUE
 	mind.exp_progress[skill] += amount
-	return FALSE
+	return TRUE
+
+/// Returns whether experience has been gained from a given source
+/mob/proc/has_exp(source)
+	if(!mind)
+		return FALSE
+	return (source in mind.unique_exp) ? TRUE : FALSE
 
 /// Adds skill points to be allocated at will.
 /mob/proc/add_skill_points(amount)
