@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Searching through trash piles now throws trash around you and makes sound as you dig through it!"
+  - rscadd: "Mapped maints trash piles into all maps that didn't already have them."
