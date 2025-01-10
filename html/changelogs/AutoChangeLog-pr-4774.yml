@@ -1,0 +1,5 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - balance: "Reloading from shotgun ammo boxes has a 1 second do after. Except for honkshot ammo boxes."
+  - balance: "Shotgun ammo boxes have 16 shells instead of 15, except honkshot ammo boxes. Honkshot ammo boxes have 40 shells, used to be 35."
