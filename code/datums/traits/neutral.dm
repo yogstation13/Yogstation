@@ -436,7 +436,7 @@
 	quality = "regular cybernetic"
 
 /datum/quirk/cyberorgan/voicebox
-	name = "Cybernetic organ (Tongue)"
+	name = "Cybernetic Organ (Tongue)"
 	desc = "Due to a past incident you lost function of your tongue, but now have a robotic voicebox!"
 	organ_list = list(ORGAN_SLOT_TONGUE = /obj/item/organ/tongue/robot)
 	medical_record_text = "During physical examination, patient was found to have a robotic voicebox."
