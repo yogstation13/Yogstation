@@ -13,6 +13,21 @@
 	name = "refined dust"
 	desc = "After being enriched it has turned into some dust."
 
+	/// Cooldown used to prevents boulders from getting processed back into a machine immediately after being processed.
+	COOLDOWN_DECLARE(processing_cooldown)
+
+/**
+ * Handles the dust's processing cooldown to check if it's ready to be processed again.
+ */
+/obj/item/processing/refined_dust/proc/can_get_processed()
+	return COOLDOWN_FINISHED(src, processing_cooldown)
+
+/**
+ * Starts the dust's processing cooldown.
+ */
+/obj/item/processing/refined_dust/proc/restart_processing_cooldown()
+	COOLDOWN_START(src, processing_cooldown, 2 SECONDS)
+
 /obj/item/processing/dirty_dust
 	name = "dirty dust"
 	desc = "After crushing some clumps we are left with this."

@@ -1,6 +1,6 @@
 /obj/machinery/bouldertech/enricher
 	name = "enrichment chamber"
-	desc = "enriches boulders into dust which can then de smelted at a smelter for double the materials."
+	desc = "Enriches boulders and dirty dust into dust which can then de smelted at a smelter for double the materials."
 	icon_state = "enricher"
 	holds_minerals = TRUE
 	process_string = "Dirty Dust"
@@ -67,6 +67,13 @@
 			dust.custom_materials[material] = quantity
 			dust.set_colors()
 			dust.forceMove(get_step(src, export_side))
+
+	if(istype(boulder, /obj/item/boulder/artifact)) // If we are breaking an artifact boulder drop the artifact before deletion.
+		var/obj/item/boulder/artifact/artboulder = boulder
+		if(artboulder.artifact_inside)
+			artboulder.artifact_inside.forceMove(drop_location())
+			artboulder.artifact_inside = null
+
 	qdel(boulder)
 	playsound(loc, 'sound/weapons/drill.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	update_boulder_count()
@@ -84,12 +91,24 @@
 	playsound(loc, 'sound/weapons/drill.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	update_boulder_count()
 
+/obj/machinery/bouldertech/enricher/attackby(obj/item/attacking_item, mob/user, params)
+	if(holds_minerals && check_extras(attacking_item)) // Checking for extra items it can refine.
+		var/obj/item/processing/dirty_dust/dirty_dust = attacking_item
+		update_boulder_count()
+		if(!accept_boulder(dirty_dust))
+			balloon_alert_to_viewers("full!")
+			return
+		balloon_alert_to_viewers("accepted")
+		START_PROCESSING(SSmachines, src)
+		return TRUE
+	return ..()
+
 /obj/machinery/bouldertech/enricher/CanAllowThrough(atom/movable/mover, border_dir)
 	if(!anchored)
 		return FALSE
 	if(boulders_contained.len >= boulders_held_max)
 		return FALSE
-	if(istype(mover, /obj/item/processing/dirty_dust))
+	if(check_extras(mover))
 		return TRUE
 	return ..()
 

@@ -1,6 +1,6 @@
 /obj/machinery/bouldertech/chemical_washer
 	name = "chemical washer"
-	desc = "Crushes clumps of ore into dirty dust which needs to be enriched."
+	desc = "Uses water to flush out non-dissolvable materials leaving a clean slurry solution."
 	icon_state = "washer"
 	allows_boulders = FALSE
 	holds_minerals = TRUE
@@ -29,6 +29,21 @@
 	create_reagents(maximum_volume, TRANSPARENT)
 	AddComponent(/datum/component/plumbing/chemical_washer)
 	AddComponent(/datum/component/plumbing/chemical_washer_water)
+
+/obj/machinery/bouldertech/chemical_washer/examine(mob/user)
+	. = ..()
+	var/list/possible_pipes = src.GetComponents(/datum/component/plumbing)
+	if(length(possible_pipes))
+		var/cur_ang_offset = 180 - dir2angle(src.dir) // Parent machine rotation offsets everything else. 180 is default pointed south offset.
+		for(var/datum/component/plumbing/pipes in possible_pipes)
+			var/input_pipe = initial(pipes.demand_connects) // Call for the initial position then use turn to get its current direction.
+			var/output_pipe = initial(pipes.supply_connects)
+			var/layer_name = (pipes.ducting_layer == THIRD_DUCT_LAYER) ? "Third Layer" : GLOB.plumbing_layer_names["[pipes.ducting_layer]"]
+			if(istype(pipes, /datum/component/plumbing/chemical_washer))
+				. += span_nicegreen("Dirty Slurry supply connects to the [dir2text(turn(input_pipe, cur_ang_offset))] with RED pipes on the [layer_name]")
+				. += span_nicegreen("Clean Slurry export connects to the [dir2text(turn(output_pipe, cur_ang_offset))] with BLUE pipes on the [layer_name]")
+			if(istype(pipes, /datum/component/plumbing/chemical_washer_water))
+				. += span_nicegreen("Water supply connects to the [dir2text(turn(input_pipe, cur_ang_offset))] with BLUE pipes on the [layer_name]")
 
 /obj/machinery/bouldertech/chemical_washer/process()
 	if(!anchored)

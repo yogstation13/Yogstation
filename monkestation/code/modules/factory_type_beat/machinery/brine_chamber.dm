@@ -1,6 +1,6 @@
 /obj/structure/brine_chamber
 	name = "brine chamber"
-	desc = "Converts water into brine."
+	desc = "A large structure for a pool of water. Its large open surface area allows water to evaporate leaving behind, salts creating a very salty brine solution."
 	icon = 'monkestation/code/modules/factory_type_beat/icons/mining_machines.dmi'
 	icon_state = "brine_chamber"
 	density = TRUE
@@ -76,6 +76,21 @@
 /obj/structure/brine_chamber/controller/Destroy()
 	. = ..()
 	repack(TRUE)
+
+/obj/structure/brine_chamber/controller/examine(mob/user)
+	. = ..()
+	. += span_boldwarning("The sticker on the side says: All pipe connections are located at the main controller.")
+	if(length(walls) && length(turfs)) // Don't show pipe information if we are packed up.
+		var/list/possible_pipes = src.GetComponents(/datum/component/plumbing)
+		if(length(possible_pipes))
+			for(var/datum/component/plumbing/pipes in possible_pipes)
+				var/input_pipe = initial(pipes.demand_connects) // Call for the initial position then use turn to get its current direction.
+				var/output_pipe = initial(pipes.supply_connects)
+				var/layer_name = (pipes.ducting_layer == THIRD_DUCT_LAYER) ? "Third Layer" : GLOB.plumbing_layer_names["[pipes.ducting_layer]"]
+				if(istype(pipes, /datum/component/plumbing/chemical_washer_water))
+					. += span_nicegreen("Water supply connects to the [dir2text(input_pipe)] with BLUE pipes on the [layer_name]")
+				if(istype(pipes, /datum/component/plumbing/brine_controller))
+					. += span_nicegreen("Brine export connects to the [dir2text(output_pipe)] with GREEN pipes on the [layer_name]")
 
 /obj/structure/brine_chamber/controller/process(seconds_per_tick)
 	if(process_count < 10)

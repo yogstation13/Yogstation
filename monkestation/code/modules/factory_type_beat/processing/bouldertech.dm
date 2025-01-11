@@ -89,6 +89,8 @@
 /obj/machinery/bouldertech/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(default_deconstruction_screwdriver(user, "[initial(icon_state)]-off", initial(icon_state), tool))
+		//update_appearance(UPDATE_ICON_STATE)
+		//Icon changes need to be changed. Do this last.
 		return TOOL_ACT_TOOLTYPE_SUCCESS
 
 /obj/machinery/bouldertech/crowbar_act(mob/living/user, obj/item/tool)
@@ -163,7 +165,7 @@
 
 		if(!istype(potential_boulder, /obj/item/boulder))
 			potential_boulder.forceMove(drop_location())
-			CRASH("\The [src] had a non-boulder in it's boulders contained!")
+			CRASH("\The [src] had a non-boulder in it's boulders container!")
 
 		var/obj/item/boulder/boulder = potential_boulder
 		if(boulder.durability < 0)
@@ -201,6 +203,8 @@
 	. = ..()
 	if(holds_mining_points)
 		. += span_notice("The machine reads that it has [span_bold("[points_held] mining points")] stored. Swipe an ID to claim them.")
+	if(panel_open)
+		. += span_warning("The maintenance panel is open.")
 
 /**
  * Accepts a boulder into the machinery, then converts it into minerals.
@@ -324,7 +328,7 @@
 		boulders_contained += boulder
 	if(length(return_extras()))
 		boulders_contained |= return_extras()
-	return boulders_contained.len
+	return length(boulders_contained)
 
 /obj/machinery/bouldertech/proc/return_extras()
 	return list()

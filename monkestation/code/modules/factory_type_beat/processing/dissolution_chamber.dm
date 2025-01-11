@@ -1,6 +1,6 @@
 /obj/machinery/bouldertech/dissolution_chamber
 	name = "dissolution chamber"
-	desc = "Crushes shards when infused with brine."
+	desc = "Breaks down boulders into a dirty slurry using sulfuric acid."
 	icon_state = "dissolution"
 	holds_minerals = TRUE
 	process_string = "Sulfuric Acid"
@@ -77,9 +77,29 @@
 		material_data["materials"] = data
 		reagents.add_reagent(/datum/reagent/processing/dirty_slurry, 250, material_data)
 
+	if(istype(boulder, /obj/item/boulder/artifact)) // If we are breaking an artifact boulder drop the artifact before deletion.
+		var/obj/item/boulder/artifact/artboulder = boulder
+		if(artboulder.artifact_inside)
+			artboulder.artifact_inside.forceMove(drop_location())
+			artboulder.artifact_inside = null
+
 	qdel(boulder)
 	playsound(loc, 'sound/weapons/drill.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	update_boulder_count()
+
+/obj/machinery/bouldertech/dissolution_chamber/examine(mob/user)
+	. = ..()
+	var/list/possible_pipes = src.GetComponents(/datum/component/plumbing)
+	if(length(possible_pipes))
+		var/cur_ang_offset = 180 - dir2angle(src.dir) // Parent machine rotation offsets everything else. 180 is default pointed south offset.
+		for(var/datum/component/plumbing/pipes in possible_pipes)
+			var/input_pipe = initial(pipes.demand_connects) // Call for the initial position then use turn to get its current direction.
+			var/output_pipe = initial(pipes.supply_connects)
+			var/layer_name = (pipes.ducting_layer == THIRD_DUCT_LAYER) ? "Third Layer" : GLOB.plumbing_layer_names["[pipes.ducting_layer]"]
+			if(istype(pipes, /datum/component/plumbing/dissolution_chamber))
+				. += span_nicegreen("Sulfuric Acid supply connects to the [dir2text(turn(input_pipe, cur_ang_offset))] with YELLOW pipes on the [layer_name]")
+			if(istype(pipes, /datum/component/plumbing/dissolution_chamber_output))
+				. += span_nicegreen("Dirty Slurry export connects to the [dir2text(turn(output_pipe, cur_ang_offset))] with BLUE pipes on the [layer_name]")
 
 /datum/component/plumbing/dissolution_chamber
 	demand_connects = SOUTH

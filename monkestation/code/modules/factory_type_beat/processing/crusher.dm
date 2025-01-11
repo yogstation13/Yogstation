@@ -4,7 +4,7 @@
 	icon_state = "crusher"
 	allows_boulders = FALSE
 	holds_minerals = TRUE
-	process_string = "Clumps"
+	process_string = "Ore Clumps"
 	processable_materials = list(
 		/datum/material/iron,
 		/datum/material/titanium,
@@ -51,12 +51,24 @@
 	playsound(loc, 'sound/weapons/drill.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	update_boulder_count()
 
+/obj/machinery/bouldertech/crusher/attackby(obj/item/attacking_item, mob/user, params)
+	if(holds_minerals && check_extras(attacking_item)) // Checking for extra items it can refine.
+		var/obj/item/processing/clumps/clumps = attacking_item
+		update_boulder_count()
+		if(!accept_boulder(clumps))
+			balloon_alert_to_viewers("full!")
+			return
+		balloon_alert_to_viewers("accepted")
+		START_PROCESSING(SSmachines, src)
+		return TRUE
+	return ..()
+
 /obj/machinery/bouldertech/crusher/CanAllowThrough(atom/movable/mover, border_dir)
 	if(!anchored)
 		return FALSE
 	if(boulders_contained.len >= boulders_held_max)
 		return FALSE
-	if(istype(mover, /obj/item/processing/clumps))
+	if(check_extras(mover))
 		return TRUE
 	return ..()
 

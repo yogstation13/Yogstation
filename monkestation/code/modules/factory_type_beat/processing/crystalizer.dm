@@ -1,6 +1,6 @@
 /obj/machinery/bouldertech/crystalizer
 	name = "crystalizer"
-	desc = "Crushes clumps of ore into dirty dust which needs to be enriched."
+	desc = "Uses electro-chemical processes to grow relatively pure ore crystals from clean slurry. Sometimes useless amalgams are made."
 	icon_state = "crystalizer"
 	allows_boulders = FALSE
 	holds_minerals = TRUE
@@ -39,6 +39,17 @@
 		. += mutable_appearance(icon, "crystalizer-crystal", layer, src)
 		. += mutable_appearance(icon, "crystalizer-[processes_left]")
 
+/obj/machinery/bouldertech/crystalizer/examine(mob/user)
+	. = ..()
+	var/list/possible_pipes = src.GetComponents(/datum/component/plumbing)
+	if(length(possible_pipes))
+		var/cur_ang_offset = 180 - dir2angle(src.dir) // Parent machine rotation offsets everything else. 180 is default pointed south offset.
+		for(var/datum/component/plumbing/pipes in possible_pipes)
+			var/input_pipe = initial(pipes.demand_connects) // Call for the initial position then use turn to get its current direction.
+			var/layer_name = (pipes.ducting_layer == THIRD_DUCT_LAYER) ? "Third Layer" : GLOB.plumbing_layer_names["[pipes.ducting_layer]"]
+			if(istype(pipes, /datum/component/plumbing/material_crystalizer))
+				. += span_nicegreen("Clean Slurry supply connects to the [dir2text(turn(input_pipe, cur_ang_offset))] with RED pipes on the [layer_name]")
+
 /obj/machinery/bouldertech/crystalizer/process()
 	if(!anchored)
 		return
@@ -74,7 +85,8 @@
 			dust.set_colors()
 			dust.forceMove(get_step(src, export_side))
 	if(prob(15))
-		new /obj/item/processing/amalgam(get_step(src, export_side))
+		var/obj/item/processing/amalgam/trash = new(get_turf(src))
+		trash.forceMove(get_step(src, export_side))
 
 	playsound(loc, 'sound/weapons/drill.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	update_boulder_count()
