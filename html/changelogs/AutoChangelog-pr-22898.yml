@@ -1,0 +1,4 @@
+author: "Scrambledeggs00"
+delete-after: true 
+changes: 
+  - bugfix: "Possibly fixes a bug that could cause the ice cream vat to overload the server with instanced cones and scoops"
