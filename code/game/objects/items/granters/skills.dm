@@ -34,7 +34,7 @@
 		"Move critical patients on rolling beds or over your shoulder..."
 	)
 	exp_gain = list(
-		SKILL_PHYSIOLOGY = EXP_REQ_CALC(EXP_MASTER),
+		SKILL_PHYSIOLOGY = EXP_REQ_CALC(EXP_HIGH),
 	)
 
 /obj/item/book/granter/skill/mechanics
@@ -47,7 +47,7 @@
 		"Don't press AZ-5..?",
 	)
 	exp_gain = list(
-		SKILL_MECHANICAL = EXP_REQ_CALC(EXP_MASTER),
+		SKILL_MECHANICAL = EXP_REQ_CALC(EXP_HIGH),
 	)
 
 /obj/item/book/granter/skill/technical
@@ -60,7 +60,7 @@
 		"Bolt an open door to prevent it closing behind you...",
 	)
 	exp_gain = list(
-		SKILL_TECHNICAL = EXP_REQ_CALC(EXP_MASTER),
+		SKILL_TECHNICAL = EXP_REQ_CALC(EXP_HIGH),
 	)
 
 /obj/item/book/granter/skill/science
@@ -73,5 +73,5 @@
 	)
 	ordered_remarks = TRUE
 	exp_gain = list(
-		SKILL_SCIENCE = EXP_REQ_CALC(EXP_MASTER),
+		SKILL_SCIENCE = EXP_REQ_CALC(EXP_HIGH),
 	)
