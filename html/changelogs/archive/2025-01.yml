@@ -180,3 +180,15 @@
   Addust:
   - rscadd: Johnson and Co Architecture's elite reconstruction team has broken into
       CentCom and replaced Pooba's office with Wolf's office, per Wolf's request.
+2025-01-11:
+  Absolucy:
+  - rscadd: Searching through trash piles now throws trash around you and makes sound
+      as you dig through it!
+  - rscadd: Mapped maints trash piles into all maps that didn't already have them.
+  MomoBerri:
+  - rscadd: Theseus Shipbreaking
+  SirNightKnight:
+  - balance: Reloading from shotgun ammo boxes has a 1 second do after. Except for
+      honkshot ammo boxes.
+  - balance: Shotgun ammo boxes have 16 shells instead of 15, except honkshot ammo
+      boxes. Honkshot ammo boxes have 40 shells, used to be 35.
