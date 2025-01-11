@@ -1387,6 +1387,7 @@
 #include "code\game\objects\items\granters\_granters.dm"
 #include "code\game\objects\items\granters\mech_piloting.dm"
 #include "code\game\objects\items\granters\origami.dm"
+#include "code\game\objects\items\granters\skills.dm"
 #include "code\game\objects\items\granters\crafting\_crafting_granter.dm"
 #include "code\game\objects\items\granters\crafting\ashwalkers.dm"
 #include "code\game\objects\items\granters\crafting\bone_notes.dm"

@@ -73,7 +73,7 @@ export const SkillMenu = (props, context) => {
 const AdjustSkill = (props, context) => {
   const { act, data } = useBackend(context);
   const { skill, name, index, tooltip, color } = props;
-  const { skills, skill_points, allocated_points, exceptional_skill, exp_per_level } = data;
+  const { skills, skill_points, allocated_points, skill_cap, exp_per_level } = data;
   const { base, allocated, exp_progress } = skills[index];
 
   const exp_required = exp_per_level * Math.pow(2, base);
@@ -100,25 +100,25 @@ const AdjustSkill = (props, context) => {
               amount: -1,
             })}
           />
-          {base + allocated} / {exceptional_skill ? 5 : 4}
+          {base + allocated} / {skill_cap}
           <Button
             ml="2px"
             icon="plus"
-            disabled={(base + allocated) >= (exceptional_skill ? 5 : 4) || allocated_points >= skill_points}
+            disabled={(base + allocated) >= skill_cap || allocated_points >= skill_points}
             onClick={() => act('allocate', {
               skill: skill,
               amount: 1,
             })}
           />
           <ProgressBar
-            value={exp_progress}
+            value={(base >= skill_cap) ? exp_required : exp_progress}
             maxValue={exp_required}
             color={color}
             width={7.5}
             ml={1}
             textAlign="left"
           >
-            {Math.floor(exp_progress)} / {Math.floor(exp_required)}
+            {(base >= skill_cap) ? "Max" : (Math.floor(exp_progress) + " / " + Math.floor(exp_required))}
           </ProgressBar>
         </Box>
       </LabeledList.Item>

@@ -25,3 +25,6 @@
 
 /// Experience required to increase your skills by one level. Increases exponentially the higher your level already is.
 #define EXPERIENCE_PER_LEVEL 500
+
+/// Calculates how much experience is required to reach a given level.
+#define EXP_REQ_CALC(level) (EXPERIENCE_PER_LEVEL * (((2**(level + 1)) / 2) - 1))
