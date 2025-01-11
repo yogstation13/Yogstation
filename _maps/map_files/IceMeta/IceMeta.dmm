@@ -24380,7 +24380,6 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/command/glass{
-	id_tag = "secondary_aicore_exterior";
 	name = "AI Networking"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/ai_sat,
