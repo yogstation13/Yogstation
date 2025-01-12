@@ -86,7 +86,7 @@
 	name = "darkspawn progression abilities"
 	desc = "me no think so good"
 	shadow_flags = ALL_DARKSPAWN_CLASSES
-	learned_abilities = list(/datum/action/cooldown/spell/sacrament, /datum/action/cooldown/spell/touch/restrain_body, /datum/action/cooldown/spell/touch/devour_will)
+	learned_abilities = list(/datum/action/cooldown/spell/sacrament, /datum/action/cooldown/spell/touch/devour_will)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //----------------------Specialization innate Upgrades----------------------------//

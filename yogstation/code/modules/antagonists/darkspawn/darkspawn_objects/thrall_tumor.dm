@@ -8,10 +8,8 @@
 	slot = ORGAN_SLOT_BRAIN_TUMOR
 	///How many process ticks the organ can be in light before it evaporates
 	var/organ_health = 3
-	///adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
-	COOLDOWN_DECLARE(resist_cooldown)
-	///How long the resist cooldown is
-	var/cooldown_length = 15 SECONDS
+	///Cached darkspawn team that gets the willpower
+	var/datum/team/darkspawn/antag_team
 
 /obj/item/organ/shadowtumor/New()
 	..()
@@ -22,9 +20,6 @@
 	..()
 
 /obj/item/organ/shadowtumor/process()
-	if(!isthrall(owner))
-		qdel(src)
-		return
 	if(isturf(loc))
 		var/turf/T = loc
 		var/light_count = T.get_lumcount()
@@ -37,12 +32,29 @@
 			qdel(src)
 	else
 		organ_health = min(organ_health+0.5, 3)
+	if(owner.stat != DEAD && antag_team)
+		antag_team.willpower_progress(1)
 
 /obj/item/organ/shadowtumor/on_find(mob/living/finder)
 	. = ..()
 	finder.visible_message(span_danger("[finder] opens up [owner]'s skull, revealing a pulsating black mass, with red tendrils attaching it to [owner.p_their()] brain."))
 
-/obj/item/organ/shadowtumor/proc/resist(mob/living/carbon/M)
+////////////////////////////////////////////////////////////////////////////////////
+//------------------------------Thrall version------------------------------------//
+////////////////////////////////////////////////////////////////////////////////////
+/obj/item/organ/shadowtumor/thrall
+	///adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
+	COOLDOWN_DECLARE(resist_cooldown)
+	///How long the resist cooldown is
+	var/cooldown_length = 15 SECONDS
+
+/obj/item/organ/shadowtumor/thrall/process()
+	if(!isthrall(owner))
+		qdel(src)
+		return
+	return ..()
+
+/obj/item/organ/shadowtumor/thrall/proc/resist(mob/living/carbon/M)
 	if(QDELETED(src))
 		return FALSE
 	if(!(M.stat == CONSCIOUS))//Thralls cannot be deconverted while awake
