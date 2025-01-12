@@ -1,0 +1,5 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscadd: "Adds shadowflame gout spell to darkspawn warlock"
+  - tweak: "Merges Thrall Mind and Release Thrall into one button via left and right click"
