@@ -552,6 +552,8 @@
 	name = "echoing void"
 	icon = 'yogstation/icons/effects/effects.dmi'
 	icon_state = "nothing"
+	anchored = TRUE
+	move_resist = INFINITY
 
 /obj/effect/temp_visual/darkspawn/chasm //a slow field that eventually explodes
 	icon_state = "consuming"
@@ -693,3 +695,42 @@
 
 /datum/action/cooldown/spell/pointed/null_burst/proc/spawn_ground(turf/target)
 	new /obj/effect/temp_visual/darkspawn/chasm(target)
+
+//////////////////////////////////////////////////////////////////////////
+//----------------------I stole genetics fire breath--------------------//
+//////////////////////////////////////////////////////////////////////////
+/datum/action/cooldown/spell/cone/staggered/shadowflame
+	name = "Shadowflame Gout"
+	desc = "Release a burst of shadowflame, rapidly sapping the heat of any individual."
+	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
+	background_icon_state = "bg_alien"
+	overlay_icon_state = "bg_alien_border"
+	buttontooltipstyle = "alien"
+	button_icon_state = "veiling_touch"
+	panel = "Darkspawn"
+	sound = 'sound/magic/demon_dies.ogg'
+
+	school = SCHOOL_EVOCATION
+	invocation_type = INVOCATION_NONE
+	spell_requirements = NONE
+	antimagic_flags = MAGIC_RESISTANCE_MIND
+	check_flags =  AB_CHECK_CONSCIOUS
+	cooldown_time = 60 SECONDS
+	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 100) //dangerous, high CC, and area denial
+
+	delay_between_level = 0.3 SECONDS //longer delay
+	cone_levels = 5 //longer cone
+	respect_density = TRUE
+
+/datum/action/cooldown/spell/cone/staggered/shadowflame/do_turf_cone_effect(turf/target_turf, atom/caster, level)
+	target_turf.extinguish_turf()
+	new /obj/effect/temp_visual/darkspawn/shadowflame(target_turf) // for style
+
+/datum/action/cooldown/spell/cone/staggered/shadowflame/do_mob_cone_effect(mob/living/target_mob, atom/caster, level)
+	target_mob.set_wet_stacks(20, /datum/status_effect/fire_handler/shadowflame)
+
+/datum/action/cooldown/spell/cone/staggered/shadowflame/calculate_cone_shape(current_level)
+	// This makes the cone shoot out into a 3 wide column of flames.
+	// You may be wondering, "that equation doesn't seem like it'd make a 3 wide column"
+	// well it does, and that's all that matters.
+	return (2 * current_level) - 1

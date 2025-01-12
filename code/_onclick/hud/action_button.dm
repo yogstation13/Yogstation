@@ -59,10 +59,10 @@
 	if(usr.next_click > world.time)
 		return
 	usr.next_click = world.time + 1
-//	var/trigger_flags
-//	if(LAZYACCESS(modifiers, RIGHT_CLICK)) FUCK COMBAT MODE!!!!
-//		trigger_flags |= TRIGGER_SECONDARY_ACTION
-	linked_action.Trigger()
+	var/trigger_flags
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		trigger_flags |= TRIGGER_SECONDARY_ACTION
+	linked_action.Trigger(trigger_flags)
 	SEND_SOUND(usr, get_sfx(SFX_TERMINAL_TYPE))
 	transform = turn(matrix() * 0.9, pick(-8, 8))
 	alpha = 200
