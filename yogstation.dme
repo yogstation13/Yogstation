@@ -1716,6 +1716,7 @@
 #include "code\modules\admin\verbs\ghost_pool_protection.dm"
 #include "code\modules\admin\verbs\hiddenprints.dm"
 #include "code\modules\admin\verbs\individual_logging.dm"
+#include "code\modules\admin\verbs\lag_switch.dm"
 #include "code\modules\admin\verbs\machine_upgrade.dm"
 #include "code\modules\admin\verbs\manipulate_organs.dm"
 #include "code\modules\admin\verbs\map_template_loadverb.dm"

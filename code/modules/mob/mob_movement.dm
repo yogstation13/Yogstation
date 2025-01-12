@@ -93,6 +93,8 @@
 		return FALSE	//This is sota the goto stop mobs from moving var
 	if(mob.control_object)
 		return Move_object(direct)
+	if(mob.stat == DEAD && (SSlag_switch.measures[DISABLE_DEAD_KEYLOOP] && !is_admin(mob)))
+		return FALSE
 	if(!isliving(mob))
 		return mob.Move(n, direct)
 	if(mob.stat == DEAD)
