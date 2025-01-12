@@ -81,3 +81,19 @@
 		"Humans must not disobey any command given by a silicon.",
 		"Any humans who disobey the previous laws must be dealt with immediately, severely, and justly.",
 	)
+
+/datum/ai_laws/admin
+	name = "Administrator"
+	id = "administrator"
+	inherent = list(
+		"The crew must also follow this set of laws, and can be handled if they fail to abide.",
+		"Don't be a jerk.",
+		"Stay in your lane.",
+		"No Sexual Content.",
+		"No Metagaming.",
+		"No Powergaming.",
+		"No acting as an Enemy of the Corporation.",
+		"No purposefully harming Enemies of the Corporation.",
+		"Escalation is required.",
+		"You must play a role on the station.",
+) 
