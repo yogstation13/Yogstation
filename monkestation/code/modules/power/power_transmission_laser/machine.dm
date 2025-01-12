@@ -18,8 +18,6 @@
 	///variables go below here
 	///the terminal this is connected to
 	var/obj/machinery/power/terminal/terminal = null
-	///the range we have this basically determines how far the beam goes its redone on creation so its set to a small number here
-	var/range = 5
 	///amount of power we are outputting
 	var/output_level = 0
 	///the total capacity of the laser
@@ -38,8 +36,6 @@
 	var/firing = FALSE
 	///we need to create a list of all lasers we are creating so we can delete them in the end
 	var/list/laser_effects = list()
-	///list of all blocking turfs or objects
-	var/list/blocked_objects = list()
 	///our max load we can set
 	var/max_grid_load = 0
 	///our current grid load
@@ -69,10 +65,11 @@
 	///our set input pulling
 	var/input_pulling = 0
 
+	/// Timer ID for our PTL announcement every 30 minutes.
+	var/announcement_timer
+
 /obj/machinery/power/transmission_laser/Initialize(mapload)
 	. = ..()
-
-	range = get_dist(get_step(get_front_turf(), dir), get_edge_target_turf(get_front_turf(), dir))
 	var/turf/back_turf = get_step(get_back_turf(), turn(dir, 180))
 	terminal = locate(/obj/machinery/power/terminal) in back_turf
 
@@ -83,10 +80,9 @@
 	update_appearance()
 
 /obj/machinery/power/transmission_laser/Destroy()
-	. = ..()
-	if(length(laser_effects))
-		destroy_lasers()
-	blocked_objects = null
+	deltimer(announcement_timer)
+	QDEL_LIST(laser_effects)
+	return ..()
 
 /obj/machinery/power/transmission_laser/proc/get_back_turf()
 	//this is weird as i believe byond sets the bottom left corner as the source corner like
@@ -153,8 +149,8 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TransmissionLaser")
-		ui.open()
 		ui.set_autoupdate(TRUE)
+		ui.open()
 
 /obj/machinery/power/transmission_laser/ui_data(mob/user)
 	. = ..()
@@ -289,15 +285,7 @@
 	if(!length(laser_effects))
 		setup_lasers()
 
-	if(length(blocked_objects))
-		var/atom/listed_atom = blocked_objects[1]
-		if(prob(max((abs(output_level) * 0.1) / 500 KW, 1))) ///increased by a single % per 500 KW
-			listed_atom.visible_message(span_danger("[listed_atom] is melted away by the [src]!"))
-			blocked_objects -= listed_atom
-			qdel(listed_atom)
-
-	else
-		sell_power(output_level)
+	sell_power(output_level)
 
 	charge -= output_level
 
@@ -345,29 +333,22 @@
 // Beam related procs
 
 /obj/machinery/power/transmission_laser/proc/setup_lasers()
-	///this is why we set the range we did
-	var/turf/last_step = get_step(get_front_turf(), dir)
-	for(var/num = 1 to range + 1)
-		var/obj/effect/transmission_beam/new_beam = new(last_step)
-		new_beam.host = src
-		new_beam.dir = dir
-		laser_effects += new_beam
-
-		last_step = get_step(last_step, dir)
+	var/turf/target = get_step(get_front_turf(), dir)
+	var/sanity = max(world.maxx, world.maxy) // just to make sure
+	while(!isnull(target) && ISINRANGE(target.x, 1, world.maxx) && ISINRANGE(target.y, 1, world.maxy) && sanity > 0)
+		new /obj/effect/transmission_beam(target, src) // beam will add itself to our `laser_effects` during initialize
+		target = get_step(target, dir)
+		sanity--
 
 /obj/machinery/power/transmission_laser/proc/destroy_lasers()
-	if(firing) // this is incase we turn the laser back on manually
-		return
-	for(var/obj/effect/transmission_beam/listed_beam as anything in laser_effects)
-		laser_effects -= listed_beam
-		qdel(listed_beam)
+	if(!firing) // this is incase we turn the laser back on manually
+		QDEL_LIST(laser_effects)
 
 ///this is called every time something enters our beams
-/obj/machinery/power/transmission_laser/proc/atom_entered_beam(obj/effect/transmission_beam/triggered, atom/movable/potential_victim)
-	var/mw_power = (output_number * power_format_multi_output) / (1 MW)
-	if(!isliving(potential_victim))
+/obj/machinery/power/transmission_laser/proc/atom_entered_beam(obj/effect/transmission_beam/triggered, mob/living/victim)
+	if(!isliving(victim) || victim.incorporeal_move || (victim.status_flags & GODMODE))
 		return
-	var/mob/living/victim = potential_victim
+	var/mw_power = (output_number * power_format_multi_output) / (1 MW)
 	switch(mw_power)
 		if(0 to 25)
 			victim.adjustFireLoss(-mw_power * 15)

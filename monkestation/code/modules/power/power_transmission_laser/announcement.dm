@@ -6,7 +6,8 @@
 		if(1 MW)
 			message = "PTL account successfully made"
 			flavor_text = "From now on, you will receive regular updates on the power exported via the onboard PTL. Good luck [station_name()]!"
-			INVOKE_ASYNC(src, PROC_REF(send_regular_ptl_announcement)) // starts giving the station regular updates on the PTL since our station just got an account
+			// starts giving the station regular updates on the PTL since our station just got an account
+			announcement_timer = addtimer(CALLBACK(src, PROC_REF(send_regular_ptl_announcement)), 30 MINUTES, TIMER_UNIQUE | TIMER_STOPPABLE | TIMER_LOOP)
 
 		if(1 GW)
 			message = "The onboard PTL has successfully exported 1 Gigawatt worth of power"
@@ -61,9 +62,6 @@
 
 
 /obj/machinery/power/transmission_laser/proc/send_regular_ptl_announcement()
-	sleep(30 MINUTES) // simple loop, we are called once and then repeat ourselfes forever
-	INVOKE_ASYNC(src, PROC_REF(send_regular_ptl_announcement))
-
 	// the total_power variable converted into readable amounts of power, because 100.000.000.000.000 was for some reason hard to read
 	var/readable_power
 
