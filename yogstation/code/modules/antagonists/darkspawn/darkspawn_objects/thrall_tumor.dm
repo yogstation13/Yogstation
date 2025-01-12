@@ -10,6 +10,8 @@
 	var/organ_health = 3
 	///Cached darkspawn team that gets the willpower
 	var/datum/team/darkspawn/antag_team
+	///How much willpower is granted by this tumor
+	var/willpower_amount = 1
 
 /obj/item/organ/shadowtumor/New()
 	..()
@@ -33,7 +35,7 @@
 	else
 		organ_health = min(organ_health+0.5, 3)
 	if(owner.stat != DEAD && antag_team)
-		antag_team.willpower_progress(1)
+		antag_team.willpower_progress(willpower_amount)
 
 /obj/item/organ/shadowtumor/on_find(mob/living/finder)
 	. = ..()
@@ -43,6 +45,8 @@
 //------------------------------Thrall version------------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /obj/item/organ/shadowtumor/thrall
+	//provides extra willpower because willpower was spent to thrall someone
+	willpower_amount = 2
 	///adds a cooldown to the resist so a thrall ipc or preternis can't weaponize it
 	COOLDOWN_DECLARE(resist_cooldown)
 	///How long the resist cooldown is
