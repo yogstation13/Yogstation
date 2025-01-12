@@ -1,8 +1,0 @@
-author: "Siro"
-delete-after: True
-changes:
-  - qol: "Tooltips now properly state the ore machines description and what it will accept. Will also show pipe connections if applicable."
-  - qol: "Machines can now be hand fed the items it processes. Artifact boulders drop artifacts on all production machines."
-  - bugfix: "Ore dust no longer deleted in the final refinery(Refinery/Smelter) machines."
-  - bugfix: "Amalgams will now properly jam machines."
-  - bugfix: "Maintenance hatch now properly displays its open status."
