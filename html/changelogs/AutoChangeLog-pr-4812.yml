@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - code_imp: "Made the Power Transmission Laser's code slightly less awful."
+  - bugfix: "The PTL laser will no longer affect incorporeal or godmode mobs."
