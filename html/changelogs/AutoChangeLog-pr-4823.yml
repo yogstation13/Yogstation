@@ -1,0 +1,4 @@
+author: "Jackary1"
+delete-after: True
+changes:
+  - rscadd: "Added the Administrator lawset as an Admin-Only lawset for AIs."
