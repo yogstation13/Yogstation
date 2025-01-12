@@ -2,6 +2,10 @@
 	name = "avian tongue"
 	desc = "A seemingly normal looking tongue which causes ones voice to caw. However that works."
 	say_mod = "caws"
+	///Birds like these but they're still human-mutans, so they dislike the same stuff.
+	liked_foodtypes = VEGETABLES | FRUIT | NUTS | GRAIN
+	disliked_foodtypes = RAW | GORE | DAIRY
+
 	/// Our song datum.
 	var/datum/song/organ/song
 	/// How far away our song datum can be heard.

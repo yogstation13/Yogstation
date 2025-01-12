@@ -396,6 +396,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_GAMERGOD "gamer-god"
 #define TRAIT_GIANT "giant"
 #define TRAIT_DWARF "dwarf"
+//Gets a mood buff while in maints (used for Goblins).
+#define TRAIT_MAINTENANCE_DWELLER "maintenance_dweller"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
 /* #define TRAIT_TOO_TALL "too_tall" */
 /// makes your footsteps completely silent

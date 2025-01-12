@@ -147,6 +147,27 @@ GLOBAL_LIST_EMPTY(tails_list_avian)
 				Ornithids are lightweight winged avians, and can, as a result, fly.",
 		),
 		list(
+			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
+			SPECIES_PERK_ICON = "music",
+			SPECIES_PERK_NAME = "Musical",
+			SPECIES_PERK_DESC = "Thanks to their avian tongues, Ornithids can mimic a \
+				variety of instruments, conventional or not.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "feather",
+			SPECIES_PERK_NAME = "Winged",
+			SPECIES_PERK_DESC = "Ornithids have wings that are not concealed by hardsuits \
+				or MODsuits, making it easier to identify them.",
+		),
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
+			SPECIES_PERK_ICON = "shoe-prints",
+			SPECIES_PERK_NAME = "Talon-Footed",
+			SPECIES_PERK_DESC = "Avians have talons instead of regular feet, which prevent them from wearing shoes \
+			but protect as a shoe would.",
+		),
+		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
 			SPECIES_PERK_ICON = "feather",
 			SPECIES_PERK_NAME = "Lightweights",
@@ -155,7 +176,7 @@ GLOBAL_LIST_EMPTY(tails_list_avian)
 		),
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
-			SPECIES_PERK_ICON = "note-medical",
+			SPECIES_PERK_ICON = "brain",
 			SPECIES_PERK_NAME = "Hyper-Sensitive Nerves",
 			SPECIES_PERK_DESC = "Ornithids have incredibly sensistive nerves compared to their human counterparts, \
 				Taking 1.2x pain, 1.5x damage to their ears, and get stunned for 2x longer when flying.", // the 2x stun length only applies when flying, and is inherited from functional wings.

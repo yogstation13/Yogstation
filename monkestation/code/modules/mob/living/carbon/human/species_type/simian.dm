@@ -70,7 +70,7 @@
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
 			SPECIES_PERK_ICON = "heart",
 			SPECIES_PERK_NAME = "Ape Not Kill Ape",
-			SPECIES_PERK_DESC = "Monkeys like you more.",
+			SPECIES_PERK_DESC = "Monkeys like you more and won't attack you. Gorillas will though.",
 		),
 	)
 

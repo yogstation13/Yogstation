@@ -11,6 +11,9 @@
 	name = "Generic Maintenance"
 	ambience_index = AMBIENCE_MAINT
 	area_flags = BLOBS_ALLOWED | UNIQUE_AREA | CULT_PERMITTED | PERSISTENT_ENGRAVINGS
+	mood_bonus = 15
+	mood_message = "Being in maintenance makes me feel like i'm home again!"
+	mood_trait = TRAIT_MAINTENANCE_DWELLER
 	airlock_wires = /datum/wires/airlock/maint
 	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 	forced_ambience = TRUE

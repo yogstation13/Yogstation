@@ -40,7 +40,7 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "",
+			SPECIES_PERK_ICON = "horse",
 			SPECIES_PERK_NAME = "Hooves",
 			SPECIES_PERK_DESC = "Cloven feet prevent wearing of shoes, but also protect as a shoe would.",
 		)
@@ -48,7 +48,7 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-			SPECIES_PERK_ICON = "",
+			SPECIES_PERK_ICON = "beer-mug-empty",
 			SPECIES_PERK_NAME = "Extreme Alcohol Tolerance",
 			SPECIES_PERK_DESC = "Satyr's are immune to toxin damage done by powerful alcohol.",
 		)
@@ -56,7 +56,7 @@
 	to_add += list(
 		list(
 			SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-			SPECIES_PERK_ICON = "",
+			SPECIES_PERK_ICON = "beer-mug-empty",
 			SPECIES_PERK_NAME = "Drunk",
 			SPECIES_PERK_DESC = "Satyr's require a constant supply of booze to not become drunk.",
 		)

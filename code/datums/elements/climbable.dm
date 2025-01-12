@@ -79,7 +79,7 @@
 		if(QDELETED(climbed_thing)) //Checking if structure has been destroyed
 			return
 
-		if(HAS_TRAIT(user, TRAIT_VAULTING) && user.m_intent == MOVE_INTENT_RUN)//monkestation edit: simians can fling themselves off climbable structures
+		if(HAS_TRAIT(user, TRAIT_VAULTING) && user.m_intent == MOVE_INTENT_RUN || HAS_TRAIT(user, TRAIT_VAULTING) &&user.m_intent == MOVE_INTENT_SPRINT)//monkestation edit: simians can fling themselves off climbable structures
 			vault_over_object(user, climbed_thing)
 			if(climb_stun)
 				user.Immobilize(climb_stun)
