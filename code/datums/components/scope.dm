@@ -35,7 +35,7 @@
 		stop_zooming(user_mob)
 		return
 	tracker.calculate_params()
-	if(!user_client.intended_direction)
+	if(!length(user_client.keys_held & user_client.movement_keys))
 		user_mob.face_atom(tracker.given_turf)
 	animate(user_client, world.tick_lag, pixel_x = tracker.given_x, pixel_y = tracker.given_y)
 

@@ -1184,7 +1184,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay]")
 					else
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
-	calculate_move_dir()
 
 /client/proc/change_view(new_size)
 	if (isnull(new_size))
