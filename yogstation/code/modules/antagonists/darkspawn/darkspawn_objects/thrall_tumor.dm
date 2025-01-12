@@ -34,7 +34,7 @@
 			qdel(src)
 	else
 		organ_health = min(organ_health+0.5, 3)
-	if(owner.stat != DEAD && antag_team)
+	if(owner && owner.stat != DEAD && antag_team)
 		antag_team.willpower_progress(willpower_amount)
 
 /obj/item/organ/shadowtumor/on_find(mob/living/finder)
