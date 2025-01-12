@@ -71,7 +71,7 @@
 		CRASH("darkspawn without a team is trying to thrall someone")
 
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
-	target.Immobilize(6 SECONDS) //we remove this if it's canceled early
+	target.Immobilize(10 SECONDS) //we remove this if it's canceled early
 	target.silent += 5
 
 	caster.balloon_alert(caster, "Cera ko...")
@@ -82,6 +82,7 @@
 
 	eating = TRUE
 	if(!do_after(caster, 5 SECONDS, target))
+		to_chat(caster, span_danger("Being interrupted causes a backlash of psionic power."))
 		caster.Immobilize(5 SECONDS)
 		caster.Knockdown(10 SECONDS)
 		to_chat(target, span_boldwarning("All right... You're all right."))
@@ -115,7 +116,7 @@
 		ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
 		self_text += span_velvet("You place a dark bead deep within [target]'s psyche.")
 		self_text += span_velvet("This individual's lucidity brings you one step closer to the sacrament...")
-		self_text += span_velvet("You also feed off their will to fuel your growth.")
+		self_text += span_velvet("You also feed off their will to fuel your growth, generating 2 willpower.")
 		self_text += span_velvet("No further attempts to drain this individual will provide willpower or lucidity.")
 		team.grant_willpower(2)
 		team.grant_lucidity(1)
