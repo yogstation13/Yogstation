@@ -117,7 +117,7 @@
 	current_willpower_progress += amount
 	if(current_willpower_progress >= max_willpower_progress)
 		current_willpower_progress -= max_willpower_progress
-		max_willpower_progress *= 1.1 //gets harder to get more willpower with every willpower granted
+		max_willpower_progress *= 1.1 //gets harder to get more willpower with every willpower granted to reduce snowballing
 		grant_willpower(1, TRUE)
 
 //give a willpower to every darkspawn on the team

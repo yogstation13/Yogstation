@@ -82,8 +82,9 @@
 
 	eating = TRUE
 	if(!do_after(caster, 5 SECONDS, target))
+		caster.Immobilize(5 SECONDS)
+		caster.Knockdown(10 SECONDS)
 		to_chat(target, span_boldwarning("All right... You're all right."))
-		caster.Knockdown(5 SECONDS)
 		target.SetImmobilized(0)
 		eating = FALSE
 		return FALSE
