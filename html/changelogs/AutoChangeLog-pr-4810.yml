@@ -1,0 +1,7 @@
+author: "Sakaniko"
+delete-after: True
+changes:
+  - rscadd: "Goblins now have a large mood buff while in Maintenance."
+  - rscadd: "Added liked and disliked food to Ornithids, since they were default."
+  - bugfix: "Simians will now actually vault when bump climbing objects."
+  - bugfix: "Tided up some perks on the species select page in the character creation page."
