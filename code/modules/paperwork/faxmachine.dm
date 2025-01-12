@@ -17,9 +17,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	var/sendcooldown = 0 // to avoid spamming fax messages
 	var/department = "Unknown" // our department
 	var/destination = "Central Command" // the department we're sending to
+	var/hidefromfaxlist = FALSE // If enabled does not show up in the destination fax list
 
 /obj/machinery/photocopier/faxmachine/Initialize(mapload)
 	. = ..()
+	if(hidefromfaxlist) 
+		return
 	GLOB.allfaxes += src
 	if( !((department in GLOB.alldepartments) || (department in GLOB.admin_departments)) )
 		GLOB.alldepartments |= department
@@ -45,7 +48,7 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	.["has_copy"] = !copier_empty()
 	.["copy_name"] = copy?.name || photocopy?.name || doccopy?.name
 	.["cooldown"] = sendcooldown - world.time
-	.["depts"] = (GLOB.alldepartments + GLOB.admin_departments)
+	.["depts"] = obj_flags & EMAGGED ? (GLOB.alldepartments + GLOB.admin_departments + list("Syndicate")) : (GLOB.alldepartments + GLOB.admin_departments)
 	.["destination"] = destination
 
 /obj/machinery/photocopier/faxmachine/ui_act(action, list/params)
@@ -61,6 +64,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 					return	
 				sendcooldown = world.time + 1 MINUTES
 				if (destination in GLOB.admin_departments)
+					INVOKE_ASYNC(src, PROC_REF(send_admin_fax), usr, destination)
+				if (destination == "Syndicate")
 					INVOKE_ASYNC(src, PROC_REF(send_admin_fax), usr, destination)
 				else
 					INVOKE_ASYNC(src, PROC_REF(sendfax), destination)
@@ -170,6 +175,12 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)//if done then delete these comments
 						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
 			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
+		if ("Syndicate")
+			for(var/client/C in GLOB.permissions.admins)
+				if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX)
+					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)
+						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
+			send_adminmessage(sender, "SYNDICATE FAX", rcvdcopy, "SyndicateFaxReply", "crimson") //Same colour used in redphone
 	sendcooldown = world.time + 1 MINUTES
 	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
@@ -226,5 +237,15 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 		send_admin_fax(src)		
 
 /obj/machinery/photocopier/faxmachine/examine(mob/user)
+	. = ..()
 	if(IsAdminGhost(user))
 		.+= span_notice("You can send admin faxes via Alt-Click to this specific fax machine.")
+
+/obj/machinery/photocopier/faxmachine/emag_act(mob/user, /obj/item/card/emag/emag_card)
+	if(obj_flags & EMAGGED)
+		to_chat(user, span_warning("[src]'s transceiver is damaged!"))
+		return FALSE
+	obj_flags |= EMAGGED
+	playsound(src, "sparks", 100, 1)
+	to_chat(user, span_warning("You short out the security protocols on [src]'s transceiver!"))
+	return TRUE
