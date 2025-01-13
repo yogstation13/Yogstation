@@ -55,8 +55,10 @@
 	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/blindness/add()
+	var/blindness_preference = quirk_holder.client.prefs.read_preference(/datum/preference/choiced/blindness_choice) == "Random" ? pick("Echolocation", "Complete blindness") : quirk_holder.client.prefs.read_preference(/datum/preference/choiced/blindness_choice)
 	quirk_holder.become_blind(ROUNDSTART_TRAIT)
-	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
+	if(blindness_preference == "Echolocation")
+		quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
