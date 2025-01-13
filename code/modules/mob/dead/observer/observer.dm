@@ -511,6 +511,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !is_admin(usr))
 		to_chat(usr, span_warning("Observer view range is disabled due to performance concerns."))
+		return
 	//yogs start -- Divert this verb to the admin variant if this guy has it
 	if(is_admin(usr) && hascall(usr.client,"toggle_view_range"))
 		call(usr.client,"toggle_view_range")()
