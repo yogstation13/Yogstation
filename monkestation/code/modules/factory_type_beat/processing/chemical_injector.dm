@@ -75,6 +75,10 @@
 			next_allowed_process = world.time + 30 SECONDS
 			playsound(src.loc, 'sound/machines/scanbuzz.ogg', 50, FALSE)
 			visible_message(span_danger("The machine gets clogged with [potential_boulder]! Disabling it for 30 Seconds."))
+			boulders_contained -= potential_boulder
+			stop_processing_check = TRUE
+			qdel(potential_boulder)
+			break //Force the process to skip boulders and ultimately start again. Allows cooldown to take effect.
 
 		if(QDELETED(potential_boulder))
 			boulders_contained -= potential_boulder

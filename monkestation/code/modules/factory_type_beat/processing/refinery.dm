@@ -172,6 +172,7 @@
 		qdel(dust)
 
 	playsound(loc, 'sound/weapons/drill.ogg', 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+	qdel(disposable_boulder) // Boulder still remains in refinery. It will be processed unless it's deleted.
 	update_boulder_count()
 
 /obj/machinery/bouldertech/refinery/CanAllowThrough(atom/movable/mover, border_dir)
