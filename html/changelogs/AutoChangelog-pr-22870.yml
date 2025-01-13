@@ -1,5 +1,0 @@
-author: "ynot01"
-delete-after: true 
-changes: 
-  - tweak: "Nuke ops now also receive the code to the station self-destruct terminal. Detonation will result in Nanotrasen believing the crew detonated the device themselves."
-  - tweak: "The station self-destruct terminal now requires the disk to remain inside for the entire countdown."

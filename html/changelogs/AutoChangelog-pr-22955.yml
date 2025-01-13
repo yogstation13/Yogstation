@@ -1,4 +1,0 @@
-author: "AMyriad"
-delete-after: true 
-changes: 
-  - bugfix: "Fixed the door to enter secondary AI core on IceMeta acting strangely"
