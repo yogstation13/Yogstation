@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - tweak: "Exempting EXP job requirements also exempts you from job connection time requirements"
