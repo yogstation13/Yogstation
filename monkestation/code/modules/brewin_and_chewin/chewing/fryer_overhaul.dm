@@ -75,6 +75,11 @@
 	if(istype(weapon, /obj/item/reagent_containers/cooking_container/deep_basket) && !basket)
 		weapon.forceMove(src)
 		basket = weapon
+		if (!length(basket.contents))
+			frying = FALSE
+			icon_state = "fryer_off"
+			return
+
 		icon_state = "fryer_on"
 		frying = TRUE
 		for(var/obj/item/item as anything in basket.contents)
