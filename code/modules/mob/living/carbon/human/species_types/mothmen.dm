@@ -2,6 +2,8 @@
 	name = "Ex'hai"
 	plural_form = "Ex'hau"
 	id = SPECIES_MOTH
+	monitor_icon = "feather-alt"
+	monitor_color = "#ffebb8"
 	say_mod = "flutters"
 	default_color = "00FF00"
 	species_traits = list(LIPS, NOEYESPRITES,HAS_FLESH,HAS_BONE)

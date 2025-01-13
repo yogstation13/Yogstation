@@ -2,6 +2,8 @@
 	name = "Plasmaman"
 	plural_form = "Plasmamen"
 	id = SPECIES_PLASMAMAN
+	monitor_icon = "skull"
+	monitor_color = "#d60b66"
 	say_mod = "rattles"
 	possible_genders = list(PLURAL)
 	meat = /obj/item/stack/sheet/mineral/plasma

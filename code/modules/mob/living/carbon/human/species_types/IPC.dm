@@ -4,6 +4,8 @@
 	name = "IPC" //inherited from the real species, for health scanners and things
 	id = "ipc"
 	say_mod = "states" //inherited from a user's real species
+	monitor_icon = "tv"
+	monitor_color = "#2e46cc"
 	bubble_icon = BUBBLE_ROBOT // beep boop
 	possible_genders = list(PLURAL, NEUTER) // A MERE OBJECT
 	species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,NOZOMBIE,MUTCOLORS,NOHUSK,NOBLOOD,NO_UNDERWEAR)

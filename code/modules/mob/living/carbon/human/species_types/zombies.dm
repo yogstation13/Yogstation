@@ -4,6 +4,8 @@
 	// 1spooky
 	name = "High-Functioning Zombie"
 	id = SPECIES_ZOMBIE
+	monitor_icon = "skull"
+	monitor_color = "#186310"
 	say_mod = "moans"
 	possible_genders = list(NEUTER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/zombie
@@ -113,6 +115,8 @@
 	name = "Human"
 	id = SPECIES_ZOMBIE_KROKODIL
 	limbs_id = SPECIES_ZOMBIE //They look like zombies
+	monitor_icon = "skull"
+	monitor_color = "#186310"
 	possible_genders = list(PLURAL)
 	species_traits = list(HAS_FLESH, HAS_BONE)
 	inherent_traits = list(TRAIT_EASILY_WOUNDED) //you have no skin

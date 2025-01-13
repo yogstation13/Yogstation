@@ -3,6 +3,8 @@
 /datum/species/ethereal
 	name = "Ethereal"
 	id = SPECIES_ETHEREAL
+	monitor_icon = "sun"
+	monitor_color = "#f0ff66"
 	attack_verbs = list("burn", "sear")
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
