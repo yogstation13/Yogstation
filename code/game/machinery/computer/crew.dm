@@ -225,7 +225,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				species = "Slime"
 			if (isethereal(tracked_mob))
 				species = "Ethereal"
-			if (iszombie(tracked_mob))
+			if (iszombie(tracked_mob) || is_species(tracked_mob, /datum/species/krokodil_addict))
 				species = "Zombie"
 			if (issnail(tracked_mob))
 				species = "Snail"
