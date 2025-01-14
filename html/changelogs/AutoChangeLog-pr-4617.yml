@@ -1,0 +1,6 @@
+author: "Syndie Kate"
+delete-after: True
+changes:
+  - rscadd: "Added the Awakened Dragon scroll to the uplink"
+  - balance: "Changed sleeping carp scroll to 12 tc"
+  - balance: "Nerfed a sleeping carp's kick and a few numbers"
