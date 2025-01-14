@@ -21,7 +21,8 @@
 	if (QDELETED(using_action))
 		return ..()
 	if (!controller.blackboard[BB_MAGICARP_SPELL_SPECIAL_TARGETING] && using_action.IsAvailable())
-		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+		finish_action(controller, succeeded = FALSE)
+		return
 	return ..()
 
 /**

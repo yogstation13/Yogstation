@@ -34,7 +34,7 @@
 /datum/ai_behavior/find_furthest_turf_from_target/perform(seconds_per_tick, datum/ai_controller/controller, target_key, set_key, range)
 	var/mob/living/living_target = controller.blackboard[target_key]
 	if(QDELETED(living_target))
-		return AI_BEHAVIOR_INSTANT
+		return
 
 	var/distance = 0
 	var/turf/chosen_turf
@@ -49,7 +49,8 @@
 			break //we have already found the max distance
 
 	if(isnull(chosen_turf))
-		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE)
+		return
 
 	controller.set_blackboard_key(set_key, chosen_turf)
-	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
+	finish_action(controller, TRUE)

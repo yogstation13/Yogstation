@@ -11,21 +11,23 @@
 	controller.behavior_cooldowns[src] = world.time + get_cooldown(controller)
 	var/mob/living/living_pawn = controller.pawn
 	if(!(isturf(living_pawn.loc) || HAS_TRAIT(living_pawn, TRAIT_AI_BAGATTACK))) // Void puppies can attack from inside bags
-		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE, target_key, targeting_strategy_key, hiding_location_key)
+		return
 
 	// Unfortunately going to repeat this check in parent call but what can you do
 	var/atom/target = controller.blackboard[target_key]
 	var/datum/targeting_strategy/targeting_strategy = GET_TARGETING_STRATEGY(controller.blackboard[targeting_strategy_key])
 	if (!targeting_strategy.can_attack(living_pawn, target))
-		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE, target_key, targeting_strategy_key, hiding_location_key)
+		return
 
 	if (!in_range(living_pawn, target))
 		growl_at(living_pawn, target, seconds_per_tick)
-		return AI_BEHAVIOR_INSTANT
+		return
 
 	if(!controller.blackboard[BB_DOG_HARASS_HARM])
 		paw_harmlessly(living_pawn, target, seconds_per_tick)
-		return AI_BEHAVIOR_INSTANT
+		return
 
 	// Give Ian some teeth
 	var/old_melee_lower = living_pawn.melee_damage_lower
@@ -37,7 +39,6 @@
 
 	living_pawn.melee_damage_lower = old_melee_lower
 	living_pawn.melee_damage_upper = old_melee_upper
-	return AI_BEHAVIOR_DELAY
 
 /// Swat at someone we don't like but won't hurt
 /datum/ai_behavior/basic_melee_attack/dog/proc/paw_harmlessly(mob/living/living_pawn, atom/target, seconds_per_tick)

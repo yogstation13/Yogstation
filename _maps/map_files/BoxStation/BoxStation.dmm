@@ -67232,7 +67232,7 @@
 /area/station/engineering/atmos)
 "vOV" = (
 /obj/structure/bed/dogbed/runtime,
-/mob/living/basic/pet/cat/runtime,
+/mob/living/simple_animal/pet/cat/runtime,
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
 "vOX" = (

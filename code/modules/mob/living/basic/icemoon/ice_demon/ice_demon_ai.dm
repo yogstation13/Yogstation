@@ -48,11 +48,13 @@
 /datum/ai_behavior/find_valid_teleport_location
 
 /datum/ai_behavior/find_valid_teleport_location/perform(seconds_per_tick, datum/ai_controller/controller, hunting_target_key, types_to_hunt, hunt_range)
+	. = ..()
 	var/mob/living/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 	var/list/possible_turfs = list()
 
 	if(QDELETED(target))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE)
+		return
 
 	for(var/turf/open/potential_turf in oview(hunt_range, target)) //we check for turfs around the target
 		if(potential_turf.is_blocked_turf())
@@ -62,10 +64,11 @@
 		possible_turfs += potential_turf
 
 	if(!length(possible_turfs))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE)
+		return
 
 	controller.set_blackboard_key(hunting_target_key, pick(possible_turfs))
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	finish_action(controller, TRUE)
 
 /datum/ai_behavior/hunt_target/use_ability_on_target/demon_teleport
 	hunt_cooldown = 2 SECONDS

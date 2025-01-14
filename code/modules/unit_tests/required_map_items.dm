@@ -20,7 +20,7 @@
 	expected_types += /obj/machinery/computer/communications
 	expected_types += /mob/living/carbon/human/species/monkey/punpun
 	expected_types += /mob/living/basic/pet/dog/corgi/ian
-	expected_types += /mob/living/basic/pet/cat/runtime
+	expected_types += /mob/living/simple_animal/pet/cat/runtime
 	expected_types += /mob/living/basic/parrot/poly
 	// monkestation start
 	expected_types += /obj/item/radio/radio_mic

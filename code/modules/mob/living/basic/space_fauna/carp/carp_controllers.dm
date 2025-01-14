@@ -10,7 +10,7 @@
 /datum/ai_controller/basic_controller/carp
 	blackboard = list(
 		BB_BASIC_MOB_STOP_FLEEING = TRUE,
-		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic,
+		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic/allow_items,
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 	)
 
@@ -21,12 +21,12 @@
 		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee,
 		/datum/ai_planning_subtree/make_carp_rift/panic_teleport,
 		/datum/ai_planning_subtree/flee_target,
+		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/simple_find_target,
 		/datum/ai_planning_subtree/attack_obstacle_in_path/carp,
 		/datum/ai_planning_subtree/shortcut_to_target_through_carp_rift,
 		/datum/ai_planning_subtree/make_carp_rift/aggressive_teleport,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/carp_migration,
 	)
 
@@ -63,6 +63,7 @@
 		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee,
 		/datum/ai_planning_subtree/make_carp_rift/panic_teleport,
 		/datum/ai_planning_subtree/flee_target,
+		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/find_nearest_magicarp_spell_target,
 		/datum/ai_planning_subtree/targeted_mob_ability/magicarp,
 		/datum/ai_planning_subtree/simple_find_target,
@@ -70,7 +71,6 @@
 		/datum/ai_planning_subtree/shortcut_to_target_through_carp_rift,
 		/datum/ai_planning_subtree/make_carp_rift/aggressive_teleport,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree/magicarp,
-		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/carp_migration,
 	)
 
@@ -90,10 +90,10 @@
 		/datum/ai_planning_subtree/simple_find_nearest_target_to_flee,
 		/datum/ai_planning_subtree/make_carp_rift/panic_teleport,
 		/datum/ai_planning_subtree/flee_target,
+		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/attack_obstacle_in_path/carp,
 		/datum/ai_planning_subtree/shortcut_to_target_through_carp_rift,
 		/datum/ai_planning_subtree/make_carp_rift/aggressive_teleport,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
-		/datum/ai_planning_subtree/find_food,
 		/datum/ai_planning_subtree/carp_migration,
 	)

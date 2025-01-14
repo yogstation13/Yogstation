@@ -16,7 +16,7 @@
 	health = 25
 	maxHealth = 25
 
-	req_one_access = list(ACCESS_ROBOTICS, ACCESS_CONSTRUCTION)
+	maints_access_required = list(ACCESS_ROBOTICS, ACCESS_CONSTRUCTION)
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = RADIO_CHANNEL_ENGINEERING
 	bot_type = FLOOR_BOT
@@ -140,10 +140,9 @@
 	return data
 
 // Actions received from TGUI
-/mob/living/simple_animal/bot/floorbot/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/mob/living/simple_animal/bot/floorbot/ui_act(action, params)
 	. = ..()
-	var/mob/user = ui.user
-	if(!(bot_cover_flags & BOT_COVER_LOCKED) || issilicon(user) || isAdminGhostAI(user))
+	if(. || (bot_cover_flags & BOT_COVER_LOCKED && !usr.has_unlimited_silicon_privilege))
 		return
 
 	switch(action)
@@ -161,8 +160,8 @@
 			if(tilestack)
 				tilestack.forceMove(drop_location())
 		if("line_mode")
-			var/setdir = tgui_input_list(user, "Select construction direction", "Direction", list("north", "east", "south", "west", "disable"))
-			if(isnull(setdir) || QDELETED(ui) || ui.status != UI_INTERACTIVE)
+			var/setdir = tgui_input_list(usr, "Select construction direction", "Direction", list("north", "east", "south", "west", "disable"))
+			if(isnull(setdir))
 				return
 			switch(setdir)
 				if("north")
@@ -219,54 +218,52 @@
 
 	target = scan(tiles_scanned)
 
-	if (!target)
-		if(bot_mode_flags & BOT_MODE_AUTOPATROL)
-			switch(mode)
-				if(BOT_IDLE, BOT_START_PATROL)
-					start_patrol()
-				if(BOT_PATROL)
-					bot_patrol()
-		return
+	if(!target && bot_mode_flags & BOT_MODE_AUTOPATROL)
+		switch(mode)
+			if(BOT_IDLE, BOT_START_PATROL)
+				start_patrol()
+			if(BOT_PATROL)
+				bot_patrol()
 
-	if(loc == target || loc == get_turf(target))
-		if(check_bot(target)) //Target is not defined at the parent
-			if(prob(50)) //50% chance to still try to repair so we dont end up with 2 floorbots failing to fix the last breach
-				target = null
-				path = list()
-				return
-		if(isturf(target) && !(bot_cover_flags & BOT_COVER_EMAGGED))
-			repair(target)
-		else if(bot_cover_flags & BOT_COVER_EMAGGED && isfloorturf(target))
-			var/turf/open/floor/floor = target
-			toggle_magnet()
-			mode = BOT_REPAIRING
-			if(isplatingturf(floor))
-				floor.attempt_lattice_replacement()
+	if(target)
+		if(loc == target || loc == get_turf(target))
+			if(check_bot(target)) //Target is not defined at the parent
+				if(prob(50)) //50% chance to still try to repair so we dont end up with 2 floorbots failing to fix the last breach
+					target = null
+					path = list()
+					return
+			if(isturf(target) && !(bot_cover_flags & BOT_COVER_EMAGGED))
+				repair(target)
+			else if(bot_cover_flags & BOT_COVER_EMAGGED && isfloorturf(target))
+				var/turf/open/floor/F = target
+				toggle_magnet()
+				mode = BOT_REPAIRING
+				if(isplatingturf(F))
+					F.attempt_lattice_replacement()
+				else
+					F.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+				audible_message(span_danger("[src] makes an excited booping sound."))
+				addtimer(CALLBACK(src, PROC_REF(go_idle)), 0.5 SECONDS)
+			path = list()
+			return
+		if(!length(path))
+			if(!isturf(target))
+				var/turf/TL = get_turf(target)
+				path = get_path_to(src, TL, max_distance=30, access=access_card.GetAccess(), simulated_only = FALSE)
 			else
-				floor.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-			audible_message(span_danger("[src] makes an excited booping sound."))
-			addtimer(CALLBACK(src, PROC_REF(go_idle)), 0.5 SECONDS)
-		path = list()
-		return
+				path = get_path_to(src, target, max_distance=30, access=access_card.GetAccess(), simulated_only = FALSE)
 
-	if(!length(path))
-		if(!isturf(target))
-			var/turf/TL = get_turf(target)
-			path = get_path_to(src, TL, max_distance=30, access=access_card.GetAccess(), simulated_only = FALSE)
-		else
-			path = get_path_to(src, target, max_distance=30, access=access_card.GetAccess(), simulated_only = FALSE)
-
-		if(!bot_move(target))
-			add_to_ignore(target)
+			if(!bot_move(target))
+				add_to_ignore(target)
+				target = null
+				mode = BOT_IDLE
+				return
+		else if( !bot_move(target) )
 			target = null
 			mode = BOT_IDLE
-	else if(!bot_move(target))
-		target = null
-		mode = BOT_IDLE
+			return
 
 /mob/living/simple_animal/bot/floorbot/proc/go_idle()
-	if (QDELETED(src))
-		return
 	toggle_magnet(FALSE)
 	mode = BOT_IDLE
 	target = null
@@ -281,7 +278,7 @@
 //Floorbots, having several functions, need sort out special conditions here.
 /mob/living/simple_animal/bot/floorbot/process_scan(scan_target)
 	var/result
-	var/turf/open/floor/floor
+	var/turf/open/floor/F
 	move_resist = initial(move_resist)
 	switch(process_type)
 		if(HULL_BREACH) //The most common job, patching breaches in the station's hull.
@@ -293,21 +290,21 @@
 				result = scan_target
 				move_resist = INFINITY
 		if(PLACE_TILE)
-			floor = scan_target
-			if(isplatingturf(floor)) //The floor must not already have a tile.
-				result = floor
+			F = scan_target
+			if(isplatingturf(F)) //The floor must not already have a tile.
+				result = F
 		if(REPLACE_TILE)
-			floor = scan_target
-			if(isfloorturf(floor) && !isplatingturf(floor)) //The floor must already have a tile.
-				result = floor
+			F = scan_target
+			if(isfloorturf(F) && !isplatingturf(F)) //The floor must already have a tile.
+				result = F
 		if(FIX_TILE) //Selects only damaged floors.
-			floor = scan_target
-			if(istype(floor) && (floor.broken || floor.burnt))
-				result = floor
+			F = scan_target
+			if(istype(F) && (F.broken || F.burnt))
+				result = F
 		if(TILE_EMAG) //Emag mode! Rip up the floor and cause breaches to space!
-			floor = scan_target
-			if(!isplatingturf(floor))
-				result = floor
+			F = scan_target
+			if(!isplatingturf(F))
+				result = F
 		else //If no special processing is needed, simply return the result.
 			result = scan_target
 	return result
@@ -316,7 +313,7 @@
 	if(check_bot_working(target_turf))
 		add_to_ignore(target_turf)
 		target = null
-		playsound(src, 'sound/creatures/whistlereset.ogg', 50, TRUE)
+		playsound(src, 'sound/effects/whistlereset.ogg', 50, TRUE)
 		return
 	if(isspaceturf(target_turf))
 		//Must be a hull breach or in line mode to continue.
@@ -329,69 +326,57 @@
 		toggle_magnet()
 		visible_message(span_notice("[targetdirection ? "[src] begins installing a bridge plating." : "[src] begins to repair the hole."] "))
 		mode = BOT_REPAIRING
-		if(!do_after(src, 5 SECONDS, target = target_turf) && mode == BOT_REPAIRING)
-			go_idle()
-			return
+		if(do_after(src, 50, target = target_turf) && mode == BOT_REPAIRING)
+			if(autotile) //Build the floor and include a tile.
+				if(replacetiles && tilestack)
+					target_turf.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)	//make sure a hull is actually below the floor tile
+					tilestack.place_tile(target_turf, src)
+					if(!tilestack)
+						speak("Requesting refill of custom floor tiles to continue replacing.")
+				else
+					target_turf.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)	//make sure a hull is actually below the floor tile
+					target_turf.PlaceOnTop(/turf/open/floor/iron, flags = CHANGETURF_INHERIT_AIR)
+			else //Build a hull plating without a floor tile.
+				target_turf.PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 
-		if(!autotile)
-			target_turf.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
-			go_idle()
-			return
+	else
+		var/turf/open/floor/F = target_turf
+		var/success = FALSE
+		var/was_replacing = replacetiles
 
-		if(replacetiles && tilestack)
-			target_turf.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)	//make sure a hull is actually below the floor tile
-			tilestack.place_tile(target_turf, src)
-			if(!tilestack)
-				speak("Requesting refill of custom floor tiles to continue replacing.")
-		else
-			target_turf.place_on_top(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)	//make sure a hull is actually below the floor tile
-			target_turf.place_on_top(/turf/open/floor/iron, flags = CHANGETURF_INHERIT_AIR)
+		if(F.broken || F.burnt || isplatingturf(F))
+			toggle_magnet()
+			mode = BOT_REPAIRING
+			visible_message(span_notice("[src] begins [(F.broken || F.burnt) ? "repairing the floor" : "placing a floor tile"]."))
+			if(do_after(src, 50, target = F) && mode == BOT_REPAIRING)
+				success = TRUE
+
+		else if(replacetiles && tilestack && F.type != tilestack.turf_type)
+			toggle_magnet()
+			mode = BOT_REPAIRING
+			visible_message(span_notice("[src] begins replacing the floor tiles."))
+			if(do_after(src, 50, target = target_turf) && mode == BOT_REPAIRING && tilestack)
+				success = TRUE
+
+		if(success)
+			var/area/is_this_maints = get_area(F)
+			if(was_replacing && tilestack)	//turn the tile into plating (if needed), then replace it
+				F = F.make_plating(TRUE) || F
+				tilestack.place_tile(F, src)
+				if(!tilestack)
+					speak("Requesting refill of custom floor tiles to continue replacing.")
+			else if(F.broken || F.burnt)	//repair the tile and reset it to be undamaged (rather than replacing it)
+				F.broken = FALSE
+				F.burnt = FALSE
+				F.update_appearance()
+			else if(istype(is_this_maints, /area/station/maintenance))	//place catwalk if it's plating and we're in maints
+				F.PlaceOnTop(/turf/open/floor/catwalk_floor, flags = CHANGETURF_INHERIT_AIR)
+			else	//place normal tile if it's plating anywhere else
+				F = F.make_plating(TRUE) || F
+				F.PlaceOnTop(/turf/open/floor/iron, flags = CHANGETURF_INHERIT_AIR)
+
+	if(!QDELETED(src))
 		go_idle()
-		return
-
-	var/turf/open/floor/floor = target_turf
-	var/was_replacing = replacetiles
-
-	if(floor.broken || floor.burnt || isplatingturf(floor))
-		toggle_magnet()
-		mode = BOT_REPAIRING
-		visible_message(span_notice("[src] begins [(floor.broken || floor.burnt) ? "repairing the floor" : "placing a floor tile"]."))
-		if(!do_after(src, 5 SECONDS, target = floor) && mode == BOT_REPAIRING)
-			go_idle()
-			return
-	else if(replacetiles && tilestack && floor.type != tilestack.turf_type)
-		toggle_magnet()
-		mode = BOT_REPAIRING
-		visible_message(span_notice("[src] begins replacing the floor tiles."))
-		if(do_after(src, 5 SECONDS, target = target_turf) && mode == BOT_REPAIRING && tilestack)
-			go_idle()
-			return
-
-	var/area/is_this_maints = get_area(floor)
-	if(was_replacing && tilestack)	//turn the tile into plating (if needed), then replace it
-		floor = floor.make_plating(TRUE) || floor
-		tilestack.place_tile(floor, src)
-		if(!tilestack)
-			speak("Requesting refill of custom floor tiles to continue replacing.")
-		go_idle()
-		return
-
-	if(floor.broken || floor.burnt)	//repair the tile and reset it to be undamaged (rather than replacing it)
-		floor.broken = FALSE
-		floor.burnt = FALSE
-		floor.update_appearance()
-		go_idle()
-		return
-
-	if(istype(is_this_maints, /area/station/maintenance))	//place catwalk if it's plating and we're in maints
-		floor.place_on_top(/turf/open/floor/catwalk_floor, flags = CHANGETURF_INHERIT_AIR)
-		go_idle()
-		return
-
-	//place normal tile if it's plating anywhere else
-	floor = floor.make_plating(TRUE) || floor
-	floor.place_on_top(/turf/open/floor/iron, flags = CHANGETURF_INHERIT_AIR)
-	go_idle()
 
 /mob/living/simple_animal/bot/floorbot/update_icon_state()
 	. = ..()
@@ -411,23 +396,13 @@
 	new /obj/item/stack/tile/iron/base(Tsec, 1)
 	return ..()
 
-/mob/living/simple_animal/bot/floorbot/UnarmedAttack(atom/target, proximity_flag, list/modifiers)
-	if(!can_unarmed_attack())
+/mob/living/simple_animal/bot/floorbot/UnarmedAttack(atom/A, proximity_flag)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
-
-	if (!isturf(target))
-		return ..()
-
-	if(!(bot_cover_flags & BOT_COVER_EMAGGED) || !isfloorturf(target))
-		repair(target)
-		return
-
-	var/turf/open/floor/floor = target
-	if(isplatingturf(floor))
-		floor.attempt_lattice_replacement()
+	if(isturf(A))
+		repair(A)
 	else
-		floor.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-	audible_message(span_danger("[src] makes an excited booping sound."))
+		..()
 
 /**
  * Checks a given turf to see if another floorbot is there, working as well.

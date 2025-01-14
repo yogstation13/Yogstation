@@ -2,14 +2,14 @@
 /datum/ai_behavior/item_escape_grasp
 
 /datum/ai_behavior/item_escape_grasp/perform(seconds_per_tick, datum/ai_controller/controller)
+	. = ..()
 	var/obj/item/item_pawn = controller.pawn
 	var/mob/item_holder = item_pawn.loc
 	if(!istype(item_holder))
-		//We're no longer being held. abort abort!!
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE) //We're no longer being held. abort abort!!
 	item_pawn.visible_message(span_warning("[item_pawn] slips out of the hands of [item_holder]!"))
 	item_holder.dropItemToGround(item_pawn, TRUE)
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	finish_action(controller, TRUE)
 
 
 ///This behavior is for obj/items, it is used to move closer to a target and throw themselves towards them.
@@ -30,6 +30,7 @@
 	set_movement_target(controller, target)
 
 /datum/ai_behavior/item_move_close_and_attack/perform(seconds_per_tick, datum/ai_controller/controller, target_key, throw_count_key)
+	. = ..()
 	var/obj/item/item_pawn = controller.pawn
 	var/atom/throw_target = controller.blackboard[target_key]
 
@@ -38,8 +39,7 @@
 	playsound(item_pawn.loc, attack_sound, 100, TRUE)
 	controller.add_blackboard_key(throw_count_key, 1)
 	if(controller.blackboard[throw_count_key] >= max_attempts)
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
-	return AI_BEHAVIOR_DELAY
+		finish_action(controller, TRUE, target_key, throw_count_key)
 
 /datum/ai_behavior/item_move_close_and_attack/finish_action(datum/ai_controller/controller, succeeded, target_key, throw_count_key)
 	. = ..()

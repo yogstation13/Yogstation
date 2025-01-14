@@ -17862,7 +17862,7 @@
 	dir = 4
 	},
 /obj/structure/bed/dogbed/runtime,
-/mob/living/basic/pet/cat/runtime,
+/mob/living/simple_animal/pet/cat/runtime,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/cmo)
 "eHD" = (

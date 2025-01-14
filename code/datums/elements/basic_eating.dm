@@ -73,7 +73,6 @@
 	finish_eating(eater, target)
 
 /datum/element/basic_eating/proc/finish_eating(mob/living/eater, atom/target)
-	set waitfor = FALSE
 	if(drinking)
 		////playsound(eater.loc,'sound/items/drink.ogg', rand(10,50), TRUE) // monkestation edit original
 		playsound(eater.loc,get_drink_sound(eater), rand(10,50), TRUE) // monkestation edit: synthesized drink sounds
@@ -81,9 +80,8 @@
 		playsound(eater.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	SEND_SIGNAL(eater, COMSIG_LIVING_ATE, target)
 	SEND_SIGNAL(eater, COMSIG_EMOTION_STORE, null, EMOTION_HAPPY, "I ate [target], I really like [target].")
-	var/atom/final_target = target
-	if(isstack(target)) //if stack, only consume 1
-		var/obj/item/stack/food_stack = target
-		final_target = food_stack.split_stack(eater, 1)
-	eater.log_message("has eaten [target]!", LOG_ATTACK)
-	qdel(final_target)
+	if (isstack(target))
+		var/obj/item/stack/stack = target
+		stack.use(1)
+		return
+	qdel(target)

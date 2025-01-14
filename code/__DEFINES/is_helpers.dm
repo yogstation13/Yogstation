@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define ismining(A) (istype(A, /mob/living/simple_animal/hostile/asteroid) || istype(A, /mob/living/basic/mining))
 
-//Simple + Basic animals
+//Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
 #define isrevenant(A) (istype(A, /mob/living/basic/revenant))
@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define isdrone(A) (istype(A, /mob/living/basic/drone))
 
-#define iscat(A) (istype(A, /mob/living/basic/pet/cat))
+#define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
 
 #define isdog(A) (istype(A, /mob/living/basic/pet/dog))
 

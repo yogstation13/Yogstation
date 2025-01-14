@@ -19684,7 +19684,7 @@
 "dLv" = (
 /obj/structure/bed/dogbed/runtime,
 /obj/item/toy/cattoy,
-/mob/living/basic/pet/cat/runtime,
+/mob/living/simple_animal/pet/cat/runtime,
 /obj/machinery/requests_console/directional/east{
 	department = "Chief Medical Officer's Desk";
 	name = "Chief Medical Officer's Requests Console"
@@ -29444,7 +29444,7 @@
 /area/station/engineering/storage_shared)
 "fGV" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/basic/pet/cat,
+/mob/living/simple_animal/pet/cat,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
@@ -83884,7 +83884,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical/central)
 "qoz" = (
-/mob/living/basic/pet/cat/space{
+/mob/living/simple_animal/pet/cat/space{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,

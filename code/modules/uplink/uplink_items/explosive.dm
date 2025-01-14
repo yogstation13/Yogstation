@@ -48,13 +48,6 @@
 	cost = 6
 	restricted = TRUE
 
-/datum/uplink_item/explosive/cat
-	name = "Feral cat grenade"
-	desc = "This grenade is filled with 5 feral cats in stasis. Upon activation, the feral cats are awoken and unleashed unto unlucky bystanders. WARNING: The cats are not trained to discern friend from foe!"
-	cost = 5
-	item = /obj/item/grenade/spawnergrenade/cat
-	surplus = 30
-
 /datum/uplink_item/explosives/emp
 	name = "EMP Grenades and Implanter Kit"
 	desc = "A box that contains five EMP grenades and an EMP implant with three uses. Useful to disrupt communications, \

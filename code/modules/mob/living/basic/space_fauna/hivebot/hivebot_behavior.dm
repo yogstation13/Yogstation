@@ -30,16 +30,19 @@
 
 
 /datum/ai_behavior/relay_message/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
+	. = ..()
+
 	var/mob/living/target = controller.blackboard[target_key]
 	var/mob/living/living_pawn = controller.pawn
 
 	if(QDELETED(target))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE, target_key)
+		return
 	var/message_relayed = ""
 	for(var/i in 1 to length_of_message)
 		message_relayed += prob(50) ? "1" : "0"
 	living_pawn.say(message_relayed, forced = "AI Controller")
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	finish_action(controller, TRUE, target_key)
 
 /datum/ai_behavior/relay_message/finish_action(datum/ai_controller/controller, succeeded, target_key)
 	. = ..()

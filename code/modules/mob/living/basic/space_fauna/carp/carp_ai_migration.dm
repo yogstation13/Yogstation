@@ -47,8 +47,10 @@
 		blackboard_points -= migration_point
 		if(get_dist(controller.pawn, migration_point) > CARP_DESTINATION_SEARCH_RANGE)
 			controller.set_blackboard_key(target_key, migration_point)
-			return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
-	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+			finish_action(controller, succeeded = TRUE)
+			return
+
+	finish_action(controller, succeeded = FALSE)
 
 #undef CARP_DESTINATION_SEARCH_RANGE
 #undef CARP_PORTAL_SEARCH_RANGE

@@ -79,10 +79,11 @@
 				break
 
 	if(isnull(found_target))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		finish_action(controller, succeeded = FALSE)
+		return
 
 	controller.set_blackboard_key(target_key, found_target)
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	finish_action(controller, succeeded = TRUE)
 
 
 
@@ -110,15 +111,17 @@
 	var/mob/living/carbon/human/unclean_target = controller.blackboard[target_key]
 	var/mob/living/basic/living_pawn = controller.pawn
 	if(QDELETED(unclean_target))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE, target_key)
+		return
 
 	if(living_pawn.loc == get_turf(unclean_target))
 		living_pawn.melee_attack(unclean_target)
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+		finish_action(controller, TRUE, target_key)
+		return
 
 	var/frustration_count = controller.blackboard[BB_WASH_FRUSTRATION]
 	controller.set_blackboard_key(BB_WASH_FRUSTRATION, frustration_count + 1)
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+	finish_action(controller, FALSE, target_key)
 
 /datum/ai_behavior/wash_target/finish_action(datum/ai_controller/controller, succeeded, target_key)
 	. = ..()

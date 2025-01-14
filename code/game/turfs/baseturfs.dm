@@ -20,16 +20,6 @@
 
 	return ChangeTurf(baseturfs, baseturfs, flags) // The bottom baseturf will never go away
 
-/// Places a turf at the top of the stack
-/turf/proc/place_on_top(turf/added_layer, flags)
-	var/list/turf/new_baseturfs = list()
-
-	new_baseturfs.Add(baseturfs)
-	if(isopenturf(src))
-		new_baseturfs.Add(type)
-
-	return ChangeTurf(added_layer, new_baseturfs, flags)
-
 // Take the input as baseturfs and put it underneath the current baseturfs
 // If fake_turf_type is provided and new_baseturfs is not the baseturfs list will be created identical to the turf type's
 // If both or just new_baseturfs is provided they will be inserted below the existing baseturfs

@@ -97,11 +97,8 @@
 ///Fish size thresholds for w_class.
 #define FISH_SIZE_TINY_MAX 30
 #define FISH_SIZE_SMALL_MAX 50
-#define FISH_SIZE_NORMAL_MAX 80
-#define FISH_SIZE_BULKY_MAX 120
-///size threshold for requiring two-handed carry
-#define FISH_SIZE_TWO_HANDS_REQUIRED 135
-#define FISH_SIZE_HUGE_MAX 165
+#define FISH_SIZE_NORMAL_MAX 90
+#define FISH_SIZE_BULKY_MAX 130
 
 ///The coefficient for maximum weight/size divergence relative to the averages.
 #define MAX_FISH_DEVIATION_COEFF 2.5
@@ -110,19 +107,6 @@
 #define FISH_GRIND_RESULTS_WEIGHT_DIVISOR 500
 ///The number of fillets is multiplied by the fish' size and divided by this.
 #define FISH_FILLET_NUMBER_SIZE_DIVISOR 30
-
-///The slowdown of the fish when carried begins at this value
-#define FISH_WEIGHT_SLOWDOWN 2100
-///The value of the slowdown equals to the weight divided by this (and then at the power of a sub-1 exponent)
-#define FISH_WEIGHT_SLOWDOWN_DIVISOR 500
-///The sub-one exponent that results in the final slowdown of the fish item
-#define FISH_WEIGHT_SLOWDOWN_EXPONENT 0.54
-///Used to calculate the force of the fish by comparing (1 + log(weight/this_define)) and the w_class of the item.
-#define FISH_WEIGHT_FORCE_DIVISOR 250
-///The multiplier used in the FISH_WEIGHT_BITE_DIVISOR define
-#define FISH_WEIGHT_GRIND_TO_BITE_MULT 0.4
-///Used to calculate how many bites a fish can take and therefore the amount of reagents it has.
-#define FISH_WEIGHT_BITE_DIVISOR (FISH_GRIND_RESULTS_WEIGHT_DIVISOR * FISH_WEIGHT_GRIND_TO_BITE_MULT)
 
 ///The breeding timeout for newly instantiated fish is multiplied by this.
 #define NEW_FISH_BREEDING_TIMEOUT_MULT 2
@@ -145,70 +129,8 @@
 #define AQUARIUM_FLUID_SALTWATER "Saltwater"
 #define AQUARIUM_FLUID_SULPHWATEVER "Sulfuric Water"
 #define AQUARIUM_FLUID_AIR "Air"
-#define AQUARIUM_FLUID_ANADROMOUS "Anadromous"
-#define AQUARIUM_FLUID_ANY_WATER "Any Fluid"
+#define AQUARIUM_FLUID_ANADROMOUS "Adaptive to both Freshwater and Saltwater"
+#define AQUARIUM_FLUID_ANY_WATER "Adaptive to all kind of water"
 
 ///Fluff. The name of the aquarium company shown in the fish catalog
 #define AQUARIUM_COMPANY "Aquatech Ltd."
-
-/// how long between electrogenesis zaps
-#define ELECTROGENESIS_DURATION 40 SECONDS
-
-/// a random range the electrogenesis cooldown varies by
-#define ELECTROGENESIS_VARIANCE (rand(-10 SECONDS, 10 SECONDS))
-
-#define FISH_BEAUTY_DISGUSTING -500
-#define FISH_BEAUTY_UGLY -300
-#define FISH_BEAUTY_BAD -200
-#define FISH_BEAUTY_NULL 0
-#define FISH_BEAUTY_GENERIC 250
-#define FISH_BEAUTY_GOOD 450
-#define FISH_BEAUTY_GREAT 600
-#define FISH_BEAUTY_EXCELLENT 700
-
-//Fish breeding stops if fish count exceeds this.
-#define AQUARIUM_MAX_BREEDING_POPULATION 20
-
-//Minigame defines
-/// The height of the minigame slider. Not in pixels, but minigame units.
-#define FISHING_MINIGAME_AREA 1000
-
-///The fish needs to be cooked for at least this long so that it can be safely eaten
-#define FISH_SAFE_COOKING_DURATION 30 SECONDS
-
-///Defines for fish properties from the collect_fish_properties proc
-#define FISH_PROPERTIES_FAV_BAIT "fav_bait"
-#define FISH_PROPERTIES_BAD_BAIT "bad_bait"
-#define FISH_PROPERTIES_TRAITS "fish_traits"
-#define FISH_PROPERTIES_BEAUTY_SCORE "beauty_score"
-#define FISH_PROPERTIES_EVOLUTIONS "evolutions"
-
-///Define for favorite and disliked baits that aren't just item typepaths.
-#define FISH_BAIT_TYPE "Type"
-#define FISH_BAIT_FOODTYPE "Foodtype"
-#define FISH_BAIT_REAGENT "Reagent"
-#define FISH_BAIT_VALUE "Value"
-#define FISH_BAIT_AMOUNT "Amount"
-
-///We multiply the weight of fish inside the loot table by this value if we are goofy enough to fish without a bait.
-#define FISH_WEIGHT_MULT_WITHOUT_BAIT 0.15
-
-/**
- * A macro to ensure the wikimedia filenames of fish icons are unique, especially since there're a couple fish that have
- * quite ambiguous names/icon_states like "checkered" or "pike"
- */
-#define FISH_AUTOWIKI_FILENAME(fish) SANITIZE_FILENAME("[initial(fish.icon_state)]_wiki_fish")
-
-///The list keys for the autowiki for fish sources
-#define FISH_SOURCE_AUTOWIKI_NAME "name"
-#define FISH_SOURCE_AUTOWIKI_ICON "icon"
-#define FISH_SOURCE_AUTOWIKI_WEIGHT "weight"
-#define FISH_SOURCE_AUTOWIKI_WEIGHT_SUFFIX "weight_suffix"
-#define FISH_SOURCE_AUTOWIKI_NOTES "notes"
-
-///Special value for the name key that always comes first when the data is sorted, regardless of weight.
-#define FISH_SOURCE_AUTOWIKI_DUD "Nothing"
-///Special value for the name key that always comes last
-#define FISH_SOURCE_AUTOWIKI_OTHER "Other Stuff"
-///The filename for the icon for "other stuff" which we don't articulate about on the autowiki
-#define FISH_SOURCE_AUTOWIKI_QUESTIONMARK "questionmark"

@@ -108,14 +108,6 @@
 	/// Will not automatically apply to the turf below you, you need to apply /datum/element/block_explosives in conjunction with this
 	var/explosion_block = 0
 
-	// Access levels, used in modules\jobs\access.dm
-	/// List of accesses needed to use this object: The user must possess all accesses in this list in order to use the object.
-	/// Example: If req_access = list(ACCESS_ENGINE, ACCESS_CE)- then the user must have both ACCESS_ENGINE and ACCESS_CE in order to use the object.
-	var/list/req_access
-	/// List of accesses needed to use this object: The user must possess at least one access in this list in order to use the object.
-	/// Example: If req_one_access = list(ACCESS_ENGINE, ACCESS_CE)- then the user must have either ACCESS_ENGINE or ACCESS_CE in order to use the object.
-	var/list/req_one_access
-
 	///can we grab this object?
 	var/cant_grab = FALSE
 
@@ -321,15 +313,18 @@
 		overlays.Insert(1, emissive_block)
 	return overlays
 
-/atom/movable/proc/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+/atom/movable/proc/onZImpact(turf/impacted_turf, levels, message = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!(impact_flags & ZIMPACT_NO_MESSAGE))
-		visible_message(
-			span_danger("[src] crashes into [impacted_turf]!"),
-			span_userdanger("You crash into [impacted_turf]!"),
-		)
-	if(!(impact_flags & ZIMPACT_NO_SPIN))
-		INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
+	if(message)
+		visible_message(span_danger("[src] crashes into [impacted_turf]!"))
+	var/atom/highest = impacted_turf
+	for(var/atom/hurt_atom as anything in impacted_turf.contents)
+		if(!hurt_atom.density)
+			continue
+		if(isobj(hurt_atom) || ismob(hurt_atom))
+			if(hurt_atom.layer > highest.layer)
+				highest = hurt_atom
+	INVOKE_ASYNC(src, PROC_REF(SpinAnimation), 5, 2)
 	SEND_SIGNAL(src, COMSIG_ATOM_ON_Z_IMPACT, impacted_turf, levels)
 	return TRUE
 

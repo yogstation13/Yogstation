@@ -61,16 +61,19 @@
 	return !QDELETED(target)
 
 /datum/ai_behavior/setup_shop/perform(seconds_per_tick, datum/ai_controller/controller, target_key)
+	. = ..()
+
 	//We lost track of our costumer or our ability, abort
 	if(!controller.blackboard_key_exists(target_key) || !controller.blackboard_key_exists(BB_SETUP_SHOP))
-		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE, target_key)
+		return
 
 	var/datum/action/setup_shop/shop = controller.blackboard[BB_SETUP_SHOP]
 	shop.Trigger()
 
 	controller.clear_blackboard_key(BB_FIRST_CUSTOMER)
 
-	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
+	finish_action(controller, TRUE, target_key)
 
 /datum/idle_behavior/idle_random_walk/not_while_on_target/trader
 	target_key = BB_SHOP_SPOT

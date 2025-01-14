@@ -72835,7 +72835,7 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/directional/south,
-/mob/living/basic/pet/cat/runtime,
+/mob/living/simple_animal/pet/cat/runtime,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/cmo)
 "rlC" = (
@@ -77854,7 +77854,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
 "sxb" = (
-/mob/living/basic/pet/cat{
+/mob/living/simple_animal/pet/cat{
 	name = "Kattail"
 	},
 /obj/structure/cable,

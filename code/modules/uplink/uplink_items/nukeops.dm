@@ -521,11 +521,11 @@
 	surplus = 35
 	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 
-/datum/uplink_item/explosives/syndicat
+/datum/uplink_item/dangerous/syndicat
 	name = "Syndie cat grenade"
 	desc = "This grenade is filled with 3 trained angry cats in special syndicate modsuits. Upon activation, the Syndicate cats are awoken and unleashed unto unlucky bystanders."
 	item = /obj/item/grenade/spawnergrenade/cat/syndicate
-	cost = 5
+	cost = 20
 	surplus = 50
 	purchasable_from = UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS
 

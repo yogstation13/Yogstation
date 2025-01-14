@@ -8,13 +8,12 @@
 	var/datum/action/cooldown/ability = controller.blackboard[ability_key]
 	var/mob/living/target = controller.blackboard[target_key]
 	if(QDELETED(ability) || QDELETED(target))
-		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+		finish_action(controller, FALSE, ability_key, target_key)
+		return
 	var/mob/pawn = controller.pawn
 	pawn.face_atom(target)
 	var/result = ability.Trigger(target = target)
-	if(result)
-		return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
-	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_FAILED
+	finish_action(controller, result, ability_key, target_key)
 
 /datum/ai_behavior/targeted_mob_ability/finish_action(datum/ai_controller/controller, succeeded, ability_key, target_key)
 	. = ..()

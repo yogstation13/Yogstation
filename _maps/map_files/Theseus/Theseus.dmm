@@ -41275,7 +41275,7 @@
 /obj/machinery/light/directional/south,
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/bed/dogbed/runtime,
-/mob/living/basic/pet/cat/runtime,
+/mob/living/simple_animal/pet/cat/runtime,
 /obj/machinery/firealarm/directional/south,
 /obj/machinery/light_switch/directional/south{
 	pixel_x = -8
