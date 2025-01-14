@@ -2,6 +2,8 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = SPECIES_POLYSMORPH
+	monitor_icon = "certificate"
+	monitor_color = "#802496"
 	species_traits = list(NOEYESPRITES, DIGITIGRADE, MUTCOLORS, NOCOLORCHANGE, HAS_FLESH, HAS_BONE, HAS_TAIL)
 	possible_genders = list(FEMALE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)

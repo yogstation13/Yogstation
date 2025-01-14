@@ -4,6 +4,8 @@
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Phytosian"
 	id = SPECIES_PODPERSON // We keep this at pod for compatibility reasons
+	monitor_icon = "seedling"
+	monitor_color = "#07f58a"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS, EYECOLOR, HAS_FLESH, HAS_BONE)
 	mutant_bodyparts = list("pod_hair", "pod_flower")

@@ -5,6 +5,8 @@
 	name = "Vuulek"
 	plural_form = "Vuulen"
 	id = SPECIES_LIZARD
+	monitor_icon = "dragon"
+	monitor_color = "#8bf76a"
 	say_mod = "hisses"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,DIGITIGRADE,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)

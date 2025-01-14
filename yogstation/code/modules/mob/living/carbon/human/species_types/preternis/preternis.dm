@@ -2,6 +2,8 @@
 	name = "Preternis"
 	plural_form = "Preterni"
 	id = SPECIES_PRETERNIS
+	monitor_icon = "robot"
+	monitor_color = "#edee1b"
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN)

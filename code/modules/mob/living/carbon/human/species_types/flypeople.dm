@@ -2,6 +2,8 @@
 	name = "Flyperson"
 	plural_form = "Flypeople"
 	id = SPECIES_FLYPERSON
+	monitor_icon = "bug"
+	monitor_color = "#039162"
 	say_mod = "buzzes"
 	species_traits = list(NOEYESPRITES, HAS_FLESH, HAS_BONE)
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG

@@ -165,7 +165,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 		idcard = tracked_mob.wear_id ? tracked_mob.wear_id.GetID() : null
 
-		var/species
+		var/datum/species/species
 		var/is_irradiated = FALSE
 		var/is_wounded = FALSE
 		var/is_husked = FALSE
@@ -197,40 +197,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			brutedam = round(tracked_mob.getBruteLoss(),1)
 
 			//species check
-			if (ishumanbasic(tracked_mob)) //this should really just pull the species name or something rather than having all these checks
-				species = "Human"
-			if (ispreternis(tracked_mob))
-				species = "Robot"
-			if (isipc(tracked_mob))
-				species = "IPC"
-			if (ispodperson(tracked_mob))
-				species = "Podperson"
-			if (islizard(tracked_mob))
-				species = "Lizard"
-			if (isplasmaman(tracked_mob))
-				species = "Plasmaman"
-			if (ispolysmorph(tracked_mob))
-				species = "Polysmorph"
-			if (ismoth(tracked_mob))
-				species = "Moth"
-			if (isvox(tracked_mob))
-				species = "Vox"
-			if (isflyperson(tracked_mob))
-				species = "Fly"
-			if (iscatperson(tracked_mob))
-				species = "Felinid"
-			if (isskeleton(tracked_mob))
-				species = "Skeleton"
-			if (isjellyperson(tracked_mob))
-				species = "Slime"
-			if (isethereal(tracked_mob))
-				species = "Ethereal"
-			if (iszombie(tracked_mob) || is_species(tracked_mob, /datum/species/krokodil_addict))
-				species = "Zombie"
-			if (issnail(tracked_mob))
-				species = "Snail"
-			if (isabductor(tracked_mob))
-				species = "Alien"
+			species = tracked_mob.dna?.species
 
 			for(var/obj/item/bodypart/part in tracked_mob.bodyparts)
 				if(part.bodypart_disabled == TRUE) //check if has disabled limbs
@@ -300,7 +267,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			"is_bonecrack" = is_bonecrack,
 			"is_disabled" = is_disabled,
 			"is_irradiated" = is_irradiated,
-			"species" = species,
+			"species_icon" = species?.monitor_icon,
+			"species_color" = species?.monitor_color,
 			"life_status" = life_status,
 			"oxydam" = oxydam,
 			"toxdam" = toxdam,
