@@ -1,3 +1,15 @@
+/**
+ * Helper proc to check if someone has a shadow tumor
+ */
+/proc/get_shadow_tumor(mob/living/source)
+	if(!istype(source))
+		return
+	var/obj/item/organ/tumor = source.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
+		return
+	return tumor
+
+
 /datum/antagonist/thrall
 	name = "Darkspawn Thrall"
 	job_rank = ROLE_DARKSPAWN
@@ -7,10 +19,6 @@
 	antag_moodlet = /datum/mood_event/thrall
 	///The abilities granted to the thrall
 	var/list/abilities = list(/datum/action/cooldown/spell/toggle/nightvision, /datum/action/cooldown/spell/pointed/darkspawn_build/thrall_eye/thrall)
-	///How many ticks towards willpower generation has happened so far
-	var/current_willpower_progress = 0
-	///Amount of progress required to generate willpower, increases every time
-	var/current_willpower_max = 80
 	///The darkspawn team that the thrall is on
 	var/datum/team/darkspawn/team
 
@@ -70,10 +78,12 @@
 		new_spell.Grant(current_mob)
 
 	if(isliving(current_mob))
-		var/obj/item/organ/shadowtumor/ST = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+		var/obj/item/organ/shadowtumor/thrall/ST = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
 		if(!ST || !istype(ST))
 			ST = new
 			ST.Insert(current_mob, FALSE, FALSE)
+			if(team)
+				ST.antag_team = team
 
 /datum/antagonist/thrall/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/current_mob = mob_override || owner.current
@@ -94,8 +104,8 @@
 		if(spells.type in abilities)//no keeping your abilities
 			spells.Remove(current_mob)
 			qdel(spells)
-	var/obj/item/organ/tumor = current_mob.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
-	if(tumor && istype(tumor, /obj/item/organ/shadowtumor))
+	var/obj/item/organ/tumor = get_shadow_tumor(current_mob)
+	if(tumor)
 		qdel(tumor)
 	current_mob.update_sight()
 
@@ -132,33 +142,13 @@
 	overlays += overlay
 
 ////////////////////////////////////////////////////////////////////////////////////
-//--------------------------Passive willpower gen---------------------------------//
+//-----------Check if the thrall has a tumor, if not, dethrall them---------------//
 ////////////////////////////////////////////////////////////////////////////////////
 /datum/antagonist/thrall/proc/thrall_life(mob/living/source, seconds_per_tick, times_fired)
 	if(!source || source.stat == DEAD)
 		return
-	var/obj/item/organ/tumor = source.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
-	if(!tumor || !istype(tumor, /obj/item/organ/shadowtumor)) //if they somehow lose their tumor in an unusual way
+	if(!get_shadow_tumor(source)) //if they somehow lose their tumor in an unusual way
 		source.remove_thrall()
-		return
-
-	var/found_other = FALSE
-	for(var/mob/living/thing in range(10, source))
-		if(!thing.client) //gotta be an actual player (hope no one goes afk)
-			continue
-		if(is_team_darkspawn(thing))
-			continue
-		if(!can_see(source, thing, 10))
-			continue
-		found_other = TRUE
-
-	if(found_other)
-		current_willpower_progress += seconds_per_tick
-
-	if(current_willpower_progress >= current_willpower_max)
-		current_willpower_max *= 2
-		current_willpower_progress = 0
-		team.grant_willpower(1, TRUE)
 
 ////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------Antag greet--------------------------------------//

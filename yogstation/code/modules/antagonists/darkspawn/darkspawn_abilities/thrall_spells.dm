@@ -51,11 +51,11 @@
 	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
 
 	if(!isthrall(target))
-		if(!target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
-			to_chat(owner, span_danger("[target]'s will is still too strong to thrall."))
-			return FALSE
 		if(master.willpower < willpower_cost)
 			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
+			return FALSE
+		if(!get_shadow_tumor(target))
+			to_chat(owner, span_danger("[target] does not have a shadow bead for you to enhance."))
 			return FALSE
 
 	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
