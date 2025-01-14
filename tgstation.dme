@@ -6594,6 +6594,7 @@
 #include "monkestation\code\modules\assault_ops\code\areas.dm"
 #include "monkestation\code\modules\assault_ops\code\assault_op_vendor.dm"
 #include "monkestation\code\modules\assault_ops\code\covert_modsuit.dm"
+#include "monkestation\code\modules\assault_ops\code\cyborg.dm"
 #include "monkestation\code\modules\assault_ops\code\goldeneye.dm"
 #include "monkestation\code\modules\assault_ops\code\interrogator.dm"
 #include "monkestation\code\modules\assault_ops\code\midround_event.dm"

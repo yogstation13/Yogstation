@@ -26506,9 +26506,6 @@
 	},
 /turf/open/floor/iron/dark/smooth_large,
 /area/centcom/central_command_areas/retirement_yard)
-"tcJ" = (
-/turf/open/floor/iron/dark,
-/area/cruiser_dock)
 "tez" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Raziel's Theatre"
@@ -75034,7 +75031,7 @@ anV
 anV
 anV
 anV
-tcJ
+anV
 anV
 anV
 anV

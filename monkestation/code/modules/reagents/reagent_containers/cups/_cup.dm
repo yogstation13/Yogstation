@@ -54,3 +54,11 @@
 		pour_amount = "10_25"
 
 	return prob(1) ? rare_pouring_sound[pour_amount] : pick(pouring_sounds_categorized[pour_amount])
+
+/obj/item/reagent_containers/cup/beaker/large/synthflesh
+	name = "large synthflesh beaker"
+	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 100)
+
+/obj/item/reagent_containers/cup/beaker/large/plasma
+	name = "large plasma beaker"
+	list_reagents = list(/datum/reagent/toxin/plasma = 100)

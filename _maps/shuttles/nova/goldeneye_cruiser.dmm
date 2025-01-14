@@ -481,9 +481,11 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/medical)
 "wb" = (
-/obj/structure/table/optable,
 /obj/effect/turf_decal/bot,
 /obj/machinery/defibrillator_mount/loaded/directional/north,
+/obj/machinery/stasis{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/medical)
 "ws" = (
@@ -638,7 +640,7 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/brig)
 "FM" = (
-/obj/machinery/smartfridge/chemistry/preloaded,
+/obj/machinery/smartfridge/assualt/preloaded,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/medical)
 "FO" = (
