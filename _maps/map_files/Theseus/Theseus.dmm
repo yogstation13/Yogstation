@@ -20568,7 +20568,7 @@
 "gha" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id = "chapel"
+	id = "shitbreaker"
 	},
 /obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/plating,
@@ -69327,7 +69327,7 @@
 /area/station/security/prison)
 "usl" = (
 /obj/machinery/conveyor{
-	id = "garbage";
+	id = "shitbreaker";
 	dir = 5
 	},
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -77250,7 +77250,7 @@
 /area/station/maintenance/disposal)
 "wKe" = (
 /obj/machinery/conveyor{
-	id = "cargosort";
+	id = "shitbreaker";
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/directional/west,
