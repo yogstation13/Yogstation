@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "New purchase for assault operatives, \"Saboteur cyborg beacon\""
+  - rscadd: "Added chemicals to the goldeneye cruiser and a stasis bed for surgery."
