@@ -215,5 +215,17 @@
   - bugfix: Tided up some perks on the species select page in the character creation
       page.
 2025-01-14:
+  Gw0sty:
+  - rscadd: New purchase for assault operatives, "Saboteur cyborg beacon"
+  - rscadd: Added chemicals to the goldeneye cruiser and a stasis bed for surgery.
+  MomoBerri:
+  - bugfix: Shipbreaker conveyors for theseus
+  MrBagHead:
+  - bugfix: Changed the Bar Drone Information GUI to match laws and guidelines for
+      Bar Drones rather than Maintenance Drones.
+  Syndie Kate:
+  - rscadd: Added the Awakened Dragon scroll to the uplink
+  - balance: Changed sleeping carp scroll to 12 tc
+  - balance: Nerfed a sleeping carp's kick and a few numbers
   flleeppyy:
   - bugfix: make deepfryers not dry if there's nothing in the basket
