@@ -149,5 +149,8 @@
 
 /// Mob can't strip other mobs, overrides TRAIT_CAN_STRIP. Importantly, they cannot *open* strip menus, so this is used for mayhem in a bottle.
 #define TRAIT_CANT_STRIP "cant_strip"
-
+/// Mob sleeps less, counter to TRAIT_HEAVY_SLEEPER
+#define TRAIT_LIGHT_SLEEPER "light_sleeper"
+/// Makes a mob throw guns instead of shooting them, works with TRAIT_NOGUNS
+#define TRAIT_THROW_GUNS "throw_guns"
 // END TRAIT DEFINES

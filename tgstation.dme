@@ -6005,6 +6005,7 @@
 #include "monkestation\code\datums\keybinding\communication.dm"
 #include "monkestation\code\datums\keybinding\living.dm"
 #include "monkestation\code\datums\looping_sounds\weather.dm"
+#include "monkestation\code\datums\martial_arts\awakened_dragon.dm"
 #include "monkestation\code\datums\memory\key_memories.dm"
 #include "monkestation\code\datums\mind\_mind.dm"
 #include "monkestation\code\datums\mocking\client.dm"

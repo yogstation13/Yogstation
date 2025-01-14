@@ -77,9 +77,13 @@
 // If this is gonna be a snowflake touch spell despite not being an actual touch spell, then we get to have snowflake code to ensure it behaves like it should.
 /obj/item/melee/blood_magic/stun/proc/snowflake_martial_arts_handler(mob/living/target, mob/living/carbon/user)
 	var/datum/martial_art/martial_art = target?.mind?.martial_art
+	var/list/static/martial_counters_typecache = typecacheof(list(
+		/datum/martial_art/cqc,
+		/datum/martial_art/the_sleeping_carp/awakened_dragon,
+	))
 	if(!martial_art?.can_use())
 		return FALSE
-	if(istype(martial_art, /datum/martial_art/cqc))
+	if(is_type_in_typecache(martial_art, martial_counters_typecache))
 		target.visible_message(
 			span_danger("[target] twists [user]'s arm, sending [user.p_their()] [src] back towards [user.p_them()]!"),
 			span_userdanger("Making sure to avoid [user]'s [src], you twist [user.p_their()] arm to send it right back at [user.p_them()]!"),

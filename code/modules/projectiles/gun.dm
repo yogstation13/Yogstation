@@ -21,6 +21,7 @@
 	attack_verb_continuous = list("strikes", "hits", "bashes")
 	attack_verb_simple = list("strike", "hit", "bash")
 
+	var/super_throw = FALSE
 	var/gun_flags = NONE
 	var/fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	var/vary_fire_sound = TRUE
@@ -239,6 +240,10 @@
 
 /obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
 	..()
+	if(HAS_TRAIT(user, TRAIT_THROW_GUNS))
+		super_throw = TRUE
+		user.throw_item(target)
+		return
 	return fire_gun(target, user, flag, params) | AFTERATTACK_PROCESSED_ITEM
 
 /obj/item/gun/proc/fire_gun(atom/target, mob/living/user, flag, params)
@@ -273,6 +278,7 @@
 			return
 
 	if(!can_shoot()) //Just because you can pull the trigger doesn't mean it can shoot.
+
 		shoot_with_empty_chamber(user)
 		return
 
@@ -312,6 +318,17 @@
 				if(!tk_firing(user) && !HAS_TRAIT(src, TRAIT_NODROP))
 					user.dropItemToGround(src, TRUE)
 				return TRUE
+
+
+
+/obj/item/gun/throw_impact(mob/living/carbon/target, datum/thrownthing/throwing_datum)
+	. = ..()
+	if(super_throw)
+		target.apply_damage((src.w_class * 7.5), BRUTE, attacking_item = src)
+		target.Knockdown((w_class) SECONDS)
+		target.visible_message(span_warning("[target] is hit by [src], the force breaks apart the gun and forces them to the ground!"), COMBAT_MESSAGE_RANGE)
+		do_sparks(5, FALSE, src)
+		qdel(src)
 
 /obj/item/gun/can_trigger_gun(mob/living/user, akimbo_usage)
 	. = ..()
