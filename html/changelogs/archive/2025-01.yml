@@ -214,3 +214,6 @@
   - bugfix: Simians will now actually vault when bump climbing objects.
   - bugfix: Tided up some perks on the species select page in the character creation
       page.
+2025-01-14:
+  flleeppyy:
+  - bugfix: make deepfryers not dry if there's nothing in the basket

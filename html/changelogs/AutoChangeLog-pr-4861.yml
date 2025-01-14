@@ -1,4 +1,0 @@
-author: "flleeppyy"
-delete-after: True
-changes:
-  - bugfix: "make deepfryers not dry if there's nothing in the basket"
