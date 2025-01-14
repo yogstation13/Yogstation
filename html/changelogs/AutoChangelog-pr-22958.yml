@@ -1,5 +1,0 @@
-author: "Oblisk234"
-delete-after: true 
-changes: 
-  - bugfix: "The lag switch subsystem now works towards mitigating lag than doing barely anything."
-  - rscadd: "Added an admin verb to enable lag switch measures."
