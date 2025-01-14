@@ -1,0 +1,8 @@
+author: "Moltijoe"
+delete-after: true 
+changes: 
+  - rscdel: "Darkspawn restrain body spell"
+  - tweak: "Devour will now places a dark bead in the target's head that slowly generates willpower while they live"
+  - tweak: "Devour will no longer grants any willpower during repeat drains, but will replace the dark bead if it was removed"
+  - tweak: "Devour will now stuns the target during use, but stuns the user if interrupted"
+  - tweak: "Thralls no longer grant willpower based on nearby players, and instead just generate 2x the willpower of a dark bead"
