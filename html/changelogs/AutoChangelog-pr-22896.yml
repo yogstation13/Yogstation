@@ -1,8 +1,0 @@
-author: "Oblisk234"
-delete-after: true 
-changes: 
-  - rscadd: "Readded pAI security and medical record modules"
-  - rscadd: "pAIs can now copy access from their master (Hit them with your ID!)"
-  - rscadd: "Two new pAI modules, meson and night vision HUD"
-  - bugfix: "Fixed a bug with pAIs"
-  - tweak: "pAI remote signaller is now aligned consistently."
