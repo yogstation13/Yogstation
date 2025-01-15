@@ -229,3 +229,16 @@
   - balance: Nerfed a sleeping carp's kick and a few numbers
   flleeppyy:
   - bugfix: make deepfryers not dry if there's nothing in the basket
+2025-01-15:
+  Absolucy:
+  - bugfix: Fixed the addictions from the Junkie and Smoker quirks curing themselves.
+  - bugfix: Fixed an icon smoothing error caused by shuttles during recursive map
+      loading, i.e the nukie shuttles with their base.
+  - qol: The botanical lexicon now also previews the sprites for the item that harvesting
+      a seed produces.
+  - qol: The chicken encyclopedia now previews the sprites of both the hen and rooster
+      for each chicken.
+  - code_imp: Cleaned up some code related to chicken breeding.
+  - code_imp: Improved UI code related to the botanical lexicon and chicken encyclopedia.
+  flleeppyy:
+  - rscadd: Let people under examine text that you can microwave emags
