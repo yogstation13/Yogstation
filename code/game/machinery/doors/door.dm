@@ -244,6 +244,9 @@
 		return TRUE
 	if(unrestricted_side(M))
 		return TRUE
+	if(ispAI(M))
+		var/mob/living/silicon/pai/P = M
+		return check_access(P.access_card)
 	return ..()
 
 /// Returns the opposite of '/allowed', but makes exceptions for things like IsAdminGhost().
