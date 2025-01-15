@@ -1,15 +1,38 @@
 import { toTitleCase } from 'common/string';
-import { classes } from 'common/react';
 import { useBackend, useLocalState } from '../backend';
-import { Flex, Box, Tabs, Stack } from '../components';
+import { Flex, Tabs, Stack, DmIcon, Icon } from '../components';
+import { Direction } from '../components/DmIcon';
 import { Window } from '../layouts';
 
-export const RanchingEncyclopedia = (props) => {
-  const { act, data } = useBackend();
+type Chicken = {
+  name: string;
+  desc: string;
+  max_age?: number;
+  happiness?: number;
+  temperature?: number;
+  temperature_variance?: number;
+  needed_pressure?: number;
+  pressure_variance?: number;
+  food_requirements?: string;
+  reagent_requirements?: string;
+  player_job?: string;
+  player_health?: number;
+  needed_species?: string;
+  required_atmos?: string;
+  required_rooster?: string;
+  liquid_depth?: number;
+  needed_turfs?: string;
+  nearby_items?: string;
+  comes_from?: string;
+  icon: string;
+  icon_suffix: string;
+};
 
-  const { chicken_list = [] } = data;
-  const [selectedChicken] = useLocalState('chicken', chicken_list[0]);
+type Data = {
+  chickens: Chicken[];
+};
 
+export const RanchingEncyclopedia = () => {
   return (
     <Window
       title="Ranching Encyclopedia"
@@ -23,7 +46,7 @@ export const RanchingEncyclopedia = (props) => {
             <div class="spine" />
             <Stack class="page">
               <Stack.Item class="TOC">Table of Contents</Stack.Item>
-              <Stack.Item class="chicken_tab_list">
+              <Stack.Item>
                 <ChickenTabs />
               </Stack.Item>
             </Stack>
@@ -37,39 +60,61 @@ export const RanchingEncyclopedia = (props) => {
   );
 };
 
-const ChickenInfo = (props) => {
-  const { data } = useBackend();
+type ChickenIconProps = {
+  icon: string;
+  suffix: string;
+};
 
-  const { chicken_list = [] } = data;
-  const [selectedChicken] = useLocalState('chicken', chicken_list[0]);
+const ChickenIcons = (props: ChickenIconProps) => {
+  const { icon, suffix } = props;
+  return (
+    <Stack>
+      {['chicken', 'rooster'].map((prefix) => (
+        <Stack.Item key={prefix}>
+          <DmIcon
+            icon={icon}
+            icon_state={`${prefix}_${suffix}`}
+            direction={Direction.EAST}
+            fallback={<Icon mr={1} name="spinner" spin />}
+            height={'96px'}
+            width={'96px'}
+          />
+        </Stack.Item>
+      ))}
+    </Stack>
+  );
+};
+
+const ChickenInfo = () => {
+  const {
+    data: { chickens = [] },
+  } = useBackend<Data>();
+  const [selectedChicken] = useLocalState('selectedChicken', chickens[0]);
   return (
     <Flex class="chicken-info-container">
       <Flex.Item class="chicken-title">
         {toTitleCase(selectedChicken.name)}
       </Flex.Item>
       <Flex.Item class="chicken-icon-container">
-        <Box
-          mb={-2}
-          className={classes([
-            'chicken_book96x96',
-            selectedChicken.chicken_icon,
-          ])}
+        <ChickenIcons
+          icon={selectedChicken.icon}
+          suffix={selectedChicken.icon_suffix}
         />
       </Flex.Item>
-
       <Flex.Item class="chicken-metric">
         {selectedChicken.comes_from &&
           'Mutates from: ' + selectedChicken.comes_from}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {'Maximum Living Age:' + selectedChicken.max_age}
+        {selectedChicken.max_age &&
+          'Maximum Living Age: ' + selectedChicken.max_age}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.desc && 'Description:' + selectedChicken.desc}
+        {selectedChicken.desc && 'Description: ' + selectedChicken.desc}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
         {selectedChicken.happiness &&
-          'Required Happiness:' + selectedChicken.happiness}
+          'Required Happiness: ' + selectedChicken.happiness}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
         {selectedChicken.temperature &&
@@ -88,11 +133,11 @@ const ChickenInfo = (props) => {
       </Flex.Item>
       <Flex.Item class="chicken-metric">
         {selectedChicken.food_requirements &&
-          'Chicken needs to have eaten:' + selectedChicken.food_requirements}
+          'Chicken needs to have eaten ' + selectedChicken.food_requirements}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
         {selectedChicken.reagent_requirements &&
-          'Chicken needs to have consumed:' +
+          'Chicken needs to have consumed ' +
             selectedChicken.reagent_requirements}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
@@ -102,9 +147,9 @@ const ChickenInfo = (props) => {
             " needs to be present for this chicken's birth."}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
-        {selectedChicken.required_species &&
+        {selectedChicken.needed_species &&
           'A ' +
-            selectedChicken.required_species +
+            selectedChicken.needed_species +
             " needs to be present for this chicken's birth."}
       </Flex.Item>
       <Flex.Item class="chicken-metric">
@@ -115,7 +160,7 @@ const ChickenInfo = (props) => {
       </Flex.Item>
       <Flex.Item class="chicken-metric">
         {selectedChicken.required_atmos &&
-          'Chicken needs to be an environment with: ' +
+          'Chicken needs to be an environment with ' +
             selectedChicken.required_atmos +
             ' present.'}
       </Flex.Item>
@@ -147,19 +192,19 @@ const ChickenInfo = (props) => {
   );
 };
 
-const ChickenTabs = (props) => {
-  const { data } = useBackend();
-
-  const { chicken_list = [] } = data;
+const ChickenTabs = () => {
+  const {
+    data: { chickens = [] },
+  } = useBackend<Data>();
   const [selectedChicken, setSelectedChicken] = useLocalState(
-    'chicken',
-    chicken_list[0],
+    'selectedChicken',
+    chickens[0],
   );
   return (
-    <Tabs vertical>
-      {chicken_list.map((chicken) => (
+    <Tabs vertical overflowY="auto">
+      {chickens.map((chicken) => (
         <Tabs.Tab
-          key={chicken}
+          key={chicken.name}
           selected={chicken === selectedChicken}
           onClick={() => setSelectedChicken(chicken)}
         >

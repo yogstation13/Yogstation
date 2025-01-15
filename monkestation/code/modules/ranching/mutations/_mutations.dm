@@ -1,3 +1,6 @@
+/// Global list of all chicken mutation singletons (Assoc [type] - [/datum/mutation/ranching/chicken singleton])
+GLOBAL_LIST_INIT_TYPED(chicken_mutations, /datum/mutation/ranching/chicken, init_subtypes_w_path_keys(/datum/mutation/ranching/chicken))
+
 /datum/mutation/ranching
 	var/mob/living/basic/baby
 	///Required Happiness
@@ -38,13 +41,10 @@
 	///Egg type for egg so me don't gotta create new chicken
 	var/obj/item/food/egg/egg_type
 	///Needed Rooster Type
-	var/required_rooster
+	var/mob/living/basic/chicken/required_rooster
 
 /datum/mutation/ranching/proc/cycle_requirements(atom/checkee, is_egg = FALSE)
-	if(check_happiness(checkee, is_egg) && check_food(checkee, is_egg) && check_reagent(checkee, is_egg) && check_items(checkee, is_egg) && check_players_job(checkee, is_egg) && check_species(checkee, is_egg) && check_players_health(checkee, is_egg))
-		return TRUE
-	else
-		return FALSE
+	return check_happiness(checkee, is_egg) && check_food(checkee, is_egg) && check_reagent(checkee, is_egg) && check_items(checkee, is_egg) && check_players_job(checkee, is_egg) && check_species(checkee, is_egg) && check_players_health(checkee, is_egg)
 
 /datum/mutation/ranching/proc/check_happiness(atom/checkee, is_egg)
 	if(happiness)
@@ -76,31 +76,25 @@
 	return TRUE
 
 /datum/mutation/ranching/proc/check_players_job(atom/checkee, is_egg)
-	var/passed_check = FALSE
-	if(player_job)
+	if(!isnull(player_job))
 		for(var/mob/living/carbon/human/in_range_player in view(3, checkee))
-			if(in_range_player.mind.assigned_role == player_job)
-				passed_check = TRUE
-		if(passed_check == FALSE)
-			return FALSE
+			if(in_range_player.mind?.assigned_role == player_job)
+				return TRUE
+		return FALSE
 	return TRUE
 
 /datum/mutation/ranching/proc/check_species(atom/checkee, is_egg)
-	var/passed_check = FALSE
-	if(needed_species)
-		for(var/mob/living/carbon/human/in_range_player in view(3, checkee))
-			if(in_range_player.dna.species == needed_species)
-				passed_check = TRUE
-		if(passed_check == FALSE)
-			return FALSE
+	if(!isnull(needed_species))
+		for(var/mob/living/carbon/human/viewer in view(3, checkee))
+			if(is_species(viewer, needed_species))
+				return TRUE
+		return FALSE
 	return TRUE
 
 /datum/mutation/ranching/proc/check_players_health(atom/checkee, is_egg)
-	var/passed_check = FALSE
-	if(player_health)
+	if(!isnull(player_health))
 		for(var/mob/living/carbon/human/in_range_player in view(3, checkee))
-			if(in_range_player.maxHealth - in_range_player.health >= player_health)
-				passed_check = TRUE
-		if(passed_check == FALSE)
-			return FALSE
+			if((in_range_player.maxHealth - in_range_player.health) >= player_health)
+				return TRUE
+		return FALSE
 	return TRUE

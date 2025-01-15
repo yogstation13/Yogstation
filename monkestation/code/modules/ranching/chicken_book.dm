@@ -12,80 +12,62 @@
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/obj/item/book/manual/chicken_encyclopedia/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet/chicken_book),
-	)
-
 /obj/item/book/manual/chicken_encyclopedia/ui_static_data(mob/user)
-	var/list/data = list()
-	var/list/chicken_list = list()
-	for(var/datum/mutation/ranching/chicken/chicken as anything in subtypesof(/datum/mutation/ranching/chicken))
-		var/datum/mutation/ranching/chicken/created_mutation = new chicken
-		var/mob/living/basic/chicken/F = new created_mutation.chicken_type(src)
-		var/male_name
-		var/female_name
-		if(F.breed_name_male)
-			male_name = F.breed_name_male
-		else
-			male_name = "[F.breed_name] Rooster"
-		if(F.breed_name_female)
-			female_name = F.breed_name_female
-		else
-			female_name = "[F.breed_name] Hen"
+	var/list/chickens = list()
+	for(var/datum/mutation/ranching/chicken/mutation_type as anything in GLOB.chicken_mutations)
+		var/datum/mutation/ranching/chicken/mutation = GLOB.chicken_mutations[mutation_type]
+		var/male_name = mutation.chicken_type::breed_name_male || "[mutation.chicken_type::breed_name] Rooster"
+		var/female_name = mutation.chicken_type::breed_name_female || "[mutation.chicken_type::breed_name] Hen"
 
 		var/list/details = list()
 
 		var/list/food_names = list()
-		for(var/obj/item/food/food_item as anything in created_mutation.food_requirements)
-			food_names |= "[initial(food_item.name)]s"
+		for(var/obj/item/food/food_item as anything in mutation.food_requirements)
+			food_names |= "[food_item::name]s"
 
 		var/list/reagent_names = list()
-		for(var/datum/reagent/listed_reagent as anything in created_mutation.reagent_requirements)
-			reagent_names |= "[initial(listed_reagent.name)]"
+		for(var/datum/reagent/listed_reagent as anything in mutation.reagent_requirements)
+			reagent_names |= listed_reagent::name
 
 		var/list/turf_names = list()
-		for(var/turf/listed_turf as anything in created_mutation.needed_turfs)
-			turf_names |= initial(listed_turf.name)
+		for(var/turf/listed_turf as anything in mutation.needed_turfs)
+			turf_names |= listed_turf::name
 
 		var/list/obj_names = list()
-		for(var/obj/item/listed_item as anything in created_mutation.nearby_items)
-			obj_names |= initial(listed_item.name)
+		for(var/obj/item/listed_item as anything in mutation.nearby_items)
+			obj_names |= listed_item::name
 
 		var/rooster_string
-		if(created_mutation.required_rooster)
-			var/mob/living/basic/chicken/temp_chicken = new created_mutation.required_rooster
-			rooster_string = "[temp_chicken.breed_name_male ? temp_chicken.breed_name_male : temp_chicken.breed_name]"
-			QDEL_NULL(temp_chicken)
+		if(mutation.required_rooster)
+			rooster_string = mutation.required_rooster::breed_name_male || mutation.required_rooster::breed_name
 
 		var/species_string
-		if(created_mutation.needed_species)
-			species_string = created_mutation.needed_species.name
+		if(mutation.needed_species)
+			species_string = mutation.needed_species::name
 
 		details["name"] = "[female_name] / [male_name]"
-		details["desc"] = F.book_desc
-		details["max_age"] = 100
-		details["happiness"] = created_mutation.happiness
-		details["temperature"] = created_mutation.needed_temperature
-		details["temperature_variance"] = created_mutation.temperature_variance
-		details["needed_pressure"] = created_mutation.needed_pressure
-		details["pressure_variance"] = created_mutation.pressure_variance
-		details["food_requirements"] = food_names.Join(",")
-		details["reagent_requirements"] = reagent_names.Join(",")
-		details["player_job"] = created_mutation.player_job
-		details["player_health"] = created_mutation.player_health
+		details["desc"] = mutation.chicken_type::book_desc
+		/* details["max_age"] = 100 */
+		details["happiness"] = mutation.happiness
+		details["temperature"] = mutation.needed_temperature
+		details["temperature_variance"] = mutation.temperature_variance
+		details["needed_pressure"] = mutation.needed_pressure
+		details["pressure_variance"] = mutation.pressure_variance
+		details["food_requirements"] = food_names && english_list(food_names)
+		details["reagent_requirements"] = reagent_names && english_list(reagent_names)
+		details["player_job"] = mutation.player_job
+		details["player_health"] = mutation.player_health
 		details["needed_species"] = species_string
-		details["required_atmos"] = created_mutation.required_atmos.Join(",")
+		details["required_atmos"] = mutation.required_atmos && english_list(mutation.required_atmos)
 		details["required_rooster"] = rooster_string
-		details["liquid_depth"] = created_mutation.liquid_depth
-		details["needed_turfs"] = turf_names.Join(",")
-		details["nearby_items"] = obj_names.Join(",")
-		details["comes_from"] = created_mutation.can_come_from_string
+		details["liquid_depth"] = mutation.liquid_depth
+		details["needed_turfs"] = turf_names && english_list(turf_names)
+		details["nearby_items"] = obj_names && english_list(obj_names)
+		details["comes_from"] = mutation.can_come_from_string
 
-		details["chicken_icon"] = sanitize_css_class_name("[created_mutation.chicken_type]")
-		chicken_list += list(details)
-		qdel(F)
-		qdel(created_mutation)
-	data["chicken_list"] = chicken_list
+		details["icon"] = mutation.chicken_type::icon
+		details["icon_suffix"] = mutation.chicken_type::icon_suffix || "white"
 
-	return data
+		chickens += list(details)
+
+	return list("chickens" = chickens)
