@@ -239,12 +239,15 @@
 		for(var/turf/T in return_turfs())
 			T.turf_flags |= NO_RUINS
 
-	if(SSshuttle.initialized)
-		INVOKE_ASYNC(SSshuttle, TYPE_PROC_REF(/datum/controller/subsystem/shuttle, setup_shuttles), list(src))
-
 	#ifdef DOCKING_PORT_HIGHLIGHT
 	highlight("#f00")
 	#endif
+
+	if(SSshuttle.initialized)
+		return INITIALIZE_HINT_LATELOAD
+
+/obj/docking_port/stationary/LateInitialize()
+	INVOKE_ASYNC(SSshuttle, TYPE_PROC_REF(/datum/controller/subsystem/shuttle, setup_shuttles), list(src))
 
 /obj/docking_port/stationary/unregister()
 	. = ..()
