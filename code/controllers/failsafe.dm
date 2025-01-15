@@ -102,7 +102,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							// Monkestation edit: start - plexora
 							var/msg = "Notice: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks."
 							message_admins(span_adminnotice(msg))
-							SSplexora.mc_alert(msg)
+							SSplexora.mc_alert(msg, defcon)
 							// Monkestation edit: end
 							--defcon
 
@@ -110,7 +110,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 							// Monkestation edit: start - plexora
 							var/msg = "Warning: DEFCON [defcon_pretty()]. The Master Controller has not fired in the last [(5-defcon) * processing_interval] ticks. Automatic restart in [processing_interval] ticks."
 							to_chat(GLOB.admins, span_boldannounce(msg))
-							SSplexora.mc_alert(msg)
+							SSplexora.mc_alert(msg, defcon)
 							// Monkestation edit: end
 							--defcon
 
