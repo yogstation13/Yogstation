@@ -1,0 +1,7 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "The botanical lexicon now also previews the sprites for the item that harvesting a seed produces."
+  - qol: "The chicken encyclopedia now previews the sprites of both the hen and rooster for each chicken."
+  - code_imp: "Cleaned up some code related to chicken breeding."
+  - code_imp: "Improved UI code related to the botanical lexicon and chicken encyclopedia."
