@@ -87,7 +87,7 @@
 			human_holder.last_mind?.add_addiction_points(addiction, 1000) ///Max that shit out
 
 /datum/quirk/item_quirk/junkie/should_process()
-	return ..() && HAS_TRAIT(quirk_holder, TRAIT_LIVERLESS_METABOLISM)
+	return ..() && !HAS_TRAIT(quirk_holder, TRAIT_LIVERLESS_METABOLISM)
 
 /datum/quirk/item_quirk/junkie/smoker
 	name = "Smoker"
