@@ -23,3 +23,7 @@
 	if(!QDELETED(src))
 		qdel(src)
 	microwave_source.update_appearance()
+
+/obj/item/card/emag/examine_more(mob/user)
+	. = ..()
+	. += span_notice("I wonder what happens if you microwave it... surely that's not a good idea.")
