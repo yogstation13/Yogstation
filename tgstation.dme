@@ -6169,6 +6169,7 @@
 #include "monkestation\code\game\objects\items\storage\boxes\boxes.dm"
 #include "monkestation\code\game\objects\items\storage\boxes\security_boxes.dm"
 #include "monkestation\code\game\objects\structures\elevation.dm"
+#include "monkestation\code\game\objects\structures\fireaxe.dm"
 #include "monkestation\code\game\objects\structures\gravestones.dm"
 #include "monkestation\code\game\objects\structures\tables_racks.dm"
 #include "monkestation\code\game\objects\structures\trash_pile.dm"
