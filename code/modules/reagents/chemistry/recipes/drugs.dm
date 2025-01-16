@@ -12,7 +12,6 @@
 	mix_message = "The mixture violently reacts, leaving behind a few crystalline shards."
 	required_temp = 390
 
-
 /datum/chemical_reaction/krokodil
 	name = "Krokodil"
 	id = /datum/reagent/drug/krokodil
@@ -80,3 +79,10 @@
 	id = /datum/reagent/drug/blue_eye
 	results = list(/datum/reagent/drug/blue_eye = 5)
 	required_reagents = list(/datum/reagent/medicine/diphenhydramine = 1, /datum/reagent/bluespace = 2, /datum/reagent/iodine = 1, /datum/reagent/gas/hydrogen = 1, /datum/reagent/consumable/sugar = 1)
+
+/datum/chemical_reaction/three_eye
+	name = "Three-Eye"
+	id = /datum/reagent/drug/three_eye
+	results = list(/datum/reagent/drug/three_eye = 3)
+	required_reagents = list(/datum/reagent/drug/blue_eye = 3, /datum/reagent/toxin/mindbreaker = 3, /datum/reagent/medicine/neurine = 3)
+	required_temp = 333

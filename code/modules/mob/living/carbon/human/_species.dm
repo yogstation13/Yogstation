@@ -214,6 +214,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	//The component to add when swimming
 	var/swimming_component = /datum/component/swimming
 
+	// Psi Stuff
+	/// Prob chance that mobs of this species have latent psionics
+	var/latency_chance = 50
+	/// List of faculties that can be chosen for random psionics
+	var/possible_faculties = list(PSI_COERCION, PSI_PSYCHOKINESIS, PSI_REDACTION, PSI_ENERGISTICS)
+	/// What level starting faculties are at
+	var/starting_psi_level = PSI_RANK_LATENT
+
 	var/smells_like = "something alien"
 
 	//Should we preload this species's organs?
@@ -515,6 +523,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 		instantiated_abilities += ability
 
 	C.add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 100, override=TRUE, multiplicative_slowdown=speedmod, movetypes=(~FLYING))
+		
 	C.regenerate_icons()
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 

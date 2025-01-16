@@ -50,6 +50,12 @@
 		if(spec_return)
 			return spec_return
 
+	if((!P.disrupts_psionics() && psi && psi.handle_block_chance(P) && psi.spend_power(round(P.damage/4), round(P.damage/20))))
+		P.firer = src
+		P.setAngle(rand(0, 360))
+		visible_message(span_danger("[src] deflects [P]!"))
+		return BULLET_ACT_FORCE_PIERCE
+
 	if(!(P.original == src && P.firer == src)) //can't block or reflect when shooting yourself
 		var/shield_check = check_shields(P, P.damage, "the [P.name]", PROJECTILE_ATTACK, P.armour_penetration, P.damage_type)
 		if(shield_check & SHIELD_DODGE) // skill issue, just dodge

@@ -195,6 +195,7 @@
 		TRAIT_GENELESS, 
 		TRAIT_NOCRITDAMAGE,
 		TRAIT_NOGUNS,
+		TRAIT_PSIONICALLY_DEAFENED, //no doubling up psionic powers
 		TRAIT_SPECIESLOCK //never let them swap off darkspawn, it can cause issues
 		)
 	mutanteyes = /obj/item/organ/eyes/darkspawn

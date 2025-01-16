@@ -44,6 +44,10 @@
 	smells_like = "musty quills"
 	liked_food = MEAT | FRIED
 	species_language_holder = /datum/language_holder/vox
+	
+	latency_chance = 35
+	possible_faculties = list(PSI_COERCION, PSI_REDACTION)
+	starting_psi_level = PSI_RANK_LATENT
 
 /datum/species/vox/get_species_description()
 	return "The Vox are remnants of an ancient race, that originate from arkships. \

@@ -6,6 +6,12 @@
 	if(status_flags & GODMODE)
 		visible_message(span_danger("A strange force protects [src], [p_they()] can't be damaged!"), span_userdanger("A strange force protects you!"))
 		return armor
+	if(psi)
+		var/psi_armor = psi.get_armour(attack_flag)
+		if(psi_armor && psi.spend_power(10))
+			to_chat(src, span_warning("You soften the blow with your mind!"))
+			armor = min(armor + psi_armor, 100)
+
 	if(armor > 0 && armour_penetration)	//WE HAVE ARMOR
 		if(armour_penetration <= -100)	// < -100 AP, no penetration on anything
 			armor = 100
