@@ -28,6 +28,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	// Misc
 	RADIO_KEY_AI_PRIVATE = RADIO_CHANNEL_AI_PRIVATE, // AI Upload channel
+	RADIO_KEY_ENTERTAINMENT = RADIO_CHANNEL_ENTERTAINMENT, // Entertainment monitors
 	RADIO_KEY_UNCOMMON = RADIO_CHANNEL_UNCOMMON,
 
 
@@ -58,7 +59,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	// Misc
 	"щ" = RADIO_CHANNEL_AI_PRIVATE,
-	"f" = RADIO_CHANNEL_UNCOMMON
+	"з" = RADIO_CHANNEL_ENTERTAINMENT,
+	"f" = RADIO_CHANNEL_UNCOMMON,
 ))
 
 /**

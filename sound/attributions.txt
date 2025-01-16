@@ -142,3 +142,8 @@ where refinery and wooping_teleport are modifications of that same electric dril
 nightmare_poof.ogg and nightmare_reappear.ogg are comprised of breath_01.wav by Nightflame (CC0) and slide-click.wav by Qat (CC0)
 https://freesound.org/people/Qat/sounds/108332/
 https://freesound.org/people/Nightflame/sounds/368615/
+
+throw.ogg, throwhard.ogg and throwsoft.ogg (Royalty-Free and Copyright-Free) are adapted from Jam FX, SmartSound FX and Epic Stock Media in :
+https://uppbeat.io/sfx/whoosh-swift-cut/7727/23617
+https://uppbeat.io/sfx/whoosh-air-punch/114/1168
+https://uppbeat.io/sfx/throwing-item-swing/9430/25267

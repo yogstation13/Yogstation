@@ -102,6 +102,13 @@
 	greyscale_config = /datum/greyscale_config/encryptionkey_service
 	greyscale_colors = "#ebebeb#3bca5a"
 
+/obj/item/encryptionkey/headset_srvent
+	name = "press radio encryption key"
+	icon_state = "cypherkey_service"
+	channels = list(RADIO_CHANNEL_SERVICE = 1, RADIO_CHANNEL_ENTERTAINMENT = 0)
+	greyscale_config = /datum/greyscale_config/encryptionkey_service
+	greyscale_colors = "#83eb8f#3bca5a"
+
 /obj/item/encryptionkey/headset_com
 	name = "command radio encryption key"
 	icon_state = "cypherkey_cube"
@@ -188,7 +195,17 @@
 	greyscale_colors = "#24a157#dca01b"
 
 /obj/item/encryptionkey/ai //ported from NT, this goes 'inside' the AI.
-	channels = list(RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_SECURITY = 1, RADIO_CHANNEL_ENGINEERING = 1, RADIO_CHANNEL_SCIENCE = 1, RADIO_CHANNEL_MEDICAL = 1, RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_SERVICE = 1, RADIO_CHANNEL_AI_PRIVATE = 1)
+	channels = list(
+		RADIO_CHANNEL_COMMAND = 1,
+		RADIO_CHANNEL_SECURITY = 1,
+		RADIO_CHANNEL_ENGINEERING = 1,
+		RADIO_CHANNEL_SCIENCE = 1,
+		RADIO_CHANNEL_MEDICAL = 1,
+		RADIO_CHANNEL_SUPPLY = 1,
+		RADIO_CHANNEL_SERVICE = 1,
+		RADIO_CHANNEL_AI_PRIVATE = 1,
+		RADIO_CHANNEL_ENTERTAINMENT = 1,
+	)
 
 /obj/item/encryptionkey/secbot
 	channels = list(RADIO_CHANNEL_AI_PRIVATE = 1, RADIO_CHANNEL_SECURITY = 1)

@@ -536,6 +536,18 @@ GLOBAL_LIST_EMPTY(cached_mixer_channels)
 				soundin = pick('sound/effects/treechop1.ogg', 'sound/effects/treechop2.ogg', 'sound/effects/treechop3.ogg')
 			if(SFX_ROCK_TAP)
 				soundin = pick('sound/effects/rocktap1.ogg', 'sound/effects/rocktap2.ogg', 'sound/effects/rocktap3.ogg')
+			if(SFX_MUFFLED_SPEECH)
+				soundin = pick(
+					'sound/effects/muffspeech/muffspeech1.ogg',
+					'sound/effects/muffspeech/muffspeech2.ogg',
+					'sound/effects/muffspeech/muffspeech3.ogg',
+					'sound/effects/muffspeech/muffspeech4.ogg',
+					'sound/effects/muffspeech/muffspeech5.ogg',
+					'sound/effects/muffspeech/muffspeech6.ogg',
+					'sound/effects/muffspeech/muffspeech7.ogg',
+					'sound/effects/muffspeech/muffspeech8.ogg',
+					'sound/effects/muffspeech/muffspeech9.ogg',
+				)
 			// monkestation start: more sound effects
 			if(SFX_BUTTON_CLICK)
 				soundin = 'monkestation/sound/effects/hl2/button-click.ogg'
