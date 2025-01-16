@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Trash piles can no longer be used to generate infinite trash by canceling early or hiding an item."
