@@ -173,9 +173,9 @@
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head()
 		if(BODY_ZONE_L_LEG)
-			L = new /obj/item/bodypart/l_leg()
+			L = new /obj/item/bodypart/leg/left()
 		if(BODY_ZONE_R_LEG)
-			L = new /obj/item/bodypart/r_leg()
+			L = new /obj/item/bodypart/leg/right()
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest()
 	if((L.body_part & LEG_LEFT|LEG_RIGHT) && (DIGITIGRADE in dna?.species?.species_traits))
@@ -196,9 +196,9 @@
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head/monkey()
 		if(BODY_ZONE_L_LEG)
-			L = new /obj/item/bodypart/l_leg/monkey()
+			L = new /obj/item/bodypart/leg/left/monkey()
 		if(BODY_ZONE_R_LEG)
-			L = new /obj/item/bodypart/r_leg/monkey()
+			L = new /obj/item/bodypart/leg/right/monkey()
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest/monkey()
 	if(L)
@@ -230,9 +230,9 @@
 		if(BODY_ZONE_HEAD)
 			L = new /obj/item/bodypart/head/alien()
 		if(BODY_ZONE_L_LEG)
-			L = new /obj/item/bodypart/l_leg/alien()
+			L = new /obj/item/bodypart/leg/left/alien()
 		if(BODY_ZONE_R_LEG)
-			L = new /obj/item/bodypart/r_leg/alien()
+			L = new /obj/item/bodypart/leg/right/alien()
 		if(BODY_ZONE_CHEST)
 			L = new /obj/item/bodypart/chest/alien()
 	if(L)
@@ -290,14 +290,14 @@
 		if((!O.use_digitigrade && swap_back == FALSE) || (O.use_digitigrade && swap_back == TRUE))
 			if(O.body_part & LEG_LEFT)
 				if(swap_back == TRUE)
-					N = new /obj/item/bodypart/l_leg
+					N = new /obj/item/bodypart/leg/left
 				else
-					N = new /obj/item/bodypart/l_leg/digitigrade
+					N = new /obj/item/bodypart/leg/left/digitigrade
 			else if(O.body_part & LEG_RIGHT)
 				if(swap_back == TRUE)
-					N = new /obj/item/bodypart/r_leg
+					N = new /obj/item/bodypart/leg/right
 				else
-					N = new /obj/item/bodypart/r_leg/digitigrade
+					N = new /obj/item/bodypart/leg/right/digitigrade
 		if(!N)
 			continue
 		body_plan_changed = TRUE

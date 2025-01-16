@@ -250,7 +250,7 @@
 		return
 
 	// Special effects
-	if(affecting?.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/l_leg) || istype(affecting, /obj/item/bodypart/r_leg)))
+	if(affecting?.stamina_dam >= 50 && (istype(affecting, /obj/item/bodypart/leg)))
 		desc = get_stun_description(target, user)
 		target.Knockdown(knockdown_time_carbon)
 

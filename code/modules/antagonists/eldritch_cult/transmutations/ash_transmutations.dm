@@ -40,7 +40,7 @@
 
 /datum/eldritch_transmutation/curse/paralysis
 	name = "Curse of Paralysis"
-	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood,/obj/item/bodypart/l_leg,/obj/item/bodypart/r_leg,/obj/item/hatchet)
+	required_atoms = list(/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood,/obj/item/bodypart/leg/left,/obj/item/bodypart/leg/right,/obj/item/hatchet)
 	timer = 5 MINUTES
 	required_shit_list = "A knife, a pool of blood, a left and right leg, and a hatchet. Requires an item touched by the to-be victim."
 

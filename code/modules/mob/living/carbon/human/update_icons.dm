@@ -153,8 +153,8 @@ There are several things that need to be remembered:
 		//Friendly reminder that icon_exists(file, state, scream = TRUE) is your friend when debugging this code.
 		var/icon_file
 		var/target_overlay = RESOLVE_ICON_STATE(uniform) //Selects proper icon from the vars the clothing has (Search define for more.)
-		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
+		var/obj/item/bodypart/leg/left/l_leg = get_bodypart(BODY_ZONE_L_LEG)
+		var/obj/item/bodypart/leg/right/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		var/obj/item/bodypart/chest/chest = get_bodypart(BODY_ZONE_CHEST)
 		uniform.species_fitted = null	
 		if(uniform.adjusted)
@@ -381,8 +381,8 @@ There are several things that need to be remembered:
 
 	if(shoes)
 		var/target_overlay = RESOLVE_ICON_STATE(shoes)
-		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
+		var/obj/item/bodypart/leg/left/l_leg = get_bodypart(BODY_ZONE_L_LEG)
+		var/obj/item/bodypart/leg/right/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		shoes.species_fitted = null
 		if(istype(shoes, /obj/item/clothing/shoes))
 			var/obj/item/clothing/shoes/real_shoes = shoes
@@ -508,8 +508,8 @@ There are several things that need to be remembered:
 		var/obj/item/bodypart/chest/chest = get_bodypart(BODY_ZONE_CHEST)
 		var/icon_to_use = DEFAULT_SUIT_FILE
 		suit.species_fitted = null
-		var/obj/item/bodypart/l_leg = get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg = get_bodypart(BODY_ZONE_R_LEG)
+		var/obj/item/bodypart/leg/left/l_leg = get_bodypart(BODY_ZONE_L_LEG)
+		var/obj/item/bodypart/leg/right/r_leg = get_bodypart(BODY_ZONE_R_LEG)
 		if(l_leg?.species_id == r_leg?.species_id == SPECIES_VOX)//for Vox, it's the Vox legs that make regular sprites not fit
 			if(icon_exists(suit.sprite_sheets[l_leg.species_id], suit.icon_state))
 				icon_to_use = suit.sprite_sheets[l_leg.species_id]

@@ -7,12 +7,12 @@
 #define ROBOTIC_HEAVY_BURN_MSG "smoldering"
 
 #define IPCLIMB(_id, lname) \
-	/obj/item/bodypart/l_leg/ipc/_id { \
+	/obj/item/bodypart/leg/left/ipc/_id { \
 		name = lname + " Left Leg"; \
 		icon_state = #_id + "_l_leg"; \
 		species_id = #_id; \
 	}; \
-	/obj/item/bodypart/r_leg/ipc/_id { \
+	/obj/item/bodypart/leg/right/ipc/_id { \
 		name = lname + " Right Leg"; \
 		icon_state = #_id + "_r_leg"; \
 		species_id = #_id; \
@@ -43,12 +43,12 @@
 	/datum/design/ipclimbs/l_leg/_id { \
 		name = lname + " Left Leg"; \
 		id = #_id + "_l_leg"; \
-		build_path = /obj/item/bodypart/l_leg/ipc/_id; \
+		build_path = /obj/item/bodypart/leg/left/ipc/_id; \
 	}; \
 	/datum/design/ipclimbs/r_leg/_id { \
 		name = lname + " Right Leg"; \
 		id = #_id + "_r_leg"; \
-		build_path = /obj/item/bodypart/r_leg/ipc/_id; \
+		build_path = /obj/item/bodypart/leg/right/ipc/_id; \
 	}; \
 	/datum/design/ipclimbs/l_arm/_id { \
 		name = lname + " Left Arm"; \
@@ -116,7 +116,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
-/obj/item/bodypart/l_leg/robot
+/obj/item/bodypart/leg/left/robot
 	name = "cyborg left leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	attack_verb = list("kicked", "stomped")
@@ -141,7 +141,7 @@
 
 	var/digi_icon_state = "digitigrade_1_l_leg"
 
-/obj/item/bodypart/r_leg/robot
+/obj/item/bodypart/leg/right/robot
 	name = "cyborg right leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	attack_verb = list("kicked", "stomped")
@@ -167,13 +167,13 @@
 	var/digi_icon_state = "digitigrade_1_r_leg"
 	
 //make them swappable
-/obj/item/bodypart/l_leg/robot/attackby(obj/item/W, mob/user, params)
+/obj/item/bodypart/leg/left/robot/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
 	to_chat(user, span_notice("You configure [src] into [!use_digitigrade ? "digitigrade" : "plantigrade"] mode."))
 	set_digitigrade(!use_digitigrade)
 
-/obj/item/bodypart/l_leg/robot/set_digitigrade(use_digi = FALSE)
+/obj/item/bodypart/leg/left/robot/set_digitigrade(use_digi = FALSE)
 	if(use_digi)
 		icon_state = digi_icon_state
 	else
@@ -181,13 +181,13 @@
 	update_icon()
 	return ..()
 	
-/obj/item/bodypart/r_leg/robot/attackby(obj/item/W, mob/user, params)
+/obj/item/bodypart/leg/right/robot/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_SCREWDRIVER)
 		return ..()
 	to_chat(user, span_notice("You configure [src] into [!use_digitigrade ? "digitigrade" : "plantigrade"] mode."))
 	set_digitigrade(!use_digitigrade)
 
-/obj/item/bodypart/r_leg/robot/set_digitigrade(use_digi = FALSE)
+/obj/item/bodypart/leg/right/robot/set_digitigrade(use_digi = FALSE)
 	if(use_digi)
 		icon_state = digi_icon_state
 	else
@@ -416,7 +416,7 @@
 	burn_reduction = 0
 	max_damage = 20
 
-/obj/item/bodypart/l_leg/robot/surplus
+/obj/item/bodypart/leg/left/robot/surplus
 	name = "surplus prosthetic left leg"
 	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
 	icon = 'icons/mob/augmentation/surplus_augments.dmi'
@@ -424,7 +424,7 @@
 	burn_reduction = 0
 	max_damage = 20
 
-/obj/item/bodypart/r_leg/robot/surplus
+/obj/item/bodypart/leg/right/robot/surplus
 	name = "surplus prosthetic right leg"
 	desc = "A skeletal, robotic limb. Outdated and fragile, but it's still better than nothing."
 	icon = 'icons/mob/augmentation/surplus_augments.dmi'
@@ -433,7 +433,7 @@
 	max_damage = 20
 
 
-/obj/item/bodypart/l_leg/ipc
+/obj/item/bodypart/leg/left/ipc
 	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'yogstation/icons/mob/human_parts.dmi'
@@ -446,7 +446,7 @@
 	medium_burn_msg = ROBOTIC_MEDIUM_BURN_MSG
 	heavy_burn_msg = ROBOTIC_HEAVY_BURN_MSG
 
-/obj/item/bodypart/r_leg/ipc
+/obj/item/bodypart/leg/right/ipc
 	status = BODYPART_ROBOTIC
 	sub_status = BODYPART_SUBTYPE_IPC
 	icon = 'yogstation/icons/mob/human_parts.dmi'
