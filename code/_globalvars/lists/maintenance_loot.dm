@@ -73,9 +73,9 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 
 // monkestation addition: just trash_loot with a chance of banana peels
 GLOBAL_LIST_INIT(trash_pile_loot, list(
-	GLOB.trash_loot = 150,
-	/obj/item/grown/bananapeel = 20,
-	/obj/item/grown/bananapeel/bluespace = 1, // I am SO going to regret this later ~Lucy
+	GLOB.trash_loot = 500,
+	/obj/item/grown/bananapeel = 10,
+	/obj/item/grown/bananapeel/bluespace = 0.1, // I am SO going to regret this later ~Lucy
 ))
 // monkestation end
 
