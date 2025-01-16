@@ -242,3 +242,6 @@
   - code_imp: Improved UI code related to the botanical lexicon and chicken encyclopedia.
   flleeppyy:
   - rscadd: Let people under examine text that you can microwave emags
+2025-01-16:
+  Absolucy, SmArtKar:
+  - bugfix: Mindswap can no longer be used inside of pipes
