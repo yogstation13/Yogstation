@@ -243,5 +243,9 @@
   flleeppyy:
   - rscadd: Let people under examine text that you can microwave emags
 2025-01-16:
+  Absolucy:
+  - bugfix: Trash piles can no longer be used to generate infinite trash by canceling
+      early or hiding an item.
+  - qol: Reduces the amount of banana peels from trash piles.
   Absolucy, SmArtKar:
   - bugfix: Mindswap can no longer be used inside of pipes
