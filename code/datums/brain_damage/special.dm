@@ -255,6 +255,7 @@
 /datum/brain_trauma/special/psychotic_brawling/bath_salts
 	name = "Chemical Violent Psychosis"
 
+/* monkestation removal: reimplemented in [monkestation/code/datums/brain_damage/special.dm]
 /datum/brain_trauma/special/tenacity
 	name = "Tenacity"
 	desc = "Patient is psychologically unaffected by pain and injuries, and can remain standing far longer than a normal person."
@@ -269,6 +270,7 @@
 /datum/brain_trauma/special/tenacity/on_lose()
 	owner.remove_traits(list(TRAIT_NOSOFTCRIT, TRAIT_NOHARDCRIT, TRAIT_ANALGESIA), TRAUMA_TRAIT)
 	..()
+monkestation end */
 
 /datum/brain_trauma/special/death_whispers
 	name = "Functional Cerebral Necrosis"
