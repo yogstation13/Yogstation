@@ -1,3 +1,8 @@
+/// Maximum total pieces of trash that will be thrown by one person while digging through a trash pile.
+/// Used to prevent infinite trash from canceling before you finish digging.
+/// I consistently counted 7 across multiple times of me doing it, so 7 it is.
+#define MAXIMUM_TRASH_THROWS 7
+
 /obj/structure/trash_pile
 	name = "trash pile"
 	desc = "A heap of dense garbage. Perhaps there is something interesting inside?"
@@ -14,8 +19,10 @@
 	var/hide_person_time = 3 SECONDS
 	var/hide_item_time = 1 SECONDS
 
-	/// Lazy associative list of ckeys to TRUE if they have searched it.
-	var/list/searched_by_ckeys
+	/// Associative list of ckeys to TRUE if they have searched it.
+	var/list/searched_by_ckeys = list()
+	/// Associative list of ckeys to how many more pieces of trash they can throw out while digging.
+	var/list/remaining_trash_throws = list()
 
 	var/trash_delay = 0.5 SECONDS
 	var/funny_sound_delay = 0.2 SECONDS
@@ -101,7 +108,7 @@
 			balloon_alert(user, "found something!")
 			hidden.forceMove(drop_location())
 		return
-	if(LAZYACCESS(searched_by_ckeys, user.ckey))
+	if(searched_by_ckeys[user.ckey])
 		balloon_alert(user, "empty...")
 		return
 	var/item_to_spawn = pick_weight_recursive(GLOB.maintenance_loot)
@@ -110,7 +117,7 @@
 		balloon_alert(user, "found [spawned_item]!")
 	else
 		balloon_alert(user, "found nothing...")
-	LAZYSET(searched_by_ckeys, user.ckey, TRUE)
+	searched_by_ckeys[user.ckey] = TRUE
 
 /obj/structure/trash_pile/attackby(obj/item/attacking_item, mob/living/user, params)
 	if(user in contents)
@@ -167,14 +174,21 @@
 	if(QDELETED(src) || QDELETED(user)) //Check if valid.
 		return FALSE
 
-	if(LAZYACCESS(searched_by_ckeys, user.ckey)) //Don't spawn trash!
+	var/ckey = user.ckey
+	if(searched_by_ckeys[ckey]) //Don't spawn trash!
 		return TRUE
 
 	if(!user.CanReach(src)) //Distance check for TK fuckery
 		return FALSE
 
+	if(isnull(remaining_trash_throws[ckey]))
+		remaining_trash_throws[ckey] = MAXIMUM_TRASH_THROWS
+	else if(remaining_trash_throws[ckey] < 1)
+		return TRUE
+
 	if(COOLDOWN_FINISHED(src, trash_cooldown))
 		COOLDOWN_START(src, trash_cooldown, trash_delay * 0.5 + rand() * trash_delay) // x0.5 to x1.5
+		remaining_trash_throws[ckey]--
 		var/item_to_spawn = prob(0.1) ? pick(GLOB.oddity_loot) : pick_weight_recursive(GLOB.trash_pile_loot)
 		var/obj/item/spawned_item = new item_to_spawn(drop_location())
 		var/turf/throw_at = get_ranged_target_turf_direct(src, user, 7, rand(-60, 60))
@@ -192,3 +206,5 @@
 	playsound(src, 'sound/machines/chime.ogg', 50, FALSE, -5)
 	hidden_mob.do_alert_animation(hidden_mob)
 	return TRUE
+
+#undef MAXIMUM_TRASH_THROWS
