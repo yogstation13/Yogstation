@@ -23,6 +23,11 @@
 
 	for(var/i in GLOB.human_list) //yes, even the dead
 		var/mob/living/carbon/human/H = i
+		// monkestation start: ignore off-station mobs
+		var/turf/human_turf = get_turf(H)
+		if(!human_turf || !is_station_level(human_turf.z))
+			continue
+		// monkestation end
 		H.set_species(new_species)
 		H.dna.unique_enzymes = H.dna.generate_unique_enzymes()
 		to_chat(H, span_notice("You feel somehow... different?"))

@@ -53,6 +53,11 @@
 	var/list/mobs = list()
 
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+		// monkestation start: ignore off-station mobs
+		var/turf/human_turf = get_turf(H)
+		if(!human_turf || !is_station_level(human_turf.z))
+			continue
+		// monkestation end
 		mobnames += H.real_name
 		mobs += H
 
@@ -89,6 +94,11 @@
 	for(var/mob/living/carbon/human/alive_human in GLOB.alive_mob_list)
 		if(alive_human.stat != CONSCIOUS || isnull(alive_human.mind) || IS_WIZARD(alive_human) || HAS_TRAIT(alive_human, TRAIT_NO_MINDSWAP))
 			continue //the wizard(s) are spared on this one
+		// monkestation start: ignore off-station mobs
+		var/turf/human_turf = get_turf(alive_human)
+		if(!human_turf || !is_station_level(human_turf.z))
+			continue
+		// monkestation end
 		mobs_to_swap += alive_human
 
 	if(!length(mobs_to_swap))
