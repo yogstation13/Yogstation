@@ -1,0 +1,4 @@
+author: "flleeppyy"
+delete-after: True
+changes:
+  - bugfix: "Prevent drones from interacting with fireaxe cabinets, or at least trying to take the axe out."
