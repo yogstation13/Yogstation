@@ -26,8 +26,10 @@
 	var/block_chance_wielded = 15
 	/// The demolition_mod the spoon has when wielded.
 	var/demolition_mod_wielded = 2 // IT'S A BIG METAL SPOON.
+/*
 	/// Is this spoon currently empowered?
 	var/empowered = FALSE
+*/
 
 /obj/item/comically_large_spoon/Initialize(mapload)
 	. = ..()
@@ -38,14 +40,16 @@
 		wield_callback = CALLBACK(src, PROC_REF(on_wield)), \
 		unwield_callback = CALLBACK(src, PROC_REF(on_unwield)), \
 	)
-	AddComponent(/datum/component/liquids_interaction, TYPE_PROC_REF(/obj/item/comically_large_spoon, try_scoop_liquids))
+	//AddComponent(/datum/component/liquids_interaction, TYPE_PROC_REF(/obj/item/comically_large_spoon, try_scoop_liquids))
 
+/*
 /obj/item/comically_large_spoon/examine(mob/user)
 	. = ..()
 	if(empowered)
 		. += span_big(span_warning("It seems to be unusually powerful!"))
 	else
 		. += span_smallnoticeital("Something special may happen if you scoop oil or blood off the floor with it.")
+*/
 
 /obj/item/comically_large_spoon/update_icon_state()
 	inhand_icon_state = "[base_icon_state][HAS_TRAIT(src, TRAIT_WIELDED) ? "_wielded" : ""]"
@@ -72,6 +76,7 @@
 	block_chance = src::block_chance
 	demolition_mod = src::demolition_mod
 
+/* REMOVED UNTIL I CAN ACTUALLY BALANCE THIS
 // touhou hijack lol
 // also i know this is a spoon and not a spork, i don't care
 /obj/item/comically_large_spoon/proc/try_scoop_liquids(obj/item/comically_large_spoon/spoon, turf/target, mob/user, obj/effect/abstract/liquid_turf/liquids)
@@ -127,3 +132,4 @@
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	update_inhand_icon()
 	empowered = FALSE
+*/
