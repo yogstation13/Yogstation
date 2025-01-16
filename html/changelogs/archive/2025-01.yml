@@ -247,5 +247,14 @@
   - bugfix: Trash piles can no longer be used to generate infinite trash by canceling
       early or hiding an item.
   - qol: Reduces the amount of banana peels from trash piles.
+  - qol: Wizard mass mind/species/name swap now only affects the station - no more
+      random ghost roles being swapped onto the station.
+  - bugfix: The tenacity brain trauma now properly removes and prevents all pain,
+      like it says it does.
   Absolucy, SmArtKar:
   - bugfix: Mindswap can no longer be used inside of pipes
+  DrTuxedo/DrDiasyl:
+  - rscadd: The Curator can now have a live feed channel on entertainment monitors
+      and has a journalist kit in their beacon.
+  KnigTheThrasher:
+  - rscdel: Removed northstar from the codebase
