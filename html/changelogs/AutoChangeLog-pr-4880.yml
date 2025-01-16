@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Wizard mass mind/species/name swap now only affects the station - no more random ghost roles being swapped onto the station."
