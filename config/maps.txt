@@ -44,11 +44,6 @@ map tramstation
 	votable
 endmap
 
-#map northstar
-#	minplayers 50
-#	votable
-#endmap
-
 map runtimestation
 endmap
 
