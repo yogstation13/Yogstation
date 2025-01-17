@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed the replays subsystem still marking objects when disabled."
+  - qol: "Optimized the replays subsystem a bit."
