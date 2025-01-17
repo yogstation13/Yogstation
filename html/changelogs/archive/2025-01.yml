@@ -258,3 +258,7 @@
       and has a journalist kit in their beacon.
   KnigTheThrasher:
   - rscdel: Removed northstar from the codebase
+2025-01-17:
+  flleeppyy:
+  - bugfix: Prevent drones from interacting with fireaxe cabinets, or at least trying
+      to take the axe out.
