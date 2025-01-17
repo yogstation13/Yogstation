@@ -26,6 +26,7 @@
 	response_harm   = "hits"
 	maxHealth = 60
 	health = 60
+	speed = 2
 	spacewalk = TRUE
 	ranged = TRUE
 	loot = list(/obj/item/organ/regenerative_core/dryad)
@@ -64,6 +65,7 @@
 	response_harm   = "hits"
 	maxHealth = 120
 	health = 120
+	speed = 2
 	spacewalk = TRUE
 	ranged = TRUE
 	loot = list (/obj/item/organ/regenerative_core/dryad/corrupted)
@@ -92,6 +94,7 @@
 	response_harm   = "hits"
 	maxHealth = 100
 	health = 100
+	speed = 2
 	spacewalk = TRUE
 
 	melee_damage_lower = 7.5
@@ -165,6 +168,7 @@
 	response_harm   = "hits"
 	maxHealth = 285
 	health = 285
+	speed = 2
 	spacewalk = TRUE
 	melee_damage_lower = 30
 	melee_damage_upper = 30
@@ -190,7 +194,7 @@
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/Life()
 	. = ..()
 	if(!.) //dead 
-		return 
+		return
 	
 	if(human_lure && prob(5))
 		lure()
@@ -245,7 +249,7 @@
 				"[initial(picked.name)] nearly killed me, but I'm gonna bleed out", "Damned fauna", "Why fucking again?", "I have so many mats", 
 				"This is fucking insane", "I cannot believe this is happening to me", "Out of meds, out of supplies, out of fucking everything", "I'm running out of air",
 				"HELP", "MINING", "MINING BASE",
-				"If someone finds my body take the loot [pick("mango", "alpha", "delta", "beta", "omega" , "olive", "tango", "fiesta", "carp")] [rand(0,9)][rand(0,9)][rand(0,9)]", "HELP [pick(generate_code_phrase(TRUE))]"))
+				"If someone finds my body take the loot [pick(GLOB.phonetic_alphabet)] [rand(0,9)][rand(0,9)][rand(0,9)]", "HELP [pick(generate_code_phrase(TRUE))]"))
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/skin_twister/proc/lure()
 	if(!human_lure)
@@ -294,6 +298,7 @@
 	response_harm   = "hits"
 	maxHealth = 120
 	health = 120
+	speed = 1 // size (1-3) is added on top of this during initialize()
 	spacewalk = TRUE
 	loot  = list(/obj/item/stack/sheet/slime)
 	melee_damage_lower = 5
@@ -307,6 +312,7 @@
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby/Initialize(mapload,spawned_size = 3)
 	. = ..()
 	current_size = clamp(spawned_size, 1, current_size)
+	speed += current_size
 	melee_damage_lower = melee_damage_lower * current_size
 	melee_damage_upper = melee_damage_upper * current_size
 	var/matrix/M = new
@@ -362,6 +368,7 @@
 	ranged_cooldown_time = 3 SECONDS //dashes faster
 
 	butcher_results = list(/obj/item/stinger = 1,/obj/item/stack/sheet/animalhide/weaver_chitin = 1, /obj/item/stack/sheet/sinew = 2)
+	speed = 2
 	spacewalk = TRUE
 	alpha_type = /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_yellowjacket/mosquito
 	poison_per_attack = 0
@@ -436,7 +443,7 @@
 	desc = "A silky bundle of web that can entangle legs."
 	icon = 'yogstation/icons/obj/jungle.dmi'
 	armed = TRUE
-	breakouttime = 30 //3 seconds. Long enough you'd rather not get hit, but not debilitating.
+	breakouttime = 3 SECONDS //Long enough you'd rather not get hit, but not debilitating.
 	item_flags = DROPDEL
 	flags_1 = NONE
 	trap_damage = 0
@@ -488,6 +495,7 @@
 	vision_range = 6
 	minbodytemp = 0
 	maxbodytemp = INFINITY
+	speed = 3
 	pressure_resistance = 100
 	mob_size = MOB_SIZE_LARGE
 	del_on_death = TRUE
@@ -521,6 +529,18 @@
 	maxHealth = 150
 	melee_damage_lower = 15
 	melee_damage_upper = 20
+	var/mob/living/converted
+
+/mob/living/simple_animal/hostile/tar/amalgamation/convert/New(loc, mob/living/new_convert, ...)
+	if(new_convert)
+		converted = new_convert
+		new_convert.forceMove(src)
+	return ..()
+
+/mob/living/simple_animal/hostile/tar/amalgamation/convert/Destroy()
+	if(converted)
+		converted.forceMove(loc)
+	return ..()
 
 /mob/living/simple_animal/hostile/tar/dryad
 	name = "Tar Dryad"

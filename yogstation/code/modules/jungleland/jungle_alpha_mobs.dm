@@ -32,7 +32,7 @@
 	melee_damage_upper = 25
 	ranged = TRUE 
 	ranged_cooldown = 5 SECONDS
-	projectiletype = /obj/projectile/jungle/meduracha_spit
+	projectiletype = /obj/projectile/reagent/meduracha_spit
 
 	var/list/anchors = list("SOUTH" = null, "NORTH" = null, "EAST" = null, "WEST" = null)
 	
@@ -155,7 +155,7 @@
 	melee_damage_upper = 0
 	minimum_distance = 5
 	ranged = TRUE 
-	ranged_cooldown = 20 SECONDS
+	ranged_cooldown_time = 20 SECONDS
 	move_to_delay = 10
 	pixel_x = -32
 	projectiletype = /obj/projectile/jungle/damage_orb
@@ -168,7 +168,7 @@
 		/mob/living/simple_animal/hostile/asteroid/yog_jungle/emeraldspider = 2,
 		/mob/living/simple_animal/hostile/asteroid/yog_jungle/blobby = 2,
 		/mob/living/simple_animal/hostile/asteroid/wasp/mosquito = 2
-		)
+	)
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_dryad/Shoot(atom/targeted_atom)
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 80, 1)
@@ -195,7 +195,7 @@
 	max_spawn = 2
 	spawnables = list(
 		/mob/living/simple_animal/hostile/asteroid/yog_jungle/corrupted_dryad = 20
-		)
+	)
 
 /mob/living/simple_animal/hostile/asteroid/yog_jungle/alpha/alpha_dryad/corrupted/finish_shoot(atom/targeted_atom)
 	. = ..()

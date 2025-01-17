@@ -44,6 +44,7 @@
 /datum/surgery_step/dna_recovery
 	name = "recover DNA"
 	implements = list(/obj/item/reagent_containers/syringe = 100, /obj/item/pen = 30)
+	difficulty = EXP_HIGH
 	time = 15 SECONDS
 	chems_needed = list(/datum/reagent/medicine/rezadone, /datum/reagent/toxin/amanitin, /datum/reagent/consumable/entpoly)
 	require_all_chems = FALSE

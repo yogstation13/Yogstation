@@ -2,6 +2,8 @@
 	//Human xenopmorph hybrid
 	name = "Polysmorph"
 	id = SPECIES_POLYSMORPH
+	monitor_icon = "certificate"
+	monitor_color = "#802496"
 	species_traits = list(NOEYESPRITES, DIGITIGRADE, MUTCOLORS, NOCOLORCHANGE, HAS_FLESH, HAS_BONE, HAS_TAIL)
 	possible_genders = list(FEMALE)
 	inherent_traits = list(TRAIT_ACIDBLOOD, TRAIT_SKINNY)
@@ -24,7 +26,6 @@
 	speedmod = -0.1 //apex predator humanoid hybrid
 	inert_mutation = ACIDSPIT
 	punchdamagehigh = 11 //slightly better high end of damage
-	punchstunthreshold = 11 //technically slightly worse stunchance
 	damage_overlay_type = "polysmorph"
 	species_gibs = "polysmorph"
 	deathsound = 'sound/voice/hiss6.ogg'

@@ -170,8 +170,8 @@
 			H.leave_victim()
 			return FALSE
 		if(I && I.owner == target)
-			if(istype(I, /obj/item/organ/shadowtumor))//Thralls resist deconversion
-				var/obj/item/organ/shadowtumor/tumor = I
+			if(istype(I, /obj/item/organ/shadowtumor/thrall))//Thralls resist deconversion
+				var/obj/item/organ/shadowtumor/thrall/tumor = I
 				if(tumor.resist(target))
 					return FALSE
 			display_results(user, target, span_notice("You successfully extract [I] from [target]'s [parse_zone(target_zone)]."),

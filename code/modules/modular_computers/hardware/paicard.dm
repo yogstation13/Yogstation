@@ -88,6 +88,7 @@
 		if("wipe")
 			var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
 			if(confirm == "Yes")
+				candidates_ready = null
 				if(pai)
 					to_chat(pai, span_warning("You feel yourself slipping away from reality."))
 					to_chat(pai, span_danger("Byte by byte you lose your sense of self."))
@@ -117,8 +118,9 @@
 				pai.key = candidate.key
 
 				card.setPersonality(pai)
+				SSpai.candidates.Remove(candidate)
 				candidate = list("name" = candidate.name, "description"=candidate.description, "prefrole"=candidate.role, "ooccomments"=candidate.comments)
-				candidates.Remove(list(candidate))
+				candidates.Remove(candidate)
 		if("setlaws")
 			var/newlaw = stripped_multiline_input(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.laws.supplied[1], MAX_MESSAGE_LEN)
 			if(newlaw && pai)

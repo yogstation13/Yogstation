@@ -7,7 +7,7 @@
 	hud_type = /datum/hud/pai
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_TINY
-	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be deactivated."
+	desc = "A generic pAI mobile hard-light holographics emitter. It seems to be activated."
 	weather_immunities = WEATHER_STORM
 	light_on = FALSE
 	light_flags = LIGHT_ATTACHED
@@ -23,53 +23,55 @@
 	var/network = "ss13"
 	var/obj/machinery/camera/current = null
 
-	var/ram = 100	// Used as currency to purchase different abilities
+	///Used as currency to purchase different abilities
+	var/ram = 100	
 	var/list/software = list()
-	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/computer_hardware/paicard/card	// The card we inhabit
-	var/hacking = FALSE		//Are we hacking a door?
+	///The DNA string of our assigned user
+	var/userDNA		
+	///The card we inhabit
+	var/obj/item/computer_hardware/paicard/card	
+	///Are we hacking a door?
+	var/hacking = FALSE		
 
 	var/speakStatement = "states"
 	var/speakExclamation = "declares"
 	var/speakDoubleExclamation = "alarms"
 	var/speakQuery = "queries"
 
-	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
+	///The cable we produce and use when door or camera jacking
+	var/obj/item/pai_cable/cable		
 
-	var/master				// Name of the one who commands us
-	var/master_dna			// DNA string for owner verification
+	///Name of the one who commands us
+	var/master				
+	///DNA string for owner verification
+	var/master_dna			
 
 // Various software-specific vars
 
-	var/temp				// General error reporting text contained here will typically be shown once and cleared
-	var/screen				// Which screen our main window displays
-	var/subscreen			// Which specific function of the main screen is being displayed
+	///The airlock being hacked
+	var/obj/machinery/door/hackdoor		
+	///Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
+	var/hackprogress = 0				
 
-	var/secHUD = 0			// Toggles whether the Security HUD is active or not
-	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
-
-	var/datum/data/record/medicalActive1		// Datacore record declarations for record software
-	var/datum/data/record/medicalActive2
-
-	var/datum/data/record/securityActive1		// Could probably just combine all these into one
-	var/datum/data/record/securityActive2
-
-	var/obj/machinery/door/hackdoor		// The airlock being hacked
-	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
-
-	/// Remote signaler
+	///Remote signaler
 	var/obj/item/assembly/signaler/internal/signaler
 
 	var/obj/item/instrument/piano_synth/internal_instrument
-	var/obj/machinery/newscaster			//pAI Newscaster
-	var/obj/item/healthanalyzer/hostscan				//pAI healthanalyzer
+	///pAI Newscaster
+	var/obj/machinery/newscaster		
+	///pAI healthanalyzer	
+	var/obj/item/healthanalyzer/hostscan				
 
+	///Whether the pAI has bought the encryption slot module or not
 	var/encryptmod = FALSE
 	var/holoform = FALSE
+	///Can pAI use their holoprojector?
 	var/canholo = TRUE
+	///Can pAI transmit radio messages?
 	var/can_transmit = TRUE
+	///Can pAI receive radio messages?
 	var/can_receive = TRUE
-	var/obj/item/card/id/access_card = null
+	var/obj/item/card/id/access_card = new /obj/item/card/id
 	var/chassis = "repairbot"
 	var/list/possible_chassis = list("cat" = TRUE, "mouse" = TRUE, "monkey" = TRUE, "corgi" = FALSE, "fox" = FALSE, "repairbot" = TRUE, "rabbit" = TRUE, "frog" = TRUE)		//assoc value is whether it can be picked up.
 
@@ -81,7 +83,8 @@
 	var/emittersemicd = FALSE
 
 	var/overload_ventcrawl = 0
-	var/overload_bulletblock = 0	//Why is this a good idea?
+	//Why is this a good idea?
+	var/overload_bulletblock = 0	
 	var/overload_maxhealth = 0
 	var/silent = FALSE
 	var/brightness_power = 5
@@ -127,7 +130,6 @@
 
 	. = ..()
 
-	create_modularInterface()
 	emittersemicd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(emittercool)), 600)
 
@@ -153,7 +155,6 @@
 	if(cable && cable.machine && istype(cable.machine, /obj/machinery/door) && cable.machine == hackdoor && get_dist(src, hackdoor) <= 1)
 		hackprogress = clamp(hackprogress + 20, 0, 100)
 	else
-		temp = "Door Jack: Connection to airlock has been lost. Hack aborted."
 		hackprogress = 0
 		hacking = FALSE
 		hackdoor = null
@@ -282,7 +283,11 @@
 
 /mob/living/silicon/pai/examine(mob/user)
 	. = ..()
-	. += "A personal AI in holochassis mode. Its master ID string seems to be [master]."
+	. += "A personal AI in holochassis mode. Its master ID string seems to be [master ? master : "empty"]."
+	if(software && isobserver(user))
+		. += "<b>[src] has the following modules:</b>"
+		for(var/module in software)
+			. += "[module]"
 
 /mob/living/silicon/pai/Life(seconds_per_tick = SSMOBS_DT, times_fired)
 	if(stat == DEAD)
@@ -307,12 +312,31 @@
 	emitterhealth = clamp((emitterhealth + (emitter_regen_per_second * delta_time)), -50, emittermaxhealth)
 
 /obj/item/computer_hardware/paicard/attackby(obj/item/W, mob/user, params)
-	..()
+	. = ..()
 	user.set_machine(src)
-	if(pai.encryptmod == TRUE)
-		if(W.tool_behaviour == TOOL_SCREWDRIVER)
+	if(W.tool_behaviour == TOOL_SCREWDRIVER||istype(W, /obj/item/encryptionkey))
+		if(pai.encryptmod == TRUE)
 			pai.radio.attackby(W, user, params)
-		else if(istype(W, /obj/item/encryptionkey))
-			pai.radio.attackby(W, user, params)
-	else
-		to_chat(user, "Encryption Key ports not configured.")
+		else
+			to_chat(user, "Encryption Key ports not configured.")
+	else if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/id_card = W
+		pai.copy_access(id_card, user)
+
+/mob/living/silicon/pai/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/id_card = W
+		copy_access(id_card, user)
+
+/mob/living/silicon/pai/proc/copy_access(obj/item/card/id/ID, mob/user)
+	access_card.access += ID.access
+	to_chat(user, span_info("Copied access from [ID]!"))
+	to_chat(src, span_notice("Data transfer complete: New access encryption keys stored in memory."))
+
+/mob/living/silicon/pai/Bump(atom/A) //Copied from bot.dm
+	. = ..()
+	if((istype(A, /obj/machinery/door/airlock) ||  istype(A, /obj/machinery/door/window)) && (!isnull(access_card)))
+		var/obj/machinery/door/D = A
+		if(D.check_access(access_card))
+			D.open()

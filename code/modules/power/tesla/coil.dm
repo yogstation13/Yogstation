@@ -9,6 +9,7 @@
 	base_icon_state = "coil"
 	anchored = FALSE
 	density = TRUE
+	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70, ELECTRIC = 100)
 
 	// Executing a traitor caught releasing tesla was never this fun!
 	can_buckle = TRUE
@@ -20,7 +21,7 @@
 	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
 	var/percentage_power_loss = 0 // 0-1. Regular coils don't have power loss.
 	var/input_power_multiplier = 0
-	var/zap_cooldown = 100
+	var/zap_cooldown = 10 SECONDS
 
 	/// The amount of power built up in the coil.
 	var/stored_power = 0
@@ -46,7 +47,7 @@
 	zap_cooldown = 100
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		input_power_multiplier += sqrt(C.rating) // Each level increases power gain by 100%
-		zap_cooldown -= (C.rating * 20) // Each level decreases cooldown by 2 seconds
+		zap_cooldown -= (C.rating * 2 SECONDS) // Each level decreases cooldown by 2 seconds
 
 /obj/machinery/power/tesla_coil/examine(mob/user)
 	. = ..()
@@ -88,9 +89,8 @@
 
 	return ..()
 
-/obj/machinery/power/tesla_coil/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
+/obj/machinery/power/tesla_coil/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
 	if(anchored && !panel_open)
-		obj_flags |= BEING_SHOCKED
 		stored_power += power
 		flick("[base_icon_state]hit", src)
 		playsound(src.loc, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
@@ -98,10 +98,9 @@
 			linked_account.adjust_money(money_per_zap)
 		if(istype(linked_techweb))
 			linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, research_points_per_zap)
-		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), zap_cooldown)
 		tesla_buckle_check(power)
-	else
-		return ..()
+		tesla_flags &= ~(TESLA_MACHINE_EXPLOSIVE|TESLA_OBJ_DAMAGE)
+	return ..(source, power, zap_range, tesla_flags, shocked_targets)
 
 /obj/machinery/power/tesla_coil/process()
 	if(!powernet)
@@ -110,15 +109,16 @@
 	stored_power *= (1 - TESLA_COIL_PROCESS_RATE)
 
 /obj/machinery/power/tesla_coil/proc/zap()
-	if(!powernet)
-		return FALSE
-	var/coeff = (20 - ((input_power_multiplier - 1) * 3))
-	coeff = max(coeff, 10)
-	var/power = (powernet.avail / 2)
-	add_load(power)
-	playsound(loc, 'sound/magic/lightningshock.ogg', 100, 1, extrarange = 5)
-	tesla_zap(src, 10, (stored_power + power) * 2 / coeff, tesla_flags)
-	tesla_buckle_check((stored_power + power) * 2 / coeff)
+	var/coeff = max(20 - ((input_power_multiplier - 1) * 3), 10)
+	var/power = stored_power / coeff
+	if(powernet)
+		power += powernet.avail / coeff
+		add_load(powernet.avail / coeff)
+	else
+		stored_power -= power
+	playsound(loc, (power > 100000 ? 'sound/magic/lightningbolt.ogg' : 'sound/magic/lightningshock.ogg'), 100, 1, extrarange = 5)
+	tesla_zap(src, 10, power, tesla_flags)
+	tesla_buckle_check(power)
 
 // Tesla R&D researcher
 /obj/machinery/power/tesla_coil/research
@@ -142,6 +142,7 @@
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	buckle_requires_restraints = TRUE
+	armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70, ELECTRIC = 100)
 
 /obj/machinery/power/grounding_rod/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
 	. = ..()
@@ -163,9 +164,10 @@
 
 	return ..()
 
-/obj/machinery/power/grounding_rod/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
+/obj/machinery/power/grounding_rod/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
 	if(anchored && !panel_open)
 		flick("grounding_rodhit", src)
 		tesla_buckle_check(power)
+		return TRUE
 	else
 		return ..()

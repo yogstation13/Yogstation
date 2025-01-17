@@ -16,7 +16,7 @@
 	help_verb = /mob/living/carbon/human/proc/ultra_violence_help
 	gun_exceptions = list(/obj/item/gun/ballistic/revolver/ipcmartial)
 	no_gun_message = "This gun is not compliant with Ultra Violence standards."
-	martial_traits = list(TRAIT_NOSOFTCRIT, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_NOLIMBDISABLE, TRAIT_NO_STUN_WEAPONS, TRAIT_NO_BLOCKING, TRAIT_NODISMEMBER, TRAIT_STUNIMMUNE, TRAIT_SLEEPIMMUNE, TRAIT_NO_HOLDUP)
+	martial_traits = list(TRAIT_NOSOFTCRIT, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_NOLIMBDISABLE, TRAIT_NO_STUN_WEAPONS, TRAIT_NO_PUNCH_STUN, TRAIT_NO_BLOCKING, TRAIT_NODISMEMBER, TRAIT_STUNIMMUNE, TRAIT_SLEEPIMMUNE, TRAIT_NO_HOLDUP)
 	///used to keep track of the dash stuff
 	var/dashing = FALSE
 	var/dashes = 3
@@ -429,7 +429,6 @@
 	H.dna.species.attack_sound = 'sound/weapons/shotgunshot.ogg'
 	H.dna.species.punchdamagelow += 4
 	H.dna.species.punchdamagehigh += 4 //no fancy comboes, just punches
-	H.dna.species.punchstunthreshold += 50 //disables punch stuns
 	H.dna.species.staminamod = 0 //my god, why must you make me add all these additional things, stop trying to disable them, just kill them
 	RegisterSignal(H, COMSIG_MOB_CLICKON, PROC_REF(on_click)) // death to click_intercept
 	H.throw_alert("dash_charge", /atom/movable/screen/alert/ipcmartial, dashes+1)
@@ -440,7 +439,6 @@
 	H.dna.species.attack_sound = initial(H.dna.species.attack_sound) //back to flimsy tin tray punches
 	H.dna.species.punchdamagelow -= 4
 	H.dna.species.punchdamagehigh -= 4
-	H.dna.species.punchstunthreshold -= 50
 	H.dna.species.staminamod = initial(H.dna.species.staminamod)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
 	deltimer(dash_timer)

@@ -36,6 +36,10 @@
 	H.set_species(/datum/species/human) //Plasamen burn up otherwise, and lizards are vulnerable to asimov AIs
 
 	H.equipOutfit(nukeop_outfit)
+
+	H.adjust_skill(SKILL_FITNESS, EXP_MID, max_skill = EXP_GENIUS) // base amount of fitness skill all operatives need to have
+	H.add_skill_points(EXP_GENIUS) // 5 skill points to allocate, you can put it all into fitness or specialize as a medic or pilot
+	ADD_TRAIT(owner, TRAIT_EXCEPTIONAL_SKILL, ROLE_OPERATIVE) // allowed to allocate 5 points into a single skill
 	return TRUE
 
 /datum/antagonist/nukeop/greet()
@@ -76,6 +80,10 @@
 		else
 			stack_trace("Syndicate nuke not found during nuke team creation.")
 			nuke_team.memorized_code = null
+
+		var/obj/machinery/nuclearbomb/selfdestruct/humiliate_nuke = find_self_destruct()
+		if(humiliate_nuke && nuke_team.memorized_code)
+			humiliate_nuke.r_code = nuke_team.memorized_code
 
 /datum/antagonist/nukeop/proc/give_alias()
 	if(nuke_team && nuke_team.syndicate_name)
@@ -174,7 +182,7 @@
 /datum/outfit/nuclear_operative_elite
 	name = "Nuclear Operative (Elite, Preview only)"
 	mask = /obj/item/clothing/mask/gas/syndicate
-	uniform = /obj/item/clothing/under/syndicate 
+	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	head = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
 	r_hand = /obj/item/shield/energy
@@ -328,9 +336,12 @@
 	var/syndies_didnt_escape = !syndies_escaped()
 	var/station_was_nuked = SSgamemode.station_was_nuked
 	var/nuke_off_station = SSgamemode.nuke_off_station
+	var/self_destructed = SSgamemode.nuke_self_destruct
 
 	if(nuke_off_station == NUKE_SYNDICATE_BASE)
 		return NUKE_RESULT_FLUKE
+	else if(station_was_nuked && self_destructed)
+		return NUKE_RESULT_SELF_DESTRUCT
 	else if(station_was_nuked && !nuke_off_station && !syndies_didnt_escape)
 		return NUKE_RESULT_NUKE_WIN
 	else if (station_was_nuked && !nuke_off_station && syndies_didnt_escape)
@@ -358,6 +369,9 @@
 		if(NUKE_RESULT_FLUKE)
 			parts += "<span class='redtext big'>Humiliating Syndicate Defeat</span>"
 			parts += "<B>The crew of [station_name()] gave [syndicate_name] operatives back their bomb! The syndicate base was destroyed!</B> Next time, don't lose the nuke!"
+		if(NUKE_RESULT_SELF_DESTRUCT)
+			parts += "<span class='greentext big'>Humiliating Crew Defeat</span>"
+			parts += "<B>As far as Nanotrasen cares, the crew of [station_name()] activated their self destruct device for unknown reasons.</B> Surviving crew will be interrogated and heavily penalized."
 		if(NUKE_RESULT_NUKE_WIN)
 			parts += "<span class='greentext big'>Syndicate Major Victory!</span>"
 			parts += "<B>[syndicate_name] operatives have destroyed [station_name()]!</B>"

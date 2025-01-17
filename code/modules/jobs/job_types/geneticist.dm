@@ -22,6 +22,15 @@
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 	minimal_character_age = 24 //Genetics would likely require more education than your average position due to the sheer number of alien physiologies and experimental nature of the field
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_HIGH,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 2
+
 	departments_list = list(
 		/datum/job_department/medical,
 	)

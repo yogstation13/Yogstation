@@ -52,13 +52,13 @@
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [user.p_them()]self..."), span_notice("You begin applying \the [src] on yourself..."))
-		if(!do_after(user, self_delay, M, extra_checks=CALLBACK(M, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
+		if(!do_after(user, self_delay, M, extra_checks=CALLBACK(M, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE), skill_check = SKILL_PHYSIOLOGY))
 			return
 	else if(other_delay)
 		playsound(src, pick(apply_sounds), 25)
 		if(!silent)
 			user.visible_message(span_notice("[user] starts to apply \the [src] on [M]."), span_notice("You begin applying \the [src] on [M]..."))
-		if(!do_after(user, other_delay, M, extra_checks=CALLBACK(M, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
+		if(!do_after(user, other_delay, M, extra_checks=CALLBACK(M, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE), skill_check = SKILL_PHYSIOLOGY))
 			return
 
 	if(heal(M, user))
@@ -180,7 +180,7 @@
 	/// Use other_delay if healing someone else (usually 1 second)
 	/// Use self_delay if healing yourself (usually 3 seconds)
 	/// Reduce delay by 20% if medical
-	if(!do_after(user, (user == M ? self_delay : other_delay) * (IS_MEDICAL(user) ? 0.8 : 1), M))
+	if(!do_after(user, (user == M ? self_delay : other_delay) * (IS_MEDICAL(user) ? 0.8 : 1), M, skill_check = SKILL_PHYSIOLOGY))
 		return
 
 	playsound(src, 'sound/effects/rip1.ogg', 25)

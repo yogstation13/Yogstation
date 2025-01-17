@@ -210,7 +210,7 @@
 			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 			return 1
-	else if(!user.combat_mode) // can't drop the item but not in combat mode, try deconstructing instead
+	else if(!user.combat_mode && !(I.item_flags & ABSTRACT)) // can't drop the item but not in combat mode, try deconstructing instead
 		return attackby_secondary(I, user, params)
 	else
 		return ..()
@@ -459,7 +459,7 @@
 	buildstack = /obj/item/stack/sheet/plasteel
 	max_integrity = 200
 	integrity_failure = 50
-	armor = list(MELEE = 10, BULLET = 30, LASER = 30, ENERGY = 100, BOMB = 20, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
+	armor = list(MELEE = 10, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 20, BIO = 0, RAD = 0, FIRE = 80, ACID = 70, ELECTRIC = 100)
 
 /obj/structure/table/reinforced/deconstruction_hints(mob/user)
 	if(deconstruction_ready)

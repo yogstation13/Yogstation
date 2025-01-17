@@ -1109,7 +1109,10 @@ GLOBAL_DATUM_INIT(dummySave, /savefile, new("tmp/dummySave.sav")) //Cache of ico
 
 	var/key
 	var/icon/I = thing
+	var/mob/target_mob = target
 
+	if(SSlag_switch.measures[DISABLE_USR_ICON2HTML] && !HAS_TRAIT(target_mob, TRAIT_BYPASS_MEASURES))
+		return
 	if (!target)
 		return
 	if (target == world)

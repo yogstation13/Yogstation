@@ -8,7 +8,7 @@
 	max_integrity = 400
 	integrity_failure = 200
 	deflect_chance = 15
-	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 0, RAD = 20, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 40, BULLET = 20, LASER = 10, ENERGY = 0, BOMB = 40, BIO = 0, RAD = 20, FIRE = 100, ACID = 100, ELECTRIC = 75)
 	max_equip = 6
 	internals_req_access = list(ACCESS_MECH_ENGINE, ACCESS_MECH_SCIENCE, ACCESS_MECH_MINING, ACCESS_MECH_RUINS)
 	var/list/cargo = new
@@ -75,7 +75,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	weather_protection = WEATHER_LAVA|WEATHER_STORM
 	flags_1 = HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
-	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, ELECTRIC = 100)
 	enclosed = TRUE
 	enter_delay = 40
 	silicon_icon_state = null
@@ -113,7 +113,7 @@
 
 /obj/mecha/working/ripley/deathripley/real
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE. FOR REAL"
-	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 90, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, ELECTRIC = 75)
 	fast_pressure_step_in = 1.5
 	slow_pressure_step_in = 3
 	step_in = 3

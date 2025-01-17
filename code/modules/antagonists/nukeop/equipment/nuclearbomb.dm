@@ -66,6 +66,10 @@
 	icon = 'icons/obj/machines/nuke_terminal.dmi'
 	anchored = TRUE //stops it being moved
 
+/obj/machinery/nuclearbomb/selfdestruct/examine(mob/user)
+	. = ..()
+	. += span_boldnotice("Self-destruct sequence requires the disk to remain inside until detonation. Ejection will cancel detonation.")
+
 /obj/machinery/nuclearbomb/syndicate
 	//ui_style = "syndicate" // actually the nuke op bomb is a stole nt bomb
 
@@ -316,6 +320,8 @@
 					playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
 					auth = I
 					. = TRUE
+			if(istype(src, /obj/machinery/nuclearbomb/selfdestruct) && timing)
+				set_active() // Disarm if ejected, selfdestruct requires disk the entire way for balance reasons
 			update_ui_mode()
 		if("keypad")
 			if(auth)
@@ -428,8 +434,8 @@
 		return
 	qdel(src)
 
-/obj/machinery/nuclearbomb/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
-	..()
+/obj/machinery/nuclearbomb/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
+	. = ..()
 	if(tesla_flags & TESLA_MACHINE_EXPLOSIVE)
 		qdel(src)//like the singulo, tesla deletes it. stops it from exploding over and over
 
@@ -476,8 +482,10 @@
 		SSshuttle.registerHostileEnvironment(src)
 		SSshuttle.lockdown = TRUE
 
+	var/is_self_destruct = istype(src, /obj/machinery/nuclearbomb/selfdestruct)
+
 	//Cinematic
-	SSgamemode.OnNukeExplosion(off_station)
+	SSgamemode.OnNukeExplosion(off_station, is_self_destruct)
 	really_actually_explode(off_station)
 	SSticker.roundend_check_paused = FALSE
 

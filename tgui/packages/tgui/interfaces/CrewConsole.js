@@ -23,73 +23,6 @@ const HEALTH_ICON_BY_LEVEL = [
   'skull-crossbones',
 ];
 
-const speciesmap = {
-  "IPC": {
-    "icon": "tv",
-    "color": "#2e46cc",
-  },
-  "Robot": {
-    "icon": "robot",
-    "color": "#edee1b",
-  },
-  "Felinid": {
-    "icon": "paw",
-    "color": "#f52ab4",
-  },
-  "Moth": {
-    "icon": "feather-alt",
-    "color": "#ffebb8",
-  },
-  "Lizard": {
-    "icon": "dragon",
-    "color": "#8bf76a",
-  },
-  "Polysmorph": {
-    "icon": "certificate",
-    "color": "#802496",
-  },
-  "Podperson": {
-    "icon": "seedling",
-    "color": "#07f58a",
-  },
-  "Plasmaman": {
-    "icon": "skull",
-    "color": "#d60b66",
-  },
-  "Ethereal": {
-    "icon": "sun",
-    "color": "#f0ff66",
-  },
-  "Skeleton": {
-    "icon": "skull",
-    "color": "#fffcfa",
-  },
-  "Slime": {
-    "icon": "cloud",
-    "color": "#f2505d",
-  },
-  "Fly": {
-    "icon": "bug",
-    "color": "#039162",
-  },
-  "Human": {
-    "icon": "user",
-    "color": "#2ee81a",
-  },
-  "Zombie": {
-    "icon": "skull",
-    "color": "#186310",
-  },
-  "Snail": {
-    "icon": "strikethrough",
-    "color": "#08ccb8",
-  },
-  "Alien": {
-    "icon": "question-circle",
-    "color": "#d40db9",
-  },
-};
-
 export const jobIsHead = jobId => jobId % 10 === 0;
 
 export const jobToColor = jobId => {
@@ -248,7 +181,7 @@ export const CrewConsoleContent = (props, context) => {
                   )}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
-                  {speciesmap[sensor.species] ? <Icon name={speciesmap[sensor.species].icon} color={speciesmap[sensor.species].color} size={1} /> : <Icon name="question" color="#f70505" size={1} />}
+                  {sensor.species_icon ? <Icon name={sensor.species_icon} color={sensor.species_color} size={1} /> : <Icon name="question" color="#f70505" size={1} />}
                 </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   {sensor.oxydam !== null ? (

@@ -34,6 +34,9 @@
 	W.on_reading_finished(brother)
 	qdel(W)
 
+	brother.add_skill_points(EXP_HIGH) // extra skills
+	ADD_TRAIT(owner, TRAIT_EXCEPTIONAL_SKILL, type)
+
 	if(istype(brother))
 		var/obj/item/storage/box/bloodbrother/T = new()
 		if(brother.equip_to_slot_or_del(T, ITEM_SLOT_BACKPACK))

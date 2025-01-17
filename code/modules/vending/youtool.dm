@@ -22,7 +22,7 @@
 		           /obj/item/weldingtool/hugetank = 2,
 		           /obj/item/clothing/head/welding = 2,
 		           /obj/item/clothing/gloves/color/yellow = 1)
-	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70)
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 70, ELECTRIC = 100)
 	resistance_flags = FIRE_PROOF
 	default_price = 20
 	extra_price = 80

@@ -96,6 +96,6 @@
 /obj/machinery/power/rtg/abductor/fire_act(exposed_temperature, exposed_volume)
 	overload()
 
-/obj/machinery/power/rtg/abductor/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
-	..() //extend the zap
+/obj/machinery/power/rtg/abductor/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
+	. = ..() //extend the zap
 	overload()

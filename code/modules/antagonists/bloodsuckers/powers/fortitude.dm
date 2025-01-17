@@ -106,7 +106,6 @@
 		to_chat(user, span_notice("Shadow tentacles form and attach themselves to your body, you feel as if your muscles have merged with the shadows!"))
 	user.physiology.punchdamagehigh_bonus += 0.5 * level_current
 	user.physiology.punchdamagelow_bonus += 0.5 * level_current
-	user.physiology.punchstunthreshold_bonus += 0.5 * level_current	//So we dont give them stun baton hands
 
 /datum/action/cooldown/bloodsucker/fortitude/shadow/process()
 	. = ..()
@@ -125,4 +124,3 @@
 	bloodsuckerdatum.frenzygrab.remove(user)
 	user.physiology.punchdamagehigh_bonus -= 0.5 * level_current
 	user.physiology.punchdamagelow_bonus -= 0.5 * level_current
-	user.physiology.punchstunthreshold_bonus -= 0.5 * level_current

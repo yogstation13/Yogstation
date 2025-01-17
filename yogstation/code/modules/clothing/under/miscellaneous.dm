@@ -573,7 +573,7 @@
 	icon_state = "hawaiian_skirt"
 	item_state = "hawaiian_skirt"
 	fitted = FEMALE_UNIFORM_TOP //no hole in the skirt
-	can_adjust = 0
+	can_adjust = TRUE
 
 /obj/item/clothing/under/rank/prisoner
 	sprite_sheets = list("GAGS_sprite" = list(SPECIES_VOX))

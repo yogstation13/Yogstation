@@ -1,6 +1,8 @@
 /datum/species/human
 	name = "Human"
 	id = SPECIES_HUMAN
+	monitor_icon = "user"
+	monitor_color = "#2ee81a"
 	default_color = "FFFFFF"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE)
 	default_features = list("mcolor" = "#FFFFFF", "wings" = "None")

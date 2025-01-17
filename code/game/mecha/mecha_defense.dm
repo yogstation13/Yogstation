@@ -105,6 +105,15 @@
 	log_message("Hit by [AM].", LOG_MECHA, color="red")
 	. = ..()
 
+/obj/mecha/tesla_act(source, power, tesla_flags, shocked_targets)
+	. = ..()
+	if((tesla_flags & TESLA_MOB_DAMAGE|TESLA_OBJ_DAMAGE))
+		var/effects_scaling = (power/160)**(1/3)
+		take_damage(round(3 * effects_scaling), BURN, ELECTRIC)
+		adjust_overheat(min(effects_scaling * (100 - armor.getRating(ELECTRIC)) / 100, OVERHEAT_EMP_MAX - overheat))
+	if(wrecked && (tesla_flags & TESLA_MACHINE_EXPLOSIVE))
+		ADD_TRAIT(src, TRAIT_TESLA_IGNORE, INNATE_TRAIT)
+		detonate(2, FALSE)
 
 /obj/mecha/bullet_act(obj/projectile/incoming)
 	if((!enclosed || incoming.penetration_flags & PENETRATE_OBJECTS) && occupant && !silicon_pilot && !incoming.force_hit && (incoming.def_zone == BODY_ZONE_HEAD || incoming.def_zone == BODY_ZONE_CHEST)) //allows bullets to hit the pilot of open-canopy mechs
@@ -214,7 +223,7 @@
 	if(wrecked)
 		try_repair(tool, user)
 	else if(atom_integrity < max_integrity)
-		while(atom_integrity < max_integrity && tool.use_tool(src, user, 1 SECONDS, volume=50, amount=1))
+		while(atom_integrity < max_integrity && tool.use_tool(src, user, 1 SECONDS, volume=50, amount=1, skill_check = SKILL_MECHANICAL))
 			if(internal_damage & MECHA_INT_TANK_BREACH)
 				clearInternalDamage(MECHA_INT_TANK_BREACH)
 				to_chat(user, span_notice("You repair the damaged gas tank."))
@@ -336,9 +345,11 @@
 		return ..()
 
 /obj/mecha/proc/try_repair(obj/item/I, mob/living/user)
-	if(!capacitor?.rating)
+	if(!(capacitor || user.skill_check(SKILL_TECHNICAL, EXP_GENIUS) || user.skill_check(SKILL_MECHANICAL, EXP_GENIUS))) // with enough technical wizardry, you can repair ANY mech
 		to_chat(user, span_warning("[src] is damaged beyond repair, there is nothing you can do."))
 		return
+	
+	var/effective_skill = user.get_skill(SKILL_MECHANICAL) + capacitor?.rating
 
 	switch(repair_state)
 		if(MECHA_WRECK_CUT)
@@ -347,7 +358,7 @@
 					span_notice("[user] begins to weld together \the [src]'s broken parts..."),
 					span_notice("You begin welding together \the [src]'s broken parts..."),
 				)
-				if(I.use_tool(src, user, 20 SECONDS / capacitor.rating, amount = 5, volume = 100, robo_check = TRUE))
+				if(I.use_tool(src, user, 20 SECONDS / effective_skill, amount = 5, volume = 100, skill_check = SKILL_MECHANICAL))
 					repair_state = MECHA_WRECK_DENTED
 					repair_hint = span_notice("The chassis has suffered major damage and will require the dents to be smoothed out with a <b>welder</b>.")
 					to_chat(user, span_notice("The parts are loosely reattached, but are dented wildly out of place."))
@@ -358,7 +369,7 @@
 					span_notice("[user] welds out the many, many dents in \the [src]'s chassis..."),
 					span_notice("You weld out the many, many dents in \the [src]'s chassis..."),
 				)
-				if(I.use_tool(src, user, 20 SECONDS / capacitor.rating, amount = 5, volume = 100, robo_check = TRUE))
+				if(I.use_tool(src, user, 20 SECONDS / effective_skill, amount = 5, volume = 100, skill_check = SKILL_MECHANICAL))
 					repair_state = MECHA_WRECK_LOOSE
 					repair_hint = span_notice("The mecha wouldn't make it two steps before falling apart. The bolts must be tightened with a <b>wrench</b>.")
 					to_chat(user, span_notice("The chassis has been repaired, but the bolts are incredibly loose and need to be tightened."))
@@ -369,7 +380,7 @@
 					span_notice("[user] slowly tightens the bolts of \the [src]..."),
 					span_notice("You slowly tighten the bolts of \the [src]..."),
 				)
-				if(I.use_tool(src, user, 18 SECONDS / capacitor.rating, volume = 50, robo_check = TRUE))
+				if(I.use_tool(src, user, 18 SECONDS / effective_skill, volume = 50, skill_check = SKILL_MECHANICAL))
 					repair_state = MECHA_WRECK_UNWIRED
 					repair_hint = span_notice("The mech is nearly ready, but the <b>wiring</b> has been fried and needs repair.")
 					to_chat(user, span_notice("The bolts are tightened and the mecha is looking as good as new, but the wiring was fried in the destruction and needs repair."))
@@ -380,13 +391,14 @@
 					span_notice("[user] starts repairing the wiring on \the [src]..."),
 					span_notice("You start repairing the wiring on \the [src]..."),
 				)
-				if(I.use_tool(src, user, 12 SECONDS / capacitor.rating, amount = 5, volume = 50, robo_check = TRUE))
+				if(I.use_tool(src, user, 12 SECONDS / effective_skill, amount = 5, volume = 50, skill_check = SKILL_MECHANICAL))
 					repair_state = MECHA_WRECK_MISSING_CAPACITOR
-					repair_hint = span_notice("The wiring is functional, but it's still missing a <b>capacitor</b>.")
+					repair_hint = span_notice("The wiring is functional, but its <b>capacitor</b> needs to be replaced.")
 
 		if(MECHA_WRECK_MISSING_CAPACITOR)
 			if(istype(I, /obj/item/stock_parts/capacitor))
-				QDEL_NULL(capacitor)
+				if(capacitor)
+					QDEL_NULL(capacitor)
 				capacitor = I
 				I.forceMove(src)
 				user.visible_message(span_notice("[user] replaces the capacitor of \the [src]."))
@@ -489,11 +501,12 @@
 		playsound(src, 'sound/machines/triple_beep.ogg', 75, TRUE)
 		addtimer(CALLBACK(src, PROC_REF(detonate), self_destruct), 0.5 SECONDS)
 
-/obj/mecha/proc/detonate(explosion_size)
+/obj/mecha/proc/detonate(explosion_size, self_delete = TRUE)
 	if(QDELETED(src))
 		return
 	explosion(get_turf(src), round(explosion_size / 4), round(explosion_size / 2), round(explosion_size))
-	qdel(src)
+	if(self_delete)
+		qdel(src)
 
 /obj/mecha/atom_fix()
 	. = ..()

@@ -24380,7 +24380,6 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/command/glass{
-	id_tag = "secondary_aicore_exterior";
 	name = "AI Networking"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/ai_sat,
@@ -54342,8 +54341,8 @@
 	name = "Reception Window"
 	},
 /obj/machinery/door/window/brigdoor/eastright{
-	name = "Head of Personnel's Desk";
-	dir = 1
+	dir = 1;
+	name = "Head of Personnel's Desk"
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -69556,6 +69555,31 @@
 /obj/effect/turf_decal/trimline/atmos/warning/lower/nobottom,
 /turf/open/floor/plasteel,
 /area/engine/atmos/distro)
+"tXz" = (
+/obj/machinery/door/airlock/research{
+	name = "Nanite Laboratory"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/access/any/science/general,
+/turf/open/floor/plasteel/dark,
+/area/science/nanite)
 "tXJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -85132,31 +85156,6 @@
 "yhp" = (
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness/recreation)
-"yhs" = (
-/obj/machinery/door/airlock/research{
-	name = "Nanite Laboratory"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/access/any/science/general,
-/turf/open/floor/plating,
-/area/science/nanite)
 "yhz" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -246749,7 +246748,7 @@ uoH
 tme
 tme
 vTj
-yhs
+tXz
 vTj
 tme
 tme

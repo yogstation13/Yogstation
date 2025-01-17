@@ -166,7 +166,7 @@
 
 	update_appearance(UPDATE_ICON)
 
-/obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, robo_check)
+/obj/item/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks, skill_check)
 	target.add_overlay(sparks)
 	. = ..()
 	target.cut_overlay(sparks)

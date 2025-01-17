@@ -1,7 +1,7 @@
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_Mentor_pm
 /client/proc/cmd_mentor_pm_panel()
 	set category = "Mentor"
-	set name = "Mentor PM"
+	set name = "Mentor PM Panel"
 
 	if(!is_mentor())
 		to_chat(src, "<font color='red'>Error: Mentor-PM-Panel: Only Mentors and Admins may use this command.</font>", confidential=TRUE)
@@ -9,10 +9,13 @@
 
 	var/list/client/targets[0]
 	for(var/client/T)
-		targets["[T]"] = T
+		if(T.mob)
+			targets["[T.mob.name]"] = T
+		else
+			targets["[T]"] = T
 
 	var/list/sorted = sortList(targets)
-	var/target = input(src,"To whom shall we send a message?","Mentor PM",null) in sorted|null
+	var/target = input(src,"To whom shall we send a message?","Mentor PM",null) as null|anything in sorted|null
 	cmd_mentor_pm(targets[target],null)
 	SSblackbox.record_feedback("tally", "Mentor_verb", 1, "APM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -90,7 +93,7 @@
 		
 	var/datum/DBQuery/add_mhelp_query = SSdbcore.NewQuery(
 		"INSERT INTO `[format_table_name("mentor_interactions")]` (round_id, ckey, ckey_mentor, target_ckey, target_mentor, message) VALUES (:round, :send, :smentor, :receive, :rmentor, :msg);",
-		list("round" = GLOB.round_id, "send" = ckey, "smentor" = is_mentor(), "receive" = C.ckey, "rmentor" = C.is_mentor(), "msg" = msg)
+		list("round" = GLOB.round_id, "send" = ckey, "smentor" = is_mentor(), "receive" = discord_id ? whom : C.ckey, "rmentor" = discord_id ? TRUE : C.is_mentor(), "msg" = msg)
 	)
 	if(!add_mhelp_query.Execute())
 		message_admins("Failed insert mhelp into mhelp DB. Check the SQL error logs for more details.")

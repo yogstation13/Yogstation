@@ -9,20 +9,21 @@
 															//T-Ray
 															//radiation eyes
 															//chem goggs
-															//mesons
 															list("module_name" = "crew manifest", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "digital messenger", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "atmosphere sensor", "tab"=TRUE, "title"="Atmospheric sensor", "cost" = 5),
 															list("module_name" = "photography module", "tab"=FALSE, "cost" = 5),
 															list("module_name" = "remote signaller", "tab"=TRUE, "title"="Remote signaller", "cost" = 10),
-															//list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
-															//list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
+															list("module_name" = "medical records", "tab"=TRUE, "title"="Medical records", "cost" = 10),
+															list("module_name" = "security records", "tab"=TRUE, "title"="Security records", "cost" = 10),
 															list("module_name" = "camera zoom", "tab"=FALSE, "cost" = 10),
 															list("module_name" = "host scan", "tab"=TRUE, "title"="Host Bioscan settings", "cost" = 10),
 															//"camera jack" = 10,
 															//"heartbeat sensor" = 10,
 															//"projection array" = 15,
 															list("module_name" = "medical HUD", "tab"=FALSE, "cost" = 20),
+															list("module_name" = "meson HUD", "tab"=FALSE, "cost" = 20),
+															list("module_name" = "nightvision HUD", "tab"=FALSE, "cost" = 20),
 															list("module_name" = "security HUD", "tab"=FALSE, "cost" = 20),
 															list("module_name" = "loudness booster", "tab"=TRUE, "title"="Sound Synthesizer", "cost" = 20),
 															list("module_name" = "newscaster", "tab"=FALSE, "cost" = 20),
@@ -41,6 +42,11 @@
 
 /mob/living/silicon/pai/var/cable_status = "Retracted"
 
+/mob/living/silicon/pai/var/list/med_record = list()
+/mob/living/silicon/pai/var/list/sec_record = list()
+/mob/living/silicon/pai/var/selected_med_record
+/mob/living/silicon/pai/var/selected_sec_record
+
 /mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -58,26 +64,46 @@
 	data["master"] = master
 	data["masterdna"] = master_dna
 	data["ram"] = ram
-	if(!isnull(environment))
-		data["pressure"] = round(pressure,0.1)
-		data["gases"] = gases
-		data["temperature"] = round(environment.return_temperature()-T0C)
-	else
-		data["pressure"] = pressure
-		data["gases"] = gases
-		data["temperature"] = null
+	data["pressure"] = !isnull(environment) ? round(pressure,0.1) : pressure
+	data["gases"] = gases
+	data["temperature"] = !isnull(environment) ? round(environment.return_temperature()-T0C) : null
 	data["hacking"] = hacking
 	data["hackprogress"] = hackprogress
 	data["cable"] = cable_status
-	if(isnull(cable))
-		data["door"] = null
-	else
-		data["door"] = cable.machine
+	data["door"] = isnull(cable) ? null : cable.machine
 	data["code"] = signaler.code
 	data["frequency"] = signaler.frequency
 	data["minFrequency"] = MIN_FREE_FREQ
 	data["maxFrequency"] = MAX_FREE_FREQ
 	data["color"] = signaler.label_color
+	if(GLOB.data_core.general && GLOB.data_core.medical)
+		med_record = list() //Important to reset it here so it doesn't readd records endlessly
+		for(var/datum/data/record/M in sortRecord(GLOB.data_core.medical))
+			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+				if(R.fields["id"] == M.fields["id"])
+					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
+					med_record += list(new_record)
+					break
+	if(GLOB.data_core.general && GLOB.data_core.security)
+		sec_record = list()
+		for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
+			for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+				if(R.fields["id"] == S.fields["id"])
+					var/list/crimes = list()
+					for(var/datum/data/crime/crime in S.fields["crimes"])
+						crime = list("crime_name" = crime.crimeName, "crime_details" = crime.crimeDetails, "author" = crime.author, "time_added" = crime.time)
+						crimes += list(crime)
+					var/list/comments = list()
+					for(var/datum/data/comment/comment in S.fields["comments"])
+						comment = list("comment_text" = comment.commentText, "author" = comment.author, "time" = comment.time)
+						comments += list(comment)
+					var/list/new_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
+					sec_record += list(new_record)
+					break
+	data["med_records"] = med_record
+	data["sec_records"] = sec_record
+	data["selected_med_record"] = selected_med_record
+	data["selected_sec_record"] = selected_sec_record
 	return data
 
 /mob/living/silicon/pai/ui_act(action, params)
@@ -89,7 +115,6 @@
 				CheckDNA(get(card, /mob/living/carbon/human), src) //you should only be able to check when directly in hand, muh immersions?
 			else
 				to_chat(src, "You are not being carried by anyone!")
-				return 0 // FALSE ? If you return here you won't call paiinterface() below
 		if("update_image")
 			card.setEmotion(params["updated_image"])
 		if("buy")
@@ -99,9 +124,15 @@
 					return
 				software.Add(params["name"])
 				ram -= params["cost"]
+				if(params["name"] == "digital messenger")
+					create_modularInterface()
 				if(params["name"] == "medical HUD")
 					var/datum/atom_hud/med = GLOB.huds[med_hud]
 					med.show_to(src)
+				if(params["name"] == "meson HUD")
+					sight |= SEE_TURFS
+				if(params["name"] == "nightvision HUD")
+					lighting_cutoff = LIGHTING_CUTOFF_HIGH
 				if(params["name"] == "security HUD")
 					var/datum/atom_hud/sec = GLOB.huds[sec_hud]
 					sec.show_to(src)
@@ -178,6 +209,8 @@
 				internal_instrument = new(src)
 			internal_instrument.interact(src)
 		if("cable")
+			if(cable_status == "Extended")
+				return
 			var/turf/T = get_turf(loc)
 			cable = new /obj/item/pai_cable(T)
 			if(get(card, /mob/living/carbon/human))
@@ -198,6 +231,42 @@
 			hackdoor = null
 			cable = null
 			cable_status = "Retracted"
+		if("med_record")
+			if(!GLOB.data_core.general||!GLOB.data_core.medical)
+				return
+			for(var/datum/data/record/M in sortRecord(GLOB.data_core.medical))
+				var/done = FALSE
+				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+					if(M.fields["id"] == params["record"])
+						selected_med_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "blood_type" = M.fields["blood_type"], "dna" = M.fields["b_dna"], "minor_disabilities" = M.fields["mi_dis"], "minor_disabilities_details" = M.fields["mi_dis_d"], "major_disabilities" = M.fields["ma_dis"], "major_disabilities_details" = M.fields["ma_dis_d"], "allergies" = M.fields["alg"], "allergies_details" = M.fields["alg_d"], "current_diseases" = M.fields["cdi"], "current_diseases_details" = M.fields["cdi_d"], "important_notes" = M.fields["notes"])
+						done = TRUE
+						break
+				if(done)
+					break
+		if("med_record back")
+			selected_med_record = null
+		if("sec_record")
+			if(!GLOB.data_core.general||!GLOB.data_core.medical)
+				return
+			for(var/datum/data/record/S in sortRecord(GLOB.data_core.security))
+				var/done = FALSE
+				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
+					if(S.fields["id"] == params["record"])
+						var/list/crimes = list()
+						for(var/datum/data/crime/crime in S.fields["crimes"])
+							crime = list("crime_name" = crime.crimeName, "crime_details" = crime.crimeDetails, "author" = crime.author, "time_added" = crime.time)
+							crimes += list(crime)
+						var/list/comments = list()
+						for(var/datum/data/comment/comment in S.fields["comments"])
+							comment = list("comment_text" = comment.commentText, "author" = comment.author, "time" = comment.time)
+							comments += list(comment)
+						selected_sec_record = list("name" = R.fields["name"], "id" = R.fields["id"], "gender" = R.fields["gender"], "age" = R.fields["age"], "rank" = R.fields["rank"], "fingerprint" = R.fields["fingerprint"], "p_state" = R.fields["p_stat"], "m_state" = R.fields["m_stat"], "criminal_status" = S.fields["criminal"], "crimes" = crimes, "important_notes" = S.fields["notes"], "comments" = comments)
+						done = TRUE
+						break
+				if(done)
+					break
+		if("sec_record back")
+			selected_sec_record = null
 	update_appearance(UPDATE_ICON)
 
 /mob/living/silicon/pai/ui_state(mob/user)
@@ -224,63 +293,6 @@
 	else
 		to_chat(P, "[M] does not seem like [M.p_theyre()] going to provide a DNA sample willingly.")
 
-//Leaving the medical & security records stuff commented out till they can be added back
-//
-//// Medical Records
-///mob/living/silicon/pai/proc/softwareMedicalRecord()
-//	switch(subscreen)
-//		if(0)
-//			. += "<h3>Medical Records</h3><HR>"
-//			if(GLOB.data_core.general)
-//				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
-//					. += "<A href='?src=[REF(src)];med_rec=[R.fields["id"]];software=medicalrecord;sub=1'>[R.fields["id"]]: [R.fields["name"]]<BR>"
-//		if(1)
-//			. += "<CENTER><B>Medical Record</B></CENTER><BR>"
-//			if(medicalActive1 in GLOB.data_core.general)
-//				. += "Name: [medicalActive1.fields["name"]] ID: [medicalActive1.fields["id"]]<BR>\nGender: [medicalActive1.fields["gender"]]<BR>\nAge: [medicalActive1.fields["age"]]<BR>\nFingerprint: [medicalActive1.fields["fingerprint"]]<BR>\nPhysical Status: [medicalActive1.fields["p_stat"]]<BR>\nMental Status: [medicalActive1.fields["m_stat"]]<BR>"
-//			else
-//				. += "<pre>Requested medical record not found.</pre><BR>"
-//			if(medicalActive2 in GLOB.data_core.medical)
-//				. += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='?src=[REF(src)];field=blood_type'>[medicalActive2.fields["blood_type"]]</A><BR>\nDNA: <A href='?src=[REF(src)];field=b_dna'>[medicalActive2.fields["b_dna"]]</A><BR>\n<BR>\nMinor Disabilities: <A href='?src=[REF(src)];field=mi_dis'>[medicalActive2.fields["mi_dis"]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=mi_dis_d'>[medicalActive2.fields["mi_dis_d"]]</A><BR>\n<BR>\nMajor Disabilities: <A href='?src=[REF(src)];field=ma_dis'>[medicalActive2.fields["ma_dis"]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=ma_dis_d'>[medicalActive2.fields["ma_dis_d"]]</A><BR>\n<BR>\nAllergies: <A href='?src=[REF(src)];field=alg'>[medicalActive2.fields["alg"]]</A><BR>\nDetails: <A href='?src=[REF(src)];field=alg_d'>[medicalActive2.fields["alg_d"]]</A><BR>\n<BR>\nCurrent Diseases: <A href='?src=[REF(src)];field=cdi'>[medicalActive2.fields["cdi"]]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='?src=[REF(src)];field=cdi_d'>[medicalActive2.fields["cdi_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=[REF(src)];field=notes'>[medicalActive2.fields["notes"]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
-//			else
-//				. += "<pre>Requested medical record not found.</pre><BR>"
-//			. += "<BR>\n<A href='?src=[REF(src)];software=medicalrecord;sub=0'>Back</A><BR>"
-//	return .
-//
-//// Security Records
-///mob/living/silicon/pai/proc/softwareSecurityRecord()
-//	. = ""
-//	switch(subscreen)
-//		if(0)
-//			. += "<h3>Security Records</h3><HR>"
-//			if(GLOB.data_core.general)
-//				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
-//					. += "<A href='?src=[REF(src)];sec_rec=[R.fields["id"]];software=securityrecord;sub=1'>[R.fields["id"]]: [R.fields["name"]]<BR>"
-//		if(1)
-//			. += "<h3>Security Record</h3>"
-//			if(securityActive1 in GLOB.data_core.general)
-//				. += "Name: <A href='?src=[REF(src)];field=name'>[securityActive1.fields["name"]]</A> ID: <A href='?src=[REF(src)];field=id'>[securityActive1.fields["id"]]</A><BR>\nGender: <A href='?src=[REF(src)];field=gender'>[securityActive1.fields["gender"]]</A><BR>\nAge: <A href='?src=[REF(src)];field=age'>[securityActive1.fields["age"]]</A><BR>\nRank: <A href='?src=[REF(src)];field=rank'>[securityActive1.fields["rank"]]</A><BR>\nFingerprint: <A href='?src=[REF(src)];field=fingerprint'>[securityActive1.fields["fingerprint"]]</A><BR>\nPhysical Status: [securityActive1.fields["p_stat"]]<BR>\nMental Status: [securityActive1.fields["m_stat"]]<BR>"
-//			else
-//				. += "<pre>Requested security record not found,</pre><BR>"
-//			if(securityActive2 in GLOB.data_core.security)
-//				. += "<BR>"
-//				. += "Security Data<BR>"
-//				. += "Criminal Status: [securityActive2.fields["criminal"]]<BR><BR>"
-//				. += "Crimes:<BR>"
-//				for(var/datum/data/crime/crime in securityActive2.fields["crimes"])
-//					. += "\t[crime.crimeName]: [crime.crimeDetails]<BR>"
-//				. += "<BR>"
-//				. += "Important Notes:<BR>"
-//				. += "\t[securityActive2.fields["notes"]]<BR><BR>"
-//				. += "<CENTER><B>Comments/Log</B></CENTER><BR>"
-//				for(var/datum/data/comment/comment in securityActive2.fields["comments"])
-//					. += "\t[comment.commentText] - [comment.author] [comment.time]<BR>"
-//			else
-//				. += "<pre>Requested security record not found,</pre><BR>"
-//			. += "<BR>\n<A href='?src=[REF(src)];software=securityrecord;sub=0'>Back</A><BR>"
-//	return .
-//
-//
 //// Camera Jack - Clearly not finished
 ///mob/living/silicon/pai/proc/softwareCamera()
 //	var/dat = "<h3>Camera Jack</h3>"

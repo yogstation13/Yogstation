@@ -236,25 +236,10 @@
 	var/tesla_power = 25000
 	var/tesla_range = 20
 	var/tesla_flags = TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE
+	clothing_traits = list(TRAIT_TESLA_IGNORE)
 	cooldown_message = span_danger("The tesla capacitors on the reactive tesla armor are still recharging! The armor merely emits some sparks.")
 	emp_message = span_warning("The tesla capacitors beep ominously for a moment.")
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100, ELECTRIC = 100)
-
-/obj/item/clothing/suit/armor/reactive/tesla/dropped(mob/user)
-	..()
-	if(istype(user))
-		user.flags_1 &= ~TESLA_IGNORE_1
-		UnregisterSignal(user, COMSIG_LIVING_ELECTROCUTE_ACT)
-
-/obj/item/clothing/suit/armor/reactive/tesla/equipped(mob/user, slot)
-	..()
-	if(slot_flags & slot) //Was equipped to a valid slot for this item?
-		user.flags_1 |= TESLA_IGNORE_1
-		RegisterSignal(user, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(handle_shock))
-
-/obj/item/clothing/suit/armor/reactive/tesla/proc/handle_shock(mob/living/victim, shock_damage, obj/source, siemens_coeff = 1, zone = null, tesla_shock = 0, illusion = 0)
-	if(tesla_shock)
-		return COMPONENT_NO_ELECTROCUTE_ACT
 
 /obj/item/clothing/suit/armor/reactive/tesla/cooldown_activation(mob/living/carbon/human/owner)
 	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
@@ -270,9 +255,9 @@
 /obj/item/clothing/suit/armor/reactive/tesla/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message(span_danger("[src] blocks [attack_text], but pulls a massive charge of energy into [owner] from the surrounding environment!"))
 	if(istype(owner))
-		owner.flags_1 &= ~TESLA_IGNORE_1
-	electrocute_mob(owner, get_area(src), src, 1)
-	owner.flags_1 |= TESLA_IGNORE_1
+		detach_clothing_traits(TRAIT_TESLA_IGNORE)
+	electrocute_mob(owner, get_area(src), src, zone = null)
+	attach_clothing_traits(TRAIT_TESLA_IGNORE)
 	return NONE
 
 //Repulse
