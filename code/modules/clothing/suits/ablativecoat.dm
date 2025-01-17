@@ -7,7 +7,7 @@
 	flags_inv = HIDEHAIR | HIDEEARS
 	armor_type = /datum/armor/hooded_ablative
 	strip_delay = 30
-	var/hit_reflect_chance = 50
+	//var/hit_reflect_chance = 50  //monkestation removal
 
 /datum/armor/hooded_ablative
 	melee = 10
@@ -20,8 +20,8 @@
 /obj/item/clothing/head/hooded/ablative/IsReflect(def_zone)
 	if(def_zone != BODY_ZONE_HEAD) //If not shot where ablative is covering you, you don't get the reflection bonus!
 		return FALSE
-	if (prob(hit_reflect_chance))
-		return TRUE
+	//if(prob(hit_reflect_chance)) monkestation edit
+	return TRUE
 
 /obj/item/clothing/suit/hooded/ablative
 	name = "ablative trenchcoat"
@@ -35,21 +35,23 @@
 	hoodtype = /obj/item/clothing/head/hooded/ablative
 	strip_delay = 30
 	equip_delay_other = 40
-	var/hit_reflect_chance = 50
+	//var/hit_reflect_chance = 50  //monkestation removal
 
 /obj/item/clothing/suit/hooded/ablative/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/hooded/ablative/IsReflect(def_zone)
+	if(def_zone == "") //something is fucky and this happens every now and then but the damage defaults to the person's chest so this is okayish
+		return TRUE
 	if(!(def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))) //If not shot where ablative is covering you, you don't get the reflection bonus!
 		return FALSE
-	if (prob(hit_reflect_chance))
-		return TRUE
+	//if(prob(hit_reflect_chance)) monkestation edit
+	return TRUE
 
 /obj/item/clothing/suit/hooded/ablative/ToggleHood()
 	. = ..()
-	if (!hood_up)
+	if(!hood_up)
 		return
 	var/mob/living/carbon/user = loc
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
@@ -58,7 +60,7 @@
 	balloon_alert(user, "you put on the hood, and enable the hud")
 
 /obj/item/clothing/suit/hooded/ablative/RemoveHood()
-	if (!hood_up)
+	if(!hood_up)
 		return ..()
 	var/mob/living/carbon/user = loc
 	var/datum/atom_hud/sec_hud = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]

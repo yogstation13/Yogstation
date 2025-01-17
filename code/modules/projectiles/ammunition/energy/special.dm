@@ -56,6 +56,7 @@
 /obj/item/ammo_casing/energy/trap
 	projectile_type = /obj/projectile/energy/trap
 	select_name = "snare"
+	e_cost = 200 //monkestation addition
 	harmful = FALSE
 
 /obj/item/ammo_casing/energy/tesla_cannon

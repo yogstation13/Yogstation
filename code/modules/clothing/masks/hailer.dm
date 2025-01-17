@@ -190,9 +190,36 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 /obj/item/clothing/mask/gas/sechailer/proc/reset_overuse_cooldown()
 	overuse_cooldown = FALSE
 
+//MONKESTATION EDIT START
+/obj/item/clothing/mask/gas/sechailer/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_POINTED, PROC_REF(point_handler))
+
+/obj/item/clothing/mask/gas/sechailer/proc/point_handler(mob/pointing_mob, mob/pointed_at)
+	SIGNAL_HANDLER
+
+	if(!COOLDOWN_FINISHED(src, hailer_cooldown))
+		return
+
+
+	if(!isliving(pointed_at))
+		return
+
+	if(pointing_mob == pointed_at)
+		return
+
+	halt()
+	pointed_at.do_alert_animation()
+
+/obj/item/clothing/mask/gas/sechailer/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_POINTED)
+
+//MONKESTATION EDIT STOP
+
 /obj/item/clothing/mask/whistle
-	name = "police whistle"
-	desc = "A police whistle for when you need to make sure the criminals hear you."
+	name = "whistle" //monkestation edit
+	desc = "A whistle for when you need to make sure the criminals hear you." //monkestation edit
 	icon_state = "whistle"
 	inhand_icon_state = null
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_NECK
@@ -205,11 +232,39 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 	if(!COOLDOWN_FINISHED(src, whistle_cooldown))
 		return
 	COOLDOWN_START(src, whistle_cooldown, 10 SECONDS)
-	user.audible_message("<font color='red' size='5'><b>HALT!</b></font>")
+	//user.audible_message("<font color='red' size='5'><b>HALT!</b></font>") monkestation removal
+	user.audible_message("[user] signals on their whistle!") //monkestation edit
 	playsound(src, 'sound/misc/whistle.ogg', 50, FALSE, 4)
 
 /datum/action/item_action/halt
 	name = "HALT!"
+
+//MONKESTATION EDIT START
+/obj/item/clothing/mask/whistle/equipped(mob/user, slot)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_POINTED, PROC_REF(point_handler))
+
+/obj/item/clothing/mask/whistle/proc/point_handler(mob/pointing_mob, mob/pointed_at)
+	SIGNAL_HANDLER
+
+	if(!COOLDOWN_FINISHED(src, whistle_cooldown))
+		return
+
+	if(!isliving(pointed_at))
+		return
+
+	if(pointing_mob == pointed_at)
+		return
+	pointing_mob.audible_message("[pointing_mob] signals on their whistle!") //monkestation edit
+	playsound(src, 'sound/misc/whistle.ogg', 50, FALSE, 4)
+	pointed_at.do_alert_animation()
+	COOLDOWN_START(src, whistle_cooldown, 10 SECONDS)
+
+/obj/item/clothing/mask/whistle/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_POINTED)
+
+//MONKESTATION EDIT STOP
 
 /obj/item/clothing/mask/party_horn
 	name = "party horn"

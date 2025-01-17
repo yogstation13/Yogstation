@@ -11,12 +11,13 @@
 	inhand_icon_state = "smoke"
 	slot_flags = ITEM_SLOT_BELT
 	///It's extremely important to keep this list up to date. It helps to generate the insightful description of the smokebomb
-	var/static/list/bruh_moment = list("Dank", "Hip", "Lit", "Based", "Robust", "Bruh", "Gamer")
+	var/list/bruh_moment = list("Dank", "Hip", "Lit", "Based", "Robust", "Bruh", "Gamer") //monkestation edit
+	var/writing_utensil = "crayon" //monkestation edit
 
 ///Here we generate the extremely insightful description.
 /obj/item/grenade/smokebomb/Initialize(mapload)
 	. = ..()
-	desc = "The word '[pick(bruh_moment)]' is scribbled on it in crayon."
+	desc = "'[pick(bruh_moment)]' is scribbled on it in [writing_utensil]." //monkestation edit
 
 ///Here we generate some smoke and also damage blobs??? for some reason. Honestly not sure why we do that.
 /obj/item/grenade/smokebomb/detonate(mob/living/lanced_by)
@@ -34,3 +35,12 @@
 		var/damage = round(30/(get_dist(blob, src) + 1))
 		blob.take_damage(damage, BURN, MELEE, 0)
 	qdel(src)
+
+//MONKESTATION EDIT START
+/obj/item/grenade/smokebomb/security
+	name = "security smoke grenade"
+	icon_state = "smokered"
+	//dumb list name but i respect the joke
+	bruh_moment = list("Cover up", "Plausible Deniability", "Clown B-Gone", "Smoke Em!", "Syndicate Repellant")
+	writing_utensil = "chalk"
+//MONKESTATION EDIT STOP

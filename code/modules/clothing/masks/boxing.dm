@@ -7,6 +7,7 @@
 	visor_flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/adjust)
+	alternate_worn_layer = UNDER_SUIT_LAYER //monkestation edit
 
 /obj/item/clothing/mask/balaclava/attack_self(mob/user)
 	adjustmask(user)
@@ -55,10 +56,12 @@
 	icon_state = "luchar"
 
 /obj/item/clothing/mask/russian_balaclava
-	name = "russian balaclava"
-	desc = "Protects your face from snow."
+	name = "thermal balaclava" //monkestation edit
+	desc = "Protects your face from the cold." //monkestation edit
 	icon_state = "rus_balaclava"
 	inhand_icon_state = "balaclava"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	visor_flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	w_class = WEIGHT_CLASS_SMALL
+	alternate_worn_layer = UNDER_SUIT_LAYER //monkestation edit
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT  //monkestation edit

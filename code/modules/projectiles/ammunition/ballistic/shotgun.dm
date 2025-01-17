@@ -93,8 +93,8 @@
 	desc = "A shotgun casing filled with densely-packed rubber balls, used to incapacitate crowds from a distance."
 	icon_state = "rshell"
 	projectile_type = /obj/projectile/bullet/pellet/shotgun_rubbershot
-	pellets = 5 //monkestation edit
-	variance = 25 // 5 pellets for 15 stam and 3 damage each
+	pellets = 6 //monkestation edit
+	variance = 25 // 6 pellets for 15 stam and 1 damage each
 	custom_materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*2)
 
 /obj/item/ammo_casing/shotgun/incapacitate

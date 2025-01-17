@@ -1597,6 +1597,7 @@
 		"pepperspray",
 		"seclite",
 		"zipties",
+		"dragnet_beacon",
 		"inspector",
 		"rubber_c35", //monkestation edit: taco sec
 	)

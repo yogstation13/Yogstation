@@ -21,14 +21,19 @@
 		/obj/item/storage/backpack/duffelbag/sec = 3,
 		/obj/item/clothing/under/rank/security/officer = 3,
 		/obj/item/clothing/shoes/jackboots/sec = 3,
+		/obj/item/clothing/gloves/color/black = 3,
 		/obj/item/clothing/head/beret/sec = 3,
 		/obj/item/clothing/head/soft/sec = 3,
 		/obj/item/clothing/mask/bandana/striped/security = 3,
-		/obj/item/clothing/gloves/color/black = 3,
+		/obj/item/clothing/mask/balaclava = 3, //monkestation edit
+		/obj/item/clothing/mask/russian_balaclava = 3, //monkestation edit
 		/obj/item/clothing/under/rank/security/officer/skirt = 3,
 		/obj/item/clothing/under/rank/security/officer/grey = 3,
+		/obj/item/clothing/shoes/sneakers/secred = 3, //Monkestation edit
 		/obj/item/clothing/under/pants/slacks = 3,
 		/obj/item/clothing/under/rank/security/officer/blueshirt = 3,
+		/obj/item/clothing/head/helmet/blueshirt = 3, //monkestation edit
+		/obj/item/clothing/suit/armor/vest/blueshirt = 3, //monkestation edit
 		/obj/item/clothing/suit/armor/secduster = 3,
 		/obj/item/clothing/head/helmet/hat/cowboy = 3,
 		/obj/item/clothing/head/costume/constable = 3, //monkestation edit
@@ -36,11 +41,23 @@
 		/obj/item/clothing/under/rank/security/brig_physician = 3, //Monkestation edit
 		/obj/item/clothing/under/rank/security/brig_physician/skirt = 3, //Monkestation edit
 		/obj/item/clothing/suit/toggle/labcoat/brig_physician = 3, //Monkestation edit
-		/obj/item/clothing/shoes/sneakers/secred = 3, //Monkestation edit
 		/obj/item/clothing/under/civilprotection_uniform = 1, //monkestation edit
-		/obj/item/clothing/gloves/civilprotection_gloves = 1,
 		/obj/item/clothing/shoes/civilprotection_boots = 1, //monkestation edit
+		/obj/item/clothing/gloves/civilprotection_gloves = 1, //monkestation edit
+		/obj/item/clothing/head/helmet/civilprotection_helmet = 1, //monkestation edit
+		/obj/item/clothing/suit/armor/civilprotection_vest = 1, //monkestation edit
+		/obj/item/clothing/under/guardmanuniform = 1, //monkestation edit: Guardman
+		/obj/item/clothing/head/helmet/guardmanhelmet = 1, //monkestation edit: Guardman
+		/obj/item/clothing/suit/armor/guardmanvest = 1, //monkestation edit: Guardman
 	)
+	//MONKESTATION EDIT START
+	contraband = list(
+		/obj/item/clothing/under/color/red = 3,
+		/obj/item/clothing/shoes/sneakers/brown = 3,
+		/obj/item/clothing/head/helmet/surplus = 3,
+		/obj/item/clothing/suit/armor/surplus = 3,
+	)
+	//MONKESTATION EDIT STOP
 	premium = list(
 		/obj/item/clothing/under/rank/security/officer/formal = 3,
 		/obj/item/clothing/suit/jacket/officer/blue = 3,

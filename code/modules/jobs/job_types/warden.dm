@@ -59,8 +59,8 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	head = /obj/item/clothing/head/hats/warden/red
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	l_pocket = /obj/item/restraints/handcuffs
-	r_pocket = /obj/item/assembly/flash/handheld
+	l_pocket = /obj/item/assembly/flash/handheld
+	r_pocket = /obj/item/restraints/handcuffs
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec

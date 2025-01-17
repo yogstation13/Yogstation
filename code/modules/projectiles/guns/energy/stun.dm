@@ -6,12 +6,52 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode)
 	ammo_x_offset = 3
 
+//MONKESTATION EDIT START
+/obj/item/gun/energy/taser/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	playsound(src, 'monkestation/sound/effects/taser_charge.ogg', 45, TRUE, 1)
+	if(do_after(user, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+		return ..()
+
+/obj/item/gun/energy/taser/old
+	name = "old taser gun"
+	desc = "A low-capacity, energy-based stun gun used by security teams to subdue targets at range. There is a piece of tape loosely holding the cell in place..."
+
+/obj/item/gun/energy/taser/old/examine_more(mob/user)
+	. = ..()
+	. += span_notice("The cell is leaking a metallic smelling fluid from underneath the tape... Is this safe?")
+
+/obj/item/gun/energy/taser/old/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	if(prob(50))
+		do_sparks(rand(3, 4), FALSE, src)
+		to_chat(user, span_warning("[user]'s taser jams, sputtering acid onto [user]!"))
+		target = user //get tased
+		user.apply_damage(24, BURN, spread_damage = TRUE, wound_bonus = 10)
+		user.apply_damage(150, STAMINA)
+		if(prob(25))
+			user.adjust_fire_stacks(2)
+		user.ignite_mob()
+		return ..()
+	else
+		return ..()
+
+//MONKESTATION EDIT STOP
+
 /obj/item/gun/energy/e_gun/advtaser
 	name = "hybrid taser"
 	desc = "A dual-mode taser designed to fire both short-range high-power electrodes and long-range disabler beams."
 	icon_state = "advtaser"
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/disabler)
 	ammo_x_offset = 2
+
+//MONKESTATION EDIT START
+/obj/item/gun/energy/e_gun/advtaser/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	if(select == 1)
+		playsound(src, 'monkestation/sound/effects/taser_charge.ogg', 45, TRUE, 1)
+		if(do_after(user, 1 SECONDS, timed_action_flags = IGNORE_USER_LOC_CHANGE))
+			return ..()
+	else
+		return ..()
+//MONKESTATION EDIT STOP
 
 /obj/item/gun/energy/e_gun/advtaser/cyborg
 	name = "cyborg taser"

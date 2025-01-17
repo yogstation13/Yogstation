@@ -4,7 +4,7 @@
 	icon = 'icons/obj/weapons/guns/ballistic.dmi'
 	icon_state = "riotgun"
 	inhand_icon_state = "riotgun"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL //monkestation edit: bulky to normal
 	throw_speed = 2
 	throw_range = 7
 	force = 5

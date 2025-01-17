@@ -103,13 +103,15 @@
 
 /datum/supply_pack/security/supplies
 	name = "Security Supplies Crate"
-	desc = "Contains seven flashbangs, seven teargas grenades, six flashes, and seven handcuffs."
+	desc = "Contains seven flashbangs, seven smoke bombs, seven teargas grenades, six flashes, seven handcuffs, and two security utility vouchers." //monkestation edit
 	cost = CARGO_CRATE_VALUE * 3.5
 	access_view = ACCESS_ARMORY
 	contains = list(/obj/item/storage/box/flashbangs,
+					/obj/item/storage/box/sec_smokebomb, //monkestation edit
 					/obj/item/storage/box/teargas,
 					/obj/item/storage/box/flashes,
 					/obj/item/storage/box/handcuffs,
+					/obj/item/security_voucher/utility = 2, //monkestation edit
 				)
 	crate_name = "security supply crate"
 
@@ -209,12 +211,15 @@
 					/obj/item/storage/belt/bandolier = 3)
 	crate_name = "combat shotguns crate"
 
-/datum/supply_pack/security/armory/dragnet
+/datum/supply_pack/security/armory/dragnet //monkestation edit: dropped the amount to two from three
 	name = "DRAGnet Crate"
-	desc = "Contains three \"Dynamic Rapid-Apprehension of the Guilty\" netting devices, \
-		a recent breakthrough in law enforcement prisoner management technology."
+	desc = "Contains two \"Dynamic Rapid-Apprehension of the Guilty\" netting devices, \
+		a recent breakthrough in law enforcement prisoner management technology. Includes a DRAGnet beacon."
 	cost = CARGO_CRATE_VALUE * 5
-	contains = list(/obj/item/gun/energy/e_gun/dragnet = 3)
+	contains = list(
+		/obj/item/gun/energy/e_gun/dragnet = 2,
+		/obj/item/dragnet_beacon = 1,
+		)
 	crate_name = "\improper DRAGnet crate"
 
 /datum/supply_pack/security/armory/energy
@@ -234,10 +239,11 @@
 	crate_name = "laser carbine crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 
-/datum/supply_pack/security/armory/disabler_smg
+/datum/supply_pack/security/disabler_smg //monkestation edit
 	name = "Disabler SMG Crate"
 	desc = "Contains three disabler SMGs, capable of rapidly firing weak disabler beams."
-	cost = CARGO_CRATE_VALUE * 7
+	cost = CARGO_CRATE_VALUE * 6
+	access_view = ACCESS_SECURITY //monkestation edit
 	contains = list(/obj/item/gun/energy/disabler/smg = 3)
 	crate_name = "disabler smg crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma

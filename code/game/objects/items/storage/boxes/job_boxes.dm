@@ -127,7 +127,7 @@
 /obj/item/storage/box/survival/security
 	mask_type = /obj/item/clothing/mask/gas/sechailer
 
-/obj/item/storage/box/survival/security/radio/PopulateContents()
+/obj/item/storage/box/survival/security/PopulateContents() //monkestation edit
 	..() // we want the regular stuff too
 	new /obj/item/radio/off(src)
 

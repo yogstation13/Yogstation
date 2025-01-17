@@ -27,7 +27,7 @@
 
 /obj/item/ammo_casing/energy/disabler/smg
 	projectile_type = /obj/projectile/beam/disabler/weak
-	e_cost = 40
+	e_cost = 25 //monkestation edit: half the damage but twice the ammo roughly
 	fire_sound = 'sound/weapons/taser3.ogg'
 
 /obj/item/ammo_casing/energy/disabler/hos

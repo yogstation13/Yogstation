@@ -224,15 +224,15 @@ GLOBAL_LIST_EMPTY(security_officer_distribution)
 	suit = /obj/item/clothing/suit/armor/secduster //monkestation edit: cowboy sec
 	backpack_contents = list(
 		/obj/item/evidencebag = 1,
-		/obj/item/ammo_box/magazine/m35/rubber = 2,
-		/obj/item/gun/ballistic/automatic/pistol/paco/no_mag, //monkestation edit: Paco sec
+		/obj/item/security_voucher/primary, //monkestation edit: Voucher sec
+		/obj/item/security_voucher/utility, //monkestation edit
 		)
 	belt = /obj/item/modular_computer/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/jackboots/sec
-	l_pocket = /obj/item/restraints/handcuffs
-	r_pocket = /obj/item/assembly/flash/handheld
+	l_pocket = /obj/item/assembly/flash/handheld
+	r_pocket = /obj/item/restraints/handcuffs
 
 	backpack = /obj/item/storage/backpack/security
 	satchel = /obj/item/storage/backpack/satchel/sec

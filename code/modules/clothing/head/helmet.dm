@@ -65,6 +65,16 @@
 
 	return ..()
 
+//MONKESTATION EDIT START
+/obj/item/clothing/head/helmet/surplus
+	name = "surplus helmet"
+	desc = "Standard Security gear. Protects the head from impacts."
+	icon = 'monkestation/icons/obj/clothing/hats.dmi'
+	worn_icon = 'monkestation/icons/mob/head.dmi'
+	lefthand_file = 'monkestation/icons/mob/inhands/equipment/helmet_lefthand.dmi'
+	righthand_file = 'monkestation/icons/mob/inhands/equipment/helmet_righthand.dmi'
+//MONKESTATION EDIT STOP
+
 /obj/item/clothing/head/helmet/press
 	name = "press helmet"
 	desc = "A blue helmet used to distinguish <i>non-combatant</i> \"PRESS\" members, like if anyone cares."

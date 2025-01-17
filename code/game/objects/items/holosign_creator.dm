@@ -98,19 +98,36 @@
 
 /obj/item/holosign_creator/security
 	name = "security holobarrier projector"
-	desc = "A holographic projector that creates holographic security barriers."
+	desc = "A holographic projector that creates holographic security barriers. You can remotely open barriers with it."
 	icon_state = "signmaker_sec"
 	holosign_type = /obj/structure/holosign/barrier
-	creation_time = 30
+	creation_time = 2 SECONDS
 	max_signs = 6
+
+/obj/item/holosign_creator/security/afterattack(atom/target, mob/user)
+	var/obj/structure/holosign/barrier/barrier
+	if(target.type == holosign_type)
+		barrier = target
+		if(barrier.openable)
+			barrier.open(user)
+	return ..()
 
 /obj/item/holosign_creator/engineering
 	name = "engineering holobarrier projector"
-	desc = "A holographic projector that creates holographic engineering barriers."
+	desc = "A holographic projector that creates holographic engineering barriers. You can remotely open barriers with it."
 	icon_state = "signmaker_engi"
 	holosign_type = /obj/structure/holosign/barrier/engineering
-	creation_time = 30
+	creation_time = 2 SECONDS
 	max_signs = 6
+
+/obj/item/holosign_creator/engineering/afterattack(atom/target, mob/user)
+	var/obj/structure/holosign/barrier/engineering/barrier
+	if(target.type == holosign_type)
+		barrier = target
+		if(barrier.openable)
+			barrier.open(user)
+	return ..()
+
 
 /obj/item/holosign_creator/atmos
 	name = "ATMOS holofan projector"

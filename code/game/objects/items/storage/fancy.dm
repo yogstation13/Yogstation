@@ -101,7 +101,7 @@
 	spawn_count = 6
 	open_status = TRUE
 	appearance_flags = KEEP_TOGETHER|LONG_GLIDE
-	custom_premium_price = PAYCHECK_COMMAND * 1.75
+	//custom_premium_price = PAYCHECK_COMMAND * 1.75 monkestation removal
 	contents_tag = "donut"
 
 /obj/item/storage/fancy/donut_box/Initialize(mapload)

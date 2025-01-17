@@ -1,7 +1,7 @@
-/obj/structure/holosign/barrier/medical
-	icon = 'monkestation/code/modules/virology/icons/biohazard.dmi'
-	icon_state = "biohazard"
-	alpha = 125
+///obj/structure/holosign/barrier/medical
+	//icon = 'monkestation/code/modules/virology/icons/biohazard.dmi'
+	//icon_state = "biohazard"
+	//alpha = 125
 
 /obj/item/holosign_creator/medical/proc/try_alert(atom/movable/AM, area/host_area)
 	if(!isliving(AM))

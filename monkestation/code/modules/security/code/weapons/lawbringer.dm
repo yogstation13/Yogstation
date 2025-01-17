@@ -437,7 +437,7 @@
 
 /obj/projectile/lawbringer/smokeshot/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
-	var/datum/effect_system/fluid_spread/smoke/smoke = new
+	var/datum/effect_system/fluid_spread/smoke/bad/smoke = new
 	smoke.set_up(3, holder = src, location = get_turf(target))
 	smoke.start()
 

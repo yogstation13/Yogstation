@@ -59,9 +59,18 @@
 	contains = list(/obj/item/cortical_cage)
 	crate_name = "anti-borer crate"
 
-/datum/supply_pack/security/armory/taser
+/datum/supply_pack/security/taser
 	name = "Taser Crate"
-	desc = "Contains two tasers, ready to tase criminals."
-	cost = CARGO_CRATE_VALUE * 15
-	contains = list(/obj/item/gun/energy/taser = 2)
+	desc = "Contains three tasers, ready to tase criminals."
+	cost = CARGO_CRATE_VALUE * 3
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/gun/energy/taser = 3)
 	crate_name = "taser crate"
+
+/datum/supply_pack/security/advtaser
+	name = "Hybrid Taser Crate"
+	desc = "Contains three hybrid tasers, ready for tase and stun action!"
+	cost = CARGO_CRATE_VALUE * 6
+	access_view = ACCESS_SECURITY
+	contains = list(/obj/item/gun/energy/e_gun/advtaser= 3)
+	crate_name = "hybrid taser crate"

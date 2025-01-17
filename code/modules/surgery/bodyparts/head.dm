@@ -12,6 +12,7 @@
 	throw_range = 2 //No head bowling
 	px_x = 0
 	px_y = -8
+	appearance_flags = KEEP_TOGETHER //monkestation edit nothing can possibly break cus of this
 	wound_resistance = 5
 	disabled_wound_penalty = 25
 	scars_covered_by_clothes = FALSE

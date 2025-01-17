@@ -21,7 +21,7 @@
 	/// See: [/datum/component/tackler/var/speed]
 	var/tackle_speed = 1
 	/// See: [/datum/component/tackler/var/skill_mod]
-	var/skill_mod = 0
+	var/skill_mod = 2 //monkestation edit: 0 to 2
 
 /obj/item/clothing/gloves/tackler/Destroy()
 	tackler = null
