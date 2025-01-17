@@ -304,7 +304,7 @@
 			missing_organs[ORGAN_SLOT_TONGUE] = "Tongue"
 		if(!isnull(humantarget.dna.species.mutantears) && !humantarget.get_organ_slot(ORGAN_SLOT_EARS))
 			missing_organs[ORGAN_SLOT_EARS] = "Ears"
-		if(!isnull(humantarget.dna.species.mutantears) && !humantarget.get_organ_slot(ORGAN_SLOT_EYES))
+		if(!isnull(humantarget.dna.species.mutanteyes) && !humantarget.get_organ_slot(ORGAN_SLOT_EYES))
 			missing_organs[ORGAN_SLOT_EYES] = "Eyes"
 
 		// Follow same order as in the organ_process_order so it's consistent across all humans

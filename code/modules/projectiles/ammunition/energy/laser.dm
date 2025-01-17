@@ -113,7 +113,7 @@
 /obj/item/ammo_casing/energy/mindflayer
 	projectile_type = /obj/projectile/beam/mindflayer
 	select_name = "MINDFUCK"
-	fire_sound = 'sound/weapons/laser.ogg'
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 
 /obj/item/ammo_casing/energy/laser/minigun
 	select_name = "kill"

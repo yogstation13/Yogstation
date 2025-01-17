@@ -1,0 +1,224 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/shipbreak)
+"c" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shipbreak)
+"d" = (
+/obj/machinery/door/airlock/highsecurity,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"g" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/machinery/power/shuttle_engine/heater,
+/turf/open/floor/plating,
+/area/shipbreak)
+"h" = (
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"j" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating,
+/area/shipbreak)
+"s" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/curtain,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"x" = (
+/obj/structure/bedsheetbin,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"y" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/urinal{
+	dir = 4;
+	pixel_x = 32
+	},
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"A" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"E" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/curtain,
+/obj/item/food/urinalcake,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"G" = (
+/obj/structure/mirror,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shipbreak)
+"J" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/urinal{
+	dir = 4;
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"K" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"O" = (
+/obj/item/bikehorn/rubberducky,
+/obj/item/soap/deluxe,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"P" = (
+/obj/machinery/shower,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"W" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"X" = (
+/obj/machinery/shower,
+/obj/item/soap,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"Z" = (
+/obj/machinery/shower,
+/obj/item/soap/nanotrasen,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+W
+c
+c
+c
+G
+c
+d
+W
+a
+a
+"}
+(3,1,1) = {"
+a
+W
+X
+P
+Z
+P
+K
+x
+O
+g
+j
+a
+"}
+(4,1,1) = {"
+a
+c
+h
+h
+h
+h
+A
+A
+A
+g
+j
+a
+"}
+(5,1,1) = {"
+a
+c
+h
+h
+h
+h
+A
+A
+A
+g
+j
+a
+"}
+(6,1,1) = {"
+a
+W
+s
+E
+s
+s
+J
+y
+y
+g
+j
+a
+"}
+(7,1,1) = {"
+a
+a
+W
+c
+c
+c
+c
+c
+c
+W
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

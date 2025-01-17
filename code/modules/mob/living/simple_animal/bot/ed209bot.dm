@@ -14,7 +14,7 @@
 
 	var/lastfired = 0
 	var/shot_delay = 15
-	var/shoot_sound = 'sound/weapons/laser.ogg'
+	var/shoot_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	var/projectile = /obj/projectile/beam/disabler
 	var/fair_market_projectile = /obj/projectile/bullet/c38 // For shooting the worst scumbags of all: the poor
 
@@ -55,7 +55,7 @@
 	..()
 
 /mob/living/simple_animal/bot/secbot/ed209/proc/set_weapon()  //used to update the projectile type and firing sound
-	shoot_sound = 'sound/weapons/laser.ogg'
+	shoot_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	if(bot_cover_flags & BOT_COVER_EMAGGED)
 		projectile = /obj/projectile/beam
 	else

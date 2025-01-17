@@ -32112,8 +32112,7 @@
 	c_tag = "Engineering - Shipbreaking, Storage Room";
 	name = "engineering camera"
 	},
-/obj/structure/closet/emcloset/wall/directional/north,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/closet/secure_closet/shipbreaker,
 /turf/open/floor/iron/dark/side/airless{
 	dir = 1
 	},
@@ -62179,16 +62178,7 @@
 	},
 /area/station/hallway/secondary/exit/departure_lounge)
 "umW" = (
-/obj/structure/rack,
-/obj/item/radio/off{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/radio/off{
-	pixel_x = 6;
-	pixel_y = 4
-	},
-/obj/item/radio/off,
+/obj/structure/closet/secure_closet/shipbreaker,
 /turf/open/floor/iron/dark/side/airless{
 	dir = 9
 	},
@@ -63715,14 +63705,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "uMx" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/electrical{
-	pixel_y = 6
-	},
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/emergency{
-	pixel_y = -6
-	},
+/obj/structure/closet/secure_closet/shipbreaker,
 /turf/open/floor/iron/dark/side/airless{
 	dir = 5
 	},

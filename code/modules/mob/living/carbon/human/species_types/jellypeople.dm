@@ -11,7 +11,7 @@
 	mutanteyes = /obj/item/organ/internal/eyes/jelly
 	mutantheart = /obj/item/organ/internal/heart/slime
 	mutantliver = /obj/item/organ/internal/liver/slime
-
+	mutantspleen = null
 	meat = /obj/item/food/meat/slab/human/mutant/slime
 	exotic_bloodtype = /datum/blood_type/slime
 	blood_deficiency_drain_rate = 1.5 + BLOOD_DEFICIENCY_MODIFIER

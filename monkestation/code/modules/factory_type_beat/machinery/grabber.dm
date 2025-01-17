@@ -123,22 +123,22 @@
 	switch(locate_servo.tier)
 		if(1)
 			working_speed = 2 SECONDS
-			power_use_lvl = 0.2
+			power_use_lvl = 0.02
 			set_greyscale(COLOR_YELLOW)
 			manipulator_hand?.set_greyscale(COLOR_YELLOW)
 		if(2)
 			working_speed = 1.4 SECONDS
-			power_use_lvl = 0.4
+			power_use_lvl = 0.04
 			set_greyscale(COLOR_ORANGE)
 			manipulator_hand?.set_greyscale(COLOR_ORANGE)
 		if(3)
 			working_speed = 0.8 SECONDS
-			power_use_lvl = 0.6
+			power_use_lvl = 0.06
 			set_greyscale(COLOR_RED)
 			manipulator_hand?.set_greyscale(COLOR_RED)
 		if(4)
 			working_speed = 0.2 SECONDS
-			power_use_lvl = 0.8
+			power_use_lvl = 0.08
 			set_greyscale(COLOR_PURPLE)
 			manipulator_hand?.set_greyscale(COLOR_PURPLE)
 

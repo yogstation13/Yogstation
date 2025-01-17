@@ -84,11 +84,11 @@
 /turf/open/floor/iron/dark/side,
 /area/shipbreak)
 "iI" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 4;
-	id = 4
+/obj/effect/turf_decal/bot,
+/obj/effect/artifact_spawner,
+/turf/open/floor/iron/dark/side{
+	dir = 1
 	},
-/turf/open/floor/plating,
 /area/shipbreak)
 "iO" = (
 /obj/structure/chair/sofa/right/brown{
@@ -118,7 +118,6 @@
 "kf" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/critter,
-/mob/living/simple_animal/pet/cat,
 /turf/open/floor/iron/dark/side,
 /area/shipbreak)
 "kp" = (
@@ -137,11 +136,8 @@
 /turf/open/floor/iron,
 /area/shipbreak)
 "kW" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 4;
-	id = 5
-	},
-/turf/open/floor/plating,
+/obj/effect/artifact_spawner,
+/turf/open/floor/catwalk_floor/iron,
 /area/shipbreak)
 "lW" = (
 /obj/effect/turf_decal/delivery,
@@ -199,13 +195,6 @@
 "qk" = (
 /obj/structure/cable,
 /obj/machinery/light/small/warm/directional/north,
-/turf/open/floor/plating,
-/area/shipbreak)
-"qI" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 4;
-	id = 2
-	},
 /turf/open/floor/plating,
 /area/shipbreak)
 "rj" = (
@@ -276,10 +265,6 @@
 /turf/open/floor/plating,
 /area/shipbreak)
 "vA" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 4;
-	id = 5
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
 /area/shipbreak)
@@ -567,6 +552,7 @@
 "Wq" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/crate/critter,
+/mob/living/basic/bear/butter,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -724,15 +710,15 @@ yR
 yR
 yR
 ah
-iI
-iI
-iI
+WM
+WM
+WM
 ah
 yR
 ah
-qI
-qI
-qI
+WM
+WM
+WM
 ah
 yR
 yR
@@ -909,7 +895,7 @@ xw
 nm
 QE
 ah
-kW
+WM
 ah
 BN
 Uo
@@ -1076,7 +1062,7 @@ ah
 Sh
 ah
 Yo
-JE
+kW
 gc
 ah
 WM
@@ -1129,7 +1115,7 @@ yR
 yR
 yR
 ah
-Yo
+iI
 JE
 hq
 ah
@@ -1156,15 +1142,15 @@ yR
 yR
 yR
 ah
-iI
-iI
-iI
+WM
+WM
+WM
 ah
 yR
 ah
-iI
-iI
-iI
+WM
+WM
+WM
 ah
 yR
 yR

@@ -1,0 +1,765 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/meateor_fluff/abandoned_headcrab_egg,
+/turf/open/floor/stone,
+/area/shipbreak)
+"b" = (
+/obj/structure/spirit_board{
+	pixel_y = -1
+	},
+/obj/item/organ/internal/heart{
+	pixel_y = 7;
+	pixel_x = 2
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"c" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/reagent_containers/cup/glass/bottle/ritual_wine{
+	pixel_y = 7
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"d" = (
+/obj/structure/meateor_fluff/eyeball,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"f" = (
+/obj/item/trash/candle,
+/turf/open/floor/carpet/royalblue,
+/area/shipbreak)
+"g" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/shipbreak)
+"h" = (
+/obj/structure/meateor_fluff/flesh_pod,
+/turf/open/floor/stone,
+/area/shipbreak)
+"i" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 4
+	},
+/obj/item/phone{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"j" = (
+/obj/item/flashlight/flare/candle/infinite,
+/turf/open/floor/carpet/royalblue,
+/area/shipbreak)
+"k" = (
+/obj/structure/meateor_fluff/eyeball,
+/turf/open/floor/carpet/royalblue,
+/area/shipbreak)
+"l" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/shipbreak)
+"m" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/shipbreak)
+"n" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/storage/organbox/preloaded{
+	desc = "Often used, but not often cleaned.";
+	name = "Sacrament";
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"o" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/candle,
+/turf/open/floor/stone,
+/area/shipbreak)
+"p" = (
+/turf/open/floor/stone,
+/area/shipbreak)
+"q" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Chapel"
+	},
+/turf/open/floor/stone,
+/area/shipbreak)
+"r" = (
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"s" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/stone,
+/area/shipbreak)
+"t" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"u" = (
+/turf/template_noop,
+/area/template_noop)
+"v" = (
+/obj/item/flashlight/flare/candle{
+	pixel_y = 7;
+	pixel_x = -9;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = -5;
+	pixel_x = 10;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = 11;
+	pixel_x = 11
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = -6;
+	pixel_x = -3;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = 12;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = 4;
+	pixel_x = 5;
+	on = 1
+	},
+/turf/open/floor/stone,
+/area/shipbreak)
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/shipbreak)
+"x" = (
+/obj/machinery/computer/old,
+/turf/open/floor/carpet/royalblack,
+/area/shipbreak)
+"y" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"z" = (
+/obj/machinery/door/airlock/public{
+	name = "Chapel"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/shipbreak)
+"A" = (
+/obj/structure/statue/sandstone/venus{
+	anchored = 1;
+	desc = "Ugh, this is merely an ugly amateurish replica of the other statue! The letters RIPGOAT are scribbled onto the base.";
+	dir = 8;
+	pixel_y = 3
+	},
+/obj/structure/meateor_fluff/abandoned_headcrab_egg{
+	pixel_y = -3;
+	pixel_x = 6
+	},
+/obj/structure/meateor_fluff/abandoned_headcrab_egg{
+	pixel_y = -5;
+	pixel_x = -10
+	},
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"B" = (
+/turf/open/floor/carpet/blue,
+/area/shipbreak)
+"C" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/clockwork{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"D" = (
+/turf/closed/wall/material/meat,
+/area/shipbreak)
+"E" = (
+/obj/structure/table/wood,
+/obj/item/trash/candle,
+/turf/open/floor/stone,
+/area/shipbreak)
+"F" = (
+/obj/item/flashlight/flare/candle{
+	pixel_y = 7;
+	pixel_x = -9;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = -5;
+	pixel_x = 10;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = 11;
+	pixel_x = 9
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_x = -1;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = 14;
+	on = 1;
+	pixel_x = 2
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = -4;
+	pixel_x = -8;
+	on = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/shipbreak)
+"G" = (
+/obj/structure/window/reinforced/clockwork/fulltile,
+/obj/structure/window_sill,
+/turf/open/floor/plating,
+/area/shipbreak)
+"H" = (
+/obj/item/flashlight/flare/candle/infinite,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"I" = (
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/shipbreak)
+"J" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/open/floor/plating,
+/area/shipbreak)
+"K" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/shipbreak)
+"L" = (
+/obj/machinery/power/shuttle_engine/heater{
+	pixel_y = 13
+	},
+/obj/machinery/power/shuttle_engine/propulsion{
+	pixel_y = -19
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"M" = (
+/turf/closed/wall,
+/area/shipbreak)
+"N" = (
+/obj/item/flashlight/flare/candle{
+	pixel_y = -5;
+	pixel_x = 10;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = 11;
+	pixel_x = 11
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = -6;
+	pixel_x = -3;
+	on = 1
+	},
+/obj/item/trash/candle{
+	pixel_y = -3;
+	pixel_x = -11
+	},
+/obj/item/trash/candle{
+	pixel_y = 8;
+	pixel_x = 6
+	},
+/obj/item/trash/candle{
+	pixel_y = 14;
+	pixel_x = -6
+	},
+/turf/open/floor/stone,
+/area/shipbreak)
+"O" = (
+/turf/open/floor/plating,
+/area/shipbreak)
+"P" = (
+/obj/item/flashlight/flare/candle{
+	pixel_y = 5;
+	pixel_x = -8;
+	on = 1
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = 11;
+	pixel_x = 11
+	},
+/obj/item/flashlight/flare/candle{
+	pixel_y = -4;
+	pixel_x = 4;
+	on = 1
+	},
+/obj/item/trash/candle{
+	pixel_y = -3;
+	pixel_x = -11
+	},
+/obj/item/trash/candle{
+	pixel_y = 8;
+	pixel_x = 6
+	},
+/obj/item/trash/candle{
+	pixel_y = 18;
+	pixel_x = -3
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood/large,
+/area/shipbreak)
+"Q" = (
+/obj/structure/meateor_fluff/eyeball,
+/turf/open/floor/stone,
+/area/shipbreak)
+"R" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/shipbreak)
+"S" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/reagent_containers/cup/glass/bottle/holywater{
+	pixel_y = 5
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"T" = (
+/obj/structure/sign/painting/meat,
+/turf/closed/wall,
+/area/shipbreak)
+"U" = (
+/obj/structure/meateor_fluff/flesh_pod_open,
+/turf/open/floor/stone,
+/area/shipbreak)
+"V" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/effect/turf_decal/siding/dark/corner{
+	dir = 1
+	},
+/obj/effect/mob_spawn/corpse/headcrab{
+	pixel_y = 14
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"W" = (
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"X" = (
+/turf/open/floor/carpet/royalblue,
+/area/shipbreak)
+"Y" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Z" = (
+/obj/machinery/door/airlock/external{
+	name = "Airlock";
+	space_dir = 2
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+
+(1,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+G
+G
+T
+M
+G
+G
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}
+(2,1,1) = {"
+u
+u
+u
+u
+u
+M
+D
+G
+G
+d
+p
+p
+v
+G
+G
+M
+M
+M
+u
+u
+u
+u
+u
+"}
+(3,1,1) = {"
+u
+u
+Y
+Y
+M
+M
+h
+W
+p
+p
+v
+Q
+p
+p
+N
+a
+T
+M
+Z
+M
+M
+u
+u
+"}
+(4,1,1) = {"
+u
+Y
+Y
+S
+M
+U
+p
+W
+g
+a
+g
+p
+g
+p
+g
+p
+h
+M
+O
+J
+M
+M
+u
+"}
+(5,1,1) = {"
+u
+Y
+n
+r
+M
+p
+W
+p
+I
+p
+I
+p
+I
+p
+I
+p
+Q
+M
+Z
+M
+M
+L
+u
+"}
+(6,1,1) = {"
+Y
+Y
+i
+r
+D
+W
+v
+W
+R
+p
+R
+p
+R
+p
+R
+p
+v
+M
+m
+F
+M
+L
+u
+"}
+(7,1,1) = {"
+Y
+x
+y
+r
+T
+p
+E
+d
+X
+f
+W
+j
+k
+j
+X
+W
+X
+z
+B
+K
+M
+C
+t
+"}
+(8,1,1) = {"
+Y
+x
+y
+r
+q
+p
+s
+X
+d
+W
+X
+W
+X
+X
+d
+X
+W
+D
+A
+l
+M
+C
+t
+"}
+(9,1,1) = {"
+Y
+x
+y
+r
+T
+p
+o
+X
+X
+f
+k
+f
+W
+H
+X
+X
+X
+z
+B
+K
+M
+C
+t
+"}
+(10,1,1) = {"
+Y
+Y
+V
+r
+M
+p
+v
+p
+g
+p
+g
+p
+g
+p
+g
+v
+p
+M
+w
+P
+M
+L
+u
+"}
+(11,1,1) = {"
+u
+Y
+b
+r
+M
+p
+p
+p
+I
+p
+I
+p
+I
+p
+I
+p
+p
+M
+Z
+M
+M
+L
+u
+"}
+(12,1,1) = {"
+u
+Y
+Y
+c
+M
+h
+p
+a
+R
+p
+R
+p
+R
+p
+R
+Q
+a
+M
+O
+J
+M
+M
+u
+"}
+(13,1,1) = {"
+u
+u
+Y
+Y
+M
+M
+h
+p
+N
+Q
+p
+p
+v
+p
+p
+U
+T
+M
+Z
+M
+M
+u
+u
+"}
+(14,1,1) = {"
+u
+u
+u
+u
+u
+M
+M
+G
+G
+p
+N
+p
+d
+G
+G
+M
+M
+M
+u
+u
+u
+u
+u
+"}
+(15,1,1) = {"
+u
+u
+u
+u
+u
+u
+u
+u
+G
+G
+T
+M
+G
+G
+u
+u
+u
+u
+u
+u
+u
+u
+u
+"}

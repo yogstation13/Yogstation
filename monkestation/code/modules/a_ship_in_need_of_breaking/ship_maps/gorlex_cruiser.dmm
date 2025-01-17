@@ -1,0 +1,2196 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"al" = (
+/obj/machinery/power/smes,
+/obj/structure/cable,
+/obj/structure/sign/warning/electric_shock/directional/west,
+/turf/open/floor/plating,
+/area/shipbreak)
+"aT" = (
+/obj/structure/table,
+/obj/item/storage/box{
+	icon_state = "donkpocketbox";
+	name = "box of donk-pockets";
+	desc = "It's empty.";
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/obj/item/storage/box{
+	icon_state = "donkpocketbox";
+	name = "box of donk-pockets";
+	desc = "It's empty.";
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/structure/sign/poster/contraband/donk_co/directional/west,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"bs" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/power/port_gen/pacman/pre_loaded,
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/plating,
+/area/shipbreak)
+"bE" = (
+/obj/machinery/computer/atmos_control/fixed{
+	atmos_chambers = list("gorlex_ship_burner" = "Burn Chamber");
+	dir = 4
+	},
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"bT" = (
+/obj/machinery/vending/boozeomat/syndicate_access,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"bU" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/turf/open/floor/plating,
+/area/shipbreak)
+"bW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"bZ" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Master at Arms"
+	},
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"cw" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor{
+	id = "gorlex_cruiser_cargo"
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"cx" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/shipbreak)
+"cG" = (
+/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/box/white/corners,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"dc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"dy" = (
+/obj/structure/fluff/oldturret{
+	icon_state = "syndie_off";
+	dir = 10
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"dD" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shipbreak)
+"dH" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"dM" = (
+/obj/structure/shipping_container/vitezstvi{
+	desc = "A standard-measure shipping container for bulk transport of goods. This one is from Vítězství Arms, proudly proclaiming that Vítězství weapons mean victory. A large gaping hole is in its door, which is welded shut at the remaining sections."
+	},
+/obj/effect/turf_decal/box/white/corners{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"dZ" = (
+/obj/structure/tank_dispenser/oxygen,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/shipbreak)
+"ea" = (
+/obj/structure/fluff/metalpole/end/right{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shipbreak)
+"eu" = (
+/obj/structure/closet/syndicate,
+/obj/machinery/light/small/dim/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/under/syndicate/nova/overalls,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/helmet/swat/ds{
+	name = "syndicate blast helmet"
+	},
+/obj/item/clothing/suit/hooded/wintercoat/nova/syndicate,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shipbreak)
+"ex" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"eJ" = (
+/obj/structure/fluff/metalpole{
+	dir = 8
+	},
+/obj/structure/fluff/metalpole/end/right{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shipbreak)
+"eW" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"fn" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/obj/structure/cable/multilayer/connected,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"fo" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/obj/structure/cable,
+/obj/structure/curtain/cloth/fancy/mechanical{
+	id = "gorlex_cruiser_bridge"
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"fr" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"fC" = (
+/obj/effect/turf_decal/delivery/white,
+/obj/structure/closet/crate,
+/obj/effect/spawner/random/maintenance/five,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"gd" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"gm" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"gn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"gu" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"gv" = (
+/obj/machinery/portable_atmospherics/canister/plasma,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"ho" = (
+/obj/structure/closet/secure_closet/medical1{
+	req_access = list("syndicate")
+	},
+/obj/structure/closet/firecloset/wall/directional/south,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"hK" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating,
+/area/shipbreak)
+"hO" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"io" = (
+/obj/structure/fluff/metalpole{
+	dir = 4
+	},
+/obj/structure/fluff/metalpole/end/left{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shipbreak)
+"it" = (
+/obj/structure/reflector/box/mapping{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"iH" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"iK" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"jh" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/engineering{
+	name = "Engine Core"
+	},
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"jj" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"jo" = (
+/obj/structure/closet/crate/freezer,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"ju" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/wood,
+/area/shipbreak)
+"jx" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"kA" = (
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/engineering{
+	name = "Thruster Bay Access"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"kB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"kM" = (
+/obj/machinery/atmospherics/components/tank/oxygen,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"kY" = (
+/obj/structure/table/reinforced,
+/obj/structure/cable,
+/obj/machinery/power/apc/worn_out/directional/south,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/no_charge,
+/obj/effect/mapping_helpers/apc/cell_5k,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/item/paper/crumpled{
+	default_raw_text = "Command just alerted me that they couldn't continue supplies of food shipments. I've made an excuse for the Master at Arms to stow everyone's weapons in a locked container and already prepared ration charts. I'm not sure if it'll be enough, though.";
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"li" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/bridge_pipe/cyan/visible{
+	dir = 4
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"lu" = (
+/obj/effect/turf_decal/box/white/corners,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"lF" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"lH" = (
+/obj/machinery/igniter/on{
+	id = "gorlex_cruiser_igniter"
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w,
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"lL" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"lX" = (
+/obj/item/paper{
+	default_raw_text = "Evacuation has been authorised. I've opened the spacesuit locker. If you wake up; take a suit and leave this place. Wake up anyone else, too."
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"mh" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"mr" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery/white,
+/obj/structure/closet/crate/medical,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/medkit/regular,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"mC" = (
+/obj/structure/shipping_container/cybersun,
+/obj/effect/turf_decal/box/white/corners{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"mE" = (
+/obj/machinery/door/poddoor{
+	id = "gorlex_cruiser_engine_vent"
+	},
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"mX" = (
+/obj/structure/cable/layer1,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"nt" = (
+/obj/machinery/light/small/dim/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"nB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"nG" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"nS" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"ot" = (
+/obj/machinery/computer/old{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"oz" = (
+/obj/structure/cable/multilayer/connected,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/plating,
+/area/shipbreak)
+"oE" = (
+/obj/machinery/door/airlock{
+	name = "Quartermaster's Bunk"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/door/firedoor,
+/turf/open/floor/wood,
+/area/shipbreak)
+"oH" = (
+/obj/structure/filingcabinet/chestdrawer/wheeled,
+/obj/item/paper{
+	default_raw_text = "NOTICE FROM THE CAPTAIN: All crew are obligated to immediately stow firearms in the Master at Arms' lockbox until further notice. The food situation has reached a point where crew must be disarmed for the safety of the vessel."
+	},
+/obj/machinery/light/directional/west,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"oP" = (
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"pi" = (
+/obj/structure/sign/poster/contraband/cybersun_six_hundred/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating,
+/area/shipbreak)
+"px" = (
+/obj/structure/table/wood,
+/obj/item/food/donkpocket{
+	pixel_x = 4;
+	pixel_y = 10
+	},
+/obj/item/paper/crumpled{
+	default_raw_text = "Food is running out. I'm down to a donk pocket a day, and I doubt I'll survive. I authorised the crew to abandon ship and opened up the EVA lockers. We were low on long-range suits, so I donated my suit to the Master at Arms. Give me a proper burial. Please.";
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"pC" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"pF" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Munitions Bay Access"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"pQ" = (
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"qh" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"qr" = (
+/obj/structure/table,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"qR" = (
+/obj/structure/closet/syndicate,
+/obj/machinery/light/small/dim/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/suit/hazardvest,
+/obj/item/clothing/head/utility/hardhat/welding/orange,
+/obj/item/clothing/under/syndicate/nova/overalls,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shipbreak)
+"rc" = (
+/obj/structure/cable/layer1,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"rf" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/firealarm/directional/south,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"rt" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"sh" = (
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"so" = (
+/obj/structure/fluff/metalpole/anchor{
+	dir = 4
+	},
+/obj/structure/fluff/metalpole{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shipbreak)
+"sJ" = (
+/obj/machinery/atmospherics/components/trinary/mixer/flipped/on{
+	dir = 4
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"sO" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"sP" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/shipbreak)
+"tf" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"tg" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/obj/effect/decal/remains/human{
+	pixel_x = 0;
+	pixel_y = 12
+	},
+/obj/item/clothing/head/hats/hos/cap/syndicate{
+	pixel_x = 1;
+	pixel_y = 14
+	},
+/obj/structure/sign/poster/contraband/gorlex_recruitment/directional/east,
+/obj/machinery/button/curtain{
+	id = "gorlex_cruiser_bridge";
+	name = "Curtain Controls";
+	pixel_x = 0;
+	pixel_y = -22
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"tw" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"tS" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/extinguisher_cabinet/directional/south,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"ua" = (
+/obj/machinery/button/door/directional/east{
+	id = "gorlex_cruiser_engine_vent";
+	name = "Engine Gas Vent";
+	pixel_x = 24;
+	pixel_y = 9
+	},
+/obj/machinery/button/ignition{
+	id = "gorlex_cruiser_igniter";
+	pixel_x = 24;
+	pixel_y = 0
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"un" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"uy" = (
+/obj/structure/cable,
+/obj/structure/chair/office/tactical{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"uM" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/obj/machinery/firealarm/directional/west,
+/obj/machinery/atmospherics/components/tank/carbon_dioxide{
+	dir = 1
+	},
+/obj/structure/sign/warning/no_smoking/circle/directional/south,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"uY" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"vb" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "gorlex_cruiser_eva"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/engine,
+/area/shipbreak)
+"vc" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Master at Arms"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"vp" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/extinguisher_cabinet/directional/east,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"vq" = (
+/obj/structure/fluff/oldturret{
+	icon_state = "syndie_off";
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"vD" = (
+/obj/structure/guncase,
+/obj/item/gun/ballistic/revolver/c38{
+	name = "master at arms' revolver";
+	desc = "A revolver with the signature serpentine emblem of the Gorlex Marauders engraved into its hilt. Outdated and cheap, it's usually carried by low-ranking Syndicate officers."
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"wd" = (
+/obj/structure/closet/secure_closet/freezer/empty/open,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"wq" = (
+/obj/machinery/light/small/dim/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"wv" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"wK" = (
+/obj/structure/table/reinforced,
+/obj/item/paper{
+	pixel_x = 3;
+	pixel_y = 3;
+	default_raw_text = "The Captain just declared a state of rationing due to undersupply. Most of us are rail-thin already, we can't take this for long. We're outside of range from a friendly port too, and the listening posts we were meant to supply have all either evacuated or run out and gone under a mutiny."
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"xb" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/scrubbers/visible,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"xd" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"xn" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/n2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"xp" = (
+/obj/machinery/door/airlock{
+	name = "Crew Bunks"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/door/firedoor,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	invisibility = 101
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"xr" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/sign/warning/deathsposal/directional/east,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"xO" = (
+/obj/machinery/door/airlock{
+	name = "Engineer's Bunk"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/door/firedoor,
+/turf/open/floor/wood,
+/area/shipbreak)
+"xT" = (
+/obj/structure/closet/syndicate,
+/obj/item/clothing/suit/hooded/wintercoat/nova/syndicate,
+/obj/machinery/light/small/dim/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/shipbreak)
+"xY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"ye" = (
+/obj/structure/fluff/metalpole{
+	dir = 8
+	},
+/obj/structure/fluff/metalpole{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shipbreak)
+"yi" = (
+/obj/machinery/computer/old,
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"yw" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"yF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/bathroom,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/showroomfloor,
+/area/shipbreak)
+"yH" = (
+/obj/structure/table/reinforced,
+/obj/item/stamp/syndicate{
+	pixel_x = 10;
+	pixel_y = 11
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"yQ" = (
+/obj/structure/closet/syndicate,
+/obj/item/clothing/under/syndicate/sniper,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/suit/armor/vest/capcarapace/syndicate/winter,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/machinery/button/door/directional/east{
+	id = "gorlex_cruiser_cargo";
+	name = "Cargo Bay Doors";
+	req_access = list("syndicate")
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"zb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"zl" = (
+/obj/machinery/computer/old,
+/obj/structure/cable,
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"zy" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Munitions Bay Access"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Ac" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 6
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"Ah" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/airalarm/directional/west,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"AS" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/machinery/door/window/left/directional/west{
+	req_access = list("syndicate")
+	},
+/obj/structure/curtain/bounty,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/firedoor,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Bb" = (
+/obj/structure/fluff/metalpole/anchor{
+	dir = 4
+	},
+/obj/structure/fluff/metalpole/anchor{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shipbreak)
+"Bq" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
+	dir = 8
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"Br" = (
+/obj/structure/sign/poster/contraband/eat/directional/south,
+/obj/structure/table,
+/obj/structure/closet/emcloset/wall/directional/east,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"BU" = (
+/obj/structure/closet/bombcloset,
+/obj/machinery/airalarm/directional/south,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Ca" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/visible,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Cl" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"Cs" = (
+/obj/machinery/atmospherics/components/tank/nitrogen{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"CT" = (
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
+/obj/machinery/door/airlock/command{
+	name = "Bridge Access"
+	},
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"CU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/fax{
+	syndicate_network = 1;
+	visible_to_network = 0;
+	name = "syndicate fax machine";
+	fax_name = "Syndicate Repair Cruiser";
+	pixel_x = 0;
+	pixel_y = 9
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Dp" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/visible,
+/obj/structure/extinguisher_cabinet/directional/west,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Dt" = (
+/obj/structure/table,
+/obj/machinery/firealarm/directional/west,
+/obj/machinery/computer/libraryconsole/bookmanagement{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Du" = (
+/obj/machinery/atmospherics/components/tank/nitrogen{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Dx" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"DB" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"DL" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"DV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Eg" = (
+/obj/machinery/button/door/directional/east{
+	id = "gorlex_cruiser_eva";
+	name = "EVA Suit Lockup";
+	req_access = list("syndicate_leader")
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/firealarm/directional/north,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"EM" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"EV" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"EX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Fl" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -1;
+	pixel_y = 9
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"Fp" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/shipbreak)
+"Fz" = (
+/obj/machinery/portable_atmospherics/canister/plasma,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"FI" = (
+/obj/structure/closet/firecloset/wall/directional/east,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/plating,
+/area/shipbreak)
+"FN" = (
+/obj/structure/fluff/metalpole{
+	dir = 4
+	},
+/obj/structure/fluff/metalpole{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shipbreak)
+"FQ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	invisibility = 101
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Gl" = (
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
+/obj/machinery/door/airlock/command{
+	name = "Bridge Access"
+	},
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Gn" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Service Bay"
+	},
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"GF" = (
+/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma/spawner/directional/west,
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"GH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 1
+	},
+/obj/structure/sign/warning/fire/directional/south,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"GR" = (
+/obj/structure/fluff/metalpole{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shipbreak)
+"Hm" = (
+/obj/structure/fluff/metalpole/end/right{
+	dir = 8
+	},
+/obj/structure/fluff/metalpole/end/left{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shipbreak)
+"Ib" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Ig" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"Ix" = (
+/obj/machinery/power/emitter/welded{
+	projectile_type = /obj/projectile/beam/laser/accelerator;
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"IG" = (
+/obj/structure/rack,
+/obj/item/storage/box/syndie_kit/space_suit{
+	pixel_x = -8;
+	pixel_y = 12
+	},
+/obj/item/storage/box{
+	icon_state = "syndiebox";
+	name = "boxed space suit and helmet";
+	illustration = "syndiesuit";
+	pixel_x = -9;
+	pixel_y = 24
+	},
+/obj/item/storage/box{
+	icon_state = "syndiebox";
+	name = "boxed space suit and helmet";
+	illustration = "syndiesuit";
+	pixel_x = 7;
+	pixel_y = 14
+	},
+/obj/item/storage/box{
+	icon_state = "syndiebox";
+	name = "boxed space suit and helmet";
+	illustration = "syndiesuit";
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/storage/box{
+	icon_state = "syndiebox";
+	name = "boxed space suit and helmet";
+	illustration = "syndiesuit";
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/engine,
+/area/shipbreak)
+"IL" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/door/airlock/mining/glass{
+	name = "Cargo Hold"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Ji" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"Kc" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Kf" = (
+/turf/open/floor/wood,
+/area/shipbreak)
+"Kg" = (
+/obj/machinery/light/directional/east,
+/obj/structure/table,
+/obj/item/storage/medkit/frontier/stocked{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Kk" = (
+/obj/machinery/firealarm/directional/south,
+/obj/structure/bookcase/manuals/engineering,
+/turf/open/floor/wood,
+/area/shipbreak)
+"Ky" = (
+/obj/machinery/portable_atmospherics/canister/plasma,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"KC" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 8
+	},
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"KF" = (
+/obj/machinery/light/small/dim/directional/south,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/engine,
+/area/shipbreak)
+"KM" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"KT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Lg" = (
+/obj/structure/fluff/oldturret{
+	icon_state = "syndie_off";
+	dir = 5
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"Lx" = (
+/obj/machinery/door/airlock{
+	name = "Munitions Officer's Bunk"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/machinery/door/firedoor,
+/turf/open/floor/wood,
+/area/shipbreak)
+"LY" = (
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"LZ" = (
+/obj/structure/fluff/oldturret{
+	icon_state = "syndie_off";
+	dir = 6
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"Mf" = (
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"MJ" = (
+/obj/machinery/light/small/dim/directional/north,
+/obj/structure/closet/syndicate,
+/obj/item/clothing/head/helmet/swat,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/suit/armor/vest/warden/syndicate,
+/obj/item/clothing/head/hats/warden/syndicate,
+/obj/item/ammo_box/c38,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/wood,
+/area/shipbreak)
+"ML" = (
+/obj/structure/closet/crate,
+/obj/item/lightreplacer,
+/obj/item/storage/box/lights/mixed,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"MT" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"Nf" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"Od" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 2
+	},
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/shipbreak)
+"On" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/orange/hidden,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"OA" = (
+/obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
+	dir = 1
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"OK" = (
+/obj/machinery/atmospherics/components/unary/passive_vent{
+	dir = 1
+	},
+/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/window/reinforced/plasma/spawner/directional/east,
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"Pm" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/outlet_injector/on,
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"Pq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/chair/office/tactical{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"PJ" = (
+/obj/machinery/button/door/directional/east{
+	id = "gorlex_cruiser_cargo";
+	name = "Cargo Bay Doors";
+	req_access = list("syndicate")
+	},
+/obj/structure/chair/office/tactical,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"PX" = (
+/obj/machinery/light/small/dim/directional/west,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"Qc" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Qo" = (
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	name = "Thruster Bay Access"
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Qs" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Sy" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"SC" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"Th" = (
+/obj/structure/sink/directional/west,
+/obj/machinery/light/small/directional/west,
+/obj/structure/mirror/directional/east,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/toilet{
+	pixel_x = 0;
+	pixel_y = 18
+	},
+/obj/item/soap/syndie,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/turf/open/floor/iron/showroomfloor,
+/area/shipbreak)
+"TD" = (
+/obj/structure/cable/layer1,
+/obj/machinery/atmospherics/pipe/layer_manifold/supply/visible/layer4{
+	dir = 4
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"TU" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"UN" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"UP" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Service Bay"
+	},
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/obj/structure/cable/layer1,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"UX" = (
+/obj/machinery/atmospherics/components/trinary/mixer/airmix/flipped{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"UZ" = (
+/turf/template_noop,
+/area/shipbreak)
+"Vj" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/shipbreak)
+"Wc" = (
+/obj/structure/cable/layer1,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Wy" = (
+/obj/structure/fluff/metalpole/end/left{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shipbreak)
+"WA" = (
+/obj/structure/table/reinforced,
+/obj/item/stamp/head/qm{
+	pixel_x = -16;
+	pixel_y = 12
+	},
+/obj/item/paper_bin{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"WL" = (
+/obj/machinery/power/stirling_generator{
+	dir = 1
+	},
+/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/obj/structure/cable,
+/turf/open/floor/engine/airless,
+/area/shipbreak)
+"WM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shipbreak)
+"WQ" = (
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/wood,
+/area/shipbreak)
+"Xb" = (
+/obj/structure/sign/poster/contraband/mothic_rations/directional/north{
+	desc = "A Mothic ration chart. The information on it has been drawn over in crude handwriting, listing what food has been allocated to which crewmembers. You can't recognise any of the names on here."
+	},
+/obj/structure/closet/secure_closet/freezer/empty/open,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Xe" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+"Xu" = (
+/obj/vehicle/sealed/mecha/working/ripley/cargo,
+/turf/open/floor/iron/dark,
+/area/shipbreak)
+"Xv" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/plasma/spawner/directional/north,
+/turf/open/floor/plating,
+/area/shipbreak)
+"XQ" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/firealarm/directional/east,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"XX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	invisibility = 101
+	},
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"Yq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/airalarm/directional/east,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"YP" = (
+/obj/structure/table,
+/obj/item/pen{
+	pixel_x = 0;
+	pixel_y = 9
+	},
+/obj/item/paper/crumpled{
+	default_raw_text = "While most of the thruster arrays, including the port one I have taken to using as an office, are capable of properly counteracting the recoil of ballistic munitions, I'm still rejecting the proposal to install a naval artillery cannon. This ship's too old for it, and it'll shake the hull to bits. Plus, we don't have the logistics for it. This ship can barely carry or make enough food to keep its own crew alive.";
+	pixel_x = 11;
+	pixel_y = 4
+	},
+/turf/open/floor/iron/grimy,
+/area/shipbreak)
+"Za" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/item/hatchet/wooden,
+/obj/effect/turf_decal/delivery/white,
+/turf/open/floor/iron/dark/smooth_large,
+/area/shipbreak)
+"Zo" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/catwalk_floor/iron_dark,
+/area/shipbreak)
+
+(1,1,1) = {"
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+bU
+bU
+bU
+Ji
+Ji
+dy
+UZ
+Vj
+Ji
+Ji
+Ji
+Ji
+Ji
+"}
+(2,1,1) = {"
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+bU
+bU
+it
+kB
+tw
+Ix
+Ji
+sP
+Ji
+bE
+wq
+YP
+Xv
+hK
+"}
+(3,1,1) = {"
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+bU
+Fl
+FI
+pi
+DV
+BU
+Ji
+mE
+Ji
+ua
+pC
+MT
+Xv
+hK
+"}
+(4,1,1) = {"
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+Vj
+Ji
+Ji
+Ji
+pF
+Ji
+Ac
+KC
+DB
+Ji
+Qo
+Ji
+Ji
+Ji
+"}
+(5,1,1) = {"
+ea
+GR
+io
+FN
+so
+FN
+FN
+FN
+Bb
+Hm
+bU
+KT
+bU
+wv
+Pm
+Dx
+bU
+jj
+bU
+UZ
+UZ
+"}
+(6,1,1) = {"
+UZ
+vq
+fo
+fo
+Ji
+UZ
+UZ
+vq
+Ji
+Ji
+Ji
+zy
+Ji
+Nf
+lH
+On
+Ji
+kA
+Ji
+Vj
+UZ
+"}
+(7,1,1) = {"
+Vj
+Ji
+ot
+px
+Ji
+dD
+dD
+Ji
+qr
+aT
+Dt
+KT
+ju
+Ji
+Bq
+sJ
+Dp
+lF
+uM
+Ji
+Ji
+"}
+(8,1,1) = {"
+fo
+yi
+uy
+UN
+Ji
+xd
+kY
+Ji
+Qs
+sh
+Qc
+KT
+Kf
+Kk
+Sy
+qh
+gv
+lF
+GF
+Xv
+hK
+"}
+(9,1,1) = {"
+fo
+zl
+DL
+Ig
+Gl
+KT
+KT
+CT
+KT
+KT
+KT
+bW
+bW
+bW
+jh
+fr
+fr
+fn
+WL
+Xv
+hK
+"}
+(10,1,1) = {"
+fo
+yQ
+ex
+tg
+Ji
+CU
+yH
+Ji
+Xb
+sh
+dH
+nB
+sh
+ho
+Ji
+gd
+KM
+Wc
+OK
+Xv
+hK
+"}
+(11,1,1) = {"
+Lg
+Ji
+fo
+Ji
+Ji
+dD
+dD
+Ji
+wd
+LY
+dH
+Kg
+Br
+Ji
+EV
+Ji
+jx
+rc
+GH
+Ji
+Ji
+"}
+(12,1,1) = {"
+UZ
+Ji
+lL
+Ib
+oH
+jo
+jo
+Vj
+Ji
+Ji
+IL
+Ji
+Ji
+Ji
+al
+Ji
+Ji
+UP
+nG
+Ji
+UZ
+"}
+(13,1,1) = {"
+UZ
+cw
+Xu
+sh
+rt
+ML
+Za
+TU
+TU
+TU
+dH
+Ji
+Cs
+bs
+hO
+oz
+mX
+TD
+Ah
+Ji
+Ji
+"}
+(14,1,1) = {"
+UZ
+cw
+Mf
+Mf
+iK
+iK
+iK
+mr
+fC
+pQ
+tS
+Ji
+KM
+KM
+KM
+KM
+UX
+gu
+Ca
+Xv
+hK
+"}
+(15,1,1) = {"
+UZ
+cw
+sh
+wK
+eW
+dM
+yw
+Xe
+Xe
+Xe
+rf
+Ji
+Du
+sh
+KM
+sh
+KM
+jj
+EX
+Xv
+hK
+"}
+(16,1,1) = {"
+UZ
+Ji
+PJ
+WA
+oP
+oP
+FQ
+Fz
+eW
+mC
+Zo
+Gn
+xb
+OA
+xn
+Kc
+li
+iH
+sh
+Xv
+hK
+"}
+(17,1,1) = {"
+UZ
+Lg
+Ji
+Ji
+nS
+cG
+FQ
+Ky
+oP
+oP
+dc
+Ji
+kM
+KM
+KM
+sh
+KM
+EM
+mh
+Ji
+Ji
+"}
+(18,1,1) = {"
+UZ
+UZ
+UZ
+Ji
+Ji
+Ji
+xp
+Ji
+nS
+lu
+xr
+Ji
+Ji
+Ji
+KM
+un
+KM
+sO
+sO
+SC
+Fp
+"}
+(19,1,1) = {"
+UZ
+UZ
+UZ
+Ji
+Th
+yF
+XX
+Vj
+Ji
+Ji
+Ji
+Ji
+bT
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+UZ
+"}
+(20,1,1) = {"
+Wy
+eJ
+ye
+Vj
+Ji
+Ji
+Eg
+xY
+vp
+lX
+PX
+xY
+Yq
+gm
+XQ
+vc
+nt
+tf
+Xv
+hK
+UZ
+"}
+(21,1,1) = {"
+UZ
+UZ
+UZ
+Od
+Cl
+uY
+WM
+vb
+Ji
+xO
+Ji
+oE
+Ji
+Lx
+Ji
+Ji
+AS
+bZ
+Xv
+hK
+UZ
+"}
+(22,1,1) = {"
+UZ
+UZ
+UZ
+UZ
+UZ
+Ji
+IG
+KF
+Ji
+WQ
+Ji
+WQ
+Ji
+WQ
+Ji
+MJ
+Pq
+zb
+Xv
+hK
+UZ
+"}
+(23,1,1) = {"
+UZ
+UZ
+UZ
+UZ
+UZ
+Lg
+Ji
+dZ
+Ji
+qR
+Ji
+xT
+Ji
+eu
+Ji
+cx
+gn
+vD
+Ji
+LZ
+UZ
+"}
+(24,1,1) = {"
+UZ
+UZ
+UZ
+UZ
+UZ
+UZ
+Vj
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+Ji
+Vj
+UZ
+UZ
+"}

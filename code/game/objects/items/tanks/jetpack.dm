@@ -159,6 +159,7 @@
 	name = "void jetpack (oxygen)"
 	desc = "It works well in a void."
 	icon_state = "jetpack-void"
+	volume = 50
 	inhand_icon_state = "jetpack-void"
 
 /obj/item/tank/jetpack/oxygen

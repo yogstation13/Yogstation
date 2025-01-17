@@ -97,6 +97,7 @@
 #define ORGAN_SLOT_HEART_AID "heartdrive"
 #define ORGAN_SLOT_HUD "eye_hud"
 #define ORGAN_SLOT_LIVER "liver"
+#define ORGAN_SLOT_SPLEEN "spleen" //monkestation addition
 #define ORGAN_SLOT_LUNGS "lungs"
 #define ORGAN_SLOT_PARASITE_EGG "parasite_egg"
 #define ORGAN_SLOT_MONSTER_CORE "monstercore"
@@ -180,6 +181,7 @@ GLOBAL_LIST_INIT(organ_process_order, list(
 	ORGAN_SLOT_THRUSTERS,
 	ORGAN_SLOT_HUD,
 	ORGAN_SLOT_LIVER,
+	ORGAN_SLOT_SPLEEN, //monkestation addition
 	ORGAN_SLOT_TONGUE,
 	ORGAN_SLOT_VOICE,
 	ORGAN_SLOT_ADAMANTINE_RESONATOR,

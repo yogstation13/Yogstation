@@ -2,9 +2,11 @@
 	#define HANDLE_BLOOD_HANDLED (1<<0)
 	#define HANDLE_BLOOD_NO_NUTRITION_DRAIN (1<<1)
 	#define HANDLE_BLOOD_NO_EFFECTS (1<<2)
-
 #define COLOR_BLOOD "#c90000"
 
+/// Modifies blood regeneration bsaed on what da spleen doin
+#define COMSIG_SPLEEN_MULT_BLOODGEN "spleen_mult_bloodgen"
+#define COMSIG_SPLEEN_EMERGENCY "spleen_emergency"
 /// Modifier used in math involving bloodiness, so the above values can be adjusted easily
 #define BLOOD_PER_UNIT_MODIFIER 0.5
 

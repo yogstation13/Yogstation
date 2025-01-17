@@ -4,6 +4,7 @@
 	returns_created_atoms = TRUE
 	keep_cached_map = TRUE
 
+	var/emag_only = 0
 	var/template_id
 	var/description
 	var/datum/parsed_map/lastparsed

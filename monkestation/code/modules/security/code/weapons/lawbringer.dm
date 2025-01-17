@@ -340,7 +340,7 @@
 /obj/item/ammo_casing/energy/lawbringer/detain
 	projectile_type = /obj/projectile/lawbringer/detain
 	select_name = "detain"
-	fire_sound = 'sound/weapons/laser.ogg'
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	e_cost = 600 //20%, 5 shots
 	pellets = 4
 	variance = 50
@@ -551,7 +551,7 @@
  */
 /obj/item/ammo_casing/energy/lawbringer/tideshot
 	projectile_type = /obj/projectile/lawbringer/tideshot
-	fire_sound = 'sound/weapons/laser.ogg'
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	select_name = "tideshot"
 	e_cost = 250 //8%, 12 shots
 	harmful = FALSE

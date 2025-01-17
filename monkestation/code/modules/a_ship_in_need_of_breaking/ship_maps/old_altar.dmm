@@ -1,0 +1,241 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/item/storage/fancy/candle_box,
+/turf/open/floor/cult,
+/area/shipbreak)
+"d" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shipbreak)
+"g" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"j" = (
+/obj/machinery/door/airlock/shuttle{
+	welded = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"n" = (
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/cult,
+/area/shipbreak)
+"u" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/structure/altar_of_gods,
+/obj/item/toy/toy_dagger,
+/turf/open/space/basic,
+/area/shipbreak)
+"w" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating,
+/area/shipbreak)
+"x" = (
+/obj/structure/fluff/drake_statue{
+	pixel_x = 0
+	},
+/turf/open/floor/cult,
+/area/shipbreak)
+"y" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/cult,
+/area/shipbreak)
+"B" = (
+/obj/structure/statue/bone/rib,
+/turf/open/floor/cult,
+/area/shipbreak)
+"C" = (
+/turf/open/floor/cult,
+/area/shipbreak)
+"D" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"I" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/cult,
+/area/shipbreak)
+"M" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/red,
+/area/shipbreak)
+"N" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/altar_of_gods,
+/obj/item/flashlight/flare/candle,
+/obj/item/organ/internal/heart/freedom,
+/turf/open/space/basic,
+/area/shipbreak)
+"R" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/machinery/power/shuttle_engine/heater,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"V" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/cult,
+/area/shipbreak)
+"W" = (
+/obj/structure/statue/bone/rib{
+	dir = 8
+	},
+/turf/open/floor/cult,
+/area/shipbreak)
+"X" = (
+/turf/template_noop,
+/area/shipbreak)
+"Y" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/cult,
+/area/shipbreak)
+"Z" = (
+/obj/item/storage/box/holy/follower,
+/turf/open/floor/cult,
+/area/shipbreak)
+
+(1,1,1) = {"
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+"}
+(2,1,1) = {"
+X
+X
+g
+d
+d
+d
+j
+d
+d
+d
+g
+X
+"}
+(3,1,1) = {"
+X
+g
+d
+W
+Z
+C
+M
+M
+M
+M
+R
+w
+"}
+(4,1,1) = {"
+X
+D
+y
+x
+C
+u
+M
+V
+V
+V
+R
+w
+"}
+(5,1,1) = {"
+X
+D
+I
+C
+C
+N
+M
+n
+n
+n
+R
+w
+"}
+(6,1,1) = {"
+X
+g
+d
+B
+c
+C
+M
+Y
+Y
+Y
+R
+w
+"}
+(7,1,1) = {"
+X
+X
+g
+d
+d
+d
+d
+d
+d
+d
+g
+X
+"}
+(8,1,1) = {"
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+"}

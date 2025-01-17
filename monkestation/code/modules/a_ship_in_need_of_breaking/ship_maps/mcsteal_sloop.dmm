@@ -1,0 +1,251 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall,
+/area/shipbreak)
+"b" = (
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/visible,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"d" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"e" = (
+/obj/machinery/autolathe,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"h" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/external,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"i" = (
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"l" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/chair/comfy/shuttle,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"m" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"q" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/medkit/regular,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"r" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/cell_charger{
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 30
+	},
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"u" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"v" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/pink/visible,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"y" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/olive,
+/turf/template_noop,
+/area/shipbreak)
+"B" = (
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"C" = (
+/obj/structure/cable,
+/obj/machinery/power/port_gen/pacman,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"D" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"E" = (
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"G" = (
+/obj/machinery/door/airlock/public/glass,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"I" = (
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/east,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/components/unary/portables_connector/layer4{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"K" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/shipbreak)
+"L" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/marker_beacon/burgundy,
+/turf/template_noop,
+/area/shipbreak)
+"M" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"O" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/closed/wall,
+/area/shipbreak)
+"P" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shipbreak)
+"Q" = (
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/structure/window/reinforced/spawner/directional/west,
+/obj/machinery/portable_atmospherics/canister/plasma,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"S" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 4
+	},
+/obj/machinery/light/directional/south,
+/obj/machinery/computer/old{
+	dir = 4
+	},
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"T" = (
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
+/obj/structure/lattice,
+/turf/template_noop,
+/area/shipbreak)
+"U" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 8
+	},
+/obj/machinery/computer/old{
+	dir = 8
+	},
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"W" = (
+/obj/machinery/airalarm/directional/west,
+/obj/structure/table/reinforced,
+/obj/item/storage/medkit/surgery,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"Y" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/light/directional/north,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+"Z" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/east,
+/turf/open/floor/iron/smooth,
+/area/shipbreak)
+
+(1,1,1) = {"
+L
+K
+a
+a
+h
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+P
+a
+e
+B
+W
+q
+a
+"}
+(3,1,1) = {"
+P
+S
+a
+r
+d
+u
+i
+I
+"}
+(4,1,1) = {"
+P
+D
+G
+d
+m
+E
+v
+M
+"}
+(5,1,1) = {"
+P
+U
+a
+l
+B
+B
+b
+Q
+"}
+(6,1,1) = {"
+a
+P
+a
+Y
+B
+Z
+C
+a
+"}
+(7,1,1) = {"
+y
+T
+O
+O
+h
+a
+a
+a
+"}

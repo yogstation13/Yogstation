@@ -1,0 +1,1496 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = 77;
+	pixel_y = 25
+	},
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"ac" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"aC" = (
+/obj/effect/decal/cleanable/plastic,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"aY" = (
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = 14;
+	pixel_y = 26
+	},
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"br" = (
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"ck" = (
+/obj/effect/spawner/random/trash/grime,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"dc" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"ds" = (
+/turf/open/space/basic,
+/area/shipbreak)
+"eu" = (
+/obj/item/paper/employment_contract{
+	pixel_x = 1;
+	pixel_y = -14
+	},
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"fu" = (
+/turf/open/floor/bronze,
+/area/shipbreak)
+"fA" = (
+/obj/machinery/vending/donksofttoyvendor,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"fD" = (
+/obj/machinery/light/floor/has_bulb/red,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"fG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"fM" = (
+/obj/machinery/light/blacklight/directional/south,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"fW" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"gC" = (
+/obj/machinery/power/smes/full,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"gS" = (
+/obj/machinery/power/apc/worn_out/directional/south,
+/obj/effect/decal/cleanable/robot_debris/old,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"gY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/goldeneye_upload_terminal,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"ha" = (
+/obj/effect/decal/cleanable/vomit/old/black_bile,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"ih" = (
+/turf/open/floor/glass/plasma,
+/area/shipbreak)
+"il" = (
+/obj/item/stack/sheet/bronze,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"iz" = (
+/obj/item/reagent_containers/cup/glass/bottle/cognac,
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"iS" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"iV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"jf" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"jX" = (
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"kp" = (
+/mob/living/basic/flesh_spider,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"kO" = (
+/obj/effect/decal/remains/human{
+	pixel_x = 11;
+	pixel_y = -5
+	},
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"kY" = (
+/obj/structure/table,
+/obj/item/food/ready_donk/warm,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"la" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"lc" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"mm" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"mL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"mX" = (
+/obj/structure/alien/egg/burst,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"ni" = (
+/obj/effect/spawner/random/decoration/showcase,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"nF" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"oh" = (
+/obj/item/trash/ready_donk{
+	pixel_x = -4;
+	pixel_y = -7
+	},
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"op" = (
+/obj/structure/table/bronze,
+/obj/item/storage/toolbox/brass/surgery,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"oy" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/spawner/random/entertainment/coin,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"oF" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shipbreak)
+"pe" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"po" = (
+/obj/structure/flippedtable,
+/obj/effect/spawner/random/trash/bacteria,
+/obj/machinery/light/small/dim/directional/east,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"pq" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/space/basic,
+/area/shipbreak)
+"px" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"pZ" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"qo" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"qN" = (
+/obj/machinery/chem_dispenser/abductor,
+/turf/open/floor/glass/plasma,
+/area/shipbreak)
+"rl" = (
+/obj/structure/table/bronze,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"rq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"rE" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"rF" = (
+/obj/structure/alien/egg/burst,
+/obj/machinery/light/small/dim/directional/north,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"rY" = (
+/obj/effect/decal/remains/human{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"sd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"su" = (
+/obj/effect/spawner/random/food_or_drink/donkpockets{
+	pixel_x = -5;
+	pixel_y = 27
+	},
+/obj/effect/spawner/random/food_or_drink/donkpockets_single{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/food_or_drink/donkpockets_single{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/effect/spawner/random/food_or_drink/donkpockets_single{
+	pixel_x = 9;
+	pixel_y = -10
+	},
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"sV" = (
+/obj/structure/window/fulltile/colony_fabricator,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"tw" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/random/bureaucracy/paper,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"vO" = (
+/obj/structure/sign/poster/contraband/donk_co/directional/west,
+/obj/effect/spawner/costume/sexyclown,
+/obj/structure/rack,
+/obj/effect/spawner/random/entertainment/musical_instrument,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"wc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"wh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"ww" = (
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"wA" = (
+/obj/structure/table/optable,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"wC" = (
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"wX" = (
+/obj/machinery/door/airlock/plasma,
+/turf/open/floor/glass/plasma,
+/area/shipbreak)
+"xd" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/spawner/random/entertainment/cigar,
+/obj/effect/spawner/random/entertainment/lighter,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"xk" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"xr" = (
+/obj/item/paperplane{
+	pixel_x = 19;
+	pixel_y = 36;
+	dir = 1
+	},
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"xB" = (
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"xD" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/spawner/random/entertainment/cigarette_pack,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"xY" = (
+/turf/closed/wall/material/meat,
+/area/shipbreak)
+"yA" = (
+/obj/structure/broken_flooring,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"yI" = (
+/obj/structure/fluff/paper/stack{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"zj" = (
+/obj/machinery/plumbing/synthesizer/colony_hydroponics,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"zq" = (
+/obj/item/chair/plastic{
+	pixel_x = -98;
+	pixel_y = 112
+	},
+/obj/effect/spawner/random/food_or_drink/donkpockets{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"zB" = (
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"Ab" = (
+/obj/effect/decal/cleanable/leaper_sludge,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"Aj" = (
+/obj/machinery/fat_sucker,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"As" = (
+/obj/effect/decal/cleanable/ants/fire,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"Ay" = (
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"Bm" = (
+/obj/structure/window/fulltile/colony_fabricator,
+/turf/open/space/basic,
+/area/shipbreak)
+"BI" = (
+/obj/machinery/sleeper/clockwork{
+	dir = 1
+	},
+/turf/open/floor/bronze,
+/area/shipbreak)
+"Ci" = (
+/obj/structure/chair/comfy/shuttle/tactical{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"Cn" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"CF" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"CH" = (
+/obj/structure/alien_tank/filled/hugger,
+/turf/open/floor/mineral/abductor,
+/area/shipbreak)
+"Ds" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"DC" = (
+/obj/machinery/abductor/experiment,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"DO" = (
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"Eu" = (
+/obj/machinery/light/floor/has_bulb/red,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"Ey" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/spawner/random/trash/bacteria,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"EA" = (
+/obj/effect/spawner/random/contraband/prison,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"EF" = (
+/obj/machinery/colony_recycler,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"EI" = (
+/obj/effect/spawner/random/trash/food_packaging,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"ER" = (
+/turf/closed/wall/prefab_plastic,
+/area/shipbreak)
+"EX" = (
+/obj/structure/table,
+/obj/item/toy/foamfinger,
+/obj/item/gun/ballistic/shotgun/toy/unrestricted{
+	pixel_x = 17;
+	pixel_y = -18
+	},
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"Fl" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"FH" = (
+/obj/effect/spawner/random/trash/cigbutt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"FQ" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"FS" = (
+/obj/effect/decal/cleanable/robot_debris/limb{
+	pixel_x = -20;
+	pixel_y = -8
+	},
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"Gh" = (
+/obj/structure/sign/warning/vacuum/directional/north,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"Gj" = (
+/obj/machinery/power/shuttle_engine/heater,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"Gl" = (
+/turf/closed/wall/clockwork,
+/area/shipbreak)
+"Gx" = (
+/obj/structure/bed/abductor,
+/obj/effect/spawner/random/bedsheet,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"GD" = (
+/obj/machinery/holopad/secure,
+/obj/machinery/light/small/dim/directional/east,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"GZ" = (
+/obj/structure/bed/abductor,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"Hi" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"Hj" = (
+/turf/closed/wall/metal_foam_base,
+/area/shipbreak)
+"Hn" = (
+/turf/closed/wall/rust,
+/area/shipbreak)
+"Hz" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"IA" = (
+/obj/machinery/ore_silo/colony_lathe,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"ID" = (
+/obj/effect/decal/cleanable/oil/streak,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"IQ" = (
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"Jj" = (
+/obj/machinery/computer/operating/clockwork,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"Js" = (
+/obj/structure/chair/plastic{
+	dir = 1;
+	pixel_x = 13;
+	pixel_y = -14
+	},
+/obj/effect/decal/remains/human{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"Jw" = (
+/obj/machinery/power/shuttle_engine/propulsion/burst/cargo,
+/turf/open/space/basic,
+/area/shipbreak)
+"JI" = (
+/obj/machinery/light/small/dim/directional/east,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"JL" = (
+/obj/item/storage/box/metalfoam,
+/obj/structure/rack,
+/obj/item/stack/sticky_tape,
+/obj/item/stack/sticky_tape,
+/obj/item/stack/sticky_tape,
+/obj/item/stack/cable_coil,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"KA" = (
+/obj/structure/bed/abductor,
+/obj/effect/decal/cleanable/greenglow,
+/turf/open/floor/mineral/abductor,
+/area/shipbreak)
+"KZ" = (
+/obj/structure/bed/abductor,
+/obj/effect/spawner/random/bedsheet/any,
+/turf/open/floor/plating/abductor2,
+/area/shipbreak)
+"Lj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/floor/has_bulb/warm,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"Ll" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"Lr" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"LA" = (
+/turf/open/space/basic,
+/area/space)
+"LH" = (
+/obj/effect/decal/cleanable/confetti,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"LZ" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"Mh" = (
+/obj/machinery/power/shuttle_engine/large,
+/turf/open/space/basic,
+/area/shipbreak)
+"Mt" = (
+/obj/machinery/power/shuttle_engine/huge,
+/turf/open/space/basic,
+/area/shipbreak)
+"Mv" = (
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
+/turf/open/space/basic,
+/area/shipbreak)
+"MR" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shipbreak)
+"Nk" = (
+/obj/item/flatpacked_machine/co2_cracker,
+/obj/machinery/light/directional/south,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"No" = (
+/obj/item/paperwork/ancient,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"Nx" = (
+/obj/effect/spawner/random/trash/mess,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"NN" = (
+/obj/machinery/door/airlock/bronze/clock,
+/turf/closed/wall/clockwork,
+/area/shipbreak)
+"NY" = (
+/turf/open/floor/mineral/abductor,
+/area/shipbreak)
+"OT" = (
+/obj/structure/meateor_fluff/flesh_pod_open,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"Pf" = (
+/obj/effect/decal/cleanable/crayon,
+/obj/machinery/light/directional/west,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"Pv" = (
+/turf/closed/wall/vault/alien,
+/area/shipbreak)
+"PE" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"PF" = (
+/obj/machinery/door/airlock/grunge,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"Ql" = (
+/obj/effect/spawner/random/medical/two_percent_xeno_egg_spawner,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"Qz" = (
+/obj/machinery/hypnochair,
+/turf/open/floor/glass/plasma,
+/area/shipbreak)
+"QC" = (
+/obj/structure/table/bronze,
+/obj/item/stack/sheet/bronze,
+/turf/open/floor/bronze,
+/area/shipbreak)
+"QT" = (
+/obj/machinery/portable_atmospherics/pump,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"Rw" = (
+/obj/machinery/portable_atmospherics/canister/water_vapor,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"RL" = (
+/obj/structure/alien_tank/broken,
+/turf/open/floor/mineral/abductor,
+/area/shipbreak)
+"Se" = (
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = -24;
+	pixel_y = 92
+	},
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = -42;
+	pixel_y = 107
+	},
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = -43;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"Sj" = (
+/obj/machinery/door/airlock/colony_prefab,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"SA" = (
+/obj/effect/spawner/random/trash/cigbutt,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"Tk" = (
+/obj/machinery/computer/old,
+/turf/open/floor/mineral/plastitanium,
+/area/shipbreak)
+"Tl" = (
+/obj/machinery/rnd/production/colony_lathe,
+/turf/open/floor/iron/colony/white,
+/area/shipbreak)
+"Tn" = (
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = 6;
+	pixel_y = 4;
+	Angle = 910;
+	dir = 1
+	},
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"Tp" = (
+/obj/structure/alien_tank/broken,
+/turf/open/floor/plating/abductor2,
+/area/shipbreak)
+"TX" = (
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/shipbreak)
+"Us" = (
+/obj/structure/artifact/smoke/flesh,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"UA" = (
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"Vr" = (
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"VE" = (
+/turf/open/floor/plating/abductor2,
+/area/shipbreak)
+"VI" = (
+/obj/structure/meateor_fluff/flesh_pod,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"VR" = (
+/obj/effect/decal/cleanable/shreds{
+	pixel_x = -1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"Wr" = (
+/obj/structure/foamedmetal/iron,
+/turf/open/space/basic,
+/area/shipbreak)
+"WO" = (
+/mob/living/basic/xenofauna/meatbeast,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"XF" = (
+/obj/item/chair/plastic,
+/obj/item/chair/plastic{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/item/chair/plastic{
+	pixel_x = 2;
+	pixel_y = 9
+	},
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"XH" = (
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"XU" = (
+/obj/effect/decal/remains/human{
+	pixel_x = 3;
+	pixel_y = 15
+	},
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"Yh" = (
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/structure/sign/poster/official/foam_force_ad/directional/north,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"YL" = (
+/obj/projectile/bullet/reusable/foam_dart,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"YU" = (
+/turf/open/floor/carpet/executive,
+/area/shipbreak)
+"Zf" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/material/meat,
+/area/shipbreak)
+"Zq" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/light/dim/directional/west,
+/turf/open/floor/plating/foam,
+/area/shipbreak)
+"ZH" = (
+/obj/projectile/bullet/reusable/foam_dart{
+	pixel_x = -40;
+	pixel_y = 122
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+"ZU" = (
+/obj/machinery/abductor/console,
+/turf/open/floor/vault/alien,
+/area/shipbreak)
+"ZX" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/carpet/donk,
+/area/shipbreak)
+
+(1,1,1) = {"
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+Wr
+Wr
+Wr
+Wr
+LA
+LA
+LA
+"}
+(2,1,1) = {"
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+Wr
+Wr
+Wr
+ER
+Bm
+Bm
+Bm
+ER
+Gj
+ds
+ds
+Mt
+LA
+LA
+"}
+(3,1,1) = {"
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+Wr
+Wr
+Wr
+Wr
+Wr
+Wr
+Bm
+zj
+FS
+mm
+ER
+Gj
+ds
+ds
+ds
+LA
+LA
+"}
+(4,1,1) = {"
+LA
+LA
+LA
+LA
+Wr
+PF
+Wr
+LA
+LA
+LA
+Wr
+gC
+Zq
+JL
+Bm
+IA
+px
+Nk
+ER
+Gj
+ds
+ds
+ds
+LA
+LA
+"}
+(5,1,1) = {"
+LA
+LA
+LA
+LA
+Hj
+Gh
+oF
+oF
+oF
+Wr
+Hj
+fW
+Ay
+xk
+Wr
+Tl
+aC
+gS
+ER
+Wr
+Wr
+Wr
+Wr
+Wr
+LA
+"}
+(6,1,1) = {"
+LA
+LA
+LA
+Wr
+Wr
+PF
+Wr
+lc
+wc
+TX
+vO
+LH
+ab
+ZX
+Bm
+EF
+DO
+la
+ER
+Gj
+Jw
+LA
+LA
+LA
+LA
+"}
+(7,1,1) = {"
+LA
+LA
+oF
+Wr
+pe
+jX
+fG
+br
+rq
+TX
+XF
+Ay
+aY
+kY
+ER
+Bm
+Sj
+sV
+ER
+Gj
+Jw
+LA
+LA
+LA
+LA
+"}
+(8,1,1) = {"
+LA
+LA
+Mv
+Tk
+Ci
+jf
+Eu
+ck
+IQ
+Ay
+Tn
+YL
+Lj
+EX
+Js
+oh
+CF
+Pv
+Pv
+Pv
+Pv
+Pv
+Pv
+LA
+LA
+"}
+(9,1,1) = {"
+LA
+LA
+Mv
+Tk
+Ci
+jX
+rE
+jf
+Lr
+TX
+Yh
+PE
+Se
+wC
+ZH
+ha
+Ay
+wX
+VE
+NY
+KA
+KZ
+Pv
+LA
+LA
+"}
+(10,1,1) = {"
+LA
+LA
+Mv
+Tk
+Ci
+jf
+fG
+MR
+iS
+Wr
+fA
+ac
+po
+zq
+su
+As
+VR
+Pv
+qN
+xB
+nF
+ih
+Pv
+LA
+LA
+"}
+(11,1,1) = {"
+LA
+LA
+Mv
+Tk
+Ci
+jf
+ck
+gY
+sd
+Wr
+Gl
+Gl
+Wr
+Wr
+Wr
+Gl
+EI
+Pv
+Aj
+iV
+Gx
+GZ
+Pv
+LA
+LA
+"}
+(12,1,1) = {"
+LA
+LA
+Mv
+Tk
+Ci
+jf
+fD
+FH
+wh
+Gl
+Jj
+wA
+Pf
+fu
+rl
+Gl
+zB
+Pv
+ZU
+xB
+iV
+fM
+Pv
+LA
+LA
+"}
+(13,1,1) = {"
+LA
+LA
+oF
+SA
+JI
+MR
+jX
+rE
+Nx
+Gl
+op
+fu
+il
+fu
+fu
+Gl
+Hz
+Pv
+DC
+nF
+GZ
+Gx
+Pv
+LA
+LA
+"}
+(14,1,1) = {"
+LA
+LA
+oF
+EA
+Hj
+qo
+xr
+CF
+IQ
+Gl
+fu
+mL
+LZ
+fu
+BI
+Gl
+zB
+Pv
+Qz
+xB
+xB
+ih
+Pv
+xY
+LA
+"}
+(15,1,1) = {"
+LA
+LA
+oF
+oF
+oF
+pZ
+eu
+YU
+YU
+yI
+Ll
+ID
+fu
+Cn
+QC
+Gl
+zB
+Pv
+Tp
+RL
+CH
+VE
+Pv
+xY
+LA
+"}
+(16,1,1) = {"
+LA
+LA
+LA
+Wr
+Wr
+ni
+YU
+xD
+iz
+oy
+FQ
+UA
+Gl
+NN
+Gl
+Gl
+xY
+Pv
+Pv
+Pv
+Pv
+wX
+Pv
+xY
+xY
+"}
+(17,1,1) = {"
+LA
+LA
+Hn
+Hn
+Hn
+Hn
+QT
+Ey
+GD
+tw
+FQ
+YU
+yA
+XH
+xY
+Us
+Vr
+Ab
+xY
+Vr
+XU
+Vr
+xY
+xY
+LA
+"}
+(18,1,1) = {"
+LA
+LA
+LA
+LA
+Hn
+Hn
+Hn
+Hn
+Wr
+xd
+FQ
+Ll
+Ql
+zB
+xY
+xY
+Zf
+Vr
+kp
+Fl
+Vr
+VI
+xY
+Gj
+pq
+"}
+(19,1,1) = {"
+LA
+LA
+LA
+LA
+Hn
+Gj
+ds
+Mh
+Wr
+Wr
+No
+Ll
+ww
+mX
+xY
+xY
+Ds
+dc
+Vr
+xY
+WO
+OT
+xY
+xY
+xY
+"}
+(20,1,1) = {"
+LA
+Hn
+Hn
+Hn
+Hn
+Gj
+ds
+ds
+LA
+Wr
+Wr
+Ql
+XH
+Ql
+xY
+kO
+kp
+Hi
+rY
+xY
+xY
+xY
+xY
+LA
+LA
+"}
+(21,1,1) = {"
+Hn
+Hn
+Hn
+LA
+Hn
+Hn
+LA
+LA
+LA
+LA
+Wr
+Wr
+rF
+zB
+xY
+Vr
+Vr
+xY
+xY
+xY
+xY
+LA
+LA
+LA
+LA
+"}
+(22,1,1) = {"
+LA
+LA
+LA
+LA
+LA
+Hn
+Hn
+LA
+LA
+LA
+LA
+Wr
+Rw
+Ql
+xY
+OT
+xY
+xY
+Gj
+pq
+LA
+LA
+LA
+LA
+LA
+"}
+(23,1,1) = {"
+LA
+LA
+LA
+LA
+LA
+LA
+Hn
+Hn
+LA
+LA
+LA
+Wr
+Wr
+Wr
+xY
+xY
+xY
+xY
+xY
+xY
+LA
+LA
+LA
+LA
+LA
+"}
+(24,1,1) = {"
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+xY
+xY
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+"}
+(25,1,1) = {"
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+xY
+xY
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+LA
+"}

@@ -923,6 +923,10 @@
 	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
+"aqR" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/iron,
+/area/station/engineering/shipbreaker_hut)
 "aqS" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -4406,7 +4410,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
-/turf/open/floor/plating/airless,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "bxf" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -12306,17 +12310,6 @@
 /obj/structure/light_construct/small/directional/east,
 /turf/open/floor/wood,
 /area/station/maintenance/port/aft)
-"ety" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/rack,
-/obj/item/weldingtool/electric/raynewelder{
-	pixel_y = -5
-	},
-/obj/item/weldingtool/electric/raynewelder{
-	pixel_y = 6
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "etz" = (
 /obj/structure/window/spawner/directional/west,
 /obj/effect/turf_decal/siding/wood{
@@ -14185,8 +14178,8 @@
 /turf/closed/wall,
 /area/station/hallway/primary/fore)
 "ffP" = (
-/obj/structure/cable,
-/turf/open/floor/plating/airless,
+/obj/structure/closet/crate,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "ffU" = (
 /obj/effect/turf_decal/siding/purple,
@@ -15389,7 +15382,8 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/starboard)
 "fAx" = (
-/turf/open/floor/plating/airless,
+/obj/structure/closet/secure_closet/shipbreaker,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "fAI" = (
 /obj/effect/spawner/random/structure/crate,
@@ -19016,7 +19010,7 @@
 /obj/machinery/conveyor_switch/oneway{
 	id = "shitbreaker"
 	},
-/turf/open/floor/plating/airless,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "gRb" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -32501,10 +32495,11 @@
 /turf/closed/wall,
 /area/station/commons/dorms)
 "lnd" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/engineering,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/engineering/shipbreaker_hut)
 "lnv" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
@@ -36572,10 +36567,8 @@
 /turf/open/floor/wood,
 /area/station/service/bar/backroom)
 "mFD" = (
-/obj/machinery/door/airlock/engineering,
-/obj/structure/cable,
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
+/obj/effect/spawner/structure/window,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "mFQ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -53205,8 +53198,8 @@
 /turf/open/floor/iron,
 /area/station/commons/fitness/recreation)
 "soH" = (
-/obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
+/obj/machinery/door/airlock/engineering,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "soW" = (
 /obj/structure/rack,
@@ -59570,10 +59563,9 @@
 /turf/open/space/basic,
 /area/space)
 "uzu" = (
-/obj/effect/spawner/random/structure/grille,
-/obj/effect/spawner/random/structure/grille,
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron,
+/area/station/engineering/shipbreaker_hut)
 "uzw" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -110649,9 +110641,9 @@ lMJ
 aaa
 aaa
 lMJ
-aaa
-aaa
-aaa
+lMJ
+lMJ
+lMJ
 szp
 szp
 szp
@@ -110909,7 +110901,7 @@ cpH
 aaa
 aaa
 aaa
-aaa
+lMJ
 aaa
 aaa
 szp
@@ -111166,7 +111158,7 @@ lMJ
 aaa
 aaa
 aaa
-aaa
+lMJ
 aaa
 aaa
 szp
@@ -111423,7 +111415,7 @@ lMJ
 aaa
 aaa
 aaa
-aaa
+lMJ
 aaa
 aaa
 szp
@@ -111658,8 +111650,8 @@ aaa
 aaa
 aaa
 aaa
-kiE
-kiE
+aUn
+aUn
 aox
 aox
 aox
@@ -111673,18 +111665,18 @@ aox
 dJN
 dJN
 dJN
-dJN
-dJN
-dJN
-dJN
-dJN
-dJN
-dJN
-dJN
-dJN
-dJN
-dJN
-dJN
+uay
+uay
+uay
+uay
+uay
+uay
+uay
+uay
+uay
+uay
+uay
+uay
 jpO
 sZU
 nDW
@@ -111916,7 +111908,7 @@ aaa
 aaa
 aaa
 aaa
-kiE
+aUn
 aaa
 aaa
 aaa
@@ -111927,18 +111919,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-lMJ
-ffP
-lMJ
-lMJ
-lMJ
-cpH
-ety
+uVa
+mFD
+mFD
 lnd
-aox
-dJN
-aox
+uVa
+cpH
+aaa
+aaa
+lMJ
+aaa
+aaa
+aaa
 aox
 aaa
 aox
@@ -112173,25 +112165,25 @@ aaa
 aaa
 aaa
 aaa
-kiE
-kiE
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-lMJ
-ffP
-lMJ
-aaa
 aUn
-lMJ
-aox
+aUn
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+uVa
+aqR
+nIZ
+dtN
+uVa
+uVa
+uVa
+uVa
 uVa
 uVa
 mFD
@@ -112431,8 +112423,8 @@ aaa
 aaa
 aaa
 aaa
-kiE
-kiE
+aUn
+aUn
 aaa
 aaa
 aaa
@@ -112443,17 +112435,17 @@ aaa
 aaa
 qsN
 szm
-ffP
-fAx
-aox
-uzu
-lMJ
-aaa
+dtN
+dtN
+nIZ
+mFD
+nIZ
+nIZ
 soH
 phw
-dtN
+nIZ
 frF
-soH
+mFD
 aaa
 aox
 nqL
@@ -112689,10 +112681,10 @@ aaa
 aaa
 aaa
 aaa
-kiE
-kiE
-kiE
-kiE
+aUn
+aUn
+aUn
+aUn
 aaa
 aaa
 aaa
@@ -112700,17 +112692,17 @@ aaa
 aaa
 qsN
 bwP
-ffP
-fAx
-aox
-aUn
-lMJ
-aaa
+dtN
+nIZ
+nIZ
 soH
+nIZ
+fAx
+uVa
 inF
 nIZ
 fmA
-soH
+mFD
 aaa
 aox
 nqL
@@ -112949,7 +112941,7 @@ aaa
 aaa
 aaa
 aaa
-kiE
+aUn
 aaa
 aaa
 aaa
@@ -112958,11 +112950,11 @@ aaa
 qsN
 nDR
 gQX
+nIZ
+nIZ
+mFD
+nIZ
 fAx
-aox
-aox
-cpH
-aaa
 uVa
 suC
 nIZ
@@ -113206,24 +113198,24 @@ aaa
 aaa
 aaa
 aaa
-kiE
-kiE
-kiE
-kiE
-kiE
-dPw
+aUn
+aUn
+aUn
+aUn
+aUn
+lMJ
 qsN
 aDq
 qsN
 sUY
-aox
-aox
-lMJ
-aaa
+nIZ
+uVa
+uzu
+fAx
 uVa
 uVa
 uVa
-soH
+mFD
 uVa
 aaa
 aox
@@ -113473,11 +113465,11 @@ uVa
 erv
 jbJ
 iid
-aox
-kiE
-lMJ
-lMJ
-lMJ
+ffP
+uVa
+uVa
+uVa
+uVa
 lMJ
 lMJ
 lMJ
@@ -113730,8 +113722,8 @@ uVa
 uVa
 uVa
 uVa
-aox
-kiE
+uVa
+uVa
 lMJ
 aaa
 aaa
@@ -113988,7 +113980,7 @@ aaa
 aaa
 aaa
 aaa
-kiE
+aUn
 cpH
 aaa
 aaa

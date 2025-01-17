@@ -116,6 +116,7 @@
 			/obj/item/organ/internal/cyberimp/chest/thrusters,
 			/obj/item/organ/internal/lungs/cybernetic/tier3,
 			/obj/item/organ/internal/liver/cybernetic/tier3,
+			/obj/item/organ/internal/spleen/cybernetic/tier3,
 		)
 		for(var/obj/item/organ/organ as anything in selectable_types)
 			augment_list[initial(organ.name)] = organ

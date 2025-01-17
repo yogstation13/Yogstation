@@ -67,7 +67,7 @@
 
 /mob/living/simple_animal/hostile/pirate/ranged
 	name = "Pirate Gunner"
-	projectilesound = 'sound/weapons/laser.ogg'
+	projectilesound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	ranged = 1
 	rapid = 2
 	rapid_fire_delay = 6

@@ -46,6 +46,7 @@
 	if(!spawn_area_clear)
 		say("ERROR: SHIPBREAKING ZONE NOT CLEAR, PLEASE REMOVE ALL REMAINING FLOORS, STRUCTURES, AND MACHINERY")
 		return
+
 	var/datum/map_template/shipbreaker/ship_to_spawn = pick(possible_ships)
 
 	ship_to_spawn.load(bottom_left)
@@ -69,8 +70,11 @@
 
 /obj/machinery/computer/shipbreaker/proc/clear_floor_plating()
 	for(var/turf/t in linked)
-		if(isfloorturf(t))
+		//if(isfloorturf(t))
+		//t.ScrapeAway()
+		if(isopenturf(t))
 			t.ScrapeAway()
+
 
 
 /obj/machinery/computer/shipbreaker/ui_interact(mob/user, datum/tgui/ui)

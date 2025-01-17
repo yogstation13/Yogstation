@@ -99,6 +99,13 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium/blue,
 /area/shipbreak)
+"e" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/gibspawner/human,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
 "f" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -149,6 +156,10 @@
 /obj/structure/table,
 /obj/item/storage/medkit/regular,
 /turf/open/floor/mineral/titanium/yellow,
+/area/shipbreak)
+"s" = (
+/obj/effect/gibspawner/human,
+/turf/open/floor/mineral/titanium/blue,
 /area/shipbreak)
 "t" = (
 /obj/structure/chair/comfy/shuttle{
@@ -216,6 +227,10 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/shipbreak)
+"D" = (
+/obj/item/organ/internal/butt,
+/turf/open/floor/mineral/titanium/white,
+/area/shipbreak)
 "F" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -228,6 +243,13 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/north,
+/turf/open/floor/mineral/titanium/blue,
+/area/shipbreak)
+"H" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/gibspawner/human,
 /turf/open/floor/mineral/titanium/blue,
 /area/shipbreak)
 "I" = (
@@ -284,6 +306,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shipbreak)
 "Y" = (
+/obj/item/clothing/head/utility/bomb_hood/security,
 /turf/open/floor/mineral/plastitanium/red,
 /area/shipbreak)
 
@@ -312,7 +335,7 @@ i
 (3,1,1) = {"
 i
 n
-B
+D
 w
 i
 C
@@ -349,7 +372,7 @@ T
 l
 N
 l
-T
+s
 d
 i
 "}
@@ -380,7 +403,7 @@ x
 a
 a
 a
-T
+s
 a
 a
 a
@@ -389,7 +412,7 @@ x
 (10,1,1) = {"
 x
 a
-a
+H
 a
 T
 a
@@ -400,7 +423,7 @@ x
 (11,1,1) = {"
 u
 t
-a
+H
 a
 T
 a
@@ -445,7 +468,7 @@ I
 I
 i
 R
-y
+e
 y
 y
 W

@@ -8,7 +8,8 @@
 		TRAIT_MUTANT_COLORS_SECONDARY,
 		TRAIT_NO_UNDERWEAR,
 		TRAIT_NO_JUMPSUIT,
-		TRAIT_EASYDISMEMBER
+		TRAIT_EASYDISMEMBER,
+		TRAIT_SPLEENLESS_METABOLISM,
 	)
 	external_organs = list(
 		/obj/item/organ/external/pod_hair = "None",

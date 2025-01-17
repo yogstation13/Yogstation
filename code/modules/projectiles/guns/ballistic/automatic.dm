@@ -353,5 +353,5 @@
 	can_suppress = FALSE
 	burst_size = 0
 	actions_types = list()
-	fire_sound = 'sound/weapons/laser.ogg'
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	casing_ejector = FALSE

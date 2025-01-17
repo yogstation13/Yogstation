@@ -84,8 +84,8 @@
 	. = ..()
 	if(!anchored)
 		return
-	if(border_dir == eat_dir)
-		return TRUE
+	//if(border_dir == eat_dir)
+	return TRUE
 
 /obj/machinery/shipbreaker/examine(mob/user)
 	. = ..()

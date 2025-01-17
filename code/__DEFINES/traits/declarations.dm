@@ -174,6 +174,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NOBLOOD "noblood"
 /// This just means that the carbon will always have functional liverless metabolism
 #define TRAIT_LIVERLESS_METABOLISM "liverless_metabolism"
+// This means the carbon does not have altered bloodloss from having or not having a spleen
+#define TRAIT_SPLEENLESS_METABOLISM "spleenless_metabolism"
 /// Humans with this trait cannot be affected by changeling transformation stings
 #define TRAIT_NO_TRANSFORMATION_STING "no_transformation_sting"
 /// This carbon can't be overdosed by chems

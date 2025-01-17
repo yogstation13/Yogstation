@@ -5,6 +5,7 @@
 #define ORGAN_EYES (1 << 4)
 #define ORGAN_EARS (1 << 5)
 #define ORGAN_BUTT (1 << 6)
+#define ORGAN_SPLEEN (1 << 7)
 
 
 #define COMSIG_ABBERANT_TRIGGER "comsig_abberant_trigger"

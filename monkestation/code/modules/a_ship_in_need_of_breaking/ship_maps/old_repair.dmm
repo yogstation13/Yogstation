@@ -1,0 +1,370 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating,
+/area/shipbreak)
+"c" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"d" = (
+/turf/open/floor/plating,
+/area/shipbreak)
+"e" = (
+/turf/template_noop,
+/area/shipbreak)
+"g" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shipbreak)
+"j" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"k" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"l" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"m" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"n" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"o" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/shutters/window{
+	id = "shipbreaker_repair"
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"p" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/shipbreak)
+"r" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/shuttle,
+/turf/open/floor/plating,
+/area/shipbreak)
+"s" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"u" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Escape Pod Airlock"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"v" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/shipbreak)
+"w" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/button{
+	id = "shipbreaker_repair"
+	},
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"x" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/airless,
+/area/shipbreak)
+"z" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/color/fyellow{
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/gloves/color/fyellow,
+/obj/item/storage/belt/utility,
+/obj/item/clothing/glasses/meson/engine,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"C" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 27
+	},
+/turf/open/floor/mineral/titanium/blue/airless,
+/area/shipbreak)
+"D" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"E" = (
+/obj/effect/turf_decal,
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/decal/cleanable/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"F" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"H" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/emergency,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"I" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/shipbreak)
+"L" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"M" = (
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/shipbreak)
+"N" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/emcloset,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"O" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shipbreak)
+"Q" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"R" = (
+/obj/effect/turf_decal,
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"S" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"U" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"X" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/glass{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/item/storage/box/metalfoam,
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+"Y" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/mineral/titanium{
+	amount = 10;
+	pixel_x = -1
+	},
+/obj/item/stack/sheet/titaniumglass{
+	amount = 10;
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/titanium/airless,
+/area/shipbreak)
+
+(1,1,1) = {"
+e
+L
+g
+g
+g
+o
+o
+o
+g
+g
+L
+e
+"}
+(2,1,1) = {"
+L
+g
+X
+Y
+R
+v
+x
+v
+s
+c
+O
+a
+"}
+(3,1,1) = {"
+r
+w
+j
+j
+R
+d
+u
+d
+k
+z
+O
+a
+"}
+(4,1,1) = {"
+r
+D
+n
+j
+E
+g
+p
+g
+s
+F
+O
+a
+"}
+(5,1,1) = {"
+r
+D
+n
+j
+R
+g
+C
+g
+s
+S
+O
+a
+"}
+(6,1,1) = {"
+r
+U
+j
+j
+R
+M
+d
+L
+s
+H
+O
+a
+"}
+(7,1,1) = {"
+L
+g
+N
+j
+R
+v
+I
+m
+Q
+c
+O
+a
+"}
+(8,1,1) = {"
+e
+L
+g
+l
+g
+o
+o
+o
+g
+g
+L
+e
+"}

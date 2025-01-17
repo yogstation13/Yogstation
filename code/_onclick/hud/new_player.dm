@@ -544,27 +544,32 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/lobby/button/server)
 	server_port = MRP_PORT
 
 //NRP MONKE
+/*
 /atom/movable/screen/lobby/button/server/nrp
 	screen_loc = "TOP:-110,CENTER:+173"
 	base_icon_state = "nrp"
 	server_name = "Raw Roleplay (NRP)"
 	server_port = NRP_PORT
-
+*/
+//bottom button is "TOP:-140,CENTER:+177"
 //The Vanderlin Project
 /atom/movable/screen/lobby/button/server/vanderlin
 	icon = 'icons/hud/lobby/vanderlin_button.dmi'
 	base_icon_state = "vanderlin"
-	screen_loc = "TOP:-140,CENTER:+177"
+	screen_loc = "TOP:-137,CENTER:+177"
 	server_name = "Vanderlin"
 	server_port = VANDERLIN_PORT
 
 /atom/movable/screen/lobby/button/server/vanderlin/should_be_up(day, hour)
+	return TRUE
+/*
 	switch(day)
 		if(FRIDAY)
 			return (hour >= 15)
 		if(SATURDAY, SUNDAY)
 			return TRUE
 	return FALSE
+*/
 
 #undef VANDERLIN_PORT
 #undef HRP_PORT

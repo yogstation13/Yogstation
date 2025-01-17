@@ -37,15 +37,6 @@
 /obj/structure/cable,
 /turf/open/floor/mineral/titanium,
 /area/shipbreak)
-"cC" = (
-/obj/machinery/door/poddoor{
-	dir = 4;
-	id = "wangliusboardingdoor";
-	name = "Wanglius Boarding Door"
-	},
-/obj/structure/fans/tiny,
-/turf/open/floor/mineral/titanium,
-/area/shipbreak)
 "dF" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/dark,
@@ -1259,11 +1250,11 @@ Er
 aK
 aK
 aK
-cC
-cC
-cC
-cC
-cC
+tN
+tN
+tN
+tN
+tN
 aK
 aK
 aK

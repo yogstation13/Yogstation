@@ -1,0 +1,295 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shipbreak)
+"b" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/suit/apron/chef,
+/obj/item/kitchen/rollingpin,
+/turf/open/space/basic,
+/area/shipbreak)
+"c" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"d" = (
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"f" = (
+/obj/structure/table/glass,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"g" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/machinery/power/shuttle_engine/heater,
+/turf/open/floor/plating,
+/area/shipbreak)
+"i" = (
+/obj/structure/table/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"j" = (
+/obj/machinery/jukebox,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"l" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"m" = (
+/obj/machinery/door/airlock/glass_large{
+	doorOpen = 'sound/machines/defib_success.ogg'
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"n" = (
+/obj/structure/chair/sofa/right/maroon,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"o" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"p" = (
+/obj/item/kirbyplants,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"q" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/coffeemaker/impressa,
+/obj/item/reagent_containers/cup/coffeepot/bluespace,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"t" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right/maroon{
+	dir = 1
+	},
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"u" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"w" = (
+/obj/structure/chair/sofa/left/maroon,
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"y" = (
+/obj/machinery/oven,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"z" = (
+/obj/machinery/griddle,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/cooking_container/pan,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"A" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/meat/slab/corgi,
+/obj/item/food/meat/slab/corgi,
+/obj/item/food/meat/slab/corgi,
+/obj/item/food/meat/slab/corgi,
+/obj/item/food/meat/slab/corgi,
+/obj/item/food/meat/slab/corgi,
+/obj/item/reagent_containers/condiment/flour,
+/obj/item/reagent_containers/condiment/flour,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"B" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating,
+/area/shipbreak)
+"C" = (
+/turf/template_noop,
+/area/shipbreak)
+"E" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/machinery/power/shuttle_engine/heater,
+/turf/open/floor/plating,
+/area/shipbreak)
+"H" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/left/maroon{
+	dir = 1
+	},
+/turf/open/floor/iron/kitchen/small,
+/area/shipbreak)
+"K" = (
+/obj/machinery/door/window,
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"T" = (
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"V" = (
+/obj/structure/window/reinforced/shuttle,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+"W" = (
+/turf/closed/wall/mineral/titanium,
+/area/shipbreak)
+"X" = (
+/obj/machinery/deepfryer,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/food/deadmouse,
+/turf/open/floor/wood/airless,
+/area/shipbreak)
+
+(1,1,1) = {"
+C
+W
+a
+a
+a
+a
+V
+V
+V
+a
+g
+B
+"}
+(2,1,1) = {"
+W
+a
+l
+K
+d
+d
+n
+i
+J
+a
+E
+B
+"}
+(3,1,1) = {"
+a
+H
+T
+u
+o
+d
+w
+f
+t
+a
+a
+W
+"}
+(4,1,1) = {"
+a
+z
+T
+u
+o
+d
+d
+d
+d
+m
+L
+m
+"}
+(5,1,1) = {"
+a
+y
+T
+u
+o
+d
+d
+d
+d
+c
+L
+c
+"}
+(6,1,1) = {"
+a
+X
+T
+b
+o
+d
+n
+f
+J
+a
+a
+W
+"}
+(7,1,1) = {"
+W
+a
+A
+q
+j
+p
+w
+i
+t
+a
+g
+B
+"}
+(8,1,1) = {"
+C
+W
+a
+a
+a
+a
+V
+V
+V
+a
+E
+B
+"}

@@ -167,9 +167,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/obj/machinery/button/door/directional/east{
-	id = "10"
-	},
 /obj/item/pizzabox,
 /obj/item/reagent_containers/cup/glass/bottle/beer,
 /turf/open/floor/mineral/plastitanium,
@@ -188,9 +185,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shipbreak)
 "oF" = (
-/obj/machinery/atmospherics/components/unary/passive_vent{
-	piping_layer = 2
-	},
+/obj/machinery/atmospherics/components/unary/passive_vent/layer2,
 /turf/open/floor/plating,
 /area/shipbreak)
 "pc" = (
@@ -293,12 +288,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shipbreak)
 "vA" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "10";
-	dir = 4
-	},
 /obj/machinery/door/firedoor/heavy,
+/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating,
 /area/shipbreak)
 "we" = (
@@ -348,9 +339,10 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shipbreak)
 "yN" = (
-/obj/machinery/door/airlock/command,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/door/airlock/command,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mine/explosive/flash,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /obj/machinery/door/firedoor,
 /turf/open/floor/mineral/plastitanium/red,
@@ -384,7 +376,10 @@
 /turf/template_noop,
 /area/shipbreak)
 "BW" = (
-/obj/machinery/atmospherics/components/tank/air,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/components/unary/portables_connector/layer4{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/shipbreak)
 "Ce" = (
@@ -424,14 +419,6 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
-"Kl" = (
-/obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
-/obj/machinery/door/poddoor{
-	id = "10"
-	},
-/obj/machinery/door/firedoor/heavy,
-/turf/open/floor/plating,
 /area/shipbreak)
 "Kw" = (
 /obj/effect/turf_decal/siding/dark_red{
@@ -861,8 +848,8 @@ Zy
 Zy
 Zy
 Zy
-Kl
-vA
+zb
+zb
 jz
 jz
 jz
@@ -887,8 +874,8 @@ Zy
 Zy
 Zy
 Zy
-Kl
-vA
+zb
+zb
 Yv
 nk
 ef
@@ -913,8 +900,8 @@ Zy
 Zy
 Zy
 Zy
-vA
-Kl
+zb
+zb
 iI
 bY
 Zu
@@ -941,7 +928,7 @@ Zy
 Zy
 Zy
 Zy
-Kl
+zb
 vA
 rf
 ny
@@ -969,8 +956,8 @@ Zy
 Zy
 Zy
 Zy
-Kl
-vA
+zb
+zb
 jz
 jz
 jz
@@ -1170,7 +1157,7 @@ we
 jz
 XK
 kt
-BW
+aV
 MN
 aV
 NN

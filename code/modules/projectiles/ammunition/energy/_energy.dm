@@ -6,6 +6,6 @@
 	slot_flags = null
 	var/e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
 	var/select_name = CALIBER_ENERGY
-	fire_sound = 'sound/weapons/laser.ogg'
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/energy
 	heavy_metal = FALSE

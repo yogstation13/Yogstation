@@ -60,7 +60,7 @@
 /datum/hallucination/battle/gun/disabler
 	shots_to_fire_lower_range = 5
 	shots_to_fire_upper_range = 10
-	fire_sound = 'sound/weapons/taser2.ogg'
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser2.ogg'
 	hit_person_sound = 'sound/weapons/tap.ogg'
 	hit_wall_sound = 'sound/weapons/effects/searwall.ogg'
 	number_of_hits_to_end = 3
@@ -70,7 +70,7 @@
 /datum/hallucination/battle/gun/laser
 	shots_to_fire_lower_range = 5
 	shots_to_fire_upper_range = 10
-	fire_sound = 'sound/weapons/laser.ogg'
+	fire_sound = 'monkestation/sound/weapons/gun/energy/Laser1.ogg'
 	hit_person_sound = 'sound/weapons/sear.ogg'
 	hit_wall_sound = 'sound/weapons/effects/searwall.ogg'
 	number_of_hits_to_end = 4

@@ -18,11 +18,11 @@
 	mutantlungs = /obj/item/organ/internal/lungs/slime
 	mutanttongue = /obj/item/organ/internal/tongue/jelly
 	mutantheart = /obj/item/organ/internal/heart/slime
-
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
 		TRAIT_EASYDISMEMBER,
 		TRAIT_NOFIRE,
+		TRAIT_SPLEENLESS_METABOLISM,
 	)
 
 	meat = /obj/item/food/meat/slab/human/mutant/slime

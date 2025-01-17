@@ -255,6 +255,7 @@
 		TRAIT_RESISTHIGHPRESSURE,
 		TRAIT_RESISTLOWPRESSURE,
 		TRAIT_VIRUSIMMUNE,
+		TRAIT_SPLEENLESS_METABOLISM,
 	)
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/ethereal/lustrous,

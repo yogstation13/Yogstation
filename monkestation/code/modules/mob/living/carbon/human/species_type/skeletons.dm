@@ -25,5 +25,7 @@
 		TRAIT_TOXIMMUNE,
 		TRAIT_XENO_IMMUNE,
 		TRAIT_NOBLOOD,
+		TRAIT_SPLEENLESS_METABOLISM,
 	)
 	mutantliver = /obj/item/organ/internal/liver
+	mutantspleen = null

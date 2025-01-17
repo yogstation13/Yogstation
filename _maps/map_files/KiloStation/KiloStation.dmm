@@ -11192,7 +11192,11 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos/pumproom)
 "dxl" = (
-/obj/structure/cable,
+/obj/machinery/conveyor{
+	dir = 6;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "dxm" = (
@@ -32542,7 +32546,9 @@
 /turf/open/floor/wood,
 /area/station/commons/fitness/recreation)
 "jXC" = (
-/turf/open/floor/plating/airless,
+/obj/machinery/door/airlock/engineering,
+/obj/structure/fans/tiny,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "jXJ" = (
 /obj/machinery/conveyor{
@@ -33247,8 +33253,6 @@
 /area/station/tcommsat/server)
 "klT" = (
 /obj/machinery/door/airlock/engineering,
-/obj/structure/cable,
-/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/station/engineering/shipbreaker_hut)
 "kml" = (
@@ -40908,15 +40912,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/service/chapel)
-"mHp" = (
-/obj/machinery/conveyor{
-	dir = 10;
-	id = "shitbreaker"
-	},
-/obj/structure/window/spawner/directional/east,
-/obj/structure/window/spawner/directional/south,
-/turf/open/floor/plating/airless,
-/area/station/engineering/shipbreaker_hut)
 "mHq" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -42237,6 +42232,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
+"neu" = (
+/obj/machinery/conveyor{
+	dir = 10;
+	id = "shitbreaker"
+	},
+/obj/structure/window/spawner/directional/south,
+/turf/open/floor/plating/airless,
+/area/station/engineering/shipbreaker_hut)
 "nex" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
@@ -43860,6 +43863,12 @@
 /obj/structure/trash_pile,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/station/maintenance/starboard)
+"nGn" = (
+/obj/machinery/door/airlock/engineering,
+/obj/structure/fans/tiny,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/engineering/shipbreaker_hut)
 "nGt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -48788,13 +48797,6 @@
 	},
 /turf/open/floor/iron/showroomfloor,
 /area/station/security/execution/transfer)
-"pme" = (
-/obj/machinery/light/directional/east,
-/obj/machinery/conveyor_switch/oneway{
-	id = "shitbreaker"
-	},
-/turf/open/floor/plating/airless,
-/area/station/engineering/shipbreaker_hut)
 "pmg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -50514,6 +50516,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/cargo/drone_bay)
+"pOr" = (
+/obj/structure/closet/secure_closet/shipbreaker,
+/turf/open/floor/iron,
+/area/station/engineering/shipbreaker_hut)
 "pOV" = (
 /turf/closed/wall,
 /area/station/service/chapel/storage)
@@ -55612,16 +55618,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
-"rsN" = (
-/obj/structure/rack,
-/obj/item/weldingtool/electric/raynewelder{
-	pixel_y = 6
-	},
-/obj/item/weldingtool/electric/raynewelder{
-	pixel_y = -5
-	},
-/turf/open/floor/plating/airless,
-/area/station/engineering/shipbreaker_hut)
 "rsT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -56997,7 +56993,7 @@
 /area/station/service/hydroponics)
 "rQY" = (
 /obj/machinery/computer/shipbreaker,
-/turf/open/floor/plating/airless,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "rQZ" = (
 /obj/structure/cable,
@@ -57475,11 +57471,6 @@
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/station/service/library)
-"rYO" = (
-/obj/structure/marker_beacon/yellow,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "rZa" = (
 /obj/machinery/vending/cart{
 	req_access = list("hop")
@@ -61931,7 +61922,7 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/mapping_helpers/apc/full_charge,
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/plating/airless,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "tsD" = (
 /obj/effect/turf_decal/bot,
@@ -64788,11 +64779,9 @@
 /turf/closed/wall/r_wall,
 /area/station/security/processing)
 "upJ" = (
-/obj/machinery/conveyor{
-	id = "shitbreaker"
-	},
-/obj/structure/window/spawner/directional/east,
-/turf/open/floor/plating/airless,
+/obj/structure/cable,
+/obj/machinery/light/directional/west,
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "upK" = (
 /obj/effect/turf_decal/siding/thinplating/dark/end,
@@ -69487,11 +69476,8 @@
 /area/station/maintenance/starboard)
 "vMC" = (
 /obj/machinery/conveyor{
-	dir = 6;
 	id = "shitbreaker"
 	},
-/obj/structure/window/spawner/directional/east,
-/obj/structure/window/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/station/engineering/shipbreaker_hut)
 "vMG" = (
@@ -73286,7 +73272,11 @@
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "wTm" = (
-/turf/open/floor/plating,
+/obj/machinery/light/directional/east,
+/obj/machinery/conveyor_switch/oneway{
+	id = "shitbreaker"
+	},
+/turf/open/floor/iron,
 /area/station/engineering/shipbreaker_hut)
 "wTx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -117920,13 +117910,13 @@ oFO
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+oFO
+oFO
+oFO
+oFO
+oFO
+oFO
+oFO
 aaa
 aaa
 aaa
@@ -118173,15 +118163,15 @@ aaa
 aaa
 rCB
 aaa
-oFO
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
+acm
 aaa
-aaa
+acm
 aaa
 aaa
 aaa
@@ -118430,15 +118420,15 @@ aaa
 aaa
 rCB
 aaa
-oFO
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
+acm
 aaa
-aaa
+acm
 aaa
 aaa
 aaa
@@ -118686,18 +118676,18 @@ aaa
 aaa
 aaa
 rCB
+aaa
+aaa
+svi
+qdA
+qdA
+qdA
+svi
 acm
-oFO
+aaa
+acm
 aaa
 aaa
-aaa
-oFO
-oFO
-oFO
-oFO
-oFO
-oFO
-oFO
 aaa
 aaa
 aaa
@@ -118943,18 +118933,18 @@ aaa
 aaa
 aaa
 rCB
+svi
+svi
+svi
+pOr
+pOr
+pOr
+svi
+svi
+svi
+svi
+svi
 aaa
-oFO
-aaa
-aaa
-aaa
-acm
-aaa
-aaa
-acm
-aaa
-aaa
-acm
 aaa
 jQq
 aaa
@@ -119200,18 +119190,18 @@ aaa
 aaa
 aaa
 rCB
+nGn
+uNP
+upJ
+jDV
+jDV
+jDV
+xZB
+jDV
+jDV
+jDV
+svi
 aaa
-cry
-aaa
-rCB
-aaa
-sUP
-rCB
-rCB
-rCB
-rCB
-acK
-rYO
 aaa
 jQq
 aaa
@@ -119457,13 +119447,13 @@ aaa
 aaa
 sUP
 rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
-rCB
+svi
+jDV
+uNP
+jDV
+jDV
+jDV
+jDV
 svi
 svi
 klT
@@ -119716,14 +119706,14 @@ acK
 acK
 nOj
 rQY
-dxl
-jXC
+uNP
+ezR
 wTm
-jXC
-jXC
+jDV
+jDV
 aBW
 xZB
-uNP
+jDV
 uhj
 qdA
 aaa
@@ -119973,11 +119963,11 @@ aaa
 aaa
 nOj
 tsC
-dxl
-ezR
-pme
-jXC
-jXC
+uNP
+dol
+nOj
+jXJ
+jDV
 aBW
 jWK
 jDV
@@ -120229,12 +120219,12 @@ aaa
 aaa
 aaa
 nOj
-rsN
-jXC
-dol
-nOj
-jXJ
-jXC
+jDV
+jDV
+dxl
+vMC
+neu
+jDV
 svi
 nRs
 jDV
@@ -120486,12 +120476,12 @@ aaa
 aaa
 aaa
 nOj
+svi
 jXC
-jXC
-vMC
-upJ
-mHp
-wTm
+qdA
+qdA
+qdA
+svi
 svi
 svi
 qdA

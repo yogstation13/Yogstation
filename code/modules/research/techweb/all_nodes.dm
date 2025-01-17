@@ -323,6 +323,7 @@
 		"synth_stomach",
 		"synth_ears",
 		"synth_heart",
+		"cybernetic_spleen"
 	)
 
 /datum/techweb_node/basic_circuitry
@@ -1368,6 +1369,7 @@
 		"cybernetic_liver_tier2",
 		"cybernetic_lungs_tier2",
 		"cybernetic_stomach_tier2",
+		"cybernetic_spleen_tier2",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
@@ -1387,6 +1389,7 @@
 		"cybernetic_liver_tier3",
 		"cybernetic_lungs_tier3",
 		"cybernetic_stomach_tier3",
+		"cybernetic_spleen_tier3"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
 
