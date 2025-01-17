@@ -1,0 +1,8 @@
+author: "SapphicOverload"
+delete-after: true 
+changes: 
+  - tweak: "Mechs are now affected by tesla shocks"
+  - tweak: "Tesla shock damage now checks against electric armor instead of energy"
+  - tweak: "Tesla shocks now ignore windows, grilles, tables, and floor cables"
+  - tweak: "Hypercharged tesla ball no longer hits the same target multiple times in a single zap"
+  - bugfix: "Fixed tesla cannon projectile not drawing its beam correctly"
