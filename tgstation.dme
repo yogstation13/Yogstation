@@ -7277,6 +7277,7 @@
 #include "monkestation\code\modules\events\_event_admin_setup.dm"
 #include "monkestation\code\modules\events\artifact_spawn.dm"
 #include "monkestation\code\modules\events\brand_intelligence.dm"
+#include "monkestation\code\modules\events\fake_virus.dm"
 #include "monkestation\code\modules\events\gravity_generator_blackout.dm"
 #include "monkestation\code\modules\events\portal_storm.dm"
 #include "monkestation\code\modules\events\radiation_storm.dm"
