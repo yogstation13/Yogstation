@@ -13,20 +13,24 @@ This PR adds in a replay system for players and admins to view events that happe
 ### TG Proc/File Changes:
 
 <!-- If you had to edit, or append to any core procs in the process of making this PR, list them here. APPEND: Also, please include any files that you've changed. .DM files that is. -->
+	- code\__DEFINES\overlays.dm
+	- code\__HELPERS\announcements.dm
+	- code\__HELPERS\mobs.dm
+	- code\_globalvars\logging.dm
 	- code\_onclick\item_attack.dm
 	- code\controllers\subsystem\chat.dm
 	- code\controllers\subsystem\garbage.dm
+	- code\datums\components\overlay_lighting.dm
 	- code\game\atoms.dm
 	- code\game\atoms_movable.dm
 	- code\game\machinery\doors\airlock.dm
 	- code\game\turfs\change_turf.dm
-	- code\modules\tgchat\to_chat.dm
-	- code\modules\shuttle\on_move.dm
-	- code\_globalvars\logging.dm
 	- code\game\world.dm
-	- code\__DEFINES\overlays.dm
-	- code\datums\components\overlay_lighting.dm
+	- code\modules\admin\verbs\server.dm
+	- code\modules\client\verbs\ooc.dm
 	- code\modules\lighting\lighting_source.dm
+	- code\modules\shuttle\on_move.dm
+	- code\modules\tgchat\to_chat.dm
 
 ### Defines:
 
@@ -47,3 +51,4 @@ This PR adds in a replay system for players and admins to view events that happe
 <!-- Here go the credits to you, dear coder, and in case of collaborative work or ports, credits to the 
 <!-- Orignal Coders -->
 Ported by Dwasint
+Optimized by Absolucy
