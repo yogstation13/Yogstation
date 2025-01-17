@@ -165,7 +165,7 @@
 		return
 
 	var/obj/singularity/energy_ball/EB = new mini_type(loc, 0, TRUE)
-	if(hypercharged)
+	if(zap_power == TESLA_HYPERCHARGED_POWER)
 		energy *= EB.energy
 
 	var/icon/I = icon(icon,icon_state,dir)
