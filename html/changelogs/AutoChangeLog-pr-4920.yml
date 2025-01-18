@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Gary can no longer somehow steal items from borgs, alongside stealing other types of abstract or no-drop items."
