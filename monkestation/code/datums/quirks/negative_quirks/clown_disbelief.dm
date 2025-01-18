@@ -1,7 +1,7 @@
 /datum/quirk/clown_disbelief
 	name = "Clown Disbelief"
 	desc = "You never really believed in clowns."
-	value = 0
+	value = -1
 	gain_text = span_danger("You realize clowns aren't real after all.")
 	lose_text = span_notice("You let go of your stubborn disbelief in clowns.")
 	medical_record_text = "Patient has an unshakable disbelief in clowns, to the point of being seemingly incapable of perceiving them."
