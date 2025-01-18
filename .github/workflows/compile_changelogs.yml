@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 25
       - name: "Compile"
         run: |
-          python tools/ss13_genchangelog.py html/changelog.html html/changelogs
+          python tools/ss13_genchangelog.py html/changelogs
       - name: "Convert Lineendings"
         run: |
           unix2dos html/changelogs/.all_changelog.yml
