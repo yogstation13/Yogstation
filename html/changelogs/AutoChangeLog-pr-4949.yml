@@ -1,0 +1,4 @@
+author: "Uristthedorf"
+delete-after: True
+changes:
+  - balance: "Qarad now has a 0.75 damage modifier."
