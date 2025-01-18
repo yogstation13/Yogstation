@@ -135,6 +135,7 @@
 	wield_recoil = 0.5
 	spread = 12.5
 	projectile_wound_bonus = -20
+	projectile_damage_multiplier = 0.75
 
 /obj/item/gun/ballistic/automatic/sol_rifle/machinegun/examine_more(mob/user)
 	. = ..()
