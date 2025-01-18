@@ -125,12 +125,14 @@
 	return held_shinies
 
 /mob/living/basic/chicken/gary/attackby(obj/item/attacking_item, mob/living/user)
-	if(stat != CONSCIOUS || (user.istate & ISTATE_HARM) || !user.Adjacent(src))
+	if(stat != CONSCIOUS || (user.istate & ISTATE_HARM) || !user.Adjacent(src) || (attacking_item.item_flags & (ABSTRACT|DROPDEL|HAND_ITEM)))
 		return ..()
 	if(attacking_item.w_class <= max_w_class)
-		if(held_item)
+		if(!QDELETED(held_item))
 			to_chat(user, span_warning("[src] is already holding [held_item]!"))
-			return FALSE
+			return TRUE
+		if(!user.transferItemToLoc(attacking_item, src))
+			return TRUE
 		if(istype(attacking_item, /obj/item/knife))
 			attack_sound = 'sound/weapons/bladeslice.ogg'
 			melee_damage_upper = attacking_item.force //attack dmg inherits knife dmg
@@ -140,7 +142,7 @@
 			return TRUE
 		else
 			if(SEND_SIGNAL(src, COMSIG_FRIENDSHIP_CHECK_LEVEL, user, FRIENDSHIP_BESTFRIEND))
-				var/barter_choice = show_radial_menu(user, src, hideout.stored_items)
+				var/barter_choice = show_radial_menu(user, src, hideout.stored_items, autopick_single_option = FALSE)
 				if(barter_choice)
 					ai_controller.blackboard[BB_GARY_BARTERING] = TRUE
 					ai_controller.blackboard[BB_GARY_BARTER_TARGET] = WEAKREF(user)
@@ -148,7 +150,6 @@
 					ai_controller.blackboard[BB_GARY_BARTER_STEP] = 1
 
 			held_item = attacking_item
-			attacking_item.forceMove(src)
 			ai_controller.blackboard[BB_GARY_COME_HOME] = TRUE
 			ai_controller.blackboard[BB_GARY_HAS_SHINY] = TRUE
 			SEND_SIGNAL(src, COMSIG_MOB_ADJUST_HUNGER, 200) //gary hungers for trinkets and baubles.
