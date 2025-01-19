@@ -147,6 +147,7 @@
 	adds_sidepath_points = 1
 	next_knowledge = list(
 		/datum/heretic_knowledge/spell/opening_blast,
+		/datum/heretic_knowledge/reroll_targets,
 		/datum/heretic_knowledge/blade_upgrade/flesh/knock,
 		/datum/heretic_knowledge/unfathomable_curio,
 		/datum/heretic_knowledge/painting,
