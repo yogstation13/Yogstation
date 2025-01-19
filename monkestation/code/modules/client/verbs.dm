@@ -119,7 +119,6 @@ GLOBAL_LIST_INIT(antag_token_config, load_antag_token_config())
 	var/static/default_config = list(
 		HIGH_THREAT = init_antag_list(list(
 			/datum/antagonist/cult,
-			/datum/antagonist/rev/head,
 			/datum/antagonist/wizard,
 			/datum/antagonist/clock_cultist,
 			/datum/antagonist/ninja,
