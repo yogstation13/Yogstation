@@ -284,7 +284,7 @@
 	if(usr.incapacitated())
 		return
 	for(var/obj/item/O in contents)
-		seedify(O, 1)
+		seedify(O, 1, null, usr)
 
 // -----------------------------
 //        Stack Snatcher

@@ -14,4 +14,4 @@
 
 /obj/item/book/granter/mechpiloting/on_reading_finished(mob/user)
 	. = ..()
-	user.adjust_skill(SKILL_TECHNICAL, EXP_MID, max_skill = EXP_GENIUS)
+	ADD_TRAIT(user.mind, TRAIT_SKILLED_PILOT, type)

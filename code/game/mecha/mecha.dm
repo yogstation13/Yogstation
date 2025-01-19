@@ -1380,6 +1380,6 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 	if(!pilot)
 		pilot = occupant
 	var/effective_skill = pilot.get_skill(SKILL_TECHNICAL)
-	if(effective_skill < EXP_MASTER && HAS_TRAIT(pilot, TRAIT_SKILLED_PILOT))
-		effective_skill += EXP_LOW // mech pilot suit adds extra pilot skill, up to EXP_MASTER
-	return (12 - effective_skill) / 10
+	if(HAS_TRAIT(pilot, TRAIT_SKILLED_PILOT) || HAS_MIND_TRAIT(pilot, TRAIT_SKILLED_PILOT))
+		effective_skill += EXP_LOW
+	return 1 + (2 - effective_skill) * 0.075
