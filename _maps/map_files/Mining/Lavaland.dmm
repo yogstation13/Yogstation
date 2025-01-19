@@ -4139,6 +4139,7 @@
 	dir = 10
 	},
 /obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/vending/hydroseeds/wall/directional/west,
 /turf/open/floor/iron/dark,
 /area/mine/hydroponics)
 "xt" = (
@@ -6927,12 +6928,12 @@
 /turf/open/floor/iron/smooth,
 /area/mine/laborcamp)
 "OM" = (
-/obj/structure/table,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 4
 	},
+/obj/machinery/composters,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
@@ -7505,6 +7506,7 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 8
 	},
+/obj/machinery/vending/hydronutrients/wall/directional/west,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},

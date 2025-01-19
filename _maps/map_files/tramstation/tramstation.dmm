@@ -20541,19 +20541,15 @@
 /turf/open/floor/iron,
 /area/station/commons/dorms)
 "ftt" = (
-/obj/structure/table/glass,
 /obj/item/radio/intercom/directional/north,
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 1
-	},
-/obj/effect/spawner/random/food_or_drink/seed{
-	spawn_all_loot = 1;
-	spawn_random_offset = 1
 	},
 /obj/machinery/light_switch/directional/north{
 	pixel_x = 11;
 	pixel_y = 22
 	},
+/obj/machinery/composters,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "ftv" = (
@@ -29122,10 +29118,30 @@
 /area/station/security/processing)
 "ijf" = (
 /obj/machinery/seed_extractor,
-/obj/machinery/firealarm/directional/north,
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 1
 	},
+/obj/effect/spawner/random/food_or_drink/seed{
+	spawn_all_loot = 1;
+	spawn_random_offset = 1
+	},
+/obj/effect/spawner/random/food_or_drink/seed{
+	spawn_all_loot = 1;
+	spawn_random_offset = 1
+	},
+/obj/effect/spawner/random/food_or_drink/seed{
+	spawn_all_loot = 1;
+	spawn_random_offset = 1
+	},
+/obj/effect/spawner/random/food_or_drink/seed{
+	spawn_all_loot = 1;
+	spawn_random_offset = 1
+	},
+/obj/effect/spawner/random/food_or_drink/seed{
+	spawn_all_loot = 1;
+	spawn_random_offset = 1
+	},
+/obj/machinery/vending/hydronutrients/wall/directional/north,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "ijj" = (
@@ -30587,6 +30603,7 @@
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 8
 	},
+/obj/machinery/firealarm/directional/west,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "iHD" = (
@@ -54544,6 +54561,7 @@
 /obj/machinery/camera/directional/north{
 	c_tag = "Civilian - Public Garden"
 	},
+/obj/machinery/vending/hydroseeds/wall/directional/north,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "qgG" = (

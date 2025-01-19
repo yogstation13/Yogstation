@@ -1,7 +1,7 @@
 /obj/machinery/vending/plushvendor
 	name = "\improper Plushie Vendor"
 	desc = "A vending machine filled with trusty companions."
-	icon = 'monkestation/code/modules/blueshift/icons/obj/vending.dmi'
+	icon = 'monkestation/icons/obj/vending.dmi'
 	icon_state = "plushie"
 	panel_type = "panel4"
 	product_slogans = "For when the cold empty expanse of space is too much to bear!;Plushies made only from the highest quality material.;Collect them all and never be alone again!; Too cute to handle!"

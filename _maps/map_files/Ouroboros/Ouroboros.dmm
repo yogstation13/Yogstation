@@ -57648,6 +57648,10 @@
 /obj/effect/mapping_helpers/airlock/welded,
 /turf/open/floor/plating,
 /area/station/science/research/abandoned)
+"qZh" = (
+/obj/machinery/composters,
+/turf/open/floor/grass,
+/area/station/service/hydroponics/garden)
 "qZi" = (
 /obj/structure/sign/flag/mothic/directional/north,
 /obj/effect/spawner/random/engineering/tank,
@@ -64306,6 +64310,7 @@
 "sXX" = (
 /obj/machinery/growing/soil,
 /obj/machinery/light/warm/directional/north,
+/obj/machinery/vending/hydroseeds/wall/directional/north,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "sYb" = (
@@ -65300,6 +65305,7 @@
 /obj/machinery/growing/soil,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/vending/hydronutrients/wall/directional/north,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "tne" = (
@@ -185336,7 +185342,7 @@ dEd
 lxY
 inH
 uvP
-dHo
+qZh
 odH
 sYM
 jgK

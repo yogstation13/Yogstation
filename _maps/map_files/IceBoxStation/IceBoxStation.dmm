@@ -13094,6 +13094,11 @@
 "dZJ" = (
 /obj/machinery/seed_extractor,
 /obj/machinery/status_display/evac/directional/north,
+/obj/effect/spawner/random/food_or_drink/seed,
+/obj/effect/spawner/random/food_or_drink/seed,
+/obj/effect/spawner/random/food_or_drink/seed,
+/obj/effect/spawner/random/food_or_drink/seed,
+/obj/effect/spawner/random/food_or_drink/seed,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics/garden)
 "dZN" = (
@@ -19462,13 +19467,13 @@
 /turf/open/floor/plating,
 /area/station/maintenance/aft/lesser)
 "geZ" = (
-/obj/structure/sink/directional/south,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 8
 	},
+/obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "gfb" = (
@@ -28367,10 +28372,10 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "jaS" = (
-/obj/structure/extinguisher_cabinet/directional/north,
 /obj/effect/turf_decal/siding/green{
 	dir = 8
 	},
+/obj/machinery/vending/hydroseeds/wall/directional/north,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "jaW" = (
@@ -70702,13 +70707,13 @@
 /turf/open/floor/iron/white,
 /area/station/medical/treatment_center)
 "wDf" = (
-/obj/structure/sink/directional/south,
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
 	dir = 4
 	},
+/obj/machinery/vending/hydronutrients/wall/directional/north,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "wDg" = (
@@ -73808,16 +73813,7 @@
 /turf/open/floor/iron,
 /area/station/commons/vacant_room/commissary)
 "xAS" = (
-/obj/item/seeds/apple,
-/obj/item/seeds/banana,
-/obj/item/seeds/cocoapod,
-/obj/item/seeds/grape,
-/obj/item/seeds/orange,
-/obj/item/seeds/sugarcane,
-/obj/item/seeds/wheat,
-/obj/item/seeds/watermelon,
-/obj/structure/table/glass,
-/obj/item/seeds/tree,
+/obj/machinery/composters,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics/garden)
 "xAW" = (

@@ -5804,7 +5804,7 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 9
 	},
-/obj/structure/sink/directional/south,
+/obj/machinery/vending/hydroseeds,
 /turf/open/floor/iron/dark/side{
 	dir = 9
 	},
@@ -33348,6 +33348,7 @@
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
 	},
+/obj/machinery/vending/hydronutrients,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},
@@ -53264,6 +53265,10 @@
 /mob/living/simple_animal/bot/secbot/pingsky,
 /turf/open/floor/engine,
 /area/station/ai_monitored/turret_protected/aisat_interior)
+"ruB" = (
+/obj/structure/sink/directional/south,
+/turf/closed/wall,
+/area/station/maintenance/port/fore)
 "ruC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -72889,7 +72894,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner,
-/obj/machinery/duct,
+/obj/structure/sink/directional/east,
 /turf/open/floor/iron/dark/side{
 	dir = 8
 	},
@@ -87315,7 +87320,7 @@ fPN
 cwL
 mYW
 vKc
-fPN
+ruB
 kNO
 aKB
 tIO

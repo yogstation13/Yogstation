@@ -20164,6 +20164,7 @@
 "hOS" = (
 /obj/machinery/growing/tray,
 /obj/machinery/light/directional/north,
+/obj/machinery/vending/hydronutrients/wall/directional/west,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "hOV" = (
@@ -28605,6 +28606,7 @@
 /area/station/engineering/supermatter/room)
 "lgD" = (
 /obj/machinery/airalarm/directional/south,
+/obj/machinery/composters,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "lgK" = (
@@ -48410,6 +48412,11 @@
 	},
 /turf/open/floor/iron/cafeteria,
 /area/station/service/kitchen)
+"sUU" = (
+/obj/machinery/growing/tray,
+/obj/machinery/vending/hydroseeds/wall/directional/west,
+/turf/open/floor/grass,
+/area/station/service/hydroponics/garden)
 "sUV" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/turf_decal/trimline/blue/filled/line{
@@ -166027,7 +166034,7 @@ aUl
 gnB
 vOT
 hOS
-jxf
+sUU
 xPW
 jxf
 qcz

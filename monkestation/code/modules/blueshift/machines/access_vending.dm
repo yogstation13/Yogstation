@@ -88,7 +88,7 @@
 	name = "\improper Command Outfitting Station"
 	desc = "A vending machine for specialised clothing for members of Command."
 	product_ads = "File paperwork in style!;It's red so you can't see the blood!;You have the right to be fashionable!;Now you can be the fashion police you always wanted to be!"
-	icon = 'monkestation/code/modules/blueshift/icons/vending.dmi'
+	icon = 'monkestation/icons/obj/vending.dmi'
 	icon_state = "commdrobe"
 	light_mask = "wardrobe-light-mask"
 	vend_reply = "Thank you for using the CommDrobe!"

@@ -19338,7 +19338,6 @@
 /turf/open/floor/iron/dark,
 /area/station/commons/locker)
 "eCs" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/turf_decal/siding/green{
 	dir = 8
@@ -28280,7 +28279,6 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/ai_monitored/security/armory)
 "gFK" = (
-/obj/machinery/vending/hydroseeds,
 /obj/machinery/light_switch/directional/north{
 	pixel_x = -8
 	},
@@ -31129,6 +31127,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "hoR" = (
@@ -43506,7 +43505,6 @@
 /turf/closed/wall/r_wall,
 /area/station/science/robotics/lab)
 "khc" = (
-/obj/structure/cable,
 /obj/machinery/seed_extractor,
 /obj/item/seeds/tree,
 /obj/item/seeds/watermelon,
@@ -43517,8 +43515,8 @@
 /obj/item/seeds/cocoapod,
 /obj/item/seeds/banana,
 /obj/item/seeds/apple,
-/obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/light/small/directional/west,
+/obj/machinery/vending/hydroseeds/wall/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics/garden)
 "khl" = (
@@ -59232,6 +59230,7 @@
 /obj/machinery/light_switch/directional/south{
 	pixel_x = 8
 	},
+/obj/machinery/newscaster/directional/west,
 /turf/open/floor/wood,
 /area/station/hallway/secondary/service)
 "nXj" = (
@@ -59599,6 +59598,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "obH" = (
@@ -65070,6 +65070,7 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "puq" = (
@@ -82295,6 +82296,7 @@
 	c_tag = "Garden"
 	},
 /obj/structure/sign/poster/contraband/random/directional/east,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "tAJ" = (
@@ -83644,6 +83646,7 @@
 "tPD" = (
 /obj/machinery/biogenerator,
 /obj/item/reagent_containers/cup/watering_can,
+/obj/machinery/vending/hydronutrients/wall/directional/west,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics/garden)
 "tPE" = (
@@ -90580,6 +90583,7 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "vxL" = (
@@ -92433,6 +92437,8 @@
 /turf/open/floor/iron,
 /area/station/engineering/hallway)
 "vWu" = (
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
 "vWv" = (
@@ -96637,7 +96643,7 @@
 /turf/open/floor/iron/dark,
 /area/station/hallway/primary/fore)
 "wTJ" = (
-/obj/machinery/vending/hydronutrients,
+/obj/machinery/composters,
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics/garden)
 "wTK" = (
@@ -100640,7 +100646,6 @@
 "xSf" = (
 /obj/structure/bed,
 /obj/item/bedsheet/clown,
-/obj/machinery/newscaster/directional/east,
 /obj/structure/sign/poster/random/directional/north,
 /turf/open/floor/wood,
 /area/station/hallway/secondary/service)
