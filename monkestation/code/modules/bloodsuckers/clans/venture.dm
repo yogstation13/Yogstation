@@ -108,7 +108,7 @@
 	return TRUE
 
 /datum/bloodsucker_clan/ventrue/on_favorite_vassal(datum/source, datum/antagonist/vassal/vassaldatum, mob/living/bloodsucker)
-	to_chat(bloodsucker, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Vassal by buckling them onto a Candelabrum!"))
+	to_chat(bloodsucker, span_announce("* Bloodsucker Tip: You can now upgrade your Favorite Vassal by buckling them onto a persuasion rack!"))
 	vassaldatum.BuyPower(new /datum/action/cooldown/bloodsucker/distress)
 
 #undef BLOODSUCKER_BLOOD_RANKUP_COST

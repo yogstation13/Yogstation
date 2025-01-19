@@ -278,7 +278,7 @@
 // EXPLANATION
 /datum/objective/bloodsucker/embrace/update_explanation_text()
 	. = ..()
-	explanation_text = "Use the Candelabrum to Rank your Favorite Vassal up enough to become a Bloodsucker."
+	explanation_text = "Use the persuasion rack to Rank your Favorite Vassal up enough to become a Bloodsucker."
 
 // WIN CONDITIONS?
 /datum/objective/bloodsucker/embrace/check_completion()

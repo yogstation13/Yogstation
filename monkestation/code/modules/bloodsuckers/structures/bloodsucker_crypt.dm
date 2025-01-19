@@ -292,6 +292,9 @@
 	if(!ishuman(target))
 		balloon_alert(user, "you can't torture an animal or basic mob!")
 		return FALSE
+	if(disloyalty_offered)
+		balloon_alert(user, "wait a moment!")
+		return FALSE
 	var/disloyalty_requires = RequireDisloyalty(user, target)
 
 	if(disloyalty_requires == VASSALIZATION_BANNED)

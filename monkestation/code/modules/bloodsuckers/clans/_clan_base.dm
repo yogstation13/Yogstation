@@ -246,7 +246,7 @@
 		return
 
 	to_chat(bloodsuckerdatum.owner.current, span_notice("You can change who this Vassal is, who are they to you?"))
-	var/vassal_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, radial_display)
+	var/vassal_response = show_radial_menu(bloodsuckerdatum.owner.current, vassaldatum.owner.current, radial_display, autopick_single_option = FALSE)
 	if(!vassal_response)
 		return
 	vassal_response = options[vassal_response]
