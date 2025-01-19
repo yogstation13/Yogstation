@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - admin: "Admins are actually notified when someone accepts/rejects a token, instead of there being no feedback whatsoever."

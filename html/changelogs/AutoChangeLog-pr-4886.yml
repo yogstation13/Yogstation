@@ -1,7 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - spellcheck: "The flavor text for the bloodsucker Venture clan now properly says to use a persuasion rack instead of a candelabrum to level their favorite vassal up."
-  - spellcheck: "Fixed bloodsucker-related moodlets having blank lines after them."
-  - bugfix: "Clicking on the persuasion rack while a vassal is buckled after a revenge or favorite vassal has been selected won't automatically make the buckled vassal into the other without prompting."
-  - bugfix: "Fixed being able to vassalize antags/mindshielded people regardless of whether they accepted the prompt or not."
