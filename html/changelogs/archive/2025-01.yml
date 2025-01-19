@@ -336,6 +336,13 @@
   Absolucy:
   - bugfix: Gary can no longer somehow steal items from borgs, alongside stealing
       other types of abstract or no-drop items.
+  - rscadd: Added wall-mounted MegaSeed and NutriMax vendors (sprites courtesy of
+      SirNightKnight)
+  - rscadd: All maps (and public mining) now have seed/nutriment vendors and a composter
+      in their public garden.
+  Absolucy, the-orange-cow:
+  - bugfix: Knock heretics may once again access The Relentless Heartbeat after purchasing
+      Burglar's Finesse.
   Gw0sty:
   - rscdel: Removed Miasma sickness
   MichiRecRoom:
@@ -345,6 +352,8 @@
   TTNT789:
   - balance: uncaps stand limit from all sources have fun with being the ultimate
       stand user
+  ThePooba:
+  - bugfix: disabled rev token why is that enabled
   Uristthedorf:
   - balance: Qarad now has a 0.75 damage modifier.
   - balance: Clown disbelief gives a point.

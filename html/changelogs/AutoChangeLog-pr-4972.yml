@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscadd: "Added wall-mounted MegaSeed and NutriMax vendors (sprites courtesy of SirNightKnight)"
-  - rscadd: "All maps (and public mining) now have seed/nutriment vendors and a composter in their public garden."
