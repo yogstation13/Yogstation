@@ -332,3 +332,19 @@
       more resistant to ranged attacks.
   - balance: Bulletproof armour now has 25 wound protection instead of 20.
   - bugfix: Fixed head overlays rotating separate to the head when thrown.
+2025-01-19:
+  Absolucy:
+  - bugfix: Gary can no longer somehow steal items from borgs, alongside stealing
+      other types of abstract or no-drop items.
+  Gw0sty:
+  - rscdel: Removed Miasma sickness
+  MichiRecRoom:
+  - qol: pAIs can now withdraw their candidacy at any time.
+  Shoddd:
+  - balance: .45 long ammo now does 30 damage and is weaker to armor
+  TTNT789:
+  - balance: uncaps stand limit from all sources have fun with being the ultimate
+      stand user
+  Uristthedorf:
+  - balance: Qarad now has a 0.75 damage modifier.
+  - balance: Clown disbelief gives a point.
