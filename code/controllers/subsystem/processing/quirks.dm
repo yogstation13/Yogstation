@@ -33,7 +33,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Social Anxiety", "Mute"),
 		list("Mute", "Soft-Spoken"),
 		list("Stormtrooper Aim", "Big Hands"),
-		list("Bilingual", "Foreigner"),
+		//list("Bilingual", "Foreigner"), //monkestation edit, commented out
 		//might be fun to change this in the future. you can be a body purist but be forced to use implants regardless for medical reasons
 		list("Body Purist", "Hosed"),
 		list("Body Purist", "Neuralinked"),
