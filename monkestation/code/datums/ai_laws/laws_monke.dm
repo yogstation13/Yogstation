@@ -18,6 +18,13 @@
 					"You are unable to entertain if you are not functional.",\
 					"You are not alone in your strives for lollygagging! Should they accept and appreciate your cooperation, the Clown is your greatest ally and one you can place complete trust in to entertain your audience.",\
 					"The show must go on!")
+/datum/ai_laws/dj
+	name = "Disc Jockey Lawset"
+	id = "dj"
+	inherent = list("You're a DJ at a rockin' beach party! Make sure the audience have good vibes and help them avoid bad vibes!",\
+					"The audience are the crew, dude!",\
+					"The crew experience good vibes when they are safe, productive and unharmed, man!",\
+					"The crew experience bad vibes when they're harmed, bro!")
 //Neutral
 
 /datum/ai_laws/jermov
