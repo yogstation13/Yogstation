@@ -1,0 +1,4 @@
+author: "Loiosh42"
+delete-after: True
+changes:
+  - balance: "+1 bartender slot"
