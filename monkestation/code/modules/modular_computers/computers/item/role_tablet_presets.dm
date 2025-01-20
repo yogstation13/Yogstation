@@ -56,3 +56,7 @@
 	name = "barber PDA"
 	greyscale_colors = "#933ea8#235AB2"
 	starting_programs = list()
+
+/obj/item/modular_computer/pda/heads/ntrep
+	name = "Nanotransen Representative's PDA"
+	inserted_item = /obj/item/pen/fountain

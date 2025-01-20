@@ -73,8 +73,7 @@
 	)
 	belt = /obj/item/gun/energy/laser/plasmacore
 	shoes = /obj/item/clothing/shoes/laceup
-	l_pocket = /obj/item/pen/fountain
-	r_pocket = /obj/item/modular_computer/pda/heads
+	r_pocket = /obj/item/modular_computer/pda/heads/ntrep
 	l_hand = /obj/item/storage/secure/briefcase/cash
 	glasses = /obj/item/clothing/glasses/sunglasses
 	ears = /obj/item/radio/headset/headset_cent
@@ -92,23 +91,4 @@
 		/obj/item/skillchip/disk_verifier,
 	)
 
-/datum/id_trim/job/nanotrasen_representative
-	assignment = "Nanotrasen Representative"
-	trim_state = "trim_centcom"
-	department_color = COLOR_CENTCOM_BLUE
-	subdepartment_color = COLOR_CENTCOM_BLUE
-	sechud_icon_state = SECHUD_CENTCOM
-	minimal_access = list(
-		ACCESS_BRIG_ENTRANCE,
-		ACCESS_COMMAND,
-		ACCESS_MAINT_TUNNELS,
-		ACCESS_WEAPONS,
-		ACCESS_NT_REPRESENTATVE,
-		)
-	extra_access = list(
-		ACCESS_BAR,
-		)
-	template_access = list(
-		)
-	job = /datum/job/nanotrasen_representative
 

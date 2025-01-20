@@ -101,7 +101,6 @@
 	suit_type = /obj/item/clothing/suit/space/hardsuit/sec //monkestation edit
 	storage_type = /obj/item/tank/jetpack/oxygen/security //monkestation edit
 
-
 /obj/machinery/suit_storage_unit/hos
 	mask_type = /obj/item/clothing/mask/gas/sechailer
 	storage_type = /obj/item/tank/internals/oxygen
