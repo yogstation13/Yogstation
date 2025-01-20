@@ -1,0 +1,7 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "Shuttles that should be able to can now jump to blueshift z level"
+  - rscadd: "RDS is now under IPC punishment"
+  - bugfix: "heroic laser musket no longer doing more damage than intended"
+  - bugfix: "BDM can pathfind over lava"
