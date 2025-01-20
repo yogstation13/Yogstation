@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Readded antitoxin virus after accidental removal."
+  - code_imp: "Reorganized virus stages folder a bit."
