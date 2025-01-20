@@ -18,9 +18,12 @@ ARTIFACT_SETUP(/obj/structure/artifact, SSobj, null, forced_effect, null)
 	icon_state = "wiznerd-1"
 
 /obj/effect/artifact_spawner/Initialize(mapload)
-	. = ..()
+	..()
+// don't want artifacts exploding during unit tests or something
+#ifndef UNIT_TESTS
 	spawn_artifact(loc)
-	qdel(src)
+#endif
+	return INITIALIZE_HINT_QDEL
 
 /obj/structure/artifact/bonk
 	forced_effect = /datum/artifact_effect/bonk
