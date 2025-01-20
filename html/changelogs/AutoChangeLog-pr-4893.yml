@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "You can no longer \"cheese\" killing a bloodsucker by beheading them (which would avoid triggering the revenge vassal and such). Stake them like you're supposed to."
