@@ -1,5 +1,0 @@
-author: "Aquizit"
-delete-after: true 
-changes: 
-  - tweak: "No more murder under 10 players"
-  - experiment: "Min player number can be changed"
