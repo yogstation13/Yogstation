@@ -299,10 +299,6 @@ Class Procs:
 
 		return user.can_interact_with(src) //AIs don't care about petty mortal concerns like needing to be next to a machine to use it, but borgs do care somewhat
 
-	. = ..()
-	if(!.)
-		return FALSE
-
 	if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN))
 		return FALSE
 
@@ -394,6 +390,10 @@ Class Procs:
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
 		return FALSE
 	return _try_interact(user, modifiers)
+
+/obj/machinery/attack_tk(mob/user, modifiers)
+	new /obj/effect/temp_visual/telekinesis(get_turf(src))
+	return attack_hand(user, modifiers)
 
 /obj/machinery/attack_ai(mob/user, modifiers)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
