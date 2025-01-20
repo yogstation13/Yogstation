@@ -2,7 +2,7 @@
 	name = "Delightful Effect"
 	desc = "A more powerful version of Full Glass. Makes the infected feel delightful."
 	stage = 4
-	badness = EFFECT_DANGER_FLAVOR
+	badness = EFFECT_DANGER_HELPFUL
 
 /datum/symptom/delightful/activate(mob/living/carbon/mob)
 	to_chat(mob, "<span class = 'notice'>You feel delightful!</span>")
