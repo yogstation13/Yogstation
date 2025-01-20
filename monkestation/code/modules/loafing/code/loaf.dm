@@ -4,9 +4,11 @@
 	icon = 'monkestation/code/modules/loafing/icons/obj.dmi'
 	icon_state = "loaf"
 	food_reagents = list(/datum/reagent/consumable/nutraslop = 10)
+	force_feed_on_aggression = TRUE
+	preserved_food = TRUE
+
 	var/loaf_density = 1 //base loaf density
 	var/can_condense = TRUE //for special loaves, make false
-	force_feed_on_aggression = TRUE
 	//vars for high level loafs
 
 	var/critical = FALSE
