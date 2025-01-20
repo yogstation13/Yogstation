@@ -1,4 +1,0 @@
-author: "Loiosh42"
-delete-after: True
-changes:
-  - bugfix: "Reagent explosions now obey the explosion cap, like all other editable explosions do by default."

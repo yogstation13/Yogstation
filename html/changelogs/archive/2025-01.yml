@@ -368,3 +368,56 @@
   Uristthedorf:
   - balance: Qarad now has a 0.75 damage modifier.
   - balance: Clown disbelief gives a point.
+2025-01-20:
+  Absolucy:
+  - balance: Prison loaves no longer decompose.
+  - bugfix: You can no longer "cheese" killing a bloodsucker by beheading them (which
+      would avoid triggering the revenge vassal and such). Stake them like you're
+      supposed to.
+  BValon:
+  - admin: Remodeled Empty Office in Centcom Admin Area with furnishings and items.
+  - admin: Added Pooba's Coder Closet
+  - rscadd: gravestone for personal cat next to remodeled office.
+  Gw0sty:
+  - rscadd: Added a photo ablum for the NT rep and Blueshield (Say cheese!)
+  - rscdel: Removed defib mount from CMO's locker.
+  - qol: Moved biosuits from head's lockers to their suit storages.
+  - qol: Moved CMO's advanced health analyzer into their medkit.
+  - bugfix: NT Rep's Pen. Will now start in their pda.
+  - code_imp: Atomize code towards correct postions. Mainly relating to the NT Rep
+      and Blueshield. (Bit of brig physician too.)
+  - rscadd: Contractors received a wider target list, (Sig Techinicans, Barber, Spooktober
+      roles)
+  - rscadd: Deep storage was given another room area (Preventing two apcs for one
+      room)
+  - rscadd: Added/adjusted positions of crew monitor (Sig Techinican, Explorer, Barber)
+  - rscdel: Removed egg camera on deltastation
+  - rscadd: Away lathes get access to exotic organs for limb growers.
+  - bugfix: New cybernetic sprites should properly show
+  - bugfix: Security hud implants now no longer show as a broken organ
+  - rscadd: Readded antitoxin virus after accidental removal.
+  - code_imp: Reorganized virus stages folder a bit.
+  - rscadd: added complete privacy shutters to tram robotics and genetics
+  - qol: Adjusted the layout of tram station robotics
+  - bugfix: Tram station mech rechargers should now no longer incorrectly link with
+      the opposite console.
+  Loiosh42:
+  - bugfix: Reagent explosions now obey the explosion cap, like all other editable
+      explosions do by default.
+  - balance: +1 bartender slot
+  RikuTheKiller:
+  - bugfix: Laser carbines can no longer akimbo. They were never supposed to.
+  Shoddd:
+  - rscdel: Captains gun no longer has disabler mode
+  - rscdel: Captains gun case can no longer be opened with ID only
+  - bugfix: Shuttles that should be able to can now jump to blueshift z level
+  - rscadd: RDS is now under IPC punishment
+  - bugfix: heroic laser musket no longer doing more damage than intended
+  - bugfix: BDM can pathfind over lava
+  ThePooba:
+  - rscadd: dj lawset
+  Wisemonster:
+  - balance: Communication consoles on assault operative ships can no longer recall
+      the shuttle or change the security levels.
+  blakeeeee:
+  - rscdel: Foreigner and Bilingual are no longer conflicting quirks
