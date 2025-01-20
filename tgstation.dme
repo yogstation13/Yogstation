@@ -7382,7 +7382,6 @@
 #include "monkestation\code\modules\ghost_players\job_helpers\injured_spawner.dm"
 #include "monkestation\code\modules\ghost_players\job_helpers\organ_printer.dm"
 #include "monkestation\code\modules\goonimizations\goon_keybinds.dm"
-#include "monkestation\code\modules\guns\laser.dm"
 #include "monkestation\code\modules\holomaps\areas.dm"
 #include "monkestation\code\modules\holomaps\base_datum.dm"
 #include "monkestation\code\modules\holomaps\huds.dm"
