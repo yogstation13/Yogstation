@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(explosions)
  * * flame_range: Flame range. Equal to the equivalent of the light impact range multiplied by this value.
  * * flash_range: The range at which the explosion flashes people. Equal to the equivalent of the light impact range multiplied by this value.
  * * adminlog: Whether to log the explosion/report it to the administration.
- * * ignorecap: Whether to ignore the relevant bombcap. Defaults to FALSE.
+ * * ignorecap: Whether to ignore the relevant bombcap. Defaults to TRUE. Re: ignorecap = TRUE. If you call dyn_explosion, ensure that you set it false or want it to ignore cap.
  * * flame_range: The range at which the explosion should produce hotspots.
  * * silent: Whether to generate/execute sound effects.
  * * smoke: Whether to generate a smoke cloud provided the explosion is powerful enough to warrant it.
