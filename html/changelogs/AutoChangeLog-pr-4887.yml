@@ -1,0 +1,10 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Contractors received a wider target list, (Sig Techinicans, Barber, Spooktober roles)"
+  - rscadd: "Deep storage was given another room area (Preventing two apcs for one room)"
+  - rscadd: "Added/adjusted positions of crew monitor (Sig Techinican, Explorer, Barber)"
+  - rscdel: "Removed egg camera on deltastation"
+  - rscadd: "Away lathes get access to exotic organs for limb growers."
+  - bugfix: "New cybernetic sprites should properly show"
+  - bugfix: "Security hud implants now no longer show as a broken organ"
