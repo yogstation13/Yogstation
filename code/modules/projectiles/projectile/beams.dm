@@ -133,8 +133,8 @@
 /obj/projectile/beam/disabler/smoothbore/prime
 	name = "focused disabler beam"
 	weak_against_armour = FALSE
-	stamina = 35
-	debilitate_mult = 3.5
+	stamina = 65 // MONKESTATION EDIT ORG: 30
+	debilitate_mult = 3.5 // MONKESTATION ADDITION
 
 /obj/projectile/beam/pulse
 	name = "pulse"

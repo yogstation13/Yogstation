@@ -21,17 +21,6 @@
 		charge_sound_cooldown_time = 1.3 SECONDS, \
 		)
 
-/obj/projectile/beam/laser/musket
-	damage = 30
-	stamina = 45
-
-/obj/projectile/beam/laser/musket/prime
-	damage = 35
-	stamina = 60
-
-/obj/projectile/beam/disabler/smoothbore/prime  /// ????????? why is this here *and* in beams ???????
-	stamina = 65
-
 /obj/item/ammo_casing/energy/laser/musket
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 

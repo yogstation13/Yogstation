@@ -89189,6 +89189,18 @@
 /obj/effect/turf_decal/tile/blue/fourcorners,
 /turf/open/floor/iron/white,
 /area/station/medical/patients_rooms)
+"rnW" = (
+/obj/docking_port/stationary{
+	dheight = 1;
+	dir = 8;
+	dwidth = 12;
+	height = 17;
+	name = "northwest of station";
+	shuttle_id = "syndicate_nw";
+	width = 23
+	},
+/turf/open/space/openspace,
+/area/space)
 "rnY" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/decal/cleanable/dirt,
@@ -201454,7 +201466,7 @@ ulx
 ulx
 ulx
 ulx
-ulx
+rnW
 ulx
 ulx
 ulx
