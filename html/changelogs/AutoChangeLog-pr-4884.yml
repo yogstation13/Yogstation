@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "added complete privacy shutters to tram robotics and genetics"
+  - qol: "Adjusted the layout of tram station robotics"
+  - bugfix: "Tram station mech rechargers should now no longer incorrectly link with the opposite console."
