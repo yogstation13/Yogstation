@@ -1,0 +1,4 @@
+author: "blakeeeee"
+delete-after: True
+changes:
+  - rscdel: "Foreigner and Bilingual are no longer conflicting quirks"
