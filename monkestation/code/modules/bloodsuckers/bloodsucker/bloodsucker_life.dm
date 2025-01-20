@@ -126,6 +126,8 @@
 		return FALSE
 	for(var/missing_limb in missing) //Find ONE Limb and regenerate it.
 		user.regenerate_limb(missing_limb, FALSE)
+		if(missing_limb == BODY_ZONE_HEAD)
+			ensure_brain_nonvital()
 		AddBloodVolume(-limb_regen_cost)
 		var/obj/item/bodypart/missing_bodypart = user.get_bodypart(missing_limb) // 2) Limb returns Damaged
 		missing_bodypart.brute_dam = 60
@@ -151,6 +153,7 @@
 
 	bloodsuckeruser.cure_husk()
 	bloodsuckeruser.regenerate_organs(regenerate_existing = FALSE)
+	ensure_brain_nonvital()
 
 	for(var/obj/item/organ/organ as anything in bloodsuckeruser.organs)
 		organ.set_organ_damage(0)
