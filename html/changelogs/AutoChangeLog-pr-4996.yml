@@ -1,0 +1,5 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - rscdel: "Captains gun no longer has disabler mode"
+  - rscdel: "Captains gun case can no longer be opened with ID only"
