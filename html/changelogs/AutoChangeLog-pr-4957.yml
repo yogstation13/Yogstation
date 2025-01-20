@@ -1,0 +1,4 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - bugfix: "Laser carbines can no longer akimbo. They were never supposed to."
