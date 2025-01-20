@@ -69,7 +69,7 @@
 		if(!next_step) // reached the edge of the map
 			qdel(src)
 			return
-		forceMove(get_step(src,dir))
+		forceMove(next_step)
 	if(movement_range == 0)
 		qdel(src)
 		return
