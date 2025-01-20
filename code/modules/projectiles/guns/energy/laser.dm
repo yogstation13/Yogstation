@@ -31,7 +31,7 @@
 
 /obj/item/gun/energy/laser/carbine/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS, allow_akimbo = FALSE)
+	AddComponent(/datum/component/automatic_fire, 0.2 SECONDS, allow_akimbo = FALSE)
 
 /obj/item/gun/energy/laser/retro/old
 	name ="laser gun"
