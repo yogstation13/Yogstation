@@ -1,0 +1,9 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added a photo ablum for the NT rep and Blueshield (Say cheese!)"
+  - rscdel: "Removed defib mount from CMO's locker."
+  - qol: "Moved biosuits from head's lockers to their suit storages."
+  - qol: "Moved CMO's advanced health analyzer into their medkit."
+  - bugfix: "NT Rep's Pen. Will now start in their pda."
+  - code_imp: "Atomize code towards correct postions. Mainly relating to the NT Rep and Blueshield. (Bit of brig physician too.)"
