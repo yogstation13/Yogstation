@@ -124,10 +124,12 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_CHIEF_ENGINEER = 40,
 		JOB_STATION_ENGINEER = 41,
 		JOB_ATMOSPHERIC_TECHNICIAN = 42,
+		JOB_SIGNAL_TECHNICIAN = 43, // monkestation edit
 		// 50-59: Cargo
 		JOB_QUARTERMASTER = 50,
 		JOB_SHAFT_MINER = 51,
 		JOB_CARGO_TECHNICIAN = 52,
+		JOB_LATEJOIN_EXPLORER = 53, //monkestation edit: explorer
 		// 60+: Civilian/other
 		JOB_HEAD_OF_PERSONNEL = 60,
 		JOB_BARTENDER = 61,
@@ -141,7 +143,6 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		JOB_LAWYER = 69,
 		JOB_PSYCHOLOGIST = 71,
 		JOB_LATEJOIN_BARBER = 72, //monkestation edit: barber
-		JOB_LATEJOIN_EXPLORER = 73, //monkestation edit: explorer
 		// 200-239: Centcom
 		JOB_CENTCOM_ADMIRAL = 200,
 		JOB_CENTCOM = 201,

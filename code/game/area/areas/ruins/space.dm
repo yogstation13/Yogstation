@@ -173,6 +173,9 @@
 /area/ruin/space/has_grav/deepstorage/storage
 	name = "\improper Deep Storage Storage"
 
+/area/ruin/space/has_grav/deepstorage/aux_storage
+	name = "\improper Deep Storage Auxiliary Storage"
+
 /area/ruin/space/has_grav/deepstorage/dorm
 	name = "\improper Deep Storage Dormitory"
 

@@ -65,16 +65,15 @@
 /obj/item/organ/internal/cyberimp/eyes/hud/security
 	name = "security HUD implant"
 	desc = "These cybernetic eye implants will display a security HUD over everything you see."
-	name = "security HUD implant"
+	icon_state = "eye_implant_security"
 	HUD_type = DATA_HUD_SECURITY_ADVANCED
 	HUD_trait = TRAIT_SECURITY_HUD
-	organ_flags = ALL
 	encode_info = AUGMENT_NT_HIGHLEVEL
 
 /obj/item/organ/internal/cyberimp/eyes/hud/diagnostic
 	name = "diagnostic HUD implant"
 	desc = "These cybernetic eye implants will display a diagnostic HUD over everything you see."
-	name = "diagnostic HUD implant"
+	icon_state = "eye_implant_diagnostic"
 	HUD_type = DATA_HUD_DIAGNOSTIC_ADVANCED
 
 /obj/item/organ/internal/cyberimp/eyes/hud/security/syndicate

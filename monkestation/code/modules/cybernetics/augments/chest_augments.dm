@@ -222,7 +222,8 @@
 	name = "nutriment pump implant"
 	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
 	icon_state = "nutriment_implant"
-	implant_color = "#00AA00"
+	implant_overlay = null
+	implant_color = null
 	var/hunger_threshold = NUTRITION_LEVEL_STARVING
 	var/synthesizing = 0
 	var/poison_amount = 5
@@ -257,7 +258,6 @@
 	name = "nutriment pump implant PLUS"
 	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
 	icon_state = "adv_nutriment_implant"
-	implant_color = "#006607"
 	hunger_threshold = NUTRITION_LEVEL_HUNGRY
 	poison_amount = 10
 
@@ -265,7 +265,8 @@
 	name = "reviver implant"
 	desc = "This implant will attempt to revive and heal you if you lose consciousness. For the faint of heart!"
 	icon_state = "reviver_implant"
-	implant_color = "#AD0000"
+	implant_overlay = null
+	implant_color = null
 	slot = ORGAN_SLOT_HEART_AID
 	encode_info = AUGMENT_NT_HIGHLEVEL
 	var/revive_cost = 0

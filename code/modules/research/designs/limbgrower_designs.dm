@@ -232,7 +232,7 @@
 	name = "Limb Design Disk"
 	desc = "Contains designs for various limbs."
 	id = "limbdesign_parent"
-	build_type = PROTOLATHE
+	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/disk/design_disk/limbs
 	category = list(

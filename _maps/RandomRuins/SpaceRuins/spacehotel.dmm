@@ -1186,9 +1186,6 @@
 	name = "Hotel Kitchen"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/away/general,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/stone,
 /area/ruin/space/has_grav/hotel/bar)
 "jp" = (
@@ -2488,7 +2485,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/away/general,
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/iron/textured_half{
 	dir = 4
 	},

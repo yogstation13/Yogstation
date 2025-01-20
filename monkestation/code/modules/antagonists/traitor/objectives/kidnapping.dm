@@ -47,6 +47,15 @@
 		/datum/job/janitor,
 		/datum/job/lawyer,
 		/datum/job/mime,
+		// monkestation addition: barbers and spooktober
+		/datum/job/barber,
+		/datum/job/yellowclown,
+		/datum/job/skeleton,
+		/datum/job/candysalesman,
+		/datum/job/dietwizard,
+		/datum/job/ghost,
+		/datum/job/godzilla,
+		/datum/job/gorilla,
 	)
 	alive_bonus = 3
 
@@ -69,8 +78,10 @@
 		/datum/job/paramedic,
 		// Service
 		/datum/job/cook,
-		// Monkestation edit: security assistants
+		// Monkestation addition: Security
 		/datum/job/security_assistant,
+		// Monkestation addition: Engineering
+		/datum/job/signal_technician,
 	)
 	alive_bonus = 4
 

@@ -2,7 +2,7 @@
 	name = "integrated toolset implant"
 	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on subject's arm. Contain advanced versions of every tool."
 	actions_types = list(/datum/action/item_action/organ_action/toggle/toolkit)
-	icon_state = "toolkit_generic"
+	icon_state = "toolkit_engineering"
 	items_to_create = list(
 		/obj/item/screwdriver/cyborg,
 		/obj/item/wrench/cyborg,
@@ -15,7 +15,6 @@
 
 /obj/item/organ/internal/cyberimp/arm/item_set/toolset/l
 	zone = BODY_ZONE_L_ARM
-	icon_state = "toolkit_engineering"
 
 /obj/item/organ/internal/cyberimp/arm/item_set/toolset/emag_act(mob/user, obj/item/card/emag/emag_card)
 	for(var/datum/weakref/created_item in items_list)

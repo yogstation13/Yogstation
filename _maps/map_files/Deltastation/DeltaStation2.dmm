@@ -56213,7 +56213,6 @@
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
 "nkI" = (
-/obj/machinery/camera/autoname/directional/north,
 /obj/structure/table,
 /obj/item/book/manual/wiki/cooking_to_serve_man,
 /obj/item/reagent_containers/condiment/enzyme{

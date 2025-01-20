@@ -589,6 +589,11 @@
 	/obj/item/modular_computer/pda/chemist = list(REGION_MEDBAY), \
 	/obj/item/modular_computer/pda/geneticist = list(REGION_RESEARCH), \
 	/obj/item/modular_computer/pda/quartermaster = list(REGION_SUPPLY), \
+	/obj/item/modular_computer/pda/security/brig_physician = list(REGION_SECURITY), \
+	/obj/item/modular_computer/pda/psychologist = list(REGION_GENERAL), \
+	/obj/item/modular_computer/pda/blueshield  = list(REGION_COMMAND), \
+	/obj/item/modular_computer/pda/signal = list(REGION_ENGINEERING), \
+	/obj/item/modular_computer/pda/barber = list(REGION_GENERAL), \
 )
 /// All regions that make up the station area. Helper define to quickly designate a region as part of the station or not. Access via SSid_access.station_regions.
 #define REGION_AREA_STATION list( \
