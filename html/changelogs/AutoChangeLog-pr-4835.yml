@@ -1,0 +1,17 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "(TiviPlus) Fixed clients being seen as stuck doing tutorials in some cases when changing mobs."
+  - qol: "(Melbert) When you are offered something, you can shift-click the alert to examine the item rather than take it."
+  - qol: "(Melbert) Examine blocks for screen alert examining."
+  - qol: "(Melbert) Screentips for offer alerts."
+  - bugfix: "(grungussuss) It is now possible to succumb without speaking."
+  - qol: "(tontyGH) You can now right-click the succumb action button to succumb silently."
+  - qol: "(tontyGH) The succumb inputs have a few more titles to choose from now."
+  - bugfix: "(tontyGH) The succumb text input now shows the actual correct number of characters you can say."
+  - bugfix: "(tontyGH) Attempting to cancel a succumb will no longer kill you."
+  - spellcheck: "(tontyGH) The text for failing to succumb is now spanned."
+  - bugfix: "(harryob) Ghosts observing ghosts can no longer click on their screen alerts."
+  - qol: "(mc-oofert) Alerts that do stuff when clicked glow gold."
+  - qol: "(Melbert) Hovering over clickable screen elements will now update your mouse cursor to indicate they're clickable."
+  - qol: "(Melbert) Hovering over small wall mounts (light switches, buttons, fire alarms) will now update to mouse cursor indicating you're hovering them."
