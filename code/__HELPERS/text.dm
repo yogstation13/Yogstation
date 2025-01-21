@@ -1196,6 +1196,11 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 		text2num(semver_regex.group[3]),
 	)
 
+/// Returns TRUE if the input_text ends with the ending
+/proc/endswith(input_text, ending)
+	var/input_length = LAZYLEN(ending)
+	return !!findtext(input_text, ending, -input_length)
+
 /// Returns TRUE if the input_text starts with any of the beginnings
 /proc/starts_with_any(input_text, list/beginnings)
 	for(var/beginning in beginnings)

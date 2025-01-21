@@ -42,6 +42,7 @@ As a Geneticist, T goes to A, and G goes to C.
 As a Ghost, you can both start and join capture the flag games through the minigames menu, or by clicking on one of the team spawners, which can be found under the "Misc" section of the orbit menu.
 As a Ghost, you can double click on just about anything to follow it. Or just warp around!
 As a Ghost, you can see the inside of a container on the ground by clicking on it.
+As a Heretic, you can locate an influence by dreaming about random objects around it when you sleep.
 As a Janitor Cyborg, you are the bane of all slaughter demons and even Bubblegum himself. Cleaning up blood stains will severely gimp them.
 As a Janitor, if someone steals your janicart, you can instead use your space cleaner spray, grenades, water sprayer, exact bloody revenge or order another from Cargo.
 As a Janitor, mousetraps can be used to create bombs or booby-trap containers.

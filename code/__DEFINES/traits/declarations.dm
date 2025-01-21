@@ -992,7 +992,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ANGELIC "angelic"
 
 /// Trait given to a dreaming carbon when they are currently doing dreaming stuff
-/* #define TRAIT_DREAMING "currently_dreaming" */
+#define TRAIT_DREAMING "currently_dreaming"
 
 /// Whether bots will salute this mob.
 /* #define TRAIT_COMMISSIONED "commissioned" */
