@@ -431,6 +431,17 @@
       in permanent slowdown.
   - bugfix: Latejoin cyborgs will now only spawn on non-blocked floors in the AI upload,
       so they'll no longer end up stuck in a wall or something.
+  - rscadd: (MTandi) Heretics can now get clues about objects around unused influences
+      in their dreams, with a 5 minute cooldown.
+  - rscadd: (ninjanomnom) New dream that plays sound at you.
+  - bugfix: Regal rats can no longer barf up oil/vomit/etc while ventcrawling.
+  - qol: Ghost runechat now shows to anyone who can both see and hear ghosts, rather
+      than ONLY to ghosts.
   Absolucy, StrangeWeirdKitten:
   - bugfix: Things that drop in random places are no longer statistically weighted
       to drop in security.
+  Absolucy, itsmeowdev, carpotoxin:
+  - rscadd: Added two new emotes, *sweatdrop/*sweat and *annoyed, which have some
+      small visual+audible effects to indicate reactions/emotions.
+  - bugfix: Properly adjust the visual effects for *glasses and *sigh to adjust based
+      on mob height.
