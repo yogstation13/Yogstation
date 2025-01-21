@@ -76,6 +76,7 @@
 	icon_state = "template"
 	maptext_width = 96
 	maptext_y = -32
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	VAR_PRIVATE
 		datum/callback/on_click_callback

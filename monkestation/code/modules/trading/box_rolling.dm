@@ -25,6 +25,7 @@
 	plane = ABOVE_HUD_PLANE
 
 /atom/movable/screen/fullscreen/lootbox_overlay/main
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	///have we already opened? prevents spam clicks
 	var/opened = FALSE
 	///are we a guarenteed roll for lootboxes.
@@ -37,6 +38,7 @@
 	if(opened)
 		return
 	opened = TRUE
+	mouse_over_pointer = MOUSE_INACTIVE_POINTER
 	playsound(usr, pick('goon/sounds/misc/openlootcrate.ogg', 'goon/sounds/misc/openlootcrate2.ogg'), 100, 0)
 	icon_state = "lootb2"
 	flick("lootb1", src)

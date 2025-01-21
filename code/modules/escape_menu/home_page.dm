@@ -107,6 +107,7 @@
 
 /atom/movable/screen/escape_menu/home_button
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	VAR_PRIVATE
 		atom/movable/screen/escape_menu/home_button_text/home_button_text

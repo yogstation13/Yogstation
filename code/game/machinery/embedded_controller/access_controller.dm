@@ -10,6 +10,7 @@
 	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.05
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 0.04
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/idSelf
 
 /obj/machinery/door_buttons/attackby(obj/O, mob/user)
@@ -106,6 +107,7 @@
 	base_icon_state = "access_control"
 	name = "access console"
 	desc = "A small console that can cycle opening between two airlocks."
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/obj/machinery/door/airlock/interiorAirlock
 	var/obj/machinery/door/airlock/exteriorAirlock
 	var/idInterior
