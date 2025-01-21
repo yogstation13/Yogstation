@@ -197,7 +197,7 @@
 
 /// Hook up the specified carbon mob to be offered the item in question, give them the alert and signals and all
 /datum/status_effect/offering/proc/register_candidate(mob/living/carbon/possible_candidate)
-	var/atom/movable/screen/alert/give/G = possible_candidate.throw_alert("[owner]", give_alert_type)
+	var/atom/movable/screen/alert/give/G = possible_candidate.throw_alert("[REF(owner)]_offer", give_alert_type)
 	if(!G)
 		return
 	LAZYADD(possible_takers, possible_candidate)
@@ -207,7 +207,7 @@
 
 /// Remove the alert and signals for the specified carbon mob. Automatically removes the status effect when we lost the last taker
 /datum/status_effect/offering/proc/remove_candidate(mob/living/carbon/removed_candidate)
-	removed_candidate.clear_alert("[owner]")
+	removed_candidate.clear_alert("[REF(owner)]_offer")
 	LAZYREMOVE(possible_takers, removed_candidate)
 	UnregisterSignal(removed_candidate, COMSIG_MOVABLE_MOVED)
 	if(!possible_takers && !QDELING(src))

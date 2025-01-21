@@ -422,7 +422,7 @@
  * * I - The item being given by the offerer
  */
 /mob/living/proc/take(mob/living/carbon/offerer, obj/item/I, visible_message = TRUE)
-	clear_alert("[offerer]")
+	clear_alert("[REF(offerer)]_offer")
 	if(IS_DEAD_OR_INCAP(src))
 		to_chat(src, span_warning("You're unable to take anything in your current state!"))
 		return
