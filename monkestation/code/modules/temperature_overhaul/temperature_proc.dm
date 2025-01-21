@@ -84,6 +84,9 @@
 			. *= physiology.heat_mod
 
 /mob/living/proc/adjust_bodytemperature(amount = 0, min_temp = 0, max_temp = INFINITY, use_insulation = FALSE)
+	//Prevent warming up
+	if(HAS_TRAIT(src, TRAIT_HYPOTHERMIC) && amount > 0)
+		return
 	// apply insulation to the amount of change
 	if(use_insulation)
 		amount *= (1 - get_insulation(bodytemperature + amount))

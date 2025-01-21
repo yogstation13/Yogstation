@@ -128,7 +128,7 @@ monkestation end */
 	effect_icon_state = "emark4"
 
 /datum/status_effect/eldritch/void/on_effect(mob/living/activator) // monkestation edit: add "activator" arg to /datum/status_effect/eldritch/proc/on_effect()
-	owner.apply_status_effect(/datum/status_effect/void_chill/major)
+	owner.apply_status_effect(/datum/status_effect/void_chill, 2)
 	owner.adjust_silence(10 SECONDS)
 	return ..()
 

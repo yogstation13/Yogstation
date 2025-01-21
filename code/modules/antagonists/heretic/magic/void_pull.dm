@@ -9,7 +9,7 @@
 	sound = 'sound/magic/voidblink.ogg'
 
 	school = SCHOOL_FORBIDDEN
-	cooldown_time = 40 SECONDS
+	cooldown_time = 30 SECONDS
 
 	invocation = "BR'NG F'RTH TH'M T' M'."
 	invocation_type = INVOCATION_WHISPER
@@ -21,7 +21,6 @@
 	/// The radius of the stun applied to nearby people on cast
 	var/stun_radius = 4
 
-// Before the cast, we do some small AOE damage around the caster
 /datum/action/cooldown/spell/aoe/void_pull/before_cast(atom/cast_on)
 	. = ..()
 	if(. & SPELL_CANCEL_CAST)
@@ -29,13 +28,9 @@
 
 	new /obj/effect/temp_visual/voidin(get_turf(cast_on))
 
-	// Before we cast the actual effects, deal AOE damage to anyone adjacent to us
-	for(var/mob/living/nearby_living as anything in get_things_to_cast_on(cast_on, damage_radius))
-		nearby_living.apply_damage(30, BRUTE, wound_bonus = CANT_WOUND)
-
-/datum/action/cooldown/spell/aoe/void_pull/get_things_to_cast_on(atom/center, radius_override = 1)
+/datum/action/cooldown/spell/aoe/void_pull/get_things_to_cast_on(atom/center)
 	var/list/things = list()
-	for(var/mob/living/nearby_mob in view(radius_override || aoe_radius, center))
+	for(var/mob/living/nearby_mob in view(aoe_radius, center))
 		if(nearby_mob == owner || nearby_mob == center)
 			continue
 		// Don't grab people who are tucked away or something
@@ -50,13 +45,13 @@
 
 	return things
 
-// For the actual cast, we microstun people nearby and pull them in
 /datum/action/cooldown/spell/aoe/void_pull/cast_on_thing_in_aoe(mob/living/victim, atom/caster)
-	// If the victim's within the stun radius, they're stunned / knocked down
-	if(get_dist(victim, caster) < stun_radius)
-		victim.AdjustKnockdown(3 SECONDS)
-		victim.AdjustParalyzed(0.5 SECONDS)
-
-	// Otherwise, they take a few steps closer
-	for(var/i in 1 to 3)
-		victim.forceMove(get_step_towards(victim, caster))
+	var/distance = get_dist(victim, caster)
+	if(distance > stun_radius)
+		for(var/i in 1 to 3)
+			victim.forceMove(get_step_towards(victim, caster))
+		return
+	if(distance <= damage_radius)
+		victim.apply_damage(30, BRUTE, wound_bonus = CANT_WOUND)
+	victim.AdjustKnockdown(3 SECONDS)
+	victim.AdjustParalyzed(0.5 SECONDS)
