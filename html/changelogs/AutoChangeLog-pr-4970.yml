@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "(MTandi) Heretics can now get clues about objects around unused influences in their dreams, with a 5 minute cooldown."
+  - rscadd: "(ninjanomnom) New dream that plays sound at you."
