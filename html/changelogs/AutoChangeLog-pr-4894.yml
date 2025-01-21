@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Reverted some recent changes/fixes to satyrs, as they seemed to cause further issues."
