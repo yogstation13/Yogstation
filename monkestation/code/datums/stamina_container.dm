@@ -1,7 +1,8 @@
 /datum/stamina_container
 	///Daddy?
 	var/mob/living/parent
-	///The maximum amount of stamina this container has
+	/// The maximum amount of stamina this container has.
+	/// Don't touch this directly, it is set using set_maximum().
 	var/maximum = 0
 	///How much stamina we have right now
 	var/current = 0
@@ -24,6 +25,9 @@
 	COOLDOWN_DECLARE(paused_stamina)
 
 /datum/stamina_container/New(parent, maximum = STAMINA_MAX, regen_rate = STAMINA_REGEN)
+	if(maximum <= 0)
+		stack_trace("Attempted to initialize stamina container with an invalid maximum limit of [maximum], defaulting to [STAMINA_MAX]")
+		maximum = STAMINA_MAX
 	src.parent = parent
 	src.maximum = maximum
 	src.regen_rate = regen_rate
@@ -36,7 +40,7 @@
 	STOP_PROCESSING(SSstamina, src)
 	return ..()
 
-/datum/stamina_container/proc/update(seconds_per_tick)
+/datum/stamina_container/proc/update(seconds_per_tick = 1)
 	if(process_stamina == TRUE)
 		if(!is_regenerating)
 			if(!COOLDOWN_FINISHED(src, paused_stamina))
@@ -83,7 +87,7 @@
 	if(base_modify)
 		modify = amt
 	current = round(clamp(current + modify, 0, maximum), DAMAGE_PRECISION)
-	update(1)
+	update()
 	if((amt < 0) && is_regenerating)
 		pause(STAMINA_REGEN_TIME)
 	return amt
@@ -101,7 +105,20 @@
 		amount = current - lowest_stamina_value
 
 	current = round(clamp(current + amount, 0, maximum), DAMAGE_PRECISION)
-	update(1)
+	update()
 	if((amount < 0) && is_regenerating)
 		pause(STAMINA_REGEN_TIME)
 	return amount
+
+/// Sets the maximum amount of stamina.
+/// Always use this instead of directly setting the stamina var, as this has sanity checks, and immediately updates afterwards.
+/datum/stamina_container/proc/set_maximum(value = STAMINA_MAX)
+	if(!IS_SAFE_NUM(value) || value <= 0)
+		maximum = STAMINA_MAX
+		update()
+		CRASH("Attempted to set maximum stamina to invalid value ([value]), resetting to the default maximum of [STAMINA_MAX]")
+	if(value == maximum)
+		return
+	maximum = value
+	update()
+	return TRUE

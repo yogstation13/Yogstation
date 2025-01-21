@@ -552,18 +552,19 @@ Behavior that's still missing from this component that original food items had t
 
 	on_consume?.Invoke(eater, feeder)
 
+	// monkestation start: food buffs
 	if(food_buffs && ishuman(eater))
 		var/mob/living/carbon/consumer = eater
+		var/food_quality
+		if(isitem(parent))
+			var/obj/item/parent_item = parent
+			food_quality = parent_item.food_quality
 		if(consumer.applied_food_buffs < consumer.max_food_buffs)
-			eater.apply_status_effect(food_buffs)
-			consumer.applied_food_buffs ++
+			eater.apply_status_effect(food_buffs, food_quality)
+			consumer.applied_food_buffs++
 		else if(food_buffs in consumer.status_effects)
-			eater.apply_status_effect(food_buffs)
-		var/datum/status_effect/food/effect = locate(food_buffs) in consumer.status_effects
-		if(effect)
-			var/obj/item/food = parent
-			if(food.food_quality != 1) //if we are not the default value
-				effect.apply_quality(food.food_quality)
+			eater.apply_status_effect(food_buffs, food_quality)
+	// monkestation end
 
 	to_chat(feeder, span_warning("There is nothing left of [parent], oh no!"))
 	if(isturf(parent))
