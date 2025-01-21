@@ -70,7 +70,7 @@ const ChangeRow = (props: { kind: string; content: string }, _context) => {
 const Header = (props: { dropdown: any }, _context) => {
   return (
     <Section>
-      <h1>Monkestation</h1>
+      <h1>Welcome to Yogstation</h1>
       <p>
         <b>Thanks to: </b>
         /TG/station, Baystation 12, /vg/station, NTstation, CDK Station devs,
@@ -79,17 +79,35 @@ const Header = (props: { dropdown: any }, _context) => {
         have contributed to the game, issue tracker or wiki over the years.
       </p>
       <p>
-        {'Current organization members can be found '}
-        <a href="https://github.com/orgs/monkestation/people">here</a>
-        {', recent GitHub contributors can be found '}
-        <a href="https://github.com/monkestation/monkestation2.0/pulse/monthly">
+        <b>Current Head Developers:  </b>
+        JamieD12, baiomu
+      </p>
+      <p>
+        <b>Code Maintainers:  </b>
+        adamsogm, AshCorr, Bibby, Chubbygummibear, Djiq, John Willard, Manatee, Molti, monster860, SapphicOverload, ynot01
+      </p>
+      <p>
+        <b>Sprite Maintainers:  </b>
+        Anerisa, BlueishTsunami, Cuackles, HalcyonMap
+      </p>
+      <p>
+        <b> Maintainers:   </b>
+        Aquizit, Cark, Ezhan, Wejengin2
+      </p>
+      <p>
+        <b> Special Thanks to:   </b>
+        You! Thanks for playing on Yogstation!
+      </p>
+      <p>
+        {'Recent GitHub contributors can be found here: '}
+        <a href="https://github.com/yogstation13/Yogstation/graphs/contributors">
           here
         </a>
         .
       </p>
       <p>
-        {'You can also join our discord '}
-        <a href="https://discord.gg/monkestation">here</a>.
+        {'You can also join our discord at: '}
+        <a href=" https://discord.gg/MHkabek">here</a>.
       </p>
       {props.dropdown}
     </Section>
@@ -111,7 +129,7 @@ const Footer = (props: { dropdown: any }, _context) => {
         Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said No
       </p>
       <p>
-        Monkestation is thankful to the GoonStation 13 Development Team for its
+        Yogstation is thankful to the GoonStation 13 Development Team for its
         work on the game up to the
         {' r4407 release. The changelog for changes up to r4407 can be seen '}
         <a href="https://wiki.ss13.co/Changelog#April_2010">here</a>.
@@ -125,7 +143,7 @@ const Footer = (props: { dropdown: any }, _context) => {
         <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a>
         {' only.'}
       </p>
-      <h3>Monkestation License</h3>
+      <h3>Yogstation License</h3>
       <p>
         {'All code after '}
         <a
