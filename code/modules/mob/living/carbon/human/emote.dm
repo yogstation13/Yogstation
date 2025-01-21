@@ -39,10 +39,12 @@
 		return ..()
 	return FALSE
 
-/datum/emote/living/carbon/human/glasses/run_emote(mob/user, params, type_override, intentional)
+/datum/emote/living/carbon/human/glasses/run_emote(mob/living/carbon/human/user, params, type_override, intentional)
 	. = ..()
+	if(!ishuman(user))
+		return
 	var/image/emote_animation = image('icons/mob/species/human/emote_visuals.dmi', user, "glasses")
-	flick_overlay_global(emote_animation, GLOB.clients, 1.6 SECONDS)
+	flick_overlay_global(user.apply_height_offsets(emote_animation, UPPER_BODY), GLOB.clients, 1.6 SECONDS)
 
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"
