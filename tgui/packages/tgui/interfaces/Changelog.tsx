@@ -73,10 +73,10 @@ const Header = (props: { dropdown: any }, _context) => {
       <h1>Welcome to Yogstation</h1>
       <p>
         <b>Thanks to: </b>
-        /TG/station, Baystation 12, /vg/station, NTstation, CDK Station devs,
-        FacepunchStation, GoonStation devs, the original Space Station 13
-        developers, Invisty for the title image and the countless others who
-        have contributed to the game, issue tracker or wiki over the years.
+        /tg/station, FTL13 devs, Baystation 12, /vg/station, NTstation,
+        CDK Station devs, FacepunchStation, GoonStation devs, BeeStation,
+        Shiptest, the original SpaceStation developers,
+        Invisty for the title image and Hippiestation for dissapointed.ogg and other assets.
       </p>
       <p>
         <b>Current Head Developers:  </b>
@@ -88,7 +88,7 @@ const Header = (props: { dropdown: any }, _context) => {
       </p>
       <p>
         <b>Sprite Maintainers:  </b>
-        Anerisa, BlueishTsunami, Cuackles, HalcyonMap
+        Anerisa, BlueishTsunami, Cuackles, Halcyon
       </p>
       <p>
         <b> Maintainers:   </b>
