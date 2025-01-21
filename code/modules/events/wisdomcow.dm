@@ -27,7 +27,7 @@
 	if(spawn_location)
 		targetloc = spawn_location
 	else
-		targetloc = get_safe_random_station_turf()
+		targetloc = get_safe_random_station_turf_equal_weight()
 	var/mob/living/basic/cow/wisdom/wise = new(targetloc, selected_wisdom, selected_experience)
 	do_smoke(1, holder = wise, location = targetloc)
 	announce_to_ghosts(wise)

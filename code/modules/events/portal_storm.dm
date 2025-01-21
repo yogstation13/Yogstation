@@ -90,10 +90,10 @@
 		number_of_hostiles += hostile_types[hostile]
 
 	while(number_of_bosses > boss_spawn.len)
-		boss_spawn += get_safe_random_station_turf() // monkestation edit: use [get_safe_random_station_turf] so they don't spawn in weird stupid places
+		boss_spawn += get_safe_random_station_turf_equal_weight() // monkestation edit: use [get_safe_random_station_turf_equal_weight] so they don't spawn in weird stupid places
 
 	while(number_of_hostiles > hostiles_spawn.len)
-		hostiles_spawn += get_safe_random_station_turf() // monkestation edit: use [get_safe_random_station_turf] so they don't spawn in weird stupid places
+		hostiles_spawn += get_safe_random_station_turf_equal_weight() // monkestation edit: use [get_safe_random_station_turf_equal_weight] so they don't spawn in weird stupid places
 
 	next_boss_spawn = start_when + CEILING(2 * number_of_hostiles / number_of_bosses, 1)
 	setup = TRUE //MONKESTATION ADDITION
@@ -107,7 +107,7 @@
 	sound_to_playing_players('sound/magic/lightningbolt.ogg')
 
 /datum/round_event/portal_storm/tick()
-	spawn_effects(get_safe_random_station_turf()) // monkestation edit: use [get_safe_random_station_turf] so they don't spawn in weird stupid places
+	spawn_effects(get_safe_random_station_turf_equal_weight()) // monkestation edit: use [get_safe_random_station_turf_equal_weight] so they don't spawn in weird stupid places
 
 	if(spawn_hostile() && length(hostile_types))
 		var/type = pick(hostile_types)

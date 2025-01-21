@@ -165,7 +165,7 @@
 
 /datum/round_event/icarus_sunbeam/start()
 	var/startside = pick(GLOB.cardinals)
-	var/turf/end_turf = get_edge_target_turf(get_safe_random_station_turf(), turn(startside, 180))
+	var/turf/end_turf = get_edge_target_turf(get_safe_random_station_turf_equal_weight(), turn(startside, 180))
 	var/turf/start_turf = spaceDebrisStartLoc(startside, end_turf.z)
 	new /obj/effect/sunbeam(start_turf, end_turf)
 

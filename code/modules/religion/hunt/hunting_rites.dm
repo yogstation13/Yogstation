@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(sect_of_the_hunt_preys)
 /datum/religion_rites/call_the_hunt/invoke_effect(mob/living/user, atom/religious_tool)
 	. = ..()
 
-	var/turf/prey_location = get_safe_random_station_turf()
+	var/turf/prey_location = get_safe_random_station_turf_equal_weight()
 	GLOB.sect_of_the_hunt_preys += new /mob/living/basic/deer/prey(prey_location)
 
 

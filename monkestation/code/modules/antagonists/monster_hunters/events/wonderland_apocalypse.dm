@@ -36,9 +36,9 @@
 /datum/round_event/wonderlandapocalypse/start()
 	SSshuttle.emergency_no_recall = TRUE
 	for(var/i = 1 to 16)
-		new /obj/effect/anomaly/dimensional/wonderland(get_safe_random_station_turf(), null, FALSE)
+		new /obj/effect/anomaly/dimensional/wonderland(get_safe_random_station_turf_equal_weight(), null, FALSE)
 	for(var/i = 1 to 4)
-		var/obj/structure/wonderland_rift/rift = new(get_safe_random_station_turf())
+		var/obj/structure/wonderland_rift/rift = new(get_safe_random_station_turf_equal_weight())
 		notify_ghosts(
 			"A doorway to the wonderland has been opened!",
 			source = rift,

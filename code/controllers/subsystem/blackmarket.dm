@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(blackmarket)
 				pad.add_to_queue(purchase)
 			// Get random area, throw it somewhere there.
 			if(SHIPPING_METHOD_TELEPORT)
-				var/turf/targetturf = get_safe_random_station_turf()
+				var/turf/targetturf = get_safe_random_station_turf_equal_weight()
 				// This shouldn't happen.
 				if (!targetturf)
 					continue

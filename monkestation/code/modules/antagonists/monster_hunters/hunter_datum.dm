@@ -77,7 +77,7 @@
 	RegisterSignal(src, COMSIG_GAIN_INSIGHT, PROC_REF(insight_gained))
 	RegisterSignal(src, COMSIG_BEASTIFY, PROC_REF(turn_beast))
 	for(var/i in 1 to 5)
-		var/turf/rabbit_hole = get_safe_random_station_turf()
+		var/turf/rabbit_hole = get_safe_random_station_turf_equal_weight()
 		rabbits += new /obj/effect/bnnuy(rabbit_hole, src)
 	var/obj/effect/bnnuy/gun_holder = pick(rabbits)
 	gun_holder.drop_gun = TRUE

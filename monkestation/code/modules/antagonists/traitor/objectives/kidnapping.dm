@@ -304,7 +304,7 @@
 			continue
 		possible_turfs += open_turf
 
-	var/turf/return_turf = get_safe_random_station_turf()
+	var/turf/return_turf = get_safe_random_station_turf_equal_weight()
 	if(!return_turf) //SOMEHOW
 		to_chat(sent_mob, span_hypnophrase(span_reallybig("A million voices echo in your head... <i>\"Seems where you got sent here from won't \
 			be able to handle our pod... You will die here instead.\"</i></span>")))
