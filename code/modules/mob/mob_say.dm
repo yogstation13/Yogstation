@@ -147,7 +147,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(M == src)
 			continue
-		if(!isdead(M))
+		if(SSticker.current_state != GAME_STATE_FINISHED && (M.see_invisible < invisibility || (!isdead(M) && !HAS_TRAIT(M, TRAIT_SIXTHSENSE))))
 			continue
 		if (M.client?.prefs.read_preference(/datum/preference/toggle/enable_runechat))
 			M.create_chat_message(src, /datum/language/common, message)
