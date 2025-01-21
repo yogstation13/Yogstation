@@ -1,0 +1,134 @@
+2025-01-02:
+  cowbot92:
+  - tweak: Adjusts clown/mime access
+  - tweak: Tweaked charlie station rad armor values
+  warface1234455:
+  - bugfix: fix no damage projectiles from damaging stuffs with integrity
+  ynot01:
+  - rscadd: Added a new quirk - Blindspot.
+2025-01-03:
+  Ethan4303:
+  - mapping: Fixed a tile being plating instead of floor tile in nanites on IceMeta
+  JamieD1:
+  - bugfix: Fixes lobby Music/Admin Music
+2025-01-04:
+  ToasterBiome:
+  - bugfix: All airlock buttons in the AI whale will function correctly
+  - mapping: Fixes some missing pipes and decals on DonutStation
+2025-01-05:
+  Ethan4303:
+  - mapping: Rotated APC's and moved 2, added lightswitch to xenobioroom
+  ToasterBiome:
+  - bugfix: eating a fish you're showing off will stop showing it off
+  adamsong:
+  - bugfix: Fixed flavor text pontentially mentioning incorrect details about a character
+      when the game force changes their species.
+  ynot01:
+  - bugfix: Fixed vox having no crew monitor icon
+2025-01-06:
+  AMyriad:
+  - bugfix: Fixed AI chamber door buttons on MiniStation, similar to the bug with
+      the AI whale
+  ynot01:
+  - rscadd: Added the attachment kit to the traitor uplink
+2025-01-07:
+  ynot01:
+  - rscadd: Added a quirk for IPC language (Encoded Audio Language)
+2025-01-09:
+  Scrambledeggs00:
+  - bugfix: HoP's skirt now shows in their vendor and turtleneck skirt has worn sprites
+2025-01-11:
+  Oblisk234:
+  - rscadd: 'New neutral quirk: Cybernetic organ (Tongue)'
+  Scrambledeggs00:
+  - bugfix: Possibly fixes a bug that could cause the ice cream vat to overload the
+      server with instanced cones and scoops
+2025-01-12:
+  Moltijoe:
+  - rscadd: Adds shadowflame gout spell to darkspawn warlock
+  - tweak: Merges Thrall Mind and Release Thrall into one button via left and right
+      click
+2025-01-13:
+  AMyriad:
+  - bugfix: Fixed the door to enter secondary AI core on IceMeta acting strangely
+  Am37000:
+  - imageadd: Added alternate state to Hawaiian Skirt.
+  Oblisk234:
+  - rscadd: Added a mentor verb for the Mentor PM Panel from the original mentor PR.
+  - rscadd: Added a preference option to choose between old blindness and echolocation
+  SapphicOverload:
+  - bugfix: Fixed Odysseus mech being destroyed in one hit from anything
+  Scrambledeggs00:
+  - bugfix: Mothroaches are no longer invisible when resting/sleeping and worn on
+      your head.
+  ToasterBiome:
+  - tweak: Exempting EXP job requirements also exempts you from job connection time
+      requirements
+  cowbot92:
+  - rscdel: Disables split personality
+  warface1234455:
+  - bugfix: Fix cybernetic organs replacing upgraded cybernetic organs (Quirk and
+      station trait related only)
+  - rscadd: Krokodil addicts now shown as zombie on crew monitor
+  ynot01:
+  - tweak: Nuke ops now also receive the code to the station self-destruct terminal.
+      Detonation will result in Nanotrasen believing the crew detonated the device
+      themselves.
+  - tweak: The station self-destruct terminal now requires the disk to remain inside
+      for the entire countdown.
+2025-01-14:
+  Ethan4303:
+  - mapping: moved ministation turbine over to atmos, old connecting room now has
+      some tables and stuff and extra rad lockers that were missing, gave atmos more
+      radlockers since they were missing too
+  Moltijoe:
+  - rscdel: Darkspawn restrain body spell
+  - tweak: Devour will now places a dark bead in the target's head that slowly generates
+      willpower while they live
+  - tweak: Devour will no longer grants any willpower during repeat drains, but will
+      replace the dark bead if it was removed
+  - tweak: Devour will now stuns the target during use, but stuns the user if interrupted
+  - tweak: Thralls no longer grant willpower based on nearby players, and instead
+      just generate 2x the willpower of a dark bead
+  Oblisk234:
+  - bugfix: The lag switch subsystem now works towards mitigating lag than doing barely
+      anything.
+  - rscadd: Added an admin verb to enable lag switch measures.
+2025-01-15:
+  Oblisk234:
+  - rscadd: Readded pAI security and medical record modules
+  - rscadd: pAIs can now copy access from their master (Hit them with your ID!)
+  - rscadd: Two new pAI modules, meson and night vision HUD
+  - bugfix: Fixed a bug with pAIs
+  - tweak: pAI remote signaller is now aligned consistently.
+2025-01-16:
+  AMyriad:
+  - bugfix: Fixed the VR hub not working
+2025-01-17:
+  SapphicOverload:
+  - tweak: Mechs are now affected by tesla shocks
+  - tweak: Tesla shock damage now checks against electric armor instead of energy
+  - tweak: Tesla shocks now ignore windows, grilles, tables, and floor cables
+  - tweak: Hypercharged tesla ball no longer hits the same target multiple times in
+      a single zap
+  - bugfix: Fixed tesla cannon projectile not drawing its beam correctly
+2025-01-19:
+  SapphicOverload:
+  - rscadd: Added books to the uplink that improve your skills.
+  - tweak: Redeeming slime cores, isolating rare plant genes, and extracting seeds
+      from rare plants now all give science experience.
+  - tweak: Hacking now gives technical experience when interacting with wires you
+      haven't yet.
+  - tweak: Reduced mech piloting speed scaling per technical skill level.
+  - tweak: Mech pilot suit and book now work at any skill level.
+  - bugfix: Fixed skill leveling from gaining experience being slightly off when going
+      up multiple levels at once.
+  - bugfix: Fixed being unable to reach level 5 through gaining experience when your
+      maximum possible skill level is 5.
+  - bugfix: Fixed chat messages when learning Ultra Violence not being ordered correctly.
+2025-01-20:
+  Aquizit:
+  - tweak: No more murder under 10 players
+  - experiment: Min player number can be changed
+  warface1234455:
+  - bugfix: FIX telekinesis unable to interact with things

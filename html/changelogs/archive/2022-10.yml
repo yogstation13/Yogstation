@@ -1,0 +1,735 @@
+2022-10-01:
+  ' @Chubbygummibear':
+  - rscadd: Admins can now offer a mob a rename prompt.
+  Chubbygummibear:
+  - rscadd: Modular Computer themes
+  - rscadd: Game preference option that controls which theme your spawn PDA starts
+      with
+  - rscadd: Themeify app to change your device theme that can be found in the app
+      store, so you can use it on modular desktops as well.
+  - bugfix: chat client and pda messenger use your device theme
+  - imageadd: Added SVGs for theme backgrounds
+  MenacingManatee:
+  - tweak: tweaked piping and wiring
+  - rscadd: Adds a few missing objects
+  Moltijoe:
+  - imageadd: '"removed" the old icon "added" the new one'
+  - imagedel: why is there no imagetweak tag?
+  - bugfix: sources of spread increase stack
+  N3D6:
+  - rscdel: removes gangs from rotation
+  - tweak: removes gangs from rotation
+  SapphicOverload:
+  - rscadd: adds EMT and mining medic berets
+  - tweak: gives mining medic hat the same protections as their jacket
+  - tweak: fixes some typos
+  Skrem7:
+  - rscadd: Adds the Oddjob Syndikit Special bundle, which turns a Syndicate agent
+      into a small, scampering, well-dressed fedora-thrower that possesses a vague
+      Goldeneye loadout
+  - tweak: Syndicate fedora now has 15 AP, -10 wound bonus, 10 bare wound bonus. Only
+      bulky when extended now, and can no longer embed
+  - rscadd: Adds a spellbook for Tesla Blast
+  - rscadd: Adds a spellbook for Repulse
+  - tweak: Darklord bundle has been tweaked to not include a desword but it now has
+      a few spells to live out your Sith desires
+  - rscdel: His Grace can no longer occur in null crates.
+  - rscdel: Romerol bottle can no longer occur in null crates.
+  ? Skrem_7, @KillerOrcaCora for LWT sprites, @MajManatee for the initial rifle concept
+    and work, @Mqiib for collaboration of some balance pre-draft, a lot of coffee
+    and spite
+  : - experiment: Begin log of Ballistic Expansion.
+    - rscadd: Adds the LWT-650 DMR, a marksman rifle available to ERTs that fires
+        a new .308 round, most like a weaker version of 7.76, strictly damage-speaking.
+    - rscadd: Adds .308 Penetrator and Heavy Laser for the ERT rifle.
+    - rscadd: Adds 5.56 AP, Incendiary, and Rubber. AP and Incendiary are purchasable
+        by nukies, while ERT can buy them all.
+    - rscadd: The M-90gl and the NT ARG 'Boarder' Rifle now have different magazine
+        variants.
+    - rscadd: Adds .45 AP, HP, and Venom for the C-20r which nukies can buy.
+    - rscadd: Adds 10mm EMP which does a one-tile EMP on the target hit.
+    - rscadd: Frag rounds exist for nukies again, this time they blow up 2 tiles in
+        a weak explosion but they do NOT paralyze.
+    - rscadd: Standard ammo of the Bulldog and the magazine bought is now Syndicate
+        buckshot, which does a lot more damage
+    - rscadd: You can now order the Caldwell and two speedloaders for it from armory
+    - rscdel: Removes HP Buckshot
+    - rscdel: Caldwell and its ammo can no longer be researched and printed
+    - rscdel: Tracking implant crate only contains a crate of tracking implants again
+    - tweak: 7.76 and the new .308 have 0.3 speed like the sniper
+    - tweak: .32 TRAC now only lasts 5 minutes
+    - tweak: .32 TRAC implants are now destroyed by EMPs
+    - tweak: Magazines such as the laser rifle's and the new .308 Heavy Laser now
+        charge faster if the recharger is upgraded
+    - tweak: .45 ammo duffle bag now has 5 standard mags, 2 ap mags, and 2 hp mags
+    - tweak: 12g ammo duffle bag now has 3 syndie buckshot mags, 3 syndie slug mags,
+        and 2 flechette mags
+    - tweak: Occupying Force special WT has been re-branded as a standard WT, it just
+        starts with rubber rounds. It's now a preferred item to be utilized if WT's
+        were to ever spawn in armory roundstart.
+    - tweak: Surplus carbine (or 10mm surplus rifle) has a fire delay of 12 instead
+        of 30 now.
+    - tweak: Syndicate revolver fire_delay has been increased to 6 (includes Russian
+        Revolver), modified .38 fire_delay is 12, Deagle fire_delay is 8. Nagant revolver
+        fire_delay is 5. The .38 and special .357 revolvers have a fire_delay of 0
+        again. TRAC revolver fire_delay adjusted to 10.
+    - tweak: .38 modified no longer blows up in your hands, but has inaccuracy
+    - tweak: .357 Metalshock now properly causes a tesla arc that can chain that will
+        HURT
+    - tweak: .357 Wallstake now costs 3 TC.
+    - tweak: 10mm HP adjusted to be sharp-edged. Its wound bonuses have been decreased
+        to compensate for this.
+    - tweak: Almost all bullets have had their inherit and sprite code passed over
+        to shorten their length and be more robust in quality
+    - tweak: 4.6x30mm incend has AP of the normal now because rubber inherits it but
+        incend hasn't because of its pathing
+    - soundadd: 'Adds rifle loading, rifle unloading, and rifle racking sounds taken
+        from TGMC. DMR sound which was ripped from TGMC which was ripped from Halo:
+        Reach has also been added'
+    - imageadd: Adds new sprites for 5.56 alternative ammos, NT 'ARG' Boarder magazine
+        and alternative magazine sprites, alternative .45 C-20r magazines, Syndicate
+        Buckshot and Syndicate slug sprites, 12g drum mag sprites for each ammo type
+        that did not have it, new 5.56 casing types including types of alternative
+        ammunition, .308 magazines and their alternatives, and the 10mm EMP pistol
+        magazine as well as updating all existing 10mm and 9mm alternative ammo sprites
+    - imageadd: 5.56 Toploader magazines now have dynamic sprite_states based on the
+        level of ammunition
+    - imageadd: The gun sprite for bulldog now properly reflects the level of ammunition
+        you have left in the magazine as well as being standardized across ammo types
+    - imagedel: Deletes several redundant in-hand ammo images due to how magazines
+        initialize with update_icon()
+    - imagedel: HP Buckshot is gone
+    - imagedel: Bulldog shotgun no longer has snowflake sprites for varying magazines
+        being loaded
+    - spellcheck: Adds or adjusts a metric LOAD of ballistic-related descriptions
+    - experiment: End log of Ballistic Expansion.
+  SomeguyManperson:
+  - rscadd: gem bag.
+  - bugfix: watchersnnow have their death message reset after they drop gems becausw
+      that changes it to account for the gem
+  - bugfix: magmawing watchers dont drop frost diamonds because they arent icewing
+      watchers
+  - tweak: lizard wine needed for planetcracker
+  SuperSlayer:
+  - rscadd: Adds three new martial arts
+  TheGamerdk:
+  - rscdel: You can't shriek in pipes as changeling anymore
+  - rscdel: Bluespace emag probability decreased to 7%
+  - bugfix: you can now disable the alternative announcers for real
+  ToasterBiome:
+  - rscadd: Adds two donator items for Nightmare1234, a black slime zippo lighter
+      and a dark scientist jumpsuit
+  VaelophisNyx:
+  - spellcheck: updated the pull request template
+  - tweak: you will now ALWAYS get stalwart's intended loot instead of just some ores
+  - bugfix: stalwart's projectiles no longer breakdance on walls/doors/etc
+  - tweak: Stalwart is even more fleshed out and functional
+  - tweak: Advanced Magboots & Syndicate Magboots provide Noslip on Ice
+  - tweak: Adds 2x IPC Revive Boards to Robotech vendor stocks
+  - tweak: Adds one Robotech Vendor to Meta, Box, and Asteroid robotics
+  - tweak: Removes the extra health analyzers, buckets, first aid kits, flashes, cables,
+      and prox-sensors since they're in the vendor
+  - tweak: removed one now-empty-table on Box to fit the vendor
+  - tweak: Ice Wing Watcher Crusher Trophy reworked into a copy of the Iceblock Talisman
+  - tweak: Magma Wing Watcher Crusher Trophy
+  - tweak: Mutant Colors (Including pod hair) can now be a bit darker
+  - tweak: mech RCDs use differing amounts of charge depending on what they do now
+  - bugfix: non-syndicate borg RCDs do not deconstruct Reinforced Walls again
+  - tweak: Vampires midround costs 10 less threat on dynamic
+  - rscadd: added subtype broken & burned floors for mapping purposes
+  - bugfix: cold wood tiles now start with kitchen cold room atmos
+  - tweak: Phytosians heal half as much from non-addictive botany chems
+  - tweak: Space Dragons are now 5 threat More Expensive for dynamic to spawn
+  - rscdel: Revenants cannot hear dead chat anymore, as participants IN a round
+  - tweak: Defile cannot damage non-standard windows (reinforced/plasma/etc)
+  - tweak: Revenants cannot use abilities in space
+  redmoogle:
+  - bugfix: Fixes holodeck gym railing corners being the wrong dir
+  - bugfix: IPCs can no longer take oxygen damage
+  - tweak: Cargo shuttle wont sell unopened crates now
+  - rscadd: Added nanite and wound scan for ghosts
+  - rscadd: Added health/chem/nanite/wound scan toggles as UI elements
+  - bugfix: pai setup button doesnt disappear changing themes now
+  - tweak: NT IRN can send the cargo shuttle away from the station if you're a head,
+      QM, or cargo tech
+  - tweak: Golaiths shouldn't be able to roll a 2.1841E-30 chance to fuck you over
+      now
+  - sounddel: Intern shouldnt earrape you no more
+  warface1234455:
+  - tweak: 'Adjusted RPD material requirement Iron: 45000 -> 22000, Glass: 37500 ->
+      18000'
+  - tweak: Unstamped manifest will now prevent cargo shuttle from leaving unless approved
+      or denied (You can remove the manifest from the shuttle to send it off again
+      otherwise no)
+2022-10-02:
+  Skrem7:
+  - spellcheck: us
+  VaelophisNyx:
+  - bugfix: Fixes being unable to start augmentation surgeries on ANY species.
+  warface1234455:
+  - spellcheck: plasaman
+2022-10-03:
+  ' Identification':
+  - imageadd: New sprites for Stechkin APS.
+2022-10-04:
+  VaelophisNyx:
+  - bugfix: fixed revenants still being able to damage reinforced/plasma/etc windows
+2022-10-06:
+  Cuackles, ToasterBiome:
+  - rscadd: adds "punk" jacket as donator gear for cuackles
+  KillerOrcaCora:
+  - imageadd: It does not look like paper my fellow peers...
+  VaelophisNyx:
+  - tweak: Botanical and Mutagen dispensers use a different sprite now
+  - imageadd: cloned the minidispenser sprite and painted the top green
+  redmoogle:
+  - bugfix: Asteroids/Rocks should no longer look vaguely like a 3/4th wall
+2022-10-08:
+  ' VaelophisNyx, @ToasterBiome, @Chubbygummibear, @redmoogle, MasterDrake':
+  - rscadd: Added Sulfur Trioxide + Reaction to make it
+  - rscadd: Added new chemical reactions to produce water, welding fuel, stable plasma,
+      ice, sugar, and Sulfuric Acid
+  - tweak: Chem dispenser chems now unlocked at different tiers, and features gold
+      and charcoal at t4, and uranium when emagged.
+  ' kawoppi, warface1234455':
+  - rscadd: Adds Axolotl
+  - rscadd: Axolotl can be fished from fishing pool as uncommon loot
+  - rscadd: Axolotl can be worn on head
+  - rscadd: Adds axolotl pet called "Bop" for tcomms
+  - rscadd: Adds axolotl pet called "Bap" for botany
+  - rscadd: AI now has axolotl hologram
+  - tweak: 4 Axolotls can be ordered from cargo for 4000cr
+  - tweak: Petting mothroach now make a heart effect and give mood buff
+  - mapping: Adds axolotl to gax, box, meta
+  - imageadd: added Axolotl sprites
+  ' scriptis, ported by Jumps0':
+  - tweak: AIs now have BIG TEXT in binary chat
+  ' ynot01, MechanoidVoid':
+  - rscadd: Added simple sights to security protolathe, locked under sec tech
+  - rscadd: Added holographic sights to security protolathe, locked under adv. weapon
+      tech
+  - rscadd: Added vertical grips to security protolathe, locked under weapon tech
+  - rscadd: Added laser sights to security protolathe, locked under weapon tech
+  - tweak: All non-magical guns now have innate 5 spread (Does not stack with weapons
+      that already had spread)
+  - tweak: Ballistic weapons now have innate 0.3 recoil (Does not stack with weapons
+      that already had recoil)
+  - tweak: Energy weapons now have innate 0.1 recoil (Does not stack with weapons
+      that already had recoil)
+  00ze-cyclone:
+  - tweak: replaced the beanbags in the armory with rubbershot.
+  AlvCyktor:
+  - rscadd: a new crafting category for fishing bait, and one for seafoods
+  - rscadd: adds tuna pizza, Shrimp Cocktails, squid ink spaghetti, fish dumplings,
+      Surf n Turf, Ceviche, Seafood Alfredo
+  - rscadd: adds fried rice (plain/veggie/meat/shrimp/supreme)
+  - rscadd: adds taiyaki (fish shaped icecream cones)
+  - rscadd: adds fish oil (juice fish), and batter (beer + flour)
+  - rscadd: you can now batter carp meat/fish meat
+  - rscadd: adds Wild Bait
+  - rscadd: adds crafting recipes for all fishing bait
+  - tweak: you now have to batter carp meat/fish meat for use in some foods
+  - tweak: you can now cook carp meat/fish meat
+  - tweak: leeches can be used to remove toxins
+  - bugfix: fixes fishing vendors not having a circuit board
+  - wip: This is work in progress
+  Chubbygummibear:
+  - rscadd: Emagged PDAs can select the syndicate theme because you're cool like that
+  - bugfix: themes no longer let you access the syndienet because they were bootleg
+      code
+  - tweak: i added a header variable for tracking emagged status in modular computers.
+      so when you're implementing ui_data or static_data, starting with var/list/data
+      = get_header_data() will track PC_emagged internally. using this is slightly
+      quicker than making a data["emagged"] every time
+  GraveHat:
+  - rscadd: Gem Satchels can be bought from the mining vendors for 150 points
+  - tweak: Gem Satchels can be crafted with 1 leather
+  - tweak: Gem satchels start inside the voucher conscript kit
+  - tweak: Tripled the gem satchel storage capacity
+  - tweak: Explorer webbing accepts gems
+  - rscadd: Adds a color value to lemonade
+  - bugfix: Fixes some missing food item color fillings
+  - tweak: Tweaks some juice colors
+  - bugfix: Wearing gloves should no longer stop the energy katana from attempting
+      to kill you
+  Moltijoe:
+  - tweak: Changeling sting is now temporary
+  Mqiib:
+  - rscdel: Gets rid of remaining references to the cryo syringe and dart in tech
+      nodes
+  SapphicOverload:
+  - tweak: labcoats and EMT jackets can hold hyposprays
+  - tweak: EMT jackets can hold flashlights
+  - tweak: hazard vests and engineering/atmos coats can hold pocket fire extinguishers
+  - tweak: touching the SM with telekinesis now kills your brain instead of deleting
+      it
+  Skrem7:
+  - rscadd: Adds the syndicate shoulder holster, which can hold one additional thing
+      (four guns, FOUR GUNS)
+  - rscdel: Removes leftovers of the Lord Singulo bundle
+  - tweak: Passes over and modernizes most of the Tactical Syndikits
+  - spellcheck: Removes shiptest lore ref from the silly iguana
+  - tweak: Syndicate buckshot 15.5 per pellet down from 18
+  - tweak: Flechette 13 per pellet down from 15
+  - spellcheck: alterantive
+  - tweak: Adrenaline now only reduces damage slowdown instead of removing it entirely.
+      It now procs when you take 25 or more damage in one second, rather than 15.
+  - tweak: Makes the lore-sponsored hammer cheaper for both preternis traitors and
+      nukies
+  Sniblet:
+  - tweak: Changes the flavor text for eating while starving to prevent redundant
+      wording
+  - rscadd: IPCs are now selectable by magic mirrors and charged black extracts
+  - bugfix: Mutate spell no longer steadily buries you in random icons with every
+      cast
+  - spellcheck: mawls?
+  SomeguyManperson:
+  - tweak: Gems are now claimed by hitting them with an id, and only provide points
+      to that id when they are sold on the cargo shuttle
+  - tweak: autosurgeons with arm implants will now check both arms for an empty space
+      for their organ before removing any older organs to make room for their own
+  - tweak: chemical grenades no longer have 2 fucking dud wires that don't do anything
+  - tweak: chemical grenades now have a 40% chance to explode on being emped rather
+      than not having wire protection for emps
+  - tweak: saly acid and oxandrolone pills from medkits have had their reagent amount
+      reduced from 24 units to 5 units so the rest of the kit isnt comparable to garbage
+  TheRyeGuyWhoWillNowDie:
+  - rscadd: frag 12 can be crafted again
+  ToasterBiome:
+  - mapping: Tweak's BoxStation's floor decals to be more consistent, and follow a
+      general set style
+  VaelophisNyx:
+  - mapping: Added a second drone shell to the Drone Hole 3x3 maint ruin
+  - tweak: Tweaked armor values & properties of T-45b so its less bad, but still not
+      as good as X-02 armor.
+  - spellcheck: renamed X-01 armor to X-02 to prevent confusion with the HoS' special
+      Egun.
+  - tweak: Mortar and Pestle grinding costs about 1/3rd the stamina now
+  - rscdel: Disabled Syndicate Infiltrators Gamemode & Dynamic Ruleset
+  - tweak: You can now Vote on Asteroid Station above 34 pop
+  - tweak: Sentient Diseases are slightly stealthier by default
+  - tweak: IPCs can run on sensible amounts of pressure instead of requiring an entire
+      emergency internals tank per 2 minutes
+  adamsong:
+  - bugfix: fixed manifest spoofer lying about which name was going to be added
+  alexkar598:
+  - mapping: Fixes psych office APC controlling vault power on box
+  - mapping: Fixes missing atmos pipe in perma on box
+  - mapping: Fixes missing air alarm in genetics on box
+  githubuser4141:
+  - bugfix: Fixes mechas not caring what direction they received damage from.
+  redmoogle:
+  - bugfix: Downloading programs will no longer runtime
+  - bugfix: Chat highlight wont skip every other word now
+  - tweak: Chat highlight no longer highlights your own messages
+  warface1234455:
+  - rscadd: Adds a new icon "crutch" (for a limp handicapped mob to differentiate
+      it from a bone crack).
+  - rscadd: Crew monitor will now track android specie type (Icon is "cog").
+  - rscadd: Adds a new define isandroid for android specie type.
+  - tweak: Crew monitor will no longer recognize mob's specie if husked.
+  - tweak: Suit sensor on binary mode will can no longer recognize mob'specie.
+  - tweak: Sub vitals will no longer appear on suit sensor binary mode.
+  - tweak: Replaces IPC icon to "tv", Preternis icon to "robot" and some color tweaks.
+  - tweak: Adds a text "Warnings" for sub vitals column, "Species" for specie column,
+      and "Status" for health level column.
+  - tweak: Changed captain color on crew monitor.
+  - bugfix: Fixes duplicate icons.
+  - bugfix: Bone wounds icon will no longer appear with Slash, burn, pierce, loss(cut)
+      wounds icon
+  - bugfix: fixed missing emt beret sprites
+  ynot01:
+  - bugfix: fixed carpets telling you that they could be crowbarred twice
+  - bugfix: Added pretty filter to NTOS usernames and ringtone
+  - tweak: NTOS PDA Messenger will now update username based on the slotted ID
+  - tweak: NTOS PDA Messenger max username length is now 55 characters
+  - tweak: NTOS PDA Messenger is now wider to compensate for role names
+2022-10-09:
+  ' @Hey-Holokin, VaelophisNyx':
+  - soundadd: New music for Hiero has been added
+  Sniblet:
+  - rscadd: Wizard magic mirrors can now select darkspawn or androids
+2022-10-10:
+  VaelophisNyx:
+  - mapping: Adds new 10x10 Maint Ruin themed around Halloween!
+  alexkar598:
+  - mapping: Fixes 2 blindspots in public hallways on box
+2022-10-11:
+  MenacingManatee:
+  - mapping: Adds netmin access to secondary AI core
+  - bugfix: Fixes stacked tcomms intercoms
+  VaelophisNyx:
+  - bugfix: fixed Asteroid having a triple-stacked solars array
+  - mapping: Asteroid Cargo Shuttle doors don't cannon you out the airlock anymore,
+      as they properly depressurize first
+  - mapping: BOX Sec Office no longer has 2 missing red corner decals
+2022-10-12:
+  MenacingManatee:
+  - bugfix: fixed overlapped camms in tcomms
+  - bugfix: fixed sec having a loophole to bypass cargo access
+  - bugfix: fixed toxins air alarm access
+  - bugfix: fixed toxins freezer
+  - bugfix: fixed toxins space injector not being powered
+  - mapping: swapped position of scrubber and injector in toxins mixing
+  - mapping: removed firelocks from toxins mixing
+  - mapping: Added missing roundstart fluff items to cargo sec office
+  TheRyeGuyWhoWillNowDie:
+  - rscadd: clockwork AI is back after being forgotten about in the AI rework
+2022-10-13:
+  VaelophisNyx:
+  - mapping: ASTEROID standardizes the armory and makes the armory exit shutter not
+      blocked by a sec locker
+  - tweak: All 5 Whiteships Updated To Be Less Variable On Loot Vs Danger
+2022-10-14:
+  MenacingManatee:
+  - mapping: Expands the size of Asteroid cargo bay
+  - mapping: Moves the mulebots from Asteroid cargo warehouse to cargo bay
+  - mapping: Adds bells to all required locations (Asteroid)
+  VaelophisNyx:
+  - mapping: BOX Atmos got its pipe dispensers back
+2022-10-15:
+  SomeguyManperson:
+  - bugfix: certain syndicate suits are no longer proper nouns
+  VaelophisNyx:
+  - rscdel: Removed Water Creation Chemical Reaction
+  monster860:
+  - bugfix: Fix attack and floating animations
+  ynot01:
+  - rscadd: Added TGUI Minesweeper to NTOS and Minesweeper arcade machines
+  - rscdel: Removed HTML Minesweeper
+2022-10-16:
+  SomeguyManperson:
+  - tweak: the disk will no longer instant transmission when put in a bluespace bodybag
+  - tweak: Cargo shuttle transit time default 30 seconds from 1 minute
+  TheRyeGuyWhoWillNowDie:
+  - rscadd: the research director's locker now contains a bag of holding, and the
+      bag of holding is a grand theft item
+  - tweak: bags of holding now require an anomaly core to become functional
+  VaelophisNyx:
+  - rscdel: Surf & Turf is Not Real. Just use a tray and your choice of meats, fish,
+      and veg.
+  - bugfix: Fixed the missing fish related food sprites
+  monster860:
+  - bugfix: Fix view variables on appearances
+2022-10-17:
+  MenacingManatee:
+  - tweak: swapped DS locker on asteroid for tacticool turtleneck (2), balaclava (2)
+  Skrem7:
+  - rscadd: Adds a new detective hat that looks exactly like the black one that exists
+      but actually gives it armor because the TAN HAT has armor but this one DOESN'T
+      because it just takes the one you can buy from the drobe
+  warface1234455:
+  - mapping: places Bop and Bap on Asteroid station
+  - mapping: gives tcomms break room a catslug
+2022-10-19:
+  Mqiib:
+  - bugfix: Probably fixes digitigrade suit icons
+2022-10-20:
+  00ze-cyclone:
+  - rscadd: Added new phytosian lungs, the mesophyll
+  - tweak: Phytosians can now breathe CO2
+  - imageadd: added mesophyll sprites
+  Addust:
+  - tweak: Space Comms Agents can now spawn outside of extraordinary luck (massively
+      increases chance by removing an element of RNG)
+  Moltijoe:
+  - tweak: Malf AI with hijack don't need to kill IPCs anymore
+  - rscadd: Adds Plok Boss theme and Monster Mash to Halloween lobby music
+  Mqiib:
+  - spellcheck: '"Cellular" is now spelled right in the DNA vault'
+  Skrem7:
+  - rscadd: Adds the V Syndikit Special bundle, which contains items themed around
+      Big Boss and his basic skillset
+  - rscadd: Adds the faded eyepatch, an eyepatch that grants basic flash protection
+      and night vision
+  - rscadd: Adds the tactical fingerless gloves. They lightly reduce action speed,
+      help with carrying bodies, and slightly reduce CD on all unarmed attacks, regardless
+      of intent
+  - rscdel: Removes the Bond Syndikit Special bundle
+  VaelophisNyx:
+  - mapping: Massively updates the Freeminer ship
+  - tweak: What does the fox say? it says AAAAAAAAAAAAAA
+  - rscadd: Added Microplastics
+  - tweak: Plastic Polymers are now a used chem
+  - tweak: adjusts the production method of plastic to need plastic polymers to be
+      cooled; polymer recipe is the same as the old plastic recipe
+  - tweak: Xenos, Blob, and Spiders should happen less frequently and cant happen
+      below 30 pop (25 for spiders)
+  - tweak: Dynamic Blob and Xenos no longer can repeat in a round
+  - tweak: Removed unused Blob Infection dynamic ruleset
+  - soundadd: Halloween Lobby Music now featurs Spooky Scary Skeletons Remix by The
+      Living Tombstone
+  - mapping: Xeno spawns are a lot more varied
+  - mapping: Viro-maint now has vents so it can repressurize ever
+  - mapping: Atmosian-approved atmos changes & fixes
+  - mapping: other misc. fixes were done to the map
+  redmoogle:
+  - tweak: Halfed stuntimes for getting hit with ions and robotic limbs
+  - tweak: IPC organs have slight emp resistance now
+  - tweak: robotic tounge will now stutter for 5 seconds to 2 minutes
+  - bugfix: IPC cell wont set nutrition when emped now
+  warface1234455:
+  - tweak: Sheet snatcher amount in engivend 2 ->6
+  - tweak: smart metal foam amount engivend 1 ->6
+  ynot01:
+  - tweak: You can now apply wirecutters to open pizza boxes to return them to cardboard
+2022-10-22:
+  ' N3D6, ToasterBiome':
+  - rscadd: new landmark, meta engine spawner
+  - rscadd: new map file for the meta tesla
+  - rscadd: adds an engine smes to meta engineering
+  - rscadd: code for meta random engines, 50/30/20 SM, tesla, teg
+  - rscadd: map file for meta teg
+  - tweak: redoes some of the meta smes to fall in line with the new engine smes
+  00ze-cyclone:
+  - spellcheck: The coagulant vial is now called a sanguirite vial so you know what's
+      inside it like with other vials
+  Majkl-J:
+  - rscadd: Added wires to the exosuit fabricator
+  - tweak: The exosuit fabricator can now be hacked
+  Moltijoe:
+  - tweak: allows shields and metal limbs to protect against infection
+  - tweak: pacifist zombies can now attack people
+  - rscadd: Added con lentitud poderosa to lobby music
+  - bugfix: fixes deleting chems not remove effects
+  - tweak: Handdrill can be used to start mechanical surgeries
+  Mqiib:
+  - tweak: Swapped damage values over to be based on punch damage
+  - tweak: Garden Warfare splinters are far less lethal
+  - tweak: Garden Warfare vine snatch more user-friendly
+  - bugfix: Garden Warfare remember the basics works now
+  - tweak: Explosive Fist self-damage mostly removed
+  - tweak: Lots of Explosive Fist tweaks and adjustments to make it a little less
+      janky
+  - spellcheck: Various wording tweaks
+  N3D6:
+  - bugfix: every engine is no longer broken
+  - tweak: rename meta map files so they don't ruin and kill yog
+  SapphicOverload:
+  - rscadd: adds prescription sunglasses
+  Skrem7:
+  - tweak: Floor cluwne weight to 5 instead of 10
+  - tweak: Technically not a bugfix but some on_hit effects from some projectiles
+      should be properly blockable now
+  TheGamerdk:
+  - rscdel: No longer possible to get funny baseball bat from Donksoft toy vendor
+  ToasterBiome:
+  - mapping: BoxStation Starboard Bow (north above hydroponics/library/chapel) maintenance
+      adjusted slightly, new maint room and fixing the blast shutters
+  - mapping: BoxStation Starboard Quarter (nanites/toxins) maintenance path adjusted
+      slightly, maint access door changed to require no access
+  VaelophisNyx:
+  - rscadd: Added Gummy Bears to the game!
+  - rscadd: RDS quirk users now get a bottle of Mindbreaker Gummy Bears on spawn
+  - rscadd: Nanomeds contain 2 bottles of Vitamin Gummy Bears as premium stock
+  - rscadd: Cargo can order Gummy Bears
+  - imageadd: added sprites for gummy bears and large pill bottles
+  - rscdel: Sulfur Trioxide has been removed
+  - tweak: Sulfuric Acid now only takes 1:1 water and sulfur to make
+  - tweak: Soap is now made differently! Mix 10u of Corn or Cooking oil and 2u of
+      Lye at 374K, then put the resulting Liquid Soap into a grinder and Mix! 1 bar
+      takes 25u to make!
+  - tweak: Candles are now made with Corn/Cooking oil and Hydrogen, instead of Oxygen!
+  - tweak: Offer Rename admin verb now properly renames someone's ID and employee
+      record, and can be cancelled early
+  - rscadd: Added Blindfold of Telepathy to the Necropolis Chest loot pool
+  - rscdel: Removed Bowl of Blood from the Necropolis Chest loot pool
+  - mapping: Necropolis now features a bowl of blood in a chest as loot
+  Yvoi29:
+  - bugfix: Regenerative cores now have delay on station.
+  warface1234455:
+  - soundadd: Replaced old axolotl sound with a better one
+  ynot01:
+  - rscadd: Added image previews to uplink items
+2022-10-24:
+  MenacingManatee:
+  - mapping: Added 2 extra lights to sec hall (Asteroid)
+  - mapping: Added the warden's paystand (Asteroid)
+  - mapping: Removed rwindows from cargo hall (Asteroid)
+  - mapping: Added more firelocks to maint (Asteroid)
+  - mapping: Added flash and intercom to regular cells (Asteroid)
+  - bugfix: Fixed weird firelocks near conference room (Asteroid)
+  - bugfix: Fixed tcomms shutters (Asteroid)
+  - bugfix: Fixed secondary core buttons (Asteroid)
+  - bugfix: Fixed lazy wiring in regular cells (Asteroid)
+  - bugfix: Broken decal in turbine (Asteroid)
+2022-10-25:
+  KillerOrcaCora:
+  - imageadd: Our overall in-hand sprite inconsistency is now reduced to 98%! Snacks
+      have in-hand sprites now!
+  - imageadd: Grinder now has caution strips painted on but in reality, they should
+      paint one on you!
+  alexkar598:
+  - rscdel: Removes tiktok
+2022-10-26:
+  ' ToasterBiome, Adamsogm, Margot, Cowboy93, BritishGrace':
+  - rscdel: Removes 1.6 alert from IPC revival
+  Mqiib:
+  - tweak: PDA bomber is no longer a free kill
+  SapphicOverload:
+  - tweak: donator hats now start on head if the slot is empty
+  VaelophisNyx:
+  - mapping: Meta Medbay overhauled
+2022-10-27:
+  Ethan4303:
+  - rscadd: Added wall
+  - mapping: This is a mapping change
+  N3D6:
+  - mapping: fix meta sm cooling loop
+2022-10-28:
+  KillerOrcaCora:
+  - imagedel: Black and yellow black and yellow black and yellow black and yellow!
+  ToasterBiome:
+  - bugfix: You can no longer respond to PDA messages if you cant interact with the
+      device it's on
+2022-10-29:
+  '   adamsong, Inari-Whitebear, ArcaneMusic, Jaw-sh, Tralezab':
+  - rscadd: Mail for cargo
+  - wip: This is work in progress
+  - imageadd: mail images and mail crate image
+  ' VaelophisNyx, @cuackles':
+  - rscadd: Added Sinew Sutures to the Tribal crafting tab, consisting of Bone, Sinew,
+      and some Tinea Luxor
+  - rscadd: Added a reaction to create Aloe Cream from 30u of Ash and Aloe Juice
+  - tweak: Aloe Cream now only heals burns in carbons, but does so a little more effectively
+  - tweak: Aloe Cream is now a repeating-use item
+  - imageadd: added a new sprite for sinew sutures
+  ' ynot01':
+  - tweak: newcaster now also scan for pda and phone in your id slot so it wont recognize
+      you as unknown anymore
+  00ze-cyclone:
+  - rscadd: Added craftable pump up autoinjectors and refill
+  - tweak: Pump up now reduce stamina damage by 15%
+  - spellcheck: maintenance pump-up
+  ChesterTheCheesy:
+  - tweak: should improve performance by repathing screen objects into a more basic
+      format
+  Foxtrot (Funce):
+  - bugfix: '"AI Tech Support" and "SysOp" now appear under Engineering in the Crew
+      Manifest'
+  KillerOrcaCora:
+  - imagedel: The assault pod remote has its own sprite, too bad your never gonna
+      buy it!
+  LazennG:
+  - bugfix: fixed hiero not dropping loot when it should
+  Moltijoe:
+  - tweak: Rod of Asclepius can be used in place of a defib for revival surgery
+  - tweak: Organs, Implants, and Limbs now check for EMP_PROTECT_SELF
+  - tweak: Pockets are also checked for advanced health analyzers for fancy surgeries
+  - rscadd: Added new Preternis
+  - rscdel: Removed old Preternis
+  - imageadd: added an alert icon
+  - bugfix: all golems now properly have TRAIT_NOHUNGER
+  - rscadd: Adds night vision science goggles
+  - tweak: Lets medical print "science" goggles
+  - imageadd: the sprite is just a purple coloured night vision diagnostic hud
+  - rscadd: drinking water will equalize your body temp
+  - bugfix: shadowlings can't abuse asteroidstation anymore
+  - bugfix: Removes doing gender surgery on some agendered species
+  - tweak: Gummy bears can hold 30u
+  - tweak: gives cryoxadone an overdose affect
+  - rscadd: minebots now function like an orebox
+  - tweak: sentient minebots now move faster and can properly receive upgrades
+  - tweak: a comfy pool will give you a good body temperature
+  - rscadd: Adds a hypospray speed upgrade
+  Mqiib:
+  - rscdel: Removes slime person auto-body-swap on death
+  SapphicOverload:
+  - spellcheck: cybebrnetic - cybernetic
+  Skrem7:
+  - tweak: Darklord bundle should now be able to cast magic properly-ish
+  Skrem_7, @KillerOrcaCora:
+  - rscadd: Adds K-41s DMR to nukie uplink for 12 TC. It's an 11-round rifle that
+      fires 7.62 and possesses a short-range scope. Additional magazine costs 3 TC
+  - rscadd: Adds 7.62 Raze, a weaker 7.62 round that deals moderate irradiation and
+      clone damage. 4 TC
+  - rscadd: Adds 7.62 anti-material, an AP round that can pass through two objects/structures
+      before hitting another object, mob, or reaching the end of its reach. 5 TC
+  - rscadd: Adds 7.62 Vulcan, a weaker round that creates an explosion of exclusively
+      fire upon impact, with no throwing of objects or actual explosion damage. 4
+      TC
+  - tweak: Overhauls and standardizes projectile penetration code to be more integrated
+      into the base on_hit checks as well as making it far easier to create or adjust
+      penetrating projectile types. As a consequence, .50 Penetrator now damages EVERYTHING
+      it passes through. X-ray projectiles remain unaffected
+  - tweak: You now don't need both hands to fire the LWT-650 DMR
+  - imageadd: Adds new sprites for the K-41s, its magazines, and the new bullets
+  Sniblet:
+  - tweak: Zombie resurrection removes clone damage
+  SomeguyManperson:
+  - tweak: Things in the heretic shadow realm will now have lights on them to be easier
+      to find
+  - rscadd: Snake stick from necro chests can copy surgeries from operating computers
+      and disks by hitting them with it
+  - tweak: revheads get a flash implant in an arm rather than normal flashes to do
+      their conversions with
+  - experiment: REVHEADS GET A FLASH IMPLANT, IT IS THE ONLY FLASH THEY CAN CONVERT
+      WITH. DO NOT TRY TO USE OTHER FLASHES YOU WILL JUST LOOK STUPID
+  - tweak: monk staff no longer gets armor piercing
+  - tweak: monl staff deals 15 damage, down from 18, so it's not simply a better claymore
+  ToasterBiome:
+  - tweak: AsteroidStation requires 40 players minimum instead of 34
+  - mapping: (Meta) adds generator board to TEG engine, gives power to the button
+      in the chamber outside
+  - mapping: (Meta) Flips the TEG loops so that it can work
+  - mapping: (Meta) fixes dir on cold loop connectors of  TEG
+  applepineapplepizza:
+  - mapping: expanded atmos distribution & toxins launch area one tile north
+  - mapping: a few walls have changed in atmos to reinforced/regular walls
+  - mapping: better pipe layout for atmospheric distribution
+  - mapping: resync'd atmos gas tank console to their respective gas
+  - mapping: added more decals to atmospherics
+  - mapping: add more lights to atmospheric distribution
+  - mapping: atmos incen is now 1x3 instead of a 2x2
+  - mapping: the area below the incinerator has changed to the construction area
+  redmoogle:
+  - rscadd: Lemoline can be crafted now
+  warface1234455:
+  - rscadd: You can now emag sec record console to unlock it but be aware it will
+      alert sec and active silicons
+  - rscadd: Give fishing bonus when riding boat
+  - bugfix: fixed fire alarm icon not updating when burglar alarm is triggered
+  - tweak: Changing rank in record console now requires access instead of the name
+      of rank
+  - bugfix: Fixes unable to upload image to security record console, now you can by
+      simply holding an image in your hand and press the update button (Silicons also
+      can update images from their data)
+  - bugfix: Fixes image loading problem
+  - tweak: Sheet snatcher now can be held in utility belt
+  - bugfix: Fixed mats inserting fuckery for sheet snatcher
+  ynot01:
+  - bugfix: fixed firelocks not updating atmos when destroyed
+  - tweak: pepperspray now only tags mobs and the refill dispenser has coloring
+  - tweak: Players can now use items while under the effects of an aggressive grab
+      instead of being hardstunned
+  - tweak: Crashing into walls and other players is now a knockdown instead of a hardstun
+  - rscadd: Added Magnum Force Theme to the lobby playlist
+2022-10-30:
+  ' Xoxeyos':
+  - bugfix: 'Oversight fix: Flutes shouldn''t be fakeable.'
+  - spellcheck: fixed a few typos
+  Moltijoe:
+  - bugfix: preternis are visible again
+  - rscadd: Adds new nukie spine implant
+  - imageadd: Adds a spinal implant image
+2022-10-31:
+  ' Warface1234455, Cuackles':
+  - imageadd: Add floor lightning emergency and vacuum sprite
+  Addust:
+  - rscadd: adds a reminder to the Oldstation singulo generator document to add containment
+      fields
+  - bugfix: removes a double APC from Oldstation
+  Firewolf34:
+  - tweak: Due to budget cuts, Centcom has delayed the Emergency Maint. circuits.
+  ToasterBiome:
+  - mapping: Redesigns part of AsteroidStation Starboard Bow Maintenance
+  - mapping: Moves AsteroidStation Electrical Maintenance a bit
+  - mapping: Expands AsteroidStation Primary Tool Storage
+  - mapping: Move AsteroidStation Warehouse north and expands it
+  - mapping: Moves AsteroidStation Delivery Office to near the lobby
+  - bugfix: Fix AsteroidStation Cargo Office Atmospherics pipes
+  ynot01:
+  - tweak: Better informed users why they can't buy objective-restricted items
+  - mapping: Asteroid Station medical foyer now has a medical kiosk
+  - mapping: Asteroid Station security equipment room now has a pepperspray tank
+  - mapping: Asteroid Station detective autopsy table now has a paper tutorial

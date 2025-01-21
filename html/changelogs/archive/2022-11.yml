@@ -1,0 +1,532 @@
+2022-11-01:
+  KillerOrcaCora:
+  - imageadd: Action icon and mob sprites for tenticle ling ability are respeitred
+2022-11-02:
+  Aquizit:
+  - mapping: Connects the power grid to Arrivals, Janitor closet, locker room, bathroom/laundry
+      room, and port maint, as they are not powered at round start.
+  warface1234455:
+  - bugfix: Fixed fishing bonus not properly given to mob when riding lavaboat
+  - mapping: Placed a disposal pipe in cargobay
+2022-11-03:
+  Moltijoe:
+  - bugfix: species without genes can't use injectors anymore
+  TheGamerdk:
+  - rscadd: NTSL should no longer be a ticking timebomb
+  warface1234455:
+  - bugfix: Fix zombie_infection organ not fully executed all the procs because of
+      a "!" statement, smh Jordan Brown
+2022-11-04:
+  warface1234455:
+  - mapping: Adjust exterior airlock cycle button id to exterior
+2022-11-06:
+  JamieD1:
+  - tweak: Updates Byond to 1589
+  Simplehorror:
+  - bugfix: Mothpeople -> mothperson
+2022-11-08:
+  ' warface1234455':
+  - rscadd: Makes plasma materials can reduce radiation and rad particles from travelling
+      through
+  '@LazennG   @thegoldencat413 @ToasterBiome @Chubbygummibear':
+  - rscadd: Added seismic right arm
+  - rscdel: Removes soulstone from tendril loot pool
+  - imageadd: added sprites for the arm and its abilities
+  KillerOrcaCora:
+  - imageadd: Hisa has a valid reason to kill you now but just all the time, your
+      always valid.
+  LazennG:
+  - imageadd: uses the other seismic arm sprite
+  Moltijoe:
+  - rscadd: Can now print vial boxes after researching them
+  - tweak: Vial box can now go in the medical toolbelt
+  - tweak: machine overload will spawn a single spark on the exploding machine
+  N3D6:
+  - rscdel: removes teg from roundstart rotation
+  - tweak: tesla/sing and SM have a 50/50 chance to spawn
+  ReddicusDragon:
+  - rscdel: Removed Medical Cyborg pinpointer in favor of modular computer Lifeline
+      program
+  Sniblet:
+  - tweak: You are less likely to shoot grenades in people's hands
+  - tweak: You are less likely to shoot the tanks of flamethrowers in people's hands
+  SomeguyManperson:
+  - tweak: plastic is now actually mixed on being mixed and  heated rather than needing
+      to be cooled immediately after because I HATE FUN
+  ToasterBiome:
+  - rscadd: Adds coin stacking. You can stack 8 coins together.
+2022-11-09:
+  SomeguyManperson:
+  - bugfix: rust heretics now have to actually use their mansus grasp to rust things,
+      rather than their blade
+  ynot01:
+  - imageadd: stray white pixels removed from rainbow weed
+2022-11-10:
+  Skrem7:
+  - spellcheck: Ash blade flavor text ritual thingy fixed to proper recipe
+2022-11-11:
+  ' BurgerBB':
+  - bugfix: Fixes NTSL script sanitization being too strict.
+  Sniblet:
+  - spellcheck: I have fed greed(+i)ly from that which nourishes me.
+  SomeguyManperson:
+  - bugfix: headrevs midround promoted get flasehs now
+  - rscdel: no more hard access lock on the exosuit fabricator, which was undocumented
+      but apparently in the game anyways.
+  TheReddDragon:
+  - bugfix: fixes a warning at server boot that the research tree was messed up
+  ToasterBiome:
+  - bugfix: Readds the zippo-on sprite
+2022-11-12:
+  Sniblet:
+  - spellcheck: extinguished
+2022-11-13:
+  ' Altoids':
+  - bugfix: Fixed non-bloodsuckers not consistently showing that they have pale skin.
+  - bugfix: Fixed some sorts of bloodsucking not reducing blood volume.
+  - bugfix: Fixed some wines not always displaying their taste correctly.
+  - bugfix: Fixed the King Goat plushie maybe not correctly eating his cabbage.
+  ' warface1234455, baiomu':
+  - tweak: Gives ability for free golem, free miner and delta station crew to research
+      on a new research network
+  - mapping: Gives ability for free golem, free miner and delta station crew to research
+  - mapping: Fix exosuit techfab on free miner ship facing into wall result in not
+      able to print stuffs
+  ChesterTheCheesy:
+  - bugfix: splashing requires contact with skin, so heavy duty armor will protect
+      from it
+  LazennG:
+  - rscadd: Added seismic arm to swarmer ruin
+  - bugfix: no more noclipping others into walls with the suplex
+  MajManatee:
+  - tweak: Makes the Kinetic Crusher immune to fire/lava
+  MenacingManatee:
+  - spellcheck: fixed a typo in clown name var
+  Moltijoe:
+  - rscadd: Adds a new surgery to fix dead livers
+  - tweak: Monochromacy is now considered a negative quirk
+  - rscadd: Digitigrade prosthetics
+  - tweak: Removes the preternis resize thing
+  - tweak: Makes water damage do damage faster
+  - tweak: Gives preternis a unique footstep and punch sound
+  - tweak: Makes preternis ability change icon on toggle
+  - rscadd: Added a new hijack and glorious death only ipc martial art
+  - imageadd: added dash charge icon
+  - bugfix: hypospray now says if there is a speed upgrade installed
+  - tweak: Medsprays now hold 100u instead of 30u and apply 25u per use instead of
+      10u
+  - tweak: Medsprays are no longer refillable
+  - tweak: buffs beds and holobeds to be better at surgeries
+  - tweak: dealing damage to a corpse buckled to a chair also damages the chair
+  - tweak: robotic limbs can be self amputated now
+  - bugfix: cheese staff now properly uncheesifies
+  - tweak: Preternis charge the Vxtvul hammer faster
+  ReddicusDragon:
+  - tweak: updates SEC-030 Security Incident Report formatting to actually work properly
+  - rscadd: Added paperwork printing to modular devices. To use, download the program.
+  - rscadd: Added NT-43 Literacy Test to heads' paperwork clipboards
+  - rscadd: Added NT-44 Literacy Test Answer Key to heads' paperwork clipboards
+  SapphicOverload:
+  - tweak: EMPs disable robotic limbs and cause stamina damage instead of paralyzing
+      you
+  - bugfix: fixes hypernoblium not stopping some reactions
+  Simplehorror:
+  - tweak: Fasten your seatbelts. Throw force & knockdown of most shuttles have been
+      increased.
+  - rscadd: Microwaving a bomb core now causes it to explode
+  Skrem7:
+  - spellcheck: Rectifies gun measurements so America can prosper
+  - tweak: Ballistic arrows and energy arrows now have the same projectile speed (ballistic
+      ones are slower, energy ones are faster)
+  SomeguyManperson:
+  - bugfix: fixes some issues with items that try to drop things when those things
+      don't exist
+  - tweak: genderswap potion is no longer instant when being used on a second party
+  - rscdel: lightgeists (not photogeists) can't make plants because that's a photogeist
+      thing
+  TheGamerdk:
+  - rscdel: Traitors will no longer be tasked to steal a bag of holding
+  - bugfix: Fixed an exploit in the ninja dojo
+  TheReddDragon:
+  - tweak: Allows chefs to make kebabs with more than one metal rod in hand
+  ToasterBiome:
+  - mapping: reworks metastation service area
+  - mapping: reworks science sec/experimentor area on meta
+  - mapping: moves artists coven on meta
+  - tweak: The station gets 9 mail a minute instead of 15
+  - tweak: You can send mail back on the cargo shuttle
+  - tweak: generic mail loot includes various coins
+  - tweak: the chance of filling an empty space in the mail crate with junkmail was
+      reduced from 100% to 45%
+  - bugfix: removes rogue tiles in AsteroidStation cargo space
+  - mapping: centers AsteroidStation cargo room, moves things from Cargo Office to
+      in the room
+  - tweak: granite is generated in the same step as basalt
+  - tweak: loading announcement will properly mention lavaland
+  warface1234455:
+  - rscadd: icon "check" will now appear in warnings column when there are no harazdous
+      icons
+  - rscadd: icon "question" will now appear in warnings column when suit sensor is
+      at binary level
+  - rscadd: wound check will now detect embed objs in body
+  - rscadd: Crew pinpointer/lifeline program can track mob has monitor nanite
+  - bugfix: Fix lifeline name overwriting each others
+  - tweak: Swarmer can no longer breach plasma, trit, hydrogen and any burning chambers
+  - rscadd: ' You are now able to construct/deconstruct floor light.'
+  ynot01:
+  - tweak: cargo-ordered mech pilot suits now make you better at piloting mechs
+  - rscadd: Added the backstabbing switchblade to the uplink for 5TC
+  - rscdel: Removed noslips and camera bug from the bloodspai traitor kit
+  - tweak: Replaced the switchblade with the backstabbing switchblade in the bloodyspai
+      traitor kit
+  - bugfix: fixed not being able to turn off strafing by holding the alt key
+2022-11-14:
+  N3D6:
+  - mapping: meta tesla template has a new rack with insuls and scanner goggles
+2022-11-15:
+  Moltijoe:
+  - bugfix: COMSIG_ITEM_PREDROPPED is only called if there is an item to drop
+2022-11-16:
+  TheGamerdk:
+  - rscdel: Malf AI is no longer able to dominate mechs while doomsdaying
+2022-11-17:
+  SomeguyManperson:
+  - bugfix: spacemen have remembered how to point guns at people without shooting
+      them. They are still quite unlikely to point guns at people without shooting
+      them.
+2022-11-18:
+  N3D6:
+  - mapping: removes a scientist spawn in meta server room
+  - mapping: removes a spare can in toxins in favor of a new air pump
+  - mapping: removes a bomb closet in favor of a space injector
+2022-11-19:
+  ' @ToasterBiome @grimm-hollowknight @cuackles':
+  - rscadd: new customization options for plasmamen
+  - imageadd: add new helmets sprites
+  ' Mqiib, Cuackles':
+  - rscadd: MECH SWORDS!
+  - rscadd: Gives the mauler exosuit an energy axe for awesomeness reasons
+  - rscadd: Adds mech melee weapons to tech web
+  - tweak: Combat mech damage reduced to 25 from 30
+  - tweak: Mauler/marauder, seraph, and durand mech damage reduced by 5 (45->40, 55->50,
+      40->35)
+  - imageadd: BIG slash sprite
+  - imageadd: mech melee weapon module sprites
+  - soundadd: BIG slash noise
+  - bugfix: fixes a dumb mecha bump issue for z-levels with nojaunt
+  - experiment: This is experimental AND AWESOME
+  ChesterTheCheesy:
+  - bugfix: embedded syringes now properly trigger reactions instead of just transferring
+      the reagent onto your body
+  - bugfix: being splashed by low transmitability virus is no longer treated as an
+      injection.
+  LazennG:
+  - tweak: 3 second channel to use cube off lavaland
+  MajManatee:
+  - soundadd: adds THE Christmas song, to the Christmas playlist. (All I want for
+      Christmas is you)
+  Moltijoe:
+  - tweak: Bomb armour is now more effective
+  - bugfix: ipcs can no longer become zombies if someone manually implants the tumor
+  - rscadd: Mechanical dental implant
+  - tweak: minebots no longer take atmospheric damage
+  - tweak: minebots can be repaired while in combat mode
+  - rscadd: Mining medic now gets a synthflesh spray can
+  - rscadd: Adds more job specific mail items
+  - rscadd: Ashtrays are now craftable
+  - tweak: Lets gummies be stored in the chemfridge
+  - bugfix: Can no longer wrap items with nodrop
+  - tweak: alt click now toggles T scanners and mining scanners
+  - rscadd: Adds an explosive wheelchair to traitor uplink
+  - tweak: Plasmeme can now weld again
+  - bugfix: negative fire_stacks now gets examined properly
+  N3D6:
+  - mapping: meta tesla now has a bit more light
+  ReddicusDragon:
+  - bugfix: lore-based paperwork can now be printed by the paperwork printing software
+  - spellcheck: changes defibrillator code to fix typos (restucitation is now resuscitation,
+      incompatiable is now incompatible)
+  - rscadd: Added Anesthesia Tank Holder, ported from BeeStation
+  SapphicOverload:
+  - tweak: atmos holofan barriers are now fireproof
+  Simplehorror:
+  - tweak: Nerf reinforced windows so they don't take a minute to open
+  - tweak: Give heretics a free blade to start with
+  - tweak: Arrivals shuttle now has slower engines so they don't throw everything
+      back and lag connection-challenged people out
+  - bugfix: Fixes bug in bloodsucker dynamic latejoin code
+  - tweak: Clockcult walls can no longer be RCD'd, and clockcult windows are significantly
+      more stronger.
+  - tweak: Eldritch horror now takes 3 seconds to get into the head instead of 4.
+  - rscadd: Warping if you haven't camoflauged your jumpsuit asks if you're sure
+  - rscadd: Adds creampie landmine
+  - tweak: Clockwork cultists now appear on the manifest and have their metatells
+      stored in their bag instead of being noob bait
+  - tweak: Plant people no longer have bones
+  - rscadd: Adds spy bugs to traitor uplink
+  - tweak: Nukie mechs no longer get discount
+  - tweak: Nukie mech prices are now 25% off
+  Skrem7:
+  - rscadd: Adds limb autosurgeons that are designed specifically for limbs, a full
+      set found in both augmentation kits
+  - rscadd: Adds upgraded cyberorgan autosurgeons, found in the superior augmentation
+      kit
+  - rscadd: Adds the EMP shield implanter, which renders the subject's limbs, organs,
+      and implants immune to EMP, found in the superior augmentation kit
+  - rscadd: Adds the augmentation and superior augmentation kit. The former is 15
+      TC for any uplink, the latter is 25 TC for nukies only
+  - tweak: Stechkin magazine boxes should now only be readable by Syndicate
+  Sniblet:
+  - tweak: Bloodsuckers heal 1.6x faster in coffins and it doesn't cost them blood
+  - spellcheck: relic
+  SomeguyManperson:
+  - bugfix: legion cores properly apply reduced slowdown on station rather than slowdown
+      immunity
+  TheRyeGuyWhoWillNowDie:
+  - tweak: traitorvamps has been re-enabled
+  - tweak: all syringe guns except the dart pistol can no longer fire piercing syringes
+  - tweak: piercing syringes now hold 15u from 10u
+  - tweak: 'bonus: syringes that are supposed to pierce armor now do so in melee'
+  ToasterBiome:
+  - mapping: Fixes various errors around MetaStation science (Maint APC, Unconnected
+      Disposals, walled door)
+  - mapping: Remerges Nyx's medbay 3.0 as some turf and decal changes were missing.
+  - mapping: adds a single trim piece missing in boxstation medbay
+  warface1234455:
+  - rscadd: You can now add encryption key to station bounce radio and remove it by
+      altclicking on it after its panel is opened
+  - tweak: You can now use prefix ";" , as well as ":(channel_prefix)" to send comms
+      message while the bounce radio is in your pocket, belt or in hands.
+  - tweak: Increase SM radmod from 1.1 to 1.5
+  - tweak: Increase sing radmod from 4.5 to 6, Singulo will be significantly better
+      than tesla after this point. THis will make players feel like singulo is a fucking
+      engine not a shitty solar alike
+  - rscadd: Examinating mecha now pop up armor tag list (Requires you to be inside
+      the mech to see the armor tag)
+  - rscadd: Mech will now get environment air data, this is for when you want to see
+      what is the current environment air status when having internal tank on
+  - bugfix: Fixed unnable to research on rnd ruin console
+  - bugfix: Fixed unnable to sync ruin exosuit techfab
+  - bugfix: Fixed runtime spam in mech_fabricator.dm
+  - mapping: Replaced and added missing stuffs
+  - rscadd: Add a new hack wire for advanced airlock controller that can toggle cycle
+      by pulsing
+  - tweak: Reduced dumb wire to 1
+  - tweak: Cargo budget now gets 50% payment from energy harvester
+  - tweak: Conveyor now costs less to build in autolathe (1000 iron) and is now printable
+      in cargo protolathe
+  ynot01:
+  - bugfix: fixed smoke grenades breaking lights
+  - bugfix: fixed lings spawning as unabsorbable species
+  - bugfix: You can no longer murderize AIs by repairing the broken mech they're in
+  - bugfix: fixed players spawning on the title when they had no jobs on
+  - bugfix: fixed cerulean poly-crystals duplicating warpcrystals
+  - tweak: made cerulean poly-crystal punish you significantly less for using it on
+      antag currency
+  - tweak: Round-end report now includes what Uplinked ERTs bought
+  - bugfix: Message monitor now views NTOS PDA messages
+  - bugfix: NTOS PDA Messages no longer log the user's name rather than the program's
+      username
+2022-11-20:
+  Annoying-plant:
+  - rscadd: added a mix to waste pipe and 2 BZ cant to meta atmos
+  - rscdel: Removed one air tank and one oxy tank
+  N3D6:
+  - mapping: removes an empty can in favor of a third pump in asteroid toxins
+2022-11-21:
+  JamieD1:
+  - rscadd: Phineas and Ferb - We Wish You a Merry Christmas to Christmas Songs
+  KillerOrcaCora:
+  - imageadd: Give sec 60 sights and they still will miss 60 shots, but atleast they
+      look cooler. - zun orca
+2022-11-22:
+  00ze-cyclone:
+  - rscadd: Added the mind flayer to the alien technology node, a gun to give people
+      brain damage.
+  - imageadd: added unique sprites for the mind flayer and its rays
+  KillerOrcaCora:
+  - imageadd: Repriters the pruple brain damage gun to not look like a piece of painted
+      cement.
+  - imageadd: New sprite changed that your prob not even good enough to even get to
+      see in-game.
+  monster860:
+  - rscadd: Replays 2.0
+  warface1234455:
+  - tweak: Arrival shuttle no longer throw shits around
+2022-11-23:
+  N3D6:
+  - mapping: replaces free miner seed vendor with a better one
+2022-11-24:
+  Annoying-plant:
+  - rscdel: Removes two firelocks from inside atmos incinerator
+  - rscadd: Added the mix to engine pipe on the mix loop
+  - rscdel: Removed the pure to engine pipe on incinerator line
+  - rscadd: changed area name of a single tile to engine instead of SM chamber
+  - rscdel: Removed the random tile named SM chamber inside engi
+  ynot01:
+  - bugfix: Fixed the Holoparasite Teleportation Pad being unusable
+2022-11-25:
+  Annoying-plant:
+  - rscdel: Removes two trophy cases from meta library
+2022-11-26:
+  ' @LazennG @Rukofamicom':
+  - tweak: tweaked vortex talisman and colossus
+  ' @cuackles @MajManatee':
+  - rscadd: Adds the Plort Redemption machine
+  - wip: This is work in progress
+  - mapping: puts it in xenobio
+  ' Altoids':
+  - bugfix: Several random things in the game no longer store data that is not used
+      for anything at all.
+  - bugfix: Compatibility with OpenDream has been improved, very slightly.
+  ' Cark':
+  - bugfix: blind people can't be flashed anymore
+  ' warface1234455(port man), WalterJe(sprite),  GoldenAlpharex(code)':
+  - rscadd: Added tooltip for conveyor upon examinating
+  - rscdel: Removed some useless procs and codes
+  - imageadd: Added new sprite for conveyor, better visual of direction it is moving
+      to
+  ' ynot01, OrcaCora, Cuackles':
+  - rscadd: Added the golden crucifix null rod variant
+  Annoying-plant:
+  - rscadd: Added R-windows in there place
+  - rscdel: Removes R-walls
+  - tweak: Changes slowdown required on gear from &lt;=2 to &lt;=0.9
+  CMOisLing:
+  - rscadd: Adds new SM gas reactions
+  - bugfix: new gases now actually react with SM
+  KillerOrcaCora:
+  - imageadd: I only get the contractor baton to kill borgs and that's about it, I
+      hate yall forever and always...dumbass tincans
+  LazennG:
+  - tweak: tweaked stalwart a bit
+  Moltijoe:
+  - rscadd: Adds a traitor cargo/qm item that's just a bomb in a letter
+  - rscadd: Inorganic synthesis lets viruses infect robotic species
+  - tweak: Reverts empty medspray cans to how they used to be
+  - rscadd: Mining Medic and Brig physician PDA start with Lifeline and suit monitor
+      pre installed
+  - tweak: Only standing corpses transfer damage to chairs
+  - rscadd: Adds various leg implants
+  - soundadd: adds Treasures within the abomination to lobby music
+  - rscadd: Adds more job specific mail goodies
+  - rscadd: Water Vapour makes people wet
+  - bugfix: makes the bomb immune trait actually give bomb immunity
+  - rscadd: Prosthetic limbs are now craftable
+  - rscadd: Roboticists can now print ipc lungs
+  - bugfix: fixes some bugs with robotic digitigrade leg swapping
+  - rscadd: Robotics can print brainless IPC bodies
+  N3D6:
+  - tweak: adds flag NOSLIP_ICE to jump boots, winter boots, and mining boots
+  - tweak: snow no longer slows you down
+  ReddicusDragon:
+  - spellcheck: fixes many english issues across code base. This is phase one of an
+      unknown number of phases.
+  SapphicOverload:
+  - rscadd: IPCs can be CE and RD
+  Simplehorror:
+  - tweak: Dark spirit now only lets you move 21 tiles away
+  - tweak: Shuttle catastrophe can now get ANY shuttle aside BYOS, Disco Inferno,
+      Arena
+  - tweak: Cultists now get more members at roundstart
+  - tweak: Herald's beacon turns all converts into golems, and lowers power cost by
+      50%.
+  - tweak: Removed spaceproof from HECK Suit
+  - tweak: Holy Whip now has 3 range
+  Skrem7:
+  - tweak: Nukies can no longer buy the default aug kit
+  - tweak: The superior aug kit that nukies can only buy has had its price raised
+      to 45 from 25 TC.
+  SomeguyManperson:
+  - tweak: Crafted foods now have double the reagent capacity of normal foods
+  TheRyeGuyWhoWillNowDie:
+  - tweak: runtime kittens can now be named Mischief
+  ToasterBiome:
+  - bugfix: plasmaman helmet pref saves correctly now
+  - mapping: Touches up AsteroidStation Engineering
+  - mapping: Shortens AsteroidStation Engineering Foyer
+  - mapping: Expands AsteroidStation Chief Engineer Office
+  - mapping: Fix bad wall by AsteroidStation Vacant Room
+  Warface1234455:
+  - rscadd: add an upgraded version of the normal suit storage unit (Same code as
+      suit storage unit but tweaked a bit and smartfridge combination). This storage
+      can contain upto 1000 items
+  - tweak: Normal suit storage can no longer clear mob radiation (not contamination)
+      due to the lack of tech, now the advanced suit storage will do the job.
+  - soundadd: Add sound for suit storage unit
+  - rscadd: Suit storage can now be buit
+  - bugfix: Fixed being able to open machine with alt click while panel is open for
+      suit storage unit
+  - bugfix: Fixed being able to open suit storage unit with alt click while machine
+      is running
+  adamsong:
+  - bugfix: fixed rust slimes dying on rusty tiles
+  warface1234455:
+  - rscdel: Remove chat client program from basic pda
+  - rscadd: give atmos pda supermatter monitor
+  - tweak: Radiation anomaly now spawns radioactive goat that can be controlled by
+      ghost
+  - tweak: 'Radioactive goat buffs: more damage, higher speed, gets healed by nuclear
+      particle and overtime'
+  - bugfix: Fix changing rank button in record console disappear when pressing cancel
+      button
+  - bugfix: Fix radio being funky when switching radio and unnable to put TC into
+      radio uplink
+  - bugfix: fix ruin tech research console switching to station tech when reconstructing
+      the console
+  - tweak: free miner vendor R&D kit has been replaced with ruin reserch console circuit
+  ynot01:
+  - tweak: Flamethrowers have been restored to their former glory
+  - tweak: Stripped all mechs of EMP armor and slightly buffed EMP damage to mechs
+  - rscadd: Adds a communication implant
+  - rscadd: Blood brothers get a communication implant to their team roundstart
+  - tweak: Holoparasites can now keep up with humans
+  - tweak: Demon of Sin Envy now gets their ID renamed and copies access when copying
+      someone
+  - tweak: Makeshift pistol can no longer jam
+  - tweak: Makeshift pistol now fires slightly slower
+  - tweak: Buffed the energy armor of syndicate space suits and hardsuits
+2022-11-27:
+  TheRyeGuyWhoWillNowDie:
+  - tweak: stabilized red extracts make you faster instead of giving you slowdown
+      immunity
+  adamsong:
+  - bugfix: fixed comms key always being logged as wrong
+  - tweak: improved comms key log sanatization
+2022-11-28:
+  Annoying-plant:
+  - tweak: Changes  a pipe and manifold to the correct one in meta station atmos
+  Ethan4303:
+  - rscadd: added clarke limbs torso and head to freeminer mech crate
+  - rscdel: removed old unsalvageable clarke wreckage,,, removed floating light from
+      center of floor
+  N3D6:
+  - bugfix: icemoon now spawns its dedicated mobs instead of asteroid mobs
+2022-11-29:
+  ToasterBiome:
+  - mapping: puts the SM chamber area back in front of the SM air alarm on GaxStation
+  - imageadd: add badass sus lighter among us 24/7 emoji movie gone sexual?
+  cuackles:
+  - bugfix: fixed anime reference plasmaman helmet being offset
+  - imageadd: adds finalized plort machine sprite
+2022-11-30:
+  Annoying-plant:
+  - rscadd: adds air alarm to engi foyer on Asteroid station
+  - rscadd: adds blast door to atmos foyer on Asteroid station
+  Aquizit:
+  - mapping: Adjusts the Service Hall on Asteroid Station to include an autolathe,
+      removing a table and moving some items to make it fit.
+  Ethan4303:
+  - mapping: gives a slime pen its missing windoor and fixes the windoor names so
+      every cell isnt just slime pen 1 slime pen 1 slime pen 1 slime pen 1 slime pen
+      1 slime pen 1
+  - mapping: replaced space facing windows with the ones that have an emergency anti
+      breach shutter and removed overlapped catwalks
+  Firewolf34:
+  - bugfix: A now-functional design of the Pressure Valve has been provided to Atmos
+      RPDs.
+  TheRyeGuyWhoWillNowDie:
+  - tweak: mineral walls are thermite resistant
+  - tweak: reinforced walls are now thermite proof
+  ynot01:
+  - bugfix: fixed golden crucifix not removing glow
