@@ -114,8 +114,6 @@
 	if(!(cortical_owner.upgrade_flags & BORER_STEALTH_MODE))
 		to_chat(cortical_owner.human_host, span_notice("A chilling sensation goes down your spine..."))
 
-	cortical_owner.copy_languages(cortical_owner.human_host)
-
 	var/obj/item/organ/internal/borer_body/borer_organ = new(cortical_owner.human_host)
 	borer_organ.borer = owner
 	borer_organ.Insert(cortical_owner.human_host)

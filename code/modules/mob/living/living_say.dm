@@ -540,6 +540,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced, filterproof)
 
 /mob/living/get_language_holder(get_minds = TRUE)
+	RETURN_TYPE(/datum/language_holder)
 	if(get_minds && mind)
 		return mind.get_language_holder()
 	. = ..()

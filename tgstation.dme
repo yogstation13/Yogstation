@@ -7431,6 +7431,7 @@
 #include "monkestation\code\modules\jobs\job_types\virologist.dm"
 #include "monkestation\code\modules\jobs\job_types\yellowclown.dm"
 #include "monkestation\code\modules\jobs\job_types\spawner\bar_drone.dm"
+#include "monkestation\code\modules\language\language_holder.dm"
 #include "monkestation\code\modules\library\bookcase.dm"
 #include "monkestation\code\modules\library\skill_learning\job_skillchips\shaft_miner.dm"
 #include "monkestation\code\modules\liquids\drains.dm"

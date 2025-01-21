@@ -89,6 +89,8 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 	icon_dead = "brainslug_dead"
 	maxHealth = 25
 	health = 25
+	// Allows them to understand any language their current host can.
+	initial_language_holder = /datum/language_holder/borer
 	// They need to be able to pass tables and mobs
 	pass_flags = PASSTABLE | PASSMOB
 	density = FALSE
