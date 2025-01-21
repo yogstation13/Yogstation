@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Experimental fix for give/offer alerts getting stuck on-screen."
