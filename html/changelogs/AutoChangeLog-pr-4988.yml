@@ -1,0 +1,5 @@
+author: "Absolucy, itsmeowdev, carpotoxin"
+delete-after: True
+changes:
+  - rscadd: "Added two new emotes, *sweatdrop/*sweat and *annoyed, which have some small visual+audible effects to indicate reactions/emotions."
+  - bugfix: "Properly adjust the visual effects for *glasses and *sigh to adjust based on mob height."
