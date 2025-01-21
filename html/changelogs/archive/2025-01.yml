@@ -421,3 +421,16 @@
       the shuttle or change the security levels.
   blakeeeee:
   - rscdel: Foreigner and Bilingual are no longer conflicting quirks
+2025-01-21:
+  Absolucy:
+  - bugfix: Experimental fix for give/offer alerts getting stuck on-screen.
+  - bugfix: Borers will no longer lose Galactic Common upon entering someone who can't
+      speak it - instead, they will always be able to understand any languages their
+      host does, in addition to common.
+  - bugfix: Fixed food buffs potentially resulting in negative maximum stamina, resulting
+      in permanent slowdown.
+  - bugfix: Latejoin cyborgs will now only spawn on non-blocked floors in the AI upload,
+      so they'll no longer end up stuck in a wall or something.
+  Absolucy, StrangeWeirdKitten:
+  - bugfix: Things that drop in random places are no longer statistically weighted
+      to drop in security.

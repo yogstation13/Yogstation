@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Borers will no longer lose Galactic Common upon entering someone who can't speak it - instead, they will always be able to understand any languages their host does, in addition to common."

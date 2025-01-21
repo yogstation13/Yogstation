@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Latejoin cyborgs will now only spawn on non-blocked floors in the AI upload, so they'll no longer end up stuck in a wall or something."

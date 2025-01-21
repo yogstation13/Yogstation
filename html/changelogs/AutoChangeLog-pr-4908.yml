@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed food buffs potentially resulting in negative maximum stamina, resulting in permanent slowdown."
