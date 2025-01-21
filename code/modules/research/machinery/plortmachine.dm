@@ -40,14 +40,16 @@
 		return
 
 	if(istype(W, /obj/item/slime_extract))
-		refine_plort(W)
-		qdel(W)
+		refine_plort(W, user)
 		return
-	
-/obj/machinery/plortrefinery/proc/refine_plort(obj/item/slime_extract/W)
-	point_gain = W.plort_value * research_point_multiplier
-	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
 
+/obj/machinery/plortrefinery/proc/refine_plort(obj/item/slime_extract/extract, mob/user)
+	point_gain = extract.plort_value * research_point_multiplier
+	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, point_gain)
+	if(user.add_exp(SKILL_SCIENCE, extract.plort_value * 5, extract.type))
+		user.playsound_local(get_turf(src), 'sound/machines/ping.ogg', 25, TRUE)
+		balloon_alert(user, "new sample processed: [extract.effectmod]")
+	qdel(extract)
 
 /obj/machinery/plortrefinery/Initialize(mapload)
 	. = ..()

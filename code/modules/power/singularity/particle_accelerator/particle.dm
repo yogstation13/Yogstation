@@ -65,7 +65,11 @@
 	if(QDELETED(src))
 		return
 	if(!step(src,dir))
-		forceMove(get_step(src,dir))
+		var/next_step = get_step(src, dir)
+		if(!next_step) // reached the edge of the map
+			qdel(src)
+			return
+		forceMove(next_step)
 	if(movement_range == 0)
 		qdel(src)
 		return

@@ -2113,6 +2113,29 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/mechpiloting
 	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
 
+/datum/uplink_item/device_tools/physiology_guide
+	name = "Guide to First Aid"
+	desc = "A book that improves the reader's physiological knowledge."
+	item = /obj/item/book/granter/skill/physiology
+	cost = 3
+
+/datum/uplink_item/device_tools/mechanics_guide
+	name = "Nuclear Engineering for Dummies"
+	desc = "A book that improves the reader's mechanical skills."
+	item = /obj/item/book/granter/skill/mechanics
+	cost = 3
+
+/datum/uplink_item/device_tools/technical_guide
+	name = "Hacking 101"
+	desc = "A book that improves the reader's technical abilities."
+	item = /obj/item/book/granter/skill/technical
+	cost = 3
+
+/datum/uplink_item/device_tools/science_guide
+	name = "Statistical Mechanics and Thermodynamics"
+	desc = "A book that improves the reader's scientific proficiency."
+	item = /obj/item/book/granter/skill/science
+	cost = 3
 
 /datum/uplink_item/device_tools/mech_drop
 	name = "Orbital Mech Drop Fulton"

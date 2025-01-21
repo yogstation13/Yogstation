@@ -155,7 +155,7 @@
 	data["skills"] = skill_data
 	data["skill_points"] = user.mind.skill_points
 	data["allocated_points"] = allocated_points
-	data["exceptional_skill"] = HAS_MIND_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)
+	data["skill_cap"] = EXP_MASTER + HAS_MIND_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)
 	return data
 
 /atom/movable/screen/skill_menu/ui_static_data(mob/user)
@@ -199,7 +199,7 @@
 				return TRUE
 			if(allocated_points + params["amount"] < 0)
 				return TRUE
-			if(allocated_skills[params["skill"]] + params["amount"] + user.get_skill(params["skill"]) > (4 + HAS_MIND_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)))
+			if(allocated_skills[params["skill"]] + params["amount"] + user.get_skill(params["skill"]) > (EXP_MASTER + HAS_MIND_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)))
 				return TRUE
 			if(allocated_skills[params["skill"]] + params["amount"] < 0)
 				return TRUE

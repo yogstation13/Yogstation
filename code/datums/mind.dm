@@ -59,7 +59,7 @@
 		SKILL_FITNESS = EXP_NONE,
 	)
 
-	/// Progress towards increasing their skill level
+	/// Progress towards increasing their skill level.
 	var/list/exp_progress = list(
 		SKILL_PHYSIOLOGY = 0,
 		SKILL_MECHANICAL = 0,
@@ -67,6 +67,9 @@
 		SKILL_SCIENCE = 0,
 		SKILL_FITNESS = 0,
 	)
+
+	/// One-time experience gains that have already been acquired.
+	var/list/exp_sources = list()
 
 	/// Free skill points to allocate
 	var/skill_points = 0
@@ -118,6 +121,7 @@
 	key = _key
 	soulOwner = src
 	martial_art = default_martial_art
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_EXCEPTIONAL_SKILL), PROC_REF(update_skills))
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
@@ -804,25 +808,47 @@
 		return FALSE
 	return (mind.skills[skill] >= amount)
 
-/// Adds progress towards increasing skill level. Returns TRUE if it improved the skill.
-/mob/proc/add_exp(skill, amount)
+/// Adds progress towards increasing skill level. Returns TRUE if it added progress. Adding a source prevents gaining exp from that source again.
+/mob/proc/add_exp(skill, amount, source)
 	if(!mind)
 		return FALSE
-	if(mind.skill_points > 0)
+	if(!amount)
 		return FALSE
-	var/exp_required = EXPERIENCE_PER_LEVEL * (2**mind.skills[skill]) // exp required scales exponentially
-	if(mind.exp_progress[skill] + amount >= exp_required)
-		var/levels_gained = round(log(2, 1 + (mind.exp_progress[skill] + amount) / exp_required)) // in case you gained so much you go up more than one level
-		var/levels_allocated = hud_used?.skill_menu ? hud_used.skill_menu.allocated_skills[skill] : 0
-		if(levels_allocated > 0) // adjust any already allocated skills to prevent shenanigans (you know who you are)
-			hud_used.skill_menu.allocated_points -= min(levels_gained, levels_allocated)
-			hud_used.skill_menu.allocated_skills[skill] -= min(levels_gained, levels_allocated)
-		mind.exp_progress[skill] += amount - exp_required * (2**(levels_gained - 1))
-		adjust_skill(skill, levels_gained)
-		to_chat(src, span_boldnotice("Your [skill] skill is now level [get_skill(skill)]!"))
-		return TRUE
+	if(source && (source in mind.exp_sources))
+		return FALSE
+	mind.exp_sources.Add(source)
 	mind.exp_progress[skill] += amount
-	return FALSE
+	var/levels_gained = check_exp(skill)
+	if(levels_gained) // remove an equal amount of unallocated skill points to prevent exploits
+		mind.skill_points = max(mind.skill_points - levels_gained, 0)
+	return TRUE
+
+/// Levels up a skill if it has enough experience to do so.
+/mob/proc/check_exp(skill)
+	if(!mind)
+		return FALSE
+	var/current_level = get_skill(skill)
+	var/exp_required = EXPERIENCE_PER_LEVEL * (2**current_level) // exp required scales exponentially
+	if(mind.exp_progress[skill] < exp_required)
+		return FALSE
+	var/skill_cap = EXP_MASTER + HAS_MIND_TRAIT(src, TRAIT_EXCEPTIONAL_SKILL)
+	var/levels_gained = min(round(log(2, 1 + (mind.exp_progress[skill] / exp_required))), max(skill_cap - current_level)) // in case you gained so much you go up more than one level
+	if(levels_gained < 1)
+		return FALSE
+	var/levels_allocated = hud_used?.skill_menu ? hud_used.skill_menu.allocated_skills[skill] : 0
+	if(levels_allocated > 0) // adjust any already allocated skills to prevent shenanigans (you know who you are)
+		hud_used.skill_menu.allocated_points -= min(levels_gained, levels_allocated)
+		hud_used.skill_menu.allocated_skills[skill] -= min(levels_gained, levels_allocated)
+	mind.exp_progress[skill] -= exp_required * (((2**round(levels_gained + 1)) / 2) - 1)
+	adjust_skill(skill, levels_gained, max_skill = skill_cap)
+	to_chat(src, span_boldnotice("Your [skill] skill is now level [get_skill(skill)]!"))
+	return levels_gained
+
+/// Returns whether experience has been gained from a given source.
+/mob/proc/has_exp(source)
+	if(!mind)
+		return FALSE
+	return (source in mind.exp_sources) ? TRUE : FALSE
 
 /// Adds skill points to be allocated at will.
 /mob/proc/add_skill_points(amount)
@@ -830,6 +856,14 @@
 		return
 	mind.skill_points += amount
 	throw_alert("skill points", /atom/movable/screen/alert/skill_up)
+
+/// Called when [TRAIT_EXCEPTIONAL_SKILL] is added to the mob.
+/datum/mind/proc/update_skills(datum/source)
+	SIGNAL_HANDLER
+	if(!current)
+		return
+	for(var/skill in skills)
+		current.check_exp(skill)
 
 /datum/mind/proc/has_martialart(string)
 	if(martial_art && martial_art.id == string)
