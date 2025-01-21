@@ -1,0 +1,4 @@
+author: "blakeeeee"
+delete-after: True
+changes:
+  - bugfix: "Stowaway's inhand starting equipment now is moved to their starting point with them correctly."
