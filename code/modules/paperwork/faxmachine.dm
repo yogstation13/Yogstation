@@ -96,6 +96,10 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 				authenticated = TRUE
 				auth_name = usr.client.holder.admin_signature
 				return
+			if(obj_flags & EMAGGED)
+				authenticated = TRUE
+				auth_name = "$#%*! - ERROR"
+				return
 			var/obj/item/card/id/id_card = usr.get_idcard(hand_first = TRUE)
 			if (check_access(id_card))
 				authenticated = TRUE
