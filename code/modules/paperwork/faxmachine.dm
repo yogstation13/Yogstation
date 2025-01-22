@@ -174,13 +174,13 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 				if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX) //if to be moved elsewhere then we must declutter legacy toggles
 					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)//if done then delete these comments
 						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
-			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "CentcomFaxReply", "#006100")
+			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "AdminFaxReply", "#006100")
 		if ("Syndicate")
 			for(var/client/C in GLOB.permissions.admins)
 				if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX)
 					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)
 						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
-			send_adminmessage(sender, "SYNDICATE FAX", rcvdcopy, "SyndicateFaxReply", "crimson") //Same colour used in redphone
+			send_adminmessage(sender, "SYNDICATE FAX", rcvdcopy, "AdminFaxReply", "crimson") //Same colour used in redphone
 	sendcooldown = world.time + 1 MINUTES
 	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
@@ -205,7 +205,8 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	// give the sprite some time to flick
 	spawn(20)
 		var/obj/item/paper/P = new /obj/item/paper( loc )
-		P.name = "[command_name()] - [customname]"
+		var/syndicate = obj_flags & EMAGGED
+		P.name = syndicate ? "The Syndicate - [customname]" : "[command_name()] - [customname]"
 		
 		var/list/templist = list() // All the stuff we're adding to $written
 		for(var/text in T)
@@ -223,18 +224,20 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/simple/paper)
 		if (isnull(P.stamps))
 			P.stamps = sheet.css_tag()
-		P.stamps += sheet.icon_tag("stamp-cent")
-		P.stamps += "<br><i>This paper has been verified by the Central Command Quantum Relay.</i><br>"
-		var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', "paper_stamp-cent")
+		P.stamps += syndicate ? sheet.icon_tag("stamp-syndiround") : sheet.icon_tag("stamp-cent")
+		P.stamps += "<br><i>This paper has [syndicate ? "not" : ""] been verified by the Central Command Quantum Relay.</i><br>"
+		var/mutable_appearance/stampoverlay = mutable_appearance('icons/obj/bureaucracy.dmi', syndicate ? "paper_stamp-syndiround" : "paper_stamp-cent")
 		stampoverlay.pixel_x = rand(-2, 2)
 		stampoverlay.pixel_y = rand(-3, 2)
 
-		LAZYADD(P.stamped, "stamp-cent")
+		LAZYADD(P.stamped, syndicate ? "stamp-syndiround" : "stamp-cent")
 		P.add_overlay(stampoverlay)
 
 /obj/machinery/photocopier/faxmachine/AltClick(mob/user)
 	if(IsAdminGhost(user))
-		send_admin_fax(src)		
+		send_admin_fax(src)	
+	else
+		message_admins("Not an admin ghost")
 
 /obj/machinery/photocopier/faxmachine/examine(mob/user)
 	. = ..()
