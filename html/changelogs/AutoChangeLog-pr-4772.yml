@@ -1,0 +1,10 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - rscadd: "Added the China Lake grenade launcher to the  uplink for 10 TC."
+  - rscadd: "Added a single round grenade launcher to the uplink for 5 TC."
+  - rscadd: "Added more varieties of 40mm grenades."
+  - sound: "Added sounds for the China Lake grenade launcher."
+  - image: "New 40mm grenade sprites."
+  - code_imp: "Replaced all mapped 40mm ammo boxs with the new fancy version."
+  - code_imp: "Moved all 40mm grenade code to it's own file."
