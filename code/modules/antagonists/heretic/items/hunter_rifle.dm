@@ -1,5 +1,5 @@
 /// The max range we can zoom in on people from.
-#define MAX_LIONHUNTER_RANGE 30
+#define MAX_LIONHUNTER_RANGE 60 // MONKESTATIN EDIT ORG: 30
 
 // The Lionhunter, a gun for heretics
 // The ammo it uses takes time to "charge" before firing,
