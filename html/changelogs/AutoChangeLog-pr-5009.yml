@@ -1,5 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - rscadd: "Being forced to say something (i.e. through Tourettes) that would normally be blocked by your phobia will now cause your character to freak out."
-  - bugfix: "Your phobias can no longer prevent you from being forced to say something by an admin."

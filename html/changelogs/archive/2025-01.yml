@@ -481,3 +481,16 @@
       within the range of 4 and pulls people 3 tiles closer to you if they are out
       of stun range, but in the range of the spell. Before it used to have entire
       range of 1 tile.
+2025-01-22:
+  Absolucy:
+  - bugfix: Reverted some recent changes/fixes to satyrs, as they seemed to cause
+      further issues.
+  MichiRecRoom:
+  - bugfix: Word phobias should always apply now, rather than occasionally being missed.
+  - rscadd: Being forced to say something (i.e. through Tourettes) that would normally
+      be blocked by your phobia will now cause your character to freak out.
+  - bugfix: Your phobias can no longer prevent you from being forced to say something
+      by an admin.
+  blakeeeee:
+  - bugfix: Stowaway's inhand starting equipment now is moved to their starting point
+      with them correctly.
