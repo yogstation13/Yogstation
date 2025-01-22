@@ -2247,9 +2247,6 @@
 	name = "Ammunitions Locker";
 	req_access = list("syndicate")
 	},
-/obj/item/ammo_box/a40mm{
-	icon_state = "40mm-4"
-	},
 /obj/item/ammo_box/magazine/m556{
 	icon_state = "5.56m-30";
 	pixel_x = 2;
@@ -2279,6 +2276,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/item/storage/fancy/a40mm_box,
+/obj/item/storage/fancy/a40mm_box,
+/obj/item/storage/fancy/a40mm_box/frag,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc_starfury)
 "hD" = (

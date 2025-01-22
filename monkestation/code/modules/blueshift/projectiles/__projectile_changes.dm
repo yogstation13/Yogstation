@@ -168,11 +168,6 @@
 	fire_stacks = 1
 	wound_bonus = -90
 
-/obj/item/ammo_casing/a40mm/rubber
-	name = "40mm rubber shell"
-	desc = "A cased rubber slug. The big brother of the beanbag slug, this thing will knock someone out in one. Doesn't do so great against anyone in armor."
-	projectile_type = /obj/projectile/bullet/shotgun_beanbag/a40mm
-
 /obj/item/ammo_casing/rocket
 	name = "\improper Dardo HE rocket"
 	desc = "An 84mm High Explosive rocket. Fire at people and pray."
@@ -337,14 +332,6 @@
 	damage = 40
 	damage_type = STAMINA
 	embedding = list(embed_chance=0, fall_chance=3, jostle_chance=4, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=10)
-
-/obj/projectile/bullet/shotgun_beanbag/a40mm
-	name = "rubber slug"
-	icon_state = "cannonball"
-	damage = 20
-	stamina = 250 //BONK
-	wound_bonus = 30
-	weak_against_armour = TRUE
 
 // Red kill lasers for the big gun
 
