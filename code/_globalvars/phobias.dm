@@ -51,6 +51,7 @@ GLOBAL_LIST_INIT(phobia_regexes, list(
 	"the supernatural" = construct_phobia_regex("the supernatural"),
 	"blood" = construct_phobia_regex("blood"),
 	"christian minecraft" = construct_phobia_regex("christian minecraft"), //monkestation edit: added for new smite. -dexee 05/24/24
+	"swearing" = construct_phobia_regex("swearing"), //MONKESTATION ADDITION: kakologophobia and easily offended quirks
 ))
 
 GLOBAL_LIST_INIT(phobia_mobs, list(

@@ -39,6 +39,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		list("Body Purist", "Neuralinked"),
 		list("Body Purist", "Bright Eyes"),
 		list("Hypoalgesia","Hyperalgesia"),
+		list("Kakologophobia", "Easily Offended"), //MONKESTATION ADDITION
 	)
 
 /datum/controller/subsystem/processing/quirks/Initialize()

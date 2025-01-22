@@ -88,3 +88,7 @@
 /datum/brain_trauma/mild/phobia/christian_minecraft
 	phobia_type = "christian minecraft"
 	random_gain = FALSE
+
+/datum/brain_trauma/mild/phobia/swearing
+	phobia_type = "swearing"
+	random_gain = FALSE

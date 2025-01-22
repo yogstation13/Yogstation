@@ -6009,6 +6009,7 @@
 #include "monkestation\code\datums\quirks\negative_quirks\feeble.dm"
 #include "monkestation\code\datums\quirks\negative_quirks\frail.dm"
 #include "monkestation\code\datums\quirks\negative_quirks\insanity.dm"
+#include "monkestation\code\datums\quirks\negative_quirks\kakologophobia.dm"
 #include "monkestation\code\datums\quirks\negative_quirks\kleptomaniac.dm"
 #include "monkestation\code\datums\quirks\negative_quirks\light_drinker.dm"
 #include "monkestation\code\datums\quirks\negative_quirks\monophobia.dm"
