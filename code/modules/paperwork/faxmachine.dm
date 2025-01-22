@@ -236,8 +236,6 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 /obj/machinery/photocopier/faxmachine/AltClick(mob/user)
 	if(IsAdminGhost(user))
 		send_admin_fax(src)	
-	else
-		message_admins("Not an admin ghost")
 
 /obj/machinery/photocopier/faxmachine/examine(mob/user)
 	. = ..()
