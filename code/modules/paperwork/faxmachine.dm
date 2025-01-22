@@ -254,3 +254,6 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	playsound(src, "sparks", 100, 1)
 	to_chat(user, span_warning("You short out the security protocols on [src]'s transceiver!"))
 	return TRUE
+
+/obj/machinery/photocopier/faxmachine/syndicate
+	obj_flags = CAN_BE_HIT | EMAGGED
