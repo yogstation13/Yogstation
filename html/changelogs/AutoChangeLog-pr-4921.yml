@@ -1,0 +1,5 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - balance: "Unholy water and Eldritch now heal pain"
+  - balance: "Doubled lion hunter max range"
