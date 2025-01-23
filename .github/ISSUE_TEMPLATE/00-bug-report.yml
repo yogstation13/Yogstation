@@ -56,6 +56,8 @@ body:
     label: BYOND version
     description: You can check this by opening BYOND, clicking the settings button, clicking on "About BYOND...", and the version will be in the lower left corner.
     placeholder: "123.4567"
+  validations:
+    required: true
 
 - type: dropdown
   attributes:
