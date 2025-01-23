@@ -5425,12 +5425,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
-/obj/machinery/photocopier/faxmachine/syndicate{
-	desc = "Used to send black pages to Nanotrasen stations.";
-	department = "Unidentified";
-	name = "Syndicate Fax Machine";
-	req_access = list("syndicate")
-	},
+/obj/machinery/photocopier/faxmachine/syndicate,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/command)
 "CQ" = (

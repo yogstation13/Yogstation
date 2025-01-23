@@ -255,5 +255,19 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 	to_chat(user, span_warning("You short out the security protocols on [src]'s transceiver!"))
 	return TRUE
 
+///Common syndicate fax machines, comes pre-emagged
 /obj/machinery/photocopier/faxmachine/syndicate
+	department = "Unidentified"
+	desc = "Used to send black pages to Nanotrasen stations."
+	name = "Syndicate Fax Machine"
 	obj_flags = CAN_BE_HIT | EMAGGED
+	req_access = list(ACCESS_SYNDICATE)
+
+///The fax machine in the Syndicate mothership
+/obj/machinery/photocopier/faxmachine/syndicate_command
+	department = "Syndicate"
+	desc = "Used for communication between the different echelons of the Syndicate. It has a note on the side reading <i>'DO NOT MOVE'</i>."
+	destination = "Bridge"
+	hidefromfaxlist = TRUE
+	name = "Syndicate Fax Machine"
+	req_access = list(ACCESS_SYNDICATE)

@@ -2443,11 +2443,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red/fourcorners,
-/obj/machinery/photocopier/faxmachine/syndicate{
-	desc = "Used to send black pages to Nanotrasen stations.";
-	department = "Unidentified";
-	name = "Syndicate Fax Machine"
-	},
+/obj/machinery/photocopier/faxmachine/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation/hallway)
 "KS" = (
