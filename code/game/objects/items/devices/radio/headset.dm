@@ -368,6 +368,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	worn_icon_state = "cent_headset_alt"
 	keyslot2 = null
 
+//monkestation addition start:
+/obj/item/radio/headset/headset_cent/representative
+	name = "\improper Representative headset"
+	desc = "A headset used by the lower ranking members of Central Command."
+	keyslot = /obj/item/encryptionkey/headset_com
+	keyslot2 = null
+//monkestation addition end
+
 /obj/item/radio/headset/headset_cent/alt/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))

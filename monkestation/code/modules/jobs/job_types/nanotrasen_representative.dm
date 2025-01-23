@@ -76,7 +76,7 @@
 	r_pocket = /obj/item/modular_computer/pda/heads/ntrep
 	l_hand = /obj/item/storage/secure/briefcase/cash
 	glasses = /obj/item/clothing/glasses/sunglasses
-	ears = /obj/item/radio/headset/headset_cent
+	ears = /obj/item/radio/headset/headset_cent/representative
 	gloves = /obj/item/clothing/gloves/color/black
 	shoes = /obj/item/clothing/shoes/laceup
 
