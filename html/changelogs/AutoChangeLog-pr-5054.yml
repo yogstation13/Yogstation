@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "ghost can no longer spawn kudzu via heretic painting"
