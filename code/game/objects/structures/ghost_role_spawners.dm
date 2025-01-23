@@ -648,7 +648,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	)
 	skill_points = EXP_MID
 	outfit = /datum/outfit/syndicate_empty/SBC/assault/captain
-	id_access_list = list(150,151)
+	id_access_list = list(ACCESS_SYNDICATE_LEADER)
 
 /datum/outfit/syndicate_empty/SBC/assault/captain
 	name = "Syndicate Battlecruiser Captain"
@@ -787,7 +787,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	)
 	skill_points = EXP_MID
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/captain
-	id_access_list = list(150,151)
+	id_access_list = list(ACCESS_SYNDICATE_LEADER)
 
 /datum/outfit/syndicate_empty/icemoon_base/captain
 	name = "Syndicate Icemoon Outpost Commander"
