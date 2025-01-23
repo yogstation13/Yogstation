@@ -494,3 +494,27 @@
   blakeeeee:
   - bugfix: Stowaway's inhand starting equipment now is moved to their starting point
       with them correctly.
+2025-01-23:
+  Absolucy:
+  - bugfix: Fixed a rare bug that would interrupt and prevent the round from properly
+      starting.
+  Gw0sty:
+  - balance: The CMO's Hypospray can now pierces armor.
+  Loiosh42:
+  - bugfix: donors no longer get infinite tokens
+  - bugfix: donors now get paid the right amount of money
+  MichiRecRoom:
+  - rscadd: 'New quirk: Kakologophobia - the fear of curse words.'
+  - rscadd: 'New quirk: Easily Offended - like Kakologophobia, but with moodlets instead
+      of freaking out.'
+  Shoddd:
+  - balance: Unholy water and Eldritch now heal pain
+  - balance: Doubled lion hunter max range
+  SirNightKnight:
+  - rscadd: Added the China Lake grenade launcher to the  uplink for 10 TC.
+  - rscadd: Added a single round grenade launcher to the uplink for 5 TC.
+  - rscadd: Added more varieties of 40mm grenades.
+  - sound: Added sounds for the China Lake grenade launcher.
+  - image: New 40mm grenade sprites.
+  - code_imp: Replaced all mapped 40mm ammo boxs with the new fancy version.
+  - code_imp: Moved all 40mm grenade code to it's own file.

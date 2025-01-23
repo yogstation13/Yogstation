@@ -1,5 +1,0 @@
-author: "Loiosh42"
-delete-after: True
-changes:
-  - bugfix: "donors no longer get infinite tokens"
-  - bugfix: "donors now get paid the right amount of money"
