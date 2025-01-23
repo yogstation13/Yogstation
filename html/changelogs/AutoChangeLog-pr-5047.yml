@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - rscdel: "Removed 2 of 3 You died messages"
