@@ -175,6 +175,8 @@
 
 /obj/structure/sign/painting/eldritch/vines/examine_effects(mob/living/carbon/examiner)
 	. = ..()
+	if(!iscarbon(examiner))
+		return
 	if(!IS_HERETIC(examiner))
 		new /datum/spacevine_controller(get_turf(examiner), mutations, 0, 10)
 		to_chat(examiner, span_notice("The thicket crawls through the frame, and you suddenly find vines beneath you..."))
