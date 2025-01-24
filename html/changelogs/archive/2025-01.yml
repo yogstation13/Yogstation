@@ -518,3 +518,11 @@
   - image: New 40mm grenade sprites.
   - code_imp: Replaced all mapped 40mm ammo boxs with the new fancy version.
   - code_imp: Moved all 40mm grenade code to it's own file.
+2025-01-24:
+  Gw0sty:
+  - qol: Plague rats are now considered biohazards for admin traitor panels
+  Shoddd:
+  - bugfix: ghost can no longer spawn kudzu via heretic painting
+  - rscdel: Removed 2 of 3 You died messages
+  Wisemonster:
+  - rscdel: Removed CC comms from the blueshield and nanotrasen representative
