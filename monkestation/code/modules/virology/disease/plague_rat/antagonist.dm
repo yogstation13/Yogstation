@@ -1,6 +1,7 @@
 /datum/antagonist/plague_rat
 	name = "Plague Rat"
 	job_rank = ROLE_PLAGUERAT
+	antagpanel_category = ANTAG_GROUP_BIOHAZARDS
 
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
