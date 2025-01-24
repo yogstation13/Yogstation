@@ -19,7 +19,7 @@
 	if(!stringified_input)
 		return
 	flick("comp_tprint1", src)
-	var/obj/item/paper/thermal_paper = new(src.loc)
+	var/obj/item/paper/thermal_paper = new(drop_location())
 
 	thermal_paper.name = paper_name
 	thermal_paper.add_raw_text("<br>[stringified_input]</br>")

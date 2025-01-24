@@ -36,7 +36,7 @@
 		return
 
 	index = idx
-	to_chat(span_notice("You set [src]'s index to [index]."))
+	to_chat(user, span_notice("You set [src]'s index to [index]."))
 	return TRUE
 
 /obj/item/mcobject/screen/proc/set_letter(datum/mcmessage/input)

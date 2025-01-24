@@ -34,6 +34,15 @@
 	dummy_human.forceMove(src)
 	dummy_human.name = "interaction component"
 
+/obj/item/mcobject/interactor/Destroy(force)
+	if(!QDELETED(held_item))
+		dummy_human?.dropItemToGround(held_item, force = TRUE, silent = TRUE)
+		held_item.forceMove(drop_location())
+	held_item = null
+	connected_storage = null
+	QDEL_NULL(dummy_human)
+	return ..()
+
 /obj/item/mcobject/interactor/multitool_act_secondary(mob/living/user, obj/item/tool)
 	var/obj/item/multitool/multitool = tool
 	if(!multitool.component_buffer)
@@ -49,7 +58,7 @@
 	if(connected_storage)
 		connected_storage.attempt_insert(held_item)
 	else
-		held_item.forceMove(get_turf(src))
+		held_item.forceMove(drop_location())
 	held_item = null
 	update_appearance()
 	return TRUE
@@ -121,7 +130,7 @@
 		if(dummy_human == listed_atom || src == listed_atom)
 			continue
 
-		if(listed_atom.type in typesof(/obj/item/mcobject))
+		if(istype(listed_atom, /obj/item/mcobject))
 			continue
 
 		if(!held_item)
@@ -155,7 +164,7 @@
 		if(connected_storage)
 			connected_storage.attempt_insert(held_item)
 		else
-			held_item.forceMove(get_turf(src))
+			held_item.forceMove(drop_location())
 		held_item = null
 	held_item = weapon
 	dummy_human.put_in_l_hand(weapon)

@@ -16,6 +16,11 @@
 	MC_ADD_CONFIG("Set Frequency", set_frequency_config)
 	RegisterSignal(radio, COMSIG_RADIO_NEW_MESSAGE, PROC_REF(incoming_message))
 
+/obj/item/mcobject/messaging/radioscanner/Destroy(force)
+	UnregisterSignal(radio, COMSIG_RADIO_NEW_MESSAGE)
+	QDEL_NULL(radio)
+	return ..()
+
 /obj/item/mcobject/messaging/radioscanner/proc/change_frequency(num)
 	num = sanitize_frequency(num)
 	frequency = num

@@ -21,7 +21,7 @@
 	MC_ADD_CONFIG(MC_CFG_LINK, add_linker)
 
 /obj/item/mcobject/Destroy(force)
-	qdel(interface)
+	QDEL_NULL(interface)
 	return ..()
 
 /obj/item/mcobject/update_icon_state()

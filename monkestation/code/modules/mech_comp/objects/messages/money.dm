@@ -80,7 +80,7 @@
 
 /obj/item/mcobject/messaging/payment/proc/eject_money()
 	if(collected)
-		var/obj/item/stack/spacecash/c1/money = new(src.loc)
+		var/obj/item/stack/spacecash/c1/money = new(drop_location())
 		money.amount = collected
 		collected = 0
 		update_appearance()
@@ -88,7 +88,7 @@
 
 /obj/item/mcobject/messaging/payment/attacked_by(obj/item/attacking_item, mob/living/user)
 	. = ..()
-	if(attacking_item in subtypesof(/obj/item/stack/spacecash))
+	if(istype(attacking_item, /obj/item/stack/spacecash))
 		var/obj/item/stack/spacecash/attacked_stack = attacking_item
 		var/total_value = attacked_stack.get_item_credit_value()
 		var/individual_value = attacked_stack.value

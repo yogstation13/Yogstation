@@ -17,7 +17,7 @@
 
 /obj/item/mcobject/messaging/button/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	if(!isturf(target))
+	if(!isturf(target) || !proximity_flag)
 		return
 
 	if(!user.dropItemToGround(src))

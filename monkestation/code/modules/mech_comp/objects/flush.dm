@@ -15,6 +15,10 @@
 	. = ..()
 	MC_ADD_INPUT("flush", flush)
 
+/obj/item/mcobject/flusher/Destroy(force)
+	trunk = null
+	return ..()
+
 /obj/item/mcobject/flusher/default_unfasten_wrench(mob/user, obj/item/wrench, time)
 	. = ..()
 	if(. == SUCCESSFUL_UNFASTEN)

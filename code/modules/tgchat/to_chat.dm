@@ -24,7 +24,10 @@
 	if(!target)
 		return
 	if(!html && !text)
-		CRASH("Empty or null string in to_chat proc call.")
+		if(istext(target))
+			CRASH("Passed text without target in to_chat proc call.")
+		else
+			CRASH("Empty or null string in to_chat proc call.")
 	if(target == world)
 		target = GLOB.clients
 
@@ -78,7 +81,10 @@
 	if(!target)
 		return
 	if(!html && !text)
-		CRASH("Empty or null string in to_chat proc call.")
+		if(istext(target))
+			CRASH("Passed text without target in to_chat proc call.")
+		else
+			CRASH("Empty or null string in to_chat proc call.")
 	if(target == world)
 		target = GLOB.clients
 
