@@ -736,6 +736,15 @@
 	if(H.stat == DEAD)
 		return
 
+	if(H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
+		return
+	if(H.reagents.has_reagent(/datum/reagent/medicine/atropine))
+		return
+	if(H.reagents.has_reagent(/datum/reagent/medicine/diphenhydramine))
+		return
+	if(H.reagents.has_reagent(/datum/reagent/medicine/synaphydramine))
+		return
+
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
 
 	if(H.reagents.has_reagent(reagent_id)) //check if there are chems

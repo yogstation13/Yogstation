@@ -281,6 +281,9 @@
 			if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 				msg += "[t_He] look[p_s()] extremely disgusted.\n"
 
+	var/datum/quirk/allergic/allergen = has_quirk(/datum/quirk/allergic)
+	if((allergen && reagents?.has_reagent(allergen.reagent_id)) || reagents?.has_reagent(/datum/reagent/toxin/histamine))
+		msg += span_boldwarning("[t_His] face is very swollen!\n")
 
 	var/apparent_blood_volume = blood_volume
 	if(skin_tone == "albino")

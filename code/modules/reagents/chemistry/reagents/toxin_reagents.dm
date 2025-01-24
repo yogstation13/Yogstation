@@ -472,6 +472,15 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/histamine/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(M.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
+		return
+	if(M.reagents.has_reagent(/datum/reagent/medicine/atropine))
+		return
+	if(M.reagents.has_reagent(/datum/reagent/medicine/diphenhydramine))
+		return
+	if(M.reagents.has_reagent(/datum/reagent/medicine/synaphydramine))
+		return
 	if(prob(50))
 		switch(pick(1, 2, 3, 4))
 			if(1)
@@ -486,7 +495,6 @@
 					to_chat(M, "You scratch at an itch.")
 					M.adjustBruteLoss(2*REM, 0)
 					. = 1
-	..()
 
 /datum/reagent/toxin/histamine/overdose_process(mob/living/M)
 	M.adjustOxyLoss(2*REM, 0)
