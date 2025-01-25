@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - balance: "The BSA now requires only 10 BS crystals, down from 20"
