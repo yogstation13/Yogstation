@@ -32,6 +32,11 @@ export const KeycardAuth = (props) => {
                     <Button
                       icon="exclamation-triangle"
                       fluid
+                      disabled={!data.can_set_alert}
+                      tooltip={
+                        !data.can_set_alert &&
+                        'The current security level cannot be changed by the crew.'
+                      }
                       onClick={() => {
                         return act('red_alert');
                       }}
