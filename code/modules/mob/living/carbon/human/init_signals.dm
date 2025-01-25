@@ -17,8 +17,7 @@
 /mob/living/carbon/human/proc/on_dwarf_trait(datum/source)
 	SIGNAL_HANDLER
 
-	// We need to regenerate everything for height
-	regenerate_icons()
+	update_mob_height()
 /* //Non-Modular change - Remove passtable from dwarves.
 	if(HAS_TRAIT(src, TRAIT_DWARF))
 		passtable_on(src, TRAIT_DWARF)

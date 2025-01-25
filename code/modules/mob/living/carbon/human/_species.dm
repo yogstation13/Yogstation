@@ -1931,3 +1931,14 @@ GLOBAL_LIST_EMPTY(features_by_species)
 
 /datum/species/proc/spec_revival(mob/living/carbon/human/H)
 	return
+
+/**
+ * Calculates the expected height values for this species
+ *
+ * Return a height value corresponding to a specific height filter
+ * Return null to just use the mob's base height
+ */
+/datum/species/proc/update_species_heights(mob/living/carbon/human/holder)
+	if(HAS_TRAIT(holder, TRAIT_DWARF))
+		return HUMAN_HEIGHT_DWARF
+	return null
