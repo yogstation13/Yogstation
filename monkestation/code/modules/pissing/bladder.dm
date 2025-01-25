@@ -132,7 +132,7 @@
 
 /obj/item/organ/internal/bladder/proc/attempt_piss_into(obj/item/reagent_containers/piss_holder)
 	var/space_left = piss_holder.volume - piss_holder.reagents.total_volume
-	if(!space_left)
+	if(!space_left && stored_piss < per_piss_usage)
 		return FALSE
 	piss_holder.reagents.add_reagent(pissin_reagent, piss_amount, reagtemp = piss_temperature)
 	return TRUE
