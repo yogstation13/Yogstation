@@ -11,7 +11,7 @@
 	load_sound = null
 	fire_sound = null
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/atlatl
-	force = 25
+	force = 5
 	attack_verb_continuous = list("strikes", "cracks", "beats")
 	attack_verb_simple = list("strike", "crack", "beat")
 	weapon_weight = WEAPON_MEDIUM
@@ -84,11 +84,12 @@
 	icon = 'icons/obj/weapons/guns/atlatl/thrownspear.dmi'
 	icon_state = "spear_projectile"
 	ammo_type = /obj/item/ammo_casing/caseless/thrownspear
-	damage = 75
+	damage = 50
 	speed = 1.5
 	range = 20
+	wound_bonus = -20
 	/// How much the damage is multiplied by when we hit a mob with the correct biotype
-	var/biotype_damage_multiplier = 5
+	var/biotype_damage_multiplier = 3
 	/// What biotype we look for
 	var/biotype_we_look_for = MOB_BEAST
 
