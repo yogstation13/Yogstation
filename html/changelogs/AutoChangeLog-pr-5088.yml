@@ -1,4 +1,0 @@
-author: "DexeeXI"
-delete-after: True
-changes:
-  - rscdel: "cleaned up unused assets. saves a few kb at most."

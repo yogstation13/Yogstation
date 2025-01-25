@@ -527,8 +527,16 @@
   Wisemonster:
   - rscdel: Removed CC comms from the blueshield and nanotrasen representative
 2025-01-25:
+  DexeeXI:
+  - rscdel: cleaned up unused assets. saves a few kb at most.
+  S1ngulo, BingusSS13:
+  - rscadd: You can customize ghost roles you spawn as, using your loaded character
+      preferences.
   Shoddd:
   - rscadd: Ports upstreams law 4 for painter lawset
+  - balance: Atlatl damage lowered to 5, spear lowed to 50, and biomode lowered to
+      2
+  - bugfix: You can no longer infinitely pee into containers
   flleeppyy:
   - rscadd: Britarnya's Floor Pill - "Porg Pill"
   - rscadd: Snackalus floor pill name - "Spice Melange"
