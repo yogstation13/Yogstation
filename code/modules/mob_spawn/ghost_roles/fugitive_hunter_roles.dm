@@ -6,6 +6,7 @@
 	flavour_text = "Write me some god damn flavor text!" //the flavor text will be the backstory argument called on the antagonist's greet, see hunter.dm for details
 	show_flavor = FALSE
 	var/back_story = "error"
+	loadout_enabled = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/fugitive/Initialize(mapload)
 	. = ..()

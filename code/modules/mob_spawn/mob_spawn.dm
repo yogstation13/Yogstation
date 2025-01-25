@@ -39,11 +39,12 @@
 		faction = string_list(faction)
 
 /// Creates whatever mob the spawner makes. Return FALSE if we want to exit from here without doing that, returning NULL will be logged to admins.
-/obj/effect/mob_spawn/proc/create(mob/mob_possessor, newname)
+/obj/effect/mob_spawn/proc/create(mob/mob_possessor, newname, is_pref_loaded)
 	var/mob/living/spawned_mob = new mob_type(get_turf(src)) //living mobs only
 	name_mob(spawned_mob, newname)
 	special(spawned_mob, mob_possessor)
-	equip(spawned_mob)
+	if(!is_pref_loaded)
+		equip(spawned_mob)
 	spawned_mob_ref = WEAKREF(spawned_mob)
 	return spawned_mob
 
@@ -139,6 +140,16 @@
 	/// Typepath indicating the kind of job datum this ghost role will have. PLEASE inherit this with a new job datum, it's not hard. jobs come with policy configs.
 	var/spawner_job_path = /datum/job/ghost_role
 
+	/// Do we use a random appearance for this ghost role?
+	var/random_appearance = TRUE
+	/// Can we use our loadout for this role?
+	var/loadout_enabled = FALSE
+	/// Can we use our quirks for this role?
+	var/quirks_enabled = FALSE
+	/// Are we limited to a certain species type? LISTED TYPE
+	var/restricted_species
+
+
 /obj/effect/mob_spawn/ghost_role/Initialize(mapload)
 	. = ..()
 	SSpoints_of_interest.make_point_of_interest(src)
@@ -162,6 +173,12 @@
 
 	var/user_ckey = user.ckey // Just in case shenanigans happen, we always want to remove it from the list.
 	LAZYADD(ckeys_trying_to_spawn, user_ckey)
+
+	if(restricted_species && !(user.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species))
+		var/incorrect_species = tgui_alert(user, "Current species preference incompatible, proceed with random appearance?", "Incompatible Species", list("Yes", "No"))
+		if(incorrect_species != "Yes")
+			LAZYREMOVE(ckeys_trying_to_spawn, user_ckey)
+			return
 
 	if(prompt_ghost)
 		var/prompt = "Become [prompt_name]?"
@@ -231,8 +248,36 @@
 	if(!mob_possessor.key) // This is in the scenario that the server is somehow lagging, or someone fucked up their code, and we try to spawn the same person in twice. We'll simply not spawn anything and CRASH(), so that we report what happened.
 		CRASH("Attempted to create an instance of [type] with a mob that had no ckey attached to it, which isn't supported by ghost role spawners!")
 
-	return ..()
+	var/load_prefs = FALSE
+	//if we can load our own appearance and its not restricted, try
+	if(!random_appearance && mob_possessor?.client)
+		//if we have gotten to this point, they have already waived their species pref.-- they were told they need to use the specific species already
+		if((restricted_species && (mob_possessor?.client?.prefs?.read_preference(/datum/preference/choiced/species) in restricted_species)) || !restricted_species)
+			var/appearance_choice = tgui_alert(mob_possessor, "Use currently loaded character preferences?", "Appearance Type", list("Yes", "No"))
+			if(appearance_choice == "Yes")
+				load_prefs = TRUE
 
+	var/mob/living/carbon/human/spawned_human = ..(mob_possessor, newname, load_prefs)
+
+	if(!load_prefs)
+		spawned_human.get_language_holder().get_selected_language() //we need this here so a language starts off selected
+
+		return spawned_human
+
+	spawned_human?.client?.prefs?.safe_transfer_prefs_to(spawned_human)
+	spawned_human.dna.update_dna_identity()
+	spawned_human.mind?.name = spawned_human.real_name // the mind gets initialized with the random name given as a result of the parent create() so we need to readjust it
+	spawned_human.dna.species.give_important_for_life(spawned_human) // make sure they get plasmaman/vox internals etc before anything else
+
+	if(loadout_enabled)
+		spawned_human.equip_outfit_and_loadout(outfit, spawned_human.client.prefs)
+	else
+		equip(spawned_human)
+
+	if(quirks_enabled)
+		SSquirks.AssignQuirks(spawned_human, spawned_human.client, blacklist = list(/datum/quirk/stowaway)) //fok of, stowaway
+
+	return spawned_human
 
 /obj/effect/mob_spawn/ghost_role/special(mob/living/spawned_mob, mob/mob_possessor)
 	. = ..()
@@ -306,6 +351,9 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_type = /mob/living/carbon/human
+	quirks_enabled = TRUE
+	random_appearance = FALSE
+	loadout_enabled = TRUE
 
 /obj/effect/mob_spawn/corpse/human
 	icon_state = "corpsehuman"

@@ -14,6 +14,7 @@
 	the hostile creatures, and the ash drakes swooping down from the cloudless skies, all you can wish for is the feel of soft grass between your toes and \
 	the fresh air of Earth. These thoughts are dispelled by yet another recollection of how you got here... "
 	spawner_job_path = /datum/job/hermit
+	loadout_enabled = FALSE
 
 /obj/effect/mob_spawn/ghost_role/human/hermit/Initialize(mapload)
 	. = ..()
@@ -153,6 +154,7 @@
 	and eventually bring life to this desolate planet while waiting for contact from your creators. \
 	Estimated time of last contact: Deployment, 5000 millennia ago."
 	spawner_job_path = /datum/job/lifebringer
+	random_appearance = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/seed_vault/Initialize(mapload)
 	. = ..()
@@ -220,6 +222,7 @@
 	spawner_job_path = /datum/job/ash_walker
 	var/datum/team/ashwalkers/team
 	var/obj/structure/ash_walker_eggshell/eggshell
+	random_appearance = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/ash_walker/Destroy()
 	eggshell = null

@@ -49,9 +49,9 @@
 		legcuffed,
 	)
 
-/mob/living/carbon/proc/equip_in_one_of_slots(obj/item/I, list/slots, qdel_on_fail = 1)
+/mob/living/carbon/proc/equip_in_one_of_slots(obj/item/I, list/slots, qdel_on_fail = 1, move_equipped = FALSE) //MONKESTATION EDIT - Added 'move_equipped = FALSE'
 	for(var/slot in slots)
-		if(equip_to_slot_if_possible(I, slots[slot], qdel_on_fail = 0, disable_warning = TRUE))
+		if(equip_to_slot_if_possible(I, slots[slot], qdel_on_fail = 0, disable_warning = TRUE, move_equipped = move_equipped)) //MONKESTATION EDIT - Added 'move_equipped = move_equipped'
 			return slot
 	if(qdel_on_fail)
 		qdel(I)

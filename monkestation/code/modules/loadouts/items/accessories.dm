@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(loadout_accessory, generate_loadout_items(/datum/loadout_item/a
 /datum/loadout_item/accessory/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE, override_items = LOADOUT_OVERRIDE_BACKPACK)
 	if(override_items == LOADOUT_OVERRIDE_BACKPACK && !visuals_only)
 		if(outfit.accessory)
-			LAZYADD(outfit.backpack_contents, outfit.accessory)
+			spawn_in_backpack(outfit, outfit.accessory, equipper)
 		outfit.accessory = item_path
 	else
 		outfit.accessory = item_path

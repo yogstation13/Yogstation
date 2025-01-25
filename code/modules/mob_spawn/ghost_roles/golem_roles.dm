@@ -19,6 +19,7 @@
 	var/can_transfer = TRUE
 	/// Weakref to the creator of this golem shell.
 	var/datum/weakref/owner_ref
+	random_appearance = TRUE
 
 /obj/effect/mob_spawn/ghost_role/human/golem/Initialize(mapload, datum/species/golem/species, mob/creator)
 	if(creator)

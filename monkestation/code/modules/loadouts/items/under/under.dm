@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 /datum/loadout_item/under/insert_path_into_outfit(datum/outfit/outfit, mob/living/carbon/human/equipper, visuals_only = FALSE, override_items = LOADOUT_OVERRIDE_BACKPACK)
 	if(override_items == LOADOUT_OVERRIDE_BACKPACK && !visuals_only)
 		if(outfit.uniform)
-			LAZYADD(outfit.backpack_contents, outfit.uniform)
+			spawn_in_backpack(outfit, outfit.uniform, equipper)
 		outfit.uniform = item_path
 	else
 		outfit.uniform = item_path
