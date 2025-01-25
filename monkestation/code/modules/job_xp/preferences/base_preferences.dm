@@ -110,7 +110,7 @@
 /datum/preferences/proc/level_up_reward(job)
 	if(!job || !job_level_list[job])
 		return
-	adjust_metacoins(parent.ckey, 25*job_level_list[job], "You have leveled up!", TRUE, TRUE, FALSE)
+	adjust_metacoins(ckey(parent_key), 25*job_level_list[job], "You have leveled up!", TRUE, TRUE, FALSE)
 
 /datum/preferences/proc/return_xp_for_nextlevel()
 	var/list/jobs_with_xp = list()
