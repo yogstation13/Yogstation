@@ -123,13 +123,7 @@ GLOBAL_LIST_INIT(store_plushies, generate_store_items(/datum/store_item/plushies
 	store_desc = "''Behold, Man''"
 	item_path = /obj/item/toy/plush/durrcell
 	item_cost = 6969
-/*
-/datum/store_item/plushies/Eeble
-	name = "Eeble Plush"
-	store_desc = "Eeble is Eeble"
-	item_path = /obj/item/toy/plush/Eeble
-	item_cost = 5000
-*/
+
 /datum/store_item/plushies/big_bad_wolf
 	name = "Big And Will Be Bad Wolf Plush"
 	store_desc = ""
