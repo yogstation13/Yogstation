@@ -57,11 +57,12 @@ SUBSYSTEM_DEF(garbage)
 	#endif
 
 	// monkestation start: disabling hard deletes
+#ifndef UNIT_TESTS
 	/// Toggle for enabling/disabling hard deletes. Objects that don't explicitly request hard deletion with this disabled will leak.
 	var/enable_hard_deletes = FALSE
+#endif
 	var/list/failed_hard_deletes = list()
 	// monkestation end
-
 
 /datum/controller/subsystem/garbage/PreInit()
 	InitQueues()
@@ -290,9 +291,11 @@ SUBSYSTEM_DEF(garbage)
 	// monkestation start: disable hard deletes
 	if(!D)
 		return
+#ifndef UNIT_TESTS
 	if(!enable_hard_deletes && !override)
 		failed_hard_deletes |= D
 		return
+#endif
 	// monkestation end
 	++delslasttick
 	++totaldels
