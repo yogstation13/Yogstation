@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Swiping for red alert when it's already delta alert or such will no longer lower the alert to red."
