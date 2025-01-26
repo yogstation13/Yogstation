@@ -13,7 +13,7 @@
 	// monkestation start: REPLAYS
 	SSdemo.mark_dirty(src)
 	if(isturf(target))
-		SSdemo.mark_turf(target)
+		SSdemo.marked_turfs?[target] = TRUE
 	else
 		SSdemo.mark_dirty(target)
 	// monkestation end: REPLAYS

@@ -252,14 +252,14 @@ SUBSYSTEM_DEF(demo)
 	flags |= SS_NO_FIRE
 	can_fire = FALSE
 	disabled = TRUE
-	pre_init_lines.len = 0
-	icon_cache.len = 0
-	icon_state_caches.len = 0
-	name_cache.len = 0
-	marked_dirty.len = 0
-	marked_new.len = 0
-	marked_turfs.len = 0
-	del_list.len = 0
+	pre_init_lines = null
+	icon_cache = null
+	icon_state_caches = null
+	name_cache = null
+	marked_dirty = null
+	marked_new = null
+	marked_turfs = null
+	del_list = null
 
 /datum/controller/subsystem/demo/proc/encode_init_obj(atom/movable/M)
 	M.demo_last_loc = M.loc
@@ -468,7 +468,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/proc/mark_turf(turf/turf)
 	if(disabled)
 		return
-	if(isturf(turf))
+	if(!isturf(turf))
 		return
 	marked_turfs[turf] = TRUE
 

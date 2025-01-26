@@ -24,7 +24,7 @@
 		} \
 	} \
 	if(isturf(changed_on)) { \
-		SSdemo.mark_turf(changed_on); \
+		SSdemo.marked_turfs?[changed_on] = TRUE; \
 	} else if(isobj(changed_on) || ismob(changed_on)) { \
 		SSdemo.mark_dirty(changed_on); \
 	}
