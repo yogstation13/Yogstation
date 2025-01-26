@@ -1,4 +1,0 @@
-author: "Absolucy, dwasint"
-delete-after: True
-changes:
-  - bugfix: "Fixed antag tokens, unusuals, and keybindings being wiped if someone disconnected very early. Hopefully."

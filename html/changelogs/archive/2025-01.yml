@@ -540,3 +540,18 @@
   flleeppyy:
   - rscadd: Britarnya's Floor Pill - "Porg Pill"
   - rscadd: Snackalus floor pill name - "Spice Melange"
+2025-01-26:
+  Absolucy:
+  - bugfix: Fix some stuff related to how server-side antag token configuration is
+      loaded.
+  - bugfix: Swiping for red alert when it's already delta alert or such will no longer
+      lower the alert to red.
+  Absolucy, dwasint:
+  - bugfix: Fixed antag tokens, unusuals, and keybindings being wiped if someone disconnected
+      very early. Hopefully.
+  Blacklist897:
+  - balance: The Hypospray now has a larger storage, and can inject more precise amounts
+  - bugfix: A visual glitch with the reagent overlay of the modsuit injector has been
+      fixed
+  Wisemonster:
+  - balance: The BSA now requires only 10 BS crystals, down from 20

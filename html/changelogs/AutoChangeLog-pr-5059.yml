@@ -1,5 +1,0 @@
-author: "Blacklist897"
-delete-after: True
-changes:
-  - balance: "The Hypospray now has a larger storage, and can inject more precise amounts"
-  - bugfix: "A visual glitch with the reagent overlay of the modsuit injector has been fixed"
