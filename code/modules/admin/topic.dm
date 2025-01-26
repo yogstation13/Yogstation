@@ -1830,7 +1830,7 @@
 	send_admin_fax()
 
 /client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
-	var/syndicate = istype(F) ? F.obj_flags & EMAGGED : FALSE
+	var/syndicate = (F?.obj_flags & EMAGGED)
 	var/inputsubject = input(src, "Please enter a subject", "Outgoing message from [syndicate ? "Syndicate" : "CentCom"]", "") as text|null
 	if(!inputsubject)
 		return
