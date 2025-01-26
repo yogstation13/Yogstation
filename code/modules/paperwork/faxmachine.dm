@@ -172,19 +172,11 @@ GLOBAL_LIST_EMPTY(adminfaxes)
 			F.recievefax(rcvdcopy)
 	
 	//message badmins that a fax has arrived
-	switch(destination)
-		if ("Central Command")
-			for(var/client/C in GLOB.permissions.admins) //linked to prayers cause we are running out of legacy toggles
-				if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX) //if to be moved elsewhere then we must declutter legacy toggles
-					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)//if done then delete these comments
-						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
-			send_adminmessage(sender, "CENTCOM FAX", rcvdcopy, "AdminFaxReply", "#006100")
-		if ("Syndicate")
-			for(var/client/C in GLOB.permissions.admins)
-				if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX)
-					if(C.prefs.toggles & SOUND_PRAYER_N_FAX)
-						SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
-			send_adminmessage(sender, "SYNDICATE FAX", rcvdcopy, "AdminFaxReply", "crimson") //Same colour used in redphone
+	for(var/client/C in GLOB.permissions.admins) //linked to prayers cause we are running out of legacy toggles
+		if(C.prefs.chat_toggles & CHAT_PRAYER_N_FAX) //if to be moved elsewhere then we must declutter legacy toggles
+			if(C.prefs.toggles & SOUND_PRAYER_N_FAX)//if done then delete these comments
+				SEND_SOUND(sender, sound('sound/effects/admin_fax.ogg'))
+	send_adminmessage(sender, destination == "Syndicate" ? "SYNDICATE FAX" : "CENTCOM FAX", rcvdcopy, "AdminFaxReply", destination == "Syndicate" ? "crimson" : "#006100")
 	sendcooldown = world.time + 1 MINUTES
 	sleep(5 SECONDS)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
