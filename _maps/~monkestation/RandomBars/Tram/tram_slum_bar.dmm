@@ -10,7 +10,7 @@
 	name = "navigation beacon (Kitchen Delivery)"
 	},
 /turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
+/area/station/service/kitchen)
 "ay" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -224,9 +224,6 @@
 "iY" = (
 /turf/open/floor/stone,
 /area/station/commons/lounge)
-"jh" = (
-/turf/closed/wall/mineral/iron,
-/area/station/maintenance/department/security)
 "jo" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
@@ -491,7 +488,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/plating,
-/area/station/maintenance/department/security)
+/area/station/commons/lounge)
 "rQ" = (
 /obj/structure/railing{
 	dir = 1
@@ -539,9 +536,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/iron/white/diagonal,
 /area/station/service/kitchen)
-"uL" = (
-/turf/closed/wall/mineral/iron,
-/area/station/maintenance/department/cargo)
 "uS" = (
 /obj/effect/landmark/start/clown,
 /turf/open/floor/wood/tile,
@@ -667,25 +661,19 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
+/area/station/service/theater)
 "zn" = (
 /obj/machinery/vending/dinnerware,
 /obj/machinery/light/dim/directional/north,
 /turf/open/floor/iron/white/diagonal,
 /area/station/service/kitchen)
 "zw" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Theatre Maintenance Hatch"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance/east_offset,
+/turf/open/floor/wood/tile,
+/area/station/service/theater)
 "AA" = (
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/iron/white/diagonal,
@@ -939,7 +927,7 @@
 	},
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
+/area/station/service/theater)
 "Kl" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1357,9 +1345,9 @@ tR
 tR
 tR
 Ue
-jh
-jh
-jh
+nk
+nk
+nk
 nk
 nk
 nk
@@ -1384,7 +1372,7 @@ zk
 Ue
 tR
 Ue
-jh
+nk
 qi
 iF
 GW
@@ -1411,7 +1399,7 @@ zk
 Ue
 tR
 Ue
-jh
+nk
 iY
 dN
 nq
@@ -1437,8 +1425,8 @@ zk
 zk
 Ue
 tR
-jh
-jh
+nk
+nk
 nq
 df
 nk
@@ -1464,7 +1452,7 @@ Ue
 Ue
 Ue
 tR
-jh
+nk
 GC
 NQ
 qi
@@ -1491,7 +1479,7 @@ Ue
 Ue
 Ue
 tR
-jh
+nk
 qi
 iY
 Ik
@@ -1518,7 +1506,7 @@ Ue
 Ue
 Ue
 tR
-jh
+nk
 dN
 iY
 Or
@@ -1543,9 +1531,9 @@ zk
 zk
 zk
 zk
-jh
+nk
 rm
-jh
+nk
 qi
 NQ
 dN
@@ -1885,12 +1873,12 @@ nk
 (21,1,1) = {"
 Ue
 Ue
-uL
+eW
 au
-uL
-uL
-uL
-uL
+eW
+eW
+eW
+eW
 QV
 oV
 pV
@@ -1917,7 +1905,7 @@ Ue
 Ue
 Ue
 Ue
-uL
+eW
 oi
 EX
 oi
@@ -1944,7 +1932,7 @@ Ue
 Ue
 Ue
 Ue
-uL
+eW
 eW
 eW
 eW
@@ -1971,7 +1959,7 @@ zk
 zk
 Ue
 Ue
-uL
+MN
 DJ
 HP
 RI
@@ -1998,7 +1986,7 @@ zk
 zk
 Ue
 Ue
-uL
+MN
 Hh
 uS
 mE
@@ -2012,7 +2000,7 @@ YK
 Kc
 Ts
 Ts
-uL
+MN
 zk
 zk
 zk
@@ -2025,7 +2013,7 @@ zk
 zk
 Ue
 Ue
-uL
+MN
 xw
 Ts
 ec
@@ -2066,7 +2054,7 @@ yP
 SJ
 jo
 ES
-uL
+MN
 zk
 zk
 zk
@@ -2079,7 +2067,7 @@ zk
 zk
 Ue
 Ue
-uL
+MN
 mE
 Vi
 SJ
@@ -2093,7 +2081,7 @@ Ts
 Zr
 sd
 qS
-uL
+MN
 zk
 zk
 zk
@@ -2106,7 +2094,7 @@ zk
 zk
 Ue
 Ue
-uL
+MN
 VF
 Di
 sI
@@ -2119,8 +2107,8 @@ mm
 nw
 xJ
 iv
-uL
-uL
+MN
+MN
 zk
 zk
 zk
@@ -2133,20 +2121,20 @@ zk
 zk
 Ue
 Ue
-uL
-uL
-uL
-uL
-uL
-uL
-uL
-uL
+MN
+MN
+MN
+MN
+MN
+MN
+MN
+MN
 zw
-uL
-uL
-uL
-uL
-uL
+MN
+MN
+MN
+MN
+MN
 zk
 zk
 zk

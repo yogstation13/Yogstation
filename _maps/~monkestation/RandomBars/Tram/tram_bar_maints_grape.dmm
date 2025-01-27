@@ -407,8 +407,9 @@
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "kz" = (
-/obj/machinery/vending/autodrobe,
-/turf/open/floor/iron/white,
+/obj/machinery/light/small/directional/north,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/station/service/theater)
 "kA" = (
 /obj/machinery/duct,
@@ -652,6 +653,15 @@
 /obj/item/airlock_painter/decal/tile,
 /turf/open/floor/plating,
 /area/station/service/theater)
+"ps" = (
+/obj/machinery/camera/directional/east{
+	c_tag = "Civilian - Theatre Stage"
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/material_cheap,
+/obj/effect/spawner/random/mod/maint,
+/turf/open/floor/plating,
+/area/station/service/theater)
 "pu" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
@@ -697,9 +707,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Bar Maintenance Hatch"
-	},
 /obj/effect/spawner/random/structure/barricade,
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/department/security)
@@ -732,18 +739,11 @@
 /turf/open/floor/plating,
 /area/station/service/theater)
 "qQ" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Theatre Maintenance Hatch"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/catwalk_floor,
-/area/station/maintenance/department/cargo)
+/area/station/service/theater)
 "qR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -809,7 +809,7 @@
 	req_access = "kitchen"
 	},
 /turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
+/area/station/service/kitchen)
 "sd" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -1268,8 +1268,10 @@
 /turf/open/floor/iron/grimy,
 /area/station/commons/lounge)
 "CG" = (
-/turf/closed/wall,
-/area/station/maintenance/department/cargo)
+/obj/structure/dresser,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/station/service/theater)
 "CJ" = (
 /obj/machinery/duct,
 /obj/structure/railing/corner{
@@ -1566,16 +1568,9 @@
 /turf/open/floor/plating,
 /area/station/service/bar)
 "JH" = (
-/obj/effect/spawner/random/entertainment/musical_instrument{
-	spawn_loot_count = 2;
-	spawn_loot_double = 0;
-	spawn_random_offset = 1
-	},
-/obj/structure/rack,
-/obj/effect/spawner/random/entertainment/musical_instrument,
-/obj/structure/sign/poster/contraband/random/directional/east,
-/obj/item/wirerod,
-/turf/open/floor/plating,
+/obj/machinery/vending/autodrobe,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/white,
 /area/station/service/theater)
 "JI" = (
 /obj/structure/chair/stool/directional/north,
@@ -1625,22 +1620,24 @@
 /turf/open/floor/plating,
 /area/station/service/kitchen)
 "KW" = (
-/obj/machinery/camera/directional/east{
-	c_tag = "Civilian - Theatre Stage"
-	},
-/obj/item/radio/intercom/directional/east,
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/material_cheap,
-/obj/effect/spawner/random/mod/maint,
-/turf/open/floor/plating,
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/north,
+/turf/open/floor/catwalk_floor,
 /area/station/service/theater)
 "KX" = (
 /obj/structure/shipping_container/gorlex,
 /turf/open/floor/plating,
 /area/station/commons/lounge)
 "Lh" = (
-/obj/structure/dresser,
-/turf/open/floor/iron/white,
+/obj/effect/spawner/random/entertainment/musical_instrument{
+	spawn_loot_count = 2;
+	spawn_loot_double = 0;
+	spawn_random_offset = 1
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/entertainment/musical_instrument,
+/obj/item/wirerod,
+/turf/open/floor/plating,
 /area/station/service/theater)
 "Lj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -1951,7 +1948,6 @@
 	dir = 9
 	},
 /obj/structure/sign/poster/contraband/random/directional/south,
-/obj/effect/spawner/random/structure/closet_maintenance,
 /turf/open/floor/plating,
 /area/station/service/theater)
 "SI" = (
@@ -2161,7 +2157,7 @@
 	},
 /obj/effect/turf_decal/loading_area,
 /turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
+/area/station/service/theater)
 "WX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/loading_area{
@@ -2176,7 +2172,7 @@
 	name = "navigation beacon (Bar Delivery)"
 	},
 /turf/open/floor/plating,
-/area/station/maintenance/department/cargo)
+/area/station/service/theater)
 "Xa" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -2228,9 +2224,8 @@
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "XG" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/east,
-/turf/open/floor/catwalk_floor,
+/obj/effect/spawner/random/structure/closet_maintenance,
+/turf/open/floor/plating,
 /area/station/service/theater)
 "XI" = (
 /obj/machinery/duct,
@@ -2302,8 +2297,8 @@
 /turf/open/floor/iron/grimy,
 /area/station/commons/lounge)
 "ZD" = (
-/obj/machinery/light/small/directional/north,
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/iron/white/smooth_large,
 /area/station/service/theater)
 "ZG" = (
 /obj/structure/disposalpipe/segment{
@@ -2333,9 +2328,9 @@ pQ
 cu
 cu
 cu
-cu
-cu
-cu
+MO
+MO
+MO
 MO
 MO
 MO
@@ -2861,12 +2856,12 @@ MO
 (21,1,1) = {"
 Ud
 Ud
-CG
+sk
 rL
-CG
-CG
-CG
-CG
+sk
+sk
+sk
+sk
 sk
 sk
 mC
@@ -2880,7 +2875,7 @@ YQ
 gJ
 kI
 td
-MO
+mC
 QC
 QC
 QC
@@ -2893,7 +2888,7 @@ Ud
 Ud
 Ud
 Ud
-CG
+mC
 yJ
 oL
 Lw
@@ -2907,7 +2902,7 @@ cr
 FY
 Ul
 td
-MO
+mC
 QC
 QC
 QC
@@ -2920,7 +2915,7 @@ Ud
 Ud
 Ud
 Ud
-CG
+mC
 Ap
 jW
 oI
@@ -2934,7 +2929,7 @@ Ul
 hd
 qF
 tV
-MO
+mC
 QC
 QC
 QC
@@ -2947,7 +2942,7 @@ lU
 lU
 Ud
 Ud
-CG
+mC
 on
 bh
 sR
@@ -2961,7 +2956,7 @@ dA
 nx
 QX
 TF
-MO
+mC
 QC
 QC
 QC
@@ -2974,7 +2969,7 @@ lU
 lU
 Ud
 Ud
-CG
+mC
 pL
 of
 OZ
@@ -2988,7 +2983,7 @@ wx
 Pd
 ru
 td
-CG
+mC
 lU
 lU
 lU
@@ -3001,7 +2996,7 @@ lU
 lU
 Ud
 Ud
-CG
+mC
 us
 bv
 cn
@@ -3029,7 +3024,7 @@ lU
 Ud
 Ud
 WW
-QX
+aS
 Qu
 jG
 GS
@@ -3042,7 +3037,7 @@ ji
 ji
 ji
 St
-CG
+mC
 lU
 lU
 lU
@@ -3055,10 +3050,10 @@ lU
 lU
 Ud
 Ud
-CG
+mC
+QX
 ZD
-Hj
-TE
+aS
 mC
 pe
 sK
@@ -3068,8 +3063,8 @@ QX
 aS
 QX
 QX
-qE
-CG
+XG
+mC
 lU
 lU
 lU
@@ -3082,21 +3077,21 @@ lU
 lU
 Ud
 Ud
-CG
-kz
-Lh
-cT
 mC
+kz
+Hj
+TE
 mC
 bP
+sK
 Vs
 hA
-XG
-KW
-oj
-JH
-CG
-CG
+QX
+QX
+QX
+QX
+qE
+mC
 lU
 lU
 lU
@@ -3109,20 +3104,20 @@ lU
 lU
 Ud
 Ud
+mC
+JH
 CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
+cT
+mC
+mC
+KW
+QX
 qQ
-CG
-CG
-CG
-CG
-CG
+QX
+ps
+oj
+Lh
+mC
 lU
 lU
 lU

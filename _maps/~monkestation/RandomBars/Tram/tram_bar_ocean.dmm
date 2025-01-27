@@ -933,7 +933,6 @@
 /turf/open/floor/fake_seafloor/heavy,
 /area/station/service/theater)
 "Or" = (
-/obj/effect/mapping_helpers/airlock/access/all/service/theatre/east_offset,
 /turf/open/floor/fake_seafloor/ironsand,
 /area/station/service/theater)
 "Pc" = (

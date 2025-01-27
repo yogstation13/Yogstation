@@ -79,7 +79,7 @@
 /area/station/commons/lounge)
 "bP" = (
 /obj/structure/table/wood,
-/obj/item/instrument/violin,
+/obj/item/clothing/glasses/eyepatch,
 /turf/open/misc/snow/actually_safe,
 /area/station/service/theater)
 "bX" = (
@@ -110,8 +110,12 @@
 /turf/open/misc/snow/actually_safe,
 /area/station/service/theater)
 "cu" = (
-/turf/closed/wall/mineral/wood,
-/area/station/maintenance/department/security)
+/obj/structure/table/wood,
+/obj/item/staff/broom,
+/obj/item/clothing/head/costume/sombrero/green,
+/obj/item/radio/intercom/directional/east,
+/turf/open/misc/snow/actually_safe,
+/area/station/service/theater)
 "cA" = (
 /obj/structure/table/wood,
 /obj/machinery/processor{
@@ -699,12 +703,6 @@
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/open/misc/snow/actually_safe,
 /area/station/service/theater)
-"qE" = (
-/obj/structure/table/wood,
-/obj/item/staff/broom,
-/obj/item/clothing/head/costume/sombrero/green,
-/turf/open/misc/snow/actually_safe,
-/area/station/service/theater)
 "qF" = (
 /obj/structure/chair/stool/bar/directional/east,
 /obj/structure/disposalpipe/segment,
@@ -714,18 +712,12 @@
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "qQ" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Theatre Maintenance Hatch"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance/east_offset,
 /turf/open/misc/snow/actually_safe,
-/area/station/maintenance/department/cargo)
+/area/station/service/theater)
 "qR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -960,8 +952,11 @@
 /turf/open/openspace,
 /area/station/service/kitchen)
 "yp" = (
-/turf/closed/wall/r_wall,
-/area/station/maintenance/department/security)
+/obj/structure/table/wood,
+/obj/item/instrument/violin,
+/obj/machinery/light/warm/directional/east,
+/turf/open/misc/snow/actually_safe,
+/area/station/service/theater)
 "yE" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
@@ -1564,13 +1559,6 @@
 /obj/effect/landmark/start/hangover,
 /turf/open/misc/snow/actually_safe,
 /area/station/service/kitchen)
-"KW" = (
-/obj/machinery/camera/directional/east{
-	c_tag = "Civilian - Theatre Stage"
-	},
-/obj/item/radio/intercom/directional/east,
-/turf/open/misc/snow/actually_safe,
-/area/station/service/theater)
 "Lh" = (
 /obj/structure/dresser,
 /turf/open/floor/pod/light,
@@ -1990,9 +1978,9 @@
 /turf/open/floor/pod/light,
 /area/station/commons/lounge)
 "Vs" = (
-/obj/structure/table/wood,
-/obj/machinery/light/warm/directional/east,
-/obj/item/clothing/glasses/eyepatch,
+/obj/machinery/camera/directional/east{
+	c_tag = "Civilian - Theatre Stage"
+	},
 /turf/open/misc/snow/actually_safe,
 /area/station/service/theater)
 "VL" = (
@@ -2067,7 +2055,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/catwalk_floor,
-/area/station/maintenance/department/security)
+/area/station/commons/lounge)
 "WW" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -2096,7 +2084,7 @@
 	name = "navigation beacon (Bar Delivery)"
 	},
 /turf/open/misc/snow/actually_safe,
-/area/station/maintenance/department/cargo)
+/area/station/service/theater)
 "Xa" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -2237,9 +2225,9 @@ Ud
 Ud
 Ud
 Ud
-yp
-cu
-cu
+wx
+MO
+MO
 MO
 MO
 wx
@@ -2264,7 +2252,7 @@ lU
 Ud
 Ud
 Ud
-cu
+MO
 CF
 LD
 RJ
@@ -2291,7 +2279,7 @@ lU
 Ud
 Ud
 Ud
-cu
+MO
 CF
 RJ
 KN
@@ -2317,8 +2305,8 @@ lU
 lU
 Ud
 Ud
-yp
-yp
+wx
+wx
 nk
 fW
 EG
@@ -2344,7 +2332,7 @@ Ud
 Ud
 Ud
 Ud
-cu
+MO
 eT
 JI
 mE
@@ -2371,7 +2359,7 @@ Ud
 Ud
 Ud
 Ud
-cu
+MO
 Vq
 mp
 iq
@@ -2398,7 +2386,7 @@ Ud
 Ud
 Ud
 Ud
-cu
+MO
 eT
 GP
 iu
@@ -2423,9 +2411,9 @@ lU
 lU
 lU
 lU
-yp
+wx
 WP
-yp
+wx
 wx
 EV
 dS
@@ -2784,7 +2772,7 @@ YZ
 Tv
 kI
 Va
-MO
+FI
 QC
 QC
 QC
@@ -2811,7 +2799,7 @@ cr
 FY
 Ul
 sm
-MO
+FI
 QC
 QC
 QC
@@ -2838,7 +2826,7 @@ bX
 sK
 ED
 wM
-MO
+FI
 QC
 QC
 QC
@@ -2865,7 +2853,7 @@ dA
 hd
 TV
 sm
-MO
+FI
 QC
 QC
 QC
@@ -2892,7 +2880,7 @@ qC
 qC
 qC
 Ow
-UF
+mC
 lU
 lU
 lU
@@ -2946,7 +2934,7 @@ ji
 ji
 ji
 St
-UF
+mC
 lU
 lU
 lU
@@ -2964,16 +2952,16 @@ mQ
 Hj
 TE
 mC
-pe
-sK
+nx
+nx
 nx
 YQ
 XG
 nx
 nx
-sK
-qE
-CG
+nx
+nx
+FI
 lU
 lU
 lU
@@ -2991,16 +2979,16 @@ kz
 Lh
 cT
 FI
-yV
+pe
 bP
-Vs
+nx
 hA
 XG
-KW
-oj
-JH
-UF
-UF
+nx
+nx
+sK
+cu
+mC
 lU
 lU
 lU
@@ -3017,16 +3005,16 @@ UF
 CG
 CG
 CG
-UF
-CG
-CG
-UF
+mC
+yV
+yp
+nx
 qQ
-UF
-CG
-CG
-CG
-UF
+nx
+Vs
+oj
+JH
+mC
 lU
 lU
 lU

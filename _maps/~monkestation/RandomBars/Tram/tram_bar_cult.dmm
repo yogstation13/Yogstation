@@ -1432,6 +1432,11 @@
 /obj/machinery/duct,
 /turf/open/floor/cult,
 /area/station/service/theater)
+"FM" = (
+/obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance/east_offset,
+/turf/open/floor/cult,
+/area/station/commons/lounge)
 "FW" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/structure/cable,
@@ -3027,7 +3032,7 @@ jH
 jH
 jH
 Vd
-Hv
+FM
 Vd
 jH
 jH

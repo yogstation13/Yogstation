@@ -91,17 +91,19 @@
 /turf/open/floor/iron/freezer,
 /area/station/service/kitchen)
 "cu" = (
+/obj/effect/turf_decal/tile/dark_blue/half/contrasted{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/dark_blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/dark,
+/obj/machinery/light/dim/directional/north,
 /obj/structure/chair/sofa/right{
 	color = "#3b88df";
 	desc = "You sit in this. Either by will or force. It has been recently reupholstered with a fresh blue cloth.";
 	dir = 8;
 	name = "blue sofa"
-	},
-/obj/effect/turf_decal/tile/dark_blue/anticorner/contrasted{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/dark_blue{
-	dir = 8
 	},
 /turf/open/floor/iron,
 /area/station/commons/lounge)
@@ -162,20 +164,15 @@
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "cI" = (
+/obj/effect/turf_decal/tile/dark_blue/opposingcorners,
+/obj/effect/turf_decal/tile/dark/opposingcorners{
+	dir = 1
+	},
 /obj/structure/chair/sofa/left{
 	color = "#3b88df";
 	desc = "You sit in this. Either by will or force. It has been recently reupholstered with a fresh blue cloth.";
 	dir = 8;
 	name = "blue sofa"
-	},
-/obj/effect/turf_decal/tile/dark_blue/half/contrasted{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/dark_blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/dark{
-	dir = 8
 	},
 /turf/open/floor/iron,
 /area/station/commons/lounge)
@@ -333,12 +330,11 @@
 /turf/open/floor/iron/vaporwave,
 /area/station/service/theater)
 "fr" = (
-/obj/item/radio/intercom/directional/east,
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
 /turf/open/floor/iron/white/smooth_edge{
-	dir = 8
+	dir = 4
 	},
 /area/station/service/theater)
 "fG" = (
@@ -1295,14 +1291,8 @@
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "tx" = (
-/obj/effect/turf_decal/tile/dark/half/contrasted{
-	dir = 4
-	},
-/obj/machinery/firealarm/directional/east,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/tile/dark/half,
+/obj/structure/table,
 /turf/open/floor/iron/white/smooth_edge{
 	dir = 8
 	},
@@ -1514,6 +1504,18 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
+"wY" = (
+/obj/effect/turf_decal/tile/dark_blue/half/contrasted{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/dark_blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/dark{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/station/commons/lounge)
 "xb" = (
 /obj/effect/turf_decal/tile/dark{
 	dir = 4
@@ -1577,14 +1579,15 @@
 /turf/open/floor/iron/kitchen/small,
 /area/station/service/kitchen)
 "yb" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Theatre Maintenance Hatch"
+/obj/effect/turf_decal/tile/dark_blue/anticorner/contrasted,
+/obj/effect/turf_decal/tile/dark_blue{
+	dir = 1
 	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/maintenance/east_offset,
+/turf/open/floor/iron,
 /area/station/commons/lounge)
 "yi" = (
 /obj/structure/chair/stool/bar/directional/west,
@@ -2032,6 +2035,9 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/service/kitchen)
+"GD" = (
+/turf/open/floor/iron/white/smooth_edge,
+/area/station/service/theater)
 "GF" = (
 /obj/effect/turf_decal/tile/dark_blue/opposingcorners,
 /obj/effect/turf_decal/tile/dark/opposingcorners{
@@ -2621,6 +2627,18 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
 /area/station/service/bar)
+"OI" = (
+/obj/effect/turf_decal/tile/dark/half/contrasted{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/iron/white/smooth_edge{
+	dir = 8
+	},
+/area/station/service/theater)
 "OK" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners{
 	dir = 1
@@ -4095,13 +4113,13 @@ zk
 Ue
 Ue
 cZ
-Jt
-fr
+GD
+Hp
 tx
 Zu
 cu
 cI
-Om
+oc
 Ii
 gy
 Hm
@@ -4122,13 +4140,13 @@ zk
 Ue
 Ue
 cZ
-cZ
-cZ
-cZ
-cZ
-TH
-TH
-TH
+Jt
+fr
+OI
+Zu
+Dx
+wY
+Om
 yb
 Dr
 Dr
