@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Gave medical cyborgs a immunity scanner."
+  - balance: "Medical and syndicate medical get augmented tools rather than normal tools."
