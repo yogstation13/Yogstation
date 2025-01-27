@@ -666,17 +666,18 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer/cyborg, //MONKESTATION EDIT
+		/obj/item/device/antibody_scanner, // monkestation addition:
 		/obj/item/reagent_containers/borghypo/medical,
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/surgical_drapes,
-		/obj/item/retractor,
-		/obj/item/hemostat,
-		/obj/item/cautery,
-		/obj/item/surgicaldrill,
-		/obj/item/scalpel,
-		/obj/item/circular_saw,
+		/obj/item/retractor/augment, //monkestation edit start: Augmented tools
+		/obj/item/hemostat/augment,
+		/obj/item/cautery/augment,
+		/obj/item/surgicaldrill/augment,
+		/obj/item/scalpel/augment,
+		/obj/item/circular_saw/augment, //monkestation edit end: Augmented tools
 		/obj/item/bonesetter,
 		/obj/item/blood_filter,
 		/obj/item/extinguisher/mini,
@@ -886,11 +887,11 @@
 		/obj/item/shockpaddles/syndicate/cyborg,
 		/obj/item/healthanalyzer,
 		/obj/item/surgical_drapes,
-		/obj/item/retractor,
-		/obj/item/hemostat,
-		/obj/item/cautery,
-		/obj/item/surgicaldrill,
-		/obj/item/scalpel,
+		/obj/item/retractor/augment, //monkestation edit start: Augmented tools
+		/obj/item/hemostat/augment,
+		/obj/item/cautery/augment,
+		/obj/item/surgicaldrill/augment,
+		/obj/item/scalpel/augment, //monkestation edit: Augmented tools
 		/obj/item/melee/energy/sword/cyborg/saw,
 		/obj/item/bonesetter,
 		/obj/item/blood_filter,
