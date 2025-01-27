@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - balance: "A singular robotic repair patch wont trigger a overdose and now will heal."
+  - balance: "Blood bag and full coil roll has been added to the premium robotic repair bag. And 5 coil added to basic robotic repair bag"
+  - bugfix: "Fixed pax functionally being invisible."
