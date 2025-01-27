@@ -1,0 +1,9 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Maintence panels and sprites to viro machines"
+  - rscdel: "Removed Epidermolysis Bullosa, Biometalic replication, and Porokeratosis Acanthus symptoms from appearing"
+  - balance: "Delightful effect is now considered a helpful effect"
+  - balance: "Viro's incubators are now twice as fast overall (10%:40% to 20%:80%)"
+  - bugfix: "Disease severities and hud states will now properly set"
+  - code_imp: "Changed the subtype for diseases"
