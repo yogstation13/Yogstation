@@ -5937,6 +5937,7 @@
 #include "monkestation\code\controllers\subsystem\priority_effects.dm"
 #include "monkestation\code\controllers\subsystem\profiler.dm"
 #include "monkestation\code\controllers\subsystem\stamina.dm"
+#include "monkestation\code\controllers\subsystem\vote.dm"
 #include "monkestation\code\datums\action.dm"
 #include "monkestation\code\datums\dna.dm"
 #include "monkestation\code\datums\emotes.dm"
