@@ -1,0 +1,4 @@
+author: "Wisemonster"
+delete-after: True
+changes:
+  - qol: "The antag token menu will now tell you how many donator tokens you have"
