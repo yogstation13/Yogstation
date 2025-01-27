@@ -66,6 +66,7 @@
 	volume = 15
 	custom_materials = list(/datum/material/glass=SMALL_MATERIAL_AMOUNT)
 	custom_price = PAYCHECK_CREW * 0.4
+	var/inject_flags = NONE // Pay no mind that I (Brad) put this variable here for ONE gun.
 
 /obj/item/reagent_containers/cup/glass/drinkingglass/shotglass/update_name(updates)
 	if(renamedByPlayer)

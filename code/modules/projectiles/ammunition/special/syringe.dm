@@ -32,6 +32,7 @@
 		qdel(loaded_syringe)
 	return ..()
 
+
 /obj/item/ammo_casing/chemgun
 	name = "dart synthesiser"
 	desc = "A high-power spring, linked to an energy-based piercing dart synthesiser."

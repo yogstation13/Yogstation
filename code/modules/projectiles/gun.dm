@@ -64,6 +64,7 @@
 	var/pinless = FALSE
 
 	var/can_bayonet = FALSE //if a bayonet can be added or removed if it already has one.
+	var/has_manufacturer = TRUE // Set to true by default. This didn't exist until Brad needed to make a new pipe-gun esque weapon.
 	var/obj/item/knife/bayonet
 	var/knife_x_offset = 0
 	var/knife_y_offset = 0
@@ -79,7 +80,9 @@
 		pin = new pin(src)
 
 	add_seclight_point()
-	give_manufacturer_examine()
+
+	if(has_manufacturer)
+		give_manufacturer_examine()
 
 /obj/item/gun/Destroy()
 	if(isobj(pin)) //Can still be the initial path, then we skip
