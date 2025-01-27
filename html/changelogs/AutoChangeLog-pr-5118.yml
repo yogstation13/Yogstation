@@ -1,0 +1,4 @@
+author: "Absolucy, Sapphoqueer"
+delete-after: True
+changes:
+  - bugfix: "Fixes a bug where AIs, borgs and TK users could effectively break ID's by removing them from modular computers."
