@@ -558,6 +558,7 @@
 2025-01-27:
   Absolucy:
   - code_imp: Hopefully improved the performance of code related to the replay system.
+  - bugfix: Gary no longer randomly dies for seemingly no reason.
   Absolucy, Melbert:
   - qol: Navigate verb better indicates areas on a separate level. Selecting an area
       on a different level will direct you to the nearest staircase (as with "Nearest
@@ -567,9 +568,44 @@
   Absolucy, Sapphoqueer:
   - bugfix: Fixes a bug where AIs, borgs and TK users could effectively break ID's
       by removing them from modular computers.
+  Absolucy, merryScronchmas:
+  - image: Gave the "Vote" action button a new animated icon. Sprite by merryScronchmas.
+  Gw0sty:
+  - rscadd: Added more areas to tramstation to differentate areas
+  - rscadd: Reworked most of the tramstations bars to remove unnecessary walling and
+      airlocks.
+  - rscadd: Added a single barkeep spawner in the barkeep backroom.
+  - rscadd: More navigation locations
+  - rscdel: Removed a set of floating lights at tramstation middle towards the east
+      side.
+  - balance: A singular robotic repair patch wont trigger a overdose and now will
+      heal.
+  - balance: Blood bag and full coil roll has been added to the premium robotic repair
+      bag. And 5 coil added to basic robotic repair bag
+  - bugfix: Fixed pax functionally being invisible.
+  - rscadd: Gave paramedics a GPS for finding Oozelings and Miners. Rejoyce!
+  - rscadd: Maintence panels and sprites to viro machines
+  - rscdel: Removed Epidermolysis Bullosa, Biometalic replication, and Porokeratosis
+      Acanthus symptoms from appearing
+  - balance: Delightful effect is now considered a helpful effect
+  - balance: Viro's incubators are now twice as fast overall (10%:40% to 20%:80%)
+  - bugfix: Disease severities and hud states will now properly set
+  - code_imp: Changed the subtype for diseases
+  - rscadd: Gave medical cyborgs a immunity scanner.
+  - balance: Medical and syndicate medical get augmented tools rather than normal
+      tools.
   Shoddd:
   - qol: adds a few things to runtime station
   - rscdel: cleans up a lot of unused nukie base space
+  - bugfix: large pacels can no longer be picked up with bags
+  - balance: drops stats of cargo sabre
+  - bugfix: Bomb actualizer no longer armable while unanchored or in space
+  - balance: higher demo mod on sledge hammer
+  - spellcheck: '"Cates" now "crates"'
+  - code_imp: clears up sabre code
+  Uristthedorf:
+  - rscadd: Adds new IEDs to replace the old ones.
+  - rscdel: Removes old ieds
   Wisemonster:
   - qol: The antag token menu will now tell you how many donator tokens you have
   - qol: Moved the engineer mail destination on box station to the engineer foyer.
