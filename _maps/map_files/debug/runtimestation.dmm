@@ -449,10 +449,6 @@
 	dir = 1
 	},
 /area/station/medical/medbay)
-"bY" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/station/maintenance/department/bridge)
 "bZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -673,6 +669,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/item/autosurgeon/syndicate,
 /turf/open/floor/iron/white/corner,
 /area/station/medical/medbay)
 "cL" = (
@@ -1740,23 +1737,12 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/exit/departure_lounge)
-"hr" = (
-/obj/machinery/electroplater,
-/turf/open/floor/iron,
-/area/station/commons/storage/primary)
 "hD" = (
 /obj/structure/closet/secure_closet/chemical/heisenberg{
 	locked = 0
 	},
 /turf/open/floor/iron,
 /area/station/medical/chemistry)
-"hJ" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
 "ii" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1770,6 +1756,7 @@
 /area/station/bitrunning/den)
 "is" = (
 /obj/structure/sign/warning/vacuum/external/directional/east,
+/obj/structure/organ_creator,
 /turf/open/floor/iron,
 /area/station/medical/medbay)
 "jb" = (
@@ -1783,10 +1770,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
-"jF" = (
-/obj/machinery/bouldertech/crusher,
-/turf/open/floor/plating,
-/area/station/construction)
 "jU" = (
 /obj/structure/table,
 /obj/item/melee/energy/axe,
@@ -1939,10 +1922,6 @@
 "pl" = (
 /turf/closed/wall/r_wall,
 /area/station/bitrunning/den)
-"pt" = (
-/obj/item/construction/plumbing,
-/turf/open/floor/plating,
-/area/station/construction)
 "pv" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron,
@@ -1992,12 +1971,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
-"rr" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
 "rK" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -2009,13 +1982,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central)
-"rU" = (
-/obj/item/stack/ducts/fifty,
-/turf/open/floor/plating,
-/area/station/construction)
-"rZ" = (
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/station/commons/storage/primary)
 "sr" = (
 /obj/machinery/door/airlock/shell,
 /turf/open/floor/iron/dark,
@@ -2065,12 +2031,11 @@
 /turf/open/floor/iron/dark,
 /area/station/science/explab)
 "tY" = (
-/obj/machinery/conveyor{
-	dir = 6;
-	id = "debug"
+/obj/machinery/computer/bank_machine{
+	dir = 4
 	},
-/turf/open/floor/plating,
-/area/station/construction)
+/turf/open/floor/iron,
+/area/station/cargo/storage)
 "uf" = (
 /obj/structure/fans/tiny/invisible,
 /obj/effect/turf_decal/stripes/line{
@@ -2113,13 +2078,6 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/science/explab)
-"vh" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
 "vm" = (
 /mob/living/circuit_drone,
 /turf/open/floor/iron/dark,
@@ -2169,17 +2127,6 @@
 /obj/machinery/quantum_server,
 /turf/open/floor/iron,
 /area/station/bitrunning/den)
-"yx" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
-"yy" = (
-/obj/machinery/big_manipulator,
-/turf/open/floor/plating,
-/area/station/construction)
 "yA" = (
 /obj/docking_port/stationary/laborcamp_home{
 	dir = 8
@@ -2204,22 +2151,11 @@
 /obj/machinery/power/rtg/debug,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"yT" = (
-/obj/machinery/conveyor{
-	dir = 2;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
 "zo" = (
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
-"Aa" = (
-/obj/machinery/big_manipulator,
-/turf/open/floor/iron,
-/area/station/commons/storage/primary)
 "AP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 8
@@ -2227,9 +2163,8 @@
 /turf/open/floor/iron,
 /area/station/science)
 "AR" = (
-/obj/machinery/bouldertech/refinery/smelter,
 /turf/open/floor/plating,
-/area/station/construction)
+/area/station/engineering/gravity_generator)
 "AY" = (
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/iron,
@@ -2275,13 +2210,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/construction)
-"Cc" = (
-/obj/machinery/conveyor{
-	dir = 9;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
 "Ce" = (
 /turf/open/floor/iron,
 /area/station/medical/chemistry)
@@ -2316,10 +2244,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/bitrunning/den)
-"DL" = (
-/obj/machinery/bouldertech/crystalizer,
-/turf/open/floor/plating,
-/area/station/construction)
 "DW" = (
 /obj/machinery/computer/scan_consolenew{
 	dir = 1
@@ -2358,12 +2282,10 @@
 /turf/open/floor/iron,
 /area/station/command/bridge)
 "EN" = (
-/obj/machinery/conveyor{
-	dir = 5;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/gravity_generator/main,
+/turf/open/floor/iron/dark,
+/area/station/engineering/gravity_generator)
 "ES" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 4
@@ -2378,13 +2300,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/medical/chemistry)
-"GB" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/arc_forge,
-/turf/open/floor/iron,
-/area/station/commons/storage/primary)
 "GS" = (
 /obj/structure/sign/directions/supply{
 	dir = 4;
@@ -2399,15 +2314,6 @@
 	pixel_x = -32;
 	pixel_y = -7
 	},
-/obj/structure/machine/assembly_bench,
-/turf/open/floor/plating,
-/area/station/commons/storage/primary)
-"Hr" = (
-/obj/machinery/bouldertech/chemical_injector,
-/turf/open/floor/plating,
-/area/station/construction)
-"Id" = (
-/obj/structure/anvil,
 /turf/open/floor/plating,
 /area/station/commons/storage/primary)
 "If" = (
@@ -2436,12 +2342,7 @@
 /turf/open/floor/iron,
 /area/station/cargo/miningoffice)
 "Jn" = (
-/obj/machinery/bouldertech/purification_chamber,
-/turf/open/floor/plating,
-/area/station/construction)
-"Jp" = (
-/obj/machinery/gravity_generator/main,
-/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/camera/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/engineering/gravity_generator)
 "JF" = (
@@ -2457,20 +2358,9 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating,
 /area/station/engineering/atmos)
-"Li" = (
-/obj/machinery/bouldertech/enricher,
-/turf/open/floor/plating,
-/area/station/construction)
 "Lq" = (
 /turf/open/floor/circuit/green,
 /area/station/bitrunning/den)
-"Lx" = (
-/obj/machinery/conveyor{
-	dir = 10;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
 "Ly" = (
 /obj/machinery/chem_dispenser/chem_synthesizer,
 /turf/open/floor/iron/dark,
@@ -2529,17 +2419,6 @@
 /obj/machinery/rnd/production/protolathe/department,
 /turf/open/floor/iron,
 /area/station/science)
-"Ob" = (
-/obj/machinery/bouldertech/chemical_washer,
-/turf/open/floor/plating,
-/area/station/construction)
-"Oc" = (
-/obj/machinery/conveyor/inverted{
-	dir = 5;
-	id = "debug"
-	},
-/turf/open/floor/plating,
-/area/station/construction)
 "Ov" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -2591,16 +2470,10 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
-"Rx" = (
-/obj/item/wrench/abductor,
-/turf/open/floor/plating,
-/area/station/construction)
 "Rz" = (
-/obj/structure/table,
-/obj/item/clothing/suit/space/hardsuit/security,
-/obj/item/tank/jetpack/suit,
+/obj/structure/centcom_item_spawner/gun_and_ammo_creator,
 /turf/open/floor/iron,
-/area/station/medical/medbay)
+/area/station/commons/storage/primary)
 "RM" = (
 /obj/structure/closet/secure_closet/hop{
 	locked = 0
@@ -2611,10 +2484,6 @@
 "RW" = (
 /turf/open/floor/iron,
 /area/station/bitrunning/den)
-"Sd" = (
-/obj/machinery/bouldertech/dissolution_chamber,
-/turf/open/floor/plating,
-/area/station/construction)
 "Sj" = (
 /obj/structure/table/optable,
 /obj/effect/turf_decal/tile/blue{
@@ -2791,10 +2660,6 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/science)
-"Yz" = (
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron/kitchen_coldroom/freezerfloor,
-/area/station/commons/storage/primary)
 "YL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -6246,15 +6111,15 @@ rL
 cP
 cX
 dn
-Sd
-yy
 dn
 dn
 dn
-Oc
-yT
-yT
-yT
+dn
+dn
+dn
+dn
+dn
+dn
 dL
 sr
 nn
@@ -6338,15 +6203,15 @@ Mh
 TV
 EA
 dn
-Sd
-yy
 dn
-dn
-dn
-yx
 XE
-yy
-yy
+dn
+dn
+dn
+dn
+XE
+dn
+dn
 dL
 cN
 lQ
@@ -6434,11 +6299,11 @@ dn
 dn
 dn
 dn
-Rx
-yx
 dn
-Jn
-Jn
+dn
+dn
+dn
+dn
 dL
 tE
 ZP
@@ -6522,12 +6387,12 @@ bE
 cN
 BW
 dn
-Ob
 dn
-rU
-pt
-rr
-yx
+dn
+dn
+dn
+dn
+dn
 dn
 dn
 dn
@@ -6613,16 +6478,16 @@ bE
 bE
 cN
 EA
-EN
-vh
-vh
-vh
-vh
-Cc
-yx
+dn
+dn
 XE
-yy
-yy
+dn
+dn
+dn
+dn
+XE
+dn
+dn
 dL
 cN
 fI
@@ -6705,16 +6570,16 @@ lX
 bE
 cN
 cY
-hJ
-DL
-DL
-DL
-DL
-yx
-yx
 dn
-jF
-jF
+dn
+dn
+dn
+dn
+dn
+dn
+dn
+dn
+dn
 dZ
 cN
 Tt
@@ -6797,13 +6662,13 @@ bE
 bE
 cN
 cY
-tY
-yT
-yT
-yT
-yT
-Lx
-yx
+dn
+dn
+dn
+dn
+dn
+dn
+dn
 dn
 dn
 dn
@@ -6890,15 +6755,15 @@ bE
 cN
 cY
 dn
-yy
-yy
-yy
-yy
-yy
-yx
+dn
 XE
-yy
-yy
+dn
+dn
+dn
+dn
+XE
+dn
+dn
 dL
 cN
 Tt
@@ -6982,15 +6847,15 @@ bE
 ef
 cY
 dn
-Hr
-Hr
-Hr
-Hr
-Hr
-yx
 dn
-Li
-Li
+dn
+dn
+dn
+dn
+dn
+dn
+dn
+dn
 dL
 cN
 Tt
@@ -7074,15 +6939,15 @@ bE
 ef
 cY
 dn
-yT
-yT
-yT
-yT
-yT
-Lx
 dn
-AR
-AR
+dn
+dn
+dn
+dn
+dn
+dn
+dn
+dn
 dL
 cN
 Tt
@@ -7351,14 +7216,14 @@ cS
 qF
 dp
 dl
-Id
+dl
 GS
 dE
 dB
-rZ
-rZ
-rZ
-Yz
+dl
+dl
+dl
+dp
 dE
 cS
 Tt
@@ -7442,7 +7307,7 @@ bE
 cS
 dc
 dC
-GB
+dC
 dC
 dC
 eW
@@ -7543,7 +7408,7 @@ dJ
 dJ
 dJ
 dJ
-dJ
+oE
 cS
 Tt
 bL
@@ -7632,7 +7497,7 @@ dJ
 dI
 dJ
 dJ
-Aa
+dJ
 dJ
 dJ
 ny
@@ -7699,8 +7564,8 @@ aa
 aa
 aa
 aa
-ad
-ad
+ak
+ak
 ak
 ak
 ak
@@ -7719,13 +7584,13 @@ cS
 fy
 dr
 dJ
-hr
-oE
+dJ
+dJ
 dI
 dJ
-Aa
 dJ
-Aa
+dJ
+dJ
 dJ
 dO
 cS
@@ -7791,8 +7656,8 @@ aa
 aa
 aa
 aa
-ad
-af
+ak
+AR
 ak
 sU
 aG
@@ -7816,7 +7681,7 @@ dJ
 dI
 dJ
 dJ
-Aa
+dJ
 dJ
 dJ
 jU
@@ -7883,8 +7748,8 @@ aa
 aa
 aa
 aa
-bY
-af
+aI
+AR
 ak
 at
 Wx
@@ -7975,8 +7840,8 @@ aa
 aa
 aa
 aa
-ad
-af
+ak
+ak
 ak
 gW
 aI
@@ -8067,9 +7932,9 @@ aa
 aa
 aa
 aa
-ad
-af
 ak
+av
+av
 av
 av
 av
@@ -8159,10 +8024,10 @@ aa
 aa
 aa
 aa
-ad
-af
 ak
 av
+MN
+MN
 MN
 MN
 MN
@@ -8251,13 +8116,13 @@ aa
 aa
 aa
 aa
-ad
-af
 ak
 dT
 MN
 av
-Jp
+EN
+av
+MN
 av
 by
 bV
@@ -8279,7 +8144,7 @@ dJ
 dJ
 dJ
 dJ
-dJ
+Rz
 cS
 fS
 lH
@@ -8343,10 +8208,10 @@ aa
 aa
 aa
 aa
-ad
-af
 ak
 av
+MN
+MN
 MN
 MN
 MN
@@ -8435,14 +8300,14 @@ aa
 aa
 aa
 aa
-ad
-af
 ak
+av
+av
 av
 av
 aY
 av
-av
+Jn
 by
 bX
 cm
@@ -8527,8 +8392,8 @@ aa
 aa
 aa
 aa
-ad
-af
+ak
+ak
 ak
 ak
 ak
@@ -8633,7 +8498,7 @@ af
 by
 cz
 by
-Rz
+cm
 es
 by
 eu
@@ -8645,7 +8510,7 @@ eZ
 eu
 fq
 fr
-eu
+tY
 eu
 eu
 et
@@ -9018,7 +8883,7 @@ aa
 aa
 aa
 ga
-fO
+Xi
 fO
 fO
 Mu
@@ -9202,7 +9067,7 @@ aa
 aa
 aa
 ga
-Xi
+fO
 BK
 fO
 ga
