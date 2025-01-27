@@ -555,3 +555,12 @@
       fixed
   Wisemonster:
   - balance: The BSA now requires only 10 BS crystals, down from 20
+2025-01-27:
+  Absolucy:
+  - code_imp: Hopefully improved the performance of code related to the replay system.
+  Absolucy, Melbert:
+  - qol: Navigate verb better indicates areas on a separate level. Selecting an area
+      on a different level will direct you to the nearest staircase (as with "Nearest
+      Way Up/Down")
+  - qol: Navigating to a staircase or ladder will shorten the cooldown of navigate
+      and clear your existing path for you upon finding it

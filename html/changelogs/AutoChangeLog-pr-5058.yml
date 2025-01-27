@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - code_imp: "Hopefully improved the performance of code related to the replay system."
