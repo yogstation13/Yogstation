@@ -1,0 +1,8 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - balance: "drops stats of cargo sabre"
+  - bugfix: "Bomb actualizer no longer armable while unanchored or in space"
+  - balance: "higher demo mod on sledge hammer"
+  - spellcheck: "\"Cates\" now \"crates\""
+  - code_imp: "clears up sabre code"
