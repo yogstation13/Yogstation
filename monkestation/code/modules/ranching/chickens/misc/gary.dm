@@ -57,6 +57,9 @@
 	. = ..()
 	Write_Memory(TRUE)
 
+/mob/living/basic/chicken/gary/unhappy_death()
+	return
+
 /mob/living/basic/chicken/gary/proc/drop_held_item()
 	if(QDELETED(held_item))
 		return
