@@ -1,5 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - qol: "adds a few things to runtime station"
-  - rscdel: "cleans up a lot of unused nukie base space"

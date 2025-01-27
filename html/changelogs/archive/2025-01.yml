@@ -564,3 +564,12 @@
       Way Up/Down")
   - qol: Navigating to a staircase or ladder will shorten the cooldown of navigate
       and clear your existing path for you upon finding it
+  Absolucy, Sapphoqueer:
+  - bugfix: Fixes a bug where AIs, borgs and TK users could effectively break ID's
+      by removing them from modular computers.
+  Shoddd:
+  - qol: adds a few things to runtime station
+  - rscdel: cleans up a lot of unused nukie base space
+  Wisemonster:
+  - qol: The antag token menu will now tell you how many donator tokens you have
+  - qol: Moved the engineer mail destination on box station to the engineer foyer.
