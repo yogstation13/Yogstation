@@ -2447,7 +2447,7 @@
 /datum/reagent/pax
 	name = "Pax"
 	description = "A colorless liquid that suppresses violence in its subjects."
-	color = "#AAAAAA55"
+	color = "#aaaaaaff"
 	taste_description = "water"
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	ph = 15

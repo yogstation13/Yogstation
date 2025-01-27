@@ -606,7 +606,7 @@
 	desc = "A sealed patch with a small nanite swarm along with electrical coagulant reagents to repair small amounts of synthetic damage."
 	icon_state = "synth_patch"
 	list_reagents = list(
-		/datum/reagent/medicine/nanite_slurry = 10,
+		/datum/reagent/medicine/nanite_slurry = 9,
 		/datum/reagent/dinitrogen_plasmide = 5,
 		/datum/reagent/medicine/coagulant/fabricated = 10,
 	)
@@ -1020,6 +1020,7 @@
 /obj/item/storage/medkit/robotic_repair/stocked/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/cable_coil/five = 1,
 		/obj/item/reagent_containers/pill/robotic_patch/synth_repair = 2,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/coagulants = 1, // Coagulants help electrical damage
@@ -1044,12 +1045,13 @@
 /obj/item/storage/medkit/robotic_repair/preemo/stocked/PopulateContents()
 	var/static/items_inside = list(
 		/obj/item/stack/medical/gauze/twelve = 1,
-		/obj/item/stack/cable_coil/five = 1,
+		/obj/item/stack/cable_coil/industrial = 1,
 		/obj/item/reagent_containers/pill/robotic_patch/synth_repair = 4,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_system_cleaner = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/robot_liquid_solder = 1,
 		/obj/item/reagent_containers/hypospray/medipen/deforest/coagulants = 1,
 		/obj/item/healthanalyzer/simple = 1,
+		/obj/item/reagent_containers/blood/oil = 1,
 	)
 	generate_items_inside(items_inside,src)
 
