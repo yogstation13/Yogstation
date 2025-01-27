@@ -44,6 +44,14 @@
 	ricochet_incidence_leeway = 0
 	ricochet_decay_chance = 0.9
 
+/obj/projectile/bullet/shrapnel/ied //MONKE, modified to have extra range and more ricochet chance.
+	name = "flying glass shrapnel"
+	damage = 15
+	range = 8
+	ricochets_max = 2
+	ricochet_chance = 70
+	shrapnel_type = /obj/item/shard
+
 /obj/projectile/bullet/pellet/stingball
 	name = "stingball pellet"
 	damage = 3
