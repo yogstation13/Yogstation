@@ -26,7 +26,7 @@ GLOBAL_LIST(antag_token_config)
 	var/tier = tgui_input_list(src, "High: [client_token_holder.total_high_threat_tokens] | \
 									Med: [client_token_holder.total_medium_threat_tokens] | \
 									Low: [client_token_holder.total_low_threat_tokens] | \
-									Donator: [client_token_holder.donator_token ? "Yes" : "No"]", "Choose A Tier To Spend", list(HIGH_THREAT, MEDIUM_THREAT, LOW_THREAT))
+									Donator: [client_token_holder.donator_token]", "Choose A Tier To Spend", list(HIGH_THREAT, MEDIUM_THREAT, LOW_THREAT))
 	if(!tier)
 		return
 
