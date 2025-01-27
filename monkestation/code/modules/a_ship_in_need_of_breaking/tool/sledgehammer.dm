@@ -9,7 +9,7 @@
 	force = 5 /// The weapon requires two hands
 	throwforce = 12
 	throw_range = 3 /// Doesn't throw very far
-	demolition_mod = 3 // BREAK THINGS
+	demolition_mod = 6 // BREAK THINGS
 	armour_penetration = -20
 	hitsound = 'sound/weapons/smash.ogg' /// Hitsound when thrown at someone
 	attack_verb_continuous = list("slams", "crushes", "smashes", "flattens", "pounds")

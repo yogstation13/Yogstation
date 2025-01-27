@@ -70,7 +70,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
 	obj_flags = UNIQUE_RENAME
-	force = 15
+	force = 20 // MONKESTATION EDIT ORG 15
 	throwforce = 10
 	demolition_mod = 0.75 //but not metal
 	w_class = WEIGHT_CLASS_BULKY
@@ -82,8 +82,8 @@
 	block_sound = 'sound/weapons/parry.ogg'
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT)
-	wound_bonus = 10
-	bare_wound_bonus = 25
+	wound_bonus = 5 // MONKESTATION EDIT ORG 10
+	bare_wound_bonus = 20 // MONKESTATION EDIT ORG 25
 
 /obj/item/melee/sabre/Initialize(mapload)
 	. = ..()
