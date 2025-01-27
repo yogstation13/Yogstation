@@ -1,0 +1,8 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added more areas to tramstation to differentate areas"
+  - rscadd: "Reworked most of the tramstations bars to remove unnecessary walling and airlocks."
+  - rscadd: "Added a single barkeep spawner in the barkeep backroom."
+  - rscadd: "More navigation locations"
+  - rscdel: "Removed a set of floating lights at tramstation middle towards the east side."
