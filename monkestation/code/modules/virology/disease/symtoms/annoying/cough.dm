@@ -3,6 +3,7 @@
 	desc = "Causes the infected to cough rapidly, releasing pathogenic clouds."
 	stage = 2
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 	max_chance = 10
 
 /datum/symptom/cough/activate(mob/living/mob)
@@ -26,7 +27,7 @@
 				if(mob.check_airborne_sterility())
 					return
 				var/strength = 0
-				for (var/datum/disease/advanced/virus  as anything in mob.diseases)
+				for (var/datum/disease/acute/virus  as anything in mob.diseases)
 					strength += virus.infectionchance
 				strength = round(strength/mob.diseases.len)
 

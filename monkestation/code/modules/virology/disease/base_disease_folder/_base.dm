@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(virusDB, list())
 
 	return list(lowest_stage,highest_concentration)
 
-/datum/disease/advanced/cure(add_resistance = TRUE, mob/living/carbon/target)
+/datum/disease/acute/cure(add_resistance = TRUE, mob/living/carbon/target)
 	target = target || affected_mob || usr
 	if(!istype(affected_mob) || QDELING(affected_mob))
 		return
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(virusDB, list())
 		ticks = 0
 
 	//Pathogen killing each others
-	for (var/datum/disease/advanced/enemy_pathogen as anything in mob.diseases)
+	for (var/datum/disease/acute/enemy_pathogen as anything in mob.diseases)
 		if(enemy_pathogen == src)
 			continue
 
@@ -242,3 +242,46 @@ GLOBAL_LIST_INIT(virusDB, list())
 
 
 	ticks += speed
+
+//horrible, awful, stolen code from disease/advance. But it WORKS
+/datum/disease/acute
+	var/list/properties = list()
+
+/// Calls on GenerateProperties and AssignProperties to set a disease severity. From `disease/advance`
+/datum/disease/acute/proc/Refresh_Acute(new_name = FALSE)
+	GenerateProperties_Acute()
+	assign_properties_Acute()
+
+/// Generates the list for the severity with severity defined at 0, then calls on symtomps severity for final.
+/datum/disease/acute/proc/GenerateProperties_Acute()
+	properties = list("severity" = 0)
+	for(var/datum/symptom/S in symptoms)
+		if(!S.neutered)
+			properties["severity"] = max(properties["severity"], S.severity) // severity is based on the highest severity non-neutered symptom
+
+/datum/disease/acute/proc/assign_properties_Acute()
+	if(length(properties))
+		set_severity_Acute(properties["severity"])
+	else
+		CRASH("Our properties were empty or null!")
+
+///sets a serverity level based on the properties["severity"] value of the disease
+/datum/disease/acute/proc/set_severity_Acute(level_sev)
+	switch(level_sev)
+
+		if(-INFINITY to 0)
+			severity = DISEASE_SEVERITY_POSITIVE
+		if(1)
+			severity = DISEASE_SEVERITY_NONTHREAT
+		if(2)
+			severity = DISEASE_SEVERITY_MINOR
+		if(3)
+			severity = DISEASE_SEVERITY_MEDIUM
+		if(4)
+			severity = DISEASE_SEVERITY_HARMFUL
+		if(5)
+			severity = DISEASE_SEVERITY_DANGEROUS
+		if(6 to INFINITY)
+			severity = DISEASE_SEVERITY_BIOHAZARD
+		else
+			severity = "Unknown"

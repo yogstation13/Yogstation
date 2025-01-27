@@ -4,6 +4,7 @@
 	stage = 3
 	max_multiplier = 3
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 3
 
 /datum/symptom/toxins/activate(mob/living/carbon/mob)
 	mob.adjustToxLoss((2*multiplier))

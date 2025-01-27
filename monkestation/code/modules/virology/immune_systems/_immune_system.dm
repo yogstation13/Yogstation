@@ -90,14 +90,14 @@
 		var/mob/living/carbon/human/H = host
 		H.vomit(0,1)//hope you're wearing a biosuit or you'll get reinfected from your vomit, lol
 	for(var/ID in host.diseases)
-		var/datum/disease/advanced/D = host.diseases[ID]
+		var/datum/disease/acute/D = host.diseases[ID]
 		D.cure(target = host)
 	strength = 0
 	overloaded = TRUE
 
 
 //If even one antibody hass sufficient concentration, the disease won't be able to infect
-/datum/immune_system/proc/CanInfect(datum/disease/advanced/disease)
+/datum/immune_system/proc/CanInfect(datum/disease/acute/disease)
 	if (overloaded)
 		return TRUE
 
@@ -113,7 +113,7 @@
 	if(overloaded)
 		return
 
-	for(var/datum/disease/advanced/disease as anything in host.diseases)
+	for(var/datum/disease/acute/disease as anything in host.diseases)
 		for(var/A in disease.antigen)
 			var/tally = 0.5
 			if (isturf(host.loc) && (host.body_position == LYING_DOWN))
@@ -138,7 +138,7 @@
 					antibodies[A] = min(antibodies[A] + 1, 100)
 
 /datum/immune_system/proc/NaturalImmune() //called with a 8% chance every time a virus activates
-	for (var/datum/disease/advanced/disease as anything in host.diseases)
+	for (var/datum/disease/acute/disease as anything in host.diseases)
 		for (var/A in disease.antigen)
 			var/tally = 1.5
 			if (isturf(host.loc) && (host.body_position == LYING_DOWN))
@@ -192,7 +192,7 @@
 	if (overloaded)
 		return
 
-	for (var/datum/disease/advanced/disease as anything in host.diseases)
+	for (var/datum/disease/acute/disease as anything in host.diseases)
 		for (var/A in disease.antigen)
 			antibodies[A] = 100
 

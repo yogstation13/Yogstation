@@ -481,6 +481,21 @@
 	var/updates_new = 0
 	var/updates = 0
 
+/obj/machinery/disease2/incubator/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(on)
+		to_chat(user, span_warning("\The [src] is currently on! Please turn the machine off."))
+		return FALSE
+	return default_deconstruction_screwdriver(user, "incubatoru", "incubator", I)
+
+/obj/machinery/disease2/incubator/crowbar_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(on == 1)
+		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
+		return FALSE
+	return default_deconstruction_crowbar(I)
 #undef INCUBATOR_DISH_GROWTH
 #undef INCUBATOR_DISH_REAGENT
 #undef INCUBATOR_DISH_MAJOR

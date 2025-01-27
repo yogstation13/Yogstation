@@ -2,6 +2,7 @@
 	name = "Acute respiratory distress syndrome"
 	desc = "The virus causes shrinking of the host's lungs, causing severe asphyxiation. May also lead to brain damage in critical patients."
 	badness = EFFECT_DANGER_DEADLY
+	severity = 5
 	max_chance = 5
 	max_multiplier = 5
 	stage = 3

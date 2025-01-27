@@ -3,6 +3,7 @@
 	desc = "Makes the infected sneeze every so often, leaving some infected mucus on the floor."
 	stage = 1
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 
 /datum/symptom/sneeze/activate(mob/living/mob)
 	mob.emote("sneeze")

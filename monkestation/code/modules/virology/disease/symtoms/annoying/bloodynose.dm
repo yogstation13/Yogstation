@@ -3,6 +3,7 @@
 	desc = "Causes the infected's nasal pathways to hemorrhage, causing a nosebleed, potentially carrying the pathogen."
 	stage = 2
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 
 /datum/symptom/bloodynose/activate(mob/living/mob)
 	if (prob(30))

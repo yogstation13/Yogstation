@@ -3,6 +3,7 @@
 	desc = "Inhibits communication from the infected through spontaneous generation of a horse mask."
 	stage = 3
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 2
 
 /datum/symptom/horsethroat/activate(mob/living/carbon/mob)
 	if(ismouse(mob))

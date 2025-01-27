@@ -102,7 +102,7 @@ GLOBAL_DATUM(everyone_an_antag, /datum/everyone_is_an_antag_controller)
 						continue
 					if(!length(living.diseases))
 						continue
-					for(var/datum/disease/advanced/disease as anything in living.diseases)
+					for(var/datum/disease/acute/disease as anything in living.diseases)
 						disease.cure(target = living)
 
 		if("list_bombers")

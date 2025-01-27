@@ -3,6 +3,7 @@
 	desc = "Causes the infected to cough up blood."
 	stage = 2
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 3
 	var/active = 0
 
 /datum/symptom/cult_vomit/activate(mob/living/carbon/mob)

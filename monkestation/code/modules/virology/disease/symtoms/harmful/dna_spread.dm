@@ -36,7 +36,7 @@
 	old_dna.copy_dna(C.dna)
 	C.real_name = old_name
 
-/datum/symptom/dnaspread/Copy(datum/disease/advanced/disease)
+/datum/symptom/dnaspread/Copy(datum/disease/acute/disease)
 	var/datum/symptom/dnaspread/new_e = ..(disease)
 	new_e.original_name = original_name
 	new_e.saved_dna = saved_dna

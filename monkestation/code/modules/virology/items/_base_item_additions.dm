@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(infected_items, list())
 //Called by attack_hand(), transfers diseases between the mob and the item
 /obj/item/proc/disease_contact(mob/living/carbon/M, bodypart = null)
 	//first let's try to infect them with our viruses
-	for(var/datum/disease/advanced/V as anything in viruses)
+	for(var/datum/disease/acute/V as anything in viruses)
 		infection_attempt(M, V, bodypart)
 
 	if (!bodypart)//no bodypart specified? that should mean we're being held.
@@ -25,12 +25,12 @@ GLOBAL_LIST_INIT(infected_items, list())
 	if (contact_diseases?.len)
 		//if so are their hands protected?
 		var/block = M.check_contact_sterility(bodypart)
-		for (var/datum/disease/advanced/D in contact_diseases)
+		for (var/datum/disease/acute/D in contact_diseases)
 			if(!block)
 				infect_disease(D, notes="(Contact, from being touched by [M])")
 
 //Called by disease_contact(), trying to infect people who pick us up
-/obj/item/infection_attempt(mob/living/perp, datum/disease/advanced/D, bodypart = null)
+/obj/item/infection_attempt(mob/living/perp, datum/disease/acute/D, bodypart = null)
 	if (!istype(D))
 		return
 
@@ -45,13 +45,13 @@ GLOBAL_LIST_INIT(infected_items, list())
 		else if (bleeding && (D.spread_flags & DISEASE_SPREAD_BLOOD))//if we're covered with a blood-spreading disease, we may infect people with bleeding hands.
 			perp.infect_disease(D, notes="(Blood, from picking up \a [src])")
 
-/obj/item/infect_disease(datum/disease/advanced/disease, forced = FALSE, notes = "", decay = TRUE)
+/obj/item/infect_disease(datum/disease/acute/disease, forced = FALSE, notes = "", decay = TRUE)
 	if(!istype(disease))
 		return FALSE
 	if(!disease.spread_flags)
 		return FALSE
 	if(prob(disease.infectionchance) || forced)
-		var/datum/disease/advanced/D = disease.Copy()
+		var/datum/disease/acute/D = disease.Copy()
 		D.log += "<br />[ROUND_TIME()] Infected \a [src] [notes]"
 
 		GLOB.infected_items |= src
@@ -90,5 +90,5 @@ GLOBAL_LIST_INIT(infected_items, list())
 		return
 	var/list/blood_diseases = filter_disease_by_spread(infectee.diseases, required = DISEASE_SPREAD_BLOOD)
 	if(length(blood_diseases))
-		for(var/datum/disease/advanced/V as anything in blood_diseases)
+		for(var/datum/disease/acute/V as anything in blood_diseases)
 			infect_disease(V, TRUE, "(Blood, coming from [infectee])")

@@ -12,14 +12,14 @@
 		var/list/airborne_viruses = filter_disease_by_spread(diseases, required = DISEASE_SPREAD_AIRBORNE)
 		if (airborne_viruses && airborne_viruses.len > 0)
 			var/strength = 0
-			for (var/datum/disease/advanced/V as anything in airborne_viruses)
+			for (var/datum/disease/acute/V as anything in airborne_viruses)
 				strength += V.infectionchance
 			strength = round(strength/airborne_viruses.len)
 			while (strength > 0)//stronger viruses create more clouds at once
 				new /obj/effect/pathogen_cloud/core(get_turf(src), src, airborne_viruses)
 				strength -= 40
 
-/mob/living/infect_disease(datum/disease/advanced/disease, forced = FALSE, notes = "", decay = TRUE)
+/mob/living/infect_disease(datum/disease/acute/disease, forced = FALSE, notes = "", decay = TRUE)
 	if(!istype(disease))
 		return FALSE
 
@@ -29,7 +29,7 @@
 	if(!disease.spread_flags && !(disease.disease_flags & DISEASE_DORMANT))
 		return FALSE
 
-	for(var/datum/disease/advanced/D as anything in diseases)
+	for(var/datum/disease/acute/D as anything in diseases)
 		if("[disease.uniqueID]-[disease.subID]" == "[D.uniqueID]-[D.subID]") // child ids are for pathogenic mutations and aren't accounted for as thats fucked.
 			return FALSE
 
@@ -37,7 +37,7 @@
 		return FALSE
 
 	if(prob(disease.infectionchance) || forced)
-		var/datum/disease/advanced/D = disease.Copy()
+		var/datum/disease/acute/D = disease.Copy()
 		if (D.infectionchance > 5)
 			D.infectionchance = max(5, D.infectionchance - 5)//The virus gets weaker as it jumps from people to people
 
@@ -67,8 +67,8 @@
 /mob/dead/new_player/proc/DiseaseCarrierCheck(mob/living/carbon/human/H)
 	// 10% of players are joining the station with some minor disease if latejoined
 	if(prob(10))
-		var/virus_choice = pick(subtypesof(/datum/disease/advanced)- typesof(/datum/disease/advanced/premade))
-		var/datum/disease/advanced/D = new virus_choice
+		var/virus_choice = pick(WILD_ACUTE_DISEASES)
+		var/datum/disease/acute/D = new virus_choice
 
 		var/list/anti = list(
 			ANTIGEN_BLOOD	= 1,

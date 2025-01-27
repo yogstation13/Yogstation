@@ -54,7 +54,7 @@
 //Blocked is whether clothing prevented the spread of contact/blood
 /mob/living/proc/assume_contact_diseases(list/disease_list, atom/source, blocked=0, bleeding=0)
 	if (istype(disease_list) && disease_list.len > 0)
-		for(var/datum/disease/advanced/V as anything in disease_list)
+		for(var/datum/disease/acute/V as anything in disease_list)
 			if (!V)
 				message_admins("[key_name(src)] is trying to assume contact diseases from touching \a [source], but the disease_list contains an ID ([V.uniqueID]-[V.subID]) that isn't associated to an actual disease datum! Ping Dwasint about it please.")
 				return
@@ -81,13 +81,13 @@
 		for(var/obj/effect/decal/cleanable/C in T)
 			if (is_type_in_list(C,breathable_cleanable_types))
 				if(istype(C.diseases,/list) && C.diseases.len > 0)
-					for(var/datum/disease/advanced/V as anything in C.diseases)
+					for(var/datum/disease/acute/V as anything in C.diseases)
 						if(V.spread_flags & DISEASE_SPREAD_AIRBORNE)
 							infect_disease(V, notes="(Airborne, from [C])")
 		/*
 		for(var/obj/effect/rune/R in T)
 			if(istype(R.virus2,/list) && R.virus2.len > 0)
-				for(var/datum/disease/advanced/V as anything in R.diseases)
+				for(var/datum/disease/acute/V as anything in R.diseases)
 					if(V.spread_flags & DISEASE_SPREAD_AIRBORNE)
 						infect_disease(V, notes="(Airborne, from [R])")
 		*/
@@ -106,7 +106,7 @@
 			sanity++ //anything more than 10 and you aint getting air really
 			if (!cloud.sourceIsCarrier || cloud.source != src || cloud.modified)
 				if (Adjacent(cloud))
-					for (var/datum/disease/advanced/V in cloud.viruses)
+					for (var/datum/disease/acute/V in cloud.viruses)
 						//if (V.spread & SPREAD_AIRBORNE)	//Anima Syndrome allows for clouds of non-airborne viruses
 						infect_disease(V, notes="(Airborne, from a pathogenic cloud[cloud.source ? " created by [key_name(cloud.source)]" : ""])")
 
@@ -121,7 +121,7 @@
 /mob/living/proc/activate_diseases(seconds_per_tick)
 	if (length(diseases))
 		var/active_disease = pick(diseases)//only one disease will activate its effects at a time.
-		for (var/datum/disease/advanced/V  as anything in diseases)
+		for (var/datum/disease/acute/V  as anything in diseases)
 			if(istype(V))
 				V.activate(src, active_disease != V, seconds_per_tick)
 
@@ -135,7 +135,7 @@
 		if(immune_system?.strength > 1)
 			immune_system.strength = max(immune_system.strength - 0.01, 1)
 
-/mob/living/proc/try_contact_infect(datum/disease/advanced/D, zone = BODY_ZONE_EVERYTHING, note = "Try Contact Infect")
+/mob/living/proc/try_contact_infect(datum/disease/acute/D, zone = BODY_ZONE_EVERYTHING, note = "Try Contact Infect")
 	if(!(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN))
 		return
 	var/block = check_contact_sterility(zone)

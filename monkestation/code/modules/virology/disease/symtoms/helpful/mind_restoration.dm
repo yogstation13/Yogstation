@@ -4,7 +4,8 @@
 	stage = 3
 	max_multiplier = 3
 	badness = EFFECT_DANGER_HELPFUL
-
+	severity = 0
+	
 /datum/symptom/mind_restoration/activate(mob/living/carbon/mob)
 	if(!iscarbon(mob))
 		return

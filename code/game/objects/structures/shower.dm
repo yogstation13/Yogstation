@@ -248,7 +248,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/shower, (-16))
 	if(isitem(target))
 		var/obj/item/item = target
 		if(length(item.viruses))
-			for(var/datum/disease/advanced/D as anything in item.viruses)
+			for(var/datum/disease/acute/D as anything in item.viruses)
 				item.remove_disease(D)
 	if(isliving(target))
 		var/mob/living/living_target = target

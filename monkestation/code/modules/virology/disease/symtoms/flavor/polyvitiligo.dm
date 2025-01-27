@@ -4,6 +4,7 @@
 	stage = 3
 	max_multiplier = 6
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 
 /datum/symptom/polyvitiligo/activate(mob/living/carbon/mob)
 	if(!iscarbon(mob))

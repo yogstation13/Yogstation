@@ -4,7 +4,8 @@
 	stage = 3
 	restricted = TRUE
 	max_multiplier = 2
-
+	badness = EFFECT_DANGER_HINDRANCE
+	severity = 3
 
 /datum/symptom/bad_adrenaline/activate(mob/living/carbon/affected_mob)
 	switch(round(multiplier))
@@ -29,6 +30,7 @@
 	desc = "Attacks the infected's DNA, causing it to break down."
 	stage = 3
 	badness = EFFECT_DANGER_DEADLY
+	severity = 5
 	max_multiplier = 5
 	restricted = TRUE
 

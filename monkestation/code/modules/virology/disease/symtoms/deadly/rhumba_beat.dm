@@ -5,6 +5,7 @@
 	max_multiplier = 5
 	stage = 4
 	badness = EFFECT_DANGER_DEADLY
+	severity = 5
 
 /datum/symptom/rhumba_beat/activate(mob/living/carbon/affected_mob)
 	if(ismouse(affected_mob))

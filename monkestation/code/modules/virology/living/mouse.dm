@@ -10,7 +10,7 @@
 	immune_system = new(src)
 
 	if(prob(disease_chance) && diseased)
-		var/virus_choice = pick(subtypesof(/datum/disease/advanced)- typesof(/datum/disease/advanced/premade))
+		var/virus_choice = pick(WILD_ACUTE_DISEASES)
 		var/list/anti = list(
 			ANTIGEN_BLOOD	= 2,
 			ANTIGEN_COMMON	= 2,
@@ -25,7 +25,7 @@
 			EFFECT_DANGER_HARMFUL	= 2,
 			EFFECT_DANGER_DEADLY	= 2,
 		)
-		var/datum/disease/advanced/disease = new virus_choice
+		var/datum/disease/acute/disease = new virus_choice
 		disease.makerandom(list(50,90),list(10,100),anti,bad,src)
 		disease.spread_flags &= ~DISEASE_SPREAD_AIRBORNE
 		diseases = list()

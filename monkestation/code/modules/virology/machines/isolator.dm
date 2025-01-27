@@ -5,7 +5,7 @@
 	anchored = 1
 	icon = 'monkestation/code/modules/virology/icons/virology.dmi'
 	icon_state = "isolator"
-	var/datum/disease/advanced/isolated_disease = null
+	var/datum/disease/acute/isolated_disease = null
 	var/isolating = 0
 	var/beaker = null
 
@@ -49,7 +49,7 @@
 			return
 		var/list/virus = virus_copylist(Blood.data["viruses"])
 		var/choice = text2num(href_list["isolate"])
-		for (var/datum/disease/advanced/V as anything in virus)
+		for (var/datum/disease/acute/V as anything in virus)
 			if (V.uniqueID == choice)
 				isolated_disease = V
 				isolating = 40
@@ -90,7 +90,7 @@
 				if(length(G.data) && ("viruses" in G.data))
 					var/list/virus = G.data["viruses"]
 					passes = TRUE
-					for (var/datum/disease/advanced/V as anything in virus)
+					for (var/datum/disease/acute/V as anything in virus)
 						dat |= "<li>[G.name]: <A href='byond://?src=\ref[src];isolate=[V.uniqueID]'>Isolate pathogen #[V.uniqueID]</a></li>"
 			if(!passes)
 				dat += "<li><em>No pathogen</em></li>"

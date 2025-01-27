@@ -4,6 +4,7 @@
 	stage = 2
 	max_multiplier = 5
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 
 
 /datum/symptom/beard/activate(mob/living/mob)

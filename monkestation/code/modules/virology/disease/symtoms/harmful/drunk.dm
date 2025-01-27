@@ -3,6 +3,7 @@
 	desc = "Causes the infected to synthesize pure ethanol."
 	stage = 2
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 2
 	multiplier = 3
 	max_multiplier = 7
 

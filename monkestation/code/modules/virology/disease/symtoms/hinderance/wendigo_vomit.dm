@@ -3,6 +3,7 @@
 	desc = "Inflames the GI tract of the infected, causing relentless vomitting."
 	stage = 2
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 2
 	chance = 6
 	max_chance = 12
 

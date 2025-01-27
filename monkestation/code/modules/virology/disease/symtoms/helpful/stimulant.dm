@@ -3,6 +3,7 @@
 	desc = "Causes the infected to synthesize artificial adrenaline."
 	stage = 2
 	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
 	max_multiplier = 20
 
 /datum/symptom/stimulant/activate(mob/living/mob)

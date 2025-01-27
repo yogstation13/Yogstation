@@ -3,6 +3,7 @@
 	desc = "Causes the infected's sweat glands to go into overdrive."
 	stage = 3
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 2
 
 /datum/symptom/sweat/activate(mob/living/carbon/mob)
 	if(prob(30))

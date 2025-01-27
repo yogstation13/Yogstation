@@ -2,12 +2,12 @@
 	if(!istype(C) || !C.holder)
 		return 0
 
-	var/datum/disease/advanced/D = new /datum/disease/advanced()
+	var/datum/disease/acute/D = new /datum/disease/acute()
 	D.origin = "Badmin"
 
 	var/list/known_forms = list()
-	for (var/disease_type in subtypesof(/datum/disease/advanced))
-		var/datum/disease/advanced/d_type = disease_type
+	for (var/disease_type in subtypesof(/datum/disease/acute))
+		var/datum/disease/acute/d_type = disease_type
 		known_forms[initial(d_type.form)] = d_type
 
 	known_forms += "custom"
@@ -24,13 +24,13 @@
 
 	if (chosen_form == "infect with an already existing pathogen")
 		var/list/existing_pathogen = list()
-		for(var/datum/disease/advanced/dis as anything in GLOB.inspectable_diseases)
+		for(var/datum/disease/acute/dis as anything in GLOB.inspectable_diseases)
 			existing_pathogen += dis
 		var/chosen_pathogen = input(C, "Choose a pathogen", "Choose a pathogen") as null | anything in existing_pathogen
 		if (!chosen_pathogen)
 			qdel(D)
 			return
-		var/datum/disease/advanced/dis = chosen_pathogen
+		var/datum/disease/acute/dis = chosen_pathogen
 		D = dis.Copy()
 		D.origin = "[D.origin] (Badmin)"
 	else
@@ -52,7 +52,7 @@
 			//D.can_kill = something something a while loop but probably not worth the effort. If you need it for your bus code it yourself.
 		else
 			var/d_type = known_forms[chosen_form]
-			var/datum/disease/advanced/d_inst = new d_type
+			var/datum/disease/acute/d_inst = new d_type
 			D.form = chosen_form
 			D.max_stages = d_inst.max_stages
 			D.infectionchance = d_inst.infectionchance
@@ -229,7 +229,7 @@
 		var/infctd_items = 0
 		var/dishes = 0
 		for (var/mob/living/L in GLOB.mob_list)
-			for(var/datum/disease/advanced/D as anything in L.diseases)
+			for(var/datum/disease/acute/D as anything in L.diseases)
 				if (ID == "[D.uniqueID]-[D.subID]")
 					infctd_mobs++
 					if (L.stat == DEAD)
@@ -240,7 +240,7 @@
 					logs["[ID]"]["[L]"] = D.log
 
 		for (var/obj/item/I in GLOB.infected_items)
-			for(var/datum/disease/advanced/D as anything in I.viruses)
+			for(var/datum/disease/acute/D as anything in I.viruses)
 				if (ID == "[D.uniqueID]-[D.subID]")
 					infctd_items++
 					if(!length(logs["[ID]"]))
@@ -256,7 +256,7 @@
 					logs["[ID]"] += "[dish]"
 					logs["[ID]"]["[dish]"] = dish.contained_virus.log
 
-		var/datum/disease/advanced/D = GLOB.inspectable_diseases[ID]
+		var/datum/disease/acute/D = GLOB.inspectable_diseases[ID]
 		dat += {"<tr>
 			<td><a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_examine=["[D.uniqueID]"]-["[D.subID]"]'>[D.form] #["[D.uniqueID]"]-["[D.subID]"]</a></td>
 			<td>[D.origin]</td>

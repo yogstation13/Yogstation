@@ -4,6 +4,7 @@
 	encyclopedia = "Giving the infected a steady drip of honey in exchange of coughing up a bee every so often. The higher the symptom strength, the more honey is generated, and the more bees will be coughed up and more often as well. While Honey is a great healing reagent, it is also high on nutrients. Expect to become fat quickly.."
 	stage = 1
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 	max_multiplier = 4
 
 /datum/symptom/bee_vomit/activate(mob/living/mob)

@@ -5,7 +5,7 @@ GLOBAL_VAR_INIT(static_plague_team, null)
 	member_name = "plague rat"
 
 	var/disease_id = ""
-	var/datum/disease/advanced/bacteria/plague
+	var/datum/disease/acute/bacteria/plague
 	var/turf/invasion
 	var/list/hud_icons = list("plague-logo")
 	var/logo_state = "plague-logo"
@@ -48,6 +48,7 @@ GLOBAL_VAR_INIT(static_plague_team, null)
 		plague.speed = 2 //Takes about 100 seconds to advance to the next stage, max stage in 5 minutes
 
 		plague.makerandom(list(90,100),list(40,75),anti,bad,null)
+		plague.Refresh_Acute()
 		for(var/datum/symptom/e in plague.symptoms)
 			e.chance *= 2 //More likely to trigger symptoms per tick
 

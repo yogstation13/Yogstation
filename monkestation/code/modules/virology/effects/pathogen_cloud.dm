@@ -34,13 +34,13 @@ GLOBAL_LIST_INIT(science_goggles_wearers, list())
 
 	viruses = virus
 
-	for(var/datum/disease/advanced/D as anything in viruses)
+	for(var/datum/disease/acute/D as anything in viruses)
 		id_list += "[D.uniqueID]-[D.subID]"
 
 	if(!core)
 		var/obj/effect/pathogen_cloud/core/core = locate(/obj/effect/pathogen_cloud/core) in src.loc
 		if(get_turf(core) == get_turf(src))
-			for(var/datum/disease/advanced/V as anything in viruses)
+			for(var/datum/disease/acute/V as anything in viruses)
 				if("[V.uniqueID]-[V.subID]" in core.id_list)
 					continue
 				core.viruses |= V.Copy()
@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(science_goggles_wearers, list())
 		return
 
 	var/strength = 0
-	for (var/datum/disease/advanced/V as anything in viruses)
+	for (var/datum/disease/acute/V as anything in viruses)
 		strength += V.infectionchance
 	strength = round(strength/viruses.len)
 	var/list/possible_turfs = list()

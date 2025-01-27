@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 	var/growth = 0
 	var/info = ""
 	var/analysed = FALSE
-	var/datum/disease/advanced/contained_virus
+	var/datum/disease/acute/contained_virus
 	var/open = FALSE
 	var/cloud_delay = 8 SECONDS//similar to a mob's breathing
 	var/last_cloud_time = 0
@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 /obj/item/weapon/virusdish/random/New(loc)
 	..(loc)
 	if (loc)//because fuck you /datum/subsystem/supply_shuttle/Initialize()
-		var/virus_choice = pick(subtypesof(/datum/disease/advanced)- typesof(/datum/disease/advanced/premade))
+		var/virus_choice = pick(WILD_ACUTE_DISEASES)
 		contained_virus = new virus_choice
 		var/list/anti = list(
 			ANTIGEN_BLOOD	= 2,
@@ -197,6 +197,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 			EFFECT_DANGER_DEADLY	= 0,
 			)
 		contained_virus.makerandom(list(50,90),list(10,100),anti,bad,src)
+		contained_virus.Refresh_Acute()
 		growth = rand(5, 50)
 		name = "growth dish (Unknown [contained_virus.form])"
 		update_appearance()

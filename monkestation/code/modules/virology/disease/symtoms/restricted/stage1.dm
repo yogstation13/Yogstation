@@ -5,6 +5,7 @@
 	max_count = 10
 	stage = 1
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 3
 	max_chance = 10
 	var/new_form = /mob/living/carbon/human
 	var/bantype
@@ -107,10 +108,11 @@
 	desc = "Causes the host to suffer from severe anxiety"
 	stage = 1
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 3
 	restricted = TRUE
 	max_multiplier = 4
 
-/datum/symptom/anxiety/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/anxiety/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 
 	switch(round(multiplier, 1))
 		if(2) //also changes say, see say.dm
@@ -143,12 +145,13 @@
 	desc = "You ate it wrong, and now you will die. Cure: Anacea"
 	stage = 1
 	badness = EFFECT_DANGER_DEADLY
+	severity = 5
 	restricted = TRUE
 	max_multiplier = 3
 	chance = 25
 	max_chance = 25
 
-/datum/symptom/death_sandwich/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/death_sandwich/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	switch(round(multiplier))
 		if(1)
 			if(prob(12))

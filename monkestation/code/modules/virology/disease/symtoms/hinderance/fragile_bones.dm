@@ -3,6 +3,7 @@
 	desc = "Attacks the infected's body structure, making it more fragile."
 	stage = 4
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 3
 
 /datum/symptom/bones/activate(mob/living/carbon/human/victim)
 	if(!ishuman(victim))

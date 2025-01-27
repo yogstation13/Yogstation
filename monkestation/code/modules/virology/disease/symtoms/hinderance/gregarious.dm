@@ -3,6 +3,7 @@
 	desc = "Infests the social structures of the infected's brain, causing them to feel better in crowds of other potential victims, and punishing them for being alone."
 	stage = 4
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 3
 	max_chance = 25
 	max_multiplier = 4
 

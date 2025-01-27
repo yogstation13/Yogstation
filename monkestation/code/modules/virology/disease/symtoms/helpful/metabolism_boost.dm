@@ -5,7 +5,8 @@
 	max_multiplier = 10
 	stage = 3
 	badness = EFFECT_DANGER_HELPFUL
-
+	severity = 0
+	
 /datum/symptom/metabolism/activate(mob/living/carbon/mob)
 	if(!iscarbon(mob))
 		return

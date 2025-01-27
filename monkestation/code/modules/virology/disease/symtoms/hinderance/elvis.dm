@@ -3,6 +3,7 @@
 	desc = "Makes the infected the king of rock and roll."
 	stage = 3
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 2
 
 /datum/symptom/elvis/first_activate(mob/living/carbon/mob)
 	if(ismouse(mob))

@@ -3,6 +3,7 @@
 	desc = "Causes the infected to glow."
 	stage = 2
 	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
 	multiplier = 4
 	max_multiplier = 10
 	chance = 10

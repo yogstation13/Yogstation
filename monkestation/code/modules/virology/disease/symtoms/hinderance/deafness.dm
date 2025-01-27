@@ -5,6 +5,7 @@
 	stage = 4
 	max_multiplier = 5
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 3
 
 /datum/symptom/deaf/activate(mob/living/carbon/mob)
 	var/obj/item/organ/internal/ears/ears = mob.get_organ_slot(ORGAN_SLOT_EARS)

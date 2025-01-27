@@ -2,6 +2,7 @@
 	name = "Dysplasia Syndrome"
 	desc = "Rapidly restructures the body of the infected, causing them to shrink in size."
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 	stage = 2
 	var/activated = 0
 

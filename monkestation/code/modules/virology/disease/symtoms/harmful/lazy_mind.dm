@@ -3,6 +3,7 @@
 	desc = "Rots the infected's brain."
 	stage = 3
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 4
 
 /datum/symptom/mind/activate(mob/living/carbon/mob)
 	if(istype(mob, /mob/living/carbon/human))

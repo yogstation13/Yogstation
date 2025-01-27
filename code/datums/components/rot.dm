@@ -152,7 +152,7 @@
 		return
 
 	//We're running just under the "worst disease", since we don't want these to be too strong
-	var/virus_choice = pick(subtypesof(/datum/disease/advanced)- typesof(/datum/disease/advanced/premade))
+	var/virus_choice = pick(WILD_ACUTE_DISEASES)
 	var/list/anti = list(
 		ANTIGEN_BLOOD	= 2,
 		ANTIGEN_COMMON	= 2,
@@ -167,7 +167,7 @@
 		EFFECT_DANGER_HARMFUL	= 0,
 		EFFECT_DANGER_DEADLY	= 0,
 	)
-	var/datum/disease/advanced/disease = new virus_choice
+	var/datum/disease/acute/disease = new virus_choice
 	disease.makerandom(list(20,50),list(30,50),anti,bad,src)
 
 	var/note = "Rot Infection Contact [key_name(react_to)]"

@@ -4,6 +4,7 @@
 	desc = "Makes the infected feel more drowsy."
 	stage = 2
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 3
 	multiplier = 5
 	max_multiplier = 10
 

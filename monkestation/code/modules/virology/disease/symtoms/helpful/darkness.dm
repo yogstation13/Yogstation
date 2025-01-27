@@ -4,9 +4,10 @@
 	max_multiplier = 8
 	stage = 3
 	max_chance = 33
+	severity = 0
 	var/passive_message = span_notice("You feel tingling on your skin as light passes over it.")
 
-/datum/symptom/darkness/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/darkness/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	. = ..()
 	switch(round(multiplier))
 		if(4, 5, 6, 7, 8)

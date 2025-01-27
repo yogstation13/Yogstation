@@ -6,6 +6,7 @@
 	stage = 3
 	max_multiplier = 4
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 2
 
 /datum/symptom/pthroat/activate(mob/living/carbon/mob)
 	if(ismouse(mob))

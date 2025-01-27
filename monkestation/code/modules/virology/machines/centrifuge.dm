@@ -380,7 +380,7 @@
 			var/list/blood_viruses = blood.data["viruses"]
 			if (istype(blood_viruses) && blood_viruses.len > 0)
 				var/list/pathogen_list = list()
-				for (var/datum/disease/advanced/D as anything  in blood_viruses)
+				for (var/datum/disease/acute/D as anything  in blood_viruses)
 					if(!istype(D))
 						continue
 					var/pathogen_name = "Unknown [D.form]"
@@ -392,7 +392,7 @@
 				user.set_machine()
 				if (!choice)
 					return result
-				var/datum/disease/advanced/target = pathogen_list[choice]
+				var/datum/disease/acute/target = pathogen_list[choice]
 
 				result[1] = "dish"
 				result[2] = "Unknown [target.form]"
@@ -448,7 +448,7 @@
 
 	return result
 
-/obj/machinery/disease2/centrifuge/proc/print_dish(datum/disease/advanced/D)
+/obj/machinery/disease2/centrifuge/proc/print_dish(datum/disease/acute/D)
 	special = CENTRIFUGE_LIGHTSPECIAL_BLINKING
 	/*
 	anim(target = src, a_icon = icon, flick_anim = "centrifuge_print", sleeptime = 10)
@@ -486,6 +486,21 @@
 /obj/machinery/disease2/centrifuge/fullupgrade
 	circuit = /obj/item/circuitboard/machine/centrifuge/fullupgrade
 
+/obj/machinery/disease2/centrifuge/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(on)
+		to_chat(user, span_warning("\The [src] is currently on! Please turn the machine off."))
+		return FALSE
+	return default_deconstruction_screwdriver(user, "centrifugeu", "centrifuge", I)
+
+/obj/machinery/disease2/centrifuge/crowbar_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(on == 1)
+		to_chat(user, span_warning("\The [src] is currently processing! Please wait until completion."))
+		return FALSE
+	return default_deconstruction_crowbar(I)
 #undef CENTRIFUGE_LIGHTSPECIAL_OFF
 #undef CENTRIFUGE_LIGHTSPECIAL_BLINKING
 #undef CENTRIFUGE_LIGHTSPECIAL_ON

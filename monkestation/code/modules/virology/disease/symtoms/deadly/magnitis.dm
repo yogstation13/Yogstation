@@ -3,6 +3,7 @@
 	desc = "This disease disrupts the magnetic field of the body, making it act as if a powerful magnet."
 	stage = 4
 	badness = EFFECT_DANGER_DEADLY
+	severity = 4
 	chance = 5
 	max_chance = 20
 

@@ -3,6 +3,7 @@
 	desc = "Causes the infected to oversynthesize coagulant, as well as rapidly restore lost blood."
 	stage = 3
 	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
 
 /datum/symptom/thick_blood/activate(mob/living/carbon/mob)
 	var/mob/living/carbon/human/victim = mob

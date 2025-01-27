@@ -11,12 +11,12 @@
 	for (var/mob/living/L in GLOB.mob_list)
 		if(!length(L.diseases))
 			continue
-		for(var/datum/disease/advanced/D as anything in L.diseases)
+		for(var/datum/disease/acute/D as anything in L.diseases)
 			if (ID == "[D.uniqueID]-[D.subID]")
 				return
 
 	for (var/obj/item/I in GLOB.infected_items)
-		for(var/datum/disease/advanced/D as anything in I.viruses)
+		for(var/datum/disease/acute/D as anything in I.viruses)
 			if (ID == "[D.uniqueID]-[D.subID]")
 				return
 
@@ -31,17 +31,17 @@
 	//so we don't clog up the Diseases Panel with irrelevant mutations
 	GLOB.inspectable_diseases -= ID
 
-/datum/disease/advanced/vv_get_dropdown()
+/datum/disease/acute/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("","------")
 	VV_DROPDOWN_OPTION(VV_HK_VIEW_DISEASE_DATA, "View Disease Data")
 
-/datum/disease/advanced/vv_do_topic(list/href_list)
+/datum/disease/acute/vv_do_topic(list/href_list)
 	. = ..()
 	if(href_list[VV_HK_VIEW_DISEASE_DATA])
 		create_disease_info_pane(usr)
 
-/datum/disease/advanced/proc/create_disease_info_pane(mob/user)
+/datum/disease/acute/proc/create_disease_info_pane(mob/user)
 	var/datum/browser/popup = new(user, "\ref[src]", "GNAv3 [form] #[uniqueID]-[subID]", 600, 500, src)
 	var/content = get_info()
 	content += "<BR><b>LOGS</b></BR>"

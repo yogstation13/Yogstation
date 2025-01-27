@@ -1,5 +1,5 @@
 // -- Shock from too much pain. --
-/datum/disease/advanced/premade/shock
+/datum/disease/acute/premade/shock
 	form = "Condition"
 	name = "Shock"
 	spread_text = "Neurogenic" // Only model pain shock
@@ -22,7 +22,7 @@
 	/// How many conditions do we need to not get a heart attack?
 	var/conditions_required_to_maintain = 3
 
-/datum/disease/advanced/premade/shock/after_add()
+/datum/disease/acute/premade/shock/after_add()
 	affected_mob.apply_status_effect(/datum/status_effect/low_blood_pressure)
 	affected_mob.set_pain_mod(type, 1.2)
 	antigen = null
@@ -32,7 +32,7 @@
  *
  * returns the total number of conditions we fulfill.
  */
-/datum/disease/advanced/premade/shock/proc/check_cure_conditions()
+/datum/disease/acute/premade/shock/proc/check_cure_conditions()
 	if(!ishuman(affected_mob))
 		return TRUE
 	var/mob/living/carbon/human = affected_mob
@@ -85,12 +85,12 @@
 
 	return conditions_fulfilled
 
-/datum/disease/advanced/premade/shock/cure(add_resistance, mob/living/carbon/target)
+/datum/disease/acute/premade/shock/cure(add_resistance, mob/living/carbon/target)
 	affected_mob.remove_status_effect(/datum/status_effect/low_blood_pressure)
 	affected_mob.unset_pain_mod(type)
 	return ..()
 
-/datum/disease/advanced/premade/shock/activate(seconds_per_tick, times_fired)
+/datum/disease/acute/premade/shock/activate(seconds_per_tick, times_fired)
 	. = ..()
 	if(!ishuman(affected_mob))
 		return

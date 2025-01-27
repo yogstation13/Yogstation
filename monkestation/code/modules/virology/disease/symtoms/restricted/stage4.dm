@@ -6,6 +6,7 @@
 	chance = 6
 	var/sound = FALSE
 	badness = EFFECT_DANGER_DEADLY
+	severity = 5
 
 /datum/symptom/heart_failure/activate(mob/living/carbon/affected_mob)
 	. = ..()
@@ -61,6 +62,7 @@
 	stage = 4
 	max_multiplier = 10
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 3
 	COOLDOWN_DECLARE(launch_cooldown)
 
 /datum/symptom/catapult_sneeze/activate(mob/living/mob)
@@ -93,6 +95,8 @@
 	restricted = TRUE
 	max_multiplier = 5
 	stage = 4
+	badness = EFFECT_DANGER_DEADLY
+	badness = 6
 
 /datum/symptom/fungal_tb/activate(mob/living/affected_mob)
 	if(prob(10))

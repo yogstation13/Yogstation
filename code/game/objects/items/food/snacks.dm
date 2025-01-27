@@ -42,7 +42,7 @@
 
 /obj/item/food/candy/bronx/proc/after_eat(mob/living/eater)
 	if(ishuman(eater))
-		var/datum/disease/advanced/parasite/disease = new
+		var/datum/disease/acute/parasite/disease = new
 		var/list/anti = list(
 			ANTIGEN_BLOOD	= 1,
 			ANTIGEN_COMMON	= 1,

@@ -2,6 +2,7 @@
 	name = "Eldritch Mind Syndrome"
 	desc = "UNKNOWN"
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 	stage = 3
 
 

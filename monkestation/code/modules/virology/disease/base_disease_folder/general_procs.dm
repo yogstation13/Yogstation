@@ -3,7 +3,7 @@
 		return list()
 
 	var/list/viable = list()
-	for(var/datum/disease/advanced/disease as anything in diseases)
+	for(var/datum/disease/acute/disease as anything in diseases)
 		if(!(disease.spread_flags & required))
 			continue
 		viable += disease
@@ -13,7 +13,7 @@
 	if(!length(list))
 		return list()
 	var/list/L = list()
-	for(var/datum/disease/advanced/D as anything in list)
+	for(var/datum/disease/acute/D as anything in list)
 		L += D.Copy()
 	return L
 

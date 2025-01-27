@@ -6,6 +6,7 @@
 	max_multiplier = 4
 	stage = 2
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 3
 
 /datum/symptom/blindness/activate(mob/living/carbon/mob)
 	if(!iscarbon(mob))

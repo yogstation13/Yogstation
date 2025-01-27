@@ -21,7 +21,7 @@
 	greyscale_colors = CIRCUIT_COLOR_MEDICAL
 	build_path = /obj/machinery/disease2/incubator
 	req_components = list(
-		/datum/stock_part/scanning_module = 2,
+		/datum/stock_part/scanning_module = 4,
 		/datum/stock_part/matter_bin = 1,
 		/datum/stock_part/micro_laser = 2,
 	)

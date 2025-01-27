@@ -1,3 +1,4 @@
+/*
 /datum/symptom/spiky_skin
 	name = "Porokeratosis Acanthus"
 	desc = "Causes the infected to generate keratin spines along their skin."
@@ -54,3 +55,4 @@
 				victim.apply_damage(multiplier)
 	var/mob/attacker = touched
 	log_attack("[attacker] damaged [target] with keratin spikes")
+*/

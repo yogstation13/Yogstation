@@ -6,6 +6,7 @@
 	max_multiplier = 4
 	multiplier = 1
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 
 /datum/symptom/fridge/activate(mob/living/mob)
 	to_chat(mob, span_warning("[pick("You feel cold.", "You shiver.")]"))

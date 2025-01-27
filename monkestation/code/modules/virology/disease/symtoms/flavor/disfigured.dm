@@ -3,6 +3,7 @@
 	desc = "The virus liquefies facial muscles, disfiguring the host."
 	max_count = 1
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 	stage = 2
 
 /datum/symptom/disfiguration/activate(mob/living/carbon/mob)

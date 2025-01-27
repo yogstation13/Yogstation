@@ -4,6 +4,8 @@
 	stage = 4
 	max_count = 1
 	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
+	
 	chance = 10
 	max_chance = 25
 

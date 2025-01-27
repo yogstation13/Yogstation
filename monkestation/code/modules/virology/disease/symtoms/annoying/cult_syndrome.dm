@@ -3,6 +3,7 @@
 	desc = "UNKNOWN"
 	stage = 1
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 	max_multiplier = 2.5
 	var/list/rune_words_rune = list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri")
 

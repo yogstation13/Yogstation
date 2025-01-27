@@ -7,6 +7,7 @@
 	max_chance = 50
 	multiplier = 5
 	max_multiplier = 10
+	severity = 0
 
 /datum/symptom/damage_converter/activate(mob/living/carbon/mob)
 	if(HAS_TRAIT(mob, TRAIT_TOXINLOVER) || HAS_TRAIT(mob, TRAIT_TOXIMMUNE))

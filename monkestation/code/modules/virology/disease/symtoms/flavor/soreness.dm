@@ -5,6 +5,7 @@
 	chance = 5
 	max_chance = 30
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 
 /datum/symptom/soreness/activate(mob/living/mob)
 	to_chat(mob, span_notice("You feel a little sore."))

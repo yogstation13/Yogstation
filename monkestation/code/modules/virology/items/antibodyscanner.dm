@@ -39,7 +39,8 @@
 					antigens_that_matter += antibody
 					continue
 				if (length(L.diseases))
-					for (var/datum/disease/advanced/D as anything in L.diseases)
+					for (var/datum/disease/acute/D as anything in L.diseases)
+						D.Refresh_Acute()
 						var/ID = "[D.uniqueID]-[D.subID]"
 						if(ID in GLOB.virusDB)
 							if (antibody in D.antigen)
@@ -78,7 +79,7 @@
 			i++
 
 	if (length(L.diseases))
-		for (var/datum/disease/advanced/D as anything in L.diseases)
+		for (var/datum/disease/acute/D as anything in L.diseases)
 			var/ID = "[D.uniqueID]-[D.subID]"
 			scan.DrawBox("#FF0000",6,6+D.strength*3,display_width-5,6+D.strength*3)
 			if(ID in GLOB.virusDB)
@@ -111,7 +112,7 @@
 	info += "</table>"
 
 	if (length(L.diseases))
-		for (var/datum/disease/advanced/D as anything in L.diseases)
+		for (var/datum/disease/acute/D as anything in L.diseases)
 			var/ID = "[D.uniqueID]-[D.subID]"
 			if(ID in GLOB.virusDB)
 				var/datum/data/record/V = GLOB.virusDB[ID]

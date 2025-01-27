@@ -5,12 +5,14 @@
 	stage = 1
 	max_multiplier = 5
 	max_chance = 45
+	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
 
 	var/passive_message = span_notice("Your skin feels oddly dry...")
 	var/absorption_coeff = 1
 
 
-/datum/symptom/water_heal/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/water_heal/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	. = ..()
 	var/effectiveness = CanHeal(mob)
 	if(!effectiveness)

@@ -4,6 +4,7 @@
 	stage = 2
 	max_multiplier = 3
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 2
 
 /datum/symptom/famine/activate(mob/living/mob)
 	if(ishuman(mob))

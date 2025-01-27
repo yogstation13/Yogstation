@@ -3,6 +3,7 @@
 	desc = "Causes the infected to oversynthesize stem cells engineered towards organ generation, causing damage to the host's organs in the process. Said generated organs are expelled from the body upon completion."
 	stage = 3
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 3
 	COOLDOWN_DECLARE(organ_cooldown)
 
 /datum/symptom/teratoma/activate(mob/living/carbon/mob)

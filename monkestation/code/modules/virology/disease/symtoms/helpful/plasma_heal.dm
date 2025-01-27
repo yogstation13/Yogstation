@@ -18,11 +18,13 @@
 	stage = 1
 	max_multiplier = 5
 	max_chance = 45
-
+	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
+	
 	var/passive_message = span_notice("You feel an odd attraction to plasma.")
 	var/temp_rate = 1
 
-/datum/symptom/plasma_heal/first_activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/plasma_heal/first_activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	. = ..()
 	if(!HAS_TRAIT(mob, TRAIT_PLASMA_LOVER_METABOLISM))
 		to_chat(mob, span_notice("You suddenly love plasma."))
@@ -32,7 +34,7 @@
 	. = ..()
 	REMOVE_TRAIT(mob, TRAIT_PLASMA_LOVER_METABOLISM, type)
 
-/datum/symptom/plasma_heal/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/plasma_heal/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	. = ..()
 	var/effectiveness = CanHeal(mob)
 	if(!effectiveness)

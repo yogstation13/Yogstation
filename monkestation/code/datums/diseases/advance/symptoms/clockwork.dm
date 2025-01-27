@@ -1,4 +1,4 @@
-/datum/symptom/robotic_adaptation
+/*/datum/symptom/robotic_adaptation
 	name = "Biometallic Replication"
 	desc = "The virus can manipulate metal and silicate compounds, becoming able to infect robotic beings. The virus also provides a suitable substrate for nanites in otherwise inhospitable hosts"
 	illness = "Robotic evolution"
@@ -220,3 +220,4 @@
 
 /datum/symptom/robotic_adaptation/OnRemove(datum/disease/advance/advanced_disease)
 	advanced_disease.infectable_biotypes -= MOB_ROBOTIC
+*/

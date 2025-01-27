@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(pathogen_clouds)
 			//If we exist ontop of a core transfer viruses and die unless parent this means something moved back.
 			//This should prevent mobs breathing in hundreds of clouds at once
 			for(var/obj/effect/pathogen_cloud/core/core in cloud.loc)
-				for(var/datum/disease/advanced/V as anything in cloud.viruses)
+				for(var/datum/disease/acute/V as anything in cloud.viruses)
 					if("[V.uniqueID]-[V.subID]" in core.id_list)
 						continue
 					core.viruses |= V.Copy()
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(pathogen_clouds)
 					if(other_C == core)
 						return
 					if (!other_C.moving)
-						for(var/datum/disease/advanced/V as anything in other_C.viruses)
+						for(var/datum/disease/acute/V as anything in other_C.viruses)
 							if("[V.uniqueID]-[V.subID]" in core.id_list)
 								continue
 							core.viruses |= V.Copy()

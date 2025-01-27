@@ -3,6 +3,7 @@
 	desc = "Causes the infected to internally synthesize oil and other inorganic material."
 	stage = 2
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 3
 
 /datum/symptom/cyborg_vomit/activate(mob/living/mob)
 	if(HAS_TRAIT(mob, TRAIT_NOHUNGER) || !mob.has_mouth())

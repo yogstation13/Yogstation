@@ -14,7 +14,7 @@
 		say_text += "SUBJECT HAS MULTIPLE VIRUSES."
 	else
 		var/line = " DISEASE IS IN DATABASE:"
-		for(var/datum/disease/advanced/disease as anything in living.diseases)
+		for(var/datum/disease/acute/disease as anything in living.diseases)
 			if("[disease.uniqueID]-[disease.subID]" in  GLOB.virusDB)
 				var/datum/data/record/target = GLOB.virusDB["[disease.uniqueID]-[disease.subID]"]
 				line += " [target.name]"

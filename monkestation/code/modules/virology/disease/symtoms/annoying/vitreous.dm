@@ -6,6 +6,7 @@
 	max_chance = 75
 	max_multiplier = 2
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 
 /datum/symptom/vitreous/activate(mob/living/carbon/human/victim)
 	victim.Shake(3, 3, 3 SECONDS)

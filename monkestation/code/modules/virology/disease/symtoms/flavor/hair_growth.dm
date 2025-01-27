@@ -3,6 +3,7 @@
 	desc = "Causes rapid hairloss in the infected."
 	stage = 2
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 	multiplier = 1
 	max_multiplier = 5
 

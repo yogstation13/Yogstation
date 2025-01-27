@@ -4,12 +4,13 @@
 	max_count = 1
 	stage = 4
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 	var/biotypes = MOB_MINERAL | MOB_ROBOTIC
 
-/datum/symptom/adaptation/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/adaptation/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	disease.infectable_biotypes |= biotypes
 
-/datum/symptom/adaptation/deactivate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/adaptation/deactivate(mob/living/carbon/mob, datum/disease/acute/disease)
 	disease.infectable_biotypes &= ~(biotypes)
 
 /datum/symptom/adaptation/undead
@@ -17,9 +18,9 @@
 	desc = "The virus is able to thrive and act even within dead hosts."
 	biotypes = MOB_UNDEAD
 
-/datum/symptom/adaptation/undead/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/adaptation/undead/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	.=..()
 	disease.process_dead = TRUE
 
-/datum/symptom/adaptation/undead/deactivate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/adaptation/undead/deactivate(mob/living/carbon/mob, datum/disease/acute/disease)
 	.=..()

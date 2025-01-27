@@ -4,6 +4,7 @@
 	max_multiplier = 4
 	stage = 4
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 3
 
 /datum/symptom/retrovirus/activate(mob/living/carbon/affected_mob)
 	if(!iscarbon(affected_mob))

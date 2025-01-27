@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(disease_hivemind_users, list())
 	stage = 3
 	max_count = 1
 	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
 
 /datum/symptom/telepathic/first_activate(mob/living/carbon/mob)
 	GLOB.disease_hivemind_users |= mob

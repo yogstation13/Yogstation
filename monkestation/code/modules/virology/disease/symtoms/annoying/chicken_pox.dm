@@ -3,6 +3,7 @@
 	desc = "Causes the infected to begin coughing up eggs of the poultry variety."
 	stage = 3
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 	var/eggspawn = /obj/item/food/egg
 
 /datum/symptom/chickenpox/activate(mob/living/carbon/mob)

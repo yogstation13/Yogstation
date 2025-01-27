@@ -6,6 +6,7 @@
 	badness = EFFECT_DANGER_HINDRANCE
 	max_chance = 20
 	stage = 2
+	severity = 2
 
 /datum/symptom/choking/activate(mob/living/carbon/mob)
 	mob.emote("gasp")

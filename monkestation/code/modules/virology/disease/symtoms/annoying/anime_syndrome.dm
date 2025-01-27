@@ -6,6 +6,7 @@
 	max_chance = 20
 	max_multiplier = 4
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 3
 	/// The affected mob's old hair color, so it can be restored upon deactivation.
 	var/old_haircolor = ""
 	/// A weakref to the katana given by the symptom, so it can be destroyed upon deactivation.

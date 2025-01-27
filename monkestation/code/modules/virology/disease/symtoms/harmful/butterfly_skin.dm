@@ -1,9 +1,11 @@
+/*
 /datum/symptom/butterfly_skin
 	name = "Epidermolysis Bullosa"
 	desc = "Inhibits the strength of the infected's skin, causing it to tear on contact."
 	stage = 3
 	max_count = 1
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 3
 	var/skip = FALSE
 
 /datum/symptom/butterfly_skin/activate(mob/living/carbon/mob)
@@ -36,3 +38,4 @@
 				to_chat(mob, span_warning("As \the [toucher] [touch_type == DISEASE_BUMP ? "bumps into" : "touches"] you, some of your skin shears off!"))
 				to_chat(toucher, span_danger("As you [touch_type == DISEASE_BUMP ? "bump into" : "touch"] \the [mob], some of \his skin shears off!"))
 				mob.adjustBruteLoss(10)
+*/

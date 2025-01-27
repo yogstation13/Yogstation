@@ -130,5 +130,5 @@
 		var/block = living.check_contact_sterility(BODY_ZONE_EVERYTHING)
 		var/list/contact = filter_disease_by_spread(diseases, required = DISEASE_SPREAD_CONTACT_SKIN)
 		if(length(contact) && !block)
-			for(var/datum/disease/advanced/V as anything in contact)
+			for(var/datum/disease/acute/V as anything in contact)
 				living.try_contact_infect(V, note="(Skin Contact - (Infective Component), coming from [src.parent])")

@@ -3,6 +3,7 @@
 	desc = "Attacks the infected's ability to differentiate left and right."
 	stage = 3
 	badness = EFFECT_DANGER_HINDRANCE
+	severity = 3
 	max_multiplier = 5
 	symptom_delay_min = 1
 	symptom_delay_max = 5

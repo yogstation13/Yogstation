@@ -3,6 +3,7 @@
 	desc = "Causes the infected to synthesize a wafer thin mint."
 	stage = 4
 	badness = EFFECT_DANGER_HARMFUL
+	severity = 2
 
 /datum/symptom/minttoxin/activate(mob/living/carbon/mob)
 	if(istype(mob) && mob.reagents?.get_reagent_amount(/datum/reagent/consumable/mintextract) < 5)

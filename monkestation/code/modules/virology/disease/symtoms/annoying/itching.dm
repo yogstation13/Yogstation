@@ -3,6 +3,7 @@
 	desc = "Makes you Itch!"
 	stage = 1
 	badness = EFFECT_DANGER_ANNOYING
+	severity = 2
 	var/scratch = FALSE
 	///emote cooldowns
 	COOLDOWN_DECLARE(itching_cooldown)

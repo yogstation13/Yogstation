@@ -48,7 +48,7 @@
 		return TRUE
 	return FALSE
 
-/datum/symptom/proc/run_effect(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/proc/run_effect(mob/living/carbon/mob, datum/disease/acute/disease)
 	if(isnull(mob))
 		CRASH("run_effect called without a valid mob!")
 	if(count < 1)
@@ -58,14 +58,14 @@
 	count += 1
 
 ///this runs the first time its activated
-/datum/symptom/proc/first_activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/proc/first_activate(mob/living/carbon/mob, datum/disease/acute/disease)
 
 // The actual guts of the effect. Has a prob(chance)% to get called per tick.
-/datum/symptom/proc/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/proc/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 
 // If activation makes any permanent changes to the effect, this is where you undo them.
 // Will not get called if the virus has never been activated.
-/datum/symptom/proc/deactivate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/proc/deactivate(mob/living/carbon/mob, datum/disease/acute/disease)
 
 /datum/symptom/proc/on_touch(mob/living/carbon/mob, toucher, touched, touch_type)
 	// Called when the sufferer of the symptom bumps, is bumped, or is touched by hand.
@@ -77,7 +77,7 @@
 /datum/symptom/proc/on_speech(mob/living/mob)
 
 
-/datum/symptom/proc/disable_effect(mob/living/mob, datum/disease/advanced/disease)
+/datum/symptom/proc/disable_effect(mob/living/mob, datum/disease/acute/disease)
 	if (count > 0)
 		deactivate(mob, disease)
 

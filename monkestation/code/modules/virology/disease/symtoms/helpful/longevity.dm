@@ -3,6 +3,7 @@
 	desc = "Grants functional immortality to the infected so long as the symptom is active. Heals broken bones and healing external damage. Creates a backlash if cured."
 	stage = 4
 	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
 	var/total_healed = 0
 
 /datum/symptom/immortal/activate(mob/living/carbon/mob)

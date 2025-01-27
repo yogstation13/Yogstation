@@ -4,12 +4,14 @@
 	max_multiplier = 15
 	max_chance = 100
 	stage = 3
+	badness = EFFECT_DANGER_HELPFUL
+	severity = 0
 
 	var/passive_message = span_notice("The pain from your wounds makes you feel oddly sleepy...")
 	var/added_to_mob = FALSE
 	var/active_coma = FALSE //to prevent multiple coma procs
 
-/datum/symptom/coma/activate(mob/living/carbon/mob, datum/disease/advanced/disease)
+/datum/symptom/coma/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	. = ..()
 	if(!added_to_mob && max_multiplier >= 12)
 		added_to_mob = TRUE
