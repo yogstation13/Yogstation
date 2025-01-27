@@ -29,3 +29,10 @@
 		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
 		/datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 1.5,
 	)
+
+/obj/item/gps/medical
+	desc = "A variention on the standard GPS Model, purposed for finding signals of those who have been lost. This one is in blue!"
+	icon = 'monkestation/icons/obj/devices/tracker.dmi'
+	icon_state = "gps-m"
+	gpstag = "PARA0"
+
