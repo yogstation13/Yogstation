@@ -725,3 +725,7 @@
 /datum/sprite_accessory/hair/monke/upwards
 	name = "Upwards"
 	icon_state = "hair_upwards"
+
+/datum/sprite_accessory/hair/monke/tied_flowy
+	name = "Tied Flowy"
+	icon_state = "hair_tied_flowy"
