@@ -37,7 +37,7 @@
 	loadout_tabs += list(list("name" = "Accessory", "title" = "Uniform Accessory Slot Items", "contents" = list_to_data(GLOB.loadout_accessory)))
 	loadout_tabs += list(list("name" = "Inhand", "title" = "In-hand Items", "contents" = list_to_data(GLOB.loadout_inhand_items)))
 	loadout_tabs += list(list("name" = "Toys", "title" = "Toys! ([MAX_ALLOWED_MISC_ITEMS] max)", "contents" = list_to_data(GLOB.loadout_toys)))
-	loadout_tabs += list(list("name" = "Plushies", "title" = "Adorable little plushies! ([MAX_ALLOWED_MISC_ITEMS] max)", "contents" = list_to_data(GLOB.loadout_plushies)))
+	loadout_tabs += list(list("name" = "Plushies", "title" = "Adorable little plushies! ([MAX_ALLOWED_PLUSHIES] max)", "contents" = list_to_data(GLOB.loadout_plushies)))
 	loadout_tabs += list(list("name" = "Other", "title" = "Backpack Items ([MAX_ALLOWED_MISC_ITEMS] max)", "contents" = list_to_data(GLOB.loadout_pocket_items)))
 	loadout_tabs += list(list("name" = "Effects", "title" = "Unique Effects", "contents" = list_to_data(GLOB.loadout_effects)))
 	loadout_tabs += list(list("name" = "Unusuals", "title" = "Unusual Hats", "contents" = convert_stored_unusuals_to_data()))
@@ -101,12 +101,12 @@
 	if(params["deselect"])
 		deselect_item(interacted_item, user)
 		return
-
+	var/num_plushies = 0
 	var/num_misc_items = 0
 	var/datum/loadout_item/first_misc_found
 	for(var/datum/loadout_item/item as anything in loadout_list_to_datums(preferences.loadout_list))
 		if(item.category == interacted_item.category)
-			if((item.category == LOADOUT_ITEM_MISC || item.category == LOADOUT_ITEM_TOYS) && ++num_misc_items < MAX_ALLOWED_MISC_ITEMS)
+			if((item.category == LOADOUT_ITEM_PLUSHIES || item.category == LOADOUT_ITEM_MISC || item.category == LOADOUT_ITEM_TOYS) && ++num_misc_items < MAX_ALLOWED_MISC_ITEMS || ++num_plushies < MAX_ALLOWED_PLUSHIES)
 				if(!first_misc_found)
 					first_misc_found = item
 				continue
