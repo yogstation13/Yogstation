@@ -557,7 +557,7 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/lobby/button/server)
 /atom/movable/screen/lobby/button/server/vanderlin
 	icon = 'icons/hud/lobby/vanderlin_button.dmi'
 	base_icon_state = "vanderlin"
-	screen_loc = "TOP:-140,CENTER:+177"
+	screen_loc = "TOP:-140,CENTER:+183"
 	server_name = "Vanderlin"
 	server_port = VANDERLIN_PORT
 
