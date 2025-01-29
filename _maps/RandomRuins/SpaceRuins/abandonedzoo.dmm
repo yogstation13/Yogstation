@@ -392,7 +392,7 @@
 "vy" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/green/fourcorners,
-/mob/living/basic/trooper/russian/ranged/lootless,
+/mob/living/basic/alien/drone,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/abandonedzoo)
 "vU" = (
@@ -710,7 +710,7 @@ eY
 Ni
 YJ
 Ni
-oS
+vy
 Ni
 Ni
 Ni
@@ -731,7 +731,7 @@ Ni
 Ni
 Ni
 Ni
-vy
+oS
 Ni
 Ni
 Ni

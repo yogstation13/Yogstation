@@ -167,6 +167,7 @@
 	name = "kitty bed"
 	},
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/feral,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "aF" = (
@@ -404,10 +405,10 @@
 /area/ruin/space/has_grav/powered/cat_man)
 "br" = (
 /obj/structure/table/reinforced,
-/obj/item/implanter/stealth,
 /obj/item/scalpel{
 	pixel_y = 12
 	},
+/obj/item/organ/internal/ears/cat/super,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/cat_man)
 "bs" = (
@@ -487,6 +488,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/feraltabby,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "bE" = (
@@ -869,11 +871,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/basic/cat_butcherer,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/cat_man)
-"RE" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/implanter/storage,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "RT" = (
@@ -1352,7 +1349,7 @@ ad
 ad
 ad
 ay
-RE
+ay
 aP
 aw
 be

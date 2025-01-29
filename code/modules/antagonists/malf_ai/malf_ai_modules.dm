@@ -470,7 +470,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	if(QDELETED(to_animate))
 		return
 
-	new /mob/living/simple_animal/hostile/mimic/copy/machine(get_turf(to_animate), to_animate, user, TRUE)
+	new /mob/living/basic/mimic/copy/machine(get_turf(to_animate), to_animate, user, TRUE)
 
 /// Destroy RCDs: Detonates all non-cyborg RCDs on the station.
 /datum/ai_module/destructive/destroy_rcd

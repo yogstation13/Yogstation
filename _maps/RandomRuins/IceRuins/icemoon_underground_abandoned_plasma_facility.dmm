@@ -384,7 +384,7 @@
 /obj/structure/railing/corner{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/mimic/crate,
+/mob/living/basic/mimic/crate,
 /turf/open/floor/plating/snowed/icemoon,
 /area/icemoon/underground/explored)
 "fO" = (
@@ -2164,7 +2164,7 @@
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/underground/explored)
 "KV" = (
-/mob/living/simple_animal/hostile/mimic/crate,
+/mob/living/basic/mimic/crate,
 /turf/open/floor/plating/snowed/icemoon,
 /area/icemoon/underground/explored)
 "KY" = (

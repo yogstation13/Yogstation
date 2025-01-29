@@ -405,6 +405,13 @@
 "bs" = (
 /obj/machinery/conveyor/auto,
 /obj/structure/window/reinforced/spawner/directional/west,
+/mob/living/basic/mimic/crate{
+	icon = 'icons/obj/puzzle_small.dmi';
+	icon_living = "laserbox";
+	icon_state = "laserbox";
+	name = "holobox";
+	health = 50
+	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/hellfactory)
 "bt" = (
@@ -897,6 +904,17 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
+"uj" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/basic/mimic/crate{
+	icon = 'icons/obj/puzzle_small.dmi';
+	icon_living = "laserbox";
+	icon_state = "laserbox";
+	name = "holobox";
+	health = 50
+	},
+/turf/open/floor/iron/checker,
+/area/ruin/space/has_grav/hellfactory)
 "uL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/floor,
@@ -921,16 +939,16 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/holofloor/wood,
 /area/ruin/space/has_grav/hellfactory)
+"Bc" = (
+/obj/machinery/light/small/directional/south,
+/obj/item/pressure_plate,
+/obj/item/pressure_plate,
+/turf/open/floor/iron/grimy,
+/area/ruin/space/has_grav/hellfactoryoffice)
 "BC" = (
 /obj/machinery/light/floor/has_bulb,
 /obj/effect/turf_decal/bot_white/left,
 /turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/hellfactory)
-"CN" = (
-/mob/living/simple_animal/hostile/pirate/melee/space{
-	name = "Indentured Factory Worker"
-	},
-/turf/open/floor/iron,
 /area/ruin/space/has_grav/hellfactory)
 "EJ" = (
 /obj/structure/sign/poster/random/directional/west,
@@ -971,12 +989,16 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/hellfactory)
-"Pv" = (
-/mob/living/simple_animal/hostile/pirate/melee/space{
-	name = "Indentured Factory Worker"
+"PB" = (
+/mob/living/basic/mimic/crate{
+	icon = 'icons/obj/puzzle_small.dmi';
+	icon_living = "laserbox";
+	icon_state = "laserbox";
+	name = "holobox";
+	health = 50
 	},
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/hellfactory)
+/turf/open/floor/iron/grimy,
+/area/ruin/space/has_grav/hellfactoryoffice)
 "PO" = (
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/plating,
@@ -1161,7 +1183,7 @@ bU
 ce
 aA
 bL
-CN
+aA
 cn
 cs
 aW
@@ -1310,7 +1332,7 @@ ah
 al
 ao
 aG
-Yd
+Bc
 ah
 bg
 aA
@@ -1318,7 +1340,7 @@ bL
 aA
 Wh
 Wh
-Pv
+oJ
 by
 by
 oJ
@@ -1362,7 +1384,7 @@ aa
 aa
 ah
 an
-ao
+PB
 aI
 aR
 bf
@@ -1605,7 +1627,7 @@ aa
 aa
 ac
 at
-GE
+uj
 aL
 GE
 aZ

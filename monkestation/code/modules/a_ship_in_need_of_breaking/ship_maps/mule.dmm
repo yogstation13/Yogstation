@@ -187,7 +187,7 @@
 /area/shipbreak)
 "pI" = (
 /obj/effect/turf_decal/bot,
-/mob/living/simple_animal/hostile/mimic/crate,
+/mob/living/basic/mimic/crate/crate,
 /turf/open/floor/iron/dark/side{
 	dir = 1
 	},

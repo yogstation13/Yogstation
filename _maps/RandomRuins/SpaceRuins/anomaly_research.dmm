@@ -208,11 +208,22 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/anomaly_neutralizer,
-/obj/item/anomaly_neutralizer,
+/obj/item/anomaly_neutralizer{
+	pixel_x = 6;
+	pixel_y = 0
+	},
+/obj/item/anomaly_neutralizer{
+	pixel_x = 8;
+	pixel_y = 0
+	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/item/raw_anomaly_core/random,
+/obj/item/raw_anomaly_core/random{
+	pixel_x = -8;
+	pixel_y = 0
+	},
 /turf/open/floor/iron/white,
 /area/misc/anomaly_research)
 "gs" = (
@@ -245,6 +256,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/effect/artifact_spawner,
 /turf/open/floor/iron/smooth,
 /area/misc/anomaly_research)
 "hq" = (
@@ -252,12 +264,10 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/raw_anomaly_core/random{
-	pixel_x = -7
-	},
 /obj/machinery/light/small/directional/north,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/item/assembly/signaler/anomaly/random,
 /turf/open/floor/iron/white,
 /area/misc/anomaly_research)
 "hV" = (
@@ -337,6 +347,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+/obj/effect/artifact_spawner,
 /turf/open/floor/iron/smooth,
 /area/misc/anomaly_research)
 "jE" = (
@@ -749,6 +760,8 @@
 	pixel_y = 10
 	},
 /obj/effect/turf_decal/siding/purple,
+/obj/effect/spawner/random/exotic/technology,
+/obj/effect/spawner/random/exotic/technology,
 /turf/open/floor/iron/dark,
 /area/misc/anomaly_research)
 "tx" = (

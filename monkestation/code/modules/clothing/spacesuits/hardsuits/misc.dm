@@ -21,7 +21,7 @@
 	name = "mining hardsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters."
 	icon_state = "hardsuit-mining"
-	armor_type = /datum/armor/hardsuit/mining
+	armor_type = /datum/armor/hardsuit/mining/explorer
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/mining
 	allowed = list(
 		/obj/item/flashlight,
@@ -40,9 +40,13 @@
 	name = "mining hardsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating for wildlife encounters and dual floodlights."
 	icon_state = "hardsuit0-mining"
-	armor_type = /datum/armor/hardsuit/mining
+	armor_type = /datum/armor/hardsuit/mining/explorer
 	hardsuit_type = "mining"
 	light_outer_range = 7
+
+/datum/armor/hardsuit/mining/explorer
+	bullet = 30
+	laser = 30
 
 /obj/item/clothing/suit/space/hardsuit/mining/Initialize(mapload)
 	. = ..()

@@ -705,7 +705,7 @@
 "vz" = (
 /obj/effect/decal/cleanable/glass,
 /obj/structure/cable,
-/mob/living/basic/alien/sentinel,
+/mob/living/basic/alien/queen/large,
 /turf/open/floor/pod/light,
 /area/ruin/space/has_grav/derelictsulaco)
 "vJ" = (
@@ -760,6 +760,7 @@
 /area/ruin/space/has_grav/derelictsulaco)
 "yb" = (
 /obj/structure/cable,
+/mob/living/basic/alien/sentinel,
 /turf/open/floor/iron/tgmcemblem{
 	dir = 4
 	},
@@ -1505,7 +1506,6 @@
 "Ub" = (
 /obj/structure/alien/weeds/node,
 /obj/effect/decal/remains/xeno,
-/mob/living/basic/alien/queen/large,
 /turf/open/floor/plating/reinforced,
 /area/ruin/space/has_grav/derelictsulaco)
 "Ug" = (
@@ -1606,8 +1606,8 @@
 /area/template_noop)
 "WQ" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/dueling,
 /obj/effect/turf_decal/tile/red/fourcorners,
+/obj/item/storage/lockbox/dueling,
 /turf/open/floor/iron/smooth_edge,
 /area/ruin/space/has_grav/derelictsulaco)
 "WR" = (
@@ -2601,7 +2601,7 @@ FM
 Yw
 lS
 JT
-mg
+lS
 dD
 lS
 FA
@@ -2639,7 +2639,7 @@ JT
 Ub
 lS
 Lv
-lS
+mg
 vi
 iu
 LW

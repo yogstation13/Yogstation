@@ -35,7 +35,7 @@
 "bU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/mob/living/simple_animal/hostile/zombie,
+/mob/living/basic/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "bV" = (
@@ -79,7 +79,7 @@
 /area/ruin/space/has_grav/interdyne)
 "cX" = (
 /obj/effect/mapping_helpers/burnt_floor,
-/mob/living/simple_animal/hostile/zombie,
+/mob/living/basic/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "dk" = (
@@ -143,7 +143,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 200
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -200,13 +200,6 @@
 /obj/effect/spawner/random/exotic/tool,
 /turf/open/floor/iron/smooth,
 /area/ruin/space/has_grav/interdyne)
-"gn" = (
-/obj/structure/cable,
-/mob/living/simple_animal/hostile/zombie{
-	health = 250
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/interdyne)
 "gV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -245,7 +238,7 @@
 /area/ruin/space/has_grav/interdyne)
 "hV" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 150
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -336,7 +329,7 @@
 /area/ruin/space/has_grav/interdyne)
 "lo" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/simple_animal/hostile/zombie,
+/mob/living/basic/zombie,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/interdyne)
 "lQ" = (
@@ -514,7 +507,7 @@
 /area/ruin/space/has_grav/interdyne)
 "ry" = (
 /obj/structure/cable,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 150;
 	cached_multiplicative_slowdown = 2
 	},
@@ -545,12 +538,6 @@
 	},
 /turf/open/floor/engine/air,
 /area/ruin/space/has_grav/interdyne)
-"ss" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/mob/living/simple_animal/hostile/zombie,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/interdyne)
 "sD" = (
 /obj/item/paper/fluff/ruins/interdyne/note_5,
 /turf/open/floor/iron/smooth,
@@ -565,7 +552,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/mob/living/simple_animal/hostile/zombie,
+/mob/living/basic/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "tm" = (
@@ -587,10 +574,6 @@
 /area/ruin/space/has_grav/interdyne)
 "ub" = (
 /obj/effect/mob_spawn/corpse/human/monkey,
-/turf/open/floor/mineral/plastitanium,
-/area/ruin/space/has_grav/interdyne)
-"uy" = (
-/mob/living/simple_animal/hostile/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "uS" = (
@@ -663,13 +646,10 @@
 /area/ruin/space/has_grav/interdyne)
 "xf" = (
 /obj/item/paper/fluff/ruins/interdyne/pizza_note,
-/mob/living/simple_animal/hostile/zombie{
-	health = 150
-	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "xh" = (
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 150
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -763,7 +743,7 @@
 "By" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 250;
 	cached_multiplicative_slowdown = 2
 	},
@@ -842,7 +822,7 @@
 /obj/effect/mob_spawn/corpse/human/doctor,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 250;
 	cached_multiplicative_slowdown = 2
 	},
@@ -865,7 +845,7 @@
 /area/ruin/space/has_grav/interdyne)
 "FC" = (
 /obj/structure/cable,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 150
 	},
 /turf/open/floor/mineral/plastitanium,
@@ -908,7 +888,7 @@
 "Ie" = (
 /obj/effect/decal/cleanable/glass/plastitanium,
 /obj/effect/mapping_helpers/burnt_floor,
-/mob/living/simple_animal/hostile/zombie,
+/mob/living/basic/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "IL" = (
@@ -1003,7 +983,7 @@
 /area/ruin/space/has_grav/interdyne)
 "Lt" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 200
 	},
 /turf/open/floor/mineral/plastitanium/red,
@@ -1045,7 +1025,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/blacklight/directional/east,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 150;
 	cached_multiplicative_slowdown = 2
 	},
@@ -1092,12 +1072,12 @@
 /obj/effect/mob_spawn/corpse/human/monkey,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/mob/living/simple_animal/hostile/zombie,
+/mob/living/basic/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "Oo" = (
 /obj/structure/sink/directional/south,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 150
 	},
 /turf/open/floor/iron/showroomfloor,
@@ -1219,7 +1199,7 @@
 /obj/structure/cable,
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/mob/living/simple_animal/hostile/zombie,
+/mob/living/basic/zombie,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/interdyne)
 "Sz" = (
@@ -1342,7 +1322,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	health = 250;
 	cached_multiplicative_slowdown = 2
 	},
@@ -1541,7 +1521,7 @@ Zi
 QD
 hG
 Zi
-xh
+QD
 Zi
 ma
 Am
@@ -1584,7 +1564,7 @@ Zi
 xh
 Ww
 Zi
-xh
+QD
 QD
 Bf
 Zi
@@ -1691,7 +1671,7 @@ fu
 pE
 FC
 rC
-xh
+QD
 Zi
 Rn
 Rn
@@ -1811,7 +1791,7 @@ Lx
 Rn
 Rn
 Zi
-uy
+QD
 aF
 QD
 QD
@@ -1850,7 +1830,7 @@ LE
 dR
 Eh
 et
-uy
+QD
 nw
 Zi
 dU
@@ -1969,7 +1949,7 @@ Zi
 AV
 By
 Zi
-gn
+fu
 QD
 xb
 Zi
@@ -2060,7 +2040,7 @@ QD
 QD
 QD
 nm
-cX
+nm
 Ro
 Yv
 Zi
@@ -2248,7 +2228,7 @@ Zi
 MA
 eg
 Nr
-ss
+Vi
 kA
 VC
 Zi

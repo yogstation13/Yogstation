@@ -68,11 +68,11 @@
 /turf/closed/indestructible/binary,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "r" = (
-/mob/living/simple_animal/hostile/mimic,
+/mob/living/basic/mimic/crate,
 /turf/open/indestructible/dark,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "s" = (
-/mob/living/simple_animal/hostile/mimic/crate,
+/mob/living/basic/mimic/crate/crate,
 /turf/open/indestructible/dark,
 /area/ruin/space/has_grav/powered/virtual_domain)
 "t" = (

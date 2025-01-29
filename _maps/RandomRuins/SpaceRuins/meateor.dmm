@@ -5,7 +5,7 @@
 "e" = (
 /obj/effect/mob_spawn/corpse/headcrab,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "f" = (
 /obj/effect/mob_spawn/corpse/human/monkey,
 /obj/effect/decal/cleanable/blood/tracks{
@@ -13,47 +13,47 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "g" = (
 /turf/closed/mineral/random,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "j" = (
 /obj/item/gun/energy/recharge/kinetic_accelerator,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "k" = (
 /obj/item/flashlight/flare,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "m" = (
 /obj/item/toy/plush/snakeplushie,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "p" = (
 /obj/structure/statue/bone/rib,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "q" = (
 /obj/effect/mob_spawn/corpse/headcrab,
 /obj/effect/decal/cleanable/xenoblood,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "r" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "s" = (
 /obj/effect/mob_spawn/corpse/headcrab,
 /obj/effect/decal/cleanable/xenoblood/xgibs,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "v" = (
 /obj/structure/meateor_fluff/eyeball,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "z" = (
 /obj/effect/mob_spawn/corpse/human/tigercultist/perforated,
 /obj/item/storage/organbox/preloaded{
@@ -61,10 +61,10 @@
 	name = "abandoned lunchbox"
 	},
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "A" = (
 /turf/closed/wall/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "B" = (
 /obj/item/paper/fluff/ruins/meateor/letter,
 /obj/structure/bed/maint,
@@ -72,44 +72,44 @@
 	pixel_x = -10
 	},
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "C" = (
 /obj/effect/mob_spawn/corpse/human/miner,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "D" = (
 /obj/structure/statue/bone/rib{
 	dir = 8
 	},
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "G" = (
 /obj/structure/meateor_fluff/flesh_pod,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "L" = (
 /obj/effect/spawner/random/trash/food_packaging,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "O" = (
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "R" = (
 /obj/structure/meateor_fluff/abandoned_headcrab_egg,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "S" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "T" = (
 /turf/open/misc/asteroid/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 "X" = (
-/mob/living/basic/meteor_heart,
+/mob/living/basic/meteor_heart/meateor,
 /turf/open/floor/material/meat/airless,
-/area/ruin/space/meateor)
+/area/ruin/space/has_grav/meateor)
 
 (1,1,1) = {"
 a

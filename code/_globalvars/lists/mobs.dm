@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(abstract_mob_types, list(
 	/mob/living/simple_animal/hostile/asteroid/elite,
 	/mob/living/simple_animal/hostile/asteroid,
 	/mob/living/simple_animal/hostile/megafauna,
-	/mob/living/simple_animal/hostile/mimic, // Cannot exist if spawned without being passed an item reference
+	/mob/living/basic/mimic/crate, // Cannot exist if spawned without being passed an item reference
 	/mob/living/simple_animal/hostile/retaliate,
 	/mob/living/simple_animal/hostile,
 	/mob/living/simple_animal/pet,

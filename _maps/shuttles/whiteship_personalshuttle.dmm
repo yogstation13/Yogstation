@@ -67,7 +67,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/splatter,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	desc = "This undead fiend looks to be badly decomposed.";
 	environment_smash = 0;
 	health = 60;
@@ -292,7 +292,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	desc = "This undead fiend looks to be badly decomposed.";
 	environment_smash = 0;
 	health = 60;
@@ -520,7 +520,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/structure/chair/comfy/shuttle,
-/mob/living/simple_animal/hostile/zombie{
+/mob/living/basic/zombie{
 	desc = "This undead fiend looks to be badly decomposed.";
 	environment_smash = 0;
 	health = 60;

@@ -111,6 +111,7 @@
 /obj/structure/destructible/cult/pants_altar{
 	layer = 3
 	},
+/obj/item/knife/bloodletter,
 /turf/open/floor/cult,
 /area/ruin/space/has_grav/the_outlet/cultinfluence)
 "cZ" = (
@@ -636,9 +637,9 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/the_outlet/researchrooms)
 "qs" = (
-/obj/item/book/granter/action/spell/forcewall,
-/turf/open/floor/cult,
-/area/ruin/space/has_grav/the_outlet/cultinfluence)
+/mob/living/basic/cockroach,
+/turf/closed/mineral/random,
+/area/ruin/space)
 "qv" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
@@ -1429,7 +1430,7 @@
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/the_outlet/researchrooms)
 "Ia" = (
-/obj/item/book/granter/action/spell/knock,
+/obj/item/book/granter/action/spell/summonitem,
 /turf/open/floor/cult,
 /area/ruin/space/has_grav/the_outlet/cultinfluence)
 "Ie" = (
@@ -2883,7 +2884,7 @@ Kp
 Kp
 HH
 HH
-Er
+qs
 Er
 Er
 UF
@@ -3493,7 +3494,7 @@ qy
 qy
 qy
 Aa
-qs
+Ia
 re
 Od
 Gu
@@ -3581,7 +3582,7 @@ HO
 iS
 Gu
 xe
-Ia
+Gu
 iS
 Gu
 qy

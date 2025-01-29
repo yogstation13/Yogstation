@@ -87,3 +87,16 @@
 	desc = "The neutralized core of an ectoplasmic anomaly. When you hold it close, you can hear faint murmuring from inside. It'd probably be valuable for research."
 	icon_state = "dimensional_core"
 	anomaly_type = /obj/effect/anomaly/ectoplasm
+
+// MONKESTATION ADDITION
+
+/obj/item/assembly/signaler/anomaly/random
+	name = "random activated core"
+	desc = "You should not see this!"
+	icon_state = "anomaly_core"
+
+/obj/item/assembly/signaler/anomaly/random/Initialize(mapload)
+	. = ..()
+	var/path = pick(subtypesof(/obj/item/assembly/signaler/anomaly))
+	new path(loc)
+	return INITIALIZE_HINT_QDEL

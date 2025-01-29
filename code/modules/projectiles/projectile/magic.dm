@@ -201,15 +201,9 @@
 		else
 			var/obj/O = src
 			if(isgun(O))
-				new /mob/living/simple_animal/hostile/mimic/copy/ranged(drop_location(), src, owner)
+				new /mob/living/basic/mimic/copy/ranged(drop_location(), src, owner)
 			else
-				new /mob/living/simple_animal/hostile/mimic/copy(drop_location(), src, owner)
-
-	else if(istype(src, /mob/living/simple_animal/hostile/mimic/copy))
-		// Change our allegiance!
-		var/mob/living/simple_animal/hostile/mimic/copy/C = src
-		if(owner)
-			C.ChangeOwner(owner)
+				new /mob/living/basic/mimic/copy(drop_location(), src, owner)
 
 /obj/projectile/magic/spellblade
 	name = "blade energy"

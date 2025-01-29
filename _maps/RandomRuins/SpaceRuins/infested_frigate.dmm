@@ -1265,6 +1265,10 @@
 "vx" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/mob/living/basic/alien/sentinel{
+	loot = list(/obj/effect/gibspawner/xeno);
+	faction = list("syndicate","xenomorph")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/infested_frigate)
 "vz" = (
@@ -2954,6 +2958,9 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/vomit/old,
 /obj/item/broken_bottle,
+/mob/living/basic/alien{
+	faction = list("syndicate","xenomorph")
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/infested_frigate)
 "VV" = (
@@ -3092,9 +3099,6 @@
 "Yd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/alien/egg/burst,
-/mob/living/basic/alien{
-	faction = list("syndicate","xenomorph")
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/infested_frigate)
 "YT" = (
@@ -3597,7 +3601,7 @@ fl
 fl
 vj
 Ez
-Jx
+Cm
 Cm
 mp
 ti
