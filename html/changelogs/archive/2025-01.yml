@@ -609,3 +609,15 @@
   Wisemonster:
   - qol: The antag token menu will now tell you how many donator tokens you have
   - qol: Moved the engineer mail destination on box station to the engineer foyer.
+2025-01-29:
+  Absolucy:
+  - qol: Small and tiny mobs no longer trigger squeaking objects when walking over
+      them.
+  BValon:
+  - rscadd: Chocodemon's Floor Pill - "Rat"
+  Snack-Max:
+  - rscadd: Tied Flowy added to hair options
+  ThePooba:
+  - image: Updated the title button image
+  Veth-s:
+  - rscadd: You can now carry 3 plushies in your loadout in addition to 3 misc items.
