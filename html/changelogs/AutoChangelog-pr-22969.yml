@@ -1,6 +1,0 @@
-author: "Oblisk234"
-delete-after: true 
-changes: 
-  - rscadd: "You can now emag fax machines."
-  - mapping: "Added a fax machine to the syndicate mothership."
-  - bugfix: "You can now examine fax machines again."
