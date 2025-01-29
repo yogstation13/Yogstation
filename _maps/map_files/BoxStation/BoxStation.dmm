@@ -2955,10 +2955,6 @@
 /obj/effect/spawner/random/bureaucracy/stamp,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
-"aYq" = (
-/obj/structure/cable,
-/turf/open/floor/iron,
-/area/station/engineering/shipbreaker_hut)
 "aYu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -47550,7 +47546,6 @@
 /area/station/medical/psychology)
 "pvQ" = (
 /obj/machinery/door/airlock/engineering,
-/obj/structure/cable,
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/station/engineering/shipbreaker_hut)
@@ -94369,7 +94364,7 @@ vCp
 ksa
 pRf
 iRr
-aYq
+eKX
 eVx
 pRf
 ksa

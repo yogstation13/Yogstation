@@ -1652,6 +1652,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/maintenance/solars/port/aft)
 "aAS" = (
@@ -29540,6 +29541,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/iron,
 /area/station/maintenance/solars/port/aft)
 "iOf" = (
@@ -34395,8 +34397,6 @@
 "klk" = (
 /obj/effect/spawner/random/maintenance/three,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/power/apc/auto_name/directional/north,
-/obj/structure/cable,
 /obj/structure/rack,
 /obj/item/stack/cable_coil,
 /turf/open/floor/plating,
@@ -35333,6 +35333,7 @@
 	id = "aftport";
 	name = "Port Quarter Solar Control"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/solars/port/aft)
 "kAc" = (
@@ -51428,9 +51429,6 @@
 "plQ" = (
 /turf/closed/wall/r_wall,
 /area/space/nearstation)
-"pma" = (
-/turf/open/floor/plating,
-/area/station/maintenance/solars/port/aft)
 "pmc" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -73264,6 +73262,7 @@
 /area/station/command/bridge)
 "vwE" = (
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/cable,
 /turf/open/floor/iron,
 /area/station/maintenance/solars/port/aft)
 "vwU" = (
@@ -96345,7 +96344,7 @@ lXw
 nhC
 nhC
 sJw
-pma
+dEb
 sJw
 lXw
 nhC
@@ -96859,7 +96858,7 @@ sJw
 kAa
 aAP
 vwE
-pma
+dEb
 sJw
 lXw
 nhC
