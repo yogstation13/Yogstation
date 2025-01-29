@@ -161,6 +161,9 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/triggered_round_events = list()
 
 /datum/controller/subsystem/gamemode/Initialize(time, zlevel)
+#if defined(UNIT_TESTS) || defined(AUTOWIKI) // lazy way of doing this but idc
+	CONFIG_SET(flag/disable_storyteller, TRUE)
+#endif
 	// Populate event pools
 	for(var/track in event_tracks)
 		event_pools[track] = list()
