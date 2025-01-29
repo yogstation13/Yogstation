@@ -408,8 +408,8 @@
 	return dna?.species?.get_butt_sprite(src)
 
 /mob/living/carbon/human/get_footprint_sprite()
-	var/obj/item/bodypart/l_leg/left_leg = get_bodypart(BODY_ZONE_L_LEG)
-	var/obj/item/bodypart/r_leg/right_leg = get_bodypart(BODY_ZONE_R_LEG)
+	var/obj/item/bodypart/leg/left/left_leg = get_bodypart(BODY_ZONE_L_LEG)
+	var/obj/item/bodypart/leg/right/right_leg = get_bodypart(BODY_ZONE_R_LEG)
 	var/species_id
 	var/datum/species/species
 	if(left_leg?.species_id == right_leg?.species_id)

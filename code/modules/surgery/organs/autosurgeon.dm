@@ -208,10 +208,10 @@
 	starting_organs = list(/obj/item/bodypart/r_arm/robot)
 
 /obj/item/autosurgeon/l_leg/robot
-	starting_organs = list(/obj/item/bodypart/l_leg/robot)
+	starting_organs = list(/obj/item/bodypart/leg/left/robot)
 
 /obj/item/autosurgeon/r_leg/robot
-	starting_organs = list(/obj/item/bodypart/r_leg/robot)
+	starting_organs = list(/obj/item/bodypart/leg/right/robot)
 
 //------------------------Antag Autosurgeons without metashield-------------------
 /obj/item/autosurgeon/suspicious
