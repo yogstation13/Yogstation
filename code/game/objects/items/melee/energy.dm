@@ -222,6 +222,40 @@
 	else
 		return ..()
 
+/obj/item/melee/transforming/energy/sword/bikehorn
+	name = "bike horn"
+	desc = "A horn off of a bicycle."
+	icon_state = "swordhonk"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	icon_state_on = "swordpink"
+	saber_color = null
+	light_color = "#ff3399"
+	force = 0
+	throwforce = 0
+	attack_verb = list("HONKED")
+	hitsound = null
+
+/obj/item/melee/transforming/energy/sword/bikehorn/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
+	qdel(GetComponent(/datum/component/cleave_attack))
+
+/obj/item/melee/transforming/energy/sword/bikehorn/attack(mob/living/carbon/M, mob/living/carbon/user)
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
+	return ..()
+
+/obj/item/melee/transforming/energy/sword/bikehorn/transform_weapon(mob/living/user, supress_message_text)
+	. = ..()
+	if(active)
+		name += " energy sword"
+		desc += " It has a powerful hardlight sword attached to it."
+		AddComponent(/datum/component/cleave_attack)
+	else
+		name = initial(name)
+		desc = initial(desc)
+		qdel(GetComponent(/datum/component/cleave_attack))
+
 /obj/item/melee/transforming/energy/sword/pirate
 	name = "energy cutlass"
 	desc = "Arrrr matey."

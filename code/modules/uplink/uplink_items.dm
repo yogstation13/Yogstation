@@ -2609,6 +2609,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
 	include_objectives = list(/datum/objective/hijack, /datum/objective/martyr) //yogs reduces grief potential
 
+/datum/uplink_item/role_restricted/honksword
+	name = "Bike Horn Energy Sword"
+	desc = "All the features of the original energy sword, with additional fun! Functionally identical to a bike horn when concealed. Activating it produces a loud, distinctive noise."
+	item = /obj/item/melee/transforming/energy/sword/bikehorn
+	cost = 9 //1tc more than esword as it's a little more stealthy
+	restricted_roles = list("Clown")
+
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"
 	desc = "The Clown Car is the ultimate transportation method for any worthy clown! \
