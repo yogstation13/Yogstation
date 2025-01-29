@@ -647,3 +647,10 @@
 	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
 	icon_state = "whitefurshawl"
 	worn_icon_state = "whitefurshawl"
+
+/obj/item/clothing/suit/toggle/labcoat/elchorico_big_labcoat
+	name = "huge labcoat"
+	desc = "A suit that protects against minor chemical spills. This one is HUGE and has a purple stripe!"
+	icon = 'monkestation/code/modules/donator/icons/obj/clothing.dmi'
+	worn_icon = 'monkestation/code/modules/donator/icons/mob/clothing.dmi'
+	icon_state = "elchorico_big_labcoat"
