@@ -69,6 +69,10 @@
 	if(C.bodytemperature <= T0C-10 || (!(C.mob_biotypes & (MOB_ORGANIC | MOB_UNDEAD))))
 		return
 
+	// Healium prevents body from rotting
+	if(C.reagents.has_reagent(/datum/reagent/gas/healium))
+		return
+
 	..()
 
 /datum/component/rot/gibs
