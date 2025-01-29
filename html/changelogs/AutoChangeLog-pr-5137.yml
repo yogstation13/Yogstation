@@ -1,0 +1,4 @@
+author: "Veth-s"
+delete-after: True
+changes:
+  - rscadd: "Syndicate Depot's Operatives are reminded of escalation requirements when faxing or teleporting stuff to the station."
