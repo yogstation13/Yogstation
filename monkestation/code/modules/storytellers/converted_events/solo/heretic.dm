@@ -32,5 +32,5 @@
 	earliest_start = 0
 
 /datum/round_event_control/antagonist/solo/heretic/midround
-	name = "Midround Heretics"
+	name = "Forbidden Calling (Heretics)"
 	prompted_picking = TRUE
