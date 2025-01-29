@@ -15,7 +15,7 @@ import {
   updateHighlightSetting,
 } from './actions';
 import { createDefaultHighlightSetting } from './model';
-import { SETTINGS_TABS, FONTS, MAX_HIGHLIGHT_SETTINGS } from './constants';
+import { SETTINGS_TABS, FONTS } from './constants';
 
 const defaultHighlightSetting = createDefaultHighlightSetting();
 
@@ -119,9 +119,6 @@ export const settingsReducer = (state = initialState, action) => {
   }
   if (type === addHighlightSetting.type) {
     const highlightSetting = payload;
-    if (state.highlightSettings.length >= MAX_HIGHLIGHT_SETTINGS) {
-      return state;
-    }
     return {
       ...state,
       highlightSettings: [...state.highlightSettings, highlightSetting.id],

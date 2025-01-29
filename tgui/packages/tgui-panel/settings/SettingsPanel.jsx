@@ -14,11 +14,12 @@ import {
   Collapsible,
   ColorBox,
   Divider,
-  Stack,
+  Icon,
   Input,
   LabeledList,
   NumberInput,
   Section,
+  Stack,
   Tabs,
   TextArea,
 } from 'tgui/components';
@@ -32,7 +33,7 @@ import {
   removeHighlightSetting,
   updateHighlightSetting,
 } from './actions';
-import { SETTINGS_TABS, FONTS, MAX_HIGHLIGHT_SETTINGS } from './constants';
+import { SETTINGS_TABS, FONTS, WARN_AFTER_HIGHLIGHT_AMT } from './constants';
 import {
   selectActiveTab,
   selectSettings,
@@ -236,8 +237,8 @@ const TextHighlightSettings = (props, context) => {
             mb={i + 1 === highlightSettings.length ? 0 : '10px'}
           />
         ))}
-        {highlightSettings.length < MAX_HIGHLIGHT_SETTINGS && (
-          <Stack.Item>
+        <Stack.Item>
+          <Box>
             <Button
               color="transparent"
               icon="plus"
@@ -246,8 +247,15 @@ const TextHighlightSettings = (props, context) => {
                 dispatch(addHighlightSetting());
               }}
             />
-          </Stack.Item>
-        )}
+            {highlightSettings.length >= WARN_AFTER_HIGHLIGHT_AMT && (
+              <Box inline fontSize="0.9em" ml={1} color="red">
+                <Icon mr={1} name="triangle-exclamation" />
+                Large amounts of highlights can potentially cause performance
+                issues!
+              </Box>
+            )}
+          </Box>
+        </Stack.Item>
       </Stack>
       <Divider />
       <Box>
