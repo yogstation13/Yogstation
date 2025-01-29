@@ -101,7 +101,8 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 		return FALSE
 
 	var/month_number = text2num(time2text(world.time, "MM"))
-
+	if(owner.prefs.token_month == 0)
+		owner.prefs.token_month = month_number
 	if(owner.prefs.token_month != month_number)
 
 		if(patreon.has_access(ACCESS_NUKIE_RANK))    ///if nukie rank, get coins AND token
