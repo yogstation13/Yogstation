@@ -1,0 +1,9 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - balance: "Disease: Classic, Advanced, and plague rats are all more common. (From 0:0:1) to (4:3:2)"
+  - balance: "Disease: Classic, and Advanced can occur earlier in the round. (55 mins:55 mins) to (20 mins:40mins)"
+  - balance: "Disease: Classic will now have an additional chance to contain helpful and flavour symptoms. (0:1) to (2:2) chances respectively"
+  - balance: "Disease: Advanced will no longer contain deadly symptoms and a small chance for flavour. (1:0) to (0:2) chances respectively"
+  - balance: "Minimum players required for a Disease/plague outbreak are all increased"
+  - balance: "Fake virus's will now share starting conditions with Disease: Classic rather than Plague rats."
