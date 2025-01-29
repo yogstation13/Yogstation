@@ -613,6 +613,7 @@
   Absolucy:
   - qol: Small and tiny mobs no longer trigger squeaking objects when walking over
       them.
+  - qol: Removed the arbitrary limit of 10 maximum chat highlights.
   BValon:
   - rscadd: Chocodemon's Floor Pill - "Rat"
   Snack-Max:
