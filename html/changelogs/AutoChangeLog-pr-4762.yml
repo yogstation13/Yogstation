@@ -1,0 +1,4 @@
+author: "Gboster-0"
+delete-after: True
+changes:
+  - rscadd: "Made it so IPC's can now be emagged"
