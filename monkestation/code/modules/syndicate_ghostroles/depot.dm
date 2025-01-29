@@ -5,7 +5,7 @@
 	prompt_name = "a syndicate depot worker"
 	you_are_text = "You are a depot worker, employed at a Syndicate depot."
 	flavour_text = "Produce and move supplies for Syndicate bases in the region, as well as ensure they are safely evacuated should they be lost. Do not let the base fall into enemy hands!"
-	important_text = "DO NOT abandon the base or approach active Nanotrasen installations. However, you may freely explore your surrounding within your current space quadrant (Z-Level), and may fly to other Syndicate bases in space to deliver and move supplies with the permission of the Quartermaster."
+	important_text = "DO NOT abandon the base or approach active Nanotrasen installations. Remember that you still need to satisfy escalation requirements in order to send bombs or grenades to the NT installation. However, you may freely explore your surrounding within your current space quadrant (Z-Level), and may fly to other Syndicate bases in space to deliver and move supplies with the permission of the Quartermaster."
 	outfit = /datum/outfit/syndicate_empty/depot
 	spawner_job_path = /datum/job/lavaland_syndicate/space
 
@@ -23,7 +23,7 @@
 	prompt_name = "a syndicate depot guard"
 	you_are_text = "You are a security guard, employed at a Syndicate depot."
 	flavour_text = "Protect the depot from enemy forces and prevent its destruction at all costs."
-	important_text = "DO NOT abandon the base. You are here to protect it, and cannot perform deliveries."
+	important_text = "DO NOT abandon the base or approach active Nanotrasen installations.  Remember that you still need to satisfy escalation requirements in order to send bombs or grenades to the NT installation. You are here to protect it, and cannot perform deliveries."
 	outfit = /datum/outfit/syndicate_empty/depot/guard
 
 /datum/outfit/syndicate_empty/depot/guard
@@ -41,7 +41,7 @@
 	prompt_name = "a syndicate depot quartermaster"
 	you_are_text = "You are a Quartermaster, in charge of a Syndicate depot."
 	flavour_text = "Operate the depot to ensure it continues to safely ship supplies for the Coalition's outposts in nearby space. Protect it to the last, and do not let the base fall into enemy hands!"
-	important_text = "DO NOT abandon the base. You can, however, authorise depot workers to perform deliveries outside the local quadrant (Z-level) to other space outposts (but not go yourself), and may freely explore the local quadrant (Z-level) alongside them."
+	important_text = "DO NOT abandon the base or approach active Nanotrasen installations.  Remember that you still need to satisfy escalation requirements in order to send bombs or grenades to the NT installation. You can, however, authorise depot workers to perform deliveries outside the local quadrant (Z-level) to other space outposts (but not go yourself), and may freely explore the local quadrant (Z-level) alongside them."
 	outfit = /datum/outfit/syndicate_empty/depot/quartermaster
 
 /datum/outfit/syndicate_empty/depot/quartermaster
