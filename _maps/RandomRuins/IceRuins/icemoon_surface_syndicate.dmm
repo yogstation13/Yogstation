@@ -5413,12 +5413,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/syndicate_icemoon/xenobio)
 "CP" = (
-/obj/machinery/photocopier/faxmachine{
-	department = "Unidentified";
-	desc = "Used to send black pages to Nanotrasen stations.";
-	name = "Syndicate Fax Machine";
-	req_access = list("syndicate")
-	},
 /obj/item/stamp/chameleon{
 	pixel_x = -6;
 	pixel_y = 10
@@ -5431,6 +5425,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
+/obj/machinery/photocopier/faxmachine/syndicate,
 /turf/open/floor/wood,
 /area/ruin/syndicate_icemoon/command)
 "CQ" = (

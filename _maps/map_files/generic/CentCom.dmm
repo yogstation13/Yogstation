@@ -21480,6 +21480,7 @@
 	dir = 9
 	},
 /obj/structure/table/reinforced,
+/obj/machinery/photocopier/faxmachine/syndicate_command,
 /turf/open/floor/plasteel/dark,
 /area/centcom/syndicate_mothership)
 "crH" = (

@@ -1815,7 +1815,7 @@
 		if(info)
 			info.examine(usr, TRUE)
 
-	else if(href_list["CentcomFaxReply"])
+	else if(href_list["AdminFaxReply"])
 		var/obj/machinery/photocopier/faxmachine/F = locate(href_list["originfax"]) in GLOB.allfaxes
 		if(!istype(F))
 			to_chat(src.owner, span_danger("Unable to locate fax!"))
@@ -1830,20 +1830,21 @@
 	send_admin_fax()
 
 /client/proc/send_admin_fax(obj/machinery/photocopier/faxmachine/F)
-	var/inputsubject = input(src, "Please enter a subject", "Outgoing message from CentCom", "") as text|null
+	var/syndicate = (F?.obj_flags & EMAGGED)
+	var/inputsubject = input(src, "Please enter a subject", "Outgoing message from [syndicate ? "Syndicate" : "CentCom"]", "") as text|null
 	if(!inputsubject)
 		return
 
-	var/inputmessage = input(src, "Please enter the message sent to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from CentCom", "") as message|null
+	var/inputmessage = input(src, "Please enter the message sent to [istype(F) ? F : "all fax machines"] via secure connection. Supports pen markdown.", "Outgoing message from [syndicate ? "Syndicate" : "CentCom"]", "") as message|null
 	if(!inputmessage)
 		return
 
-	var/inputsigned = input(src, "Please enter CentCom Official name.", "Outgoing message from CentCom", usr?.client?.holder?.admin_signature || "") as text|null
+	var/inputsigned = input(src, "Please enter [syndicate ? "Syndicate" : "CentCom"] Official name.", "Outgoing message from [syndicate ? "Syndicate" : "CentCom"]", usr?.client?.holder?.admin_signature || "") as text|null
 	if(!inputsigned)
 		return
 
 	var/customname = input(src, "Pick a title for the report", "Title") as text|null
-	var/prefix = "<center><b>Nanotrasen Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
+	var/prefix = "<center><b>[syndicate ? "Syndicate" : "Nanotrasen"] Fax Network</b></center><hr><center>RE: [inputsubject]</center><hr>"
 	var/suffix = "<hr><b>Signed:</b> <font face=\"[SIGNFONT]\"><i>[inputsigned]</i></font>"
 
 	inputmessage = parsemarkdown(inputmessage)
