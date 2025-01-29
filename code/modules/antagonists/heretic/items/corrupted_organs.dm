@@ -203,6 +203,8 @@
 		/datum/gas/miasma = 50,
 		/datum/gas/plasma = 20,
 	)
+	/// Cooldown between corrupted effects (monkestation addition)
+	COOLDOWN_DECLARE(effect_cooldown)
 
 /obj/item/organ/internal/lungs/corrupt/Initialize(mapload)
 	. = ..()
@@ -212,6 +214,11 @@
 	. = ..()
 	if (!. || IS_IN_MANSUS(owner) || breather.has_reagent(/datum/reagent/water/holywater) || !prob(cough_chance))
 		return
+	// monkestation start: add cooldown
+	if(!COOLDOWN_FINISHED(src, effect_cooldown))
+		return
+	COOLDOWN_START(src, effect_cooldown, rand(25 SECONDS, 90 SECONDS))
+	// monkestation end
 	breather.emote("cough");
 	var/chosen_gas = pick_weight(gas_types)
 	var/datum/gas_mixture/mix_to_spawn = new()
@@ -229,6 +236,8 @@
 	desc = "What kind of dark, cosmic force is even going to bother to corrupt an appendix?"
 	/// How likely are we to spawn worms?
 	var/worm_chance = 2
+	/// Cooldown between corrupted effects (monkestation addition)
+	COOLDOWN_DECLARE(effect_cooldown)
 
 /obj/item/organ/internal/appendix/corrupt/Initialize(mapload)
 	. = ..()
@@ -239,5 +248,10 @@
 	. = ..()
 	if (owner.stat != CONSCIOUS || owner.has_reagent(/datum/reagent/water/holywater) || IS_IN_MANSUS(owner) || !SPT_PROB(worm_chance, seconds_per_tick))
 		return
+	// monkestation start: add cooldown
+	if(!COOLDOWN_FINISHED(src, effect_cooldown))
+		return
+	COOLDOWN_START(src, effect_cooldown, rand(25 SECONDS, 90 SECONDS))
+	// monkestation end
 	owner.vomit(vomit_type = /obj/effect/decal/cleanable/vomit/nebula/worms, distance = 0)
 	owner.Knockdown(0.5 SECONDS)
