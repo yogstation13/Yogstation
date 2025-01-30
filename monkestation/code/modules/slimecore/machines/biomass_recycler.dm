@@ -181,3 +181,8 @@ GLOBAL_LIST_INIT(biomass_unlocks, list())
 	name = "\"Rockroach\" biomass recycler upgrade disk"
 	printable_types = list(/mob/living/basic/cockroach/rockroach = 0.4)
 	vacuum_printable_types = list(/mob/living/basic/cockroach/rockroach = 0.4)
+
+/datum/slime_store_item/rockroach
+	name = "\"Rockroach\" biomass recycler upgrade disk"
+	desc = "An upgrade disk for the biomass recycler that allows for the printing of Rockroaches."
+	item_path = /obj/item/disk/biomass_upgrade/rockroach

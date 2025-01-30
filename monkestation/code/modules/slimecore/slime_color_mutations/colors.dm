@@ -135,7 +135,7 @@
 		/datum/slime_mutation_data/oil,
 		)
 
-/datum/slime_color/darkpurple/on_first_unlock()
+/datum/slime_color/red/on_first_unlock()
 	GLOB.biomass_unlocks |= list(/mob/living/basic/xenofauna/dron = 1)
 
 /datum/slime_color/yellow

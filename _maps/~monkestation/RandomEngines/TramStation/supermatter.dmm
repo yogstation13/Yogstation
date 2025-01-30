@@ -93,7 +93,6 @@
 	dir = 10;
 	network = list("ss13","engine","engineering")
 	},
-/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "fo" = (
@@ -314,6 +313,7 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Gas to Chamber"
 	},
+/obj/machinery/incident_display/delam/directional/south,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "lv" = (
