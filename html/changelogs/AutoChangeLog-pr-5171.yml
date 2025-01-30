@@ -1,0 +1,13 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added security camera consoles to blueshift outposts."
+  - rscadd: "Rockroach disks finally lost their copyright and are now purchasable on the slime market."
+  - rscdel: "Removed old rhinovirus and cold bottles from viro fridges"
+  - bugfix: "Boxstation no longer has ooze suckers that link to its neighbour pens"
+  - bugfix: "Deepstation engineers stopped cutting corners, and completed the ooze network, and gave proper upgrade disks, and a plumbing device"
+  - bugfix: "Colour mutation syringes no longer pretend to be No Ooze syringes in the market"
+  - bugfix: "Tram station's super matter will no longer have a delam counter hanging off the wall."
+  - bugfix: "Blueshift no longer has a dedicated camera for looking at a wall."
+  - bugfix: "Xenobiology has finally figured out what the hell a possum is. Thus are printable by vacuum backpacks"
+  - bugfix: "Semi-organic bugs will be unlocked on red slimes, instead of dark purple slimes"
