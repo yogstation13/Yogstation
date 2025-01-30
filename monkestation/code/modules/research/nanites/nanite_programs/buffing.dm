@@ -14,7 +14,7 @@
 
 /datum/nanite_program/nervous/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
+	if(ishuman(host_mob) && !QDELING(host_mob))
 		var/mob/living/carbon/human/H = host_mob
 		H.physiology.stun_mod *= 2
 
@@ -38,7 +38,7 @@
 
 /datum/nanite_program/hardening/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
+	if(ishuman(host_mob) && !QDELING(host_mob))
 		var/mob/living/carbon/human/H = host_mob
 		H.set_armor(H.get_armor().subtract_other_armor(/datum/armor/dermal_hardening))
 
@@ -60,7 +60,7 @@
 
 /datum/nanite_program/refractive/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
+	if(ishuman(host_mob) && !QDELING(host_mob))
 		var/mob/living/carbon/human/H = host_mob
 		H.set_armor(H.get_armor().subtract_other_armor(/datum/armor/refractive))
 
@@ -78,7 +78,7 @@
 
 /datum/nanite_program/coagulating/disable_passive_effect()
 	. = ..()
-	if(ishuman(host_mob))
+	if(ishuman(host_mob) && !QDELING(host_mob))
 		var/mob/living/carbon/human/H = host_mob
 		H.physiology.bleed_mod *= 2
 
@@ -95,7 +95,8 @@
 
 /datum/nanite_program/conductive/disable_passive_effect()
 	. = ..()
-	REMOVE_TRAIT(host_mob, TRAIT_SHOCKIMMUNE, NANITES_TRAIT)
+	if(!QDELETED(host_mob))
+		REMOVE_TRAIT(host_mob, TRAIT_SHOCKIMMUNE, NANITES_TRAIT)
 
 /datum/nanite_program/mindshield
 	name = "Mental Barrier"
@@ -111,5 +112,6 @@
 
 /datum/nanite_program/mindshield/disable_passive_effect()
 	. = ..()
-	REMOVE_TRAIT(host_mob, TRAIT_MINDSHIELD, NANITES_TRAIT)
-	host_mob.sec_hud_set_implants()
+	if(!QDELETED(host_mob))
+		REMOVE_TRAIT(host_mob, TRAIT_MINDSHIELD, NANITES_TRAIT)
+		host_mob.sec_hud_set_implants()

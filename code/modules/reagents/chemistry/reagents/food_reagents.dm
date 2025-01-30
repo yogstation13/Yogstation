@@ -281,7 +281,7 @@
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M, seconds_per_tick, times_fired)
 	. = ..()
-	holder.remove_reagent(/datum/reagent/cryostylane, 5 * REM * seconds_per_tick)
+	holder?.remove_reagent(/datum/reagent/cryostylane, 5 * REM * seconds_per_tick)
 
 	var/heating = 0
 	switch(current_cycle)

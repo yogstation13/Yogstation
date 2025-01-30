@@ -272,17 +272,16 @@
 	else
 		update_use_power(IDLE_POWER_USE)
 	update_appearance()
-	if(occupant)
-		ADD_TRAIT(occupant, TRAIT_ASSISTED_BREATHING, REF(src))
-	else
-		REMOVE_TRAIT(occupant, TRAIT_ASSISTED_BREATHING, REF(src))
-
+	if(QDELETED(occupant))
+		return
 	if(on)
+		ADD_TRAIT(occupant, TRAIT_ASSISTED_BREATHING, REF(src))
 		if(isliving(occupant) && !adjusted_occupant)
 			adjusted_occupant = TRUE
 			var/mob/living/living = occupant
 			living.bodytemp_cold_damage_limit -= 270 KELVIN
 	else
+		REMOVE_TRAIT(occupant, TRAIT_ASSISTED_BREATHING, REF(src))
 		if(isliving(occupant) && adjusted_occupant)
 			adjusted_occupant = FALSE
 			var/mob/living/living = occupant

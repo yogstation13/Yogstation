@@ -16,6 +16,8 @@
 	var/last_progress = 0
 	///Variable to ensure smooth visual stacking on multiple progress bars.
 	var/listindex = 0
+	///The type of our last value for bar_loc, for debugging
+	var/location_type
 	///border image
 	var/image/border
 	///shown image
@@ -49,6 +51,7 @@
 		qdel(src)
 		return
 	goal = goal_number
+	src.location_type = target.type
 	src.old_format = old_format
 	src.active_color = active_color
 	src.fail_color = fail_color
@@ -211,6 +214,13 @@
 		animate(border_look_accessory, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 		QDEL_IN(border_look_accessory, PROGRESSBAR_ANIMATION_TIME * 2) //for garbage collection safety
 
+///Progress bars are very generic, and what hangs a ref to them depends heavily on the context in which they're used
+///So let's make hunting harddels easier yeah?
+/datum/progressbar/dump_harddel_info()
+	if(harddel_deets_dumped)
+		return
+	harddel_deets_dumped = TRUE
+	return "Owner's type: [location_type]"
 
 /obj/effect/world_progressbar
 	///The progress bar visual element.

@@ -33,7 +33,7 @@
 	if(is_jaunting(owner))
 		return TRUE
 	var/turf/cast_turf = get_turf(owner)
-	if(cast_turf.get_lumcount() >= light_threshold)
+	if(!cast_turf.is_softly_lit() && cast_turf.get_lumcount() >= light_threshold)
 		if(feedback)
 			to_chat(owner, span_warning("It isn't dark enough here!"))
 		return FALSE
@@ -127,7 +127,7 @@
 
 /obj/effect/dummy/phased_mob/shadow/proc/check_light_level(atom/location_to_check)
 	var/turf/light_turf = get_turf(location_to_check)
-	return light_turf.get_lumcount() > light_max // jaunt ends on TRUE
+	return !light_turf.is_softly_lit() && light_turf.get_lumcount() > light_max // jaunt ends on TRUE
 
 /**
  * Checks if the user should recieve a warning that they're moving into light.
@@ -138,7 +138,7 @@
 
 /obj/effect/dummy/phased_mob/shadow/proc/light_step_warning()
 	if(!light_alert_given) //Give the user a warning that they're leaving the darkness
-		balloon_alert(jaunter, "leaving the shadows...")
+		loc.balloon_alert(jaunter, "leaving the shadows...")
 		light_alert_given = TRUE
 		COOLDOWN_START(src, light_step_cooldown, 0.75 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(reactivate_light_alert)), 1 SECONDS) //You get a .5 second window to bypass the warning before it comes back

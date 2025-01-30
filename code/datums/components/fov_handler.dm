@@ -48,12 +48,14 @@
 
 /datum/component/fov_handler/proc/set_fov_angle(new_angle)
 	fov_angle = new_angle
-	blocker_mask.icon_state = "[fov_angle]"
-	visual_shadow.icon_state = "[fov_angle]_v"
+	blocker_mask?.icon_state = "[fov_angle]"
+	visual_shadow?.icon_state = "[fov_angle]_v"
 
 /// Updates the size of the FOV masks by comparing them to client view size.
 /datum/component/fov_handler/proc/update_fov_size()
 	SIGNAL_HANDLER
+	if(QDELETED(src) || QDELETED(parent))
+		return
 	var/mob/parent_mob = parent
 	var/client/parent_client = parent_mob.client
 	if(!parent_client) //Love client volatility!!
@@ -76,6 +78,8 @@
 /// Updates the mask application to client by checking `stat` and `eye`
 /datum/component/fov_handler/proc/update_mask()
 	SIGNAL_HANDLER
+	if(QDELETED(src) || QDELETED(parent))
+		return
 	var/mob/parent_mob = parent
 	var/client/parent_client = parent_mob.client
 	if(!parent_client) //Love client volatility!!
@@ -102,26 +106,31 @@
 	if(!parent_client) //Love client volatility!!
 		return
 	applied_mask = FALSE
-	parent_client.screen -= blocker_mask
-	parent_client.screen -= visual_shadow
-
+	parent_client?.screen -= blocker_mask
+	parent_client?.screen -= visual_shadow
 
 /datum/component/fov_handler/proc/add_mask()
+	if(QDELETED(src) || QDELETED(parent))
+		return
 	var/mob/parent_mob = parent
 	var/client/parent_client = parent_mob.client
 	if(!parent_client) //Love client volatility!!
 		return
 	applied_mask = TRUE
-	parent_client.screen += blocker_mask
-	parent_client.screen += visual_shadow
+	parent_client?.screen += blocker_mask
+	parent_client?.screen += visual_shadow
 	parent_mob.hud_used.always_visible_inventory += blocker_mask
 	parent_mob.hud_used.always_visible_inventory += visual_shadow
 
 /// When a direction of the user changes, so do the masks
 /datum/component/fov_handler/proc/on_dir_change(mob/source, old_dir, new_dir)
 	SIGNAL_HANDLER
-	blocker_mask.dir = new_dir
-	visual_shadow.dir = new_dir
+	if(QDELETED(src) || QDELETED(parent))
+		return
+	if(!QDELETED(blocker_mask))
+		blocker_mask.setDir(new_dir)
+	if(!QDELETED(visual_shadow))
+		visual_shadow.setDir(new_dir)
 
 /// When a mob logs out, delete the component
 /datum/component/fov_handler/proc/mob_logout(mob/source)

@@ -5,6 +5,7 @@
 	status_type = STATUS_EFFECT_REFRESH //Custom code
 	on_remove_on_mob_delete = TRUE
 	tick_interval = 2 SECONDS
+	processing_speed = STATUS_EFFECT_PRIORITY // monkestation edit: high-priority status effect processing
 	/// Current amount of stacks we have
 	var/stacks
 	/// Maximum of stacks that we could possibly get
@@ -94,11 +95,11 @@
  */
 
 /datum/status_effect/fire_handler/proc/set_stacks(new_stacks)
-	stacks = max(0, min(stack_limit, new_stacks))
+	stacks = clamp(new_stacks, 0, stack_limit)
 	cache_stacks()
 
 /datum/status_effect/fire_handler/proc/adjust_stacks(new_stacks)
-	stacks = max(0, min(stack_limit, stacks + new_stacks))
+	stacks = clamp(stacks + new_stacks, 0, stack_limit)
 	cache_stacks()
 
 /**
@@ -164,8 +165,8 @@
 		qdel(src)
 		return TRUE
 
-	var/datum/gas_mixture/air = owner.loc.return_air()
-	if(!air.gases[/datum/gas/oxygen] || air.gases[/datum/gas/oxygen][MOLES] < 1)
+	var/list/gases = owner.loc?.return_air()?.gases
+	if(gases && (!gases[/datum/gas/oxygen] || gases[/datum/gas/oxygen][MOLES] < 1))
 		qdel(src)
 		return TRUE
 
@@ -197,23 +198,21 @@
 	var/turf/location = get_turf(owner)
 	location.hotspot_expose(700, 25 * seconds_per_tick, TRUE)
 
-	var/mob/living/carbon/human/victim = owner
-	var/thermal_protection = victim.get_thermal_protection()
-	if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
-		return
-	if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
-		return
+	if(ishuman(owner) && !no_protection)
+		var/mob/living/carbon/human/victim = owner
+		if(victim.get_thermal_protection() >= FIRE_SUIT_MAX_TEMP_PROTECT)
+			return
 
-	victim.adjust_bodytemperature((stacks KELVIN) * seconds_per_tick)
+	owner.adjust_bodytemperature((stacks KELVIN) * seconds_per_tick)
 	switch(ticks_on_fire)
 		if(0 to 3)
-			victim.apply_damage(0.10 * stacks, BURN)
+			owner.apply_damage(0.10 * stacks, BURN)
 		if(3 to 6)
-			victim.apply_damage(0.20 * stacks, BURN)
+			owner.apply_damage(0.20 * stacks, BURN)
 		if(6 to 9)
-			victim.apply_damage(0.30 * stacks, BURN)
+			owner.apply_damage(0.30 * stacks, BURN)
 		if(10 to INFINITY)
-			victim.apply_damage(0.50 * stacks, BURN)
+			owner.apply_damage(0.50 * stacks, BURN)
 	ticks_on_fire += 1 * seconds_per_tick
 
 /**
@@ -266,6 +265,8 @@
 
 /datum/status_effect/fire_handler/fire_stacks/on_apply()
 	. = ..()
+	if(HAS_TRAIT(owner, TRAIT_NOFIRE))
+		return FALSE
 	RegisterSignal(owner, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(add_fire_overlay))
 	owner.update_appearance(UPDATE_OVERLAYS)
 
@@ -276,10 +277,8 @@
 		return
 
 	var/mutable_appearance/created_overlay = owner.get_fire_overlay(stacks, on_fire)
-	if(isnull(created_overlay))
-		return
-
-	overlays |= created_overlay
+	if(!isnull(created_overlay))
+		overlays |= created_overlay
 
 /obj/effect/dummy/lighting_obj/moblight/fire
 	name = "fire"

@@ -23,7 +23,10 @@
 	if(_upgrade_item)
 		upgrade_item = _upgrade_item
 	if(_added_armor)
-		armor_mod = _added_armor
+		if(ispath(_added_armor))
+			armor_mod = _added_armor
+		else
+			stack_trace("Invalid armor mod given ([_added_armor])")
 	var/obj/item/typecast = upgrade_item
 	upgrade_name = initial(typecast.name)
 

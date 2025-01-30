@@ -74,6 +74,10 @@
 
 /obj/effect/turf_decal/Destroy(force)
 	SHOULD_CALL_PARENT(FALSE)
+	// monkestation start: ensure we clean up some stuff with replays
+	demo_last_appearance = null
+	demo_last_loc = null
+	// monkestation end
 #ifdef UNIT_TESTS
 // If we don't do this, turf decals will end up stacking up on a tile, and break the overlay limit
 // I hate it too bestie
