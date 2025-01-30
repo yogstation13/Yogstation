@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Scrollbars are now properly themed on BYOND 516."
+  - bugfix: "Fixed not being able to scroll properly through techfabs/lathes on BYOND 516."
