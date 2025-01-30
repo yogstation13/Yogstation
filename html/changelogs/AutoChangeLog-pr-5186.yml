@@ -1,5 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - bugfix: "Donator Tokens."
-  - bugfix: "Tokens now backup appropriately after being spent."

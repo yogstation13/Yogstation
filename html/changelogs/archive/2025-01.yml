@@ -627,6 +627,12 @@
   - qol: The corrupt appendix and lungs now have a cooldown, to prevent stunlocks
       or rapidly filling entire rooms with plasma if you're super unlucky.
   - bugfix: Fixed some minor map issues.
+  - bugfix: Fixed a few floor lights that were obscured by dense objects.
+  - bugfix: Fixed crew transfer votes being spammed if nobody votes on them.
+  - bugfix: Scrollbars are now properly themed on BYOND 516.
+  - bugfix: Fixed not being able to scroll properly through techfabs/lathes on BYOND
+      516.
+  - bugfix: Fixed various minor errors.
   BingusSS13:
   - qol: Updates The Derelict / KS13 / Drone Station / Russian Station's engineering
       to look like it's original map's engineering.
@@ -651,6 +657,9 @@
   - balance: Minimum players required for a Disease/plague outbreak are all increased
   - balance: 'Fake virus''s will now share starting conditions with Disease: Classic
       rather than Plague rats.'
+  - bugfix: Engineering is properly accessed by Construction access.
+  - bugfix: Tcomms is properly accessed with TComms access.
+  - bugfix: AI sat is properly accessed by minisat access
   MrBagHead:
   - qol: Renamed "Midround Heretics" event to "Forbidden Calling (Heretics)" for consistency.
   Shoddd:
@@ -662,3 +671,5 @@
   - bugfix: fixed donator tokens being buggy (hopefully)
   - rscadd: Syndicate Depot's Operatives are reminded of escalation requirements when
       faxing or teleporting stuff to the station.
+  - bugfix: Donator Tokens.
+  - bugfix: Tokens now backup appropriately after being spent.
