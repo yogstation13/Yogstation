@@ -14,9 +14,20 @@ SUBSYSTEM_DEF(autotransfer)
 	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(crew_transfer_setup)))
 	return SS_INIT_SUCCESS
 
+/datum/controller/subsystem/autotransfer/Recover()
+	next_transfer_vote = SSautotransfer.next_transfer_vote
+
 /datum/controller/subsystem/autotransfer/fire()
 	if(can_run_transfer_vote())
 		SSvote.initiate_vote(/datum/vote/shuttle_call, "automatic shuttle vote", forced = TRUE)
+		start_subsequent_vote_cooldown()
+
+/datum/controller/subsystem/autotransfer/proc/start_subsequent_vote_cooldown()
+	var/subsequent_transfer_vote_time = CONFIG_GET(number/subsequent_transfer_vote_time)
+	if(subsequent_transfer_vote_time)
+		COOLDOWN_START(src, next_transfer_vote, subsequent_transfer_vote_time + CONFIG_GET(number/vote_period))
+	else
+		next_transfer_vote = 0
 
 /datum/controller/subsystem/autotransfer/proc/can_run_transfer_vote()
 	. = TRUE
@@ -50,8 +61,3 @@ SUBSYSTEM_DEF(autotransfer)
 
 /datum/controller/subsystem/autotransfer/proc/crew_transfer_continue()
 	SSgamemode.point_gain_multipliers[EVENT_TRACK_ROLESET]++
-	var/subsequent_transfer_vote_time = CONFIG_GET(number/subsequent_transfer_vote_time)
-	if(!subsequent_transfer_vote_time)
-		next_transfer_vote = 0
-		return
-	COOLDOWN_START(src, next_transfer_vote, subsequent_transfer_vote_time)
