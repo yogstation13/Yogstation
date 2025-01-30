@@ -51,7 +51,7 @@
 				var/org_zone = check_zone(organ.zone) //both groin and chest organs.
 				if(org_zone != BODY_ZONE_CHEST)
 					continue
-				organs.Remove(organ)
+				organ.Remove(src)
 				organ.forceMove(Tsec)
 				organ.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
 	else
@@ -62,7 +62,7 @@
 			if(no_organs && !istype(organ, /obj/item/organ/internal/brain))
 				qdel(organ)
 				continue
-			organs.Remove(organ)
+			organ.Remove(src)
 			organ.forceMove(Tsec)
 			organ.fly_away(Tsec, horizontal_multiplier = 2, vertical_multiplier = 1.2)
 
