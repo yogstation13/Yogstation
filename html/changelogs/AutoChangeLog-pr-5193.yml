@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - bugfix: "Engineering is properly accessed by Construction access."
+  - bugfix: "Tcomms is properly accessed with TComms access."
+  - bugfix: "AI sat is properly accessed by minisat access"
