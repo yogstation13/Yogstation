@@ -268,7 +268,7 @@ export const DesignBrowser = <T extends Design = Design>(
               </Section>
             </Stack.Item>
             <Stack.Item grow>
-              <Section fill style={{ overflow: 'auto' }}>
+              <Section fill scrollable>
                 {searchText.length > 0 ? (
                   sortBy((design: T) => design.name)(
                     Object.values(root.descendants),
