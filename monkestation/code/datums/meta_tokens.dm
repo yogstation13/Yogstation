@@ -44,6 +44,8 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	var/antag_timeout
 	/// The timer for the event token timeout
 	var/event_timeout
+	/// The month we last used a donator token on
+	var/token_month = 0
 
 /datum/meta_token_holder/New(client/creator)
 	. = ..()
@@ -72,6 +74,7 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	event_tokens = saved_tokens["event_tokens"]
 	event_token_month = saved_tokens["event_token_month"]
 	donator_token = saved_tokens["donator"]
+	token_month = saved_tokens["donator_token_month"]
 
 	total_antag_tokens = total_low_threat_tokens + total_medium_threat_tokens + total_high_threat_tokens
 
@@ -90,6 +93,7 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 		"event_tokens" = event_tokens,
 		"event_token_month" = event_token_month,
 		"donator" = donator_token,
+		"donator_token_month" = token_month,
 	)
 	backup_tokens()
 	owner.prefs.save_preferences()
@@ -101,20 +105,18 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 		return FALSE
 
 	var/month_number = text2num(time2text(world.time, "MM"))
-	if(owner.prefs.token_month == 0)
-		owner.prefs.token_month = month_number
-	if(owner.prefs.token_month != month_number)
 
+	if(token_month != month_number)
 		if(patreon.has_access(ACCESS_NUKIE_RANK))    ///if nukie rank, get coins AND token
 			owner.prefs.adjust_metacoins(owner?.ckey, 10000, "Monthly Monkecoin rations.", TRUE, FALSE, FALSE)
 
 		donator_token++
-		owner.prefs.token_month = month_number  ///update per-person month counter
+		token_month = month_number  ///update per-person month counter
 		convert_tokens_to_list()
 		return TRUE
 
 	else
-		owner.prefs.token_month = month_number
+		token_month = month_number
 		convert_tokens_to_list()
 		return FALSE
 
@@ -122,8 +124,8 @@ GLOBAL_LIST_INIT(patreon_etoken_values, list(
 	if(use_donor)
 		if(donator_token)
 			donator_token--
-			logger.Log(LOG_CATEGORY_META, "[owner], used donator token on [owner.prefs.token_month].")
-			owner.prefs.save_preferences()
+			logger.Log(LOG_CATEGORY_META, "[owner], used donator token on [token_month].")
+			convert_tokens_to_list()
 			return
 
 	switch(tier)

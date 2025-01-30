@@ -29,6 +29,7 @@
 		"event_tokens" = 0,
 		"event_token_month" = 0,
 		"donator" = 0,
+		"donator_token_month" = 0,
 	)
 
 	///amount of metaconis you can earn per shift
@@ -36,8 +37,6 @@
 
 	///Alternative job titles stored in preferences. Assoc list, ie. alt_job_titles["Scientist"] = "Cytologist"
 	var/list/alt_job_titles = list()
-	/// the month we used our last donator token on
-	var/token_month = 0
 	/// these are inventory items that require external data to load correctly
 	var/list/extra_stat_inventory = list(
 		"unusual" = list(),
