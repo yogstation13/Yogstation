@@ -975,7 +975,7 @@
 /turf/open/floor/iron/grimy,
 /area/station/tcommsat/computer)
 "arW" = (
-/obj/machinery/light/floor,
+/obj/machinery/light/floor/has_bulb,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "ase" = (
@@ -10067,7 +10067,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/machinery/light/floor,
+/obj/machinery/light/floor/has_bulb,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "dJK" = (
@@ -16326,7 +16326,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/machinery/light/floor,
+/obj/machinery/light/floor/has_bulb,
 /turf/open/floor/wood/large,
 /area/station/commons/lounge)
 "fTE" = (
@@ -34062,7 +34062,6 @@
 	req_access = list("xenobiology");
 	pixel_x = -24
 	},
-/obj/machinery/light/floor/has_bulb,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "lOZ" = (
@@ -38402,7 +38401,7 @@
 /area/station/security/office)
 "nlu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/light/floor,
+/obj/machinery/light/floor/has_bulb,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "nlL" = (
@@ -38933,7 +38932,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/machinery/light/floor,
+/obj/machinery/light/floor/has_bulb,
 /turf/open/floor/wood,
 /area/station/commons/lounge)
 "ntk" = (
@@ -43662,6 +43661,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/medical/chemistry)
+"pbB" = (
+/obj/machinery/duct,
+/obj/machinery/light/floor/has_bulb,
+/turf/open/floor/iron/white,
+/area/station/science/xenobiology)
 "pbL" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron/white/side,
@@ -58794,7 +58798,7 @@
 /area/station/security/prison/mess)
 "umP" = (
 /obj/structure/window/spawner/directional/west,
-/obj/machinery/light/floor,
+/obj/machinery/light/floor/has_bulb,
 /turf/open/floor/carpet,
 /area/station/service/theater)
 "umS" = (
@@ -118451,7 +118455,7 @@ mtu
 vHm
 fHs
 ycv
-kCw
+pbB
 kCw
 gRY
 xCA

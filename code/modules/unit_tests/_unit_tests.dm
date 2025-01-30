@@ -121,6 +121,7 @@
 #include "egg_glands.dm"
 #include "emoting.dm"
 #include "fish_unit_tests.dm"
+#include "floor_lights.dm"
 #include "focus_only_tests.dm"
 #include "food_edibility_check.dm"
 #include "full_heal.dm"

@@ -44027,6 +44027,15 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/catwalk_floor,
 /area/station/solars/starboard/fore)
+"mJO" = (
+/obj/structure/table,
+/obj/machinery/duct,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/item/radio/intercom/prison,
+/turf/open/floor/iron,
+/area/station/security/prison)
 "mKe" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
@@ -80671,12 +80680,13 @@
 /area/station/commons/fitness/recreation)
 "yho" = (
 /obj/structure/table,
-/obj/item/radio/intercom/prison,
 /obj/machinery/duct,
-/obj/machinery/light/floor/has_bulb,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/item/flashlight/lamp{
+	pixel_y = 7
+	},
 /turf/open/floor/iron,
 /area/station/security/prison)
 "yhN" = (
@@ -99413,7 +99423,7 @@ cVl
 fdr
 tPb
 yho
-oiF
+mJO
 fdr
 fdr
 cCD
