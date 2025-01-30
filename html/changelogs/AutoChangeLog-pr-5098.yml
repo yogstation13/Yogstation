@@ -1,4 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - bugfix: "fixed donator tokens being buggy (hopefully)"

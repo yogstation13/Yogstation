@@ -1,9 +1,0 @@
-author: "BingusSS13"
-delete-after: True
-changes:
-  - qol: "Updates The Derelict / KS13 / Drone Station / Russian Station's engineering to look like it's original map's engineering."
-  - qol: "General improvements to KS13's consistency with it's original map."
-  - qol: "Gives KS13's atmospherics O2, N2 & Plasma gas miners, you won't have to worry about distro somehow running out anymore."
-  - bugfix: "Fixes KS13's kitchen and hydroponics, which had bad area placement."
-  - bugfix: "Removes the duplicate APC in KS13's security."
-  - bugfix: "FINALLY fixes the mapping mistake that caused derelict drones to only get 3 sheets of silver."

@@ -1,7 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - rscadd: "Adds super kitty ears"
-  - balance: "rebalances a lot of space ruins, see PR #5048"
-  - balance: "gives explorer hardsuit now has 30% bullet armor 30% laser"
-  - code_imp: "changed mimics and shamblers into basic mobs"

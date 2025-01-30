@@ -622,3 +622,43 @@
   - image: Updated the title button image
   Veth-s:
   - rscadd: You can now carry 3 plushies in your loadout in addition to 3 misc items.
+2025-01-30:
+  Absolucy:
+  - qol: The corrupt appendix and lungs now have a cooldown, to prevent stunlocks
+      or rapidly filling entire rooms with plasma if you're super unlucky.
+  - bugfix: Fixed some minor map issues.
+  BingusSS13:
+  - qol: Updates The Derelict / KS13 / Drone Station / Russian Station's engineering
+      to look like it's original map's engineering.
+  - qol: General improvements to KS13's consistency with it's original map.
+  - qol: Gives KS13's atmospherics O2, N2 & Plasma gas miners, you won't have to worry
+      about distro somehow running out anymore.
+  - bugfix: Fixes KS13's kitchen and hydroponics, which had bad area placement.
+  - bugfix: Removes the duplicate APC in KS13's security.
+  - bugfix: FINALLY fixes the mapping mistake that caused derelict drones to only
+      get 3 sheets of silver.
+  Gboster-0:
+  - rscadd: Made it so IPC's can now be emagged
+  Gw0sty:
+  - balance: 'Disease: Classic, Advanced, and plague rats are all more common. (From
+      0:0:1) to (4:3:2)'
+  - balance: 'Disease: Classic, and Advanced can occur earlier in the round. (55 mins:55
+      mins) to (20 mins:40mins)'
+  - balance: 'Disease: Classic will now have an additional chance to contain helpful
+      and flavour symptoms. (0:1) to (2:2) chances respectively'
+  - balance: 'Disease: Advanced will no longer contain deadly symptoms and a small
+      chance for flavour. (1:0) to (0:2) chances respectively'
+  - balance: Minimum players required for a Disease/plague outbreak are all increased
+  - balance: 'Fake virus''s will now share starting conditions with Disease: Classic
+      rather than Plague rats.'
+  MrBagHead:
+  - qol: Renamed "Midround Heretics" event to "Forbidden Calling (Heretics)" for consistency.
+  Shoddd:
+  - rscadd: Adds super kitty ears
+  - balance: 'rebalances a lot of space ruins, see PR #5048'
+  - balance: gives explorer hardsuit now has 30% bullet armor 30% laser
+  - code_imp: changed mimics and shamblers into basic mobs
+  Veth-s:
+  - bugfix: fixed donator tokens being buggy (hopefully)
+  - rscadd: Syndicate Depot's Operatives are reminded of escalation requirements when
+      faxing or teleporting stuff to the station.
