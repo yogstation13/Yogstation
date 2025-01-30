@@ -7,12 +7,14 @@
 	instability = 5
 
 /datum/mutation/human/alcohol_tolerance/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	ADD_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE, GENETIC_MUTATION)
 
 /datum/mutation/human/alcohol_tolerance/on_losing(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	REMOVE_TRAIT(owner, TRAIT_ALCOHOL_TOLERANCE, GENETIC_MUTATION)
 

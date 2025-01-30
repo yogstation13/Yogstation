@@ -9,14 +9,16 @@
 	instability = 10 //could be an upside maybe, or could force it on some poor sap while stabilized
 
 /datum/mutation/human/ravenous/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	ADD_TRAIT(owner, TRAIT_EAT_MORE, "ravenous")
 	ADD_TRAIT(owner, TRAIT_BOTTOMLESS_STOMACH, "ravenous")
 	ADD_TRAIT(owner, TRAIT_VORACIOUS, "ravenous")
 
 /datum/mutation/human/ravenous/on_losing(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	REMOVE_TRAIT(owner, TRAIT_EAT_MORE, "ravenous")
 	REMOVE_TRAIT(owner, TRAIT_BOTTOMLESS_STOMACH, "ravenous")
