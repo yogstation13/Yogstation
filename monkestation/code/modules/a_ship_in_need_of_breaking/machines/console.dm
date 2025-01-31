@@ -27,6 +27,8 @@
 	var/ship_health = 0
 	///our initial turf count
 	var/turf_count = 0
+	var/ship_part = 0
+	var/total_turf = 0
 
 /obj/machinery/computer/shipbreaker/Initialize(mapload)
 	..()
@@ -56,7 +58,7 @@
 
 /obj/machinery/computer/shipbreaker/proc/area_clear_check()
 	for(var/turf/t in linked)
-		if(!isspaceturf(t))
+		if(!isgroundlessturf(t))
 			spawn_area_clear = FALSE
 			say("FLOORING OR WALL DETECTED")
 			return
@@ -108,14 +110,18 @@
 
 /obj/machinery/computer/shipbreaker/proc/setup_health_tracker()
 	for(var/turf/turf in linked)
-		if(!isspaceturf(turf))
+		if(!isgroundlessturf(turf))
 			turf_count++
 			RegisterSignal(turf, COMSIG_TURF_CHANGE, PROC_REF(modify_health))
+	total_turf = turf_count
+	ship_part = (100 / turf_count)
 	ship_health = 100
 
 /obj/machinery/computer/shipbreaker/proc/modify_health(turf/source)
-	ship_health -= (100 / turf_count)
+	ship_health -= ((total_turf - turf_count) * ship_part)
 	ship_health = max(ship_health, 0)
+	if(ship_health < 1)
+		ship_health = 0
 
 
 /obj/machinery/computer/shipbreaker/proc/damage_ship()
