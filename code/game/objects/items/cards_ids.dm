@@ -108,7 +108,7 @@
 	. = ..()
 	var/atom/A = target
 	if(!proximity && prox_check)
-		return 
+		return
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
@@ -206,7 +206,7 @@
 /obj/item/card/cmag/afterattack(atom/target, mob/user, proximity)
 	. = ..()
 	if(!proximity && prox_check)
-		return 
+		return
 	if(charges < 1)
 		to_chat(user, span_danger("\The [src] is still recharging!"))
 		return
@@ -285,7 +285,7 @@
 			cyborg.SetStun(60) // Gives you time to run if needed.
 			cyborg.module.transform_to(/obj/item/robot_module/clown) // No law change, but they get to clown around instead.
 			return
-		
+
 		cyborg.SetStun(60) // Standard stun like from emagging.
 		cyborg.lawupdate = FALSE
 		cyborg.set_connected_ai(null)
@@ -314,7 +314,7 @@
 
 		cyborg.laws = new /datum/ai_laws/pranksimov
 		cyborg.laws.associate(cyborg)
-			
+
 		cyborg.update_icons()
 		return
 
@@ -426,7 +426,7 @@
 	else
 		to_chat(user, span_notice("You insert [I] into [src], adding [cash_money] credits to the linked account."))
 
-	to_chat(user, span_notice("The linked account now reports a balance of $[registered_account.account_balance]."))
+	to_chat(user, span_notice("The linked account now reports a [registered_account.account_balance >= 0 ? "balance" : "<b>debt</b>"] of $[registered_account.account_balance]."))
 	qdel(I)
 
 
@@ -527,11 +527,11 @@
 		. += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 
 	if(registered_account)
-		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of $[registered_account.account_balance]."
+		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a [registered_account.account_balance >= 0 ? "balance" : "<b>debt</b>"] of $[registered_account.account_balance]."
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				. += "The [D.account_holder] reports a balance of $[D.account_balance]."
+				. += "The [D.account_holder] reports a [D.account_balance >= 0 ? "balance" : "<b>debt</b>"] of $[D.account_balance]."
 		. += span_info("Alt-Click the ID to pull money from the linked account in the form of holochips.")
 		. += span_info("You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.")
 		if(registered_account.account_holder == user.real_name)
@@ -1111,11 +1111,11 @@ update_label("John Doe", "Clowny")
 	department_name = ACCOUNT_SEC_NAME
 
 /***
- * 
- * 
+ *
+ *
  * 	HERETIC ID SECTION (SORRY)
- * 
- * 
+ *
+ *
  */
 
 /obj/effect/knock_portal
@@ -1141,7 +1141,7 @@ update_label("John Doe", "Clowny")
 	if(target)
 		our_airlock = target
 		RegisterSignal(target, COMSIG_QDELETING, PROC_REF(delete_on_door_delete))
-		
+
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
@@ -1231,7 +1231,7 @@ update_label("John Doe", "Clowny")
 
 /obj/item/card/id/syndicate/heretic/proc/clear_portals()
 	QDEL_NULL(portal_one)
-	QDEL_NULL(portal_two)	
+	QDEL_NULL(portal_two)
 
 ///Clears portal references
 /obj/item/card/id/syndicate/heretic/proc/clear_portal_refs()
@@ -1245,7 +1245,7 @@ update_label("John Doe", "Clowny")
 	if(portal_one || portal_two)
 		clear_portals()
 		message += ", previous cleared"
-	
+
 	portal_one = new(get_turf(door2), door2)
 	portal_two = new(get_turf(door1), door1)
 	portal_one.destination = portal_two
