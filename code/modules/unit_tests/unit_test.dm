@@ -256,6 +256,7 @@ GLOBAL_VAR_INIT(focused_tests, focused_tests())
 		/turf/closed/mineral/random/regrowth,
 		/obj/effect/abstract/signboard_holder, // monkestation addition: shouldn't exist outside of signboards
 		/obj/effect/transmission_beam, // monkestation addition: relies on the existence of a PTL
+		/obj/item/radio/entertainment/speakers/pda, // monkestation addition: should never exist outside of a modular computer
 	)
 	//Say it with me now, type template
 	ignore += typesof(/obj/effect/mapping_helpers)

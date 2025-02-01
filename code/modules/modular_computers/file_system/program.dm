@@ -43,6 +43,8 @@
 	var/detomatix_resistance = NONE
 	///Boolean on whether or not only one copy of the app can exist. This means it deletes itself when cloned elsewhere.
 	var/unique_copy = FALSE
+	///Boolean on whether the UI should *always* be updated while active.
+	var/always_update_ui = FALSE
 
 /datum/computer_file/program/clone()
 	var/datum/computer_file/program/temp = ..()

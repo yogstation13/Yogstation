@@ -265,11 +265,15 @@
  * * blind_message (optional) is what blind people will hear e.g. "You hear something!"
  * * vision_distance (optional) define how many tiles away the message can be seen.
  * * ignored_mob (optional) doesn't show any message to a given mob if TRUE.
+ * * push_appearance(optional) pushes an atom's appearance to all viewing mobs, for use with <img src='\ref[thing]'>
  */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, atom/push_appearance)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
+
+	if(!isnull(push_appearance) && !isatom(push_appearance))
+		stack_trace("push_appearance must be an atom, but got [push_appearance] instead")
 
 	if(!islist(ignored_mobs))
 		ignored_mobs = list(ignored_mobs)
@@ -304,6 +308,9 @@
 		if(!msg)
 			continue
 
+		if(push_appearance)
+			M << output(push_appearance, "push_appearance_placeholder_id")
+
 		if(visible_message_flags & EMOTE_MESSAGE && runechat_prefs_check(M, visible_message_flags) && !M.is_blind())
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
@@ -311,7 +318,7 @@
 
 
 ///Adds the functionality to self_message.
-/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE)
+/mob/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, atom/push_appearance)
 	. = ..()
 	if(self_message)
 		show_message(self_message, MSG_VISUAL, blind_message, MSG_AUDIBLE)

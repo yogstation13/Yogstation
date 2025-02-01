@@ -39,14 +39,12 @@
 // Operates TGUI
 /obj/item/modular_computer/ui_interact(mob/user, datum/tgui/ui)
 	if(!enabled || !user.can_read(src, READING_CHECK_LITERACY) || !use_power())
-		if(ui)
-			ui.close()
+		ui?.close()
 		return
 
 	// Robots don't really need to see the screen, their wireless connection works as long as computer is on.
 	if(!screen_on && !issilicon(user))
-		if(ui)
-			ui.close()
+		ui?.close()
 		return
 
 	if(honkvirus_amount > 0) // EXTRA annoying, huh!
@@ -56,6 +54,8 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		update_tablet_open_uis(user)
+	else if(active_program?.always_update_ui)
+		active_program.ui_interact(user, ui)
 
 /obj/item/modular_computer/ui_assets(mob/user)
 	var/list/data = list()

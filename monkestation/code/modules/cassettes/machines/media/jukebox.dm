@@ -310,7 +310,7 @@
 // Just junk to make it sneaky - I wish a lot more stuff was on /obj/machinery/media instead of /jukebox so I could use that.
 /obj/machinery/media/jukebox/ghost/audible_message(message, deaf_message, hearing_distance = DEFAULT_MESSAGE_RANGE, self_message, audible_message_flags = NONE)
 	return
-/obj/machinery/media/jukebox/ghost/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE)
+/obj/machinery/media/jukebox/ghost/visible_message(message, self_message, blind_message, vision_distance = DEFAULT_MESSAGE_RANGE, list/ignored_mobs, visible_message_flags = NONE, atom/push_appearance)
 	return
 /obj/machinery/media/jukebox/ghost/attackby(obj/item/W as obj, mob/user as mob)
 	return

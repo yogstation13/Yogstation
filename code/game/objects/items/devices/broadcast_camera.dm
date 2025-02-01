@@ -35,7 +35,6 @@
 
 /obj/item/broadcast_camera/Initialize(mapload)
 	. = ..()
-
 	AddElement(/datum/element/empprotection, EMP_PROTECT_ALL)
 
 /obj/item/broadcast_camera/Destroy(force)
@@ -47,21 +46,22 @@
 	icon_state = "[base_icon_state][active]"
 	return ..()
 
-/obj/item/broadcast_camera/attack_self(mob/user, modifiers)
+/obj/item/broadcast_camera/attack_self(mob/living/user, modifiers)
 	. = ..()
 	active = !active
 	if(active)
 		on_activating()
 	else
+		user.remove_status_effect(/datum/status_effect/streamer, internal_camera)
 		on_deactivating()
 
 /obj/item/broadcast_camera/attack_self_secondary(mob/user, modifiers)
 	. = ..()
-	broadcast_name = tgui_input_text(user = user, title = "Broadcast Name", message = "What will be the name of your broadcast?", default = "[broadcast_name]", max_length = MAX_CHARTER_LEN)
+	broadcast_name = tgui_input_text(user = user, title = "Broadcast Name", message = "What will be the name of your broadcast?", default = "[broadcast_name]", max_length = MAX_CHARTER_LEN, encode = FALSE)
 
 /obj/item/broadcast_camera/examine(mob/user)
 	. = ..()
-	. += span_notice("Broadcast name is <b>[broadcast_name]</b>")
+	. += span_notice("Broadcast name is <b>[html_encode(broadcast_name)]</b>")
 	. += span_notice("The microphone is <b>[active_microphone ? "On" : "Off"]</b>")
 
 /obj/item/broadcast_camera/on_enter_storage(datum/storage/master_storage)
@@ -69,25 +69,29 @@
 	if(active)
 		on_deactivating()
 
-/obj/item/broadcast_camera/dropped(mob/user, silent)
+/obj/item/broadcast_camera/dropped(mob/living/user, silent)
 	. = ..()
 	if(active)
+		user?.remove_status_effect(/datum/status_effect/streamer, internal_camera)
 		on_deactivating()
 
 /// When activating the camera
 /obj/item/broadcast_camera/proc/on_activating()
-	if(!iscarbon(loc))
+	if(!isliving(loc))
+		return
+	/// The mob who wielded the camera, allegedly
+	var/mob/living/wielder = loc
+	if(!wielder.is_holding(src))
 		return
 	active = TRUE
 	update_icon_state()
-	/// The carbon who wielded the camera, allegedly
-	var/mob/living/carbon/wielding_carbon = loc
 
 	// INTERNAL CAMERA
-	internal_camera = new(wielding_carbon) // Cameras for some reason do not work inside of obj's
+	internal_camera = new(wielder) // Cameras for some reason do not work inside of obj's
 	internal_camera.internal_light = FALSE
 	internal_camera.network = camera_networks
 	internal_camera.c_tag = "LIVE: [broadcast_name]"
+	wielder.apply_status_effect(/datum/status_effect/streamer, internal_camera, CALLBACK(src, PROC_REF(ensure_still_active)))
 	start_broadcasting_network(camera_networks, "[broadcast_name] is now LIVE!")
 
 	// INTERNAL RADIO
@@ -111,6 +115,16 @@
 	set_light_on(FALSE)
 	playsound(source = src, soundin = 'sound/machines/terminal_prompt_deny.ogg', vol = 20, vary = FALSE, ignore_walls = FALSE)
 	balloon_alert_to_viewers("offline")
+
+/obj/item/broadcast_camera/proc/ensure_still_active()
+	if(!active)
+		return FALSE
+	if(!isliving(loc))
+		return FALSE
+	var/mob/living/wielder = loc
+	if(!wielder.is_holding(src))
+		return FALSE
+	return TRUE
 
 /obj/item/broadcast_camera/AltClick(mob/user)
 	if(!user.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH))
