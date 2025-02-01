@@ -17,6 +17,10 @@
   - refactor: Refactored some stuff about how camera broadcasts work.
   - bugfix: Mark of Rust can no longer damage indestructible items.
   - bugfix: Fixed the chat reliability subsystem being completely useless (hopefully).
+  - balance: Securitrons/Beepsky now only deal stamina damage instead of instantly
+      hardstunning someone.
+  - balance: Having baton resistance now also provides resistance against beepsky.
+  - balance: Beepsky can now be blocked/parried with shields and such.
   Absolucy, SyncIt21:
   - bugfix: Quirks now properly process again.
   Gw0sty:
