@@ -1,0 +1,6 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "Securitrons/Beepsky now only deal stamina damage instead of instantly hardstunning someone."
+  - balance: "Having baton resistance now also provides resistance against beepsky."
+  - balance: "Beepsky can now be blocked/parried with shields and such."
