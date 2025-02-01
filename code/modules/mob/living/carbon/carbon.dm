@@ -192,7 +192,7 @@
 	if (!bulky && prob(50))
 		return
 	visible_message(span_danger("[src] looses [src.p_their()] balance."), \
-		span_danger("You loose your balance."))
+		span_danger("You lose your balance."))
 	Knockdown(2 SECONDS)
 
 	//MONKESTATION EDIT END
