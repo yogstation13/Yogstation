@@ -102,6 +102,7 @@
 		/datum/computer_file/program/robocontrol,
 		/datum/computer_file/program/budgetorders,
 		/datum/computer_file/program/signal_commander,
+		/datum/computer_file/program/scipaper_program,
 	)
 
 /obj/item/modular_computer/pda/heads/quartermaster
@@ -187,6 +188,8 @@
 	starting_programs = list(
 		/datum/computer_file/program/atmosscan,
 		/datum/computer_file/program/signal_commander,
+		/datum/computer_file/program/science,
+		/datum/computer_file/program/scipaper_program,
 	)
 
 /obj/item/modular_computer/pda/roboticist
