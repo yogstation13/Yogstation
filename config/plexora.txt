@@ -1,0 +1,5 @@
+# Uncomment this to enable Plexora. You probably won't need this, this is really only used by the main Monkestation server.
+#PLEXORA_ENABLED
+
+# The base URL for the Plexora instance.
+PLEXORA_URL http://127.0.0.1:1330

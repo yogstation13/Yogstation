@@ -20,8 +20,8 @@
 		INVOKE_ASYNC(SSplexora, TYPE_PROC_REF(/datum/controller/subsystem/plexora, topic_listener_response), input["emitter_token"], returning); \
 		return; \
 	};
-
 #define AUTH_HEADER ("Basic " + CONFIG_GET(string/comms_key))
+#define OLD_PLEXORA_CONFIG "config/plexora.json"
 
 SUBSYSTEM_DEF(plexora)
 	name = "Plexora"
@@ -36,11 +36,9 @@ SUBSYSTEM_DEF(plexora)
 
 	// MUST INCREMENT BY ONE FOR EVERY CHANGE MADE TO PLEXORA
 	var/version_increment_counter = 2
-	var/configuration_path = "config/plexora.json"
 	var/plexora_is_alive = FALSE
 	var/vanderlin_available = FALSE
-	var/http_root = ""
-	var/http_port = 0
+	var/base_url = ""
 	var/enabled = TRUE
 	var/tripped_bad_version = FALSE
 	var/list/default_headers
@@ -49,16 +47,7 @@ SUBSYSTEM_DEF(plexora)
 	var/hrp_available = FALSE
 
 /datum/controller/subsystem/plexora/Initialize()
-	if (!rustg_file_exists(configuration_path))
-		stack_trace("SSplexora has no configuration file! (missing: [configuration_path])")
-		enabled = FALSE
-		flags |= SS_NO_FIRE
-		return SS_INIT_FAILURE
-
-	// Get config
-	var/list/config = json_decode(rustg_file_read(configuration_path))
-
-	if (!config["enabled"])
+	if(!CONFIG_GET(flag/plexora_enabled) && !load_old_plexora_config())
 		enabled = FALSE
 		flags |= SS_NO_FIRE
 		return SS_INIT_NO_NEED
@@ -70,8 +59,7 @@ SUBSYSTEM_DEF(plexora)
 		flags |= SS_NO_FIRE
 		return SS_INIT_FAILURE
 
-	http_root = config["ip"]
-	http_port = config["port"]
+	base_url = CONFIG_GET(string/plexora_url)
 
 	default_headers = list(
 		"Content-Type" = "application/json",
@@ -92,19 +80,30 @@ SUBSYSTEM_DEF(plexora)
 	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 	initialized = SSplexora.initialized
 	plexora_is_alive = SSplexora.plexora_is_alive
-	http_root = SSplexora.http_root
-	http_port = SSplexora.http_port
+	base_url = SSplexora.base_url
 	enabled = SSplexora.enabled
 	tripped_bad_version = SSplexora.tripped_bad_version
 	default_headers = SSplexora.default_headers
 	if(initialized && !enabled)
 		flags |= SS_NO_FIRE
 
+// compat thing so that it'll load plexora.json if it's still used
+/datum/controller/subsystem/plexora/proc/load_old_plexora_config()
+	if(!rustg_file_exists(OLD_PLEXORA_CONFIG))
+		return FALSE
+	var/list/old_config = json_decode(rustg_file_read(OLD_PLEXORA_CONFIG))
+	if(!old_config["enabled"])
+		return FALSE
+	stack_trace("Falling back to [OLD_PLEXORA_CONFIG], you should really migrate to the PLEXORA_ENABLED and PLEXORA_URL config entries!")
+	CONFIG_SET(flag/plexora_enabled, TRUE)
+	CONFIG_SET(string/plexora_url, "http://[old_config["ip"]]:[old_config["port"]]")
+	return TRUE
+
 /datum/controller/subsystem/plexora/proc/is_plexora_alive()
 	. = FALSE
 	if(!enabled) return
 
-	var/datum/http_request/request = new(RUSTG_HTTP_METHOD_GET, "http://[http_root]:[http_port]/alive")
+	var/datum/http_request/request = new(RUSTG_HTTP_METHOD_GET, "[base_url]/alive")
 	request.begin_async()
 	UNTIL_OR_TIMEOUT(request.is_complete(), 10 SECONDS)
 	var/datum/http_response/response = request.into_response()
@@ -134,7 +133,7 @@ SUBSYSTEM_DEF(plexora)
 
 	http_request(
 		RUSTG_HTTP_METHOD_POST,
-		"http://[http_root]:[http_port]/status",
+		"[base_url]/status",
 		json_encode(status),
 		default_headers
 	).begin_async()
@@ -211,7 +210,7 @@ SUBSYSTEM_DEF(plexora)
 		"id" = id
 	)
 
-	var/datum/http_request/request = new(RUSTG_HTTP_METHOD_GET, "http://[http_root]:[http_port]/byondserver_alive", json_encode(body), default_headers)
+	var/datum/http_request/request = new(RUSTG_HTTP_METHOD_GET, "[base_url]/byondserver_alive", json_encode(body), default_headers)
 	request.begin_async()
 	UNTIL_OR_TIMEOUT(request.is_complete(), 5 SECONDS)
 	var/datum/http_response/response = request.into_response()
@@ -362,7 +361,7 @@ SUBSYSTEM_DEF(plexora)
 
 	var/datum/http_request/request = new(
 		RUSTG_HTTP_METHOD_POST,
-		"http://[http_root]:[http_port]/[path]",
+		"[base_url]/[path]",
 		json_encode(body),
 		default_headers,
 		"tmp/response.json"
@@ -979,5 +978,6 @@ SUBSYSTEM_DEF(plexora)
 			html = "<B><font color='green'>Mentor PM: [key_name_mentor(sender, honked_client, FALSE, FALSE)]-&gt;[key_name_mentor(recipient, honked_client, FALSE, FALSE)]:</B> <font color = #5c00e6> <span class='message linkify'>[message]</span></font>",
 			confidential = TRUE)
 
+#undef OLD_PLEXORA_CONFIG
 #undef AUTH_HEADER
 #undef TOPIC_EMITTER
