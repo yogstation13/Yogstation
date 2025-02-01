@@ -1,4 +1,0 @@
-author: "Gboster-0"
-delete-after: true 
-changes: 
-  - bugfix: "Thick skin now properly checks if its actually removed before removing its effects"
