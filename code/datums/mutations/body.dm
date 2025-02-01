@@ -254,12 +254,16 @@
 
 /datum/mutation/human/thickskin/on_acquiring(mob/living/carbon/human/owner)
 	. = ..()
+	if(.)
+		return
 	if(owner.physiology)
 		owner.physiology.brute_mod *= 0.8
 		owner.physiology.burn_mod *= 0.9
 
 /datum/mutation/human/thickskin/on_losing(mob/living/carbon/human/owner)
 	. = ..()
+	if(.)
+		return
 	if(owner.physiology)
 		owner.physiology.brute_mod /= 0.8
 		owner.physiology.burn_mod /= 0.9
@@ -471,7 +475,8 @@
 	power_coeff = 1
 
 /datum/mutation/human/densebones/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	owner.physiology.armor.melee += 5
 	owner.physiology.armor.wound += 10
@@ -479,7 +484,8 @@
 		ADD_TRAIT(owner, TRAIT_HARDLY_WOUNDED, "genetics")
 
 /datum/mutation/human/densebones/on_losing(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	owner.physiology.armor.melee -= 5
 	owner.physiology.armor.wound -= 10
@@ -496,13 +502,15 @@
 	instability = 70
 
 /datum/mutation/human/cerebral/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	owner.physiology.stamina_mod *= 0.7
 	owner.physiology.stun_mod *= 0.85
 
 /datum/mutation/human/cerebral/on_losing(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	owner.physiology.stamina_mod /= 0.7
 	owner.physiology.stun_mod /= 0.85

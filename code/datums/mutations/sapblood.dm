@@ -12,13 +12,15 @@
 	var/passive_bleed_modifier = 0.6
 
 /datum/mutation/human/sapblood/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	ADD_TRAIT(owner, TRAIT_COAGULATING, GENETIC_MUTATION)
 	owner.physiology?.bleed_mod *= passive_bleed_modifier
 
 /datum/mutation/human/sapblood/on_losing(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	REMOVE_TRAIT(owner, TRAIT_COAGULATING, GENETIC_MUTATION)
 	owner.physiology?.bleed_mod /= passive_bleed_modifier
