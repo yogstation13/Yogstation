@@ -1,0 +1,5 @@
+2025-02-01:
+  ThePooba:
+  - bugfix: Fixed ships being unabled to be recalled after completing your first ship
+      on blueshift
+  - bugfix: box station shipbreaker hut wont run out of power now
