@@ -33,10 +33,18 @@
 	/// The base weight for the each quirk's mail goodies list to be selected is 5
 	/// then the item selected is determined by pick(selected_quirk.mail_goodies)
 	var/list/mail_goodies = list() //Monkestation Edit BLOOD_DATUM: Why? this is already a list all this does is mess confuse us.
-	/// The minimum stat where this quirk can process (if it has QUIRK_PROCESSES)
-	var/minimum_process_stat = HARD_CRIT
+	/// The maximum stat below which this quirk can process (if it has QUIRK_PROCESSES), and above which it stops.
+	var/maximum_process_stat = HARD_CRIT
 	/// A list of additional signals to register with update_process()
 	var/list/process_update_signals
+	/// A list of traits that should stop this quirk from processing.
+	/// Signals for adding and removing this trait will automatically be added to `process_update_signals`.
+	var/list/no_process_traits
+
+/datum/quirk/New()
+	. = ..()
+	for(var/trait in no_process_traits)
+		LAZYADD(process_update_signals, list(SIGNAL_ADDTRAIT(trait), SIGNAL_REMOVETRAIT(trait)))
 
 /datum/quirk/Destroy()
 	if(quirk_holder)
@@ -81,7 +89,8 @@
 	add(client_source)
 
 	if(quirk_flags & QUIRK_PROCESSES)
-		RegisterSignal(quirk_holder, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
+		if(!isnull(maximum_process_stat))
+			RegisterSignal(quirk_holder, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_changed))
 		if(process_update_signals)
 			RegisterSignals(quirk_holder, process_update_signals, PROC_REF(update_process))
 		if(should_process())
@@ -161,7 +170,16 @@
 /datum/quirk/proc/should_process()
 	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_BE_PURE(TRUE)
-	return (quirk_flags & QUIRK_PROCESSES) && !QDELETED(quirk_holder) && quirk_holder.stat <= minimum_process_stat
+	if(QDELETED(quirk_holder))
+		return FALSE
+	if(!(quirk_flags & QUIRK_PROCESSES))
+		return FALSE
+	if(!isnull(maximum_process_stat) && quirk_holder.stat >= maximum_process_stat)
+		return FALSE
+	for(var/trait in no_process_traits)
+		if(HAS_TRAIT(quirk_holder, trait))
+			return FALSE
+	return TRUE
 
 /// Checks to see if the quirk should be processing, and starts/stops it.
 /datum/quirk/proc/update_process()

@@ -6,12 +6,9 @@
 	medical_record_text = "Patient demonstrates a fear of tight spaces."
 	hardcore_value = 5
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_PROCESSES
-	minimum_process_stat = CONSCIOUS
+	maximum_process_stat = SOFT_CRIT
 	mail_goodies = list(/obj/item/reagent_containers/syringe/convermol) // to help breathing
-	process_update_signals = list(
-		SIGNAL_ADDTRAIT(TRAIT_FEARLESS),
-		SIGNAL_REMOVETRAIT(TRAIT_FEARLESS),
-	)
+	no_process_traits = list(TRAIT_FEARLESS)
 
 /datum/quirk/claustrophobia/remove()
 	quirk_holder.clear_mood_event("claustrophobia")
@@ -35,9 +32,6 @@
 			to_chat(quirk_holder, span_warning("Santa Claus is here! I gotta get out of here!"))
 		else
 			to_chat(quirk_holder, span_warning("You feel trapped!  Must escape... can't breathe..."))
-
-/datum/quirk/claustrophobia/should_process()
-	return ..() && !HAS_TRAIT(quirk_holder, TRAIT_FEARLESS)
 
 ///investigates whether possible_saint_nick possesses a high level of christmas cheer
 /datum/quirk/claustrophobia/proc/evaluate_jolly_levels(mob/living/carbon/human/possible_saint_nick)

@@ -9,10 +9,7 @@
 	hardcore_value = 3
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_PROCESSES
 	mail_goodies = list(/obj/item/reagent_containers/hypospray/medipen) // epinephrine medipen stops allergic reactions
-	process_update_signals = list(
-		SIGNAL_ADDTRAIT(TRAIT_STASIS),
-		SIGNAL_REMOVETRAIT(TRAIT_STASIS),
-	)
+	no_process_traits = list(TRAIT_STASIS)
 	var/list/allergies = list()
 	var/list/blacklist = list(
 		/datum/reagent/medicine/c2,
@@ -64,6 +61,3 @@
 		if(SPT_PROB(10, seconds_per_tick))
 			carbon_quirk_holder.vomit()
 			carbon_quirk_holder.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_APPENDIX,ORGAN_SLOT_LUNGS,ORGAN_SLOT_HEART,ORGAN_SLOT_LIVER,ORGAN_SLOT_STOMACH),10)
-
-/datum/quirk/item_quirk/allergic/should_process()
-	return iscarbon(quirk_holder) && ..() && !HAS_TRAIT(quirk_holder, TRAIT_STASIS)
