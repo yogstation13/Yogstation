@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - bugfix: "Boxstation engineering disposals will no longer explode."
