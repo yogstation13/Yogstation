@@ -77,13 +77,23 @@
 // If this is gonna be a snowflake touch spell despite not being an actual touch spell, then we get to have snowflake code to ensure it behaves like it should.
 /obj/item/melee/blood_magic/stun/proc/snowflake_martial_arts_handler(mob/living/target, mob/living/carbon/user)
 	var/datum/martial_art/martial_art = target?.mind?.martial_art
-	var/list/static/martial_counters_typecache = typecacheof(list(
-		/datum/martial_art/cqc,
-		/datum/martial_art/the_sleeping_carp/awakened_dragon,
-	))
 	if(!martial_art?.can_use())
 		return FALSE
-	if(is_type_in_typecache(martial_art, martial_counters_typecache))
+	var/counter = FALSE
+	var/dodge = FALSE
+	if(istype(martial_art, /datum/martial_art/cqc))
+		counter = TRUE
+	else if(istype(martial_art, /datum/martial_art/the_sleeping_carp))
+		var/datum/martial_art/the_sleeping_carp/eepy_carp = martial_art
+		if(eepy_carp.can_deflect(target, check_intent = FALSE))
+			if(eepy_carp.counter)
+				counter = TRUE
+				INVOKE_ASYNC(target, TYPE_PROC_REF(/atom/movable, say), message = "PATHETIC!", language = /datum/language/common, ignore_spam = TRUE, forced = martial_art)
+			else
+				dodge = TRUE
+	else if(istype(martial_art, /datum/martial_art/the_tunnel_arts))
+		dodge = TRUE
+	if(counter)
 		target.visible_message(
 			span_danger("[target] twists [user]'s arm, sending [user.p_their()] [src] back towards [user.p_them()]!"),
 			span_userdanger("Making sure to avoid [user]'s [src], you twist [user.p_their()] arm to send it right back at [user.p_them()]!"),
@@ -92,16 +102,14 @@
 		to_chat(user, span_userdanger("As you attempt to stun [target] with the spell, [target.p_they()] twist[target.p_s()] your arm and send[target.p_s()] the spell back at you!"), type = MESSAGE_TYPE_COMBAT)
 		effect_weakened(user, silent = TRUE)
 		return TRUE
-	else if(istype(martial_art, /datum/martial_art/the_sleeping_carp))
-		var/datum/martial_art/the_sleeping_carp/eepy_carp = martial_art
-		if(eepy_carp.can_deflect(target))
-			target.visible_message(
-				span_danger("[target] carefully dodges [user]'s [src]!"),
-				span_userdanger("You take great care to remain untouched by [user]'s [src]!"),
-				ignored_mobs = list(user),
-			)
-			to_chat(user, span_userdanger("[target] carefully dodges your [src], remaining completely untouched!"), type = MESSAGE_TYPE_COMBAT)
-			target.balloon_alert(user, "miss!")
-			playsound(target, 'monkestation/sound/effects/miss.ogg', vol = 50, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
-			return TRUE
+	else if(dodge)
+		target.visible_message(
+			span_danger("[target] carefully dodges [user]'s [src]!"),
+			span_userdanger("You take great care to remain untouched by [user]'s [src]!"),
+			ignored_mobs = list(user),
+		)
+		to_chat(user, span_userdanger("[target] carefully dodges your [src], remaining completely untouched!"), type = MESSAGE_TYPE_COMBAT)
+		target.balloon_alert(user, "miss!")
+		playsound(target, 'monkestation/sound/effects/miss.ogg', vol = 50, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
+		return TRUE
 	return FALSE

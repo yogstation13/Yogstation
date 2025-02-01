@@ -13,7 +13,7 @@
 	var/deflect_cooldown = 3 SECONDS //monke edit start
 	var/deflect_stamcost = 15 //how much stamina it costs per bullet deflected
 	var/log_name = "Sleeping Carp"
-	var/damage = 0
+	var/damage = 20
 	var/kick_speed = 0 //how fast you get punted into the stratosphere on launchkick
 	var/wounding = 0 //whether or not you get wounded by the attack
 	var/zone_message = "" //string for where the attack is targetting
@@ -52,31 +52,41 @@
 	return FALSE
 
 ///Gnashing Teeth: Harm Harm, consistent 20 force punch on every second harm punch
-/datum/martial_art/the_sleeping_carp/proc/strongPunch(mob/living/attacker, mob/living/defender)
-	damage = 20
-	wounding = 0
+/datum/martial_art/the_sleeping_carp/proc/strongPunch(mob/living/attacker, mob/living/defender, set_damage = TRUE)
+	if(set_damage)
+		damage = 20
+		wounding = 0
 	///this var is so that the strong punch is always aiming for the body part the user is targeting and not trying to apply to the chest before deviating
 	var/obj/item/bodypart/affecting = defender.get_bodypart(defender.get_random_valid_zone(attacker.zone_selected))
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
 	var/atk_verb = pick("precisely kick", "brutally chop", "cleanly hit", "viciously slam")
-	defender.visible_message(span_danger("[attacker] [atk_verb]s [defender]!"), \
-					span_userdanger("[attacker] [atk_verb]s you!"), null, null, attacker)
+	defender.visible_message(
+		span_danger("[attacker] [atk_verb]s [defender]!"),
+		span_userdanger("[attacker] [atk_verb]s you!"),
+		ignored_mobs = attacker
+	)
 	to_chat(attacker, span_danger("You [atk_verb] [defender]!"))
 	playsound(defender, 'sound/weapons/punch1.ogg', vol = 25, vary = TRUE, extrarange = -1)
 	log_combat(attacker, defender, "strong punched ([log_name])") //monke edit
 	defender.apply_damage(damage, attacker.get_attack_type(), affecting, wound_bonus = wounding)
-	return
 
 ///Crashing Wave Kick: Harm Disarm combo, throws people seven tiles backwards
-/datum/martial_art/the_sleeping_carp/proc/launchKick(mob/living/attacker, mob/living/defender)
-	damage = 15 //monke edit start
-	kick_speed = 4
-	wounding = CANT_WOUND
-	zone_message = "chest"
-	zone = BODY_ZONE_CHEST
+/datum/martial_art/the_sleeping_carp/proc/launchKick(mob/living/attacker, mob/living/defender, set_damage = TRUE)
+	//monke edit start
+	if(set_damage)
+		damage = 15
+		kick_speed = 4
+		wounding = CANT_WOUND
+		zone_message = "chest"
+		zone = BODY_ZONE_CHEST
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
-	defender.visible_message(span_warning("[attacker] kicks [defender] square in the [zone_message], sending them flying!"), \
-					span_userdanger("You are kicked square in the [zone_message] by [attacker], sending you flying!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
+	defender.visible_message(
+		span_warning("[attacker] kicks [defender] square in the [zone_message], sending [defender.p_them()] flying!"),
+		span_userdanger("You are kicked square in the [zone_message] by [attacker], sending you flying!"),
+		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		vision_distance = COMBAT_MESSAGE_RANGE,
+		ignored_mobs = attacker,
+	)
 	playsound(get_turf(attacker), 'sound/effects/hit_kick.ogg', vol = 50, vary = TRUE, extrarange = -1)
 	var/atom/throw_target = get_edge_target_turf(defender, attacker.dir)
 	defender.throw_at(throw_target, 7, kick_speed, attacker)
@@ -85,24 +95,30 @@
 	return
 
 ///Keelhaul: Disarm Disarm combo, knocks people down and deals substantial stamina damage, and also discombobulates them. Knocks objects out of their hands if they're already on the ground.
-/datum/martial_art/the_sleeping_carp/proc/dropKick(mob/living/attacker, mob/living/defender)
-	stamina_damage = 100 //monke edit start
+/datum/martial_art/the_sleeping_carp/proc/dropKick(mob/living/attacker, mob/living/defender, set_damage = TRUE)
+	//monke edit start
+	if(set_damage)
+		stamina_damage = 100
 	attacker.do_attack_animation(defender, ATTACK_EFFECT_KICK)
 	playsound(get_turf(attacker), 'sound/effects/hit_kick.ogg', vol = 50, vary = TRUE, extrarange = -1)
 	if(defender.body_position == STANDING_UP)
 		defender.Knockdown(2 SECONDS)
 		defender.visible_message(
-			span_warning("[attacker] kicks [defender] in the head, sending them face first into the floor!"),
+			span_warning("[attacker] kicks [defender] in the head, sending [defender.p_them()] face first into the floor!"),
 			span_userdanger("You are kicked in the head by [attacker], sending you crashing to the floor!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker
-			)
+			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			vision_distance = COMBAT_MESSAGE_RANGE,
+			ignored_mobs = attacker,
+		)
 	else
 		defender.drop_all_held_items()
 		defender.visible_message(
 			span_warning("[attacker] kicks [defender] in the head!"),
 			span_userdanger("You are kicked in the head by [attacker]!"),
-			span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker
-			)
+			span_hear("You hear a sickening sound of flesh hitting flesh!"),
+			vision_distance = COMBAT_MESSAGE_RANGE,
+			ignored_mobs = attacker,
+		)
 	defender.stamina.adjust(stamina_damage)
 	defender.adjust_dizzy_up_to(10 SECONDS, 10 SECONDS)
 	defender.adjust_temp_blindness_up_to(2 SECONDS, 10 SECONDS)
@@ -121,7 +137,7 @@
 	playsound(defender, 'sound/weapons/punch1.ogg', vol = 25, vary = TRUE, extrarange = -1)
 	if(defender.stat != DEAD && !defender.IsUnconscious() && defender.stamina.current <= 50) //We put our target to sleep.
 		defender.visible_message(
-			span_danger("[attacker] carefully pinch a nerve in [defender]'s neck, knocking them out cold"),
+			span_danger("[attacker] carefully pinch a nerve in [defender]'s neck, knocking [defender.p_them()] out cold"),
 			span_userdanger("[attacker] pinches something in your neck, and you fall unconscious!"),
 		)
 		grab_log_description = "grabbed and nerve pinched"
@@ -143,9 +159,9 @@
 				span_danger("[attacker] snaps the neck of [defender]!"),
 				span_userdanger("Your neck is snapped by [attacker]!"),
 				span_hear("You hear a sickening snap!"),
-				ignored_mobs = attacker
+				ignored_mobs = attacker,
 			)
-			to_chat(attacker, span_danger("In a swift motion, you snap the neck of [defender]!"))
+			to_chat(attacker, span_danger("In a swift motion, you snap the neck of [defender]!"), type = MESSAGE_TYPE_COMBAT)
 			log_combat(attacker, defender, "snapped neck")
 			defender.apply_damage(100, BRUTE, BODY_ZONE_HEAD, wound_bonus=CANT_WOUND)
 			if(!HAS_TRAIT(defender, TRAIT_NODEATH))
@@ -164,7 +180,7 @@
 		span_danger("[attacker] [atk_verb]s [defender]!"),
 		span_userdanger("[attacker] [atk_verb]s you!"), null, null, attacker
 		)
-	to_chat(attacker, span_danger("You [atk_verb] [defender]!"))
+	to_chat(attacker, span_danger("You [atk_verb] [defender]!"), type = MESSAGE_TYPE_COMBAT)
 
 	defender.apply_damage(rand(10,15), attacker.get_attack_type(), affecting, wound_bonus = CANT_WOUND)
 	playsound(defender, 'sound/weapons/punch1.ogg', 25, TRUE, -1)
@@ -186,12 +202,12 @@
 
 	return ..()
 
-/datum/martial_art/the_sleeping_carp/proc/can_deflect(mob/living/carp_user)
+/datum/martial_art/the_sleeping_carp/proc/can_deflect(mob/living/carp_user, check_intent = TRUE)
 	if(!COOLDOWN_FINISHED(src, block_cooldown)) //monke edit
 		return FALSE
 	if(!can_use(carp_user))
 		return FALSE
-	if(!(carp_user.istate & ISTATE_HARM)) // monke edit: istates/intents
+	if(check_intent && !(carp_user.istate & ISTATE_HARM)) // monke edit: istates/intents
 		return FALSE
 	if(carp_user.incapacitated(IGNORE_GRAB)) //NO STUN
 		return FALSE
@@ -222,10 +238,11 @@
 	return COMPONENT_BULLET_PIERCED
 
 ///Signal from getting attacked with an item, for a special interaction with touch spells
-/datum/martial_art/the_sleeping_carp/proc/on_attackby(mob/living/carbon/human/carp_user, obj/item/attack_weapon, mob/attacker, params) //no signal handler or this proc will explode
-	if(!istype(attack_weapon, /obj/item/melee/touch_attack) || !can_deflect(carp_user))
+/datum/martial_art/the_sleeping_carp/proc/on_attackby(mob/living/carbon/human/carp_user, obj/item/melee/touch_attack/touch_weapon, mob/attacker, params)
+	SIGNAL_HANDLER
+
+	if(!istype(touch_weapon) || !can_deflect(carp_user, check_intent = !touch_weapon.dangerous))
 		return
-	var/obj/item/melee/touch_attack/touch_weapon = attack_weapon
 	var/datum/action/cooldown/spell/touch/touch_spell = touch_weapon.spell_which_made_us?.resolve()
 	// monkestation edit: flavor tweaks
 	if(!counter)
@@ -239,15 +256,15 @@
 		playsound(carp_user, 'monkestation/sound/effects/miss.ogg', vol = 50, vary = TRUE, extrarange = SHORT_RANGE_SOUND_EXTRARANGE)
 	else
 		carp_user.visible_message(
-		span_danger("[carp_user] twists [attacker]'s arm, sending their [attack_weapon] back towards them!"),
-		span_userdanger("Making sure to avoid [attacker]'s [attack_weapon], you twist their arm to send it right back at them!"),
-		ignored_mobs = list(attacker),
-	)
-	to_chat(attacker, span_userdanger("[carp_user] swiftly grabs and twists your arm, hitting you with your own [attack_weapon]!"), type = MESSAGE_TYPE_COMBAT)
-	carp_user.say(message = "PATHETIC!", language = /datum/language/common, ignore_spam = TRUE, forced = src)
-	if(!touch_spell)
-		return
-	INVOKE_ASYNC(touch_spell, TYPE_PROC_REF(/datum/action/cooldown/spell/touch, do_hand_hit), touch_weapon, attacker, attacker)
+			span_danger("[carp_user] twists [attacker]'s arm, sending [attacker.p_their()] [touch_weapon] back towards [attacker.p_them()]!"),
+			span_userdanger("Making sure to avoid [attacker]'s [touch_weapon], you twist [attacker.p_their()] arm to send it right back at [attacker.p_them()]!"),
+			ignored_mobs = list(attacker),
+		)
+		to_chat(attacker, span_userdanger("[carp_user] swiftly grabs and twists your arm, hitting you with your own [touch_weapon]!"), type = MESSAGE_TYPE_COMBAT)
+		INVOKE_ASYNC(carp_user, TYPE_PROC_REF(/atom/movable, say), message = "PATHETIC!", language = /datum/language/common, ignore_spam = TRUE, forced = src)
+		if(touch_spell)
+			INVOKE_ASYNC(touch_spell, TYPE_PROC_REF(/datum/action/cooldown/spell/touch, do_hand_hit), touch_weapon, attacker, attacker)
+	attacker.changeNext_move(CLICK_CD_MELEE)
 	// monkestation end
 	return COMPONENT_NO_AFTERATTACK
 

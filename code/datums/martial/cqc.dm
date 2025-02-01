@@ -32,17 +32,16 @@
 		return
 	// monkestation edit: improved messaging
 	cqc_user.visible_message(
-		span_danger("[cqc_user] twists [attacker]'s arm, sending their [attack_weapon] back towards them!"),
-		span_userdanger("Making sure to avoid [attacker]'s [attack_weapon], you twist their arm to send it right back at them!"),
+		span_danger("[cqc_user] twists [attacker]'s arm, sending [attacker.p_their()] [attack_weapon] back towards [attacker.p_them()]!"),
+		span_userdanger("Making sure to avoid [attacker]'s [attack_weapon], you twist [attacker.p_their()] arm to send it right back at [attacker.p_them()]!"),
 		ignored_mobs = list(attacker),
 	)
 	to_chat(attacker, span_userdanger("[cqc_user] swiftly grabs and twists your arm, hitting you with your own [attack_weapon]!"), type = MESSAGE_TYPE_COMBAT)
 	// monkestation end
 	var/obj/item/melee/touch_attack/touch_weapon = attack_weapon
 	var/datum/action/cooldown/spell/touch/touch_spell = touch_weapon.spell_which_made_us?.resolve()
-	if(!touch_spell)
-		return
-	INVOKE_ASYNC(touch_spell, TYPE_PROC_REF(/datum/action/cooldown/spell/touch, do_hand_hit), touch_weapon, attacker, attacker)
+	if(touch_spell)
+		INVOKE_ASYNC(touch_spell, TYPE_PROC_REF(/datum/action/cooldown/spell/touch, do_hand_hit), touch_weapon, attacker, attacker)
 	return COMPONENT_NO_AFTERATTACK
 
 /datum/martial_art/cqc/reset_streak(mob/living/new_target)
@@ -242,7 +241,7 @@
 	if(prob(65))
 		if(!defender.stat || !defender.IsParalyzed() || !restraining_mob)
 			held_item = defender.get_active_held_item()
-			defender.visible_message(span_danger("[attacker] strikes [defender]'s jaw with their hand!"), \
+			defender.visible_message(span_danger("[attacker] strikes [defender]'s jaw with [attacker.p_their()] hand!"), \
 							span_userdanger("Your jaw is struck by [attacker], you feel disoriented!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, attacker)
 			to_chat(attacker, span_danger("You strike [defender]'s jaw, leaving [defender.p_them()] disoriented!"))
 			playsound(get_turf(defender), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
