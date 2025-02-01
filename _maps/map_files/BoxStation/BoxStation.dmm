@@ -60852,14 +60852,12 @@
 /area/station/engineering/break_room)
 "tQC" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/machinery/duct,
 /obj/effect/mapping_helpers/mail_sorting/engineering/general,
+/obj/structure/disposalpipe/sorting/mail,
 /turf/open/floor/iron/dark/side,
 /area/station/engineering/break_room)
 "tQD" = (
@@ -94874,7 +94872,7 @@ sxb
 ksa
 uoo
 ksa
-vCp
+aVH
 ksa
 gwf
 txb
@@ -95131,7 +95129,7 @@ sxb
 uoo
 uoo
 uoo
-vCp
+aVH
 uoo
 gwf
 gwf
@@ -95386,9 +95384,9 @@ uoo
 ksa
 uoo
 ksa
-jra
-vCp
-vCp
+ksa
+ksa
+aVH
 ksa
 ksa
 ksa
@@ -95643,9 +95641,9 @@ fdt
 fdt
 fdt
 ksa
-uoo
 ksa
-vCp
+ksa
+aVH
 uoo
 uoo
 uoo
@@ -95900,9 +95898,9 @@ ksa
 ksa
 ksa
 ksa
-uoo
 ksa
-vCp
+ksa
+aVH
 ksa
 ksa
 ksa
@@ -96157,9 +96155,9 @@ ksa
 ksa
 ksa
 ksa
-jra
-vCp
-vCp
+ksa
+ksa
+aVH
 ksa
 ksa
 ksa
@@ -96414,7 +96412,7 @@ ksa
 ksa
 ksa
 ksa
-uoo
+ksa
 ksa
 aVH
 ksa
@@ -117342,7 +117340,7 @@ hNt
 xoG
 ogZ
 fck
-dQL
+qbm
 hNt
 xoG
 ogZ
@@ -119398,7 +119396,7 @@ hNt
 xoG
 ogZ
 fck
-qbm
+dQL
 hNt
 xoG
 ogZ
