@@ -6,7 +6,7 @@
 	stage = 1
 	badness = EFFECT_DANGER_HARMFUL
 	severity = 3
-	max_chance = 10
+	max_chance = 5
 	var/new_form = /mob/living/carbon/human
 	var/bantype
 	var/transformed_antag_datum //Do we add a specific antag datum once the transformation is complete?
@@ -75,32 +75,39 @@
 	name = "Robotic Transformation"
 	new_form = /mob/living/silicon/robot
 	bantype = JOB_CYBORG
+	desc = "Restructures the subject cells into a Cyborg. Cure: Synthetic Cleaner"
 
 /datum/symptom/transformation/xeno
 	name = "Xenomorph Transformation"
 	new_form = /mob/living/carbon/alien/adult/hunter
 	bantype = ROLE_ALIEN
 	transformed_antag_datum = /datum/antagonist/xeno
+	desc = "Restructures the subject cells into a premative xeno hunter. Cure: Phlogisto"
 
 /datum/symptom/transformation/slime
 	name = "Advanced Mutation Transformation"
 	new_form = /mob/living/basic/slime
+	desc = "Restructures the subject cells into a slime. Cure: Water"
 
 /datum/symptom/transformation/corgi
 	name = "The Barkening"
 	new_form = /mob/living/basic/pet/dog/corgi
+	desc = "Restructures the subject cells into a corgi. Cure: Coco Powder"
 
 /datum/symptom/transformation/morph
 	name = "Gluttony's Blessing"
 	new_form = /mob/living/basic/morph
 	transformed_antag_datum = /datum/antagonist/morph
+	desc = "Restructures the subject cells into a morph. Cure: Lipolicide"
 
 /datum/symptom/transformation/gondola
 	name = "Gondola Transformation"
-	max_chance = 50
+	max_chance = 10
 	new_form = /mob/living/simple_animal/pet/gondola
+	desc = "Restructures the subject cells into a gondola. Cure: Condensed Capsaicin"
 
 /datum/symptom/transformation/gondola/digital
+	max_chance = 50
 	new_form = /mob/living/simple_animal/pet/gondola/virtual_domain
 
 /datum/symptom/anxiety
