@@ -23809,7 +23809,6 @@
 /turf/open/floor/plating,
 /area/station/command/heads_quarters/hos)
 "heQ" = (
-/obj/machinery/duct,
 /obj/structure/reagent_dispensers/plumbed,
 /turf/open/floor/plating,
 /area/station/maintenance/solars/port/fore)
@@ -26238,7 +26237,6 @@
 /obj/structure/mirror/directional/north{
 	pixel_y = 30
 	},
-/obj/machinery/duct,
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons/dorms)
 "hRr" = (
@@ -54539,7 +54537,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/obj/machinery/duct,
 /turf/open/floor/iron/showroomfloor,
 /area/station/commons)
 "qhb" = (
@@ -66356,7 +66353,6 @@
 	dir = 8
 	},
 /obj/structure/sink/directional/south,
-/obj/machinery/duct,
 /turf/open/floor/iron/white/textured,
 /area/station/security/medical)
 "tAh" = (

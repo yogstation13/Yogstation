@@ -66575,7 +66575,6 @@
 /obj/structure/extinguisher_cabinet/directional/west,
 /mob/living/basic/pet/potty,
 /obj/structure/sink/directional/east,
-/obj/machinery/duct,
 /turf/open/floor/iron,
 /area/station/common/night_club/changing_room)
 "mTN" = (

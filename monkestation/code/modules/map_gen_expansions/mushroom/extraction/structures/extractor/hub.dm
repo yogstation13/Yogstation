@@ -30,6 +30,20 @@ TODO LIST:
 	///The main pipe that owns us as part of our 3x3 machine.
 	var/obj/structure/plasma_extraction_hub/part/pipe/main/pipe_owner
 
+/obj/structure/plasma_extraction_hub/part/Destroy()
+	pipe_owner = null
+	return ..()
+
+/**
+ * A piece of the extractor itself, that otherwise does not act as a pipe.
+ */
+/obj/structure/plasma_extraction_hub/part/extractor
+
+/obj/structure/plasma_extraction_hub/part/extractor/Destroy()
+	if(pipe_owner)
+		pipe_owner.extractor_parts -= src
+	return ..()
+
 /**
  * Plasma extraction machine pipe
  * There's 3 of these on each plasma extraction machine, one of which is the owner of the rest.
@@ -48,9 +62,11 @@ TODO LIST:
 	AddComponent(/datum/component/pipe_laying, src)
 
 /obj/structure/plasma_extraction_hub/part/pipe/Destroy()
-	. = ..()
+	if(pipe_owner)
+		pipe_owner.hub_parts -= src
 	last_pipe = null
 	QDEL_LIST(connected_pipes)
+	return ..()
 
 /**
  * Called when a pipe with a reference to us is destroyed,

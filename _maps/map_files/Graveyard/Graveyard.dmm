@@ -17052,7 +17052,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 1
 	},
-/obj/machinery/duct,
 /turf/open/floor/iron/grimy,
 /area/ruin/syndicate_lava_base)
 "gEx" = (
@@ -25736,8 +25735,6 @@
 /obj/structure/cable/multilayer/connected,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/structure/cable/layer3,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "kbt" = (
@@ -27810,7 +27807,6 @@
 /area/station/maintenance/aft)
 "kQn" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/duct,
 /obj/structure/sink/directional/east,
 /turf/open/floor/iron/white,
 /area/graveyard/bunker/medical)

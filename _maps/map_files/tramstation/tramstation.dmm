@@ -70916,7 +70916,6 @@
 /area/station/maintenance/starboard/central)
 "vcp" = (
 /obj/structure/curtain,
-/obj/machinery/shower/directional/north,
 /obj/machinery/duct,
 /turf/open/floor/iron/freezer,
 /area/station/commons/toilet)

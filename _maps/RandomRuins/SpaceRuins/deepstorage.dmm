@@ -2638,7 +2638,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 8
 	},
-/obj/machinery/duct,
 /turf/open/floor/iron/white/textured,
 /area/ruin/space/has_grav/deepstorage/xenobiology)
 "kB" = (
@@ -2855,7 +2854,6 @@
 /obj/effect/turf_decal/stripes{
 	dir = 4
 	},
-/obj/machinery/duct,
 /turf/open/floor/iron/white/textured,
 /area/ruin/space/has_grav/deepstorage/xenobiology)
 "vs" = (

@@ -29,6 +29,12 @@
 			name_to_path |= list("[new_extract.name]" = new_extract.type)
 			qdel(new_extract)
 
+/obj/machinery/slime_extract_requestor/Destroy()
+	if(console?.request_pad == src)
+		console.request_pad = null
+	console = null
+	return ..()
+
 /obj/machinery/slime_extract_requestor/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(!console)

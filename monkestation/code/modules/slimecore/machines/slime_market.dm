@@ -26,6 +26,13 @@
 	. = ..()
 	link_console()
 
+/obj/machinery/slime_market_pad/Destroy()
+	var/consoles_market_pad = console?.market_pad
+	if(consoles_market_pad == src)
+		console.market_pad = null
+	console = null
+	return ..()
+
 /obj/machinery/slime_market_pad/AltClick(mob/user)
 	. = ..()
 	if(!.)

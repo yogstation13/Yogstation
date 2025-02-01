@@ -24,7 +24,6 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 	link_market_pad()
 
 /obj/machinery/computer/slime_market/Destroy()
-	. = ..()
 	if(GLOB.default_slime_market == src)
 		GLOB.default_slime_market = null
 
@@ -35,6 +34,7 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 
 	request_pad = null
 	market_pad = null
+	return ..()
 
 /obj/machinery/computer/slime_market/proc/link_market_pad()
 	if(market_pad)

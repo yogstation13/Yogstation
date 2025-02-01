@@ -13,7 +13,9 @@
 	///This is used to tell recently repaired pipes that they should get back to working.
 	var/drilling = FALSE
 	///List of all parts connected to the extraction hub, not including ourselves.
-	var/list/obj/structure/plasma_extraction_hub/hub_parts = list()
+	var/list/obj/structure/plasma_extraction_hub/part/pipe/hub_parts = list()
+	///List of all parts which make up the extractor's sprite. Excludes parts which act as pipes.
+	var/list/obj/structure/plasma_extraction_hub/part/extractor/extractor_parts = list()
 
 /obj/structure/plasma_extraction_hub/part/pipe/main/Initialize(mapload)
 	. = ..()
@@ -21,6 +23,7 @@
 
 /obj/structure/plasma_extraction_hub/part/pipe/main/Destroy()
 	QDEL_LIST(hub_parts)
+	QDEL_LIST(extractor_parts)
 	if(display_panel_ref)
 		QDEL_NULL(display_panel_ref)
 	return ..()
@@ -51,7 +54,8 @@
 				hub_parts += new_part
 				new_part.icon_state = "extractor-middle-left"
 			else
-				new_part = new/obj/structure/plasma_extraction_hub/part(spawned_turf)
+				new_part = new/obj/structure/plasma_extraction_hub/part/extractor(spawned_turf)
+				extractor_parts += new_part
 				switch(count)
 					if(9)
 						new_part.icon_state = "extractor-bottom-left"
