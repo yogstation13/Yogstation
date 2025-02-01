@@ -1,4 +1,0 @@
-author: "Absolucy, SyncIt21"
-delete-after: True
-changes:
-  - bugfix: "Quirks now properly process again."

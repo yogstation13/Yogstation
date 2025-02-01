@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed the chat reliability subsystem being completely useless (hopefully)."

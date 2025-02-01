@@ -1,4 +1,34 @@
 2025-02-01:
+  Absolucy:
+  - bugfix: Awakened Dragon's attacks now do the intended amount of damage.
+  - bugfix: Awakened Dragon and Tunnel Arts now have fully consistent counter/dodge
+      effects with the blood cult stun hand.
+  - bugfix: When a touch attack gets dodged by a martial arts user, the attacker will
+      properly have their click cooldown set.
+  - balance: Sleeping Carp, Awakened Dragon, and Tunnel Arts will now dodge/counter
+      touch attacks regardless of combat mode if they're considered a "dangerous"
+      attack (pretty much everything except genetics shock touch)
+  - balance: Tunnel Arts' illusionary warriors now move at the same speed as normal
+      humans, rather than the typical slower rate than most simplemobs do.
+  - qol: Categorized many martial arts-related chat messages as being combat-related
+      in chat tabs.
+  - rscadd: PDAs can now tune into the broadcast camera's streams, with the pre-installed
+      Spess.tv app!
+  - refactor: Refactored some stuff about how camera broadcasts work.
+  - bugfix: Mark of Rust can no longer damage indestructible items.
+  - bugfix: Fixed the chat reliability subsystem being completely useless (hopefully).
+  Absolucy, SyncIt21:
+  - bugfix: Quirks now properly process again.
+  Gw0sty:
+  - rscadd: Added cures to the various transformation diseases
+  - balance: Lowered the maximum trigger chance of transformation symptoms.
+  - bugfix: Boxstation engineering disposals will no longer explode.
+  RikuTheKiller:
+  - spellcheck: You no longer loosen your balance, instead you lose it when throwing
+      a bulky item.
+  TheColorCyan:
+  - rscadd: Added NT frontier and NT Science Hub to Scientist PDAs
+  - rscadd: Added NT frontier to RD PDAs
   ThePooba:
   - bugfix: Fixed ships being unabled to be recalled after completing your first ship
       on blueshift

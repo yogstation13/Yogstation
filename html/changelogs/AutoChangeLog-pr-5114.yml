@@ -1,9 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Awakened Dragon's attacks now do the intended amount of damage."
-  - bugfix: "Awakened Dragon and Tunnel Arts now have fully consistent counter/dodge effects with the blood cult stun hand."
-  - bugfix: "When a touch attack gets dodged by a martial arts user, the attacker will properly have their click cooldown set."
-  - balance: "Sleeping Carp, Awakened Dragon, and Tunnel Arts will now dodge/counter touch attacks regardless of combat mode if they're considered a \"dangerous\" attack (pretty much everything except genetics shock touch)"
-  - balance: "Tunnel Arts' illusionary warriors now move at the same speed as normal humans, rather than the typical slower rate than most simplemobs do."
-  - qol: "Categorized many martial arts-related chat messages as being combat-related in chat tabs."

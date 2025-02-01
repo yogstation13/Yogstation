@@ -1,5 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Added cures to the various transformation diseases"
-  - balance: "Lowered the maximum trigger chance of transformation symptoms."
