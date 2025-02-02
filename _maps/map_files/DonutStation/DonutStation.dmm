@@ -17878,6 +17878,28 @@
 /obj/structure/sink/puddle,
 /turf/open/floor/grass,
 /area/tcommsat/computer)
+"hpf" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Gravity Generator"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
+/turf/open/floor/engine,
+/area/engine/gravity_generator)
 "hpj" = (
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/plasteel,
@@ -49405,29 +49427,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"uCb" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Gravity Generator"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
-/turf/open/floor/engine,
-/area/engine/gravity_generator)
 "uCz" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -97915,7 +97914,7 @@ dMR
 myG
 myG
 myG
-uCb
+hpf
 myG
 myG
 jvn
