@@ -124,20 +124,6 @@
 		"puppy" = FALSE,
 		"spider" = FALSE,
 	)
-	/// List of all available card overlays.
-	var/static/list/possible_overlays = list(
-		"null",
-		"angry",
-		"cat",
-		"extremely-happy",
-		"face",
-		"happy",
-		"laugh",
-		"off",
-		"sad",
-		"sunglasses",
-		"what"
-	)
 
 /mob/living/silicon/pai/add_sensors() //pAIs have to buy their HUDs
 	return

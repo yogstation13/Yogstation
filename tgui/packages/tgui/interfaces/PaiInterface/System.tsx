@@ -1,6 +1,5 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui/components';
-import { ICON_MAP } from './constants';
 import { PaiData } from './types';
 
 export const SystemDisplay = (props) => {
@@ -64,7 +63,7 @@ const SystemWallpaper = (props) => {
  */
 const SystemInfo = (props) => {
   const { act, data } = useBackend<PaiData>();
-  const { image, master_dna, master_name } = data;
+  const { screen_image_interface_icon, master_dna, master_name } = data;
 
   return (
     <Section
@@ -79,7 +78,7 @@ const SystemInfo = (props) => {
             Verify
           </Button>
           <Button
-            icon={ICON_MAP[image]}
+            icon={screen_image_interface_icon}
             onClick={() => act('change image')}
             tooltip="Change your display image."
           >
