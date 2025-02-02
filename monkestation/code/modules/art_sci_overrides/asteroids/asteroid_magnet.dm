@@ -61,7 +61,10 @@
 		else
 			available_templates[roid] = 100
 	templates_on_map = list()
+	return INITIALIZE_HINT_LATELOAD
 
+/obj/machinery/asteroid_magnet/LateInitialize()
+	. = ..()
 	GenerateMap()
 
 /obj/machinery/asteroid_magnet/proc/ping(coords_x, coords_y)
