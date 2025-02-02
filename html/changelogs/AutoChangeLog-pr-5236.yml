@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added Dr. Scrubs to remaining maps"
+  - rscadd: "Added Poppy the safety inspector into the remaining SM maps"
+  - bugfix: "Fixed a missing airlock helping on minisat."
