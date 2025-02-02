@@ -1,0 +1,5 @@
+author: "Wernerses"
+delete-after: True
+changes:
+  - balance: "reduced minimum apid honey require to make beehives from 150 to 70"
+  - balance: "reduced beehive cooldown from 25 minutes to 5 minutes."
