@@ -12,15 +12,12 @@
 	var/transfer_percentage = 60
 	var/result
 
-/datum/vote/transfer_vote/New()
-	. = ..()
-	if(world.time >= 2.5 HOURS)
-		transfer_percentage = 80
-
 /datum/vote/transfer_vote/get_vote_result(list/non_voters)
 	RETURN_TYPE(/list)
 	var/list/winners = list()
 	result = choices_by_ckey.len>0 ? (choices[CHOICE_NO_CALL_SHUTTLE]/(choices[CHOICE_CALL_SHUTTLE]+choices[CHOICE_NO_CALL_SHUTTLE]))*100 : 0
+	if(world.time >= 2.5 HOURS)
+		transfer_percentage = 80
 	if(result<=transfer_percentage)
 		winners += CHOICE_CALL_SHUTTLE
 	else
