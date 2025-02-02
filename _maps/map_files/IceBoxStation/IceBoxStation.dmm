@@ -44232,6 +44232,11 @@
 /area/station/security/prison/safe)
 "nXl" = (
 /obj/effect/turf_decal/bot,
+/mob/living/basic/pet/poppy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Poppy's bed"
+	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/supermatter/room)
 "nXn" = (
@@ -68339,6 +68344,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/event_spawn,
+/mob/living/basic/bot/cleanbot/medbay,
 /turf/open/floor/iron/white,
 /area/station/medical/storage)
 "vQQ" = (

@@ -173,6 +173,15 @@
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"eO" = (
+/obj/effect/turf_decal/bot,
+/mob/living/basic/pet/poppy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Poppy's bed"
+	},
+/turf/open/floor/iron/dark/smooth_large,
+/area/station/engineering/supermatter/room)
 "fc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
 /turf/closed/wall/r_wall,
@@ -1992,7 +2001,7 @@ Qi
 TL
 IC
 hr
-YW
+eO
 HS
 ze
 EI

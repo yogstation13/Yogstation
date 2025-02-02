@@ -1650,6 +1650,7 @@
 /obj/structure/cable,
 /obj/machinery/holopad,
 /obj/machinery/duct,
+/mob/living/basic/bot/cleanbot/medbay,
 /turf/open/floor/iron/white/smooth_large,
 /area/station/medical/storage)
 "aBj" = (

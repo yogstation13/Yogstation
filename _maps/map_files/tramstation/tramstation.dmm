@@ -13742,6 +13742,10 @@
 "dkO" = (
 /turf/open/floor/iron,
 /area/station/security/brig)
+"dkU" = (
+/mob/living/basic/bot/cleanbot/medbay,
+/turf/open/floor/iron/dark,
+/area/station/medical/treatment_center)
 "dlb" = (
 /obj/machinery/bluespace_beacon,
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
@@ -178636,7 +178640,7 @@ ecW
 dXo
 lTc
 lrQ
-xOn
+dkU
 gHp
 dHv
 xSZ

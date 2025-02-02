@@ -806,6 +806,11 @@
 /area/station/engineering/supermatter/room)
 "Fs" = (
 /obj/effect/turf_decal/bot,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Poppy's bed"
+	},
+/mob/living/basic/pet/poppy,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "FF" = (

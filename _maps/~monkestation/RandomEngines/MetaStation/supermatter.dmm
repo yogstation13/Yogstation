@@ -818,6 +818,17 @@
 /obj/effect/spawner/structure/window/reinforced/plasma,
 /turf/open/floor/plating,
 /area/station/engineering/supermatter)
+"NK" = (
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/mob/living/basic/pet/poppy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Poppy's bed"
+	},
+/turf/open/floor/iron/dark,
+/area/station/engineering/supermatter/room)
 "NN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
@@ -1205,7 +1216,7 @@ wE
 yn
 SK
 Qn
-nu
+NK
 nu
 UI
 GH
