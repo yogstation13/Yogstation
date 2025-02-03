@@ -10,3 +10,10 @@
 	allowed_department_flags = DEPARTMENT_BITFLAG_SCIENCE
 	department_tag = "Science"
 	payment_department = ACCOUNT_SCI
+
+/obj/machinery/rnd/production/circuit_imprinter/department/engineering
+	name = "department circuit imprinter (Engineering)"
+	circuit = /obj/item/circuitboard/machine/circuit_imprinter/department/science
+	allowed_department_flags = DEPARTMENT_BITFLAG_ENGINEERING
+	department_tag = "Engineering"
+	payment_department = ACCOUNT_ENG
