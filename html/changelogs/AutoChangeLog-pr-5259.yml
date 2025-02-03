@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "Slightly raised the health of securitrons/beepsky. (From 25 to 35)"
