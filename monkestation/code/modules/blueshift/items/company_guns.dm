@@ -161,6 +161,9 @@
 	icon_state = "infanterie_evil"
 	worn_icon_state = "infanterie_evil"
 	inhand_icon_state = "infanterie_evil"
+	projectile_wound_bonus = 5
+	projectile_damage_multiplier = 1.25
+	fire_delay = 0.3 SECONDS
 
 /obj/item/gun/ballistic/automatic/sol_rifle/evil/no_mag
 	spawnwithmagazine = FALSE
@@ -231,6 +234,7 @@
 	icon_state = "renoster_evil"
 	worn_icon_state = "renoster_evil"
 	inhand_icon_state = "renoster_evil"
+	projectile_wound_bonus = 15
 
 // Low caliber grenade launcher (fun & games)
 
@@ -325,6 +329,8 @@
 	icon_state = "kiboko_evil"
 	worn_icon_state = "kiboko_evil"
 	inhand_icon_state = "kiboko_evil"
+	projectile_wound_bonus = 5
+	fire_delay = 0.30 SECONDS
 
 	spawn_magazine_type = /obj/item/ammo_box/magazine/c980_grenade/drum/thunderdome_shrapnel
 
@@ -1046,6 +1052,8 @@
 
 	icon_state = "sindano_evil"
 	inhand_icon_state = "sindano_evil"
+	spread = 5
+	projectile_wound_bonus = 5
 
 /obj/item/gun/ballistic/automatic/sol_smg/evil/no_mag
 	spawnwithmagazine = FALSE
