@@ -1,0 +1,5 @@
+author: "Loiosh42"
+delete-after: True
+changes:
+  - add: "Adds a shield to cargo with integral shotgun loader, along with a crate with 2 and a pair of bobrs to the armory tab"
+  - code: "Adds support for ammoboxes where the sprite doesn't change"
