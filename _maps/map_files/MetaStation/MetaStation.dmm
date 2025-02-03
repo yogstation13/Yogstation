@@ -27468,9 +27468,6 @@
 /obj/machinery/newscaster/directional/east,
 /turf/open/floor/carpet,
 /area/station/security/detectives_office)
-"jzp" = (
-/turf/closed/wall,
-/area/station/commons/vacant_room/office)
 "jzw" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -86547,9 +86544,9 @@ crr
 qyT
 rZT
 lQW
-jzp
-jzp
-jzp
+fjD
+fjD
+fjD
 pOa
 pOa
 pOa
