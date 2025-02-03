@@ -30,14 +30,14 @@
 	hotkey_keys = list("F6")
 	name = "player_panel_new"
 	full_name = "Player Panel New"
-	description = "Opens up the new player panel"
+	description = "Opens up the new TGUI player panel"
 	keybind_signal = COMSIG_KB_ADMIN_PLAYERPANELNEW_DOWN
 
 /datum/keybinding/admin/player_panel_new/down(client/user)
 	. = ..()
 	if(.)
 		return
-	user.holder.player_panel_new()
+	user.holder.player_panel_veth()
 	return TRUE
 
 /datum/keybinding/admin/toggle_buildmode_self

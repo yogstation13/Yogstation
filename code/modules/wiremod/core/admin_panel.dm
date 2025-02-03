@@ -68,7 +68,9 @@
 			circuit.ui_interact(usr)
 		if ("open_player_panel")
 			var/datum/mind/inserter = circuit.inserter_mind?.resolve()
-			usr.client?.holder?.show_player_panel(inserter?.current)
+			usr.client.VUAP_selected_mob = inserter?.current
+			usr.client.selectedPlayerCkey = inserter?.current?.ckey
+			usr.client?.holder?.vuap_open()
 
 	return TRUE
 
