@@ -52,3 +52,15 @@
 		/obj/item/gun/energy/modular_laser_rifle,
 	)
 	crate_name = "\improper Modular Laser Rifle Crate"
+
+//monke from here down
+/datum/supply_pack/security/armory/bobr
+	name = "Tactical Bóbr Crate"
+	desc = "Two Bóbr shotgun revolvers, with matching Tutel ballistic shields and ammo for each."
+	cost = CARGO_CRATE_VALUE * 20
+	contains = list(
+		/obj/item/gun/ballistic/revolver/shotgun_revolver = 2,
+		/obj/item/ammo_box/tacshield/tutel/ = 2,
+		/obj/item/ammo_box/advanced/s12gauge = 2,
+	)
+	crate_name = "Tactical Bóbr Crate"
