@@ -152,13 +152,107 @@
 /obj/item/clothing/neck/mentorcloak
 	name = "mentor cloak"
 	desc = "Buzz!"
-	icon = 'monkestation/icons/obj/clothing/necks.dmi'
-	worn_icon = 'monkestation/icons/obj/clothing/necks.dmi'
-	icon_state = "mentor"
+	icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi'
+	worn_icon = 'monkestation/icons/mob/clothing/necks/mentor_cloaks.dmi'
+	icon_state = "green_cloak"
+	worn_icon_state = "green_cloak"
+	var/current_cloak = "green"
+	var/current_cloak_overlay = "lizar"
+	var/datum/action/innate/select_cloak_appearance/select_cloak_appearance
 
 /obj/item/clothing/neck/mentorcloak/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/toggle_clothes, "mentor_t")
+	select_cloak_appearance = new(src)
+
+/obj/item/clothing/neck/mentorcloak/Destroy(force)
+	QDEL_NULL(select_cloak_appearance)
+	return ..()
+
+/obj/item/clothing/neck/mentorcloak/examine(mob/user)
+	. = ..()
+	if(user.mind?.has_antag_datum(/datum/antagonist/changeling))
+		. += span_warning("Well you can still feel the displeasure from the cloak it feels like \
+							it might just let you wear it")
+	if(!user.client?.is_mentor())
+		. += span_warning("You can feel this cloak dispises you for lacking a high enough level of knowledge")
+
+/obj/item/clothing/neck/mentorcloak/equipped(mob/living/user, slot)
+	. = ..()
+	if(slot & ITEM_SLOT_NECK)
+		if(user.mind?.has_antag_datum(/datum/antagonist/changeling))
+			to_chat(user, span_notice("I'll let you get way with it this time."))
+		else if(!user.client?.is_mentor())
+			lightningbolt(user)
+			user.dropItemToGround(src)
+			to_chat(user, span_userdanger("No mentor cloak for you!"))
+			return
+		select_cloak_appearance.Grant(user)
+	if(slot & ITEM_SLOT_HANDS)
+		if(user.mind?.has_antag_datum(/datum/antagonist/changeling))
+			to_chat(user, span_notice("You feel it's power flow through your body"))
+		else if(!user.client?.is_mentor())
+			user.cause_pain(FULL_BODY, 20, STAMINA)
+			user.sharp_pain(ARMS, 5, BURN, 20)
+			user.apply_status_effect(/datum/status_effect/confusion)
+			user.apply_status_effect(/datum/status_effect/jitter)
+			user.apply_status_effect(/datum/status_effect/terrified)
+			user.apply_status_effect(/datum/status_effect/temporary_blindness)
+			to_chat(user, span_userdanger("You feel a surge of power hit you like a [span_bolddanger("TRUCK")] draining your stamina instantly"))
+
+/obj/item/clothing/neck/mentorcloak/dropped(mob/living/user)
+	. = ..()
+	if(user.get_item_by_slot(ITEM_SLOT_NECK) == src)
+		select_cloak_appearance.Remove(user)
+
+/obj/item/clothing/neck/mentorcloak/worn_overlays(mutable_appearance/standing, isinhands)
+	. = ..()
+	if(!isinhands && current_cloak_overlay)
+		. += mutable_appearance('monkestation/icons/mob/clothing/necks/mentor_cloak_overlays.dmi', current_cloak_overlay)
+
+/datum/action/innate/select_cloak_appearance
+	name = "Select Cloak Appearance"
+	desc = "Select the appearance of your mentor cloak"
+	button_icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi'
+	button_icon_state = "green_cloak"
+	background_icon_state = "bg_revenant"
+	overlay_icon_state = "bg_revenant_border"
+
+/datum/action/innate/select_cloak_appearance/Activate()
+	. = ..()
+	var/static/list/possible_cloaks = list(
+		"black_cloak" = image(icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi', icon_state = "black_cloak"),
+		"blue_cloak" = image(icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi', icon_state = "blue_cloak"),
+		"red_cloak" = image(icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi', icon_state = "red_cloak"),
+		"purple_cloak" = image(icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi', icon_state = "purple_cloak"),
+		"green_cloak" = image(icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi', icon_state = "green_cloak"),
+		"bloak" = image(icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi', icon_state = "bloak"),
+		"flesh_cloak" = image(icon = 'monkestation/icons/obj/clothing/necks/mentor_cloaks.dmi', icon_state = "flesh_cloak")
+	)
+	var/static/list/possible_cloak_overlays = list(
+		"lizar" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "lizar"),
+		"moff" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "moff"),
+		"sillycones" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "sillycones"),
+		"human" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "human"),
+		"ethereal" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "ethereal"),
+		"plasmeme" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "plasmeme"),
+		"snek" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "snek"),
+		"bee" = image(icon = 'monkestation/icons/hud/radial_mentor_cloak.dmi', icon_state = "bee")
+	)
+	var/picked_cloak = show_radial_menu(owner, owner, possible_cloaks, radius = 50, require_near = TRUE)
+	if(!picked_cloak)
+		return
+	var/picked_cloak_overlay = show_radial_menu(owner, owner, possible_cloak_overlays, radius = 50, require_near = TRUE)
+	if(!picked_cloak_overlay)
+		return
+	var/obj/item/clothing/neck/mentorcloak/mentorcloak = owner.get_item_by_slot(ITEM_SLOT_NECK)
+	if(!mentorcloak)
+		return
+	mentorcloak.current_cloak = picked_cloak
+	mentorcloak.current_cloak_overlay = picked_cloak_overlay
+	mentorcloak.icon_state = picked_cloak
+	mentorcloak.worn_icon_state = picked_cloak
+	mentorcloak.update_slot_icon()
+	mentorcloak.update_appearance()
 
 /obj/item/clothing/neck/helldivercape
 	name = "helldiver cape"
