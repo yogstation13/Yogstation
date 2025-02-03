@@ -1,0 +1,5 @@
+author: "Veth-s"
+delete-after: True
+changes:
+  - admin: "Replaced player panel and player options panel with a tgui version. Includes a verb in the Admin Game category, and an option on right clicking a mob."
+  - admin: "Rebound F6 to the new TGUI player panel."
