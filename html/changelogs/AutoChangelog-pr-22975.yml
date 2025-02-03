@@ -1,0 +1,4 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - bugfix: "Transfer votes will properly use the 80% percentage requirement at 2.5 hours"
