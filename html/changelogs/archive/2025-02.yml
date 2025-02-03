@@ -37,3 +37,11 @@
   - bugfix: Fixed ships being unabled to be recalled after completing your first ship
       on blueshift
   - bugfix: box station shipbreaker hut wont run out of power now
+2025-02-03:
+  Gw0sty:
+  - rscadd: Added Dr. Scrubs to remaining maps
+  - rscadd: Added Poppy the safety inspector into the remaining SM maps
+  - bugfix: Fixed a missing airlock helping on minisat.
+  Wernerses:
+  - balance: reduced minimum apid honey require to make beehives from 150 to 70
+  - balance: reduced beehive cooldown from 25 minutes to 5 minutes.
