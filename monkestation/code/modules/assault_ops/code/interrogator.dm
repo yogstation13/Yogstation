@@ -213,7 +213,7 @@
 		disk_pinpointers.switch_mode_to(TRACK_GOLDENEYE) //Pinpointer will track the newly created goldeneye key.
 
 	if(SSshuttle.emergency.mode == SHUTTLE_CALL)
-		var/delaytime = 3 MINUTES
+		var/delaytime = 5 MINUTES
 		var/timer = SSshuttle.emergency.timeLeft(1) + delaytime
 		var/surplus = timer - (SSshuttle.emergency_call_time)
 		SSshuttle.emergency.setTimer(timer)
