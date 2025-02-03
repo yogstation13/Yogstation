@@ -1,0 +1,9 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added cloning to Void Raptor"
+  - rscadd: "Added medbot supplies to Void Raptor Robotics"
+  - rscadd: "Added departmental security spawns to voidraptor."
+  - rscadd: "Dr. Scrubs is now on voidraptor"
+  - rscadd: "Robotics dog is now named Dirk. (Thank Britarnya)"
+  - bugfix: "Adjusted the layout of voidraptor robotics to create more space"
