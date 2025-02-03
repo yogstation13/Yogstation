@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Fixed 3 walls in the MetaStation arrivals bathroom being erroneously marked as the \"Vacant Office\""
