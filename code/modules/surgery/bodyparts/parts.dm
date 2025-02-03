@@ -245,59 +245,51 @@
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
-/obj/item/bodypart/l_leg
-	name = "left leg"
-	desc = "Some athletes prefer to tie their left shoelaces first for good \
-		luck. In this instance, it probably would not have helped."
-	icon_state = "default_human_l_leg"
+/obj/item/bodypart/leg
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
-	body_zone = BODY_ZONE_L_LEG
-	body_part = LEG_LEFT|FOOT_LEFT
 	body_damage_coeff = 0.75
-	px_x = -2
-	px_y = 12
 	max_stamina_damage = 50
 	can_be_disabled = TRUE
 	/// Used by the bloodysoles component to make footprints
 	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
+	var/paralysis_type
 
-/obj/item/bodypart/l_leg/set_owner(new_owner)
+/obj/item/bodypart/leg/set_owner(new_owner)
 	. = ..()
 	if(. == FALSE)
 		return
 	if(owner)
-		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
-			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_loss))
+		if(HAS_TRAIT(owner, paralysis_type))
+			ADD_TRAIT(src, TRAIT_PARALYSIS, paralysis_type)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(paralysis_type), PROC_REF(on_owner_paralysis_loss))
 		else
-			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_gain))
+			REMOVE_TRAIT(src, TRAIT_PARALYSIS, paralysis_type)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(paralysis_type), PROC_REF(on_owner_paralysis_gain))
 	if(.)
 		var/mob/living/carbon/old_owner = .
-		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_L_LEG))
-			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG))
-			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
-				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
+		if(HAS_TRAIT(old_owner, paralysis_type))
+			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(paralysis_type))
+			if(!owner || !HAS_TRAIT(owner, paralysis_type))
+				REMOVE_TRAIT(src, TRAIT_PARALYSIS, paralysis_type)
 		else
-			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG))
+			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(paralysis_type))
 
 
-///Proc to react to the owner gaining the TRAIT_PARALYSIS_L_LEG trait.
-/obj/item/bodypart/l_leg/proc/on_owner_paralysis_gain(mob/living/carbon/source)
-	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
-	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_loss))
+///Proc to react to the owner gaining the [paralysis_type] trait.
+/obj/item/bodypart/leg/proc/on_owner_paralysis_gain(mob/living/carbon/source)
+	ADD_TRAIT(src, TRAIT_PARALYSIS, paralysis_type)
+	UnregisterSignal(owner, SIGNAL_ADDTRAIT(paralysis_type))
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(paralysis_type), PROC_REF(on_owner_paralysis_loss))
 
 
-///Proc to react to the owner losing the TRAIT_PARALYSIS_L_LEG trait.
-/obj/item/bodypart/l_leg/proc/on_owner_paralysis_loss(mob/living/carbon/source)
-	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
-	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_gain))
+///Proc to react to the owner losing the [paralysis_type] trait.
+/obj/item/bodypart/leg/proc/on_owner_paralysis_loss(mob/living/carbon/source)
+	REMOVE_TRAIT(src, TRAIT_PARALYSIS, paralysis_type)
+	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(paralysis_type))
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(paralysis_type), PROC_REF(on_owner_paralysis_gain))
 
-
-/obj/item/bodypart/l_leg/set_disabled(new_disabled)
+/obj/item/bodypart/leg/set_disabled(new_disabled)
 	. = ..()
 	if(isnull(.) || !owner)
 		return
@@ -307,11 +299,22 @@
 			if(owner.stat < UNCONSCIOUS)
 				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 
-/obj/item/bodypart/l_leg/digitigrade
+/obj/item/bodypart/leg/left
+	name = "left leg"
+	desc = "Some athletes prefer to tie their left shoelaces first for good \
+		luck. In this instance, it probably would not have helped."
+	icon_state = "default_human_l_leg"
+	body_zone = BODY_ZONE_L_LEG
+	body_part = LEG_LEFT|FOOT_LEFT
+	px_x = -2
+	px_y = 12
+	paralysis_type = TRAIT_PARALYSIS_L_LEG
+
+/obj/item/bodypart/leg/left/digitigrade
 	name = "left digitigrade leg"
 	use_digitigrade = TRUE
 
-/obj/item/bodypart/l_leg/monkey
+/obj/item/bodypart/leg/left/monkey
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_l_leg"
 	animal_origin = MONKEY_BODYPART
@@ -319,7 +322,7 @@
 	px_y = 4
 	footprint_sprite = FOOTPRINT_SPRITE_PAWS
 
-/obj/item/bodypart/l_leg/alien
+/obj/item/bodypart/leg/left/alien
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "alien_l_leg"
 	px_x = 0
@@ -329,81 +332,30 @@
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
-/obj/item/bodypart/l_leg/devil
+/obj/item/bodypart/leg/left/devil
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
-/obj/item/bodypart/r_leg
+/obj/item/bodypart/leg/right
 	name = "right leg"
 	desc = "You put your right leg in, your right leg out. In, out, in, out, \
 		shake it all about. And apparently then it detaches.\n\
 		The hokey pokey has certainly changed a lot since space colonisation."
 	// alternative spellings of 'pokey' are availible
 	icon_state = "default_human_r_leg"
-	attack_verb = list("kicked", "stomped")
-	max_damage = 50
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT|FOOT_RIGHT
-	body_damage_coeff = 0.75
 	px_x = 2
 	px_y = 12
-	max_stamina_damage = 50
-	can_be_disabled = TRUE
-	/// Used by the bloodysoles component to make footprints
-	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
+	paralysis_type = TRAIT_PARALYSIS_R_LEG
 
-/obj/item/bodypart/r_leg/set_owner(new_owner)
-	. = ..()
-	if(. == FALSE)
-		return
-	if(owner)
-		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
-			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_loss))
-		else
-			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_gain))
-	if(.)
-		var/mob/living/carbon/old_owner = .
-		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_R_LEG))
-			UnregisterSignal(old_owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG))
-			if(!owner || !HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
-				REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
-		else
-			UnregisterSignal(old_owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG))
-
-
-///Proc to react to the owner gaining the TRAIT_PARALYSIS_R_LEG trait.
-/obj/item/bodypart/r_leg/proc/on_owner_paralysis_gain(mob/living/carbon/source)
-	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
-	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_loss))
-
-
-///Proc to react to the owner losing the TRAIT_PARALYSIS_R_LEG trait.
-/obj/item/bodypart/r_leg/proc/on_owner_paralysis_loss(mob/living/carbon/source)
-	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
-	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_gain))
-
-
-/obj/item/bodypart/r_leg/set_disabled(new_disabled)
-	. = ..()
-	if(isnull(.) || !owner)
-		return
-
-	if(!.)
-		if(bodypart_disabled)
-			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
-
-/obj/item/bodypart/r_leg/digitigrade
+/obj/item/bodypart/leg/right/digitigrade
 	name = "right digitigrade leg"
 	use_digitigrade = TRUE
 
-/obj/item/bodypart/r_leg/monkey
+/obj/item/bodypart/leg/right/monkey
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_r_leg"
 	animal_origin = MONKEY_BODYPART
@@ -411,7 +363,7 @@
 	px_y = 4
 	footprint_sprite = FOOTPRINT_SPRITE_PAWS
 
-/obj/item/bodypart/r_leg/alien
+/obj/item/bodypart/leg/right/alien
 	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "alien_r_leg"
 	px_x = 0
@@ -421,7 +373,7 @@
 	dismemberable = FALSE
 	can_be_disabled = FALSE
 
-/obj/item/bodypart/r_leg/devil
+/obj/item/bodypart/leg/right/devil
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
 	dismemberable = FALSE

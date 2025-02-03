@@ -16,7 +16,7 @@
 	unique_name = TRUE
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	bodyparts = list(/obj/item/bodypart/chest/monkey, /obj/item/bodypart/head/monkey, /obj/item/bodypart/l_arm/monkey,
-					 /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/r_leg/monkey, /obj/item/bodypart/l_leg/monkey)
+					 /obj/item/bodypart/r_arm/monkey, /obj/item/bodypart/leg/right/monkey, /obj/item/bodypart/leg/left/monkey)
 	hud_type = /datum/hud/monkey
 	blood_volume = BLOOD_VOLUME_MONKEY // Yogs -- Makes monkeys/xenos have different amounts of blood from normal carbonbois
 	can_be_held = TRUE

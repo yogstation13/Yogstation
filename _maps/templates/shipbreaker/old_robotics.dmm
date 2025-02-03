@@ -78,7 +78,7 @@
 /obj/item/stack/sheet/mineral/gold,
 /obj/item/stack/sheet/mineral/gold,
 /obj/item/stack/sheet/mineral/gold,
-/obj/item/bodypart/r_leg/ipc/sgmipc,
+/obj/item/bodypart/leg/right/ipc/sgmipc,
 /turf/open/floor/engine/airless,
 /area/template_noop)
 "K" = (

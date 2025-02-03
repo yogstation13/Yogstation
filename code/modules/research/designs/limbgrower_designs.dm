@@ -23,7 +23,7 @@
 	id = "leftleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
-	build_path = /obj/item/bodypart/l_leg
+	build_path = /obj/item/bodypart/leg/left
 	category = list("initial","human","lizard","fly","moth","plasmaman","polysmorph","vox")
 
 /datum/design/rightleg
@@ -31,7 +31,7 @@
 	id = "rightleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
-	build_path = /obj/item/bodypart/r_leg
+	build_path = /obj/item/bodypart/leg/right
 	category = list("initial","human","lizard","fly","moth","plasmaman","polysmorph","vox")
 
 /datum/design/digi_leftleg
@@ -39,7 +39,7 @@
 	id = "digi_leftleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
-	build_path = /obj/item/bodypart/l_leg/digitigrade
+	build_path = /obj/item/bodypart/leg/left/digitigrade
 	category = list("initial","lizard","polysmorph")
 
 /datum/design/digi_rightleg
@@ -47,7 +47,7 @@
 	id = "digi_rightleg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 30)
-	build_path = /obj/item/bodypart/r_leg/digitigrade
+	build_path = /obj/item/bodypart/leg/right/digitigrade
 	category = list("initial","lizard","polysmorph")
 
 //Non-limb limb designs
