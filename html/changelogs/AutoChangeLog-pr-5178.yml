@@ -1,7 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Assault operative's rifle now has a 1.25 damage mult, 5 wound bonus, and 0.3 second fire delay."
-  - balance: "Assault operative's shotgun now has a 15 wound bonus."
-  - balance: "Assault operative's SMG now has 5 spread and 5 wound bonus."
-  - balance: "Assault operative's grenade launcher now has 0.3 fire delay and 5 wound bonus"

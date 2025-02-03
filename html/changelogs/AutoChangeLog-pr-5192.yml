@@ -1,5 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - balance: "Replaced circuit Imprinter in engineering with Engineering Circuit Imprinter"
-  - balance: "AI Upload board access has been replaced with RD access."

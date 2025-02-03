@@ -38,10 +38,39 @@
       on blueshift
   - bugfix: box station shipbreaker hut wont run out of power now
 2025-02-03:
+  Absolucy:
+  - bugfix: Fixed 3 walls in the MetaStation arrivals bathroom being erroneously marked
+      as the "Vacant Office"
+  - qol: Magically summoned food (such as the Summon Cheese spell) no longer decomposes.
+      It's magical food, I ain't gotta explain shit.
+  - balance: Slightly raised the health of securitrons/beepsky. (From 25 to 35)
+  Ancient_Engineer, Killermankey, Camroid:
+  - rscadd: 'New and improved mentor cloak I''d advise against trying to steal it
+      (:'
   Gw0sty:
   - rscadd: Added Dr. Scrubs to remaining maps
   - rscadd: Added Poppy the safety inspector into the remaining SM maps
   - bugfix: Fixed a missing airlock helping on minisat.
+  - rscadd: Added cloning to Void Raptor
+  - rscadd: Added medbot supplies to Void Raptor Robotics
+  - rscadd: Added departmental security spawns to voidraptor.
+  - rscadd: Dr. Scrubs is now on voidraptor
+  - rscadd: Robotics dog is now named Dirk. (Thank Britarnya)
+  - bugfix: Adjusted the layout of voidraptor robotics to create more space
+  - balance: Replaced circuit Imprinter in engineering with Engineering Circuit Imprinter
+  - balance: AI Upload board access has been replaced with RD access.
+  Loiosh42:
+  - add: Adds a shield to cargo with integral shotgun loader, along with a crate with
+      2 and a pair of bobrs to the armory tab
+  - code: Adds support for ammoboxes where the sprite doesn't change
   Wernerses:
   - balance: reduced minimum apid honey require to make beehives from 150 to 70
   - balance: reduced beehive cooldown from 25 minutes to 5 minutes.
+  Wisemonster:
+  - balance: Assault operative's rifle now has a 1.25 damage mult, 5 wound bonus,
+      and 0.3 second fire delay.
+  - balance: Assault operative's shotgun now has a 15 wound bonus.
+  - balance: Assault operative's SMG now has 5 spread and 5 wound bonus.
+  - balance: Assault operative's grenade launcher now has 0.3 fire delay and 5 wound
+      bonus
+  - balance: Assault operatives shuttle stall time increased from 3 to 5 minutes.
