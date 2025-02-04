@@ -4,7 +4,8 @@
 	"map_path": "map_files/debug",
 	"map_file": "multiz.dmm",
 	"ignored_unit_tests": [
-		"/datum/unit_test/required_map_items"
+		"/datum/unit_test/required_map_items",
+		"/datum/unit_test/vendor_boards"
 	],
 	"traits": [
 		{

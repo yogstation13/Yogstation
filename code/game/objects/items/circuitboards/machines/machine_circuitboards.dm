@@ -645,11 +645,17 @@
 		/obj/machinery/vending/modularpc = "Deluxe Silicate Selections",
 		/obj/machinery/vending/tool = "YouTool",
 		/obj/machinery/vending/custom = "Custom Vendor",
+		// monkestation start
+		/obj/machinery/vending/access/command = "Command Outfitting Station",
+		/obj/machinery/vending/barbervend = "Fab-O-Vend",
 		/obj/machinery/vending/imported = "NT Sustenance Supplier",
-		/obj/machinery/vending/imported/yangyu = "Fudobenda",
 		/obj/machinery/vending/imported/mothic = "Nomad Fleet Ration Chit Exchange",
 		/obj/machinery/vending/imported/tizirian = "Tizirian Imported Delicacies",
-		/obj/machinery/vending/plushvendor = "Plushie Vendor",)
+		/obj/machinery/vending/imported/yangyu = "Fudobenda",
+		/obj/machinery/vending/mechcomp = "ThinkTronic MechComp Dispenser",
+		/obj/machinery/vending/plushvendor = "Plushie Vendor",
+		// monkestation end
+	)
 
 /obj/item/circuitboard/machine/vendor/screwdriver_act(mob/living/user, obj/item/tool)
 	var/static/list/display_vending_names_paths

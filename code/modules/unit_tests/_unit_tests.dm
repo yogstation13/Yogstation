@@ -236,6 +236,7 @@
 #include "trick_weapon_icons.dm"
 #include "tutorial_sanity.dm"
 #include "unit_test.dm"
+#include "vendor_boards.dm"
 #include "verify_config_tags.dm"
 #include "verify_emoji_names.dm"
 #include "wizard_loadout.dm"
