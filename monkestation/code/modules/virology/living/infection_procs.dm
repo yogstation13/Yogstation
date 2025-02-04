@@ -111,7 +111,7 @@
 						infect_disease(V, notes="(Airborne, from a pathogenic cloud[cloud.source ? " created by [key_name(cloud.source)]" : ""])")
 
 /mob/living/proc/handle_virus_updates(seconds_per_tick)
-	if(status_flags & GODMODE)
+	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return 0
 
 	find_nearby_disease()//getting diseases from blood/mucus/vomit splatters and open dishes

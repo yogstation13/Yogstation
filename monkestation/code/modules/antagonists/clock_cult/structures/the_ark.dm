@@ -201,7 +201,7 @@ GLOBAL_VAR_INIT(ratvar_risen, FALSE)
 			var/mob/living/newgod = current_mind.current
 			if(!newgod)
 				continue
-			newgod.status_flags |= GODMODE
+			ADD_TRAIT(newgod, TRAIT_GODMODE, "ratvar")
 	else
 		stack_trace("Clockwork ark calling summon_ratvar() with no set main_clock_cult.")
 

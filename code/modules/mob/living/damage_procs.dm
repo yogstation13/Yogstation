@@ -303,7 +303,7 @@
 	if(target_area)
 		if((target_area.area_flags & PASSIVE_AREA) && amount > 0)
 			return FALSE
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_LIVING_ADJUST_BRUTE_DAMAGE, BRUTE, amount, forced) & COMPONENT_IGNORE_CHANGE)
 		return FALSE
@@ -322,7 +322,7 @@
 	return amount
 
 /mob/living/proc/setBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return
 	. = bruteloss
 	bruteloss = amount
@@ -338,7 +338,7 @@
 		if((target_area.area_flags & PASSIVE_AREA) && amount > 0)
 			return FALSE
 	if(!forced)
-		if(status_flags & GODMODE)
+		if(HAS_TRAIT(src, TRAIT_GODMODE))
 			return FALSE
 		if (required_respiration_type)
 			var/obj/item/organ/internal/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
@@ -363,7 +363,7 @@
 
 /mob/living/proc/setOxyLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype, required_respiration_type = ALL)
 	if(!forced)
-		if(status_flags & GODMODE)
+		if(HAS_TRAIT(src, TRAIT_GODMODE))
 			return
 
 		var/obj/item/organ/internal/lungs/affected_lungs = get_organ_slot(ORGAN_SLOT_LUNGS)
@@ -383,7 +383,7 @@
 	return toxloss
 
 /mob/living/proc/can_adjust_tox_loss(amount, forced, required_biotype)
-	if(!forced && ((status_flags & GODMODE) || !(mob_biotypes & required_biotype)))
+	if(!forced && (HAS_TRAIT(src, TRAIT_GODMODE) || !(mob_biotypes & required_biotype)))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_LIVING_ADJUST_TOX_DAMAGE, TOX, amount, forced) & COMPONENT_IGNORE_CHANGE)
 		return FALSE
@@ -398,7 +398,7 @@
 		return FALSE
 	if(amount < 0 && HAS_TRAIT(src, TRAIT_NO_HEALS))
 		return FALSE
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return FALSE
 	if(!forced && !(mob_biotypes & required_biotype))
 		return
@@ -411,7 +411,7 @@
 		updatehealth()
 
 /mob/living/proc/setToxLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return FALSE
 	if(!forced && !(mob_biotypes & required_biotype))
 		return
@@ -424,7 +424,7 @@
 	return fireloss
 
 /mob/living/proc/can_adjust_fire_loss(amount, forced, required_bodytype)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_LIVING_ADJUST_BURN_DAMAGE, BURN, amount, forced) & COMPONENT_IGNORE_CHANGE)
 		return FALSE
@@ -447,7 +447,7 @@
 	return amount
 
 /mob/living/proc/setFireLoss(amount, updating_health = TRUE, forced = FALSE, required_bodytype)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && HAS_TRAIT(src, TRAIT_GODMODE))
 		return 0
 	. = fireloss
 	fireloss = amount
@@ -461,7 +461,7 @@
 	return cloneloss
 
 /mob/living/proc/can_adjust_clone_loss(amount, forced, required_biotype)
-	if(!forced && (!(mob_biotypes & required_biotype) || status_flags & GODMODE || HAS_TRAIT(src, TRAIT_NOCLONELOSS)))
+	if(!forced && (!(mob_biotypes & required_biotype) || HAS_TRAIT(src, TRAIT_GODMODE) || HAS_TRAIT(src, TRAIT_NOCLONELOSS)))
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_LIVING_ADJUST_CLONE_DAMAGE, CLONE, amount, forced) & COMPONENT_IGNORE_CHANGE)
 		return FALSE
@@ -484,7 +484,7 @@
 	return amount
 
 /mob/living/proc/setCloneLoss(amount, updating_health = TRUE, forced = FALSE, required_biotype)
-	if(!forced && ( (status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_NOCLONELOSS)) )
+	if(!forced && ( HAS_TRAIT(src, TRAIT_GODMODE) || HAS_TRAIT(src, TRAIT_NOCLONELOSS)) )
 		return FALSE
 	cloneloss = amount
 	if(updating_health)

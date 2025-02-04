@@ -46,7 +46,7 @@
 		if(living_mob.loc == the_target)
 			return FALSE // We've either been eaten or are shapeshifted, let's assume the latter because we're still alive
 		var/mob/M = the_target
-		if(M.status_flags & GODMODE)
+		if(HAS_TRAIT(M, TRAIT_GODMODE))
 			return FALSE
 
 	if(!ignore_sight && !can_see(living_mob, the_target, vision_range)) //Target has moved behind cover and we have lost line of sight to it

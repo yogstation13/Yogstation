@@ -16,8 +16,8 @@ GLOBAL_DATUM(current_eminence, /mob/living/eminence) //set to the current eminen
 	density = FALSE
 	move_force = INFINITY
 	move_resist = INFINITY
-	status_flags = GODMODE
 	sight = SEE_SELF
+	status_flags = NONE
 	incorporeal_move = INCORPOREAL_MOVE_BASIC
 	initial_language_holder = /datum/language_holder/universal //lesser god, they CAN understand you
 	hud_possible = list(ANTAG_HUD)
@@ -42,6 +42,7 @@ GLOBAL_DATUM(current_eminence, /mob/living/eminence) //set to the current eminen
 	cogs = GLOB.clock_installed_cogs
 	AddElement(/datum/element/simple_flying)
 	internal_radio = new /obj/item/radio/borg/eminence(src)
+	ADD_TRAIT(src, TRAIT_GODMODE, INNATE_TRAIT)
 
 /mob/living/eminence/Destroy()
 	if(GLOB.current_eminence == src)

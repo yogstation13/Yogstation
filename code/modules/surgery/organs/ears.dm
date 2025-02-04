@@ -67,7 +67,7 @@
 		REMOVE_TRAIT(owner, TRAIT_DEAF, EAR_DAMAGE)
 
 /obj/item/organ/internal/ears/proc/adjustEarDamage(ddmg, ddeaf)
-	if(owner.status_flags & GODMODE)
+	if(HAS_TRAIT(owner, TRAIT_GODMODE))
 		return
 	set_organ_damage(max(damage + (ddmg*damage_multiplier), 0))
 	deaf = max(deaf + (ddeaf*damage_multiplier), 0)

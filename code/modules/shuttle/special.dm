@@ -148,7 +148,7 @@
 /obj/structure/table/abductor/wabbajack/right
 	desc = "It wakes so you may sleep."
 
-// Bar staff, GODMODE mobs(as long as they stay in the shuttle) that just want to make sure people have drinks
+// Bar staff, TRAIT_GODMODE mobs(as long as they stay in the shuttle) that just want to make sure people have drinks
 // and a good time.
 /obj/item/storage/backpack/duffelbag/bardrone
 	name = "Bardrones Duffelbag"

@@ -85,9 +85,9 @@
 	bound_spirit = new(parent)
 	bound_spirit.ckey = chosen_spirit.ckey
 	bound_spirit.fully_replace_character_name(null, "[parent]")
-	bound_spirit.status_flags |= GODMODE
 	bound_spirit.grant_all_languages(FALSE, FALSE, TRUE) //Grants omnitongue
 	bound_spirit.update_atom_languages()
+	ADD_TRAIT(bound_spirit, TRAIT_GODMODE, REF(src))
 	speed = movement_speed
 
 	//Add new signals for parent and stop attempting to awaken

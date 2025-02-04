@@ -246,7 +246,7 @@
 	// No pain at all
 	if(amount == 0)
 		return FALSE
-	if(amount > 0 && (parent.status_flags & GODMODE))
+	if(amount > 0 && (HAS_TRAIT(parent, TRAIT_GODMODE)))
 		return FALSE
 
 	for(var/zone in shuffle(def_zones))
@@ -379,7 +379,7 @@
 
 	SIGNAL_HANDLER
 
-	if(damage <= 2.5 || (parent.status_flags & GODMODE))
+	if(damage <= 2.5 || HAS_TRAIT(parent, TRAIT_GODMODE))
 		return
 	if(isbodypart(def_zone))
 		var/obj/item/bodypart/targeted_part = def_zone

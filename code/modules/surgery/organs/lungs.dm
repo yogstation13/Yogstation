@@ -624,7 +624,7 @@
  * * breather: A carbon mob that is using the lungs to breathe.
  */
 /obj/item/organ/internal/lungs/proc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/breather, skip_breath)
-	if(breather.status_flags & GODMODE)
+	if(HAS_TRAIT(breather, TRAIT_GODMODE))
 		breather.failed_last_breath = FALSE
 		return FALSE
 

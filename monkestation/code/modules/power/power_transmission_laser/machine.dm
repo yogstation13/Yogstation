@@ -346,7 +346,7 @@
 
 ///this is called every time something enters our beams
 /obj/machinery/power/transmission_laser/proc/atom_entered_beam(obj/effect/transmission_beam/triggered, mob/living/victim)
-	if(!isliving(victim) || victim.incorporeal_move || (victim.status_flags & GODMODE))
+	if(!isliving(victim) || victim.incorporeal_move || (HAS_TRAIT(victim, TRAIT_GODMODE)))
 		return
 	var/mw_power = (output_number * power_format_multi_output) / (1 MW)
 	switch(mw_power)

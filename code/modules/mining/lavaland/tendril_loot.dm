@@ -423,8 +423,7 @@
 	if(!user)
 		return
 
-	user.status_flags &= ~GODMODE
-	REMOVE_TRAIT(user, TRAIT_NO_TRANSFORM, REF(src))
+	user.remove_traits(list(TRAIT_NO_TRANSFORM, TRAIT_GODMODE), REF(src))
 	user.forceMove(get_turf(src))
 	user.visible_message(span_danger("[user] pops back into reality!"))
 
@@ -435,8 +434,7 @@
 	setDir(user.dir)
 
 	user.forceMove(src)
-	ADD_TRAIT(user, TRAIT_NO_TRANSFORM, REF(src))
-	user.status_flags |= GODMODE
+	user.add_traits(list(TRAIT_NO_TRANSFORM, TRAIT_GODMODE), REF(src))
 
 	user_ref = WEAKREF(user)
 

@@ -77,10 +77,10 @@
 	bound_spirit = new(parent)
 	bound_spirit.ckey = chosen_spirit.ckey
 	bound_spirit.fully_replace_character_name(null, "The spirit of [parent]")
-	bound_spirit.status_flags |= GODMODE
 	bound_spirit.copy_languages(awakener, LANGUAGE_MASTER) //Make sure the sword can understand and communicate with the awakener.
 	bound_spirit.update_atom_languages()
 	bound_spirit.grant_all_languages(FALSE, FALSE, TRUE) //Grants omnitongue
+	ADD_TRAIT(bound_spirit, TRAIT_GODMODE, REF(src))
 
 	//Add new signals for parent and stop attempting to awaken
 	RegisterSignal(parent, COMSIG_ATOM_RELAYMOVE, PROC_REF(block_buckle_message))

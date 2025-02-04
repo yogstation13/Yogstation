@@ -86,7 +86,7 @@
  * By default mobs cannot feel pain if they have a pain modifier of 0.5 or less.
  */
 /mob/living/proc/can_feel_pain()
-	return pain_controller?.pain_modifier > 0.5 && !HAS_TRAIT(src, TRAIT_NO_PAIN_EFFECTS)
+	return pain_controller?.pain_modifier > 0.5 && !HAS_TRAIT(src, TRAIT_NO_PAIN_EFFECTS) && !HAS_TRAIT(src, TRAIT_GODMODE)
 
 /**
  * Adjusts the progress of pain shock on the current mob.
@@ -97,7 +97,7 @@
 /mob/living/proc/adjust_pain_shock(amount, down_to = -30)
 	if(isnull(pain_controller))
 		return
-	if(amount > 0 && HAS_TRAIT(src, TRAIT_NO_SHOCK_BUILDUP))
+	if(amount > 0 && (HAS_TRAIT(src, TRAIT_NO_SHOCK_BUILDUP) || HAS_TRAIT(src, TRAIT_GODMODE)))
 		return
 
 	ASSERT(isnum(amount))

@@ -12,7 +12,7 @@
 
 	if (ismob(target))
 		var/mob/mob_target = target
-		if (mob_target.status_flags & GODMODE)
+		if (HAS_TRAIT(mob_target, TRAIT_GODMODE))
 			return FALSE
 		if (mob_target.stat > attack_until_past_stat)
 			return FALSE
