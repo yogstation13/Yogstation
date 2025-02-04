@@ -74,3 +74,8 @@
   - balance: Assault operative's grenade launcher now has 0.3 fire delay and 5 wound
       bonus
   - balance: Assault operatives shuttle stall time increased from 3 to 5 minutes.
+2025-02-04:
+  Veth-s:
+  - admin: Replaced player panel and player options panel with a tgui version. Includes
+      a verb in the Admin Game category, and an option on right clicking a mob.
+  - admin: Rebound F6 to the new TGUI player panel.
