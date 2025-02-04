@@ -92,3 +92,10 @@
 		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/surgery/dna_recovery
+	name = "DNA Recovery"
+	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."
+	id = "surgery_dna_recovery"
+	surgery = /datum/surgery/advanced/dna_recovery
+	research_icon_state = "surgery_head"

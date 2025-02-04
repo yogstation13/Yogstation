@@ -548,7 +548,7 @@
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
 	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
-		scantemp = "<font class='bad'>Subject's DNA is damaged beyond any hope of recovery.</font>"
+		scantemp = "<font class='bad'>Subject's DNA is too damaged to initiate cloning procedure.</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
 	if (!body_only && isnull(mob_occupant.mind))
