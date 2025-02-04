@@ -4,10 +4,10 @@
 	worn_icon = 'icons/mob/clothing/head/helmet.dmi'
 	desc = "Hood hopefully belonging to an ablative trenchcoat. Includes a visor for cool-o-vision."
 	icon_state = "ablativehood"
-	flags_inv = HIDEHAIR | HIDEEARS
+	flags_inv = HIDEHAIR|HIDEEARS
 	armor_type = /datum/armor/hooded_ablative
-	strip_delay = 30
-	//var/hit_reflect_chance = 50  //monkestation removal
+	strip_delay = 3 SECONDS
+	//var/hit_reflect_chance = 50 //monkestation removal
 
 /datum/armor/hooded_ablative
 	melee = 10
@@ -20,8 +20,10 @@
 /obj/item/clothing/head/hooded/ablative/IsReflect(def_zone)
 	if(def_zone != BODY_ZONE_HEAD) //If not shot where ablative is covering you, you don't get the reflection bonus!
 		return FALSE
-	//if(prob(hit_reflect_chance)) monkestation edit
-	return TRUE
+	/* monkestation removal
+	if (prob(hit_reflect_chance))
+		return TRUE
+	*/
 
 /obj/item/clothing/suit/hooded/ablative
 	name = "ablative trenchcoat"
@@ -33,38 +35,34 @@
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	armor_type = /datum/armor/hooded_ablative
 	hoodtype = /obj/item/clothing/head/hooded/ablative
-	strip_delay = 30
-	equip_delay_other = 40
-	//var/hit_reflect_chance = 50  //monkestation removal
+	strip_delay = 3 SECONDS
+	equip_delay_other = 4 SECONDS
+	// /var/hit_reflect_chance = 50  //monkestation removal
 
 /obj/item/clothing/suit/hooded/ablative/Initialize(mapload)
 	. = ..()
 	allowed = GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/hooded/ablative/IsReflect(def_zone)
-	if(def_zone == "") //something is fucky and this happens every now and then but the damage defaults to the person's chest so this is okayish
-		return TRUE
 	if(!(def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))) //If not shot where ablative is covering you, you don't get the reflection bonus!
 		return FALSE
-	//if(prob(hit_reflect_chance)) monkestation edit
-	return TRUE
+	/* monkestation removal
+	if (prob(hit_reflect_chance))
+		return TRUE
+	*/
 
-/obj/item/clothing/suit/hooded/ablative/ToggleHood()
+/obj/item/clothing/suit/hooded/ablative/on_hood_up(obj/item/clothing/head/hooded/hood)
 	. = ..()
-	if(!hood_up)
-		return
 	var/mob/living/carbon/user = loc
 	var/datum/atom_hud/hud = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	ADD_TRAIT(user, TRAIT_SECURITY_HUD, HELMET_TRAIT)
+	ADD_TRAIT(user, TRAIT_SECURITY_HUD, REF(src))
 	hud.show_to(user)
-	balloon_alert(user, "you put on the hood, and enable the hud")
+	balloon_alert(user, "hud enabled")
 
-/obj/item/clothing/suit/hooded/ablative/RemoveHood()
-	if(!hood_up)
-		return ..()
+/obj/item/clothing/suit/hooded/ablative/on_hood_down(obj/item/clothing/head/hooded/hood)
 	var/mob/living/carbon/user = loc
 	var/datum/atom_hud/sec_hud = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	REMOVE_TRAIT(user, TRAIT_SECURITY_HUD, HELMET_TRAIT)
+	REMOVE_TRAIT(user, TRAIT_SECURITY_HUD, REF(src))
 	sec_hud.hide_from(user)
-	balloon_alert(user, "you take off the hood, and disable the hud")
+	balloon_alert(user, "hud disabled")
 	return ..()

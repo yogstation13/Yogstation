@@ -82,9 +82,6 @@ GLOBAL_LIST_EMPTY(abscond_markers)
 	equipped.eye_color_right = BLOODCULT_EYE
 	equipped.update_body()
 
-	var/obj/item/clothing/suit/hooded/hooded = locate() in equipped
-	hooded.ToggleHood()
-
 /obj/effect/mob_spawn/corpse/human/clock_cultist
 	name = "Clock Cultist"
 	outfit = /datum/outfit/clock

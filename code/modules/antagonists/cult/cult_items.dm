@@ -208,11 +208,21 @@ Striking a noncultist, however, will tear their flesh."}
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor_type = /datum/armor/hooded_cultrobes
 	flags_inv = HIDEJUMPSUIT
-
+	// cold_protection = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-
+	// heat_protection = CHEST|GROIN|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie
+	/// Whether the hood is flipped up
+	var/hood_up = FALSE
+
+/// Called when the hood is worn
+/obj/item/clothing/suit/hooded/cultrobes/on_hood_up(obj/item/clothing/head/hooded/hood)
+	hood_up = TRUE
+
+/// Called when the hood is hidden
+/obj/item/clothing/suit/hooded/cultrobes/on_hood_down(obj/item/clothing/head/hooded/hood)
+	hood_up = FALSE
 
 
 /datum/armor/hooded_cultrobes

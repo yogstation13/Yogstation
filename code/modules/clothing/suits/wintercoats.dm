@@ -7,10 +7,11 @@
 	worn_icon = 'icons/mob/clothing/suits/wintercoat.dmi'
 	inhand_icon_state = "coatwinter"
 	body_parts_covered = CHEST|GROIN|ARMS
-
+	// cold_protection = CHEST|GROIN|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	allowed = list()
 	armor_type = /datum/armor/hooded_wintercoat
+	// hood_down_overlay_suffix = "_hood"
 
 /datum/armor/hooded_wintercoat
 	bio = 10
@@ -613,7 +614,7 @@
 		hood.set_greyscale(new_coat_colors) //Adopt the suit's grayscale coloring for visual clarity.
 
 //But also keep old method in case the hood is (re-)created later
-/obj/item/clothing/suit/hooded/wintercoat/custom/MakeHood()
+/obj/item/clothing/suit/hooded/wintercoat/custom/on_hood_created(obj/item/clothing/head/hooded/hood)
 	. = ..()
 	var/list/coat_colors = (SSgreyscale.ParseColorString(greyscale_colors))
 	var/list/new_coat_colors = coat_colors.Copy(1,4)

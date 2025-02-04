@@ -159,6 +159,7 @@
 	mask = /obj/item/clothing/mask/monster_preview_mask
 	uniform = /obj/item/clothing/under/suit/black
 	suit =  /obj/item/clothing/suit/hooded/techpriest
+	head = /obj/item/clothing/head/hooded/techpriest
 	gloves = /obj/item/clothing/gloves/color/white
 
 /// Mind version
