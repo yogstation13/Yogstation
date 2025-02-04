@@ -546,8 +546,10 @@
 	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/uranium/radium = 1, /datum/reagent/drug/space_drugs = 1, /datum/reagent/medicine/cryoxadone = 1, /datum/reagent/consumable/triple_citrus = 1)
 
 /datum/chemical_reaction/life
-	required_reagents = list(/datum/reagent/medicine/strange_reagent = 1, /datum/reagent/medicine/c2/synthflesh = 1, /datum/reagent/blood = 1)
+	required_reagents = list(/datum/reagent/medicine/strange_reagent = 30, /datum/reagent/medicine/c2/synthflesh = 30, /datum/reagent/blood = 30)
 	required_temp = 374
+	//MONKESTATION EDIT :An increase of minimum reagents should halt further grief coming from the use of this chemical
+	//as well as any others that spawn creatures such as corgium and the life (friendly) version of this chemical
 
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE
 
@@ -555,8 +557,9 @@
 	chemical_mob_spawn(holder, rand(1, round(created_volume, 1)), "Life (hostile)") //defaults to HOSTILE_SPAWN
 
 /datum/chemical_reaction/life_friendly
-	required_reagents = list(/datum/reagent/medicine/strange_reagent = 1, /datum/reagent/medicine/c2/synthflesh = 1, /datum/reagent/consumable/sugar = 1)
+	required_reagents = list(/datum/reagent/medicine/strange_reagent = 30, /datum/reagent/medicine/c2/synthflesh = 30, /datum/reagent/consumable/sugar = 30)
 	required_temp = 374
+	//MONKESTATION EDIT :Following the same change as Life, in order to prevent grief through mob spawning
 
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE
 
@@ -564,8 +567,10 @@
 	chemical_mob_spawn(holder, rand(1, round(created_volume, 1)), "Life (friendly)", FRIENDLY_SPAWN, mob_faction = FACTION_NEUTRAL)
 
 /datum/chemical_reaction/corgium
-	required_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/colorful_reagent = 1, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/blood = 1)
+	required_reagents = list(/datum/reagent/consumable/nutriment = 30, /datum/reagent/colorful_reagent = 30, /datum/reagent/medicine/strange_reagent = 30, /datum/reagent/blood = 30)
 	required_temp = 374
+	//MONKESTATION EDIT :Following the same change as Life, in order to prevent grief through mob spawning,
+	//Even though it's an immensely cute swarm
 
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_UNIQUE
 
