@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(particle_weather)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WEATHER_CHANGE)
 		running_eclipse_weather = weather_datum_type
 		running_eclipse_weather.start()
-		weather_datum_type = null
+		next_hit_eclipse = null
 	else
 		if(!QDELETED(running_weather))
 			if(!force)
@@ -154,7 +154,7 @@ SUBSYSTEM_DEF(particle_weather)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WEATHER_CHANGE)
 		running_weather = weather_datum_type
 		running_weather.start()
-		weather_datum_type = null
+		next_hit = null
 
 /datum/controller/subsystem/particle_weather/proc/make_eligible(datum/particle_weather/possible_weather, probability = 10)
 	eligible_weathers[possible_weather] = probability

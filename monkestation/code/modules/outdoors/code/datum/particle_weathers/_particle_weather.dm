@@ -277,13 +277,14 @@ GLOBAL_LIST_EMPTY(siren_objects)
 	switch(plane_type)
 		if("Default")
 			SSparticle_weather.particle_effect?.animate_severity(severity_mod())
+			//Wait for the last particle to fade, then qdel yourself
+			addtimer(CALLBACK(src, PROC_REF(end)), SSparticle_weather.particle_effect.lifespan + SSparticle_weather.particle_effect.fade)
 		if("Eclipse")
 			SSparticle_weather.particle_effect_eclipse?.animate_severity(severity_mod())
+			//Wait for the last particle to fade, then qdel yourself
+			addtimer(CALLBACK(src, PROC_REF(end)), SSparticle_weather.particle_effect_eclipse.lifespan + SSparticle_weather.particle_effect_eclipse.fade)
 		else
 			stack_trace("[src] had invalid plane_type [plane_type]")
-
-	//Wait for the last particle to fade, then qdel yourself
-	addtimer(CALLBACK(src, PROC_REF(end)), SSparticle_weather.particle_effect.lifespan + SSparticle_weather.particle_effect.fade)
 
 /datum/particle_weather/proc/end()
 	running = FALSE
