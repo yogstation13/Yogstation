@@ -1,0 +1,4 @@
+author: "Absolucy, SmArtKar"
+delete-after: True
+changes:
+  - refactor: "Various status effects and objects now use a new \"shared\" particles system, which should considerably improve client performance when encountering entities with a lot of particle effects."
