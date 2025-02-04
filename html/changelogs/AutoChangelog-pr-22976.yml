@@ -1,0 +1,5 @@
+author: "Aquizit"
+delete-after: true 
+changes: 
+  - tweak: "Gravity Generator room no longer bolted at beginning of shift"
+  - mapping: "Lock helper removed on grav gen door."
