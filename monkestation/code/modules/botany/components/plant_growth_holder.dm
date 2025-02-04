@@ -52,10 +52,9 @@
 
 	current_looks.icon_state =  "[seed.icon_grow][t_growthstate]"
 
+	planter.remove_shared_particles(/particles/pollen)
 	if(pollinated)
-		planter.particles = new /particles/pollen
-	else
-		planter.particles = null
+		planter.add_shared_particles(/particles/pollen)
 
 	if((plant_state == HYDROTRAY_PLANT_HARVESTABLE) && seed.icon_harvest)
 		current_looks.icon_state = seed.icon_harvest

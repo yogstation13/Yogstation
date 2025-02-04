@@ -1917,6 +1917,8 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 	var/obj/item/plate/oven_tray/used_tray
 	/// List of possible choices for the selection radial
 	var/list/radial_choice_list = list()
+	///Currently used particle type, if any
+	var/particle_type
 
 /obj/structure/reagent_forge/examine(mob/user)
 	. = ..()
@@ -1976,7 +1978,8 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 
 /obj/structure/reagent_forge/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(particles)
+	if(particle_type)
+		remove_shared_particles("[particle_type]_reagent_forge")
 	if(used_tray)
 		QDEL_NULL(used_tray)
 	. = ..()
@@ -2099,29 +2102,27 @@ GLOBAL_LIST_INIT(clay_recipes, list ( \
 
 	smoke_state = new_state
 
-	QDEL_NULL(particles)
+	if (particle_type)
+		remove_shared_particles("[particle_type]_reagent_forge")
+		particle_type = null
 
 	switch(smoke_state)
 		if(SMOKE_STATE_NONE)
 			icon_state = "forge_inactive"
 			set_light(0, 0) // If we aren't heating up and thus not on fire, turn the fire light off
 			return
-
 		if(SMOKE_STATE_BAD)
-			particles = new /particles/smoke()
-			particles.position = list(6, 4, 0)
-
+			particle_type = /particles/smoke
 		if(SMOKE_STATE_NEUTRAL)
-			particles = new /particles/smoke/steam()
-			particles.position = list(6, 4, 0)
-
+			particle_type = /particles/smoke/steam
 		if(SMOKE_STATE_GOOD)
-			particles = new /particles/smoke/steam/mild()
-			particles.position = list(6, 4, 0)
-
+			particle_type = /particles/smoke/steam/mild
 		if(SMOKE_STATE_NOT_COOKING)
-			particles = new /particles/smoke/mild()
-			particles.position = list(6, 4, 0)
+			particle_type = /particles/smoke/mild
+
+	if(particle_type)
+		var/obj/effect/abstract/shared_particle_holder/smoke = add_shared_particles(particle_type, "[particle_type]_reagent_forge")
+		smoke.particles.position = list(6, 4, 0)
 
 	icon_state = "forge_active"
 	set_light(3, 1, LIGHT_COLOR_FIRE)

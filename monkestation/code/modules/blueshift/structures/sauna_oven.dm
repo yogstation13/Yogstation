@@ -22,9 +22,8 @@
 	. += span_notice("There's [fuel_amount ? "some fuel" : "no fuel"] in the oven.")
 
 /obj/structure/sauna_oven/Destroy()
-	if(lit)
-		STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(particles)
+	STOP_PROCESSING(SSobj, src)
+	remove_shared_particles("sauna_steam_mild")
 	return ..()
 
 /obj/structure/sauna_oven/attack_hand(mob/user)
@@ -111,15 +110,12 @@
 		update_icon()
 
 /obj/structure/sauna_oven/proc/update_steam_particles()
-	if(particles)
-		if(lit && water_amount)
-			return
-		QDEL_NULL(particles)
-		return
+	remove_shared_particles("sauna_steam_mild")
 
 	if(lit && water_amount)
-		particles = new /particles/smoke/steam/mild
-		particles.position = list(0, 6, 0)
+		add_shared_particles()
+		var/obj/effect/abstract/shared_particle_holder/steam = add_shared_particles(/particles/smoke/steam/mild, "sauna_steam_mild")
+		steam.particles.position = list(0, 6, 0)
 
 #undef SAUNA_H2O_TEMP
 #undef SAUNA_LOG_FUEL

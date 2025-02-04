@@ -21,11 +21,8 @@
 /// In the future, this could be expanded to have more interesting particles and effects.
 /datum/component/unusual_effect
 	dupe_mode = COMPONENT_DUPE_HIGHLANDER
-
-	var/obj/effect/abstract/particle_holder/special_effects
-
 	var/color
-
+	var/include_particles
 	COOLDOWN_DECLARE(glow_cooldown)
 
 /datum/component/unusual_effect/Initialize(color, include_particles = FALSE)
@@ -34,15 +31,18 @@
 		return COMPONENT_INCOMPATIBLE
 
 	src.color = color
+	src.include_particles = include_particles
 	parent_movable.add_filter("unusual_effect", 2, list("type" = "outline", "color" = color, "size" = 2))
 	if(include_particles)
-		special_effects = new(parent_movable, /particles/unusual_effect)
+		parent_movable.add_shared_particles(/particles/unusual_effect)
 	START_PROCESSING(SSobj, src)
 
 /datum/component/unusual_effect/Destroy(force)
 	var/atom/movable/parent_movable = parent
-	if (istype(parent_movable))
+	if(istype(parent_movable))
 		parent_movable.remove_filter("unusual_effect")
+		if(include_particles)
+			parent_movable.remove_shared_particles(/particles/unusual_effect)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 

@@ -13,10 +13,10 @@
 		blood_color = COLOR_DARK_RED
 	var/x_component = sin(angle) * -15
 	var/y_component = cos(angle) * -15
-	if(!GLOB.blood_particles[blood_color])
-		GLOB.blood_particles[blood_color] = new /particles/splatter(blood_color)
-	particles = GLOB.blood_particles[blood_color]
-	particles.velocity = list(x_component, y_component)
+	var/obj/effect/abstract/shared_particle_holder/splatter = add_shared_particles(/particles/splatter, "bloodsplatter_[blood_color]")
+	if(blood_color != "red")
+		splatter.particles.color = blood_color
+	splatter.particles.velocity = list(x_component, y_component)
 	color = blood_color
 	icon_state = "[splatter_type][pick(1, 2, 3, 4, 5, 6)]"
 	. = ..()
@@ -72,6 +72,10 @@
 			target_pixel_x = round(-6 * ((360 - angle) / 45))
 			target_pixel_y = 8
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
+
+/obj/effect/temp_visual/dir_setting/bloodsplatter/Destroy()
+	remove_shared_particles("bloodsplatter_[color]")
+	return ..()
 
 /obj/effect/temp_visual/dir_setting/speedbike_trail
 	name = "speedbike trails"

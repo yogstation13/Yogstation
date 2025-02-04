@@ -1,4 +1,3 @@
-GLOBAL_LIST_EMPTY(blood_particles)
 /particles/splatter
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
@@ -14,8 +13,3 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	velocity = list(50, 0)
 	friction = generator(GEN_NUM, 0.1, 0.5)
 	position = generator(GEN_CIRCLE, 6, 6)
-
-/particles/splatter/New(set_color)
-	..()
-	if(set_color != "red") // we're already red colored by default
-		color = set_color

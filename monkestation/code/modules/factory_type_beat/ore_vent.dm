@@ -238,7 +238,7 @@
 /obj/structure/ore_vent/proc/handle_wave_conclusion()
 	SEND_SIGNAL(src, COMSIG_SPAWNER_STOP_SPAWNING)
 	COOLDOWN_RESET(src, wave_cooldown)
-	particles = null
+	remove_shared_particles(/particles/smoke/ash)
 	if(!QDELETED(node)) ///The Node Drone has survived the wave defense, and the ore vent is tapped.
 		tapped = TRUE
 		SSore_generation.processed_vents += src
@@ -305,7 +305,7 @@
 	node = new /mob/living/basic/node_drone(loc)
 	node.arrive(src)
 	RegisterSignal(node, COMSIG_QDELETING, PROC_REF(handle_wave_conclusion))
-	particles = new /particles/smoke/ash()
+	add_shared_particles(/particles/smoke/ash)
 
 	for(var/i in 1 to 5) // Clears the surroundings of the ore vent before starting wave defense.
 		for(var/turf/closed/mineral/rock in oview(i))
