@@ -80,6 +80,9 @@
       and "ThinkTronic MechComp Dispenser" when screwdrivering a vendor board.
   - bugfix: Species that are supposed to be immune to transformation stings are now
       actually immune to transformation stings.
+  - rscadd: Added a new surgery, DNA Recovery, which can unhusk people, including
+      changeling absorption victims. It's unlocked by experimental surgery node, and
+      requires either rezadone, amanitin, or entropic polypnium.
   Absolucy, SmArtKar:
   - refactor: Various status effects and objects now use a new "shared" particles
       system, which should considerably improve client performance when encountering
@@ -87,6 +90,8 @@
   Gw0sty:
   - bugfix: Roboticists finally figured out the cybernetic connectors purpose is and
       will now be able to hack cybernetics for others.
+  Kitsunemitsu:
+  - rscadd: Added 3 new AI lawsets.
   Veth-s:
   - admin: Replaced player panel and player options panel with a tgui version. Includes
       a verb in the Admin Game category, and an option on right clicking a mob.
