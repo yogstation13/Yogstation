@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "You can now properly select \"Command Outfitting Station\", \"Fab-O-Vend\", and \"ThinkTronic MechComp Dispenser\" when screwdrivering a vendor board."
