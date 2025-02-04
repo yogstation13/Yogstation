@@ -67,8 +67,8 @@
 
 /datum/status_effect/temporary_transformation/trans_sting/on_apply()
 	. = ..()
-	if(!.)
-		return
+	if(!. || HAS_TRAIT(owner, TRAIT_NO_TRANSFORMATION_STING))
+		return FALSE
 	RegisterSignals(owner, update_on_signals, PROC_REF(pause_effect))
 	pause_effect(owner) // for if we sting a dead guy
 

@@ -112,6 +112,7 @@
 		|| !target.has_dna() \
 		|| HAS_TRAIT(target, TRAIT_HUSK) \
 		|| HAS_TRAIT(target, TRAIT_BADDNA) \
+		|| HAS_TRAIT(target, TRAIT_NO_TRANSFORMATION_STING) \
 		|| (HAS_TRAIT(target, TRAIT_NO_DNA_COPY) && !ismonkey(target))) // sure, go ahead, make a monk-clone
 		user.balloon_alert(user, "incompatible DNA!")
 		return FALSE
