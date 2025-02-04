@@ -419,6 +419,13 @@
 		BB_LOW_PRIORITY_HUNTING_TARGET = null, // cable
 		BB_TARGETING_STRATEGY = /datum/targeting_strategy/basic, // Use this to find people to run away from
 		BB_BASIC_MOB_FLEE_DISTANCE = 3,
+		BB_OWNER_SELF_HARM_RESPONSES = list(
+			"*me cleans its whiskers in disapproval.",
+			"*me squeaks sadly.",
+			"*me sheds a single small tear.",
+			"MY LIEGE! NO!!",
+			"*me offers a crumb of cheese to cheer you up.",
+		)
 	)
 
 	ai_traits = STOP_MOVING_WHEN_PULLED

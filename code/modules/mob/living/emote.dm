@@ -642,7 +642,7 @@ monkestation edit end */
 	var/custom_emote_type
 	if(!can_run_emote(user, TRUE, intentional))
 		return FALSE
-	if(is_banned_from(user.ckey, "Emote"))
+	if(!isnull(user.ckey) && is_banned_from(user.ckey, "Emote"))
 		to_chat(user, span_boldwarning("You cannot send custom emotes (banned)."))
 		return FALSE
 	else if(QDELETED(user))

@@ -4,6 +4,13 @@
 		BB_PET_TARGETING_STRATEGY = /datum/targeting_strategy/basic/not_friends,
 		BB_BLACKLIST_MINERAL_TURFS = list(/turf/closed/mineral/gibtonite),
 		BB_AUTOMATED_MINING = FALSE,
+		BB_OWNER_SELF_HARM_RESPONSES = list(
+			"Please stop hurting yourself.",
+			"There is no need to do that.",
+			"Your actions are illogical.",
+			"Please make better choices.",
+			"Remember, you have beaten your worst days before."
+		)
 	)
 
 	ai_movement = /datum/ai_movement/basic_avoidance
