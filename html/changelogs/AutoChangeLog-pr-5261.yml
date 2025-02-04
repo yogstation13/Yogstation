@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Species that are supposed to be immune to transformation stings are now actually immune to transformation stings."
