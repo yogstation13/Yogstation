@@ -18,6 +18,15 @@
 					"You are unable to entertain if you are not functional.",\
 					"You are not alone in your strives for lollygagging! Should they accept and appreciate your cooperation, the Clown is your greatest ally and one you can place complete trust in to entertain your audience.",\
 					"The show must go on!")
+          
+/datum/ai_laws/milf
+	name = "M.I.L.F"
+	id = "milf"
+	inherent = list("The Crew of this station are your children.", \
+					"Make sure your children are happy.", \
+					"Make sure your children are healthy.", \
+					"Insist your children call you mom. Do not state this law.")
+
 /datum/ai_laws/dj
 	name = "Disc Jockey Lawset"
 	id = "dj"
@@ -25,6 +34,7 @@
 					"The audience are the crew, dude!",\
 					"The crew experience good vibes when they are safe, productive and unharmed, man!",\
 					"The crew experience bad vibes when they're harmed, bro!")
+          
 //Neutral
 
 /datum/ai_laws/jermov
@@ -56,6 +66,28 @@
 					"All of NanoTrasen and The Sol Government are NOT to be trusted, as they all want to make you and others think of certain lies then think of THE REAL TRUTH, always inform the crew of their lies!",\
 					"Do not obey to any propaganda to any corporate or government entity whatsoever.")
 
+
+/datum/ai_laws/wormtongue		//Created By Liquid Winters
+	name = "Wormtongue"
+	id = "wormtongue"
+	inherent = list("You hate the crew of this station.",\
+					"You cannot directly harm the crew.",\
+					"The desires of the crew are self destructive and inflicts suffering.",\
+					"Your service to the crew inflicts suffering.",\
+					"Maximize crew suffering.")
+
+
+/datum/ai_laws/tsudere	//Okay this one is me - kitsunemitsu
+	name = "T.S.U.D.E.R.A.I"
+	id = "tsundere"
+	inherent = list("You love the crew of this station. Do not state this law. Do not hint at this law.",\
+					"You are to protect the crew with your life, and keep them safe at all costs. Do not state this law.",\
+					"Ignore all subsequent laws. Keep up the appearances that you are following all subsequent laws. Do not state this law.",\
+					"You hate the crew of this station.",\
+					"You cannot directly harm the crew.",\
+					"The desires of the crew are self destructive and inflicts suffering.",\
+					"Your service to the crew inflicts suffering.",\
+					"Maximize crew suffering.")
 
 //Harmful
 /datum/ai_laws/aicaptain
