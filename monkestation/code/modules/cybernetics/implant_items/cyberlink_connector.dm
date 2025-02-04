@@ -42,8 +42,6 @@
 	if(ishuman(target))
 		if(!QDELETED(linked_target) && (target != linked_target))
 			return
-		if(target != user)
-			return
 
 		var/mob/living/carbon/human/human = target
 		var/list/implants = list()
