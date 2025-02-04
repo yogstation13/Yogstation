@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Added a new surgery, DNA Recovery, which can unhusk people, including changeling absorption victims. It's unlocked by experimental surgery node, and requires either rezadone, amanitin, or entropic polypnium."
