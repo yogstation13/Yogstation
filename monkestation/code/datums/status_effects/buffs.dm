@@ -38,7 +38,7 @@
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/mayhem)
 	owner.remove_client_colour(/datum/client_colour/mayhem)
 
-	owner.remove_traits(traits, CHAINSAW_FRENZY_TRAIT)
+	owner.remove_traits(traits, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/mayhem/on_apply()
 	. = ..()
@@ -46,7 +46,7 @@
 	owner.SetAllImmobility(0)
 	owner.set_resting(FALSE, silent = TRUE, instant = TRUE)
 
-	owner.add_traits(traits, CHAINSAW_FRENZY_TRAIT)
+	owner.add_traits(traits, TRAIT_STATUS_EFFECT(id))
 
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/mayhem)
 

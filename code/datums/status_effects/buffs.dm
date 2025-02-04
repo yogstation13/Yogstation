@@ -125,7 +125,7 @@
 	icon_state = "blooddrunk"
 
 /datum/status_effect/blooddrunk/on_apply()
-	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, BLOODDRUNK_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_STATUS_EFFECT(id))
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology.brute_mod *= 0.1
@@ -147,7 +147,7 @@
 		human_owner.physiology.oxy_mod *= 10
 		human_owner.physiology.clone_mod *= 10
 		human_owner.physiology.stamina_mod *= 10
-	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, BLOODDRUNK_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_STATUS_EFFECT(id))
 	owner.remove_stun_absorption(id)
 
 //Used by changelings to rapidly heal
@@ -398,7 +398,7 @@
 
 	if(iscarbon(owner))
 		chainsaw = new(get_turf(owner))
-		ADD_TRAIT(chainsaw, TRAIT_NODROP, CHAINSAW_FRENZY_TRAIT)
+		ADD_TRAIT(chainsaw, TRAIT_NODROP, TRAIT_STATUS_EFFECT(id))
 		chainsaw.item_flags |= DROPDEL // monkestation addition
 		chainsaw.resistance_flags |= INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF // monkestation addition
 		owner.put_in_hands(chainsaw, forced = TRUE)
@@ -528,7 +528,7 @@
 	owner.AddElement(/datum/element/forced_gravity, 0)
 	owner.AddElement(/datum/element/simple_flying)
 	owner.add_stun_absorption(source = id, priority = 4)
-	add_traits(list(TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_FREE_HYPERSPACE_MOVEMENT), id)
+	add_traits(list(TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_FREE_HYPERSPACE_MOVEMENT), TRAIT_STATUS_EFFECT(id))
 	owner.playsound_local(get_turf(owner), 'sound/chemistry/ahaha.ogg', vol = 100, vary = TRUE, use_reverb = TRUE)
 	return TRUE
 
@@ -546,4 +546,4 @@
 	owner.RemoveElement(/datum/element/forced_gravity, 0)
 	owner.RemoveElement(/datum/element/simple_flying)
 	owner.remove_stun_absorption(id)
-	owner.remove_traits(list(TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_FREE_HYPERSPACE_MOVEMENT), id)
+	owner.remove_traits(list(TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_FREE_HYPERSPACE_MOVEMENT), TRAIT_STATUS_EFFECT(id))

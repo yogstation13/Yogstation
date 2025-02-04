@@ -145,7 +145,7 @@
 	l_hand = owner.get_held_items_for_side(LEFT_HANDS, FALSE)
 	r_hand.block_chance += 60
 	l_hand.block_chance += 60
-	ADD_TRAIT(owner, TRAIT_CANT_ATTACK, id)
+	ADD_TRAIT(owner, TRAIT_CANT_ATTACK, TRAIT_STATUS_EFFECT(id))
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/shield_blades)
 	owner.balloon_alert_to_viewers("starts blocking!")
 	r_hand.in_stance = TRUE
@@ -155,7 +155,7 @@
 	. = ..()
 	r_hand.block_chance = initial(r_hand.block_chance) //Resets block chance for right and left hand
 	l_hand.block_chance = initial(l_hand.block_chance)
-	REMOVE_TRAIT(owner, TRAIT_CANT_ATTACK, id)
+	REMOVE_TRAIT(owner, TRAIT_CANT_ATTACK, TRAIT_STATUS_EFFECT(id))
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/shield_blades)
 	owner.balloon_alert_to_viewers("stops blocking!")
 	//Reset for stances here

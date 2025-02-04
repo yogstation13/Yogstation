@@ -120,7 +120,6 @@
 #define MEGAFAUNA_TRAIT "megafauna"
 #define CLOWN_NUKE_TRAIT "clown-nuke"
 #define STICKY_MOUSTACHE_TRAIT "sticky-moustache"
-#define CHAINSAW_FRENZY_TRAIT "chainsaw-frenzy"
 #define CHRONO_GUN_TRAIT "chrono-gun"
 #define REVERSE_BEAR_TRAP_TRAIT "reverse-bear-trap"
 #define CURSED_MASK_TRAIT "cursed-mask"
@@ -197,16 +196,12 @@
 #define BERSERK_TRAIT "berserk_trait"
 /// Trait granted by [/obj/item/rod_of_asclepius]
 #define HIPPOCRATIC_OATH_TRAIT "hippocratic_oath"
-/// Trait granted by [/datum/status_effect/blooddrunk]
-#define BLOODDRUNK_TRAIT "blooddrunk"
 /// Trait granted by lipstick
 #define LIPSTICK_TRAIT "lipstick_trait"
 /// Self-explainatory.
 #define BEAUTY_ELEMENT_TRAIT "beauty_element"
 #define MOOD_DATUM_TRAIT "mood_datum"
 #define DRONE_SHY_TRAIT "drone_shy"
-/// Trait given by stabilized light pink extracts
-#define STABILIZED_LIGHT_PINK_EXTRACT_TRAIT "stabilized_light_pink"
 /// Trait given by adamantine extracts
 #define ADAMANTINE_EXTRACT_TRAIT "adamantine_extract"
 /// Given by the multiple_lives component to the previous body of the mob upon death.

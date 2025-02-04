@@ -60,10 +60,9 @@
 		human_target.health = new_max_health
 
 	on_made_callback?.Invoke(human_target)
-	ADD_TRAIT(human_target, TRAIT_FAKEDEATH, REF(src))
+	human_target.add_traits(list(TRAIT_FAKEDEATH, TRAIT_NO_SLAB_INVOKE), TRAIT_STATUS_EFFECT(id)) // monkestation edit: TRAIT_NO_SLAB_INVOKE
 	human_target.become_husk(MAGIC_TRAIT)
 	human_target.faction |= FACTION_HERETIC
-	ADD_TRAIT(human_target, TRAIT_NO_SLAB_INVOKE, REF(src)) //monkestation edit
 
 	if(human_target.mind)
 		var/datum/antagonist/heretic_monster/heretic_monster = human_target.mind.add_antag_datum(/datum/antagonist/heretic_monster)
@@ -89,11 +88,10 @@
 		human_target.setMaxHealth(initial(human_target.maxHealth))
 
 	on_lost_callback?.Invoke(human_target)
-	REMOVE_TRAIT(human_target, TRAIT_FAKEDEATH, REF(src))
+	human_target.remove_traits(list(TRAIT_FAKEDEATH, TRAIT_NO_SLAB_INVOKE), TRAIT_STATUS_EFFECT(id)) // monkestation edit: TRAIT_NO_SLAB_INVOKE
 	human_target.cure_husk(MAGIC_TRAIT)
 	human_target.faction -= FACTION_HERETIC
 	human_target.mind?.remove_antag_datum(/datum/antagonist/heretic_monster)
-	REMOVE_TRAIT(human_target, TRAIT_NO_SLAB_INVOKE, REF(src)) //monkestation edit
 
 	UnregisterSignal(human_target, COMSIG_LIVING_DEATH)
 	if(!QDELETED(src))

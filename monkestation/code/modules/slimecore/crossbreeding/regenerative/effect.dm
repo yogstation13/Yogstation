@@ -31,11 +31,11 @@
 	SEND_SIGNAL(owner, COMSIG_SLIME_REGEN_CALC, &multiplier)
 	if(multiplier < 1)
 		to_chat(owner, span_warning("The previous regenerative goo hasn't fully evaporated yet, weakening the new regenerative effect!"))
-	owner.add_traits(islist(extra_traits) ? (given_traits + extra_traits) : given_traits, id)
+	owner.add_traits(islist(extra_traits) ? (given_traits + extra_traits) : given_traits, TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
 /datum/status_effect/regenerative_extract/on_remove()
-	owner.remove_traits(islist(extra_traits) ? (given_traits + extra_traits) : given_traits, id)
+	owner.remove_traits(islist(extra_traits) ? (given_traits + extra_traits) : given_traits, TRAIT_STATUS_EFFECT(id))
 	owner.apply_status_effect(/datum/status_effect/slime_regen_cooldown, diminishing_multiplier, diminish_time)
 	owner.cause_pain(BODY_ZONE_CHEST, pain_amount, BRUTE)
 

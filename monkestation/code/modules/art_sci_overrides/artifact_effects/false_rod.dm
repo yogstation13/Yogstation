@@ -36,7 +36,7 @@
 
 /datum/artifact_effect/false_rod/proc/post_pickup(mob/living/user)
 	to_chat(user,span_danger("[our_artifact.holder] forcefully melds with you, and a healing aura surrounds you!"))
-	ADD_TRAIT(our_artifact.holder,TRAIT_NODROP,CURSED_ITEM_TRAIT(our_artifact.holder.type))
+	ADD_TRAIT(our_artifact.holder, TRAIT_NODROP, CURSED_ITEM_TRAIT(our_artifact.holder.type))
 	user.apply_status_effect(/datum/status_effect/forced_oath)
 	our_victim = user
 	return
@@ -71,14 +71,17 @@
 	var/datum/atom_hud/med_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	med_hud.show_to(owner)
 	return TRUE
+
 /datum/status_effect/forced_oath/on_remove()
 	QDEL_NULL(our_aura)
 	var/datum/atom_hud/med_hud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	med_hud.hide_from(owner)
+
 /datum/status_effect/forced_oath/get_examine_text()
 	return span_notice("[owner.p_they(TRUE)] seem[owner.p_s()] to have an aura of healing around [owner.p_them()].")
+
 /datum/status_effect/forced_oath/tick()
-	if(owner.stat ==DEAD)
+	if(owner.stat == DEAD)
 		return
 	else
 		if(iscarbon(owner))

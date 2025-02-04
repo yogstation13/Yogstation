@@ -70,7 +70,7 @@
 	SEND_SIGNAL(bloodsuckerdatum, BLOODSUCKER_ENTERS_FRENZY)
 
 	// Give the other Frenzy effects
-	owner.add_traits(frenzy_traits, FRENZY_TRAIT)
+	owner.add_traits(frenzy_traits, TRAIT_STATUS_EFFECT(id))
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/bloodsucker_frenzy)
 	bloodsuckerdatum.frenzygrab.teach(user, TRUE)
 	owner.add_client_colour(/datum/client_colour/cursed_heart_blood)
@@ -82,7 +82,7 @@
 	if(bloodsuckerdatum?.frenzied)
 		var/mob/living/carbon/human/user = owner
 		owner.balloon_alert(owner, "you come back to your senses.")
-		owner.remove_traits(frenzy_traits, FRENZY_TRAIT)
+		owner.remove_traits(frenzy_traits, TRAIT_STATUS_EFFECT(id))
 		owner.remove_movespeed_modifier(/datum/movespeed_modifier/bloodsucker_frenzy)
 		bloodsuckerdatum.frenzygrab.remove(user)
 		owner.remove_client_colour(/datum/client_colour/cursed_heart_blood)

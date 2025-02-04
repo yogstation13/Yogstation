@@ -35,12 +35,12 @@
 	alert_type =/atom/movable/screen/alert/status_effect/duskndawn
 
 /datum/status_effect/duskndawn/on_apply()
-	ADD_TRAIT(owner, TRAIT_XRAY_VISION, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(owner, TRAIT_XRAY_VISION, TRAIT_STATUS_EFFECT(id))
 	owner.update_sight()
 	return TRUE
 
 /datum/status_effect/duskndawn/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_XRAY_VISION, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_XRAY_VISION, TRAIT_STATUS_EFFECT(id))
 	owner.update_sight()
 
 // WOUNDED SOLDIER
@@ -53,11 +53,11 @@
 	alert_type = /atom/movable/screen/alert/status_effect/marshal
 
 /datum/status_effect/marshal/on_apply()
-	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_STATUS_EFFECT(id))
 	return TRUE
 
 /datum/status_effect/marshal/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/marshal/tick()
 	if(!iscarbon(owner))
@@ -181,7 +181,7 @@
 	if(HAS_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED))
 		return
 
-	ADD_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED, type)
+	ADD_TRAIT(source, TRAIT_BEING_BLADE_SHIELDED, TRAIT_STATUS_EFFECT(id))
 
 	var/obj/effect/floating_blade/to_remove = blades[1]
 
@@ -194,7 +194,7 @@
 
 	qdel(to_remove)
 
-	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_BEING_BLADE_SHIELDED, type), 1)
+	addtimer(TRAIT_CALLBACK_REMOVE(source, TRAIT_BEING_BLADE_SHIELDED, TRAIT_STATUS_EFFECT(id)), 1)
 
 	return SHIELD_BLOCK
 

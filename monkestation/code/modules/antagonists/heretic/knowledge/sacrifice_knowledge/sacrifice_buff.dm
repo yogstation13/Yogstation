@@ -1,6 +1,6 @@
 /datum/status_effect/unholy_determination/on_apply()
 	. = ..()
-	owner.add_traits(list(TRAIT_SLEEPIMMUNE, TRAIT_FEARLESS, TRAIT_STABLEHEART, TRAIT_STABLELIVER, TRAIT_ANTICONVULSANT, TRAIT_TUMOR_SUPPRESSED), type)
+	owner.add_traits(list(TRAIT_SLEEPIMMUNE, TRAIT_FEARLESS, TRAIT_STABLEHEART, TRAIT_STABLELIVER, TRAIT_ANTICONVULSANT, TRAIT_TUMOR_SUPPRESSED), TRAIT_STATUS_EFFECT(id))
 	owner.stamina.revitalize(forced = TRUE)
 	owner.SetSleeping(0)
 	owner.SetUnconscious(0)
@@ -9,4 +9,4 @@
 
 /datum/status_effect/unholy_determination/on_remove()
 	. = ..()
-	REMOVE_TRAITS_IN(owner, type)
+	owner.remove_traits(list(TRAIT_SLEEPIMMUNE, TRAIT_FEARLESS, TRAIT_STABLEHEART, TRAIT_STABLELIVER, TRAIT_ANTICONVULSANT, TRAIT_TUMOR_SUPPRESSED), TRAIT_STATUS_EFFECT(id))

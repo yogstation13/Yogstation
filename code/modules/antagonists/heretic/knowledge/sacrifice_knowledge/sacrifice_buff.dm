@@ -19,12 +19,12 @@
 	return ..()
 
 /datum/status_effect/unholy_determination/on_apply()
-	owner.add_traits(list(TRAIT_COAGULATING, TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT), type)
+	owner.add_traits(list(TRAIT_COAGULATING, TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT), TRAIT_STATUS_EFFECT(id))
 	owner.add_homeostasis_level(id, owner.standard_body_temperature, 10 KELVIN)
 	return TRUE
 
 /datum/status_effect/unholy_determination/on_remove()
-	owner.remove_traits(list(TRAIT_COAGULATING, TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT), type)
+	owner.remove_traits(list(TRAIT_COAGULATING, TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT), TRAIT_STATUS_EFFECT(id))
 	owner.remove_homeostasis_level(id)
 
 /datum/status_effect/unholy_determination/tick()

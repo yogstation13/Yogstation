@@ -1,5 +1,3 @@
-#define WONDERLAND_TRAIT "wonderland"
-
 /obj/item/clothing/mask/cursed_rabbit
 	name = "Damned Rabbit Mask"
 	desc = "Slip into the wonderland."
@@ -40,17 +38,17 @@
 	user.remove_status_effect(/datum/status_effect/bnuuy_mask)
 	UnregisterSignal(user, list(COMSIG_ENTER_AREA, COMSIG_EXIT_AREA))
 	user.lose_area_sensitivity(type)
-	REMOVE_TRAIT(src, TRAIT_NODROP, WONDERLAND_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, REF(src))
 
 /obj/item/clothing/mask/cursed_rabbit/proc/on_enter_area(mob/living/user, area/new_area)
 	SIGNAL_HANDLER
 	if(istype(new_area, /area/ruin/space/has_grav/wonderland))
-		ADD_TRAIT(src, TRAIT_NODROP, WONDERLAND_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, REF(src))
 
 /obj/item/clothing/mask/cursed_rabbit/proc/on_exit_area(mob/living/user, area/old_area)
 	SIGNAL_HANDLER
 	if(istype(old_area, /area/ruin/space/has_grav/wonderland))
-		REMOVE_TRAIT(src, TRAIT_NODROP, WONDERLAND_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NODROP, REF(src))
 
 /datum/status_effect/bnuuy_mask
 	id = "bnuuy_mask"
@@ -70,5 +68,3 @@
 
 /datum/status_effect/bnuuy_mask/get_examine_text()
 	return span_warning("[owner.p_they(TRUE)] seem[owner.p_s()] out-of-place, as if [owner.p_they()] were partially detached from reality.")
-
-#undef WONDERLAND_TRAIT
