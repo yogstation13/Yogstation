@@ -18,6 +18,12 @@
 	var/stored_dir = NORTH
 	///the interaction range defaults to ontop of itself
 	var/range = FALSE
+	/// Typecache of items forbidden from being held and used by the component.
+	var/static/list/item_blacklist = typecacheof(list(
+		/obj/item/stack/spacecash,
+		/obj/item/stack/monkecoin,
+		/obj/item/holochip,
+	))
 
 /obj/item/mcobject/interactor/Initialize(mapload)
 	. = ..()
@@ -166,6 +172,9 @@
 		else
 			held_item.forceMove(drop_location())
 		held_item = null
+	if(is_type_in_typecache(weapon, item_blacklist))
+		say("[weapon] is incompatible with the interaction component!")
+		return
 	held_item = weapon
 	dummy_human.put_in_l_hand(weapon)
 	update_appearance()
