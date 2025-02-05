@@ -1,4 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - bugfix: "Fixes a money dupe by blacklisting spacecash and monkecoin from interaction components."

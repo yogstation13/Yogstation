@@ -1,6 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "(IndieanaJones) Blob Zombies now render their blob heads correctly again."
-  - bugfix: "(Rhials) The tide of post-round blob zombies when a blob wins will no longer break the speakers in your headset."
-  - bugfix: "(SmArtKar) Blob victory no longer spams spore zombie notifications to ghosts."

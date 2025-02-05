@@ -96,3 +96,18 @@
   - admin: Replaced player panel and player options panel with a tgui version. Includes
       a verb in the Admin Game category, and an option on right clicking a mob.
   - admin: Rebound F6 to the new TGUI player panel.
+2025-02-05:
+  Absolucy:
+  - bugfix: (IndieanaJones) Blob Zombies now render their blob heads correctly again.
+  - bugfix: (Rhials) The tide of post-round blob zombies when a blob wins will no
+      longer break the speakers in your headset.
+  - bugfix: (SmArtKar) Blob victory no longer spams spore zombie notifications to
+      ghosts.
+  - qol: Unremovable or hidden organs/limbs will no longer be bioscrambled, and are
+      also no longer eligible bioscrambler results.
+  Absolucy, Ghommie, SmArtKar:
+  - admin: godmode is now a datum trait instead of a bitflag. This means the process
+      for toggling it is a little different now.
+  Veth-s:
+  - bugfix: Fixes a money dupe by blacklisting spacecash and monkecoin from interaction
+      components.
