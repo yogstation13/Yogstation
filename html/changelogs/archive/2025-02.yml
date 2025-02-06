@@ -111,3 +111,7 @@
   Veth-s:
   - bugfix: Fixes a money dupe by blacklisting spacecash and monkecoin from interaction
       components.
+2025-02-06:
+  MichiRecRoom:
+  - bugfix: IceBox had a vent and scrubber not connected, within the security post
+      at the Departures Lobby. That's fixed now.

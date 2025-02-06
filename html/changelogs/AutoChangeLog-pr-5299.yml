@@ -1,4 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - bugfix: "IceBox had a vent and scrubber not connected, within the security post at the Departures Lobby. That's fixed now."
