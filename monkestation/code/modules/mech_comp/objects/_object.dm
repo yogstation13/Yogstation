@@ -15,14 +15,31 @@
 	configs = list()
 	inputs = list()
 	update_icon_state()
+	register_context()
 
-	MC_ADD_CONFIG(MC_CFG_UNLINK_ALL, unlink_all)
-	MC_ADD_CONFIG(MC_CFG_UNLINK, unlink)
 	MC_ADD_CONFIG(MC_CFG_LINK, add_linker)
+	MC_ADD_CONFIG(MC_CFG_UNLINK, unlink)
+	MC_ADD_CONFIG(MC_CFG_UNLINK_ALL, unlink_all)
 
 /obj/item/mcobject/Destroy(force)
 	QDEL_NULL(interface)
 	return ..()
+
+/obj/item/mcobject/examine(mob/user)
+	. = ..()
+	. += span_notice("You can left-click with a multitool to put up a list of options available for linking.")
+	. += span_notice("You can right-click with a multitool to quickly start linking the device as an output.")
+
+/obj/item/mcobject/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = ..()
+	if(isnull(held_item) || held_item.tool_behaviour != TOOL_MULTITOOL)
+		return NONE
+
+	context[SCREENTIP_CONTEXT_LMB] = "View available operations"
+	if(anchored)
+		context[SCREENTIP_CONTEXT_RMB] = "Start linking"
+
+	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/item/mcobject/update_icon_state()
 	. = ..()
@@ -63,6 +80,14 @@
 		return
 
 	call(src, configs[action])(user, tool)
+
+/obj/item/mcobject/multitool_act_secondary(mob/living/user, obj/item/tool)
+	var/datum/component/mclinker/link = tool.GetComponent(/datum/component/mclinker)
+	if(link)
+		to_chat(user, span_warning("Previous link deleted."))
+		qdel(link)
+
+	add_linker(user, tool)
 
 /obj/item/mcobject/proc/unlink(mob/user, obj/item/tool)
 	var/list/options = list()

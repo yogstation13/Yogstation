@@ -12,6 +12,8 @@
 	var/mob/living/carbon/human/dummy/dummy_human
 	///image of the held item displayed over the component to see whats going on
 	var/obj/item/held_item
+	///The object we specifically look for when clicking
+	var/atom/desired_path = null
 	///the connected storage component to act as an inventory to grab from
 	var/obj/item/mcobject/messaging/storage/connected_storage
 	///the current stored direction used for interaction
@@ -30,6 +32,7 @@
 	MC_ADD_CONFIG("Swap Click", swap_click)
 	MC_ADD_CONFIG("Swap Range", set_range)
 	MC_ADD_CONFIG("Change Direction", change_dir)
+	MC_ADD_CONFIG("Reset Desired Object", reset_desired_path)
 	MC_ADD_INPUT("swap click", swap_click_input)
 	MC_ADD_INPUT("replace", replace_from_storage)
 	MC_ADD_INPUT("drop", drop)
@@ -49,14 +52,32 @@
 	QDEL_NULL(dummy_human)
 	return ..()
 
+/obj/item/mcobject/examine(mob/user)
+	. = ..()
+	. += span_notice("You can right-click with a multitool whilst having a storage component in your buffer to link it.")
+	. += span_notice("You can drag [src] over an object whilst you're adjacent to both [src] and the object to make it only click objects of the same type as it.")
+
 /obj/item/mcobject/interactor/multitool_act_secondary(mob/living/user, obj/item/tool)
 	var/obj/item/multitool/multitool = tool
 	if(!multitool.component_buffer)
-		return
+		return ..()
 	if(!istype(multitool.component_buffer, /obj/item/mcobject/messaging/storage))
-		return
+		return ..()
 	connected_storage = multitool.component_buffer
 	say("Successfully linked to storage component")
+
+/obj/item/mcobject/interactor/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	. = ..()
+	if(!over || !istype(over) || over == src)
+		return
+
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user))
+		return
+
+	if(Adjacent(user, src) && Adjacent(over, user))
+		say("Desired object set to [over]")
+		desired_path = over.type
 
 /obj/item/mcobject/interactor/proc/drop(datum/mcmessage/input)
 	if(!input)
@@ -116,6 +137,11 @@
 	stored_dir = directions_listed[direction_choice]
 	return TRUE
 
+/obj/item/mcobject/interactor/proc/reset_desired_path(mob/user, obj/item/tool)
+	say("Desired object [desired_path ? "reset" : "not set"]!")
+	desired_path = null
+	return TRUE
+
 /obj/item/mcobject/interactor/proc/swap_click_input(datum/mcmessage/input)
 	if(!input)
 		return
@@ -133,6 +159,9 @@
 		selected_turf = get_step(src, stored_dir)
 
 	for(var/atom/movable/listed_atom in selected_turf)
+		if(desired_path && (desired_path != listed_atom.type))
+			continue
+
 		if(dummy_human == listed_atom || src == listed_atom)
 			continue
 

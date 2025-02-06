@@ -112,12 +112,3 @@
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
 	always_available = FALSE
-
-/datum/crafting_recipe/coffin
-	name = "Coffin"
-	result = /obj/structure/closet/crate/coffin
-	reqs = list(
-		/obj/item/stack/sheet/mineral/wood = 5,
-	)
-	time = 15 SECONDS
-	category = CAT_STRUCTURE

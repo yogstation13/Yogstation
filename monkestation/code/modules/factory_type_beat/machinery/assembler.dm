@@ -7,12 +7,11 @@
 	var/datum/crafting_recipe/chosen_recipe
 	var/crafting = FALSE
 
-	var/static/list/crafting_recipes = list()
+	var/static/list/legal_crafting_recipes = list()
 	var/list/crafting_inventory = list()
 
 	icon = 'monkestation/code/modules/factory_type_beat/icons/mining_machines.dmi'
 	icon_state = "assembler"
-
 
 /obj/machinery/assembler/Initialize(mapload)
 	. = ..()
@@ -24,7 +23,7 @@
 	AddComponent(/datum/component/hovering_information, /datum/hover_data/assembler)
 	register_context()
 
-	if(!length(crafting_recipes))
+	if(!length(legal_crafting_recipes))
 		create_recipes()
 
 /obj/machinery/assembler/RefreshParts()
@@ -61,14 +60,14 @@
 			. += span_notice("[initial(atom.name)]: [chosen_recipe.reqs[atom]]")
 
 /obj/machinery/assembler/proc/create_recipes()
-	for(var/datum/crafting_recipe/recipe as anything in subtypesof(/datum/crafting_recipe) - /datum/crafting_recipe/stack)
+	for(var/datum/crafting_recipe/recipe as anything in GLOB.crafting_recipes)
 		if(initial(recipe.non_craftable) || !initial(recipe.always_available))
 			continue
-		crafting_recipes += new recipe
+		legal_crafting_recipes += recipe
 
 /obj/machinery/assembler/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	var/datum/crafting_recipe/choice = tgui_input_list(user, "Choose a recipe", name, crafting_recipes)
+	var/datum/crafting_recipe/choice = tgui_input_list(user, "Choose a recipe", name, legal_crafting_recipes)
 	if(!choice)
 		return
 	chosen_recipe = choice
@@ -77,10 +76,9 @@
 		crafting_inventory -= listed
 
 /obj/machinery/assembler/CanAllowThrough(atom/movable/mover, border_dir)
-	if(!anchored)
+	if(!anchored || !chosen_recipe)
 		return FALSE
-	if(!chosen_recipe)
-		return FALSE
+
 	var/failed = TRUE
 	for(var/atom/movable/movable as anything in chosen_recipe.reqs)
 		if(istype(mover, movable))
@@ -88,8 +86,10 @@
 			break
 	if(failed)
 		return FALSE
+
 	if(!check_item(mover))
 		return FALSE
+
 	return ..()
 
 /obj/machinery/assembler/proc/on_entered(datum/source, atom/movable/atom_movable)
