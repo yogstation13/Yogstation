@@ -7091,6 +7091,7 @@
 #include "monkestation\code\modules\can_spessmen_feel_pain\pain\status_effects\pain_limp.dm"
 #include "monkestation\code\modules\can_spessmen_feel_pain\pain\status_effects\sharp_pain.dm"
 #include "monkestation\code\modules\can_spessmen_feel_pain\pain\status_effects\temp_pack.dm"
+#include "monkestation\code\modules\cargo\supplypod.dm"
 #include "monkestation\code\modules\cargo\bounties\bot.dm"
 #include "monkestation\code\modules\cargo\bounties\pathology.dm"
 #include "monkestation\code\modules\cargo\crates\costumes_toys.dm"
