@@ -1,0 +1,4 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - rscadd: "There's a BCI manipulator in Void Raptor's circuit lab now."
