@@ -46280,6 +46280,7 @@
 	name = "science camera";
 	network = list("ss13","rd")
 	},
+/obj/machinery/bci_implanter,
 /turf/open/floor/iron/white/textured_edge{
 	dir = 8
 	},
