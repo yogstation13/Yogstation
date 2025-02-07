@@ -484,10 +484,10 @@ monkestation end */
 	incompatible_modules = list(/obj/item/mod/module/infiltrator, /obj/item/mod/module/armor_booster, /obj/item/mod/module/welding)
 
 /obj/item/mod/module/infiltrator/on_install()
-	mod.item_flags |= EXAMINE_SKIP
+	ADD_TRAIT(mod, TRAIT_EXAMINE_SKIP, REF(src))
 
 /obj/item/mod/module/infiltrator/on_uninstall(deleting = FALSE)
-	mod.item_flags &= ~EXAMINE_SKIP
+	REMOVE_TRAIT(mod, TRAIT_EXAMINE_SKIP, REF(src))
 
 /obj/item/mod/module/infiltrator/on_suit_activation()
 	mod.wearer.add_traits(list(TRAIT_SILENT_FOOTSTEPS, TRAIT_UNKNOWN), MOD_TRAIT)

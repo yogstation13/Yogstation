@@ -86,8 +86,7 @@
 		return FALSE
 	if (!isitem(checked))
 		return TRUE
-	var/obj/item/checked_item = checked
-	return !(checked_item.item_flags & EXAMINE_SKIP)
+	return !HAS_TRAIT(checked, TRAIT_EXAMINE_SKIP)
 
 /datum/brain_trauma/mild/phobia/handle_hearing(datum/source, list/hearing_args)
 	if(!owner.can_hear() || owner == hearing_args[HEARING_SPEAKER] || !owner.has_language(hearing_args[HEARING_LANGUAGE])) 	//words can't trigger you if you can't hear them *taps head*

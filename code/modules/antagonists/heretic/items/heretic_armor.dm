@@ -56,7 +56,6 @@
 	icon_state = "void_cloak"
 	flags_inv = NONE
 	flags_cover = NONE
-	item_flags = EXAMINE_SKIP
 	clothing_flags = STOPSPRESSUREDAMAGE
 	armor_type = /datum/armor/cult_hoodie_void
 
@@ -70,7 +69,7 @@
 
 /obj/item/clothing/head/hooded/cult_hoodie/void/Initialize(mapload)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
+	add_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), INNATE_TRAIT)
 
 /obj/item/clothing/suit/hooded/cultrobes/void
 	name = "void cloak"
@@ -113,17 +112,15 @@
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/hide_item(datum/source, obj/item/item, slot)
 	SIGNAL_HANDLER
 	if(slot & ITEM_SLOT_SUITSTORE)
-		ADD_TRAIT(item, TRAIT_NO_STRIP, REF(src)) // i'd use examine hide but its a flag and yeah
+		item.add_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP, TRAIT_NO_WORN_ICON), REF(src))
 
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/show_item(datum/source, obj/item/item, slot)
 	SIGNAL_HANDLER
-	REMOVE_TRAIT(item, TRAIT_NO_STRIP, REF(src))
+	item.remove_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP, TRAIT_NO_WORN_ICON), REF(src))
 
 /obj/item/clothing/suit/hooded/cultrobes/void/examine(mob/user)
 	. = ..()
-	if(!IS_HERETIC(user))
-		return
-	if(!hood_up)
+	if(!IS_HERETIC(user) || !hood_up)
 		return
 
 	// Let examiners know this works as a focus only if the hood is down
@@ -149,8 +146,7 @@
 
 /// Makes our cloak "invisible". Not the wearer, the cloak itself.
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_invisible()
-	item_flags |= EXAMINE_SKIP
-	ADD_TRAIT(src, TRAIT_NO_STRIP, REF(src))
+	add_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), REF(src))
 	RemoveElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))
@@ -159,8 +155,7 @@
 
 /// Makes our cloak "visible" again.
 /obj/item/clothing/suit/hooded/cultrobes/void/proc/make_visible()
-	item_flags &= ~EXAMINE_SKIP
-	REMOVE_TRAIT(src, TRAIT_NO_STRIP, REF(src))
+	remove_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), REF(src))
 	AddElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))

@@ -253,7 +253,6 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 /obj/item/traitor_bug
 	name = "suspicious device"
 	desc = "It looks dangerous."
-	item_flags = EXAMINE_SKIP
 
 	icon = 'icons/obj/device_syndie.dmi'
 	icon_state = "bug"
@@ -264,6 +263,10 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	var/obj/planted_on
 	/// The time it takes to place this bug.
 	var/deploy_time = 10 SECONDS
+
+/obj/item/traitor_bug/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_EXAMINE_SKIP, INNATE_TRAIT)
 
 /obj/item/traitor_bug/examine(mob/user)
 	. = ..()

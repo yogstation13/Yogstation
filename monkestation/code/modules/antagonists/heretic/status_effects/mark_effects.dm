@@ -22,7 +22,7 @@
 			if(QDELETED(thing) || prob(50))
 				continue
 			// ignore abstract items and such
-			if((thing.item_flags & (ABSTRACT | EXAMINE_SKIP | HAND_ITEM)) || (thing.resistance_flags & INDESTRUCTIBLE))
+			if((thing.item_flags & (ABSTRACT | HAND_ITEM)) || (thing.resistance_flags & INDESTRUCTIBLE) || HAS_TRAIT(thing, TRAIT_EXAMINE_SKIP))
 				continue
 			// don't delete people's ID cards
 			if(istype(thing, /obj/item/card/id))
