@@ -10,21 +10,30 @@
 	var/biomatter = 0
 	/// The amount of biomatter needed to make 1 biocube.
 	var/biocube_cost = 40
+	/// Multiplier for how much biomass is created from input.
+	var/input_multiplier = 1
 
 /obj/machinery/composters/Initialize(mapload)
 	. = ..()
 	if(mapload)
-		biomatter = 80
+		biomatter = biocube_cost * 2
+
+/obj/machinery/composters/RefreshParts()
+	. = ..()
+	input_multiplier = src::input_multiplier
+	for(var/datum/stock_part/matter_bin/bin in component_parts)
+		input_multiplier += max((bin.tier - 1) / 10, 0)
+
+	biocube_cost = src::biocube_cost
+	for(var/datum/stock_part/manipulator/manipulator in component_parts)
+		biocube_cost /= 1 + ((manipulator.tier - 1) / 8)
+	biocube_cost = FLOOR(biocube_cost, 5)
 
 /obj/machinery/composters/attacked_by(obj/item/attacking_item, mob/living/user)
 	. = ..()
-	if(istype(attacking_item, /obj/item/seeds))
+	if(istype(attacking_item, /obj/item/seeds) || istype(attacking_item, /obj/item/food))
 		compost(attacking_item)
-
-	if(istype(attacking_item, /obj/item/food))
-		compost(attacking_item)
-
-	if(istype(attacking_item, /obj/item/storage/bag)) // covers any kind of bag that has a compostible item
+	else if(istype(attacking_item, /obj/item/storage/bag)) // covers any kind of bag that has a compostible item
 		var/obj/item/storage/bag/bag = attacking_item
 		var/list/to_compost
 		for(var/item in bag.contents)
@@ -37,7 +46,7 @@
 			compost(to_compost)
 		to_chat(user, span_info("You empty \the [bag] into \the [src]."))
 
-/obj/machinery/gibber/attack_paw(mob/user, list/modifiers)
+/obj/machinery/composters/attack_paw(mob/user, list/modifiers)
 	return attack_hand(user, modifiers)
 
 /obj/machinery/composters/attack_hand(mob/living/user, list/modifiers)
@@ -68,23 +77,39 @@
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
 				user.visible_message(span_danger("[user] stuffs [C] into [src]!"))
 				compost(C, allow_carbons = TRUE)
+		return
 
 	if(biomatter < biocube_cost)
-		to_chat(user, span_notice("Not enough biomatter to produce Bio-Cube"))
+		to_chat(user, span_warning("You need at least [biocube_cost] units of biomatter to produce a biocube."))
 		return
-	new /obj/item/stack/biocube(drop_location(), 1)
-	biomatter -= biocube_cost
-	update_desc()
+
+	var/biocubes_to_produce = tgui_input_number(
+		user,
+		message = "How many biocubes to produce?",
+		title = name,
+		default = 1,
+		max_value = min(floor(biomatter / biocube_cost), /obj/item/stack/biocube::max_amount),
+		min_value = 1,
+	)
+	if(!biocubes_to_produce || QDELETED(user) || QDELETED(src) || !user.can_perform_action(src, FORBID_TELEKINESIS_REACH | ALLOW_RESTING))
+		return
+	var/biomatter_needed = biocubes_to_produce * biocube_cost
+	if(biomatter < biomatter_needed)
+		to_chat(user, span_warning("You need at least [biomatter_needed] units of biomatter to produce [biocubes_to_produce] biocube\s."))
+		return
+	new /obj/item/stack/biocube(drop_location(), biocubes_to_produce)
+	biomatter -= biomatter_needed
 	update_appearance()
 
-/obj/machinery/composters/update_desc()
+/obj/machinery/composters/examine(mob/user)
 	. = ..()
-	desc = "Just insert your bio degradable materials and it will produce compost."
-	desc += "\nBiomatter: [biomatter]"
+	. += "It currently has <b>[biomatter]</b> units of biomatter."
+	. += "It costs <b>[biocube_cost]</b> units of biomatter to produce a biocube."
+	. += "It composts input into biomatter with <b>[input_multiplier]x</b> efficiency."
 
 /obj/machinery/composters/update_overlays()
 	. = ..()
-	if(biomatter < 40)
+	if(biomatter < biocube_cost)
 		. += mutable_appearance('monkestation/icons/obj/machines/composter.dmi', "light_off", layer = OBJ_LAYER + 0.01)
 	else
 		. += mutable_appearance('monkestation/icons/obj/machines/composter.dmi', "light_on", layer = OBJ_LAYER + 0.01)
@@ -120,11 +145,10 @@
 		CHECK_TICK
 	if(!biomatter_added)
 		return
-	biomatter += biomatter_added
+	biomatter += round(biomatter_added * input_multiplier)
 	if(yucky)
 		playsound(loc, 'sound/machines/juicer.ogg', vol = 50, vary = TRUE)
 		audible_message(span_hear("You hear a loud squelchy grinding sound."))
-	update_desc()
 	update_appearance()
 	flick("composter_animate", src)
 
