@@ -123,6 +123,10 @@
   - qol: The composter now actually benefits somewhat from upgraded parts.
   - qol: The composter now prompts you for how many biocubes you want to generate,
       rather than requiring spam-clicking to make multiple.
+  - bugfix: Void Cloaks now properly hide blades and such in the suit storage from
+      the wearer's sprite.
+  - bugfix: The "Delightful Effect" symptom no longer causes brain damage, and should
+      also no longer potentially spam chat.
   Gboster-0:
   - rscadd: Interaction components can now have a filter that only interacts with
       specific items.
