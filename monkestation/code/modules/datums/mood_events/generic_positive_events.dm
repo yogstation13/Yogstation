@@ -18,3 +18,7 @@
 	description = "Oooh, jazzy!"
 	mood_change = 2
 	timeout = 1 MINUTE
+
+/datum/mood_event/delightful_symptom
+	description = "Everything feels so nice and wonderful!"
+	mood_change = 50

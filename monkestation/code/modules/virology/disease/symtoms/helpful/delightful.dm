@@ -6,6 +6,9 @@
 	severity = 0
 
 /datum/symptom/delightful/activate(mob/living/carbon/mob)
-	to_chat(mob, "<span class = 'notice'>You feel delightful!</span>")
-	if (mob.reagents?.get_reagent_amount(/datum/reagent/drug/happiness) < 5)
-		mob.reagents.add_reagent(/datum/reagent/drug/happiness, 10)
+	if(!mob.mob_mood?.has_mood_of_category(REF(src)))
+		to_chat(mob, span_hypnophrase("You feel delightful!"))
+	mob.add_mood_event(REF(src), /datum/mood_event/delightful_symptom)
+
+/datum/symptom/delightful/deactivate(mob/living/carbon/mob, datum/disease/acute/disease)
+	mob?.clear_mood_event(REF(src))
