@@ -115,3 +115,13 @@
   MichiRecRoom:
   - bugfix: IceBox had a vent and scrubber not connected, within the security post
       at the Departures Lobby. That's fixed now.
+2025-02-07:
+  Gboster-0:
+  - rscadd: Interaction components can now have a filter that only interacts with
+      specific items.
+  - qol: Mech components can now have themselfes quickly put into the multitool buffer
+      as a device to link if you right-click them.
+  - balance: automatic assemblers can now make any* crafting recipe thats made using
+      sheets in your hand
+  - bugfix: There is no longer a coffin recipe that takes 10 times as long to craft
+      in the crafting menu.
