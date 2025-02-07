@@ -334,11 +334,13 @@
 	if(smoothing_flags & SMOOTH_QUEUED)
 		SSicon_smooth.remove_from_queues(src)
 
+#ifndef DISABLE_DREAMLUAU
 	// These lists cease existing when src does, so we need to clear any lua refs to them that exist.
 	DREAMLUAU_CLEAR_REF_USERDATA(contents)
 	DREAMLUAU_CLEAR_REF_USERDATA(filters)
 	DREAMLUAU_CLEAR_REF_USERDATA(overlays)
 	DREAMLUAU_CLEAR_REF_USERDATA(underlays)
+#endif
 
 	if(material_stats)
 		QDEL_NULL(material_stats)

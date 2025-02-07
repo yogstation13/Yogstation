@@ -9,9 +9,11 @@
 	category = LOG_CATEGORY_DEBUG_SQL
 	master_category = /datum/log_category/debug
 
+#ifndef DISABLE_DREAMLUAU
 /datum/log_category/debug_lua
 	category = LOG_CATEGORY_DEBUG_LUA
 	master_category = /datum/log_category/debug
+#endif
 
 /datum/log_category/debug_href
 	category = LOG_CATEGORY_DEBUG_HREF

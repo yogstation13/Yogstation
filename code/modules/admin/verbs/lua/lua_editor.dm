@@ -1,3 +1,4 @@
+#ifndef DISABLE_DREAMLUAU
 /datum/lua_editor
 	var/datum/lua_state/current_state
 
@@ -279,12 +280,17 @@
 /datum/lua_editor/ui_close(mob/user)
 	. = ..()
 	qdel(src)
+#endif
 
 /client/proc/open_lua_editor()
 	set name = "Open Lua Editor"
 	set desc = "Its codin' time."
 	set category = "Debug"
-	if(!check_rights_for(src, R_DEBUG))
+	if(!check_rights(src, R_DEBUG))
 		return
+#ifndef DISABLE_DREAMLUAU
 	var/datum/lua_editor/editor = new
 	editor.ui_interact(mob)
+#else
+	to_chat(src, span_warning("Lua support has been disabled at compile-time."), type = MESSAGE_TYPE_ADMINLOG, confidential = TRUE) // doing this instead of just disabling the verb entirely so it's clear WHY it doesn't work.
+#endif
