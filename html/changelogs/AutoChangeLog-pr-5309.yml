@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "The \"Delightful Effect\" symptom no longer causes brain damage, and should also no longer potentially spam chat."
