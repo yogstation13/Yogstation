@@ -20,6 +20,11 @@
 		// WHYYYYYY
 		if(QDELETED(client))
 			return
+		if(client?.is_mentor())
+			client?.prefs?.adjust_metacoins(client?.ckey, 500, "Mentor Bonus")
+		// WHYYYYYYYYYYYYYYYY
+		if(QDELETED(client))
+			return
 		if(client?.mob?.mind?.assigned_role)
 			add_jobxp(client, added_xp, client?.mob?.mind?.assigned_role?.title)
 	if(QDELETED(client))
