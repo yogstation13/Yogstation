@@ -116,6 +116,13 @@
   - bugfix: IceBox had a vent and scrubber not connected, within the security post
       at the Departures Lobby. That's fixed now.
 2025-02-07:
+  Absolucy:
+  - qol: Made the Biogenerator UI slightly prettier.
+  - bugfix: The Biogenerator UI now properly calculates the max amount of something
+      that can be produced.
+  - qol: The composter now actually benefits somewhat from upgraded parts.
+  - qol: The composter now prompts you for how many biocubes you want to generate,
+      rather than requiring spam-clicking to make multiple.
   Gboster-0:
   - rscadd: Interaction components can now have a filter that only interacts with
       specific items.
@@ -125,3 +132,7 @@
       sheets in your hand
   - bugfix: There is no longer a coffin recipe that takes 10 times as long to craft
       in the crafting menu.
+  RikuTheKiller:
+  - rscadd: There's a BCI manipulator in Void Raptor's circuit lab now.
+  flleeppyy:
+  - admin: fix supplypod fall sound varying when it shouldnt
