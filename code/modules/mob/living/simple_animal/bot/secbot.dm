@@ -102,19 +102,6 @@
 	bot_mode_flags = BOT_MODE_ON
 	bot_cover_flags = BOT_COVER_LOCKED | BOT_COVER_EMAGGED
 
-//monkestation edit begin
-/mob/living/simple_animal/bot/secbot/beepsky/big
-	name = "Officer Bigsky"
-	desc = "It's Commander Beep O'sky's massive, just-as aggressive cousin, Bigsky."
-	health = 150
-	bot_mode_flags = BOT_MODE_ON | BOT_MODE_AUTOPATROL | BOT_MODE_REMOTE_ENABLED
-	commissioned = FALSE
-
-/mob/living/simple_animal/bot/secbot/beepsky/big/Initialize(mapload)
-	. = ..()
-	update_transform(1.3)
-//monkestation edit end
-
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
 	var/atom/Tsec = drop_location()
 	new /obj/item/stock_parts/cell/potato(Tsec)

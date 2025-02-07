@@ -18,14 +18,13 @@
 		to_chat(mob, span_danger("You feel like something's about to burst out of you!"))
 		sleep(100)
 		var/list/possible_bots = list(
-			/mob/living/simple_animal/bot/cleanbot,
 			/mob/living/basic/bot/medbot,
 			/mob/living/simple_animal/bot/secbot,
 			/mob/living/simple_animal/bot/floorbot,
 			/mob/living/simple_animal/bot/buttbot
 		)
 		var/chosen_bot = pick(possible_bots)
-		var/mob/living/simple_animal/bot/newbot = new chosen_bot(get_turf(mob))
+		var/mob/living/newbot = new chosen_bot(get_turf(mob))
 		new /obj/effect/decal/cleanable/blood(get_turf(mob))
 		mob.visible_message("<span class ='danger'>A [newbot.name] bursts out of [mob.name]'s mouth!</span>")
 		playsound(newbot, 'sound/effects/splat.ogg', 50, 1)

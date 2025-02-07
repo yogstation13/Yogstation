@@ -54,6 +54,3 @@
 
 /obj/structure/camera_assembly
 	icon = 'monkestation/code/modules/aesthetics/icons/camera.dmi'
-
-/mob/living/simple_animal/bot/cleanbot
-	icon = 'monkestation/code/modules/aesthetics/icons/cleanbot.dmi'
