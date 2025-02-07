@@ -1,0 +1,7 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Made the Biogenerator UI slightly prettier."
+  - bugfix: "The Biogenerator UI now properly calculates the max amount of something that can be produced."
+  - qol: "The composter now actually benefits somewhat from upgraded parts."
+  - qol: "The composter now prompts you for how many biocubes you want to generate, rather than requiring spam-clicking to make multiple."
