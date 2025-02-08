@@ -16902,6 +16902,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/machinery/sci_bombardment,
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "fZr" = (
