@@ -125,7 +125,7 @@
 	sound = 'sound/misc/notice1.ogg' // Its just a more spesific blue alert
 	lowering_to_configuration_key = /datum/config_entry/string/alert_yellow
 	elevating_to_configuration_key = /datum/config_entry/string/alert_yellow
-	shuttle_call_time_mod = 1.5 //Again, just a more spesific blue alert, but not as threatening
+	shuttle_call_time_mod = /datum/security_level/blue::shuttle_call_time_mod
 	can_set_via_comms_console = TRUE
 
 /**
@@ -140,7 +140,7 @@
 	sound = 'sound/misc/notice1.ogg' // Its just a more spesific blue alert v2
 	lowering_to_configuration_key = /datum/config_entry/string/alert_amber
 	elevating_to_configuration_key = /datum/config_entry/string/alert_amber
-	shuttle_call_time_mod = 1.5 //Just a more spesific blue alert, the sequal to yellow
+	shuttle_call_time_mod = /datum/security_level/blue::shuttle_call_time_mod
 	can_set_via_comms_console = TRUE
 
 /**
