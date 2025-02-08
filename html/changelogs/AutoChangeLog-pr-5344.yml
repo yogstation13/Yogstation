@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Fixed the biogenerator UI shifting when adding reagents to a container."
-  - bugfix: "Made the biogenerator window's default height tall enough to show everything by default."

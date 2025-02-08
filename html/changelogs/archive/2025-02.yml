@@ -141,6 +141,23 @@
   flleeppyy:
   - admin: fix supplypod fall sound varying when it shouldnt
 2025-02-08:
+  Absolucy:
+  - qol: The shuttle timer for Amber and Yellow alerts are now the same as Blue alert.
+  - balance: The effects of Bioluminescence, Shadow Emission, Bluespace Activity,
+      Gaseous Decomposition, and Slippery Skin no longer scale absurdly past 100 potency.
+  - qol: Glowshrooms and such once again use complex lighting, which shouldn't lag
+      anymore as they can no longer be bright enough for a single glowshroom to illuminate
+      the entire station and then some.
+  - bugfix: Fixed the biogenerator UI shifting when adding reagents to a container.
+  - bugfix: Made the biogenerator window's default height tall enough to show everything
+      by default.
+  MichiRecRoom, san7890, Time-Green, JohnFulpWillard:
+  - refactor: (san7890) Holodeck monkeys have been moved to the same system as old
+      monkeys, and should retain the similar "ephermeal" behavior, while being a whole
+      lot smarter by leveraging new AI. Please report anything that is completely
+      wack about this.
   flleeppyy:
   - bugfix: Fixed an RCE exploit in NTSL.
   - qol: Mentor's now have a per-round bonus of 500 coins
+  leaKsi:
+  - bugfix: Fixed a crash-inducing function in NTSL.
