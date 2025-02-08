@@ -1,0 +1,4 @@
+author: "leaKsi"
+delete-after: True
+changes:
+  - bugfix: "Fixed a crash-inducing function in NTSL."
