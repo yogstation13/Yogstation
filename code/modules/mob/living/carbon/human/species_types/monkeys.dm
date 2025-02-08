@@ -76,6 +76,11 @@
 		C.dna.remove_mutation(/datum/mutation/human/race)
 	C.update_mob_height()
 
+/datum/species/monkey/update_species_heights(mob/living/carbon/human/holder)
+	if(HAS_TRAIT(holder, TRAIT_DWARF))
+		return MONKEY_HEIGHT_DWARF
+	return MONKEY_HEIGHT_MEDIUM
+
 /datum/species/monkey/randomize_features(mob/living/carbon/human/human_mob)
 	randomize_external_organs(human_mob)
 
@@ -246,10 +251,5 @@
 
 /obj/item/organ/internal/brain/primate/get_attacking_limb(mob/living/carbon/human/target)
 	return owner.get_bodypart(BODY_ZONE_HEAD)
-
-/datum/species/monkey/update_species_heights(mob/living/carbon/human/holder)
-	if(HAS_TRAIT(holder, TRAIT_DWARF))
-		return MONKEY_HEIGHT_DWARF
-	return MONKEY_HEIGHT_MEDIUM
 
 #undef MONKEY_SPEC_ATTACK_BITE_MISS_CHANCE

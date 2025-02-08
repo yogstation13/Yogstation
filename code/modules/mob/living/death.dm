@@ -36,6 +36,8 @@
 	return
 
 /mob/living/proc/spawn_gibs()
+	if(flags_1 & HOLOGRAM_1)
+		return
 	new /obj/effect/gibspawner/generic(drop_location(), src, get_static_viruses())
 
 /mob/living/proc/spill_organs()
