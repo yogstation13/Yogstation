@@ -67,6 +67,12 @@
 	icon = 'monkestation/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'monkestation/icons/mob/clothing/feet.dmi'
 	icon_state = "civilprotection_boots"
+
+/obj/item/clothing/shoes/civilprotection_boots/Initialize(mapload)//copied from jackboots (should these be a subtype of jackboots?)
+	. = ..()
+	create_storage(storage_type = /datum/storage/pockets/shoes)
+	AddElement(/datum/element/shoesteps/combine_boot_sounds)
+
 //START HEELS
 
 /obj/item/clothing/shoes/heels

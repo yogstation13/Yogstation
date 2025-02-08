@@ -19,6 +19,8 @@
 		//There's a snake in my boot
 		new /mob/living/basic/snake(src)
 
+	AddElement(/datum/element/shoesteps/combine_boot_sounds) //MONKESTATION EDIT
+
 
 /obj/item/clothing/shoes/cowboy/equipped(mob/living/carbon/user, slot)
 	. = ..()

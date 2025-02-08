@@ -28,6 +28,8 @@
 
 #define COMSIG_MOB_PICKED_UP "mob_picked_up"
 #define COMSIG_MOB_DROPPED "mob_dropped"
+///from /datum/element/footstep/prepare_step(): (list/steps)
+#define COMSIG_MOB_PREPARE_STEP_SOUND "override_mob_stepsound"
 
 #define COMSIG_DRANK_REAGENT "drank_reagent"
 

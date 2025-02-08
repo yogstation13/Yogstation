@@ -97,6 +97,7 @@
 		return
 
 	. = list(FOOTSTEP_MOB_SHOE = turf.footstep, FOOTSTEP_MOB_BAREFOOT = turf.barefootstep, FOOTSTEP_MOB_HEAVY = turf.heavyfootstep, FOOTSTEP_MOB_CLAW = turf.clawfootstep, STEP_SOUND_PRIORITY = STEP_SOUND_NO_PRIORITY)
+	SEND_SIGNAL(source, COMSIG_MOB_PREPARE_STEP_SOUND, .) // Used to override shoe material before turf
 	SEND_SIGNAL(turf, COMSIG_TURF_PREPARE_STEP_SOUND, .)
 	return .
 
@@ -136,7 +137,9 @@
 		return
 
 	//cache for sanic speed (lists are references anyways)
-	var/static/list/footstep_sounds = GLOB.footstep
+	var/list/footstep_sounds = GLOB.footstep
+	if(length(prepared_steps[STEP_SOUND_SHOE_OVERRIDE]))
+		footstep_sounds = prepared_steps[STEP_SOUND_SHOE_OVERRIDE] // List was edited and wants to override our sounds.
 	///list returned by playsound() filled by client mobs who heard the footstep. given to play_fov_effect()
 	var/list/heard_clients
 
