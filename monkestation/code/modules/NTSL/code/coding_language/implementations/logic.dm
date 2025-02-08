@@ -116,7 +116,7 @@
 	if(istext(string) && isnum(amount))
 		var/i
 		var/newstring = ""
-		if(length(newstring) * amount >= 1000)
+		if(length(string) * amount >= 1000)
 			return
 		for(i = 0, i <= amount, i++)
 			if(i >= 1000)
