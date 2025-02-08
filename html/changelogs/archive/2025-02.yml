@@ -161,3 +161,6 @@
   - qol: Mentor's now have a per-round bonus of 500 coins
   leaKsi:
   - bugfix: Fixed a crash-inducing function in NTSL.
+  Siro, Tractir Mann:
+  - rscadd: Added new walksounds to jackboots! Hate em? Turn them off with Control Click!
+  - balance: Civil Protection Boots now have pockets akin to the Jackboots.
