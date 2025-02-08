@@ -174,11 +174,11 @@
 	var/list/signals = list()
 	data["signals"] = list()
 
-	for(var/gps in GLOB.GPS_list) //nulls on the list somehow
+	for(var/gps in GLOB.GPS_list)
 		var/datum/component/gps/G = gps
 		if(G.emped || !G.tracking)
 			continue
-		var/turf/pos = get_turf(G.parent) // yogs - get_turf_global instead of get_turf
+		var/turf/pos = get_turf(G.parent)
 		if(!pos)
 			continue
 		if(!is_mining_level(pos.z))
@@ -251,7 +251,7 @@
 			tcoords = params["tcoords"]
 			for(var/gps in GLOB.GPS_list)
 				var/datum/component/gps/T = gps
-				var/turf/pos = get_turf(T.parent) // yogs - get_turf_global instead of get_turf
+				var/turf/pos = get_turf(T.parent)
 				if(!pos)
 					continue
 				if(T.gpstag == targetdest && "[pos.x], [pos.y], [pos.z]" == tcoords)
