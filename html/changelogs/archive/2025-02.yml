@@ -140,3 +140,7 @@
   - rscadd: There's a BCI manipulator in Void Raptor's circuit lab now.
   flleeppyy:
   - admin: fix supplypod fall sound varying when it shouldnt
+2025-02-08:
+  flleeppyy:
+  - bugfix: Fixed an RCE exploit in NTSL.
+  - qol: Mentor's now have a per-round bonus of 500 coins
