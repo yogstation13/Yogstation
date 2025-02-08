@@ -8,7 +8,6 @@
 	icon_state = "glowshroom1"
 	layer = ABOVE_OPEN_TURF_LAYER
 	max_integrity = GLOWSHROOM_BASE_INTEGRITY
-	light_system = OVERLAY_LIGHT
 	///Cooldown for when next to try to spread.
 	COOLDOWN_DECLARE(spread_cooldown)
 	/// Min time interval between glowshroom "spreads"
@@ -80,7 +79,7 @@
 		our_glow_gene = new our_glow_gene
 		myseed.genes += our_glow_gene
 	if(istype(our_glow_gene))
-		set_light(l_outer_range = our_glow_gene.glow_range(myseed), l_power = our_glow_gene.glow_power(myseed), l_color = our_glow_gene.glow_color, update = FALSE)
+		set_light(l_outer_range = our_glow_gene.glow_range(myseed), l_power = our_glow_gene.glow_power(myseed), l_color = our_glow_gene.glow_color)
 	setDir(calc_dir())
 	update_icon_state()
 	AddElement(/datum/element/atmos_sensitive, mapload)

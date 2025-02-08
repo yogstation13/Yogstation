@@ -56,3 +56,6 @@
 #define TRAIT_TIN_EATER "tin_eater"
 #define TRAIT_LIVING_DRUNK "living_drunk"
 #define COMSIG_TRY_EAT_TRAIT "try_eat_trait"
+
+/// Returns the potency for a seed, capped at 100.
+#define CAPPED_POTENCY(seed) (min(seed.potency, 100))

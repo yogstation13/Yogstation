@@ -341,7 +341,7 @@
 		return
 
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
-	var/stun_len = our_seed.potency * rate
+	var/stun_len = CAPPED_POTENCY(our_seed) * rate
 
 	if(!istype(our_plant, /obj/item/grown/bananapeel) && (!our_plant.reagents || !our_plant.reagents.has_reagent(/datum/reagent/lube)))
 		stun_len /= 3
@@ -439,10 +439,10 @@
 	var/glow_color = "#C3E381"
 
 /datum/plant_gene/trait/glow/proc/glow_range(obj/item/seeds/seed)
-	return 1.4 + seed.potency * rate
+	return 1.4 + CAPPED_POTENCY(seed) * rate
 
 /datum/plant_gene/trait/glow/proc/glow_power(obj/item/seeds/seed)
-	return max(seed.potency * (rate + 0.01), 0.1)
+	return max(CAPPED_POTENCY(seed) * (rate + 0.01), 0.1)
 
 /datum/plant_gene/trait/glow/on_new_plant(obj/item/our_plant, newloc)
 	. = ..()
@@ -464,7 +464,7 @@
 	glow_color = "#AAD84B"
 
 /datum/plant_gene/trait/glow/shadow/glow_power(obj/item/seeds/seed)
-	return -max(seed.potency*(rate*0.2), 0.2)
+	return -max(CAPPED_POTENCY(seed) * (rate * 0.2), 0.2)
 
 /// Colored versions of bioluminescence.
 
@@ -540,7 +540,7 @@
 
 	our_plant.investigate_log("squash-teleported [key_name(target)] at [AREACOORD(target)]. Last touched by: [our_plant.fingerprintslast].", INVESTIGATE_BOTANY)
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
-	var/teleport_radius = max(round(our_seed.potency / 10), 1)
+	var/teleport_radius = max(round(CAPPED_POTENCY(our_seed) / 10), 1)
 	var/turf/T = get_turf(target)
 	new /obj/effect/decal/cleanable/molten_object(T) //Leave a pile of goo behind for dramatic effect...
 	do_teleport(target, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -556,7 +556,7 @@
 
 	our_plant.investigate_log("slip-teleported [key_name(target)] at [AREACOORD(target)]. Last touched by: [our_plant.fingerprintslast].", INVESTIGATE_BOTANY)
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
-	var/teleport_radius = max(round(our_seed.potency / 10), 1)
+	var/teleport_radius = max(round(CAPPED_POTENCY(our_seed) / 10), 1)
 	var/turf/T = get_turf(target)
 	to_chat(target, span_warning("You slip through spacetime!"))
 	do_teleport(target, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -751,7 +751,7 @@
 	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new ()
 	var/obj/item/seeds/our_seed = our_plant.get_plant_seed()
 	var/splat_location = get_turf(target)
-	var/range = sqrt(our_seed.potency * 0.1)
+	var/range = sqrt(CAPPED_POTENCY(our_seed) * 0.1)
 	smoke.attach(splat_location)
 	smoke.set_up(round(range), holder = our_plant, location = splat_location, carry = our_plant.reagents, silent = FALSE)
 	smoke.start(log = TRUE)

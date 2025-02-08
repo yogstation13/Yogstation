@@ -25,6 +25,7 @@ SUBSYSTEM_DEF(glowshrooms)
 				currentrun_spread = glowshrooms.Copy()
 			currentrun_decay = glowshrooms.Copy()
 
+	var/seconds_per_tick = DELTA_WORLD_TIME(src)
 	if(run_type == SSGLOWSHROOMS_RUN_TYPE_SPREAD)
 		if(enable_spreading)
 			var/list/current_run_spread = currentrun_spread
@@ -35,7 +36,7 @@ SUBSYSTEM_DEF(glowshrooms)
 					glowshrooms -= glowshroom
 				else if(COOLDOWN_FINISHED(glowshroom, spread_cooldown))
 					COOLDOWN_START(glowshroom, spread_cooldown, rand(glowshroom.min_delay_spread, glowshroom.max_delay_spread))
-					glowshroom.Spread(wait * 0.1)
+					glowshroom.Spread(seconds_per_tick)
 				if(MC_TICK_CHECK)
 					return
 		run_type = SSGLOWSHROOMS_RUN_TYPE_DECAY
@@ -48,7 +49,7 @@ SUBSYSTEM_DEF(glowshrooms)
 			if(QDELETED(glowshroom))
 				glowshrooms -= glowshroom
 			else
-				glowshroom.Decay(wait * 0.1)
+				glowshroom.Decay(seconds_per_tick)
 			if(MC_TICK_CHECK)
 				return
 		run_type = SSGLOWSHROOMS_RUN_TYPE_SPREAD
