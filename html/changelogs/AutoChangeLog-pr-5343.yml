@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "The effects of Bioluminescence, Shadow Emission, Bluespace Activity, Gaseous Decomposition, and Slippery Skin no longer scale absurdly past 100 potency."
+  - qol: "Glowshrooms and such once again use complex lighting, which shouldn't lag anymore as they can no longer be bright enough for a single glowshroom to illuminate the entire station and then some."
