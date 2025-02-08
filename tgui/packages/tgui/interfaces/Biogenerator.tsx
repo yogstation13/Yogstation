@@ -60,7 +60,7 @@ export const Biogenerator = () => {
   const space = beaker ? beakerMaxVolume - beakerCurrentVolume : 1;
 
   return (
-    <Window width={400} height={500}>
+    <Window width={400} height={530}>
       <Window.Content>
         <Stack vertical fill>
           <Stack.Item>
@@ -109,7 +109,7 @@ const Controls = () => {
   } = data;
 
   return (
-    <Section fill>
+    <Section fill minHeight="80px">
       <LabeledList>
         <LabeledList.Item
           label="Biomass"
