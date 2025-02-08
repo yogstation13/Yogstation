@@ -14,6 +14,8 @@
 	var/datum/player_details/details = get_player_details(client)
 	if(!QDELETED(client?.prefs))
 		client?.prefs?.adjust_metacoins(client?.ckey, 75, "Played a Round")
+		if(world.port == MRP2_PORT)
+			client?.prefs?.adjust_metacoins(client?.ckey, 500, "Monkey 2 Seeding Subsidies")
 		var/bonus = details?.roundend_monkecoin_bonus
 		if(bonus)
 			client?.prefs?.adjust_metacoins(client?.ckey, bonus, "Special Bonus")

@@ -457,11 +457,6 @@
 	var/mob/dead/new_player/new_player = hud.mymob
 	new_player.handle_player_polling()
 
-#define MRP2_PORT		3122
-#define MRP_PORT		3121
-#define HRP_PORT		1342
-#define VANDERLIN_PORT	1541
-
 //This is the changing You are here Button
 /atom/movable/screen/lobby/youarehere
 	var/vanderlin = 0
@@ -571,11 +566,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/lobby/button/server)
 			return TRUE
 	return FALSE
 */
-
-#undef VANDERLIN_PORT
-#undef HRP_PORT
-#undef MRP_PORT
-#undef MRP2_PORT
 
 //Monke button
 /atom/movable/screen/lobby/button/ook
