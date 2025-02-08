@@ -322,6 +322,16 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 	var/mob/living/carbon/C = mob_viewer
 	C.take(giver, receiving)
 
+//SKILLS
+
+/atom/movable/screen/alert/skill_up
+	name = "Allocate Skill Points"
+	desc = "You have unspent skill points! Click here to allocate them."
+
+/atom/movable/screen/alert/skill_up/Click(location, control, params)
+	. = ..()
+	mob_viewer.hud_used?.skill_menu?.ui_interact(mob_viewer)
+
 //ALIENS
 
 /atom/movable/screen/alert/alien_tox

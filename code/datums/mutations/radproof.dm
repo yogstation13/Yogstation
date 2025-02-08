@@ -7,13 +7,15 @@
 	difficulty = 8
 
 /datum/mutation/human/radproof/on_acquiring(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	ADD_TRAIT(owner, TRAIT_RADIMMUNE, type)
 	owner.physiology.tox_mod *= 1.5
 
 /datum/mutation/human/radproof/on_losing(mob/living/carbon/human/owner)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	REMOVE_TRAIT(owner, TRAIT_RADIMMUNE, type)
 	owner.physiology.tox_mod /= 1.5

@@ -4,6 +4,8 @@
 	// A mutation caused by a human being ressurected in a revival pod. These regain health in light, and begin to wither in darkness.
 	name = "Phytosian"
 	id = SPECIES_PODPERSON // We keep this at pod for compatibility reasons
+	monitor_icon = "seedling"
+	monitor_color = "#07f58a"
 	default_color = "59CE00"
 	species_traits = list(MUTCOLORS, EYECOLOR, HAS_FLESH, HAS_BONE)
 	mutant_bodyparts = list("pod_hair", "pod_flower")
@@ -20,7 +22,7 @@
 	speedmod = 0.33
 	siemens_coeff = 0.75 //I wouldn't make semiconductors out of plant material
 	punchdamagehigh = 8 //sorry anvil your balance choice was wrong imo and I WILL be changing this soon.
-	punchstunthreshold = 9
+	punchstunchance = 0
 	mutantlungs = /obj/item/organ/lungs/plant //let them breathe CO2
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant
 	disliked_food = MEAT | DAIRY | MICE | VEGETABLES | FRUIT | GRAIN | JUNKFOOD | FRIED | RAW | GROSS | BREAKFAST | GRILLED | EGG | CHOCOLATE | SEAFOOD | CLOTH

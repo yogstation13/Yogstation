@@ -1,6 +1,8 @@
 /datum/species/abductor
 	name = "Abductor"
 	id = SPECIES_ABDUCTOR
+	monitor_icon = "question-circle"
+	monitor_color = "#d40db9"
 	say_mod = "gibbers"
 	possible_genders = list(PLURAL)
 	species_traits = list(NOBLOOD,NOEYESPRITES)

@@ -957,15 +957,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks, robo_check)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks, skill_check = null)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
 		return
 	delay *= toolspeed
-
-	if(((IS_ENGINEERING(user) || (robo_check && IS_JOB(user, "Roboticist"))) && (tool_behaviour in MECHANICAL_TOOLS)) || (IS_MEDICAL(user) && (tool_behaviour in MEDICAL_TOOLS)))
-		delay *= 0.8 // engineers and doctors use their own tools faster
 
 	if(volume) // Play tool sound at the beginning of tool usage.
 		play_tool_sound(target, volume)
@@ -973,8 +970,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
-
-		if(!do_after(user, delay, target, extra_checks=tool_check))
+		if(!skill_check)
+			if(is_wire_tool(src))
+				skill_check = SKILL_TECHNICAL
+			else if(tool_behaviour in MECHANICAL_TOOLS)
+				skill_check = SKILL_MECHANICAL
+			else if(tool_behaviour in MEDICAL_TOOLS)
+				skill_check = SKILL_PHYSIOLOGY
+			else
+				skill_check = SKILL_FITNESS // hatchets and pickaxes
+		if(!do_after(user, delay, target, extra_checks=tool_check, skill_check=skill_check))
 			return
 	else
 		// Invoke the extra checks once, just in case.
@@ -1177,7 +1182,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 #define ROBO_LIMB_HEAL_OTHER 1 SECONDS
 
 /obj/item/proc/heal_robo_limb(obj/item/I, mob/living/carbon/human/H,  mob/user, brute_heal = 0, burn_heal = 0, amount = 0, volume = 0)
-	if(I.use_tool(H, user, (H == user) ? ROBO_LIMB_HEAL_SELF : ROBO_LIMB_HEAL_OTHER, amount, volume, null, TRUE))
+	if(I.use_tool(H, user, (H == user) ? ROBO_LIMB_HEAL_SELF : ROBO_LIMB_HEAL_OTHER, amount, volume, null, skill_check = SKILL_MECHANICAL))
 		if(item_heal_robotic(H, user, brute_heal, burn_heal))
 			return heal_robo_limb(I, H, user, brute_heal, burn_heal, amount, volume)
 		return TRUE

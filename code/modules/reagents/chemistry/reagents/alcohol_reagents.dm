@@ -1194,14 +1194,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		var/mob/living/carbon/human/guy = M
 		guy.physiology.punchdamagehigh_bonus += 2
 		guy.physiology.punchdamagelow_bonus += 2
-		guy.physiology.punchstunthreshold_bonus += 2
 
 /datum/reagent/consumable/ethanol/amasec/on_mob_end_metabolize(mob/living/carbon/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/guy = M
 		guy.physiology.punchdamagehigh_bonus -= 2
 		guy.physiology.punchdamagelow_bonus -= 2
-		guy.physiology.punchstunthreshold_bonus -= 2
 	return ..()
 
 /datum/reagent/consumable/ethanol/changelingsting

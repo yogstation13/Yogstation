@@ -66,6 +66,10 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4.2.0
+        with:
+          dotnet-version: 9.x
       - uses: robinraju/release-downloader@v1.9
         with:
           repository: "OpenDreamProject/OpenDream"

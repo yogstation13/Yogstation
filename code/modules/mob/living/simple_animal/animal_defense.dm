@@ -6,7 +6,7 @@
 		M.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		var/shove_dir = get_dir(M, src)
-		if(!Move(get_step(src, shove_dir), shove_dir))
+		if(move_resist > M.move_force || !Move(get_step(src, shove_dir), shove_dir))
 			log_combat(M, src, "shoved", "failing to move it")
 			M.visible_message(span_danger("[M.name] shoves [src]!"),
 				span_danger("You shove [src]!"), span_hear("You hear aggressive shuffling!"), COMBAT_MESSAGE_RANGE, list(src))
@@ -176,8 +176,3 @@
 		else
 			visual_effect_icon = ATTACK_EFFECT_SMASH
 	..()
-
-/mob/living/simple_animal/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = null, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
-	if(gib)
-		gib()
-	return ..()

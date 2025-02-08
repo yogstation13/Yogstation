@@ -66,7 +66,7 @@
 	item_state = "b_suit"
 	can_adjust = TRUE
 
-/obj/item/clothing/under/rank/command/civilian/head_of_personnel/skirt
+/obj/item/clothing/under/rank/command/head_of_personnel/skirt
 	name = "head of personnel's jumpskirt"
 	desc = "It's a jumpskirt worn by someone who works in the position of \"Head of Personnel\"."
 	icon_state = "hop_skirt"

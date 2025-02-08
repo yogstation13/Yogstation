@@ -15,6 +15,7 @@
 /datum/surgery_step/ground_nerves
 	name = "ground nerves"
 	accept_hand = TRUE
+	difficulty = EXP_HIGH
 	time = 155
 
 /datum/surgery_step/ground_nerves/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)

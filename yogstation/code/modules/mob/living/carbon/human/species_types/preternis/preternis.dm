@@ -2,6 +2,8 @@
 	name = "Preternis"
 	plural_form = "Preterni"
 	id = SPECIES_PRETERNIS
+	monitor_icon = "robot"
+	monitor_color = "#edee1b"
 
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 	inherent_traits = list(TRAIT_POWERHUNGRY, TRAIT_RADIMMUNE, TRAIT_MEDICALIGNORE, TRAIT_NO_BLOOD_REGEN)
@@ -24,7 +26,7 @@
 	staminamod = 1.1 //Big metal body has difficulty holding it's weight if it gets tired
 	action_speed_coefficient = 0.9 //worker drone do the fast
 	punchdamagehigh = 7 //not built for large high speed acts like punches
-	punchstunthreshold = 7 //technically better stunning
+	punchstunchance = 0.2 //technically better stunning
 	siemens_coeff = 1.75 //Circuits REALLY don't like extra electricity flying around
 
 	//organs

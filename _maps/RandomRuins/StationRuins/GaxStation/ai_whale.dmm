@@ -1670,30 +1670,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/storage/satellite)
-"Ct" = (
-/obj/effect/turf_decal/stripes/corner,
-/obj/machinery/doorButtons/airlock_controller{
-	idExterior = "ai_core_airlock_exterior";
-	idInterior = "ai_core_airlock_interior";
-	idSelf = "ai_core_airlock_control";
-	pixel_x = 25;
-	pixel_y = 7;
-	req_access = list("ai_master")
-	},
-/obj/machinery/doorButtons/access_button{
-	idDoor = "ai_core_airlock_interior";
-	idSelf = "ai_core_airlock_control";
-	pixel_x = 23;
-	pixel_y = -7;
-	req_access = list("ai_master")
-	},
-/obj/machinery/camera{
-	c_tag = "MiniSat  Antechamber";
-	dir = 8;
-	network = list("minisat","ss13")
-	},
-/turf/open/floor/circuit,
-/area/ai_monitored/turret_protected/aisat_interior)
 "CF" = (
 /obj/structure/chair/office/dark,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1769,6 +1745,30 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"FF" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/doorButtons/airlock_controller{
+	idExterior = "ai_core_airlock_exterior";
+	idInterior = "ai_core_airlock_interior";
+	idSelf = "ai_core_airlock_control";
+	pixel_x = 25;
+	pixel_y = 7;
+	req_access = list("ai_master")
+	},
+/obj/machinery/doorButtons/access_button{
+	idDoor = "ai_core_airlock_exterior";
+	idSelf = "ai_core_airlock_control";
+	pixel_x = 23;
+	pixel_y = -7;
+	req_access = list("ai_master")
+	},
+/obj/machinery/camera{
+	c_tag = "MiniSat  Antechamber";
+	dir = 8;
+	network = list("minisat","ss13")
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "FQ" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/corner/lower,
 /turf/open/floor/plasteel/dark,
@@ -4530,7 +4530,7 @@ ic
 RI
 pD
 bb
-Ct
+FF
 SZ
 NK
 uZ

@@ -153,19 +153,19 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Machinery and the target should be on the same level or different levels of the same station
 		if(!(z in SSmapping.get_connected_levels(pos)) && !HAS_TRAIT(tracked_mob, TRAIT_MULTIZ_SUIT_SENSORS))
 			continue
-			
+
 		var/jammed = FALSE
 		for(var/obj/item/jammer/jammer in GLOB.active_jammers)
 			var/turf/jammer_turf = get_turf(jammer)
 			if(pos.z == jammer_turf.z && (get_dist(pos, jammer_turf) <= jammer.range))
 				jammed = TRUE
 				break
-		if(jammed) // radio jammers prevent suit sensors 
+		if(jammed) // radio jammers prevent suit sensors
 			continue
 
 		idcard = tracked_mob.wear_id ? tracked_mob.wear_id.GetID() : null
 
-		var/species
+		var/datum/species/species
 		var/is_irradiated = FALSE
 		var/is_wounded = FALSE
 		var/is_husked = FALSE
@@ -184,7 +184,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			assignment_title = ""
 			assignment = ""
 			ijob = 80
-					
+
 		if (forced_sensors || uniform.sensor_mode >= SENSOR_LIVING)
 			life_status = tracked_mob.stat < DEAD
 		else
@@ -197,38 +197,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			brutedam = round(tracked_mob.getBruteLoss(),1)
 
 			//species check
-			if (ishumanbasic(tracked_mob)) //this should really just pull the species name or something rather than having all these checks
-				species = "Human"
-			if (ispreternis(tracked_mob))
-				species = "Robot"
-			if (isipc(tracked_mob))
-				species = "IPC"
-			if (ispodperson(tracked_mob))
-				species = "Podperson"
-			if (islizard(tracked_mob))
-				species = "Lizard"
-			if (isplasmaman(tracked_mob))
-				species = "Plasmaman"
-			if (ispolysmorph(tracked_mob))
-				species = "Polysmorph"
-			if (ismoth(tracked_mob))
-				species = "Moth"
-			if (isflyperson(tracked_mob))
-				species = "Fly"
-			if (iscatperson(tracked_mob))
-				species = "Felinid"
-			if (isskeleton(tracked_mob))
-				species = "Skeleton"
-			if (isjellyperson(tracked_mob))
-				species = "Slime"
-			if (isethereal(tracked_mob))
-				species = "Ethereal"
-			if (iszombie(tracked_mob))
-				species = "Zombie"
-			if (issnail(tracked_mob))
-				species = "Snail"
-			if (isabductor(tracked_mob))
-				species = "Alien"
+			species = tracked_mob.dna?.species
 
 			for(var/obj/item/bodypart/part in tracked_mob.bodyparts)
 				if(part.bodypart_disabled == TRUE) //check if has disabled limbs
@@ -237,7 +206,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					is_wounded = TRUE
 			if(length(tracked_mob.get_missing_limbs())) //check if has missing limbs
 				is_disabled = TRUE
-					
+
 			//check if has generic wounds except for bone one
 			if(locate(/datum/wound/slash) in tracked_mob.all_wounds)
 				is_wounded = TRUE
@@ -250,9 +219,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 
 			if(locate(/datum/wound/blunt) in tracked_mob.all_wounds) //check if has bone wounds
 				is_bonecrack = TRUE
-								
+
 			if(tracked_mob.radiation > RAD_MOB_SAFE) //safe level before sending alert
-				is_irradiated = TRUE					
+				is_irradiated = TRUE
 
 			if(HAS_TRAIT(tracked_mob, TRAIT_HUSK)) //check if husked
 				is_husked = TRUE
@@ -298,7 +267,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			"is_bonecrack" = is_bonecrack,
 			"is_disabled" = is_disabled,
 			"is_irradiated" = is_irradiated,
-			"species" = species,
+			"species_icon" = species?.monitor_icon,
+			"species_color" = species?.monitor_color,
 			"life_status" = life_status,
 			"oxydam" = oxydam,
 			"toxdam" = toxdam,

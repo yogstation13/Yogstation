@@ -27,6 +27,8 @@
 	var/always_available = TRUE
 	/// Should only one object exist on the same turf?
 	var/one_per_turf = FALSE
+	/// What skill levels are required to craft this? ex. list(SKILL_MECHANICAL = EXP_HIGH, SKILL_SCIENCE = EXP_LOW)
+	var/list/skill_requirements = list()
 
 /datum/crafting_recipe/New()
 	if(!(result in reqs))
@@ -73,8 +75,8 @@
 	reqs = list(/obj/item/robot_suit = 1,
 				/obj/item/clothing/head/helmet = 1,
 				/obj/item/clothing/suit/armor/vest = 1,
-				/obj/item/bodypart/l_leg/robot = 1,
-				/obj/item/bodypart/r_leg/robot = 1,
+				/obj/item/bodypart/leg/left/robot = 1,
+				/obj/item/bodypart/leg/right/robot = 1,
 				/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/cable_coil = 1,
 				/obj/item/gun/energy/e_gun/dragnet = 1,
@@ -803,7 +805,7 @@
 
 /datum/crafting_recipe/leftprostheticleg
 	name = "Left Prosthetic Leg"
-	result = /obj/item/bodypart/l_leg/robot/surplus
+	result = /obj/item/bodypart/leg/left/robot/surplus
 	time = 10 SECONDS
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
@@ -813,7 +815,7 @@
 
 /datum/crafting_recipe/rightprostheticleg
 	name = "Right Prosthetic Leg"
-	result = /obj/item/bodypart/r_leg/robot/surplus
+	result = /obj/item/bodypart/leg/right/robot/surplus
 	time = 10 SECONDS
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,

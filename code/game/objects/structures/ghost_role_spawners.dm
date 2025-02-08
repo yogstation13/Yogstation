@@ -48,6 +48,15 @@
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. \
 	You have seen lights in the distance... they foreshadow the arrival of outsiders that seek to tear apart the Necropolis and its domain. Fresh sacrifices for your nest."
 	assignedrole = "Ash Walker"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = EXP_HIGH
+	exceptional_skill = TRUE
 	var/datum/team/ashwalkers/team
 
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
@@ -73,6 +82,14 @@
 	flavour_text = "The wastes are sacred ground, its monsters a blessed bounty. You and your people have become one with the tendril and its land. \
 	You have seen lights in the distance and from the skies: outsiders that come with greed in their hearts. Fresh sacrifices for your nest."
 	assignedrole = "Ash Walker Shaman"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_HIGH,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_HIGH
 
 /datum/outfit/ashwalker
 	name = "Ashwalker"
@@ -174,6 +191,14 @@
 	var/has_owner = FALSE
 	var/can_transfer = TRUE //if golems can switch bodies to this new shell
 	var/mob/living/owner = null //golem's owner if it has one
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_GENIUS
 	short_desc = "You are a Free Golem. Your family worships The Liberator."
 	flavour_text = "In his infinite and divine wisdom, he set your clan free to \
 	travel the stars with a single declaration: \"Yeah go do whatever.\" Though you are bound to the one who created you, it is customary in your society to repeat those same words to newborn \
@@ -282,6 +307,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	icon = 'icons/obj/lavaland/spawners.dmi'
 	icon_state = "cryostasis_sleeper"
 	outfit = /datum/outfit/hermit
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_MASTER
 	roundstart = FALSE
 	death = FALSE
 	random = TRUE
@@ -301,22 +334,26 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 			only one pod left when you got to the escape bay. You took it and launched it alone, and the crowd of terrified faces crowding at the airlock door as your pod's engines burst to \
 			life and sent you to this hell are forever branded into your memory."
 			outfit.uniform = /obj/item/clothing/under/rank/civilian/assistantformal
+			base_skills[SKILL_MECHANICAL] = EXP_MID
 		if(2)
 			flavour_text += "you're an exile from the Tiger Cooperative. Their technological fanaticism drove you to question the power and beliefs of the Exolitics, and they saw you as a \
 			heretic and subjected you to hours of horrible torture. You were hours away from execution when a high-ranking friend of yours in the Cooperative managed to secure you a pod, \
 			scrambled its destination's coordinates, and launched it. You awoke from stasis when you landed and have been surviving - barely - ever since."
 			outfit.uniform = /obj/item/clothing/under/rank/prisoner
 			outfit.shoes = /obj/item/clothing/shoes/sneakers/orange
+			base_skills[SKILL_TECHNICAL] = EXP_MID
 		if(3)
 			flavour_text += "you were a doctor on one of Nanotrasen's space stations, but you left behind that damn corporation's tyranny and everything it stood for. From a metaphorical hell \
 			to a literal one, you find yourself nonetheless missing the recycled air and warm floors of what you left behind... but you'd still rather be here than there."
 			outfit.uniform = /obj/item/clothing/under/rank/medical
 			outfit.suit = /obj/item/clothing/suit/toggle/labcoat
 			outfit.back = /obj/item/storage/backpack/medic
+			base_skills[SKILL_PHYSIOLOGY] = EXP_MID
 		if(4)
 			flavour_text += "you were always joked about by your friends for \"not playing with a full deck\", as they so kindly put it. It seems that they were right when you, on a tour \
 			at one of Nanotrasen's state-of-the-art research facilities, were in one of the escape pods alone and saw the red button. It was big and shiny, and it caught your eye. You pressed \
 			it, and after a terrifying and fast ride for days, you landed here. You've had time to wisen up since then, and you think that your old friends wouldn't be laughing now."
+			base_skills[SKILL_FITNESS] = EXP_MID
 
 /obj/effect/mob_spawn/human/hermit/Destroy()
 	new/obj/structure/fluff/empty_cryostasis_sleeper(get_turf(src))
@@ -340,6 +377,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	everyone's gone. One of the cats scratched you just a few minutes ago. That's why you were in the pod - to heal the scratch. The scabs are still fresh; you see them right now. So where is \
 	everyone? Where did they go? What happened to the hospital? And is that smoke you smell? You need to find someone else. Maybe they can tell you what happened."
 	assignedrole = "Translocated Vet"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_MASTER
 
 /obj/effect/mob_spawn/human/doctor/alive/lavaland/Destroy()
 	var/obj/structure/fluff/empty_sleeper/S = new(drop_location())
@@ -531,6 +576,15 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	death = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = EXP_GENIUS
+	exceptional_skill = TRUE
 	outfit = /datum/outfit/syndicate_empty
 	assignedrole = "Space Syndicate"	//I know this is really dumb, but Syndicate operative is nuke ops
 
@@ -585,8 +639,16 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "You are the captain aboard the syndicate flagship: the SBC Starfury."
 	flavour_text = "Your job is to oversee your crew, defend the ship, and destroy Space Station 13. The ship has an armory, multiple ships, beam cannons, and multiple crewmembers to accomplish this goal."
 	important_info = "As the captain, this whole operation falls on your shoulders. You do not need to nuke the station, causing sufficient damage and preventing your ship from being destroyed will be enough."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = EXP_MID
 	outfit = /datum/outfit/syndicate_empty/SBC/assault/captain
-	id_access_list = list(150,151)
+	id_access_list = list(ACCESS_SYNDICATE_LEADER)
 
 /datum/outfit/syndicate_empty/SBC/assault/captain
 	name = "Syndicate Battlecruiser Captain"
@@ -608,6 +670,7 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
 	outfit = /datum/outfit/syndicate_empty/icemoon_base
 	assignedrole = "Icemoon Syndicate"
+	skill_points = EXP_GENIUS // 5 skill points
 
 /obj/effect/mob_spawn/human/syndicate/icemoon_syndicate/special(mob/living/new_spawn) //oops!
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
@@ -644,6 +707,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "You are a researcher at the Syndicate icemoon outpost."
 	flavour_text = "Perform research for the sake of the Syndicate and advance technology. Do xenobiological or chemical research."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_HIGH,
+		SKILL_FITNESS = EXP_LOW,
+	)
+	skill_points = EXP_HIGH
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/scientist
 
 /datum/outfit/syndicate_empty/icemoon_base/scientist
@@ -659,6 +730,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "You are an engineer at the Syndicate icemoon outpost."
 	flavour_text = "Maintain and upgrade the base's systems and equipment. Operate the nuclear reactor and absolutely do not let it melt down."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_LOW,
+	)
+	skill_points = EXP_HIGH
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/engineer
 
 /datum/outfit/syndicate_empty/icemoon_base/engineer
@@ -675,6 +754,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "You are a medical officer at the Syndicate icemoon outpost."
 	flavour_text = "Provide medical aid to the crew of the outpost and keep them all alive."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_HIGH,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_LOW,
+	)
+	skill_points = EXP_HIGH
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/medic
 
 /datum/outfit/syndicate_empty/icemoon_base/medic
@@ -691,8 +778,16 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	short_desc = "You are the commander of the Syndicate icemoon outpost."
 	flavour_text = "Direct the agents working under your command to operate the base, and keep it secure. If the situation gets dire, activate the emergency self-destruct located in the control room."
 	important_info = "Do not abandon the base or give supplies to NT employees under any circumstances."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = EXP_MID
 	outfit = /datum/outfit/syndicate_empty/icemoon_base/captain
-	id_access_list = list(150,151)
+	id_access_list = list(ACCESS_SYNDICATE_LEADER)
 
 /datum/outfit/syndicate_empty/icemoon_base/captain
 	name = "Syndicate Icemoon Outpost Commander"
@@ -751,6 +846,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
 	important_info = "Work as a team with your fellow survivors and do not abandon them."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = EXP_MID
 	uniform = /obj/item/clothing/under/rank/security/officer
 	shoes = /obj/item/clothing/shoes/jackboots
 	id = /obj/item/card/id/away/old/sec
@@ -770,6 +873,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
 	important_info = "Work as a team with your fellow survivors and do not abandon them."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_MID
 	uniform = /obj/item/clothing/under/rank/engineering/engineer
 	shoes = /obj/item/clothing/shoes/workboots
 	id = /obj/item/card/id/away/old/eng
@@ -786,6 +897,14 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
 	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
 	important_info = "Work as a team with your fellow survivors and do not abandon them."
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_HIGH,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_HIGH
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/away/old/sci
@@ -802,6 +921,15 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	mob_name = "a space pirate"
 	mob_species = /datum/species/skeleton
 	outfit = /datum/outfit/pirate/space
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = EXP_GENIUS
+	exceptional_skill = TRUE
 	roundstart = FALSE
 	death = FALSE
 	anchored = TRUE
@@ -827,6 +955,15 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 
 /obj/effect/mob_spawn/human/pirate/captain
 	rank = "Captain"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = EXP_MID
+	exceptional_skill = TRUE
 	outfit = /datum/outfit/pirate/space/captain
 
 /obj/effect/mob_spawn/human/pirate/gunner
@@ -872,6 +1009,15 @@ GLOBAL_LIST_EMPTY(servant_golem_users)
 	important_info = "Do not abandon the derelict or mess with the main station under any circumstances."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_LOW,
+		SKILL_MECHANICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_HIGH
+	exceptional_skill = TRUE
 	outfit = /datum/outfit/syndicate_derelict_engi
 	random = TRUE
 	roundstart = FALSE

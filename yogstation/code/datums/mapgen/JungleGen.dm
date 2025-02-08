@@ -28,7 +28,7 @@
 						),
 
 		BIOME_TOXIC = list(	
-						LOW_HUMIDITY = /datum/biome/jungleland/toxic_pit,
+						LOW_HUMIDITY = /datum/biome/jungleland/tar_wastes,
 						MED_HUMIDITY = /datum/biome/jungleland/toxic_pit,
 						HIGH_HUMIDITY = /datum/biome/jungleland/jungle
 						)
@@ -253,7 +253,7 @@
 	var/toxic_string = rustg_dbp_generate("[toxic_seed]","60","75","[world.maxx]","-0.05","1.1")
 	var/list/humid_strings = list()
 	humid_strings[HIGH_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.1","1.1")
-	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.3","-0.1")
+	humid_strings[MED_HUMIDITY] = rustg_dbp_generate("[humid_seed]","60","75","[world.maxx]","-0.35","-0.1")
 
 	for(var/t in turfs) //Go through all the turfs and generate them
 		var/turf/gen_turf = t

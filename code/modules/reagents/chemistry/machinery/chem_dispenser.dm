@@ -242,7 +242,7 @@
 			var/chemname = temp.name
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name), "locked" = (dispensable_reagents.Find(temp.type) ? FALSE : TRUE), "tier" = get_tier_for_chemical(temp))))
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name), "locked" = !can_display_reagent(user, temp.type), "tier" = get_tier_for_chemical(temp))))
 	for(var/recipe in saved_recipes)
 		recipes.Add(list(recipe))
 	data["chemicals"] = chemicals
@@ -265,7 +265,7 @@
 			if(!is_operational() || QDELETED(cell))
 				return
 			var/reagent = GLOB.name2reagent[params["reagent"]]
-			if(beaker && dispensable_reagents.Find(reagent))
+			if(beaker && can_display_reagent(usr, reagent))
 				var/datum/reagents/R = beaker.reagents
 				var/free = R.maximum_volume - R.total_volume
 				var/actual = min(amount, (cell.charge * powerefficiency)*10, free)
@@ -344,6 +344,17 @@
 					return
 				saved_recipes += list(list("recipe_name" = name, "contents" = recipe))
 		yogs - removed chem recipes */
+
+/obj/machinery/chem_dispenser/proc/can_display_reagent(mob/user, reagent_type)
+	if(dispensable_reagents.Find(reagent_type))
+		return TRUE
+	if(user.skill_check(SKILL_SCIENCE, EXP_GENIUS) && t4_upgrade_reagents.Find(reagent_type))
+		return TRUE
+	if(user.skill_check(SKILL_SCIENCE, EXP_HIGH) && t3_upgrade_reagents.Find(reagent_type))
+		return TRUE
+	if(user.skill_check(SKILL_SCIENCE, EXP_MID) && t2_upgrade_reagents.Find(reagent_type))
+		return TRUE
+	return FALSE
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/living/user, params)
 	if(default_unfasten_wrench(user, I))

@@ -16,7 +16,7 @@
 	contraband = list(/obj/item/reagent_containers/glass/bottle/radium = 1,
 					  /obj/item/reagent_containers/glass/bottle/mutagen = 2,
 	                  /obj/item/reagent_containers/food/snacks/monkeycube/gorilla = 1)
-	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50)
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 50, ELECTRIC = 100)
 	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/wallgene
 	default_price = 25

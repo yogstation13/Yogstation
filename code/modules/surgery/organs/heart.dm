@@ -253,6 +253,7 @@
 	var/rid = /datum/reagent/medicine/epinephrine
 	var/ramount = 10
 	restartTimer = 5 SECONDS //restarts faster
+	cybernetic_quality = 1
 
 /obj/item/organ/heart/cybernetic/upgraded/on_life()
 	. = ..()

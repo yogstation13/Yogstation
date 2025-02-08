@@ -325,6 +325,7 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/chosen = pick(candidates)
 		S.key = chosen.key
+		to_chat(S, "<b>As a pyroclastic anamoly slime, you are beholden to <a href='https://forums.yogstation.net/help/rules/#rule-3_7_3'>rule 3.7.3</a>: Slimes spawned from pyroclastic anomalies may kill to feed. They should not break significant station equipment in the hopes of broadly killing people. You are not an antagonist.</b>")
 		log_game("[key_name(S.key)] was made into a slime by pyroclastic anomaly at [AREACOORD(center)].")
 
 /////////////////////

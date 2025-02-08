@@ -136,6 +136,9 @@
 		return TRUE
 
 	if (istype(I, /obj/item/reagent_containers) && !(I.item_flags & ABSTRACT) && I.is_open_container())
+		if(operating)
+			to_chat(user, span_warning("[src] is operating!"))
+			return
 		var/obj/item/reagent_containers/B = I
 		. = TRUE //no afterattack
 		if(!user.transferItemToLoc(B, src))

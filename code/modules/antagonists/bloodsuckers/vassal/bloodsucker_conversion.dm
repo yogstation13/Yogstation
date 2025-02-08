@@ -126,6 +126,7 @@
 
 	if(noblood)
 		user.set_species(/datum/species/human, TRUE, TRUE)
+		user.dna.features["flavor_text"] = "";
 		if(user.client?.prefs?.read_preference(/datum/preference/name/backup_human) && !is_banned_from(user.client?.ckey, "Appearance"))
 			user.fully_replace_character_name(user.dna.real_name, user.client.prefs.read_preference(/datum/preference/name/backup_human))
 		else

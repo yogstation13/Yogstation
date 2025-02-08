@@ -101,6 +101,12 @@
 		using.screen_loc = UI_BOXAREA
 	static_inventory += using
 
+	skill_menu = new /atom/movable/screen/skill_menu(src)
+	skill_menu.icon = ui_style
+	if(!widescreen_layout)
+		skill_menu.screen_loc = UI_BOXAREA
+	static_inventory += skill_menu
+
 	action_intent = new /atom/movable/screen/combattoggle/flashy(src)
 	action_intent.icon = ui_style
 	action_intent.screen_loc = ui_combat_toggle

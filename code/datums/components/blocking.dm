@@ -220,6 +220,8 @@
 		if(!blocking_component.can_block(defender, incoming, damage, attack_type))
 			return 0
 		force_returned = blocking_component.block_force
+	if(attack_type & (MELEE_ATTACK|UNARMED_ATTACK|THROWN_PROJECTILE_ATTACK|LEAP_ATTACK)) // being stronger provides a small increase to melee blocking
+		force_returned += defender.get_skill(SKILL_FITNESS)
 	if(HAS_TRAIT(weapon, TRAIT_PARRYING))
 		force_returned *= PARRY_BONUS
 	return max(force_returned - max(armour_penetration - weapon.armour_penetration, 0) * AP_TO_FORCE, 0)

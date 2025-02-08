@@ -160,7 +160,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/structure/elite_tumor
 	name = "pulsing tumor"
 	desc = "An odd, pulsing tumor sticking out of the ground. You feel compelled to reach out and touch it..."
-	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, ELECTRIC = 100)
 	resistance_flags = INDESTRUCTIBLE
 	var/activity = TUMOR_INACTIVE
 	var/times_won = 0

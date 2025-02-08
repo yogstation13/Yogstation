@@ -6392,7 +6392,7 @@
 	dir = 4
 	},
 /obj/item/clothing/suit/space/nasavoid/old{
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 90, "fire" = 40, "acid" = 70);
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 40, "acid" = 70);
 	name = "Radiation Response Voidsuit";
 	desc = "A modified version of a CentCom engineering voidsuit used to respond to radiological emergencies."
 	},

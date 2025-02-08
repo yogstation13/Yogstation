@@ -18,6 +18,10 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/plural_form
 	/// if alien colors are disabled, this is the color that will be used by that race
 	var/default_color = "#FFF"
+	/// The icon this species uses on the crew monitor.
+	var/monitor_icon
+	/// The color of the icon this species uses on the crew monitor.
+	var/monitor_color = "#FFFFFF"
 
 	///A list that contains pixel offsets for various clothing features, if your species is a different shape
 	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
@@ -106,8 +110,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/punchdamagelow = 1
 	///highest possible punch damage
 	var/punchdamagehigh = 10
-	///damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
-	var/punchstunthreshold = 10
+	///chance for a punch to stun
+	var/punchstunchance = 0.1
 	///values of inaccuracy that adds to the spread of any ranged weapon
 	var/aiminginaccuracy = 0
 	///base electrocution coefficient
@@ -1503,7 +1507,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	// nutrition decrease and satiety
 	if (H.nutrition > 0 && H.stat != DEAD && !HAS_TRAIT(H, TRAIT_NOHUNGER))
 		// THEY HUNGER
-		var/hunger_rate = HUNGER_FACTOR
+		var/hunger_rate = HUNGER_FACTOR * (EXP_MASTER + H.get_skill(SKILL_FITNESS)) / EXP_MASTER
 		var/datum/component/mood/mood = H.GetComponent(/datum/component/mood)
 		if(mood && mood.sanity > SANITY_DISTURBED)
 			hunger_rate *= max(0.5, 1 - 0.002 * mood.sanity) //0.85 to 0.75
@@ -1733,6 +1737,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	if(M)
 		M.handle_counter(target, user)
 		return FALSE
+	user.add_exp(SKILL_FITNESS, 5)
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
 	else
@@ -1743,7 +1748,8 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			atk_verb = "kick"
 			atk_effect = ATTACK_EFFECT_KICK
 		user.do_attack_animation(target, atk_effect)
-		var/damage = rand(user.get_punchdamagelow(), user.get_punchdamagehigh())
+		var/percentile = rand()
+		var/damage = LERP(user.get_punchdamagelow(), user.get_punchdamagehigh(), percentile)
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
@@ -1784,7 +1790,7 @@ GLOBAL_LIST_EMPTY(features_by_species)
 			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
 			log_combat(user, target, "punched")
 
-		if((target.stat != DEAD) && damage >= user.get_punchstunthreshold())
+		if((target.stat != DEAD) && percentile > (1 - user.get_punchstunchance()) && !HAS_TRAIT(user, TRAIT_NO_PUNCH_STUN))
 			target.visible_message(span_danger("[user] has knocked [target] down!"), \
 							span_userdanger("[user] has knocked [target] down!"), null, COMBAT_MESSAGE_RANGE)
 			var/knockdown_duration = 40 + (target.getStaminaLoss() + (target.getBruteLoss()*0.5))*0.8 //50 total damage = 40 base stun + 40 stun modifier = 80 stun duration, which is the old base duration

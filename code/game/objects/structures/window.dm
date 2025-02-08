@@ -517,7 +517,7 @@
 	icon_state = "plasmawindow"
 	reinf = FALSE
 	heat_resistance = 25000
-	armor = list(MELEE = 60, BULLET = -45, LASER = 0, ENERGY = 100, BOMB = 45, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 60, BULLET = -45, LASER = 0, ENERGY = 0, BOMB = 45, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, ELECTRIC = 100)
 	max_integrity = 150
 	explosion_block = 1
 	glass_type = /obj/item/stack/sheet/plasmaglass
@@ -561,7 +561,7 @@
 	icon_state = "plasmarwindow"
 	reinf = TRUE
 	heat_resistance = 50000
-	armor = list(MELEE = 80, BULLET = 5, LASER = 0, ENERGY = 100, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 80, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 60, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, ELECTRIC = 100)
 	max_integrity = 500
 	damage_deflection = 21
 	explosion_block = 2
@@ -795,7 +795,7 @@
 	flags_1 = PREVENT_CLICK_UNDER_1
 	reinf = TRUE
 	heat_resistance = 1600
-	armor = list(MELEE = 40, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(MELEE = 40, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, ELECTRIC = 100)
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_SHUTTLE_PARTS + SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM
 	canSmoothWith = SMOOTH_GROUP_WINDOW_FULLTILE_PLASTITANIUM

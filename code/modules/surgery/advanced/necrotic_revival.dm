@@ -21,6 +21,7 @@
 /datum/surgery_step/bionecrosis
 	name = "start bionecrosis"
 	implements = list(/obj/item/reagent_containers/syringe = 100, /obj/item/pen = 30)
+	difficulty = EXP_HIGH
 	time = 50
 	chems_needed = list(/datum/reagent/toxin/zombiepowder, /datum/reagent/medicine/rezadone)
 	require_all_chems = FALSE

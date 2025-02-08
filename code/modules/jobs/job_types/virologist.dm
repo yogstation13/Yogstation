@@ -26,6 +26,15 @@
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 	minimal_character_age = 24 //Requires understanding of microbes, biology, infection, and all the like, as well as being able to understand how to interface the machines. Epidemiology is no joke of a field
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_MID,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 2
+
 	departments_list = list(
 		/datum/job_department/medical,
 	)

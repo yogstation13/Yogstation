@@ -277,7 +277,7 @@
 	var/slowdown = AM.dna.check_mutation(STRONG) ? 0 : HUMAN_CARRY_SLOWDOWN
 	AM.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, multiplicative_slowdown = slowdown)
 
-/datum/component/riding/human/proc/on_host_unarmed_melee(atom/target, modifiers)
+/datum/component/riding/human/proc/on_host_unarmed_melee(atom/target, proximity, modifiers)
 	var/mob/living/carbon/human/AM = parent
 	if(modifiers && modifiers[RIGHT_CLICK] && (target in AM.buckled_mobs))
 		force_dismount(target)

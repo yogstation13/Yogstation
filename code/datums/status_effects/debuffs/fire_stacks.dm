@@ -126,7 +126,7 @@
 	id = "fire_stacks" //fire_stacks and wet_stacks should have different IDs or else has_status_effect won't work
 	remove_on_fullheal = TRUE
 
-	enemy_types = list(/datum/status_effect/fire_handler/wet_stacks)
+	enemy_types = list(/datum/status_effect/fire_handler/wet_stacks, /datum/status_effect/fire_handler/shadowflame)
 	stack_modifier = 1
 
 	/// If we're on fire
@@ -278,7 +278,7 @@
 /datum/status_effect/fire_handler/wet_stacks
 	id = "wet_stacks"
 
-	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks)
+	enemy_types = list(/datum/status_effect/fire_handler/fire_stacks, /datum/status_effect/fire_handler/shadowflame)
 	stack_modifier = -1
 
 /datum/status_effect/fire_handler/wet_stacks/tick(delta_time, times_fired)

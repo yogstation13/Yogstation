@@ -231,7 +231,8 @@
 
 /datum/martial_art/buster_style/proc/soar(mob/living/user, atom/movable/center, turf/endzone, distance = 0, list/lobbed) //proc for throwing something you picked up with grapple
 	if(distance == 0)
-		return
+		thrown = null
+		return COMSIG_MOB_CANCEL_CLICKON
 	var/dir_to_target = get_dir(get_turf(center), endzone) //vars that let the thing be thrown while moving similar to things thrown normally
 	var/turf/next = get_step(get_turf(center), dir_to_target)
 	if(next.density) // crash into a wall and damage everything flying towards it before stopping 
@@ -296,6 +297,7 @@
 				var/atom/throw_target = get_edge_target_turf(K, dir_to_target)
 				K.throw_at(throw_target, 6, 4, user, 3)
 	addtimer(CALLBACK(src, PROC_REF(soar), user, center, endzone, distance-1, lobbed), 0.01 SECONDS)
+	thrown = null
 	return COMSIG_MOB_CANCEL_CLICKON
 
 /*---------------------------------------------------------------

@@ -424,7 +424,7 @@
 	if(uses_integrity)
 		playsound(src, P.hitsound, 50, 1)
 		visible_message(span_danger("[src] is hit by \a [P]!"), null, null, COMBAT_MESSAGE_RANGE)
-		if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
+		if(!QDELETED(src) && !P.nodamage) //Bullet on_hit effect might have already destroyed this object
 			take_damage(P.damage * P.demolition_mod, P.damage_type, P.armor_flag, 0, turn(P.dir, 180), P.armour_penetration)
 
 ///Return true if we're inside the passed in atom
@@ -832,7 +832,7 @@
 		to_chat(user,span_warning("You can't dump the contents of [src_object.parent] into itself!"))
 		return
 	//yogs end
-	while (do_after(user, 1 SECONDS, src, TRUE, FALSE, CALLBACK(STR, TYPE_PROC_REF(/datum/component/storage, handle_mass_item_insertion), things, src_object, user)))
+	while (do_after(user, 1 SECONDS, src, NONE, TRUE, CALLBACK(STR, TYPE_PROC_REF(/datum/component/storage, handle_mass_item_insertion), things, src_object, user)))
 		stoplag(1)
 	to_chat(user, span_notice("You dump as much of [src_object.parent]'s contents into [STR.insert_preposition]to [src] as you can."))
 	STR.orient2hud(user)

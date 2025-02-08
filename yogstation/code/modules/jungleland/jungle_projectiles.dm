@@ -1,5 +1,6 @@
 /obj/projectile/jungle
 	icon = 'yogstation/icons/obj/jungle.dmi'
+	speed = 3
 
 /obj/projectile/jungle/heal_orb
 	name = "Orb of healing"
@@ -18,18 +19,8 @@
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
-/obj/projectile/jungle/meduracha_spit
+/obj/projectile/reagent/meduracha_spit
 	name = "Glob of toxic goo"
 	icon_state = "meduracha_spit"
-	damage = 20
-	damage_type = TOX
-	armor_flag = BIO
-
-/obj/projectile/jungle/meduracha_spit/on_hit(atom/target, blocked)
-	. = ..()
-	if(!ishuman(target))
-		return
-	var/mob/living/carbon/human/H = target 
-	var/chance = 100 - H.getarmor(null,BIO)
-	if(prob(max(10,chance * 0.75))) // higher chance than toxic water
-		H.reagents.add_reagent(/datum/reagent/toxic_metabolites,15)
+	transfer_methods = TOUCH
+	reagents_list = list(/datum/reagent/toxic_metabolites = 10)

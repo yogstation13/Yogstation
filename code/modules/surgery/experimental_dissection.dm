@@ -42,7 +42,7 @@
 		return FALSE
 	. = ..()
 	
-/datum/surgery_step/dissection/proc/check_value(mob/living/target, datum/surgery/experimental_dissection/ED)
+/datum/surgery_step/dissection/proc/check_value(mob/user, mob/living/target, datum/surgery/experimental_dissection/ED)
 	var/cost = EXPDIS_BASE_REWARD
 	var/multi_surgery_adjust = 0
 
@@ -77,11 +77,13 @@
 
 	//multiply by multiplier in surgery
 	cost *= ED.value_multiplier
+	cost *= (5 + user.get_skill(SKILL_SCIENCE)) / 5
 	return (cost-multi_surgery_adjust)
 
 /datum/surgery_step/dissection/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/points_earned = check_value(target, surgery)
+	var/points_earned = check_value(user, target, surgery)
 	user.visible_message("[user] dissects [target], discovering [points_earned] point\s of data!", span_notice("You dissect [target], and write down [points_earned] point\s worth of discoveries!"))
+	user.add_exp(SKILL_SCIENCE, points_earned / 2)
 	new /obj/item/research_notes(user.loc, points_earned, TECHWEB_POINT_TYPE_GENERIC, "biology")
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
 	target.apply_damage(80, BRUTE, L)
@@ -91,7 +93,7 @@
 
 /datum/surgery_step/dissection/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	user.visible_message("[user] dissects [target]!", span_notice("<span class='notice'>You dissect [target], but do not find anything particularly interesting."))
-	new /obj/item/research_notes(user.loc, round(check_value(target, surgery)) * 0.01, TECHWEB_POINT_TYPE_GENERIC, "biology")
+	new /obj/item/research_notes(user.loc, round(check_value(user, target, surgery)) * 0.01, TECHWEB_POINT_TYPE_GENERIC, "biology")
 	var/obj/item/bodypart/L = target.get_bodypart(BODY_ZONE_CHEST)
 	target.apply_damage(80, BRUTE, L)
 	return TRUE

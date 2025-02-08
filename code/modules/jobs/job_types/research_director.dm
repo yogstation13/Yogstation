@@ -37,6 +37,15 @@
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
 	minimal_character_age = 26 //Barely knows more than actual scientists, just responsibility and AI things
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_HIGH,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/science,
 		/datum/job_department/command,

@@ -22,7 +22,7 @@
 		else
 			t_max = rand(1,4)
 
-	var/seedloc = O.loc
+	var/atom/seedloc = O.loc
 	if(extractor)
 		seedloc = extractor.loc
 
@@ -37,7 +37,6 @@
 				t_prod.forceMove(seedloc)
 				t_amount++
 			qdel(O)
-			return seeds
 
 	else if(istype(O, /obj/item/grown))
 		var/obj/item/grown/F = O
@@ -46,13 +45,18 @@
 				return
 			while(t_amount < t_max)
 				var/obj/item/seeds/t_prod = F.seed.Copy()
+				seeds.Add(t_prod)
 				t_prod.forceMove(seedloc)
 				t_amount++
 			qdel(O)
-		return 1
 
-	return 0
+	if(user && seeds.len)
+		var/obj/item/seeds/seed = seeds[1] // all seeds are duplicates, pick the first one in the list
+		if(user.add_exp(SKILL_SCIENCE, seed.rarity * 10, seed.type))
+			user.playsound_local(get_turf(seedloc), 'sound/machines/ping.ogg', 25, TRUE)
+			seedloc.balloon_alert(user, "rare plant catalogued: [initial(seed.product.name)]")
 
+	return (seeds.len ? seeds : FALSE)
 
 /obj/machinery/seed_extractor
 	name = "seed extractor"

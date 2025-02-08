@@ -1,5 +1,7 @@
 /datum/plant_gene
 	var/name
+	/// Skill gain from extracting this gene. Can only be gained once.
+	var/extract_value = 0
 
 /datum/plant_gene/proc/get_name() // Used for manipulator display and gene disk name.
 	return name
@@ -138,6 +140,7 @@
 	var/rate = 0.05
 	var/examine_line = ""
 	var/trait_id // must be set and equal for any two traits of the same type
+	extract_value = 150
 
 /datum/plant_gene/trait/Copy()
 	var/datum/plant_gene/trait/G = ..()
@@ -433,6 +436,7 @@
 
 /datum/plant_gene/trait/fire_resistance // Lavaland
 	name = "Fire Resistance"
+	extract_value = 500
 
 /datum/plant_gene/trait/fire_resistance/apply_vars(obj/item/seeds/S)
 	if(!(S.resistance_flags & FIRE_PROOF))
@@ -454,3 +458,4 @@
 
 /datum/plant_gene/trait/plant_type/alien_properties
 	name ="?????"
+	extract_value = 500

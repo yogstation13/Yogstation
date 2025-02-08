@@ -24,16 +24,6 @@ const VendingRow = (props, context) => {
     // yogs end
   );
 
-  const customFree = (
-    !data.onstation
-    || (
-      data.user
-      && data.department
-      && data.department === data.user.department
-    )
-    || data.ignores_capitalism
-  );
-
   return (
     <Table.Row>
       <Table.Cell collapsing>
@@ -80,7 +70,7 @@ const VendingRow = (props, context) => {
               || !data.user
               || (!free && product.price > data.user.cash)
             )}
-            content={customFree ? 'FREE' : product.price + ' cr'}
+            content={product.price + ' cr'}
             onClick={() => act('vend_custom', {
               'item': product.name,
             })} />

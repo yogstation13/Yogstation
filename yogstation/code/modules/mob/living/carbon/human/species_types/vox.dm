@@ -2,6 +2,8 @@
 	name = "Vox"
 	plural_form = "Vox"
 	id = SPECIES_VOX
+	monitor_icon = "crow"
+	monitor_color = "#13c230"
 	is_dimorphic = FALSE
 	generate_husk_icon = TRUE
 	species_traits = list(EYECOLOR, HAS_TAIL, HAS_FLESH, HAS_BONE, HAIRCOLOR, FACEHAIRCOLOR, MUTCOLORS, MUTCOLORS_SECONDARY) // Robust, but cannot be cloned easily.

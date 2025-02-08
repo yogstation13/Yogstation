@@ -284,7 +284,7 @@
 
 /obj/effect/decal/cleanable/blood/footprints/examine(mob/user)
 	. = ..()
-	if((shoe_types.len + species_types.len) > 0)
+	if((species_types.len ||shoe_types.len) && user.skill_check(SKILL_PHYSIOLOGY, EXP_MID))
 		. += "You recognise the [name] as belonging to:"
 		for(var/sole in shoe_types)
 			var/obj/item/clothing/item = sole
@@ -292,14 +292,14 @@
 			. += "[icon2html(initial(item.icon), user, initial(item.icon_state))] [article] <B>[initial(item.name)]</B>."
 		for(var/species in species_types)
 			// god help me
-			if(species == "unknown")
+			if(!species || species == "unknown")
 				. += "Some <B>feet</B>."
 			else if(species == "monkey")
 				. += "[icon2html('icons/mob/monkey.dmi', user, "monkey1")] Some <B>monkey paws</B>."
 			else if(species == SPECIES_HUMAN)
 				. += "[icon2html('icons/mob/human_parts.dmi', user, "default_human_l_leg")] Some <B>human feet</B>."
 			else
-				. += "[icon2html('icons/mob/human_parts.dmi', user, "[species]_l_leg")] Some <B>[species] feet</B>."
+				. += "[icon2html(species_types[species][FOOTPRINT_INDEX_FILE], user, species_types[species][FOOTPRINT_INDEX_STATE])] Some <B>[species] feet</B>."
 
 /obj/effect/decal/cleanable/blood/footprints/replace_decal(obj/effect/decal/cleanable/blood/blood_decal)
 	if(blood_state != blood_decal.blood_state || footprint_sprite != blood_decal.footprint_sprite) //We only replace footprints of the same type as us

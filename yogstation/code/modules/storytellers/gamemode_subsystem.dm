@@ -594,12 +594,26 @@ SUBSYSTEM_DEF(gamemode)
 			)
 			query_round_game_mode.Execute()
 			qdel(query_round_game_mode)
+	if(report)
+		addtimer(CALLBACK(src, PROC_REF(send_intercept)), rand(600, 1800))
 	generate_station_goals()
 	handle_post_setup_roundstart_events()
 	handle_post_setup_points()
 	roundstart_event_view = FALSE
 	return TRUE
 
+/datum/controller/subsystem/gamemode/proc/send_intercept()
+	var/intercepttext = "<b><i>Central Command Status Summary</i></b><hr>"
+	intercepttext += "<b>Central Command has intercepted and is attempting to decode a Syndicate transmission with vital information regarding their movements in this station's sector.</b>"
+	intercepttext += generate_station_goal_report()
+
+	if(CONFIG_GET(flag/auto_blue_alert))
+		print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
+		priority_announce("A summary has been copied and printed to all communications consoles.\n\n[generate_station_trait_report()]", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
+		if(SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_BLUE)
+			SSsecurity_level.set_level(SEC_LEVEL_BLUE)
+	else
+		print_command_report(intercepttext, "Central Command Status Summary")
 
 ///Handles late-join antag assignments
 /datum/controller/subsystem/gamemode/proc/make_antag_chance(mob/living/carbon/human/character)
@@ -879,10 +893,14 @@ SUBSYSTEM_DEF(gamemode)
 		total_valid_antags++
 
 	var/round_started = SSticker.HasRoundStarted()
-	var/list/dat = list()
-	dat += "Storyteller: [storyteller ? "[storyteller.name]" : "None"] "
-	dat += " <a href='?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='?src=[REF(src)];panel=main'>Refresh</a>"
-	dat += "<BR><font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
+	var/list/dat = list()	
+	dat += "<BR><a href='?src=[REF(src)];panel=main;action=halt_storyteller' [halted_storyteller ? "class='linkOn'" : ""]>HALT Storyteller</a> <a href='?src=[REF(src)];panel=main;action=open_stats'>Event Panel</a> <a href='?src=[REF(src)];panel=main;action=set_storyteller'>Set Storyteller</a> <a href='?src=[REF(src)];panel=main'>Refresh</a>"
+	if(storyteller)
+		dat += "<BR>Storyteller: [storyteller.name]"
+		dat += "<BR>Description: [storyteller.desc]"
+	else
+		dat += "<BR><b>No Storyteller Selected</b>"
+	dat += "<font color='#888888'><i>Storyteller determines points gained, event chances, and is the entity responsible for rolling events.</i></font>"
 	dat += "<BR>Active Players: [active_players]   (Head: [head_crew], Sec: [sec_crew], Eng: [eng_crew], Med: [med_crew])"
 	dat += "<BR>Antagonist Count vs Maximum: [total_valid_antags] / [get_antag_cap()]"
 	dat += "<HR>"

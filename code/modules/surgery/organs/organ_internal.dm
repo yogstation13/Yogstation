@@ -35,7 +35,10 @@
 	///Do we effect the appearance of our mob. Used to save time in preference code
 	var/visual = TRUE
 
-/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE,special_zone = null)
+	///Quality cybernetic check, see Insert(), the higher the better
+	var/cybernetic_quality = 0
+
+/obj/item/organ/proc/Insert(mob/living/carbon/M, special = 0, cybernetic_check = FALSE, drop_if_replaced = TRUE, special_zone = null)
 	if(!iscarbon(M) || owner == M)
 		return
 
@@ -43,6 +46,9 @@
 		zone = special_zone
 
 	var/obj/item/organ/replaced = M.getorganslot(slot)
+	if(cybernetic_check && replaced.cybernetic_quality > cybernetic_quality) //If true, this won't replace the upgraded cybernetic organs with normal cybernetic one
+		return
+
 	if(replaced && !special_zone)
 		replaced.Remove(M, special = 1)
 		if(drop_if_replaced)

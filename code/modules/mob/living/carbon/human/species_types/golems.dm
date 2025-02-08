@@ -11,7 +11,7 @@
 	siemens_coeff = 0
 	punchdamagelow = 5
 	punchdamagehigh = 14
-	punchstunthreshold = 11 //about 40% chance to stun
+	punchstunchance = 0.4 //40% chance to stun
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
 	nojumpsuit = 1
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC
@@ -194,7 +194,7 @@
 	name = "Silver Golem"
 	id = "silver golem"
 	fixed_mut_color = "#dddddd"
-	punchstunthreshold = 9 //60% chance, from 40%
+	punchstunchance = 0.6 //60% chance, from 40%
 	meat = /obj/item/stack/ore/silver
 	info_text = "As a <span class='danger'>Silver Golem</span>, your attacks have a higher chance of stunning. Being made of silver, your body is immune to most types of magic."
 	prefix = "Silver"
@@ -217,7 +217,6 @@
 	stunmod = 0.4
 	punchdamagelow = 12
 	punchdamagehigh = 21
-	punchstunthreshold = 18 //still 40% stun chance
 	speedmod = 4 //pretty fucking slow
 	meat = /obj/item/stack/ore/iron
 	info_text = "As a <span class='danger'>Plasteel Golem</span>, you are slower, but harder to stun, and hit very hard when punching. You also magnetically attach to surfaces and so don't float without gravity and cannot have positions swapped with other beings."
@@ -583,7 +582,7 @@
 	say_mod = "honks"
 	punchdamagelow = 0
 	punchdamagehigh = 1
-	punchstunthreshold = 2 //Harmless and can't stun
+	punchstunchance = 0 //Harmless and can't stun
 	meat = /obj/item/stack/ore/bananium
 	info_text = "As a <span class='danger'>Bananium Golem</span>, you are made for pranking. Your body emits natural honks, and you can barely even hurt people when punching them. Your skin also bleeds banana peels when damaged."
 	attack_verbs = list("honk")
@@ -796,7 +795,7 @@
 	burnmod = 2 // don't get burned
 	speedmod = 1 // not as heavy as stone
 	punchdamagelow = 4
-	punchstunthreshold = 7
+	punchstunchance = 0.2
 	punchdamagehigh = 8 // not as heavy as stone
 	prefix = "Cloth"
 	special_names = null
@@ -1049,7 +1048,7 @@
 	heatmod = 2
 	speedmod = 1.5
 	punchdamagelow = 4
-	punchstunthreshold = 7
+	punchstunchance = 0.2
 	punchdamagehigh = 8
 	var/last_creation = 0
 	var/brother_creation_cooldown = 300
@@ -1468,7 +1467,6 @@
 	burnmod = 0.75
 	speedmod = 1 // not as heavy as stone
 	heatmod = 0.1 //very little damage, but still there. Its like how a candle doesn't melt in seconds but still melts.
-	punchstunthreshold = 7
 	punchdamagehigh = 9 // not as heavy as stone
 	prefix = "Wax"
 	special_names = list("Candelabra", "Candle")
@@ -1663,7 +1661,7 @@
 	inherent_traits = list(TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_NOHUNGER,TRAIT_NOGUNS)
 	speedmod = 1.5 // Slightly faster
 	armor = 25
-	punchstunthreshold = 13
+	punchstunchance = 0.2
 	fixed_mut_color = "48002b"
 	info_text = "As a <span class='danger'>Tar Golem</span>, you burn very very easily and can temporarily turn yourself into a pool of tar, in this form you are invulnerable to all attacks."
 	random_eligible = FALSE //If false, the golem subtype can't be made through golem mutation toxin

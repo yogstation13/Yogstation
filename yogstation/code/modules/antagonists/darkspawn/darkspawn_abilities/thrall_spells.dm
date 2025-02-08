@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/thrall_mind
 	name = "Thrall mind"
-	desc = "Consume 1 willpower to thrall a target's mind. To be eligible, they must be alive and recently drained by Devour Will. Can also be used to revive deceased thralls."
+	desc = "Consume 1 willpower to thrall a target's mind.<br>To be eligible, they must be alive and recently drained by Devour Will.<br>Can also be used to revive deceased thralls.<br>Right-click to release thralls from your control."
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	background_icon_state = "bg_alien"
 	overlay_icon_state = "bg_alien_border"
@@ -18,6 +18,12 @@
 	hand_path = /obj/item/melee/touch_attack/darkspawn
 	///Willpower spent by the darkspawn datum to thrall a mind
 	var/willpower_cost = 1
+
+/datum/action/cooldown/spell/touch/thrall_mind/Trigger(trigger_flags, atom/target)
+	if(trigger_flags & TRIGGER_SECONDARY_ACTION)
+		release_thrall()
+		return
+	return ..()
 
 /datum/action/cooldown/spell/touch/thrall_mind/can_cast_spell(feedback)
 	var/datum/antagonist/darkspawn/master = isdarkspawn(owner)
@@ -45,11 +51,11 @@
 	var/datum/antagonist/darkspawn/master = isdarkspawn(caster)
 
 	if(!isthrall(target))
-		if(!target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
-			to_chat(owner, span_danger("[target]'s will is still too strong to thrall."))
-			return FALSE
 		if(master.willpower < willpower_cost)
 			to_chat(owner, span_danger("You do not have enough will to thrall [target]."))
+			return FALSE
+		if(!get_shadow_tumor(target))
+			to_chat(owner, span_danger("[target] does not have a shadow bead for you to enhance."))
 			return FALSE
 
 	owner.balloon_alert(owner, "Krx'lna tyhx graha...")
@@ -116,34 +122,10 @@
 		to_chat(owner, span_velvet("Your power is incapable of controlling <b>[target].</b>"))
 	return TRUE
 
-//////////////////////////////////////////////////////////////////////////
-//----------------------------Get rid of a thrall-----------------------//
-//////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/release_thrall
-	name = "Release thrall"
-	desc = "Release a thrall from your control, freeing your power to be redistributed and restoring a portion of the spent willpower."
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-	buttontooltipstyle = "alien"
-	button_icon_state = "veiling_touch"
-	antimagic_flags = NONE
-	panel = "Darkspawn"
-	check_flags = AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_CASTABLE_AS_BRAIN
-
-/datum/action/cooldown/spell/release_thrall/can_cast_spell(feedback)
-	var/datum/antagonist/darkspawn/dude = isdarkspawn(owner)
-	if(dude && istype(dude))
-		var/datum/team/darkspawn/team = dude.get_team()
-		if(team &&!LAZYLEN(team.thralls))
-			if(feedback)
-				to_chat(owner, "You have no thralls to release.")
-			return
-	return ..()
-	
-/datum/action/cooldown/spell/release_thrall/cast(atom/cast_on)
-	. = ..()
+/**
+ * Release a thrall if right click
+ */
+/datum/action/cooldown/spell/touch/thrall_mind/proc/release_thrall()
 	if(!isdarkspawn(owner))
 		return
 
@@ -152,6 +134,10 @@
 		return
 
 	var/datum/team/darkspawn/team = dude.get_team()
+
+	if(!LAZYLEN(team.thralls))
+		to_chat(owner, "You have no thralls to release.")
+		return
 
 	var/loser = tgui_input_list(owner, "Select a thrall to release from your control.", "Release a thrall", team.thralls)
 	if(!loser || !istype(loser, /datum/mind))

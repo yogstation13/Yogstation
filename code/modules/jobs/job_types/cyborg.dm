@@ -14,6 +14,15 @@
 
 	display_order = JOB_DISPLAY_ORDER_CYBORG
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_MID,
+		SKILL_TECHNICAL = EXP_MASTER,
+		SKILL_SCIENCE = EXP_MID,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = EXP_NONE
+
 	departments_list = list(
 		/datum/job_department/silicon,
 	)

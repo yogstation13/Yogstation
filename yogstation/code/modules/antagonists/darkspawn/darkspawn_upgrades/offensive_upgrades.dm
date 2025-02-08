@@ -147,7 +147,7 @@
 	desc = "Empower your staff with the ability to consume the light of anything shot."
 	lore_description = "The Aaah'ryt sigil, representing consumption, is etched onto the staff."
 	icon_state = "lighteater_sign"
-	willpower_cost = 2
+	willpower_cost = 1
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE
 	flag_to_add = STAFF_UPGRADE_LIGHTEATER
@@ -193,6 +193,16 @@
 	menu_tab = STORE_OFFENSE
 	learned_abilities = list(/datum/action/cooldown/spell/pointed/darkspawn_build/abyssal_call)
 	
+/datum/psi_web/shadowflame
+	name = "Shadowflame Gout"
+	desc = "Release a burst of shadowflame, rapidly sapping the heat of any individual."
+	lore_description = "An abhorrent inversion of the natural laws of thermodynamics."
+	icon_state = "veiling_touch" //needs an icon
+	willpower_cost = 2
+	shadow_flags = DARKSPAWN_WARLOCK
+	menu_tab = STORE_OFFENSE
+	learned_abilities = list(/datum/action/cooldown/spell/cone/staggered/shadowflame)
+
 /datum/psi_web/shadow_beam
 	name = "Void Beam"
 	desc = "After a short delay, fire a huge beam of void terrain across the entire station."
@@ -207,7 +217,7 @@
 	name = "Null Burst"
 	desc = "After a short delay, create an explosion of void terrain at the targeted location."
 	lore_description = "Tears a portion of reality into the void for a short duration."
-	icon_state = "null_burst" //needs an icon
+	icon_state = "null_burst"
 	willpower_cost = 3
 	shadow_flags = DARKSPAWN_WARLOCK
 	menu_tab = STORE_OFFENSE

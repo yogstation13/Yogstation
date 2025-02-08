@@ -270,13 +270,13 @@
 	return dna.species.get_biological_state()
 
 /mob/living/carbon/human/proc/get_punchdamagehigh()	//Gets the total maximum punch damage
-	return dna.species.punchdamagehigh + physiology.punchdamagehigh_bonus
+	return dna.species.punchdamagehigh + physiology.punchdamagehigh_bonus + (get_skill(SKILL_FITNESS) / 2)
 
 /mob/living/carbon/human/proc/get_punchdamagelow()	//Gets the total minimum punch damage
-	return dna.species.punchdamagelow + physiology.punchdamagelow_bonus
+	return dna.species.punchdamagelow + physiology.punchdamagelow_bonus + get_skill(SKILL_FITNESS)
 
-/mob/living/carbon/human/proc/get_punchstunthreshold()	//Gets the total punch damage needed to knock down someone
-	return dna.species.punchstunthreshold + physiology.punchstunthreshold_bonus
+/mob/living/carbon/human/proc/get_punchstunchance()	//Gets the total chance to knock down someone
+	return dna.species.punchstunchance + physiology.punchstunchance_bonus
 
 /// Fully randomizes everything according to the given flags.
 /mob/living/carbon/human/proc/randomize_human_appearance(randomize_flags = ALL)

@@ -2,6 +2,8 @@
 	// 2spooky
 	name = "Spooky Scary Skeleton"
 	id = SPECIES_SKELETON
+	monitor_icon = "skull"
+	monitor_color = "#fffcfa"
 	say_mod = "rattles"
 	possible_genders = list(NEUTER)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/skeleton

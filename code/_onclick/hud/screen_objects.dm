@@ -118,6 +118,108 @@
 	var/datum/language_holder/H = M.get_language_holder()
 	H.open_language_menu(usr)
 
+/atom/movable/screen/skill_menu
+	name = "skills menu"
+	icon = 'icons/mob/screen_midnight.dmi'
+	icon_state = "skill_menu"
+	screen_loc = ui_skill_menu
+	var/list/allocated_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	var/allocated_points = EXP_NONE
+
+/atom/movable/screen/skill_menu/Click()
+	ui_interact(usr)
+
+/atom/movable/screen/skill_menu/ui_interact(mob/user, datum/tgui/ui)
+	if(!user.mind)
+		CRASH("[user.type] ([user]) tried to use the skill menu without a mind!")
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "SkillMenu", "Allocate Skill Points")
+		ui.open()
+
+/atom/movable/screen/skill_menu/ui_data(mob/user)
+	var/list/data = list()
+	var/list/skill_data = list()
+	for(var/skill in user.mind.skills)
+		skill_data.Add(list(list(
+			"base" = user.get_skill(skill),
+			"allocated" = allocated_skills[skill],
+			"exp_progress" = user.mind?.exp_progress[skill],
+		)))
+	data["skills"] = skill_data
+	data["skill_points"] = user.mind.skill_points
+	data["allocated_points"] = allocated_points
+	data["skill_cap"] = EXP_MASTER + HAS_MIND_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)
+	return data
+
+/atom/movable/screen/skill_menu/ui_static_data(mob/user)
+	var/static/list/data = list(
+		"exp_per_level" = EXPERIENCE_PER_LEVEL
+	)
+	return data
+
+/atom/movable/screen/skill_menu/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = usr
+	if(!user.mind)
+		CRASH("User ([user]) without a mind attempted to allocate skill points!")
+	switch(action)
+		if("confirm")
+			if(allocated_points > user.mind.skill_points)
+				stack_trace("[user] attempted to allocate [allocated_points] skill points when they only had [user.mind.skill_points] available!")
+				message_admins("[key_name_admin(user)] may have attempted an exploit to gain more skill points than intended!")
+				qdel(allocated_skills)
+				allocated_skills = list(
+					SKILL_PHYSIOLOGY = EXP_NONE,
+					SKILL_MECHANICAL = EXP_NONE,
+					SKILL_TECHNICAL = EXP_NONE,
+					SKILL_SCIENCE = EXP_NONE,
+					SKILL_FITNESS = EXP_NONE,
+				)
+				allocated_points = EXP_NONE
+				return TRUE
+			for(var/skill in user.mind.skills)
+				user.adjust_skill(skill, allocated_skills[skill], max_skill = EXP_GENIUS)
+				allocated_skills[skill] = EXP_NONE
+			user.mind.skill_points -= allocated_points
+			allocated_points = EXP_NONE
+			if(!user.mind.skill_points)
+				user.clear_alert("skill points")
+			return TRUE
+		if("allocate")
+			if(allocated_points + params["amount"] > user.mind.skill_points)
+				return TRUE
+			if(allocated_points + params["amount"] < 0)
+				return TRUE
+			if(allocated_skills[params["skill"]] + params["amount"] + user.get_skill(params["skill"]) > (EXP_MASTER + HAS_MIND_TRAIT(user, TRAIT_EXCEPTIONAL_SKILL)))
+				return TRUE
+			if(allocated_skills[params["skill"]] + params["amount"] < 0)
+				return TRUE
+			allocated_skills[params["skill"]] += params["amount"]
+			allocated_points += params["amount"]
+			return TRUE
+
+/atom/movable/screen/skill_menu/ui_status(mob/user)
+	if(!user.mind)
+		return UI_CLOSE
+	return UI_INTERACTIVE
+
+/atom/movable/screen/skill_menu/ui_state(mob/user)
+	return GLOB.always_state
+
+/atom/movable/screen/skill_menu/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/crafting),
+	)
+
 /atom/movable/screen/ghost/pai
 	name = "pAI Candidate"
 	icon = 'icons/mob/screen_midnight.dmi'

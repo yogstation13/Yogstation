@@ -1,9 +1,13 @@
 #define PROGRESSBAR_HEIGHT 6
 #define PROGRESSBAR_ANIMATION_TIME 5
+#define SKILL_ICON_OFFSET_X -18
+#define SKILL_ICON_OFFSET_Y -13
 
 /datum/progressbar
 	///The progress bar visual element.
 	var/image/bar
+	///The icon for the skill used.
+	var/image/skill_icon
 	///The target where this progress bar is applied and where it is shown.
 	var/atom/bar_loc
 	///The mob whose client sees the progress bar.
@@ -20,9 +24,11 @@
 	var/listindex = 0
 	///Whether progress has already been ended.
 	var/progress_ended = FALSE
+	///Which skill this uses
+	var/skill_check
 
 
-/datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE, datum/callback/extra_checks)
+/datum/progressbar/New(mob/User, goal_number, atom/target, timed_action_flags = NONE, datum/callback/extra_checks, skill_check)
 	. = ..()
 	if (!istype(target))
 		stack_trace("Invalid target [target] passed in")
@@ -41,6 +47,11 @@
 	bar = image('icons/effects/progessbar.dmi', bar_loc, "prog_bar_0")
 	SET_PLANE_EXPLICIT(bar, ABOVE_HUD_PLANE, User) //yogs change, increased so it draws ontop of ventcrawling overlays
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(skill_check)
+		skill_icon = image('icons/mob/skills.dmi', bar_loc, "[skill_check]_small", pixel_x = SKILL_ICON_OFFSET_X)
+		SET_PLANE_EXPLICIT(skill_icon, ABOVE_HUD_PLANE, User)
+		skill_icon.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+		src.skill_check = skill_check
 	user = User
 	src.extra_checks = extra_checks
 
@@ -85,9 +96,11 @@
 				continue
 			progress_bar.listindex--
 
-			progress_bar.bar.pixel_y = 32 + (PROGRESSBAR_HEIGHT * (progress_bar.listindex - 1))
-			var/dist_to_travel = 32 + (PROGRESSBAR_HEIGHT * (progress_bar.listindex - 1)) - PROGRESSBAR_HEIGHT
+			var/dist_to_travel = 32 + (PROGRESSBAR_HEIGHT * progress_bar.listindex) - PROGRESSBAR_HEIGHT
 			animate(progress_bar.bar, pixel_y = dist_to_travel, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+
+			if(progress_bar.skill_icon)
+				animate(progress_bar.skill_icon, pixel_y = dist_to_travel + SKILL_ICON_OFFSET_Y, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 		LAZYREMOVEASSOC(user.progressbars, bar_loc, src)
 		user = null
@@ -99,6 +112,8 @@
 
 	if(bar)
 		QDEL_NULL(bar)
+	if(skill_icon)
+		QDEL_NULL(skill_icon)
 
 	return ..()
 
@@ -119,6 +134,7 @@
 	if(!user_client) //Disconnected, already gone.
 		return
 	user_client.images -= bar
+	user_client.images -= skill_icon
 	user_client = null
 
 
@@ -141,6 +157,11 @@
 	bar.pixel_y = 0
 	bar.alpha = 0
 	user_client.images += bar
+	if(skill_icon)
+		skill_icon.pixel_y = SKILL_ICON_OFFSET_Y
+		skill_icon.alpha = 0
+		user_client.images += skill_icon
+		animate(skill_icon, pixel_y = 32 + SKILL_ICON_OFFSET_Y + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 	animate(bar, pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 
@@ -166,8 +187,12 @@
 
 	if(last_progress != goal)
 		bar.icon_state = "[bar.icon_state]_fail"
+	else if(skill_check) // get better at things by practicing them
+		user.add_exp(skill_check, goal)
 
 	animate(bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	if(skill_icon)
+		animate(skill_icon, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
 
 	QDEL_IN(src, PROGRESSBAR_ANIMATION_TIME)
 
@@ -179,5 +204,7 @@
 		return
 	INVOKE_ASYNC(src, PROC_REF(end_progress))
 
+#undef SKILL_ICON_OFFSET_Y
+#undef SKILL_ICON_OFFSET_X
 #undef PROGRESSBAR_ANIMATION_TIME
 #undef PROGRESSBAR_HEIGHT

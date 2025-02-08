@@ -41,32 +41,30 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// For machines and structures that should not break into parts, eg, holodeck stuff
 #define NODECONSTRUCT_1				(1<<7)
 /// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
-#define PREVENT_CLICK_UNDER_1		(1<<9)
+#define PREVENT_CLICK_UNDER_1		(1<<8)
 /// Can players recolor this in-game via vendors (and maybe more if support is added)?
-#define IS_PLAYER_COLORABLE_1 (1<<10)
-/// TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
-#define TESLA_IGNORE_1				(1<<11)
+#define IS_PLAYER_COLORABLE_1 		(1<<9)
 /// If a turf can be made dirty at roundstart. This is also used in areas.
-#define CAN_BE_DIRTY_1				(1<<12)
+#define CAN_BE_DIRTY_1				(1<<10)
 /// Should we use the initial icon for display? Mostly used by overlay only objects
-#define HTML_USE_INITAL_ICON_1 		(1<<13)
+#define HTML_USE_INITAL_ICON_1 		(1<<11)
 /// conducts electricity (metal etc.)
-#define CONDUCT_1					(1<<14)
+#define CONDUCT_1					(1<<12)
 /// should not get harmed if this gets caught by an explosion?
-#define PREVENT_CONTENTS_EXPLOSION_1 (1<<15)
+#define PREVENT_CONTENTS_EXPLOSION_1 (1<<13)
 /// should the contents of this atom be acted upon
-#define RAD_PROTECT_CONTENTS_1 		(1<<16)
+#define RAD_PROTECT_CONTENTS_1 		(1<<14)
 /// should this object be allowed to be contaminated
-#define RAD_NO_CONTAMINATE_1 		(1<<17)
+#define RAD_NO_CONTAMINATE_1 		(1<<15)
 /// Prevents most radiation on this turf from leaving it
-#define RAD_CONTAIN_CONTENTS 		(1<<18)
+#define RAD_CONTAIN_CONTENTS 		(1<<16)
 /// Is the thing currently spinning?
-#define IS_SPINNING_1 				(1<<19)
+#define IS_SPINNING_1 				(1<<17)
 /// If this atom has experienced a decal element "init finished" sourced appearance update
 /// We use this to ensure stacked decals don't double up appearance updates for no rasin
 /// Flag as an optimization, don't make this a trait without profiling
 /// Yes I know this is a stupid flag, no you can't take him from me
-#define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<20)
+#define DECAL_INIT_UPDATE_EXPERIENCED_1 (1<<18)
 
 //TURF FLAGS
 /// If a turf cant be jaunted through.
@@ -168,9 +166,11 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 //tesla_zap
 #define TESLA_MACHINE_EXPLOSIVE		(1<<0)
 #define TESLA_ALLOW_DUPLICATES		(1<<1)
-#define TESLA_OBJ_DAMAGE			(1<<2)
-#define TESLA_MOB_DAMAGE			(1<<3)
-#define TESLA_MOB_STUN				(1<<4)
+#define TESLA_NO_CHAINING			(1<<2)
+#define TESLA_OBJ_DAMAGE			(1<<3)
+#define TESLA_MOB_DAMAGE			(1<<4)
+#define TESLA_MOB_STUN				(1<<5)
+#define TESLA_MOB_GIB				(1<<6)
 
 #define TESLA_DEFAULT_FLAGS TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN | TESLA_MACHINE_EXPLOSIVE
 #define TESLA_FUSION_FLAGS TESLA_OBJ_DAMAGE | TESLA_MOB_DAMAGE | TESLA_MOB_STUN
@@ -250,5 +250,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define IGNORE_INCAPACITATED (1<<3)
 /// Used to prevent important slowdowns from being abused by drugs like kronkaine
 #define IGNORE_SLOWDOWNS (1<<4)
+/// Used to keep the skill indicator icon without using the built-in delay modifier
+#define IGNORE_SKILL_DELAY (1<<5)
 
 #define IGNORE_ALL (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM|IGNORE_INCAPACITATED|IGNORE_SLOWDOWNS)

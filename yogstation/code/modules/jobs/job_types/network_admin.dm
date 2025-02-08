@@ -22,6 +22,15 @@
 	display_order = JOB_DISPLAY_ORDER_NETWORK_ADMIN
 	minimal_character_age = 22 //Feasibly same level as engineer, mostly a data engineer instead of a mechanical or construction-based one, though is still capable of making certain machines
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_MID,
+		SKILL_SCIENCE = EXP_MID,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 2
+
 	departments_list = list(
 		/datum/job_department/engineering,
 	)

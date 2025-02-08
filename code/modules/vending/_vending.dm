@@ -203,6 +203,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	/// used for narcing on underages
 	var/obj/item/radio/alertradio
 
+	/// payout account (weakref) for custom items
+	var/datum/weakref/custom_payout_account
+
 /obj/item/circuitboard
     ///determines if the circuit board originated from a vendor off station or not.
 	var/onstation = TRUE
@@ -287,6 +290,17 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		set_light(0)
 		return
 	set_light(powered() ? MINIMUM_USEFUL_LIGHT_RANGE : 0)
+
+/obj/machinery/vending/update_desc()
+	. = ..()
+	desc = initial(desc)
+	if(custom_payout_account)
+		var/datum/bank_account/account = custom_payout_account.resolve()
+		if(istype(account))
+			desc += "\n"
+			desc += span_notice("Custom orders are paid out to <b>[account.account_holder]</b>.")
+			desc += "\n"
+			desc += span_notice("Custom orders are priced at <b>[chef_price]</b> credits.")
 
 /obj/machinery/vending/update_icon_state()
 	if(stat & BROKEN)
@@ -561,10 +575,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 					if(1) // shatter their legs and bleed 'em
 						crit_rebate = 60
 						C.bleed(150)
-						var/obj/item/bodypart/l_leg/l = C.get_bodypart(BODY_ZONE_L_LEG)
+						var/obj/item/bodypart/leg/left/l = C.get_bodypart(BODY_ZONE_L_LEG)
 						if(l)
 							l.receive_damage(brute=200, updating_health=TRUE)
-						var/obj/item/bodypart/r_leg/r = C.get_bodypart(BODY_ZONE_R_LEG)
+						var/obj/item/bodypart/leg/right/r = C.get_bodypart(BODY_ZONE_R_LEG)
 						if(r)
 							r.receive_damage(brute=200, updating_health=TRUE)
 						if(l || r)
@@ -656,6 +670,28 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/datum/data/vending_custom_product/P = vending_machine_input[name]
 	P.amount++
 	loaded_items++
+
+	if(custom_payout_account && custom_payout_account.resolve())
+		return
+
+	var/obj/item/card/id/id_card = user.get_idcard()
+	if(!istype(id_card))
+		return
+
+	var/datum/bank_account/account = id_card.registered_account
+	if(!istype(account))
+		return
+
+	custom_payout_account = WEAKREF(account)
+	// at the time of writing, tgui_input_number is nonfunctional
+	// 10s timeout so people cant change price while a customer is shopping
+	tgui_input_text_async(user, "Set a price for custom items (1-9999)", "Custom Price", "10", 4, FALSE, CALLBACK(src, PROC_REF(chef_price_update)), 10 SECONDS)
+
+/obj/machinery/vending/proc/chef_price_update(entry)
+	var/input_text = text2num(entry)
+	if(isnum(input_text) && input_text >= 1 && input_text <= 9999)
+		chef_price = input_text
+	update_desc()
 
 /obj/machinery/vending/exchange_parts(mob/user, obj/item/storage/part_replacer/W)
 	if(!istype(W))
@@ -884,7 +920,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			vend_ready = FALSE //One thing at a time!!
 
 			// Charge the user
-			if (!charge_user(chef_price, P.full_name, FALSE))
+			if (!charge_user(chef_price, P.full_name, TRUE, TRUE))
 				vend_ready = TRUE
 				return
 
@@ -905,7 +941,7 @@ GLOBAL_LIST_EMPTY(vending_products)
  * Charge the user during a vend
  * Returns false if the user could not buy this item
  */
-/obj/machinery/vending/proc/charge_user(price, item_name, always_charge)
+/obj/machinery/vending/proc/charge_user(price, item_name, always_charge, pay_custom = FALSE)
 	var/mob/living/L
 	if(isliving(usr))
 		L = usr
@@ -929,9 +965,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 			say("You do not possess the funds to purchase \the [item_name].")
 			flick(icon_deny,src)
 			return FALSE
-		var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
-		if(D)
-			D.adjust_money(price)
+		if(pay_custom)
+			var/datum/bank_account/custom_account = custom_payout_account.resolve()
+			if(istype(custom_account))
+				custom_account.adjust_money(price)
+				custom_account.bank_card_talk("\A [item_name] was purchased for [price] credits!")
+		else
+			var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
+			if(D)
+				D.adjust_money(price)
 
 	return TRUE
 

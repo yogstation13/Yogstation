@@ -77,8 +77,8 @@
 /obj/structure/reagent_dispensers/fueltank/fire_act(exposed_temperature, exposed_volume)
 	boom()
 
-/obj/structure/reagent_dispensers/fueltank/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
-	..() //extend the zap
+/obj/structure/reagent_dispensers/fueltank/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
+	. = ..() //extend the zap
 	boom()
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/P)

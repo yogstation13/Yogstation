@@ -3,6 +3,8 @@
 	name = "Felinid Human"
 	id = SPECIES_FELINE
 	limbs_id = SPECIES_HUMAN
+	monitor_icon = "paw"
+	monitor_color = "#f52ab4"
 	attack_verbs = list("slash")
 	attack_effect = ATTACK_EFFECT_CLAW
 	attack_sound = 'sound/weapons/slash.ogg'

@@ -18,6 +18,15 @@
 
 	minimal_character_age = 26 //Matches MD
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_MID,
+	)
+	skill_points = 2
+
 	departments_list = list(
 		/datum/job_department/medical,
 		/datum/job_department/cargo,

@@ -167,6 +167,19 @@
 	var/backpack_contents = -1
 	var/suit_store = -1
 
+	/// The base skills of this ghost role.
+	var/list/base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	/// The skill points this ghost role can allocate.
+	var/skill_points = EXP_MASTER
+	/// Whether this ghost role can allocate up to 5 points into a single skill.
+	var/exceptional_skill = FALSE
+
 	var/hair_style
 	var/facial_hair_style
 	var/skin_tone
@@ -200,6 +213,11 @@
 		H.skin_tone = skin_tone
 	else
 		H.skin_tone = random_skin_tone()
+	for(var/skill in base_skills)
+		H.adjust_skill(skill, base_skills[skill])
+	H.add_skill_points(skill_points)
+	if(exceptional_skill && H.mind)
+		ADD_TRAIT(H.mind, TRAIT_EXCEPTIONAL_SKILL, assignedrole)
 	H.update_hair()
 	H.update_body()
 	if(outfit)
@@ -336,6 +354,14 @@
 	icon_state = "sleeper"
 	short_desc = "You are a space doctor!"
 	assignedrole = "Space Doctor"
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_MID,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = EXP_HIGH
 
 /obj/effect/mob_spawn/human/doctor/alive/equip(mob/living/carbon/human/H)
 	..()

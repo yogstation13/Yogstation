@@ -23,6 +23,15 @@
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 	minimal_character_age = 22 //Engineering, AI theory, robotic knowledge and the like
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_LOW,
+		SKILL_TECHNICAL = EXP_LOW,
+		SKILL_SCIENCE = EXP_LOW,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/science,
 	)

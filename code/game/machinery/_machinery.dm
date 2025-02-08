@@ -143,7 +143,7 @@ Class Procs:
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
-		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
+		armor = list(MELEE = 25, BULLET = 10, LASER = 10, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70, ELECTRIC = 0)
 	. = ..()
 	SSmachines.register_machine(src)
 	GLOB.machines += src
@@ -299,10 +299,6 @@ Class Procs:
 
 		return user.can_interact_with(src) //AIs don't care about petty mortal concerns like needing to be next to a machine to use it, but borgs do care somewhat
 
-	. = ..()
-	if(!.)
-		return FALSE
-
 	if(panel_open && !(interaction_flags_machine & INTERACT_MACHINE_OPEN))
 		return FALSE
 
@@ -394,6 +390,10 @@ Class Procs:
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
 		return FALSE
 	return _try_interact(user, modifiers)
+
+/obj/machinery/attack_tk(mob/user, modifiers)
+	new /obj/effect/temp_visual/telekinesis(get_turf(src))
+	return attack_hand(user, modifiers)
 
 /obj/machinery/attack_ai(mob/user, modifiers)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
@@ -633,15 +633,12 @@ Class Procs:
 /obj/machinery/proc/can_be_overridden()
 	. = 1
 
-/obj/machinery/tesla_act(power, tesla_flags, shocked_objects, zap_gib = FALSE)
-	..()
-	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
-		if(prob(60))
-			ex_act(EXPLODE_DEVASTATE)
-		else if (prob(50))
-			explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
+/obj/machinery/tesla_act(source, power, zap_range, tesla_flags, shocked_objects)
+	. = ..()
+	if((tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE) && prob(25))
+		explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(tesla_flags & TESLA_OBJ_DAMAGE)
-		take_damage(power/2000, BURN, ENERGY)
+		take_damage(power / 1000, BURN, ELECTRIC)
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 

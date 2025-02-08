@@ -20,6 +20,9 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 	var/obj/item/contains_type
 
+	var/should_have_victim = FALSE
+	var/datum/weakref/victim
+
 /obj/item/a_gift/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10,10)
@@ -27,6 +30,13 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	icon_state = "giftdeliverypackage[rand(1,5)]"
 
 	contains_type = get_gift_type()
+	if(should_have_victim)
+		var/list/eligible_victims = list()
+		for(var/mob/player in GLOB.player_list)
+			if(player.client && player.stat <= SOFT_CRIT && SSjob.GetJob(player.mind.assigned_role) && !HAS_TRAIT(player.mind, TRAIT_CANNOT_OPEN_PRESENTS))
+				eligible_victims |= player
+		if(eligible_victims.len > 0)
+			victim = WEAKREF(pick(eligible_victims))
 
 /obj/item/a_gift/suicide_act(mob/user)
 	user.visible_message(span_suicide("[user] peeks inside [src] and cries [user.p_them()]self to death! It looks like [user.p_they()] [user.p_were()] on the naughty list..."))
@@ -34,12 +44,22 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/examine(mob/M)
 	. = ..()
+	var/mob/living/victim_ref = victim?.resolve()
+	if(istype(victim_ref))
+		. += span_notice("It has <b>[victim_ref]</b>'s name on it.")
+	else
+		. += span_notice("It lacks a name tag. Anyone can claim it!")
 	if((M.mind && HAS_TRAIT(M.mind, TRAIT_PRESENT_VISION)) || isobserver(M))
 		. += span_notice("It contains \a [initial(contains_type.name)].")
 
 /obj/item/a_gift/attack_self(mob/M)
 	if(M.mind && HAS_TRAIT(M.mind, TRAIT_CANNOT_OPEN_PRESENTS))
 		to_chat(M, span_warning("You're supposed to be spreading gifts, not opening them yourself!"))
+		return
+
+	var/mob/living/victim_ref = victim?.resolve()
+	if(istype(victim_ref) && victim_ref != M)
+		to_chat(M, span_warning("This isn't your gift!"))
 		return
 
 	qdel(src)
@@ -109,3 +129,6 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	var/gift_type = pick(GLOB.possible_gifts)
 
 	return gift_type
+
+/obj/item/a_gift/anything/personal
+	should_have_victim = TRUE

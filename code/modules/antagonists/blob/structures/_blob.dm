@@ -210,13 +210,13 @@
 		if(prob(40 + (severity * 6)))
 			new /obj/effect/temp_visual/emp(get_turf(src))
 
-/obj/structure/blob/tesla_act(power, tesla_flags, shocked_targets, zap_gib = FALSE)
-	..()
+/obj/structure/blob/tesla_act(source, power, zap_range, tesla_flags, list/shocked_targets)
+	. = ..()
 	if(overmind)
 		if(overmind.blobstrain.tesla_reaction(src, power))
-			take_damage(power/400, BURN, ENERGY)
+			take_damage(power/400, BURN, ELECTRIC)
 	else
-		take_damage(power/400, BURN, ENERGY)
+		take_damage(power/400, BURN, ELECTRIC)
 
 /obj/structure/blob/extinguish()
 	..()

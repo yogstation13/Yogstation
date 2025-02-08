@@ -70,7 +70,7 @@ TRICORDER
 
 //Gas Analyzer Turf Scan
 /obj/item/multitool/tricorder/attack_self(mob/user)
-	scangasses(user)
+	atmosanalyzer_scan(user, user.loc)
 
 //If medicalTricorder is set to FALSE then the tricorder will not be as effective as a regular medical scanner
 /obj/item/proc/lesserhealthscan(mob/user, mob/living/M)

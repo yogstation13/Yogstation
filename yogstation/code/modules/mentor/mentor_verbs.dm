@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(mentor_verbs, list(
 	/client/proc/show_mentor_memo,
 	/client/proc/show_mentor_tickets,
 	/client/proc/cmd_mentor_pm_context,
+	/client/proc/cmd_mentor_pm_panel,
 	/client/proc/dementor
 	))
 GLOBAL_PROTECT(mentor_verbs)
@@ -64,9 +65,8 @@ GLOBAL_PROTECT(mentor_verbs)
 
 			if(C.is_afk())
 				msg += " (AFK)"
-		else
-			msg += span_info("Mentorhelps are also sent to Discord. If no mentors are available in game mentorhelp anyways and a mentor on Discord may see it and respond.")
 		msg += "\n"
+	msg += span_info("Mentorhelps are also sent to Discord. If no mentors are available in game mentorhelp anyways and a mentor on Discord may see it and respond.")
 
 	to_chat(src, msg, confidential=TRUE)
 

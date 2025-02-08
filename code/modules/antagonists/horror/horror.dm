@@ -717,9 +717,9 @@
 		to_chat(src, span_notice("This host lacks enough brain function to control."))
 		return
 
-	if(victim.has_trauma_type(/datum/brain_trauma/severe/split_personality))
-		to_chat(src, span_notice("This host's brain lobe separation makes it too complex for you to control."))
-		return
+	// if(victim.has_trauma_type(/datum/brain_trauma/severe/split_personality))
+	// 	to_chat(src, span_notice("This host's brain lobe separation makes it too complex for you to control."))
+	// 	return
 
 	if(bonding)
 		bonding = FALSE

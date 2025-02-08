@@ -26,6 +26,8 @@
 		else if(bodypart_flag & cover.body_parts_partial_covered)
 			protection += cover.armor.getRating(armor_flag) * 0.5
 	protection += physiology.armor.getRating(armor_flag)
+	if(armor_flag == MELEE)
+		protection = 100 - ((100 - protection) * (50 - get_skill(SKILL_FITNESS)) / 50) // 8% multiplicative armor at EXP_MASTER
 	return protection
 
 ///Get all the clothing on a specific body part
@@ -86,6 +88,10 @@
 		if(shield_check & SHIELD_BLOCK)
 			P.on_hit(src, 100, def_zone)
 			return BULLET_ACT_HIT
+		
+		if(iscarbon(P.firer) && stat == CONSCIOUS) // gain experience from shooting people, more if they were far away and less if it wasn't a real gun
+			var/mob/shooter = P.firer
+			shooter.add_exp(SKILL_FITNESS, max(initial(P.range) - P.range, 1) * ((P.nodamage || !P.damage) ? 2 : 5))
 
 	return ..(P, def_zone)
 
@@ -449,7 +455,7 @@
 
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE, gib = FALSE)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, zone = HANDS, override = FALSE, tesla_shock = FALSE, illusion = FALSE, stun = TRUE)
 	if(!override)
 		siemens_coeff *= physiology.siemens_coeff
 	. = ..()

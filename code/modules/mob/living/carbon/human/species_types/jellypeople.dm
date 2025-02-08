@@ -3,6 +3,8 @@
 	name = "Jellyperson"
 	plural_form = "Jellypeople"
 	id = SPECIES_JELLYPERSON
+	monitor_icon = "cloud"
+	monitor_color = "#f2505d"
 	default_color = "00FF90"
 	say_mod = "chirps"
 	bubble_icon = BUBBLE_SLIME

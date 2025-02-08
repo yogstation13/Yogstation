@@ -69,6 +69,9 @@
 ///Prepares a footstep for living mobs. Determines if it should get played. Returns the turf it should get played on. Note that it is always a /turf/open
 /datum/element/footstep/proc/prepare_step(mob/living/source)
 	var/turf/open/turf = get_turf(source)
+	if(SSlag_switch.measures[DISABLE_FOOTSTEPS] && !HAS_TRAIT(source, TRAIT_BYPASS_MEASURES))
+		return
+	
 	if(!istype(turf))
 		return
 

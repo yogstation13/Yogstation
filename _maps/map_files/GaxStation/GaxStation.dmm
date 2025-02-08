@@ -21058,23 +21058,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/engine/foyer)
-"jWg" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Gravity Generator"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
-/turf/open/floor/engine,
-/area/engine/gravity_generator)
 "jWj" = (
 /obj/machinery/light_switch{
 	pixel_x = 24
@@ -30708,6 +30691,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"oQl" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Gravity Generator"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
+/turf/open/floor/engine,
+/area/engine/gravity_generator)
 "oQp" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -70952,7 +70951,7 @@ qxA
 kOZ
 lkR
 wRx
-jWg
+oQl
 wrK
 umE
 cFy

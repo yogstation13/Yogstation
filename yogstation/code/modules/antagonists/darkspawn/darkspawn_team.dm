@@ -8,6 +8,10 @@
 	var/list/datum/mind/thralls = list()
 	///The number of drains required to perform the sacrament
 	var/required_succs = 10 //How many succs are needed (this is changed in pre_setup, so it scales based on pop)
+	///How much progress towards generating a willpower via tumors
+	var/current_willpower_progress = 0
+	///How much progress until another willpower is awarded
+	var/max_willpower_progress = 100
 	///How many drains have happened so far
 	var/lucidity = 0
 	///The max number of people that can be actively converted
@@ -109,13 +113,19 @@
 ////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------Special antag procs--------------------------------//
 ////////////////////////////////////////////////////////////////////////////////////
-/datum/team/darkspawn/proc/grant_willpower(amount = 1, silent = FALSE)
+/datum/team/darkspawn/proc/willpower_progress(amount = 1)
+	current_willpower_progress += amount
+	if(current_willpower_progress >= max_willpower_progress)
+		current_willpower_progress -= max_willpower_progress
+		max_willpower_progress *= 1.1 //gets harder to get more willpower with every willpower granted to reduce snowballing
+		grant_willpower(1)
+
+//give a willpower to every darkspawn on the team
+/datum/team/darkspawn/proc/grant_willpower(amount = 1)
 	for(var/datum/mind/master in members)
 		if(master.has_antag_datum(/datum/antagonist/darkspawn)) //sanity check
 			var/datum/antagonist/darkspawn/antag = master.has_antag_datum(/datum/antagonist/darkspawn)
 			antag.willpower += amount
-			if(!silent && master.current)
-				to_chat(master.current, span_velvet("You have gained [amount] willpower."))
 
 /datum/team/darkspawn/proc/grant_lucidity(amount = 1)
 	lucidity += amount

@@ -454,7 +454,7 @@
 	icon = 'yogstation/icons/obj/jungle.dmi'
 
 /obj/item/crusher_trophy/jungleland/aspect_of_tar
-	name = "Aspect of tar"
+	name = "aspect of tar"
 	desc = "It pulsates with a corroding, everpresent energy."
 	icon_state = "aspect_of_tar"
 	denied_type = /obj/item/crusher_trophy/jungleland/aspect_of_tar

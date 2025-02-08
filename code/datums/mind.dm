@@ -50,6 +50,30 @@
 	var/list/restricted_roles = list()
 	var/list/datum/objective/objectives = list()
 
+	/// The owner of this mind's ability to perform certain kinds of tasks.
+	var/list/skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_NONE,
+	)
+
+	/// Progress towards increasing their skill level.
+	var/list/exp_progress = list(
+		SKILL_PHYSIOLOGY = 0,
+		SKILL_MECHANICAL = 0,
+		SKILL_TECHNICAL = 0,
+		SKILL_SCIENCE = 0,
+		SKILL_FITNESS = 0,
+	)
+
+	/// One-time experience gains that have already been acquired.
+	var/list/exp_sources = list()
+
+	/// Free skill points to allocate
+	var/skill_points = 0
+
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
@@ -97,6 +121,7 @@
 	key = _key
 	soulOwner = src
 	martial_art = default_martial_art
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_EXCEPTIONAL_SKILL), PROC_REF(update_skills))
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
@@ -267,6 +292,9 @@
 	var/mob/living/carbon/human/traitor_mob = current
 	if (!istype(traitor_mob))
 		return
+
+	traitor_mob.add_skill_points(EXP_LOW) // one extra skill point
+	ADD_TRAIT(src, TRAIT_EXCEPTIONAL_SKILL, type)
 
 	var/list/all_contents = traitor_mob.get_all_contents()
 	var/obj/item/modular_computer/PDA = locate() in all_contents
@@ -761,6 +789,81 @@
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = TRUE		//indicates that the mind is currently synced with a client
+
+/// Returns the mob's skill level
+/mob/proc/get_skill(skill)
+	if(!mind)
+		return EXP_NONE
+	return mind.skills[skill]
+
+/// Adjusts the mob's skill level
+/mob/proc/adjust_skill(skill, amount=0, min_skill = EXP_NONE, max_skill = EXP_MASTER)
+	if(!mind)
+		return
+	mind.skills[skill] = clamp(mind.skills[skill] + amount, min_skill, max_skill)
+
+/// Checks if the mob's skill level meets a given threshold.
+/mob/proc/skill_check(skill, amount)
+	if(!mind)
+		return FALSE
+	return (mind.skills[skill] >= amount)
+
+/// Adds progress towards increasing skill level. Returns TRUE if it added progress. Adding a source prevents gaining exp from that source again.
+/mob/proc/add_exp(skill, amount, source)
+	if(!mind)
+		return FALSE
+	if(!amount)
+		return FALSE
+	if(source && (source in mind.exp_sources))
+		return FALSE
+	mind.exp_sources.Add(source)
+	mind.exp_progress[skill] += amount
+	var/levels_gained = check_exp(skill)
+	if(levels_gained) // remove an equal amount of unallocated skill points to prevent exploits
+		mind.skill_points = max(mind.skill_points - levels_gained, 0)
+	return TRUE
+
+/// Levels up a skill if it has enough experience to do so.
+/mob/proc/check_exp(skill)
+	if(!mind)
+		return FALSE
+	var/current_level = get_skill(skill)
+	var/exp_required = EXPERIENCE_PER_LEVEL * (2**current_level) // exp required scales exponentially
+	if(mind.exp_progress[skill] < exp_required)
+		return FALSE
+	var/skill_cap = EXP_MASTER + HAS_MIND_TRAIT(src, TRAIT_EXCEPTIONAL_SKILL)
+	var/levels_gained = min(round(log(2, 1 + (mind.exp_progress[skill] / exp_required))), max(skill_cap - current_level)) // in case you gained so much you go up more than one level
+	if(levels_gained < 1)
+		return FALSE
+	var/levels_allocated = hud_used?.skill_menu ? hud_used.skill_menu.allocated_skills[skill] : 0
+	if(levels_allocated > 0) // adjust any already allocated skills to prevent shenanigans (you know who you are)
+		hud_used.skill_menu.allocated_points -= min(levels_gained, levels_allocated)
+		hud_used.skill_menu.allocated_skills[skill] -= min(levels_gained, levels_allocated)
+	mind.exp_progress[skill] -= exp_required * (((2**round(levels_gained + 1)) / 2) - 1)
+	adjust_skill(skill, levels_gained, max_skill = skill_cap)
+	to_chat(src, span_boldnotice("Your [skill] skill is now level [get_skill(skill)]!"))
+	return levels_gained
+
+/// Returns whether experience has been gained from a given source.
+/mob/proc/has_exp(source)
+	if(!mind)
+		return FALSE
+	return (source in mind.exp_sources) ? TRUE : FALSE
+
+/// Adds skill points to be allocated at will.
+/mob/proc/add_skill_points(amount)
+	if(!mind)
+		return
+	mind.skill_points += amount
+	throw_alert("skill points", /atom/movable/screen/alert/skill_up)
+
+/// Called when [TRAIT_EXCEPTIONAL_SKILL] is added to the mob.
+/datum/mind/proc/update_skills(datum/source)
+	SIGNAL_HANDLER
+	if(!current)
+		return
+	for(var/skill in skills)
+		current.check_exp(skill)
 
 /datum/mind/proc/has_martialart(string)
 	if(martial_art && martial_art.id == string)

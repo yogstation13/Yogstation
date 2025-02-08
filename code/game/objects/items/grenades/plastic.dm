@@ -32,9 +32,12 @@
 
 /obj/item/grenade/plastic/Destroy()
 	qdel(nadeassembly)
+	if(target)
+		UnregisterSignal(target, COMSIG_ATOM_UPDATE_OVERLAYS)
+		target.update_appearance()
+		target = null
 	nadeassembly = null
-	target = null
-	..()
+	return ..()
 
 /obj/item/grenade/plastic/attackby(obj/item/I, mob/user, params)
 	if(!nadeassembly && istype(I, /obj/item/assembly_holder))
@@ -55,7 +58,7 @@
 		nadeassembly = null
 		update_appearance(UPDATE_ICON)
 		return
-	..()
+	return ..()
 
 /obj/item/grenade/plastic/prime()
 	var/turf/location
@@ -136,12 +139,16 @@
 			I.throw_range = max(1, (I.throw_range - 3))
 			I.embedding = I.embedding.setRating(embed_chance = 0)
 
-		target.add_overlay(plastic_overlay, TRUE)
+		RegisterSignal(target, COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_attached_overlays))
+		target.update_appearance(UPDATE_OVERLAYS)
 		if(!nadeassembly)
 			to_chat(user, span_notice("You plant the bomb. Timer counting down from [det_time]."))
 			addtimer(CALLBACK(src, PROC_REF(prime)), det_time*10)
 		else
 			qdel(src)	//How?
+
+/obj/item/grenade/plastic/proc/update_attached_overlays(atom/source, list/overlay_list)
+	overlay_list += plastic_overlay
 
 /obj/item/grenade/plastic/proc/shout_syndicate_crap(mob/M)
 	if(!M)
@@ -194,6 +201,9 @@
 
 /obj/item/grenade/plastic/c4/Destroy()
 	qdel(wires)
+	if(target)
+		UnregisterSignal(target, COMSIG_ATOM_UPDATE_OVERLAYS)
+		target.update_appearance(UPDATE_OVERLAYS)
 	wires = null
 	target = null
 	return ..()

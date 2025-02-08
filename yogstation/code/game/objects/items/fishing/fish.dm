@@ -48,10 +48,14 @@
 	M.visible_message("[M] shows off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!", \
 						 span_notice("You show off [src]. It's [length] inch[length > 1 ? "es" : ""] long and weighs [weight] ounce[weight > 1 ? "s" : ""]!"))
 	RegisterSignal(M,COMSIG_ATOM_DIR_CHANGE, PROC_REF(stop_overlay),TRUE)
+	RegisterSignal(src, COMSIG_PREQDELETED, PROC_REF(stop_overlay))
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_overlay))
 
 /obj/item/reagent_containers/food/snacks/fish/proc/stop_overlay()
 	if(showoffer && showoff_overlay)
-		UnregisterSignal(showoffer,COMSIG_ATOM_DIR_CHANGE)
+		UnregisterSignal(showoffer, COMSIG_ATOM_DIR_CHANGE)
+		UnregisterSignal(src, COMSIG_PREQDELETED)
+		UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
 		showoffer.cut_overlay(showoff_overlay)
 		showoffer = null
 		showoff_overlay = null

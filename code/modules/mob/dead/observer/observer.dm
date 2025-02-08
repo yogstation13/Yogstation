@@ -509,8 +509,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "View Range"
 	set desc = "Change your view range."
 
+	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !is_admin(usr))
+		to_chat(usr, span_warning("Observer view range is disabled due to performance concerns."))
+		return
 	//yogs start -- Divert this verb to the admin variant if this guy has it
-	if(check_rights(R_ADMIN,FALSE) && hascall(usr.client,"toggle_view_range"))
+	if(is_admin(usr) && hascall(usr.client,"toggle_view_range"))
 		call(usr.client,"toggle_view_range")()
 		return
 	//yogs end
@@ -993,6 +996,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "T-ray view"
 	set desc = "Toggles a view of sub-floor objects"
+	if(SSlag_switch.measures[DISABLE_GHOST_ZOOM_TRAY] && !is_admin(usr))
+		to_chat(usr, span_warning("Observer T-ray view is disabled due to performance concerns."))
+		return
 
 	var/static/t_ray_view = FALSE
 	t_ray_view = !t_ray_view

@@ -18,7 +18,8 @@
 //////////////////////////////////////////////////////////////////////////
 /datum/action/cooldown/spell/touch/devour_will
 	name = "Devour Will"
-	desc = "Creates a dark bead that can be used on a human to begin draining the lucidity and willpower from a living target, knocking them unconscious for a time. Being interrupted will knock you down for a time."
+	desc = "Creates a dark bead that can be used on a human to begin draining the lucidity and willpower from a living target, knocking them unconscious for a time.\
+			<br>Being interrupted will knock you down for a time."
 	panel = "Darkspawn"
 	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
 	sound = null
@@ -61,11 +62,16 @@
 	if(target.stat == DEAD)
 		to_chat(caster, span_warning("[target] is too weak to drain."))
 		return
-	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
-		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
-		return
+	if(get_shadow_tumor(target))
+		to_chat(owner, span_danger("[target] already has a dark bead lodged within their psyche."))
+		return FALSE
+
+	var/datum/team/darkspawn/team = darkspawn.get_team()
+	if(!team)
+		CRASH("darkspawn without a team is trying to thrall someone")
 
 	caster.Immobilize(1 SECONDS) // So they don't accidentally move while beading
+	target.Immobilize(10 SECONDS) //we remove this if it's canceled early
 	target.silent += 5
 
 	caster.balloon_alert(caster, "Cera ko...")
@@ -76,133 +82,52 @@
 
 	eating = TRUE
 	if(!do_after(caster, 5 SECONDS, target))
+		to_chat(caster, span_danger("Being interrupted causes a backlash of psionic power."))
+		caster.Immobilize(5 SECONDS)
+		caster.Knockdown(10 SECONDS)
 		to_chat(target, span_boldwarning("All right... You're all right."))
-		caster.Knockdown(5 SECONDS)
+		target.SetImmobilized(0)
 		eating = FALSE
 		return FALSE
 	eating = FALSE
 
-	if(target.has_status_effect(STATUS_EFFECT_DEVOURED_WILL))
-		to_chat(caster, span_warning("[target]'s mind has not yet recovered enough willpower to be worth devouring."))
-		return
+	if(get_shadow_tumor(target))
+		to_chat(owner, span_danger("[target] already has a dark bead lodged within their psyche."))
+		return FALSE
 		
 	//put the victim to sleep before the visible_message proc so the victim doesn't see it
 	to_chat(target, span_progenitor("You suddenly feel... empty. Thoughts try to form, but flit away. You slip into a deep, deep slumber..."))
 	playsound(target, 'yogstation/sound/magic/devour_will_end.ogg', 75, FALSE)
 	target.playsound_local(target, 'yogstation/sound/magic/devour_will_victim.ogg', 50, FALSE)
-	target.Unconscious(5 SECONDS)
-
-	//get how much lucidity and willpower will be given
-	var/willpower_amount = 2
-	var/lucidity_amount = 1
-	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED)) //change the numbers before text
-		lucidity_amount = 0
-		willpower_amount *= 0.5
-		willpower_amount = round(willpower_amount) //make sure it's a whole number still
 
 	//format the text output to the darkspawn
 	var/list/self_text = list() 
 	
 	caster.balloon_alert(caster, "...akkraup'dej")
-	self_text += span_velvet("You devour [target]'s will.")
-	if(HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
-		self_text += span_warning("[target]'s mind is already damaged by previous devouring and has granted less willpower and no lucidity.")
-	else
-		self_text += span_velvet("This individual's lucidity brings you one step closer to the sacrament...")
-		self_text += span_warning("After meddling with [target]'s mind, they will grant less willpower and no lucidity any future times their will is devoured.")
-	self_text += span_warning("[target] is now severely weakened and will take some time to recover.")
-	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
+
+	var/obj/item/organ/shadowtumor/bead = target.getorganslot(ORGAN_SLOT_BRAIN_TUMOR)
+	if(!bead || !istype(bead))
+		bead = new
+		bead.Insert(target, FALSE, FALSE)
+		bead.antag_team = team
 
 	//pass out the willpower and lucidity to the darkspawns
-	var/datum/team/darkspawn/team = darkspawn.get_team()
-	if(team)
-		team.grant_willpower(willpower_amount)
-		team.grant_lucidity(lucidity_amount)
+	if(!HAS_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED))
+		ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
+		self_text += span_velvet("You place a dark bead deep within [target]'s psyche.")
+		self_text += span_velvet("This individual's lucidity brings you one step closer to the sacrament...")
+		self_text += span_velvet("You also feed off their will to fuel your growth, generating 2 willpower.")
+		self_text += span_velvet("No further attempts to drain this individual will provide willpower or lucidity.")
+		team.grant_willpower(2)
+		team.grant_lucidity(1)
+	else
+		self_text += span_velvet("You replace the dark bead deep within [target]'s psyche.")
 
-	//apply the long-term debuffs to the victim
+	caster.visible_message(span_warning("[caster] gently lowers [target] to the ground..."), self_text.Join("<br>"))
+
+	//apply the long-term debuff to the victim
 	target.apply_status_effect(STATUS_EFFECT_BROKEN_WILL)
-	target.apply_status_effect(STATUS_EFFECT_DEVOURED_WILL)
-	ADD_TRAIT(target, TRAIT_DARKSPAWN_DEVOURED, type)
 	return TRUE
-
-//////////////////////////////////////////////////////////////////////////
-//--------------------------Glorified handcuffs-------------------------//
-//////////////////////////////////////////////////////////////////////////
-/datum/action/cooldown/spell/touch/restrain_body
-	name = "Restrain body"
-	desc = "Forms rudimentary restraints on a target's hands."
-	panel = "Darkspawn"
-	button_icon = 'yogstation/icons/mob/actions/actions_darkspawn.dmi'
-	sound = null
-	background_icon_state = "bg_alien"
-	overlay_icon_state = "bg_alien_border"
-	buttontooltipstyle = "alien"
-	button_icon_state = "restrain_body"
-	check_flags = AB_CHECK_HANDS_BLOCKED |  AB_CHECK_IMMOBILE | AB_CHECK_LYING | AB_CHECK_CONSCIOUS
-	spell_requirements = SPELL_REQUIRES_HUMAN
-	invocation_type = INVOCATION_NONE
-	hand_path = /obj/item/melee/touch_attack/darkspawn
-	resource_costs = list(ANTAG_RESOURCE_DARKSPAWN = 5)
-	//Boolean on whether we're tying someone's hands
-	var/tying = FALSE
-
-/datum/action/cooldown/spell/touch/restrain_body/can_cast_spell(feedback)
-	if(tying)
-		return
-	return ..()
-
-/datum/action/cooldown/spell/touch/restrain_body/is_valid_target(atom/cast_on)
-	return iscarbon(cast_on)
-
-/datum/action/cooldown/spell/touch/restrain_body/cast_on_hand_hit(obj/item/melee/touch_attack/hand, mob/living/carbon/target, mob/living/carbon/caster)
-	var/datum/antagonist/darkspawn/darkspawn = isdarkspawn(caster)
-	if(!darkspawn || tying || target == caster) //no tying yourself
-		return
-	if(is_team_darkspawn(target))
-		to_chat(caster, span_warning("You cannot restrain allies."))
-		return
-	if(!istype(target))
-		to_chat(caster, span_warning("[target]'s mind is too pitiful to be of any use."))
-		return
-	if(target.handcuffed)
-		to_chat(caster, span_warning("[target] is already restrained."))
-		return
-
-	caster.balloon_alert(caster, "Koce ra...")
-	to_chat(caster, span_velvet("You begin restraining [target]..."))
-	playsound(target, 'yogstation/sound/ambience/antag/veil_mind_gasp.ogg', 50, TRUE)
-	tying = TRUE
-	if(!do_after(caster, 1.5 SECONDS, target, progress = FALSE))
-		tying = FALSE
-		return FALSE
-	tying = FALSE
-
-	target.silent += 5
-
-	if(target.handcuffed)
-		to_chat(caster, span_warning("[target] is already restrained."))
-		return
-
-	playsound(target, 'yogstation/sound/magic/devour_will_form.ogg', 50, TRUE)
-	target.set_handcuffed(new /obj/item/restraints/handcuffs/darkspawn(target))
-	target.update_handcuffed()
-
-	return TRUE
-
-//the restrains in question
-/obj/item/restraints/handcuffs/darkspawn
-	name = "shadow stitched restraints"
-	desc = "Bindings created by stitching together shadows."
-	icon_state = "handcuffAlien"
-	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	breakouttime = 30 SECONDS
-	flags_1 = NONE
-	item_flags = DROPDEL
-
-/obj/item/restraints/handcuffs/darkspawn/Initialize(mapload)
-	. = ..()
-	add_atom_colour(COLOR_VELVET, FIXED_COLOUR_PRIORITY)
 
 //////////////////////////////////////////////////////////////////////////
 //-----------------------Recall shuttle ability-------------------------//

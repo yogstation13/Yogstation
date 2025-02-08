@@ -469,6 +469,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	max_amount = MAXCOIL
 	amount = MAXCOIL
+	tool_behaviour = TOOL_WIRING
 	merge_type = /obj/item/stack/cable_coil // This is here to let its children merge between themselves
 	color = CABLE_HEX_COLOR_YELLOW
 	desc = "A coil of insulated power cable."

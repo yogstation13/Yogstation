@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	resistance_flags = ACID_PROOF
-	armor = list(MELEE = 100, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 100)
+	armor = list(MELEE = 100, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 100, ELECTRIC = 100)
 	max_integrity = 40
 	sharpness = SHARP_EDGED
 	grind_results = list(/datum/reagent/silicon = 20)

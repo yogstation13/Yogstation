@@ -5,6 +5,8 @@
 	name = "Vuulek"
 	plural_form = "Vuulen"
 	id = SPECIES_LIZARD
+	monitor_icon = "dragon"
+	monitor_color = "#8bf76a"
 	say_mod = "hisses"
 	default_color = "00FF00"
 	species_traits = list(MUTCOLORS,EYECOLOR,DIGITIGRADE,LIPS,HAS_FLESH,HAS_BONE,HAS_TAIL)
@@ -230,7 +232,6 @@
 	burnmod = 1.15
 	speedmod = -0.1 //similar to ethereals, should help with saving others
 	punchdamagehigh = 7
-	punchstunthreshold = 7
 	action_speed_coefficient = 0.9 //they're smart and efficient unlike other lizards
 	species_language_holder = /datum/language_holder/lizard/shaman
 	var/datum/action/cooldown/spell/touch/heal/lizard_touch
@@ -240,6 +241,7 @@
 	. = ..()
 	lizard_touch = new(C)
 	lizard_touch.Grant(C)
+	C.adjust_skill(SKILL_PHYSIOLOGY, EXP_HIGH)
 
 //removes the heal spell
 /datum/species/lizard/ashwalker/shaman/on_species_loss(mob/living/carbon/C)
@@ -295,8 +297,7 @@
 	burnmod = 0.8
 	brutemod = 0.9 //something something dragon scales
 	punchdamagelow = 3
-	punchdamagehigh = 12
-	punchstunthreshold = 12	//+2 claws of powergaming
+	punchdamagehigh = 12	//+2 claws of powergaming
 
 /datum/species/lizard/draconid/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()

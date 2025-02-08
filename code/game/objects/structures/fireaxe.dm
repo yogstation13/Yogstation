@@ -5,7 +5,7 @@
 	icon_state = "fireaxe"
 	anchored = TRUE
 	density = FALSE
-	armor = list(MELEE = 50, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
+	armor = list(MELEE = 50, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50, ELECTRIC = 100)
 	max_integrity = 200//yogs - increase durability to 200
 	integrity_failure = 50
 	var/locked = TRUE
@@ -281,7 +281,7 @@
 
 	req_access = list(ACCESS_CAPTAIN)
 	alert = TRUE
-	armor = list(MELEE = 30, BULLET = 20, LASER = 0, ENERGY = 100, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50)
+	armor = list(MELEE = 30, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 50, ELECTRIC = 100)
 	axe = FALSE
 
 /obj/structure/fireaxecabinet/bridge/spare/Initialize(mapload)

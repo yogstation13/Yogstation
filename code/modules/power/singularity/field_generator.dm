@@ -33,7 +33,7 @@ field_generator power level display
 	use_power = NO_POWER_USE
 	max_integrity = 500
 	//100% immune to lasers and energy projectiles since it absorbs their energy.
-	armor = list(MELEE = 25, BULLET = 10, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70)
+	armor = list(MELEE = 25, BULLET = 10, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 70, ELECTRIC = 100)
 	var/const/num_power_levels = 6	// Total number of power level icon has
 	var/power_level = 0
 	var/active = FG_OFFLINE
@@ -58,8 +58,8 @@ field_generator power level display
 	. = ..()
 	fields = list()
 	connected_gens = list()
-	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, "innate_empproof")
-	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, "innate_empproof")
+	ADD_TRAIT(src, TRAIT_EMPPROOF_SELF, INNATE_TRAIT)
+	ADD_TRAIT(src, TRAIT_EMPPROOF_CONTENTS, INNATE_TRAIT)
 
 /obj/machinery/field/generator/process()
 	if(active == FG_ONLINE)

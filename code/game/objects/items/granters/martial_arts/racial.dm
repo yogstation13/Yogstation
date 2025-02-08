@@ -101,6 +101,7 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	remarks = list("MANKIND IS DEAD.", "BLOOD IS FUEL.", "HELL IS FULL.")
+	ordered_remarks = TRUE
 
 /obj/item/book/granter/martial/ultra_violence/on_reading_start(mob/user)
 	to_chat(user, span_notice("You plug \the [src] in and begin loading PRG$[martial_name]."))

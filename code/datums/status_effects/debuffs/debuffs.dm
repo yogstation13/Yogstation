@@ -1084,13 +1084,6 @@
 	icon_state = "broken_will"
 	alerttooltipstyle = "alien" 
 
-//used to prevent the use of devour will on the target
-/datum/status_effect/devoured_will
-	id = "devoured_will"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3 MINUTES
-	alert_type = null
-
 /datum/status_effect/eldritch
 	duration = 15 SECONDS
 	status_type = STATUS_EFFECT_REPLACE

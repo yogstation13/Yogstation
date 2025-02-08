@@ -790,22 +790,36 @@ B --><-- A
 	sleep(duration)
 	A.cut_overlay(O)
 
+/// Returns the closest atom of a given type to the source atom.
 /proc/get_closest_atom(type, list, source)
 	var/list/closest_atoms = list()
-	var/closest_distance
+	var/closest_distance = INFINITY
 	for(var/A in list)
 		if(!istype(A, type))
 			continue
 		var/distance = get_dist(source, A)
-		if(!closest_atoms.len)
+		if(closest_distance > distance)
 			closest_distance = distance
 			closest_atoms = list(A)
-		else
-			if(closest_distance > distance)
-				closest_distance = distance
-				closest_atoms = list(A)
-			else if(closest_distance == distance)
-				closest_atoms += A
+		else if(closest_distance == distance)
+			closest_atoms += A
+	return pick(closest_atoms) //if there are multiple atoms with the same distance, picks randomly from a list of them
+
+/// Returns the closest atom of a given type to the center of a list of atoms. Can be very expensive with large lists.
+/proc/get_closest_atom_to_group(type, list, list/sources)
+	var/list/closest_atoms = list()
+	var/closest_distance = INFINITY
+	for(var/A in list)
+		if(!istype(A, type))
+			continue
+		var/distance = 0
+		for(var/atom/source as anything in sources)
+			distance += get_dist(source, A)
+		if(closest_distance > distance)
+			closest_distance = distance
+			closest_atoms = list(A)
+		else if(closest_distance == distance)
+			closest_atoms += A
 	return pick(closest_atoms) //if there are multiple atoms with the same distance, picks randomly from a list of them
 
 proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())

@@ -182,7 +182,6 @@
 		user_species.punchdamagelow += 0.5
 		// This affects the hitting power of Brawn.
 		user_species.punchdamagehigh += 0.5
-		user_species.punchstunthreshold += 0.5
 
 	// We're almost done - Spend your Rank now.
 	bloodsuckerdatum.bloodsucker_level++

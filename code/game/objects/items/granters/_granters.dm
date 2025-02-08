@@ -8,6 +8,8 @@
 	unique = 1
 	/// Flavor messages displayed to mobs reading the granter
 	var/list/remarks = list()
+	/// Whether to display the remarks in order.
+	var/ordered_remarks = FALSE
 	/// Controls how long a mob must keep the book in his hand to actually successfully learn
 	var/pages_to_mastery = 3
 	/// Sanity, whether it's currently being read
@@ -40,7 +42,7 @@
 	on_reading_start(user)
 	reading = TRUE
 	for(var/i in 1 to pages_to_mastery)
-		if(!turn_page(user))
+		if(!turn_page(user, i))
 			on_reading_stopped()
 			reading = FALSE
 			return
@@ -64,13 +66,13 @@
 	to_chat(user, span_notice("You finish reading [name]!"))
 
 /// The actual "turning over of the page" flavor bit that happens while someone is reading the granter.
-/obj/item/book/granter/proc/turn_page(mob/living/user)
+/obj/item/book/granter/proc/turn_page(mob/living/user, current_page = 1)
 	playsound(user, pick(book_sounds), 30, TRUE)
 
 	if(!do_after(user, 5 SECONDS, src))
 		return FALSE
 
-	to_chat(user, span_notice("[length(remarks) ? pick_n_take(remarks) : "You keep reading..."]"))
+	to_chat(user, span_notice("[ordered_remarks ? "[remarks[current_page]]" : (length(remarks) ? pick_n_take(remarks) : "You keep reading...")]"))
 	return TRUE
 
 /// Effects that occur whenever the book is read when it has no uses left.

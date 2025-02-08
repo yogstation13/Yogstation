@@ -249,6 +249,9 @@
 	///Contains the fullscreen overlays the mob can see (from 'code/_onclick/hud/fullscreen.dm')
 	var/list/screens = list()
 
+	/// Contains the blindspot overlays, if they are in use
+	var/list/datum/weakref/blindspot_overlay
+
 	///The HUD type the mob will gain on Initialize. (from 'code/_onclick/hud/hud.dm')
 	var/hud_type = /datum/hud
 

@@ -21,7 +21,7 @@
 
 /obj/item/clothing/head/helmet/clockwork/ratvar_act()
 	if(GLOB.ratvar_awakens)
-		armor.setRating(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
+		armor.setRating(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100, electric = 100)
 		clothing_flags |= STOPSPRESSUREDAMAGE
 		max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 		min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT

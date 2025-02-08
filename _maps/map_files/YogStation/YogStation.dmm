@@ -26129,6 +26129,23 @@
 /obj/structure/closet/secure_closet/captains,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/captain)
+"gxg" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Gravity Generator"
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
+/turf/open/floor/plasteel/dark,
+/area/engine/gravity_generator)
 "gxF" = (
 /obj/machinery/button/door{
 	desc = "A remote control-switch for shuttle construction storage.";
@@ -41432,24 +41449,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/genetics)
-"lYc" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Gravity Generator"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/turf_decal/delivery,
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
-/turf/open/floor/plasteel/dark,
-/area/engine/gravity_generator)
 "lYh" = (
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
@@ -98699,7 +98698,7 @@ xmC
 llu
 xqd
 meY
-lYc
+gxg
 dOW
 rFc
 jUw

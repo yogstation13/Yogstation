@@ -15528,12 +15528,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"gtO" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/space)
 "gtW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -15726,20 +15720,6 @@
 	initial_gas_mix = "co2=1000;TEMP=293.15"
 	},
 /area/engine/atmos)
-"gxd" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Medical Maintenance Access"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/medical/general,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "gxe" = (
 /turf/open/floor/catwalk_floor/telecomms,
 /area/ai_monitored/secondarydatacore)
@@ -17899,6 +17879,28 @@
 /obj/structure/sink/puddle,
 /turf/open/floor/grass,
 /area/tcommsat/computer)
+"hpf" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Gravity Generator"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
+/turf/open/floor/engine,
+/area/engine/gravity_generator)
 "hpj" = (
 /obj/effect/landmark/start/cargo_technician,
 /turf/open/floor/plasteel,
@@ -20772,6 +20774,23 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"iHX" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "Chief Medical Officer"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/effect/mapping_helpers/airlock/access/all/medical/cmo,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plasteel/cafeteria,
+/area/medical/medbay/central)
 "iIn" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 8
@@ -29607,13 +29626,6 @@
 "mrp" = (
 /turf/open/floor/wood,
 /area/maintenance/port/fore)
-"mrE" = (
-/obj/machinery/vending/wallmed{
-	pixel_y = -28
-	},
-/obj/effect/turf_decal/trimline/secred/filled/line/lower,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "mrK" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -42960,6 +42972,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+"rRV" = (
+/obj/machinery/vending/wallmed{
+	pixel_y = -28
+	},
+/obj/effect/turf_decal/trimline/secred/filled/line/lower,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "rRZ" = (
 /obj/machinery/door/window/westleft{
 	name = "Monkey Pen"
@@ -48820,6 +48842,22 @@
 	},
 /turf/open/space/basic,
 /area/solar/starboard/fore)
+"uqa" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Medical Maintenance Access"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/medical/general,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "uqf" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/reagent_dispensers/watertank,
@@ -49390,29 +49428,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
-"uCb" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Gravity Generator"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/engineering/equipment,
-/turf/open/floor/engine,
-/area/engine/gravity_generator)
 "uCz" = (
 /obj/structure/table/wood,
 /obj/item/folder/red,
@@ -51649,6 +51664,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"vwq" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "vwr" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
@@ -52487,22 +52508,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"vQo" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Chief Medical Officer"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/disposalpipe/segment,
-/obj/effect/mapping_helpers/airlock/access/all/medical/cmo,
-/turf/open/floor/plasteel/cafeteria,
-/area/medical/medbay/central)
 "vQv" = (
 /obj/machinery/light_switch{
 	pixel_y = -24
@@ -84810,7 +84815,7 @@ gvP
 eLo
 tpK
 mCi
-vQo
+iHX
 kPh
 kPh
 aGD
@@ -85838,7 +85843,7 @@ jYO
 xRc
 oYl
 gLZ
-gxd
+uqa
 csw
 eMa
 gOO
@@ -86094,7 +86099,7 @@ dlt
 dlt
 rnw
 dlt
-mrE
+rRV
 qSt
 rJF
 rJF
@@ -87635,7 +87640,7 @@ vYu
 icl
 enz
 kmo
-gtO
+vwq
 vpk
 ozf
 icl
@@ -97910,7 +97915,7 @@ dMR
 myG
 myG
 myG
-uCb
+hpf
 myG
 myG
 jvn

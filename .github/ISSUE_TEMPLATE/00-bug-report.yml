@@ -51,6 +51,14 @@ body:
     description: Also known as ckey, its the username you use to login on BYOND.
     placeholder: "Player1702"
 
+- type: input
+  attributes:
+    label: BYOND version
+    description: You can check this by opening BYOND, clicking the settings button, clicking on "About BYOND...", and the version will be in the lower left corner.
+    placeholder: "123.4567"
+  validations:
+    required: true
+
 - type: dropdown
   attributes:
     label: Was this done on a locally hosted or non-Yogstation hosted server?

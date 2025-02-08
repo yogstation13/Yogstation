@@ -3,6 +3,8 @@
 /datum/species/ethereal
 	name = "Ethereal"
 	id = SPECIES_ETHEREAL
+	monitor_icon = "sun"
+	monitor_color = "#f0ff66"
 	attack_verbs = list("burn", "sear")
 	attack_sound = 'sound/weapons/etherealhit.ogg'
 	miss_sound = 'sound/weapons/etherealmiss.ogg'
@@ -20,7 +22,6 @@
 	coldmod = 2.0 //Don't extinguish the stars
 	speedmod = -0.1 //Light and energy move quickly
 	punchdamagehigh  = 11 //Fire hand more painful
-	punchstunthreshold = 11 //Still stuns on max hit, but subsequently lower chance to stun overall
 	attack_type = BURN //burn bish
 	damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_traits = list(NOEYESPRITES, EYECOLOR, MUTCOLORS, HAIR, FACEHAIR, HAS_FLESH) // i mean i guess they have blood so they can have wounds too

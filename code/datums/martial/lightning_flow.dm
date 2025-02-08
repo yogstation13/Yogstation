@@ -8,7 +8,7 @@
 	id = MARTIALART_LIGHTNINGFLOW
 	no_guns = TRUE
 	help_verb = /mob/living/carbon/human/proc/lightning_flow_help
-	martial_traits = list(TRAIT_STRONG_GRABBER)
+	martial_traits = list(TRAIT_STRONG_GRABBER, TRAIT_NO_PUNCH_STUN)
 	var/dashing = FALSE
 	COOLDOWN_DECLARE(action_cooldown)
 	var/list/action_modifiers = list()
@@ -147,7 +147,6 @@
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus += 5
 		user.physiology.punchdamagehigh_bonus += 5
-		user.physiology.punchstunthreshold_bonus += 6 //no knockdowns
 
 /datum/martial_art/lightning_flow/on_remove(mob/living/carbon/human/H)
 	UnregisterSignal(H, COMSIG_MOB_CLICKON)
@@ -155,7 +154,6 @@
 		var/mob/living/carbon/human/user = H
 		user.physiology.punchdamagelow_bonus -= 5
 		user.physiology.punchdamagehigh_bonus -= 5
-		user.physiology.punchstunthreshold_bonus -= 6
 	return ..()
 
 #undef ACTION_DELAY

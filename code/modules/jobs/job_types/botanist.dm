@@ -19,6 +19,15 @@
 	display_order = JOB_DISPLAY_ORDER_BOTANIST
 	minimal_character_age = 22 //Biological understanding of plants and how to manipulate their DNAs and produces relatively "safely". Not just something that comes to you without education
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_MID,
+		SKILL_FITNESS = EXP_NONE,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/service,
 	)

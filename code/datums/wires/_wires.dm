@@ -4,7 +4,7 @@
 	if(!I)
 		return
 
-	if(I.tool_behaviour == TOOL_WIRECUTTER || I.tool_behaviour == TOOL_MULTITOOL)
+	if(I.tool_behaviour == TOOL_WIRECUTTER || I.tool_behaviour == TOOL_MULTITOOL || I.tool_behaviour == TOOL_WIRING)
 		return TRUE
 	if(istype(I, /obj/item/assembly))
 		var/obj/item/assembly/A = I
@@ -37,6 +37,28 @@
 	var/list/colors = list()
 	/// List of attached assemblies.
 	var/list/assemblies = list()
+	/// Skill required to identify each wire, EXP_GENIUS if not specified here.
+	var/static/list/wire_difficulty = list(
+		WIRE_SHOCK = EXP_MID,
+		WIRE_RESET_MODULE = EXP_MID,
+		WIRE_ZAP = EXP_MID,
+		WIRE_ZAP1 = EXP_HIGH,
+		WIRE_ZAP2 = EXP_HIGH,
+		WIRE_LOCKDOWN = EXP_HIGH,
+		WIRE_CAMERA = EXP_HIGH,
+		WIRE_POWER = EXP_HIGH,
+		WIRE_POWER1 = EXP_MASTER,
+		WIRE_POWER2 = EXP_MASTER,
+		WIRE_IDSCAN = EXP_MASTER,
+		WIRE_UNBOLT = EXP_MASTER,
+		WIRE_BACKUP1 = EXP_MASTER,
+		WIRE_BACKUP2 = EXP_MASTER,
+		WIRE_LAWSYNC = EXP_MASTER,
+		WIRE_PANIC = EXP_MASTER,
+		WIRE_OPEN = EXP_MASTER,
+		WIRE_HACK = EXP_MASTER,
+		WIRE_AI = EXP_MASTER,
+	)
 
 	/// If every instance of these wires should be random. Prevents wires from showing up in station blueprints.
 	var/randomize = FALSE
@@ -139,13 +161,38 @@
 /datum/wires/proc/is_dud_color(color)
 	return is_dud(get_wire(color))
 
-/datum/wires/proc/cut(wire)
+/datum/wires/proc/is_revealed(color, mob/user)
+	// Admin ghost can see a purpose of each wire.
+	if(IsAdminGhost(user))
+		return TRUE
+
+	// Same for anyone with an abductor multitool.
+	else if(user.is_holding_item_of_type(/obj/item/multitool/abductor))
+		return TRUE
+
+	// Station blueprints do that too, but only if the wires are not randomized.
+	else if(!randomize)
+		if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints))
+			return TRUE
+		else if(user.is_holding_item_of_type(/obj/item/photo))
+			var/obj/item/photo/P = user.is_holding_item_of_type(/obj/item/photo)
+			if(P.picture.has_blueprints)	//if the blueprints are in frame
+				return TRUE
+
+	var/skill_required = wire_difficulty[get_wire(color)]
+	if(skill_required && user.skill_check(SKILL_TECHNICAL, skill_required))
+		return TRUE
+	return FALSE
+
+/datum/wires/proc/cut(wire, mob/user)
 	if(is_cut(wire))
 		cut_wires -= wire
 		on_cut(wire, mend = TRUE)
 	else
 		cut_wires += wire
 		on_cut(wire, mend = FALSE)
+	if(user)
+		user.add_exp(SKILL_TECHNICAL, 50, "[wire]_[type]")
 
 /datum/wires/proc/cut_color(color)
 	cut(get_wire(color))
@@ -157,10 +204,12 @@
 	for(var/wire in wires)
 		cut(wire)
 
-/datum/wires/proc/pulse(wire, user)
+/datum/wires/proc/pulse(wire, mob/user)
 	if(is_cut(wire))
 		return
 	on_pulse(wire, user)
+	if(user)
+		user.add_exp(SKILL_TECHNICAL, 50, "[wire]_[type]")
 
 /datum/wires/proc/pulse_color(color, mob/living/user)
 	pulse(get_wire(color), user)
@@ -240,30 +289,12 @@
 /datum/wires/ui_data(mob/user)
 	var/list/data = list()
 	var/list/payload = list()
-	var/reveal_wires = FALSE
-
-	// Admin ghost can see a purpose of each wire.
-	if(IsAdminGhost(user))
-		reveal_wires = TRUE
-
-	// Same for anyone with an abductor multitool.
-	else if(user.is_holding_item_of_type(/obj/item/multitool/abductor))
-		reveal_wires = TRUE
-
-	// Station blueprints do that too, but only if the wires are not randomized.
-	else if(!randomize)
-		if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints))
-			reveal_wires = TRUE
-		else if(user.is_holding_item_of_type(/obj/item/photo))
-			var/obj/item/photo/P = user.is_holding_item_of_type(/obj/item/photo)
-			if(P.picture.has_blueprints)	//if the blueprints are in frame
-				reveal_wires = TRUE
 
 	var/colorblind = HAS_TRAIT(user, TRAIT_COLORBLIND)
 	for(var/color in colors)
 		payload.Add(list(list(
 			"color" = color,
-			"wire" = ((reveal_wires && !is_dud_color(color) && !colorblind) ? get_wire(color) : null),
+			"wire" = (!colorblind && !is_dud_color(color) && is_revealed(color, user)) ? get_wire(color) : null,
 			"cut" = is_color_cut(color),
 			"attached" = is_attached(color)
 		)))
@@ -276,45 +307,48 @@
 /datum/wires/ui_act(action, params)
 	if(..() || !interactable(usr))
 		return
+	if(!holder) // wires with no holder makes no sense to exist and probably breaks things, so catch any instances of that
+		CRASH("[type] has no holder!")
 	var/target_wire = params["wire"]
-	var/mob/living/L = usr
-	var/obj/item/I
+	var/mob/living/user = usr
+	var/obj/item/tool
+	var/tool_delay = max((0.5**user.get_skill(SKILL_TECHNICAL)) SECONDS, 0)
+	if(tool_delay < 0.2 SECONDS) // effectively already instant
+		tool_delay = 0
 	switch(action)
 		if("cut")
-			I = L.is_holding_tool_quality(TOOL_WIRECUTTER)
-			if(I || IsAdminGhost(usr))
-				if(I && holder)
-					I.play_tool_sound(holder, 20)
+			tool = user.is_holding_tool_quality(TOOL_WIRECUTTER)
+			if(tool?.use_tool(holder, user, tool_delay) || IsAdminGhost(usr))
+				tool.play_tool_sound(holder, 20)
 				cut_color(target_wire)
 				. = TRUE
-			else
-				to_chat(L, span_warning("You need wirecutters!"))
+			else if(!tool)
+				to_chat(user, span_warning("You need wirecutters!"))
 		if("pulse")
-			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
-			if(I || IsAdminGhost(usr))
-				if(I && holder)
-					I.play_tool_sound(holder, 20)
-				pulse_color(target_wire, L)
+			tool = user.is_holding_tool_quality(TOOL_MULTITOOL)
+			if(tool?.use_tool(holder, user, tool_delay) || IsAdminGhost(usr))
+				tool.play_tool_sound(holder, 20)
+				pulse_color(target_wire, user)
 				. = TRUE
-			else
-				to_chat(L, span_warning("You need a multitool!"))
+			else if(!tool)
+				to_chat(user, span_warning("You need a multitool!"))
 		if("attach")
 			if(is_attached(target_wire))
-				I = detach_assembly(target_wire)
-				if(I)
-					L.put_in_hands(I)
-					. = TRUE
+				if(!do_after(user, tool_delay, holder))
+					return
+				user.put_in_hands(detach_assembly(target_wire))
+				. = TRUE
 			else
-				I = L.get_active_held_item()
-				if(istype(I, /obj/item/assembly))
-					var/obj/item/assembly/A = I
+				tool = user.get_active_held_item()
+				if(istype(tool, /obj/item/assembly) && tool?.use_tool(holder, user, tool_delay))
+					var/obj/item/assembly/A = tool
 					if(A.attachable)
-						if(!L.temporarilyRemoveItemFromInventory(A))
+						if(!user.temporarilyRemoveItemFromInventory(A))
 							return
 						if(!attach_assembly(target_wire, A))
-							A.forceMove(L.drop_location())
+							A.forceMove(user.drop_location())
 						. = TRUE
 					else
-						to_chat(L, span_warning("You need an attachable assembly!"))
+						to_chat(user, span_warning("You need an attachable assembly!"))
 
 #undef MAXIMUM_EMP_WIRES

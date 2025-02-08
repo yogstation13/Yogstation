@@ -56,12 +56,14 @@
 		return 1
 	return 0
 
-/obj/item/reagent_containers/food/snacks/grown/examine(user)
+/obj/item/reagent_containers/food/snacks/grown/examine(mob/user)
 	. = ..()
 	if(seed)
 		for(var/datum/plant_gene/trait/T in seed.genes)
 			if(T.examine_line)
 				. += T.examine_line
+		if(user.skill_check(SKILL_SCIENCE, EXP_LOW)) // science skill lets you estimate a plant's stats by examining it
+			. += seed.get_analyzer_text(user, TRUE)
 
 /// Ghost attack proc
 /obj/item/reagent_containers/food/snacks/grown/attack_ghost(mob/user)
@@ -84,26 +86,28 @@
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user, params)
 	..()
 	if (istype(O, /obj/item/plant_analyzer))
-		playsound(src, 'sound/effects/fastbeep.ogg', 30)
-		var/msg = "<span class='info'>This is \a [span_name("[src]")].\n"
-		if(seed)
-			msg += seed.get_analyzer_text()
-		var/reag_txt = ""
-		if(seed)
-			for(var/reagent_id in seed.reagents_add)
-				var/datum/reagent/R  = GLOB.chemical_reagents_list[reagent_id]
-				var/amt = reagents.get_reagent_amount(reagent_id)
-				reag_txt += "\n[span_info("- [R.name]: [amt]")]"
-
-		if(reag_txt)
-			msg += reag_txt
-			msg += "<br>[span_info("")]"
-		to_chat(user, examine_block(msg))
+		analyze_plant(user)
 	else
 		if(seed)
 			for(var/datum/plant_gene/trait/T in seed.genes)
 				T.on_attackby(src, O, user)
 
+/obj/item/reagent_containers/food/snacks/grown/proc/analyze_plant(mob/user)
+	playsound(src, 'sound/effects/fastbeep.ogg', 30)
+	var/msg = "<span class='info'>This is \a [span_name("[src]")].\n"
+	if(seed)
+		msg += seed.get_analyzer_text(user)
+	var/reag_txt = ""
+	if(seed)
+		for(var/reagent_id in seed.reagents_add)
+			var/datum/reagent/R  = GLOB.chemical_reagents_list[reagent_id]
+			var/amt = reagents.get_reagent_amount(reagent_id)
+			reag_txt += "\n[span_info("- [R.name]: [amt]")]"
+
+	if(reag_txt)
+		msg += reag_txt
+		msg += "<br>[span_info("")]"
+	to_chat(user, examine_block(msg))
 
 // Various gene procs
 /obj/item/reagent_containers/food/snacks/grown/attack_self(mob/user)

@@ -1,4 +1,5 @@
-
+#define FOOTPRINT_INDEX_FILE 1
+#define FOOTPRINT_INDEX_STATE 2
 
 //Component for clothing items that can pick up blood from decals and spread it around everywhere when walking, such as shoes or suits with integrated shoes.
 
@@ -236,8 +237,8 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 /datum/component/bloodysoles/feet/update_icon()
 	. = list()
 	if(ishuman(wielder))// Monkeys get no bloody feet :(
-		var/obj/item/bodypart/l_leg/left_leg = wielder.get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg/right_leg = wielder.get_bodypart(BODY_ZONE_R_LEG)
+		var/obj/item/bodypart/leg/left/left_leg = wielder.get_bodypart(BODY_ZONE_L_LEG)
+		var/obj/item/bodypart/leg/right/right_leg = wielder.get_bodypart(BODY_ZONE_R_LEG)
 		if(left_leg?.species_id == right_leg?.species_id && icon_exists(bloody_feet.icon, "shoeblood_[left_leg.species_id]"))
 			bloody_feet.icon_state = "shoeblood_[left_leg.species_id]"
 		else if(HAS_TRAIT(wielder, TRAIT_DIGITIGRADE) && !HAS_TRAIT(wielder, TRAIT_DIGI_SQUISH))
@@ -254,20 +255,19 @@ Like its parent but can be applied to carbon mobs instead of clothing items
 
 /datum/component/bloodysoles/feet/add_parent_to_footprint(obj/effect/decal/cleanable/blood/footprints/FP)
 	if(ismonkey(wielder))
-		FP.species_types |= "monkey"
+		FP.species_types["monkey"] = list(null, FALSE)
 		return
 
 	if(!ishuman(wielder))
-		FP.species_types |= "unknown"
+		FP.species_types["unknown"] = list(null, FALSE)
 		return
 
-	// Find any leg of our human and add that to the footprint, instead of the default which is to just add the human type
-	for(var/X in wielder.bodyparts)
-		var/obj/item/bodypart/affecting = X
-		if(affecting.body_part == LEG_RIGHT || affecting.body_part == LEG_LEFT)
-			if(!affecting.bodypart_disabled)
-				FP.species_types |= affecting.limb_id
-				break
+	// Our limbs code is horribly out of date and won't work the normal way, so we do it like this
+	for(var/obj/item/bodypart/affecting as anything in wielder.bodyparts)
+		if((affecting.body_part & (LEG_LEFT|LEG_RIGHT)) && !affecting.bodypart_disabled)
+			var/image/limb_icon = affecting.get_limb_icon(FALSE)[1]
+			FP.species_types[affecting.species_id] = list(limb_icon.icon, limb_icon.icon_state)
+			break
 
 
 /datum/component/bloodysoles/feet/is_obscured()

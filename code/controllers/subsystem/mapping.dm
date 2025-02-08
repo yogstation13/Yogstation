@@ -482,7 +482,7 @@ SUBSYSTEM_DEF(mapping)
 	else if (!isnull(config.minetype) && config.minetype != "none")
 		INIT_ANNOUNCE("WARNING: An unknown minetype '[config.minetype]' was set! This is being ignored! Update the maploader code!")
 
-	LoadGroup(FailedZs, "Automated Exploration Hub", "RandomZLevels/VR", "netmin_hub.dmm", default_traits = ZTRAITS_AWAY_SECRET)
+	LoadGroup(FailedZs, "Automated Exploration Hub", "RandomZLevels", "netmin_hub.dmm", default_traits = ZTRAITS_AWAY_SECRET)
 #endif
 
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen

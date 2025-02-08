@@ -140,6 +140,8 @@ SUBSYSTEM_DEF(shuttle)
 	var/shuttle_loading
 	/// Did the supermatter start a cascade event?
 	var/supermatter_cascade = FALSE
+	/// Has any transfer votes been started, ongoing, or finished?
+	var/transfer_votes_done = 0
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	order_number = rand(1, 9000)
@@ -239,8 +241,16 @@ SUBSYSTEM_DEF(shuttle)
 				priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
 				emergency.request(null, set_coefficient = ALERT_COEFF_AUTOEVAC_CRITICAL)
 				return
-	if(world.time >= 2 HOURS) //auto call the shuttle after 2 hours 
-		emergency_no_recall = TRUE //no recalling after 2 hours
+	if(world.time >= 2 HOURS && transfer_votes_done < 1) 
+		transfer_votes_done += 1
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic crew transfer", forced = TRUE)
+	if(world.time >= 2.5 HOURS && transfer_votes_done < 2)
+		transfer_votes_done += 1
+		if(EMERGENCY_IDLE_OR_RECALLED)
+			SSvote.initiate_vote(/datum/vote/transfer_vote, "automatic crew transfer", forced = TRUE)
+	if(world.time >= 3 HOURS) //auto call the shuttle after 3 hours 
+		emergency_no_recall = TRUE //no recalling after 3 hours
 		if(EMERGENCY_IDLE_OR_RECALLED)
 			var/msg = "Automatically dispatching shuttle due to lack of shift end response."
 			message_admins(msg)
@@ -523,14 +533,14 @@ SUBSYSTEM_DEF(shuttle)
  * * dock_id - The ID of the destination (stationary docking port) to move to
  * * timed - If true, have the shuttle follow normal spool-up, jump, dock process. If false, immediately move to the new location.
  */
-/datum/controller/subsystem/shuttle/proc/moveShuttle(shuttle_id, dock_id, timed)
+/datum/controller/subsystem/shuttle/proc/moveShuttle(shuttle_id, dock_id, timed, skill_multiplier = 1)
 	var/obj/docking_port/mobile/shuttle_port = getShuttle(shuttle_id)
 	var/obj/docking_port/stationary/docking_target = getDock(dock_id)
 
 	if(!shuttle_port)
 		return DOCKING_NULL_SOURCE
 	if(timed)
-		if(shuttle_port.request(docking_target))
+		if(shuttle_port.request(docking_target, skill_multiplier))
 			return DOCKING_IMMOBILIZED
 	else
 		if(shuttle_port.initiate_docking(docking_target) != DOCKING_SUCCESS)

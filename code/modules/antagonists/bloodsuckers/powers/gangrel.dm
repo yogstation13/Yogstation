@@ -78,7 +78,7 @@
 			playsound(user.loc, 'sound/creatures/gorilla.ogg', 50)
 			user.dna.species.punchdamagelow += 10
 			user.dna.species.punchdamagehigh += 10 //very stronk
-			user.dna.species.punchstunthreshold += 10
+			user.dna.species.punchstunchance += 10
 			user.dna.species.action_speed_coefficient *= 1.3
 			user.dna.species.armor += 15
 			bloodsuckerdatum.AddBloodVolume(50)

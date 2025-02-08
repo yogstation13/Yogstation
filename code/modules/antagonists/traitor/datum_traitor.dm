@@ -202,7 +202,7 @@
 
 /datum/antagonist/traitor/proc/forge_single_human_objective() //Returns how many objectives are added
 	.=1
-	if(prob(50))
+	if(prob(50) && GLOB.joined_player_list.len >= 10)
 		var/list/active_ais = active_ais()
 		if(active_ais.len && prob(100/GLOB.joined_player_list.len))
 			var/datum/objective/destroy/destroy_objective = new

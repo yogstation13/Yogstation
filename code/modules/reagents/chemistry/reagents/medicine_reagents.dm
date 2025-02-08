@@ -891,7 +891,7 @@
 		M.adjustFireLoss(-0.5*REM, 0)
 		M.adjustOxyLoss(-0.5*REM, 0)
 	if(M.losebreath >= 4)
-		M.losebreath -= 2
+		M.losebreath = floor(M.losebreath * 0.9)
 	if(M.losebreath < 0)
 		M.losebreath = 0
 	M.adjustStaminaLoss(-0.5*REM, 0)

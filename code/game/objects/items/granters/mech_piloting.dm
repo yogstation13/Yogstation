@@ -14,4 +14,4 @@
 
 /obj/item/book/granter/mechpiloting/on_reading_finished(mob/user)
 	. = ..()
-	user.AddComponent(/datum/component/mech_pilot, 0.8)
+	ADD_TRAIT(user.mind, TRAIT_SKILLED_PILOT, type)

@@ -555,6 +555,7 @@
 	heat_level_1_threshold = 500
 	heat_level_2_threshold = 800
 	heat_level_3_threshold = 1400
+	cybernetic_quality = 1
 
 // ELECTROLYZER LUNGS!!!!!
 /obj/item/organ/lungs/ethereal

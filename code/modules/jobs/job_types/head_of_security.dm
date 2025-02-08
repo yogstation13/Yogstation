@@ -37,6 +37,15 @@
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
 	minimal_character_age = 28 //You need some experience on your belt and a little gruffiness; you're still a foot soldier, not quite a tactician commander back at base
 
+	base_skills = list(
+		SKILL_PHYSIOLOGY = EXP_NONE,
+		SKILL_MECHANICAL = EXP_NONE,
+		SKILL_TECHNICAL = EXP_NONE,
+		SKILL_SCIENCE = EXP_NONE,
+		SKILL_FITNESS = EXP_HIGH,
+	)
+	skill_points = 3
+
 	departments_list = list(
 		/datum/job_department/security,
 		/datum/job_department/command,

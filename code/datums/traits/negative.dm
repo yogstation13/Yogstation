@@ -55,8 +55,10 @@
 	job_blacklist = list("Captain", "Head of Personnel", "Research Director", "Chief Medical Officer", "Chief Engineer", "Head of Security", "Security Officer", "Warden")
 
 /datum/quirk/blindness/add()
+	var/blindness_preference = quirk_holder.client.prefs.read_preference(/datum/preference/choiced/blindness_choice) == "Random" ? pick("Echolocation", "Complete blindness") : quirk_holder.client.prefs.read_preference(/datum/preference/choiced/blindness_choice)
 	quirk_holder.become_blind(ROUNDSTART_TRAIT)
-	quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
+	if(blindness_preference == "Echolocation")
+		quirk_holder.AddComponent(/datum/component/echolocation) //add when echolocation is fixed
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -295,13 +297,13 @@
 			prosthetic = new/obj/item/bodypart/r_arm/robot/surplus(quirk_holder)
 			slot_string = "right arm"
 		if(BODY_ZONE_L_LEG)
-			var/obj/item/bodypart/l_leg/L = H.get_bodypart(BODY_ZONE_L_LEG)
-			prosthetic = new/obj/item/bodypart/l_leg/robot/surplus(quirk_holder)
+			var/obj/item/bodypart/leg/left/L = H.get_bodypart(BODY_ZONE_L_LEG)
+			prosthetic = new/obj/item/bodypart/leg/left/robot/surplus(quirk_holder)
 			prosthetic.set_digitigrade(L.use_digitigrade)
 			slot_string = "left leg"
 		if(BODY_ZONE_R_LEG)
-			var/obj/item/bodypart/r_leg/R = H.get_bodypart(BODY_ZONE_R_LEG)
-			prosthetic = new/obj/item/bodypart/r_leg/robot/surplus(quirk_holder)
+			var/obj/item/bodypart/leg/right/R = H.get_bodypart(BODY_ZONE_R_LEG)
+			prosthetic = new/obj/item/bodypart/leg/right/robot/surplus(quirk_holder)
 			prosthetic.set_digitigrade(R.use_digitigrade)
 			slot_string = "right leg"
 	prosthetic.replace_limb(H)
@@ -678,7 +680,7 @@
 	gain_text = span_danger("You remember your allergic reaction to a common medicine.")
 	lose_text = span_notice("You no longer are allergic to medicine.")
 
-	var/allergy_chem_list = list(	
+	var/allergy_chem_list = list(
 		/datum/reagent/medicine/inacusiate,
 		/datum/reagent/medicine/silver_sulfadiazine,
 		/datum/reagent/medicine/styptic_powder,
@@ -707,7 +709,7 @@
 	var/reagent_id
 	COOLDOWN_DECLARE(allergies)
 	/// how long allergies last after getting rid of the allergen
-	var/cooldown_duration = 10 SECONDS 
+	var/cooldown_duration = 10 SECONDS
 	/// Wether the person is experiencing anaphylatic shock or not
 	COOLDOWN_DECLARE(anaphylaxis)
 	/// How long anaphylactic shock lasts
@@ -734,6 +736,15 @@
 	if(H.stat == DEAD)
 		return
 
+	if(H.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
+		return
+	if(H.reagents.has_reagent(/datum/reagent/medicine/atropine))
+		return
+	if(H.reagents.has_reagent(/datum/reagent/medicine/diphenhydramine))
+		return
+	if(H.reagents.has_reagent(/datum/reagent/medicine/synaphydramine))
+		return
+
 	var/datum/reagent/allergy = GLOB.chemical_reagents_list[reagent_id]
 
 	if(H.reagents.has_reagent(reagent_id)) //check if there are chems
@@ -751,7 +762,7 @@
 
 	else if(!COOLDOWN_FINISHED(src, allergies)) //if the cooldown is going
 		//external indicator that it's happening
-		if(prob(50)) 
+		if(prob(50))
 			switch(rand(0, 2))
 				if(0)
 					H.emote("cough")
@@ -1017,3 +1028,65 @@
 
 /datum/quirk/lactose_intolerance/proc/on_species_gain(datum/source, datum/species/new_species)
 	new_species.toxic_food |= DAIRY // no escape from your terrible fate
+
+/datum/quirk/blindspot
+	name = "Blindspot"
+	desc = "You lack the sixth sense and cannot see behind yourself."
+	icon = "arrows-to-eye"
+	gain_text = span_danger("You can't see behind yourself anymore.")
+	lose_text = span_notice("You can see behind yourself again.")
+	value = -2
+	medical_record_text = "Patient has trouble with spatial awareness."
+
+#define BLINDSPOT_NORTH "blindspotN"
+#define BLINDSPOT_SOUTH "blindspotS"
+#define BLINDSPOT_EAST "blindspotE"
+#define BLINDSPOT_WEST "blindspotW"
+
+/datum/quirk/blindspot/add()
+	quirk_holder.blindspot_overlay = new/list(10)
+	var/atom/movable/screen/fullscreen/blindspot/north_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_NORTH, /atom/movable/screen/fullscreen/blindspot)
+	var/atom/movable/screen/fullscreen/blindspot/south_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_SOUTH, /atom/movable/screen/fullscreen/blindspot)
+	var/atom/movable/screen/fullscreen/blindspot/east_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_EAST, /atom/movable/screen/fullscreen/blindspot)
+	var/atom/movable/screen/fullscreen/blindspot/west_blindspot = quirk_holder.overlay_fullscreen(BLINDSPOT_WEST, /atom/movable/screen/fullscreen/blindspot)
+	quirk_holder.blindspot_overlay[NORTH] = WEAKREF(north_blindspot)
+	quirk_holder.blindspot_overlay[SOUTH] = WEAKREF(south_blindspot)
+	quirk_holder.blindspot_overlay[EAST] = WEAKREF(east_blindspot)
+	quirk_holder.blindspot_overlay[WEST] = WEAKREF(west_blindspot)
+	north_blindspot.dir = NORTH
+	south_blindspot.dir = SOUTH
+	east_blindspot.dir = EAST
+	west_blindspot.dir = WEST
+	north_blindspot.alpha = (quirk_holder.dir == NORTH) * 255
+	south_blindspot.alpha = (quirk_holder.dir == SOUTH) * 255
+	east_blindspot.alpha = (quirk_holder.dir == EAST) * 255
+	west_blindspot.alpha = (quirk_holder.dir == WEST) * 255
+	RegisterSignal(quirk_holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(change_dir))
+
+/datum/quirk/blindspot/remove()
+	quirk_holder.clear_fullscreen(BLINDSPOT_NORTH)
+	quirk_holder.clear_fullscreen(BLINDSPOT_SOUTH)
+	quirk_holder.clear_fullscreen(BLINDSPOT_EAST)
+	quirk_holder.clear_fullscreen(BLINDSPOT_WEST)
+	quirk_holder.blindspot_overlay = null
+	UnregisterSignal(quirk_holder, COMSIG_ATOM_DIR_CHANGE)
+
+/datum/quirk/blindspot/proc/change_dir(atom/movable/source, olddir, newdir)
+	SIGNAL_HANDLER
+	if(olddir == 0 || newdir == 0)
+		return
+	if(olddir == newdir)
+		return
+	if(!quirk_holder.blindspot_overlay)
+		return
+	var/atom/movable/screen/fullscreen/blindspot/old_spot = quirk_holder.blindspot_overlay[olddir]?.resolve()
+	var/atom/movable/screen/fullscreen/blindspot/new_spot = quirk_holder.blindspot_overlay[newdir]?.resolve()
+	if(!istype(old_spot) || !istype(new_spot))
+		return
+	animate(old_spot, 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = 0)
+	animate(new_spot, 0.5 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, alpha = 255)
+
+#undef BLINDSPOT_NORTH
+#undef BLINDSPOT_SOUTH
+#undef BLINDSPOT_EAST
+#undef BLINDSPOT_WEST

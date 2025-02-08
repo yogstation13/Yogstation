@@ -2080,22 +2080,32 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 
 /datum/uplink_item/device_tools/holo_sight
+	name = "Attachment Kit"
+	desc = "A box of attachments to be used on any common firearm. Use a screwdriver to remove attachments."
+	item = /obj/item/storage/box/syndie_kit/attachments
+	cost = 1
+	exclude_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
+
+/datum/uplink_item/device_tools/holo_sight
 	name = "Holographic Sight"
 	desc = "A high-tech holographic sight that improves the aim of the weapon it's attached to."
 	item = /obj/item/attachment/scope/holo
 	cost = 2
+	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
 
 /datum/uplink_item/device_tools/vert_grip
 	name = "Vertical Grip"
 	desc = "A vertical foregrip that reduces the shock of firing a weapon. Extra handy for higher recoil guns like the sniper rifle."
 	item = /obj/item/attachment/grip/vertical
 	cost = 2
+	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
 
 /datum/uplink_item/device_tools/laser_sight
 	name = "Laser Sight"
 	desc = "An aesthetic laser sight that improves your accuracy and shows you where you're aiming."
 	item = /obj/item/attachment/laser_sight
 	cost = 2
+	include_antags = list(ROLE_OPERATIVE, ROLE_CLOWNOP)
 
 /datum/uplink_item/device_tools/mechpilotguide
 	name = "Mech Piloting for Dummies"
@@ -2103,6 +2113,29 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/book/granter/mechpiloting
 	cost = 5	//this is genuinely a REALLY strong effect, don't sleep on it
 
+/datum/uplink_item/device_tools/physiology_guide
+	name = "Guide to First Aid"
+	desc = "A book that improves the reader's physiological knowledge."
+	item = /obj/item/book/granter/skill/physiology
+	cost = 3
+
+/datum/uplink_item/device_tools/mechanics_guide
+	name = "Nuclear Engineering for Dummies"
+	desc = "A book that improves the reader's mechanical skills."
+	item = /obj/item/book/granter/skill/mechanics
+	cost = 3
+
+/datum/uplink_item/device_tools/technical_guide
+	name = "Hacking 101"
+	desc = "A book that improves the reader's technical abilities."
+	item = /obj/item/book/granter/skill/technical
+	cost = 3
+
+/datum/uplink_item/device_tools/science_guide
+	name = "Statistical Mechanics and Thermodynamics"
+	desc = "A book that improves the reader's scientific proficiency."
+	item = /obj/item/book/granter/skill/science
+	cost = 3
 
 /datum/uplink_item/device_tools/mech_drop
 	name = "Orbital Mech Drop Fulton"

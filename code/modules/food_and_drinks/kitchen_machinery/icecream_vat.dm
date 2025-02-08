@@ -12,9 +12,9 @@
 							new /obj/item/circuitboard/machine/icecream_vat)
 	circuit = /obj/item/circuitboard/machine/icecream_vat
 	//Ice cream to be dispensed into cone on attackby
-	var/selected_scoop = null
+	var/obj/item/reagent_containers/food/snacks/ice_cream_scoop/selected_scoop_type
 	//Cone to be dispensed with alt click
-	var/selected_cone = null
+	var/obj/item/reagent_containers/food/snacks/selected_cone_type
 	//Max amount of items that can be in vat's storage
 	var/storage_capacity = 80
 	//If it starts empty or not
@@ -60,43 +60,44 @@
 	data["storage"] = list()
 
 	//Loop through starting list for data to send to main tab
-	for(var/item_detail in ui_list)
+	for(var/obj/item/reagent_containers/food/snacks/item_path as anything in ui_list)
 
 		//Create needed list and variable for geting data for UI
 		var/list/details = list()
-		var/obj/item/reagent_containers/food/snacks/item = new item_detail
 
 		//Get information for UI
-		details["item_name"] = item.name
-		details["item_quantity"] = find_amount(item)
-		details["item_type_path"] = item.type
+		details["item_name"] = item_path::name
+		details["item_quantity"] = find_amount(item_path)
+		details["item_type_path"] = item_path
 
+
+		var/obj/item/reagent_containers/food/snacks/initialized_item = new item_path
 		//Get an image for the UI
-		var/icon/item_pic = getFlatIcon(item)
+		var/icon/item_pic = getFlatIcon(initialized_item)
 		var/md5 = md5(fcopy_rsc(item_pic))
-		if(!SSassets.cache["photo_[md5]_[item.name]_icon.png"])
-			SSassets.transport.register_asset("photo_[md5]_[item.name]_icon.png", item_pic)
-		SSassets.transport.send_assets(user, list("photo_[md5]_[item.name]_icon.png" = item_pic))
-		details["item_image"] = SSassets.transport.get_asset_url("photo_[md5]_[item.name]_icon.png")
+		if(!SSassets.cache["photo_[md5]_[initialized_item.name]_icon.png"])
+			SSassets.transport.register_asset("photo_[md5]_[initialized_item.name]_icon.png", item_pic)
+		SSassets.transport.send_assets(user, list("photo_[md5]_[initialized_item.name]_icon.png" = item_pic))
+		details["item_image"] = SSassets.transport.get_asset_url("photo_[md5]_[initialized_item.name]_icon.png")
 
 		//Sort into different data lists depending on what the item is
-		if(istype(item, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
-			details["selected_item"] = selected_scoop
+		if(ispath(item_path, /obj/item/reagent_containers/food/snacks/ice_cream_scoop))
+			details["selected_item"] = selected_scoop_type
 			data["ice_cream"] += list(details)
 		else
-			details["selected_item"] = selected_cone
+			details["selected_item"] = selected_cone_type
 			data["cones"] += list(details)
+		qdel(initialized_item)
 
 	//Loop through children of /datum/info_tab/icecream_vat for data to send to info tab
-	for(var/info_detail in subtypesof(/datum/info_tab/icecream_vat))
+	for(var/datum/info_tab/icecream_vat/info_detail_path as anything in subtypesof(/datum/info_tab/icecream_vat))
 		
 		//Create needed list and variable for geting data for UI
 		var/list/details = list()
-		var/datum/info_tab/icecream_vat/item = new info_detail
 
 		//Get info from children
-		details["section_title"] = item.section
-		details["section_text"] = item.section_text
+		details["section_title"] = info_detail_path::section
+		details["section_text"] = info_detail_path::section_text
 
 		//Add info to data
 		data["info_tab"] += list(details)
@@ -150,26 +151,24 @@
 	. = ..()
 
 	//Selected cones
-	if(selected_cone == null)
+	if(selected_cone_type == null)
 		. += span_notice("You can <b>Alt Click</b> to dispense a cone once one is selected.")
 	else
-		var/obj/item/reagent_containers/food/snacks/examine_cone = new selected_cone
-		. += span_notice("<b>Alt Click</b> to dispense [examine_cone.name].")
+		. += span_notice("<b>Alt Click</b> to dispense [selected_cone_type::name].")
 
 	//Selected scoops
-	if(selected_scoop == null)
+	if(selected_scoop_type == null)
 		. += span_notice("No ice cream scoop currently selected.")
 	else
-		var/obj/item/reagent_containers/food/snacks/examine_scoop = new selected_scoop
-		. += span_notice("[examine_scoop.name] is currently selected.")
+		. += span_notice("[selected_scoop_type::name] is currently selected.")
 
 	//Scooping cone instruction
 	. += span_notice("<b>Right Click</b> to add a scoop to a cone.")
 
 //For dispensing selected cone
 /obj/machinery/icecream_vat/AltClick(mob/living/carbon/user)
-	if(selected_cone != null)
-		dispense_item(selected_cone)
+	if(selected_cone_type != null)
+		dispense_item(selected_cone_type)
 	else
 		user.balloon_alert(user, "None selected!")
 
@@ -222,60 +221,51 @@
 
 	return amount
 
-/obj/machinery/icecream_vat/proc/dispense_item(received_item, mob/user = usr)
-
-	//Make a variable for checking the type of the selected item
-	var/obj/item/reagent_containers/food/snacks/ui_item = new received_item
-
+/obj/machinery/icecream_vat/proc/dispense_item(obj/item/reagent_containers/food/snacks/received_item_type, mob/user = usr)
 	//If the vat has some of the desired item, dispense it
-	if(find_amount(ui_item) > 0)
+	if(find_amount(received_item_type) > 0)
 		//Select the last(most recent) of desired item
-		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(ui_item))
+		var/obj/item/reagent_containers/food/snacks/dispensed_item = LAZYACCESS(contents, last_index(received_item_type))
 		//Drop it on the floor and then move it into the user's hands
 		dispensed_item.forceMove(loc)
 		user.put_in_hands(dispensed_item)
-		user.visible_message(span_notice("[user] dispenses [ui_item.name] from [src]."), span_notice("You dispense [ui_item.name] from [src]."))
+		user.visible_message(span_notice("[user] dispenses [received_item_type::name] from [src]."), span_notice("You dispense [received_item_type::name] from [src]."))
 		playsound(src, dispense_sound, 25, TRUE, extrarange = -3)
 	else
 		//For Alt click and because UI buttons are slow to disable themselves
 		user.balloon_alert(user, "All out!")
 
-/obj/machinery/icecream_vat/proc/select_item(received_item, mob/user = usr)
-
-	//Make a variable for checking the type of the selected item
-	var/obj/item/reagent_containers/food/snacks/ui_item = new received_item
-
+/obj/machinery/icecream_vat/proc/select_item(obj/item/reagent_containers/food/snacks/received_item_type, mob/user = usr)
 	//Deselecting
-	if(istype(ui_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
-		if(selected_cone == ui_item.type)
-			user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
-			selected_cone = null
+	if(ispath(received_item_type, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+		if(selected_cone_type == received_item_type)
+			user.visible_message(span_notice("[user] deselects [received_item_type::name] from [src]."), span_notice("You deselect [received_item_type::name] from [src]."))
+			selected_cone_type = null
 			playsound(src, select_sound, 25, TRUE, extrarange = -3)
-
 			return
-	else if(selected_scoop == ui_item.type)
-		user.visible_message(span_notice("[user] deselects [ui_item.name] from [src]."), span_notice("You deselect [ui_item.name] from [src]."))
-		selected_scoop = null
-		playsound(src, select_sound, 25, TRUE, extrarange = -3)
 
+	else if(selected_scoop_type == received_item_type)
+		user.visible_message(span_notice("[user] deselects [received_item_type::name] from [src]."), span_notice("You deselect [received_item_type::name] from [src]."))
+		selected_scoop_type = null
+		playsound(src, select_sound, 25, TRUE, extrarange = -3)
 		return
 
 	//Selecting
-	if(find_amount(ui_item.type) > 0)
+	if(find_amount(received_item_type) > 0)
 		//Set item to selected based on its type
-		if(istype(ui_item, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
-			selected_cone = ui_item.type
+		if(ispath(received_item_type, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+			selected_cone_type = received_item_type
 		else
-			selected_scoop = ui_item.type
+			selected_scoop_type = received_item_type
 		playsound(src, select_sound, 25, TRUE, extrarange = -3)
-		user.visible_message(span_notice("[user] sets [src] to dispense [ui_item.name]s."), span_notice("You set [src] to dispense [ui_item.name]s."))
+		user.visible_message(span_notice("[user] sets [src] to dispense [received_item_type::name]s."), span_notice("You set [src] to dispense [received_item_type::name]s."))
 	//Prevent them from selecting items that the vat does not have
 	else
 		user.balloon_alert(user, "All out!")
 
 /obj/machinery/icecream_vat/proc/last_index(obj/item/search_item)
 
-	var/obj/item/reagent_containers/food/snacks/item_index = null
+	var/obj/item/reagent_containers/food/snacks/item_index
 
 	//Search for the same item path in storage
 	for(var/i in 1 to LAZYLEN(contents))
@@ -342,13 +332,13 @@
 	if(istype(target_cone, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
 		var/obj/item/reagent_containers/food/snacks/ice_cream_cone/cone = target_cone
 		//Check if a scoop has been selected
-		if(selected_scoop != null)
+		if(selected_scoop_type != null)
 			//Check if there are any of selected scoop in contents
-			if(find_amount(selected_scoop) > 0)
+			if(find_amount(selected_scoop_type) > 0)
 				//Increase scooped variable
 				cone.scoops += 1
 				//Select last of selected scoop in contents
-				var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop))
+				var/obj/item/reagent_containers/food/snacks/cone_scoop = LAZYACCESS(contents, last_index(selected_scoop_type))
 				//Remove scoop from contents
 				cone_scoop.forceMove(loc)
 				//Increase maximum volume to make room for scoop's chems
