@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Seedlings and Craig now use JPS pathfinding instead of basic avoidance, so they're less likely to get stuck on stupid obstacles."
