@@ -156,11 +156,16 @@
       monkeys, and should retain the similar "ephermeal" behavior, while being a whole
       lot smarter by leveraging new AI. Please report anything that is completely
       wack about this.
+  Siro, Tractir Mann:
+  - rscadd: Added new walksounds to jackboots! Hate em? Turn them off with Control
+      Click!
+  - balance: Civil Protection Boots now have pockets akin to the Jackboots.
   flleeppyy:
   - bugfix: Fixed an RCE exploit in NTSL.
   - qol: Mentor's now have a per-round bonus of 500 coins
   leaKsi:
   - bugfix: Fixed a crash-inducing function in NTSL.
-  Siro, Tractir Mann:
-  - rscadd: Added new walksounds to jackboots! Hate em? Turn them off with Control Click!
-  - balance: Civil Protection Boots now have pockets akin to the Jackboots.
+2025-02-09:
+  ThePooba:
+  - rscadd: ports and stuff are defines now
+  - rscadd: MRP2 now gets 500 BONUS COINS EVERY ROUND YEEHAW
