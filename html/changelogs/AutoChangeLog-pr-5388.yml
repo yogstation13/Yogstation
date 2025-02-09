@@ -1,0 +1,4 @@
+author: "Siro"
+delete-after: True
+changes:
+  - bugfix: "Fixed all jackboots being quantum entangled - toggling the noisemaker for one pair of jackboots no longer changes it for every other pair of jackboots too."
