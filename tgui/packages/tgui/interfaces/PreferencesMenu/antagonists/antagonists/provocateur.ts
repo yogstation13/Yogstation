@@ -1,3 +1,4 @@
+/* Monkestation edit :Revolution is currently disabled besides admin intervention
 import { Antagonist, Category } from '../base';
 import { multiline } from 'common/string';
 import { REVOLUTIONARY_MECHANICAL_DESCRIPTION } from './headrevolutionary';
@@ -17,3 +18,4 @@ const Provocateur: Antagonist = {
 };
 
 export default Provocateur;
+*/
