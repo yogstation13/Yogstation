@@ -1,0 +1,7 @@
+author: "Siro, Tractor Mann"
+delete-after: True
+changes:
+  - rscadd: "Jackboots, Civil Protection Boots, and Cowboy boots now have new walksounds! Hate the walksounds? dont worry! you can turn them off with Ctrl-Click!"
+  - balance: "Civil Protection boots now have boot pockets akin to the jackboots."
+  - sound: "Added HL:A Combine walksounds."
+  - code_imp: "Added the shoesteps element, which should hopefully make adding custom step sounds for specific boots easier."
