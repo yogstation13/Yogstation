@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/wall/mineral/bananium,
-/area/shipbreak)
+/area/template_noop)
 "k" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "q" = (
 /turf/open/floor/mineral/bananium/airless,
-/area/shipbreak)
+/area/template_noop)
 "u" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -16,15 +16,15 @@
 /obj/structure/grille,
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "x" = (
 /obj/structure/closet/secure_closet/freezer/cream_pie,
 /turf/open/floor/mineral/bananium/airless,
-/area/shipbreak)
+/area/template_noop)
 "B" = (
 /obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/mineral/bananium/airless,
-/area/shipbreak)
+/area/template_noop)
 "M" = (
 /obj/machinery/door/airlock/bananium/glass,
 /obj/machinery/door/firedoor/border_only{
@@ -33,7 +33,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/mine/sound/bwoink,
 /turf/open/floor/mineral/bananium/airless,
-/area/shipbreak)
+/area/template_noop)
 "P" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -46,22 +46,22 @@
 	},
 /obj/machinery/power/shuttle_engine/heater,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "R" = (
 /obj/machinery/computer{
 	dir = 8
 	},
 /turf/open/floor/mineral/bananium/airless,
-/area/shipbreak)
+/area/template_noop)
 "T" = (
 /obj/item/bikehorn,
 /obj/structure/table/wood/fancy,
 /obj/item/food/burger/clown,
 /turf/open/floor/mineral/bananium/airless,
-/area/shipbreak)
+/area/template_noop)
 "Y" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 Y

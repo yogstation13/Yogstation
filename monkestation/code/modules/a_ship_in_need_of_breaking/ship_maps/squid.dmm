@@ -1,145 +1,1455 @@
-"aO" = (/obj/machinery/camera/directional/west,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"bR" = (/obj/structure/lattice,/turf/open/space/basic,/area/shipbreak)
-"bZ" = (/obj/structure/bed,/obj/structure/curtain,/obj/item/bedsheet/dorms,/obj/structure/sign/poster/contraband/lusty_xenomorph/directional/east,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"cB" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/obj/machinery/smartfridge,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"cF" = (/obj/structure/cable,/obj/structure/table/reinforced/rglass,/obj/item/modular_computer/laptop/preset,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"cI" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"dd" = (/obj/structure/cable,/obj/machinery/holopad/secure,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"dq" = (/obj/structure/window/reinforced/tinted/spawner/directional/east,/obj/effect/spawner/random/vending/snackvend,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"dC" = (/obj/machinery/light/cold/directional/west,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"dF" = (/obj/structure/bed,/obj/item/bedsheet/dorms,/obj/structure/curtain,/obj/structure/sign/poster/contraband/interdyne_gene_clinics/directional/south{pixel_x = -1; pixel_y = -24},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"dU" = (/obj/structure/table/reinforced/rglass,/obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_hivemind{pixel_x = -4; pixel_y = 5},/obj/item/pen/fountain{pixel_x = 8; pixel_y = 4},/obj/item/organ/internal/alien/hivenode{pixel_x = 4; pixel_y = -4},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"eV" = (/obj/machinery/chem_heater{dir = 1; pixel_x = 0; pixel_y = -4},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"gh" = (/obj/structure/bed,/obj/item/bedsheet/blue,/obj/structure/curtain,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"gw" = (/obj/structure/tank_dispenser/oxygen,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"hy" = (/obj/machinery/door/airlock/external/glass,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"hM" = (/obj/structure/statue/plasma/xeno,/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"hQ" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/obj/machinery/smoke_machine,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"hV" = (/turf/closed/wall/mineral/titanium/interior,/area/shipbreak)
-"ih" = (/obj/structure/cable,/obj/machinery/camera/directional/west,/obj/machinery/light/cold/directional/east,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"is" = (/obj/structure/cable,/obj/machinery/light/cold/directional/east,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"jk" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"jn" = (/obj/structure/cable,/obj/machinery/photocopier/gratis,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"km" = (/obj/structure/cable,/obj/structure/sink/directional/west,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"kK" = (/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"kS" = (/obj/structure/cable,/obj/machinery/camera/directional/east,/obj/machinery/light/cold/directional/west,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"lc" = (/obj/structure/cable,/obj/structure/sign/warning/vacuum/directional/east,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"lD" = (/obj/machinery/door/airlock/titanium/glass,/obj/machinery/door/poddoor/shuttledock{dir = 1},/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"lG" = (/obj/structure/cable,/obj/structure/sign/warning/vacuum/directional/west,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"lT" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 4},/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"mG" = (/obj/structure/chair/office{dir = 8},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"mJ" = (/obj/structure/cable,/obj/structure/sign/departments/evac/directional/west,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"mK" = (/obj/machinery/door/airlock/highsecurity,/obj/machinery/door/poddoor/shuttledock,/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"mL" = (/obj/structure/cable,/obj/structure/table/reinforced/rglass,/obj/effect/spawner/random/vendor_meal_sides/nt,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"nJ" = (/obj/machinery/door/poddoor/shuttledock,/obj/machinery/door/airlock/highsecurity,/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"nY" = (/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"nZ" = (/turf/template_noop,/area/shipbreak)
-"oa" = (/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"pi" = (/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/closed/wall/mineral/titanium,/area/shipbreak)
-"py" = (/obj/structure/reagent_dispensers/watertank/high,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"pz" = (/obj/machinery/light/cold/directional/east,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"pL" = (/obj/machinery/camera/directional/east,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"pN" = (/obj/structure/sign/calendar/directional/west{pixel_x = -29; pixel_y = 1},/obj/structure/cable,/obj/machinery/light/cold/directional/west,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"qc" = (/obj/structure/table/reinforced/rglass,/obj/structure/closet/mini_fridge{name = "mini-fridge"; pixel_x = 9; pixel_y = 9},/obj/item/reagent_containers/condiment/soymilk{pixel_x = -2; pixel_y = 2},/obj/item/reagent_containers/condiment/milk{pixel_x = 8; pixel_y = 2},/obj/item/reagent_containers/condiment/flour{pixel_x = -5; pixel_y = 11},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"qw" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 8},/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"qE" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/obj/machinery/computer/old{dir = 8},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"rp" = (/obj/structure/table/reinforced/rglass,/obj/item/organ/internal/body_egg/alien_embryo{pixel_x = 70; pixel_y = 36},/obj/effect/spawner/random/medical/injector,/obj/effect/spawner/random/medical/injector{pixel_x = -1; pixel_y = 7},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"rJ" = (/obj/machinery/computer/operating{dir = 4},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"se" = (/obj/structure/reagent_dispensers/fueltank/large,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"sf" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 4},/obj/structure/cable,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"sg" = (/obj/machinery/suit_storage_unit,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"tl" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"ur" = (/turf/open/space/basic,/area/shipbreak)
-"uC" = (/turf/closed/wall/mineral/titanium,/area/shipbreak)
-"uO" = (/obj/structure/cable,/obj/structure/sign/warning/biohazard/directional/east,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"vN" = (/obj/structure/sign/directions/dorms/directional/south{pixel_x = -1; pixel_y = -21},/obj/machinery/light/cold/directional/east,/obj/machinery/oven/range,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"wY" = (/obj/structure/bed,/obj/structure/curtain,/obj/item/bedsheet/dorms,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"xl" = (/obj/structure/table/reinforced/rglass,/obj/item/reagent_containers/cooking_container/pan{pixel_x = -6; pixel_y = -2},/obj/item/kitchen/rollingpin{pixel_x = -3; pixel_y = 9},/obj/item/knife/kitchen{pixel_x = 8; pixel_y = 0},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"xo" = (/obj/structure/rack,/obj/item/stack/scrap/plasma,/obj/item/stack/sheet/mineral/plasma,/obj/item/stack/sheet/mineral/plasma,/obj/machinery/light/cold/directional/east,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"xJ" = (/obj/structure/sign/directions/medical/directional/south{pixel_x = 4; pixel_y = -21},/obj/machinery/light/cold/directional/west,/obj/machinery/smartfridge,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"xN" = (/obj/machinery/power/shuttle_engine/propulsion/burst{dir = 1},/turf/open/space/basic,/area/shipbreak)
-"yi" = (/obj/effect/spawner/structure/window/hollow/reinforced/directional,/obj/machinery/power/shuttle_engine/heater{dir = 1},/turf/open/space/basic,/area/shipbreak)
-"zj" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 8},/obj/structure/cable,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"AJ" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/obj/machinery/computer/old{dir = 4},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Bb" = (/obj/structure/cable,/obj/structure/table/reinforced/rglass,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Bc" = (/obj/structure/cable,/obj/machinery/computer/old{dir = 1},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"BZ" = (/obj/machinery/sleeper{dir = 4},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"CV" = (/obj/structure/cable,/obj/structure/sign/departments/evac/directional/east,/obj/structure/sink/directional/west,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"DU" = (/obj/machinery/shower{pixel_x = 0; pixel_y = 17},/obj/structure/drain,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Ep" = (/obj/structure/cable,/obj/machinery/suit_storage_unit,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"ED" = (/obj/structure/cable,/obj/machinery/light/cold/directional/east,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Fa" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 4},/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"Fj" = (/obj/structure/table/reinforced/rglass,/obj/effect/spawner/random/medical/surgery_tool_advanced,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"GC" = (/obj/structure/cable,/obj/machinery/power/smes/super/full,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"GY" = (/obj/structure/cable,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Hf" = (/obj/structure/cable,/obj/structure/chair/comfy/shuttle,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Hl" = (/obj/structure/cable,/obj/structure/table/reinforced/rglass,/obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_autopsy{pixel_x = -39; pixel_y = 6},/obj/item/paper/fluff/awaymissions/moonoutpost19/research/facehugger,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"HD" = (/obj/structure/table/reinforced/rglass,/obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_queen{pixel_x = 0; pixel_y = 0},/obj/effect/spawner/random/vendor_meal_sides/yangyu,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"IK" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"IV" = (/obj/structure/cable,/obj/structure/table/reinforced/rglass,/obj/item/plate,/obj/item/plate{pixel_y = 2; pixel_x = 0},/obj/item/plate{pixel_y = 4},/obj/item/plate{pixel_y = 6},/obj/item/plate{pixel_y = 8},/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Kh" = (/obj/structure/table/reinforced/rglass,/obj/effect/spawner/random/exotic/technology,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Lj" = (/obj/machinery/power/shuttle_engine/heater{dir = 1},/obj/effect/spawner/structure/window/hollow/reinforced/directional,/turf/open/space/basic,/area/shipbreak)
-"Ll" = (/obj/machinery/atmospherics/components/unary/portables_connector/layer2{dir = 4},/obj/machinery/portable_atmospherics/canister/air,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"LP" = (/obj/machinery/light/cold/directional/east,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"MR" = (/obj/structure/cable,/obj/machinery/light/cold/directional/west,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"MX" = (/obj/machinery/atmospherics/components/unary/portables_connector/layer2{dir = 8},/obj/machinery/portable_atmospherics/canister/air,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Np" = (/obj/machinery/door/airlock/external/glass,/obj/structure/cable,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Ny" = (/obj/structure/rack,/obj/item/storage/belt,/obj/item/stack/sheet/mineral/plasma,/obj/item/shard/plasma,/obj/machinery/light/cold/directional/west,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"NJ" = (/obj/machinery/power/shuttle_engine/large{dir = 1},/turf/open/space/basic,/area/shipbreak)
-"Ol" = (/obj/structure/reagent_dispensers/foamtank,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Ou" = (/obj/structure/cable,/obj/structure/sign/warning/biohazard/directional/west,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"ON" = (/obj/structure/cable,/obj/machinery/vending/wallmed/directional/east{pixel_x = 23; pixel_y = 2},/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"OX" = (/obj/machinery/door/airlock/titanium/glass,/obj/machinery/door/poddoor/shuttledock{dir = 4},/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Px" = (/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Pz" = (/obj/structure/chair/office{dir = 1},/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"PK" = (/obj/machinery/smartfridge,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"PY" = (/obj/machinery/power/port_gen/pacman/pre_loaded,/obj/structure/cable,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"QS" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"RY" = (/obj/machinery/light/cold/directional/west,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"SV" = (/obj/structure/lattice,/obj/machinery/atmospherics/components/unary/passive_vent/layer4{dir = 8},/turf/open/space/basic,/area/shipbreak)
-"TR" = (/obj/machinery/door/airlock/highsecurity,/obj/machinery/door/poddoor/shuttledock,/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"Ua" = (/obj/structure/cable,/obj/structure/table/reinforced/rglass,/obj/effect/spawner/random/exotic/tool,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Uf" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"UH" = (/obj/structure/cable,/obj/structure/table/reinforced/rglass,/obj/item/reagent_containers/cup/beaker{pixel_x = -7; pixel_y = -2},/obj/item/reagent_containers/cup/beaker/large/aiuri{pixel_x = 7; pixel_y = 7},/obj/item/reagent_containers/syringe/morphine,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Vi" = (/obj/structure/reagent_dispensers/fueltank/large,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"VS" = (/obj/structure/window/reinforced/tinted/spawner/directional/west,/obj/effect/spawner/random/vending/colavend,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"WH" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{dir = 1},/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"Xq" = (/obj/machinery/door/airlock/titanium/glass,/obj/machinery/door/poddoor/shuttledock{dir = 1},/obj/structure/cable,/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Xy" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{dir = 8},/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"XJ" = (/obj/structure/cable,/obj/machinery/light/cold/directional/north,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"XK" = (/obj/structure/chair/office,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Yp" = (/obj/structure/bed/medical,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Yr" = (/obj/structure/table/optable,/obj/machinery/iv_drip,/obj/machinery/light/cold/directional/west,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"YZ" = (/obj/structure/cable,/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/west{pixel_x = -27; pixel_y = 4},/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"Za" = (/obj/machinery/holopad/secure,/turf/open/floor/mineral/titanium/tiled/white,/area/shipbreak)
-"ZF" = (/obj/structure/bed,/obj/item/bedsheet/cosmos,/obj/structure/curtain,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"ZJ" = (/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
-"ZV" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,/obj/structure/cable,/turf/open/floor/iron/showroomfloor,/area/shipbreak)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aO" = (
+/obj/machinery/camera/directional/west,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"bR" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"bZ" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/obj/item/bedsheet/dorms,
+/obj/structure/sign/poster/contraband/lusty_xenomorph/directional/east,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"cB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/smartfridge,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"cF" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced/rglass,
+/obj/item/modular_computer/laptop/preset,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"cI" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"dd" = (
+/obj/structure/cable,
+/obj/machinery/holopad/secure,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"dq" = (
+/obj/structure/window/reinforced/tinted/spawner/directional/east,
+/obj/effect/spawner/random/vending/snackvend,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"dC" = (
+/obj/machinery/light/cold/directional/west,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"dF" = (
+/obj/structure/bed,
+/obj/item/bedsheet/dorms,
+/obj/structure/curtain,
+/obj/structure/sign/poster/contraband/interdyne_gene_clinics/directional/south{
+	pixel_x = -1;
+	pixel_y = -24
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"dU" = (
+/obj/structure/table/reinforced/rglass,
+/obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_hivemind{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/pen/fountain{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/organ/internal/alien/hivenode{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"eV" = (
+/obj/machinery/chem_heater{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -4
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"gh" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/structure/curtain,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"gw" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"hy" = (
+/obj/machinery/door/airlock/external/glass,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"hM" = (
+/obj/structure/statue/plasma/xeno,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"hQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/smoke_machine,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"hV" = (
+/turf/closed/wall/mineral/titanium/interior,
+/area/template_noop)
+"ih" = (
+/obj/structure/cable,
+/obj/machinery/camera/directional/west,
+/obj/machinery/light/cold/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"is" = (
+/obj/structure/cable,
+/obj/machinery/light/cold/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"jk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"jn" = (
+/obj/structure/cable,
+/obj/machinery/photocopier/gratis,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"km" = (
+/obj/structure/cable,
+/obj/structure/sink/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"kK" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"kS" = (
+/obj/structure/cable,
+/obj/machinery/camera/directional/east,
+/obj/machinery/light/cold/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"lc" = (
+/obj/structure/cable,
+/obj/structure/sign/warning/vacuum/directional/east,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"lD" = (
+/obj/machinery/door/airlock/titanium/glass,
+/obj/machinery/door/poddoor/shuttledock{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"lG" = (
+/obj/structure/cable,
+/obj/structure/sign/warning/vacuum/directional/west,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"lT" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"mG" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"mJ" = (
+/obj/structure/cable,
+/obj/structure/sign/departments/evac/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"mK" = (
+/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/poddoor/shuttledock,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"mL" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced/rglass,
+/obj/effect/spawner/random/vendor_meal_sides/nt,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"nJ" = (
+/obj/machinery/door/poddoor/shuttledock,
+/obj/machinery/door/airlock/highsecurity,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"nY" = (
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"nZ" = (
+/turf/template_noop,
+/area/template_noop)
+"oa" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"pi" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"py" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"pz" = (
+/obj/machinery/light/cold/directional/east,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"pL" = (
+/obj/machinery/camera/directional/east,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"pN" = (
+/obj/structure/sign/calendar/directional/west{
+	pixel_x = -29;
+	pixel_y = 1
+	},
+/obj/structure/cable,
+/obj/machinery/light/cold/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"qc" = (
+/obj/structure/table/reinforced/rglass,
+/obj/structure/closet/mini_fridge{
+	name = "mini-fridge";
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/condiment/soymilk{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/condiment/milk{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/condiment/flour{
+	pixel_x = -5;
+	pixel_y = 11
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"qw" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"qE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/computer/old{
+	dir = 8
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"rp" = (
+/obj/structure/table/reinforced/rglass,
+/obj/effect/spawner/random/medical/injector,
+/obj/effect/spawner/random/medical/injector{
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"rJ" = (
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"se" = (
+/obj/structure/reagent_dispensers/fueltank/large,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"sf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"sg" = (
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"tl" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"uC" = (
+/turf/closed/wall/mineral/titanium,
+/area/template_noop)
+"uO" = (
+/obj/structure/cable,
+/obj/structure/sign/warning/biohazard/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"vN" = (
+/obj/structure/sign/directions/dorms/directional/south{
+	pixel_x = -1;
+	pixel_y = -21
+	},
+/obj/machinery/light/cold/directional/east,
+/obj/machinery/oven/range,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"wY" = (
+/obj/structure/bed,
+/obj/structure/curtain,
+/obj/item/bedsheet/dorms,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"xl" = (
+/obj/structure/table/reinforced/rglass,
+/obj/item/reagent_containers/cooking_container/pan{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/item/knife/kitchen{
+	pixel_x = 8;
+	pixel_y = 0
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"xo" = (
+/obj/structure/rack,
+/obj/item/stack/scrap/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/machinery/light/cold/directional/east,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"xJ" = (
+/obj/structure/sign/directions/medical/directional/south{
+	pixel_x = 4;
+	pixel_y = -21
+	},
+/obj/machinery/light/cold/directional/west,
+/obj/machinery/smartfridge,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"xN" = (
+/obj/machinery/power/shuttle_engine/propulsion/burst{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"yi" = (
+/obj/effect/spawner/structure/window/hollow/reinforced/directional,
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"zj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"AJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/machinery/computer/old{
+	dir = 4
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Bb" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced/rglass,
+/obj/item/organ/internal/body_egg/alien_embryo{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Bc" = (
+/obj/structure/cable,
+/obj/machinery/computer/old{
+	dir = 1
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"BZ" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"CV" = (
+/obj/structure/cable,
+/obj/structure/sign/departments/evac/directional/east,
+/obj/structure/sink/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"DU" = (
+/obj/machinery/shower{
+	pixel_x = 0;
+	pixel_y = 17
+	},
+/obj/structure/drain,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Ep" = (
+/obj/structure/cable,
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"ED" = (
+/obj/structure/cable,
+/obj/machinery/light/cold/directional/east,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Fa" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"Fj" = (
+/obj/structure/table/reinforced/rglass,
+/obj/effect/spawner/random/medical/surgery_tool_advanced,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"GC" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/super/full,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"GY" = (
+/obj/structure/cable,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Hf" = (
+/obj/structure/cable,
+/obj/structure/chair/comfy/shuttle,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Hl" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced/rglass,
+/obj/item/paper/fluff/awaymissions/moonoutpost19/research/larva_autopsy{
+	pixel_x = -39;
+	pixel_y = 6
+	},
+/obj/item/paper/fluff/awaymissions/moonoutpost19/research/facehugger,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"HD" = (
+/obj/structure/table/reinforced/rglass,
+/obj/item/paper/fluff/awaymissions/moonoutpost19/research/xeno_queen{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/effect/spawner/random/vendor_meal_sides/yangyu,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"IK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"IV" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced/rglass,
+/obj/item/plate,
+/obj/item/plate{
+	pixel_y = 2;
+	pixel_x = 0
+	},
+/obj/item/plate{
+	pixel_y = 4
+	},
+/obj/item/plate{
+	pixel_y = 6
+	},
+/obj/item/plate{
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Kh" = (
+/obj/structure/table/reinforced/rglass,
+/obj/effect/spawner/random/exotic/technology,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Lj" = (
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 1
+	},
+/obj/effect/spawner/structure/window/hollow/reinforced/directional,
+/turf/template_noop,
+/area/template_noop)
+"Ll" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/layer2{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"LP" = (
+/obj/machinery/light/cold/directional/east,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"MR" = (
+/obj/structure/cable,
+/obj/machinery/light/cold/directional/west,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"MX" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/layer2{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Np" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/structure/cable,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Ny" = (
+/obj/structure/rack,
+/obj/item/storage/belt,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/shard/plasma,
+/obj/machinery/light/cold/directional/west,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"NJ" = (
+/obj/machinery/power/shuttle_engine/large{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"Ol" = (
+/obj/structure/reagent_dispensers/foamtank,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Ou" = (
+/obj/structure/cable,
+/obj/structure/sign/warning/biohazard/directional/west,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"ON" = (
+/obj/structure/cable,
+/obj/machinery/vending/wallmed/directional/east{
+	pixel_x = 23;
+	pixel_y = 2
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"OX" = (
+/obj/machinery/door/airlock/titanium/glass,
+/obj/machinery/door/poddoor/shuttledock{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Px" = (
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Pz" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"PK" = (
+/obj/machinery/smartfridge,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"PY" = (
+/obj/machinery/power/port_gen/pacman/pre_loaded,
+/obj/structure/cable,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"QS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"RY" = (
+/obj/machinery/light/cold/directional/west,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"SV" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/components/unary/passive_vent/layer4{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"TR" = (
+/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/poddoor/shuttledock,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"Ua" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced/rglass,
+/obj/effect/spawner/random/exotic/tool,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Uf" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"UH" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced/rglass,
+/obj/item/reagent_containers/cup/beaker{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/cup/beaker/large/aiuri{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/syringe/morphine,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Vi" = (
+/obj/structure/reagent_dispensers/fueltank/large,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"VS" = (
+/obj/structure/window/reinforced/tinted/spawner/directional/west,
+/obj/effect/spawner/random/vending/colavend,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"WH" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"Xq" = (
+/obj/machinery/door/airlock/titanium/glass,
+/obj/machinery/door/poddoor/shuttledock{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Xy" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"XJ" = (
+/obj/structure/cable,
+/obj/machinery/light/cold/directional/north,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"XK" = (
+/obj/structure/chair/office,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Yp" = (
+/obj/structure/bed/medical,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Yr" = (
+/obj/structure/table/optable,
+/obj/machinery/iv_drip,
+/obj/machinery/light/cold/directional/west,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"YZ" = (
+/obj/structure/cable,
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/west{
+	pixel_x = -27;
+	pixel_y = 4
+	},
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"Za" = (
+/obj/machinery/holopad/secure,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/template_noop)
+"ZF" = (
+/obj/structure/bed,
+/obj/item/bedsheet/cosmos,
+/obj/structure/curtain,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"ZJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
+"ZV" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/showroomfloor,
+/area/template_noop)
 
 (1,1,1) = {"
-nZnZnZnZnZxNnZnZnZnZnZnZnZnZnZnZnZnZnZxNnZnZnZnZnZ
-nZnZnZnZuCLjuCuCnZnZnZnZnZnZnZnZnZuCuCyiuCnZnZnZnZ
-nZnZnZnZuCPxPYuCnZnZnZnZnZnZnZnZnZuCPYPxuCnZnZnZnZ
-nZnZnZnZuCPxGCuCnZnZnZnZnZnZnZnZnZuCGCPxuCnZnZnZnZ
-nZnZnZnZuCPxGYuCuCnZnZnZnZnZnZnZuCuCGYPxuCnZnZnZnZ
-nZnZnZnZuCNyQSsepiSVururnZururbRuCViZVxouCnZnZnZnZ
-nZnZnZnZuCLlUfOlhVuCNJurxNNJuruChVOlUfMXuCnZnZnZnZ
-nZnZnZnZuCLlIKpyhVdqLjLjLjLjLjVShVpyIKMXuCnZnZnZnZ
-nZnZnZnZuCuCIKIKhVdCPxPxXKPxPxpzhVIKIKuCuCnZnZnZnZ
-nZnZnZnZuCuCuClDhVPxUacFBbHlmLPxhVXquCuCuCnZnZnZnZ
-nZnZnZuCuCgwuCIKPxPxrpmGddPzdUPxPxIKuCgwuCuCnZnZnZ
-nZnZuCuCsgEDhVmJcIPxHDPxjnPxKhmGcICVhVMRsguCuCnZnZ
-nZuCuCsglTIKOXIKIKZJPzPxGYPxPxZJIKIKOXIKqwsguCuCnZ
-uCuCGYsfjkuChVPKIKUHIKcBhMhQIKIVIKqchVuCjkzjGYuCuC
-uChVNphVuCuCuCxJIKeVPxPxIKPxPxxlIKvNuCuCuChVNphVuC
-hyXJlcuCuCnZuCuCXqhVOuAJHfqEuOhVXquCuCnZuCuClGXJhy
-uCEpuCuCnZuCuCDUishVmKhVBchVnJhVpNghuCuCnZuCuCEpuC
-uCuCuCnZuCuCYpIKkmuCihhVuChVkSuCYZIKwYuCuCnZuCuCuC
-nZnZnZuCuCYpIKONuCuCTRuCnZuCmKuCuCIKIKwYuCuCnZnZnZ
-nZnZuCuCBZjktluCuCZaoauCnZuCoaZauCuCtljkZFuCuCnZnZ
-nZnZuCrJsfjkuCuCaOkKWHuCnZuCWHkKpLuCuCjkzjbZuCnZnZ
-nZnZuCYrGYuCuCuCRYkKuCuCnZuCuCkKLPuCuCuCGYpzuCnZnZ
-nZnZuCFjuCuCnZuCFakKuCnZnZnZuCkKXyuCnZuCuCdFuCnZnZ
-nZnZuCuCuCnZnZuCnYuCuCnZnZnZuCuCnYuCnZnZuCuCuCnZnZ
-nZnZnZnZnZnZnZuCuCuCnZnZnZnZnZuCuCuCnZnZnZnZnZnZnZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+hy
+uC
+uC
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+"}
+(2,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+hV
+XJ
+Ep
+uC
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+"}
+(3,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+GY
+Np
+lc
+uC
+uC
+nZ
+uC
+uC
+uC
+uC
+uC
+nZ
+"}
+(4,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+sg
+sf
+hV
+uC
+uC
+nZ
+uC
+uC
+rJ
+Yr
+Fj
+uC
+nZ
+"}
+(5,1,1) = {"
+nZ
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+sg
+lT
+jk
+uC
+uC
+nZ
+uC
+uC
+BZ
+sf
+GY
+uC
+uC
+nZ
+"}
+(6,1,1) = {"
+xN
+Lj
+Px
+Px
+Px
+Ny
+Ll
+Ll
+uC
+uC
+gw
+ED
+IK
+uC
+uC
+nZ
+uC
+uC
+Yp
+jk
+jk
+uC
+uC
+nZ
+nZ
+"}
+(7,1,1) = {"
+nZ
+uC
+PY
+GC
+GY
+QS
+Uf
+IK
+IK
+uC
+uC
+hV
+OX
+hV
+uC
+uC
+uC
+Yp
+IK
+tl
+uC
+uC
+nZ
+nZ
+nZ
+"}
+(8,1,1) = {"
+nZ
+uC
+uC
+uC
+uC
+se
+Ol
+py
+IK
+lD
+IK
+mJ
+IK
+PK
+xJ
+uC
+DU
+IK
+ON
+uC
+uC
+uC
+uC
+uC
+uC
+"}
+(9,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+uC
+pi
+hV
+hV
+hV
+hV
+Px
+cI
+IK
+IK
+IK
+Xq
+is
+km
+uC
+uC
+aO
+RY
+Fa
+nY
+uC
+"}
+(10,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+SV
+uC
+dq
+dC
+Px
+Px
+Px
+ZJ
+UH
+eV
+hV
+hV
+uC
+uC
+Za
+kK
+kK
+kK
+uC
+uC
+"}
+(11,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+NJ
+Lj
+Px
+Ua
+rp
+HD
+Pz
+IK
+Px
+Ou
+mK
+ih
+TR
+oa
+WH
+uC
+uC
+uC
+nZ
+"}
+(12,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+Lj
+Px
+cF
+mG
+Px
+Px
+cB
+Px
+AJ
+hV
+hV
+uC
+uC
+uC
+uC
+nZ
+nZ
+nZ
+"}
+(13,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+xN
+Lj
+XK
+Bb
+dd
+jn
+GY
+hM
+IK
+Hf
+Bc
+uC
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+"}
+(14,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+NJ
+Lj
+Px
+Hl
+Pz
+Px
+Px
+hQ
+Px
+qE
+hV
+hV
+uC
+uC
+uC
+uC
+nZ
+nZ
+nZ
+"}
+(15,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+Lj
+Px
+mL
+dU
+Kh
+Px
+IK
+Px
+uO
+nJ
+kS
+mK
+oa
+WH
+uC
+uC
+uC
+nZ
+"}
+(16,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+bR
+uC
+VS
+pz
+Px
+Px
+mG
+ZJ
+IV
+xl
+hV
+hV
+uC
+uC
+Za
+kK
+kK
+kK
+uC
+uC
+"}
+(17,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+hV
+hV
+hV
+hV
+Px
+cI
+IK
+IK
+IK
+Xq
+pN
+YZ
+uC
+uC
+pL
+LP
+Xy
+nY
+uC
+"}
+(18,1,1) = {"
+nZ
+uC
+uC
+uC
+uC
+Vi
+Ol
+py
+IK
+Xq
+IK
+CV
+IK
+qc
+vN
+uC
+gh
+IK
+IK
+uC
+uC
+uC
+uC
+uC
+uC
+"}
+(19,1,1) = {"
+nZ
+uC
+PY
+GC
+GY
+ZV
+Uf
+IK
+IK
+uC
+uC
+hV
+OX
+hV
+uC
+uC
+uC
+wY
+IK
+tl
+uC
+uC
+nZ
+nZ
+nZ
+"}
+(20,1,1) = {"
+xN
+yi
+Px
+Px
+Px
+xo
+MX
+MX
+uC
+uC
+gw
+MR
+IK
+uC
+uC
+nZ
+uC
+uC
+wY
+jk
+jk
+uC
+uC
+nZ
+nZ
+"}
+(21,1,1) = {"
+nZ
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+uC
+sg
+qw
+jk
+uC
+uC
+nZ
+uC
+uC
+ZF
+zj
+GY
+uC
+uC
+nZ
+"}
+(22,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+sg
+zj
+hV
+uC
+uC
+nZ
+uC
+uC
+bZ
+pz
+dF
+uC
+nZ
+"}
+(23,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+GY
+Np
+lG
+uC
+uC
+nZ
+uC
+uC
+uC
+uC
+uC
+nZ
+"}
+(24,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+hV
+XJ
+Ep
+uC
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+"}
+(25,1,1) = {"
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+uC
+uC
+hy
+uC
+uC
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
 "}

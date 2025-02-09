@@ -4,87 +4,87 @@
 	dir = 10
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "af" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 5
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "ak" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Wanglius Engineering"
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "aK" = (
 /turf/closed/wall/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "aL" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "be" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "bz" = (
 /obj/structure/cable,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "dF" = (
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/iron/dark,
-/area/shipbreak)
+/area/template_noop)
 "dL" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "et" = (
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "eQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "fr" = (
 /obj/machinery/door/window/brigdoor/security/cell/left/directional/east{
 	name = "Wanglius Brig"
 	},
 /turf/open/floor/iron/dark,
-/area/shipbreak)
+/area/template_noop)
 "fv" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/west,
 /obj/structure/window/reinforced/tinted/spawner/directional/north,
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "fz" = (
 /obj/machinery/power/shuttle_engine/propulsion{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "fL" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "fN" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/plasma/five,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "fX" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/rglass{
@@ -98,32 +98,32 @@
 	},
 /obj/item/stack/sheet/iron,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "gB" = (
 /obj/machinery/door/window/left/directional/north{
 	name = "Captain's Sleeping Capsule"
 	},
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "hv" = (
 /obj/machinery/power/port_gen/pacman/pre_loaded,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "hE" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "hF" = (
 /obj/structure/table,
 /obj/effect/spawner/random/entertainment/deck,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "id" = (
 /obj/structure/table,
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "ig" = (
 /obj/structure/table,
 /obj/machinery/recharger{
@@ -134,36 +134,36 @@
 	},
 /obj/item/coin/iron,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "iw" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "lc" = (
 /obj/effect/spawner/random/trash,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "lK" = (
 /obj/structure/table/optable,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "mb" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "mA" = (
 /obj/structure/cable,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "nk" = (
 /obj/structure/chair{
 	dir = 4
@@ -173,10 +173,10 @@
 	},
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/dark,
-/area/shipbreak)
+/area/template_noop)
 "nN" = (
 /turf/open/floor/carpet/orange,
-/area/shipbreak)
+/area/template_noop)
 "pb" = (
 /obj/effect/spawner/liquids_spawner{
 	reagent_list = list(/datum/reagent/ammonia/urine=600)
@@ -192,7 +192,7 @@
 	},
 /obj/item/reagent_containers/cup/glass/waterbottle/large/empty,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "qh" = (
 /obj/structure/table,
 /obj/item/storage/medkit/regular{
@@ -201,31 +201,31 @@
 	},
 /obj/item/storage/medkit/brute,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "qn" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency{
 	pixel_y = 3
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "qT" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/east,
 /obj/structure/window/reinforced/tinted/spawner/directional/north,
 /obj/effect/spawner/random/structure/closet_private,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "rI" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "sB" = (
 /obj/structure/chair/office{
 	dir = 4
 	},
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "tl" = (
 /obj/item/clothing/suit/hazardvest{
 	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
@@ -306,7 +306,7 @@
 	name = "lifejackets"
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "tt" = (
 /obj/structure/closet/crate{
 	name = "emergency supplies crate"
@@ -326,179 +326,179 @@
 /obj/item/radio,
 /obj/machinery/light/directional/south,
 /turf/open/floor/iron,
-/area/shipbreak)
+/area/template_noop)
 "tH" = (
 /obj/machinery/computer/old,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "tN" = (
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "uR" = (
 /obj/machinery/door/window/left/directional/east{
 	name = "Sleeping Capsule"
 	},
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "uW" = (
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "wn" = (
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "wL" = (
 /obj/machinery/power/smes/full,
 /obj/structure/cable,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "yp" = (
 /obj/effect/spawner/random/maintenance,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "yt" = (
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "yx" = (
 /obj/structure/chair{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "yO" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/east,
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
 /obj/structure/bed,
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "zo" = (
 /obj/effect/spawner/random/structure/crate,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "zD" = (
 /obj/structure/table,
 /obj/machinery/microwave{
 	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "zK" = (
 /obj/machinery/light/directional/west,
 /obj/structure/chair{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "AK" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Wanglius Sick Bay"
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "BF" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Wanglius Cargo Bay"
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Ca" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Ct" = (
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "CW" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "Dj" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Eh" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Er" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "EN" = (
 /obj/item/coin/iron,
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "Fq" = (
 /obj/effect/spawner/random/trash,
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "FA" = (
 /obj/structure/chair/office{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/dark,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "FG" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "FY" = (
 /obj/machinery/button/door/directional/east{
 	id = "wangliusboardingdoor";
 	name = "Boarding Door Control"
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Gv" = (
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "Hl" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "HG" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "HR" = (
 /obj/effect/spawner/random/structure/crate,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "HZ" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Ia" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Jt" = (
 /obj/machinery/stasis,
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "JO" = (
 /obj/machinery/door/airlock/external{
 	name = "Wanglius Airlock"
@@ -507,46 +507,46 @@
 	cycle_id = "wangliusairlock"
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "JZ" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Kg" = (
 /obj/machinery/power/terminal{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "KL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "KT" = (
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
 /obj/structure/bed,
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "La" = (
 /obj/effect/spawner/random/maintenance,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "MS" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "MU" = (
 /obj/effect/spawner/random/structure/crate,
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "Np" = (
 /obj/structure/closet/crate,
 /obj/item/coin/iron,
@@ -555,38 +555,38 @@
 /obj/item/coin/iron,
 /obj/item/coin/iron,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Nt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "NJ" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 9
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Oc" = (
 /obj/effect/turf_decal/siding/dark/corner,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Of" = (
 /obj/machinery/power/shuttle_engine/heater{
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "Oh" = (
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "OB" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "OI" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical{
@@ -601,17 +601,17 @@
 	pixel_y = -5
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "OP" = (
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "PR" = (
 /obj/machinery/door/airlock/public{
 	name = "Wanglius Crew Quarters"
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "PV" = (
 /obj/machinery/light/directional/north,
 /obj/structure/table,
@@ -619,11 +619,11 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Qi" = (
 /obj/structure/cable,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "Qj" = (
 /obj/structure/rack,
 /obj/item/tank/internals/oxygen/red,
@@ -633,85 +633,85 @@
 /obj/item/extinguisher,
 /obj/item/extinguisher,
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "QE" = (
 /obj/structure/bed,
 /obj/structure/window/reinforced/tinted/spawner/directional/east,
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "Se" = (
 /obj/effect/spawner/random/structure/closet_private,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "SL" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "Tl" = (
 /obj/effect/spawner/random/maintenance,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 "TN" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "UO" = (
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "Vb" = (
 /obj/structure/chair{
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
-/area/shipbreak)
+/area/template_noop)
 "Vd" = (
 /obj/machinery/door/window/left/directional/south{
 	name = "Sleeping Capsule"
 	},
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "XN" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "XV" = (
 /obj/structure/bed,
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
 /obj/structure/window/reinforced/tinted/spawner/directional/east,
 /obj/item/bedsheet/random,
 /turf/open/floor/carpet/blue,
-/area/shipbreak)
+/area/template_noop)
 "XW" = (
 /obj/structure/table,
 /obj/item/defibrillator/loaded,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "Yx" = (
 /obj/structure/table,
 /obj/machinery/light/directional/west,
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "YZ" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "Zx" = (
 /obj/effect/spawner/random/trash,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
 /turf/open/floor/iron/dark/textured,
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 Er

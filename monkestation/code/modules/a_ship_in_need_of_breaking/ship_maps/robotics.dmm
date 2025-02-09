@@ -6,35 +6,35 @@
 	id = "mothership_right"
 	},
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "bG" = (
 /turf/closed/wall/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "cE" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "mothership_right"
 	},
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "cH" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shipbreak)
+/area/template_noop)
 "dk" = (
 /obj/machinery/door/airlock/external/ruin,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "dB" = (
 /obj/machinery/power/shuttle_engine/heater,
 /obj/structure/window/reinforced/spawner/directional/north{
 	layer = 2.9
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "ev" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shipbreak)
+/area/template_noop)
 "fi" = (
 /obj/machinery/light/cold/no_nightlight/directional/west,
 /obj/machinery/button/door/directional/west{
@@ -42,17 +42,17 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "fA" = (
 /obj/item/stack/sheet/mineral/titanium,
 /obj/effect/mapping_helpers/broken_floor,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "ht" = (
 /obj/structure/lattice,
 /obj/item/stack/sheet/mineral/titanium,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "hQ" = (
 /obj/structure/spacevine,
 /obj/machinery/conveyor{
@@ -61,20 +61,20 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "hZ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "ib" = (
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "jp" = (
 /obj/structure/sign/warning/vacuum/external/directional/west,
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "jH" = (
 /obj/machinery/power/shuttle_engine/heater,
 /obj/structure/window/reinforced/spawner/directional/north{
@@ -82,25 +82,25 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "ka" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "mj" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "mC" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "nJ" = (
 /obj/item/radio/intercom/directional/south,
 /obj/structure/ai_core,
 /turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "pL" = (
 /obj/machinery/light/small/directional/south,
 /obj/machinery/conveyor{
@@ -109,64 +109,64 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "qg" = (
 /obj/item/organ/internal/brain,
 /obj/structure/cable,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "qN" = (
 /obj/machinery/conveyor/inverted{
 	dir = 5;
 	id = "mothership_main"
 	},
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "rI" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "we" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "wg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "wB" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/cyborg_mothership{
+/obj/machinery/computer/old{
 	dir = 1
 	},
 /turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "xg" = (
 /obj/machinery/mineral/stacking_machine{
 	input_dir = 2
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
-/area/shipbreak)
+/area/template_noop)
 "xX" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "mothership_left"
 	},
 /obj/structure/cable,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "ys" = (
 /obj/machinery/light/cold/no_nightlight/directional/east,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "yL" = (
 /obj/machinery/conveyor/inverted{
 	dir = 6;
 	id = "mothership_main"
 	},
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "zp" = (
 /obj/machinery/space_heater{
 	anchored = 1
@@ -177,7 +177,7 @@
 /obj/effect/mapping_helpers/airalarm/all_access,
 /obj/item/wrench,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "AL" = (
 /obj/machinery/mecha_part_fabricator/maint{
 	name = "forgotten exosuit fabricator";
@@ -188,13 +188,7 @@
 	id = "mothership_left"
 	},
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
-"AY" = (
-/obj/machinery/computer/shuttle/cyborg_mothership{
-	dir = 1
-	},
-/turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "BI" = (
 /obj/machinery/power/shuttle_engine/heater,
 /obj/structure/window/reinforced/spawner/directional/north{
@@ -202,7 +196,7 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/west,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Cj" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/cable,
@@ -210,7 +204,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "DF" = (
 /obj/item/stack/rods,
 /obj/machinery/light/broken/directional/east,
@@ -218,25 +212,25 @@
 	id = "mothership_right"
 	},
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "Ea" = (
 /obj/machinery/recharge_station,
 /obj/structure/sign/warning/vacuum/external/directional/east,
 /obj/machinery/camera/directional/east,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "FK" = (
 /obj/machinery/conveyor{
 	id = "Recycler"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "FL" = (
 /obj/structure/lattice,
 /obj/structure/marker_beacon/cerulean,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Ga" = (
 /obj/structure/spacevine,
 /obj/machinery/conveyor{
@@ -245,21 +239,21 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "Hr" = (
 /obj/item/mmi,
 /turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "HO" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/power/tracker,
 /obj/structure/cable,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Ja" = (
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "Jk" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/conveyor_switch{
@@ -267,30 +261,30 @@
 	name = "Recycler"
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Jn" = (
 /obj/item/circuitboard/aicore,
 /obj/structure/cable,
 /turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "Js" = (
 /obj/machinery/holopad/secure,
 /obj/structure/cable,
 /turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "JW" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
 	dir = 4
 	},
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "LS" = (
 /obj/item/stack/sheet/rglass{
 	amount = 2
 	},
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "Mf" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
@@ -300,20 +294,20 @@
 	},
 /obj/effect/turf_decal/stripes/asteroid/line,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "NY" = (
 /obj/machinery/mineral/ore_redemption{
 	input_dir = 4
 	},
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
-/area/shipbreak)
+/area/template_noop)
 "OR" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera/directional/north,
 /obj/machinery/ore_silo,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Pc" = (
 /obj/machinery/conveyor/inverted{
 	dir = 6;
@@ -321,14 +315,14 @@
 	},
 /obj/structure/cable,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Qd" = (
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "mothership_main"
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Qm" = (
 /obj/machinery/conveyor{
 	id = "mothership_main";
@@ -336,23 +330,23 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "RU" = (
 /obj/item/disk/holodisk/ruin/cyborg_mothership,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "Th" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "UU" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/conveyor_switch/oneway{
 	id = "mothership_main"
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Vf" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -360,7 +354,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "VU" = (
 /obj/structure/table,
 /obj/item/toy/talking/ai{
@@ -370,7 +364,7 @@
 /obj/machinery/cell_charger,
 /obj/item/stock_parts/cell/high,
 /turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "VW" = (
 /obj/machinery/camera/directional/south,
 /obj/structure/cable,
@@ -381,7 +375,7 @@
 	},
 /obj/effect/mapping_helpers/apc/unlocked,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "Wf" = (
 /obj/machinery/conveyor/inverted{
 	dir = 5;
@@ -389,14 +383,14 @@
 	},
 /obj/structure/cable,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "WC" = (
 /obj/structure/cable,
 /obj/structure/table_frame,
 /obj/item/aicard,
 /obj/item/ai_module/core/full/overlord,
 /turf/open/floor/circuit/green/airless,
-/area/shipbreak)
+/area/template_noop)
 "WH" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -407,7 +401,7 @@
 	eat_dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "XU" = (
 /obj/structure/spacevine,
 /obj/machinery/conveyor{
@@ -415,16 +409,16 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "Ya" = (
 /obj/machinery/light/small/directional/east,
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "Yj" = (
 /obj/machinery/light/cold/no_nightlight/directional/west,
 /turf/open/floor/circuit/airless,
-/area/shipbreak)
+/area/template_noop)
 "ZL" = (
 /obj/machinery/conveyor{
 	id = "mothership_main";
@@ -432,7 +426,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 rI
@@ -568,7 +562,7 @@ Ya
 cH
 RU
 Hr
-AY
+wB
 VU
 ib
 ib

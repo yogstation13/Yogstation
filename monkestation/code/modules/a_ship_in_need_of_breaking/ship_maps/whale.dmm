@@ -2,27 +2,27 @@
 "n" = (
 /obj/machinery/power/shuttle_engine/propulsion/burst,
 /turf/closed/wall/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "q" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "w" = (
 /obj/structure/alien/resin/wall/creature,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "z" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "E" = (
 /obj/structure/meateor_fluff/flesh_pod,
 /turf/open/floor/material/meat,
-/area/shipbreak)
+/area/template_noop)
 "F" = (
 /obj/structure/meateor_fluff/eyeball,
 /obj/structure/alien/resin/membrane/creature,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "G" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Escape Pod Airlock"
@@ -31,19 +31,19 @@
 	port_direction = 2
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "N" = (
 /obj/structure/punji_sticks/spikes{
 	name = "jagged teeth"
 	},
 /turf/open/floor/material/meat,
-/area/shipbreak)
+/area/template_noop)
 "O" = (
 /obj/structure/statue/bone/rib{
 	dir = 1
 	},
 /turf/open/floor/material/meat,
-/area/shipbreak)
+/area/template_noop)
 "R" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -53,7 +53,7 @@
 /obj/machinery/light/small/directional/west,
 /obj/effect/mob_spawn/corpse/human/assistant,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "S" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -64,10 +64,10 @@
 	},
 /obj/effect/mob_spawn/corpse/human/assistant,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "W" = (
 /turf/closed/wall/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 q

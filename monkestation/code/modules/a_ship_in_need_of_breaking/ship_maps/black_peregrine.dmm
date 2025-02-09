@@ -1,21 +1,21 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aV" = (
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "bY" = (
 /obj/structure/chair/comfy/shuttle/tactical{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/dark_red,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "cS" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 8
 	},
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "dR" = (
 /obj/machinery/door/airlock/security,
 /obj/structure/cable,
@@ -23,33 +23,33 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "ef" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 4
 	},
 /obj/machinery/vending/cigarette/syndicate,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "es" = (
 /obj/structure/transit_tube/curved{
 	dir = 4
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "eS" = (
 /obj/structure/lattice,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "eY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "fd" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/engineering,
@@ -57,7 +57,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "fX" = (
 /obj/machinery/door/airlock/engineering,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -65,43 +65,43 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /obj/machinery/door/firedoor,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "ha" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "hq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/titanium/tiled/yellow,
-/area/shipbreak)
+/area/template_noop)
 "hy" = (
 /obj/machinery/power/turbine/inlet_compressor/constructed,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/shipbreak)
+/area/template_noop)
 "io" = (
 /obj/structure/transit_tube/station/dispenser/reverse{
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "iI" = (
 /obj/machinery/computer/old,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "jz" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "jG" = (
 /obj/structure/dresser,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "kt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "lk" = (
 /obj/machinery/door/airlock/external{
 	dir = 4
@@ -109,12 +109,12 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "lx" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "ly" = (
 /obj/machinery/door/airlock{
 	dir = 8
@@ -124,7 +124,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "mi" = (
 /obj/structure/transit_tube{
 	dir = 4
@@ -134,7 +134,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "nk" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 4
@@ -143,7 +143,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/effect/spawner/random/armory/laser_gun,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "nv" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -152,13 +152,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "nw" = (
 /obj/structure/transit_tube{
 	dir = 4
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "ny" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 8
@@ -170,7 +170,7 @@
 /obj/item/pizzabox,
 /obj/item/reagent_containers/cup/glass/bottle/beer,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "og" = (
 /obj/effect/turf_decal/caution/stand_clear{
 	dir = 1;
@@ -178,23 +178,23 @@
 	},
 /obj/machinery/light/red/dim/directional/west,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "oA" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "oF" = (
 /obj/machinery/atmospherics/components/unary/passive_vent/layer2,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "pc" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "ph" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -203,41 +203,41 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "pQ" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "qq" = (
 /obj/machinery/shower/directional/east,
 /obj/structure/drain,
 /obj/structure/curtain/bounty/start_closed,
 /turf/open/floor/iron/freezer,
-/area/shipbreak)
+/area/template_noop)
 "qO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "qT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "rf" = (
 /obj/machinery/computer/old{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "sg" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "sk" = (
 /obj/structure/sign/departments/engineering/directional/south,
 /obj/effect/turf_decal/siding/dark_red{
@@ -250,18 +250,18 @@
 	pixel_x = -3
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "sE" = (
 /obj/structure/transit_tube/station/dispenser/reverse/flipped,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "uj" = (
 /obj/machinery/door/airlock/security,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "ur" = (
 /obj/machinery/door/airlock{
 	dir = 8
@@ -272,13 +272,13 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /obj/machinery/door/firedoor,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "uV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "vh" = (
 /obj/effect/turf_decal/caution/stand_clear{
 	dir = 1;
@@ -286,12 +286,12 @@
 	},
 /obj/machinery/light/red/dim/directional/east,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "vA" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "we" = (
 /obj/structure/bed{
 	dir = 4
@@ -304,31 +304,31 @@
 	},
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "wo" = (
 /obj/structure/lattice/catwalk/mining,
 /obj/structure/marker_beacon/burgundy,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "wK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "xJ" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "yf" = (
 /obj/structure/chair/comfy/shuttle/tactical{
 	dir = 1
 	},
 /obj/machinery/light/warm/dim/directional/south,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "yC" = (
 /obj/machinery/door/airlock/public,
 /obj/structure/cable,
@@ -337,7 +337,7 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /obj/machinery/door/firedoor,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "yN" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/command,
@@ -346,42 +346,42 @@
 /obj/effect/mapping_helpers/airlock/access/all/syndicate,
 /obj/machinery/door/firedoor,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "zb" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "zu" = (
 /obj/structure/transit_tube/curved{
 	dir = 8
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Ap" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/suit_storage_unit,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "At" = (
 /obj/effect/turf_decal/bot_white,
 /obj/machinery/suit_storage_unit,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "Bo" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "BW" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/atmospherics/components/unary/portables_connector/layer4{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "Ce" = (
 /obj/structure/sign/departments/engineering/directional/south,
 /obj/effect/turf_decal/siding/dark_red{
@@ -389,12 +389,12 @@
 	},
 /obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "Cj" = (
 /obj/machinery/power/shuttle_engine/heater,
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "Ek" = (
 /obj/structure/bed{
 	dir = 4
@@ -403,13 +403,13 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "FH" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 4
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "IA" = (
 /obj/structure/transit_tube{
 	dir = 4
@@ -419,13 +419,13 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "Kw" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "Lh" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/structure/cable,
@@ -433,24 +433,24 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "Lt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "ME" = (
 /obj/machinery/shower/directional/west,
 /obj/structure/drain,
 /obj/structure/curtain/bounty/start_closed,
 /turf/open/floor/iron/freezer,
-/area/shipbreak)
+/area/template_noop)
 "MN" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/north,
 /obj/machinery/power/shuttle_engine/heater,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "NF" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
@@ -464,25 +464,25 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "NN" = (
 /obj/machinery/power/shuttle_engine/large,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "Pm" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "PQ" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "Qm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "Qv" = (
 /obj/structure/bed,
 /obj/item/bedsheet/syndie,
@@ -491,12 +491,12 @@
 	},
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "QE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/syndie,
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "QS" = (
 /obj/structure/cable,
 /obj/item/stack/sheet/mineral/uranium/five,
@@ -507,7 +507,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "Te" = (
 /obj/effect/turf_decal/siding/dark_red/corner{
 	dir = 1
@@ -516,7 +516,7 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/light/red/dim/directional/south,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "UE" = (
 /obj/effect/turf_decal/siding/dark_red/corner{
 	dir = 4
@@ -527,49 +527,49 @@
 	},
 /obj/machinery/light/red/dim/directional/south,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "UJ" = (
 /turf/open/floor/wood,
-/area/shipbreak)
+/area/template_noop)
 "Vg" = (
 /obj/structure/transit_tube/curved/flipped{
 	dir = 8
 	},
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Wb" = (
 /obj/machinery/power/turbine/core_rotor/constructed,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/shipbreak)
+/area/template_noop)
 "WK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "XK" = (
 /obj/structure/transit_tube/station/dispenser/flipped,
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "Yv" = (
 /obj/machinery/computer/old{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/shipbreak)
+/area/template_noop)
 "YM" = (
 /obj/machinery/power/turbine/turbine_outlet/constructed,
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
 /turf/open/floor/catwalk_floor/iron_dark,
-/area/shipbreak)
+/area/template_noop)
 "Zu" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/light/floor/has_bulb/red,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "Zy" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 Zy

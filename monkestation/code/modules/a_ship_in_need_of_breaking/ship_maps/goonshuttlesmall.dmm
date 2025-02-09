@@ -4,19 +4,19 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "b" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "c" = (
 /obj/machinery/power/shuttle_engine/heater{
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner/directional/east,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "d" = (
 /obj/item/clothing/suit/hazardvest{
 	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
@@ -98,69 +98,69 @@
 	},
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "e" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/effect/gibspawner/human,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "f" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "g" = (
 /obj/machinery/door/airlock/medical/glass{
 	name = "Escape Shuttle Infirmary"
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "i" = (
 /turf/closed/wall/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "k" = (
 /obj/machinery/door/airlock/command/glass{
 	name = "Cockpit"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/command/general,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "l" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "m" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "n" = (
 /obj/machinery/stasis{
 	dir = 4
 	},
 /obj/machinery/camera/autoname/directional/north,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "o" = (
 /obj/machinery/computer/old{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "p" = (
 /obj/structure/table,
 /obj/item/storage/medkit/regular,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "s" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "t" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -168,11 +168,11 @@
 /obj/machinery/camera/autoname/directional/north,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "u" = (
 /obj/structure/sign/warning/no_smoking,
 /turf/closed/wall/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "w" = (
 /obj/structure/table,
 /obj/item/storage/medkit/toxin{
@@ -190,24 +190,24 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "x" = (
 /obj/effect/spawner/structure/window/reinforced/shuttle,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "y" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "z" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Brig"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/general,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "A" = (
 /obj/machinery/door/airlock/titanium{
 	name = "Emergency Shuttle Airlock"
@@ -217,98 +217,98 @@
 	name = "G00N-S emergency shuttle"
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "B" = (
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "C" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "D" = (
 /obj/item/organ/internal/butt,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "F" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 "G" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "H" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/effect/gibspawner/human,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "I" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "K" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
 /obj/machinery/camera/autoname/directional/south,
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "N" = (
 /obj/machinery/vending/wallmed/directional/west{
 	products = null;
 	products_monke = null
 	},
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "P" = (
 /obj/machinery/stasis,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "Q" = (
 /obj/machinery/power/shuttle_engine/propulsion{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "R" = (
 /obj/machinery/camera/autoname/directional/north,
 /obj/machinery/light/directional/north,
 /obj/machinery/computer/old,
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "T" = (
 /turf/open/floor/mineral/titanium/blue,
-/area/shipbreak)
+/area/template_noop)
 "U" = (
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "W" = (
 /obj/machinery/light/directional/south,
 /obj/machinery/computer/old{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/yellow,
-/area/shipbreak)
+/area/template_noop)
 "X" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/white,
-/area/shipbreak)
+/area/template_noop)
 "Y" = (
 /obj/item/clothing/head/utility/bomb_hood/security,
 /turf/open/floor/mineral/plastitanium/red,
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 I

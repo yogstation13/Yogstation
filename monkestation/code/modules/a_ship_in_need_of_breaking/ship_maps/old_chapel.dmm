@@ -2,113 +2,113 @@
 "a" = (
 /obj/item/food/headcheese,
 /turf/open/floor/holofloor/chapel,
-/area/shipbreak)
+/area/template_noop)
 "c" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "h" = (
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "m" = (
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "n" = (
 /obj/item/food/sustenance_bar/cheese,
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "q" = (
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/holofloor/chapel,
-/area/shipbreak)
+/area/template_noop)
 "r" = (
 /obj/structure/chair/pew/right{
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "s" = (
 /obj/structure/chair/pew/left{
 	dir = 1
 	},
 /obj/item/food/baked_cheese_platter,
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "t" = (
 /obj/structure/chair/pew/left{
 	dir = 1
 	},
 /obj/item/food/burger/cheese,
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "A" = (
 /obj/item/food/cheese/cheese_curds,
 /turf/open/floor/holofloor/chapel{
 	dir = 1
 	},
-/area/shipbreak)
+/area/template_noop)
 "B" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "C" = (
 /turf/open/floor/holofloor/chapel{
 	dir = 1
 	},
-/area/shipbreak)
+/area/template_noop)
 "E" = (
 /obj/structure/chair/pew/left{
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "G" = (
 /turf/open/floor/holofloor/chapel{
 	dir = 8
 	},
-/area/shipbreak)
+/area/template_noop)
 "I" = (
 /obj/item/food/herby_cheese,
 /turf/open/floor/holofloor/chapel,
-/area/shipbreak)
+/area/template_noop)
 "L" = (
 /obj/machinery/power/shuttle_engine/heater,
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "N" = (
 /turf/open/floor/holofloor/chapel{
 	dir = 4
 	},
-/area/shipbreak)
+/area/template_noop)
 "P" = (
 /obj/item/food/pizza/mothic_five_cheese,
 /turf/open/floor/holofloor/chapel,
-/area/shipbreak)
+/area/template_noop)
 "R" = (
 /obj/item/food/sandwich/cheese,
 /turf/open/floor/holofloor/chapel{
 	dir = 1
 	},
-/area/shipbreak)
+/area/template_noop)
 "S" = (
 /obj/structure/window/reinforced/shuttle,
 /obj/structure/grille,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "U" = (
 /obj/item/food/cake/cheese,
 /turf/open/floor/carpet/purple,
-/area/shipbreak)
+/area/template_noop)
 "W" = (
 /obj/structure/fluff/divine/convertaltar,
 /obj/item/food/bread/creamcheese,
 /turf/open/floor/holofloor/chapel{
 	dir = 4
 	},
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 B

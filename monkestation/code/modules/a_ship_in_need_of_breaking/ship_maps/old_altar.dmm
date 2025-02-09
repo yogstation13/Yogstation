@@ -2,13 +2,13 @@
 "c" = (
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "d" = (
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shipbreak)
+/area/template_noop)
 "g" = (
 /turf/closed/wall/mineral/titanium,
-/area/shipbreak)
+/area/template_noop)
 "j" = (
 /obj/machinery/door/airlock/shuttle{
 	welded = 1
@@ -20,14 +20,14 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/shipbreak)
+/area/template_noop)
 "n" = (
 /obj/structure/chair/pew{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "u" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/turf_decal/siding/wood,
@@ -39,30 +39,30 @@
 	},
 /obj/structure/altar_of_gods,
 /obj/item/toy/toy_dagger,
-/turf/open/space/basic,
-/area/shipbreak)
+/turf/open/floor/cult,
+/area/template_noop)
 "w" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /turf/open/floor/plating,
-/area/shipbreak)
+/area/template_noop)
 "x" = (
 /obj/structure/fluff/drake_statue{
 	pixel_x = 0
 	},
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "y" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "B" = (
 /obj/structure/statue/bone/rib,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "C" = (
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "D" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/border_only{
@@ -70,16 +70,16 @@
 	},
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "I" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "M" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/red,
-/area/shipbreak)
+/area/template_noop)
 "N" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/turf_decal/siding/wood,
@@ -90,42 +90,42 @@
 /obj/structure/altar_of_gods,
 /obj/item/flashlight/flare/candle,
 /obj/item/organ/internal/heart/freedom,
-/turf/open/space/basic,
-/area/shipbreak)
+/turf/open/floor/cult,
+/area/template_noop)
 "R" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/power/shuttle_engine/heater,
 /turf/open/floor/plating/airless,
-/area/shipbreak)
+/area/template_noop)
 "V" = (
 /obj/structure/chair/pew/left{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "W" = (
 /obj/structure/statue/bone/rib{
 	dir = 8
 	},
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "X" = (
 /turf/template_noop,
-/area/shipbreak)
+/area/template_noop)
 "Y" = (
 /obj/structure/chair/pew/right{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 "Z" = (
 /obj/item/storage/box/holy/follower,
 /turf/open/floor/cult,
-/area/shipbreak)
+/area/template_noop)
 
 (1,1,1) = {"
 X

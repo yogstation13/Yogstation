@@ -448,10 +448,10 @@
 /area/ruin/space/has_grav/listeningstation/medical)
 "mh" = (
 /obj/docking_port/stationary{
-	height = 8;
+	height = 16;
 	shuttle_id = "syndicate_listening_post";
 	name = "Syndicate Listening Post";
-	width = 12;
+	width = 16;
 	dwidth = 6
 	},
 /turf/template_noop,
