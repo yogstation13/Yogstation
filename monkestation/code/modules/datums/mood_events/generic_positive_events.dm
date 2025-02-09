@@ -21,4 +21,4 @@
 
 /datum/mood_event/delightful_symptom
 	description = "Everything feels so nice and wonderful!"
-	mood_change = 50
+	mood_change = 30
