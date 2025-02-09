@@ -1,0 +1,4 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscdel: "Removed ability to set revolution preferences, as they are currently disabled."
