@@ -1,0 +1,4 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - refactor: "Refactored the trait that makes people not get hungry and made obesity code less dumb. Report any problems please."
