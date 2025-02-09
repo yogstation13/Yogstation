@@ -19,8 +19,8 @@
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/hallway)
 "ah" = (
-/obj/machinery/recharge_station,
 /obj/effect/turf_decal/bot_white,
+/obj/machinery/recharge_station/fullupgrade,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/hallway)
 "bf" = (
@@ -141,6 +141,7 @@
 /obj/machinery/computer/operating{
 	dir = 4
 	},
+/obj/item/disk/surgery/irs,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/syndicate/cruiser/medical)
 "dT" = (

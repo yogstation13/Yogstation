@@ -109,3 +109,13 @@
 	req_components = list(
 		/datum/stock_part/manipulator = 1,
 	)
+
+/obj/item/circuitboard/machine/cyborgrecharger/fullupgrade
+	name = "Cyborg Recharger"
+	greyscale_colors = CIRCUIT_COLOR_SCIENCE
+	build_path = /obj/machinery/recharge_station/fullupgrade
+	req_components = list(
+		/datum/stock_part/capacitor/tier4 = 2,
+		/obj/item/stock_parts/cell = 1,
+		/datum/stock_part/manipulator/tier4 = 1)
+	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/bluespace)

@@ -6069,6 +6069,7 @@
 #include "monkestation\code\game\machinery\launch_pad.dm"
 #include "monkestation\code\game\machinery\player_hologram.dm"
 #include "monkestation\code\game\machinery\prize_vendor.dm"
+#include "monkestation\code\game\machinery\rechargestation.dm"
 #include "monkestation\code\game\machinery\suit_storage_unit.dm"
 #include "monkestation\code\game\machinery\computer\camera.dm"
 #include "monkestation\code\game\machinery\computer\cloning.dm"

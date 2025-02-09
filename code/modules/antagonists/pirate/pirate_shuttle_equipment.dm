@@ -127,9 +127,8 @@
 		/datum/surgery/advanced/lobotomy,
 		/datum/surgery/advanced/bioware/vein_threading,
 		/datum/surgery/advanced/bioware/nerve_splicing,
-		/datum/surgery_step/heal/combo/upgraded,
-		/datum/surgery_step/pacify,
-		/datum/surgery_step/revive,
+		/datum/surgery/healing/combo/upgraded, // monkestation edit: Fixed surgeries
+		/datum/surgery/advanced/pacify, // monkestation edit: Fixed surgeries
 	)
 
 /obj/machinery/loot_locator/interact(mob/user)
