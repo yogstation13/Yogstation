@@ -286,7 +286,7 @@
 	set name = "Open Lua Editor"
 	set desc = "Its codin' time."
 	set category = "Debug"
-	if(!check_rights(src, R_DEBUG))
+	if(!check_rights(R_DEBUG))
 		return
 #ifndef DISABLE_DREAMLUAU
 	var/datum/lua_editor/editor = new
