@@ -6,7 +6,7 @@
 		BB_WATERLEVEL_THRESHOLD = 90,
 	)
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/jps // monkestation edit: use jps instead of basic avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/pet_planning,
