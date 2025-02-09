@@ -10,7 +10,7 @@
 	if(HAS_TRAIT(src, TRAIT_NOBLOOD) || HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		return
 
-	if(bodytemperature < BLOOD_STOP_TEMP || HAS_TRAIT(src, TRAIT_HUSK)) //cold or husked people do not pump the blood.
+	if(bodytemperature < BLOOD_STOP_TEMP) // MONKESTATION EDIT: Made TRAIT_HUSK cascade into TRAIT_NOBLOOD, making snowflake checks unnecessary.
 		return
 
 	var/sigreturn = SEND_SIGNAL(src, COMSIG_HUMAN_ON_HANDLE_BLOOD, seconds_per_tick, times_fired)
@@ -289,12 +289,12 @@
 	return GLOB.blood_types[/datum/blood_type/oil]
 
 /mob/living/carbon/alien/get_blood_type()
-	if(HAS_TRAIT(src, TRAIT_HUSK) || HAS_TRAIT(src, TRAIT_NOBLOOD))
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD)) // MONKESTATION EDIT: Made TRAIT_HUSK cascade into TRAIT_NOBLOOD, making snowflake checks unnecessary.
 		return null
 	return GLOB.blood_types[/datum/blood_type/xenomorph]
 
 /mob/living/carbon/human/get_blood_type()
-	if(HAS_TRAIT(src, TRAIT_HUSK) || isnull(dna) || HAS_TRAIT(src, TRAIT_NOBLOOD))
+	if(!has_dna() || HAS_TRAIT(src, TRAIT_NOBLOOD)) // MONKESTATION EDIT: Made TRAIT_HUSK cascade into TRAIT_NOBLOOD, making snowflake checks unnecessary.
 		return null
 	if(check_holidays(APRIL_FOOLS) && is_clown_job(mind?.assigned_role))
 		return GLOB.blood_types[/datum/blood_type/clown]

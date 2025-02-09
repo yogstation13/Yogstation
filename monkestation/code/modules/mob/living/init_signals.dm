@@ -1,5 +1,8 @@
 /mob/living/register_init_signals()
 	. = ..()
+
+	cascade_trait(TRAIT_HUSK, TRAIT_NOBLOOD)
+
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_IGNOREDAMAGESLOWDOWN), PROC_REF(on_ignoredamageslowdown_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_IGNOREDAMAGESLOWDOWN), PROC_REF(on_ignoredamageslowdown_trait_loss))
 

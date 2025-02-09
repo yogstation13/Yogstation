@@ -611,6 +611,7 @@
 #include "code\__HELPERS\~monkestation-helpers\records.dm"
 #include "code\__HELPERS\~monkestation-helpers\roundend.dm"
 #include "code\__HELPERS\~monkestation-helpers\time.dm"
+#include "code\__HELPERS\~monkestation-helpers\traits.dm"
 #include "code\__HELPERS\~monkestation-helpers\uwuify.dm"
 #include "code\__HELPERS\~monkestation-helpers\virology.dm"
 #include "code\__HELPERS\~monkestation-helpers\logging\attack.dm"

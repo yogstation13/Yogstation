@@ -10,7 +10,7 @@
 	)
 
 /datum/surgery/blood_filter/can_start(mob/user, mob/living/carbon/target)
-	if(HAS_TRAIT(target, TRAIT_HUSK)) //You can filter the blood of a dead person just not husked
+	if(HAS_TRAIT(target, TRAIT_NOBLOOD)) // MONKESTATION EDIT: You can't filter the blood of people without blood. Duh.
 		return FALSE
 	return ..()
 
