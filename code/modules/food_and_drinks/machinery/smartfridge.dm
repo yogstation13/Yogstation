@@ -493,11 +493,13 @@
 					return FALSE
 			return TRUE
 		return FALSE
+	if(istype(O, /obj/item/weapon/virusdish) && is_type_in_typecache(O, chemfridge_typecache))
+		return TRUE
 	if(!is_reagent_container(O) || (O.item_flags & ABSTRACT))
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/pill)) // empty pill prank ok
 		return TRUE
-	if(!O.reagents || !O.reagents.reagent_list.len) // other empty containers not accepted
+	if(!O.reagents || !length(O.reagents.reagent_list)) // other empty containers not accepted
 		return FALSE
 	if(is_type_in_typecache(O, chemfridge_typecache))
 		return TRUE

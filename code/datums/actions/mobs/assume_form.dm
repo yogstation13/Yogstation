@@ -38,6 +38,8 @@
 /datum/action/cooldown/mob_cooldown/assume_form/proc/can_assume_form(atom/target_atom)
 	if(is_type_in_typecache(target_atom, blacklist_typecache) || (!isobj(target_atom) && !ismob(target_atom)))
 		return FALSE
+	if(usr.z != target_atom.z) // Fixes invisibility bug
+		return FALSE
 
 	return TRUE
 

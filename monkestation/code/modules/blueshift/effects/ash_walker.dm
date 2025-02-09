@@ -87,6 +87,14 @@
 			return FALSE
 
 		if(is_type_in_list(atom_check, consumed_components))
+			// If the component is a human, ensure it is dead
+			if(istype(atom_check, /mob/living/carbon/human))
+				var/mob/living/carbon/human/human_target = atom_check
+				if(human_target.stat != DEAD) // If they are alive, fail the ritual
+					checked_rune.balloon_alert_to_viewers("The sacrifice is still alive!")
+					ritual_fail(checked_rune)
+					return FALSE
+
 			qdel(atom_check)
 			checked_rune.balloon_alert_to_viewers("[checked_component] component has been consumed...")
 

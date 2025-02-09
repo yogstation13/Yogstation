@@ -288,12 +288,11 @@
 		if(do_after(user, 4 SECONDS))
 			discovered = TRUE
 			balloon_alert(user, "vent scanned!")
-		generate_description(user)
-		var/obj/item/card/id/user_id_card = user.get_idcard(TRUE)
-		if(isnull(user_id_card))
-			return
-		user_id_card.registered_account.mining_points += (MINER_POINT_MULTIPLIER)
-		user_id_card.registered_account.bank_card_talk("You've been awarded [MINER_POINT_MULTIPLIER] mining points for discovery of an ore vent.")
+			var/obj/item/card/id/user_id_card = user.get_idcard(TRUE)
+			if(!isnull(user_id_card))
+				user_id_card.registered_account.mining_points += (MINER_POINT_MULTIPLIER)
+				user_id_card.registered_account.bank_card_talk("You've been awarded [MINER_POINT_MULTIPLIER] mining points for discovery of an ore vent.")
+			generate_description(user)
 		return
 
 	if(tgui_alert(user, excavation_warning, "Begin defending ore vent?", list("Yes", "No")) != "Yes")
@@ -330,6 +329,8 @@
 			ore_string += "and " + span_bold(initial(resource.name)) + "."
 		else
 			ore_string += span_bold(initial(resource.name)) + ", "
+	if(!length(ore_string))
+		ore_string += "random ores."
 	if(user)
 		ore_string += "\nThis vent was first discovered by [user]."
 /**
