@@ -1,4 +1,0 @@
-author: "RikuTheKiller"
-delete-after: True
-changes:
-  - refactor: "Husks no longer \"kind of do kind of don't\" have blood, rather they just don't have any, proper. Report issues."

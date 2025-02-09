@@ -1,7 +1,0 @@
-author: "Addust"
-delete-after: True
-changes:
-  - rscadd: "The Syndicate depot now has shipbreaking!"
-  - rscadd: "Shipbreaking can now also be integrated into other space ghostroles with enough effort! (good luck lmao)"
-  - balance: "The Syndicate depot's circuit imprinter is now the shit ancient one, but they have been provided quantum pad boards so they can still be buddy-buddy with other outposts."
-  - bugfix: "Nanotrasen AIs can no longer fuck with the syndicate depot, at least on the interior. They can still see the outside, but it's now much harder for them to do anything."

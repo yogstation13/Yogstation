@@ -1,6 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - rscadd: "Added upgraded rechargers to the Goldeneye cruiser."
-  - rscadd: "Added an advanced surgery disk to the Goldeneye cruiser."
-  - bugfix: "fixed the advanced surgery disk not giving correct surgeries"

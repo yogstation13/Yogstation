@@ -168,8 +168,42 @@
 2025-02-09:
   Absolucy:
   - bugfix: Admins can once again use the Lua editor.
+  - qol: Seedlings and Craig now use JPS pathfinding instead of basic avoidance, so
+      they're less likely to get stuck on stupid obstacles.
+  - qol: You no longer have an completely random and unpredictable chance of being
+      automatically dusted while searching through a trash pile. If you dig out a
+      random d20 and decide to roll it yourself, though, that's your gamble to make.
+  Absolucy, BurgerBB:
+  - qol: Reworks the Druggy visual effect to cause less eye strain.
+  Absolucy, Danny Boy:
+  - bugfix: Fixed Signer eyebrow raising/lowering indicators and emotes
+  - bugfix: Fixed Signer RuneChat punctuation
+  Addust:
+  - rscadd: The Syndicate depot now has shipbreaking!
+  - rscadd: Shipbreaking can now also be integrated into other space ghostroles with
+      enough effort! (good luck lmao)
+  - balance: The Syndicate depot's circuit imprinter is now the shit ancient one,
+      but they have been provided quantum pad boards so they can still be buddy-buddy
+      with other outposts.
+  - bugfix: Nanotrasen AIs can no longer fuck with the syndicate depot, at least on
+      the interior. They can still see the outside, but it's now much harder for them
+      to do anything.
+  Gw0sty:
+  - rscdel: Removed ability to set revolution preferences, as they are currently disabled.
+  - balance: 'Delightful syndrome moodlet: 50+->30+'
+  - rscadd: Added upgraded rechargers to the Goldeneye cruiser.
+  - rscadd: Added an advanced surgery disk to the Goldeneye cruiser.
+  - bugfix: fixed the advanced surgery disk not giving correct surgeries
+  RikuTheKiller:
+  - refactor: Husks no longer "kind of do kind of don't" have blood, rather they just
+      don't have any, proper. Report issues.
+  - refactor: Refactored the trait that makes people not get hungry and made obesity
+      code less dumb. Report any problems please.
   Siro:
   - bugfix: fixes various bugs check PR for list.
+  - bugfix: Fixed all jackboots being quantum entangled - toggling the noisemaker
+      for one pair of jackboots no longer changes it for every other pair of jackboots
+      too.
   Siro, Tractor Mann:
   - rscadd: Jackboots, Civil Protection Boots, and Cowboy boots now have new walksounds!
       Hate the walksounds? dont worry! you can turn them off with Ctrl-Click!
