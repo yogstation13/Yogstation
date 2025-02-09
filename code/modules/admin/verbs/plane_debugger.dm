@@ -77,7 +77,7 @@
 	set_target(get_target())
 
 /datum/plane_master_debug/ui_state(mob/user)
-	return GLOB.admin_state
+	return GLOB.debug_state // monkestation edit: a debug UI should check for +DEBUG
 
 /datum/plane_master_debug/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
