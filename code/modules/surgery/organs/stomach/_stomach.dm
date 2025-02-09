@@ -125,21 +125,12 @@
 	if(HAS_TRAIT(human, TRAIT_NOHUNGER))
 		return //hunger is for BABIES
 
-	//The fucking TRAIT_FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
-	if(HAS_TRAIT_FROM(human, TRAIT_FAT, OBESITY))//I share your pain, past coder.
-		if(human.overeatduration < (200 SECONDS))
-			to_chat(human, span_notice("You feel fit again!"))
-			REMOVE_TRAIT(human, TRAIT_FAT, OBESITY)
-			human.remove_movespeed_modifier(/datum/movespeed_modifier/obesity)
-			human.update_worn_undersuit()
-			human.update_worn_oversuit()
-	else
-		if(human.overeatduration >= (200 SECONDS))
-			to_chat(human, span_danger("You suddenly feel blubbery!"))
-			ADD_TRAIT(human, TRAIT_FAT, OBESITY)
-			human.add_movespeed_modifier(/datum/movespeed_modifier/obesity)
-			human.update_worn_undersuit()
-			human.update_worn_oversuit()
+	// MONKESTATION REFACTOR START: Move all this bullshit into trait signals.
+	if(HAS_TRAIT_FROM(human, TRAIT_FAT, OBESITY) && human.overeatduration < (200 SECONDS))
+		REMOVE_TRAIT(human, TRAIT_FAT, OBESITY) // If you're obese and haven't overeaten in a while, become fit.
+	else if(human.overeatduration >= (200 SECONDS))
+		ADD_TRAIT(human, TRAIT_FAT, OBESITY) // If you're fit and you've overeaten a bunch, become obese.
+	// MONKESTATION REFACTOR END
 
 	// nutrition decrease and satiety
 	if (human.nutrition > 0 && human.stat != DEAD)
