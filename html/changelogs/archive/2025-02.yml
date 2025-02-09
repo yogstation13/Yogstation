@@ -166,6 +166,17 @@
   leaKsi:
   - bugfix: Fixed a crash-inducing function in NTSL.
 2025-02-09:
+  Absolucy:
+  - bugfix: Admins can once again use the Lua editor.
+  Siro:
+  - bugfix: fixes various bugs check PR for list.
+  Siro, Tractor Mann:
+  - rscadd: Jackboots, Civil Protection Boots, and Cowboy boots now have new walksounds!
+      Hate the walksounds? dont worry! you can turn them off with Ctrl-Click!
+  - balance: Civil Protection boots now have boot pockets akin to the jackboots.
+  - sound: Added HL:A Combine walksounds.
+  - code_imp: Added the shoesteps element, which should hopefully make adding custom
+      step sounds for specific boots easier.
   ThePooba:
   - rscadd: ports and stuff are defines now
   - rscadd: MRP2 now gets 500 BONUS COINS EVERY ROUND YEEHAW
