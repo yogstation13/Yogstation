@@ -191,6 +191,65 @@
 					qdel(src)
 				return
 
+		//MONKESTATION ADDITION - We can construct plastitanium rwalls now!
+		if(istype(sheets, /obj/item/stack/sheet/mineral/plastitanium))
+			var/amount = 2
+			if (state == GIRDER_DISPLACED)
+				if(sheets.get_amount() < amount)
+					balloon_alert(user, "need [amount] sheets!")
+					return
+				balloon_alert(user, "concealing entrance...")
+				if(do_after(user, 20*platingmodifier, target = src))
+					if(sheets.get_amount() < amount)
+						return
+					sheets.use(amount)
+					var/obj/structure/falsewall/plastitanium/F = new (loc)
+					transfer_fingerprints_to(F)
+					qdel(src)
+				return
+			else if(state == GIRDER_REINF)
+				amount = 1
+				if(sheets.get_amount() < amount)
+					return
+				balloon_alert(user, "adding plating...")
+				if(do_after(user, 50*platingmodifier, target = src))
+					if(sheets.get_amount() < amount)
+						return
+					sheets.use(amount)
+					var/turf/T = get_turf(src)
+					T.PlaceOnTop(/turf/closed/wall/r_wall/syndicate)
+					transfer_fingerprints_to(T)
+					qdel(src)
+				return
+			else if(state == GIRDER_TRAM)
+				if(sheets.get_amount() < amount)
+					balloon_alert(user, "need [amount] sheets!")
+					return
+				balloon_alert(user, "adding plating...")
+				if (do_after(user, 4 SECONDS, target = src))
+					if(sheets.get_amount() < amount)
+						return
+					sheets.use(amount)
+					var/obj/structure/tramwall/plastitanium/tram_wall = new (loc)
+					transfer_fingerprints_to(tram_wall)
+					qdel(src)
+				return
+			else
+				if(sheets.get_amount() < amount)
+					balloon_alert(user, "need [amount] sheets!")
+					return
+				balloon_alert(user, "adding plating...")
+				if (do_after(user, 40*platingmodifier, target = src))
+					if(sheets.get_amount() < amount)
+						return
+					sheets.use(amount)
+					var/turf/T = get_turf(src)
+					T.PlaceOnTop(/turf/closed/wall/mineral/plastitanium)
+					transfer_fingerprints_to(T)
+					qdel(src)
+				return
+		//END OF ADDITION
+
 		if(!sheets.has_unique_girder && sheets.material_type)
 			if(istype(src, /obj/structure/girder/reinforced))
 				balloon_alert(user, "need plasteel!")

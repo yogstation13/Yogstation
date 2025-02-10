@@ -14,7 +14,7 @@
 	on = 0;
 	shot_delay = 10
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ad" = (
 /obj/machinery/computer/operating,
@@ -63,7 +63,7 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "an" = (
 /obj/structure/sign/warning/vacuum/external,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ao" = (
 /turf/open/floor/carpet/royalblack,
@@ -73,7 +73,7 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "aq" = (
 /obj/structure/sign/poster/contraband/syndicate_recruitment,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ar" = (
 /obj/machinery/camera/xray{
@@ -290,7 +290,7 @@
 /turf/closed/mineral/random,
 /area/ruin/space)
 "bb" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bc" = (
 /obj/machinery/light/directional/south,
@@ -343,7 +343,7 @@
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bg" = (
 /obj/structure/sign/poster/contraband/syndicate_pistol,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "bh" = (
 /obj/structure/cable,
@@ -583,7 +583,7 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "bR" = (
 /obj/structure/sign/poster/contraband/tools,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bS" = (
 /obj/machinery/button/crematorium{
@@ -617,7 +617,7 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "bX" = (
 /obj/structure/sign/poster/contraband/c20r,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bY" = (
 /obj/structure/closet/syndicate{
@@ -634,7 +634,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "bZ" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ca" = (
 /obj/machinery/computer/crew/syndie{
@@ -706,7 +706,7 @@
 	on = 0;
 	shot_delay = 10
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cj" = (
 /obj/machinery/stasis,
@@ -714,7 +714,7 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ck" = (
 /obj/structure/sign/departments/cargo,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "cl" = (
 /obj/machinery/light/directional/north,
@@ -1217,7 +1217,7 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "qG" = (
 /mob/living/basic/trooper/nanotrasen/ranged/elite,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "vz" = (
 /mob/living/basic/trooper/nanotrasen/ranged/elite,

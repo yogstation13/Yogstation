@@ -260,7 +260,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/ert/powered/deathsquad)
 "U" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/ert/powered/deathsquad)
 "Y" = (
 /obj/structure/table/reinforced,

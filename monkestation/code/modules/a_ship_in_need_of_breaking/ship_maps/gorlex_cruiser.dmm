@@ -95,7 +95,7 @@
 	icon_state = "syndie_off";
 	dir = 10
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "dD" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
@@ -431,7 +431,7 @@
 /area/template_noop)
 "nG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "nS" = (
 /obj/effect/turf_decal/box/white/corners{
@@ -582,7 +582,7 @@
 /obj/machinery/atmospherics/components/trinary/mixer/flipped/on{
 	dir = 4
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "sO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
@@ -677,7 +677,7 @@
 /area/template_noop)
 "uY" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "vb" = (
 /obj/machinery/door/poddoor/preopen{
@@ -711,7 +711,7 @@
 	icon_state = "syndie_off";
 	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "vD" = (
 /obj/structure/guncase,
@@ -904,7 +904,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "Ah" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -939,7 +939,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 8
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "Br" = (
 /obj/structure/sign/poster/contraband/eat/directional/south,
@@ -961,7 +961,7 @@
 /area/template_noop)
 "Cl" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "Cs" = (
 /obj/machinery/atmospherics/components/tank/nitrogen{
@@ -1032,7 +1032,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "DL" = (
 /obj/structure/cable,
@@ -1067,7 +1067,7 @@
 /area/template_noop)
 "EV" = (
 /obj/structure/cable,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "EX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -1241,7 +1241,7 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/template_noop)
 "Ji" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "Kc" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
@@ -1299,7 +1299,7 @@
 	icon_state = "syndie_off";
 	dir = 5
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "Lx" = (
 /obj/machinery/door/airlock{
@@ -1323,7 +1323,7 @@
 	icon_state = "syndie_off";
 	dir = 6
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "Mf" = (
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -1361,7 +1361,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "Od" = (
 /obj/structure/disposalpipe/trunk{
@@ -1378,7 +1378,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "OA" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2{
@@ -1454,11 +1454,11 @@
 /area/template_noop)
 "Sy" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "SC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "Th" = (
 /obj/structure/sink/directional/west,
@@ -1513,7 +1513,7 @@
 /turf/template_noop,
 /area/template_noop)
 "Vj" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/template_noop)
 "Wc" = (
 /obj/structure/cable/layer1,
@@ -1556,7 +1556,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/template_noop)
 "WQ" = (
 /obj/structure/bed,

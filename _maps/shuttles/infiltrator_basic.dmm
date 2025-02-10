@@ -6,16 +6,16 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/bridge)
 "ac" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/bridge)
 "ad" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 10
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/hallway)
 "ae" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
@@ -26,7 +26,7 @@
 /turf/open/floor/plating,
 /area/shuttle/syndicate/bridge)
 "af" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/hallway)
 "ag" = (
 /obj/item/clipboard,
@@ -100,13 +100,13 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/eva)
 "ax" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/eva)
 "aB" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/airlock)
 "aD" = (
 /turf/open/floor/iron/dark,
@@ -115,19 +115,19 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 5
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/engineering)
 "aG" = (
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/medical)
 "aJ" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/medical)
 "aK" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/shuttle/syndicate/medical)
 "aN" = (
 /obj/machinery/status_display/evac/directional/south,
@@ -228,7 +228,7 @@
 /area/shuttle/syndicate/airlock)
 "bd" = (
 /obj/structure/sign/warning/vacuum/external,
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/airlock)
 "be" = (
 /obj/machinery/suit_storage_unit/syndicate,
@@ -247,7 +247,7 @@
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/shuttle/syndicate/engineering)
 "bj" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
 /area/shuttle/syndicate/engineering)
 "bk" = (
 /obj/structure/sign/poster/contraband/random/directional/west,
@@ -260,7 +260,7 @@
 /turf/open/floor/iron/dark/textured,
 /area/shuttle/syndicate/engineering)
 "bn" = (
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/engineering)
 "bo" = (
 /obj/item/toy/plush/carpplushie{
@@ -435,7 +435,7 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 5
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/airlock)
 "bQ" = (
 /turf/open/floor/iron/large,
@@ -622,7 +622,7 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 10
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/engineering)
 "dz" = (
 /turf/open/floor/catwalk_floor/iron_dark,
@@ -749,7 +749,7 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 5
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/bridge)
 "pQ" = (
 /obj/effect/turf_decal/tile/blue,
@@ -974,7 +974,7 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 6
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/hallway)
 "Jo" = (
 /turf/open/floor/iron/dark/textured_corner,
@@ -1023,7 +1023,7 @@
 /obj/machinery/porta_turret/syndicate/shuttle{
 	dir = 6
 	},
-/turf/closed/wall/r_wall/syndicate,
+/turf/closed/wall/r_wall/syndicate/hull,
 /area/shuttle/syndicate/medical)
 "Nr" = (
 /obj/machinery/computer/records/security/laptop/syndie,
