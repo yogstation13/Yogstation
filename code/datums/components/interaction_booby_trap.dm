@@ -23,6 +23,8 @@
 	/// Time until we explode
 	var/explode_timer
 
+	var/taunt
+
 /datum/component/interaction_booby_trap/Initialize(
 	explosion_light_range = 3,
 	explosion_heavy_range = 1, // So we destroy some machine components
@@ -33,6 +35,7 @@
 	additional_triggers = list(),
 	datum/callback/on_triggered_callback = null,
 	datum/callback/on_defused_callback = null,
+	on_explode = null,
 )
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE

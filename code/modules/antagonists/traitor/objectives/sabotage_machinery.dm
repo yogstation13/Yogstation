@@ -152,6 +152,7 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 	/// The time it takes to deploy the bomb.
 	var/deploy_time = 10 SECONDS
 	var/component_datum = /datum/component/interaction_booby_trap
+	var/exploding_taunt = ""
 
 /obj/item/traitor_machine_trapper/examine(mob/user)
 	. = ..()
@@ -173,6 +174,7 @@ GLOBAL_DATUM_INIT(objective_machine_handler, /datum/objective_target_machine_han
 		additional_triggers = list(COMSIG_ORM_COLLECTED_ORE),\
 		on_triggered_callback = CALLBACK(src, PROC_REF(on_triggered)),\
 		on_defused_callback = CALLBACK(src, PROC_REF(on_defused)),\
+		on_explode = exploding_taunt,\
 	)
 	RegisterSignal(target, COMSIG_QDELETING, GLOBAL_PROC_REF(qdel), src)
 	moveToNullspace()
