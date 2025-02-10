@@ -19502,7 +19502,8 @@
 /obj/structure/table/reinforced/plasmarglass,
 /obj/machinery/fax{
 	fax_name = "Raziel's Desk";
-	name = "Cassiel's Fax Machine"
+	name = "Cassiel's Fax Machine";
+	visible_to_network = 0
 	},
 /turf/open/floor/mineral/titanium/purple,
 /area/centcom/central_command_areas/adminroom)
@@ -20193,7 +20194,8 @@
 	},
 /obj/structure/table/wood,
 /obj/machinery/fax/messageadmins{
-	fax_name = "Wolf's Office"
+	fax_name = "Wolf's Office";
+	visible_to_network = 0
 	},
 /turf/open/floor/wood,
 /area/centcom/central_command_areas/adminroom)
@@ -20546,7 +20548,8 @@
 /obj/structure/table/greyscale,
 /obj/machinery/fax/messageadmins{
 	fax_name = "Central Command Intern Office";
-	pixel_y = 4
+	pixel_y = 4;
+	visible_to_network = 0
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/admin)
@@ -25122,7 +25125,8 @@
 "pcz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/fax{
-	name = "Beverly's Fax Machine"
+	name = "Beverly's Fax Machine";
+	visible_to_network = 0
 	},
 /turf/open/floor/carpet/red,
 /area/centcom/central_command_areas/admin)
