@@ -37,6 +37,8 @@ SUBSYSTEM_DEF(demo)
 		disable()
 		return SS_INIT_NO_NEED
 
+	rustg_file_write("[GLOB.round_id]", "[GLOB.demo_directory]/round_number_[world.port].txt")
+
 	WRITE_LOG_NO_FORMAT(GLOB.demo_log, "demo version 1\n") // increment this if you change the format
 	if(GLOB.revdata)
 		WRITE_LOG_NO_FORMAT(GLOB.demo_log, "commit [GLOB.revdata.originmastercommit || GLOB.revdata.commit]\n")
