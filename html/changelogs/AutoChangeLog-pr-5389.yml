@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Shields (and anything else that can block thrown items) now properly block thrown plants, i.e bluespace tomatoes and prickly plants."
