@@ -1,6 +1,0 @@
-author: "leaKsi"
-delete-after: True
-changes:
-  - bugfix: "(FlufflesTheDog) Sanitization on citation pda alerts."
-  - bugfix: "(MrMelbert) Sanitization for pAIs and medical/security records."
-  - bugfix: "Sanitization for mechanical components, pathology records, integrated circuit/shells, and PDA app notifications."

@@ -214,3 +214,14 @@
   ThePooba:
   - rscadd: ports and stuff are defines now
   - rscadd: MRP2 now gets 500 BONUS COINS EVERY ROUND YEEHAW
+2025-02-10:
+  Absolucy:
+  - bugfix: Shields (and anything else that can block thrown items) now properly block
+      thrown plants, i.e bluespace tomatoes and prickly plants.
+  Absolucy, Danny Boy:
+  - bugfix: Signers no longer sign with their species' tongue
+  leaKsi:
+  - bugfix: (FlufflesTheDog) Sanitization on citation pda alerts.
+  - bugfix: (MrMelbert) Sanitization for pAIs and medical/security records.
+  - bugfix: Sanitization for mechanical components, pathology records, integrated
+      circuit/shells, and PDA app notifications.
