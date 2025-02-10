@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			has_announced = TRUE
 			SSshuttle.registerHostileEnvironment(src)
 		else if(!check_containment(blob_core, 5) && !contained && !has_announced)
-			priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg', color_override="yellow")
+			priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/default/outbreak5.ogg', color_override="red")
 			has_announced = TRUE
 
 /mob/camera/blob/proc/victory()

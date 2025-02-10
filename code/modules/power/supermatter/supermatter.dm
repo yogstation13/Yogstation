@@ -162,6 +162,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/corruptor_attached = FALSE		// The thing that reduces support integrity
 	var/resonance_cascading = FALSE		// IT'S NOT SHUTTING DOWN!!!!!!!
 	var/noblium_suppressed = FALSE		// or is it?
+	var/bypass_containment = FALSE      // If support_integrity is below 30, setting up a containment field at this point is useless
+	var/debug_inhibitor = FALSE
 
 	// Blob related shit
 	var/supermatter_blob = FALSE // Well say sike rn
@@ -378,6 +380,17 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			light_color = "#ff5006"
 	return distort
 
+/obj/machinery/power/supermatter_crystal/proc/antinoblium_safety() //Used for checking containment during antinoblium delamination, if false, things will go south and trigger resonance cascade event
+	if(antinoblium_attached)
+		if(bypass_containment) //Containment is uselesss at this point
+			for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
+				explosion(gens, heavy_impact_range = 2, light_impact_range = 3)
+			return FALSE
+		if(!check_containment(get_turf(src), 5) || corruptor_attached)
+			return FALSE
+		return TRUE
+	return FALSE
+
 /obj/machinery/power/supermatter_crystal/proc/countdown()
 	set waitfor = FALSE
 
@@ -419,9 +432,16 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			if(i == 10 SECONDS)
 				playsound(src, 'yogstation/sound/voice/sm/fcitadel_10sectosingularity.ogg', 100, FALSE, 100, pressure_affected=FALSE)
 				if(antinoblium_attached && !resonance_cascading) // yogs- resonance cascade!
-					priority_announce("RESONANCE CASCADE IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg')
+					if(antinoblium_safety())
+						priority_announce("SECONDARY CONTAINMENT SYSTEM IS OPERATING AT MAXIMUM POWER. [emergency_alert]", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="green")
+					else
+						priority_announce("RESONANCE CASCADE IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
 					resonance_cascading = TRUE
 					sound_to_playing_players('sound/magic/lightning_chargeup.ogg', 50, FALSE) // yogs end
+					var/mutable_appearance/sm_ball = mutable_appearance('icons/obj/tesla_engine/energy_ball.dmi', "smenergy_ball", LIGHTING_PRIMARY_LAYER)
+					sm_ball.pixel_x -= 32
+					sm_ball.pixel_y -= 32
+					add_overlay(sm_ball)
 				if(supermatter_blob)
 					if(!check_containment(src, 5))
 						priority_announce("LEVEL 5 BIOHAZARD OUTBREAK IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
@@ -445,7 +465,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		SSpersistence.rounds_since_engine_exploded = ROUNDCOUNT_ENGINE_JUST_EXPLODED
 		for (var/obj/structure/sign/delamination_counter/sign as anything in GLOB.map_delamination_counters)
 			sign.update_count(ROUNDCOUNT_ENGINE_JUST_EXPLODED)
-	new /datum/supermatter_delamination(power, combined_gas, get_turf(src), explosion_power, gasmix_power_ratio, antinoblium_attached, resonance_cascading, last_rads, supermatter_blob)
+	new /datum/supermatter_delamination(power, combined_gas, get_turf(src), explosion_power, gasmix_power_ratio, antinoblium_attached, resonance_cascading, last_rads, supermatter_blob, bypass_containment)
 
 	qdel(src)
 
@@ -587,8 +607,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			powerloss_dynamic_scaling = clamp(powerloss_dynamic_scaling - 0.05,0, 1)
 
-		if(support_integrity >= 10 && (!supermatter_blob || check_containment(src, 5)))
-			powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
+		if(!debug_inhibitor)
+			if(support_integrity >= 20 && (!supermatter_blob || check_containment(src, 5)))
+				powerloss_inhibitor = clamp(1-(powerloss_dynamic_scaling * clamp(combined_gas/POWERLOSS_INHIBITION_MOLE_BOOST_THRESHOLD,1 ,1.5)),0 ,1)
 
 		if(matter_power)
 			var/removed_matter = max(matter_power/MATTER_POWER_CONVERSION, 40)
@@ -629,8 +650,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					src.fire_nuclear_particle()	// Spawn more radballs at 80% chance each
 
 		if(antinobliumcomp >= 0.5 && antinobmol > 100 && nobliumcomp < 0.5 && !antinoblium_attached) // don't put this stuff in the SM
-			investigate_log("[src] has reached criticial antinoblium concentration and started a resonance cascade.", INVESTIGATE_SUPERMATTER)
-			message_admins("[src] has reached criticial antinoblium concentration and started a resonance cascade.")
+			investigate_log("[src] has reached criticial antinoblium concentration, this may cause a resonance cascade or a controlled supermatter energy ball containment.", INVESTIGATE_SUPERMATTER)
+			message_admins("[src] has reached criticial antinoblium concentration, this may cause a resonance cascade or a controlled supermatter energy ball containment.")
 			antinoblium_attached = TRUE // oh god oh fuck
 
 		if (miasmacomp >= 0.5 && miasmol > 500 && !supermatter_blob) //requires around 4500 mol of miasma for the blob
@@ -639,7 +660,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			supermatter_zap(src, 10, 7000)
 
 		// adding enough hypernoblium can save it, but only if it hasn't gotten too bad and it wasn't corrupted using the traitor kit
-		if(nobliumcomp >= 0.5 && antinoblium_attached && !corruptor_attached && support_integrity > 10 && damage <= damage_archived)
+		if(nobliumcomp >= 0.5 && antinoblium_attached && !corruptor_attached && support_integrity > 20 && damage <= damage_archived)
 			support_integrity += 2
 			if(support_integrity >= 100)
 				support_integrity = 100
@@ -708,15 +729,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
 			supermatter_zap(src, 5, clamp(power*2, 4000, 20000))
 
-		if(prob(15) && (power > POWER_PENALTY_THRESHOLD || combined_gas > MOLE_PENALTY_THRESHOLD || antinoblium_attached || (supermatter_blob && !check_containment(src, 5))))
+		if(prob(15) && (power > POWER_PENALTY_THRESHOLD || combined_gas > MOLE_PENALTY_THRESHOLD || !antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))))
 			supermatter_pull(src, power/750)
-		if(prob(5) || (antinoblium_attached || (supermatter_blob && !check_containment(src, 5))) && prob(10))
+		if(prob(5) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_FLUX, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(1) || (antinoblium_attached || (supermatter_blob && !check_containment(src, 5))) && prob(10))
+		if((power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) && !antinoblium_safety()) || prob(1) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_GRAVITATIONAL, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) || prob(0.3) && power > POWER_PENALTY_THRESHOLD || (antinoblium_attached || (supermatter_blob && !check_containment(src, 5))) && prob(10))
+		if((power > SEVERE_POWER_PENALTY_THRESHOLD && prob(2) && !antinoblium_safety()) || prob(0.3) && power > POWER_PENALTY_THRESHOLD || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_PYRO, rand(5, 10))
-		if(power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) || prob(0.5) || (antinoblium_attached || (supermatter_blob && !check_containment(src, 5))) && prob(10))
+		if((power > SEVERE_POWER_PENALTY_THRESHOLD && prob(5) && !antinoblium_safety()) || prob(0.5) || (!antinoblium_safety() || (supermatter_blob && !check_containment(src, 5))) && prob(10))
 			supermatter_anomaly_gen(src, ANOMALY_RADIATION, rand(5, 10))
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
@@ -786,9 +807,14 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 			if(antinoblium_attached)
 				if(support_integrity <= 10)
-					radio.talk_into(src, "DANGER: RESONANCE CASCADE IMMINENT.", engineering_channel)
-					log_game("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.") // yogs start - Logs SM chatter
-					investigate_log("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.", INVESTIGATE_SUPERMATTER) // yogs end
+					if(!antinoblium_safety())
+						radio.talk_into(src, "WARNING: DANGER: RESONANCE CASCADE IMMINENT.", engineering_channel)
+						log_game("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.") // yogs start - Logs SM chatter
+						investigate_log("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.", INVESTIGATE_SUPERMATTER) // yogs end
+					else
+						radio.talk_into(src, "WARNING: CONTROLLED ANTINOBLIUM CONCENTRATION DETECTED, PROCEED WITH CAUTION.", engineering_channel)
+						log_game("The supermatter crystal: WARNING: CONTROLLED ANTINOBLIUM CONCENTRATION DETECTED, PROCEED WITH CAUTION.") // yogs start - Logs SM chatter
+						investigate_log("The supermatter crystal: WARNING: CONTROLLED ANTINOBLIUM CONCENTRATION DETECTED, PROCEED WITH CAUTION.", INVESTIGATE_SUPERMATTER) // yogs end
 				else if(noblium_suppressed)
 					radio.talk_into(src, "Paranoblium interface returning to safe operating parameters.", engineering_channel)
 					log_game("The supermatter crystal: DANGER: RESONANCE CASCADE IMMINENT.") // yogs start - Logs SM chatter
@@ -800,7 +826,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//blob SM HAMMM
 	if(supermatter_blob)
 		if(!check_containment(src, 5))
-			powerloss_inhibitor = 0.01
+			if(!debug_inhibitor)
+				powerloss_inhibitor = 0
 			power += 10000
 			if(prob(2))
 				empulse(src, 10, 5)
@@ -812,6 +839,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				supermatter_zap(src, 5, power)
 				for(var/i = 1 to 20)
 					fire_nuclear_particle()
+		else if(prob(30))
+			for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
+				Beam(gens, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY, beam_color="#bb0074")
 		if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 			damage += DAMAGE_HARDCAP * explosion_point
 
@@ -833,29 +863,46 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					radio.talk_into(src, "COMPLETE FAILURE OF GAMMA RADIATION SUPPRESSION SYSTEM DETECTED, ACTIVATING GAMMA EMISSION BUNDLING AND DISPERSION SYSTEM.", engineering_channel)
 				if(40)
 					radio.talk_into(src, "DISPERSION SYSTEM ACTIVATION FAILED, BUNDLER NOW FIRING WITHOUT GUIDANCE.", engineering_channel)
-					priority_announce("SUPERMATTER INSTABILITY IS AT 60%, PULSEWAVE IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg')
+					priority_announce("SUPERMATTER INSTABILITY IS AT 60%, PULSEWAVE IMMINENT.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
 				if(30)
 					radio.talk_into(src, "WARNING ENERGY SPIKE IN CRYSTAL WELL DETECTED, ESTIMATED ENERGY OUTPUT EXCEEDS PEAK CHARGE DISPERSION CAPACITY.", engineering_channel)
 				if(20)
-					radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES INBOUND, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY.", common_channel)
+					if(!antinoblium_safety())
+						radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES INBOUND, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY.", common_channel)
+					else
+						radio.talk_into(src, "CRYSTAL WELL RESTABILIZATION IN PROGRESS, ACTIVATING SECONDARY ELECTROMAGNETIC FIELD CONTAINMENT, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY.", common_channel)
 				if(10)
-					radio.talk_into(src, "ELECTROMAGNETIC FIELD CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, RESONANCE CASCADE IMMINENT.", common_channel)
-					priority_announce("SUPERMATTER INSTABILITY IS AT 90%, SUPERMATTER SURGE DETECTED, VACATE THE AREA IMMEDIATELY.", "Anomaly Alert", 'sound/misc/notice1.ogg')
+					if(!antinoblium_safety())
+						radio.talk_into(src, "ELECTROMAGNETIC FIELD CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, RESONANCE CASCADE IMMINENT.", common_channel)
+						priority_announce("SUPERMATTER INSTABILITY IS AT 90%, SUPERMATTER SURGE DETECTED, VACATE THE AREA IMMEDIATELY.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
+					else
+						radio.talk_into(src, "SECONDARY ELECTROMAGNETIC FIELD CONTAINMENT ENGAGED, PARANOBLIUM INTERFACE REBOOTING", common_channel)
+						priority_announce("SUPERMATTER INSTABILITY IS AT 90%, SUPERMATTER SURGE DETECTED, ACTIVATING SECONDARY FAILSAFE CONTAINMENT, PROCEED WITH CAUTION.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="green")
 				if(6)
-					radio.talk_into(src, "ELECTROMAGNETIC PULSES IMMINENT, CONTAINMENT AND COOLING FAILURE IMMINENT.", common_channel)
+					if(!antinoblium_safety())
+						radio.talk_into(src, "ELECTROMAGNETIC PULSES IMMINENT, CONTAINMENT AND COOLING FAILURE IMMINENT.", common_channel)
+					else
+						radio.talk_into(src, "ELECTROMAGNETIC PULSES MINIMAL, SECONDARY CONTAINMENT AND COOLING FULLY OPERATIONAL.", common_channel)
 				if(1)
-					priority_announce("COMPLETE DESTABILIZATION OF ALL MAJOR SUPPORT SYSTEMS, MATTER EMISSION FACTOR AT 600%, COMPLETE EVACUATION IS ADVISED.", "Anomaly Alert", 'sound/misc/notice1.ogg')
+					if(!antinoblium_safety())
+						priority_announce("COMPLETE DESTABILIZATION OF ALL MAJOR SUPPORT SYSTEMS, MATTER EMISSION FACTOR AT 600%, COMPLETE EVACUATION IS ADVISED.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="yellow")
+					else
+						priority_announce("COMPLETE RESTABILIZATION OF ALL MAJOR SUPPORT SYSTEMS, MATTER EMISSION FACTOR PERCENTAGE DROPPING, PROCEED WITH CAUTION.", "Anomaly Alert", 'sound/misc/notice1.ogg', color_override="green")
 			support_integrity -= 1
 			radiation_pulse(src, (100-support_integrity)*2, 4)
+			if(prob(30))
+				for(var/obj/machinery/field/generator/gens in urange(5, src, 1))
+					Beam(gens, icon_state = "lightning[rand(1,12)]", time = 5, maxdistance = INFINITY, beam_color="#fdd700")
 			if(support_integrity<3)
-				var/emp_power = round(explosion_power * (1+(1-(support_integrity/3))),1)
-				empulse(src, emp_power)
+				if(!antinoblium_safety())
+					var/emp_power = round(explosion_power * (1+(1-(support_integrity/3))),1)
+					empulse(src, emp_power)
 		if(support_integrity<100)
 			power += round((100-support_integrity)/2,1)
 		if(support_integrity<70)
 			if(prob(30+round((100-support_integrity)/2,1)))
 				playsound(src.loc, 'sound/weapons/emitter2.ogg', 100, 1, extrarange = 10)
-				supermatter_zap(src, 5, min(power*2, 20000))
+				supermatter_zap(src, 7, 2000+min(power*2, 20000))
 		if(support_integrity<40)
 			if(prob(10))
 				T.hotspot_expose(max(((100-support_integrity)*2)+FIRE_MINIMUM_TEMPERATURE_TO_EXIST,T.return_air().return_temperature()), 100)
@@ -864,12 +911,15 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				var/ballcount = round(10-(support_integrity/10), 1) // Cause more radballs to be spawned
 				for(var/i = 1 to ballcount)
 					fire_nuclear_particle()
+		if(support_integrity<=20)
+			if(!antinoblium_safety())
+				bypass_containment = TRUE
 		if(support_integrity<10)
-			powerloss_inhibitor = 0.01 //ensure big explosion
-			surging = 10000
+			powerloss_inhibitor = 0 //ensure big explosion
+			surging = 100000
 			if(istype(T, /turf/open/space) || T.return_air().total_moles() < MOLE_SPACE_THRESHOLD)
 				damage += DAMAGE_HARDCAP * explosion_point //Can't cheat by spacing the crystal to buy time, it will just delaminate faster
-			if(prob(2))
+			if(prob(2) && !antinoblium_safety())
 				empulse(src, 10-support_integrity) //EMPs must always be spewing every so often to ensure that containment is guaranteed to fail.
 	
 	// I FUCKING LOVE DATA!!!!!!
