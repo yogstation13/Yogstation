@@ -1,0 +1,5 @@
+author: "Siro"
+delete-after: True
+changes:
+  - rscadd: "Using the door charge lets you record a taunt"
+  - qol: "Door charge triggers on bumping into the door. fixes #5110"
