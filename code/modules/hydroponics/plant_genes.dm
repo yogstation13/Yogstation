@@ -283,8 +283,21 @@
 		return
 
 	RegisterSignal(our_plant, COMSIG_PLANT_ON_SLIP, PROC_REF(squash_plant))
-	RegisterSignal(our_plant, COMSIG_MOVABLE_IMPACT, PROC_REF(squash_plant))
 	RegisterSignal(our_plant, COMSIG_ITEM_ATTACK_SELF, PROC_REF(squash_plant))
+// monkestation start: use COMSIG_MOVABLE_IMPACT_ZONE for mobs
+	RegisterSignal(our_plant, COMSIG_MOVABLE_IMPACT, PROC_REF(on_impact))
+	RegisterSignal(our_plant, COMSIG_MOVABLE_IMPACT_ZONE, PROC_REF(on_impact_zone))
+
+/datum/plant_gene/trait/squash/proc/on_impact(obj/item/our_plant, atom/target)
+	SIGNAL_HANDLER
+	if(!isliving(target)) // on_impact_zone handles living mobs
+		squash_plant(our_plant, target)
+
+/datum/plant_gene/trait/squash/proc/on_impact_zone(obj/item/our_plant, mob/living/target, hit_zone, blocked, datum/thrownthing/throwingdatum)
+	SIGNAL_HANDLER
+	if(!blocked)
+		squash_plant(our_plant, target)
+// monkestation end
 
 /*
  * Signal proc to squash the plant this trait belongs to, causing a smudge, exposing the target to reagents, and deleting it,
@@ -699,7 +712,20 @@
 		return
 
 	RegisterSignal(our_plant, COMSIG_PLANT_ON_SLIP, PROC_REF(prickles_inject))
-	RegisterSignal(our_plant, COMSIG_MOVABLE_IMPACT, PROC_REF(prickles_inject))
+// monkestation start: use COMSIG_MOVABLE_IMPACT_ZONE for mobs
+	RegisterSignal(our_plant, COMSIG_MOVABLE_IMPACT, PROC_REF(on_impact))
+	RegisterSignal(our_plant, COMSIG_MOVABLE_IMPACT_ZONE, PROC_REF(on_impact_zone))
+
+/datum/plant_gene/trait/stinging/proc/on_impact(obj/item/our_plant, atom/target)
+	SIGNAL_HANDLER
+	if(!isliving(target)) // on_impact_zone handles living mobs
+		prickles_inject(our_plant, target)
+
+/datum/plant_gene/trait/stinging/proc/on_impact_zone(obj/item/our_plant, mob/living/target, hit_zone, blocked, datum/thrownthing/throwingdatum)
+	SIGNAL_HANDLER
+	if(!blocked)
+		prickles_inject(our_plant, target)
+// monkestation end
 
 /*
  * Injects a target with a number of reagents from our plant.
