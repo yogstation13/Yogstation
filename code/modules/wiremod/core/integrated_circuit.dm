@@ -704,13 +704,13 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 
 /// Sets the display name that appears on the shell.
 /obj/item/integrated_circuit/proc/set_display_name(new_name)
-	display_name = copytext(new_name, 1, label_max_length)
+	display_name = strip_html(copytext_char(new_name, 1, label_max_length)) // MONKESTATION EDIT
 	if(!shell)
 		return
 
 	if(display_name != "")
 		if(!admin_only)
-			shell.name = "[initial(shell.name)] ([strip_html(display_name)])"
+			shell.name = "[initial(shell.name)] ([display_name])" // MONKESTATION EDIT
 		else
 			shell.name = display_name
 	else

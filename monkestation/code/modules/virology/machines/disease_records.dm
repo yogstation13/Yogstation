@@ -53,7 +53,13 @@
 
 	switch(action)
 		if("edit_field")
-			target.fields[params["field"]] = params["value"]
+			var/field = params["field"]
+			if(!field || !(field in target?.fields))
+				return FALSE
+
+			var/value = reject_bad_name(params["value"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
+			target.fields[field] = value
+
 			return TRUE
 		if("expunge_record")
 			GLOB.virusDB[params["crew_ref"]] = null

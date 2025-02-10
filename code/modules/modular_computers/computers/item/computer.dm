@@ -500,7 +500,7 @@
 	if(QDELETED(loc) || QDELETED(origin) || !origin.alert_able || origin.alert_silenced || !alerttext) //Yeah, we're checking alert_able. No, you don't get to make alerts that the user can't silence.
 		return FALSE
 	playsound(src, sound, 50, TRUE)
-	loc.visible_message(span_notice("<img class='icon' src='\ref[src]'> \The [src] displays a [origin.filedesc] notification: [alerttext]"), vision_distance = vision_distance, push_appearance = src)
+	loc.visible_message(span_notice("<img class='icon' src='\ref[src]'> \The [src] displays a [origin.filedesc] notification: [html_encode(alerttext)]"), vision_distance = vision_distance, push_appearance = src)
 
 /obj/item/modular_computer/proc/ring(ringtone, list/balloon_alertees) // bring bring
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_PDA_GLITCHED))

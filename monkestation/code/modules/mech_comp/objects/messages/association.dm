@@ -105,7 +105,7 @@
 			else
 				mylist[ikey] = "[mylist[ikey]],[jointext(ivalue, ",")]"
 
-	to_chat(user, span_notice("You set the value of [src]'s [ikey] to [ivalue]"))
+	to_chat(user, span_notice("You set the value of [src]'s [html_encode(ikey)] to [html_encode(ivalue)]"))
 	return TRUE
 
 /obj/item/mcobject/messaging/association/proc/remove_element_config(mob/user, obj/item/tool)
@@ -117,7 +117,7 @@
 	if(isnull(removal))
 		return
 
-	to_chat(user, span_notice("You remove [src]'s [removal]:[mylist[removal]] pair."))
+	to_chat(user, span_notice("You remove [src]'s [html_encode(removal)]:[html_encode(mylist[removal])] pair."))
 	mylist -= removal
 	return TRUE
 

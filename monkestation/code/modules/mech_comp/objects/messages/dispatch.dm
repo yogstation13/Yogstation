@@ -51,7 +51,7 @@
 		return
 
 	outgoing_filters[output.interface] = splittext(filter, ",")
-	to_chat(user, span_notice("[src] will only pass messages that [exact_match ? "match" : "contain"] [filter] to [output]."))
+	to_chat(user, span_notice("[src] will only pass messages that [exact_match ? "match" : "contain"] [html_encode(filter)] to [output]."))
 
 /obj/item/mcobject/messaging/dispatch/proc/remove_message_filter(datum/mcinterface/source, datum/mcinterface/target)
 	SIGNAL_HANDLER

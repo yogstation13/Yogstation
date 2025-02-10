@@ -13,7 +13,7 @@
 /obj/item/mcobject/messaging/examine(mob/user)
 	. = ..()
 	if(configs[MC_CFG_OUTPUT_MESSAGE])
-		. += span_notice("Output message: [stored_message]")
+		. += span_notice("Output message: [html_encode(stored_message)]")
 
 /obj/item/mcobject/messaging/proc/set_output(mob/user, obj/item/tool)
 	var/msg = input(user, "Enter new message:", "Configure Component", stored_message)
