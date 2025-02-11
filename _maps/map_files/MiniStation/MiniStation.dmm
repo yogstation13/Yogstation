@@ -23971,13 +23971,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/port/aft/lower)
-"kzx" = (
-/obj/machinery/keycard_auth{
-	pixel_x = -1;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/dark,
-/area/crew_quarters/heads/chief)
 "kzK" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -34694,6 +34687,20 @@
 /area/science/nanite)
 "qUH" = (
 /obj/structure/closet/secure_closet/engineering_chief,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/chief)
+"qVp" = (
+/obj/machinery/keycard_auth{
+	pixel_x = -5;
+	pixel_y = 25
+	},
+/obj/machinery/button/door{
+	id = "atmos";
+	name = "Atmospherics Lockdown";
+	pixel_x = 7;
+	pixel_y = 24;
+	req_access = list("engineering")
+	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/chief)
 "qVx" = (
@@ -62979,7 +62986,7 @@ aJt
 aJt
 dah
 jYO
-kzx
+qVp
 iqo
 frC
 noa
