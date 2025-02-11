@@ -30,8 +30,21 @@
 	var/default_job_title = params["job"]
 	var/new_job_title = params["new_title"]
 
+	if(!is_allowed_alt_job_title(default_job_title, new_job_title))
+		return FALSE
 
 	preferences.alt_job_titles[default_job_title] = new_job_title
+
+	return TRUE
+
+/datum/preference_middleware/jobs/proc/is_allowed_alt_job_title(job_title, attempted_alt_job_title)
+	var/datum/job/job = SSjob.GetJob(job_title)
+
+	if(isnull(job))
+		return FALSE
+
+	if(!(attempted_alt_job_title in job.alt_titles))
+		return FALSE
 
 	return TRUE
 
