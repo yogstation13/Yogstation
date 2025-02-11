@@ -41,7 +41,7 @@
 	notified = TRUE
 	for(var/mob/dead/new_player/lobby_user in GLOB.new_player_list)
 		INVOKE_ASYNC(src, PROC_REF(notify_client), lobby_user)
-l
+
 /// Signal handler to notify newly connecting clients of the overflow role.
 /datum/station_trait/overflow_job_bureaucracy/proc/notify_on_login(datum/source, client/client)
 	SIGNAL_HANDLER
