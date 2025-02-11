@@ -123,7 +123,13 @@ export const HotkeysHelp = (props) => {
                         </Box>
                       </Tooltip>
                     ) : (
-                      <Box p={1} m={1} inline className="HotkeysHelp__pill">
+                      <Box
+                        key={binding.name}
+                        p={1}
+                        m={1}
+                        inline
+                        className="HotkeysHelp__pill"
+                      >
                         {binding.name}
                       </Box>
                     ),
