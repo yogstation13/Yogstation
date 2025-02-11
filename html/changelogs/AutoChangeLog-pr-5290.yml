@@ -1,0 +1,9 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "Added the Super Syndie-Kitty Ears to the syndicate uplink for 16 TC, which allow the user to shapeshift into a Syndie Cat, clad in blood-red armor. However, while you do gain the abilities of a cat, you still have less health while in this form!"
+  - qol: "Shapeshift spells now use your original form's gender for your shapeshifted form."
+  - qol: "Shapeshifting using the Super Kitty Ears now keeps your name in cat form."
+  - qol: "You can no longer accidentally eat the Super Kitty Ears while trying to use them."
+  - balance: "Cats can see in the dark now."
+  - balance: "Super Kitty Ears cat forms now move at normal humanoid speeds, rather than the slower simplemob speeds."
