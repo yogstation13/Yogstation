@@ -1,7 +1,0 @@
-author: "MichiRecRoom, MrMelbert"
-delete-after: True
-changes:
-  - rscadd: "Adds a new Mild-type brain trauma, Possessive. Occasionally, an item you're holding in your hand will become undroppable for a short time."
-  - rscadd: "Adds a new Special-type brain trauma, Primal Instincts. Occasionally, your character will be taken over by a (possibly aggressive) monkey AI."
-  - rscadd: "Rewrites our Kleptomania atop the new Kleptomania. This brings a number of changes, including activating more frequently (but with a cooldown), and the ability for the trauma to steal to any available hand."
-  - admin: "New logs for the new brain traumas. See PR 5138 for the details of these logs, and where to find them."
