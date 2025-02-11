@@ -30,6 +30,10 @@
 	return ..()
 
 /datum/status_effect/shapechange_mob/on_apply()
+	// monkestation start: always use caster's gender for the mob
+	owner.gender = caster_mob.gender
+	owner.regenerate_icons()
+	// monkestation end
 	caster_mob.mind?.transfer_to(owner)
 	caster_mob.forceMove(owner)
 	ADD_TRAIT(caster_mob, TRAIT_NO_TRANSFORM, TRAIT_STATUS_EFFECT(id))

@@ -36,3 +36,15 @@
 	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
 	item = /obj/item/card/plasma_license
 	cost = 20
+
+/datum/uplink_item/device_tools/super_kitty_ears
+	name = "Super Syndie-Kitty Ears"
+	desc = "Developed by several Interdyne Pharmaceutics scientists and Wizard Federation archmages during a record-breaking rager, \
+			this set of feline ears combines the finest of bio-engineering and thamaturgy to allow the user to transform to and from a cat at will, \
+			granting them all the benefits (and downsides) of being a true feline, such as ventcrawling. \
+			However, this form will be clad in blood-red Syndicate armor, making its origin somewhat obvious."
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+	item = /obj/item/organ/internal/ears/cat/super/syndie
+	cost = 16 // double the price of stealth implant
+	surplus = 5
+	limited_stock = 1

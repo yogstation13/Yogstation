@@ -37,9 +37,13 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	footstep_type = FOOTSTEP_MOB_CLAW
+	lighting_cutoff_red = LIGHTING_CUTOFF_FELINE_RED
+	lighting_cutoff_green = LIGHTING_CUTOFF_FELINE_GREEN
+	lighting_cutoff_blue = LIGHTING_CUTOFF_FELINE_RED
 
 /mob/living/simple_animal/hostile/syndicat/Initialize(mapload)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 	var/obj/item/implant/toinstall = list(/obj/item/implant/weapons_auth, /obj/item/implant/explosive)
 	for(var/obj/item/implant/original_implants as anything in toinstall)
 		var/obj/item/implant/copied_implant = new original_implants.type
