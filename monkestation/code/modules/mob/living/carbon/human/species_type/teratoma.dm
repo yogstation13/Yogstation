@@ -75,7 +75,7 @@
 
 /obj/item/organ/internal/brain/teratoma/Initialize(mapload)
 	. = ..()
-	gain_trauma(/datum/brain_trauma/mild/kleptomania, TRAUMA_RESILIENCE_ABSOLUTE)
+	gain_trauma(/datum/brain_trauma/severe/kleptomaniac, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /obj/item/organ/internal/brain/teratoma/on_insert(mob/living/carbon/organ_owner, special)
 	. = ..()
