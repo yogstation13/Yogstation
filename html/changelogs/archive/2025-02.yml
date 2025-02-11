@@ -225,3 +225,14 @@
   - bugfix: (MrMelbert) Sanitization for pAIs and medical/security records.
   - bugfix: Sanitization for mechanical components, pathology records, integrated
       circuit/shells, and PDA app notifications.
+2025-02-11:
+  Absolucy, grungussuss, and kayozz:
+  - sound: gravity generator has a new sound
+  Addust:
+  - bugfix: Johnson and Co Architecture has sent in a crack team to forcibly reprogram
+      every fax machine at Central Command to prevent break-ins.
+  Siro:
+  - rscadd: Using the door charge lets you record a taunt
+  - qol: 'Door charge triggers on bumping into the door. fixes #5110'
+  TheColorCyan:
+  - rscadd: Added manhunt smiley mask.
