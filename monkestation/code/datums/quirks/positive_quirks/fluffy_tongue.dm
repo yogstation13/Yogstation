@@ -12,8 +12,9 @@
 
 /datum/quirk/fluffy_tongue/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
+	if(HAS_TRAIT(source, TRAIT_SIGN_LANG))
+		return
 	var/message = speech_args[SPEECH_MESSAGE]
-
 	if(message[1] != "*")
 		message = uwuify_text(message) || message
 	speech_args[SPEECH_MESSAGE] = message
