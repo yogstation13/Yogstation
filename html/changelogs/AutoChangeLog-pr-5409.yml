@@ -1,0 +1,7 @@
+author: "Siro"
+delete-after: True
+changes:
+  - bugfix: "wiremod radio circuit now receives and triggers as it should."
+  - bugfix: "Money mechcomp component now accepts money and fires signals as it should."
+  - bugfix: "Beach ruins now uses station public jukebox. Now all can use it."
+  - balance: "Tirizine values buffed for monkestation stamina adjustments."
