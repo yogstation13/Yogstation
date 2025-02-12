@@ -1030,8 +1030,13 @@
 		return COMPONENT_CANCEL_ATTACK_CHAIN
 	if(istype(target, /obj/item/gun/ballistic))
 		var/obj/item/gun/ballistic/gun = target
-		if(length(gun.magazine.stored_ammo) >= gun.magazine.max_ammo)
-			return COMPONENT_CANCEL_ATTACK_CHAIN
+		if(!(istype(target, /obj/item/gun/ballistic/revolver)))
+			if(length(gun.magazine.stored_ammo) >= gun.magazine.max_ammo)
+				return COMPONENT_CANCEL_ATTACK_CHAIN
+		else
+			var/live_ammo = gun.magazine.ammo_count(FALSE)
+			if(live_ammo >= length(gun.magazine.stored_ammo))
+				return COMPONENT_CANCEL_ATTACK_CHAIN
 		to_chat(user, span_notice("You start unloading a shell from the [src]..."))
 		old_ammo_count = length(stored_ammo)
 		if(do_after(user, reload_delay, src, timed_action_flags = IGNORE_USER_LOC_CHANGE, interaction_key = "doafter_reloading"))
