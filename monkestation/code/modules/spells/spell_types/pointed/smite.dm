@@ -11,6 +11,7 @@
 	cooldown_time = 40 SECONDS
 	cooldown_reduction_per_rank = 5 SECONDS
 	cast_range = 2
+	antimagic_flags = MAGIC_RESISTANCE|MAGIC_RESISTANCE_HOLY // the gods have mercy upon the holy
 
 	invocation = "EI NATH!!"
 
@@ -34,8 +35,13 @@
 		return FALSE
 	return TRUE
 
-/datum/action/cooldown/spell/pointed/smite/cast(atom/cast_on)
+/datum/action/cooldown/spell/pointed/smite/cast(mob/living/carbon/cast_on)
 	. = ..()
+	if(cast_on.can_block_magic(antimagic_flags))
+		to_chat(cast_on, span_notice("You feel as if the gods have granted you mercy."))
+		to_chat(owner, span_warning("The spell had no effect!"))
+		return FALSE
+
 	smite_type = forced_smite_type
 	if(!smite_type)
 		if(prob(70))
@@ -68,11 +74,12 @@
 		else
 			picked_smite = new picked_smite
 			do_smite(picked_smite, cast_on)
+	to_chat(owner, span_notice("You call down a strike from the heavens upon [cast_on], resulting in [picked_smite.name]!"))
 
 /datum/action/cooldown/spell/pointed/smite/after_cast(atom/cast_on)
 	. = ..()
 	if(smite_type == LIGHT_SMITE) //these should give a lower cooldown as they dont do as much
-		next_use_time -= cooldown_time/2
+		next_use_time -= cooldown_time / 2
 	smite_type = null
 
 /datum/action/cooldown/spell/pointed/smite/proc/do_smite(datum/smite/real_smite, mob/living/carbon/target)
