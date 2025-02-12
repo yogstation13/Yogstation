@@ -99,6 +99,13 @@
 		/obj/item/mod/module/holster,
 	)
 
+	default_pins = list(
+
+		/obj/item/mod/module/holster,
+		/obj/item/mod/module/stealth,
+		/obj/item/mod/module/chameleon/contractor,
+	)
+
 /obj/machinery/suit_storage_unit/industrial/assault_operative
 	mod_type = /obj/item/mod/control/pre_equipped/stealth_operative
 	storage_type = /obj/item/tank/internals/emergency_oxygen/double

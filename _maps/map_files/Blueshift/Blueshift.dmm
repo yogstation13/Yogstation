@@ -384,7 +384,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "aeF" = (
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor/iron/airless,
@@ -5218,7 +5218,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "bbr" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/iron/dark/herringbone,
@@ -6474,7 +6474,7 @@
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
 /turf/open/floor/iron,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "bnZ" = (
 /obj/machinery/smartfridge/organ,
 /turf/open/floor/iron/white,
@@ -17102,8 +17102,9 @@
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 8
 	},
+/obj/machinery/airalarm/directional/west,
 /turf/open/floor/iron/dark,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "dkX" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
@@ -17584,7 +17585,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "dqD" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -21423,7 +21424,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/construction,
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
 "eeY" = (
@@ -21650,6 +21652,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/station/maintenance/aft/upper)
+"egX" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
+/turf/open/floor/iron,
+/area/station/security/evidence)
 "ehf" = (
 /obj/effect/turf_decal/trimline/blue/filled/corner,
 /obj/structure/disposalpipe/segment{
@@ -23776,7 +23784,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/dark,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "eBK" = (
 /obj/machinery/door/window/left/directional/north,
 /obj/structure/liquid_barrier,
@@ -27011,6 +27019,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/device/antibody_scanner,
+/obj/item/device/antibody_scanner,
 /obj/item/book/manual/wiki/infections,
 /turf/open/floor/iron,
 /area/station/medical/virology)
@@ -34016,7 +34026,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/construction,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
 "gBa" = (
@@ -35890,7 +35901,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "gTL" = (
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
@@ -36726,7 +36737,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/construction,
 /turf/open/floor/iron,
 /area/station/engineering/storage_shared)
 "hdL" = (
@@ -49755,7 +49767,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/landmark/navigate_destination,
-/obj/effect/mapping_helpers/airlock/access/all/engineering/construction,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/general,
+/obj/effect/mapping_helpers/airlock/access/any/engineering/construction,
 /turf/open/floor/iron,
 /area/station/engineering/lobby)
 "jGA" = (
@@ -61407,7 +61420,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "lSv" = (
 /turf/closed/wall/r_wall,
 /area/station/security/prison/upper)
@@ -98244,6 +98257,9 @@
 	dir = 1
 	},
 /area/station/security/prison/workout)
+"sZJ" = (
+/turf/closed/wall/r_wall,
+/area/station/security/evidence)
 "sZM" = (
 /obj/structure/girder,
 /obj/structure/grille/broken,
@@ -105346,7 +105362,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "urq" = (
 /obj/effect/turf_decal/stripes,
 /obj/effect/turf_decal/stripes{
@@ -106232,8 +106248,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
+/obj/machinery/power/apc/auto_name/directional/south,
+/obj/structure/cable,
 /turf/open/floor/iron,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "uAs" = (
 /obj/effect/spawner/random/trash/mess,
 /obj/structure/disposalpipe/segment{
@@ -120410,7 +120428,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /turf/open/floor/iron,
-/area/station/security/mechbay)
+/area/station/security/evidence)
 "xkf" = (
 /obj/machinery/door/airlock/wood{
 	name = "Sauna"
@@ -122537,8 +122555,9 @@
 /area/station/command/heads_quarters/nt_rep)
 "xFO" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/iron,
-/area/station/security/interrogation)
+/area/station/security/evidence)
 "xFQ" = (
 /obj/structure/table/wood,
 /obj/item/folder/yellow{
@@ -151130,12 +151149,12 @@ vpe
 tUj
 uut
 eGr
-cZT
-fAw
-fAw
-fAw
-fAw
-fAw
+sZJ
+sZJ
+sZJ
+sZJ
+sZJ
+sZJ
 tEK
 rKn
 jAp
@@ -151387,12 +151406,12 @@ tUj
 vpe
 wcZ
 hpF
-cZT
+sZJ
 bbn
 dqw
 eBG
 dkT
-fAw
+sZJ
 laf
 rKn
 lHI
@@ -151649,7 +151668,7 @@ aey
 gTF
 xFO
 uAr
-fAw
+sZJ
 laf
 kUo
 lHI
@@ -151901,12 +151920,12 @@ uBX
 bAo
 bAo
 azm
-cZT
+sZJ
 lSs
-qDO
+egX
 uro
 uro
-fAw
+sZJ
 xKh
 rKn
 lHI
@@ -152157,13 +152176,13 @@ cZT
 hAz
 nDO
 hAz
-fAw
-fAw
-fAw
+cZT
+sZJ
+sZJ
 bnX
-fAw
-fAw
-fAw
+sZJ
+sZJ
+sZJ
 iGF
 iGF
 msS
