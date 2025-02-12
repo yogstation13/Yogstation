@@ -539,13 +539,13 @@
 	description = "A nonlethal poison that causes extreme fatigue and weakness in its victim."
 	silent_toxin = TRUE
 	color = "#6E2828"
-	data = 15
+	data = 45 // monkestation edit
 	toxpwr = 0
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 
 /datum/reagent/toxin/staminatoxin/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
 	affected_mob.stamina.adjust(-data * REM * seconds_per_tick, 0)
-	data = max(data - 1, 3)
+	data = max(data - 3, 9) // monkestation edit
 	..()
 	. = TRUE
 

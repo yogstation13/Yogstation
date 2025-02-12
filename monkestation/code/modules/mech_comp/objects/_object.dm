@@ -48,6 +48,8 @@
 /obj/item/mcobject/wrench_act(mob/living/user, obj/item/tool)
 	if(default_unfasten_wrench(user, tool))
 		log_message("[anchored ? "wrenched down" : "unwrenched"] by [key_name(user)]", LOG_MECHCOMP)
+		return TRUE
+
 
 /obj/item/mcobject/set_anchored(anchorvalue)
 	. = ..()
@@ -71,15 +73,16 @@
 		if(!create_link(user, link.target))
 			to_chat(user, span_warning("Unsucessful link buffer cleared."))
 			qdel(link)
-			return
+			return TRUE
 		qdel(link)
-		return
+		return TRUE
 
 	var/action = tgui_input_list(user, "Select a config to modify", "Configure Component", configs)
 	if(!action)
 		return
 
 	call(src, configs[action])(user, tool)
+	return TRUE
 
 /obj/item/mcobject/multitool_act_secondary(mob/living/user, obj/item/tool)
 	var/datum/component/mclinker/link = tool.GetComponent(/datum/component/mclinker)
@@ -88,6 +91,7 @@
 		qdel(link)
 
 	add_linker(user, tool)
+	return TRUE
 
 /obj/item/mcobject/proc/unlink(mob/user, obj/item/tool)
 	var/list/options = list()

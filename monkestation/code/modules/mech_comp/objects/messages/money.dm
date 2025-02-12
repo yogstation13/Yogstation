@@ -14,6 +14,9 @@
 	///the string displayed after the payment threshold has been reached
 	var/output_string = ""
 
+	///CAN_BE_HIT required to allow payments of credits and accounts
+	obj_flags = CAN_BE_HIT
+
 /obj/item/mcobject/messaging/payment/update_desc(updates)
 	. = ..()
 	. += "Known for eating your change."
@@ -101,6 +104,7 @@
 				attacked_stack.amount -= amount_to_reduce
 			collected += actual_input
 			say("[output_string]")
+			fire(stored_message) // required to signal other components something happened.
 		else
 			collected += total_value
 			qdel(attacked_stack)
@@ -110,7 +114,10 @@
 		if(attacked_chip.credits >= price)
 			collected += price
 			attacked_chip.credits -= price
+			if(attacked_chip.credits == 0)
+				qdel(attacking_item)
 			say("[output_string]")
+			fire(stored_message) // required to signal other components something happened.
 		else
 			collected += attacked_chip.credits
 			qdel(attacked_chip)
