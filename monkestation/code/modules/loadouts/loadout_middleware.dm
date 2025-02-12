@@ -311,6 +311,7 @@
 	var/list/colors = open_menu.split_colors
 	if(colors)
 		preferences.loadout_list[path][INFO_GREYSCALE] = colors.Join("")
+		preferences.character_preview_view?.update_body()
 
 /datum/preference_middleware/loadout/proc/clear_all_items()
 	LAZYNULL(preferences.loadout_list)
