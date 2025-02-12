@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Praetorian modsuits now have better cells and storage"
+  - qol: "Pinned several modsuits preinstalled modules"
+  - code_imp: "Modularlized some blueshield code"
