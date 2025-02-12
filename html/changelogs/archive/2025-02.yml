@@ -267,6 +267,9 @@
   - bugfix: Fixed the Tramstation shipbreaking hut being spaced roundstart.
   - bugfix: Smite (the spell) is now properly blocked by antimagic.
   - qol: Smite now tells the caster which smite was inflicted.
+  - bugfix: Dying oozelings now properly unequip items before moving them to their
+      core.
+  - bugfix: Fixed Fluffy Tongue applying to sign language.
   Gw0sty:
   - rscadd: Praetorian modsuits now have better cells and storage
   - qol: Pinned several modsuits preinstalled modules
