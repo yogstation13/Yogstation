@@ -1,4 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - bugfix: "Clicking \"Apply\" when coloring a loadout item will now update your character preview to use the new colors. This enables you to live(-ish) preview what a certain set of colors will look like on your character."

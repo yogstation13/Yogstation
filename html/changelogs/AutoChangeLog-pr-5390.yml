@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Smite (the spell) is now properly blocked by antimagic."
-  - qol: "Smite now tells the caster which smite was inflicted."
