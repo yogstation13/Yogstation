@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added immunity scanners to blueshift"
+  - rscadd: "Added the evidence storage room/apc"
+  - bugfix: "Sec engi's should be able to access lathe again."
