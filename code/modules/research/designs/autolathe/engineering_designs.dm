@@ -243,7 +243,7 @@
 /datum/design/airlock_board
 	name = "Airlock Electronics"
 	id = "airlock_board"
-	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
+	build_type = AUTOLATHE | PROTOLATHE //MONKESTATION EDIT - Removes 'AWAY_LATHE' from build_type, since we have a subtype of airlock electronics for offstation lathes
 	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT*0.5, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.5)
 	build_path = /obj/item/electronics/airlock
 	category = list(

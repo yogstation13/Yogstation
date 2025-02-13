@@ -636,6 +636,7 @@
 		"high_micro_laser",
 		"mesons",
 		"nano_mani",
+		"airlock_board_offstation", //MONKESTATION ADDITION - old airlock board for charlie station
 		"oxygen_tank",
 		"pacman",
 		"plasma_tank",

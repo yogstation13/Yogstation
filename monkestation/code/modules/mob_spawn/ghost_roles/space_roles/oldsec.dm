@@ -2,7 +2,7 @@
 	ears = /obj/item/radio/headset/headset_old/alt
 	implants = list(/obj/item/implant/mindshield)
 	id = /obj/item/card/id/advanced/old
-	id_trim = /datum/id_trim/away/old/sec
+	id_trim = /datum/id_trim/job/away/old/sec
 	belt = /obj/item/gun/energy/laser/retro/old
 
 /datum/outfit/oldsec/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

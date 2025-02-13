@@ -7856,6 +7856,8 @@
 #include "monkestation\code\modules\ocean_content\mobs\ai\behaviours\attempt_group_find.dm"
 #include "monkestation\code\modules\ocean_content\mobs\ai\behaviours\group_move_towards.dm"
 #include "monkestation\code\modules\ocean_content\mobs\ai\subtrees\simple_try_attach_group.dm"
+#include "monkestation\code\modules\oldstation_idconsole\oldstation_airlock_board.dm"
+#include "monkestation\code\modules\oldstation_idconsole\oldstation_idconsole.dm"
 #include "monkestation\code\modules\outdoors\code\admin_commands.dm"
 #include "monkestation\code\modules\outdoors\code\misc_procs.dm"
 #include "monkestation\code\modules\outdoors\code\new_vars.dm"

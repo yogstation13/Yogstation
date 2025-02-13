@@ -5,7 +5,7 @@
 /obj/item/card/id/away/old/salvagepod	//Used for salvagepost ruin access	-- NOT WORKING YET REE
 	name = "Cutter's Pod access card"
 	desc = "An ancient access card with the words \"Cutter's Pod\" printed on in big bold letters. It'll be a miracle if this still works."
-	trim = /datum/id_trim/away/old/eng
+	trim = /datum/id_trim/job/away/old/eng
 
 /* ----------------- Lore ----------------- */
 //Tape subtype for adding ruin lore -- the variables below are the ones you need to change

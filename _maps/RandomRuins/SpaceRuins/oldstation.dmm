@@ -4265,7 +4265,7 @@
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/card/id/advanced/old{
-	trim = /datum/id_trim/away/old/apc;
+	trim = /datum/id_trim/job/away/old/apc;
 	name = "Engineering Equipment Access"
 	},
 /obj/item/crowbar,
@@ -6227,7 +6227,7 @@
 "Ed" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/modular_computer/preset/id,
+/obj/machinery/modular_computer/preset/id/old,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/bridge)
 "Eg" = (
@@ -6673,7 +6673,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/glass,
 /obj/item/card/id/advanced/old{
-	trim = /datum/id_trim/away/old/robo;
+	trim = /datum/id_trim/job/away/old/robo;
 	registered_name = "Ash Holm";
 	name = "Ash Holm";
 	assignment = "Charlie Station Roboticist"
@@ -8754,7 +8754,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper/fluff/ruins/oldstation/report,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/modular_computer/preset/command,
+/obj/machinery/modular_computer/preset/command/old,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/bridge)
 "UV" = (
@@ -8882,6 +8882,12 @@
 /obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/engine,
 /area/ruin/space/ancientstation/delta/biolab)
+"VX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/oldpdapainter,
+/turf/open/floor/iron,
+/area/ruin/space/ancientstation/charlie/bridge)
 "VZ" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/dirt,
@@ -13314,7 +13320,7 @@ aI
 ei
 aI
 aI
-bm
+VX
 zr
 zy
 OT

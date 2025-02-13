@@ -547,6 +547,31 @@
 /// Used to seed the accesses_by_region list in SSid_access. A list of all CENTCOM_ACCESS regional accesses.
 #define REGION_ACCESS_CENTCOM CENTCOM_ACCESS
 
+/// MONKESTATION ADDITION - Adds Charlie Station region, for the Charlie Station ID console.
+/// Name for the Charlie Station region.
+#define REGION_CHARLIE_STATION "Charlie Station"
+/// Used to seed the accesses_by_region list in SSid_access. A list of all ACCESS_AWAY regional accesses.
+#define REGION_ACCESS_CHARLIE_STATION list( \
+	ACCESS_AWAY_GENERAL, \
+	ACCESS_ROBOTICS, \
+	ACCESS_ORDNANCE, \
+	ACCESS_RESEARCH, \
+	ACCESS_AWAY_SCIENCE, \
+	ACCESS_AWAY_MAINTENANCE, \
+	ACCESS_AWAY_SUPPLY, \
+	ACCESS_AWAY_GENERIC1, \
+	ACCESS_AWAY_GENERIC2, \
+	ACCESS_AWAY_GENERIC3, \
+	ACCESS_AWAY_GENERIC4, \
+	ACCESS_AWAY_COMMAND, \
+	ACCESS_AWAY_MEDICAL, \
+	ACCESS_AWAY_SEC, \
+	ACCESS_AWAY_ENGINEERING, \
+	ACCESS_ENGINEERING, \
+	ACCESS_ENGINE_EQUIP, \
+)
+/// END OF ADDITION
+
 /**
  * A list of PDA paths that can be painted as well as the regional heads which should be able to paint them.
  * If a PDA is not in this list, it cannot be painted using the PDA & ID Painter.

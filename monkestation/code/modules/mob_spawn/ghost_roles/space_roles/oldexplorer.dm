@@ -22,7 +22,7 @@
 /datum/outfit/oldexplorer
 	name = "Ancient Explorer"
 	id = /obj/item/card/id/advanced/old
-	id_trim = /datum/id_trim/away/old/explorer
+	id_trim = /datum/id_trim/job/away/old/explorer
 	uniform = /obj/item/clothing/under/rank/cargo/miner
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	gloves = /obj/item/clothing/gloves/color/black

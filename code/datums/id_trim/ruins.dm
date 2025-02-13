@@ -10,29 +10,81 @@
 /datum/id_trim/away/hotel/security
 	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_MAINTENANCE, ACCESS_AWAY_SEC)
 
+/// MONKESTATION EDIT - Turns all Charlie Station trims into /datum/id_trim/job trims and adds extra_access (except where not needed).
 /// Trim for the oldstation ruin/Charlie station
-/datum/id_trim/away/old/sec
-	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_SEC)
+/datum/id_trim/job/away/old/sec
+	minimal_access = list(
+		ACCESS_AWAY_GENERAL,
+		ACCESS_AWAY_SEC
+	)
+	extra_access = list(
+		ACCESS_ROBOTICS,
+		ACCESS_ORDNANCE,
+		ACCESS_RESEARCH,
+		ACCESS_AWAY_SCIENCE,
+		ACCESS_AWAY_MAINTENANCE,
+		ACCESS_AWAY_SUPPLY,
+		ACCESS_AWAY_GENERIC1,
+		ACCESS_AWAY_GENERIC2,
+		ACCESS_AWAY_GENERIC3,
+		ACCESS_AWAY_GENERIC4,
+		ACCESS_AWAY_COMMAND,
+		ACCESS_AWAY_MEDICAL,
+		ACCESS_AWAY_ENGINEERING,
+		ACCESS_ENGINEERING,
+		ACCESS_ENGINE_EQUIP
+	)
 	assignment = "Charlie Station Security Officer"
 
 /// Trim for the oldstation ruin/Charlie station
-/datum/id_trim/away/old/sci
-	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_SCIENCE)
+/datum/id_trim/job/away/old/sci
+	minimal_access = list(
+		ACCESS_AWAY_GENERAL,
+		ACCESS_AWAY_SCIENCE
+	)
 	assignment = "Charlie Station Scientist"
 
 /// Trim for the oldstation ruin/Charlie station
-/datum/id_trim/away/old/eng
-	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_ENGINEERING)
+/datum/id_trim/job/away/old/eng
+	minimal_access = list(
+		ACCESS_AWAY_GENERAL,
+		ACCESS_AWAY_ENGINEERING
+	)
+	extra_access = list(
+		ACCESS_ROBOTICS,
+		ACCESS_ORDNANCE,
+		ACCESS_RESEARCH,
+		ACCESS_AWAY_SCIENCE,
+		ACCESS_AWAY_MAINTENANCE,
+		ACCESS_AWAY_SUPPLY,
+		ACCESS_AWAY_GENERIC1,
+		ACCESS_AWAY_GENERIC2,
+		ACCESS_AWAY_GENERIC3,
+		ACCESS_AWAY_GENERIC4,
+		ACCESS_AWAY_COMMAND,
+		ACCESS_AWAY_MEDICAL,
+		ACCESS_AWAY_SEC,
+		ACCESS_ENGINEERING,
+		ACCESS_ENGINE_EQUIP
+	)
 	assignment = "Charlie Station Engineer"
 
 /// Trim for the oldstation ruin/Charlie station to access APCs and other equipment
-/datum/id_trim/away/old/apc
-	access = list(ACCESS_ENGINEERING, ACCESS_ENGINE_EQUIP)
+/datum/id_trim/job/away/old/apc
+	minimal_access = list(
+		ACCESS_ENGINEERING,
+		ACCESS_ENGINE_EQUIP
+	)
 	assignment = "Engineering Equipment Access"
 
 /// Trim for the oldstation ruin/Charlie station to access robots, and downloading of paper publishing software for experiments
-/datum/id_trim/away/old/robo
-	access = list(ACCESS_AWAY_GENERAL, ACCESS_ROBOTICS, ACCESS_ORDNANCE)
+/datum/id_trim/job/away/old/robo
+	minimal_access = list(
+		ACCESS_AWAY_GENERAL,
+		ACCESS_ROBOTICS,
+		ACCESS_ORDNANCE
+	)
+///END OF EDIT
 
 /// Trim for the cat surgeon ruin.
 /datum/id_trim/away/cat_surgeon
