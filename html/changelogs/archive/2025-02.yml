@@ -315,6 +315,13 @@
   - balance: Armory Kiboko now gets shrapnel instead of practice shells.
   MichiRecRoom:
   - bugfix: Blueshield's alt job titles should work now.
+  RikuTheKiller:
+  - rscadd: New pathology goggles with a nifty toggle for the pathogen visuals. No
+      more visual overload!
+  - balance: Science goggles can't see pathogens anymore. You're more reliant on the
+      pathologist again.
+  - bugfix: Virus view now works at roundstart. I fixed it by just refactoring it
+      into something sensible.
   Wisemonster:
   - balance: License to Plasmaflood has been rebranded to License to Murderbone
   flleeppyy:
