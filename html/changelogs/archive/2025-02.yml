@@ -290,7 +290,32 @@
   - bugfix: Beach ruins now uses station public jukebox. Now all can use it.
   - balance: Tirizine values buffed for monkestation stamina adjustments.
 2025-02-13:
+  Absolucy:
+  - qol: Restyled the Show Server Revision verb to be prettier.
+  Absolucy, Melbert:
+  - rscadd: Valentines Day now polls all players for candidates when it triggers rather
+      than forcing all players to be a Valentine. Consent is important.
+  - rscadd: Valentine silicons now gain special laws pertaining to their date.
+  - qol: Valentines Cards are now paper, so you can write on them, stamp them, or
+      burn them.
+  - qol: Valentine's roundend report no longer takes up a massive amount of space
+      and also no longer sound so, so weird.
   Absolucy, TealSeer:
   - qol: The time until the server reboots is now visible in the status tab.
+  Absolucy, hyperjll:
+  - qol: The Syndicate Tome's uplink description has been changed to mention it's
+      functionality.
   Loiosh42:
   - rscadd: Recolorable ribboned gown to loadout store
+  - rscadd: Syndicate enhanced Quarad with special ammo and sprites - nuke ops only
+  - balance: Quarad nerf + removal from cargo + add to armory + extra effect vs Xenos
+  - balance: Mild buff CR20
+  - balance: Mild Lanca AP ammo nerf
+  - balance: Moderate Riot Dart buff
+  - balance: Armory Kiboko now gets shrapnel instead of practice shells.
+  MichiRecRoom:
+  - bugfix: Blueshield's alt job titles should work now.
+  Wisemonster:
+  - balance: License to Plasmaflood has been rebranded to License to Murderbone
+  flleeppyy:
+  - server: Allow mentors/admins/donators to bypass the popcap

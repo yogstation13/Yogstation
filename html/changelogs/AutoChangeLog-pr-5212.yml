@@ -1,9 +1,0 @@
-author: "Loiosh42"
-delete-after: True
-changes:
-  - rscadd: "Syndicate enhanced Quarad with special ammo and sprites - nuke ops only"
-  - balance: "Quarad nerf + removal from cargo + add to armory + extra effect vs Xenos"
-  - balance: "Mild buff CR20"
-  - balance: "Mild Lanca AP ammo nerf"
-  - balance: "Moderate Riot Dart buff"
-  - balance: "Armory Kiboko now gets shrapnel instead of practice shells."
