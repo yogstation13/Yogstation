@@ -1,6 +1,6 @@
 /obj/item/card/plasma_license
-	name = "License to Plasmaflood"
-	desc = "A charred contract letting the holder plasmaflood the halls. Not offically recognized by Nanotrasen."
+	name = "License to Murderbone"
+	desc = "A charred contract letting the holder kill everyone they meet. Not offically recognized by Nanotrasen."
 	icon = 'monkestation/icons/obj/items/plasmalicense.dmi'
 	icon_state = "plasmalicense"
 	resistance_flags = FIRE_PROOF
@@ -14,7 +14,7 @@
 
 /obj/item/card/plasma_license/Initialize(mapload)
 	. = ..()
-	message_admins("A plasmaflood license has been created.")
+	message_admins("A murderbone license has been created.")
 
 /obj/item/card/plasma_license/examine(mob/user)
 	. = ..()
@@ -29,8 +29,8 @@
 			return
 		to_chat(user, span_notice("You sign your name at the bottom of the [src]."))
 		owner = user.mind
-		message_admins("A License to Plasmaflood has been signed by [owner].")
-		investigate_log("A License to Plasmaflood by [key_name(user)]", INVESTIGATE_ATMOS)
+		message_admins("A License to Murderbone has been signed by [owner].")
+		investigate_log("A License to Murderbone by [key_name(user)]", INVESTIGATE_ATMOS)
 		return
 
 	if(user.mind != owner)
