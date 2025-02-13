@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(virusDB, list())
 	if(!length(pathogen_info))
 		GLOB.infected_contact_mobs -= affected_mob
 		if(affected_mob.pathogen)
-			for(var/mob/living/goggle_wearer in GLOB.science_goggles_wearers)
+			for(var/mob/living/goggle_wearer in GLOB.virus_viewers)
 				goggle_wearer.client?.images -= affected_mob.pathogen
 
 	// Add resistance by boosting whichever antigen is needed

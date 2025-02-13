@@ -1296,6 +1296,7 @@
 		"diagnostic_hud",
 		"health_hud",
 		"scigoggles",
+		"pathology_goggles", // monkestation edit
 		"security_hud",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1500)
@@ -1311,6 +1312,7 @@
 		"night_visision_goggles",
 		"nvgmesons",
 		"nv_scigoggles",
+		"nv_pathology_goggles", // monkestation edit
 		"security_hud_night",
 		"mech_light_amplification",
 	)

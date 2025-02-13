@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(infected_cleanables, list())
 				pathogen = image('monkestation/code/modules/virology/icons/effects.dmi',src,"pathogen_blood")
 				pathogen.plane = HUD_PLANE
 				pathogen.appearance_flags = RESET_COLOR|RESET_ALPHA
-			for (var/mob/L in GLOB.science_goggles_wearers)
+			for (var/mob/L in GLOB.virus_viewers)
 				if (L.client)
 					L.client.images |= pathogen
 

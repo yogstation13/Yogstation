@@ -123,6 +123,8 @@
 #define TRAIT_TRASH_ITEM			"trash_item"
 /// This item came from a gift.
 #define TRAIT_GIFT_ITEM				"gift_item"
+/// The mob can see pathogen clouds and such.
+#define TRAIT_VIRUS_SCANNER "virus_scanner"
 
 // /atom/movable
 /// Things with this trait can pass through wooden barricades.

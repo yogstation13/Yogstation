@@ -79,7 +79,7 @@
 			infectedMob.pathogen = image('monkestation/code/modules/virology/icons/effects.dmi',infectedMob,"pathogen_contact")
 			infectedMob.pathogen.plane = HUD_PLANE
 			infectedMob.pathogen.appearance_flags = RESET_COLOR|RESET_ALPHA
-		for (var/mob/living/L in GLOB.science_goggles_wearers)
+		for (var/mob/living/L in GLOB.virus_viewers)
 			if (L.client)
 				L.client.images |= infectedMob.pathogen
 		return
@@ -90,7 +90,7 @@
 			infectedMob.pathogen = image('monkestation/code/modules/virology/icons/effects.dmi',infectedMob,"pathogen_blood")
 			infectedMob.pathogen.plane = HUD_PLANE
 			infectedMob.pathogen.appearance_flags = RESET_COLOR|RESET_ALPHA
-		for (var/mob/living/L in GLOB.science_goggles_wearers)
+		for (var/mob/living/L in GLOB.virus_viewers)
 			if (L.client)
 				L.client.images |= infectedMob.pathogen
 		return
@@ -101,7 +101,7 @@
 			infectedMob.pathogen = image('monkestation/code/modules/virology/icons/effects.dmi',infectedMob,"pathogen_blood-old2")
 			infectedMob.pathogen.plane = HUD_PLANE
 			infectedMob.pathogen.appearance_flags = RESET_COLOR|RESET_ALPHA
-		for (var/mob/living/L in GLOB.science_goggles_wearers)
+		for (var/mob/living/L in GLOB.virus_viewers)
 			if (L.client)
 				L.client.images |= infectedMob.pathogen
 		return

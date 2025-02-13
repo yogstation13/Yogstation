@@ -36654,7 +36654,7 @@
 /obj/structure/extinguisher_cabinet/directional/south,
 /obj/machinery/light/directional/south,
 /obj/structure/table/glass,
-/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/pathology,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/healthanalyzer,
 /obj/item/clothing/gloves/latex,

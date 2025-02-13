@@ -1746,7 +1746,7 @@
 	pixel_y = 3
 	},
 /obj/item/plant_analyzer,
-/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/pathology,
 /obj/item/reagent_containers/spray/chemsprayer/bioterror{
 	pixel_x = -6;
 	pixel_y = 10

@@ -1,5 +1,5 @@
 /datum/outfit/job/virologist
-	glasses = /obj/item/clothing/glasses/science
+	glasses = /obj/item/clothing/glasses/pathology
 	backpack_contents = list(
 		/obj/item/extrapolator = 1,
 		/obj/item/storage/box/tube = 1,

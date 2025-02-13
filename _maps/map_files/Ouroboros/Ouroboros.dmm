@@ -24313,7 +24313,7 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/table/glass,
 /obj/item/clothing/gloves/latex,
-/obj/item/clothing/glasses/science{
+/obj/item/clothing/glasses/pathology{
 	pixel_y = 6
 	},
 /obj/item/clothing/glasses/hud/health,

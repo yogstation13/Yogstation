@@ -12,6 +12,9 @@
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_CLOWN_DISBELIEVER), PROC_REF(on_clown_disbeliever_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_CLOWN_DISBELIEVER), PROC_REF(on_clown_disbeliever_trait_loss))
 
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_VIRUS_SCANNER), PROC_REF(on_virus_scanner_trait_gain))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_VIRUS_SCANNER), PROC_REF(on_virus_scanner_trait_loss))
+
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_NOHUNGER), PROC_REF(on_nohunger_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOHUNGER), PROC_REF(on_nohunger_trait_loss))
 
@@ -41,6 +44,14 @@
 	SIGNAL_HANDLER
 	for(var/datum/atom_hud/alternate_appearance/basic/clown_disbelief/clown_to_hide in GLOB.active_alternate_appearances)
 		clown_to_hide.hide_from(src)
+
+/mob/living/proc/on_virus_scanner_trait_gain(datum/source)
+	SIGNAL_HANDLER
+	AddElement(/datum/element/virus_viewer)
+
+/mob/living/proc/on_virus_scanner_trait_loss(datum/source)
+	SIGNAL_HANDLER
+	RemoveElement(/datum/element/virus_viewer)
 
 /mob/living/proc/on_nohunger_trait_gain(datum/source)
 	SIGNAL_HANDLER

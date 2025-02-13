@@ -74691,7 +74691,7 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/gloves/latex,
-/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/pathology,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/device/antibody_scanner,
 /obj/item/device/antibody_scanner,

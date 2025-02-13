@@ -14,6 +14,9 @@
 	fade_in = 0.5 SECONDS
 	fade_out = 0.5 SECONDS
 
+/datum/client_colour/glass_colour/lightpurple
+	colour = "#ffccff"
+
 #undef PRIORITY_ABSOLUTE
 #undef PRIORITY_HIGH
 #undef PRIORITY_NORMAL

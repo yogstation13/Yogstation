@@ -93,6 +93,26 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
+/datum/design/pathology_goggles
+	name = "Viral Analyzer Goggles"
+	desc = "A pair of goggles fitted with an analyzer for viral particles and reagents."
+	id = "pathology_goggles"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 5)
+	build_path = /obj/item/clothing/glasses/pathology
+	category = list(RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
+/datum/design/nv_pathology_goggles
+	name = "Night Vision Viral Analyzer Goggles"
+	desc = "A pair of night vision goggles fitted with an analyzer for viral particles and reagents."
+	id = "nv_pathology_goggles"
+	build_type = PROTOLATHE | AWAY_LATHE
+	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium = 350)
+	build_path = /obj/item/clothing/glasses/night/pathology
+	category = list(RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL)
+	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
+
 /datum/design/surgery/dna_recovery
 	name = "DNA Recovery"
 	desc = "A surgical procedure which involves using rezadone to salvage a single strand of DNA from the patient, allowing them to be cloned."

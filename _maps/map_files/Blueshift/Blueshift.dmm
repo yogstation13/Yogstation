@@ -27027,7 +27027,7 @@
 /obj/item/clothing/gloves/latex,
 /obj/item/healthanalyzer,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/science,
+/obj/item/clothing/glasses/pathology,
 /obj/machinery/light_switch/directional/south,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
