@@ -403,6 +403,36 @@
 	if(temp_gender != PLURAL)
 		. = "es"
 
+/datum/mind/p_they(capitalized, temp_gender)
+	return current?.p_they(capitalized, temp_gender) || ..()
+
+/datum/mind/p_their(capitalized, temp_gender)
+	return current?.p_their(capitalized, temp_gender) || ..()
+
+/datum/mind/p_theirs(capitalized, temp_gender)
+	return current?.p_theirs(capitalized, temp_gender) || ..()
+
+/datum/mind/p_them(capitalized, temp_gender)
+	return current?.p_them(capitalized, temp_gender) || ..()
+
+/datum/mind/p_have(temp_gender)
+	return current?.p_have(temp_gender) || ..()
+
+/datum/mind/p_are(temp_gender)
+	return current?.p_are(temp_gender) || ..()
+
+/datum/mind/p_were(temp_gender)
+	return current?.p_were(temp_gender) || ..()
+
+/datum/mind/p_do(temp_gender)
+	return current?.p_do(temp_gender) || ..()
+
+/datum/mind/p_s(temp_gender)
+	return current?.p_s(temp_gender) || ..()
+
+/datum/mind/p_es(temp_gender)
+	return current?.p_es(temp_gender) || ..()
+
 //MONKESTATION EDIT START
 // Genders for plushies
 /obj/item/toy/plush/p_they(capitalized, temp_gender)
