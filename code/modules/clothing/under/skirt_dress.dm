@@ -105,3 +105,15 @@
 	greyscale_config_worn = /datum/greyscale_config/wlpinafore_worn
 	greyscale_colors = "#5190c8#FFFFFF"
 	flags_1 = IS_PLAYER_COLORABLE_1
+
+/obj/item/clothing/under/dress/ribbondress
+	name = "ribboned gown"
+	desc = "A classy and elegant gown with ribbon sleeves. It has the initials 'VA' stitched on the back hem."
+	icon_state = "ribbondress"
+	custom_price = PAYCHECK_COMMAND
+	greyscale_config = /datum/greyscale_config/ribbondress
+	greyscale_config_worn = /datum/greyscale_config/ribbondress_worn
+	greyscale_colors = "#845FAA#D5A6F4"
+	flags_1 = IS_PLAYER_COLORABLE_1
+	flags_inv = HIDESHOES
+

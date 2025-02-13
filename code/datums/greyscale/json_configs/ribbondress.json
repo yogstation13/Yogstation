@@ -1,0 +1,17 @@
+{
+	"ribbondress": [
+		{
+		"type": "icon_state",
+		"icon_state": "ribbondress_d",
+		"blend_mode": "overlay",
+		"color_ids": [ 1 ]
+		},
+		{
+		"type": "icon_state",
+		"icon_state": "ribbondress_s",
+		"blend_mode": "overlay",
+		"color_ids": [ 2 ]
+		}
+	]
+}
+
