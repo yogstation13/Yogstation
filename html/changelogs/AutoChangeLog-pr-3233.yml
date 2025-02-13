@@ -1,0 +1,6 @@
+author: "RikuTheKiller"
+delete-after: True
+changes:
+  - rscadd: "New pathology goggles with a nifty toggle for the pathogen visuals. No more visual overload!"
+  - balance: "Science goggles can't see pathogens anymore. You're more reliant on the pathologist again."
+  - bugfix: "Virus view now works at roundstart. I fixed it by just refactoring it into something sensible."
