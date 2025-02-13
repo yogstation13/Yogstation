@@ -54,4 +54,13 @@
 	if(owner.is_mentor())
 		owner.mentor_datum.not_active = FALSE
 
-
+/proc/raw_is_mentor(ckey)
+	. = FALSE
+	var/list/mentors = world.file2list("[global.config.directory]/mentors.txt")
+	for(var/mentor in mentors)
+		if(!length(mentor))
+			continue
+		if(findtextEx(mentor, "#", 1, 2))
+			continue
+		if (ckey == ckey(mentor))
+			return TRUE

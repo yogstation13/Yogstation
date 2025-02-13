@@ -18,6 +18,8 @@
 		return ..() //shunt world topic banchecks to purely to byond's internal ban system
 
 	var/admin = FALSE
+	var/mentor = FALSE
+	var/supporter = FALSE
 	var/ckey = ckey(key)
 
 	var/client/C = GLOB.directory[ckey]
@@ -29,8 +31,14 @@
 	//magic voodo to check for a key in a list while also adding that key to the list without having to do two associated lookups
 	var/message = !checkedckeys[ckey]++
 
-	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
+	if (GLOB.admin_datums[ckey] || GLOB.deadmins[ckey] || (ckey in GLOB.protected_admins))
 		admin = TRUE
+
+	if (raw_is_mentor(ckey))
+		mentor = TRUE
+
+	if (get_patreon_rank(ckey) > 0)
+		supporter = TRUE
 
 	if(!real_bans_only && !admin && CONFIG_GET(flag/panic_bunker) && !CONFIG_GET(flag/panic_bunker_interview))
 		var/datum/db_query/query_client_in_db = SSdbcore.NewQuery(
@@ -55,10 +63,10 @@
 	//Whitelist
 	if(!real_bans_only && !C && CONFIG_GET(flag/usewhitelist))
 		if(!check_whitelist(ckey))
-			if (admin)
-				log_admin("The admin [ckey] has been allowed to bypass the whitelist")
+			if (admin || mentor)
+				log_admin("The admin/mentor [ckey] has been allowed to bypass the whitelist")
 				if (message)
-					message_admins(span_adminnotice("The admin [ckey] has been allowed to bypass the whitelist"))
+					message_admins(span_adminnotice("The admin/mentor [ckey] has been allowed to bypass the whitelist"))
 					addclientmessage(ckey,span_adminnotice("You have been allowed to bypass the whitelist"))
 			else
 				log_access("Failed Login: [ckey] - Not on whitelist")
@@ -75,11 +83,17 @@
 
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
-	if(!real_bans_only && !C && extreme_popcap && !admin)
+	if(!real_bans_only && !C && extreme_popcap)
 		var/popcap_value = GLOB.clients.len
 		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
+			if (admin || mentor || supporter)
+				var/msg = "Popcap Login: [ckey] - Is a(n) [admin ? "admin" : mentor ? "mentor" : supporter ? "patreon supporter" : "???"], therefore allowed passed the popcap of [extreme_popcap] - [popcap_value] clients connected"
+				log_access(msg)
+				message_admins(msg)
 			if(!CONFIG_GET(flag/byond_member_bypass_popcap) || !world.IsSubscribed(ckey, "BYOND"))
-				log_access("Failed Login: [ckey] - Population cap reached")
+				var/msg = "Failed Login: [ckey] - Population cap reached"
+				log_access(msg)
+				message_admins(msg)
 				return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
 
 	if(CONFIG_GET(flag/sql_enabled))
