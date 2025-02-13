@@ -44,7 +44,14 @@
 	rpg_title = "Guard"
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 
-	alt_titles = list()
+	alt_titles = list(
+		"Blueshield",
+		"Corporate Henchman",
+		"Bodyguard",
+		"Revolutionary Repellent",
+		"Heavily Armed Butler",
+		"Honor Guard",
+	)
 
 /datum/outfit/job/blueshield
 	name = "Blueshield"
