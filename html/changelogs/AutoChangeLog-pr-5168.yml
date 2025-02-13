@@ -1,0 +1,4 @@
+author: "flleeppyy"
+delete-after: True
+changes:
+  - server: "Allow mentors/admins/donators to bypass the popcap"
