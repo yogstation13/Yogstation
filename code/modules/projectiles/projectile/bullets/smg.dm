@@ -3,7 +3,7 @@
 /obj/projectile/bullet/c45
 	name = ".45 bullet"
 	damage = 30
-	wound_bonus = -10
+	wound_bonus = 20 ///monke -10 -> 20
 	wound_falloff_tile = -10
 
 /obj/projectile/bullet/c45/ap

@@ -632,9 +632,10 @@
 
 /obj/projectile/bullet/strilka310/ap
 	name = ".310 armor-piercing bullet"
-	damage = 50
+	damage = 45
 	armour_penetration = 50
 	wound_bonus = -20
+	speed = 0.3
 
 // .585 Trappiste
 // High caliber round used in large pistols and revolvers

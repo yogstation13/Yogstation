@@ -42,6 +42,7 @@
 /obj/projectile/bullet/mm712x82/ap
 	name = "7.12x82mm armor-piercing bullet"
 	armour_penetration = 75
+	speed = 0.3 //monke edit
 
 /obj/projectile/bullet/mm712x82/hp
 	name = "7.12x82mm hollow-point bullet"
@@ -56,6 +57,7 @@
 	name = "7.12x82mm incendiary bullet"
 	damage = 15
 	fire_stacks = 3
+	speed = 0.6 //monke edit
 
 /obj/projectile/bullet/mm712x82/match
 	name = "7.12x82mm match bullet"
@@ -63,6 +65,7 @@
 	ricochet_chance = 60
 	ricochet_auto_aim_range = 4
 	ricochet_incidence_leeway = 55
+	speed = 0.3 //monke edit
 
 /obj/projectile/bullet/mm712x82/bouncy
 	name = "7.12x82mm rubber bullet"
@@ -72,3 +75,5 @@
 	ricochet_auto_aim_range = 4
 	ricochet_incidence_leeway = 0
 	ricochet_decay_chance = 0.9
+	speed = 0.6 //monke edit
+

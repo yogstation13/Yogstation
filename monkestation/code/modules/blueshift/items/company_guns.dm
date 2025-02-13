@@ -115,8 +115,8 @@
 /obj/item/gun/ballistic/automatic/sol_rifle/marksman/no_mag
 	spawnwithmagazine = FALSE
 
-// Machinegun based on the base Sol rifle
-
+// Machinegun based on the base Sol rifle ///monke edit: Rechambered to 6.5mm Anti-Xeno, now in monkestation/modules/projectiles
+/*
 /obj/item/gun/ballistic/automatic/sol_rifle/machinegun
 	name = "\improper Qarad Light Machinegun"
 	desc = "A hefty machinegun commonly seen in the hands of SolFed military types. Accepts any standard SolFed rifle magazine."
@@ -152,7 +152,7 @@
 
 /obj/item/gun/ballistic/automatic/sol_rifle/machinegun/no_mag
 	spawnwithmagazine = FALSE
-
+*/
 // Evil version of the rifle (nothing different its just black)
 
 /obj/item/gun/ballistic/automatic/sol_rifle/evil

@@ -119,7 +119,7 @@
 	guns = list(
 		/obj/item/gun/ballistic/automatic/sol_rifle,
 		/obj/item/gun/ballistic/automatic/sol_rifle,
-		/obj/item/gun/ballistic/automatic/sol_rifle/machinegun,
+		/obj/item/gun/ballistic/automatic/quarad_lmg, ///Monke edit, sol quarad to 6.5 Anti-xeno
 	)
 
 /obj/effect/spawner/armory_spawn/centcom_lasers
