@@ -1,0 +1,4 @@
+author: "MichiRecRoom"
+delete-after: True
+changes:
+  - bugfix: "Blueshield's alt job titles should work now."
