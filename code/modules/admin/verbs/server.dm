@@ -66,6 +66,14 @@
 				to_chat(world, "Server restart - [init_by]")
 				world.TgsEndProcess()
 
+/* uncomment this when/if we port the the admin verb refactor
+ADMIN_VERB(cancel_reboot, R_SERVER, "Cancel Reboot", "Cancels a pending world reboot.", ADMIN_CATEGORY_SERVER)
+	if(!SSticker.cancel_reboot(user))
+		return
+	log_admin("[key_name(user)] cancelled the pending world reboot.")
+	message_admins("[key_name_admin(user)] cancelled the pending world reboot.")
+*/
+
 /datum/admins/proc/end_round()
 	set category = "Server"
 	set name = "End Round"
@@ -151,6 +159,8 @@
 
 	SSticker.delay_end = TRUE
 	SSticker.admin_delay_notice = delay_reason
+	if(SSticker.reboot_timer)
+		SSticker.cancel_reboot(usr)
 
 	log_admin("[key_name(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
 	message_admins("[key_name_admin(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
