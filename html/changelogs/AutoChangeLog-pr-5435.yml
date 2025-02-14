@@ -1,0 +1,4 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - balance: "Reworks lung popping to only happen if your lungs arent getting enough air for 5 breaths. Lung popping also does more damage to your lungs. TLDR: Don't breathe in space."
