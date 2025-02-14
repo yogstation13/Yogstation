@@ -44,7 +44,16 @@
 	human_owner.adjustOxyLoss(-20)
 	human_owner.adjustToxLoss(-20)
 	human_owner.adjustCloneLoss(-20)
+	human_owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -20)
 	human_owner.blood_volume = BLOOD_VOLUME_NORMAL
+
+	if(human_owner.all_wounds)
+		var/datum/wound/picked_wound = pick(human_owner.all_wounds)
+		picked_wound.remove_wound(replaced = TRUE)
+		if(human_owner.all_wounds)
+			var/datum/wound/picked_wound_2 = pick(human_owner.all_wounds)
+			picked_wound_2.remove_wound(replaced = TRUE)
+
 
 	for(var/i in human_owner.all_wounds)
 		var/datum/wound/iter_wound = i
