@@ -1,6 +1,11 @@
+#define OPS_SUBCATEGORY_IMPLANTS "Implants"
+
+#define OPS_SUBCATEGORY_CYBERNETICS "Cybernetic Enhancements"
+
 /datum/armament_entry/assault_operatives/implants
 	category = "Cybernetic Implants"
 	category_item_limit = 3
+	subcategory = OPS_SUBCATEGORY_IMPLANTS
 
 /datum/armament_entry/assault_operatives/implants/deathrattle
 	name = "Deathrattle Implant Kit"
@@ -32,17 +37,20 @@
 /datum/armament_entry/assault_operatives/implants/freedom
 	name = "Freedom Implant"
 	description = "Releases the user from common restraints like handcuffs and legcuffs. Comes with four charges."
-	item_type = /obj/item/storage/box/syndie_kit/imp_freedom
+	item_type = /obj/item/implanter/freedom
 	cost = 3
 
-/datum/armament_entry/assault_operatives/implants/thermal
-	name = "Thermal Vision Implant"
-	description = "These cybernetic eyes will give you thermal vision."
-	item_type = /obj/item/autosurgeon/syndicate/thermal_eyes
-	cost = 5
+/datum/armament_entry/assault_operatives/implants/cybernetic
+	subcategory = OPS_SUBCATEGORY_CYBERNETICS
 
-/datum/armament_entry/assault_operatives/implants/nodrop
+/datum/armament_entry/assault_operatives/implants/cybernetic/nodrop
 	name = "Anti-Drop Implant"
 	description = "When activated forces your hand muscles to tightly grip the object you are holding, preventing you from dropping it involuntarily."
 	item_type = /obj/item/storage/box/syndie_kit/nodrop
+	cost = 5
+
+/datum/armament_entry/assault_operatives/implants/cybernetic/thermal
+	name = "Thermal Vision Implant"
+	description = "These cybernetic eyes will give you thermal vision."
+	item_type = /obj/item/autosurgeon/syndicate/thermal_eyes
 	cost = 5

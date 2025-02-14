@@ -376,6 +376,10 @@
 	if(human_owner.stat == CONSCIOUS)
 		to_chat(human_owner, span_notice("You feel your heart beating again!"))
 
+/obj/item/organ/internal/cyberimp/chest/reviver/syndicate
+	name = "contraband reviver implant"
+	encode_info = AUGMENT_SYNDICATE_LEVEL
+	organ_flags = parent_type::organ_flags | ORGAN_HIDDEN
 
 /obj/item/organ/internal/cyberimp/chest/thrusters
 	name = "implantable thrusters set"

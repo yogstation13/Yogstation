@@ -200,7 +200,7 @@
 	starting_organ = /obj/item/organ/internal/cyberimp/cyberlink/terragov
 	uses = 1
 
-/obj/item/autosurgeon/organ/cyberlink_syndicate
+/obj/item/autosurgeon/syndicate/cyberlink_syndicate
 	starting_organ = /obj/item/organ/internal/cyberimp/cyberlink/syndicate
 	uses = 1
 

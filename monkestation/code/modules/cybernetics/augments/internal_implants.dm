@@ -41,7 +41,8 @@
 	icon_state = "brain_implant_antidrop"
 	var/active = FALSE
 	var/list/stored_items = list()
-	implant_color = "#DE7E00"
+	implant_overlay = null
+	implant_color = null
 	slot = ORGAN_SLOT_BRAIN_ANTIDROP
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	encode_info = AUGMENT_NT_HIGHLEVEL
@@ -104,11 +105,17 @@
 	UnregisterSignal(source, COMSIG_ITEM_DROPPED)
 	stored_items -= source
 
+/obj/item/organ/internal/cyberimp/brain/anti_drop/syndicate
+	name = "contraband anti-drop implant"
+	encode_info = AUGMENT_SYNDICATE_LEVEL
+	organ_flags = parent_type::organ_flags | ORGAN_HIDDEN
+
 /obj/item/organ/internal/cyberimp/brain/anti_stun
 	name = "CNS rebooter implant"
 	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
 	icon_state = "brain_implant_rebooter"
-	implant_color = "#FFFF00"
+	implant_overlay = null
+	implant_color = null
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
 
 	var/static/list/signalCache = list(
@@ -155,6 +162,11 @@
 
 /obj/item/organ/internal/cyberimp/brain/anti_stun/proc/reboot()
 	organ_flags &= ~ORGAN_FAILING
+
+/obj/item/organ/internal/cyberimp/brain/anti_stun/syndicate
+	name = "contraband CNS rebooter implant"
+	encode_info = AUGMENT_SYNDICATE_LEVEL
+	organ_flags = parent_type::organ_flags | ORGAN_HIDDEN
 
 //[[[[MOUTH]]]]
 /obj/item/organ/internal/cyberimp/mouth

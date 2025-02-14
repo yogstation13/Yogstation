@@ -19,7 +19,7 @@
 	starting_organ = /obj/item/organ/internal/cyberimp/arm/item_set/esword
 
 /obj/item/autosurgeon/syndicate/nodrop
-	starting_organ = /obj/item/organ/internal/cyberimp/brain/anti_drop
+	starting_organ = /obj/item/organ/internal/cyberimp/brain/anti_drop/syndicate
 
 /obj/item/autosurgeon/syndicate/baton
 	starting_organ = /obj/item/organ/internal/cyberimp/arm/item_set/baton

@@ -154,11 +154,11 @@
 /obj/item/autosurgeon/syndicate/xray_eyes
 	starting_organ = /obj/item/organ/internal/eyes/robotic/xray
 
-/obj/item/autosurgeon/syndicate/anti_stun
-	starting_organ = /obj/item/organ/internal/cyberimp/brain/anti_stun
+/obj/item/autosurgeon/syndicate/anti_stun //monkestation edit start: Syndicate cybernetics
+	starting_organ = /obj/item/organ/internal/cyberimp/brain/anti_stun/syndicate
 
 /obj/item/autosurgeon/syndicate/reviver
-	starting_organ = /obj/item/organ/internal/cyberimp/chest/reviver
+	starting_organ = /obj/item/organ/internal/cyberimp/chest/reviver/syndicate //monkestation edit end: Syndicate cybernetics
 
 /obj/item/autosurgeon/syndicate/commsagent
 	desc = "A device that automatically - painfully - inserts an implant. It seems someone's specially \

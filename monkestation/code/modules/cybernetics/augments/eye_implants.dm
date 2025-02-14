@@ -80,5 +80,5 @@
 	name = "Contraband Security HUD Implant"
 	desc = "A Cybersun Industries brand Security HUD Implant. These illicit cybernetic eye implants will display a security HUD over everything you see."
 	icon_state = "eye_implant_syndicate"
-	organ_flags = ORGAN_SYNTHETIC | ORGAN_HIDDEN
+	organ_flags = parent_type::organ_flags | ORGAN_HIDDEN
 	encode_info = AUGMENT_SYNDICATE_LEVEL

@@ -18,6 +18,7 @@
 	icon_state = "arm_laser"
 	items_to_create = list(/obj/item/gun/energy/laser/mounted/augment)
 	encode_info = AUGMENT_SYNDICATE_LEVEL
+	organ_flags = parent_type::organ_flags | ORGAN_HIDDEN
 
 /obj/item/organ/internal/cyberimp/arm/item_set/gun/laser/l
 	zone = BODY_ZONE_L_ARM
