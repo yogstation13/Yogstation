@@ -666,22 +666,18 @@
 	// We're in a low / high pressure environment, can't breathe, but trying to, so this hurts the lungs
 	// Unless it's cybernetic then it just doesn't care. Handwave magic whatever
 	else if(!skip_breath && (owner && !HAS_TRAIT(owner, TRAIT_ASSISTED_BREATHING)))
-		if(lung_pop_tick > 10)
+		if(lung_pop_tick > 5)
 			lung_pop_tick = 0
-			if(!failed)
+			if(!failed && num_moles < 0.02)
 				// Lungs are poppin
-				if(damage >= 40 && damage <= 50 && breather.can_feel_pain())
-					to_chat(breather, span_userdanger("You feel a stabbing pain in your chest!"))
-				else if(num_moles < 0.02)
-					to_chat(breather, span_boldwarning("You feel air rapidly exiting your lungs!"))
-				else if(num_moles > 0.1)
-					to_chat(breather, span_boldwarning("You feel air force itself into your lungs!"))
-
+				to_chat(breather, span_boldwarning("You feel air rapidly exiting your lungs!"))
+				breather.failed_last_breath = TRUE
 				breather.cause_pain(BODY_ZONE_CHEST, 10, BRUTE)
-				apply_organ_damage(5)
-		breather.failed_last_breath = TRUE
+				apply_organ_damage(35)
+
 		failed_last_breath_checker = TRUE
-		lung_pop_tick++
+		if(num_moles < 0.02)
+			lung_pop_tick++
 	// Robot, don't care lol
 	else if((owner && !HAS_TRAIT(owner, TRAIT_ASSISTED_BREATHING)))
 		// Can't breathe!
