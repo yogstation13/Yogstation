@@ -1,0 +1,419 @@
+2024-02-02:
+  AMyriad:
+  - spellcheck: Added "np" and "thx" to the netspeak filter
+  - tweak: Saying "auxmos" IC now becomes "space wind"
+  Moltijoe:
+  - tweak: xeno embryos now burst significantly faster if the host is alive and buckled
+      to a xeno bed
+  - tweak: xeno embryos now burst significantly slower if the host is dead or not
+      buckled to a xeno bed
+  - tweak: xeno beds now handcuff the person buckled to it
+  - tweak: xeno beds are significantly faster to unbuckle from (if not handcuffed)
+  Therandomhoboo:
+  - tweak: Nice, Good, Very good and Fantastic quality drinks have their mood changes
+      increased, and their timeouts increased
+  - tweak: Allies cocktail mood flavour text is less cringe
+2024-02-04:
+  AMyriad:
+  - rscdel: Corporate Agents are now gone. Don't know what they are? Exactly nobody
+      does, they won't be missed
+  Therandomhoboo:
+  - rscdel: Cluwne Curse is gone because 3 minutes might as well be 1 use per round
+  - rscdel: Shitty wizards can't have a chance to spawn with Cluwnecurse spell
+  - rscadd: Shit wiz's now have Slip spell instead of Cluwnecurse
+2024-02-05:
+  AMyriad:
+  - bugfix: Chemist ID card no longer looks like the prisoner ID card
+  SapphicOverload:
+  - bugfix: reactions happening in tanks now know they're reacting inside a tank
+  - tweak: buckling to operating tables no longer requires cuffs
+2024-02-06:
+  ' Cowbot92 & Chubbygummibear & Mqiib':
+  - tweak: adjusts how emagged minesweeper rewards/works
+  - tweak: adjusts the sound of syndicate mines
+  Moltijoe:
+  - tweak: Battle Royale
+  warface1234455:
+  - tweak: Airalarm draught mode now set scrubber range from normal to expanded
+2024-02-08:
+  Identification, Molti, lore team (rip skrem):
+  - imageadd: new preternis sprites
+  - imagedel: old preternis sprites
+2024-02-09:
+  Mqiib, @Ebin-Halcyon:
+  - imageadd: Added new turtlenecks for cargo, CMO, and HoP!
+  ToasterBiome:
+  - bugfix: hermes boots no lonnger create runtimes when walking
+  cowbot92:
+  - tweak: Tweaks changeling abilities
+2024-02-10:
+  ' Identification & Molti':
+  - rscadd: Adds a new preternis body colour
+  - imageadd: adds new preternis eye option
+  - imageadd: adds new preternis wings
+  Aquizit:
+  - mapping: Laying pipe
+  Runian:
+  - bugfix: Decreases the unintended burn damage reduction from 2 to 1 for preternis
+      limbs.
+  - tweak: The genetics power, Shock Touch, causes confusion down from 15 seconds
+      to 3 seconds. Can be reduced/increased based on targeted electric armor.
+2024-02-11:
+  ' AMyriad, Wallem, Vincent938, The-Moon-Itself':
+  - rscadd: You can now construct, deconstruct, and print mass drivers
+  - tweak: You can also hack mass drivers now
+  - tweak: Mass driver base power reduced from 50 to 10, can be upgraded or hacked
+      to increase it
+  - soundadd: Mass drivers also have sound effects now!
+  - imageadd: Updated the mass driver sprite(s)
+  AMyriad:
+  - spellcheck: Standardized all mentions of the Clockwork "Justicar" into "Justiciar"
+  Loiosh42:
+  - rscadd: Adds an Anti-megafauna ERT, mk2
+  MajManatee:
+  - bugfix: Holopads stop recording/playback when wrenched
+  Moltijoe:
+  - tweak: Confusion modified to not scale up to completely randomized movement
+  Mqiib:
+  - bugfix: Flying fang inaccuracy debuff now actually goes away fully instead of
+      stacking infinitely
+  - bugfix: Leaping with air shoes makes you fall over
+  - tweak: Blocking the flying fang leap helps significantly but won't totally save
+      you
+  - tweak: Disarm chain defaults to basic harm intent attacks when prone
+  - tweak: Mechs don't deflect ion bolts any more
+  Runian:
+  - rscadd: Silicon Law Manager has been added.
+  - rscadd: Antag AIs can modify their laws with exceptions. They cannot remove their
+      zeroth law (or their devil laws).
+  - rscdel: '"State Laws" has been replaced/moved to the Law Manager.'
+  - rscdel: '"Set Auto Announce Mode" has been replaced/moved to Law Manager.'
+  - rscdel: You can no longer view a law module's laws by using it in hand and has
+      been replaced with examining.
+  - rscdel: The unused and unobtainable "malfunction" lawset was removed.
+  - tweak: Examining a law module has been improved and also reveals the laws on it
+      if you are near it or are an observer. Now with formatting!
+  - tweak: Silicons now have an easier time setting their auto announcement to Holopad
+      and Binary.
+  - tweak: Trying to upload an another law that has the same exact text as a previous
+      law in the same category simply doesn't upload it as panic/spam prevention.
+  - bugfix: Core preset lawset boards ignores the law cap limit and should no longer
+      causes accidental purges of all inherent laws for AIs.
+  - tweak: Changing a pAI's laws is now logged in their history.
+  - bugfix: RoboTact's law section displays laws without any formatting that comes
+      from things like ion/hacked laws.
+  bruhlookatthisdood:
+  - bugfix: donut station's tachyon-doppler array is facing the right way now.
+  cowbot92:
+  - rscdel: Removes the donksoft vendor from asteroid
+  wonderinghost:
+  - tweak: max tabs in microprocessors have been reduced by one
+  - tweak: telescreens can now download camera software
+  - tweak: construction bag can now hold computer parts
+  - tweak: wired network card has added one bulk to advanced network card
+  - tweak: pdas and phones can accept small computer parts
+  - mapping: adds box and meta TEG to engine rotation.
+2024-02-12:
+  Moltijoe:
+  - tweak: Makes a small minor mini tweak to some battle royale weapon weights
+  wonderinghost:
+  - bugfix: fixes holoparasites ability to break cuffs
+  - tweak: swarmer cuffs take 20 seconds instead of 45
+  - tweak: converts cuff deci seconds to seconds
+  - bugfix: added sprite to alien cuffs
+2024-02-13:
+  ' ktlwjec':
+  - imagedel: Removes stray pixels from a couple of medikits.
+  warface1234455:
+  - rscadd: Give HFR gas monitoring bar a decreasement/increasement rate rate
+  - tweak: Moderator now list all sticky gases
+  - tweak: increase HFR effciency due to recent process change that decreased HFR
+      performance
+  - tweak: dirty production rate no longer relies on fuel injection rate and instead
+      fully rely on the amount of byproduct gas in the reaction
+2024-02-15:
+  ' @Chubbygummibear @LazennG':
+  - rscadd: Added new martial art for seismic arm
+  - rscdel: Removed old seismic arm actions
+  ' ktlwjec':
+  - rscadd: Ice cream vat tells you that vanilla ice cream needs vanilla powder to
+      make.
+  - tweak: Grape snowcone recipe changed from 5u berry juice to 5u grape juice.
+  Aquizit:
+  - tweak: No longer told to ahelp when cryoing as a valentine
+  Moltijoe:
+  - rscadd: New wizard spell, bestow appendicitis
+  - tweak: Bad wizard that previously had curse of cluwne (before it was removed)
+      now gets appendicitis
+  Runian:
+  - bugfix: Newly created cyborgs with an closed AI Connection Port do not inherit
+      an AI's laws (if any) before getting desynced.
+  SapphicOverload:
+  - bugfix: radial menus show up when you're inside an object
+  redmoogle:
+  - bugfix: Shitcurity jumpsuit shows up
+  - bugfix: Light switches are no longer a free source of frames
+  - spellcheck: Fixed RLS description
+  - tweak: Teleport + Jump to Area have been merged together
+  - rscadd: 'new PS upgrade: doubles the capacity'
+  tattax:
+  - bugfix: fixed spells statpanel not working
+  - bugfix: fixed golden violin devil spell (lol)
+  thorium90cent:
+  - rscadd: rain on brick from katana zero is now apart of the jukebox
+2024-02-16:
+  Mqiib:
+  - imageadd: Tweaked female neck pixel to make clothes look better on non-humans
+2024-02-17:
+  ' cark':
+  - rscadd: Added a new lobby song for Valentine's Day "Be My Valentine" by Tim McMorris
+  Moltijoe:
+  - bugfix: TRAIT_HARDLY_WOUNDED now actually does what it says
+  Mqiib:
+  - bugfix: Mechs without any power are no longer immune to EMPs
+  ToasterBiome:
+  - rscdel: Traitor AIs can no longer edit their laws.
+  - bugfix: Paladin now has the correct laws again.
+  cowbot92:
+  - rscadd: Adds new donut recipie
+  redmoogle:
+  - bugfix: Plasma shotgun can no longer steal your stuff
+2024-02-18:
+  ' Chubbygummibear, cowbot92, JohnFulpWillard, ToasterBiome, LazennG, Moltijoe, LemonInTheDark, azzzertyy':
+  - rscadd: Rendering backend is like 200% different
+  - rscadd: stuff glows in the dark
+  - rscdel: Overlay smoothing is dead
+  - bugfix: Cameras and other popup maps work on clients >1615
+  - bugfix: mapmerge tool shouldn't blow up multi-z maps anymore
+  - wip: 'Yes'
+  - mapping: icemeta got flipped but it should be the same from top to bottom
+  - experiment: yeah
+  Moltijoe:
+  - rscadd: Adds stuff for Hisa to bus with
+  - soundadd: Sound for bussing stuff
+  - imageadd: Images for bussing stuff
+  ToasterBiome:
+  - mapping: Removes arrival shuttle from NVS Gax, people spawn in cryo now
+  cowbot92:
+  - rscdel: Removed Yellow Jacket Matriarchs from the gold slime pool
+2024-02-19:
+  SapphicOverload:
+  - bugfix: RCDs work on space tiles again
+  - bugfix: Fixed space lighting not working in space
+2024-02-20:
+  Chubbygummibear:
+  - bugfix: fix adminwho by skipping null clients in the admin list
+  cowbot92:
+  - bugfix: fixed beartraps not trapping
+  warface1234455:
+  - bugfix: cable coil maxstacks is now 40
+2024-02-21:
+  ' Identification':
+  - imageadd: Restores walls to true top-down.
+  ' sapphicoverload, syncit21, zxaber':
+  - rscadd: added a bunch more equipment for utility mechs
+  - soundadd: adds new sound effects for hydraulic clamp and APLU mech movement
+  - tweak: hydraulic clamp works as a wrench or crowbar and can pry powered doors
+  - tweak: mech plasma cutter can be used as a welder like the handheld version
+  - tweak: mech RCD works like an actual RCD now
+  - tweak: adds tgui RCD menu
+  - tweak: strafe button icon shows whether or not you're strafing
+  - tweak: APLU and Clarke mechs now have radiation shielding
+  - bugfix: fixed clarke movement not working correctly
+  - bugfix: fixes and re-adds multi-Z mech movement (no phasing through floors or
+      teleporting to other z-levels this time)
+  13spacemen:
+  - tweak: The latejoin menu no longer has anemia.
+  AMyriad:
+  - bugfix: Fixed the eye of god expose cooldown going off when an invalid target
+      is selected
+  - spellcheck: Fixed mention of Weyland-Yutani appearing in the ripley mech repair
+      manual
+  - tweak: '"Hyperspace" no longer exists and never did, FTL travel is achieved by
+      tunneling through bluespace'
+  - bugfix: Players can no longer relabel gas canisters to a variant that's intended
+      for admins and breaks the 4th wall
+  Chubbygummibear:
+  - bugfix: index_out_of_bounds fixed on blend_cutoff_colors
+  - bugfix: turfs that smooth will spur their neighboring turfs to check their smoothing
+      again when late loaded in
+  - bugfix: cables on the correct plane so they don't have weird lattice lighting
+      filters
+  - bugfix: meteors with space lighting overlays rotate with the meteors instead of
+      being disjointed and unmoving
+  - bugfix: shuttle atmos shouldn't get left behind on takeoff
+  LazennG:
+  - bugfix: fixed seismic suplex animation and some text
+  adamsong:
+  - bugfix: fixed shuttle catastrophe
+  - bugfix: fixed admin shuttle manipulator
+  cowbot92:
+  - tweak: adjust some pop requirements for several antags
+  redmoogle:
+  - rscadd: PC Range Upgrade
+  - rscadd: PC Cooldown Upgrade
+  - bugfix: Vending machines not containing upgrades
+  - tweak: All plasma cutters can be upgraded
+  - tweak: Plasmacutters can be recharged with one click now
+  warface1234455:
+  - tweak: Partially revert undocumented change to shutter/blastdoor layer covering
+      window but still keep the blast door covering the door
+2024-02-23:
+  ' Cowbot92 & Chubbygummibear':
+  - bugfix: Fixes a bunch of stuff you step on
+  - rscadd: Added new traitor item, the gasharpoon
+  Chubbygummibear:
+  - rscadd: auto_profile config flag added to the private default and private server
+      config files
+  - tweak: private servers aren't dumpy unless you specifically request them to be
+  - tweak: main yog server will be extra dumpy because we can handle it
+  - bugfix: no more double clerk and chaplain workplace spawns
+  Moltijoe:
+  - imageadd: New ethereal bodyparts
+  - imagedel: Old ethereal bodyparts
+2024-02-24:
+  ' ktlwjec':
+  - imageadd: Lightens the outline for the bag of holding in-hand sprites.
+  13spacemen:
+  - rscadd: Footprints are now based on what shoes you're wearing and what legs you
+      have
+  - bugfix: Fixed bloody item overlays leaking onto other objects
+  AMyriad:
+  - spellcheck: Fixed every description that didn't begin with a capital letter, make
+      a bug report if you find something I missed
+  - tweak: MMIs and positronic brains can no longer be printed from the medical techfab
+  Mqiib:
+  - tweak: The clarke is now tied for fastest mech in the game with the ripley mk-I
+  - tweak: Mech melee weapons now also hit vines properly when using cleave attacks
+  SapphicOverload:
+  - tweak: flamethrowers now react their fuel for damage and effects instead of using
+      pre-determined values
+  - tweak: flamethrower tanks release some of their contents when shot instead of
+      just deleting themselves
+  - tweak: flamethrowers can hit vines on windows
+  - bugfix: fixed flamethrowers sometimes using more fuel than intended
+  cowbot92:
+  - rscadd: ' Ports baton light up from TG'
+  warface1234455:
+  - tweak: HFR gas byproducts now uses scaled_production instead of fuel_consumption,
+      and now scaled alongside with gas produced from moderator, code refactor
+2024-02-25:
+  ' Cowbot92 & Chubbigummybear':
+  - bugfix: fixes most floor stuff you walk over not working
+  ' cark':
+  - rscadd: Added a new disease which turns you into a crab
+  AMyriad:
+  - mapping: Removed all old PDA cartridges from all lockers, vendors, and tables
+      on all stations excluding the clerk's gift vendor
+  - spellcheck: Revised the flavor text on old PDAs to reflect their status as outdated,
+      "antique" pieces of equipment
+  - mapping: Replaced the old ID console from the CE's office on icemeta with the
+      newer modular console
+  Marmio64:
+  - rscadd: Adds the Den of Sin, a jungleland casino run by a demon.
+  Moltijoe:
+  - bugfix: No more zombies in xenobio
+  - rscadd: Preternis eyes glow purple when nightvision is active
+  - tweak: Battle royale
+  - rscadd: Certain species bodyparts now glow in the dark
+  - rscadd: Adds S.E.L.F. ipcs and S.E.L.F. insurgents
+  - rscdel: Synths and Military synths
+  - rscdel: Syndicate bounties
+  - rscdel: Lights no longer start off except for empty departments
+  - tweak: adds a cooldown to light flickering from explosions/etc
+  - bugfix: Skittish now works properly for crates
+  SapphicOverload:
+  - rscadd: Added a unit test for fusion reactions
+  - bugfix: Fixed fusion reactions not working in the atmospherics simulator computer
+  - bugfix: Fixed hydraulic clamp not being able to pick up lockers or deconstruct
+      tables
+  - tweak: Ripley MK-II and Firefighter have been merged into the same mech
+  Yarinoi:
+  - imageadd: added new chaplain hat icons
+  - imagedel: 'removed old chaplain hat icons :exploding_head:'
+  warface1234455:
+  - tweak: Raise the HFR's healium healing threshold from 66.66% to 90%.
+  - bugfix: Fix apc building and unnable to change electric armor value from VV
+  - rscadd: Add pluoxium + antinoblium gas recipe to HFR
+  - bugfix: fix tier 2 moderator pluonium production output on tgui
+2024-02-26:
+  Moltijoe:
+  - bugfix: Traitors can no longer roll whiteship or freeminer machines for the destroy
+      objective
+  Mqiib:
+  - bugfix: Undoes accidental revert pertaining to bloody footprints
+  cowbot92:
+  - rscdel: Removed mindreading
+  - tweak: tweaked cerebral neuroplasticity gene
+  redmoogle:
+  - tweak: Examining cutter mods shows you cost and stackability
+2024-02-27:
+  ' axietheaxolotl':
+  - rscadd: Added pride pins
+  13spacemen:
+  - bugfix: Humans have shoe footprints again
+  Moltijoe:
+  - bugfix: Fixes being unable to place items in closets or crates
+  - bugfix: Miners and mining medics now properly cause the mining base to start with
+      the lights on
+  - bugfix: Fixes bugs with blood type compatibility
+  - bugfix: venus human trap bulb vines properly get destroyed when the bulb is
+  - bugfix: fixes a bug where emissive bodyparts showed as white in the character
+      menu
+  Mqiib:
+  - rscadd: Adds the new Black Mamba for nuclear operatives to play with
+  - rscadd: Adds two new venom-related weapons for the Mamba
+  SapphicOverload:
+  - bugfix: Fixed clothes that don't cover your hands protecting your hands from electric
+      shock
+  adamsong:
+  - bugfix: fixed info command showing numerical security levels
+2024-02-28:
+  13spacemen:
+  - rscadd: Mimes get their own special survival boxes
+  - bugfix: Plasmaman clowns will properly get their plasma tank in their hugbox
+2024-02-29:
+  ' ktlwjec':
+  - tweak: Meatballs in ingredient boxes start off raw.
+  AMyriad:
+  - mapping: Added a second button to the kitchen on Box to toggle counter shutters
+  - mapping: The privacy shutters in the kitchen on Box are now toggled with the bottom
+      (already existing) button
+  - mapping: Removed the third blender from the kitchen on Box
+  - mapping: Fixed every fire alarm that was facing the wrong direction on Box
+  - mapping: Fixed a mountain of decals using the wrong colors on every map
+  - mapping: Asteroid maint doors now have clear hazard stripes instead of nearly
+      invisible brown ones
+  - mapping: Changed a few bridge decals to look better on every map
+  - mapping: Gax telecomms is now color coded, now has nice engie decals in the net
+      admin's office
+  Moltijoe:
+  - tweak: New sandevistan visual effect
+  - tweak: Weedkiller does 2x damage to venus human traps than before
+  - tweak: Venus human traps can no longer pull
+  - tweak: venus human traps now require a pressurized environment
+  - bugfix: Fixes surgical toolset arm implant visuals
+  - bugfix: Fixes being unable to select a clan as bloodsucker
+  - tweak: Preternis eyes now also care about if a species is powerhungry instead
+      of only robotic
+  - tweak: Preternis eyes night vision now consumes power from powerhungry species
+  - tweak: Preternis eyes only take damage in non powerhungry species when nightvision
+      is turned on
+  - bugfix: Powered ruins properly start with lights on if they have a lightswitch
+  - rscadd: Wizards can now cast iron
+  - rscadd: Lets hecata necromancy poll ghosts into mindless corpses
+  - rscadd: Lets admins force a specific bloodsucker clan on people
+  Mqiib:
+  - bugfix: Light step now stops your shoes from getting dirty again
+  SapphicOverload:
+  - bugfix: Goliath hide plates can be attached to APLU mechs again
+  ToasterBiome:
+  - bugfix: quirks won't delete themselves from your characters if you load in fast
+      anymore
+  cowbot92:
+  - rscadd: 'Added new smite: wibblify'
+  warface1234455:
+  - tweak: You can now go through atmos resin with slowdown.
+  - tweak: Changed resin description
+  wonderinghost:
+  - tweak: updates max byond version to .1640
