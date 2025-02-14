@@ -1,0 +1,6 @@
+author: "TheColorCyan"
+delete-after: True
+changes:
+  - balance: "buffed force, attack speed and wound bonus of shield blades."
+  - balance: "shield blades can now slightly pierce armor."
+  - balance: "you can now shove people while in shield blade's blocking stance."
