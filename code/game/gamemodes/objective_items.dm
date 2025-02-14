@@ -109,6 +109,8 @@
 	special_equipment += /obj/item/storage/box/syndie_kit/nuke
 	..()
 
+GLOBAL_VAR_INIT(hdd_research_project, pick("Project Bee", "Project Shiptest", "Project Monke"))
+
 /datum/objective_item/steal/hdd_extraction
 	name = "the source code for Project Bee from the master R&D server mainframe."
 	targetitem = /obj/item/computer_hardware/hard_drive/cluster/hdd_theft
@@ -116,6 +118,7 @@
 	excludefromjob = list("Scientist", "Research Director") //Scientist isn't sus in that room but a gene or robo is. 
 
 /datum/objective_item/steal/hdd_extraction/New()
+	name = "the source code for [GLOB.hdd_research_project] from the master R&D server mainframe."
 	special_equipment += /obj/item/paper/guides/antag/hdd_extraction
 	return ..()
 
