@@ -1,0 +1,5 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - tweak: "Revive All will only revive mobs with minds."
+  - spellcheck: "Rejuvinate --> Rejuvenate"
