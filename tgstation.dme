@@ -8434,6 +8434,7 @@
 #include "monkestation\code\modules\vending\nutrimax_wall.dm"
 #include "monkestation\code\modules\veth_misc_items\admin_fixes\check_players.dm"
 #include "monkestation\code\modules\veth_misc_items\admin_vox\admin_vox.dm"
+#include "monkestation\code\modules\veth_misc_items\boomboots\boomboot.dm"
 #include "monkestation\code\modules\veth_misc_items\canopics\canopics.dm"
 #include "monkestation\code\modules\veth_misc_items\veth_player_panel\veth_player_panel.dm"
 #include "monkestation\code\modules\viking\viking_armour.dm"
