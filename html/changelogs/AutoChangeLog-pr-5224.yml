@@ -1,0 +1,12 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Added more contraband cybernetics (Invisible to health huds and use syndicate access)"
+  - rscadd: "Added NT high link and Cybersun link to OPFOR equipment"
+  - qol: "added categories and cleaned up assault operatives cybernetics implantation category"
+  - balance: "Syndicate themed groups will now all use cybersun cyberlinks and contraband cybernetics"
+  - balance: "Wireless connectors are later in research and universal connectors are later in research."
+  - balance: "Terran cyberlinks are now unlocked alongside NT High cybernetics."
+  - balance: "Combat and security related/useable implants are now printable at security lathe"
+  - balance: "Antidrops, Antistuns, and detective arms are now no longer printable at the medical lathe,"
+  - bugfix: "Surgical set arms are now properly emagable."
