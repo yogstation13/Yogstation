@@ -1,0 +1,7 @@
+author: "Mqiib, SapphicOverload"
+delete-after: True
+changes:
+  - rscadd: "Adds numerous new horns, frills, and a tail + spine option"
+  - image: "Resolves the issue of the light tiger tail looking wrong"
+  - rscadd: "Sexual dimorphism is back for lizards but DON'T WORRY, they're still flat"
+  - image: "Lizard sprites slightly darkened for reasons"
