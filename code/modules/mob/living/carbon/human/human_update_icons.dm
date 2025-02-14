@@ -108,8 +108,8 @@ There are several things that need to be remembered:
 				var/species_icon_file = dna.species.generate_custom_worn_icon(LOADOUT_ITEM_UNIFORM, uniform)
 				if(species_icon_file)
 					icon_file = species_icon_file
-		//Female sprites have lower priority than digitigrade sprites
-		else if(dna.species.visual_gender & dna.species.sexes && (dna.species.bodytype & BODYTYPE_HUMANOID) && physique == FEMALE && !(uniform.female_sprite_flags & NO_FEMALE_UNIFORM)) //Agggggggghhhhh
+		//Female sprites have lower priority than digitigrade sprites - MONKESTATION EDIT - ALL WOMEN DESERVE REPRESENTATION
+		if(dna.species.visual_gender & dna.species.sexes && (dna.species.bodytype & BODYTYPE_HUMANOID) && physique == FEMALE && !(uniform.female_sprite_flags & NO_FEMALE_UNIFORM)) //Agggggggghhhhh
 			woman = TRUE
 
 		if(!icon_exists(icon_file, RESOLVE_ICON_STATE(uniform)))
@@ -619,11 +619,11 @@ There are several things that need to be remembered:
 		hands += hand_overlay
 	return hands
 
-/proc/wear_female_version(t_color, icon, layer, type, greyscale_colors)
+/proc/wear_female_version(t_color, icon, layer, type, greyscale_colors, flat)
 	var/index = "[t_color]-[greyscale_colors]"
 	var/icon/female_clothing_icon = GLOB.female_clothing_icons[index]
 	if(!female_clothing_icon) 	//Create standing/laying icons if they don't exist
-		generate_female_clothing(index, t_color, icon, type)
+		generate_female_clothing(index, t_color, icon, type, flat)
 	return mutable_appearance(GLOB.female_clothing_icons[index], layer = -layer)
 
 /mob/living/carbon/human/proc/get_overlays_copy(list/unwantedLayers)
@@ -758,10 +758,12 @@ generate/load female uniform sprites matching all previously decided variables
 	var/file2use = override_file || (isinhands ? null : worn_icon) || default_icon_file
 	//Find a valid layer from variables+arguments
 	var/layer2use = alternate_worn_layer || default_layer
+	//Find who's wearing it
+	var/mob/living/carbon/human/wearer = loc
 
 	var/mutable_appearance/standing
-	if(female_uniform)
-		standing = wear_female_version(t_state, file2use, layer2use, female_uniform, greyscale_colors) //should layer2use be in sync with the adjusted value below? needs testing - shiz
+	if(female_uniform)																				//MONKESTATION EDIT (below) - Dimorphic lizards
+		standing = wear_female_version(t_state, file2use, layer2use, female_uniform, greyscale_colors, !!(wearer.mob_biotypes & MOB_REPTILE)) //should layer2use be in sync with the adjusted value below? needs testing - shiz
 	if(!standing)
 		standing = mutable_appearance(file2use, t_state, -layer2use)
 

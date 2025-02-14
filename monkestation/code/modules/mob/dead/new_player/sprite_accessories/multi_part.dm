@@ -15,6 +15,7 @@
 	external_slots = list(ORGAN_SLOT_EXTERNAL_TAIL)
 	icon = 'monkestation/icons/mob/species/lizard/multipart.dmi'
 	icon_state = "lbelly"
+	gender_specific = TRUE
 
 /datum/sprite_accessory/body_markings/glow_belly
 	name = "Glow Belly"
@@ -23,6 +24,7 @@
 	icon = 'monkestation/icons/mob/species/lizard/multipart.dmi'
 	icon_state = "lbelly"
 	is_emissive = TRUE
+	gender_specific = TRUE
 
 /datum/sprite_accessory/spines/short
 	name = "Short"
@@ -82,6 +84,20 @@
 /datum/sprite_accessory/spines_animated/aqautic
 	name = "Aquatic"
 	icon_state = "aqua"
+	body_slots = list(BODY_ZONE_HEAD)
+	external_slots = list(ORGAN_SLOT_EXTERNAL_TAIL)
+	icon = 'monkestation/icons/mob/species/lizard/multipart.dmi'
+
+/datum/sprite_accessory/spines/plated
+	name = "Plated"
+	icon_state = "plated"
+	body_slots = list(BODY_ZONE_HEAD)
+	external_slots = list(ORGAN_SLOT_EXTERNAL_TAIL)
+	icon = 'monkestation/icons/mob/species/lizard/multipart.dmi'
+
+/datum/sprite_accessory/spines_animated/plated
+	name = "Plated"
+	icon_state = "plated"
 	body_slots = list(BODY_ZONE_HEAD)
 	external_slots = list(ORGAN_SLOT_EXTERNAL_TAIL)
 	icon = 'monkestation/icons/mob/species/lizard/multipart.dmi'

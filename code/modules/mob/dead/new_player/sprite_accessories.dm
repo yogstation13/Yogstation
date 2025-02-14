@@ -1781,6 +1781,10 @@ MONKESTATION EDIT
 	name = "Short"
 	icon_state = "short"
 
+/datum/sprite_accessory/tails/lizard/plated	//MONKESTATION EDIT: New tail
+	name = "Plated"
+	icon_state = "plated"
+
 /datum/sprite_accessory/tails/human/cat
 	name = "Cat"
 	icon = 'icons/mob/species/human/cat_features.dmi'
@@ -1890,9 +1894,25 @@ MONKESTATION EDIT
 	name = "Ram"
 	icon_state = "ram"
 
-/datum/sprite_accessory/horns/angler
-	name = "Angeler"
-	icon_state = "angler"
+/datum/sprite_accessory/horns/angler	//MONKESTATION EDIT: New horns
+	name = "Angler"
+	icon_state = "doodlybopper" //TRUE NAME
+
+/datum/sprite_accessory/horns/tiny
+	name = "Tiny"
+	icon_state = "tiny"
+
+/datum/sprite_accessory/horns/long
+	name = "Long"
+	icon_state = "long"
+
+/datum/sprite_accessory/horns/knight
+	name = "Knight"
+	icon_state = "knight"
+
+/datum/sprite_accessory/horns/drake
+	name = "Drake"
+	icon_state = "drake"
 
 /datum/sprite_accessory/ears
 	icon = 'icons/mob/species/human/cat_features.dmi'
@@ -2080,6 +2100,18 @@ MONKESTATION EDIT
 /datum/sprite_accessory/frills/aquatic
 	name = "Aquatic"
 	icon_state = "aqua"
+
+/datum/sprite_accessory/frills/full	//MONKESTATION EDIT: More frills
+	name = "Full"
+	icon_state = "full"
+
+/datum/sprite_accessory/frills/long
+	name = "Long"
+	icon_state = "long"
+
+/datum/sprite_accessory/frills/split
+	name = "Split"
+	icon_state = "split"
 
 /datum/sprite_accessory/spines
 	icon = 'icons/mob/species/lizard/lizard_spines.dmi'

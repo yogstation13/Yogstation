@@ -3,7 +3,7 @@
 	name = "\improper Lizardperson"
 	plural_form = "Lizardfolk"
 	id = SPECIES_LIZARD
-	visual_gender = FALSE
+	visual_gender = TRUE	//MONKESTATION EDIT - Dimorphic Lizards
 	inherent_traits = list(
 		TRAIT_MUTANT_COLORS,
 		TRAIT_MUTANT_COLORS_SECONDARY,
