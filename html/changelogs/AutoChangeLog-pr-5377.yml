@@ -1,7 +1,0 @@
-author: "BingusSS13"
-delete-after: True
-changes:
-  - rscadd: "Added unique ID console program to Charlie Station."
-  - rscadd: "Added unique \"ID painter\" to Charlie Station."
-  - rscadd: "Added subtype of airlock electronics for Charlie Station."
-  - qol: "Charlie Station IDs now have extra access on lowpop."
