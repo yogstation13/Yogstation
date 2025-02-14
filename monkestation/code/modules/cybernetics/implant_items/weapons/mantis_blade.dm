@@ -101,9 +101,10 @@
 	inhand_icon_state = "shield_mantis"
 	lefthand_file = 'monkestation/code/modules/cybernetics/icons/swords_lefthand.dmi'
 	righthand_file = 'monkestation/code/modules/cybernetics/icons/swords_righthand.dmi'
-	force = 11
-	wound_bonus = 5
-	attack_speed = 12
+	force = 12
+	wound_bonus = 10
+	armour_penetration = 20
+	attack_speed = 10
 	var/in_stance = FALSE  //Toggle for the defensive stance.
 
 /obj/item/mantis_blade/shield/Initialize(mapload)
@@ -126,6 +127,12 @@
 	user.remove_status_effect(/datum/status_effect/shield_mantis_defense)
 	to_chat(user, span_notice("You stop blocking with your blades."))
 
+/obj/item/mantis_blade/shield/attack(mob/living/target, mob/living/user)
+	if(in_stance)
+		user.disarm(target)
+	else
+		return . = ..()
+
 /obj/item/mantis_blade/shield/dropped(mob/living/user)
 	. = ..()
 	if (!user.has_status_effect(/datum/status_effect/shield_mantis_defense))
@@ -143,8 +150,8 @@
 	. = ..()
 	r_hand = owner.get_held_items_for_side(RIGHT_HANDS, FALSE)
 	l_hand = owner.get_held_items_for_side(LEFT_HANDS, FALSE)
-	r_hand.block_chance += 60
-	l_hand.block_chance += 60
+	r_hand.block_chance += 65
+	l_hand.block_chance += 65
 	ADD_TRAIT(owner, TRAIT_CANT_ATTACK, TRAIT_STATUS_EFFECT(id))
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/shield_blades)
 	owner.balloon_alert_to_viewers("starts blocking!")
