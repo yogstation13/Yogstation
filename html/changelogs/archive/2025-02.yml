@@ -333,6 +333,14 @@
   - rscadd: Added subtype of airlock electronics for Charlie Station.
   - qol: Charlie Station IDs now have extra access on lowpop.
 2025-02-15:
+  Absolucy:
+  - rscadd: You can now hide items in potted plants. They have a single slot that
+      can store a normal-sized item, and you can check their storage via alt-click.
+  Ancient_Engineer, Tractor Mann:
+  - bugfix: Fixes several grammatical errors with the mentor cloak
+  - bugfix: Mentor cloak now spawns in the backpack so it doesn't strike the mentor
+      with lightning
+  - bugfix: Changeling flavor text no longer appears for mentor changelings
   Gw0sty:
   - rscadd: Added more contraband cybernetics (Invisible to health huds and use syndicate
       access)
@@ -349,6 +357,8 @@
   - balance: Antidrops, Antistuns, and detective arms are now no longer printable
       at the medical lathe,
   - bugfix: Surgical set arms are now properly emagable.
+  Loiosh42:
+  - bugfix: The Ribboned Gown SHOULD now be actually buyable from loadout
   Mqiib, SapphicOverload:
   - rscadd: Adds numerous new horns, frills, and a tail + spine option
   - image: Resolves the issue of the light tiger tail looking wrong
@@ -356,6 +366,8 @@
   - image: Lizard sprites slightly darkened for reasons
   Shoddd:
   - rscdel: Taking damage no longer causes pain, things like wounds still do.
+  - rscadd: Updated genturf description
+  - bugfix: bomb actuallizer checks proper area
   SirNightKnight:
   - balance: 'Reworks lung popping to only happen if your lungs arent getting enough
       air for 5 breaths. Lung popping also does more damage to your lungs. TLDR: Don''t
@@ -367,3 +379,10 @@
   Veth-s:
   - bugfix: Slasher redone, remade, check the wiki https://wiki.monkestation.com/jobs/antagonists/slasher
   - rscadd: Ports Boomboots from Monke1/Goon as a clown-exclusive traitor item.
+  - qol: Ghost control polling is now 20 seconds, up from 10, to give ghosts a longer
+      time to decide if they want to take a role.
+  - bugfix: Slasher fullscreen overlay from fear should not last the entire round.
+      If you still have it after a long time, contact veth.
+  - bugfix: People with fear now appropriately lose it if the slasher isn't in range.
+  distributivgesetz:
+  - qol: Made reading text with the PDA retro theme a bit more accessible.

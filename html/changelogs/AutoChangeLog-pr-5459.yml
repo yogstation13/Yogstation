@@ -1,6 +1,0 @@
-author: "Ancient_Engineer, Tractor Mann"
-delete-after: True
-changes:
-  - bugfix: "Fixes several grammatical errors with the mentor cloak"
-  - bugfix: "Mentor cloak now spawns in the backpack so it doesn't strike the mentor with lightning"
-  - bugfix: "Changeling flavor text no longer appears for mentor changelings"

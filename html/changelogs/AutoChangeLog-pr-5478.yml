@@ -1,5 +1,0 @@
-author: "Veth-s"
-delete-after: True
-changes:
-  - bugfix: "Slasher fullscreen overlay from fear should not last the entire round. If you still have it after a long time, contact veth."
-  - bugfix: "People with fear now appropriately lose it if the slasher isn't in range."
