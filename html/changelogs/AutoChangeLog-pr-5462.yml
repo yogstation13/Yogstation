@@ -1,0 +1,5 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - rscadd: "Updated genturf description"
+  - bugfix: "bomb actuallizer checks proper area"
