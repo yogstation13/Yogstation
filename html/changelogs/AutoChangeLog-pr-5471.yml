@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "You can now hide items in potted plants. They have a single slot that can store a normal-sized item, and you can check their storage via alt-click."
