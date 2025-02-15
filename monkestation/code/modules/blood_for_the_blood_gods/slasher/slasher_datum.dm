@@ -142,6 +142,23 @@
 				human.overlay_fullscreen("slasher_prox", /atom/movable/screen/fullscreen/nearby, 1)
 				mobs_with_fullscreens |= held
 
+		else
+			if(held in heartbeats)
+				human.stop_sound_channel(CHANNEL_HEARTBEAT)
+				heartbeats -= held
+			if(held in mobs_with_fullscreens)
+				human.clear_fullscreen("slasher_prox", 15)
+				mobs_with_fullscreens -= held
+	for(var/datum/weakref/weak as anything in fear_stages)
+		var/mob/living/carbon/human/human = weak.resolve()
+		var/datum/mind/mind = human.mind
+		for(var/mob/living/carbon/human/mobs_in_view as anything in view(7, src))
+			var/datum/mind/mind_in_view = mobs_in_view.mind
+			if(!mind_in_view.has_antag_datum(mind, /datum/antagonist/slasher))
+				reduce_fear(human, 2)
+			else
+				continue
+
 
 	for(var/datum/weakref/held_ref as anything in (heartbeats - currently_beating))
 		var/mob/living/carbon/human/human = held_ref.resolve()
@@ -154,6 +171,8 @@
 		human.clear_fullscreen("slasher_prox", 15)
 		mobs_with_fullscreens -= held_ref
 		human.regenerate_icons()
+
+
 
 /datum/status_effect/slasher/stalking
 	id = "slasher_stalkee"
