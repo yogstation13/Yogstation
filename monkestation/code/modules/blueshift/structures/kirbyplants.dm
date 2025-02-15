@@ -1,8 +1,7 @@
 
 /obj/item/kirbyplants
 	name = "potted plant"
-	//icon = 'icons/obj/fluff/flora/plants.dmi' // ORIGINAL
-	icon = 'monkestation/code/modules/blueshift/icons/obj/plants.dmi' // SKYRAT EDIT CHANGE
+	icon = 'monkestation/icons/obj/plants.dmi'
 	icon_state = "plant-01"
 	base_icon_state = "plant-01"
 	desc = "A little bit of nature contained in a pot."
@@ -22,10 +21,11 @@
 	var/custom_plant_name = FALSE
 	var/list/static/random_plant_states
 	/// Maximum icon state number - KEEP THIS UP TO DATE
-	var/random_state_cap = 43 // SKYRAT EDIT ADDITION
+	var/random_state_cap = 43
 
 /obj/item/kirbyplants/Initialize(mapload)
 	. = ..()
+	create_storage(storage_type = /datum/storage/kirbyplants)
 	AddComponent(/datum/component/tactical)
 	AddComponent(/datum/component/two_handed, require_twohands = TRUE, force_unwielded = 10, force_wielded = 10)
 	AddElement(/datum/element/beauty, 500)
@@ -76,14 +76,14 @@
 
 /obj/item/kirbyplants/proc/generate_states()
 	random_plant_states = list()
-	for(var/i in 1 to random_state_cap) //SKYRAT EDIT CHANGE - ORIGINAL: for(var/i in 1 to 24)
+	for(var/i in 1 to random_state_cap)
 		var/number
 		if(i < 10)
 			number = "0[i]"
 		else
 			number = "[i]"
 		random_plant_states += "plant-[number]"
-	random_plant_states += list("applebush", "monkeyplant") //SKYRAT EDIT CHANGE - ORIGINAL:random_plant_states += "applebush"
+	random_plant_states += list("applebush", "monkeyplant")
 
 /obj/item/kirbyplants/random
 	icon = 'icons/obj/flora/_flora.dmi'
@@ -91,8 +91,7 @@
 
 /obj/item/kirbyplants/random/Initialize(mapload)
 	. = ..()
-	//icon = 'icons/obj/flora/plants.dmi' // ORIGINAL
-	icon = 'monkestation/code/modules/blueshift/icons/obj/plants.dmi' //SKYRAT EDIT CHANGE
+	icon = 'monkestation/icons/obj/plants.dmi'
 	randomize_base_icon_state()
 
 //Handles randomizing the icon during initialize()
@@ -104,7 +103,7 @@
 		update_appearance(UPDATE_ICON)
 
 /obj/item/kirbyplants/random/dead
-	icon = 'monkestation/code/modules/blueshift/icons/obj/plants.dmi'
+	icon = 'monkestation/icons/obj/plants.dmi'
 	icon_state = "plant-25"
 	dead = TRUE
 
@@ -117,7 +116,7 @@
 	desc = "A gift from the botanical staff, presented after the RD's reassignment. There's a tag on it that says \"Y'all come back now, y'hear?\"[dead ? "\nIt doesn't look very healthy...":null]"
 
 /obj/item/kirbyplants/random/fullysynthetic
-	icon = 'monkestation/code/modules/blueshift/icons/obj/plants.dmi'
+	icon = 'monkestation/icons/obj/plants.dmi'
 	name = "plastic potted plant"
 	desc = "A fake, cheap looking, plastic tree. Perfect for people who kill every plant they touch."
 	icon_state = "plant-26"
@@ -129,13 +128,11 @@
 	base_icon_state = "plant-[rand(26, 29)]"
 	update_appearance(UPDATE_ICON)
 
-//SKYRAT EDIT ADDITION START
 /obj/item/kirbyplants/monkey
 	name = "monkey plant"
 	desc = "Something that seems to have been made by the Nanotrasen science division, one might call it an abomination. It's heads seem... alive."
 	icon_state = "monkeyplant"
 	trimmable = FALSE
-//SKYRAT EDIT ADDITION END
 
 /obj/item/kirbyplants/photosynthetic
 	name = "photosynthetic potted plant"
@@ -257,3 +254,10 @@
 
 /obj/item/kirbyplants/synthetic/plant29
 	icon_state = "plant-29"
+
+/datum/storage/kirbyplants
+	max_slots = 1
+	max_specific_storage = WEIGHT_CLASS_NORMAL
+	attack_hand_interact = FALSE
+	animated = FALSE
+	rustle_sound = FALSE
