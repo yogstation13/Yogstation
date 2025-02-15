@@ -1,0 +1,4 @@
+author: "Veth-s"
+delete-after: True
+changes:
+  - qol: "Ghost control polling is now 20 seconds, up from 10, to give ghosts a longer time to decide if they want to take a role."
