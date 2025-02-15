@@ -332,3 +332,38 @@
   - rscadd: Added unique "ID painter" to Charlie Station.
   - rscadd: Added subtype of airlock electronics for Charlie Station.
   - qol: Charlie Station IDs now have extra access on lowpop.
+2025-02-15:
+  Gw0sty:
+  - rscadd: Added more contraband cybernetics (Invisible to health huds and use syndicate
+      access)
+  - rscadd: Added NT high link and Cybersun link to OPFOR equipment
+  - qol: added categories and cleaned up assault operatives cybernetics implantation
+      category
+  - balance: Syndicate themed groups will now all use cybersun cyberlinks and contraband
+      cybernetics
+  - balance: Wireless connectors are later in research and universal connectors are
+      later in research.
+  - balance: Terran cyberlinks are now unlocked alongside NT High cybernetics.
+  - balance: Combat and security related/useable implants are now printable at security
+      lathe
+  - balance: Antidrops, Antistuns, and detective arms are now no longer printable
+      at the medical lathe,
+  - bugfix: Surgical set arms are now properly emagable.
+  Mqiib, SapphicOverload:
+  - rscadd: Adds numerous new horns, frills, and a tail + spine option
+  - image: Resolves the issue of the light tiger tail looking wrong
+  - rscadd: Sexual dimorphism is back for lizards but DON'T WORRY, they're still flat
+  - image: Lizard sprites slightly darkened for reasons
+  Shoddd:
+  - rscdel: Taking damage no longer causes pain, things like wounds still do.
+  SirNightKnight:
+  - balance: 'Reworks lung popping to only happen if your lungs arent getting enough
+      air for 5 breaths. Lung popping also does more damage to your lungs. TLDR: Don''t
+      breathe in space.'
+  TheColorCyan:
+  - balance: buffed force, attack speed and wound bonus of shield blades.
+  - balance: shield blades can now slightly pierce armor.
+  - balance: you can now shove people while in shield blade's blocking stance.
+  Veth-s:
+  - bugfix: Slasher redone, remade, check the wiki https://wiki.monkestation.com/jobs/antagonists/slasher
+  - rscadd: Ports Boomboots from Monke1/Goon as a clown-exclusive traitor item.

@@ -1,4 +1,0 @@
-author: "Shoddd"
-delete-after: True
-changes:
-  - rscdel: "Taking damage no longer causes pain, things like wounds still do."
