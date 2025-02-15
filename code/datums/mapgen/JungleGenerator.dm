@@ -89,7 +89,7 @@
 /// This turf doesn't actually do anything beyond provide contrast for mappers and be very visible when stuff breaks in game. The actual areas are what drive cave generation.
 /turf/open/genturf
 	name = "green ungenerated turf"
-	desc = "If you see this, and you're not a ghost, yell at coders"
+	desc = "If you see this, and you're not a ghost, make a bug report with where and what" //MONKESTATION EDIT everything after comment pls don't yell at me org: "yell at coders"
 	icon = 'icons/turf/debug.dmi'
 	icon_state = "genturf_green"
 

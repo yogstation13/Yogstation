@@ -131,8 +131,8 @@
 			TIMER_COOLDOWN_START(src, COOLDOWN_BOMB_BUTTON, 3 SECONDS)
 			return
 
-		else if(istype(get_area(src), /area/space))
-			say("ERROR: Does not work in space!")
+		else if(!istype(get_area(src), /area/station))
+			say("ERROR: Does not work off station!")
 			TIMER_COOLDOWN_START(src, COOLDOWN_BOMB_BUTTON, 3 SECONDS)
 			return
 
