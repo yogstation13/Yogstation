@@ -1,0 +1,10 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Telecommunications Admin is no longer an unobtainable trim."
+  - rscadd: "Roboticists now wear fingerless gloves."
+  - rscdel: "Black gloves are removed from Robovendor."
+  - qol: "'Forum' has now been renamed to 'Discord'."
+  - bugfix: "Intradyne Pirates will now no longer wear outfits beyond comprehension."
+  - bugfix: "Blueshields PDA's will now be forced to be imprinted roundstart as standard policy of Nanotrasen."
+  - spellcheck: "'assualt' have been changed to 'assault'. Words are hard in my defence."
