@@ -1,0 +1,8 @@
+author: "Absolucy, PowerfulBacon, itsmeowdev"
+delete-after: True
+changes:
+  - rscadd: "Players now get 5 minutes to valentine on Valentine's Day, by sending a valentine's card to them."
+  - rscadd: "If two players send a card to each other, they will immediately assigned as each other's valentine."
+  - rscadd: "The usual random valentine assignment stuff will happen after 5 minutes."
+  - qol: "Valentine's messages are now big and bold for clarity."
+  - qol: "Clarified the valentine's announcement, saying that you can choose a valentine with the card."
