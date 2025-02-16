@@ -4,19 +4,28 @@
 	restricted = TRUE
 	max_multiplier = 5
 	chance = 6
-	var/sound = FALSE
 	badness = EFFECT_DANGER_DEADLY
 	severity = 5
+	var/sound = FALSE
+	var/final_timer
 
-/datum/symptom/heart_failure/activate(mob/living/carbon/affected_mob)
+/datum/symptom/heart_failure/Destroy(force)
+	if(final_timer)
+		deltimer(final_timer)
+		final_timer = null
+	return ..()
+
+/datum/symptom/heart_failure/activate(mob/living/carbon/affected_mob, datum/disease/acute/disease)
 	. = ..()
 	if(ismouse(affected_mob))
 		affected_mob.death()
 		return FALSE
 
-	if(!affected_mob.can_heartattack() && !HAS_TRAIT(affected_mob, TRAIT_STABLEHEART)) //This was so stupid. We had 9 people round removed with no fix other than admins because of this.
-		affected_mob.death()
-		return FALSE
+	if(!affected_mob.can_heartattack())
+		disease?.cure(target = affected_mob)
+		return
+	else if(final_timer || affected_mob.undergoing_cardiac_arrest()) // don't bother ticking if their heart has already stopped or is getting ready to
+		return
 
 	switch(round(multiplier))
 		if(1 to 2)
@@ -29,14 +38,14 @@
 				to_chat(affected_mob, span_warning("You feel [pick("full", "nauseated", "sweaty", "weak", "tired", "short of breath", "uneasy")]."))
 		if(3 to 4)
 			if(!sound)
-				affected_mob.playsound_local(affected_mob, 'sound/health/slowbeat.ogg', 40, FALSE, channel = CHANNEL_HEARTBEAT, use_reverb = FALSE)
+				affected_mob.playsound_local(affected_mob, 'sound/health/slowbeat.ogg', vol = 40, vary = FALSE, channel = CHANNEL_HEARTBEAT, pressure_affected = FALSE, use_reverb = FALSE)
 				sound = TRUE
 			if(prob(7.5))
 				to_chat(affected_mob, span_danger("You feel a sharp pain in your chest!"))
 				if(prob(30))
 					affected_mob.vomit(95)
 				affected_mob.emote("cough")
-				affected_mob.Paralyze(40)
+				affected_mob.Paralyze(4 SECONDS)
 				affected_mob.losebreath += 4
 			if(prob(7.5))
 				to_chat(affected_mob, span_danger("You feel very weak and dizzy..."))
@@ -45,15 +54,25 @@
 				affected_mob.emote("cough")
 		if(5)
 			affected_mob.stop_sound_channel(CHANNEL_HEARTBEAT)
-			affected_mob.playsound_local(affected_mob, 'sound/effects/singlebeat.ogg', 100, FALSE, use_reverb = FALSE)
-			if(affected_mob.stat == CONSCIOUS)
-				affected_mob.visible_message(span_danger("[affected_mob] clutches at [affected_mob.p_their()] chest as if [affected_mob.p_their()] heart is stopping!"), \
-					span_userdanger("You feel a terrible pain in your chest, as if your heart has stopped!"))
+			affected_mob.playsound_local(affected_mob, 'sound/effects/singlebeat.ogg', vol = 100, vary = FALSE, channel = CHANNEL_HEARTBEAT, pressure_affected = FALSE, use_reverb = FALSE)
 			affected_mob.stamina.adjust(-60, FALSE)
-			affected_mob.set_heartattack(TRUE)
-			affected_mob.reagents.add_reagent(/datum/reagent/medicine/c2/penthrite, 3) // To give the victim a final chance to shock their heart before losing consciousness
+			// To give the victim a final chance to shock their heart before losing consciousness
+			final_timer = addtimer(CALLBACK(src, PROC_REF(finally_stop_heart), affected_mob), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
 			return FALSE
 	multiplier_tweak(0.1)
+
+/datum/symptom/heart_failure/deactivate(mob/living/carbon/affected_mob, datum/disease/acute/disease)
+	. = ..()
+	if(final_timer)
+		deltimer(final_timer)
+		final_timer = null
+	if(iscarbon(affected_mob))
+		affected_mob.set_heartattack(FALSE)
+
+/datum/symptom/heart_failure/proc/finally_stop_heart(mob/living/carbon/target)
+	final_timer = null
+	if(!QDELETED(src) && !QDELETED(target))
+		target.set_heartattack(TRUE)
 
 /datum/symptom/catapult_sneeze
 	name = "Sneezing?"
