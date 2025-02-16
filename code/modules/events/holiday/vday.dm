@@ -1,3 +1,4 @@
+/* monkestation removal: reimplemented in [monkestation/code/modules/events/holiday/vday.dm]
 // Valentine's Day events //
 // why are you playing spessmens on valentine's day you wizard //
 
@@ -149,3 +150,4 @@
 	icon_state = pick("candyheart", "candyheart2", "candyheart3", "candyheart4")
 
 #undef VALENTINE_FILE
+monkestation end */
