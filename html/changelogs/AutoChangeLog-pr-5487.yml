@@ -1,0 +1,4 @@
+author: "MichiRecRoom"
+delete-after: True
+changes:
+  - bugfix: "The maintenance area connecting the Detective's Office and the Courtroom on Blueshift is now properly marked as maintenance - and thus, is radiation-shielded."
