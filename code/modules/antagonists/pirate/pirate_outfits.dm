@@ -74,7 +74,7 @@
 
 	id = /obj/item/card/id/advanced/black
 	id_trim = /datum/id_trim/syndicom/Interdyne/pharmacist
-	uniform = /obj/item/clothing/under/rank/medical/scrubs //monkestation removal: /coroner subtype
+	uniform = /obj/item/clothing/under/rank/medical/scrubs/nova/red //monkestation removal: /coroner subtype
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	back = /obj/item/storage/backpack/satchel/med
 	glasses = /obj/item/clothing/glasses/hud/health/night

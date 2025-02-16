@@ -77,6 +77,7 @@
 	belt = /obj/item/storage/belt/security/blueshield
 	l_pocket = /obj/item/sensor_device/blueshield
 	r_pocket = /obj/item/modular_computer/pda/blueshield
+	pda_slot = ITEM_SLOT_RPOCKET
 	id_trim = /datum/id_trim/job/blueshield
 
 /datum/outfit/plasmaman/blueshield

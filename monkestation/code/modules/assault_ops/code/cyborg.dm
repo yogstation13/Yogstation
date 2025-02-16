@@ -1,4 +1,4 @@
-//big ol copy of nukie code but to make it play nice with assualt ops datums
+//big ol copy of nukie code but to make it play nice with assault ops datums
 /obj/item/antag_spawner/assault_operative
 	name = "syndicate saboteur beacon"
 	desc = "A single-use beacon designed to quickly launch reinforcement operatives into the field."
@@ -117,7 +117,7 @@
 
 /obj/item/pinpointer/operative_cyborg
 	name = "cyborg syndicate pinpointer"
-	desc = "An integrated tracking device, jury-rigged to search for living assualt operatives."
+	desc = "An integrated tracking device, jury-rigged to search for living assault operatives."
 	flags_1 = NONE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 

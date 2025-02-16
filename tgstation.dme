@@ -7443,6 +7443,7 @@
 #include "monkestation\code\modules\jobs\job_types\head_of_security.dm"
 #include "monkestation\code\modules\jobs\job_types\nanotrasen_representative.dm"
 #include "monkestation\code\modules\jobs\job_types\psychologist.dm"
+#include "monkestation\code\modules\jobs\job_types\roboticist.dm"
 #include "monkestation\code\modules\jobs\job_types\security_assistant.dm"
 #include "monkestation\code\modules\jobs\job_types\shaft_miner.dm"
 #include "monkestation\code\modules\jobs\job_types\signal_technician.dm"
