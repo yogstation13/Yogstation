@@ -1,5 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "(TheRyeGuyWhoWillNowDie) Being revived with a cyber-heart now properly restarts the cyber heart."
-  - bugfix: "Heart worms will now self-cure if the victim no longer needs a heart."

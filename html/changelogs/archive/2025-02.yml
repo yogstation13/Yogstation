@@ -386,3 +386,34 @@
   - bugfix: People with fear now appropriately lose it if the slasher isn't in range.
   distributivgesetz:
   - qol: Made reading text with the PDA retro theme a bit more accessible.
+2025-02-16:
+  Absolucy:
+  - admin: Added a new function in Lua scripting, SS13.check_tick, to avoid causing
+      too much lag during loops and such.
+  - bugfix: (TheRyeGuyWhoWillNowDie) Being revived with a cyber-heart now properly
+      restarts the cyber heart.
+  - bugfix: Heart worms will now self-cure if the victim no longer needs a heart.
+  Absolucy, PowerfulBacon, itsmeowdev:
+  - rscadd: Players now get 5 minutes to valentine on Valentine's Day, by sending
+      a valentine's card to them.
+  - rscadd: If two players send a card to each other, they will immediately assigned
+      as each other's valentine.
+  - rscadd: The usual random valentine assignment stuff will happen after 5 minutes.
+  - qol: Valentine's messages are now big and bold for clarity.
+  - qol: Clarified the valentine's announcement, saying that you can choose a valentine
+      with the card.
+  Gw0sty:
+  - rscadd: Telecommunications Admin is no longer an unobtainable trim.
+  - rscadd: Roboticists now wear fingerless gloves.
+  - rscdel: Black gloves are removed from Robovendor.
+  - qol: '''Forum'' has now been renamed to ''Discord''.'
+  - bugfix: Intradyne Pirates will now no longer wear outfits beyond comprehension.
+  - bugfix: Blueshields PDA's will now be forced to be imprinted roundstart as standard
+      policy of Nanotrasen.
+  - spellcheck: '''assualt'' have been changed to ''assault''. Words are hard in my
+      defence.'
+  MichiRecRoom:
+  - bugfix: The maintenance area connecting the Detective's Office and the Courtroom
+      on Blueshift is now properly marked as maintenance - and thus, is radiation-shielded.
+  MichiRecRoom, Vekter:
+  - bugfix: Changed the color of entertainment radio to be darker
