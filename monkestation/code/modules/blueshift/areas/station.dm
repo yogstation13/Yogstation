@@ -332,6 +332,11 @@
 	icon = 'monkestation/code/modules/blueshift/icons/areas/areas_station.dmi'
 	icon_state = "law_maint"
 
+/area/station/maintenance/department/security/courtroom
+	name = "\improper Courtroom Maintenance"
+	icon = 'monkestation/code/modules/blueshift/icons/areas/areas_station.dmi'
+	icon_state = "sec_maint_courtroom"
+
 /area/station/maintenance/department/security/lesser
 	name = "Lesser Security Maintenance"
 	icon = 'monkestation/code/modules/blueshift/icons/areas/areas_station.dmi'

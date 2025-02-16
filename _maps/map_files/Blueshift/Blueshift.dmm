@@ -3692,7 +3692,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/access/all/security/detective,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "aLr" = (
 /obj/structure/closet/secure_closet{
 	name = "contraband locker";
@@ -8892,7 +8892,7 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/access/all/security/court,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "bLm" = (
 /obj/machinery/light/floor/has_bulb,
 /turf/open/floor/plating,
@@ -27816,7 +27816,7 @@
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/access/all/engineering/maintenance,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "foz" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -36041,7 +36041,7 @@
 "gVo" = (
 /obj/structure/falsewall,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "gVr" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood,
@@ -43787,6 +43787,9 @@
 /obj/machinery/station_map/engineering/directional/south,
 /turf/open/floor/iron/white,
 /area/station/science)
+"iwx" = (
+/turf/closed/wall,
+/area/station/maintenance/department/security/courtroom)
 "iwD" = (
 /obj/structure/dresser,
 /obj/machinery/digital_clock/directional/south,
@@ -58419,7 +58422,7 @@
 /area/station/science)
 "lnn" = (
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "lnp" = (
 /obj/structure/table/glass,
 /obj/item/bouquet/sunflower,
@@ -79184,7 +79187,7 @@
 "prv" = (
 /obj/effect/spawner/random/structure/closet_maintenance,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "prL" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -80670,7 +80673,7 @@
 "pGe" = (
 /obj/effect/spawner/random/trash/mess,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "pGi" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -81664,7 +81667,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "pPO" = (
 /obj/machinery/door/airlock/security{
 	name = "Court Cell"
@@ -94612,7 +94615,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "srq" = (
 /obj/structure/table/reinforced,
 /obj/item/modular_computer/laptop,
@@ -96173,7 +96176,7 @@
 "sFP" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "sFQ" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Labor Camp Shuttle Airlock"
@@ -110038,7 +110041,7 @@
 "vlR" = (
 /obj/item/stack/sheet/cardboard,
 /turf/open/floor/plating,
-/area/station/security/courtroom)
+/area/station/maintenance/department/security/courtroom)
 "vlW" = (
 /obj/structure/table,
 /obj/item/storage/bag/tray,
@@ -152959,11 +152962,11 @@ xsE
 gVr
 ayV
 mxi
-uDg
-uDg
-uDg
+iwx
+iwx
+iwx
 bLj
-uDg
+iwx
 aTD
 aTD
 aTD
@@ -153217,10 +153220,10 @@ qhB
 ceI
 mxi
 sFP
-uDg
+iwx
 pPM
 pGe
-uDg
+iwx
 jNN
 kMy
 vgM
@@ -153474,7 +153477,7 @@ rGT
 cyL
 mxi
 gVo
-uDg
+iwx
 srj
 lnn
 fov
@@ -153734,7 +153737,7 @@ prv
 lnn
 vlR
 lnn
-uDg
+iwx
 sZc
 oug
 xTn
