@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(garbage)
 	#endif
 
 	// monkestation start: disabling hard deletes
-#ifndef UNIT_TESTS
+#if !defined(UNIT_TESTS) && !defined(REFERENCE_TRACKING)
 	/// Toggle for enabling/disabling hard deletes. Objects that don't explicitly request hard deletion with this disabled will leak.
 	var/enable_hard_deletes = FALSE
 #endif
@@ -291,7 +291,7 @@ SUBSYSTEM_DEF(garbage)
 	// monkestation start: disable hard deletes
 	if(!D)
 		return
-#ifndef UNIT_TESTS
+#if !defined(UNIT_TESTS) && !defined(REFERENCE_TRACKING)
 	if(!enable_hard_deletes && !override)
 		failed_hard_deletes |= D
 		return

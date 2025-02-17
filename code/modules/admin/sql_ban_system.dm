@@ -1079,7 +1079,7 @@
 		if(GLOB.admin_datums[player_client.ckey] || GLOB.deadmins[player_client.ckey])
 			is_admin = TRUE
 		if(kick_banned_players && (!is_admin || (is_admin && applies_to_admins)))
-			SSgarbage.HardDelete(player_client)
+			SSgarbage.HardDelete(player_client, override = TRUE)
 			if(player_client)
 				qdel(player_client)
 
@@ -1090,7 +1090,7 @@
 			if(GLOB.admin_datums[other_player_client.ckey] || GLOB.deadmins[other_player_client.ckey])
 				is_admin = TRUE
 			if(kick_banned_players && (!is_admin || (is_admin && applies_to_admins)))
-				SSgarbage.HardDelete(other_player_client)
+				SSgarbage.HardDelete(other_player_client, override = TRUE)
 				if(other_player_client)
 					qdel(other_player_client)
 
