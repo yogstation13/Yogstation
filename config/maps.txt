@@ -13,6 +13,11 @@ Format:
 	votable (is this map votable)
 endmap
 
+map heliostation
+	minplayers 25
+	votable
+endmap
+
 map metastation
 	#default
 	minplayers 5
