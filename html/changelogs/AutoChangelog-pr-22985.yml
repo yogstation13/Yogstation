@@ -1,0 +1,4 @@
+author: "Oblisk234"
+delete-after: true 
+changes: 
+  - bugfix: "Fancychat no longer bluescreens."
