@@ -56,8 +56,20 @@
 	if(post_unlink_callback)
 		src.post_unlink_callback = post_unlink_callback
 
+	src.speech_action_icon = speech_action_icon
+	src.speech_action_icon_state = speech_action_icon_state
+	src.speech_action_background_icon_state = speech_action_background_icon_state
+
+/*
 	master_speech = new(src)
 	master_speech.Grant(owner)
+*/
+
+//MONKESTATION EDIT - NIFs
+	if(speech_action)
+		master_speech = new(src)
+		master_speech.Grant(owner)
+//MONKESTATION EDIT END
 
 	to_chat(owner, span_boldnotice("You establish a [network_name], allowing you to link minds to communicate telepathically."))
 
@@ -85,6 +97,20 @@
 /datum/component/mind_linker/proc/link_mob(mob/living/to_link)
 	if(QDELETED(to_link) || to_link.stat == DEAD)
 		return FALSE
+/*
+	if(HAS_TRAIT(to_link, TRAIT_MINDSHIELD)) // Mindshield implant - no dice
+		return FALSE
+	if(to_link.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0))
+		return FALSE
+*/
+
+//MONKESTATION EDIT START
+	if(HAS_TRAIT(to_link, TRAIT_MINDSHIELD) && linking_protection) // Mindshield implant - no dice
+		return FALSE
+	if(to_link.can_block_magic(MAGIC_RESISTANCE_MIND, charge_cost = 0) && linking_protection)
+		return FALSE
+//MONKESTATION EDIT END
+
 	if(linked_mobs[to_link])
 		return FALSE
 
