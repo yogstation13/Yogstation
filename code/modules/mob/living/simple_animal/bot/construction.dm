@@ -590,6 +590,7 @@
 				qdel(part)
 				build_step++
 
+		//MONKESTATION EDIT START
 		if(ASSEMBLY_THIRD_STEP)
 			if(part.tool_behaviour == TOOL_SCREWDRIVER)
 				balloon_alert(user, "securing flashlight...")
@@ -597,15 +598,36 @@
 					return
 				balloon_alert(user, "flashlight secured")
 				icon_state = "vim_3"
-				desc = "Some kind of incomplete mechanism. It seems nearly completed, and just needs a voice assembly."
+				desc = "Some kind of incomplete mechanism. It seems nearly completed, and just needs an oxygen tank and voice assembly."
 				build_step++
 
 		if(ASSEMBLY_FOURTH_STEP)
 			if(istype(part, /obj/item/assembly/voice))
 				if(!can_finish_build(part, user))
 					return
-				balloon_alert(user, "assembly finished")
+				balloon_alert(user, "voice assembly added")
+				qdel(part)
+				desc = "Some kind of incomplete mechanism. The voice assembly is added, but not secured."
+				build_step++
+
+		if(ASSEMBLY_FIFTH_STEP)
+			if(part.tool_behaviour == TOOL_SCREWDRIVER)
+				balloon_alert(user, "securing voice assembly...")
+				if(!part.use_tool(src, user, 4 SECONDS, volume=100))
+					return
+				balloon_alert(user, "voice assembly secured")
+				desc = "Some kind of incomplete mechanism. It seems nearly completed, and just needs an oxygen tank."
+				build_step++
+
+		if(ASSEMBLY_SIXTH_STEP)
+			if(istype(part, /obj/item/tank/internals/emergency_oxygen))
+				if(!user.temporarilyRemoveItemFromInventory(part))
+					return
+				balloon_alert(user, "assembly finished!")
+				var/obj/item/tank/internals/emergency_oxygen/assembly_tank = part
 				var/obj/vehicle/sealed/car/vim/new_vim = new(drop_location())
 				new_vim.name = created_name
-				qdel(part)
+				new_vim.tank = assembly_tank
+				assembly_tank.forceMove(new_vim)
 				qdel(src)
+		//MONKESTATION EDIT STOP

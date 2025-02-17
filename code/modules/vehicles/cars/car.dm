@@ -13,6 +13,8 @@
 	var/vehicle_move_delay = 1
 	/// How long it takes to rev (vrrm vrrm!)
 	COOLDOWN_DECLARE(enginesound_cooldown)
+	//monkestation addition: does it explode on destruction
+	var/explode_on_destruction = TRUE
 
 /obj/vehicle/sealed/car/generate_actions()
 	. = ..()
@@ -75,8 +77,9 @@
 	add_occupant(kidnapped, VEHICLE_CONTROL_KIDNAPPED)
 
 /obj/vehicle/sealed/car/atom_destruction(damage_flag)
-	explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 3, adminlog = FALSE)
-	log_message("[src] exploded due to destruction", LOG_ATTACK)
+	if(explode_on_destruction) //monkestation edit
+		explosion(src, heavy_impact_range = 1, light_impact_range = 2, flash_range = 3, adminlog = FALSE)
+		log_message("[src] exploded due to destruction", LOG_ATTACK)
 	return ..()
 
 /obj/vehicle/sealed/car/relaymove(mob/living/user, direction)

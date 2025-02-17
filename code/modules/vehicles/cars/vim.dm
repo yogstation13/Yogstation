@@ -21,6 +21,9 @@
 	///Maximum size of a mob trying to enter the mech
 	var/maximum_mob_size = MOB_SIZE_SMALL
 	COOLDOWN_DECLARE(sound_cooldown)
+	//monkestation additions
+	var/obj/item/tank/internals/emergency_oxygen/tank
+	explode_on_destruction = FALSE
 
 /datum/armor/car_vim
 	melee = 70
@@ -46,6 +49,13 @@
 	new /obj/effect/decal/cleanable/oil(get_turf(src))
 	do_sparks(5, TRUE, src)
 	visible_message(span_boldannounce("[src] blows apart!"))
+	//MONKESTATION EDIT START
+	new /obj/effect/decal/cleanable/robot_debris/limb(get_turf(src))
+	var/turf/T = get_turf(src)
+	if(tank)
+		tank.forceMove(T)
+		tank = null
+	//MONKESTATION EDIT STOP
 	return ..()
 
 /obj/vehicle/sealed/car/vim/mob_try_enter(mob/entering)
@@ -114,6 +124,17 @@
 		. += piloted_overlay
 	if(headlights_toggle)
 		. += headlights_overlay
+
+//MONKESTATION EDIT START
+/obj/vehicle/sealed/car/vim/return_air()
+	if(tank)
+		return tank.return_air()
+	else
+		return loc.return_air()
+
+/obj/vehicle/sealed/car/vim/return_analyzable_air()
+	return tank?.return_analyzable_air()
+//MONKESTATION EDIT STOP
 
 /obj/item/circuit_component/vim
 	display_name = "Vim"
