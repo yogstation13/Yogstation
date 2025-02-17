@@ -73,6 +73,14 @@
 			else if(the_rcd.window_type  == /obj/structure/window/reinforced/fulltile)
 				cost = 12
 				delay = 4 SECONDS
+			//MONKESTATION ADDITION? This was in /tg/station's codebase, did we change it? And if so, why??
+			else if(the_rcd.window_type  == /obj/structure/window)
+				cost = 4
+				delay = 2 SECONDS
+			else if(the_rcd.window_type  == /obj/structure/window/reinforced)
+				cost = 6
+				delay = 2.5 SECONDS
+			//END OF ADDITION
 			if(!cost)
 				return FALSE
 
@@ -101,8 +109,13 @@
 			var/obj/structure/window/window_path = the_rcd.window_type
 			if(!ispath(window_path))
 				CRASH("Invalid window path type in RCD: [window_path]")
-			if(!initial(window_path.fulltile)) //only fulltile windows can be built here
-				return FALSE
+			if(!initial(window_path.fulltile)) //only fulltile windows can be built here //Not anymore, buddy.
+				//return FALSE
+				//MONKESTATION ADDITION
+				if(!valid_build_direction(loc, user.dir, is_fulltile = FALSE))
+					balloon_alert(user, "window already here!")
+					return FALSE
+				//END OF ADDITION
 			var/obj/structure/window/WD = new the_rcd.window_type(T, user.dir)
 			WD.set_anchored(TRUE)
 			return TRUE
