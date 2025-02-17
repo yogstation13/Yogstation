@@ -1,0 +1,5 @@
+author: "KnigTheThrasher"
+delete-after: True
+changes:
+  - rscadd: "NIF hivemind is back, this time it's not broken"
+  - balance: "NIF hivemind can't be used in crit or when your hands are tied up, you use the keyboard to communicate"
