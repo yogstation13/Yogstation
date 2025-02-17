@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(available_depts_sec, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICA
 			minimal_lightup_areas |= GLOB.science_lightup_areas
 		if(SEC_DEPT_SERVICE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/service
-			dep_access = list(ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CLERK)
+			dep_access = list(ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_HYDROPONICS, ACCESS_JANITOR, ACCESS_CLERK, ACCESS_SERVICE)
 			destination = /area/security/checkpoint/service
 			spawn_point = locate(/obj/effect/landmark/start/depsec/service) in GLOB.department_security_spawns
 			accessory =  /obj/item/clothing/accessory/armband/service
