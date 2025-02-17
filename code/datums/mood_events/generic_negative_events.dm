@@ -403,6 +403,13 @@
 	mood_change = -1
 	timeout = 30 SECONDS
 
+//MONKESTATION EDIT START
+/datum/mood_event/watersprayed/cat
+	description = "HSSSSSSS!"
+	mood_change = -10
+	timeout = 5 SECONDS
+//MONKESTATION EDIT STOP
+
 /datum/mood_event/gamer_withdrawal
 	description = "I wish I was gaming right now..."
 	mood_change = -5
