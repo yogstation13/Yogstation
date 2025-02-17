@@ -61,31 +61,25 @@ SUBSYSTEM_DEF(credits)
 		var/datum/client_interface/interface = new(ckey)
 		var/datum/preferences/mocked = new(interface)
 
-		var/mob/living/carbon/human/dummy/extra_tall/dummy = new
-		dummy.appearance_flags &= ~TILE_BOUND
-
-		var/atom/movable/screen/map_view/char_preview/appereance = new(null, mocked)
-		appereance.update_body()
-		appereance.maptext_width = 120
-		appereance.maptext_y = -8
-		appereance.maptext_x = -42
-		appereance.maptext = "<center>[ckey]</center>"
-		contributer_pref_images += appereance
+		var/atom/movable/screen/map_view/char_preview/appearance = new(null, mocked)
+		appearance.update_body()
+		appearance.maptext_width = 120
+		appearance.maptext_y = -8
+		appearance.maptext_x = -42
+		appearance.maptext = "<center>[ckey]</center>"
+		contributer_pref_images += appearance
 
 	for(var/ckey in GLOB.admin_datums)
 		var/datum/client_interface/interface = new(ckey(ckey))
 		var/datum/preferences/mocked = new(interface)
 
-		var/mob/living/carbon/human/dummy/extra_tall/dummy = new
-		dummy.appearance_flags &= ~TILE_BOUND
-
-		var/atom/movable/screen/map_view/char_preview/appereance = new(null, mocked)
-		appereance.update_body()
-		appereance.maptext_width = 120
-		appereance.maptext_x = -42
-		appereance.maptext_y = -8
-		appereance.maptext = "<center>[ckey]</center>"
-		admin_pref_images += appereance
+		var/atom/movable/screen/map_view/char_preview/appearance = new(null, mocked)
+		appearance.update_body()
+		appearance.maptext_width = 120
+		appearance.maptext_x = -42
+		appearance.maptext_y = -8
+		appearance.maptext = "<center>[ckey]</center>"
+		admin_pref_images += appearance
 
 /datum/controller/subsystem/credits/proc/draft_star()
 	var/mob/living/carbon/human/most_talked
