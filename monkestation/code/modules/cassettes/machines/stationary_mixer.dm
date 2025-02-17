@@ -99,7 +99,7 @@
 			var/url = stripped_input(usr, "Insert the ID of the video in question (characters after the =):", no_trim = TRUE)
 			var/list/data
 			///the REGEX used for determining if its a valid ID or not
-			var/static/regex/link_check = regex(@"^[a-zA-Z0-9_.-]{11}$")
+			var/static/regex/link_check = regex(@"^[a-zA-Z0-9_-]{11}$")
 			if(!link_check.Find(url))
 				to_chat(usr, "Error: Bad ID!")
 				return
