@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 	item_path = /obj/item/clothing/suit/toggle/owlwings/griffinwings
 
 /datum/loadout_item/suit/syndi
-	name = "Black And Red Space Suit Replica"
+	name = "Red Space Suit Replica"
 	item_path = /obj/item/clothing/suit/syndicatefake
 
 /datum/loadout_item/suit/bee

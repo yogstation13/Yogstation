@@ -16,11 +16,11 @@
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/syndicatefake
-	name = "black space-helmet replica"
+	name = "red space helmet replica" //monkestation edit
 	icon = 'icons/obj/clothing/head/spacehelm.dmi'
 	worn_icon = 'icons/mob/clothing/head/spacehelm.dmi'
-	icon_state = "syndicate-helm-black-red"
-	inhand_icon_state = "syndicate-helm-black-red"
+	icon_state = "syndicate" //monkestation edit
+	inhand_icon_state = "space_syndicate" //monkestation edit
 	desc = "A plastic replica of a Syndicate agent's space helmet. You'll look just like a real murderous Syndicate agent in this! This is a toy, it is not made for use in space!"
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT

@@ -4471,7 +4471,7 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/obj/item/tank/jetpack/oxygen/harness,
+/obj/item/tank/jetpack/harness,
 /obj/item/clothing/suit/space/syndicate/black/red,
 /obj/item/clothing/head/helmet/space/syndicate/black/red,
 /turf/open/floor/wood,

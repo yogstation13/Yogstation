@@ -38,10 +38,27 @@ GLOBAL_LIST_INIT(syndicate_space_suits_to_helmets,list(
 	inhand_icon_state = "space_suit_syndicate"
 	desc = "Has a tag on it: Totally not property of an enemy corporation, honest!"
 	w_class = WEIGHT_CLASS_NORMAL
-	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
+	allowed = list(
+		/obj/item/ammo_box,
+		/obj/item/ammo_casing,
+		/obj/item/restraints/handcuffs,
+		/obj/item/assembly/flash,
+		/obj/item/melee/baton,
+		/obj/item/melee/energy/sword,
+		/obj/item/shield/energy,
+		/obj/item/flashlight,
+		/obj/item/tank/internals,
+		/obj/item/gun,
+		/obj/item/tank/jetpack/oxygen,
+		/obj/item/tank/jetpack/harness,
+		/obj/item/storage/belt/holster/detective,
+		/obj/item/storage/belt/holster/nukie,
+		/obj/item/storage/belt/holster/energy,
+	) //monkestation edit: updated list
 	armor_type = /datum/armor/space_syndicate
 	cell = /obj/item/stock_parts/cell/hyper
 	var/helmet_type = /obj/item/clothing/head/helmet/space/syndicate
+	slowdown = 0 //monkestation edit: syndicate have a theme of no slowdown on their gear. e.g: syndicate duffel bags
 
 //Green syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/green

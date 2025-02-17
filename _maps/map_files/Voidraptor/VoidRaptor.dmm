@@ -71651,6 +71651,10 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/engineering,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/open/floor/engine,
 /area/station/engineering/main)
 "tQV" = (

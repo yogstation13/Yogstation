@@ -87,6 +87,7 @@
 	..()
 	new /obj/item/radio/headset/headset_eng(src)
 
+	new /obj/item/storage/box/nanofrost(src) //monkestation addition
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/tank/internals/emergency_oxygen/engi(src)
 	new /obj/item/holosign_creator/atmos(src)

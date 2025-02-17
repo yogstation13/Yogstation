@@ -53787,6 +53787,10 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/open/floor/plating,
 /area/station/engineering/storage)
 "pXO" = (

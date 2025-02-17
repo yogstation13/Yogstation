@@ -104,7 +104,7 @@
 	armor_type = /datum/armor/hardsuit/sec
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/sec
 	allowed = list(
-		/obj/item/tank/jetpack/oxygen/security,
+		/obj/item/tank/jetpack/security,
 		/obj/item/flashlight,
 		/obj/item/tank/internals,
 		/obj/item/tank/jetpack/oxygen/captain,

@@ -104,11 +104,11 @@
 	body_parts_covered = CHEST|GROIN
 
 /obj/item/clothing/suit/syndicatefake
-	name = "black and red space suit replica"
-	icon_state = "syndicate-black-red"
+	name = "red space suit replica" //monkestation edit
+	icon_state = "syndicate" //monkestation edit
 	icon = 'icons/obj/clothing/suits/spacesuit.dmi'
 	worn_icon = 'icons/mob/clothing/suits/spacesuit.dmi'
-	inhand_icon_state = "syndicate-black-red"
+	inhand_icon_state = "space_suit_syndicate" //monkestation edit
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|FEET
 	desc = "A plastic replica of the Syndicate space suit. You'll look just like a real murderous Syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = WEIGHT_CLASS_NORMAL

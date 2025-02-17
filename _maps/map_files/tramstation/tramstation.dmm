@@ -39152,6 +39152,8 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/open/floor/plating,
 /area/station/engineering/main)
 "lgR" = (

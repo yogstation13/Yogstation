@@ -11,9 +11,13 @@
 	var/gas_type = /datum/gas/oxygen
 	var/on = FALSE
 	var/stabilizers = FALSE
+	var/can_be_emped = TRUE //monkestation addition: improvised jetpack doesn't have any electronics to emp
+	var/disabled = FALSE // If our jetpack is disabled, from getting EMPd
 	var/full_speed = TRUE // If the jetpack will have a speedboost in space/nograv or not
 	var/datum/callback/get_mover
 	var/datum/callback/check_on_move
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE //monkestation edit
+	alternate_worn_layer = ABOVE_HEAD_LAYER //monkestation edit
 
 /obj/item/tank/jetpack/Initialize(mapload)
 	. = ..()
@@ -86,6 +90,8 @@
 	icon_state = "[initial(icon_state)][on ? "-on" : ""]"
 
 /obj/item/tank/jetpack/proc/turn_on(mob/user)
+	if(disabled)
+		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_JETPACK_ACTIVATED) & JETPACK_ACTIVATION_FAILED)
 		return FALSE
 	on = TRUE
@@ -134,6 +140,26 @@
 	suffocater.visible_message(span_suicide("[user] is suffocating [user.p_them()]self with [src]! It looks like [user.p_they()] didn't read what that jetpack says!"))
 	return OXYLOSS
 
+/obj/item/tank/jetpack/emp_act(severity)
+	. = ..()
+	if(!can_be_emped) //monkestation addition: improvised jetpack doesn't have any electronics to emp
+		return
+	if(. & EMP_PROTECT_CONTENTS)
+		return
+	if(ismob(loc) && (item_flags & IN_INVENTORY))
+		var/mob/wearer = loc
+		turn_off(wearer)
+	else
+		turn_off()
+	update_item_action_buttons()
+	disabled = TRUE
+	src.visible_message(span_danger("[src]'s lights flicker and the thruster connections cut out!")) //monkestation addition
+	addtimer(CALLBACK(src, PROC_REF(remove_emp)), 4 SECONDS)
+
+///Removes the disabled flag after getting EMPd
+/obj/item/tank/jetpack/proc/remove_emp()
+	disabled = FALSE
+
 /obj/item/tank/jetpack/improvised
 	name = "improvised jetpack"
 	desc = "A jetpack made from two air tanks, a fire extinguisher and some atmospherics equipment. It doesn't look like it can hold much."
@@ -144,6 +170,7 @@
 	volume = 20 //normal jetpacks have 70 volume
 	gas_type = null //it starts empty
 	full_speed = FALSE //moves at modsuit jetpack speeds
+	can_be_emped = FALSE
 
 /obj/item/tank/jetpack/improvised/allow_thrust(num)
 	var/mob/user = get_user()
@@ -168,7 +195,7 @@
 	icon_state = "jetpack"
 	inhand_icon_state = "jetpack"
 
-/obj/item/tank/jetpack/oxygen/harness
+/obj/item/tank/jetpack/harness //monkestation edit
 	name = "jet harness (oxygen)"
 	desc = "A lightweight tactical harness, used by those who don't want to be weighed down by traditional jetpacks."
 	icon_state = "jetpack-mini"
@@ -177,6 +204,7 @@
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE | ITEM_SLOT_BELT //monkestation edit
+	can_be_emped = FALSE //monkestation: its fancy
 
 /obj/item/tank/jetpack/oxygen/captain
 	name = "captain's jetpack"
@@ -187,15 +215,13 @@
 	volume = 90
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF //steal objective items are hard to destroy.
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
+	can_be_emped = FALSE //monkestation: its fancy
 
-/obj/item/tank/jetpack/oxygen/security
+/obj/item/tank/jetpack/security //monkestation edit
 	name = "security jetpack (oxygen)"
 	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas by security forces."
 	icon_state = "jetpack-sec"
 	inhand_icon_state = "jetpack-sec"
-	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE //monkestation edit
-
-
 
 /obj/item/tank/jetpack/carbondioxide
 	name = "jetpack (carbon dioxide)"
@@ -211,5 +237,4 @@
 	icon_state = "jetpack-mining"
 	inhand_icon_state = "jetpack-mining"
 	desc = "A tank of compressed oxygen for miners to use as propulsion in local space."
-	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
 //MONKESTATION EDIT STOP

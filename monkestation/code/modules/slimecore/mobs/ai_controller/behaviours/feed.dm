@@ -16,7 +16,6 @@
 		var/atom/target = controller.blackboard[target_key]
 		var/mob/living/basic/slime/basic_mob = controller.pawn
 		if(basic_mob.CanReach(target) && !HAS_TRAIT(target, TRAIT_LATCH_FEEDERED))
-			basic_mob.AddComponent(/datum/component/latch_feeding, target, TOX, 2, 4, FALSE, CALLBACK(basic_mob, TYPE_PROC_REF(/mob/living/basic/slime, latch_callback), target))
+			basic_mob.AddComponent(/datum/component/latch_feeding, target, TRUE, TOX, 2, 4, FALSE, CALLBACK(basic_mob, TYPE_PROC_REF(/mob/living/basic/slime, latch_callback), target))
 		controller.clear_blackboard_key(target_key)
 	. = ..()
-

@@ -18,6 +18,17 @@
 	for(var/i in 1 to 7)
 		new/obj/item/grenade/chem_grenade/smart_metal_foam(src)
 
+//MONKESTATION EDIT START
+/obj/item/storage/box/nanofrost
+	name = "box of nanofrost grenades"
+	desc = "A box of A NanoFrost™ smoke grenades. Nanotrasen's response to frequent plasma related fires onboard their research stations."
+	illustration = "grenade"
+
+/obj/item/storage/box/nanofrost/PopulateContents()
+	for(var/i in 1 to 7)
+		new/obj/item/grenade/smokebomb/nanofrost(src)
+//MONKESTATION EDIT STOP
+
 /obj/item/storage/box/material
 	name = "box of materials"
 	illustration = "implant"

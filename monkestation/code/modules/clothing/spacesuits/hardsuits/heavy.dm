@@ -70,7 +70,11 @@
 		/obj/item/flashlight,
 		/obj/item/tank/internals,
 		/obj/item/gun,
-		/obj/item/tank/jetpack/oxygen/captain
+		/obj/item/tank/jetpack/oxygen,
+		/obj/item/tank/jetpack/harness,
+		/obj/item/storage/belt/holster/detective,
+		/obj/item/storage/belt/holster/nukie,
+		/obj/item/storage/belt/holster/energy,
 	)
 	armor_type = /datum/armor/hardsuit/juggernaut
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/juggernaut

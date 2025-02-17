@@ -86,7 +86,7 @@
 
 /obj/machinery/suit_storage_unit/atmos
 	mask_type = /obj/item/clothing/mask/gas/atmos
-	storage_type = /obj/item/watertank/atmos
+	storage_type = /obj/item/clothing/shoes/magboots //monkestation edit
 	suit_type = /obj/item/clothing/suit/space/hardsuit/atmos //Monkestation Edit
 	mod_type = /obj/item/mod/control/pre_equipped/atmospheric
 
@@ -99,7 +99,7 @@
 	mask_type = /obj/item/clothing/mask/gas/sechailer
 	mod_type = /obj/item/mod/control/pre_equipped/security
 	suit_type = /obj/item/clothing/suit/space/hardsuit/sec //monkestation edit
-	storage_type = /obj/item/tank/jetpack/oxygen/security //monkestation edit
+	storage_type = /obj/item/tank/jetpack/security //monkestation edit
 
 /obj/machinery/suit_storage_unit/hos
 	mask_type = /obj/item/clothing/mask/gas/sechailer
@@ -132,7 +132,7 @@
 
 /obj/machinery/suit_storage_unit/syndicate
 	mask_type = /obj/item/clothing/mask/gas/syndicate
-	storage_type = /obj/item/tank/jetpack/oxygen/harness
+	storage_type = /obj/item/tank/jetpack/harness //monkestation edit
 	mod_type = /obj/item/mod/control/pre_equipped/nuclear
 
 /obj/machinery/suit_storage_unit/interdyne

@@ -4,7 +4,7 @@
 	icon_state = "galoshes"
 	inhand_icon_state = "galoshes"
 	clothing_traits = list(TRAIT_NO_SLIP_WATER)
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = 0.5 //monkestation edit: 1 to 0.5
 	strip_delay = 30
 	equip_delay_other = 50
 	resistance_flags = NONE

@@ -22643,7 +22643,7 @@
 /area/centcom/central_command_areas/evacuation)
 "iiK" = (
 /obj/structure/table/reinforced,
-/obj/item/tank/jetpack/oxygen/harness{
+/obj/item/tank/jetpack/harness{
 	pixel_y = 10;
 	pixel_x = -2
 	},

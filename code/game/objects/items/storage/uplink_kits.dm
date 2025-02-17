@@ -415,11 +415,16 @@
 	atom_storage.max_specific_storage = WEIGHT_CLASS_NORMAL
 	atom_storage.set_holdable(list(/obj/item/clothing/suit/space/syndicate, /obj/item/clothing/head/helmet/space/syndicate))
 
+//MONKESTATION EDIT START: return to the classic red suit
 /obj/item/storage/box/syndie_kit/space/PopulateContents()
-	var/obj/item/clothing/suit/space/syndicate/spess_suit = pick(GLOB.syndicate_space_suits_to_helmets)
-	new spess_suit(src) // Above allows me to get the helmet from a variable on the object
-	var/obj/item/clothing/head/helmet/space/syndicate/spess_helmet = GLOB.syndicate_space_suits_to_helmets[spess_suit]
-	new spess_helmet(src) // 4 TC for the space gear
+	// var/obj/item/clothing/suit/space/syndicate/spess_suit = pick(GLOB.syndicate_space_suits_to_helmets) //leaving this here for now
+	// new spess_suit(src) // Above allows me to get the helmet from a variable on the object
+	// var/obj/item/clothing/head/helmet/space/syndicate/spess_helmet = GLOB.syndicate_space_suits_to_helmets[spess_suit]
+	// new spess_helmet(src) // 4 TC for the space gear
+	new /obj/item/clothing/suit/space/syndicate(src)
+	new /obj/item/clothing/head/helmet/space/syndicate(src)
+	new /obj/item/tank/jetpack/oxygen(src)
+//MONKESTATION EDIT STOP
 
 /obj/item/storage/box/syndie_kit/emp
 	name = "EMP kit"
@@ -680,7 +685,7 @@
 	new spess_suit(src) // Above allows me to get the helmet from a variable on the object
 	var/obj/item/clothing/head/helmet/space/syndicate/spess_helmet = GLOB.syndicate_space_suits_to_helmets[spess_suit]
 	new spess_helmet(src) // 4 TC for the space gear
-	new /obj/item/tank/jetpack/oxygen/harness(src) // They kinda need this to fly to the cruiser.
+	new /obj/item/tank/jetpack/harness(src) // They kinda need this to fly to the cruiser. //monkestation edit
 	// Tacticool gear
 	new /obj/item/clothing/shoes/combat(src)
 	new /obj/item/clothing/under/syndicate(src)

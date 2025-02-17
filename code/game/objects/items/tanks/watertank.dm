@@ -8,6 +8,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
+	alternate_worn_layer = ABOVE_HEAD_LAYER //monkestation addition
 	slot_flags = ITEM_SLOT_BACK
 	slowdown = 1
 	actions_types = list(/datum/action/item_action/toggle_mister)

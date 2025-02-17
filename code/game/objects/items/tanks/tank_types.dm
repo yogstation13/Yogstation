@@ -9,6 +9,10 @@
  */
 
 /// Allows carbon to toggle internals via AltClick of the equipped tank.
+//MONKESTATION EDIT START
+/obj/item/tank/internals
+	alternate_worn_layer = ABOVE_HEAD_LAYER
+//MONKESTATION EDIT STOP
 /obj/item/tank/internals/AltClick(mob/user)
 	..()
 	if((loc == user) && user.can_perform_action(src, FORBID_TELEKINESIS_REACH|NEED_HANDS))

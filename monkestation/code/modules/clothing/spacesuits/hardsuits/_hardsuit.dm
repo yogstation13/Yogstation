@@ -11,7 +11,7 @@
 	max_integrity = 300
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	armor_type = /datum/armor/hardsuit
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/t_scanner, /obj/item/construction/rcd, /obj/item/pipe_dispenser, /obj/item/tank/jetpack/oxygen, /obj/item/tank/jetpack/carbondioxide)
 	siemens_coefficient = 0
 	actions_types = list(/datum/action/item_action/toggle_helmet, /datum/action/item_action/toggle_spacesuit)
 	clothing_traits = list(TRAIT_SNOWSTORM_IMMUNE)

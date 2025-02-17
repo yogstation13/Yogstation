@@ -33808,6 +33808,10 @@
 /obj/item/electronics/airlock,
 /obj/item/electronics/airlock,
 /obj/item/stock_parts/cell/high,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/open/floor/plating,
 /area/station/engineering/main)
 "kVE" = (

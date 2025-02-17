@@ -8521,6 +8521,10 @@
 	},
 /obj/structure/closet/crate/engineering,
 /obj/item/gps/engineering,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/open/floor/plating,
 /area/station/engineering/storage_shared)
 "cBM" = (

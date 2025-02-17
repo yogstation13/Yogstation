@@ -125,7 +125,8 @@
 #define TRAIT_GIFT_ITEM				"gift_item"
 /// The mob can see pathogen clouds and such.
 #define TRAIT_VIRUS_SCANNER "virus_scanner"
-
+///This item always renders. (only used for stupid magboots rn)
+#define TRAIT_ALWAYS_RENDER			"always_render"
 // /atom/movable
 /// Things with this trait can pass through wooden barricades.
 #define TRAIT_GOES_THROUGH_WOODEN_BARRICADES	"goes_through_wooden_barricades"

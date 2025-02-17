@@ -35,7 +35,7 @@
 	suit = /obj/item/clothing/suit/space/ert
 	suit_store = /obj/item/gun/energy/e_gun
 	head = /obj/item/clothing/head/helmet/space/ert
-	belt = /obj/item/tank/jetpack/oxygen/harness
+	belt = /obj/item/tank/jetpack/harness
 	back = /obj/item/storage/backpack/ert/generic
 	backpack_contents = list(
 		/obj/item/storage/medkit/regular = 1,
@@ -542,7 +542,7 @@
 	suit = /obj/item/clothing/suit/space/ert/clown
 	suit_store = null
 	head = /obj/item/clothing/head/helmet/space/ert/clown
-	belt = /obj/item/tank/jetpack/oxygen/harness
+	belt = /obj/item/tank/jetpack/harness
 	back = /obj/item/storage/backpack/ert/clown
 	backpack_contents = list(
 		/obj/item/stamp/clown = 1,

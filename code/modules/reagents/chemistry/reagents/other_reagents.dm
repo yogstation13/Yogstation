@@ -1779,7 +1779,7 @@
 	name = "Stable Plasma"
 	description = "Non-flammable plasma locked into a liquid form that cannot ignite or become gaseous/solid."
 	reagent_state = LIQUID
-	color = "#2D2D2D"
+	color = "#8228a0c6" //monkestation edit
 	taste_description = "bitterness"
 	taste_mult = 1.5
 	ph = 1.5

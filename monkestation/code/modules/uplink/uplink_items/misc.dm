@@ -48,3 +48,21 @@
 	cost = 16 // double the price of stealth implant
 	surplus = 5
 	limited_stock = 1
+
+/datum/uplink_item/device_tools/magboots
+	name = "Blood-Red Magboots"
+	desc = "A pair of magnetic boots with a Syndicate paintjob that assist with freer movement in space or on-station \
+			during gravitational generator failures. These reverse-engineered knockoffs \
+			don't slow you down in simulated-gravity environments much like Nanotrasen's 'Advanced Magboots' design."
+	item = /obj/item/clothing/shoes/magboots/syndie
+	cost = 1
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+
+/datum/uplink_item/device_tools/jetpack_harness
+	name = "Jet Harness"
+	desc = "A lightweight tactical jetpack harness, used by those who don't want to be weighed down by traditional jetpacks."
+	item = /obj/item/tank/jetpack/harness
+	cost = 1
+	purchasable_from = ~(UPLINK_NUKE_OPS | UPLINK_CLOWN_OPS)
+
+

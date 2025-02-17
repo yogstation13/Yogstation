@@ -276,6 +276,10 @@
 	},
 /obj/item/gps/engineering,
 /obj/effect/turf_decal/bot,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/open/floor/iron,
 /area/station/engineering/main)
 "adf" = (
@@ -59349,6 +59353,7 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Robotics Maintenance"
 	},
+/obj/item/tank/jetpack/oxygen,
 /turf/open/floor/iron,
 /area/station/science/robotics/lab)
 "nYC" = (
