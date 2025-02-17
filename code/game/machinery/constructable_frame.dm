@@ -22,6 +22,10 @@
 			circuit = null
 	qdel(src)
 
+/obj/structure/frame/CanAllowThrough(atom/movable/mover, border_dir)
+	if(isprojectile(mover))
+		return TRUE
+	return ..()
 
 /obj/structure/frame/machine
 	name = "machine frame"
