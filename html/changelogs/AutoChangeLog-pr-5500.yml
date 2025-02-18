@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: True
-changes:
-  - bugfix: "Fixed drake and knight lizard horns being invisible from behind"

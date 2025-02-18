@@ -417,3 +417,22 @@
       on Blueshift is now properly marked as maintenance - and thus, is radiation-shielded.
   MichiRecRoom, Vekter:
   - bugfix: Changed the color of entertainment radio to be darker
+2025-02-18:
+  BingusSS13:
+  - qol: You can make hollow windows using RCDs again.
+  KnigTheThrasher:
+  - rscadd: NIF hivemind is back, this time it's not broken
+  - balance: NIF hivemind can't be used in crit or when your hands are tied up, you
+      use the keyboard to communicate
+  Mqiib:
+  - bugfix: Fixed drake and knight lizard horns being invisible from behind
+  Shoddd:
+  - rscadd: Added a new map, Heliostation, originally from FulpStation.
+  SirNightKnight:
+  - balance: computers can now be used as cover, firing a projectile over them is
+      now possible, while they may block projectiles if you are not adjacent to them
+      when firing.
+  - bugfix: computer laptops will not block projectiles.
+  - qol: If it meows, it hates getting sprayed with water.
+  - qol: Assembly crafting Vims now requires an emergency oxygen tank that will be
+      used as life support for the pilot.
