@@ -1,0 +1,5 @@
+author: "MichiRecRoom, Ghommie"
+delete-after: True
+changes:
+  - bugfix: "(Ghommie) Fixed a few harddel issues with mob spawns that caused charred corpses fished from lavaland to create an invisible blockade."
+  - bugfix: "(Ghommie) Fixed being able to fish up mobs that have fallen in totally different z-levels with a rescue hook (i.e. from bitrunning domains to lavaland)."
