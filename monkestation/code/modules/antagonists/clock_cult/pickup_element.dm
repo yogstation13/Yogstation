@@ -1,6 +1,6 @@
 #define REGULAR_PICKUP_MOD 1
 #define CULTIST_PICKUP_MOD 2
-#define PICKUP_SHOCK_DAMAGE 25
+#define PICKUP_SHOCK_DAMAGE 20
 
 /datum/element/clockwork_pickup
 	element_flags = ELEMENT_BESPOKE | ELEMENT_DETACH_ON_HOST_DESTROY

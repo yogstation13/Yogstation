@@ -7,12 +7,15 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 	icon = 'monkestation/icons/obj/clock_cult/clockwork_objects.dmi'
 	/// Extra info to give clock cultists, added via the /datum/element/clockwork_description element
 	var/clockwork_desc = ""
+	/// Does this item get the clockwork_pickup element
+	var/has_pickup_element = TRUE
 
 
 /obj/item/clockwork/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/clockwork_description, clockwork_desc)
-	AddElement(/datum/element/clockwork_pickup)
+	if(has_pickup_element)
+		AddElement(/datum/element/clockwork_pickup)
 
 
 /obj/item/clockwork/clockwork_slab
@@ -24,6 +27,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 	lefthand_file = 'monkestation/icons/mob/clock_cult/clockwork_lefthand.dmi'
 	righthand_file = 'monkestation/icons/mob/clock_cult/clockwork_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
+	has_pickup_element = FALSE
 
 	/// The scripture currently being invoked
 	var/datum/scripture/invoking_scripture
@@ -135,7 +139,9 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 
 /obj/item/clockwork/clockwork_slab/attack_self(mob/living/user)
 	if(!IS_CLOCK(user))
-		to_chat(user, span_warning("You cannot figure out what the device is used for!"))
+		to_chat(user, span_warning("As you try and fiddle with \the [src] you feel a shock course through you!"))
+		user.dropItemToGround(user, TRUE)
+		user.electrocute_act((IS_CULTIST(user) ? 40 : 20), src, 1, SHOCK_NOGLOVES | SHOCK_SUPPRESS_MESSAGE)
 		return
 
 	if(active_scripture)
@@ -194,7 +200,7 @@ GLOBAL_LIST_INIT(clockwork_slabs, list())
 		return
 
 	var/mob/living/living_user = usr
-	if(!istype(living_user))
+	if(!istype(living_user) || !IS_CLOCK(living_user))
 		return FALSE
 
 	switch(action)
