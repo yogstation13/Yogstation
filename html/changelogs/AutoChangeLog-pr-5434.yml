@@ -1,4 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - code_imp: "Alt job titles will be sanitized the next time your character data is loaded. Most people will be unaffected - but if you used an alt job title that was previously removed or renamed, you may find that said job title is no longer applied. Sorry!"

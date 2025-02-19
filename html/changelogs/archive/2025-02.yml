@@ -436,3 +436,17 @@
   - qol: If it meows, it hates getting sprayed with water.
   - qol: Assembly crafting Vims now requires an emergency oxygen tank that will be
       used as life support for the pilot.
+2025-02-19:
+  MichiRecRoom:
+  - code_imp: Alt job titles will be sanitized the next time your character data is
+      loaded. Most people will be unaffected - but if you used an alt job title that
+      was previously removed or renamed, you may find that said job title is no longer
+      applied. Sorry!
+  MichiRecRoom, Ghommie:
+  - bugfix: (Ghommie) Fixed a few harddel issues with mob spawns that caused charred
+      corpses fished from lavaland to create an invisible blockade.
+  - bugfix: (Ghommie) Fixed being able to fish up mobs that have fallen in totally
+      different z-levels with a rescue hook (i.e. from bitrunning domains to lavaland).
+  RikuTheKiller:
+  - bugfix: People who have the "no blood" trait don't show up as crushed juice pouches
+      on examine if they were physically drained of blood before getting the trait.
