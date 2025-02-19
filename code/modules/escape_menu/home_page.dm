@@ -76,30 +76,9 @@
 	client?.try_open_or_buy_lootbox()
 
 /datum/escape_menu/proc/open_map()
-	var/redirect = ""
-	switch(SSmapping.config.map_name)
-		if("Ice Box Station")
-			redirect = "IceBoxStation"
-		if("Oshan Station")
-			redirect = "Oshan"
-		if("Kilo Station")
-			redirect = "KiloStation"
-		if("MetaStation")
-			redirect = "MetaStation"
-		if("NorthStar")
-			redirect = "NorthStar"
-		if("Delta Station")
-			redirect = "DeltaStation"
-		if("Tramstation")
-			redirect = "TramStation"
-		if("Blueshift")
-			redirect = "Blueshift"
-		if("Ouroboros")
-			redirect = "Ouroboros"
-		if("Void Raptor")
-			redirect = "VoidRaptor"
+	var/map_name = replacetext_char(trimtext(SSmapping.config.map_name), " ", "")
 	if(client)
-		client << link("https://maps.monkestation.com/Monke/[redirect]/")
+		client << link("https://maps.monkestation.com/Monke/[map_name]")
 
 /datum/escape_menu/proc/home_open_settings()
 	client?.prefs.ui_interact(client?.mob)
