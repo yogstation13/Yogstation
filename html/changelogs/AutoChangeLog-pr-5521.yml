@@ -1,0 +1,7 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "The ticker component is now obtainable from the mechcomp vendor."
+  - refactor: "Rewrote the ticker component to be less janky and use a proper processor."
+  - bugfix: "The flusher component can no longer flush ghosts or camera eyes."
+  - rscadd: "Added the ThinkTronic MechComp Dispenser Supply Crate to cargo."
