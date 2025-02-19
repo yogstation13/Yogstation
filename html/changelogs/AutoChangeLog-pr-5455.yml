@@ -1,0 +1,14 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - qol: "Ghost critters and AFK players no longer count as \"viewers\" for bloodsucker-related abilities that care about that."
+  - qol: "Bloodsuckers can now designate created on-station areas as their lair."
+  - balance: "The Masquerade ability for bloodsuckers will now be disabled during Sol, or if they go unconscious or into crit. Despite the confusing naming, this is mostly unrelated to the \"breaking the masquerade\" mechanic. I just can't come up with a better name for it."
+  - bugfix: "Fixed low-level Predatory Lunge not working at all."
+  - qol: "Examining a persuasion rack as a bloodsucker will now tell you how many more vassals you can create."
+  - bugfix: "Hopefully avoided more weird edge-cases with persuasion racks that could cause issues."
+  - qol: "Using a tool on a persuasion rack as a bloodsucker, while off combat mode/harm intent, with someone buckled, will now use that tool to torture, instead of requiring you to click with your offhand."
+  - bugfix: "Candelabrums now properly disable when unbolted."
+  - rscadd: "Added a cool emissive overlay to candelabrums while lit."
+  - bugfix: "Bloodsuckers can now properly toggle candelabrums from a range, like their description says."
+  - qol: "Bloodsuckers will no longer relay \"forced\" speech (i.e malkavian ramblings) when using the blood throne."
