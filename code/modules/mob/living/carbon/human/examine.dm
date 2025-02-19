@@ -251,6 +251,10 @@
 	var/apparent_blood_volume = blood_volume
 	if(HAS_TRAIT(src, TRAIT_USES_SKINTONES) && (skin_tone == "albino"))
 		apparent_blood_volume -= 150 // enough to knock you down one tier
+	// MONKESTATION EDIT START
+	if(HAS_TRAIT(src, TRAIT_NOBLOOD))
+		apparent_blood_volume = BLOOD_VOLUME_NORMAL // Duh.
+	// MONKESTATION EDIT END
 	if(isethereal(src))//Monkestation Changes Start:
 		if(appears_dead)
 			if(blood_volume < ETHEREAL_BLOOD_CHARGE_LOWEST_PASSIVE)
