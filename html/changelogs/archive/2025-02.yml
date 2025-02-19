@@ -437,6 +437,41 @@
   - qol: Assembly crafting Vims now requires an emergency oxygen tank that will be
       used as life support for the pilot.
 2025-02-19:
+  Absolucy:
+  - admin: Fixed admin logging for antag token approval/rejection not properly showing
+      the name of the antag.
+  - qol: Ghost critters and AFK players no longer count as "viewers" for bloodsucker-related
+      abilities that care about that.
+  - qol: Bloodsuckers can now designate created on-station areas as their lair.
+  - balance: The Masquerade ability for bloodsuckers will now be disabled during Sol,
+      or if they go unconscious or into crit. Despite the confusing naming, this is
+      mostly unrelated to the "breaking the masquerade" mechanic. I just can't come
+      up with a better name for it.
+  - bugfix: Fixed low-level Predatory Lunge not working at all.
+  - qol: Examining a persuasion rack as a bloodsucker will now tell you how many more
+      vassals you can create.
+  - bugfix: Hopefully avoided more weird edge-cases with persuasion racks that could
+      cause issues.
+  - qol: Using a tool on a persuasion rack as a bloodsucker, while off combat mode/harm
+      intent, with someone buckled, will now use that tool to torture, instead of
+      requiring you to click with your offhand.
+  - bugfix: Candelabrums now properly disable when unbolted.
+  - rscadd: Added a cool emissive overlay to candelabrums while lit.
+  - bugfix: Bloodsuckers can now properly toggle candelabrums from a range, like their
+      description says.
+  - qol: Bloodsuckers will no longer relay "forced" speech (i.e malkavian ramblings)
+      when using the blood throne.
+  - bugfix: The "Open Menu" button in the escape menu should work properly for all
+      maps.
+  - rscadd: The ticker component is now obtainable from the mechcomp vendor.
+  - refactor: Rewrote the ticker component to be less janky and use a proper processor.
+  - bugfix: The flusher component can no longer flush ghosts or camera eyes.
+  - rscadd: Added the ThinkTronic MechComp Dispenser Supply Crate to cargo.
+  Absolucy, wraith-54321:
+  - balance: Clockwork slabs no longer shock non-cultists when picked up, instead
+      shocking them if they try to use it in-hand.
+  - balance: Slightly reduced the damage done by clockwork item shocks from 25 to
+      20.
   MichiRecRoom:
   - code_imp: Alt job titles will be sanitized the next time your character data is
       loaded. Most people will be unaffected - but if you used an alt job title that

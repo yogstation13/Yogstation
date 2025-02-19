@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "The \"Open Menu\" button in the escape menu should work properly for all maps."

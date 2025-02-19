@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - admin: "Fixed admin logging for antag token approval/rejection not properly showing the name of the antag."

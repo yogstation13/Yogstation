@@ -1,5 +1,0 @@
-author: "Absolucy, wraith-54321"
-delete-after: True
-changes:
-  - balance: "Clockwork slabs no longer shock non-cultists when picked up, instead shocking them if they try to use it in-hand."
-  - balance: "Slightly reduced the damage done by clockwork item shocks from 25 to 20."
