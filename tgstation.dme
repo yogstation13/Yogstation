@@ -7164,6 +7164,7 @@
 #include "monkestation\code\modules\client\preferences\tunnel_vision.dm"
 #include "monkestation\code\modules\client\preferences\alt_jobs\_job.dm"
 #include "monkestation\code\modules\client\preferences\alt_jobs\titles.dm"
+#include "monkestation\code\modules\client\preferences\migrations\sanitize_alt_job_titles.dm"
 #include "monkestation\code\modules\client\preferences\species_features\arachnid.dm"
 #include "monkestation\code\modules\client\preferences\species_features\ethereal.dm"
 #include "monkestation\code\modules\client\preferences\species_features\floran.dm"
