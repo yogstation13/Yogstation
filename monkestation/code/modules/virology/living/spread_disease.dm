@@ -29,8 +29,8 @@
 	if(!disease.spread_flags && !(disease.disease_flags & DISEASE_DORMANT))
 		return FALSE
 
-	for(var/datum/disease/acute/D as anything in diseases)
-		if("[disease.uniqueID]-[disease.subID]" == "[D.uniqueID]-[D.subID]") // child ids are for pathogenic mutations and aren't accounted for as thats fucked.
+	for(var/datum/disease/acute/old_disease as anything in diseases)
+		if(disease.uniqueID == old_disease.uniqueID && disease.subID == old_disease.subID) // child ids are for pathogenic mutations and aren't accounted for as thats fucked.
 			return FALSE
 
 	if(immune_system && !immune_system.CanInfect(disease))
