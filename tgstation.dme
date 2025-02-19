@@ -7118,6 +7118,7 @@
 #include "monkestation\code\modules\cargo\packs\hardsuit_crates.dm"
 #include "monkestation\code\modules\cargo\packs\medical.dm"
 #include "monkestation\code\modules\cargo\packs\service.dm"
+#include "monkestation\code\modules\cargo\packs\vending_restock.dm"
 #include "monkestation\code\modules\cargoborg\code\cargo_module.dm"
 #include "monkestation\code\modules\cargoborg\code\cargo_teleporter.dm"
 #include "monkestation\code\modules\cargoborg\code\cargoborg_items.dm"
