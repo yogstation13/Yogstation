@@ -22,9 +22,9 @@
 	if(!.)
 		return FALSE
 	for(var/mob/living/watcher in viewers(9, owner) - owner)
-		if(watcher.stat == DEAD || QDELETED(watcher.client))
+		if(watcher.stat == DEAD || QDELETED(watcher.client) || watcher.client?.is_afk())
 			continue
-		if(IS_BLOODSUCKER(watcher) || IS_VASSAL(watcher))
+		if(IS_BLOODSUCKER(watcher) || IS_VASSAL(watcher) || HAS_TRAIT(watcher, TRAIT_GHOST_CRITTER))
 			continue
 		if(watcher.is_blind())
 			continue

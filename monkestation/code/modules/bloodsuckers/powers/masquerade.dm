@@ -43,10 +43,12 @@
 	ADD_TRAIT(user, TRAIT_MASQUERADE, BLOODSUCKER_TRAIT)
 	// Handle organs
 	var/obj/item/organ/internal/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
-	vampheart.beating = TRUE
+	vampheart?.beating = TRUE
 	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = initial(eyes.flash_protect)
+
+	RegisterSignal(user, COMSIG_MOB_STATCHANGE, PROC_REF(on_stat_change))
 
 /datum/action/cooldown/bloodsucker/masquerade/DeactivatePower()
 	. = ..() // activate = FALSE
@@ -57,7 +59,7 @@
 	user.remove_status_effect(/datum/status_effect/masquerade)
 	user.dna.remove_all_mutations()
 	for(var/datum/disease/diseases as anything in user.diseases)
-		diseases.cure()
+		diseases.cure(target = user)
 
 	// Handle Traits
 	user.add_traits(bloodsuckerdatum_power.bloodsucker_traits, BLOODSUCKER_TRAIT)
@@ -65,11 +67,20 @@
 
 	// Handle organs
 	var/obj/item/organ/internal/heart/vampheart = user.get_organ_slot(ORGAN_SLOT_HEART)
-	vampheart.beating = FALSE
+	vampheart?.beating = FALSE
 	var/obj/item/organ/internal/eyes/eyes = user.get_organ_slot(ORGAN_SLOT_EYES)
 	if(eyes)
 		eyes.flash_protect = max(initial(eyes.flash_protect) - 1, FLASH_PROTECTION_SENSITIVE)
+
+	UnregisterSignal(user, COMSIG_MOB_STATCHANGE)
+
 	to_chat(user, span_notice("Your heart beats one final time, while your skin dries out and your icy pallor returns."))
+
+/// Used to automatically disable masquerade if the user goes unconscious or crit.
+/datum/action/cooldown/bloodsucker/masquerade/proc/on_stat_change(mob/living/target, new_stat)
+	SIGNAL_HANDLER
+	if(active && new_stat != CONSCIOUS)
+		DeactivatePower()
 
 /**
  * # Status effect

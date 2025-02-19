@@ -109,7 +109,7 @@
 
 	//check if we were seen
 	for(var/mob/living/watchers in oviewers(FEED_NOTICE_RANGE) - feed_target)
-		if(QDELETED(watchers.client))
+		if(QDELETED(watchers.client) || watchers.client?.is_afk())
 			continue
 		if(watchers.has_unlimited_silicon_privilege)
 			continue
@@ -117,7 +117,7 @@
 			continue
 		if(watchers.is_blind() || watchers.is_nearsighted_currently())
 			continue
-		if(IS_BLOODSUCKER(watchers) || IS_VASSAL(watchers) || HAS_MIND_TRAIT(watchers, TRAIT_OCCULTIST))
+		if(IS_BLOODSUCKER(watchers) || IS_VASSAL(watchers) || HAS_MIND_TRAIT(watchers, TRAIT_OCCULTIST) || HAS_TRAIT(watchers, TRAIT_GHOST_CRITTER))
 			continue
 		owner.balloon_alert(owner, "feed noticed!")
 		bloodsuckerdatum_power.give_masquerade_infraction()

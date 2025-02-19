@@ -177,7 +177,11 @@
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology?.damage_resistance -= 50
 	for(var/datum/action/cooldown/bloodsucker/power in owner.actions)
-		if(power.sol_multiplier)
+		if(power.check_flags & BP_CANT_USE_DURING_SOL)
+			if(power.active && power.can_deactivate())
+				power.DeactivatePower()
+				to_chat(owner, span_danger("[power.name] has been deactivated due to the solar flares!"), type = MESSAGE_TYPE_INFO)
+		else if(power.sol_multiplier)
 			power.bloodcost *= power.sol_multiplier
 			power.constant_bloodcost *= power.sol_multiplier
 			if(power.active)

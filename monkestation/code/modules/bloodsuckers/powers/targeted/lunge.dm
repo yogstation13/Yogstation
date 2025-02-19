@@ -114,7 +114,7 @@
 	var/turf/targeted_turf = get_turf(hit_atom)
 
 	var/dist = get_dist(owner, targeted_turf)
-	if(dist <= target_range)
+	if(target_range ? (dist <= target_range) : in_view_range(owner, targeted_turf, TRUE))
 		var/safety = dist * 3 + 1
 		var/consequetive_failures = 0
 		while(--safety && !hit_atom.Adjacent(owner))
