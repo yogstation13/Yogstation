@@ -21,6 +21,7 @@
 	throw_range = 1
 	wound_bonus = 30 // Bit more than a lead pipe.
 	demolition_mod = 0.5 // you gotta wield it to have some oomph
+	tool_behaviour = TOOL_SHOVEL
 
 	/// The block_chance the spoon has when wielded.
 	var/block_chance_wielded = 15
