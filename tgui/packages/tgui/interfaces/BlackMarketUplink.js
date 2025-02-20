@@ -117,9 +117,6 @@ const ShipmentSelector = (props, context) => {
     <Modal textAlign="center">
       <Flex mb={1}>
         {deliveryMethods.map(method => {
-          if (method.name === 'LTSRBT' && !ltsrbt_built) {
-            return null;
-          }
           return (
             <Flex.Item
               key={method.name}
