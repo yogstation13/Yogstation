@@ -75,5 +75,6 @@
 			"Happy" = "happy",
 			"Bloodied" = "bloodied",
 			"Stop me" = "stop_me",
+			"Cracked bloodied" = "cracked_bloodied",
 			"Cracked" = "cracked",
 	)
