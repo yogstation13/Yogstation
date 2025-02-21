@@ -3,11 +3,11 @@
 /obj/structure/frame/machine,
 /obj/item/stack/cable_coil/five,
 /turf/open/floor/circuit/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ao" = (
 /obj/effect/mob_spawn/corpse/human/syndicatepilot,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "bU" = (
 /obj/machinery/door/window/brigdoor/left/directional/east{
 	name = "EVA";
@@ -20,11 +20,11 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "cd" = (
 /obj/structure/mirror/directional/east,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "cj" = (
 /obj/machinery/door/window/brigdoor/left/directional/north{
 	name = "Bomb Storage";
@@ -36,7 +36,7 @@
 	},
 /obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "cJ" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark/corner{
 	dir = 1
@@ -53,39 +53,30 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "df" = (
 /obj/structure/table,
 /obj/machinery/microwave,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "dJ" = (
 /turf/open/floor/circuit/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ej" = (
 /obj/item/chair{
 	dir = 4
 	},
 /mob/living/basic/carp,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "en" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Cockpit"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/effect/mapping_helpers/airlock/cutaiwire,
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/red/line,
-/turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/ruin/space/has_grav/old_infiltrator)
 "fb" = (
 /obj/effect/turf_decal/syndicateemblem/top/middle,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "gr" = (
 /obj/structure/table,
 /obj/machinery/button/door{
@@ -100,7 +91,11 @@
 	pixel_x = 6
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
+"gP" = (
+/obj/item/shard,
+/turf/template_noop,
+/area/ruin/space/has_grav/old_infiltrator)
 "gT" = (
 /mob/living/basic/carp,
 /turf/template_noop,
@@ -111,14 +106,14 @@
 	pixel_y = 3
 	},
 /turf/open/floor/circuit/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ie" = (
-/turf/closed/wall/r_wall/syndicate/hull/nodiagonal,
-/area/ruin/space/unpowered)
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/space/has_grav/old_infiltrator)
 "iI" = (
 /obj/effect/turf_decal/syndicateemblem/top/left,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "jj" = (
 /obj/structure/table,
 /obj/item/folder/red{
@@ -134,23 +129,23 @@
 	pixel_x = -3
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "js" = (
 /obj/structure/frame/computer{
 	dir = 1
 	},
 /turf/open/floor/circuit/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "jt" = (
 /obj/effect/decal/cleanable/oil,
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ju" = (
 /obj/machinery/power/shuttle_engine/propulsion/right,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "kC" = (
 /obj/machinery/light/directional/east,
 /obj/structure/window/reinforced/spawner/directional/north,
@@ -159,7 +154,7 @@
 	},
 /obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "la" = (
 /turf/template_noop,
 /area/template_noop)
@@ -174,21 +169,21 @@
 	pixel_x = 6
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "mg" = (
 /obj/structure/chair/stool/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "mq" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "mr" = (
 /obj/item/grenade/smokebomb{
 	pixel_x = 5
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ms" = (
 /obj/structure/table,
 /obj/item/restraints/handcuffs/cable/zipties,
@@ -198,11 +193,11 @@
 	},
 /obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "mO" = (
 /obj/effect/turf_decal/syndicateemblem/top/right,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "nv" = (
 /obj/item/stack/sheet/mineral/plastitanium,
 /turf/template_noop,
@@ -220,21 +215,21 @@
 	pixel_y = 9
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "nR" = (
 /obj/machinery/power/shuttle_engine/heater,
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/plating/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "pi" = (
 /obj/machinery/status_display/evac/directional/south,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "pl" = (
 /obj/structure/table,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "qL" = (
 /obj/machinery/door/window/brigdoor/left/directional/west{
 	req_access = list("syndicate");
@@ -247,32 +242,31 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ro" = (
-/obj/machinery/light/directional/west,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "sz" = (
 /obj/structure/frame/machine,
 /obj/item/circuitboard/machine/cyborgrecharger,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "sL" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light/directional/north,
 /obj/item/stack/cable_coil,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "tE" = (
 /obj/effect/turf_decal/syndicateemblem/middle/middle,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ur" = (
 /obj/structure/lattice,
 /obj/machinery/status_display/ai/directional/north,
 /turf/template_noop,
-/area/template_noop)
+/area/ruin/space/has_grav/old_infiltrator)
 "us" = (
 /obj/effect/spawner/random/engineering/tool,
 /obj/machinery/light/directional/west,
@@ -282,7 +276,7 @@
 	},
 /obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "uv" = (
 /obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent{
@@ -290,28 +284,28 @@
 	pixel_x = 2
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "uE" = (
 /obj/machinery/recharge_station,
 /obj/machinery/status_display/ai/directional/north,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "uP" = (
 /obj/machinery/power/shuttle_engine/propulsion/left,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "uS" = (
 /obj/machinery/newscaster/directional/south,
 /obj/item/ammo_casing/a357/match,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "vi" = (
 /obj/structure/frame/computer{
 	anchored = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "vw" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/effect/turf_decal/stripes/red/line{
@@ -325,11 +319,11 @@
 	pixel_x = 8
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "vK" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "wJ" = (
 /obj/machinery/door/poddoor{
 	id = "ruined_infiltrator";
@@ -340,10 +334,11 @@
 	dir = 8
 	},
 /obj/machinery/button/door/directional/west{
-	id = "ruined_infiltrator"
+	id = "ruined_infiltrator";
+	req_access = list("syndicate")
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "wU" = (
 /obj/structure/table,
 /obj/item/food/ready_donk{
@@ -355,28 +350,33 @@
 	pixel_x = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "wZ" = (
 /obj/machinery/power/shuttle_engine/propulsion,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "xk" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "yL" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/obj/item/ammo_casing/a357/match,
+/obj/item/ammo_casing/a357/match,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ruin/space/has_grav/old_infiltrator)
 "zg" = (
 /obj/item/crowbar/red,
 /obj/structure/sign/warning/vacuum/external/directional/north,
 /obj/structure/rack,
 /obj/item/book/manual/nuclear,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
+"zo" = (
+/obj/item/stack/sheet/mineral/plastitanium,
+/turf/template_noop,
+/area/ruin/space/has_grav/old_infiltrator)
 "Aa" = (
 /obj/structure/closet/syndicate,
 /obj/item/storage/fancy/cigarettes/cigpack_syndicate,
@@ -386,7 +386,7 @@
 	},
 /obj/item/trench_tool,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "AX" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/ammo_casing/spent,
@@ -399,12 +399,12 @@
 	pixel_x = -4
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Bb" = (
 /obj/effect/turf_decal/syndicateemblem/middle/right,
 /obj/machinery/newscaster/directional/east,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "BA" = (
 /obj/structure/table,
 /obj/item/storage/belt/bandolier{
@@ -420,15 +420,15 @@
 	pixel_x = -8
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Cv" = (
 /obj/item/ammo_casing/a357/match,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "CC" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /turf/open/floor/plating,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "CX" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency/old{
@@ -437,12 +437,12 @@
 	},
 /obj/machinery/status_display/evac/directional/north,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Da" = (
 /obj/effect/turf_decal/bot_red,
 /obj/machinery/suit_storage_unit/open,
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Dx" = (
 /obj/structure/table,
 /obj/item/radio{
@@ -453,22 +453,22 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "DM" = (
-/turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/turf/template_noop,
+/area/ruin/space/has_grav/old_infiltrator)
 "EK" = (
 /mob/living/basic/carp,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "EM" = (
-/obj/machinery/vending/assist,
+/obj/machinery/light/directional/east,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ET" = (
 /obj/structure/closet/cardboard/metal,
 /turf/open/floor/circuit/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Fn" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/shield/riot{
@@ -476,11 +476,11 @@
 	pixel_x = 7
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "FW" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "GN" = (
 /obj/structure/frame/computer{
 	anchored = 1
@@ -490,7 +490,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "GY" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
@@ -503,18 +503,18 @@
 	req_access = list("syndicate")
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Ig" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/right,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Ix" = (
 /obj/item/tank/internals/plasma/empty{
 	pixel_y = -13;
 	pixel_x = -12
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Jd" = (
 /obj/item/stack/rods,
 /turf/template_noop,
@@ -522,42 +522,42 @@
 "JH" = (
 /obj/structure/frame/machine,
 /turf/open/floor/circuit/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "JL" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/left,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Kr" = (
 /obj/item/circuitboard/computer/security,
 /obj/structure/frame/computer{
 	anchored = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "KJ" = (
 /obj/effect/spawner/random/maintenance,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "KM" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/ruin/space/has_grav/old_infiltrator)
 "Lz" = (
 /obj/structure/table,
 /obj/item/tank/internals/emergency_oxygen/engi,
 /obj/item/clothing/mask/gas,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "LF" = (
-/obj/item/rack_parts,
+/obj/machinery/light/directional/west,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "LP" = (
 /obj/effect/turf_decal/bot_red,
 /obj/machinery/suit_storage_unit/open,
 /obj/machinery/light/directional/west,
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Mw" = (
 /obj/machinery/status_display/ai{
 	pixel_x = 32
@@ -565,17 +565,17 @@
 /obj/machinery/light/directional/east,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "MB" = (
 /mob/living/basic/carp/mega,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Nv" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/sign/poster/contraband/random/directional/west,
 /obj/machinery/suit_storage_unit/open,
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "NY" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/door/poddoor/shutters{
@@ -583,7 +583,7 @@
 	name = "Cockpit Shutters"
 	},
 /turf/open/floor/plating,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "OT" = (
 /obj/machinery/door/window/brigdoor/right/directional/east{
 	name = "EVA";
@@ -596,38 +596,55 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Pe" = (
 /obj/item/flamethrower{
 	pixel_x = 9;
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Pq" = (
-/turf/closed/wall/r_wall/syndicate/hull,
-/area/ruin/space/unpowered)
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/space/has_grav/old_infiltrator)
 "PC" = (
 /obj/item/stock_parts/capacitor/adv{
 	pixel_x = 8;
 	pixel_y = 5
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
+"Re" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Cockpit"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
+/obj/effect/mapping_helpers/airlock/locked,
+/obj/effect/mapping_helpers/airlock/cutaiwire,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/red/line,
+/turf/open/floor/iron/dark/airless,
+/area/ruin/space/has_grav/old_infiltrator)
 "RM" = (
 /obj/item/restraints/handcuffs/cable/zipties/used{
 	pixel_y = 13
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "RP" = (
 /obj/structure/closet/crate/secure/loot,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
+"SB" = (
+/obj/item/rack_parts,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/ruin/space/has_grav/old_infiltrator)
 "SE" = (
 /obj/item/ammo_casing/spent,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "SS" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/effect/turf_decal/stripes/red/line{
@@ -635,15 +652,19 @@
 	},
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "SY" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/middle,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Tc" = (
 /obj/item/stack/rods/two,
 /turf/template_noop,
 /area/template_noop)
+"Ti" = (
+/obj/machinery/vending/assist,
+/turf/open/floor/mineral/plastitanium/red/airless,
+/area/ruin/space/has_grav/old_infiltrator)
 "Tx" = (
 /obj/machinery/door/window/brigdoor/right/directional/west{
 	req_access = list("syndicate");
@@ -656,12 +677,15 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "TY" = (
 /obj/effect/decal/cleanable/glass,
 /obj/item/shard,
 /obj/item/stack/cable_coil/five,
-/obj/item/electronics/airlock,
+/obj/item/electronics/airlock{
+	passed_name = "Medical";
+	accesses = list("syndicate")
+	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
@@ -669,7 +693,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/dark/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Ux" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/structure/table,
@@ -679,7 +703,7 @@
 	},
 /obj/item/stock_parts/cell/emproof/empty,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "UN" = (
 /obj/machinery/status_display/evac{
 	pixel_x = -32
@@ -691,7 +715,7 @@
 	pixel_x = 5
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "WS" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/ammo_casing/spent{
@@ -700,27 +724,27 @@
 	},
 /obj/item/ammo_casing/spent,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Xp" = (
 /obj/effect/turf_decal/syndicateemblem/middle/left,
 /obj/item/radio/intercom/directional/west,
 /obj/item/ammo_casing/spent,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Yb" = (
 /obj/structure/chair,
 /obj/item/toy/plush/nukeplushie,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "Yj" = (
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "YL" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/space/syndicate/black/red,
 /obj/item/clothing/head/helmet/space/syndicate/black/red,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "YN" = (
 /obj/structure/table,
 /obj/item/reagent_containers/pill/morphine{
@@ -731,7 +755,7 @@
 	pixel_x = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "YT" = (
 /obj/item/shard,
 /turf/template_noop,
@@ -750,11 +774,11 @@
 	pixel_x = -2
 	},
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 "ZO" = (
 /obj/effect/spawner/random/structure/tank_holder,
 /turf/open/floor/mineral/plastitanium/red/airless,
-/area/ruin/space/unpowered)
+/area/ruin/space/has_grav/old_infiltrator)
 
 (1,1,1) = {"
 la
@@ -885,10 +909,10 @@ Pq
 Pq
 KM
 KM
-la
-la
-la
-la
+DM
+DM
+DM
+DM
 la
 "}
 (6,1,1) = {"
@@ -901,7 +925,7 @@ la
 la
 la
 la
-la
+DM
 Pq
 Pq
 Pq
@@ -910,12 +934,12 @@ Pq
 Pq
 sz
 PC
+ro
 DM
-la
 KM
-la
-nv
-la
+DM
+zo
+DM
 la
 "}
 (7,1,1) = {"
@@ -929,7 +953,7 @@ la
 la
 la
 KM
-la
+DM
 Da
 LP
 Nv
@@ -940,9 +964,9 @@ vK
 EK
 KM
 KM
-la
-la
-YT
+DM
+DM
+gP
 la
 "}
 (8,1,1) = {"
@@ -957,19 +981,19 @@ la
 nv
 KM
 KM
-DM
+ro
 SE
-DM
-DM
+ro
+ro
 Pq
 xk
-DM
+ro
 RM
-DM
+ro
 cd
 KM
-la
-la
+DM
+DM
 la
 "}
 (9,1,1) = {"
@@ -983,7 +1007,7 @@ Pq
 la
 la
 Pq
-DM
+ro
 Yb
 ej
 jt
@@ -991,12 +1015,12 @@ pi
 Pq
 ms
 WS
-DM
+ro
 Zh
 ie
 Pq
 Pq
-la
+DM
 la
 "}
 (10,1,1) = {"
@@ -1013,12 +1037,12 @@ Pq
 RP
 Lz
 pl
-DM
-DM
+ro
+ro
 Pq
 Dx
-DM
-DM
+ro
+ro
 YN
 Pq
 la
@@ -1060,19 +1084,19 @@ NY
 jj
 Cv
 mq
-Yj
 Pq
+SB
 LF
 ro
 SE
 Pe
-DM
-DM
+ro
+ro
 iI
 Xp
 JL
 vK
-DM
+ro
 us
 JH
 nR
@@ -1086,20 +1110,20 @@ la
 NY
 GN
 mg
-Yj
 Cv
-en
-DM
+Re
+ro
+ro
 EK
-DM
+ro
 Ix
 vK
 MB
 fb
 tE
 SY
-DM
-DM
+ro
+ro
 cj
 dJ
 nR
@@ -1113,15 +1137,15 @@ la
 NY
 gr
 Fn
-Cv
-Cv
-Pq
-EM
 yL
+Pq
+Ti
+EM
+ro
 vK
 FW
 uv
-DM
+ro
 mO
 Bb
 Ig
@@ -1175,12 +1199,12 @@ la
 la
 Pq
 ZO
-DM
-DM
+ro
+ro
 Pq
 BA
-DM
-DM
+ro
+ro
 Ux
 Pq
 la
@@ -1202,12 +1226,12 @@ la
 la
 wJ
 vK
-DM
+ro
 pi
 Pq
 CX
 AX
-DM
+ro
 lR
 ie
 Pq
@@ -1229,13 +1253,13 @@ la
 la
 Pq
 zg
-yL
+EM
 YL
 Pq
 sL
 KM
-DM
-DM
+ro
+ro
 SS
 js
 nR
@@ -1260,8 +1284,8 @@ Pq
 Pq
 Pq
 KM
-la
 DM
+ro
 vK
 vw
 am
@@ -1287,7 +1311,7 @@ la
 la
 Pq
 ur
-Jd
+en
 KM
 KJ
 SS

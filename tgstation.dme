@@ -6070,6 +6070,7 @@
 #include "monkestation\code\game\area\areas.dm"
 #include "monkestation\code\game\area\areas\mining.dm"
 #include "monkestation\code\game\area\areas\station.dm"
+#include "monkestation\code\game\area\areas\ruins\space.dm"
 #include "monkestation\code\game\machinery\_machinery.dm"
 #include "monkestation\code\game\machinery\announcement_system.dm"
 #include "monkestation\code\game\machinery\bomb_actualizer.dm"
