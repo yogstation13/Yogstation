@@ -49,10 +49,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/dorms,
 /obj/structure/curtain,
-/obj/structure/sign/poster/contraband/interdyne_gene_clinics/directional/south{
-	pixel_x = -1;
-	pixel_y = -24
-	},
+/obj/structure/sign/poster/contraband/interdyne_gene_clinics/directional/south,
 /turf/open/floor/iron/showroomfloor,
 /area/template_noop)
 "dU" = (
@@ -750,12 +747,9 @@
 /area/template_noop)
 "YZ" = (
 /obj/structure/cable,
-/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/west{
-	pixel_x = -27;
-	pixel_y = 4
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6/directional/west,
 /turf/open/floor/iron/showroomfloor,
 /area/template_noop)
 "Za" = (

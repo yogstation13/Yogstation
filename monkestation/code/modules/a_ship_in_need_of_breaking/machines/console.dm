@@ -12,9 +12,6 @@
 ///the currently used map template
 	var/datum/map_template/shipbreaker/template
 
-///List of ships to spawn.
-	var/list/possible_ships = list()
-
 ///subtypes of this (but not this itself) are loadable programs
 	var/ship_type = /datum/map_template/shipbreaker
 
@@ -39,9 +36,12 @@
 	if(!linked)
 		return
 	bottom_left = locate(linked.x, linked.y, src.z)
-	for(var/ship in subtypesof(ship_type))
-		var/datum/map_template/shipbreaker/s = new ship
-		possible_ships+= s
+
+/obj/machinery/computer/shipbreaker/Destroy()
+	bottom_left = null
+	linked = null
+	template = null
+	return ..()
 
 /obj/machinery/computer/shipbreaker/proc/spawn_ship()
 	area_clear_check()
@@ -49,7 +49,8 @@
 		say("ERROR: SHIPBREAKING ZONE NOT CLEAR, PLEASE REMOVE ALL REMAINING FLOORS, STRUCTURES, AND MACHINERY")
 		return
 
-	var/datum/map_template/shipbreaker/ship_to_spawn = pick(possible_ships)
+	var/random_ship = pick(SSmapping.shipbreaker_templates)
+	var/datum/map_template/shipbreaker/ship_to_spawn = SSmapping.shipbreaker_templates[random_ship]
 
 	ship_to_spawn.load(bottom_left)
 

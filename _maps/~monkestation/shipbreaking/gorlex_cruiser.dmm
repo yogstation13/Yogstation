@@ -56,7 +56,7 @@
 /area/template_noop)
 "bZ" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Master at Arms"
+	name = "Master At Arms"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/leader,
@@ -228,7 +228,6 @@
 /obj/structure/closet/secure_closet/medical1{
 	req_access = list("syndicate")
 	},
-/obj/structure/closet/firecloset/wall/directional/south,
 /turf/open/floor/iron/dark,
 /area/template_noop)
 "hK" = (
@@ -691,7 +690,7 @@
 /area/template_noop)
 "vc" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Master at Arms"
+	name = "Master At Arms"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
@@ -1257,6 +1256,7 @@
 	pixel_x = -4;
 	pixel_y = 6
 	},
+/obj/structure/closet/firecloset/wall/directional/east,
 /turf/open/floor/iron/dark,
 /area/template_noop)
 "Kk" = (

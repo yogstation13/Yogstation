@@ -430,11 +430,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/mineral/titanium,
 /area/template_noop)
-"vc" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
 "vg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/plastic,
@@ -587,10 +582,6 @@
 "HJ" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"HR" = (
-/obj/structure/lattice,
-/turf/closed/wall/mineral/titanium,
 /area/template_noop)
 "Iv" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -966,10 +957,10 @@ fk
 "}
 (5,1,1) = {"
 HJ
-HR
-HR
-HR
-HR
+Kv
+Kv
+Kv
+Kv
 Kv
 Kv
 Kv
@@ -1387,7 +1378,7 @@ HJ
 HJ
 HJ
 HJ
-vc
+HJ
 fk
 fk
 fk

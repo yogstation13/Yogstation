@@ -187,9 +187,7 @@
 /area/template_noop)
 "C" = (
 /obj/machinery/power/shuttle_engine/heater,
-/obj/structure/window/reinforced/clockwork{
-	dir = 1
-	},
+/obj/structure/window/reinforced/clockwork/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "D" = (

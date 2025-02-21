@@ -10,10 +10,8 @@
 /turf/open/floor/iron/kitchen/small,
 /area/template_noop)
 "g" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
 /obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
 /turf/open/floor/plating,
 /area/template_noop)
 "h" = (
@@ -27,11 +25,9 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/curtain,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
 /turf/open/floor/iron/kitchen/small,
 /area/template_noop)
 "x" = (
@@ -55,12 +51,10 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/curtain,
 /obj/item/food/urinalcake,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
 /turf/open/floor/iron/kitchen/small,
 /area/template_noop)
 "G" = (
@@ -68,14 +62,12 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/template_noop)
 "J" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
 /obj/structure/urinal{
 	dir = 4;
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/window/reinforced/tinted/spawner/directional/north,
 /turf/open/floor/iron/kitchen/small,
 /area/template_noop)
 "K" = (

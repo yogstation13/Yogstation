@@ -14,7 +14,7 @@
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "bj" = (
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "bl" = (
@@ -195,17 +195,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "md" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium,
-/area/template_noop)
-"mo" = (
-/obj/structure/window/reinforced,
-/obj/machinery/power/shuttle_engine/heater{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
 /area/template_noop)
 "mG" = (
 /obj/machinery/door/airlock/security,
@@ -235,7 +226,7 @@
 /obj/machinery/power/shuttle_engine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "nR" = (
@@ -365,9 +356,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "uq" = (
-/obj/structure/window/reinforced,
 /obj/machinery/power/port_gen/pacman/pre_loaded,
 /obj/structure/cable,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "uU" = (
@@ -406,8 +397,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "xt" = (
-/obj/structure/window/reinforced,
 /obj/structure/reagent_dispensers/foamtank,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "xN" = (
@@ -466,15 +457,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/uranium,
 /area/template_noop)
-"AW" = (
-/obj/machinery/power/shuttle_engine/heater{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/template_noop)
 "AX" = (
 /obj/effect/turf_decal/trimline/yellow/filled/corner{
 	dir = 1
@@ -510,9 +492,6 @@
 	},
 /area/template_noop)
 "BN" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/table{
 	pixel_y = -7
 	},
@@ -536,6 +515,7 @@
 	pixel_x = 6;
 	pixel_y = -4
 	},
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "BT" = (
@@ -559,9 +539,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "Df" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/table{
 	pixel_y = -7
 	},
@@ -569,6 +546,7 @@
 	pixel_y = -4
 	},
 /obj/item/food/donkpocket/warm/spicy,
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "Dy" = (
@@ -706,9 +684,8 @@
 /area/template_noop)
 "Ob" = (
 /obj/machinery/power/shuttle_engine/heater,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "Pd" = (
@@ -742,12 +719,10 @@
 /turf/open/floor/plating/airless,
 /area/template_noop)
 "QV" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/structure/sign/poster/contraband/donk_co/directional/north,
 /obj/machinery/computer/old,
+/obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "QY" = (
@@ -801,6 +776,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/mineral/titanium/tiled,
 /area/template_noop)
+"Vr" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/structure/window/reinforced/spawner/directional/north,
+/turf/open/floor/plating/airless,
+/area/template_noop)
 "VU" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/hazardvest,
@@ -840,7 +820,7 @@
 	pixel_y = 5
 	},
 /obj/structure/cable,
-/obj/structure/window/reinforced,
+/obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/template_noop)
 "XY" = (
@@ -892,7 +872,7 @@ FW
 FW
 FW
 yL
-Ob
+Vr
 qR
 Fv
 iB
@@ -919,7 +899,7 @@ yL
 MX
 yL
 yL
-Ob
+Vr
 qR
 iB
 iB
@@ -1126,7 +1106,7 @@ iB
 (10,1,1) = {"
 iB
 iH
-mo
+nm
 md
 an
 FG
@@ -1153,7 +1133,7 @@ Fv
 (11,1,1) = {"
 iB
 iB
-mo
+nm
 Df
 an
 mQ
@@ -1173,7 +1153,7 @@ ZB
 RT
 ls
 bj
-AW
+Ob
 iB
 iB
 "}
@@ -1207,7 +1187,7 @@ iB
 (13,1,1) = {"
 iB
 iH
-mo
+nm
 BN
 KM
 RT
@@ -1227,14 +1207,14 @@ LP
 RT
 jb
 bj
-Ob
+Vr
 iB
 Fv
 "}
 (14,1,1) = {"
 iB
 iB
-mo
+nm
 md
 an
 zw
@@ -1254,7 +1234,7 @@ yL
 NF
 an
 xt
-Ob
+Vr
 iB
 iB
 "}

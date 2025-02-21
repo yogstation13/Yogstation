@@ -618,7 +618,7 @@
 /area/template_noop)
 "NN" = (
 /obj/machinery/door/airlock/bronze/clock,
-/turf/closed/wall/clockwork,
+/turf/open/floor/bronze,
 /area/template_noop)
 "NY" = (
 /turf/open/floor/mineral/abductor,
