@@ -8305,6 +8305,7 @@
 #include "monkestation\code\modules\storytellers\storytellers\brute.dm"
 #include "monkestation\code\modules\storytellers\storytellers\clown.dm"
 #include "monkestation\code\modules\storytellers\storytellers\ghost.dm"
+#include "monkestation\code\modules\storytellers\storytellers\guide.dm"
 #include "monkestation\code\modules\storytellers\storytellers\hermit.dm"
 #include "monkestation\code\modules\storytellers\storytellers\jester.dm"
 #include "monkestation\code\modules\storytellers\storytellers\mystic.dm"

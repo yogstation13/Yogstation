@@ -21,6 +21,7 @@
 	weight = 0
 	alert_observers = FALSE
 	category = EVENT_CATEGORY_SPACE
+	track = EVENT_TRACK_OBJECTIVES
 
 /datum/round_event/wonderlandapocalypse/announce(fake)
 	if(!fake && SSsecurity_level.get_current_level_as_number() < SEC_LEVEL_DELTA)

@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist/solo/heretic
 	antag_flag = ROLE_HERETIC
-	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_MAGICAL)
+	tags = list(TAG_COMBAT, TAG_SPOOKY, TAG_MAGICAL, TAG_CREW_ANTAG)
 	antag_datum = /datum/antagonist/heretic
 	protected_roles = list(
 		JOB_CAPTAIN,

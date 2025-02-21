@@ -9,7 +9,7 @@
 	min_wizard_trigger_potency = 1
 	max_wizard_trigger_potency = 4
 	track = EVENT_TRACK_MAJOR
-	tags = list(TAG_SPOOKY, TAG_DESTRUCTIVE)
+	tags = list(TAG_SPOOKY, TAG_DESTRUCTIVE, TAG_MAGICAL)
 
 /datum/round_event/anomaly/anomaly_radiation
 	start_when = ANOMALY_START_HARMFUL_TIME

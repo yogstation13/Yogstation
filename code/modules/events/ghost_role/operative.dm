@@ -5,7 +5,7 @@
 	max_occurrences = 1
 	category = EVENT_CATEGORY_INVASION
 	description = "A single nuclear operative assaults the station."
-
+	
 /datum/round_event/ghost_role/operative
 	minimum_required = 1
 	role_name = "lone operative"

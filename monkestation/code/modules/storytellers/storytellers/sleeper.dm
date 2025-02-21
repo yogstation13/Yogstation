@@ -9,7 +9,7 @@
 		EVENT_TRACK_OBJECTIVES = 1
 		)
 	guarantees_roundstart_roleset = FALSE
-	tag_multipliers = list(TAG_COMBAT = 0.6, TAG_DESTRUCTIVE = 0.7)
+	tag_multipliers = list(TAG_COMBAT = 0.6, TAG_DESTRUCTIVE = 0.7, TAG_POSITIVE = 1.2)
 	always_votable = TRUE //good for low pop
 	population_max = 45
 	welcome_text = "The day is going slowly."

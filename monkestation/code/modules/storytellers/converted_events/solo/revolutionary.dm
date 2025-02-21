@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist/solo/revolutionary
 	name = "Roundstart Revolution"
-	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG)
+	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_CREW_ANTAG)
 	antag_flag = ROLE_REV_HEAD
 	antag_datum = /datum/antagonist/rev/head/event_trigger
 	typepath = /datum/round_event/antagonist/solo/revolutionary

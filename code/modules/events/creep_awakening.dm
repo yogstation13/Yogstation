@@ -1,3 +1,4 @@
+/* Monestation removal: Codeblocked, we use roleset Compulsive Obsession event now.
 /datum/round_event_control/obsessed
 	name = "Obsession Awakening"
 	typepath = /datum/round_event/obsessed
@@ -25,3 +26,4 @@
 		H.gain_trauma(/datum/brain_trauma/special/obsessed)
 		announce_to_ghosts(H)
 		break
+*/

@@ -1,6 +1,6 @@
 /datum/round_event_control/antagonist/solo/from_ghosts/assault_operative
 	name = "Operative Assault"
-	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_EXTERNAL)
+	tags = list(TAG_DESTRUCTIVE, TAG_COMBAT, TAG_TEAM_ANTAG, TAG_EXTERNAL, TAG_OUTSIDER_ANTAG)
 	antag_flag = ROLE_ASSAULT_OPERATIVE
 	antag_datum = /datum/antagonist/assault_operative
 	typepath = /datum/round_event/antagonist/solo/ghost/assault_operative
@@ -21,7 +21,7 @@
 		JOB_BRIG_PHYSICIAN,
 	)
 	base_antags = 3
-	maximum_antags = 4
+	maximum_antags = 5
 	enemy_roles = list(
 		JOB_AI,
 		JOB_CYBORG,

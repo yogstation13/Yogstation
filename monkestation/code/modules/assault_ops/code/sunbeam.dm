@@ -155,6 +155,7 @@
 	weight = 0
 	category = EVENT_CATEGORY_SPACE
 	description = "Forces the ICARUS weapons system to fire a sunbeam at a random location. Causing massive devistation to the station."
+	track = EVENT_TRACK_OBJECTIVES
 
 /datum/round_event/icarus_sunbeam
 	announce_when = 1 // Instant announcement
