@@ -35,7 +35,6 @@
 	name = "Nanotrasen Branded Spacesuit Box"
 	desc = "A few boxes of \"Old Style\" space suits fell off the back of a space truck."
 	item = /obj/item/storage/box
-
 	price_min = 1500
 	price_max = 4000
 	stock_max = 3

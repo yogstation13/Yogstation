@@ -620,7 +620,8 @@ GLOBAL_LIST_INIT(maintenance_loot_makeshift,list(
 	/obj/item/stack/spacecash/c200 = W_RARE,
 	/obj/item/stack/spacecash/c50 = W_UNCOMMON,
 	/obj/item/stack/spacecash/c500 = W_MYTHICAL,
-	/obj/item/stock_parts/cell/potato = W_UNCOMMON
+	/obj/item/stock_parts/cell/potato = W_UNCOMMON,
+	/obj/item/blackmarket_uplink = W_UNCOMMON
 ))
 
 //Has minor mechanical usage; stuff you'd usually only find in a lathe, through crafting, or through a vendor.

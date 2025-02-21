@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(blackmarket)
 	/// Descriptions for each shipping methods.
 	var/shipping_method_descriptions = list(
 		SHIPPING_METHOD_LAUNCH="Launches the item at the station from space, cheap but you might not recieve your item at all.",
+		SHIPPING_METHOD_LTSRBT="Long-To-Short-Range-Bluespace-Transceiver, a machine that recieves items outside the station and then teleports them to the location of the uplink.",
 		SHIPPING_METHOD_TELEPORT="Teleports the item in a random area in the station, you get 60 seconds to get there first though."
 	)
 
@@ -45,6 +46,29 @@ SUBSYSTEM_DEF(blackmarket)
 			continue
 
 		switch(purchase.method)
+			// Find a ltsrbt pad and make it handle the shipping.
+			if(SHIPPING_METHOD_LTSRBT)
+				if(!telepads.len)
+					continue
+				// Prioritize pads that don't have a cooldown active.
+				var/free_pad_found = FALSE
+				for(var/obj/machinery/ltsrbt/pad in telepads)
+					if(pad.recharge_cooldown)
+						continue
+					pad.add_to_queue(purchase)
+					queued_purchases -= purchase
+					free_pad_found = TRUE
+					break
+
+				if(free_pad_found)
+					continue
+
+				var/obj/machinery/ltsrbt/pad = pick(telepads)
+
+				to_chat(recursive_loc_check(purchase.uplink.loc, /mob), span_notice("[purchase.uplink] flashes a message noting that the order is being processed by [pad]."))
+
+				queued_purchases -= purchase
+				pad.add_to_queue(purchase)
 			// Get random area, throw it somewhere there.
 			if(SHIPPING_METHOD_TELEPORT)
 				var/turf/targetturf = get_safe_random_station_turf()
@@ -85,5 +109,7 @@ SUBSYSTEM_DEF(blackmarket)
 
 /// Used to add /datum/blackmarket_purchase to queued_purchases var. Returns TRUE when queued.
 /datum/controller/subsystem/blackmarket/proc/queue_item(datum/blackmarket_purchase/P)
+	if(P.method == SHIPPING_METHOD_LTSRBT && !telepads.len)
+		return FALSE
 	queued_purchases += P
 	return TRUE

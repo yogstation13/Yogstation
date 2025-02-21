@@ -90,6 +90,7 @@
 /obj/item/blackmarket_uplink/ui_static_data(mob/user)
 	var/list/data = list()
 	data["delivery_method_description"] = SSblackmarket.shipping_method_descriptions
+	data["ltsrbt_built"] = SSblackmarket.telepads.len
 	data["markets"] = list()
 	for(var/M in accessible_markets)
 		var/datum/blackmarket_market/BM = SSblackmarket.markets[M]
@@ -156,9 +157,14 @@
 	time = 30
 	tool_behaviors = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_MULTITOOL)
 	reqs = list(
-		/obj/item/stock_parts/subspace/amplifier = 1,
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/assembly/signaler = 1,
 		/obj/item/stack/cable_coil = 15,
 		/obj/item/radio = 1,
 		/obj/item/analyzer = 1
 	)
 	category = CAT_MISC
+
+/datum/crafting_recipe/blackmarket_uplink/New()
+	..()
+	blacklist |= subtypesof(/obj/item/radio/)
