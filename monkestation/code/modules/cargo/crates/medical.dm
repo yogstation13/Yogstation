@@ -67,9 +67,9 @@
 	crate_name = "experimental medicine crate"
 
 /datum/supply_pack/medical/borer_cage
-	name = "Borer cage"
-	desc = "A troublesome brain worm dumping one to many unprescribed drugs into your patients? Well this crate if for you!"
+	name = "Cortical Borer Cages"
+	desc = "Troublesome brain worms dumping one to many unprescribed drugs into your patients? Well this crate is for you!"
 	cost = CARGO_CRATE_VALUE * 10
 	contraband = TRUE
-	contains = list(/obj/item/cortical_cage)
-	crate_name = "anti-borer crate"
+	contains = list(/obj/item/cortical_cage = 3)
+	crate_name = "Anti-Borer crate"

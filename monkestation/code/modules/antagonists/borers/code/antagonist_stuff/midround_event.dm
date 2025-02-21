@@ -8,10 +8,10 @@
 	antag_flag = ROLE_CORTICAL_BORER
 	track = EVENT_TRACK_MAJOR
 	enemy_roles = list(
-		JOB_CAPTAIN,
-		JOB_DETECTIVE,
-		JOB_HEAD_OF_SECURITY,
-		JOB_SECURITY_OFFICER,
+		JOB_CHIEF_MEDICAL_OFFICER,
+		JOB_MEDICAL_DOCTOR,
+		JOB_CHEMIST,
+		JOB_BRIG_PHYSICIAN,
 	)
 	required_enemies = 2
 	weight = 5 // as rare as a natural blob
