@@ -1,0 +1,9 @@
+author: "BingusSS13"
+delete-after: True
+changes:
+  - rscadd: "The abandoned infiltrator now has it's own area."
+  - bugfix: "You can now place an APC on the abandoned infiltrator."
+  - bugfix: "The blast door button on the abandoned infiltrator now requires syndicate access."
+  - qol: "The airlock electronics on the abandoned infiltrator are now preset with the name \"Medical\" and syndicate access."
+  - qol: "Moves the walls between the cockpit and hallway on the abandoned infiltrator up by one tile for consistency with the version of the infiltrator it was based on."
+  - qol: "Extends the abandoned infiltrator area to cover the missing sections of the ship."
