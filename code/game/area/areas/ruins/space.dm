@@ -590,6 +590,9 @@
 
 	name = "\improper Abandoned Ship"
 
+//ruin hull ship
+/area/ruin/space/ruined_hull_1
+	name = "\improper interstellar modulars hull"
 
 //some sorta ancient shuttle idk
 
@@ -698,3 +701,7 @@
 //SYN-C Brutus, derelict frigate
 /area/ruin/space/has_grav/infested_frigate
 	name = "SYN-C Brutus"
+
+//Infested Flotilla
+/area/ruin/space/has_grav/infested_flotilla
+	name = "Infested Flotilla"

@@ -1,0 +1,815 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aR" = (
+/turf/closed/wall,
+/area/ruin/space/ruined_hull_1)
+"bx" = (
+/mob/living/basic/carp,
+/turf/template_noop,
+/area/template_noop)
+"by" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"ct" = (
+/obj/structure/broken_flooring/plating/directional/south,
+/turf/template_noop,
+/area/template_noop)
+"cC" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"du" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"dN" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/contraband/narcotics,
+/obj/item/gps/spaceruin{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"ez" = (
+/obj/item/clothing/head/utility/welding,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"eJ" = (
+/obj/structure/broken_flooring/plating/directional/north,
+/obj/structure/broken_flooring/singular/directional/west,
+/turf/template_noop,
+/area/template_noop)
+"fv" = (
+/turf/open/floor/plating/rust,
+/area/ruin/space/ruined_hull_1)
+"fA" = (
+/obj/item/pipe_dispenser{
+	pixel_x = 1;
+	pixel_y = 12
+	},
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"gb" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/trash/garbage,
+/turf/template_noop,
+/area/template_noop)
+"go" = (
+/obj/item/stack/sheet/cardboard,
+/obj/item/wallframe/apc{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"gp" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"kh" = (
+/obj/structure/cable,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"la" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/spawner/random/maintenance,
+/turf/template_noop,
+/area/template_noop)
+"md" = (
+/turf/closed/wall/rust,
+/area/ruin/space/ruined_hull_1)
+"nN" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"oj" = (
+/obj/structure/cable,
+/obj/item/crowbar/large/emergency,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"ow" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"oQ" = (
+/obj/structure/broken_flooring/pile/directional/north,
+/turf/template_noop,
+/area/template_noop)
+"py" = (
+/obj/item/stack/sheet/cardboard,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/item/wallframe/airalarm,
+/obj/item/electronics/airalarm,
+/turf/open/floor/plating/rust,
+/area/ruin/space/ruined_hull_1)
+"pY" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/maintenance/external/glass,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"rq" = (
+/obj/item/stock_parts/cell/high,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"rr" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/effect/spawner/random/trash/garbage,
+/turf/template_noop,
+/area/template_noop)
+"rE" = (
+/obj/structure/lattice,
+/obj/item/clothing/head/helmet/space/eva{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/item/clothing/gloves/color/yellow/power_gloves{
+	pixel_y = -6;
+	pixel_x = 6
+	},
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"rH" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/template_noop,
+/area/template_noop)
+"rX" = (
+/obj/structure/broken_flooring/singular,
+/turf/template_noop,
+/area/template_noop)
+"sf" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"si" = (
+/obj/structure/broken_flooring/pile/directional/east,
+/turf/template_noop,
+/area/template_noop)
+"tA" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/medical/medkit,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"tK" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/spawner/random/trash/garbage,
+/turf/template_noop,
+/area/template_noop)
+"uP" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"vC" = (
+/obj/item/stack/ore/iron,
+/turf/open/floor/plating/rust,
+/area/ruin/space/ruined_hull_1)
+"wZ" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/closed/wall,
+/area/ruin/space/ruined_hull_1)
+"xn" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/maintenance/external/glass,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"yc" = (
+/obj/item/weldingtool/largetank/empty,
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"yQ" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"zc" = (
+/obj/item/stack/cable_coil,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"AD" = (
+/turf/open/floor/plating/rust,
+/area/space)
+"AJ" = (
+/obj/machinery/atmospherics/components/tank/air,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"Bn" = (
+/obj/structure/lattice/catwalk,
+/turf/template_noop,
+/area/template_noop)
+"BO" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"CZ" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"Db" = (
+/obj/structure/lattice,
+/obj/item/stack/sheet/iron/fifty,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"Dd" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/plating/rust,
+/area/ruin/space/ruined_hull_1)
+"EW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"HK" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"ID" = (
+/obj/item/wirecutters{
+	pixel_x = 5;
+	pixel_y = -9
+	},
+/obj/item/stack/cable_coil,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"Jt" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/effect/spawner/random/maintenance,
+/turf/template_noop,
+/area/template_noop)
+"JB" = (
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/plating/rust,
+/area/ruin/space/ruined_hull_1)
+"JU" = (
+/obj/structure/broken_flooring/singular/directional/east,
+/turf/template_noop,
+/area/template_noop)
+"Kp" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/maintenance,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"LE" = (
+/obj/structure/lattice/catwalk,
+/obj/item/solar_assembly,
+/obj/structure/cable,
+/turf/template_noop,
+/area/template_noop)
+"LG" = (
+/obj/structure/table,
+/obj/item/pizzabox/random{
+	pixel_y = 8
+	},
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"MZ" = (
+/obj/item/screwdriver/red{
+	pixel_y = -9;
+	pixel_x = 9
+	},
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"NA" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/structure/crate_abandoned,
+/turf/template_noop,
+/area/template_noop)
+"NJ" = (
+/obj/item/wrench{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"NN" = (
+/obj/structure/lattice,
+/obj/item/storage/box/stockparts/basic,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"NX" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"Or" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating/rust,
+/area/ruin/space/ruined_hull_1)
+"Ph" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/obj/item/stack/ore/glass,
+/turf/template_noop,
+/area/template_noop)
+"PR" = (
+/obj/item/stack/sheet/iron/fifty,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"PZ" = (
+/obj/structure/bed,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"Qc" = (
+/obj/structure/broken_flooring/singular/directional/south,
+/turf/template_noop,
+/area/template_noop)
+"Qn" = (
+/obj/item/stack/ore/glass,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"QC" = (
+/obj/item/stack/rods/fifty,
+/turf/open/floor/plating/rust,
+/area/ruin/space/ruined_hull_1)
+"So" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"Su" = (
+/obj/item/stack/sheet/cardboard,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"TH" = (
+/obj/structure/lattice,
+/obj/item/storage/box/lights/tubes,
+/turf/open/space/basic,
+/area/ruin/space/ruined_hull_1)
+"Vb" = (
+/obj/structure/girder,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"Vy" = (
+/obj/structure/broken_flooring/singular/directional/west,
+/turf/template_noop,
+/area/template_noop)
+"VB" = (
+/obj/structure/closet/crate/solarpanel_small,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"VE" = (
+/obj/item/multitool{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/obj/item/stack/cable_coil,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"VP" = (
+/obj/item/stack/ore/glass,
+/turf/template_noop,
+/area/template_noop)
+"Wc" = (
+/obj/structure/lattice,
+/obj/item/solar_assembly,
+/turf/template_noop,
+/area/template_noop)
+"Wd" = (
+/obj/item/electronics/apc{
+	pixel_y = 8;
+	pixel_x = -4
+	},
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"WM" = (
+/turf/template_noop,
+/area/template_noop)
+"Xz" = (
+/obj/item/stack/cable_coil/cut{
+	pixel_x = -9
+	},
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"XU" = (
+/obj/item/chair,
+/turf/open/floor/plating/airless,
+/area/ruin/space/ruined_hull_1)
+"Yn" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/plating/airless,
+/area/space)
+"Zi" = (
+/obj/effect/spawner/random/maintenance,
+/turf/template_noop,
+/area/template_noop)
+
+(1,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+LE
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+"}
+(2,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+yQ
+WM
+WM
+WM
+Jt
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+"}
+(3,1,1) = {"
+WM
+WM
+eJ
+ct
+gb
+yQ
+yQ
+WM
+WM
+rr
+WM
+WM
+WM
+Zi
+WM
+yQ
+tK
+WM
+WM
+"}
+(4,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+rH
+Ph
+Qc
+bx
+rH
+WM
+WM
+gb
+yQ
+WM
+WM
+"}
+(5,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+WM
+rH
+Vb
+HK
+kh
+HK
+Vb
+WM
+WM
+rX
+WM
+WM
+WM
+WM
+"}
+(6,1,1) = {"
+WM
+WM
+WM
+WM
+si
+WM
+md
+wZ
+BO
+Xz
+ID
+fv
+Qn
+WM
+WM
+WM
+Zi
+WM
+WM
+"}
+(7,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+WM
+NX
+uP
+Db
+tA
+go
+Wd
+Vb
+WM
+WM
+WM
+WM
+WM
+WM
+"}
+(8,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+WM
+Vb
+LG
+CZ
+by
+Dd
+cC
+wZ
+rH
+WM
+WM
+WM
+WM
+WM
+"}
+(9,1,1) = {"
+WM
+gb
+yQ
+Wc
+WM
+VP
+HK
+XU
+rE
+NN
+dN
+nN
+HK
+WM
+WM
+yQ
+gb
+Wc
+WM
+"}
+(10,1,1) = {"
+WM
+WM
+la
+tK
+Bn
+Bn
+kh
+nN
+yc
+du
+TH
+MZ
+kh
+Bn
+Bn
+tK
+la
+Bn
+WM
+"}
+(11,1,1) = {"
+WM
+WM
+WM
+yQ
+rH
+WM
+HK
+oj
+PR
+ez
+CZ
+Su
+HK
+Vy
+WM
+Wc
+Wc
+gb
+WM
+"}
+(12,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+bx
+aR
+rq
+JB
+VB
+NJ
+zc
+md
+WM
+WM
+WM
+WM
+WM
+WM
+"}
+(13,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+Zi
+md
+fA
+QC
+py
+PZ
+gp
+aR
+Zi
+WM
+WM
+WM
+WM
+WM
+"}
+(14,1,1) = {"
+WM
+la
+NA
+WM
+WM
+WM
+md
+AJ
+sf
+So
+VE
+Kp
+md
+WM
+WM
+WM
+WM
+WM
+WM
+"}
+(15,1,1) = {"
+WM
+WM
+WM
+WM
+JU
+WM
+Vb
+Vb
+uP
+ow
+Or
+Vb
+NX
+WM
+WM
+WM
+WM
+WM
+WM
+"}
+(16,1,1) = {"
+WM
+WM
+WM
+yQ
+WM
+WM
+oQ
+aR
+md
+pY
+aR
+vC
+rH
+bx
+Qc
+tK
+yQ
+WM
+WM
+"}
+(17,1,1) = {"
+WM
+WM
+WM
+gb
+WM
+WM
+WM
+Zi
+HK
+EW
+HK
+Zi
+WM
+WM
+WM
+Bn
+yQ
+WM
+WM
+"}
+(18,1,1) = {"
+WM
+WM
+WM
+yQ
+WM
+WM
+WM
+WM
+aR
+xn
+aR
+WM
+WM
+WM
+WM
+WM
+yQ
+tK
+WM
+"}
+(19,1,1) = {"
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+gb
+Yn
+AD
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+WM
+"}
