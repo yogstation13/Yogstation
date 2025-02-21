@@ -489,6 +489,8 @@
   Absolucy:
   - rscadd: The comically large spoon can now be used as a shovel.
 2025-02-21:
+  Absolucy:
+  - bugfix: The ticker component now repeats properly.
   Absolucy, That0nePerson:
   - rscadd: Clockwork Cult's Kindle spell now applies a new clockwork-themed slurring
       effect, instead of the blood cult-themed slurring.
@@ -539,6 +541,8 @@
   - balance: Medical Borer Crates now comes with three cages.
   - code_imp: Chief Medical Officer, Medical Doctors, Chemists, and Brig Physicians
       are now classified as the new enemies for Cortical Borers to spawn
+  - qol: Immunity scanners can be stored in medical toolbelts and surgical medkits
+  - balance: PENLITE can create 6, instead of 3 barriers.
   MichiRecRoom:
   - bugfix: Floran characters should no longer float hats above their head, if you
       set their hairstyle to one that vertically offsets hats before switching to
@@ -562,7 +566,16 @@
   - rscadd: more ruins
   Veth-s:
   - bugfix: fixed some of slashers stuff i hope to god
+  Wisemonster:
+  - balance: Reduced the time it takes for an unsecure disk to start increasing lone
+      op weight (5 minutes, down from 8.3)
+  - balance: Lone ops now have a minimum weight of 1
   Ziiro:
   - refactor: Refactored the way silicon emotes are handled in silicons, robots, and
       synthetic voiceboxes
   - bugfix: synthetic voiceboxes can *beep again!
+  destrucktoid:
+  - balance: Borers can no longer be squashed by walking over them
+  - balance: Borers now have a bigger sprite.
+  wraith-54321:
+  - bugfix: Enables new zombies

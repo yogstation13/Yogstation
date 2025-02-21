@@ -1,5 +1,0 @@
-author: "destrucktoid"
-delete-after: True
-changes:
-  - balance: "Borers can no longer be squashed by walking over them"
-  - balance: "Borers now have a bigger sprite."

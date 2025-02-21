@@ -1,5 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Reduced the time it takes for an unsecure disk to start increasing lone op weight (5 minutes, down from 8.3)"
-  - balance: "Lone ops now have a minimum weight of 1"
