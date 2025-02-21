@@ -31,12 +31,13 @@
 /turf/open/floor/carpet/red,
 /area/ruin/space/has_grav/syndicate_depot/control_room)
 "aR" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 3;
+	pixel_y = 6
 	},
-/obj/machinery/light/directional/west,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/syndicate_depot/hallway)
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "aS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -128,14 +129,6 @@
 	pixel_y = 3
 	},
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/button/door/directional/south{
-	id = "syndicate_depot_eva";
-	name = "EVA Storage Shutters";
-	req_access = list("syndicate_leader")
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
 /obj/machinery/light_switch/directional/east,
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/syndicate_depot/eva_storage)
@@ -259,6 +252,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
+"dn" = (
+/turf/closed/wall/mineral/plastitanium/explosive,
+/area/ruin/space/has_grav/syndicate_depot/hallway)
 "dp" = (
 /obj/machinery/camera/directional/east{
 	network = list("syndicate_depot");
@@ -339,13 +335,8 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "dZ" = (
-/obj/machinery/light/small/directional/north,
-/obj/machinery/camera/directional/north{
-	c_tag = "Exterior: Vault Auxiliary Turret";
-	network = list("syndicate_depot")
-	},
-/turf/open/misc/asteroid/airless,
-/area/ruin/space/has_grav/syndicate_depot)
+/turf/closed/wall/mineral/plastitanium/explosive,
+/area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "ea" = (
 /obj/structure/closet/toolcloset,
 /obj/item/pipe_dispenser,
@@ -420,6 +411,9 @@
 /obj/machinery/light_switch/directional/south,
 /turf/open/misc/dirt/station,
 /area/ruin/space/has_grav/syndicate_depot/hydroponics)
+"eZ" = (
+/turf/closed/wall/mineral/plastitanium/explosive,
+/area/ruin/space/has_grav/syndicate_depot/manufacturing)
 "fc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -617,14 +611,17 @@
 /turf/open/floor/engine,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
 "gR" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/machinery/power/apc/auto_name/directional/east,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/syndicate_depot/eva_storage)
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "syndicate_depot_lockdown"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/door/firedoor,
+/obj/structure/sign/warning/explosives/alt/directional/west,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndicate_depot/hallway)
 "gS" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable,
@@ -692,15 +689,13 @@
 /turf/open/floor/iron/kitchen/small,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "hB" = (
-/obj/structure/rack,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/effect/turf_decal/stripes/corner,
-/obj/item/pickaxe/drill,
-/obj/item/t_scanner/adv_mining_scanner/lesser,
-/obj/item/storage/bag/ore,
-/obj/item/mod/control/pre_equipped/nuclear,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/syndicate_depot/eva_storage)
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/syndicate_blackbox_recorder,
+/turf/open/floor/pod/dark,
+/area/ruin/space/has_grav/syndicate_depot/vault)
 "hJ" = (
 /obj/effect/turf_decal/delivery/white,
 /obj/structure/closet/crate,
@@ -959,6 +954,25 @@
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndicate_depot)
+"kA" = (
+/obj/structure/cable,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/machinery/power/apc/auto_name/directional/east,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/machinery/button/door/directional/north{
+	req_access = list("syndicate_leader");
+	id = "syndicate_depot_eva";
+	name = "EVA Storage Shutters"
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "kH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
@@ -1078,6 +1092,7 @@
 /area/ruin/space/has_grav/syndicate_depot/engineering)
 "lQ" = (
 /obj/structure/table/reinforced/plastitaniumglass,
+/obj/machinery/cell_charger,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
 "lU" = (
@@ -1206,17 +1221,12 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "nH" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/west,
+/obj/machinery/atmospherics/pipe/layer_manifold/general/hidden{
+	dir = 4
+	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/apc/syndicate_access,
-/obj/effect/mapping_helpers/apc/cell_10k,
-/obj/structure/safe,
-/obj/item/stack/telecrystal/five,
-/obj/item/stack/telecrystal/twenty,
-/obj/effect/mapping_helpers/apc/cut_AI_wire,
-/turf/open/floor/circuit/red/anim,
-/area/ruin/space/has_grav/syndicate_depot/vault)
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "nJ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
@@ -1359,11 +1369,25 @@
 /turf/open/floor/wood,
 /area/ruin/space/has_grav/syndicate_depot/control_room)
 "pc" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/brown/half/contrasted{
 	dir = 1
+	},
+/obj/structure/table/reinforced/plastitaniumglass,
+/obj/item/pen{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/paper_bin{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/stamp/denied{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/obj/item/stamp/granted{
+	pixel_x = 11;
+	pixel_y = -1
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
@@ -1477,16 +1501,11 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
 "rl" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "syndicate_depot_eva"
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/door/firedoor,
+/obj/machinery/light/small/directional/south,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/table,
 /turf/open/floor/plating,
-/area/ruin/space/has_grav/syndicate_depot/eva_storage)
+/area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "rq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1563,16 +1582,32 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/syndicate_depot/hydroponics)
 "si" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/machinery/fax{
-	syndicate_network = 1;
-	name = "Depot Fax Machine";
-	fax_name = "Syndicate Depot Cargo Bay"
-	},
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted,
+/obj/structure/filingcabinet,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/button/door/directional/south{
+	id = "syndicate_depot_eva";
+	name = "EVA Storage Shutters";
+	req_access = list("syndicate_leader")
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
+"sj" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/west,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/mapping_helpers/apc/syndicate_access,
+/obj/effect/mapping_helpers/apc/cell_10k,
+/obj/structure/safe,
+/obj/item/stack/telecrystal/five,
+/obj/item/stack/telecrystal/twenty,
+/obj/effect/mapping_helpers/apc/cut_AI_wire,
+/obj/item/card/id/advanced/chameleon,
+/obj/item/card/id/advanced/chameleon,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/space/has_grav/syndicate_depot/vault)
 "sn" = (
 /obj/machinery/button/door/directional/south{
 	normaldoorcontrol = 1;
@@ -1765,16 +1800,51 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/syndicate_depot/security)
 "tN" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/syndicate_depot/eva_storage)
+/obj/machinery/button/door/directional/south{
+	req_access = list("syndicate_leader");
+	name = "Emergency Base Lockdown";
+	id = "syndicate_depot_lockdown"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 1
+	},
+/obj/structure/closet/crate/engineering,
+/obj/item/stack/sheet/plastic/fifty,
+/obj/item/stack/sheet/mineral/uranium/five,
+/obj/item/stack/sheet/mineral/uranium/five,
+/obj/item/stack/sheet/mineral/silver/twenty,
+/obj/item/stack/sheet/mineral/gold/five,
+/obj/item/stack/sheet/mineral/gold/five,
+/obj/item/stack/sheet/mineral/diamond/five,
+/obj/item/stack/sheet/mineral/diamond/five,
+/obj/item/stack/sheet/mineral/titanium/fifty,
+/obj/item/stack/sheet/plasteel/fifty,
+/obj/item/stack/sheet/mineral/plastitanium{
+	amount = 50
+	},
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/mineral/plasma/thirty,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/iron/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/space/has_grav/syndicate_depot/vault)
 "tO" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/obj/machinery/firealarm/directional/north,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/syndicate_depot/eva_storage)
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -4;
+	pixel_y = -7
+	},
+/obj/item/multitool{
+	pixel_x = 14;
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/airalarm/directional/north,
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/space/has_grav/syndicate_depot/vault)
 "tQ" = (
 /obj/machinery/conveyor/inverted{
 	dir = 10;
@@ -2111,9 +2181,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "xM" = (
-/obj/machinery/light/directional/east,
-/turf/open/floor/iron,
-/area/ruin/space/has_grav/syndicate_depot/hallway)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "xU" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/hidden,
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -2375,11 +2446,11 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_depot/shipbreaking_control)
 "Au" = (
-/obj/machinery/syndicatebomb/self_destruct,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/syndicatebomb/self_destruct/announce,
 /turf/open/floor/circuit/red/anim,
 /area/ruin/space/has_grav/syndicate_depot/vault)
 "Ay" = (
@@ -2402,17 +2473,10 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "AJ" = (
-/obj/machinery/button/door/directional/south{
-	req_access = list("syndicate_leader");
-	name = "Emergency Base Lockdown";
-	id = "syndicate_depot_lockdown"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/circuit/red/anim,
-/area/ruin/space/has_grav/syndicate_depot/vault)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/light/small/directional/south,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "AS" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
@@ -2429,6 +2493,11 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
+"Bk" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "Bn" = (
 /obj/machinery/firealarm/directional/west,
 /obj/machinery/atmospherics/components/unary/portables_connector/layer4,
@@ -2485,13 +2554,12 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "BW" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/syndicate_depot/eva_storage)
+/turf/closed/wall/mineral/plastitanium/explosive,
+/area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "BZ" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/obj/structure/cable,
-/obj/machinery/light/small/directional/south,
+/obj/machinery/atmospherics/components/binary/pump/off/general/visible/layer4{
+	dir = 4
+	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
@@ -2527,14 +2595,12 @@
 /turf/open/floor/iron/white/small,
 /area/ruin/space/has_grav/syndicate_depot/infirmary)
 "CE" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/photocopier/gratis,
 /obj/machinery/firealarm/directional/north,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/airalarm/syndicate_access,
+/obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "CG" = (
@@ -2571,6 +2637,15 @@
 /obj/structure/railing,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
+"CN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/syndicate_depot/hallway)
 "CX" = (
 /obj/machinery/computer/security{
 	network = list("syndicate_depot");
@@ -2696,10 +2771,11 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "Ft" = (
-/obj/structure/table/reinforced/plastitaniumglass,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
 	dir = 8
 	},
+/obj/machinery/photocopier/gratis,
+/obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "Fy" = (
@@ -2884,13 +2960,12 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "HW" = (
-/obj/item/storage/toolbox/electrical,
-/obj/item/multitool,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/machinery/airalarm/directional/north,
-/obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/circuit/red/anim,
-/area/ruin/space/has_grav/syndicate_depot/vault)
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "HX" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
 /obj/machinery/door/poddoor/shutters{
@@ -3182,6 +3257,7 @@
 /obj/item/circuitboard/machine/quantumpad,
 /obj/item/circuitboard/machine/quantumpad,
 /obj/item/storage/toolbox/electrical,
+/obj/item/circuitboard/machine/spaceship_navigation_beacon,
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "KP" = (
@@ -3304,6 +3380,13 @@
 /obj/machinery/light/small/directional/south,
 /turf/open/misc/asteroid/airless,
 /area/ruin/space/has_grav/syndicate_depot)
+"Mx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light/directional/east,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/syndicate_depot/hallway)
 "Mz" = (
 /obj/machinery/biogenerator,
 /obj/item/reagent_containers/cup/beaker/large,
@@ -3346,32 +3429,18 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "Nb" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
+/obj/structure/rack,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/pickaxe/drill,
+/obj/item/t_scanner/adv_mining_scanner/lesser,
+/obj/item/storage/bag/ore,
+/obj/item/mod/control/pre_equipped/nuclear,
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
+	dir = 4
 	},
-/obj/structure/closet/crate/engineering,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/iron/fifty,
-/obj/item/stack/sheet/mineral/plasma/thirty,
-/obj/item/stack/sheet/mineral/plastitanium{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel/fifty,
-/obj/item/stack/sheet/mineral/titanium/fifty,
-/obj/item/stack/sheet/mineral/diamond/five,
-/obj/item/stack/sheet/mineral/diamond/five,
-/obj/item/stack/sheet/mineral/gold/five,
-/obj/item/stack/sheet/mineral/gold/five,
-/obj/item/stack/sheet/mineral/silver/twenty,
-/obj/item/stack/sheet/mineral/uranium/five,
-/obj/item/stack/sheet/mineral/uranium/five,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/stack/sheet/plastic/fifty,
-/turf/open/floor/pod/dark,
-/area/ruin/space/has_grav/syndicate_depot/vault)
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "Nk" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "depot_shipbreak";
@@ -3473,9 +3542,12 @@
 /turf/open/floor/iron/showroomfloor,
 /area/ruin/space/has_grav/syndicate_depot/hallway)
 "OD" = (
-/obj/structure/tank_dispenser/oxygen,
-/turf/open/floor/iron/dark,
-/area/ruin/space/has_grav/syndicate_depot/eva_storage)
+/obj/machinery/atmospherics/components/tank/air{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "OQ" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -3581,15 +3653,17 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/syndicate_depot)
 "PQ" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/structure/filingcabinet,
 /obj/machinery/light/directional/north,
 /obj/machinery/light_switch/directional/east,
 /obj/effect/turf_decal/tile/brown/anticorner/contrasted{
 	dir = 4
 	},
+/obj/machinery/fax{
+	syndicate_network = 1;
+	name = "Depot Fax Machine";
+	fax_name = "Syndicate Depot Cargo Bay"
+	},
+/obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "PR" = (
@@ -3969,24 +4043,8 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
 "TY" = (
-/obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/paper_bin{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/obj/item/pen{
-	pixel_x = -7;
-	pixel_y = 6
-	},
-/obj/item/stamp/denied{
-	pixel_x = 4;
-	pixel_y = -1
-	},
-/obj/item/stamp/granted{
-	pixel_x = 11;
-	pixel_y = -1
-	},
 /obj/effect/turf_decal/tile/brown/half/contrasted,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/syndicate_depot/cargo_bay)
 "Ue" = (
@@ -4111,6 +4169,12 @@
 /obj/item/wrench/medical,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/infirmary)
+"VF" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "VI" = (
 /turf/open/floor/engine/plasma,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
@@ -4201,9 +4265,16 @@
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/syndicate_depot/hydroponics)
 "WE" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/light/small/directional/east,
-/turf/open/floor/iron/dark,
+/obj/machinery/door/poddoor/shutters{
+	id = "syndicate_depot_eva";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "WJ" = (
 /obj/effect/turf_decal/sand/plating,
@@ -4418,16 +4489,12 @@
 /turf/open/floor/iron/dark/smooth_large,
 /area/ruin/space/has_grav/syndicate_depot/engineering)
 "YP" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/machinery/porta_turret/syndicate/depot{
-	dir = 10;
-	desc = "A ballistic machine-gun auto-turret. This one has had one of its barrels replaced with a taser. You can see a little drawing of a face engraved into it, with the turret's cameras for eyes; silently mocking you."
+/obj/structure/tank_dispenser/oxygen,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
 	},
-/obj/effect/turf_decal/stripes/asteroid/line{
-	dir = 10
-	},
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/syndicate_depot)
+/turf/open/floor/iron/dark,
+/area/ruin/space/has_grav/syndicate_depot/eva_storage)
 "YQ" = (
 /obj/machinery/door/poddoor{
 	id = "syndicate_depot_airlock_out"
@@ -6702,7 +6769,7 @@ Fc
 Fc
 tF
 jG
-aK
+eZ
 Sg
 aK
 tF
@@ -7031,7 +7098,7 @@ nt
 Fc
 hq
 hq
-et
+hq
 et
 et
 BF
@@ -7109,8 +7176,8 @@ Nu
 zU
 dx
 Fc
-hq
-hq
+Fc
+Fc
 hq
 hq
 et
@@ -7185,12 +7252,12 @@ wZ
 KL
 NO
 wN
-Nu
+BW
 Me
 PU
+Nu
+OD
 Fc
-et
-et
 hq
 hq
 et
@@ -7268,9 +7335,9 @@ AB
 Nu
 Hn
 Nu
+Nu
+nH
 Fc
-Fc
-et
 hq
 hq
 et
@@ -7334,7 +7401,7 @@ Xk
 vZ
 jw
 eC
-iD
+dn
 MZ
 HU
 dU
@@ -7349,8 +7416,8 @@ xD
 fR
 fR
 fR
+BZ
 Fc
-et
 hq
 hq
 et
@@ -7413,24 +7480,24 @@ Se
 rE
 hc
 IG
-BR
-BR
-BR
-BR
-BR
-Nu
+mz
+mz
+mz
+mz
+mz
+BW
 RH
 Jn
 Nu
-mz
-mz
-mz
-mz
-mz
+BR
+BR
+BR
+BR
+BR
 BE
-BZ
+fR
+rl
 Fc
-et
 hq
 hq
 et
@@ -7493,24 +7560,24 @@ Se
 jx
 FY
 jx
-BR
-OD
-xc
+mz
+on
+sj
 hB
-BR
+mz
 CE
 kg
 rQ
 Ft
-mz
-on
-nH
+BR
+YP
+xc
 Nb
-mz
+BR
 hV
 sK
+aR
 Fc
-dZ
 hq
 hq
 Vj
@@ -7573,24 +7640,24 @@ sR
 cs
 br
 fm
-BR
+mz
 tO
-BW
+Au
 tN
-rl
+mz
 pc
 le
 le
 TY
-mz
+WE
 HW
-Au
+xM
 AJ
-mz
+BR
 LS
 oy
+Bk
 Fc
-YP
 hq
 hq
 hq
@@ -7652,21 +7719,21 @@ tM
 PC
 kc
 vZ
-Xk
-QR
-gR
-WE
-bD
-BR
-PQ
-Qx
-kH
-si
+Ay
 mz
 xd
 aW
 kK
 mz
+PQ
+Qx
+kH
+si
+BR
+kA
+VF
+bD
+BR
 Oe
 Oe
 Oe
@@ -7733,20 +7800,20 @@ PC
 kc
 vZ
 jw
-BR
-BR
-BR
-BR
-BR
-Nu
-IE
-XO
-Nu
 mz
 mz
 Mi
 mz
 mz
+Nu
+IE
+XO
+Nu
+BR
+BR
+QR
+BR
+BR
 dt
 lU
 eo
@@ -7813,17 +7880,17 @@ sR
 Yo
 vZ
 Ay
-Ay
 Am
-ln
-aR
+gR
+CN
+nM
 yS
 qt
 UO
 xg
 Yy
 Ay
-nM
+Ay
 wb
 pk
 vB
@@ -7893,10 +7960,10 @@ ZW
 Xk
 vZ
 vZ
-vZ
 Up
 yI
 iq
+vZ
 vZ
 vZ
 vZ
@@ -7973,10 +8040,10 @@ Nz
 LH
 Uf
 Eq
-xM
 Am
 ln
-kc
+Mx
+Ay
 Ay
 vZ
 Ay
@@ -8053,7 +8120,7 @@ fS
 iD
 RL
 SX
-SX
+dZ
 SX
 SX
 Zk

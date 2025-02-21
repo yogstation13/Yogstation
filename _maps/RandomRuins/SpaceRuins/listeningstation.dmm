@@ -628,9 +628,7 @@
 	name = "Emergency Self Destruct Access"
 	},
 /obj/structure/sign/warning/explosives/alt/directional/north,
-/obj/machinery/syndicatebomb/self_destruct{
-	anchored = 1
-	},
+/obj/machinery/syndicatebomb/self_destruct/announce,
 /turf/open/floor/circuit/red/anim,
 /area/ruin/space/has_grav/listeningstation/support)
 "rx" = (

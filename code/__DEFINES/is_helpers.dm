@@ -262,6 +262,9 @@ GLOBAL_LIST_INIT(cat_typecache, typecacheof(list(
 
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
+//MONKESTATION EDIT: used to block cargo teleporters from escaping with syndicate blackbox
+#define issyndicateblackbox(O) (istype(O, /obj/item/syndicate_blackbox))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

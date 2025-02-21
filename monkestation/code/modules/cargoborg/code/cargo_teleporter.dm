@@ -57,6 +57,8 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 			continue
 		if(!ismovable(check_content))
 			continue
+		if(issyndicateblackbox(check_content))
+			continue
 		var/atom/movable/movable_content = check_content
 		if(isliving(movable_content))
 			continue

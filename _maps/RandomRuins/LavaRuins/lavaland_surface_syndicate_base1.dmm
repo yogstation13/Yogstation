@@ -111,11 +111,9 @@
 	},
 /area/ruin/syndicate_lava_base/arrivals)
 "bx" = (
-/obj/machinery/syndicatebomb/self_destruct{
-	anchored = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/structure/cable,
+/obj/machinery/syndicatebomb/self_destruct/announce,
 /turf/open/floor/circuit/red,
 /area/ruin/syndicate_lava_base/main)
 "bC" = (
