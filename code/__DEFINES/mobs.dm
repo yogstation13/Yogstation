@@ -945,6 +945,15 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HEALING_TOUCH_NOT_SELF "healing_touch_not_self"
 #define HEALING_TOUCH_SELF_ONLY "healing_touch_self_only"
 
+//MONKESTATION REMOVAL - These constants were moved as part of a temperature overhaul by Borbop, in
+// #3301. They now reside in `code\__DEFINES\atmospherics\atmos_mob_interaction.dm`.
+/*
+/// Default minimum body temperature mobs can exist in before taking damage
+#define NPC_DEFAULT_MIN_TEMP 250
+/// Default maximum body temperature mobs can exist in before taking damage
+#define NPC_DEFAULT_MAX_TEMP 350
+*/
+
 // Flags for mobs which can't do certain things while someone is looking at them
 /// Flag which stops you from moving while observed
 #define NO_OBSERVED_MOVEMENT (1<<0)

@@ -2,9 +2,6 @@
 /mob/living/basic/trooper/syndicate
 	name = "Syndicate Operative"
 	desc = "Death to Nanotrasen."
-	speed = 1.1
-	melee_damage_lower = 10
-	melee_damage_upper = 10
 	faction = list(ROLE_SYNDICATE)
 	loot = list(/obj/effect/mob_spawn/corpse/human/syndicatesoldier)
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatesoldier
@@ -194,7 +191,6 @@
 	health = 170
 	unsuitable_atmos_damage = 0
 	bodytemp_cold_damage_limit = -1
-	speed = 1
 	mob_spawner = /obj/effect/mob_spawn/corpse/human/syndicatecommando
 
 /mob/living/basic/trooper/syndicate/ranged/shotgun/space/Initialize(mapload)

@@ -81,9 +81,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
-"s" = (
-/turf/open/floor/wood,
-/area/ruin/unpowered)
 "t" = (
 /turf/template_noop,
 /area/template_noop)
@@ -439,7 +436,7 @@ f
 f
 f
 f
-s
+f
 b
 b
 Y
@@ -466,7 +463,7 @@ g
 f
 f
 f
-s
+f
 b
 b
 Y
@@ -493,7 +490,7 @@ f
 f
 f
 f
-s
+f
 b
 b
 Y
@@ -520,7 +517,7 @@ j
 f
 f
 f
-s
+f
 b
 b
 Y
@@ -547,7 +544,7 @@ k
 f
 f
 f
-s
+f
 b
 b
 Y
