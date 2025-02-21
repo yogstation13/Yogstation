@@ -246,16 +246,11 @@ GLOBAL_LIST_INIT(borer_second_name, world.file2list("monkestation/code/modules/a
 
 /mob/living/basic/cortical_borer/Initialize(mapload)
 	. = ..()
-	AddComponent( \
-		/datum/component/squashable, \
-		squash_chance = 25, \
-		squash_damage = 25, \
-		squash_flags = SQUASHED_DONT_SQUASH_IN_CONTENTS, \
-	)
+
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT) //they need to be able to move around
 
 	var/matrix/borer_matrix = matrix(transform)
-	borer_matrix.Scale(0.5, 0.5)
+	borer_matrix.Scale(0.75, 0.75)
 	transform = borer_matrix
 
 	create_name()
