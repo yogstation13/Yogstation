@@ -71,10 +71,9 @@ GLOBAL_LIST_EMPTY(species_clothing_fallback_cache)
 		return null
 
 	var/icon/species_worn_icon = custom_worn_icons[item_slot]
-	var/list/species_icon_states = icon_states(species_worn_icon)
 
 	// Check if there is a custom icon state.
-	if(!((item.worn_icon_state || item.icon_state) in species_icon_states))
+	if(!icon_exists(species_worn_icon, item.worn_icon_state || item.icon_state))
 		return null
 
 	// Remember and use icon.
