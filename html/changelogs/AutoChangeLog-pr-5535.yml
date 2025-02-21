@@ -1,0 +1,6 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscdel: "Security can no longer order Borer cages"
+  - balance: "Medical Borer Crates now comes with three cages."
+  - code_imp: "Chief Medical Officer, Medical Doctors, Chemists, and Brig Physicians are now classified as the new enemies for Cortical Borers to spawn"
