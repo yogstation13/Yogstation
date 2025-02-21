@@ -2,11 +2,25 @@
 /datum/round_event_control/zombie_meteor_wave
 	name = "Meteor Wave: Zombies"
 	typepath = /datum/round_event/zombie_meteor_wave
-	weight = 0
-	max_occurrences = 0
+	weight = 2
+	max_occurrences = 1
+	earliest_start = 60 MINUTES
 	category = EVENT_CATEGORY_SPACE
 	description = "Spawn a wave of meteors containing zombies."
+	min_players = 50
 	admin_setup = list(/datum/event_admin_setup/input_number/zombie_meteor_count)
+	checks_antag_cap = TRUE
+	track = EVENT_TRACK_ROLESET
+	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_EXTERNAL, TAG_OUTSIDER_ANTAG, TAG_SPOOKY)
+	enemy_roles = list(
+		JOB_CAPTAIN,
+		JOB_DETECTIVE,
+		JOB_HEAD_OF_SECURITY,
+		JOB_SECURITY_OFFICER,
+		JOB_SECURITY_ASSISTANT,
+		JOB_WARDEN,
+	)
+	required_enemies = 5
 
 /datum/round_event/zombie_meteor_wave
 	start_when = 1

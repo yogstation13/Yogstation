@@ -60,12 +60,13 @@
 
 /datum/action/cooldown/zombie/IsAvailable(feedback)
 	if(!iszombie(owner))
-		CRASH("A non-zombie tried to use a zombie action, it seems the game has taken too much LSD today. (report this shit)")
+		return FALSE
 	return ..()
 
 /datum/action/cooldown/zombie/PreActivate(atom/target)
-	// Parent calls Activate(), so if parent returns TRUE,
-	// it means the activation happened successfuly by this point
+	if(!iszombie(owner))
+		CRASH("A non-zombie([owner]) tried to use a zombie action, it seems the game has taken too much LSD today. (report this shit)")
+	// Parent calls Activate(), so if parent returns TRUE, it means the activation happened successfuly by this point
 	. = ..()
 	if(!.)
 		return FALSE
