@@ -30,8 +30,11 @@
 	. += span_notice("Total loops: [total_loops == -1 ? "infinite" : total_loops].")
 
 /obj/item/mcobject/messaging/ticker/process()
-	if(QDELETED(src) || !on || (total_loops != -1 && loops <= 0) || !COOLDOWN_FINISHED(src, next_loop))
+	if(QDELETED(src) || !on || (total_loops != -1 && loops <= 0))
+		on = FALSE
 		return PROCESS_KILL
+	if(!COOLDOWN_FINISHED(src, next_loop))
+		return
 	fire(stored_message)
 	loops--
 	COOLDOWN_START(src, next_loop, interval)
