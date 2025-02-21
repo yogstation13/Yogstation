@@ -1,0 +1,4 @@
+author: "Absolucy, TiviPlus"
+delete-after: True
+changes:
+  - code_imp: "Optimized some icon code."
