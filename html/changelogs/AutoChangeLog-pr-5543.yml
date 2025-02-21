@@ -1,0 +1,6 @@
+author: "Absolucy, That0nePerson"
+delete-after: True
+changes:
+  - rscadd: "Clockwork Cult's Kindle spell now applies a new clockwork-themed slurring effect, instead of the blood cult-themed slurring."
+  - rscadd: "Added Rat'vander Cocktail: A drink that makes you slur like the Nar'sour, but clock-cult styled. Explodes if mixed with Nar'sour. It is made with 5u wine, 5u triple sec, 1u sugar, 1u iron, and 0.6u copper for 10u of the drink."
+  - spellcheck: "Fixed a typo in the visible message when someone is converted to the clockwork cult."
