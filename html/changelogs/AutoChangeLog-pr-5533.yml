@@ -1,5 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - bugfix: "Some shipbreaking templates had invalid map paths, and thus it was possible to get a blank ship - this has been fixed."
-  - bugfix: "If you found that this PR broke shipbreaking during its testmerge phase, you'd be right. That's been fixed."

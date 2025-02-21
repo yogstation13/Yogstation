@@ -1,5 +1,0 @@
-author: "Ziiro"
-delete-after: True
-changes:
-  - refactor: "Refactored the way silicon emotes are handled in silicons, robots, and synthetic voiceboxes"
-  - bugfix: "synthetic voiceboxes can *beep again!"

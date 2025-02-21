@@ -1,4 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - bugfix: "Floran characters should no longer float hats above their head, if you set their hairstyle to one that vertically offsets hats before switching to Floran."

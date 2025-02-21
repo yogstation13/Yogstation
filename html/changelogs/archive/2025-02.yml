@@ -488,3 +488,81 @@
 2025-02-20:
   Absolucy:
   - rscadd: The comically large spoon can now be used as a shovel.
+2025-02-21:
+  Absolucy, That0nePerson:
+  - rscadd: Clockwork Cult's Kindle spell now applies a new clockwork-themed slurring
+      effect, instead of the blood cult-themed slurring.
+  - rscadd: 'Added Rat''vander Cocktail: A drink that makes you slur like the Nar''sour,
+      but clock-cult styled. Explodes if mixed with Nar''sour. It is made with 5u
+      wine, 5u triple sec, 1u sugar, 1u iron, and 0.6u copper for 10u of the drink.'
+  - spellcheck: Fixed a typo in the visible message when someone is converted to the
+      clockwork cult.
+  Absolucy, TiviPlus:
+  - code_imp: Optimized some icon code.
+  Addust:
+  - rscadd: Syndicate depots have begun tracking internal and external activities
+      automatically with a modified Nanotrasen black-box, that can be stolen by explorers
+      and sold for a notable sum.
+  - rscadd: Syndicate depots have had some refits to assist this.
+  - rscadd: Syndicate encryption keys and agent cards found in space may be sold to
+      CentCom for analysis.
+  - rscadd: Syndicate outpost self-destruct devices have been refitted with a warning
+      system to alert the base's crew if they're armed.
+  BingusSS13:
+  - rscadd: The abandoned infiltrator now has it's own area.
+  - bugfix: You can now place an APC on the abandoned infiltrator.
+  - bugfix: The blast door button on the abandoned infiltrator now requires syndicate
+      access.
+  - qol: The airlock electronics on the abandoned infiltrator are now preset with
+      the name "Medical" and syndicate access.
+  - qol: Moves the walls between the cockpit and hallway on the abandoned infiltrator
+      up by one tile for consistency with the version of the infiltrator it was based
+      on.
+  - qol: Extends the abandoned infiltrator area to cover the missing sections of the
+      ship.
+  Gw0sty:
+  - rscadd: The Hermit dislikes noncrew antagonists now.
+  - rscadd: The Sleeper enjoys positive events.
+  - rscadd: The Brute has a weight, and an minimum pop.
+  - code_imp: Code blocked out a unnecessary obsession event.
+  - qol: Prisoners are now eligible for high threat antagonists that would be kidnapped
+      from their job even ways
+  - bugfix: Events now have at the very least, more accurate tags and tracks, for
+      storytellers to use.
+  - bugfix: Updated threat list of various antagonists
+  - rscadd: 'ERT Code: Yellow has been initialized'
+  - bugfix: Real Death Ripleys will have SPECOPS access. As normal civilians should
+      not pilot nor know what the existence of anything I said is.
+  - rscadd: Assault operative weapons now have weapon authentication implants and
+      their guns the corresponding firing pins.
+  - rscdel: Security can no longer order Borer cages
+  - balance: Medical Borer Crates now comes with three cages.
+  - code_imp: Chief Medical Officer, Medical Doctors, Chemists, and Brig Physicians
+      are now classified as the new enemies for Cortical Borers to spawn
+  MichiRecRoom:
+  - bugfix: Floran characters should no longer float hats above their head, if you
+      set their hairstyle to one that vertically offsets hats before switching to
+      Floran.
+  - bugfix: Some shipbreaking templates had invalid map paths, and thus it was possible
+      to get a blank ship - this has been fixed.
+  - bugfix: If you found that this PR broke shipbreaking during its testmerge phase,
+      you'd be right. That's been fixed.
+  MichiRecRoom, lizardqueenlexi, Higgin, mc-oofert:
+  - refactor: (lizardqueenlexi) Pirate NPCs now use the basic mob framework. They'll
+      be a little smarter in combat, and if you're wearing your ID they'll siphon
+      your bank account with every melee attack! Beware! Please report any bugs.
+  - bugfix: (mc-oofert) After a raid on the local drug mafia in the sector by TerraGov,
+      the Russian Mobsters no longer have access to easy drugs and as a result are
+      no longer 24/7 running faster than the average spaceman.
+  Shoddd:
+  - bugfix: Several heliostation fixes and qol
+  TheColorCyan:
+  - rscadd: manhunt mask is now purchaseable in the loadout store
+  ThePooba:
+  - rscadd: more ruins
+  Veth-s:
+  - bugfix: fixed some of slashers stuff i hope to god
+  Ziiro:
+  - refactor: Refactored the way silicon emotes are handled in silicons, robots, and
+      synthetic voiceboxes
+  - bugfix: synthetic voiceboxes can *beep again!
