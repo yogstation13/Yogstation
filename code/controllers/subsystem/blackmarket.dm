@@ -33,6 +33,7 @@ SUBSYSTEM_DEF(blackmarket)
 			markets[M].add_item(item)
 		qdel(I)
 	. = ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/blackmarket/fire(resumed)
 	while(length(queued_purchases))
