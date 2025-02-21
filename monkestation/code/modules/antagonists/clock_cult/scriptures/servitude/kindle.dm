@@ -85,7 +85,7 @@
 		carbon_hit.adjust_stutter(15 SECONDS)
 		carbon_hit.adjust_jitter(15 SECONDS)
 
-		carbon_hit.adjust_timed_status_effect(26 SECONDS, /datum/status_effect/speech/slurring/cult)
+		carbon_hit.adjust_timed_status_effect(26 SECONDS, /datum/status_effect/speech/slurring/clock)
 
 		carbon_hit.adjust_silence(EFFECT_TIME * 2) //enough time to cuff and remove their radio, or just go back to reebe where their comms wont work
 		carbon_hit.AdjustKnockdown(EFFECT_TIME * (has_mindshield ? 1 : 1.5))

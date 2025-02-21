@@ -58,10 +58,11 @@
 			converted_mob.adjustFireLoss(-(round(burndamage * 0.75)))
 
 		converted_mob.visible_message(span_warning("[converted_mob] sits completely motionless as \
-	 												[(brutedamage || burndamage) ? "a birght light pours from [converted_mob.p_their()] wounds as they close." \
-													: "as the sigil below [converted_mob.p_them()] glows brightly."]!"),
+	 												[(brutedamage || burndamage) ? "a bright light pours from [converted_mob.p_their()] wounds as they close." \
+													: "as the sigil below [converted_mob.p_them()] glows brightly"]!"),
 									 span_bigbrass("<i>You feel a flash of light and the world spin around you!</i>"))
 		send_clock_message(null, "[converted_mob] has been converted!")
+		converted_mob.remove_status_effect(/datum/status_effect/speech/slurring/clock)
 		return TRUE
 
 	visible_message(span_warning("\The [src] falters as though it cannot support more servants."))
