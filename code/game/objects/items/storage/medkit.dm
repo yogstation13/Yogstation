@@ -71,6 +71,7 @@
 		/obj/item/pinpointer/crew,
 		/obj/item/holosign_creator/medical,
 		/obj/item/stack/sticky_tape,
+		/obj/item/device/antibody_scanner //monkestation addition
 	)
 
 /obj/item/storage/medkit/Initialize(mapload)

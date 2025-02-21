@@ -267,6 +267,7 @@
 		/obj/item/surgicaldrill,
 		/obj/item/tank/internals/emergency_oxygen,
 		/obj/item/wrench/medical,
+		/obj/item/device/antibody_scanner //monkestation addition
 	))
 
 /obj/item/storage/belt/medical/paramedic
