@@ -67,13 +67,13 @@
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedhelmet")
 
 	if(!(flags_inv & HIDEHAIR))
-		if(ismob(loc))
-			if(ishuman(loc))
-				var/mob/living/carbon/human/user = loc
+		if(ismob(loc) && ishuman(loc))
+			var/mob/living/carbon/human/user = loc
+			var/obj/item/bodypart/head/head = user.get_bodypart(BODY_ZONE_HEAD)
+			if(head.head_flags & HEAD_HAIR)
 				var/datum/sprite_accessory/hair/hair_style = GLOB.hairstyles_list[user.hairstyle]
-				if(hair_style)
-					if(hair_style.vertical_offset)
-						standing.pixel_y = hair_style.vertical_offset
+				if(hair_style?.vertical_offset)
+					standing.pixel_y = hair_style.vertical_offset
 
 	if(contents)
 		var/current_hat = 1
