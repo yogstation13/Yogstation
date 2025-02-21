@@ -3,11 +3,21 @@
 	// enable silicon emotes for users with synthetic voice boxes.
 	//mob_type_allowed_typecache = list(/mob/living/silicon, /mob/living/simple_animal/bot)
 	emote_type = EMOTE_AUDIBLE
+	trait_required = TRAIT_SILICON_EMOTES_ALLOWED
 
 /datum/emote/silicon/boop
 	key = "boop"
 	key_third_person = "boops"
 	message = "boops."
+
+/datum/emote/silicon/beep
+	key = "beep"
+	key_third_person = "beeps"
+	message = "beeps."
+	message_param = "beeps at %t."
+	sound = 'sound/machines/twobeep.ogg'
+	emote_type = EMOTE_AUDIBLE
+
 
 /datum/emote/silicon/buzz
 	key = "buzz"

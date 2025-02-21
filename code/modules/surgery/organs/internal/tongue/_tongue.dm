@@ -539,6 +539,7 @@ GLOBAL_LIST_INIT(english_to_zombie, list())
 	attack_verb_simple = list("beep", "boop")
 	modifies_speech = TRUE
 	taste_sensitivity = 25 // not as good as an organic tongue
+	organ_traits = list(TRAIT_SILICON_EMOTES_ALLOWED)
 
 /obj/item/organ/internal/tongue/robot/get_scream_sound()
 	return 'monkestation/sound/voice/screams/silicon/scream_silicon.ogg'
