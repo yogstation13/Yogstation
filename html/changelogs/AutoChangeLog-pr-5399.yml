@@ -1,0 +1,5 @@
+author: "MichiRecRoom, lizardqueenlexi, Higgin, mc-oofert"
+delete-after: True
+changes:
+  - refactor: "(lizardqueenlexi) Pirate NPCs now use the basic mob framework. They'll be a little smarter in combat, and if you're wearing your ID they'll siphon your bank account with every melee attack! Beware! Please report any bugs."
+  - bugfix: "(mc-oofert) After a raid on the local drug mafia in the sector by TerraGov, the Russian Mobsters no longer have access to easy drugs and as a result are no longer 24/7 running faster than the average spaceman."
