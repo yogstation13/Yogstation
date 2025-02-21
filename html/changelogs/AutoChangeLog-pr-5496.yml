@@ -1,0 +1,7 @@
+author: "Addust"
+delete-after: True
+changes:
+  - rscadd: "Syndicate depots have begun tracking internal and external activities automatically with a modified Nanotrasen black-box, that can be stolen by explorers and sold for a notable sum."
+  - rscadd: "Syndicate depots have had some refits to assist this."
+  - rscadd: "Syndicate encryption keys and agent cards found in space may be sold to CentCom for analysis."
+  - rscadd: "Syndicate outpost self-destruct devices have been refitted with a warning system to alert the base's crew if they're armed."
