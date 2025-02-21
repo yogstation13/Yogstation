@@ -58,6 +58,14 @@
 	if(isliving(hit_atom))
 		var/mob/living/hit_living = hit_atom
 		hit_living.Knockdown(2 SECONDS)
+/obj/item/slasher_machette/on_thrown(mob/living/carbon/user, atom/target)
+	var/turf/below_turf = get_turf(user)
+	var/turf_light_level = below_turf.get_lumcount()
+	var/area/ismaints = get_area(below_turf)
+	if(istype(ismaints, /area/station/maintenance))
+		throwforce = 1.1 * throwforce
+	else
+		throwforce = throwforce * (max(clamp((1 - turf_light_level), 0, 1)))
 
 /obj/item/slasher_machette/attack_hand(mob/user, list/modifiers)
 	if(isliving(user))

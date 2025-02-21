@@ -34,6 +34,8 @@
 		return FALSE
 	if(guy.onCentCom())
 		return FALSE
+	if(guy.mind.has_antag_datum(/datum/antagonist/slasher))
+		return FALSE
 	return TRUE
 
 /datum/round_event/valentines/proc/give_valentines_things(mob/living/guy)

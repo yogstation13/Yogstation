@@ -17,7 +17,7 @@
 	hud_icon = 'monkestation/icons/mob/slasher.dmi'
 	preview_outfit = /datum/outfit/slasher
 	show_to_ghosts = TRUE
-	objectives = list("Harvest souls by stalking your targets and feasting on their fear.", "Use soulsteal to harvest souls.", "Use your traps to slow down your victims.")
+	objectives = list(/datum/objective/slasher/harvest_souls, /datum/objective/slasher/soulsteal, /datum/objective/slasher/trappem)
 	var/datum/action/cooldown/slasher/active_action = null
 	///the linked machette that the slasher can summon even if destroyed and is unique to them
 	var/obj/item/slasher_machette/linked_machette
@@ -75,6 +75,7 @@
 	ADD_TRAIT(current_mob, TRAIT_LIMBATTACHMENT, "slasher")
 	ADD_TRAIT(current_mob, TRAIT_SLASHER, "slasher")
 	ADD_TRAIT(current_mob, TRAIT_NO_PAIN_EFFECTS, "slasher")
+	ADD_TRAIT(current_mob, TRAIT_VIRUSIMMUNE, "slasher")
 
 	var/mob/living/carbon/carbon = current_mob
 	var/obj/item/organ/internal/eyes/shadow/shadow = new
@@ -84,8 +85,9 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_PICKED_UP_ITEM, PROC_REF(item_pickup))
 	RegisterSignal(current_mob, COMSIG_MOB_DROPPING_ITEM, PROC_REF(item_drop))
 	RegisterSignal(current_mob, COMSIG_MOB_ITEM_ATTACK, PROC_REF(check_attack))
-	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(death_removal))
-
+	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+	for(var/datum/quirk/quirk as anything in current_mob.quirks)
+		current_mob.remove_quirk(quirk)
 	///abilities galore
 	for(var/datum/action/cooldown/slasher/listed_slasher as anything in subtypesof(/datum/action/cooldown/slasher))
 		var/datum/action/cooldown/slasher/new_ability = new listed_slasher
@@ -97,9 +99,9 @@
 		human.equipOutfit(/datum/outfit/slasher)
 	cached_brute_mod = human.dna.species.brutemod
 
-/datum/antagonist/slasher/proc/death_removal()
+/datum/antagonist/slasher/proc/on_death(mob/living/source)
 	SIGNAL_HANDLER
-	owner.remove_antag_datum(/datum/antagonist/slasher)
+	source.mind.remove_antag_datum(/datum/antagonist/slasher)
 
 /datum/antagonist/slasher/on_removal()
 	. = ..()
@@ -149,12 +151,10 @@
 			if(held in mobs_with_fullscreens)
 				human.clear_fullscreen("slasher_prox", 15)
 				mobs_with_fullscreens -= held
-	for(var/datum/weakref/weak as anything in fear_stages)
-		var/mob/living/carbon/human/human = weak.resolve()
-		var/datum/mind/mind = human.mind
-		for(var/mob/living/carbon/human/mobs_in_view as anything in view(7, src))
+
+		for(var/mob/living/carbon/human/mobs_in_view as anything in view(7, human))
 			var/datum/mind/mind_in_view = mobs_in_view.mind
-			if(!mind_in_view.has_antag_datum(mind, /datum/antagonist/slasher))
+			if(!mind_in_view.has_antag_datum(/datum/antagonist/slasher))
 				reduce_fear(human, 2)
 			else
 				continue
@@ -231,8 +231,9 @@
 		return FALSE
 	slasherdatum = set_slasherdatum
 
-/datum/status_effect/slasher/stalker/on_apply()
+/datum/status_effect/slasher/stalker/on_apply(mob/living/source)
 	. = ..()
+	var/datum/antagonist/slasher/slasherdatum = source.mind.has_antag_datum(/datum/antagonist/slasher)
 	to_chat(owner, span_notice("You begin stalking your target, [slasherdatum.stalked_human], who is a [slasherdatum.stalked_human.job]"))
 
 /atom/movable/screen/alert/status_effect/slasher/stalker
@@ -255,6 +256,10 @@
 	stalked_human.remove_status_effect(/datum/status_effect/slasher/stalking)
 	stalked_human.clear_alert("slashing_stalkee")
 	owner.current.clear_alert("slashing_stalker")
+	stalked_human.tracking_beacon.Destroy()
+	var/mob/living/carbon/human/human = owner.current
+	var/datum/component/team_monitor/owner_monitor = human.team_monitor
+	owner_monitor.hide_hud()
 	reset_fear(stalked_human)
 	stalked_human = null
 	var/datum/action/cooldown/slasher/stalk_target/power = owner?.has_antag_datum(/datum/antagonist/slasher)
@@ -475,3 +480,19 @@
 	else
 		new_image.loc = source
 	add_client_image(new_image, enterer.client)
+
+/datum/objective/slasher/harvest_souls
+	name = "Harvest Souls"
+	explanation_text = "Harvest souls by stalking your targets and feasting on their fear."
+	admin_grantable = TRUE
+
+/datum/objective/slasher/soulsteal
+	name = "Soulsteal"
+	explanation_text = "Use soulsteal to harvest souls."
+	admin_grantable = TRUE
+
+/datum/objective/slasher/trappem
+	name = "Trapping"
+	explanation_text = "Use your traps to slow down your victims."
+	admin_grantable = TRUE
+
