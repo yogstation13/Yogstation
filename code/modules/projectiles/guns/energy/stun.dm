@@ -44,6 +44,9 @@
 	ammo_x_offset = 2
 
 //MONKESTATION EDIT START
+/obj/item/gun/energy/e_gun/advtaser/evil
+	pin = /obj/item/firing_pin/implant/pindicate
+	
 /obj/item/gun/energy/e_gun/advtaser/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(select == 1)
 		playsound(src, 'monkestation/sound/effects/taser_charge.ogg', 45, TRUE, 1)

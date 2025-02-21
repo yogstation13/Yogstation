@@ -6182,6 +6182,7 @@
 #include "monkestation\code\game\objects\items\guns\SRN.dm"
 #include "monkestation\code\game\objects\items\guns\wt_ammo.dm"
 #include "monkestation\code\game\objects\items\implants\hardlight.dm"
+#include "monkestation\code\game\objects\items\implants\implant_misc.dm"
 #include "monkestation\code\game\objects\items\rayne_corp\rayne_lantern.dm"
 #include "monkestation\code\game\objects\items\rayne_corp\rayne_mender.dm"
 #include "monkestation\code\game\objects\items\robot\items\hypo.dm"

@@ -10,6 +10,7 @@
 	new /obj/item/gun/ballistic/shotgun/riot/sol/evil(src)
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
 	new /obj/item/ammo_box/advanced/s12gauge/buckshot(src)
+	new /obj/item/storage/box/syndie_kit/weapons_auth(src)
 
 /datum/opposing_force_equipment/ranged/infanteria
 	name = "Carwo-Cawil Battle Rifle"
@@ -20,6 +21,7 @@
 	new /obj/item/gun/ballistic/automatic/sol_rifle/evil(src)
 	new /obj/item/ammo_box/magazine/c40sol_rifle/standard(src)
 	new /obj/item/ammo_box/magazine/c40sol_rifle/standard(src)
+	new /obj/item/storage/box/syndie_kit/weapons_auth(src)
 
 /datum/opposing_force_equipment/ranged/miecz
 	name = "'Miecz' Submachinegun"
@@ -40,6 +42,7 @@
 	new /obj/item/gun/ballistic/automatic/sol_grenade_launcher/evil(src)
 	new /obj/item/ammo_box/magazine/c980_grenade/drum/thunderdome_shrapnel(src)
 	new /obj/item/ammo_box/magazine/c980_grenade/drum/thunderdome_shrapnel(src)
+	new /obj/item/storage/box/syndie_kit/weapons_auth(src)
 
 /datum/opposing_force_equipment/ranged/amr
 	name = "'Wyłom' AMR"
@@ -158,6 +161,7 @@
 	new /obj/item/gun/ballistic/automatic/sol_smg/evil(src)
 	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
 	new /obj/item/ammo_box/magazine/c35sol_pistol/stendo(src)
+	new /obj/item/storage/box/syndie_kit/weapons_auth(src)
 
 /datum/opposing_force_equipment/ranged_stealth/wespe
 	name = "Wespe Pistol"
@@ -168,6 +172,7 @@
 	new /obj/item/gun/ballistic/automatic/pistol/sol/evil(src)
 	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
 	new /obj/item/ammo_box/magazine/c35sol_pistol(src)
+	new /obj/item/storage/box/syndie_kit/weapons_auth(src)
 
 /datum/opposing_force_equipment/ranged_stealth/makarov
 	name = "Makarov Pistol"

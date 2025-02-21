@@ -181,7 +181,7 @@
 	subcategory = OPS_SUBCATEGORY_NONLETHAL_SIDE
 
 /datum/armament_entry/assault_operatives/secondary/nonlethal/taze_me_bro
-	item_type = /obj/item/gun/energy/e_gun/advtaser
+	item_type = /obj/item/gun/energy/e_gun/advtaser/evil
 
 /datum/armament_entry/assault_operatives/secondary/nonlethal/baton
 	item_type = /obj/item/melee/baton/telescopic/contractor_baton

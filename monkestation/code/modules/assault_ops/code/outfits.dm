@@ -14,6 +14,7 @@
 
 	id = /obj/item/card/id/advanced/chameleon
 	id_trim = /datum/id_trim/chameleon/operative
+	implants = list(/obj/item/implant/weapons_auth)
 
 /datum/outfit/assaultops/post_equip(mob/living/carbon/human/equipping_human)
 	var/obj/item/radio/radio = equipping_human.ears
