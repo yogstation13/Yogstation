@@ -1,0 +1,10 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "The Hermit dislikes noncrew antagonists now."
+  - rscadd: "The Sleeper enjoys positive events."
+  - rscadd: "The Brute has a weight, and an minimum pop."
+  - code_imp: "Code blocked out a unnecessary obsession event."
+  - qol: "Prisoners are now eligible for high threat antagonists that would be kidnapped from their job even ways"
+  - bugfix: "Events now have at the very least, more accurate tags and tracks, for storytellers to use."
+  - bugfix: "Updated threat list of various antagonists"
