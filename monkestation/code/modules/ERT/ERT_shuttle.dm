@@ -82,6 +82,10 @@
 	suffix = "dropship-janitor"
 	name = "ERT Dropship"
 
+/datum/map_template/shuttle/ert/dropship/engineer
+	suffix = "dropship-engineering"
+	name = "ERT Dropship"
+
 /datum/map_template/shuttle/ert/deathsquad
 	suffix = "deathsquad"
 	name = "Deathsquad Shuttle"

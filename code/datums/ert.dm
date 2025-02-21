@@ -240,6 +240,17 @@
 	poll_icon = /obj/item/clothing/head/helmet/space/ert/janitor
 	polldesc = "a Nanotrasen Janitorial Response Team"
 
+/datum/ert/code/yellow
+	leader_role = /datum/antagonist/ert/generic/engineer/blue
+	roles = list(
+		/datum/antagonist/ert/generic/engineer,
+	)
+	opendoors = FALSE
+	ert_template = /datum/map_template/shuttle/ert/dropship/engineer
+	mission = "Fix everything."
+	poll_icon = /obj/item/clothing/head/helmet/space/ert/engineer
+	polldesc = "a Nanotrasen Engineering Response Team"
+
 /datum/ert/code/lambda
 	leader_role = /datum/antagonist/ert/generic/chaplain/red
 	roles = list(

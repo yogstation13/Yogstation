@@ -138,6 +138,8 @@
 	)
 
 /obj/vehicle/sealed/mecha/working/ripley/deathripley/real
+	operation_req_access = list(ACCESS_CENT_SPECOPS)
+	internals_req_access = list(ACCESS_CENT_SPECOPS)
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE. FOR REAL"
 	equip_by_category = list(
 		MECHA_L_ARM = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill,
