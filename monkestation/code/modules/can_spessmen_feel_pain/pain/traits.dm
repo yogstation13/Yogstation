@@ -3,7 +3,7 @@
 	name = "Hypoalgesia"
 	desc = "You're more resistant to pain - Your pain naturally decreases faster and you receive less overall."
 	icon = FA_ICON_FIST_RAISED
-	value = 8
+	value = 5
 	gain_text = "<span class='notice'>You feel duller.</span>"
 	lose_text = "<span class='danger'>You feel sharper.</span>"
 	medical_record_text = "Patient has Hypoalgesia, and is less susceptible to pain stimuli than most."
@@ -24,7 +24,7 @@
 	name = "Hyperalgesia"
 	desc = "You're less resistant to pain - Your pain naturally decreases slower and you receive more overall."
 	icon = FA_ICON_USER_INJURED
-	value = -6
+	value = -5 // Not only is it mostly gone, its not even that much of a mod
 	gain_text = span_danger("You feel sharper.")
 	lose_text = span_notice("You feel duller.")
 	medical_record_text = "Patient has Hyperalgesia, and is more susceptible to pain stimuli than most."
@@ -46,7 +46,7 @@
 	name = "Allodynia"
 	desc = "Your nerves are extremely sensitive - you may receive pain from things that wouldn't normally be painful, such as hugs."
 	icon = FA_ICON_TIRED
-	value = -10
+	value = -8 // Mostly gone, still exist and a bigger mod than the other
 	gain_text = span_danger("You feel fragile.")
 	lose_text = span_notice("You feel less delicate.")
 	medical_record_text = "Patient has Allodynia, and is extremely sensitive to touch, pain, and similar stimuli."
