@@ -1,5 +1,0 @@
-author: "Ziiro"
-delete-after: True
-changes:
-  - bugfix: "IPC Cyberkinetics Chassis (Greyscale) now accepts Mutant colors"
-  - rscadd: "IPC Antenna options now accept Secondary Mutant colors"
