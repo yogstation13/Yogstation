@@ -938,7 +938,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/window/reinforced/tinted/frosted/spaw
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	glass_type = /obj/item/stack/sheet/bronze
-	uses_color // monkestation edit
+	//uses_color // monkestation edit
 
 /obj/structure/window/bronze/unanchored
 	anchored = FALSE

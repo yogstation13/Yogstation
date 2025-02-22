@@ -57,7 +57,7 @@
 
 /obj/structure/grille/window_sill/atom_break()
 	. = ..()
-	Destroy()
+	qdel(src)
 
 /obj/structure/grille/update_overlays(updates=ALL)
 	. = ..()
