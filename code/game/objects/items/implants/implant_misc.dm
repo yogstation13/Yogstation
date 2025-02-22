@@ -77,6 +77,7 @@
 
 /obj/item/implant/health
 	name = "health implant"
+	actions_types = null
 	var/healthstring = ""
 
 /obj/item/implant/health/proc/sensehealth()
