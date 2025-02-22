@@ -16,6 +16,9 @@
 /datum/bodypart_overlay/mutant/antennae/ipc
 	layers = EXTERNAL_FRONT | EXTERNAL_BEHIND
 	feature_key = "ipc_antenna"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR_SECONDARY
+	color_source = ORGAN_COLOR_MUTSECONDARY
 
 /datum/bodypart_overlay/mutant/antennae/ipc/get_global_feature_list()
 	return GLOB.ipc_antennas_list

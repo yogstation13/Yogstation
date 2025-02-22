@@ -22,6 +22,8 @@
 		TRAIT_REVIVES_BY_HEALING,
 		TRAIT_NO_DNA_COPY,
 		TRAIT_NO_TRANSFORMATION_STING,
+		TRAIT_MUTANT_COLORS,
+		TRAIT_MUTANT_COLORS_SECONDARY,
 		TRAIT_NO_HUSK,
 
 	)
@@ -222,7 +224,7 @@
 		BP.limb_id = chassis_of_choice.icon_state
 		BP.name = "\improper[chassis_of_choice.name] [parse_zone(BP.body_zone)]"
 		BP.update_limb()
-		if(chassis_of_choice.color_src == MUTANT_COLOR)
+		if(chassis_of_choice.palette_key == MUTANT_COLOR)
 			BP.should_draw_greyscale = TRUE
 
 /datum/species/ipc/proc/on_emag_act(mob/living/carbon/human/owner, mob/user)

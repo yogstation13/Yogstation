@@ -6,6 +6,8 @@
 	icon_state = "synth_head"
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 	biological_state = BIO_ROBOTIC | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
 	head_flags = HEAD_HAIR |  HEAD_LIPS | HEAD_EYECOLOR | HEAD_LIPS
@@ -30,6 +32,8 @@
 	icon_state = "synth_chest"
 	is_dimorphic = FALSE
 	should_draw_greyscale = FALSE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 	biological_state = BIO_ROBOTIC | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
 	bodypart_traits = list(TRAIT_LIMBATTACHMENT)
@@ -54,6 +58,8 @@
 	icon_state = "synth_l_arm"
 	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
 	brute_modifier = 1.2 // Monkestation Edit
@@ -78,6 +84,8 @@
 	icon_state = "synth_r_arm"
 	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
 	brute_modifier = 1.2 // Monkestation Edit
@@ -102,6 +110,8 @@
 	icon_state = "synth_l_leg"
 	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
 	brute_modifier = 1.2 // Monkestation Edit
@@ -124,6 +134,8 @@
 	icon_state = "synth_r_leg"
 	flags_1 = CONDUCT_1
 	should_draw_greyscale = FALSE
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
 	biological_state = BIO_ROBOTIC | BIO_JOINTED | BIO_BLOODED
 	bodytype = BODYTYPE_HUMANOID | BODYTYPE_ROBOTIC
 	brute_modifier = 1.2 // Monkestation Edit
