@@ -604,18 +604,27 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 
 /datum/action/innate/ai/honk/Activate()
 	to_chat(owner, span_clown("The intercom system plays your prepared file as commanded."))
+	var/list/victims = list()
 	for(var/obj/item/radio/intercom/found_intercom as anything in GLOB.intercoms_list)
-		if(!found_intercom.is_on() || !found_intercom.get_listening() || found_intercom.wires.is_cut(WIRE_RX)) //Only operating intercoms play the honk
+		if(QDELETED(found_intercom) || !found_intercom.is_on() || !found_intercom.get_listening() || found_intercom.wires.is_cut(WIRE_RX)) //Only operating intercoms play the honk
+			continue
+		if(!are_zs_connected(owner, found_intercom)) // only affect intercoms in the same z-group
 			continue
 		found_intercom.audible_message(message = "[found_intercom] crackles for a split second.", hearing_distance = 3)
-		playsound(found_intercom, 'sound/items/airhorn.ogg', 100, TRUE)
+		playsound(found_intercom, 'sound/items/airhorn.ogg', vol = 100, vary = TRUE)
 		for(var/mob/living/carbon/honk_victim in ohearers(6, found_intercom))
-			var/turf/victim_turf = get_turf(honk_victim)
-			if(isspaceturf(victim_turf) && !victim_turf.Adjacent(found_intercom)) //Prevents getting honked in space
+			if(HAS_TRAIT(honk_victim, TRAIT_GODMODE) || !honk_victim.can_hear())
 				continue
-			if(honk_victim.soundbang_act(intensity = 1, stun_pwr = 20, damage_pwr = 30, deafen_pwr = 60)) //Ear protection will prevent these effects
-				honk_victim.set_jitter_if_lower(120 SECONDS)
-				to_chat(honk_victim, span_clown("HOOOOONK!"))
+			var/turf/victim_turf = get_turf(honk_victim)
+			if((isspaceturf(victim_turf) || ((victim_turf.return_air()?.return_pressure() || 0) < SOUND_MINIMUM_PRESSURE)) && !victim_turf.Adjacent(found_intercom)) //Prevents getting honked in space
+				continue
+			victims |= honk_victim
+	for(var/mob/living/carbon/victim as anything in victims)
+		if(QDELETED(victim))
+			continue
+		if(victim.soundbang_act(intensity = 1, stun_pwr = 20, damage_pwr = 30, deafen_pwr = 60)) //Ear protection will prevent these effects
+			victim.set_jitter_if_lower(120 SECONDS)
+			to_chat(victim, span_clown("HOOOOONK!"))
 
 /// Robotic Factory: Places a large machine that converts humans that go through it into cyborgs. Unlocking this ability removes shunting.
 /datum/ai_module/utility/place_cyborg_transformer
