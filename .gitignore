@@ -1,3 +1,6 @@
+# monkestation addition: icon_exists cache
+icon_exists_cache.json
+
 ###Files and folders specified here will never be tracked.
 
 # Local overrides--you can use this to change the config for your dev environment (like setting up SQL) without worrying about committing it
