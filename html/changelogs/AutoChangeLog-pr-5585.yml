@@ -1,0 +1,7 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - balance: "The malf AI intercom honk (Percussive Intercomm Interference) no longer stacks with multiple intercoms on a single person, which could instantly deafen people in an unlucky spot."
+  - balance: "The intercom honk also won't affect people who can't hear anyways."
+  - balance: "The intercom honk now doesn't affect people in spaced areas unless they're right next to the intercom, like how sound usually works."
+  - balance: "The intercom honk now only affects Z-levels connected to the AI's z-level (i.e an on-station AI will only affect station intercoms)"
