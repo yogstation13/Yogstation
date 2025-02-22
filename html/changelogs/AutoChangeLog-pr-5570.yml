@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - balance: "rebalanced pain quirk values with pain being mostly gone"
