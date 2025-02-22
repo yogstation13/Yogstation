@@ -1,0 +1,4 @@
+author: "BebeYoshi"
+delete-after: True
+changes:
+  - bugfix: "Reality Dissociation Syndrome properly works now."
