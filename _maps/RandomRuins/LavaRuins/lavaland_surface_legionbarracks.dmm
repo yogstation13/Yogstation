@@ -12,6 +12,7 @@
 "d" = (
 /obj/structure/rack,
 /obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/clothing/under/costume/roman,
 /obj/item/clothing/shoes/roman,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
@@ -99,6 +100,7 @@
 /obj/structure/rack,
 /obj/item/clothing/head/helmet/roman,
 /obj/item/clothing/shoes/roman,
+/obj/item/clothing/under/costume/roman,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
