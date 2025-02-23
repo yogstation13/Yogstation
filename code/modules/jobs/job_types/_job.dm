@@ -639,6 +639,10 @@
 	if(!GLOB.current_anonymous_theme && player_client.prefs.read_preference(/datum/preference/name/cyborg) != DEFAULT_CYBORG_NAME)
 		apply_pref_name(/datum/preference/name/cyborg, player_client)
 
+	// monkestation edit start
+	TryConnectToAI() // needs to happen before the client is transfered to the mob
+	// monkestation edit end
+
 /**
  * Called after a successful roundstart spawn.
  * Client is not yet in the mob.

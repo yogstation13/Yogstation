@@ -154,6 +154,7 @@
 		owner_dna = null
 		update_id(user)
 		return TRUE
+	return ..()
 
 /obj/item/gun/energy/e_gun/lawbringer/attack_self(mob/living/user as mob)
 	if(!iscarbon(user))

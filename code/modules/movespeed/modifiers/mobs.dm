@@ -97,6 +97,7 @@
 	variable = TRUE
 	movetypes = GROUND
 	flags = IGNORE_NOSLOW
+	blacklisted_movetypes = FLOATING|FLYING // monkestation addition
 
 /datum/movespeed_modifier/simplemob_varspeed
 	variable = TRUE

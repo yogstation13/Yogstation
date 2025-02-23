@@ -86,14 +86,17 @@ const NtosLifelineContent = () => {
     (crew: CrewSensor) => crew.name + crew.assignment,
   );
 
+  const jobIsCommand = (jobId: number) => {
+    return (
+      (jobIsHead(jobId) &&
+        jobId !== 50) /* QMs are heads of staff but not command */ ||
+      (jobId >= 200 && jobId < 300)
+    );
+  };
+
   const sorted = sensors
     .filter(nameSearch)
-    .filter(
-      (sensor) =>
-        !blueshield ||
-        jobIsHead(sensor.ijob) ||
-        (sensor.ijob >= 200 && sensor.ijob < 300),
-    )
+    .filter((sensor) => !blueshield || jobIsCommand(sensor.ijob))
     .sort((a, b) => {
       if (a.dist < 0 || b.dist < 0) {
         return b.dist - a.dist;

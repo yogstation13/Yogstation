@@ -486,6 +486,7 @@
 /datum/emote/spin/speen
 	key = "speen"
 	key_third_person = "speens"
+	message = "speens!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	mob_type_allowed_typecache = /mob/living
 	mob_type_blacklist_typecache = list(/mob/living/brain)

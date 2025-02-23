@@ -626,6 +626,8 @@ monkestation edit end */
 	key = "me"
 	key_third_person = "custom"
 	message = null
+	muzzle_ignore = TRUE // monkestation addition
+	stat_allowed = SOFT_CRIT // monkestation addition
 
 /datum/emote/living/custom/can_run_emote(mob/user, status_check, intentional)
 	. = ..() && intentional

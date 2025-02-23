@@ -216,3 +216,9 @@
 /obj/item/ammo_box/magazine/handle_atom_del(atom/A)
 	stored_ammo -= A
 	update_ammo_count()
+
+// monkestation edit start
+/obj/item/ammo_box/handle_atom_del(atom/A)
+	stored_ammo.Remove(A)
+	return ..()
+// monkestation edit end
