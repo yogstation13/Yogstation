@@ -1,0 +1,6 @@
+author: "MissClassyPineapple"
+delete-after: True
+changes:
+  - rscadd: "Adds the Caffeine dependence quirk. Get to drinking that coffee."
+  - rscadd: "Makes coffee mildly addictive."
+  - rscadd: "Coffee addiction."
