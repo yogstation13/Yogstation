@@ -1,0 +1,14 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - rscadd: "added large scarves to the loadout store"
+  - qol: "shrunk the choice beacon item to be pocket sized"
+  - bugfix: "fixed the top few pixels of anime implant ears getting trimmed for tallest humans"
+  - bugfix: "fixed QMs showing up on lifeline's blueshield mode"
+  - bugfix: "fixed missing / disabled legs slowing down flying players"
+  - bugfix: "fixed the number displayed number of bullets in fingerguns not decreasing"
+  - bugfix: "fixed the speen emote not making sound"
+  - bugfix: "fixed latejoin borgs with an AI connection being told they were unlinked"
+  - bugfix: "fixed the muzzle preventing custom emotes"
+  - bugfix: "fixed players being unable to resist to get out of vents/scrubbers while ventcrawling"
+  - bugfix: "fixed seclights being unattachable to the lawbringer"
