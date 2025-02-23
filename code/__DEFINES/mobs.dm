@@ -114,7 +114,7 @@
 #define SPECIES_NIGHTMARE "nightmare"
 #define SPECIES_MONKEY "monkey"
 #define SPECIES_MOTH "moth"
-#define SPECIES_TUNDRA "tundra_moth" //Monkestation Addition
+#define SPECIES_TUNDRA "tundra" //Monkestation Addition
 #define SPECIES_MUSHROOM "mush"
 #define SPECIES_PLASMAMAN "plasmaman"
 #define SPECIES_PODPERSON "pod"

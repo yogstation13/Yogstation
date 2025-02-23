@@ -6763,7 +6763,7 @@
 	name = "Virology Access Button";
 	pixel_x = -25;
 	pixel_y = 25;
-	req_access = list("virology")
+	req_access = list("pathology")
 	},
 /obj/effect/turf_decal/tile/green/fourcorners,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -7367,7 +7367,7 @@
 	idSelf = "virology_airlock_control";
 	name = "Virology Access Button";
 	pixel_x = -25;
-	req_access = list("virology")
+	req_access = list("pathology")
 	},
 /obj/effect/turf_decal/tile/green/opposingcorners,
 /obj/effect/turf_decal/tile/blue/opposingcorners,
@@ -7999,7 +7999,7 @@
 	name = "Virology Access Console";
 	pixel_x = -25;
 	pixel_y = -4;
-	req_access = list("virology")
+	req_access = list("pathology")
 	},
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 10
@@ -34556,6 +34556,10 @@
 	},
 /turf/open/floor/wood/parquet,
 /area/station/service/cafeteria)
+"goy" = (
+/obj/machinery/egg_incubator,
+/turf/open/floor/grass,
+/area/station/service/hydroponics)
 "goM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -106366,7 +106370,7 @@ bwW
 bwW
 sKc
 von
-von
+goy
 uGE
 rcL
 pMa
