@@ -606,3 +606,8 @@
   Ziiro:
   - bugfix: IPC Cyberkinetics Chassis (Greyscale) now accepts Mutant colors
   - rscadd: IPC Antenna options now accept Secondary Mutant colors
+2025-02-23:
+  BebeYoshi:
+  - bugfix: Reality Dissociation Syndrome properly works now.
+  Snack-Max:
+  - rscadd: Two New Hairstyles, Long Undercut and Alpaca
