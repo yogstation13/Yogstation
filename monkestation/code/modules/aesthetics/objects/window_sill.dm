@@ -81,13 +81,13 @@ GLOBAL_LIST_INIT(sheets_to_window_types, zebra_typecacheof(list(
 	if(stack.amount < 2)
 		balloon_alert(user, "need at least 2 of \the [stack]!")
 		return
-	balloon_alert_to_viewers(user, "building [window_type::name]...")
+	balloon_alert_to_viewers("building [window_type::name]...")
 	if(!do_after(user, 2 SECONDS, src, extra_checks = CALLBACK(src, PROC_REF(window_build_check), stack, 2)))
 		return
 	if(!stack.use(2))
 		balloon_alert(user, "need at least 2 of \the [stack]!")
 		return
-	balloon_alert_to_viewers(user, "built [window_type::name]")
+	balloon_alert_to_viewers("built [window_type::name]")
 	new window_type(our_turf)
 
 //merges adjacent full-tile windows into one
