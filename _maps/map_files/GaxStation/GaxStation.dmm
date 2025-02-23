@@ -264,9 +264,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "afI" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "agb" = (
