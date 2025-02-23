@@ -142,7 +142,7 @@
 		else
 			quirk_holder.add_mood_event("wrong_cigs", /datum/mood_event/wrong_brand)
 
-/* /datum/quirk/item_quirk/junkie/alcoholic - monkestation disabled for now
+/datum/quirk/item_quirk/junkie/alcoholic
 	name = "Alcoholic"
 	desc = "You just can't live without alcohol. Your liver is a machine that turns ethanol into acetaldehyde."
 	icon = FA_ICON_WINE_GLASS
@@ -191,7 +191,7 @@
 	quirk_holder.add_mob_memory(/datum/memory/key/quirk_alcoholic, protagonist = quirk_holder, preferred_brandy = initial(favorite_alcohol.name))
 	// alcoholic livers have 25% less health and healing
 	var/obj/item/organ/internal/liver/alcohol_liver = quirk_holder.get_organ_slot(ORGAN_SLOT_LIVER)
-	if(alcohol_liver && IS_ORGANIC_ORGAN(alcohol_liver)) // robotic livers aren't affected
+	if(alcohol_liver && !(alcohol_liver.organ_flags & ORGAN_SYNTHETIC)) // robotic livers aren't affected
 		alcohol_liver.maxHealth = alcohol_liver.maxHealth * 0.75
 		alcohol_liver.healing_factor = alcohol_liver.healing_factor * 0.75
 
@@ -209,4 +209,3 @@
 		quirk_holder.clear_mood_event("wrong_alcohol")
 	else
 		quirk_holder.add_mood_event("wrong_alcohol", /datum/mood_event/wrong_brandy)
- */
