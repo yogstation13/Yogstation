@@ -349,6 +349,17 @@
 					msg += "[t_He] [t_is] flushed and wheezing.\n"
 				if (bodytemperature < bodytemp_cold_damage_limit)
 					msg += "[t_He] [t_is] shivering.\n"
+				if(HAS_TRAIT(src, TRAIT_EVIL))
+					. += "[t_His] eyes radiate with a unfeeling, cold detachment. There is nothing but darkness within [t_his] soul."
+					// monkestation edit start
+					/* original
+					living_user.add_mood_event("encountered_evil", /datum/mood_event/encountered_evil)
+					living_user.set_jitter_if_lower(15 SECONDS)
+					*/
+					if(!HAS_TRAIT(user, TRAIT_EVIL))
+						living_user.add_mood_event("encountered_evil", /datum/mood_event/encountered_evil)
+						living_user.set_jitter_if_lower(15 SECONDS)
+					// monkestation edit end
 
 			msg += "</span>"
 
