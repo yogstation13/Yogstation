@@ -607,6 +607,12 @@
   - bugfix: IPC Cyberkinetics Chassis (Greyscale) now accepts Mutant colors
   - rscadd: IPC Antenna options now accept Secondary Mutant colors
 2025-02-23:
+  Absolucy:
+  - bugfix: The balloon alerts when building on a window sill will now actually say
+      what you're doing, instead of just your name and nothing else.
+  - bugfix: Revenge Vassals can now properly bring ex-Vassals back into the fold with
+      the "Help Vassal" ability.
+  - bugfix: Fixed some various minor errors.
   BebeYoshi:
   - bugfix: Reality Dissociation Syndrome properly works now.
   Shoddd:
