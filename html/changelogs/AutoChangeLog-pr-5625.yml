@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Revenge Vassals can now properly bring ex-Vassals back into the fold with the \"Help Vassal\" ability."
