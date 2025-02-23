@@ -1,0 +1,5 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "tundra moth limbs have proper names"
+  - bugfix: "heliostation has a egg incubator now"
