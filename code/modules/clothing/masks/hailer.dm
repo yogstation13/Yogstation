@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 //MONKESTATION EDIT START
 /obj/item/clothing/mask/gas/sechailer/equipped(mob/user, slot)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_POINTED, PROC_REF(point_handler))
+	RegisterSignal(user, COMSIG_MOB_POINTED, PROC_REF(point_handler), override = TRUE) // "equipped plays fast and loose"
 
 /obj/item/clothing/mask/gas/sechailer/proc/point_handler(mob/pointing_mob, mob/pointed_at)
 	SIGNAL_HANDLER
@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(hailer_phrases, list(
 //MONKESTATION EDIT START
 /obj/item/clothing/mask/whistle/equipped(mob/user, slot)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_POINTED, PROC_REF(point_handler))
+	RegisterSignal(user, COMSIG_MOB_POINTED, PROC_REF(point_handler), override = TRUE) // "equipped plays fast and loose"
 
 /obj/item/clothing/mask/whistle/proc/point_handler(mob/pointing_mob, mob/pointed_at)
 	SIGNAL_HANDLER

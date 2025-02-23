@@ -4,7 +4,6 @@
 /// What color is the default kill mode for these guns, used to make sure the chat colors are right at roundstart
 #define DEFAULT_RUNECHAT_COLOR "#06507a"
 
-
 /obj/item/storage/medkit/rayne
 	name = "Rayne Corp Health Analyzer Kit"
 	icon = 'monkestation/icons/obj/rayne_corp/rayne.dmi'
@@ -66,7 +65,6 @@
 	add_fingerprint(user)
 	judge_health(M)
 
-
 //This proc controls what the medkit says when scanning a person, and recommends a best course of treatment (barely)
 /obj/item/storage/medkit/rayne/proc/judge_health(mob/living/target)
 
@@ -117,7 +115,6 @@
 	return
 
 
-
 /obj/item/storage/medkit/rayne/proc/speak_up(json_string, ignores_cooldown = FALSE)
 	if(!json_string)
 		return
@@ -126,4 +123,8 @@
 	say(pick_list_replacements(speech_json_file, json_string))
 	playsound(src, 'sound/creatures/tourist/tourist_talk.ogg', 15, TRUE, SHORT_RANGE_SOUND_EXTRARANGE, frequency = rand(3.5))
 	Shake(2, 2, 1 SECONDS)
-	COOLDOWN_START(src, last_speech, RAYNE_MENDER_SPEECH)
+	COOLDOWN_START(src, last_speech, RAYNE_MENDER_SPEECH_COOLDOWN)
+
+#undef DEFAULT_RUNECHAT_COLOR
+#undef RAYNE_MENDER_SPEECH_COOLDOWN
+#undef RAYNE_MENDER_SPEECH

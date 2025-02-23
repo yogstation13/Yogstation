@@ -1,6 +1,5 @@
 /obj/item/mcobject/messaging/button_panel
 	name = "button panel component"
-	desc = ""
 	icon_state = "comp_buttpanel"
 	base_icon_state = "comp_buttpanel"
 	///current list of active buttons
@@ -12,11 +11,11 @@
 	MC_ADD_CONFIG("Add Button", add_button)
 	MC_ADD_CONFIG("Remove Button", remove_button)
 
-/obj/item/mcobject/messaging/button_panel/update_desc(updates)
+/obj/item/mcobject/messaging/button_panel/examine(updates)
 	. = ..()
-	. += "Buttons:"
+	. += "<b>Buttons</b>:"
 	for(var/name in active_buttons)
-		. += "Label: [name] Signal: [active_buttons[name]]"
+		. += "<b>Label</b>: [name] | <b>Signal</b>: [active_buttons[name]]"
 
 /obj/item/mcobject/messaging/button_panel/attack_hand(mob/user, list/modifiers)
 	. = ..()

@@ -49,7 +49,7 @@
 	data["integrity"] = ((cyborg.health + 100) / 2) //health, as percentage
 	data["lampIntensity"] = cyborg.lamp_intensity //lamp power setting
 	data["sensors"] = "[cyborg.sensors_on?"ACTIVE":"DISABLED"]"
-	data["printerPictures"] = cyborg.connected_ai? cyborg.connected_ai.aicamera.stored.len : cyborg.aicamera.stored.len //Number of pictures taken, synced to AI if available
+	data["printerPictures"] = cyborg.connected_ai ? length(cyborg.connected_ai.aicamera?.stored) : length(cyborg.aicamera?.stored) //Number of pictures taken, synced to AI if available
 	data["printerToner"] = cyborg.toner //amount of toner
 	data["printerTonerMax"] = cyborg.tonermax //It's a variable, might as well use it
 	data["thrustersInstalled"] = cyborg.ionpulse //If we have a thruster uprade

@@ -46,7 +46,7 @@
 /obj/machinery/griddle/proc/on_expose_reagent(atom/parent_atom, datum/reagent/exposing_reagent, reac_volume)
 	SIGNAL_HANDLER
 
-	if(griddled_objects.len >= max_items || !istype(exposing_reagent, /datum/reagent/consumable/pancakebatter) || reac_volume < 5)
+	if(length(griddled_objects) >= max_items || !istype(exposing_reagent, /datum/reagent/consumable/pancakebatter) || reac_volume < 5)
 		return NONE //make sure you have space... it's actually batter... and a proper amount of it.
 
 	for(var/pancakes in 1 to FLOOR(reac_volume, 5) step 5) //this adds as many pancakes as you possibly could make, with 5u needed per pancake
@@ -54,7 +54,7 @@
 		new_pancake.pixel_x = rand(16,-16)
 		new_pancake.pixel_y = rand(16,-16)
 		AddToGrill(new_pancake)
-		if(griddled_objects.len >= max_items)
+		if(length(griddled_objects) >= max_items)
 			break
 	visible_message(span_notice("[exposing_reagent] begins to cook on [src]."))
 	return NONE
@@ -65,7 +65,7 @@
 
 
 /obj/machinery/griddle/attackby(obj/item/I, mob/user, params)
-	if(griddled_objects.len >= max_items)
+	if(length(griddled_objects) >= max_items)
 		to_chat(user, span_notice("[src] can't fit more items!"))
 		return
 	var/list/modifiers = params2list(params)
@@ -123,7 +123,9 @@
 	AddToGrill(grilled_result)
 
 /obj/machinery/griddle/proc/update_grill_audio()
-	if(on && griddled_objects.len)
+	if(QDELETED(src))
+		return
+	if(on && length(griddled_objects))
 		grill_loop.start()
 	else
 		grill_loop.stop()
@@ -139,7 +141,7 @@
 	for(var/obj/item/to_dump in storage_source)
 		if(to_dump.loc != storage_source)
 			continue
-		if(griddled_objects.len >= max_items)
+		if(length(griddled_objects) >= max_items)
 			break
 
 		if(!storage_source.atom_storage.attempt_remove(to_dump, src, silent = TRUE))

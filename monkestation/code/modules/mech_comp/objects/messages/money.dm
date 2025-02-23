@@ -1,5 +1,6 @@
 /obj/item/mcobject/messaging/payment
 	name = "payment component"
+	desc = "Known for eating your change."
 
 	icon_state = "comp_money"
 	base_icon_state = "comp_money"
@@ -17,11 +18,10 @@
 	///CAN_BE_HIT required to allow payments of credits and accounts
 	obj_flags = CAN_BE_HIT
 
-/obj/item/mcobject/messaging/payment/update_desc(updates)
+/obj/item/mcobject/messaging/payment/examine(updates)
 	. = ..()
-	. += "Known for eating your change."
-	. += "Collected Money: [collected] credits"
-	. += "Current Price: [price] credits"
+	. += "<b>Collected Money</b>: [collected] credits"
+	. += "<b>Current Price</b>: [price] credits"
 
 /obj/item/mcobject/messaging/payment/Initialize(mapload)
 	. = ..()
