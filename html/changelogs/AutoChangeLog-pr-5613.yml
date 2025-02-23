@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "The balloon alerts when building on a window sill will now actually say what you're doing, instead of just your name and nothing else."
