@@ -2,7 +2,7 @@
 //Useful mainly for Shaft Miners, but can be taken by anyone.
 /datum/quirk/drg_callout
 	name = "Miner Training"
-	desc = "You arrive with a strange skillchip that teaches you how to reflexively call out mining-related entities you point at."
+	desc = "You arrive with a strange D.R.G.R.A.S skillchip that teaches you how to reflexively call out mining-related entities you point at."
 	value = 0
 	quirk_flags = QUIRK_HUMAN_ONLY | QUIRK_HIDE_FROM_SCAN | QUIRK_DONT_CLONE
 	mob_trait = TRAIT_MINING_CALLOUTS
