@@ -621,3 +621,43 @@
   Snack-Max:
   - rscadd: Two New Hairstyles, Long Undercut and Alpaca
   - bugfix: Updated Long Sidecut
+2025-02-24:
+  MissClassyPineapple:
+  - rscadd: Adds the Caffeine dependence quirk. Get to drinking that coffee.
+  - rscadd: Makes coffee mildly addictive.
+  - rscadd: Coffee addiction.
+  Sorenon:
+  - qol: Boxed roundstart / latejoin job information.
+  - qol: Captain gets a little bit more information about how their radio works roundstart.
+  - bugfix: Fixed roundstart players not getting radio information.
+  - rscadd: Added Alcoholic as a negative quirk.
+  - rscadd: Added a toggle to the DRG Miner Training quirk skillchip and some checks
+      to see which (if any) radio channel should be used
+  - rscadd: added large scarves to the loadout store
+  - qol: shrunk the choice beacon item to be pocket sized
+  - bugfix: fixed the top few pixels of anime implant ears getting trimmed for tallest
+      humans
+  - bugfix: fixed QMs showing up on lifeline's blueshield mode
+  - bugfix: fixed missing / disabled legs slowing down flying players
+  - bugfix: fixed the number displayed number of bullets in fingerguns not decreasing
+  - bugfix: fixed the speen emote not making sound
+  - bugfix: fixed latejoin borgs with an AI connection being told they were unlinked
+  - bugfix: fixed the muzzle preventing custom emotes
+  - bugfix: fixed players being unable to resist to get out of vents/scrubbers while
+      ventcrawling
+  - bugfix: fixed seclights being unattachable to the lawbringer
+  - balance: 'Honorbound no longer cares about innocence when it comes to
+
+      lesser creatures. They can still be considered unready in some cases.'
+  - balance: 'Attacking a cultist with a halo or a nuclear operative first
+
+      instantly makes THEM guilty, allowing further attacks.'
+  - balance: More favor for converting someone to the honorbound rules
+  - rscadd: 'Fundamentally Evil quirk. You might act normal, but you know deep
+
+      down that you totally don''t give a shit about anyone but yourself.
+
+      Empaths better watch out.'
+  - rscadd: 'Players who choose to be evil via the quirk menu will be reminded
+
+      at roundstart that this doesn''t exempt them from server rules.'

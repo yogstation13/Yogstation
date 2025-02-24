@@ -1,4 +1,0 @@
-author: "Sorenon"
-delete-after: True
-changes:
-  - rscadd: "Added a toggle to the DRG Miner Training quirk skillchip and some checks to see which (if any) radio channel should be used"

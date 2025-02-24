@@ -1,6 +1,0 @@
-author: "Sorenon"
-delete-after: True
-changes:
-  - qol: "Boxed roundstart / latejoin job information."
-  - qol: "Captain gets a little bit more information about how their radio works roundstart."
-  - bugfix: "Fixed roundstart players not getting radio information."

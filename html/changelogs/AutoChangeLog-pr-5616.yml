@@ -1,8 +1,0 @@
-author: "Sorenon"
-delete-after: True
-changes:
-  - balance: "Honorbound no longer cares about innocence when it comes to\nlesser creatures. They can still be considered unready in some cases."
-  - balance: "Attacking a cultist with a halo or a nuclear operative first\ninstantly makes THEM guilty, allowing further attacks."
-  - balance: "More favor for converting someone to the honorbound rules"
-  - rscadd: "Fundamentally Evil quirk. You might act normal, but you know deep\ndown that you totally don't give a shit about anyone but yourself.\nEmpaths better watch out."
-  - rscadd: "Players who choose to be evil via the quirk menu will be reminded\nat roundstart that this doesn't exempt them from server rules."
