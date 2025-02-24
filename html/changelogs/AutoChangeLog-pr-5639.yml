@@ -1,0 +1,4 @@
+author: "flleeppyy"
+delete-after: True
+changes:
+  - admin: "added \"Reload Mentors\" verb."
