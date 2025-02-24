@@ -6254,6 +6254,7 @@
 #include "monkestation\code\modules\admin\smites\smite.dm"
 #include "monkestation\code\modules\admin\smites\swisscheese.dm"
 #include "monkestation\code\modules\admin\smites\where_are_your_fingers.dm"
+#include "monkestation\code\modules\admin\verbs\diagnostics.dm"
 #include "monkestation\code\modules\admin\verbs\getlogs.dm"
 #include "monkestation\code\modules\admin\verbs\glowshrooms.dm"
 #include "monkestation\code\modules\admin\verbs\kick_player_by_ckey.dm"

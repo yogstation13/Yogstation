@@ -17,6 +17,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/mark_datum_mapview,
 	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
 	/client/proc/reload_admins,
+	/client/proc/reload_mentors, /*monkestation addition Reload mentors*/
 	/client/proc/requests,
 	/client/proc/secrets,
 	/client/proc/review_cassettes, /*monkestation addition Opens the Cassette Review menu*/
