@@ -466,6 +466,10 @@
 	icon_state = reagents.total_volume ? base_icon_state : "[base_icon_state]_e"
 	return ..()
 
+/obj/item/reagent_containers/glass/bottle/thermite
+	name = "thermite bottle"
+	list_reagents = list(/datum/reagent/thermite = 30)
+
 
 //Yogs: Vials
 /obj/item/reagent_containers/glass/bottle/vial
