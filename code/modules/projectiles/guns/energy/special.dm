@@ -331,19 +331,17 @@
 	icon_state = "freezegun"
 	desc = "A gun that changes temperatures. Comes with a collapsible stock."
 	w_class = WEIGHT_CLASS_NORMAL
-	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/hot)
+	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/hot, /obj/item/ammo_casing/energy/temp/cryo)
 	cell_type = /obj/item/stock_parts/cell/high
-	pin = null
+	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/temperature/security
 	name = "security temperature gun"
 	desc = "A weapon that can only be used to its full potential by the truly robust."
-	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/temperature/freeze
 	name = "cryogenic temperature gun"
 	desc = "A gun that reduces temperatures. Only for those with ice in their veins."
-	pin = /obj/item/firing_pin
 	ammo_type = list(/obj/item/ammo_casing/energy/temp)
 
 /obj/item/gun/energy/gravity_gun
