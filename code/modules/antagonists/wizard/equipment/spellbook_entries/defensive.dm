@@ -143,3 +143,10 @@
 	item_path = /obj/item/wizard_armour_charge
 	category = "Defensive"
 	cost = 1
+
+/datum/spellbook_entry/item/ranger_cloak
+	name = "Ranger Cloak"
+	desc = "A cape that makes the wearer quickly invisible while standing still, permitting them to dodge ranged attacks. Moving or dodging projectiles reduces the effect."
+	item_path = /obj/item/clothing/neck/cloak/ranger
+	cost = 2
+	category = "Defensive"
