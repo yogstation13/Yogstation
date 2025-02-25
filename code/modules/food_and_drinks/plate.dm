@@ -78,8 +78,10 @@
 	. = ..()
 	if(.)
 		return
+	var/turf/scatter_turf = get_turf(hit_atom)
+	if(!hit_atom.CanPass(src, get_dir(src, hit_atom))) //Object is too dense to fall apart on
+		scatter_turf = get_turf(src)
 	var/generator/scatter_gen = generator(GEN_CIRCLE, 0, 48, NORMAL_RAND)
-	var/scatter_turf = get_turf(hit_atom)
 
 	for(var/obj/item/scattered_item as anything in contents)
 		ItemRemovedFromPlate(scattered_item)
