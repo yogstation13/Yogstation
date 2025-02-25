@@ -129,3 +129,7 @@
 	icon_state = "hardsuit0-sec"
 	armor_type = /datum/armor/hardsuit/sec
 	hardsuit_type = "sec"
+
+/obj/item/clothing/head/helmet/space/hardsuit/sec/New(loc, ...)
+	. = ..()
+	hud_glasses = new /obj/item/clothing/glasses/hud/security(src)

@@ -136,6 +136,13 @@
 	uses = 1
 	starting_organ = /obj/item/organ/internal/cyberimp/eyes/hud/medical
 
+// monkestation edit start
+/obj/item/autosurgeon/security_hud
+	name = "autosurgeon"
+	desc = "A single use autosurgeon that contains a security heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
+	uses = 1
+	starting_organ = /obj/item/organ/internal/cyberimp/eyes/hud/security
+// monkestation edit end
 
 /obj/item/autosurgeon/syndicate
 	name = "suspicious autosurgeon"

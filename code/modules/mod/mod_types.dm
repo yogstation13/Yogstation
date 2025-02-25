@@ -54,6 +54,7 @@
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/tether,
 		/obj/item/mod/module/magboot,
+		/obj/item/mod/module/visor/meson, //monkestation edit
 	)
 	default_pins = list(
 		/obj/item/mod/module/magboot,
@@ -87,6 +88,7 @@
 		/obj/item/mod/module/rad_protection,
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/jetpack,
+		/obj/item/mod/module/visor/meson, // monkestation addition
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack,
@@ -117,6 +119,7 @@
 		/obj/item/mod/module/clamp,
 		/obj/item/mod/module/drill,
 		/obj/item/mod/module/mouthhole,
+		/obj/item/mod/module/visor/meson, // monkestation addition
 	)
 	default_pins = list(
 		/obj/item/mod/module/gps,
@@ -131,6 +134,7 @@
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/health_analyzer,
 		/obj/item/mod/module/quick_carry,
+		/obj/item/mod/module/visor/medhud, // monkestation addition
 	)
 
 /obj/item/mod/control/pre_equipped/rescue
@@ -141,6 +145,7 @@
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/health_analyzer,
 		/obj/item/mod/module/injector,
+		/obj/item/mod/module/visor/medhud, // monkestation addition
 	)
 
 /obj/item/mod/control/pre_equipped/research
@@ -152,6 +157,7 @@
 		/obj/item/mod/module/flashlight,
 		/obj/item/mod/module/circuit,
 		/obj/item/mod/module/t_ray,
+		/obj/item/mod/module/visor/diaghud,  // monkestation addition
 	)
 
 /obj/item/mod/control/pre_equipped/security
@@ -163,6 +169,7 @@
 		/obj/item/mod/module/jetpack,
 		/obj/item/mod/module/pepper_shoulders,
 		/obj/item/mod/module/criminalcapture,
+		/obj/item/mod/module/visor/sechud, // monkestation addition
 	)
 
 /obj/item/mod/control/pre_equipped/safeguard
@@ -176,6 +183,7 @@
 		/obj/item/mod/module/megaphone,
 		/obj/item/mod/module/projectile_dampener,
 		/obj/item/mod/module/pepper_shoulders,
+		/obj/item/mod/module/visor/sechud, // monkestation addition
 	)
 	default_pins = list(
 		/obj/item/mod/module/jetpack,
