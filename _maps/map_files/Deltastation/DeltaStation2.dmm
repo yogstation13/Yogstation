@@ -4057,7 +4057,7 @@
 /area/station/science/research)
 "aUN" = (
 /obj/structure/lattice/catwalk,
-/obj/item/toy/plush/space_lizard_plushie{
+/obj/item/toy/plush/lizard_plushie/space/green{
 	name = "Meets-the-Ore"
 	},
 /obj/structure/railing{

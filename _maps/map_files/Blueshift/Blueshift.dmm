@@ -44405,7 +44405,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/item/toy/plush/space_lizard_plushie,
+/obj/item/toy/plush/lizard_plushie/space/green,
 /turf/open/space/basic,
 /area/space/nearstation)
 "iDd" = (
@@ -78639,7 +78639,7 @@
 /area/station/common/wrestling/arena)
 "pkX" = (
 /obj/structure/lattice/catwalk,
-/obj/item/toy/plush/space_lizard_plushie{
+/obj/item/toy/plush/lizard_plushie/space/green{
 	name = "Cools-The-Crystal"
 	},
 /obj/item/clothing/head/utility/hardhat{
@@ -90865,7 +90865,7 @@
 /area/station/security/prison)
 "rDJ" = (
 /obj/structure/chair/sofa/corp/left,
-/obj/item/toy/plush/space_lizard_plushie{
+/obj/item/toy/plush/lizard_plushie/space/green{
 	name = "Observes-The-Laser"
 	},
 /obj/structure/railing{

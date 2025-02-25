@@ -30179,7 +30179,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/starboard/aft)
 "iYr" = (
-/obj/item/toy/plush/space_lizard_plushie{
+/obj/item/toy/plush/lizard_plushie/space/green{
 	name = "Moes-the-Berry"
 	},
 /turf/open/space/basic,

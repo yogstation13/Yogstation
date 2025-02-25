@@ -236,7 +236,7 @@
 /area/centcom/tdome/arena/actual)
 "Kp" = (
 /obj/structure/table/reinforced,
-/obj/item/toy/plush/space_lizard_plushie,
+/obj/item/toy/plush/lizard_plushie/space/green,
 /turf/open/floor/iron/dark/textured_large,
 /area/centcom/tdome/arena/actual)
 "Lb" = (

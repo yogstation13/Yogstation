@@ -539,7 +539,7 @@
 /area/space/nearstation)
 "Ds" = (
 /obj/effect/turf_decal/bot_red,
-/obj/item/toy/plush/space_lizard_plushie,
+/obj/item/toy/plush/lizard_plushie/space/green,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "DP" = (

@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(loadout_plushies, generate_loadout_items(/datum/loadout_item/pl
 
 /datum/loadout_item/plushies/lizard_greyscale
 	name = "Greyscale Lizard Plushie"
-	item_path = /obj/item/toy/plush/lizard_plushie
+	item_path = /obj/item/toy/plush/lizard_plushie/greyscale
 
 /datum/loadout_item/plushies/moth
 	name = "Moth Plushie"

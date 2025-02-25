@@ -38587,7 +38587,7 @@
 /turf/open/openspace/icemoon,
 /area/station/science/server)
 "mpc" = (
-/obj/item/toy/plush/space_lizard_plushie{
+/obj/item/toy/plush/lizard_plushie/space/green{
 	name = "Ruins-The-Analog"
 	},
 /turf/open/floor/plating/snowed/smoothed/icemoon,

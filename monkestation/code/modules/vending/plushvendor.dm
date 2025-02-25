@@ -16,7 +16,7 @@
 			"products" = list(
 				/obj/item/toy/plush/carpplushie = 1,
 				/obj/item/toy/plush/slimeplushie = 1,
-				/obj/item/toy/plush/lizard_plushie = 1,
+				/obj/item/toy/plush/lizard_plushie/greyscale = 1,
 				/obj/item/toy/plush/snakeplushie = 1,
 				/obj/item/toy/plush/plasmamanplushie = 1,
 				/obj/item/toy/plush/moth = 1,
@@ -28,8 +28,9 @@
 			"name" = "Deluxe",
 			"icon" = "star",
 			"products" = list(
+				/obj/item/toy/plush/lizard_plushie = 1,
 				/obj/item/toy/plush/lizard_plushie/green = 1,
-				/obj/item/toy/plush/space_lizard_plushie = 1,
+				/obj/item/toy/plush/lizard_plushie/space/green = 1,
 				/obj/item/toy/plush/awakenedplushie = 1,
 				/obj/item/toy/plush/goatplushie = 1,
 				/obj/item/toy/plush/rouny = 1,
