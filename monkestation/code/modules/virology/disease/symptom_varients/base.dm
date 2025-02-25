@@ -2,7 +2,7 @@
 	var/name = "Generic Varient"
 	var/desc = "An amalgamation of genes."
 
-	var/weight = 10
+	var/weight = 0 // Set to 0 to be unobtainable till someone balances, still in code commented as heavily tied into extrapolator and easier to readd in future
 
 	var/datum/symptom/host_symptom
 	var/datum/disease/host_disease

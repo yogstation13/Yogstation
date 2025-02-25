@@ -1,3 +1,4 @@
+/*
 /obj/item/mcobject/messaging/radioscanner
 	name = "radio scanner component"
 	base_icon_state = "comp_radioscanner"
@@ -46,3 +47,4 @@
 	SIGNAL_HANDLER
 
 	fire("name=[speaker.GetVoice()]&message=[message]") //mimic list2params
+*/

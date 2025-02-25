@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY_TYPED(bluespace_varient_list, /datum/symptom_varient/bluespace
 	desc = "The cloning process seems to have caused genes to communicate through hosts."
 	cooldown_time = 30 SECONDS
 
-	weight = 2
+	weight = 0 // 2 was original, leaving for future ref
 
 	var/bluespace_id = 0
 	var/static/last_bluespace_id = 0
