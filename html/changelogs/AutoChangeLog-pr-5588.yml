@@ -1,6 +1,0 @@
-author: "Sorenon"
-delete-after: True
-changes:
-  - rscadd: "Added the ability to attach HUD glasses to security helmets, with security hardsuit helmets having an unremovable sec HUD."
-  - rscadd: "Most prebuilt modsuits now start with their department's relevant HUD module"
-  - qol: "The Warden's locker now has a garment bag"

@@ -1,5 +1,0 @@
-author: "Sorenon"
-delete-after: True
-changes:
-  - rscadd: "Added Goblin Noses"
-  - bugfix: "You can no longer manipulate \"None\" organs"

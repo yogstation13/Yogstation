@@ -1,4 +1,0 @@
-author: "Mqiib"
-delete-after: True
-changes:
-  - balance: "Flashbangs only get a guaranteed stun on the same tile, not adjacent tiles."

@@ -662,8 +662,29 @@
 
       at roundstart that this doesn''t exempt them from server rules.'
 2025-02-25:
+  Absolucy:
+  - balance: Bluespace artillery cannons can no longer target oozeling cores.
+  Gw0sty:
+  - qol: Gave ranching its own unique room subtype
+  - bugfix: Heliostation pathology should have functional Airlocks.
+  - bugfix: Theseus has a increased request console network
+  Mqiib:
+  - balance: Flashbangs only get a guaranteed stun on the same tile, not adjacent
+      tiles.
+  RikuTheKiller:
+  - bugfix: Liquids should run much faster now.
+  Shoddd:
+  - balance: ethereal blood immobilizes instead of knockdown stuns
+  - bugfix: plates breaking inside of walls
   Sorenon:
   - image: Space lizard, carp, slime and snake plushies have been resprited and set
       up to support GAGS.
+  - rscadd: Added Goblin Noses
+  - bugfix: You can no longer manipulate "None" organs
+  - rscadd: Added the ability to attach HUD glasses to security helmets, with security
+      hardsuit helmets having an unremovable sec HUD.
+  - rscadd: Most prebuilt modsuits now start with their department's relevant HUD
+      module
+  - qol: The Warden's locker now has a garment bag
   flleeppyy:
   - admin: added "Reload Mentors" verb.

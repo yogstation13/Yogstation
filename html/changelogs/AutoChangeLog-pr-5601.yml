@@ -1,5 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - qol: "Gave ranching its own unique room subtype"
-  - bugfix: "Heliostation pathology should have functional Airlocks."
