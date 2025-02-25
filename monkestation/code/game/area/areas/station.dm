@@ -22,6 +22,23 @@
 /area/station/asteroid/tram/junction/west
 	name = "\improper Western Tram Junction"
 
+/area/station/service/hydroponics/chicken
+	name = "Ranch"
+	icon_state = "hydro"
+
+/area/station/service/hydroponics/chicken/storage
+	name = "Ranch Storage"
+	icon_state = "hydro"
+
+/area/station/service/hydroponics/chicken/backroom
+	name = "Ranch Backroom"
+	icon_state = "hydro"
+
+/area/station/maintenance/chicken
+	name = "Ranching Maintenance"
+	icon = 'monkestation/code/modules/blueshift/icons/areas/areas_station.dmi'
+	icon_state = "nightclub_maint"
+
 // Blueshield area
 /area/station/command/heads_quarters/blueshield
 	name = "Blueshield's Office"

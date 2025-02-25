@@ -47787,6 +47787,10 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/station/medical/treatment_center)
+"nYE" = (
+/obj/machinery/egg_incubator,
+/turf/open/floor/grass,
+/area/station/service/hydroponics/upper)
 "nYH" = (
 /obj/structure/railing{
 	dir = 1
@@ -171690,7 +171694,7 @@ vtq
 vtq
 vtq
 pxM
-xtO
+nYE
 xtO
 xtO
 tag
