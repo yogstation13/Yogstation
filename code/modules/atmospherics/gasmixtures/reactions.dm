@@ -396,7 +396,7 @@
 
 	return REACTING
 
-/datum/gas_reaction/bzformation //Formation of BZ by combining plasma and tritium at low pressures. Exothermic.
+/datum/gas_reaction/bzformation //Formation of BZ by combining plasma and N2O at low pressures. Exothermic.
 	priority = BZFORMATION
 	name = "BZ Gas formation"
 	id = "bzformation"
