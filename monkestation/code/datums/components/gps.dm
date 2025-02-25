@@ -1,3 +1,10 @@
+/datum/component/gps
+	/// Can this GPS be targeted by a BSA?
+	var/bsa_targetable = TRUE
+
+/datum/component/gps/no_bsa
+	bsa_targetable = FALSE
+
 /datum/component/gps/item
 	/// If TRUE, then this GPS needs to be calibrated to point to specific z-levels.
 	var/requires_z_calibration = TRUE

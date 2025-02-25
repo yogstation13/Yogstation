@@ -125,7 +125,7 @@
 		span_notice("You find the densest point, crushing it in your palm. The blinking light in the core slowly dissapates and items start to come out."),
 		span_notice("You hear a wet crunching sound."))
 		gps_active =  FALSE
-		qdel(GetComponent(/datum/component/gps))//Actually remove the gps signal
+		qdel(GetComponent(/datum/component/gps/no_bsa))//Actually remove the gps signal
 
 	else
 		user.visible_message(span_warning("[user] crunches something deep in the slime core! It gradually stops glowing."),
@@ -202,7 +202,7 @@
 	playsound(victim, 'sound/effects/blobattack.ogg', 80, TRUE)
 
 	if(gps_active) // adding the gps signal if they have activated the ability
-		AddComponent(/datum/component/gps, "[victim]'s Core")
+		AddComponent(/datum/component/gps/no_bsa, "[victim]'s Core")
 
 	if(brainmob)
 		membrane_mur.Grant(brainmob)
