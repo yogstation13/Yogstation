@@ -54,6 +54,13 @@ export const CHANGELOG_ENTRIES = [
 	],
 
 	[
+		["map"],
+		{
+			placeholders: ["added/modified/removed map content"],
+		},
+	],
+
+	[
 		["spellcheck", "typo"],
 		{
 			placeholders: ["fixed a few typos"],
@@ -104,10 +111,10 @@ export const CHANGELOG_ENTRIES = [
 ];
 
 // Valid changelog openers
-export const CHANGELOG_OPEN_TAGS = [":cl:", "??"];
+export const CHANGELOG_OPEN_TAGS = [":cl:", "??", "🆑", ":🆑:"];
 
 // Valid changelog closers
-export const CHANGELOG_CLOSE_TAGS = ["/:cl:", "/ :cl:", ":/cl:", "/??", "/ ??"];
+export const CHANGELOG_CLOSE_TAGS = ["/:cl:", "/ :cl:", ":/cl:", "/??", "/ ??", "/🆑", "/ 🆑", "/:🆑:", "/ :🆑:"];
 
 // Placeholder value for an author
 export const CHANGELOG_AUTHOR_PLACEHOLDER_NAME = "optional name here";
