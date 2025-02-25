@@ -16,6 +16,7 @@
 	inherent_biotypes = MOB_ORGANIC | MOB_HUMANOID
 	external_organs = list(
 		/obj/item/organ/external/goblin_ears = "long",
+		/obj/item/organ/external/goblin_nose = "small",
 		)
 	meat = /obj/item/food/meat/steak
 	mutanttongue = /obj/item/organ/internal/tongue/goblin

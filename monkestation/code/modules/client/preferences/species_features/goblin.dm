@@ -14,3 +14,20 @@
 
 /datum/preference/choiced/goblin_ears/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["goblin_ears"] = value
+
+/datum/preference/choiced/goblin_nose
+	savefile_key = "feature_goblin_nose"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_FEATURES
+	main_feature_name = "Goblin Nose"
+	should_generate_icons = TRUE
+
+/datum/preference/choiced/goblin_nose/init_possible_values()
+	return possible_values_for_sprite_accessory_list_for_body_part(
+		GLOB.goblin_nose_list,
+		"goblin_nose",
+		list("ADJ"),
+	)
+
+/datum/preference/choiced/goblin_nose/apply_to_human(mob/living/carbon/human/target, value)
+	target.dna.features["goblin_nose"] = value

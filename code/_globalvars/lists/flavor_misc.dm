@@ -54,6 +54,7 @@ GLOBAL_LIST_EMPTY(anime_bottom_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(arachnid_appendages_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(arachnid_chelicerae_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(goblin_ears_list) //Monkestation Addition
+GLOBAL_LIST_EMPTY(goblin_nose_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(floran_leaves_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(satyr_fluff_list) //Monkestation Addition
 GLOBAL_LIST_EMPTY(satyr_tail_list) //Monkestation Addition

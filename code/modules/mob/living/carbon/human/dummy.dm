@@ -103,40 +103,51 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 /mob/living/carbon/human/dummy/log_mob_tag(text)
 	return
 
+/// Takes in an accessory list and returns the first entry from that list, ensuring that we dont return SPRITE_ACCESSORY_NONE in the process.
+/proc/get_consistent_feature_entry(list/accessory_feature_list)
+	var/consistent_entry = (accessory_feature_list- SPRITE_ACCESSORY_NONE)[1]
+	ASSERT(!isnull(consistent_entry))
+	return consistent_entry
+
 /proc/create_consistent_human_dna(mob/living/carbon/human/target)
-	target.dna.initialize_dna(/datum/blood_type/crew/human/o_plus, skip_index = TRUE)
-	target.dna.features["body_markings"] = "None"
-	target.dna.features["ears"] = "None"
-	target.dna.features["frills"] = "None"
-	target.dna.features["horns"] = "None"
-	target.dna.features["moth_antennae"] = "Plain"
-	target.dna.features["moth_markings"] = "None"
-	target.dna.features["moth_wings"] = "Plain"
-	target.dna.features["snout"] = "Round"
-	target.dna.features["spines"] = "None"
-	target.dna.features["tail_cat"] = "None"
-	target.dna.features["tail_lizard"] = "Smooth"
-	target.dna.features["tail_monkey"] = "Monkey"
-	target.dna.features["pod_hair"] = "Ivy"
+	target.dna.initialize_dna(skip_index = TRUE)
+	/* monkestation removal
+	target.dna.features["mcolor"] = COLOR_VIBRANT_LIME
+	target.dna.features["ethcolor"] = COLOR_WHITE
+	*/
+	target.dna.features["body_markings"] = get_consistent_feature_entry(GLOB.body_markings_list)
+	target.dna.features["ears"] = get_consistent_feature_entry(GLOB.ears_list)
+	target.dna.features["frills"] = get_consistent_feature_entry(GLOB.frills_list)
+	target.dna.features["horns"] = get_consistent_feature_entry(GLOB.horns_list)
+	target.dna.features["moth_antennae"] = get_consistent_feature_entry(GLOB.moth_antennae_list)
+	target.dna.features["moth_markings"] = get_consistent_feature_entry(GLOB.moth_markings_list)
+	target.dna.features["moth_wings"] = get_consistent_feature_entry(GLOB.moth_wings_list)
+	target.dna.features["snout"] = get_consistent_feature_entry(GLOB.snouts_list)
+	target.dna.features["spines"] = get_consistent_feature_entry(GLOB.spines_list)
+	target.dna.features["tail_cat"] = get_consistent_feature_entry(GLOB.tails_list_human) // it's a lie
+	target.dna.features["tail_lizard"] = get_consistent_feature_entry(GLOB.tails_list_lizard)
+	target.dna.features["tail_monkey"] = get_consistent_feature_entry(GLOB.tails_list_monkey)
+	target.dna.features["pod_hair"] = get_consistent_feature_entry(GLOB.pod_hair_list)
 	target.dna.features["fur"] = COLOR_MONKEY_BROWN //Monkestation Addition
-	target.dna.features["ethereal_horns"] = "None" //Monkestation Addition
-	target.dna.features["ethereal_tail"] = "None" //Monkestation Addition
-	target.dna.features["ipc_screen"] = "BSOD" //Monkestation Addition
-	target.dna.features["ipc_chassis"] = "Bishop Cyberkinetics" //Monkestation Addition
-	target.dna.features["ipc_antenna"] = "None" //Monkestation Addition
-	target.dna.features["anime_top"] = "None" //Monkestation Addition
-	target.dna.features["anime_middle"] = "None" //Monkestation Addition
-	target.dna.features["anime_bottom"] = "None" //Monkestation Addition
-	target.dna.features["arachnid_appendages"] = "Long" //Monkestation Addition
-	target.dna.features["arachnid_chelicerae"] = "Basic" //Monkestation Addition
-	target.dna.features["goblin_ears"] = "Normal" //Monkestation Addition
-	target.dna.features["floran_leaves"] = "Furnivour" //Monkestation Addition
-	target.dna.features["satyr_fluff"] = "Normal" //Monkestation Addition
-	target.dna.features["satyr_tail"] = "Short" //Monkestation Addition
-	target.dna.features["satyr_horns"] = "Back" //Monkestation Addition
-	target.dna.features["arm_wings"] = "Monochrome" //Monkestation Addition
-	target.dna.features["ears_avian"] = "Hermes" //Monkestation Addition
-	target.dna.features["tail_avian"] = "Eagle" //Monkestation Addition
+	target.dna.features["ethereal_horns"] = get_consistent_feature_entry(GLOB.ethereal_horns_list) //Monkestation Addition
+	target.dna.features["ethereal_tail"] = get_consistent_feature_entry(GLOB.ethereal_tail_list) //Monkestation Addition
+	target.dna.features["ipc_screen"] = get_consistent_feature_entry(GLOB.ipc_screens_list) //Monkestation Addition
+	target.dna.features["ipc_chassis"] = get_consistent_feature_entry(GLOB.ipc_chassis_list) //Monkestation Addition
+	target.dna.features["ipc_antenna"] = get_consistent_feature_entry(GLOB.ipc_antennas_list) //Monkestation Addition
+	target.dna.features["anime_top"] = get_consistent_feature_entry(GLOB.anime_top_list) //Monkestation Addition
+	target.dna.features["anime_middle"] = get_consistent_feature_entry(GLOB.anime_middle_list) //Monkestation Addition
+	target.dna.features["anime_bottom"] = get_consistent_feature_entry(GLOB.anime_bottom_list) //Monkestation Addition
+	target.dna.features["arachnid_appendages"] = get_consistent_feature_entry(GLOB.arachnid_appendages_list) //Monkestation Addition
+	target.dna.features["arachnid_chelicerae"] = get_consistent_feature_entry(GLOB.arachnid_chelicerae_list) //Monkestation Addition
+	target.dna.features["goblin_ears"] = get_consistent_feature_entry(GLOB.goblin_ears_list) //Monkestation Addition
+	target.dna.features["goblin_nose"] = get_consistent_feature_entry(GLOB.goblin_nose_list) //Monkestation Addition
+	target.dna.features["floran_leaves"] = get_consistent_feature_entry(GLOB.floran_leaves_list) //Monkestation Addition
+	target.dna.features["satyr_fluff"] = get_consistent_feature_entry(GLOB.satyr_fluff_list) //Monkestation Addition
+	target.dna.features["satyr_tail"] = get_consistent_feature_entry(GLOB.satyr_tail_list) //Monkestation Addition
+	target.dna.features["satyr_horns"] = get_consistent_feature_entry(GLOB.satyr_horns_list) //Monkestation Addition
+	target.dna.features["arm_wings"] = get_consistent_feature_entry(GLOB.arm_wings_list) //Monkestation Addition
+	target.dna.features["ears_avian"] = get_consistent_feature_entry(GLOB.avian_ears_list) //Monkestation Addition
+	target.dna.features["tail_avian"] = get_consistent_feature_entry(GLOB.tails_list_avian) //Monkestation Addition
 
 	var/datum/color_palette/generic_colors/palette = target.dna.color_palettes[/datum/color_palette/generic_colors]
 	palette.mutant_color = COLOR_VIBRANT_LIME

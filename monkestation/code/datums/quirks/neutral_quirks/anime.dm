@@ -18,6 +18,8 @@
 	var/datum/species/species = quirk_holder.has_dna()?.species
 	if(species)
 		for(var/obj/item/organ/external/organ_path as anything in anime_list)
+			if (!should_external_organ_apply_to(organ_path, quirk_holder))
+				continue
 			//Load a persons preferences from DNA
 			var/obj/item/organ/external/new_organ = SSwardrobe.provide_type(organ_path)
 			new_organ.Insert(quirk_holder, special = TRUE, drop_if_replaced = FALSE)
@@ -32,4 +34,6 @@
 
 /datum/quirk/anime/proc/on_species_gain(datum/source, datum/species/new_species, datum/species/old_species)
 	for(var/obj/item/organ/external/organ_path as anything in anime_list)
+		if (!should_external_organ_apply_to(organ_path, quirk_holder))
+			continue
 		new_species.external_organs |= organ_path

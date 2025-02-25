@@ -9,7 +9,7 @@
 	name = "bladder"
 	desc = "This is where the pee is stored"
 
-	icon = 'monkestation/icons/obj/organs.dmi'
+	icon = 'monkestation/icons/obj/medical/organs/organs.dmi'
 	icon_state = "bladder"
 
 	zone = BODY_ZONE_PRECISE_GROIN

@@ -498,6 +498,10 @@
 
 		//Copied from /datum/species/proc/on_species_gain()
 		for(var/obj/item/organ/external/organ_path as anything in dna.species.external_organs)
+			// monkestation edit start
+			if (!should_external_organ_apply_to(organ_path, src))
+				continue
+			// monkestation edit end
 			//Load a persons preferences from DNA
 			var/zone = initial(organ_path.zone)
 			if(zone != limb_zone)
