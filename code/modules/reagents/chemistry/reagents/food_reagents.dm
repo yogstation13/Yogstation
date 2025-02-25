@@ -898,7 +898,8 @@
 	if(isethereal(M))
 		M.blood_volume += 1 * seconds_per_tick
 	else if(SPT_PROB(10, seconds_per_tick)) //lmao at the newbs who eat energy bars
-		M.electrocute_act(rand(5,10), "Liquid Electricity in their body", 1, SHOCK_NOGLOVES) //the shock is coming from inside the house
+		M.electrocute_act(rand(5,10), "Liquid Electricity in their body", 1, SHOCK_NOGLOVES | SHOCK_NOSTUN) //the shock is coming from inside the house //MONKESTATION ADDITION NO STUN
+		M.Immobilize(1 SECOND) //MONKESTATION ADDITION
 		playsound(M, SFX_SPARKS, 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	return ..()
 
