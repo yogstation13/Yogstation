@@ -115,7 +115,8 @@
   * Returns TRUE if the NOPOWER flag was toggled
   */
 /obj/machinery/proc/power_change()
-	//SIGNAL_HANDLER
+	SIGNAL_HANDLER //seems to be causing issues atm. something to look into
+	SHOULD_CALL_PARENT(TRUE)
 	if(stat & BROKEN)
 		update_appearance()
 		return

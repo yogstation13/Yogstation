@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(machines)
 	.["machines"] = length(processing)
 	.["powernets"] = length(powernets)
 
-/datum/controller/subsystem/machines/fire(resumed = 0)
+/datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)
 		for(var/datum/powernet/Powernet in powernets)
 			Powernet.reset() //reset the power state.
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(machines)
 		currentrun.len--
 		if(!QDELETED(thing) && thing.process(wait * 0.1) != PROCESS_KILL)
 			if(thing.use_power)
-				thing.auto_use_power() //add back the power state
+				thing.update_use_power() //add back the power state
 		else
 			processing -= thing
 			if (!QDELETED(thing))

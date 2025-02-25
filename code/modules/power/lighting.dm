@@ -221,6 +221,8 @@
 	active_power_usage = 20
 	///Lights are calc'd via area so they dont need to be in the machine list
 	power_channel = AREA_USAGE_LIGHT
+	///lists them in recursive contents 
+	aways_area_sensitive = TRUE
 	///What overlay the light should use
 	var/overlay_icon = 'icons/obj/lighting_overlay.dmi'
 	///base description and icon_state
@@ -347,6 +349,7 @@
 		nightshift_light_color = our_area.lighting_colour_night
 
 	if(!mapload) //sync up nightshift lighting for player made lights
+		var/area/our_area = get_room_area()		
 		var/obj/machinery/power/apc/temp_apc = our_area.get_apc()
 		nightshift_enabled = temp_apc?.nightshift_lights
 
@@ -429,6 +432,28 @@
 		bulb_colour = A.lighting_colour_bulb
 	else
 		bulb_colour = A.lighting_colour_tube
+	update()
+
+// Area sensitivity is traditionally tied directly to power use, as an optimization
+// But since we want it for fire reacting, we disregard that
+/obj/machinery/light/setup_area_power_relationship()
+	. = ..()
+	if(!.)
+		return
+	var/area/our_area = get_room_area()
+	RegisterSignal(our_area, COMSIG_AREA_FIRE_CHANGED, PROC_REF(handle_fire))
+
+/obj/machinery/light/on_enter_area(datum/source, area/area_to_register)
+	..()
+	RegisterSignal(area_to_register, COMSIG_AREA_FIRE_CHANGED, PROC_REF(handle_fire))
+	handle_fire(area_to_register, area_to_register.fire)
+
+/obj/machinery/light/on_exit_area(datum/source, area/area_to_unregister)
+	..()
+	UnregisterSignal(area_to_unregister, COMSIG_AREA_FIRE_CHANGED)
+
+/obj/machinery/light/proc/handle_fire(area/source, new_fire)
+	SIGNAL_HANDLER
 	update()
 
 // update the icon_state and luminosity of the light depending on its state

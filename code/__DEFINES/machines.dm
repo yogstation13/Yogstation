@@ -21,6 +21,8 @@
 #define IDLE_POWER_USE 1
 #define ACTIVE_POWER_USE 2
 
+#define DYNAMIC_TO_STATIC_CHANNEL(dyn_channel) (dyn_channel + (AREA_USAGE_STATIC_START - AREA_USAGE_DYNAMIC_START)) //note to future coders. look into machinery code for improvements 
+#define STATIC_TO_DYNAMIC_CHANNEL(static_channel) (static_channel - (AREA_USAGE_STATIC_START - AREA_USAGE_DYNAMIC_START))
 
 //bitflags for door switches.
 #define OPEN	(1<<0)

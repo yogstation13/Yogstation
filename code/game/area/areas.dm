@@ -114,7 +114,9 @@
 	var/list/cameras
 	var/list/firealarms
 	var/list/airalarms
-
+	///List of all lights in our area
+	var/list/lights = list()
+	var/list/power_usage //dont feel like replacing everything to joules.  however should have more of the code to do it
 	///Typepath to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
 	var/area/area_limited_icon_smoothing
 
@@ -189,6 +191,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if (unique)
 		GLOB.areas_by_type[type] = src
 	GLOB.areas += src
+	power_usage = new /list(AREA_USAGE_LEN) // Some atoms would like to use power in Initialize()
 	if(uses_daylight)
 		SSdaylight.add_lit_area(src)
 	return ..()
@@ -498,7 +501,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		return
 
 	if (!fire)
-		set_fire_alarm_effect()
+		set_fire_effect(TRUE)
 		ModifyFiredoors(FALSE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
@@ -529,7 +532,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   */
 /area/proc/firereset(obj/source, alert_only=FALSE)
 	if (fire && !alert_only)
-		unset_fire_alarm_effects()
+		set_fire_effect(FALSE)
 		ModifyFiredoors(TRUE)
 		for(var/item in firealarms)
 			var/obj/machinery/firealarm/F = item
@@ -580,7 +583,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		return
 
 	//Trigger alarm effect
-	set_fire_alarm_effect()
+	set_fire_effect(TRUE)
 	//Lockdown airlocks
 	for(var/obj/machinery/door/DOOR in src)
 		close_and_lock_door(DOOR)
@@ -600,33 +603,18 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	qdel(radio)
 
 /**
-  * Trigger the fire alarm visual affects in an area
-  *
-  * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
-  */
-/area/proc/set_fire_alarm_effect(delta_alert=FALSE)
-	if(delta_alert)
-		delta_light = TRUE
-	else
-		fire = TRUE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	for(var/alarm in firealarms)
-		var/obj/machinery/firealarm/F = alarm
-		F.update_fire_light(TRUE)
-	for(var/obj/machinery/light/L in src)
-		L.update(TRUE, TRUE, TRUE)
-
-/**
-  * unset the fire alarm visual affects in an area
-  *
-  * Updates the fire light on fire alarms in the area and sets all lights to emergency mode
-  */
-/area/proc/unset_fire_alarm_effects(delta_alert=FALSE)
+ * Set the fire alarm visual affects in an area
+ *
+ * Allows interested parties (lights and fire alarms) to react
+ */
+/area/proc/set_fire_effect(new_fire, delta_alert=FALSE) //hopefully this doesnt break your code bup. fuck 
+	if(new_fire == fire)
+		return
+	fire = new_fire
+	SEND_SIGNAL(src, COMSIG_AREA_FIRE_CHANGED, fire)
 	if(delta_alert)
 		delta_light = FALSE
-	else
-		fire = FALSE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		if(!delta_light)
@@ -749,15 +737,32 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			static_environ += value
 
 /**
+ * Remove a static amount of power load to an area. The value is assumed as the watt.
+ *
+ * Possible channels
+ * *AREA_USAGE_STATIC_EQUIP
+ * *AREA_USAGE_STATIC_LIGHT
+ * *AREA_USAGE_STATIC_ENVIRON
+ */
+/area/proc/removeStaticPower(value, powerchannel)
+	switch(powerchannel)
+		if(AREA_USAGE_STATIC_EQUIP)
+			static_equip += value
+		if(AREA_USAGE_STATIC_LIGHT)
+			static_light += value
+		if(AREA_USAGE_STATIC_ENVIRON)
+			static_environ += value
+
+/**
   * Clear all power usage in area
   *
   * Clears all power used for equipment, light and environment channels
   */
 /area/proc/clear_usage()
-	used_equip = 0
-	used_light = 0
-	used_environ = 0
-
+	power_usage[AREA_USAGE_EQUIP] = 0
+	power_usage[AREA_USAGE_LIGHT] = 0
+	power_usage[AREA_USAGE_ENVIRON] = 0
+	
 /**
   * Add a power value amount to the stored used_x variables
   */

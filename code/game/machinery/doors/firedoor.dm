@@ -89,11 +89,6 @@
 			return TRUE
 	return FALSE
 
-
-/obj/machinery/door/firedoor/power_change()
-	. = ..()
-	latetoggle()
-
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()
 	if(.)
