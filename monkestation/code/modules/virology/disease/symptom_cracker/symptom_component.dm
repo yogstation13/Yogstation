@@ -118,7 +118,7 @@
 	current_extrapolator = null
 	SStgui.close_uis(puzzle)
 	UnregisterSignal(src, list(COMSIG_CRACKER_PUZZLE_FAILURE, COMSIG_CRACKER_PUZZLE_SUCCESS))
-	qdel(puzzle)
+	QDEL_NULL(puzzle)
 
 /datum/component/symptom_genes/proc/on_puzzle_success()
 	playsound(current_user, 'sound/machines/defib_success.ogg', 50, FALSE)

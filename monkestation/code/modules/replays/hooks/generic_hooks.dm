@@ -27,3 +27,33 @@
 /atom/movable/setDir()
 	. = ..()
 	SSdemo.mark_dirty(src)
+
+/mob/dview
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/mob/oranges_ear
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/mob/living/carbon/human/dummy
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/obj/effect/spawner
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/obj/effect/turf_decal
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/obj/effect/mapping_helpers
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/obj/effect/abstract/name_tag
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/obj/effect/abstract/marker
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/obj/effect/abstract/info
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1
+
+/obj/effect/abstract/chasm_storage
+	flags_1 = parent_type::flags_1 | DEMO_IGNORE_1

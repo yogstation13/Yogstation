@@ -484,16 +484,16 @@ SUBSYSTEM_DEF(demo)
 			continue
 		marked_turfs[turf] = TRUE
 
-/datum/controller/subsystem/demo/proc/mark_new(atom/movable/M)
+/datum/controller/subsystem/demo/proc/mark_new(atom/movable/atom)
 	if(disabled)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!isobj(atom) && !ismob(atom))
 		return
-	if(QDELING(M))
+	if(QDELING(atom))
 		return
-	marked_new[M] = TRUE
-	if(marked_dirty[M])
-		marked_dirty -= M
+	marked_new[atom] = TRUE
+	if(marked_dirty[atom])
+		marked_dirty -= atom
 
 /datum/controller/subsystem/demo/proc/mark_multiple_new(list/atom/atom_list)
 	if(disabled)
@@ -501,22 +501,22 @@ SUBSYSTEM_DEF(demo)
 	for(var/atom/atom as anything in atom_list)
 		if(!isobj(atom) && !ismob(atom))
 			continue
-		if(QDELING(atom))
+		if(QDELING(atom) || (atom.flags_1 & DEMO_IGNORE_1))
 			continue
 		marked_new[atom] = TRUE
 		if(marked_dirty[atom])
 			marked_dirty -= atom
 
 // I can't wait for when TG ports this and they make this a #define macro.
-/datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/M)
+/datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/dirty)
 	if(disabled)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!isobj(dirty) && !ismob(dirty))
 		return
-	if(QDELING(M))
+	if(QDELING(dirty) || (dirty.flags_1 & DEMO_IGNORE_1))
 		return
-	if(!marked_new[M])
-		marked_dirty[M] = TRUE
+	if(!marked_new[dirty])
+		marked_dirty[dirty] = TRUE
 
 /datum/controller/subsystem/demo/proc/mark_multiple_dirty(list/atom/movable/dirty_list)
 	if(disabled)
@@ -524,19 +524,21 @@ SUBSYSTEM_DEF(demo)
 	for(var/atom/movable/dirty as anything in dirty_list)
 		if(!isobj(dirty) && !ismob(dirty))
 			continue
-		if(QDELING(dirty))
+		if(QDELING(dirty) || (dirty.flags_1 & DEMO_IGNORE_1))
 			continue
 		if(!marked_new[dirty])
 			marked_dirty[dirty] = TRUE
 
-/datum/controller/subsystem/demo/proc/mark_destroyed(atom/movable/M)
+/datum/controller/subsystem/demo/proc/mark_destroyed(atom/movable/destroyed)
 	if(disabled)
 		return
-	if(!isobj(M) && !ismob(M))
+	if(!isobj(destroyed) && !ismob(destroyed))
 		return
-	if(marked_new[M])
-		marked_new -= M
-	if(marked_dirty[M])
-		marked_dirty -= M
+	if(destroyed.flags_1 & DEMO_IGNORE_1)
+		return
+	if(marked_new[destroyed])
+		marked_new -= destroyed
+	if(marked_dirty[destroyed])
+		marked_dirty -= destroyed
 	if(initialized)
-		del_list[ref(M)] = TRUE
+		del_list[ref(destroyed)] = TRUE
