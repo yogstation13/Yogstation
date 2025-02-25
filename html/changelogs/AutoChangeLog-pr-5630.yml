@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - bugfix: "plates breaking inside of walls"
