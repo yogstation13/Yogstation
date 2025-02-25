@@ -1038,7 +1038,7 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 				to_chat(target_living, span_danger("You are knocked down by the currents!"))
 
 /datum/liquid_group/proc/fetch_temperature_queue()
-	if(!cached_temperature_shift)
+	if(!temperature_shift_needs_action)
 		return list()
 
 	var/list/returned =  list()
