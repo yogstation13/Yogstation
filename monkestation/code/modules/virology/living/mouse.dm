@@ -59,7 +59,7 @@
 
 /mob/living/basic/mouse/Life(seconds_per_tick, times_fired)
 	. = ..()
-	handle_virus_updates(seconds_per_tick)
+	handle_virus_updates(seconds_per_tick, times_fired)
 
 	breath_airborne_diseases()
 

@@ -110,26 +110,30 @@
 						//if (V.spread & SPREAD_AIRBORNE)	//Anima Syndrome allows for clouds of non-airborne viruses
 						infect_disease(V, notes="(Airborne, from a pathogenic cloud[cloud.source ? " created by [key_name(cloud.source)]" : ""])")
 
-/mob/living/proc/handle_virus_updates(seconds_per_tick)
+/mob/living/proc/handle_virus_updates(seconds_per_tick, times_fired)
 	if(HAS_TRAIT(src, TRAIT_GODMODE))
 		return 0
 
 	find_nearby_disease()//getting diseases from blood/mucus/vomit splatters and open dishes
 
-	activate_diseases(seconds_per_tick)
+	activate_diseases(seconds_per_tick, times_fired)
 
-/mob/living/proc/activate_diseases(seconds_per_tick)
+/mob/living/proc/activate_diseases(seconds_per_tick, times_fired)
 	if (length(diseases))
 		var/active_disease = pick(diseases)//only one disease will activate its effects at a time.
-		for (var/datum/disease/acute/V  as anything in diseases)
-			if(istype(V))
-				V.activate(src, active_disease != V, seconds_per_tick)
+		for (var/datum/disease/disease as anything in diseases)
+			var/datum/disease/acute/acute_disease = disease
+			if(istype(acute_disease))
+				acute_disease.activate(src, active_disease != acute_disease, seconds_per_tick)
 
 				if(HAS_TRAIT(src, TRAIT_IRRADIATED))
 					if (prob(50))//radiation turns your body into an inefficient pathogenic incubator.
-						V.incubate(src, 1)
+						acute_disease.incubate(src, 1)
 						//effect mutations won't occur unless the mob also has ingested mutagen
 						//and even if they occur, the new effect will have a badness similar to the old one, so helpful pathogen won't instantly become deadly ones.
+			else if(istype(disease))
+				if(stat != DEAD || disease.process_dead)
+					disease.stage_act(seconds_per_tick, times_fired)
 	else
 		//Slowly decay back to regular strength immune system while you are sick
 		if(immune_system?.strength > 1)
