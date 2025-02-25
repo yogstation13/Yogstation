@@ -1,6 +1,0 @@
-author: "DexeeXI"
-delete-after: True
-changes:
-  - balance: "Blueshift: all prison 'exterior' walls are now properly rwalls."
-  - balance: "Blueshift: Removed several items that were comically easy to get and ruin the balance of the map."
-  - balance: "Blueshift: added two additional chargers to sec's meeting room as there is a comically short number of available chargers outside of the armory for officers to use while in the brig."
