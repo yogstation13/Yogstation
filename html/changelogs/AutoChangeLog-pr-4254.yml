@@ -1,5 +1,0 @@
-author: "MissClassyPineapple"
-delete-after: True
-changes:
-  - rscdel: "Removed rulebreaking voxlines from the AI's repertoire"
-  - rscdel: "Removed brainrot voxlines from the AI's repertoire"
