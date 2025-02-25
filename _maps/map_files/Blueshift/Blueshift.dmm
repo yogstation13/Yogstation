@@ -37437,6 +37437,9 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "hkb" = (
@@ -70875,6 +70878,9 @@
 	pixel_y = 13
 	},
 /obj/effect/turf_decal/tile/red,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "nMW" = (
@@ -70902,11 +70908,9 @@
 "nNn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/contraband/narcotics,
-/obj/effect/spawner/random/sakhno,
 /obj/structure/safe{
 	name = "stinking safe"
 	},
-/obj/effect/spawner/random/sakhno/ammo,
 /turf/open/floor/iron/cafeteria,
 /area/station/maintenance/department/medical/central)
 "nNt" = (
@@ -82677,7 +82681,6 @@
 /obj/structure/safe/floor{
 	name = "frozen safe"
 	},
-/obj/item/hilbertshotel,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "qaV" = (
@@ -110277,7 +110280,6 @@
 	name = "glowing safe"
 	},
 /obj/item/book/granter/crafting_recipe/trash_cannon,
-/obj/item/gun/ballistic/rifle/boltaction/pipegun/prime,
 /obj/item/book/granter/crafting_recipe/maint_gun/pipegun_prime,
 /turf/open/floor/plating,
 /area/station/maintenance/port/aft)
@@ -165547,9 +165549,9 @@ aRP
 mhN
 jtX
 mjE
-jxo
-jxo
-jxo
+cLX
+cLX
+cLX
 cLX
 rKX
 rHQ
@@ -168390,9 +168392,9 @@ cLX
 cLX
 cLX
 cLX
-tnw
-tnw
-tnw
+wPS
+wPS
+wPS
 wPS
 hrK
 ldF
