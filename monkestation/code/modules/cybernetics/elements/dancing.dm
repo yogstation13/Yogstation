@@ -134,7 +134,7 @@
 		var/mob/living/living_target = target
 		final_pixel_y += living_target.body_position_pixel_y_offset
 	animate(target, pixel_y = final_pixel_y, time = 0.5 SECONDS)
-
+/*
 /datum/dance/head_spin/trigger_dance(mob/living/target, start=TRUE)
 	ADD_TRAIT(target, TRAIT_IMMOBILIZED, type)
 	var/matrix/initial_matrix = matrix(target.transform)
@@ -183,3 +183,4 @@
 /datum/dance/head_spin/end_dance(mob/target)
 	continues = FALSE
 	REMOVE_TRAIT(target, TRAIT_IMMOBILIZED, type)
+*/

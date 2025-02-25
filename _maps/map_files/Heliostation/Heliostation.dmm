@@ -11764,6 +11764,9 @@
 "bfZ" = (
 /obj/structure/flora/bush/flowers_pp/style_random,
 /obj/machinery/airalarm/directional/north,
+/mob/living/basic/chicken{
+	forced_gender = "male"
+	},
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "bgb" = (
@@ -12053,6 +12056,7 @@
 /area/station/service/hydroponics/garden)
 "bhh" = (
 /obj/structure/flora/bush/fullgrass/style_random,
+/mob/living/basic/chicken/brown,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "bhi" = (
@@ -12068,6 +12072,7 @@
 "bhk" = (
 /obj/structure/flora/bush/flowers_br/style_random,
 /obj/structure/flora/bush/fullgrass/style_random,
+/mob/living/basic/chicken/hen,
 /turf/open/floor/grass,
 /area/station/service/hydroponics/garden)
 "bhl" = (
@@ -34947,6 +34952,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/department/security/upper)
+"gxr" = (
+/mob/living/basic/chicken{
+	forced_gender = "male"
+	},
+/turf/open/floor/sandy_dirt,
+/area/station/service/hydroponics/chicken)
 "gxx" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -37231,8 +37242,26 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "hoy" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
 /obj/effect/turf_decal/tile/red/opposingcorners,
+/obj/structure/closet/secure_closet/freezer/meat/all_access,
+/obj/item/food/meat/slab/human/mutant/fly,
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/meat/slab/monkey,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/bugmeat,
+/obj/item/food/meat/slab/bugmeat,
+/obj/item/food/meat/rawbacon,
+/obj/item/food/meat/rawbacon,
+/obj/item/food/meat/rawbacon,
+/obj/item/food/meat/rawbacon,
+/obj/item/food/meat/rawbacon,
 /turf/open/floor/iron/white,
 /area/station/security/prison/mess)
 "hoJ" = (
@@ -38453,10 +38482,38 @@
 /turf/open/floor/carpet,
 /area/station/service/abandoned_gambling_den)
 "hLT" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/effect/turf_decal/tile/red/opposingcorners,
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
+/obj/structure/closet/secure_closet/freezer/fridge/all_access,
+/obj/item/reagent_containers/condiment/enzyme{
+	list_reagents = list(/datum/reagent/consumable/enzyme=500);
+	name = "universe-sized universal enyzyme";
+	volume = 500
+	},
+/obj/item/reagent_containers/condiment/rice{
+	list_reagents = list(/datum/reagent/consumable/rice=150);
+	name = "Basmati Rice Sack (4KG)";
+	volume = 150
+	},
+/obj/item/storage/box/ingredients/american,
+/obj/item/storage/box/ingredients/grains,
+/obj/item/storage/box/ingredients/italian,
+/obj/item/storage/box/ingredients/random,
+/obj/item/storage/box/ingredients/random,
+/obj/item/storage/box/ingredients/random,
+/obj/item/reagent_containers/condiment/flour{
+	list_reagents = list(/datum/reagent/consumable/flour=600);
+	name = "Premium All-Purpose Flour (16KG)";
+	volume = 600
+	},
+/obj/item/reagent_containers/condiment/soymilk,
+/obj/item/reagent_containers/condiment/soymilk,
+/obj/item/reagent_containers/condiment/milk,
+/obj/item/reagent_containers/condiment/milk,
+/obj/item/reagent_containers/condiment/soysauce,
+/obj/item/reagent_containers/condiment/worcestershire,
+/obj/item/reagent_containers/condiment/vinegar,
 /turf/open/floor/iron/white,
 /area/station/security/prison/mess)
 "hLU" = (
@@ -51776,6 +51833,9 @@
 	},
 /obj/structure/railing/wooden_fencing{
 	dir = 4
+	},
+/mob/living/basic/chicken{
+	forced_gender = "male"
 	},
 /turf/open/floor/sandy_dirt,
 /area/station/service/hydroponics/chicken)
@@ -73079,6 +73139,9 @@
 "vgk" = (
 /obj/structure/railing/wooden_fencing{
 	dir = 1
+	},
+/mob/living/basic/chicken{
+	forced_gender = "male"
 	},
 /turf/open/floor/sandy_dirt,
 /area/station/service/hydroponics/chicken)
@@ -105403,7 +105466,7 @@ gyV
 uFX
 uGE
 gSt
-otr
+gxr
 doo
 reH
 uGE

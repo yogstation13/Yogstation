@@ -30,6 +30,12 @@
 		return
 	return ..()
 
+/obj/item/clothing/neck/necklace/memento_mori/check_health(mob/living/source)
+	if(source.health <= HEALTH_THRESHOLD_DEAD && IS_BLOODSUCKER(source))
+		to_chat(source, span_warning("The Memento notices your undead soul and is enraged by your trickery"))
+		mori()
+		return
+	return ..()
 
 // Used when analyzing a Bloodsucker, Masquerade will hide brain traumas (Unless you're a Beefman)
 /mob/living/carbon/get_traumas()

@@ -338,11 +338,12 @@
 /obj/item/gun/energy/temperature/security
 	name = "security temperature gun"
 	desc = "A weapon that can only be used to its full potential by the truly robust."
+	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/hot)
 
 /obj/item/gun/energy/temperature/freeze
 	name = "cryogenic temperature gun"
 	desc = "A gun that reduces temperatures. Only for those with ice in their veins."
-	ammo_type = list(/obj/item/ammo_casing/energy/temp)
+	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/cryo)
 
 /obj/item/gun/energy/gravity_gun
 	name = "one-point gravitational manipulator"

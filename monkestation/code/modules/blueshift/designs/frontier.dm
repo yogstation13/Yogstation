@@ -382,8 +382,8 @@
 	id = "colony_fab_plastic_wall_panel"
 	build_type = COLONY_FABRICATOR
 	materials = list(
-		/datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT,
-		/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/plastic = (5*SHEET_MATERIAL_AMOUNT),
+		/datum/material/glass = (5*SHEET_MATERIAL_AMOUNT),
 	)
 	build_path = /obj/item/stack/sheet/plastic_wall_panel/ten
 	category = list(

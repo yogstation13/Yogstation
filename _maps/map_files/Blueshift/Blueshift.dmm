@@ -59786,7 +59786,7 @@
 "lBQ" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/airless,
+/turf/open/misc/asteroid/snow/airless,
 /area/space/nearstation)
 "lBW" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -70911,6 +70911,8 @@
 /obj/structure/safe{
 	name = "stinking safe"
 	},
+/obj/effect/spawner/random/sakhno,
+/obj/effect/spawner/random/sakhno/ammo,
 /turf/open/floor/iron/cafeteria,
 /area/station/maintenance/department/medical/central)
 "nNt" = (
@@ -82681,6 +82683,16 @@
 /obj/structure/safe/floor{
 	name = "frozen safe"
 	},
+/obj/item/reagent_containers/condiment/coldsauce,
+/obj/item/temperature_pack/cold,
+/obj/item/temperature_pack/cold,
+/obj/item/temperature_pack/cold,
+/obj/item/reagent_containers/condiment/coldsauce,
+/obj/item/food/grown/icepepper,
+/obj/item/clothing/head/costume/drfreezehat,
+/obj/item/clothing/suit/costume/drfreeze_coat,
+/obj/item/clothing/under/costume/drfreeze,
+/obj/item/gun/energy/temperature/freeze,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "qaV" = (
@@ -83939,7 +83951,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/airless,
+/turf/open/misc/asteroid/snow/airless,
 /area/space/nearstation)
 "qoE" = (
 /obj/effect/turf_decal/stripes{
@@ -99522,7 +99534,7 @@
 "tme" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/plating/airless,
+/turf/open/misc/asteroid/snow/airless,
 /area/space/nearstation)
 "tml" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -124392,6 +124404,8 @@
 	name = "gilded safe"
 	},
 /obj/item/wheelchair/gold,
+/obj/item/instrument/violin/golden,
+/obj/item/food/grown/apple/gold,
 /turf/open/floor/iron/dark,
 /area/station/maintenance/department/security/prison_upper)
 "xZc" = (

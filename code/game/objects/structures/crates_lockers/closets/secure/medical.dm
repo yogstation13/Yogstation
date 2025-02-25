@@ -82,6 +82,7 @@
 	new /obj/item/defibrillator/compact/loaded(src)
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/autosurgeon/medical_hud(src)
+	new /obj/item/autosurgeon/organ/cyberlink_nt_low(src)
 	new /obj/item/door_remote/chief_medical_officer(src)
 	new /obj/item/clothing/neck/petcollar(src)
 	new /obj/item/pet_carrier(src)
