@@ -156,6 +156,7 @@
 	if(!ui)
 		ui = new(user, src, "Lam", name)
 		ui.open()
+		ui.set_autoupdate(TRUE)
 
 /obj/machinery/sci_bombardment/ui_data(mob/user)
 	var/list/data = list()
@@ -173,9 +174,14 @@
 	var/list/signals = list()
 	data["signals"] = list()
 
-	for(var/datum/component/gps/G in GLOB.GPS_list) //nulls on the list somehow
-		var/turf/pos = get_turf_global(G) // yogs - get_turf_global instead of get_turf
-		if(G.emped || !G.tracking || pos.z != lavaland)
+	for(var/gps in GLOB.GPS_list)
+		var/datum/component/gps/G = gps
+		if(G.emped || !G.tracking)
+			continue
+		var/turf/pos = get_turf(G.parent)
+		if(!pos)
+			continue
+		if(!is_mining_level(pos.z))
 			continue
 		var/list/signal = list()
 		signal["entrytag"] = G.gpstag //GPS name
@@ -229,9 +235,13 @@
 			if (!stopcount)
 				radio.talk_into(src, "Beginning launch on coordinates [tcoords]. ETA: [countdown] seconds.",)
 				tick = countdown + 1
+				message_admins("Lavaland artillery mainframe at [ADMIN_VERBOSEJMP(src)] will launch a TTV at GPS signal [targetdest] [ADMIN_COORDJMP(dest)] in [countdown] seconds. Launch sequence started by [ADMIN_LOOKUPFLW(usr)]")
+				log_bomber(usr, "started a launch sequence of a", src, "which will launch at GPS signal [targetdest] [ADMIN_COORDJMP(dest)] in [countdown] seconds", FALSE)
 				countdown()
 			else
 				radio.talk_into(src, "Launch sequence aborted by [usr]. Adjusting mainframe...",)
+				message_admins("Launch sequence of a TTV by the lavaland artillery mainframe at [ADMIN_VERBOSEJMP(src)] was aborted by [ADMIN_FLW(usr)].")
+				log_bomber(usr, "aborted a launch sequence of a", src, null, FALSE)
 				reset_lam()
 			. = TRUE
 		if("target")//Acknowledges GPS signal selected by user and saves it as place to send TTV
@@ -240,8 +250,10 @@
 			targetdest = params["targetdest"]
 			tcoords = params["tcoords"]
 			for(var/gps in GLOB.GPS_list)
-				var/obj/item/gps/T = gps
-				var/turf/pos = get_turf_global(T) // yogs - get_turf_global instead of get_turf
+				var/datum/component/gps/T = gps
+				var/turf/pos = get_turf(T.parent)
+				if(!pos)
+					continue
 				if(T.gpstag == targetdest && "[pos.x], [pos.y], [pos.z]" == tcoords)
 					dest = pos
 					break
@@ -250,7 +262,8 @@
 				targetdest = initial(targetdest)
 				tcoords = initial(tcoords)
 				. = TRUE
-			radio.talk_into(src, "Target set to [targetdest] at coordinates [tcoords]. [tcoords ? "Adjusting mainframe..." : ""]",)
+			radio.talk_into(src, "Target set to [targetdest][tcoords ? " at coordinates [tcoords]." : "."][tcoords ? " Adjusting mainframe..." : ""]")
+			log_bomber(usr, "set the target of a", src, "to fire at GPS signal [targetdest] [ADMIN_COORDJMP(dest)]", FALSE)
 			playsound(src, 'sound/effects/servostep.ogg', 100, 1)
 			reset_lam()
 			. = TRUE
