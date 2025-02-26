@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Structural weakpoint explosions no longer blow up shuttles."

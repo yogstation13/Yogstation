@@ -717,5 +717,10 @@
   flleeppyy:
   - admin: added "Reload Mentors" verb.
 2025-02-26:
+  Absolucy:
+  - bugfix: Disabled music playback on BYOND 516 for the time being, to prevent random
+      chat crashes, until the issue is properly fixed.
+  - bugfix: Structural weakpoint explosions no longer blow up shuttles.
+  - bugfix: Washing forged items no longer removes the material color.
   Snack-Max:
   - bugfix: quick fix long sidecut
