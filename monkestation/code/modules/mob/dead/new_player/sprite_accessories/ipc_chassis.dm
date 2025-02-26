@@ -1,11 +1,17 @@
 /datum/sprite_accessory/ipc_chassis // Used for changing limb icons, doesn't need to hold the actual icon. That's handled in ipc.dm
 	icon = null
-	icon_state = "blegh" // In order to pull the chassis correctly, we need AN icon_state(see line 36-39). It doesn't have to be useful, because it isn't used.
+	icon_state = "blegh" // In order to pull the chassis correctly, we need AN icon_state. It doesn't have to be useful, because it isn't used.
 	color_src = FALSE
 
 /datum/sprite_accessory/ipc_chassis/mcgreyscale
 	name = "Morpheus Cyberkinetics (Custom)"
 	icon_state = "mcgipc"
+	palette = /datum/color_palette/generic_colors
+	palette_key = MUTANT_COLOR
+
+/datum/sprite_accessory/ipc_chassis/mcgreyscalev2
+	name = "Morpheus Cyberkinetics v2 (Custom)"
+	icon_state = "mcgipc2"
 	palette = /datum/color_palette/generic_colors
 	palette_key = MUTANT_COLOR
 
@@ -44,6 +50,10 @@
 /datum/sprite_accessory/ipc_chassis/zeng_hu_pharmaceuticals
 	name = "Zeng-Hu Pharmaceuticals"
 	icon_state = "zhpipc"
+
+/datum/sprite_accessory/ipc_chassis/pawsitronsunited
+	name = "Pawsitrons United"
+	icon_state = "pawsitrons"
 
 // MONKESTATION CHANGE: Adds staripc chassis by MilkForever
 /datum/sprite_accessory/ipc_chassis/star_industrial

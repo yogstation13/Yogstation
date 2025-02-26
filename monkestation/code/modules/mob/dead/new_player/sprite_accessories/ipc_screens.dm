@@ -1,17 +1,17 @@
 /datum/sprite_accessory/ipc_screens
 	icon = 'monkestation/icons/mob/species/ipc/ipc_screens.dmi'
-	color_src = EYE_COLOR
+	color_src = EYE_COLOR // We pull from the eye color for RGB-enabled screens, but some aren't, so they get FALSE.
 	is_emissive = TRUE
 
 /datum/sprite_accessory/ipc_screens/blue
 	name = "Blue"
 	icon_state = "blue"
-	color_src = 0
+	color_src = FALSE
 
 /datum/sprite_accessory/ipc_screens/bsod
 	name = "BSOD"
 	icon_state = "bsod"
-	color_src = 0
+	color_src = FALSE
 
 /datum/sprite_accessory/ipc_screens/breakout
 	name = "Breakout"
@@ -48,7 +48,7 @@
 /datum/sprite_accessory/ipc_screens/heart
 	name = "Heart"
 	icon_state = "heart"
-	color_src = 0
+	color_src = FALSE
 
 /datum/sprite_accessory/ipc_screens/monoeye
 	name = "Mono-eye"
@@ -73,16 +73,15 @@
 /datum/sprite_accessory/ipc_screens/rainbow
 	name = "Rainbow"
 	icon_state = "rainbow"
-	color_src = 0
+	color_src = FALSE
 
 /datum/sprite_accessory/ipc_screens/red
 	name = "Red"
 	icon_state = "red"
 
-/datum/sprite_accessory/ipc_screens/redtext
-	name = "Red Text"
-	icon_state = "redtext"
-	color_src = 0
+/datum/sprite_accessory/ipc_screens/text
+	name = "Text Scroll"
+	icon_state = "text"
 
 /datum/sprite_accessory/ipc_screens/rgb
 	name = "RGB"
@@ -135,3 +134,42 @@
 /datum/sprite_accessory/ipc_screens/tv
 	name = "Color Test"
 	icon_state = "tv"
+	color_src = FALSE
+
+/datum/sprite_accessory/ipc_screens/blank
+	name = "Blank Canvas"
+	icon_state = "blank"
+
+/datum/sprite_accessory/ipc_screens/blush
+	name = "Blush"
+	icon_state = "blush"
+	color_src = FALSE
+
+/datum/sprite_accessory/ipc_screens/buffering
+	name = "Buffering"
+	icon_state = "buffering"
+
+/datum/sprite_accessory/ipc_screens/doom
+	name = "DOOM"
+	icon_state = "doom"
+	color_src = FALSE
+
+/datum/sprite_accessory/ipc_screens/eyes_noanim
+	name = "Eyes (No Spin)"
+	icon_state = "eyes_noanim"
+
+/datum/sprite_accessory/ipc_screens/eyes_fortuna
+	name = "Eyes (Sun and Moon)"
+	icon_state = "eyes_fortuna"
+
+/datum/sprite_accessory/ipc_screens/nyaru
+	name = "Nyaru"
+	icon_state = "nyaru"
+
+/datum/sprite_accessory/ipc_screens/bubbles
+	name = "Bubbles"
+	icon_state = "bubbles"
+
+/datum/sprite_accessory/ipc_screens/badapple
+	name = "Old Animation"
+	icon_state = "bad_apple"
