@@ -722,5 +722,22 @@
       chat crashes, until the issue is properly fixed.
   - bugfix: Structural weakpoint explosions no longer blow up shuttles.
   - bugfix: Washing forged items no longer removes the material color.
+  - bugfix: AI-controlled basic mobs will no longer somehow attack people who are
+      ventcrawling or jaunting.
+  - bugfix: (Hatterhat) Basic mobs no longer have the (unintended) ability to shoot
+      out of containers, like bluespace body bags.
+  DexeeXI:
+  - balance: The PKA shockwave does 1/8th the damage from before, down from 40 to
+      5. Brings the point blank damage usage down to where it should be.
   Snack-Max:
   - bugfix: quick fix long sidecut
+  Ziiro:
+  - bugfix: The IPC posibrains are now stored in the chest.
+  - bugfix: The IPC "Change Display" action now allows you to also change the color.
+  - bugfix: IPC tongues have been moved from the head to the mouth
+  - bugfix: IPC tongues now have have no tastes - liked, disliked, or toxic. (previously
+      was inheriting human tastes)
+  - balance: IPCs now speak more languages to resume their role as a universal translator
+  - rscadd: Robotic limbs now spark when struck by objects with enough force
+  flleeppyy:
+  - bugfix: Clarify wording for opening lootboxes on in the lobby menu
