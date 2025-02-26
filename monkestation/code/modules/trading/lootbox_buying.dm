@@ -44,7 +44,7 @@
 		return
 
 	if(isnewplayer(mob))
-		to_chat(mob, span_warning("Observe or spawn in first!"))
+		to_chat(mob, span_warning("You can't open a lootbox here! The lootbox has been added to your inventory. Observe or spawn in first, then click the button again."))
 		return
 
 	if(!prefs.lootboxes_owned)
