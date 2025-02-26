@@ -11,7 +11,7 @@
 		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 0.5,
 	)
 	build_path = /obj/item/wallframe/status_display/vitals
-	category = list(RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_MEDICAL)
+	category = list(RND_CATEGORY_CONSTRUCTION + RND_SUBCATEGORY_CONSTRUCTION_MOUNTS)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
 /datum/design/vitals_monitor/advanced

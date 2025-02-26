@@ -1,5 +1,5 @@
 /obj/item/circuitboard/computer/cloning	//hippie start, re-add cloning
-	name = "Cloning (Computer Board)"
+	name = "Cloning"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/computer/cloning
 
@@ -9,7 +9,7 @@
 	build_path = /obj/machinery/computer/prototype_cloning
 
 /obj/item/circuitboard/computer/nanite_chamber_control
-	name = "Nanite Chamber Control (Computer Board)"
+	name = "Nanite Chamber Control"
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
 	build_path = /obj/machinery/computer/nanite_chamber_control
 

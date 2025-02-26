@@ -146,3 +146,31 @@
 	id = "mod_atrocinator"
 	materials = list(/datum/material/titanium = SMALL_MATERIAL_AMOUNT * 2.5, /datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver =HALF_SHEET_MATERIAL_AMOUNT * 1.5)
 	build_path = /obj/item/mod/module/atrocinator
+
+/datum/design/module/joint_torsion
+	name = "Joint Torsion Ratchet Module"
+	id = "mod_joint_torsion"
+	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/titanium = SMALL_MATERIAL_AMOUNT)
+	build_path = /obj/item/mod/module/joint_torsion
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUITS_MISC
+	)
+
+/datum/design/module/mirage
+	name = "Mirage Grenade Dispenser Module"
+	id = "mod_mirage_grenade"
+	materials = list(
+		/datum/material/iron =HALF_SHEET_MATERIAL_AMOUNT,
+		/datum/material/bluespace =HALF_SHEET_MATERIAL_AMOUNT,
+	)
+	build_path = /obj/item/mod/module/dispenser/mirage
+	category = list(
+		RND_CATEGORY_MODSUIT_MODULES + RND_SUBCATEGORY_MODSUIT_MODULES_SECURITY
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
+
+/datum/design/borg_upgrade_piercinghypospray
+	category = list(
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_MEDICAL,
+		RND_CATEGORY_MECHFAB_CYBORG_MODULES + RND_SUBCATEGORY_MECHFAB_CYBORG_MODULES_PEACEKEEPER,
+	)

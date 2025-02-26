@@ -22,7 +22,7 @@
 	materials = list(/datum/material/glass =HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/disk/cargo/bluespace_pod
 	category = list(
-		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_CARGO
+		RND_CATEGORY_MODULAR_COMPUTERS + RND_SUBCATEGORY_COMPUTER_CARGO // Monkestation edit
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_CARGO
 

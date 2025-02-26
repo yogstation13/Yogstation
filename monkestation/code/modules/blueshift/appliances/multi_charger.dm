@@ -193,7 +193,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/cell_charger_multi
-	name = "Multi-Cell Charger (Machine Board)"
+	name = "Multi-Cell Charger"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/cell_charger_multi
 	req_components = list(/datum/stock_part/capacitor = 6)
@@ -201,7 +201,7 @@
 
 
 /datum/design/board/cell_charger_multi
-	name = "Machine Design (Multi-Cell Charger Board)"
+	name = "Multi-Cell Charger Board"
 	desc = "The circuit board for a multi-cell charger."
 	id = "multi_cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger_multi

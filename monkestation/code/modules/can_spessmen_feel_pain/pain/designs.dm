@@ -8,7 +8,7 @@
 	build_path = /obj/item/cane/crutch
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
@@ -22,7 +22,7 @@
 	build_path = /obj/item/temperature_pack/heat
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
 
@@ -37,6 +37,6 @@
 	build_path = /obj/item/temperature_pack/cold
 	category = list(
 		RND_CATEGORY_INITIAL,
-		RND_CATEGORY_TOOLS
+		RND_CATEGORY_EQUIPMENT + RND_SUBCATEGORY_EQUIPMENT_MEDICAL
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_MEDICAL
