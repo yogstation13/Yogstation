@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Disabled music playback on BYOND 516 for the time being, to prevent random chat crashes, until the issue is properly fixed."
