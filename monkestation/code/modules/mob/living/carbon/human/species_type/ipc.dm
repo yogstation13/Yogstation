@@ -9,7 +9,7 @@
 	name = "\improper Integrated Positronic Chassis"
 	id = SPECIES_IPC
 	inherent_biotypes = MOB_ROBOTIC | MOB_HUMANOID
-	sexes = FALSE
+	sexes = TRUE
 	inherent_traits = list(
 		TRAIT_ROBOT_CAN_BLEED,
 		TRAIT_CAN_STRIP,
