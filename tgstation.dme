@@ -5982,6 +5982,7 @@
 #include "monkestation\code\datums\components\carbon_sprint.dm"
 #include "monkestation\code\datums\components\charge_adjuster.dm"
 #include "monkestation\code\datums\components\crafting.dm"
+#include "monkestation\code\datums\components\fluffy_tongue.dm"
 #include "monkestation\code\datums\components\gift_item.dm"
 #include "monkestation\code\datums\components\gps.dm"
 #include "monkestation\code\datums\components\irradiated.dm"

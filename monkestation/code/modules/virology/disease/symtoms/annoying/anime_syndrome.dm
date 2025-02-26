@@ -13,7 +13,7 @@
 	var/datum/weakref/katana_ref
 
 /datum/symptom/anime_hair/first_activate(mob/living/carbon/mob)
-	RegisterSignal(mob, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	mob.AddComponentFrom(REF(src), /datum/component/fluffy_tongue)
 
 /datum/symptom/anime_hair/activate(mob/living/carbon/mob)
 	if(ishuman(mob))
@@ -48,7 +48,7 @@
 					)
 				var/outfit_path = pick(outfits)
 				var/obj/item/clothing/under/costume/schoolgirl/schoolgirl = new outfit_path
-				ADD_TRAIT(schoolgirl, TRAIT_NODROP, "disease")
+				ADD_TRAIT(schoolgirl, TRAIT_NODROP, REF(src))
 				if(affected.w_uniform && !istype(affected.w_uniform, /obj/item/clothing/under/costume/schoolgirl))
 					affected.dropItemToGround(affected.w_uniform,1)
 					affected.equip_to_slot(schoolgirl, ITEM_SLOT_ICLOTHING)
@@ -57,7 +57,7 @@
 			if(multiplier >= 1.8)
 				//Kneesocks /obj/item/clothing/shoes/kneesocks
 				var/obj/item/clothing/shoes/kneesocks/kneesock = new /obj/item/clothing/shoes/kneesocks
-				ADD_TRAIT(kneesock, TRAIT_NODROP, "disease")
+				ADD_TRAIT(kneesock, TRAIT_NODROP, REF(src))
 				if(affected.shoes && !istype(affected.shoes, /obj/item/clothing/shoes/kneesocks))
 					affected.dropItemToGround(affected.shoes,1)
 					affected.equip_to_slot(kneesock, ITEM_SLOT_FEET)
@@ -80,16 +80,17 @@
 					katana_ref = WEAKREF(katana)
 
 /datum/symptom/anime_hair/deactivate(mob/living/carbon/mob)
-	UnregisterSignal(mob, COMSIG_MOB_SAY)
+	mob.RemoveComponentSource(REF(src), /datum/component/fluffy_tongue)
 	to_chat(mob, span_notice("You no longer feel quite like the main character."))
 	var/obj/item/katana = katana_ref?.resolve()
 	if(!QDELETED(katana))
+		var/turf/drop_loc = katana.drop_location()
 		var/mob/katana_loc = katana.loc
 		if(ismob(katana_loc))
+			katana_loc.temporarilyRemoveItemFromInventory(katana, force = TRUE)
 			katana_loc.visible_message(span_warning("[katana_loc]'s [katana] rapidly crumbles to dust!"), span_danger("Your [katana] rapidly crumbles to dust, turning into a useless pile of ash on the floor!"))
 		else if(isturf(katana_loc))
 			katana_loc.visible_message(span_warning("\The [katana] rapidly crumbles to dust, turning into a useless pile of ash on the floor!"))
-		var/turf/drop_loc = katana.drop_location()
 		if(drop_loc)
 			new /obj/effect/decal/cleanable/ash(drop_loc)
 		qdel(katana)
@@ -97,17 +98,8 @@
 	if(ishuman(mob))
 		var/mob/living/carbon/human/affected = mob
 		if(affected.shoes && istype(affected.shoes, /obj/item/clothing/shoes/kneesocks))
-			REMOVE_TRAIT(affected.shoes, TRAIT_NODROP, "disease")
+			REMOVE_TRAIT(affected.shoes, TRAIT_NODROP, REF(src))
 		if(affected.w_uniform && istype(affected.w_uniform, /obj/item/clothing/under/costume/schoolgirl))
-			REMOVE_TRAIT(affected.w_uniform, TRAIT_NODROP, "disease")
+			REMOVE_TRAIT(affected.w_uniform, TRAIT_NODROP, REF(src))
 
 		affected.hair_color = old_haircolor
-
-/datum/symptom/anime_hair/proc/handle_speech(datum/source, list/speech_args)
-	SIGNAL_HANDLER
-
-	var/message = speech_args[SPEECH_MESSAGE]
-	if(prob(20))
-		message += pick(" Nyaa", "  nya", "  Nyaa~", "~")
-
-	speech_args[SPEECH_MESSAGE] = message
