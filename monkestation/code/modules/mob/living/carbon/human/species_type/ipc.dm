@@ -178,12 +178,16 @@
 
 /datum/action/innate/change_screen/Activate()
 	var/screen_choice = tgui_input_list(usr, "Which screen do you want to use?", "Screen Change", GLOB.ipc_screens_list)
+	var/color_choice = tgui_color_picker(usr, "Which color do you want your screen to be", "Color Change")
 	if(!screen_choice)
+		return
+	if(!color_choice)
 		return
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
 	H.dna.features["ipc_screen"] = screen_choice
+	H.eye_color_left = sanitize_hexcolor(color_choice)
 	H.update_body()
 
 /datum/species/ipc/spec_revival(mob/living/carbon/human/H)

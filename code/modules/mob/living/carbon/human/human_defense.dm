@@ -176,6 +176,13 @@
 		affecting = get_bodypart(get_random_valid_zone(user.zone_selected, zone_hit_chance))
 	var/target_area = parse_zone(check_zone(user.zone_selected)) //our intended target
 
+	//MONKESTATION ADDITION START
+	if(affecting)
+		if(I.force && I.damtype != STAMINA && affecting.bodytype & BODYTYPE_ROBOTIC) // Robotic bodyparts spark when hit, but only when it does real damage
+			if(I.force >= 5)
+				do_sparks(1, FALSE, loc)
+	//MONKESTATION ADDITION END
+
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 	I.disease_contact(src, check_zone(user.zone_selected))
 	SSblackbox.record_feedback("nested tally", "item_used_for_combat", 1, list("[I.force]", "[initial(I.name)]"))

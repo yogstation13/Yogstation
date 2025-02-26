@@ -246,6 +246,9 @@
 	//since these people will be dead M != usr
 
 	if(!target_has_brain)
+		if(src.zone != BODY_ZONE_HEAD) // MONKESTATION ADDITION START only head brains go in the head. since we have two species that have chest-brains, this prevents shenanigans.
+			to_chat(user, span_warning("It doesn't seem like [src] goes in the head..."))
+			return ..() // MONKESTATION ADDITION END
 		if(!C.get_bodypart(BODY_ZONE_HEAD) || !user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/msg = "[C] has [src] inserted into [C.p_their()] head by [user]."
