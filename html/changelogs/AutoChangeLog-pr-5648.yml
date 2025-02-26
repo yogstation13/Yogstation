@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "AI-controlled basic mobs will no longer somehow attack people who are ventcrawling or jaunting."
+  - bugfix: "(Hatterhat) Basic mobs no longer have the (unintended) ability to shoot out of containers, like bluespace body bags."
