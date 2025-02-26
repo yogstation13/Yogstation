@@ -1,0 +1,4 @@
+author: "Absolucy, Aylong, Holoo-1, JohnFulpWillard"
+delete-after: True
+changes:
+  - bugfix: "More UI fixes for BYOND 516."
