@@ -1,5 +1,0 @@
-author: "Ziiro"
-delete-after: True
-changes:
-  - rscadd: "IPCs now have gender identity."
-  - rscadd: "IPCs now have gendered laughs if applicable"

@@ -1,6 +1,0 @@
-author: "Ziiro"
-delete-after: True
-changes:
-  - rscadd: "9 new IPC monitor screens (And RedText has been to RGB) ported from Shiptest"
-  - rscadd: "10 new IPC antennas ported from Shiptest"
-  - rscadd: "2 new IPC chassis ported from Shiptest"

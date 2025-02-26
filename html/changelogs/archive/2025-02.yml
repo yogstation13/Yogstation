@@ -726,11 +726,39 @@
       ventcrawling or jaunting.
   - bugfix: (Hatterhat) Basic mobs no longer have the (unintended) ability to shoot
       out of containers, like bluespace body bags.
+  - balance: You can no longer simultaneously filter sand through as many seed meshes
+      as you can reach.
+  - refactor: Refactored some code relating to fluffy tongue.
+  - balance: Pro-tagonista Syndrome now inflicts the victim with fluffy tongue, instead
+      of just randomly appending an poorly spaced "Nyaa~" to 20% of their messages.
   DexeeXI:
   - balance: The PKA shockwave does 1/8th the damage from before, down from 40 to
       5. Brings the point blank damage usage down to where it should be.
+  Gw0sty:
+  - rscadd: Alien tools are printable in mechfabs
+  - rscadd: Multirack chargers are now researchable.
+  - qol: Reorganized Research design categorization.
+  - balance: Alien engineering tools are now no longer useable for alien biotech.
+  - bugfix: Mech LMG's are no longer considered a mining mech design.
+  - rscadd: Daisy the library pet rabbit has settled in on all stations.
+  - rscadd: Walter the Blueshields dog is now biting criminals legs on all stations.
+  - rscadd: Bardrones programing has led it to infest Maintenace bars and similar
+      areas when none others are present. Leading to its presence on all stations.
+  - rscadd: Armory Tac Lockers has been suppplied to the rest of the stations.
+  - rscadd: Syndicate has received an unspecified bonus, suit storages now come with
+      space suits.
+  - qol: Blueshields have received unexpected budget cuts. They are now only afford
+      one modsuit in their suit storages
+  - balance: Armory Tac Lockers are now openable by Armory access or NT Rep, instead
+      of Cap access
+  - bugfix: Deleted a Paradox Daisy from existance. Hopefully the right one.
+  - bugfix: Walter will now no longer transcend the plane and exist invisibly in ours.
+  - bugfix: Dirk, the robotics dog now has gained its true name.
+  - code_imp: Modulzatized suit storage clothes.
   Snack-Max:
   - bugfix: quick fix long sidecut
+  Wernerses:
+  - balance: Reduced the cost of Catalytic Inhibitor Serum from 20 TC to 17 TC
   Ziiro:
   - bugfix: The IPC posibrains are now stored in the chest.
   - bugfix: The IPC "Change Display" action now allows you to also change the color.
@@ -739,5 +767,10 @@
       was inheriting human tastes)
   - balance: IPCs now speak more languages to resume their role as a universal translator
   - rscadd: Robotic limbs now spark when struck by objects with enough force
+  - rscadd: 9 new IPC monitor screens (And RedText has been to RGB) ported from Shiptest
+  - rscadd: 10 new IPC antennas ported from Shiptest
+  - rscadd: 2 new IPC chassis ported from Shiptest
+  - rscadd: IPCs now have gender identity.
+  - rscadd: IPCs now have gendered laughs if applicable
   flleeppyy:
   - bugfix: Clarify wording for opening lootboxes on in the lobby menu
