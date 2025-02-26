@@ -7324,8 +7324,8 @@
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "cLs" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/machinery/light/directional/north,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "cLw" = (
@@ -29275,9 +29275,7 @@
 /turf/open/floor/carpet/blue,
 /area/station/command/heads_quarters/cmo)
 "luw" = (
-/obj/structure/bed/dogbed{
-	name = "Walter's Dogbed"
-	},
+/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/carpet/cyan,
 /area/station/command/heads_quarters/blueshield)
 "luA" = (
@@ -39127,6 +39125,10 @@
 	pixel_y = -31;
 	pixel_x = 8
 	},
+/obj/structure/bed/dogbed{
+	name = "Walter's Dogbed"
+	},
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/carpet/cyan,
 /area/station/command/heads_quarters/blueshield)
 "pgK" = (
@@ -43253,6 +43255,11 @@
 /obj/machinery/button/door/directional/south{
 	id = "radiostudio";
 	name = "Privacy Shutters control"
+	},
+/mob/living/basic/rabbit/daisy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
 	},
 /turf/open/floor/iron/vaporwave,
 /area/station/service/library)
@@ -49954,6 +49961,7 @@
 /area/station/maintenance/starboard/central)
 "txS" = (
 /obj/structure/table/wood,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/nt_rep)
 "txT" = (

@@ -20259,8 +20259,9 @@
 /obj/item/hand_labeler,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/knife/kitchen,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
 /turf/open/floor/iron/cafeteria,
-/area/station/maintenance/department/cargo)
+/area/station/common/night_club)
 "fmS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/blobstart,
@@ -23697,12 +23698,12 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "guo" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/box/blue,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
 /obj/machinery/light/directional/east,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "guI" = (
@@ -41295,11 +41296,10 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/tram/center)
 "lRF" = (
-/obj/structure/closet/secure_closet/blueshield,
-/obj/item/storage/bag/garment/blueshield,
-/obj/item/storage/backpack/satchel/blueshield,
-/obj/item/storage/backpack/duffelbag/blueshield,
-/obj/item/storage/backpack/blueshield,
+/mob/living/basic/pet/dog/bullterrier/walter,
+/obj/structure/bed/dogbed{
+	name = "Walter's Dogbed"
+	},
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/blueshield)
 "lRP" = (
@@ -43946,6 +43946,11 @@
 /area/station/command/heads_quarters/hop)
 "mHZ" = (
 /obj/item/radio/intercom/directional/east,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
+	},
+/mob/living/basic/rabbit/daisy,
 /turf/open/floor/iron/grimy,
 /area/station/service/library/lounge)
 "mIa" = (
@@ -48327,9 +48332,7 @@
 /turf/open/floor/iron,
 /area/station/hallway/primary/tram/center)
 "oda" = (
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
+/obj/structure/closet/secure_closet/tac,
 /obj/effect/turf_decal/box/blue,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
@@ -79266,7 +79269,7 @@
 /turf/open/floor/iron/white,
 /area/station/medical/medbay/central)
 "xKD" = (
-/obj/structure/dresser,
+/obj/structure/closet/secure_closet/blueshield,
 /turf/open/floor/carpet/executive,
 /area/station/command/heads_quarters/blueshield)
 "xKR" = (

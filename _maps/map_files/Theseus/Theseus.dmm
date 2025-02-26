@@ -21498,10 +21498,6 @@
 "gvH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/closet/secure_closet/blueshield,
-/obj/item/storage/backpack/blueshield,
-/obj/item/storage/backpack/duffelbag/blueshield,
-/obj/item/storage/backpack/satchel/blueshield,
-/obj/item/clothing/neck/mantle/bsmantle,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/machinery/light/directional/south,
@@ -46167,9 +46163,9 @@
 /turf/open/floor/iron/dark,
 /area/station/ai_monitored/turret_protected/ai_upload)
 "nEA" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/delivery/white,
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "nEB" = (
@@ -54435,14 +54431,6 @@
 "qeQ" = (
 /obj/structure/table/wood,
 /obj/structure/window/spawner/directional/east,
-/obj/item/paper_bin{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/pen{
-	pixel_x = 4;
-	pixel_y = -4
-	},
 /obj/item/radio/intercom/command/directional/north,
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/blueshield)
@@ -67183,11 +67171,19 @@
 	pixel_y = 11
 	},
 /obj/item/phone{
-	pixel_x = 8;
-	pixel_y = 7
+	pixel_x = -7;
+	pixel_y = -4
 	},
 /obj/structure/noticeboard/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/item/paper_bin{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/pen{
+	pixel_x = 7;
+	pixel_y = 4
+	},
 /turf/open/floor/carpet/royalblue,
 /area/station/command/heads_quarters/blueshield)
 "tLm" = (
@@ -69064,6 +69060,11 @@
 /area/station/science/ordnance/freezerchamber)
 "umP" = (
 /obj/structure/closet/firecloset/wall/directional/north,
+/mob/living/basic/rabbit/daisy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
+	},
 /turf/open/floor/wood/large,
 /area/station/service/library/upper)
 "umW" = (

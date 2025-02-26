@@ -6517,6 +6517,7 @@
 #include "monkestation\code\modules\antagonists\traitor\traitor_objective.dm"
 #include "monkestation\code\modules\antagonists\traitor\uplink_handler.dm"
 #include "monkestation\code\modules\antagonists\traitor\objectives\kidnapping.dm"
+#include "monkestation\code\modules\antagonists\traitor\objectives\kill_pet.dm"
 #include "monkestation\code\modules\antagonists\traitor\objectives\tide_bug_department.dm"
 #include "monkestation\code\modules\antagonists\traitor\objectives\final_objective\become_wizard.dm"
 #include "monkestation\code\modules\antagonists\traitor\objectives\final_objective\final_objective.dm"

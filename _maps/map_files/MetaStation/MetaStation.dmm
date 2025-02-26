@@ -20660,6 +20660,11 @@
 /area/station/tcommsat/server)
 "hqF" = (
 /obj/machinery/newscaster/directional/east,
+/mob/living/basic/rabbit/daisy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
+	},
 /turf/open/floor/iron/vaporwave,
 /area/station/service/library/private)
 "hqL" = (
@@ -36180,7 +36185,7 @@
 /turf/open/floor/iron,
 /area/station/security/prison/work)
 "mzK" = (
-/obj/machinery/suit_storage_unit/security,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "mzL" = (
@@ -59041,6 +59046,10 @@
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/wall/peppertank/directional/south,
+/obj/structure/bed/dogbed{
+	name = "Walter's Dogbed"
+	},
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "uqL" = (
@@ -65186,14 +65195,7 @@
 /area/station/command/heads_quarters/captain/private)
 "wBt" = (
 /obj/structure/extinguisher_cabinet/directional/west,
-/obj/structure/bed/dogbed{
-	name = "Walter's Dogbed"
-	},
-/mob/living/basic/pet/dog/bullterrier{
-	desc = "It's Walter, he bites criminals just as well as he bites toddlers";
-	name = "Walter";
-	real_name = "Walter"
-	},
+/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/carpet/cyan,
 /area/station/command/heads_quarters/blueshield)
 "wBu" = (

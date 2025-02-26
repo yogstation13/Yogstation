@@ -2862,6 +2862,11 @@
 	},
 /turf/open/floor/engine,
 /area/station/science/explab)
+"aOA" = (
+/obj/structure/table/reinforced,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
+/turf/open/floor/carpet/purple,
+/area/station/common/night_club)
 "aOI" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -28811,6 +28816,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/mob/living/basic/pet/dog/corgi{
+	name = "Dirk";
+	real_name = "Dirk"
+	},
 /turf/open/floor/iron/dark/textured_edge{
 	dir = 8
 	},
@@ -35247,7 +35256,7 @@
 	anchored = 1;
 	name = "Walter's bed"
 	},
-/mob/living/basic/pet/dog/dobermann/walter,
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "jXc" = (
@@ -41288,9 +41297,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 1
 	},
-/mob/living/basic/pet/dog/corgi{
-	name = "Dirk"
-	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/science/robotics/lab)
 "lDP" = (
@@ -46358,14 +46364,12 @@
 	c_tag = "Command - Blueshield's Gear Room";
 	name = "command camera"
 	},
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
 /obj/item/radio/intercom/directional/south,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/blueshield)
 "mYL" = (
@@ -55779,7 +55783,6 @@
 	},
 /area/station/commons/fitness/recreation)
 "pCy" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/structure/window/spawner/directional/west{
 	pixel_x = -4
 	},
@@ -55787,6 +55790,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/blueshield)
 "pCA" = (
@@ -130405,7 +130409,7 @@ kLc
 unI
 poE
 mRm
-mRm
+aOA
 rgt
 unI
 unI

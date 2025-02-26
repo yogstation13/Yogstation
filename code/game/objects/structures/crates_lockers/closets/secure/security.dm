@@ -321,7 +321,7 @@
 
 /obj/structure/closet/secure_closet/tac
 	name = "armory tac locker"
-	req_access = list(ACCESS_CENT_GENERAL)
+	req_one_access = list("nt_rep","armory")
 	icon_state = "tac"
 
 /obj/structure/closet/secure_closet/tac/PopulateContents()

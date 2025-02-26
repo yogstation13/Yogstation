@@ -12856,15 +12856,8 @@
 /area/station/security/courtroom)
 "dVc" = (
 /obj/machinery/light/directional/north,
-/obj/structure/bed/dogbed{
-	name = "Walter's Dogbed"
-	},
-/mob/living/basic/pet/dog/bullterrier{
-	desc = "It's Walter, he bites criminals just as well as he bites toddlers";
-	name = "Walter";
-	real_name = "Walter"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/carpet/cyan,
 /area/station/command/heads_quarters/blueshield)
 "dVj" = (
@@ -15072,6 +15065,10 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/obj/structure/bed/dogbed{
+	name = "Walter's Dogbed"
+	},
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "eFS" = (
@@ -20006,6 +20003,11 @@
 "goi" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/newscaster/directional/east,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
+	},
+/mob/living/basic/rabbit/daisy,
 /turf/open/floor/wood,
 /area/station/service/library)
 "goq" = (
@@ -33382,8 +33384,8 @@
 /turf/open/floor/iron,
 /area/station/commons/storage/tools)
 "kFw" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/machinery/camera/directional/east,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "kFG" = (
@@ -59587,6 +59589,7 @@
 "sUS" = (
 /obj/structure/table/wood,
 /obj/effect/mapping_helpers/broken_floor,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
 /turf/open/floor/wood,
 /area/station/maintenance/port/aft)
 "sVa" = (

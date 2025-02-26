@@ -14516,6 +14516,14 @@
 	pixel_y = 6
 	},
 /obj/item/clothing/suit/armor/riot,
+/obj/machinery/recharger{
+	pixel_x = 7;
+	pixel_y = 4
+	},
+/obj/machinery/recharger{
+	pixel_x = -6;
+	pixel_y = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "dth" = (
@@ -21988,8 +21996,8 @@
 /turf/open/floor/iron/dark,
 /area/station/security/prison/visit)
 "fgp" = (
-/obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/box/red,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "fgq" = (
@@ -36426,9 +36434,7 @@
 /turf/closed/wall/r_wall,
 /area/station/command/heads_quarters/ce)
 "iBS" = (
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
+/obj/structure/closet/secure_closet/tac,
 /obj/effect/turf_decal/box/red,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
@@ -81948,16 +81954,11 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
 "tuJ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_x = 7;
-	pixel_y = 4
-	},
-/obj/machinery/recharger{
-	pixel_x = -6;
-	pixel_y = 4
-	},
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
+/obj/structure/bed/dogbed{
+	name = "Walter's Dogbed"
+	},
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/blueshield)
 "tuN" = (
@@ -94919,6 +94920,11 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 9
+	},
+/mob/living/basic/rabbit/daisy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
 	},
 /turf/open/floor/iron/dark,
 /area/station/service/library/printer)

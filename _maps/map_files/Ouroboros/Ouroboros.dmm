@@ -4644,13 +4644,16 @@
 /area/station/medical/pharmacy)
 "brT" = (
 /obj/effect/turf_decal/tile/dark_red/half,
-/mob/living/basic/pet/dog/corgi,
 /obj/structure/bed/dogbed{
 	anchored = 1;
 	name = "E-N's bed"
 	},
 /obj/machinery/posialert/directional/south,
 /obj/machinery/light/cold/directional/south,
+/mob/living/basic/pet/dog/corgi{
+	name = "Dirk";
+	real_name = "Dirk"
+	},
 /turf/open/floor/iron/dark/smooth_half,
 /area/station/science/robotics/lab)
 "brW" = (
@@ -4899,8 +4902,8 @@
 /turf/open/floor/iron/white,
 /area/station/security/medical)
 "buK" = (
-/obj/structure/table/wood,
 /obj/machinery/light_switch/directional/north,
+/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "buM" = (
@@ -18661,7 +18664,7 @@
 	anchored = 1;
 	name = "Walter's bed"
 	},
-/mob/living/basic/pet/dog/dobermann/walter,
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "fAx" = (
@@ -34588,6 +34591,11 @@
 	dir = 8
 	},
 /area/station/engineering/gravity_generator)
+"kkE" = (
+/obj/structure/table,
+/obj/effect/mob_spawn/ghost_role/drone/bar,
+/turf/open/floor/wood,
+/area/station/command/meeting_room/council)
 "kkR" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -76890,12 +76898,12 @@
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/firealarm/directional/west,
-/obj/machinery/suit_storage_unit/security,
 /obj/structure/reagent_dispensers/wall/peppertank/directional/north,
 /obj/machinery/light/warm/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/command/heads_quarters/blueshield)
 "wFN" = (
@@ -117208,7 +117216,7 @@ lNk
 iVj
 nKb
 mkO
-oED
+kkE
 xHt
 mwA
 lNk

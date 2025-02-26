@@ -1,3 +1,8 @@
+/mob/living/basic/pet/dog/bullterrier/walter
+	name = "Walter"
+	real_name = "Walter"
+	desc = "It's Walter, he bites criminals just as well as he bites toddlers."
+
 /mob/living/basic/pet/dog/bullterrier/walter/saulter
 	name = "Saulter Goodman"
 	real_name = "Saulter Goodman"

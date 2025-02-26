@@ -37331,9 +37331,6 @@
 	specialfunctions = 4
 	},
 /obj/structure/closet/secure_closet/blueshield,
-/obj/item/storage/backpack/blueshield,
-/obj/item/storage/backpack/duffelbag/blueshield,
-/obj/item/storage/backpack/satchel/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "maL" = (
@@ -39085,7 +39082,11 @@
 /turf/open/floor/circuit,
 /area/station/ai_monitored/turret_protected/ai_upload)
 "mEz" = (
-/obj/structure/dresser,
+/obj/machinery/camera/autoname/directional/west,
+/mob/living/basic/pet/dog/bullterrier/walter,
+/obj/structure/bed/dogbed{
+	name = "Walter's Dogbed"
+	},
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "mEH" = (
@@ -46296,9 +46297,7 @@
 "oYJ" = (
 /obj/machinery/light/small/directional/east,
 /obj/machinery/keycard_auth/directional/east,
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
+/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "oYQ" = (
@@ -52714,7 +52713,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/department/engine)
 "rhI" = (
-/obj/machinery/suit_storage_unit/security,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/blueshield)
 "rhW" = (
@@ -63301,6 +63300,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/skub,
+/obj/machinery/camera/autoname/directional/east,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/captain/private)
 "uFM" = (
@@ -66323,6 +66323,11 @@
 /area/station/command/heads_quarters/cmo)
 "vAj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/mob/living/basic/rabbit/daisy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
+	},
 /turf/open/floor/iron/vaporwave,
 /area/station/service/library/printer)
 "vAm" = (

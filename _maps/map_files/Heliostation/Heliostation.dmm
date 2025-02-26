@@ -19316,6 +19316,11 @@
 	},
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
+/mob/living/basic/rabbit/daisy,
+/obj/structure/bed/dogbed{
+	anchored = 1;
+	name = "Daisy's bed"
+	},
 /turf/open/floor/wood,
 /area/station/service/library/private)
 "bSO" = (
@@ -53932,9 +53937,9 @@
 /turf/open/floor/iron,
 /area/station/engineering/atmos)
 "nIZ" = (
-/obj/structure/statue/diamond/captain,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
+/obj/structure/closet/secure_closet/tac,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "nJa" = (
@@ -56446,6 +56451,10 @@
 /obj/structure/cable,
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/port/greater)
+"oFn" = (
+/obj/structure/statue/diamond/captain,
+/turf/open/floor/wood/large,
+/area/station/command/heads_quarters/blueshield)
 "oFG" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/yellow/visible{
 	dir = 4
@@ -65723,13 +65732,9 @@
 /obj/structure/bed/dogbed{
 	name = "Walter's Dogbed"
 	},
-/mob/living/basic/pet/dog/bullterrier{
-	desc = "It's Walter, he bites criminals just as well as he bites toddlers";
-	name = "Walter";
-	real_name = "Walter"
-	},
 /obj/machinery/light/directional/south,
 /obj/machinery/airalarm/directional/south,
+/mob/living/basic/pet/dog/bullterrier/walter,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "snr" = (
@@ -67017,7 +67022,7 @@
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "sMm" = (
-/obj/machinery/suit_storage_unit/security,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "sMr" = (
@@ -129551,7 +129556,7 @@ hUi
 hUi
 lMB
 xyZ
-xyZ
+oFn
 dnO
 nIZ
 ddq

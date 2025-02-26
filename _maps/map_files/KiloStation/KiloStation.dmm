@@ -658,6 +658,7 @@
 	pixel_x = -3;
 	pixel_y = -6
 	},
+/obj/effect/mob_spawn/ghost_role/drone/bar,
 /turf/open/floor/iron/dark/textured,
 /area/station/service/abandoned_gambling_den)
 "agy" = (
@@ -1365,9 +1366,7 @@
 /obj/effect/turf_decal/siding/dark_blue{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/tac{
-	req_access = list("captain")
-	},
+/obj/structure/closet/secure_closet/tac,
 /obj/structure/window/spawner/directional/north,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron/dark/textured_large,
@@ -17140,11 +17139,10 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
+/mob/living/basic/pet/dog/bullterrier/walter,
 /obj/structure/bed/dogbed{
-	anchored = 1;
-	name = "Daisy's bed"
+	name = "Walter's Dogbed"
 	},
-/mob/living/basic/rabbit/daisy,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/blueshield)
 "ftU" = (
@@ -73741,8 +73739,8 @@
 /obj/effect/turf_decal/siding/dark_blue{
 	dir = 9
 	},
-/obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/bot,
+/obj/machinery/suit_storage_unit/blueshield,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/blueshield)
 "xaz" = (
