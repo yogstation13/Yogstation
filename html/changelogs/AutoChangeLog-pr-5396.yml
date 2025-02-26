@@ -1,0 +1,9 @@
+author: "Ziiro"
+delete-after: True
+changes:
+  - bugfix: "The IPC posibrains are now stored in the chest."
+  - bugfix: "The IPC \"Change Display\" action now allows you to also change the color."
+  - bugfix: "IPC tongues have been moved from the head to the mouth"
+  - bugfix: "IPC tongues now have have no tastes - liked, disliked, or toxic. (previously was inheriting human tastes)"
+  - balance: "IPCs now speak more languages to resume their role as a universal translator"
+  - rscadd: "Robotic limbs now spark when struck by objects with enough force"
