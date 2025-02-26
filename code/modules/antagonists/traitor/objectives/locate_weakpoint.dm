@@ -134,7 +134,11 @@
 	var/greatest_dist = 0
 	var/list/turfs_to_collapse = list()
 	for(var/turf/collapsed_turf as anything in GLOB.station_turfs)
-		if(istype(get_area(collapsed_turf), /area/station/ai_monitored)) //remote bombing of these areas would be bad
+		var/area/turf_area = get_area(collapsed_turf)
+
+		if(istype(turf_area, /area/station/ai_monitored) || istype(turf_area, /area/shuttle)) //remote bombing of these areas would be bad
+			continue
+		if(!(turf_area.type in GLOB.the_station_areas))
 			continue
 
 		var/dist = get_dist(epicenter, collapsed_turf)
