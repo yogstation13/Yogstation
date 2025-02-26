@@ -20,6 +20,7 @@
 
 /obj/projectile/kinetic/shockwave
 	name = "concussive kinetic force"
+	damage = 5 //turning this down since miners are using it to point blank enemies. might not be enough damage to break walls anymore but /shrug. until we can fix shitcode to prevent the shockwave from being able to do a point blank, this is all I can do.
 	range = 1
 
 /obj/item/firing_pin/explorer/unremovable
