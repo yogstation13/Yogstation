@@ -1,0 +1,8 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "Alien tools are printable in mechfabs"
+  - rscadd: "Multirack chargers are now researchable."
+  - qol: "Reorganized Research design categorization."
+  - balance: "Alien engineering tools are now no longer useable for alien biotech."
+  - bugfix: "Mech LMG's are no longer considered a mining mech design."
