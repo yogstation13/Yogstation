@@ -442,7 +442,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	//Collect keywords
 	var/list/keywords = mob.get_policy_keywords()
 	var/header = get_policy(POLICY_VERB_HEADER)
-	var/list/policytext = list(header,"<hr>")
+	var/list/policytext = list(header)
 	var/anything = FALSE
 	for(var/keyword in keywords)
 		var/p = get_policy(keyword)
@@ -453,7 +453,9 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(!anything)
 		policytext += "No related rules found."
 
-	usr << browse(policytext.Join(""),"window=policy")
+	var/datum/browser/browser = new(usr, "policy", "Server Policy", 600, 500)
+	browser.set_content(policytext.Join(""))
+	browser.open()
 
 /client/verb/fix_stat_panel()
 	set name = "Fix Stat Panel"

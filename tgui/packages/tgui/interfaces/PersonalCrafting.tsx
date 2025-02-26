@@ -339,8 +339,8 @@ export const PersonalCrafting = (props) => {
                     </Tabs.Tab>
                   </Tabs>
                 </Stack.Item>
-                <Stack.Item grow m={-1}>
-                  <Box height={'100%'} p={1} style={{ 'overflow-y': 'auto' }}>
+                <Stack.Item grow m={-1} style={{ 'overflow-y': 'auto' }}>
+                  <Box height={'100%'} p={1}>
                     <Tabs vertical>
                       {tabMode === TABS.foodtype &&
                         mode === MODE.cooking &&

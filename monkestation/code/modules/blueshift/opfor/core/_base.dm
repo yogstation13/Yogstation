@@ -102,9 +102,9 @@
 /// Builds the HTML panel entry for the round end report
 /datum/opposing_force/proc/build_html_panel_entry()
 	var/list/opfor_entry = list("<b>[mind_reference.key]</b> - ")
-	opfor_entry += "<a href='?priv_msg=[ckey(mind_reference.key)]'>PM</a> "
+	opfor_entry += "<a href='byond://?priv_msg=[ckey(mind_reference.key)]'>PM</a> "
 	if(mind_reference.current)
-		opfor_entry += "<a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(mind_reference?.current)]'>FLW</a> "
+		opfor_entry += "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(mind_reference?.current)]'>FLW</a> "
 	opfor_entry += "<a href='byond://?src=[REF(src)];admin_pref=show_panel'>Show OPFOR Panel</a>"
 	return opfor_entry.Join()
 

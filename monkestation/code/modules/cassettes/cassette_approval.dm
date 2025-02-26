@@ -1,6 +1,6 @@
 GLOBAL_LIST_INIT(cassette_reviews, list())
 
-#define ADMIN_OPEN_REVIEW(id) "(<A href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];open_music_review=[id]'>Open Review</a>)"
+#define ADMIN_OPEN_REVIEW(id) "(<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];open_music_review=[id]'>Open Review</a>)"
 /proc/submit_cassette_for_review(obj/item/device/cassette_tape/submitted, mob/user)
 	if(!user.client)
 		return

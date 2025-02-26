@@ -262,12 +262,12 @@
 
 		var/datum/disease/acute/D = GLOB.inspectable_diseases[ID]
 		dat += {"<tr>
-			<td><a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_examine=["[D.uniqueID]"]-["[D.subID]"]'>[D.form] #["[D.uniqueID]"]-["[D.subID]"]</a></td>
+			<td><a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_examine=["[D.uniqueID]"]-["[D.subID]"]'>[D.form] #["[D.uniqueID]"]-["[D.subID]"]</a></td>
 			<td>[D.origin]</td>
-			<td><a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_toggledb=\ref[D]'>[(ID in GLOB.virusDB) ? "Yes" : "No"]</a></td>
-			<td><a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_infectedmobs=\ref[D]'>[infctd_mobs][infctd_mobs_dead ? " (including [infctd_mobs_dead] dead)" : "" ]</a></td>
-			<td><a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_infecteditems=\ref[D]'>[infctd_items]</a></td>
-			<td><a href='?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_dishes=\ref[D]'>[dishes]</a></td>
+			<td><a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_toggledb=\ref[D]'>[(ID in GLOB.virusDB) ? "Yes" : "No"]</a></td>
+			<td><a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_infectedmobs=\ref[D]'>[infctd_mobs][infctd_mobs_dead ? " (including [infctd_mobs_dead] dead)" : "" ]</a></td>
+			<td><a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_infecteditems=\ref[D]'>[infctd_items]</a></td>
+			<td><a href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];diseasepanel_dishes=\ref[D]'>[dishes]</a></td>
 			</tr>
 			"}
 

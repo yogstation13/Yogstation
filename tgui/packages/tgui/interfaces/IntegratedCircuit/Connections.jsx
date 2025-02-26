@@ -19,6 +19,7 @@ export const Connections = (props) => {
         position: 'absolute',
         'pointer-events': 'none',
         'z-index': -1,
+        overflow: 'visible',
       }}
     >
       {connections.map((val, index) => {

@@ -1478,8 +1478,8 @@
 
 /atom/movable/vv_get_dropdown()
 	. = ..()
-	. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
-	. += "<option value='?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
+	. += "<option value='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(src)]'>Follow</option>"
+	. += "<option value='byond://?_src_=holder;[HrefToken()];admingetmovable=[REF(src)]'>Get</option>"
 
 
 /* Language procs

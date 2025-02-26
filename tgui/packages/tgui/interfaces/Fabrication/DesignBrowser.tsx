@@ -207,8 +207,11 @@ export const DesignBrowser = <T extends Design = Design>(
             <Stack.Item>
               <Section title="Categories" fitted />
             </Stack.Item>
-            <Stack.Item grow>
-              <Section fill style={{ overflow: 'auto' }}>
+            <Stack.Item
+              grow
+              style={{ 'overflow-y': 'auto', 'overflow-x': 'hidden' }}
+            >
+              <Section fill>
                 <div className="FabricatorTabs">
                   <div
                     className={classes([
@@ -267,8 +270,11 @@ export const DesignBrowser = <T extends Design = Design>(
                 />
               </Section>
             </Stack.Item>
-            <Stack.Item grow>
-              <Section fill scrollable>
+            <Stack.Item
+              grow
+              style={{ 'overflow-y': 'auto', 'overflow-x': 'hidden' }}
+            >
+              <Section fill>
                 {searchText.length > 0 ? (
                   sortBy((design: T) => design.name)(
                     Object.values(root.descendants),

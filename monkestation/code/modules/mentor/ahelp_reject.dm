@@ -5,7 +5,7 @@
 
 /datum/admin_help/ClosureLinks(ref_src)
 	. = ..()
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mhelp'>MHELP</A>)"
+	. += " (<A HREF='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mhelp'>MHELP</A>)"
 
 /**
  * We're overwriting /datum/admin_help/proc/Action(action)

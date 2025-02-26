@@ -931,7 +931,7 @@ SUBSYSTEM_DEF(plexora)
 		confidential = TRUE)
 
 	recipient.receive_ahelp(
-		"<a href='?priv_msg=[stealthkey]'>[adminname]</a>",
+		"<a href='byond://?priv_msg=[stealthkey]'>[adminname]</a>",
 		message,
 	)
 
