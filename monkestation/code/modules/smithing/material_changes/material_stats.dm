@@ -201,10 +201,9 @@
 	apply_color()
 
 /datum/material_stats/proc/apply_color()
-	if((!colors) || (!ismovable(parent)))
+	if(!colors || !ismovable(parent))
 		return
-	var/atom/movable/movable = parent
-	movable.color = merged_color
+	parent.add_atom_colour(merged_color, FIXED_COLOUR_PRIORITY)
 
 /datum/material_stats/proc/add_trait(datum/material_trait/new_trait)
 	if(!new_trait)
