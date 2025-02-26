@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - refactor: "Refactored some code relating to fluffy tongue."
+  - balance: "Pro-tagonista Syndrome now inflicts the victim with fluffy tongue, instead of just randomly appending an poorly spaced \"Nyaa~\" to 20% of their messages."
