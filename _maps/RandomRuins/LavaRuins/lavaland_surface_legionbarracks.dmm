@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/mineral/volcanic/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
+/area/lavaland/surface/outdoors)
 "b" = (
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/unpowered)
@@ -12,7 +12,7 @@
 "d" = (
 /obj/structure/rack,
 /obj/item/clothing/head/helmet/roman/legionnaire,
-/obj/item/clothing/under/roman,
+/obj/item/clothing/under/costume/roman,
 /obj/item/clothing/shoes/roman,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
@@ -28,7 +28,7 @@
 /area/ruin/unpowered)
 "n" = (
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/explored)
+/area/lavaland/surface/outdoors)
 "o" = (
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
@@ -100,7 +100,7 @@
 /obj/structure/rack,
 /obj/item/clothing/head/helmet/roman,
 /obj/item/clothing/shoes/roman,
-/obj/item/clothing/under/roman,
+/obj/item/clothing/under/costume/roman,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/lavaland,
 /area/ruin/unpowered)
