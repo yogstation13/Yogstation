@@ -1,5 +1,0 @@
-author: "Oblisk234"
-delete-after: true 
-changes: 
-  - mapping: "Legion barracks ruin will no longer appear as Lavaland Labor Camp on suit sensors."
-  - mapping: "Roman armour in the legion barracks ruin uses the correct path now."
