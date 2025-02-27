@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscdel: "Removes pH buffers from maints loot (we have pH and purity disabled anyways)"
