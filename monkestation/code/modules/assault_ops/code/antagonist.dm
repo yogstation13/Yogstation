@@ -164,9 +164,7 @@
 		human_target.set_species(/datum/species/human)
 		to_chat(human_target, span_userdanger("You are now a human!"))
 
-	for(var/obj/item/item in human_target.get_equipped_items(TRUE))
-		human_target.dropItemToGround(item, force = TRUE, silent = TRUE)
-		qdel(item)
+	human_target.clear_inventory()
 
 	var/obj/item/organ/internal/brain/human_brain = human_target.get_organ_slot(BRAIN)
 	human_brain.destroy_all_skillchips() // get rid of skillchips to prevent runtimes

@@ -40,10 +40,7 @@
 /datum/round_event/antagonist/solo/wizard/add_datum_to_mind(datum/mind/antag_mind)
 	var/mob/living/current_mob = antag_mind.current
 	SSjob.FreeRole(antag_mind.assigned_role.title)
-	var/list/items = current_mob.get_equipped_items(TRUE)
-	current_mob.unequip_everything()
-	for(var/obj/item/item as anything in items)
-		qdel(item)
+	current_mob.clear_inventory()
 
 	var/mob/living/carbon/human/new_player_mob = new //while funny, it would kind of suck to be a blind criple wizard
 	antag_mind.transfer_to(new_player_mob)

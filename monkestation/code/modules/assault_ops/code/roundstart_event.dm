@@ -46,10 +46,7 @@
 /datum/round_event/antagonist/solo/assault_operative/add_datum_to_mind(datum/mind/antag_mind)
 	var/mob/living/current_mob = antag_mind.current
 	SSjob.FreeRole(antag_mind.assigned_role.title)
-	var/list/items = current_mob.get_equipped_items(TRUE)
-	current_mob.unequip_everything()
-	for(var/obj/item/item as anything in items)
-		qdel(item)
+	current_mob.clear_inventory()
 
 	antag_mind.set_assigned_role(SSjob.GetJobType(/datum/job/assault_operative))
 	antag_mind.special_role = ROLE_ASSAULT_OPERATIVE

@@ -30,7 +30,7 @@
 	if(!istype(mannequin))
 		return
 
-	for(var/I in mannequin.get_equipped_items(TRUE))
+	for(var/I in mannequin.get_equipped_items(include_pockets = TRUE))
 		qdel(I)
 	if (ispath(antag, /datum/antagonist/ert))
 		var/datum/antagonist/ert/ert = antag
