@@ -1037,6 +1037,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/requests_console{
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_y = 30;
+	announcementConsole = 1
+	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "arJ" = (
