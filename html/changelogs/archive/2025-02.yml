@@ -775,6 +775,10 @@
   flleeppyy:
   - bugfix: Clarify wording for opening lootboxes on in the lobby menu
 2025-02-27:
+  Absolucy:
+  - bugfix: Void Cloaks now ACTUALLY properly hide blades and such in the suit storage
+      from the wearer's sprite.
+  - rscdel: Removes pH buffers from maints loot (we have pH and purity disabled anyways)
   Absolucy, Aylong, Holoo-1, JohnFulpWillard:
   - bugfix: More UI fixes for BYOND 516.
   Snack-Max:
