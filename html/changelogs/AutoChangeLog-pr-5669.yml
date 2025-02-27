@@ -1,5 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - bugfix: "The Debug Cassette Tape shouldn't appear as much anymore, as we now make three attempts to load a random cassette ID (for random cassettes)."
-  - admin: "You will be notified if a cassette fails to load (after three attempts for a random cassette, or one for a specific cassette)."

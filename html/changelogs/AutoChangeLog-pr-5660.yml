@@ -1,4 +1,0 @@
-author: "leaKsi"
-delete-after: True
-changes:
-  - refactor: "Credits have been slightly refactored. This should result in increased perfomance during the end of the round."
