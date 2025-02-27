@@ -45,6 +45,20 @@ There are several things that need to be remembered:
 		update_body()				//Calls update_body_parts(), as well as updates mutant bodyparts, the old, not-actually-bodypart system.
 */
 
+// monkestation start: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
+/// This returns if the item DOESN'T have TRAIT_ALWAYS_RENDER, and either has TRAIT_NO_WORN_ICON, or if the given slot is obscured.
+#define CHECK_SHOULDNT_RENDER(item, slot) \
+	if ( \
+		!HAS_TRAIT(item, TRAIT_ALWAYS_RENDER) && \
+		( \
+			HAS_TRAIT(item, TRAIT_NO_WORN_ICON) \
+			|| (check_obscured_slots(transparent_protection = TRUE) & slot) \
+		) \
+	) { \
+		return; \
+	};
+// monkestation end
+
 /* --------------------------------------- */
 //For legacy support.
 /mob/living/carbon/human/regenerate_icons()
@@ -84,8 +98,7 @@ There are several things that need to be remembered:
 		var/obj/item/clothing/under/uniform = w_uniform
 		update_hud_uniform(uniform)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_ICLOTHING)
-			return
+		CHECK_SHOULDNT_RENDER(uniform, ITEM_SLOT_ICLOTHING) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/target_overlay = uniform.icon_state
 		if(uniform.adjusted == ALT_STYLE)
@@ -187,8 +200,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = gloves
 		update_hud_gloves(worn_item)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_GLOVES)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_GLOVES) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = 'icons/mob/clothing/hands.dmi'
 
@@ -221,8 +233,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = glasses
 		update_hud_glasses(worn_item)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EYES)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_EYES) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = 'icons/mob/clothing/eyes.dmi'
 
@@ -255,8 +266,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = ears
 		update_hud_ears(worn_item)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_EARS)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_EARS) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = 'icons/mob/clothing/ears.dmi'
 
@@ -285,8 +295,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = wear_neck
 		update_hud_neck(wear_neck)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_NECK)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_NECK) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = 'icons/mob/clothing/neck.dmi'
 
@@ -319,10 +328,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = shoes
 		update_hud_shoes(worn_item)
 
-		//MONKESTATION EDIT START
-		if(!HAS_TRAIT(shoes, TRAIT_ALWAYS_RENDER) && (check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_FEET))
-			return
-		//MONKESTATION EDIT STOP
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_FEET) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = DEFAULT_SHOES_FILE
 
@@ -370,8 +376,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = s_store
 		update_hud_s_store(worn_item)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_SUITSTORE)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_SUITSTORE) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/mutable_appearance/s_store_overlay = worn_item.build_worn_icon(default_layer = SUIT_STORE_LAYER, default_icon_file = 'icons/mob/clothing/belt_mirror.dmi')
 		if(OFFSET_S_STORE in dna.species.offset_features)
@@ -390,8 +395,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = head
 		update_hud_head(worn_item)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_HEAD)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_HEAD) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = 'icons/mob/clothing/head/default.dmi'
 
@@ -432,8 +436,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = belt
 		update_hud_belt(worn_item)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_BELT)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_BELT) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = 'icons/mob/clothing/belt.dmi'
 
@@ -526,8 +529,7 @@ There are several things that need to be remembered:
 		var/obj/item/worn_item = wear_mask
 		update_hud_wear_mask(worn_item)
 
-		if(check_obscured_slots(transparent_protection = TRUE) & ITEM_SLOT_MASK)
-			return
+		CHECK_SHOULDNT_RENDER(worn_item, ITEM_SLOT_MASK) // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
 
 		var/icon_file = 'icons/mob/clothing/mask.dmi'
 
@@ -1091,3 +1093,4 @@ generate/load female uniform sprites matching all previously decided variables
 	return appearance
 
 #undef RESOLVE_ICON_STATE
+#undef CHECK_SHOULDNT_RENDER // monkestation edit: combine TRAIT_ALWAYS_RENDER + TRAIT_NO_WORN_ICON + obscure check into a single define
