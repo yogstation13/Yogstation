@@ -4,8 +4,6 @@ SUBSYSTEM_DEF(credits)
 	init_order = INIT_ORDER_CREDITS
 
 	var/director = "Some monkey we found on the street"
-	var/star = ""
-	var/ss = ""
 	var/list/disclaimers = list()
 	var/list/datum/episode_name/episode_names = list()
 
@@ -18,22 +16,67 @@ SUBSYSTEM_DEF(credits)
 
 	//If any of the following five are modified, the episode is considered "not a rerun".
 	var/customized_name = ""
-	var/customized_star = ""
-	var/customized_ss = ""
 	var/rare_episode_name = FALSE
 	var/theme = "NT"
-
-	var/js_args = list()
 
 	var/list/contributer_pref_images = list()
 	var/list/admin_pref_images = list()
 	var/list/major_event_icons = list()
 	var/list/contributors = list()
 
+	var/list/credit_order
+	var/list/ignored_clients
+
 /datum/controller/subsystem/credits/Initialize()
 	load_contributors()
 	generate_pref_images()
 	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/credits/proc/generate_credits()
+	credit_order = list()
+
+	draft()
+	finalize()
+
+	credit_order += episode_string
+	credit_order += producers_string
+	credit_order += disclaimers_string
+	credit_order += cast_string
+
+	credit_order += "<center>The Admin Bus</center>"
+	var/list/admins = shuffle(admin_pref_images)
+	var/admin_length = length(admins)
+
+	for(var/i in 1 to admin_length)
+		for(var/b in 1 to 8)
+			var/atom/movable/screen/map_view/char_preview/client_image = pick_n_take(admins)
+			if(!client_image)
+				break
+			client_image.screen_loc = "LEFT+[(b - 1) * 13]%:24,BOTTOM"
+			credit_order += client_image
+
+	credit_order += "<center>Our Lovely Contributors</center>"
+	var/list/contributors = shuffle(contributer_pref_images)
+
+	var/contributors_length = length(contributors)
+	for(var/i in 1 to contributors_length)
+		for(var/b in 1 to 8)
+			var/atom/movable/screen/map_view/char_preview/client_image = pick_n_take(contributors)
+			if(!client_image)
+				break
+			client_image.screen_loc = "LEFT+[(b - 1) * 13]%:24,BOTTOM"
+			credit_order += client_image
+
+	for(var/i in major_event_icons)
+		credit_order += i
+		var/list/returned_images = resolve_clients(major_event_icons[i], i)
+		for(var/y in 1 to length(returned_images))
+			for(var/b in 1 to 8)
+				var/atom/movable/screen/map_view/char_preview/client_image = pick_n_take(returned_images)
+				if(!client_image)
+					break
+				client_image.screen_loc = "LEFT+[(b - 1) * 13]%:24,BOTTOM"
+				credit_order += client_image
 
 /datum/controller/subsystem/credits/proc/load_contributors()
 	contributors = list()
@@ -56,7 +99,6 @@ SUBSYSTEM_DEF(credits)
 	finalize_disclaimerstring()
 
 /datum/controller/subsystem/credits/proc/generate_pref_images()
-
 	for(var/ckey in contributors)
 		var/datum/client_interface/interface = new(ckey)
 		var/datum/preferences/mocked = new(interface)
@@ -64,8 +106,8 @@ SUBSYSTEM_DEF(credits)
 		var/atom/movable/screen/map_view/char_preview/appearance = new(null, mocked)
 		appearance.update_body()
 		appearance.maptext_width = 120
-		appearance.maptext_y = -8
 		appearance.maptext_x = -42
+		appearance.maptext_y = -12
 		appearance.maptext = "<center>[ckey]</center>"
 		contributer_pref_images += appearance
 
@@ -77,19 +119,9 @@ SUBSYSTEM_DEF(credits)
 		appearance.update_body()
 		appearance.maptext_width = 120
 		appearance.maptext_x = -42
-		appearance.maptext_y = -8
+		appearance.maptext_y = -12
 		appearance.maptext = "<center>[ckey]</center>"
 		admin_pref_images += appearance
-
-/datum/controller/subsystem/credits/proc/draft_star()
-	var/mob/living/carbon/human/most_talked
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!H.ckey || H.stat == DEAD)
-			continue
-		if(!most_talked || H.talkcount > most_talked.talkcount)
-			most_talked = H
-	star = thebigstar(most_talked)
-
 
 /datum/controller/subsystem/credits/proc/finalize_name()
 	if(customized_name)
@@ -117,6 +149,7 @@ SUBSYSTEM_DEF(credits)
 	disclaimers_string =  list()
 	for(var/disclaimer in disclaimers)
 		disclaimers_string += "<center>[disclaimer]</center>"
+
 /datum/controller/subsystem/credits/proc/draft_disclaimers()
 	disclaimers += "Filmed on Location at [station_name()].<br>"
 	disclaimers += "Filmed with BYOND&#169; cameras and lenses. Outer space footage provided by NASA.<br>"
@@ -149,7 +182,7 @@ SUBSYSTEM_DEF(credits)
 		cast_num++
 
 	if(!cast_num)
-		cast_string += "<center><td class='actorsegue'> Nobody! </td></center>"
+		cast_string += "<center><td class='actorsegue'>Nobody!</td></center>"
 
 	var/list/corpses = list()
 	for(var/mob/living/carbon/human/H in GLOB.dead_mob_list)
@@ -160,15 +193,7 @@ SUBSYSTEM_DEF(credits)
 	if(corpses.len)
 		var/true_story_bro = "<center><br>[pick("BASED ON","INSPIRED BY","A RE-ENACTMENT OF")] [pick("A TRUE STORY","REAL EVENTS","THE EVENTS ABOARD [uppertext(station_name())]")]</center>"
 		cast_string += "<center><h3>[true_story_bro]</h3><br>In memory of those that did not make it.<br>[english_list(corpses)].<br></center>"
-	cast_string += "</div><br>"
-
-
-/datum/controller/subsystem/credits/proc/thebigstar(star)
-	if(istext(star))
-		return star
-	if(ismob(star))
-		var/mob/M = star
-		return "[uppertext(M.mind.key)] as [M.real_name]"
+	cast_string += "<br>"
 
 /datum/controller/subsystem/credits/proc/generate_major_icon(list/mobs, passed_icon_state)
 	if(!passed_icon_state)
@@ -178,10 +203,10 @@ SUBSYSTEM_DEF(credits)
 		if(effect.icon_state == passed_icon_state)
 			MA = effect
 			break
+
 	if(!MA)
 		MA = new
 		MA.icon_state = passed_icon_state
-		MA.pixel_x = 80
 		major_event_icons += MA
 		major_event_icons[MA] = list()
 
@@ -191,44 +216,45 @@ SUBSYSTEM_DEF(credits)
 	var/list/created_appearances = list()
 
 	//hell
-	if(icon_state == "cult")
-		var/datum/team/cult/cult = locate(/datum/team/cult) in GLOB.antagonist_teams
-		if(cult)
-			for(var/mob/living/cultist in cult.true_cultists)
-				if(!cultist.client)
-					continue
-				clients |= WEAKREF(cultist.client)
-	if(icon_state == "revolution")
-		var/datum/team/revolution/cult = locate(/datum/team/revolution) in GLOB.antagonist_teams
-		if(cult)
-			for(var/datum/mind/cultist in (cult.ex_revs + cult.ex_headrevs + cult.members))
-				if(!cultist?.current?.client)
-					continue
-				clients |= WEAKREF(cultist.current.client)
-	if(icon_state == "clockcult")
-		var/datum/team/clock_cult/cult = locate(/datum/team/clock_cult) in GLOB.antagonist_teams
-		if(cult)
-			for(var/mob/living/carbon/human/cultist in (cult.human_servants))
-				if(!cultist.client)
-					continue
-				clients |= WEAKREF(cultist.client)
+	switch(icon_state)
+		if("cult")
+			var/datum/team/cult/cult = locate(/datum/team/cult) in GLOB.antagonist_teams
+			if(cult)
+				for(var/mob/living/cultist in cult.true_cultists)
+					if(!cultist.client)
+						continue
+					clients |= WEAKREF(cultist.client)
+		if("revolution")
+			var/datum/team/revolution/revolution = locate(/datum/team/revolution) in GLOB.antagonist_teams
+			if(revolution)
+				for(var/datum/mind/revolutionist in (revolution.ex_revs + revolution.ex_headrevs + revolution.members))
+					if(!revolutionist?.current?.client)
+						continue
+					clients |= WEAKREF(revolutionist.current.client)
+		if("clockcult")
+			var/datum/team/clock_cult/clock_cult = locate(/datum/team/clock_cult) in GLOB.antagonist_teams
+			if(clock_cult)
+				for(var/mob/living/carbon/human/cultist in (clock_cult.human_servants))
+					if(!cultist.client)
+						continue
+					clients |= WEAKREF(cultist.client)
 
 	for(var/datum/weakref/weak as anything in clients)
 		var/client/client = weak.resolve()
 		if(!client)
 			continue
-		var/atom/movable/screen/map_view/char_preview/appereance = new(null, client.prefs)
+		var/atom/movable/screen/map_view/char_preview/appearance = new(null, client.prefs)
 		var/mutable_appearance/preview = new(getFlatIcon(client.mob?.appearance))
-		appereance.appearance = preview.appearance
-		appereance.maptext_width = 120
-		appereance.maptext_y = -8
-		appereance.maptext_x = -42
-		appereance.maptext = "<center>[client.mob.real_name]</center>"
-		created_appearances += appereance
-	return created_appearances
+		appearance.appearance = preview.appearance
+		appearance.maptext_width = 120
+		appearance.maptext_x = -42
+		appearance.maptext_y = -12
+		appearance.maptext = "<center>[client.mob.real_name]</center>"
+		created_appearances += appearance
 
-/mob/living/var/talkcount = 0
+	return created_appearances
 
 /obj/effect/title_card_object
 	plane = SPLASHSCREEN_PLANE
 	icon = 'monkestation/code/modules/and_roll_credits/icons/title_cards.dmi'
+	screen_loc = "CENTER-4,BOTTOM"

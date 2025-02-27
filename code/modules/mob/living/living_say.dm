@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	if(succumbed)
 		succumb(TRUE)
 		to_chat(src, compose_message(src, language, message, , spans, message_mods))
-	talkcount++
+
 	return TRUE
 
 /mob/living/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list(), message_range=0)

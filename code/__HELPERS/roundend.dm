@@ -230,12 +230,12 @@ GLOBAL_LIST_INIT(round_end_images, world.file2list("data/image_urls.txt")) // MO
 	popcount = gather_roundend_feedback()
 
 	for(var/client/C in GLOB.clients)
-		if(!C?.credits)
-			C?.RollCredits()
 		C?.playtitlemusic(40)
 		if(speed_round && was_forced != ADMIN_FORCE_END_ROUND)
 			C?.give_award(/datum/award/achievement/misc/speed_round, C?.mob)
 		HandleRandomHardcoreScore(C)
+
+	RollCredits()
 
 	display_report(popcount)
 
