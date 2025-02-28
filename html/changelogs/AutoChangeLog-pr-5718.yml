@@ -1,0 +1,4 @@
+author: "leaKsi"
+delete-after: True
+changes:
+  - bugfix: "Screentip for ghost critters (with hands) is no longer stuck in top left."
