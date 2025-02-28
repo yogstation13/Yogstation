@@ -50,6 +50,35 @@
 	sharpness = SHARP_EDGED
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
+	/// Used to keep track of the force we had before throws. After the throw, `throwforce` is
+	/// restored to this.
+	var/pre_throw_force
+
+/obj/item/slasher_machette/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_THROW, PROC_REF(pre_throw))
+	RegisterSignal(src, COMSIG_MOVABLE_POST_THROW, PROC_REF(post_throw))
+
+/obj/item/slasher_machette/Destroy(force)
+	UnregisterSignal(src, list(COMSIG_MOVABLE_PRE_THROW, COMSIG_MOVABLE_POST_THROW))
+	return ..()
+
+/obj/item/slasher_machette/proc/pre_throw(obj/item/source, list/arguments)
+	SIGNAL_HANDLER
+	var/mob/living/thrower = arguments[4]
+	if(!istype(thrower) || !thrower.mind.has_antag_datum(/datum/antagonist/slasher))
+		// Just in case our thrower isn't actually a slasher (somehow). This shouldn't ever come up,
+		// but if it does, then we just prevent the throw.
+		return COMPONENT_CANCEL_THROW
+
+	var/turf/below_turf = get_turf(arguments[4]) // the turf below the person throwing
+	var/turf_light_level = below_turf.get_lumcount()
+	var/area/ismaints = get_area(below_turf)
+	pre_throw_force = throwforce
+	if(istype(ismaints, /area/station/maintenance))
+		throwforce = 1.1 * throwforce
+	else
+		throwforce = throwforce * (max(clamp((1 - turf_light_level), 0, 1)))
 
 /obj/item/slasher_machette/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
@@ -58,14 +87,11 @@
 	if(isliving(hit_atom))
 		var/mob/living/hit_living = hit_atom
 		hit_living.Knockdown(2 SECONDS)
-/obj/item/slasher_machette/on_thrown(mob/living/carbon/user, atom/target)
-	var/turf/below_turf = get_turf(user)
-	var/turf_light_level = below_turf.get_lumcount()
-	var/area/ismaints = get_area(below_turf)
-	if(istype(ismaints, /area/station/maintenance))
-		throwforce = 1.1 * throwforce
-	else
-		throwforce = throwforce * (max(clamp((1 - turf_light_level), 0, 1)))
+
+/obj/item/slasher_machette/proc/post_throw(obj/item/source, datum/thrownthing, spin)
+	SIGNAL_HANDLER
+	// Restore the force we had before the throw.
+	throwforce = pre_throw_force
 
 /obj/item/slasher_machette/attack_hand(mob/user, list/modifiers)
 	if(isliving(user))

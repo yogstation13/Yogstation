@@ -83,7 +83,7 @@
 
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_PICKED_UP_ITEM, PROC_REF(item_pickup))
-	RegisterSignal(current_mob, COMSIG_MOB_DROPPING_ITEM, PROC_REF(item_drop))
+	RegisterSignal(current_mob, COMSIG_MOB_UNEQUIPPED_ITEM, PROC_REF(item_unequipped))
 	RegisterSignal(current_mob, COMSIG_MOB_ITEM_ATTACK, PROC_REF(check_attack))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
 	for(var/datum/quirk/quirk as anything in current_mob.quirks)
@@ -125,6 +125,7 @@
 
 
 /datum/antagonist/slasher/proc/LifeTick(mob/living/source, seconds_per_tick, times_fired)
+	SIGNAL_HANDLER
 
 	var/list/currently_beating = list()
 	var/list/current_statics = list()
@@ -308,6 +309,7 @@
 	stalked_human = null
 
 /datum/antagonist/slasher/proc/check_attack(mob/living/attacking_person, mob/living/attacked_mob)
+	SIGNAL_HANDLER
 	var/obj/item/held_item = attacking_person.get_active_held_item()
 
 	var/held_force = 3
@@ -320,9 +322,11 @@
 		attacked_mob.blood_particles(2, max_deviation = rand(-120, 120), min_pixel_z = rand(-4, 12), max_pixel_z = rand(-4, 12))
 
 /datum/antagonist/slasher/proc/item_pickup(datum/input_source, obj/item/source)
+	SIGNAL_HANDLER
 	RegisterSignal(source, COMSIG_ITEM_DAMAGE_MULTIPLIER, PROC_REF(damage_multiplier))
 
-/datum/antagonist/slasher/proc/item_drop(datum/input_source, obj/item/source)
+/datum/antagonist/slasher/proc/item_unequipped(datum/input_source, obj/item/source)
+	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_ITEM_DAMAGE_MULTIPLIER)
 
 /obj/item/var/last_multi = 1
