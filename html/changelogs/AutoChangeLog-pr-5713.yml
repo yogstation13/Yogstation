@@ -1,0 +1,4 @@
+author: "MichiRecRoom"
+delete-after: True
+changes:
+  - bugfix: "Charlie Station's equipment access ID now has access to open the secure engineering crate that's contained in the Beta Station Engine area."
