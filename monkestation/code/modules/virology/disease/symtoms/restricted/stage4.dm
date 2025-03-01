@@ -110,56 +110,61 @@
 
 /datum/symptom/fungal_tb
 	name = "Fungal tuberculosis"
-	desc = "Rumoured to be carefully grown and cultured by clandestine bio-weapon specialists. Causes fever, blood vomiting, lung damage, weight loss, and fatigue."
+	desc = "Rumoured to be carefully grown and cultured by clandestine bio-weapon specialists. Causes fever, blood vomiting, lung damage, weight loss, and fatigue. Cure: Convermol and Spaceallin"
 	restricted = TRUE
 	max_multiplier = 5
 	stage = 4
 	badness = EFFECT_DANGER_DEADLY
-	badness = 6
+	severity = 6
+	max_chance = 75
+	chance = 50
 
 /datum/symptom/fungal_tb/activate(mob/living/affected_mob)
+	if(HAS_TRAIT(affected_mob, TRAIT_NOBREATH))
+		return
 	if(prob(10))
-		multiplier++
-	switch(multiplier)
-		if(2)
-			if(prob(1))
+		multiplier_tweak(0.1)
+	switch(round(multiplier))
+		if(1, 2)
+			if(prob(2.5))
 				affected_mob.emote("cough")
 				to_chat(affected_mob, span_danger("Your chest hurts."))
-			if(prob(1))
-				to_chat(affected_mob, span_danger("Your stomach violently rumbles!"))
 			if(prob(2.5))
+				to_chat(affected_mob, span_danger("Your stomach violently rumbles!"))
+			if(prob(7.5))
 				to_chat(affected_mob, span_danger("You feel a cold sweat form."))
-		if(4)
-			if(prob(1))
+		if(3, 4)
+			if(prob(2.5))
 				to_chat(affected_mob, span_userdanger("You see four of everything!"))
 				affected_mob.set_dizzy_if_lower(10 SECONDS)
-			if(prob(1))
+			if(prob(2.5))
 				to_chat(affected_mob, span_danger("You feel a sharp pain from your lower chest!"))
 				affected_mob.adjustOxyLoss(5, FALSE)
 				affected_mob.emote("gasp")
-			if(prob(5))
+			if(prob(12.5))
 				to_chat(affected_mob, span_danger("You feel air escape from your lungs painfully."))
 				affected_mob.adjustOxyLoss(25, FALSE)
 				affected_mob.emote("gasp")
 		if(5)
-			if(prob(1))
+			if(prob(2.5))
 				to_chat(affected_mob, span_userdanger("[pick("You feel your heart slowing...", "You relax and slow your heartbeat.")]"))
 				affected_mob.stamina.adjust(-70, FALSE)
-			if(prob(5))
+			if(prob(12.5))
 				affected_mob.stamina.adjust(-100, FALSE)
 				affected_mob.visible_message(span_warning("[affected_mob] faints!"), span_userdanger("You surrender yourself and feel at peace..."))
 				affected_mob.AdjustSleeping(100)
-			if(prob(1))
+			if(prob(2.5))
 				to_chat(affected_mob, span_userdanger("You feel your mind relax and your thoughts drift!"))
 				affected_mob.adjust_confusion_up_to(8 SECONDS, 100 SECONDS)
-			if(prob(5))
+			if(prob(12.5))
 				if(ishuman(affected_mob))
 					var/mob/living/carbon/human/human = affected_mob
 					human.vomit(20)
-			if(prob(1.5))
+			if(prob(4))
 				to_chat(affected_mob, span_warning("<i>[pick("Your stomach silently rumbles...", "Your stomach seizes up and falls limp, muscles dead and lifeless.", "You could eat a crayon")]</i>"))
 				affected_mob.overeatduration = max(affected_mob.overeatduration - (200 SECONDS), 0)
 				affected_mob.adjust_nutrition(-100)
-			if(prob(7.5))
+			if(prob(15))
 				to_chat(affected_mob, span_danger("[pick("You feel uncomfortably hot...", "You feel like unzipping your jumpsuit...", "You feel like taking off some clothes...")]"))
 				affected_mob.adjust_bodytemperature(40)
+

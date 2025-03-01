@@ -253,7 +253,7 @@
 /obj/item/reagent_containers/cup/bottle/cold
 	name = "Rhinovirus culture bottle"
 	desc = "A small bottle. Contains XY-rhinovirus culture in synthblood medium."
-	spawned_disease = /datum/disease/advance/cold
+	spawned_disease = /datum/disease/acute/premade/cold
 
 /obj/item/reagent_containers/cup/bottle/flu_virion
 	name = "Flu virion culture bottle"
@@ -284,7 +284,7 @@
 /obj/item/reagent_containers/cup/bottle/tuberculosis
 	name = "Fungal Tuberculosis culture bottle"
 	desc = "A small bottle. Contains a sample of Fungal Tubercle bacillus."
-	spawned_disease = /datum/disease/tuberculosis
+	spawned_disease = /datum/disease/acute/premade/fungal_tb //monkestation edit: Pathology TB
 
 /obj/item/reagent_containers/cup/bottle/tuberculosiscure
 	name = "BVAK bottle"

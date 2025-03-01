@@ -4,7 +4,7 @@
 	max_count = 1
 	stage = 4
 	badness = EFFECT_DANGER_FLAVOR
-	severity = 1
+	severity = 0
 	var/biotypes = MOB_MINERAL | MOB_ROBOTIC
 
 /datum/symptom/adaptation/activate(mob/living/carbon/mob, datum/disease/acute/disease)
@@ -17,6 +17,7 @@
 	name = "Necrotic Metabolism"
 	desc = "The virus is able to thrive and act even within dead hosts."
 	biotypes = MOB_UNDEAD
+	severity = 1
 
 /datum/symptom/adaptation/undead/activate(mob/living/carbon/mob, datum/disease/acute/disease)
 	.=..()

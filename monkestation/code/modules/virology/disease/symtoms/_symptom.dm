@@ -16,7 +16,7 @@
 
 	var/chance = 3
 		// Under normal conditions, the percentage chance per tick to activate.
-	var/max_chance = 6
+	var/max_chance = 9
 		// Maximum percentage chance per tick.
 
 	var/multiplier = 1

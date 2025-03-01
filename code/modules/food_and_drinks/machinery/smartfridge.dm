@@ -523,7 +523,7 @@
 /obj/machinery/smartfridge/chemistry/virology/preloaded
 	initial_contents = list(
 		/obj/item/reagent_containers/syringe/antiviral = 4,
-		// /obj/item/reagent_containers/cup/bottle/cold = 1,
+		/obj/item/reagent_containers/cup/bottle/cold = 1,
 		// /obj/item/reagent_containers/cup/bottle/flu_virion = 1, Monkestation removal, Old viro code
 		/obj/item/reagent_containers/cup/bottle/mutagen = 1,
 		/obj/item/reagent_containers/cup/bottle/sugar = 1,

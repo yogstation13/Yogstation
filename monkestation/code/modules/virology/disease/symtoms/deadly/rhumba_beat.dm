@@ -11,7 +11,7 @@
 	if(ismouse(affected_mob))
 		affected_mob.gib()
 		return
-	multiplier += 0.1
+	multiplier_tweak(0.1)
 
 	switch(round(multiplier))
 		if(2)

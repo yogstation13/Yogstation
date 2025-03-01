@@ -480,7 +480,7 @@
 	name = "virus grenade kit"
 
 /obj/item/storage/box/syndie_kit/tuberculosisgrenade/PopulateContents()
-	new /obj/item/grenade/chem_grenade/tuberculosis(src)
+	new /obj/item/grenade/chem_grenade/large/tuberculosis(src) // Monkestation Edit: Large grenade
 	for(var/i in 1 to 5)
 		new /obj/item/reagent_containers/hypospray/medipen/tuberculosiscure(src)
 	new /obj/item/reagent_containers/syringe(src)
