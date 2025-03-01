@@ -134,7 +134,7 @@
 		ACCESS_ENGINE_EQUIP
 	)
 
-/datum/id_trim/job/away/old/apc
+/datum/id_trim/job/away/old/equipment
 	sechud_icon_state = SECHUD_APC_AWAY
 
 /datum/id_trim/pirate/lustrous

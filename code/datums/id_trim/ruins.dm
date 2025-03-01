@@ -70,12 +70,13 @@
 	assignment = "Charlie Station Engineer"
 
 /// Trim for the oldstation ruin/Charlie station to access APCs and other equipment
-/datum/id_trim/job/away/old/apc
+/datum/id_trim/job/away/old/equipment
 	minimal_access = list(
+		ACCESS_AWAY_ENGINEERING,
 		ACCESS_ENGINEERING,
 		ACCESS_ENGINE_EQUIP
 	)
-	assignment = "Engineering Equipment Access"
+	assignment = "Engine Equipment Access"
 
 /// Trim for the oldstation ruin/Charlie station to access robots, and downloading of paper publishing software for experiments
 /datum/id_trim/job/away/old/robo

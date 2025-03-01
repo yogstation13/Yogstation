@@ -4264,10 +4264,6 @@
 "pz" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/card/id/advanced/old{
-	trim = /datum/id_trim/job/away/old/apc;
-	name = "Engineering Equipment Access"
-	},
 /obj/item/crowbar,
 /obj/item/stock_parts/cell/high,
 /obj/machinery/door/window/right/directional/east{
@@ -4276,6 +4272,7 @@
 	},
 /obj/item/paper/fluff/ruins/oldstation/apc_note,
 /obj/effect/turf_decal/tile/yellow/anticorner/contrasted,
+/obj/item/card/id/away/old/equipment,
 /turf/open/floor/iron,
 /area/ruin/space/ancientstation/charlie/engie)
 "pK" = (
@@ -6672,11 +6669,10 @@
 "Hr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/glass,
-/obj/item/card/id/advanced/old{
-	trim = /datum/id_trim/job/away/old/robo;
-	registered_name = "Ash Holm";
+/obj/item/card/id/away/old/robo{
+	assignment = "Charlie Station Roboticist";
 	name = "Ash Holm";
-	assignment = "Charlie Station Roboticist"
+	registered_name = "Ash Holm"
 	},
 /turf/open/floor/plating{
 	initial_gas_mix = "co2=6;o2=16;n2=82;TEMP=293.15"

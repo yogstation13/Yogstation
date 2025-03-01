@@ -884,10 +884,10 @@
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Station Engineer\"."
 	trim = /datum/id_trim/job/away/old/eng /// MONKESTATION EDIT - Turns all Charlie Station trims into /datum/id_trim/job trims
 
-/obj/item/card/id/away/old/apc
-	name = "APC Access ID"
-	desc = "A special ID card that allows access to APC terminals."
-	trim = /datum/id_trim/job/away/old/apc /// MONKESTATION EDIT - Turns all Charlie Station trims into /datum/id_trim/job trims
+/obj/item/card/id/away/old/equipment
+	name = "Engineering Equipment Access"
+	desc = "A special ID card that allows access to engineering equipment."
+	trim = /datum/id_trim/job/away/old/equipment /// MONKESTATION EDIT - Turns all Charlie Station trims into /datum/id_trim/job trims
 
 /obj/item/card/id/away/old/robo
 	name = "Delta Station Roboticist's ID card"
