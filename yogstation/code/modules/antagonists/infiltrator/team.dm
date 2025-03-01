@@ -102,7 +102,7 @@
 			add_objective(/datum/objective/steal)
 		else
 			var/datum/objective/break_machinery/break_objective = new
-			break_objective.owner = owner
+			break_objective.team = team
 			if(break_objective.finalize())
 				add_objective(break_objective)
 			else
