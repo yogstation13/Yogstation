@@ -17,8 +17,10 @@
 	var/supermatter_radiation = 0
 	///Blob shit
 	var/supermatter_blob = FALSE
+	///(Force trigger resonance cascade event if true)
+	var/bypass_containment = FALSE
 
-/datum/supermatter_delamination/New(supermatter_power, supermatter_gas_amount, turf/supermatter_turf, supermatter_explosion_power, supermatter_gasmix_power_ratio, supermatter_antinoblium, supermatter_cascading, supermatter_radiation, supermatter_blob)
+/datum/supermatter_delamination/New(supermatter_power, supermatter_gas_amount, turf/supermatter_turf, supermatter_explosion_power, supermatter_gasmix_power_ratio, supermatter_antinoblium, supermatter_cascading, supermatter_radiation, supermatter_blob, bypass_containment)
 	. = ..()
 
 	src.supermatter_power = supermatter_power
@@ -30,6 +32,7 @@
 	src.supermatter_cascading = supermatter_cascading
 	src.supermatter_radiation = supermatter_radiation
 	src.supermatter_blob = supermatter_blob
+	src.bypass_containment = bypass_containment
 
 	setup_mob_interaction()
 	setup_delamination_type()
@@ -66,9 +69,10 @@
 		call_blob()
 		return
 	if(supermatter_cascading && !supermatter_blob)
-		call_cascading()
 		call_cascadetesla()
-		call_explosion()
+		if(bypass_containment)
+			call_cascading()
+			call_explosion()
 		return
 	if(supermatter_gas_amount > MOLE_PENALTY_THRESHOLD && !supermatter_cascading && !supermatter_blob)
 		call_singulo()
