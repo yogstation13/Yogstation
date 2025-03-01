@@ -836,6 +836,26 @@
 	icon_state = "retro"
 	registered_age = null
 
+/obj/item/card/id/away/scp1
+	name = "Senior Scientist ID"
+	desc = "A strange card with writing on it spelling out SCP. You feel like you shouldn't mess with this... "
+	trim = /datum/id_trim/away/scp1
+
+/obj/item/card/id/away/scp2
+	name = "Facility Guard ID"
+	desc = "A strange card with writing on it spelling out SCP. You feel like you shouldn't mess with this... "
+	trim = /datum/id_trim/away/scp2
+
+/obj/item/card/id/away/scp3
+	name = "MTF Sergeant ID"
+	desc = "A strange card with writing on it spelling out SCP. You feel like you shouldn't mess with this... "
+	trim = /datum/id_trim/away/scp3
+
+/obj/item/card/id/away/scp4
+	name = "Facility Manager"
+	desc = "A strange card with writing on it spelling out SCP. You feel like you shouldn't mess with this... "
+	trim = /datum/id_trim/away/scp4
+
 /obj/item/card/id/away/hotel
 	name = "Staff ID"
 	desc = "A staff ID used to access the hotel's doors."

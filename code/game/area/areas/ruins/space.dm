@@ -702,6 +702,76 @@
 /area/ruin/space/has_grav/infested_frigate
 	name = "SYN-C Brutus"
 
+// Abandoned SCP Site Ruins
+/area/ruin/space/has_grav/abandonedscpsite
+	name = "Abandoned Site Maintenance"
+
+/area/ruin/space/has_grav/abandonedscpsite/enterance
+	name = "Containment Site Enterance"
+
+/area/ruin/space/has_grav/abandonedscpsite/ezhall
+	name = "Containment Site Enterance Zone Hallway"
+
+/area/ruin/space/has_grav/abandonedscpsite/engineering
+	name = "Containment Site Engineering"
+
+/area/ruin/space/has_grav/abandonedscpsite/office1
+	name = "Containment Site General Office"
+
+/area/ruin/space/has_grav/abandonedscpsite/cafeteria
+	name = "Containment Site Cafeteria"
+
+/area/ruin/space/has_grav/abandonedscpsite/moffice
+	name = "Containment Site Managers Office"
+
+/area/ruin/space/has_grav/abandonedscpsite/hcz1
+	name = "HCZ Checkpoint 1"
+
+/area/ruin/space/has_grav/abandonedscpsite/hcz2
+	name = "HCZ Checkpoint 2"
+
+/area/ruin/space/has_grav/abandonedscpsite/lcz1
+	name = "LCZ Checkpoint 1"
+
+/area/ruin/space/has_grav/abandonedscpsite/hczhall
+	name = "HCZ Hall"
+
+/area/ruin/space/has_grav/abandonedscpsite/czbrig
+	name = "Containment Site Brig"
+
+/area/ruin/space/has_grav/abandonedscpsite/containment1
+	name = "Containment 1"
+
+/area/ruin/space/has_grav/abandonedscpsite/containment2
+	name = "Containment 2"
+
+/area/ruin/space/has_grav/abandonedscpsite/czmedbay
+	name = "Containment Site Medbay"
+
+/area/ruin/space/has_grav/abandonedscpsite/lounge
+	name = "Containment Site Break Room"
+
+/area/ruin/space/has_grav/abandonedscpsite/lczhall
+	name = "LCZ Hall"
+
+/area/ruin/space/has_grav/abandonedscpsite/office2
+	name = "Specialized Office"
+
+/area/ruin/space/has_grav/abandonedscpsite/czprison
+	name = "Containment Site Prison"
+
+/area/ruin/space/has_grav/abandonedscpsite/prisoncafe
+	name = "Containment Site Prison Cafeteria"
+
+/area/ruin/space/has_grav/abandonedscpsite/prisonlibrary
+	name = "Containment Site Prison Library"
+
+/area/ruin/space/has_grav/abandonedscpsite/czmaintenance
+	name = "Containment Site Maintenance"
+
+/area/ruin/space/has_grav/abandonedscpsite/prisonguard
+	name = "Containment Site Prison Watchpoint"
+
 //Infested Flotilla
 /area/ruin/space/has_grav/infested_flotilla
 	name = "Infested Flotilla"

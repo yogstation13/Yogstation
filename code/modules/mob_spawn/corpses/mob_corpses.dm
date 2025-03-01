@@ -399,3 +399,87 @@
 /obj/effect/mob_spawn/corpse/human/cyber_police
 	name = "Dead Cyber Police"
 	outfit = /datum/outfit/cyber_police
+
+/obj/effect/mob_spawn/corpse/human/dclass
+	name = "Prisoner"
+	hairstyle = "Bald"
+	facial_hairstyle = "Shaved"
+	outfit = /datum/outfit/dclassoutfit
+
+/datum/outfit/dclassoutfit
+	name = "Class D"
+	uniform = /obj/item/clothing/under/rank/prisoner
+	shoes = /obj/item/clothing/shoes/sneakers/orange
+
+/obj/effect/mob_spawn/corpse/human/lightguard
+	name = "Facility Guard"
+	outfit = /datum/outfit/lightguardcorpse
+
+/datum/outfit/lightguardcorpse
+	name = "Unknown Organization Light Guard"
+	id = /obj/item/card/id/away/scp2
+	uniform = /obj/item/clothing/under/rank/security/detective/noir
+	suit = /obj/item/clothing/suit/armor/vest
+	glasses = /obj/item/clothing/glasses/sunglasses
+	head = /obj/item/clothing/head/helmet/toggleable/riot
+	gloves = /obj/item/clothing/gloves/color/black
+	shoes = /obj/item/clothing/shoes/jackboots
+
+/obj/effect/mob_spawn/corpse/human/heavyguard
+	name = "Heavily Armed Facility Guard"
+	outfit = /datum/outfit/heavyguardcorpse
+
+/datum/outfit/heavyguardcorpse
+	name = "Unknown Organization Heavy Guard"
+	id = /obj/item/card/id/away/scp3
+	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt
+	suit = /obj/item/clothing/suit/armor/vest
+	glasses = /obj/item/clothing/glasses/sunglasses
+	head = /obj/item/clothing/head/helmet/toggleable/riot
+	mask = /obj/item/clothing/mask/gas/sechailer/swat/spacepol
+	gloves = /obj/item/clothing/gloves/color/black
+	shoes = /obj/item/clothing/shoes/jackboots
+
+/obj/effect/mob_spawn/corpse/human/scpscientist
+	name = "Senior Scientist"
+	outfit = /datum/outfit/scpscientistcorpse
+
+/datum/outfit/scpscientistcorpse
+	name = "Unknown Organization Senior Scientist"
+	id = /obj/item/card/id/away/scp1
+	uniform = /obj/item/clothing/under/suit/black
+	suit = /obj/item/clothing/suit/toggle/labcoat
+	neck = /obj/item/clothing/neck/tie/black/tied
+	glasses = /obj/item/clothing/glasses/regular/thin
+	shoes = /obj/item/clothing/shoes/laceup
+
+/obj/effect/mob_spawn/corpse/human/facilitymanager
+	name = "Facility Manager"
+	hairstyle = "CIA"
+	outfit = /datum/outfit/facilitymanagercorpse
+
+/datum/outfit/facilitymanagercorpse
+	name = "Unknown Organization Facility Manager"
+	id = /obj/item/card/id/away/scp4
+	uniform = /obj/item/clothing/under/suit/black_really
+	suit = /obj/item/clothing/suit/toggle/lawyer/black/better
+	glasses = /obj/item/clothing/glasses/sunglasses
+	neck = /obj/item/clothing/neck/tie/red/tied
+	ears = /obj/item/radio/headset
+	head = /obj/item/clothing/head/fedora
+	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
+	l_pocket = /obj/item/lighter
+	shoes = /obj/item/clothing/shoes/laceup
+
+/obj/effect/mob_spawn/corpse/human/plaguedoctormob
+	name = "Plague Doctor"
+	outfit = /datum/outfit/plaguedoctormoboutfit
+
+/datum/outfit/plaguedoctormoboutfit
+	name = "Plague Doctor"
+	uniform = /obj/item/clothing/under/suit/black
+	suit = /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
+	neck = /obj/item/clothing/neck/wide_cape
+	head = /obj/item/clothing/head/bio_hood/plague
+	mask = /obj/item/clothing/mask/gas/plaguedoctor
+	shoes = /obj/item/clothing/shoes/laceup
