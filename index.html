@@ -30,7 +30,7 @@ General Public License version 3.
 
 <h3 id="modules">Modules
 <aside>(950 modules,
-    3305/11301 macros, 29.2%)</aside></h3>
+    3305/11304 macros, 29.2%)</aside></h3>
 <ul class="index-tree modules">
     <li><span class="no-substance">_maps&#x2F;map_files&#x2F;</span><a href="_maps/map_files/IceMeta.html" title="_maps&#x2F;map_files&#x2F;IceMeta">IceMeta</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -1370,7 +1370,7 @@ SPDX-License-Identifier: MIT</li>
 
 
 <h3 id="types">Types
-<aside>(1360 detailed/2305 documented/31033 total, 7.4%)</aside></h3>
+<aside>(1366 detailed/2311 documented/31077 total, 7.4%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="area.html" title="&#x2F;area">area</a> - A grouping of tiles into a logical space, mostly used by map editors<ul class="index-tree">
@@ -1817,6 +1817,9 @@ The namespace folder's name will change if any of the assets change. (excluding 
     </ul></li>
     </ul></li>
     <li><a href="datum/bitfield.html" title="&#x2F;datum&#x2F;bitfield">bitfield</a> - Specifies a bitfield for smarter debugging</li>
+    <li><a href="datum/blackmarket_item.html" title="&#x2F;datum&#x2F;blackmarket_item">blackmarket_item</a></li>
+    <li><a href="datum/blackmarket_market.html" title="&#x2F;datum&#x2F;blackmarket_market">huh?</a></li>
+    <li><a href="datum/blackmarket_purchase.html" title="&#x2F;datum&#x2F;blackmarket_purchase">blackmarket_purchase</a></li>
     <li><a href="datum/blood_type.html" title="&#x2F;datum&#x2F;blood_type">?</a></li>
     <li class="has-children"><a href="datum/bloodsucker_clan.html" title="&#x2F;datum&#x2F;bloodsucker_clan">Caitiff</a> - Bloodsucker clans<ul class="index-tree">
     <li><a href="datum/bloodsucker_clan/nosferatu.html" title="&#x2F;datum&#x2F;bloodsucker_clan&#x2F;nosferatu">Nosferatu Clan</a></li>
@@ -2002,6 +2005,7 @@ for scheduling different subsystems for different stages of the round</li>
     <li><a href="datum/controller/subsystem/air.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;air">Atmospherics</a></li>
     <li><a href="datum/controller/subsystem/ambience.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;ambience">Ambience</a></li>
     <li><a href="datum/controller/subsystem/atoms.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;atoms">Atoms</a></li>
+    <li><a href="datum/controller/subsystem/blackmarket.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;blackmarket">Blackmarket</a></li>
     <li><a href="datum/controller/subsystem/chat.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;chat">Chat</a></li>
     <li><a href="datum/controller/subsystem/daylight.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;daylight">Daylight</a></li>
     <li><a href="datum/controller/subsystem/demo.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;demo">Demo</a></li>
@@ -3581,6 +3585,7 @@ See icons/obj/guns/attachment.dmi.<ul class="index-tree">
     </ul></li>
     <li><a href="obj/item/autosurgeon.html" title="&#x2F;obj&#x2F;item&#x2F;autosurgeon">autosurgeon</a></li>
     <li><a href="obj/item/badge.html" title="&#x2F;obj&#x2F;item&#x2F;badge">badge</a> - Badges: Like an accessory for your armor vest</li>
+    <li><a href="obj/item/blackmarket_uplink.html" title="&#x2F;obj&#x2F;item&#x2F;blackmarket_uplink">Black Market Uplink</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;bloodcrawl">blood crawl</span> - Bloodcrawl &quot;hands&quot;, prevent the user from holding items in bloodcrawl</li>
     <li class="has-children"><a href="obj/item/bodypart.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart">limb</a><ul class="index-tree">
     <li><a href="obj/item/bodypart/l_arm.html" title="&#x2F;obj&#x2F;item&#x2F;bodypart&#x2F;l_arm">left arm</a></li>
@@ -4268,6 +4273,7 @@ Does not need power to operate, it's more like a structure.</li>
     <li><a href="obj/machinery/light_switch.html" title="&#x2F;obj&#x2F;machinery&#x2F;light_switch">light switch</a> - The light switch. Can have multiple per area.</li>
     <li><a href="obj/machinery/limbgrower.html" title="&#x2F;obj&#x2F;machinery&#x2F;limbgrower">limb grower</a> - The limbgrower. Makes organd and limbs with synthflesh and chems.
 See [limbgrower_designs.dm] for everything we can make.</li>
+    <li><a href="obj/machinery/ltsrbt.html" title="&#x2F;obj&#x2F;machinery&#x2F;ltsrbt">Long-To-Short-Range-Bluespace-Transciever</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;machinery&#x2F;manned_turret">machine gun turret</span> - MANNED TURRET</li>
     <li><a href="obj/machinery/mecha_part_fabricator.html" title="&#x2F;obj&#x2F;machinery&#x2F;mecha_part_fabricator">exosuit fabricator</a></li>
     <li><a href="obj/machinery/mindmachine_hub.html" title="&#x2F;obj&#x2F;machinery&#x2F;mindmachine_hub">mind machine hub</a></li>
@@ -4562,7 +4568,7 @@ uranium</li>
 </main>
 <footer>
     yogstation.dme
-    <a href="https://github.com/yogstation13/Yogstation/tree/440240563bb61bf275deab134a51b679461f8fff">4402405</a>
+    <a href="https://github.com/yogstation13/Yogstation/tree/cb01f405d680db5de845fb8ff1b822dbaf4f6c64">cb01f40</a>
         (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
 </body>
 </html>
