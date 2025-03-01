@@ -1,0 +1,4 @@
+author: "Veth-s"
+delete-after: True
+changes:
+  - admin: "You can now choose unholy as an option in select equipment, spawning you from hell instead."
