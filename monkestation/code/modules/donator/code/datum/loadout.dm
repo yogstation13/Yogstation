@@ -757,3 +757,10 @@
 	item_path = /obj/item/clothing/suit/toggle/labcoat/elchorico_big_labcoat
 	donator_only = TRUE
 	requires_purchase = FALSE
+
+//QuarianCommando
+/datum/loadout_item/suit/jacket/formal_overcoat
+	name = "Formal Overcoat"
+	item_path = /obj/item/clothing/suit/jacket/formal_overcoat
+	donator_only = TRUE
+	requires_purchase = FALSE
