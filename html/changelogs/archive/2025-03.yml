@@ -1,11 +1,33 @@
 2025-03-01:
   Absolucy:
   - balance: Bloodsuckers can now vassalize xenos. Have fun trying to do that.
+  Absolucy, hry-gh:
+  - bugfix: Admin/curator music playback should work in BYOND 516 now.
+  Camriod:
+  - rscadd: Formal Overcoat donater item
+  - rscadd: Floor pill name
   MichiRecRoom:
   - bugfix: The slasher's machette can be thrown once more. Go wild, discount horror
       movie antagonists.
+  - bugfix: Ghost critter spawnpoint cooldowns are working once more. Sorry if you
+      liked the lack of cooldown - I know I sure did.
+  - bugfix: Charlie Station's equipment access ID now has access to open the secure
+      engineering crate that's contained in the Beta Station Engine area.
+  MichiRecRoom, LemonInTheDark, ZephyrTFA:
+  - rscadd: (ZephyrTFA) Nuclear Detonation now drops security level if it missed the
+      station.
+  - rscadd: (ZephyrTFA) Nuclear Detonation now nukes the syndie base if its on the
+      syndie base.
+  - bugfix: (ZephyrTFA) Nuclear Detonation now handles not playing a cinematic correctly.
+  - refactor: (ZephyrTFA) Changed z level iteration for Nuclear Detonation
+  - bugfix: (MichiRecRoom) Nukes will now always be deleted upon exploding, no matter
+      if they have a valid cutscene to play.
   Sorenon:
   - qol: Added ghost player and LOOC typing bubbles
+  - qol: You can name barrels with a pen now, changing its icon
+  - rscadd: Shakers can now pour drinks with custom names and descriptions! Alt-click
+      the shaker to enable this.
+  - qol: Atmos devices like valves and pumps can now be renamed with a pen.
   leaKsi:
   - bugfix: Screentip for ghost critters (with hands) is no longer stuck in top left.
   notmoaz:

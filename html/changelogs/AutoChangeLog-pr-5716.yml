@@ -1,8 +1,0 @@
-author: "MichiRecRoom, LemonInTheDark, ZephyrTFA"
-delete-after: True
-changes:
-  - rscadd: "(ZephyrTFA) Nuclear Detonation now drops security level if it missed the station."
-  - rscadd: "(ZephyrTFA) Nuclear Detonation now nukes the syndie base if its on the syndie base."
-  - bugfix: "(ZephyrTFA) Nuclear Detonation now handles not playing a cinematic correctly."
-  - refactor: "(ZephyrTFA) Changed z level iteration for Nuclear Detonation"
-  - bugfix: "(MichiRecRoom) Nukes will now always be deleted upon exploding, no matter if they have a valid cutscene to play."

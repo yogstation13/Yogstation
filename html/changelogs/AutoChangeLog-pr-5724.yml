@@ -1,4 +1,0 @@
-author: "MichiRecRoom"
-delete-after: True
-changes:
-  - bugfix: "Ghost critter spawnpoint cooldowns are working once more. Sorry if you liked the lack of cooldown - I know I sure did."
