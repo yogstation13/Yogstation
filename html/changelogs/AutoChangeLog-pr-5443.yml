@@ -1,0 +1,6 @@
+author: "Loiosh42"
+delete-after: True
+changes:
+  - balance: "Blanket wound bonus nerf on import weapons, mild damage on selected"
+  - balance: "Slight Ass Ops gun buff"
+  - bugfix: "Fire delay is incremented in 0.1"
