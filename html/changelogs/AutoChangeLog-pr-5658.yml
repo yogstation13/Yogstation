@@ -1,0 +1,4 @@
+author: "MichiRecRoom"
+delete-after: True
+changes:
+  - rscdel: "A couple words have been removed from the AI's vox repertoire - these words were only usable in rule-breaking contexts anyways."
