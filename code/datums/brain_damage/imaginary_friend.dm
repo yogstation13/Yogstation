@@ -77,7 +77,7 @@
 	var/hidden = FALSE
 	var/move_delay = 0
 	var/mob/living/owner
-	var/bubble_icon = "default"
+	//var/bubble_icon = "default" // MONKESTATION REMOVAL
 
 	var/datum/action/innate/imaginary_join/join
 	var/datum/action/innate/imaginary_hide/hide
@@ -388,6 +388,8 @@
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay_global), visual, group_clients(), 2.5 SECONDS)
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 1.7, easing = EASE_OUT)
 
+// monkestation edit start
+/* original
 /mob/camera/imaginary_friend/create_thinking_indicator()
 	if(active_thinking_indicator || active_typing_indicator || !thinking_IC)
 		return FALSE
@@ -416,6 +418,13 @@
 	thinking_IC = FALSE
 	remove_thinking_indicator()
 	remove_typing_indicator()
+*/
+/mob/camera/imaginary_friend/add_typing_overlay(image)
+	add_image_to_clients(image, group_clients())
+
+/mob/camera/imaginary_friend/remove_typing_overlay(image)
+	remove_image_from_clients(image, group_clients())
+// monkestation edit end
 
 /mob/camera/imaginary_friend/Move(NewLoc, Dir = 0)
 	if(world.time < move_delay)

@@ -8376,6 +8376,7 @@
 #include "monkestation\code\modules\temperature_overhaul\homeostasis_level.dm"
 #include "monkestation\code\modules\temperature_overhaul\living_procs.dm"
 #include "monkestation\code\modules\temperature_overhaul\temperature_proc.dm"
+#include "monkestation\code\modules\tgui_input\say_modal\typing.dm"
 #include "monkestation\code\modules\the_bird_inside_of_me\language.dm"
 #include "monkestation\code\modules\the_bird_inside_of_me\organs.dm"
 #include "monkestation\code\modules\the_bird_inside_of_me\plummage.dm"

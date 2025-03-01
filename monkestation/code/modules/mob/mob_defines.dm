@@ -5,3 +5,5 @@
 	var/forced_interaction_mode
 	/// The interaction state of this mob, istate for short because typing interaction_state is annoying.
 	var/istate = NONE
+	/// What icon the mob uses for speechbubbles
+	var/bubble_icon = "default"
