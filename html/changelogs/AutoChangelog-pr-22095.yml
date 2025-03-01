@@ -1,0 +1,8 @@
+author: "AMyriad, Paxilmaniac, Onule, RedBaronFlyer, L0pz"
+delete-after: true 
+changes: 
+  - imageadd: "Light bulbs, light tubes, floodlights, and light fixtures of all varieties have been visually overhauled"
+  - imageadd: "Light tubes will now show up in your hands when held"
+  - imageadd: "Resprited the light replacer tool"
+  - imageadd: "Floor lights should now also turn purple if a revenant uses their shock ability"
+  - imageadd: "Resprited malf AI's ability buttons for \"blackout\", \"emergency lights\", and \"reactivate cameras\""
