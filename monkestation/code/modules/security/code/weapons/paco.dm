@@ -87,6 +87,7 @@
 /obj/projectile/bullet/c35
 	name = ".35 Auto bullet"
 	damage = 20
+	wound_bonus = -5
 
 /obj/item/ammo_box/c35
 	name = "ammunition packet (.35 Auto)"

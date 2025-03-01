@@ -3,7 +3,7 @@
 	icon_state = "pellet"
 	damage = 50
 	sharpness = SHARP_POINTY
-	wound_bonus = 0
+	wound_bonus = -5
 
 /obj/projectile/bullet/shotgun_slug/executioner
 	name = "executioner slug" // admin only, can dismember limbs
@@ -18,22 +18,23 @@
 /obj/projectile/bullet/shotgun_slug/apds
 	name = "tungsten sabot-slug"
 	icon_state = "gauss"
-	damage = 35 //15 less than slugs. Only better when bullet armor is 50+, primarily counters bulletproof armor.
+	damage = 32 //18 less than slugs. Only better when bullet armor is 50+, primarily counters bulletproof armor.
 	speed = 0.25 //sub-caliber + lighter = speed. (Smaller number = faster)
-	armour_penetration = 40 //Tis a solid-tungsten penetrator, what do you expect?
+	armour_penetration = 50 //Tis a solid-tungsten penetrator, what do you expect?
+	wound_bonus = -25
 	ricochets_max = 2 //Unlike slugs which tend to squish on impact, these are hard enough to bounce rarely.
-	ricochet_chance = 60
+	ricochet_chance = 50
 	ricochet_auto_aim_range = 0
-	ricochet_incidence_leeway = 55
+	ricochet_incidence_leeway = 50
 	embedding = null
-	demolition_mod = 5 //High-velocity tungsten > steel doors
+	demolition_mod = 3 //High-velocity tungsten > steel doors
 	projectile_piercing = PASSMOB
 
 
 /obj/projectile/bullet/shotgun_slug/apds/pierce/on_hit(atom/target, blocked = 0, pierce_hit)
 	if(isliving(target))
-		// If the bullet has already gone through 3 people, stop it on this hit
-		if(pierces > 3)
+		// If the bullet has already gone through 2 people, stop it on this hit
+		if(pierces > 2)
 			projectile_piercing = NONE
 
 			if(damage > 10) // Lets just be safe with this one

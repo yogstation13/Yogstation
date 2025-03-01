@@ -217,9 +217,9 @@
 
 /obj/projectile/bullet/strilka310
 	name = ".310 Strilka bullet"
-	damage = 60
+	damage = 55    //-5 from mosin
 	armour_penetration = 10
-	wound_bonus = -45
+	wound_bonus = -50  //-5 from mosin
 	wound_falloff_tile = 0
 
 /obj/projectile/bullet/strilka310/surplus

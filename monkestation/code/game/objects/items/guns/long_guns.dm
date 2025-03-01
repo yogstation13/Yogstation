@@ -9,7 +9,7 @@
 	cartridge_wording = "bullet"
 	accepted_magazine_type = /obj/item/ammo_box/magazine/internal/shot/levergun
 	projectile_wound_bonus = 10
-	projectile_damage_multiplier = 1.1
+	projectile_damage_multiplier = 1.4
 	w_class = WEIGHT_CLASS_BULKY
 	force = 10
 	flags_1 = CONDUCT_1
@@ -45,9 +45,9 @@
 
 /obj/projectile/bullet/g45l
 	name = ".45 Long bullet"
-	damage = 30
+	damage = 25
 	weak_against_armour = TRUE // High fire rate
-	wound_bonus = -5
+	wound_bonus = -10
 	sharpness = SHARP_EDGED
 	embedding = list(embed_chance=25, fall_chance=2, jostle_chance=2, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=3, jostle_pain_mult=5, rip_time=1 SECONDS)
 
