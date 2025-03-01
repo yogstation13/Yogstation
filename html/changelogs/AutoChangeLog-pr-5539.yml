@@ -1,0 +1,5 @@
+author: "Gw0sty"
+delete-after: True
+changes:
+  - rscadd: "All of service now will now have people with fanatical delusions of 'love' about them. Instead of just mime, clown, and chaplain."
+  - code_imp: "Deleted a single instance of two TRAIT_UNCONVERTABLE being defined in the code."
