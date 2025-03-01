@@ -125,6 +125,14 @@
 		JOB_MIME = TRAIT_MIME_FAN,
 		JOB_CLOWN = TRAIT_CLOWN_ENJOYER,
 		JOB_CHAPLAIN = TRAIT_SPIRITUAL,
+		JOB_BARTENDER = TRAIT_EXTROVERT,
+		JOB_CURATOR = TRAIT_INTROVERT,
+		JOB_COOK = TRAIT_GOURMAND,
+		JOB_BOTANIST = TRAIT_SMOKER,
+		JOB_PSYCHOLOGIST = TRAIT_DEPRESSION,
+		JOB_LAWYER = TRAIT_JAILBIRD,
+		JOB_JANITOR = TRAIT_SNOB,
+		JOB_LATEJOIN_BARBER = TRAIT_BALD,
 	) // Jobs and their corresponding quirks
 	var/list/special_pool = list() //The special list, for quirk-based
 	var/chosen_victim  //The obsession target
