@@ -1,0 +1,4 @@
+author: "ToasterBiome"
+delete-after: true 
+changes: 
+  - rscadd: "steal research hard drive objective now chooses between \"Project Bee\", \"Project Shiptest\", and \"Project Monke\""
