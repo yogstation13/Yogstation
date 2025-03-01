@@ -101,7 +101,12 @@
 		if(prob(60))
 			add_objective(/datum/objective/steal)
 		else
-			add_objective(/datum/objective/break_machinery)
+			var/datum/objective/break_machinery/break_objective = new
+			break_objective.owner = owner
+			if(break_objective.finalize())
+				add_objective(break_objective)
+			else
+				forge_single_objective()
 
 /datum/team/infiltrator/proc/add_objective(type)
 	var/datum/objective/O = type
