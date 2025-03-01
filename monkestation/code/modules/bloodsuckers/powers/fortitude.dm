@@ -67,18 +67,15 @@
 		user.buckled.unbuckle_mob(src, force=TRUE)
 
 /datum/action/cooldown/bloodsucker/fortitude/DeactivatePower()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/bloodsucker_user = owner
-	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))
+	if(ishuman(owner) && (IS_BLOODSUCKER(owner) || IS_VASSAL(owner)))
+		var/mob/living/carbon/human/bloodsucker_user = owner
 		bloodsucker_user.physiology.brute_mod /= fortitude_resist
-		if(!HAS_TRAIT_FROM(bloodsucker_user, TRAIT_STUNIMMUNE, FORTITUDE_TRAIT))
-			bloodsucker_user.physiology.stamina_mod /= fortitude_resist
+		bloodsucker_user.physiology.stamina_mod /= fortitude_resist
 	// Remove Traits & Effects
 	owner.remove_traits(base_traits + upgraded_traits, FORTITUDE_TRAIT)
 
-	if(was_running && bloodsucker_user.m_intent == MOVE_INTENT_WALK)
-		bloodsucker_user.set_move_intent(MOVE_INTENT_RUN)
+	if(was_running && owner.m_intent == MOVE_INTENT_WALK)
+		owner.set_move_intent(MOVE_INTENT_RUN)
 	owner.balloon_alert(owner, "fortitude turned off.")
 
 	return ..()
