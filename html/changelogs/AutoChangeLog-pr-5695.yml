@@ -1,0 +1,4 @@
+author: "Absolucy, hry-gh"
+delete-after: True
+changes:
+  - bugfix: "Admin/curator music playback should work in BYOND 516 now."
