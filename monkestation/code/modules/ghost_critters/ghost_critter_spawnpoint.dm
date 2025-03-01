@@ -3,15 +3,13 @@
 /datum/hover_data/ghost_critter/setup_data(atom/source, mob/enterer)
 	if(!enterer.client)
 		return
-	var/time_left = enterer.client.ghost_critter_cooldown
-	if(world.time > time_left)
+	if(COOLDOWN_FINISHED(enterer.client, ghost_critter_cooldown))
 		return
 
-	time_left -= world.time
 	var/obj/effect/overlay/hover/data = new(null)
 	data.icon = 'icons/effects/effects.dmi'
 	data.icon_state = "empty"
-	data.maptext = "<span class='pixel c ol'><span style='font-size: 6px; text-align: center;'>You have [DisplayTimeText(time_left)] left until you can spawn as a ghost critter again.</span></span>"
+	data.maptext = "<span class='pixel c ol'><span style='font-size: 6px; text-align: center;'>You have [DisplayTimeText(COOLDOWN_TIMELEFT(enterer.client, ghost_critter_cooldown))] left until you can spawn as a ghost critter again.</span></span>"
 	data.maptext_width = 256
 	data.maptext_height = 128
 	data.maptext_y = 28
@@ -51,7 +49,7 @@
 	if(!ghost.client)
 		return
 
-	if(ghost.client.ghost_critter_cooldown > world.time)
+	if(!COOLDOWN_FINISHED(ghost.client, ghost_critter_cooldown))
 		return
 
 	var/confirm_critter = tgui_alert(usr, "Would you like to spawn as a ghost critter? This will make you unrevivable.", "Ghost critter confirmation", list("Yes", "No"))

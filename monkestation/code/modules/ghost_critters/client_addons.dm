@@ -1,5 +1,5 @@
 /client
-	var/ghost_critter_cooldown = 0
+	COOLDOWN_DECLARE(ghost_critter_cooldown)
 
 
 /client/proc/get_critter_spawn(obj/structure/ghost_critter_spawn/spawner)
@@ -45,7 +45,7 @@
 	var/mob/living/basic/created_mob = new spawned_mob(turf)
 
 	var/cooldown_time = get_critter_cooldown()
-	ghost_critter_cooldown = cooldown_time
+	COOLDOWN_START(src, ghost_critter_cooldown, cooldown_time)
 
 	if(!mob.mind)
 		mob.mind = new /datum/mind(key)
