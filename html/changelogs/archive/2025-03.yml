@@ -1,0 +1,19 @@
+2025-03-01:
+  Absolucy:
+  - balance: Bloodsuckers can now vassalize xenos. Have fun trying to do that.
+  MichiRecRoom:
+  - bugfix: The slasher's machette can be thrown once more. Go wild, discount horror
+      movie antagonists.
+  Sorenon:
+  - qol: Added ghost player and LOOC typing bubbles
+  leaKsi:
+  - bugfix: Screentip for ghost critters (with hands) is no longer stuck in top left.
+  notmoaz:
+  - rscadd: Added a new space ruin map
+  - rscadd: Added a new mob called "The Plague Doctor" which serves as a miniboss
+      for the ruins
+  - rscadd: Added more variants of the simple mob zombies
+  - rscadd: Added new outfits for the zombies and corpses
+  - rscadd: Added different variants of an ID
+  - rscadd: Added more corpses
+  - rscadd: Added "FACTION_PLAGUE" faction.
