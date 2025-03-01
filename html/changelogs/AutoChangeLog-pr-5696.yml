@@ -1,0 +1,6 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - qol: "You can name barrels with a pen now, changing its icon"
+  - rscadd: "Shakers can now pour drinks with custom names and descriptions! Alt-click the shaker to enable this."
+  - qol: "Atmos devices like valves and pumps can now be renamed with a pen."
