@@ -8454,6 +8454,7 @@
 #include "monkestation\code\modules\veth_misc_items\admin_vox\admin_vox.dm"
 #include "monkestation\code\modules\veth_misc_items\boomboots\boomboot.dm"
 #include "monkestation\code\modules\veth_misc_items\canopics\canopics.dm"
+#include "monkestation\code\modules\veth_misc_items\unholy_spawn\unholy_spawn.dm"
 #include "monkestation\code\modules\veth_misc_items\veth_player_panel\veth_player_panel.dm"
 #include "monkestation\code\modules\viking\viking_armour.dm"
 #include "monkestation\code\modules\viking\viking_axes.dm"
