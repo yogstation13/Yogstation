@@ -108,14 +108,7 @@ SUBSYSTEM_DEF(statpanels)
 			return
 
 /datum/controller/subsystem/statpanels/proc/set_status_tab(client/target)
-	// monkestation start: add notice regarding music player
-	var/static/list/beta_notice = list(
-		"",
-		"You are on the BYOND 516 beta, various UIs and such may be broken!",
-		"Please report issues, and switch back to BYOND 515 if things are causing too many issues for you.",
-		"Music playback currently does NOT work on BYOND 516."
-	)
-	// monkestation end
+	var/static/list/beta_notice = list("", "You are on the BYOND 516 beta, various UIs and such may be broken!", "Please report issues, and switch back to BYOND 515 if things are causing too many issues for you.")
 	if(!global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()
 		return
 

@@ -20,10 +20,6 @@
  * optional extra_data list Optional settings.
  */
 /datum/tgui_panel/proc/play_music(url, extra_data)
-	// monkestation start: prevent chat crashes until music player is fixed
-	if(client?.byond_version > 515)
-		return
-	// monkestation end
 	if(!is_ready())
 		return
 	if(!findtext(url, GLOB.is_http_protocol))
@@ -41,10 +37,6 @@
  * Stops playing music through the browser.
  */
 /datum/tgui_panel/proc/stop_music()
-	// monkestation start: prevent chat crashes until music player is fixed
-	if(client?.byond_version > 515)
-		return
-	// monkestation end
 	if(!is_ready())
 		return
 	window.send_message("audio/stopMusic")
