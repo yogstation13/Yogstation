@@ -1,6 +1,0 @@
-author: "Oblisk234"
-delete-after: true 
-changes: 
-  - bugfix: "The lavaland artillery mainframe finally works again."
-  - rscadd: "Logging has been added to the lavaland artillery mainframe."
-  - rscadd: "Added lavaland artillery mainframe to donutstation and ministation, since they didn't have one?"
