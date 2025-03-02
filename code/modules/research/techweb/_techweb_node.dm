@@ -18,11 +18,15 @@
 	var/ui_x = 805 // It's location - override this in techweb_layout.dm
 	var/ui_y = 805
 
+	/// Whether or not this node should show on the wiki
+	var/show_on_wiki = TRUE
+
 /datum/techweb_node/error_node
 	id = "ERROR"
 	display_name = "ERROR"
 	description = "This usually means something in the database has corrupted. If it doesn't go away automatically, inform Central Command for their techs to fix it ASAP(tm)"
-
+	show_on_wiki = FALSE
+	
 /datum/techweb_node/proc/Initialize()
 	//Make lists associative for lookup
 	for(var/id in prereq_ids)
