@@ -10160,6 +10160,7 @@
 	dir = 1;
 	network = list("ss13","Research")
 	},
+/obj/machinery/sci_bombardment,
 /turf/open/floor/plasteel,
 /area/science/research)
 "ecW" = (
