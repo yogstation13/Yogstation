@@ -39,3 +39,42 @@
   - rscadd: Added different variants of an ID
   - rscadd: Added more corpses
   - rscadd: Added "FACTION_PLAGUE" faction.
+2025-03-02:
+  Gw0sty:
+  - rscadd: Added a debug disease and associated equipment for testing purposes
+  - rscadd: Added Tubercle Bacillus Cosmosis Microbes disease back into the game.
+      Pay your fines Nanotrasen.
+  - rscadd: Rhinoculture bottles have been readded to Viro fridges. And will actually
+      infect cold virus's.
+  - rscadd: New virus symptom. Sensory restoration. Which healing to ones eyes and
+      passive benefits at higher strengths.
+  - qol: Delightful Effect now has a message upon losing its effects.
+  - qol: Space adaptation now has messages upon gaining and losing it's effects.
+  - balance: symptom base chance for diseases boost to 9% (was 6%)
+  - balance: Antitoxin symptom now will heal more toxins, alongside helping with liver
+      and spleen damage to a lesser extent, and slight buff to trigger chance. 12%(was
+      6%, would be 9% with globalchanges.)
+  - balance: Mind restoration has gained a slight buff to trigger chance 12%(was 6%,
+      would be 9% with globalchanges.)
+  - balance: Fungal TB syndrome has had its individual effects chances boosted.
+  - bugfix: Fungal TB grenades will now use large grenade casings.
+  - bugfix: Fungal TB grenades, will now affect the person with the associated disease
+  - bugfix: Rhumba beat, Fungal TB, and other similar progression symptoms will progress
+      correctly.
+  - bugfix: Waiting symptom and inorganic biology will no longer flag med huds as
+      negative.
+  - bugfix: Antitoxin Syndrom will no longer spam chat every time it activates
+  - rscadd: All of service now will now have people with fanatical delusions of 'love'
+      about them. Instead of just mime, clown, and chaplain.
+  - code_imp: Deleted a single instance of two TRAIT_UNCONVERTABLE being defined in
+      the code.
+  Loiosh42:
+  - balance: Blanket wound bonus nerf on import weapons, mild damage on selected
+  - balance: Slight Ass Ops gun buff
+  - bugfix: Fire delay is incremented in 0.1
+  MichiRecRoom:
+  - rscdel: A couple words have been removed from the AI's vox repertoire - these
+      words were only usable in rule-breaking contexts anyways.
+  Veth-s:
+  - admin: You can now choose unholy as an option in select equipment, spawning you
+      from hell instead.
