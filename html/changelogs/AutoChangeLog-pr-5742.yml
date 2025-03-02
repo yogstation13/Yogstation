@@ -1,0 +1,4 @@
+author: "adamsong"
+delete-after: True
+changes:
+  - rscdel: "Removed doubled text from syndicate listening post job description"
