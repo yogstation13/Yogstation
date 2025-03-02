@@ -783,6 +783,7 @@
 	link_on_init = FALSE
 	authorization_override = TRUE
 	hacked = TRUE
+	circuit = /obj/item/circuitboard/machine/mechfab/ruin
 
 /obj/machinery/mecha_part_fabricator/ruin/Initialize(mapload)
 	. = ..()
