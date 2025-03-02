@@ -167,3 +167,25 @@
 	desc = "A crisp, clean set of boots for working long hours on the beat."
 	icon_state = "aerostatic_boots"
 	inhand_icon_state = null
+
+/obj/item/clothing/shoes/angel
+	name = "angel boots"
+	desc = "Sturdy boots great for strutting around in, also good to hide treats in!"
+	icon_state = "angelboots"
+	inhand_icon_state = "angelboots"
+
+/obj/item/clothing/shoes/angel/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/shoes)
+
+/obj/item/clothing/shoes/devil
+	name = "devil boots"
+	desc = "Sturdy boots great for strutting around in, also good to hide tricks in!"
+	icon_state = "devilboots"
+	inhand_icon_state = "devilboots"
+
+/obj/item/clothing/shoes/devil/Initialize(mapload)
+	. = ..()
+
+	create_storage(storage_type = /datum/storage/pockets/shoes)

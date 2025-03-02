@@ -395,6 +395,13 @@ GLOBAL_LIST_INIT(store_miscunders, generate_store_items(/datum/store_item/under/
 	name = "White Suit"
 	item_path = /obj/item/clothing/under/suit/white
 
+/datum/store_item/under/formal/butler
+	name = "Butler Uniform"
+	item_path = /obj/item/clothing/under/suit/butler
+
+/datum/store_item/under/formal/butler
+	name = "Black Silk Suit"
+	item_path = /obj/item/clothing/under/suit/fancysuit
 
 /datum/store_item/under/formal/trek_command
 	name = "Trekkie Command Uniform"
@@ -435,6 +442,40 @@ GLOBAL_LIST_INIT(store_miscunders, generate_store_items(/datum/store_item/under/
 /datum/store_item/under/formal/the_q
 	name = "French Marshall's Uniform"
 	item_path = /obj/item/clothing/under/trek/q
+
+/datum/store_item/under/formal/sparkle_dress
+	name = "Sparkly Ribbon Dress"
+	item_path = /obj/item/clothing/under/dress/sparkle
+
+/datum/store_item/under/formal/white_dress
+	name = "Gaudy White Dress"
+	item_path = /obj/item/clothing/under/dress/white
+
+/datum/store_item/under/formal/angel
+	name = "Lacey Angel Dress"
+	item_path = /obj/item/clothing/under/dress/angel
+
+/datum/store_item/under/formal/devil
+	name = "Lacey Devil Dress"
+	item_path = /obj/item/clothing/under/dress/angel/alt
+
+/datum/store_item/under/formal/flowery
+	name = "Perfumed Light Dress"
+	item_path = /obj/item/clothing/under/dress/flowery
+
+/datum/store_item/under/formal/starry
+	name = "Starry Dress"
+	item_path = /obj/item/clothing/under/dress/starry
+
+/datum/store_item/under/formal/formal_ball
+	name = "Regal Ball Gown"
+	item_path = /obj/item/clothing/under/dress/gown
+	item_cost = 10000
+
+/datum/store_item/under/formal/moonlit
+	name = "Regal Ball Gown"
+	item_path = /obj/item/clothing/under/dress/moonlit
+	item_cost = 10000
 
 //FAMILIES GEAR
 /datum/store_item/under/formal/osi

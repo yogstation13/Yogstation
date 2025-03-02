@@ -128,3 +128,27 @@
 	icon_state = "letterman_n"
 	inhand_icon_state = null
 	species_exception = list(/datum/species/golem)
+
+/obj/item/clothing/suit/jacket/gown
+	name = "perfumed dress cover"
+	desc = "An elegant article of clothing designed to be worn over dresses. Pairs well with haughty aristocracy."
+	icon = 'icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
+	icon_state = "flowerygown"
+	inhand_icon_state = "flowerygown"
+
+/obj/item/clothing/suit/toggle/jacket/butler
+	name = "butler jacket"
+	desc = "A nice button up jacket thats somewhat resistant to stains and spills, folds over the arm nicely."
+	icon = 'icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
+	icon_state = "butler"
+	inhand_icon_state = "butler"
+
+/obj/item/clothing/suit/jacket/silk
+	name = "silk jacket"
+	desc = "A comfortable silk jacket thats made from breathable fabric."
+	icon = 'icons/obj/clothing/suits/jacket.dmi'
+	worn_icon = 'icons/mob/clothing/suits/jacket.dmi'
+	icon_state = "starjacket"
+	inhand_icon_state = null

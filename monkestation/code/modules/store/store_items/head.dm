@@ -184,6 +184,20 @@ GLOBAL_LIST_INIT(store_head, generate_store_items(/datum/store_item/head))
 	item_path = /obj/item/clothing/head/costume/minicrown
 	item_cost = 3000
 
+/datum/store_item/head/bow
+	name = "Perfumed Bow"
+	item_path = /obj/item/clothing/head/costume/flowery
+	item_cost = 5000
+
+/datum/store_item/head/bow/alt
+	name = "Star Speckled Bow"
+	item_path = /obj/item/clothing/head/costume/starry
+
+/datum/store_item/head/tiara
+	name = "Tiara"
+	item_path = /obj/item/clothing/head/costume/tiara
+	item_cost = 1000
+
 /*
 *	HALLOWEEN
 */

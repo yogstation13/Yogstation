@@ -495,3 +495,9 @@
 /obj/item/clothing/neck/beads/Initialize(mapload)
 	. = ..()
 	color = color = pick("#ff0077","#d400ff","#2600ff","#00ccff","#00ff2a","#e5ff00","#ffae00","#ff0000", "#ffffff")
+
+/obj/item/clothing/neck/shawl
+	name = "silk shawl"
+	desc = "A delicate silk scarf with tiny sparkling fragments woven into the fabric."
+	icon_state = "starshawl"
+	icon = 'icons/obj/clothing/neck.dmi'

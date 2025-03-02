@@ -233,4 +233,6 @@ GLOBAL_LIST_INIT(possible_lootbox_clothing, list(
 		/obj/item/clothing/head/wizard/black/lootbox,
 		/obj/item/clothing/head/wizard/marisa/lootbox,
 		/obj/item/clothing/head/wonka,
+		/obj/item/clothing/head/costume/minicrown/lootbox,
+		/obj/item/clothing/head/costume/tiara/lootbox,
 ))

@@ -151,4 +151,13 @@
 	greyscale_config_worn = null
 	greyscale_config_worn_digitigrade = null
 
+/obj/item/clothing/shoes/ballheels
+	name = "ball heels"
+	desc = "A stylish pair of footwear that are difficult to walk in, somehow you are expected to dance in these."
+	icon = 'icons/obj/clothing/shoes.dmi'
+	worn_icon = 'icons/mob/clothing/feet.dmi'
+	icon_state = "ballheels"
+	inhand_icon_state = "ballheels"
+	can_be_tied = FALSE
+
 //END HEELS

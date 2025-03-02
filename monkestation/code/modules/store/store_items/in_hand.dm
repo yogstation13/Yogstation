@@ -54,3 +54,18 @@ GLOBAL_LIST_INIT(store_inhand_items, generate_store_items(/datum/store_item/inha
 /datum/store_item/inhand/smokingpipe
 	name = "Smoking Pipe"
 	item_path = /obj/item/clothing/mask/cigarette/pipe
+
+/datum/store_item/inhand/wingsatchel
+	name = "Angel Wing Satchel"
+	item_path = /obj/item/storage/backpack/satchel/wing
+	item_cost = 5000
+
+/datum/store_item/inhand/wingsatchel/alt
+	name = "Devil Wing Satchel"
+	item_path = /obj/item/storage/backpack/satchel/wing/alt
+	item_cost = 5000
+
+/datum/store_item/inhand/flowerysatchel
+	name = "perfume scented satchel"
+	item_path = /obj/item/storage/backpack/satchel/flowery
+	item_cost = 5000

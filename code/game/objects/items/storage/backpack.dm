@@ -354,6 +354,25 @@
 /obj/item/storage/backpack/satchel/fireproof
 	resistance_flags = FIRE_PROOF
 
+/obj/item/storage/backpack/satchel/flowery
+	name = "perfume scented satchel"
+	desc = "It's a very fancy satchel made with fine leather."
+	icon_state = "flowerybag"
+	inhand_icon_state = "flowerybag"
+
+/obj/item/storage/backpack/satchel/wing
+	name = "angel wing satchel"
+	desc = "A uniqe satchel that comes with hidden straps. How many chickens were felled for this look?"
+	icon_state = "angelwing"
+	inhand_icon_state = "satchel"
+
+/obj/item/storage/backpack/satchel/wing/alt
+	name = "devil wing satchel"
+	desc = "A uniqe satchel that comes with hidden straps. How many chickens were felled for this look?"
+	icon_state = "devilwing"
+	inhand_icon_state = "devilwing"
+
+
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."

@@ -150,3 +150,21 @@
 	desc = "An luxurious suit made with only the finest scales, perfect for conducting dodgy business deals."
 	icon_state = "carpskin_suit"
 	inhand_icon_state = null
+
+/obj/item/clothing/under/suit/butler
+	name = "butler uniform"
+	desc = "Of course sir, right away."
+	icon = 'icons/obj/clothing/under/suits.dmi'
+	worn_icon = 'icons/mob/clothing/under/suits.dmi'
+	icon_state = "butleruni"
+	inhand_icon_state = "butleruni"
+	can_adjust = TRUE
+	inhand_icon_state = null
+
+/obj/item/clothing/under/suit/fancysuit
+	name = "black silk suit"
+	desc = "A nice suit with a blue tinge, made from fabric that breathes well when worn."
+	icon = 'icons/obj/clothing/under/suits.dmi'
+	worn_icon = 'icons/mob/clothing/under/suits.dmi'
+	icon_state = "starsuit"
+	can_adjust = FALSE

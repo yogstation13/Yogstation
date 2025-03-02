@@ -18,3 +18,9 @@
 	name = "magical sandals"
 	desc = "A pair of sandals imbued with magic."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+
+/obj/item/clothing/shoes/sandal/gilded
+	name = "gilded sandals"
+	desc = "A well maid pair of sandals that appear to have been made with gold."
+	icon_state = "gildedsandals"
+	inhand_icon_state = "gildedsandals"

@@ -131,6 +131,36 @@
     name = "Alchemist"
     icon_state = "alchemist"
 
+/datum/sprite_accessory/hair/elegantbun
+	icon = 'monkestation/icons/mob/sprite_accessories/hair.dmi'
+	name = "Elegant Bun"
+	icon_state = "hair_elegantbun"
+
+/datum/sprite_accessory/hair/royalcurl
+	icon = 'monkestation/icons/mob/sprite_accessories/hair.dmi'
+	name = "Royal Curls"
+	icon_state = "hair_royalcurl"
+
+/datum/sprite_accessory/hair/mermaid
+	icon = 'monkestation/icons/mob/sprite_accessories/hair.dmi'
+	name = "Mermaid"
+	icon_state = "hair_mermaid"
+
+/datum/sprite_accessory/hair/styledponytail
+	icon = 'monkestation/icons/mob/sprite_accessories/hair.dmi'
+	name = "Styled Ponytail"
+	icon_state = "hair_styledponytail"
+
+/datum/sprite_accessory/hair/flatpressed
+	icon = 'monkestation/icons/mob/sprite_accessories/hair.dmi'
+	name = "Flat Pressed"
+	icon_state = "hair_flatpressed"
+
+/datum/sprite_accessory/hair/shortbedhead
+	icon = 'monkestation/icons/mob/sprite_accessories/hair.dmi'
+	name = "Short Bed Head"
+	icon_state = "hair_shortbedhead"
+
 /datum/sprite_accessory/hair/monke
 	icon = 'monkestation/icons/mob/sprite_accessories/hair.dmi'
 

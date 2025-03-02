@@ -117,3 +117,59 @@
 	flags_1 = IS_PLAYER_COLORABLE_1
 	flags_inv = HIDESHOES
 
+/obj/item/clothing/under/dress/sparkle
+	name = "sparkly ribbon dress"
+	desc = "A fancy dress that sparkles gently in the light, and it comes with removeable sleeves!"
+	icon_state = "sparkledress"
+	inhand_icon_state = "sparkledress"
+	can_adjust = TRUE
+
+/obj/item/clothing/under/dress/white
+	name = "gaudy white dress"
+	desc = "A simple easy to wear dress for when you're in a rush but still want to look good."
+	icon_state = "whitedress"
+	inhand_icon_state = "whitedress"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/dress/angel
+	name = "lace angel dress"
+	desc = "I can be your angle or your debil."
+	icon_state = "angeldress"
+	inhand_icon_state = "angeldress"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/dress/angel/alt
+	name = "lace devil dress"
+	desc = "I can be your angle or your debil."
+	icon_state = "devildress"
+	inhand_icon_state = "devildress"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/dress/flowery
+	name = "perfumed light dress"
+	desc = "A delicate dress that's vastly worth more than it's weight in fabric. On top of that it smells great!"
+	icon_state = "flowerydress"
+	inhand_icon_state = "flowerydress"
+	can_adjust = FALSE
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/dress/starry
+	name = "starry dress"
+	desc = "A modest dress "
+	icon_state = "stardress"
+	inhand_icon_state = "stardress"
+	can_adjust = FALSE
+
+/obj/item/clothing/under/dress/gown //Miss me with subtypes I dont wanna fuck with it
+	name = "regal ball gown"
+	desc = "A delicate dress that's vastly worth more than it's weight in fabric. On top of that it smells great!"
+	icon_state = "rballgown"
+	inhand_icon_state = null
+	can_adjust = TRUE
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/dress/moonlit
+	name = "moonlit gown"
+	desc = "A luxurious gown for VERY special occasions, this gown glitters with silver sewn into the very fabric itself."
+	icon_state = "stargown"
+	inhand_icon_state = null

@@ -1,4 +1,4 @@
-/datum/component/particle_spewer/shooting_star
+/datum/component/particle_spewer/music
 	icon_file = 'goon/icons/effects/particles.dmi'
 	particle_state = "beamed_eighth"
 
@@ -8,7 +8,7 @@
 	spawn_interval = 0.5 SECONDS
 	offsets = FALSE
 
-/datum/component/particle_spewer/shooting_star/animate_particle(obj/effect/abstract/particle/spawned)
+/datum/component/particle_spewer/music/animate_particle(obj/effect/abstract/particle/spawned)
 	var/matrix/first = matrix()
 
 	if(prob(30))
@@ -23,7 +23,7 @@
 
 	. = ..()
 
-/datum/component/particle_spewer/shooting_star/adjust_animate_steps()
+/datum/component/particle_spewer/music/adjust_animate_steps()
 	animate_holder.add_animation_step(list(transform = matrix(2, 2, MATRIX_SCALE), time = 0))
 	animate_holder.set_transform_type(1, MATRIX_SCALE)
 
