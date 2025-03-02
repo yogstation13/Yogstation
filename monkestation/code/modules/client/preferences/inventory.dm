@@ -20,7 +20,10 @@
 	if(!ckey || !SSdbcore.IsConnected())
 		metacoins = 5000
 		return
-	var/datum/db_query/query_get_metacoins = SSdbcore.NewQuery("SELECT metacoins FROM [format_table_name("player")] WHERE ckey = '[ckey]'")
+	var/datum/db_query/query_get_metacoins = SSdbcore.NewQuery(
+		"SELECT metacoins FROM [format_table_name("player")] WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
 	var/mc_count = 0
 	if(query_get_metacoins.warn_execute())
 		if(query_get_metacoins.NextRow())
@@ -67,7 +70,10 @@
 	logger.Log(LOG_CATEGORY_META, "[parent]'s monkecoins were changed by [amount] Reason: [reason]", list("currency_left" = metacoins, "reason" = reason))
 
 	//SQL query - updates the metacoins in the database (this is where the storage actually happens)
-	var/datum/db_query/query_inc_metacoins = SSdbcore.NewQuery("UPDATE [format_table_name("player")] SET metacoins = metacoins + '[amount]' WHERE ckey = '[ckey]'")
+	var/datum/db_query/query_inc_metacoins = SSdbcore.NewQuery(
+		"UPDATE [format_table_name("player")] SET metacoins = metacoins + :amount WHERE ckey = :ckey",
+		list("amount" = amount, "ckey" = ckey)
+	)
 	query_inc_metacoins.warn_execute()
 	qdel(query_inc_metacoins)
 

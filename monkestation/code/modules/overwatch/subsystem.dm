@@ -179,7 +179,10 @@ SUBSYSTEM_DEF(overwatch)
 	if(!CheckDBCon())
 		return
 
-	var/datum/db_query/query = SSdbcore.NewQuery("SELECT ckey FROM overwatch_whitelist WHERE ckey = '[ckey]'")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"SELECT ckey FROM overwatch_whitelist WHERE ckey = :ckey",
+		list("ckey" = ckey)
+	)
 	query.Execute()
 
 	if(query.NextRow())
