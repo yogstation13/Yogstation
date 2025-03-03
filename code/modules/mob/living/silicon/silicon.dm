@@ -475,3 +475,6 @@
 		stack_trace("Silicon [src] ( [type] ) was somehow missing their integrated tablet. Please make a bug report.")
 		create_modularInterface()
 	modularInterface.imprint_id(name = newname)
+
+/mob/living/silicon/get_access()
+	return REGION_ACCESS_ALL_STATION
