@@ -165,6 +165,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/summon_ert,
 	/client/proc/summon_twitch_event, //monkestation addition
 	/client/proc/toggle_nuke,
+	/client/proc/toggle_junior_op, //monkestation addition
 	/client/proc/toggle_random_events,
 	))
 GLOBAL_PROTECT(admin_verbs_fun)

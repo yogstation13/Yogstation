@@ -25,6 +25,7 @@ GLOBAL_LIST_EMPTY(deliverybeacons)
 /// list of all tags associated with delivery beacons.
 GLOBAL_LIST_EMPTY(deliverybeacontags)
 GLOBAL_LIST_EMPTY(nuke_list)
+GLOBAL_LIST_EMPTY(nuke_disk_list) //monkestation addition
 /// list of all machines or programs that can display station alerts
 GLOBAL_LIST_EMPTY(alarmdisplay)
 /// list of all singularities on the station

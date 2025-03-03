@@ -100,6 +100,21 @@
 	else if(N.timing)
 		return round(N.get_time_left(), 1)
 
+//MONKESTATION EDIT START
+/obj/effect/countdown/nukedisk
+	name = "nuke disk unsecured time"
+	color = "#81FF14"
+
+/obj/effect/countdown/nukedisk/get_value()
+	var/obj/item/disk/nuclear/D = attached_to
+	if(!istype(D))
+		return
+	if(locate(/obj/machinery/nuclearbomb) in get_turf(src))
+		return
+	if(D.unsecured_time != 0)
+		return round(D.unsecured_time/60, 1)
+//MONKESTATION EDIT STOP
+
 /obj/effect/countdown/supermatter
 	name = "supermatter damage"
 	color = "#00ff80"

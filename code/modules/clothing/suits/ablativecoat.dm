@@ -22,8 +22,9 @@
 		return FALSE
 	/* monkestation removal
 	if (prob(hit_reflect_chance))
-		return TRUE
 	*/
+	return TRUE
+
 
 /obj/item/clothing/suit/hooded/ablative
 	name = "ablative trenchcoat"
@@ -44,12 +45,15 @@
 	allowed = GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/hooded/ablative/IsReflect(def_zone)
+	if(def_zone == "") //something is fucky and this happens every now and then but the damage defaults to the person's chest so this is okayish
+		return TRUE
 	if(!(def_zone in list(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))) //If not shot where ablative is covering you, you don't get the reflection bonus!
 		return FALSE
 	/* monkestation removal
 	if (prob(hit_reflect_chance))
-		return TRUE
 	*/
+	return TRUE
+
 
 /obj/item/clothing/suit/hooded/ablative/on_hood_up(obj/item/clothing/head/hooded/hood)
 	. = ..()
