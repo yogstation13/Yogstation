@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "Prevent stacking ATM interactions to potentially dupe monkecoins."
