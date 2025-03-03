@@ -1,0 +1,4 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - code_imp: "changed the stamina HUD thresholds."
