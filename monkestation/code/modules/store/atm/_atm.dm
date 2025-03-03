@@ -188,40 +188,45 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/atm, 30)
 
 /obj/machinery/atm/attacked_by(obj/item/attacking_item, mob/living/user)
 	. = ..()
-	if(do_after(user, 1 SECONDS, src))
-		if(istype(attacking_item, /obj/item/stack/monkecoin))
-			var/obj/item/stack/monkecoin/attacked_coins = attacking_item
-			if(!user.client.prefs.adjust_metacoins(user.client.ckey, attacked_coins.amount, donator_multipler = FALSE))
-				say("Error acceptings coins, please try again later.")
-				return
-			qdel(attacked_coins)
-			say("Coins deposited to your account, have a nice day.")
+	if(QDELETED(user) || QDELETED(attacking_item) || DOING_INTERACTION(user, DOAFTER_SOURCE_ATM))
+		return
+	if(!do_after(user, 1 SECONDS, src, interaction_key = DOAFTER_SOURCE_ATM))
+		return
+	if(QDELETED(user) || QDELETED(attacking_item) || DOING_INTERACTION(user, DOAFTER_SOURCE_ATM))
+		return
+	if(istype(attacking_item, /obj/item/stack/monkecoin))
+		var/obj/item/stack/monkecoin/attacked_coins = attacking_item
+		if(!user.client.prefs.adjust_metacoins(user.client.ckey, attacked_coins.amount, donator_multipler = FALSE))
+			say("Error accepting coins, please try again later.")
+			return
+		qdel(attacked_coins)
+		say("Coins deposited to your account, have a nice day.")
 
-		if(attacking_item in subtypesof(/obj/item/stack/spacecash))
-			var/obj/item/stack/spacecash/attacked_cash = attacking_item
-			var/obj/item/user_id = user.get_item_by_slot(ITEM_SLOT_ID)
-			if(user_id && istype(user_id, /obj/item/card/id))
-				var/obj/item/card/id/id_card = user_id.GetID()
-				id_card.registered_account.account_balance += attacked_cash.get_item_credit_value()
-			else
-				if(ishuman(user))
-					var/mob/living/carbon/human/human_user = user
-					var/datum/bank_account/user_account = SSeconomy.bank_accounts_by_id["[human_user.account_id]"]
-					user_account.account_balance += attacked_cash.get_item_credit_value()
-			qdel(attacked_cash)
+	else if(istype(attacking_item, /obj/item/stack/spacecash))
+		var/obj/item/stack/spacecash/attacked_cash = attacking_item
+		var/obj/item/user_id = user.get_item_by_slot(ITEM_SLOT_ID)
+		if(user_id && istype(user_id, /obj/item/card/id))
+			var/obj/item/card/id/id_card = user_id.GetID()
+			id_card.registered_account.account_balance += attacked_cash.get_item_credit_value()
+		else
+			if(ishuman(user))
+				var/mob/living/carbon/human/human_user = user
+				var/datum/bank_account/user_account = SSeconomy.bank_accounts_by_id["[human_user.account_id]"]
+				user_account.account_balance += attacked_cash.get_item_credit_value()
+		qdel(attacked_cash)
 
-		else if(istype(attacking_item, /obj/item/holochip))
-			var/obj/item/holochip/attacked_chip = attacking_item
-			var/obj/item/user_id = user.get_item_by_slot(ITEM_SLOT_ID)
-			if(user_id && istype(user_id, /obj/item/card/id))
-				var/obj/item/card/id/id_card = user_id.GetID()
-				id_card.registered_account.account_balance += attacked_chip.credits
-			else
-				if(ishuman(user))
-					var/mob/living/carbon/human/human_user = user
-					var/datum/bank_account/user_account = SSeconomy.bank_accounts_by_id["[human_user.account_id]"]
-					user_account.account_balance += attacked_chip.credits
-			qdel(attacked_chip)
+	else if(istype(attacking_item, /obj/item/holochip))
+		var/obj/item/holochip/attacked_chip = attacking_item
+		var/obj/item/user_id = user.get_item_by_slot(ITEM_SLOT_ID)
+		if(user_id && istype(user_id, /obj/item/card/id))
+			var/obj/item/card/id/id_card = user_id.GetID()
+			id_card.registered_account.account_balance += attacked_chip.credits
+		else
+			if(ishuman(user))
+				var/mob/living/carbon/human/human_user = user
+				var/datum/bank_account/user_account = SSeconomy.bank_accounts_by_id["[human_user.account_id]"]
+				user_account.account_balance += attacked_chip.credits
+		qdel(attacked_chip)
 
 /obj/machinery/atm/proc/withdraw_cash()
 	var/mob/living/living_mob = usr

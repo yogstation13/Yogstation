@@ -8,3 +8,4 @@
 #define DOAFTER_SOURCE_PLANTING_DEVICE "doafter_planting_device"
 #define DOAFTER_SOURCE_CHARGE_GUNCRANK "doafter_charge_guncrank"
 #define DOAFTER_SOURCE_SEED_MESH "doafter_seed_mesh"
+#define DOAFTER_SOURCE_ATM "doafter_atm"
