@@ -1,0 +1,4 @@
+author: "Absolucy, Aylong"
+delete-after: True
+changes:
+  - bugfix: "Fixed random chat BSOD on Byond 516"
