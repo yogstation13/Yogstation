@@ -78,3 +78,18 @@
   Veth-s:
   - admin: You can now choose unholy as an option in select equipment, spawning you
       from hell instead.
+2025-03-03:
+  Absolucy:
+  - bugfix: Prevent stacking ATM interactions to potentially dupe monkecoins.
+  MichiRecRoom:
+  - bugfix: The component printer now shows icons for the items in its UI.
+  The-Black-Screen:
+  - map: added light switches and wall mounted radios to more areas / fixed a disposal
+      pipe junction in engineering storage / modified the hydroponics, northeast solar
+      array, ranch, ship breaking hut, and western maintenance areas / removed lattices
+      at the arrivals shuttle dock / miscellaneous things.
+  Thedragmeme:
+  - rscadd: Adds a bunch of new items in various categories available to buy via monkey
+      coin in the loadout menu
+  adamsong:
+  - rscdel: Removed doubled text from syndicate listening post job description
