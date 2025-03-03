@@ -81,6 +81,13 @@
 2025-03-03:
   Absolucy:
   - bugfix: Prevent stacking ATM interactions to potentially dupe monkecoins.
+  - bugfix: Fixed the monkecoin dupe exploit some more.
+  - rscadd: DNA data disks that spawn in maints will now have a single random mutation
+      on them, sometimes with a chromosome applied.
+  - qol: Saving a mutation from a disk to DNA console will now properly mark that
+      mutation as discovered if it hasn't already been discovered.
+  Absolucy, Aylong:
+  - bugfix: Fixed random chat BSOD on Byond 516
   MichiRecRoom:
   - bugfix: The component printer now shows icons for the items in its UI.
   The-Black-Screen:
