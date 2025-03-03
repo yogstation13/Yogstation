@@ -74,7 +74,9 @@
 		"UPDATE [format_table_name("player")] SET metacoins = metacoins + :amount WHERE ckey = :ckey",
 		list("amount" = amount, "ckey" = ckey)
 	)
-	query_inc_metacoins.warn_execute()
+	if(!query_inc_metacoins.warn_execute())
+		qdel(query_inc_metacoins)
+		return FALSE
 	qdel(query_inc_metacoins)
 
 	//Output to chat
