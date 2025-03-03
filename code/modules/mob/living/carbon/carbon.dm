@@ -820,33 +820,30 @@
 	else
 		hud_used.healths.icon_state = "health6"
 
-/mob/living/carbon/update_stamina_hud(shown_stamina_loss)
+/mob/living/carbon/update_stamina_hud() //monkestation edit
 	if(!client || !hud_used?.stamina)
 		return
 
-	var/stam_crit_threshold = maxHealth - crit_threshold
+	//MONKESTATION EDIT START
+	var/current_stamina = stamina.current
 
-	if(stat == DEAD)
+	if(stamina.current <= (0.20 * STAMINA_MAX)) //stamina stun threshold
 		hud_used.stamina.icon_state = "stamina_dead"
+	else if(current_stamina <= (0.30 * STAMINA_MAX)) //exhaustion threshold
+		hud_used.stamina.icon_state = "stamina_crit"
+	else if(current_stamina <= (0.40 * STAMINA_MAX))
+		hud_used.stamina.icon_state = "stamina_5"
+	else if(current_stamina <= (0.60 * STAMINA_MAX))
+		hud_used.stamina.icon_state = "stamina_4"
+	else if(current_stamina <= (0.70 * STAMINA_MAX))
+		hud_used.stamina.icon_state = "stamina_3"
+	else if(current_stamina <= (0.80 * STAMINA_MAX))
+		hud_used.stamina.icon_state = "stamina_2"
+	else if(current_stamina <= (0.90 * STAMINA_MAX))
+		hud_used.stamina.icon_state = "stamina_1"
 	else
-
-		if(shown_stamina_loss == null)
-			shown_stamina_loss = stamina.loss
-
-		if(shown_stamina_loss >= stam_crit_threshold)
-			hud_used.stamina.icon_state = "stamina_crit"
-		else if(shown_stamina_loss > maxHealth*0.8)
-			hud_used.stamina.icon_state = "stamina_5"
-		else if(shown_stamina_loss > maxHealth*0.6)
-			hud_used.stamina.icon_state = "stamina_4"
-		else if(shown_stamina_loss > maxHealth*0.4)
-			hud_used.stamina.icon_state = "stamina_3"
-		else if(shown_stamina_loss > maxHealth*0.2)
-			hud_used.stamina.icon_state = "stamina_2"
-		else if(shown_stamina_loss > 0)
-			hud_used.stamina.icon_state = "stamina_1"
-		else
-			hud_used.stamina.icon_state = "stamina_full"
+		hud_used.stamina.icon_state = "stamina_full"
+	//MONKESTATION EDIT STOP
 
 /mob/living/carbon/proc/update_spacesuit_hud_icon(cell_state = "empty")
 	if(hud_used?.spacesuit)
