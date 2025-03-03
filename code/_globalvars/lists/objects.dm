@@ -32,6 +32,8 @@ GLOBAL_LIST_EMPTY(alarmdisplay)
 GLOBAL_LIST_EMPTY_TYPED(singularities, /datum/component/singularity)
 /// list of all /obj/machinery/mechpad
 GLOBAL_LIST_EMPTY(mechpad_list)
+/// list of all crewside CentCom headsets on station
+GLOBAL_LIST_EMPTY(crew_cc_keys)
 
 /// list of all /datum/chemical_reaction datums indexed by their typepath. Use this for general lookup stuff
 GLOBAL_LIST(chemical_reactions_list)

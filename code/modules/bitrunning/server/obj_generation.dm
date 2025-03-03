@@ -12,6 +12,7 @@
 	to_wear.r_pocket = null
 	to_wear.suit = null
 	to_wear.suit_store = null
+	to_wear.ears = null //monkestation addition
 
 	avatar.equipOutfit(to_wear, visualsOnly = TRUE)
 

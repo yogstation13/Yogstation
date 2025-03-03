@@ -194,6 +194,38 @@
 	greyscale_config = /datum/greyscale_config/encryptionkey_centcom
 	greyscale_colors = "#24a157#dca01b"
 
+//MONKESTATION EDIT
+/obj/item/encryptionkey/headset_cent/crew
+	desc = "An encryption key for a radio headset. It looks like there is a bluespace chip attached to it."
+
+/obj/item/encryptionkey/headset_cent/crew/Initialize(mapload)
+	. = ..()
+	GLOB.crew_cc_keys += src
+
+/obj/item/encryptionkey/headset_cent/crew/proc/toggle_off()
+	independent = FALSE
+	channels = null
+	playsound(src, 'sound/weapons/flash.ogg', 25, TRUE)
+	do_sparks(2, FALSE, src)
+	if(istype(src.loc, /obj/item/radio))
+		var/obj/item/radio/our_radio  = src.loc
+		our_radio.recalculateChannels()
+
+/obj/item/encryptionkey/headset_cent/crew/proc/toggle_on()
+	independent = TRUE
+	channels = list(RADIO_CHANNEL_CENTCOM = 1)
+	playsound(src, 'sound/weapons/flash.ogg', 25, TRUE)
+	do_sparks(2, FALSE, src)
+	if(istype(src.loc, /obj/item/radio))
+		var/obj/item/radio/our_radio = src.loc
+		our_radio.recalculateChannels()
+
+/obj/item/encryptionkey/headset_cent/crew/Destroy()
+	if(src in GLOB.crew_cc_keys)
+		GLOB.crew_cc_keys -= src
+	return ..()
+//MONKESTATION EDIT STOP
+
 /obj/item/encryptionkey/ai //ported from NT, this goes 'inside' the AI.
 	channels = list(
 		RADIO_CHANNEL_COMMAND = 1,

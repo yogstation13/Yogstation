@@ -209,7 +209,12 @@
 	icon_state = "bshield_headset"
 	worn_icon_state = "bshield_headset"
 	keyslot = /obj/item/encryptionkey/heads/blueshield
-	keyslot2 = null
+	keyslot2 = /obj/item/encryptionkey/headset_cent/crew
+
+/obj/item/radio/headset/headset_bs/Initialize(mapload)
+	. = ..()
+	keyslot2 = new /obj/item/encryptionkey/headset_cent/crew(src)
+	src.recalculateChannels()
 
 /obj/item/radio/headset/headset_bs/alt
 	name = "\proper the blueshield's bowman headset"
@@ -221,11 +226,12 @@
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
-/obj/item/storage/belt/security/blueshield
-	name = "\improper the blueshields's security belt"
-	desc = "A modified security toolbelt designed to help hold more in exchange for it's baton holster."
 
-/obj/item/storage/belt/security/blueshield/Initialize(mapload)
-	. = ..()
-	atom_storage.max_slots = 7
-	atom_storage.set_holdable(list(), list(/obj/item/melee/baton))
+/obj/item/storage/belt/military/assault/blueshield/PopulateContents()
+	generate_items_inside(list(
+		/obj/item/grenade/flashbang = 2,
+		/obj/item/reagent_containers/spray/pepper = 1,
+		/obj/item/restraints/handcuffs = 1,
+		/obj/item/assembly/flash/handheld = 1,
+		/obj/item/melee/baton/telescopic = 1,
+	), src)

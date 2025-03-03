@@ -374,6 +374,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "A headset used by the lower ranking members of Central Command."
 	keyslot = /obj/item/encryptionkey/headset_com
 	keyslot2 = null
+
+/obj/item/radio/headset/headset_cent/representative/Initialize(mapload)
+	. = ..()
+	keyslot2 = new /obj/item/encryptionkey/headset_cent/crew(src)
+	src.recalculateChannels()
 //monkestation addition end
 
 /obj/item/radio/headset/headset_cent/alt/Initialize(mapload)

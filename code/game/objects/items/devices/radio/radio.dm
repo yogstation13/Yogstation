@@ -285,7 +285,10 @@
 		return
 	if(!talking_movable.try_speak(message))
 		return
-
+	//MONKESTATION EDIT START
+	if(istype(get_area(src), /area/centcom/heretic_sacrifice))
+		return
+	//MONKESTATION EDIT STOP
 	if(channel == FREQ_RADIO && !radio_host)
 		return
 
