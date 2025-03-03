@@ -251,6 +251,18 @@
 		result += span_redtext("The [special_role_text] has failed!")
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
 
+	// monkestation edit start PR #5133
+	if(istype(owner?.current, /mob/living/silicon/ai))
+		var/mob/living/silicon/ai/master_ai = owner.current
+		var/list/ipc_results = list()
+		var/connected_ipc_amt = length(master_ai.connected_ipcs)
+		if(connected_ipc_amt)
+			ipc_results += span_header("The Malfunctioning AI had [connected_ipc_amt] infected IPC('s) under their command: ")
+			for(var/mob/living/carbon/human/connected_ipc as anything in master_ai.connected_ipcs)
+				ipc_results += connected_ipc.name
+		result += ipc_results
+	// monkestation edit end PR #5133
+
 	return result.Join("<br>")
 
 /datum/antagonist/malf_ai/get_preview_icon()

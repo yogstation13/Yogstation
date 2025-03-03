@@ -6486,6 +6486,7 @@
 #include "monkestation\code\modules\antagonists\heretic\knowledge\sacrifice_knowledge\sacrifice_buff.dm"
 #include "monkestation\code\modules\antagonists\heretic\knowledge\sacrifice_knowledge\sacrifice_knowledge.dm"
 #include "monkestation\code\modules\antagonists\heretic\status_effects\mark_effects.dm"
+#include "monkestation\code\modules\antagonists\malf_ai\infected_ipc.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\hunter_datum.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\hunter_rulesets.dm"
 #include "monkestation\code\modules\antagonists\monster_hunters\hunting_contracts.dm"
