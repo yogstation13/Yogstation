@@ -55,9 +55,10 @@
 /obj/item/disk/nuclear/proc/secured_process(last_move)
 	var/turf/new_turf = get_turf(src)
 	var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
-	if(istype(loneop) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
+	var/datum/round_event_control/operative/loneopmode = locate(/datum/round_event_control/operative) in SSgamemode.control
+	if((istype(loneop) && istype(loneopmode)) && loneop.occurrences < loneop.max_occurrences && prob(loneop.weight))
 		loneop.weight = max(loneop.weight - 1, 1) //monkestation edit: increased minimum to 1
-		loneop.checks_antag_cap = (loneop.weight < 3)
+		loneopmode.checks_antag_cap = (loneop.weight < 3)
 		if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
 			message_admins("[src] is secured (currently in [ADMIN_VERBOSEJMP(new_turf)]). The weight of Lone Operative is now [loneop.weight].")
 		log_game("[src] being secured has reduced the weight of the Lone Operative event to [loneop.weight].")
@@ -81,8 +82,9 @@
 
 	if(last_move < world.time - 300 SECONDS && prob((world.time - 300 SECONDS - last_move)*0.0001)) //monkestation edit: weight will start increasing at 5 minutes unsecure, rather than 8.3
 		var/datum/round_event_control/operative/loneop = locate(/datum/round_event_control/operative) in SSevents.control
-		if(istype(loneop) && loneop.occurrences < loneop.max_occurrences)
-			loneop.checks_antag_cap = (loneop.weight < 3)
+		var/datum/round_event_control/operative/loneopmode = locate(/datum/round_event_control/operative) in SSgamemode.control
+		if((istype(loneop) && istype(loneopmode)) && loneop.occurrences < loneop.max_occurrences)
+			loneopmode.checks_antag_cap = (loneop.weight < 3)
 			loneop.weight += 1
 			if(loneop.weight % 5 == 0 && SSticker.totalPlayers > 1)
 				if(disk_comfort_level >= 2)
