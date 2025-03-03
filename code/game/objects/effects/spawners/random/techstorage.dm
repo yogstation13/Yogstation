@@ -11,6 +11,7 @@
 	spawn_all_loot = FALSE
 	loot = list(
 		/obj/item/disk/data = 49,
+		/obj/item/disk/data/random = 5, // monkestation edit: add random dna data disks (this is a weighted list, it does NOT have to add up to 50 lol)
 		/obj/item/disk/nuclear/fake/obvious = 1,
 	)
 

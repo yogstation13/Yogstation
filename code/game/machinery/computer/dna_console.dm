@@ -875,6 +875,14 @@
 
 			var/datum/mutation/human/A = new HM.type(MUT_EXTRA, null, HM)
 			stored_mutations += A
+
+			// monkestationn start: mark as discovered when saving from disk
+			var/datum/mutation/human/mutation_type = A.type
+			if(stored_research && !(mutation_type in stored_research.discovered_mutations))
+				stored_research.discovered_mutations += mutation_type
+				say("Successfully unlocked [A.name].")
+			// monkestationn end
+
 			to_chat(usr,span_notice("Mutation successfully stored."))
 			return
 
