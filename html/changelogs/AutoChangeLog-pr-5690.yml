@@ -1,0 +1,5 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "DNA data disks that spawn in maints will now have a single random mutation on them, sometimes with a chromosome applied."
+  - qol: "Saving a mutation from a disk to DNA console will now properly mark that mutation as discovered if it hasn't already been discovered."
