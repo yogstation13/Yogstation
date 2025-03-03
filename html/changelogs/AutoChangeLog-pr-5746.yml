@@ -1,0 +1,10 @@
+author: "SirNightKnight"
+delete-after: True
+changes:
+  - rscadd: "gave back NT rep and Blueshield their CC comms via a special CentCom radio key."
+  - rscadd: "Blueshields get a pair of medhud sunglasses instead of sechud sunglasses roundstart."
+  - rscdel: "removed the Blueshield security belt and replaced it with a pre-equipped assault belt."
+  - rscdel: "removed Blueshield's extra headsets from their locker."
+  - rscdel: "removed radios from bitrunning avatars."
+  - rscadd: "the mansus blocks radio transmission."
+  - admin: "new admin verb for disabling crew CC comms called \"Toggle Crew CC Comms.\""
