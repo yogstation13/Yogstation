@@ -1,5 +1,0 @@
-author: "Singul0"
-delete-after: True
-changes:
-  - rscadd: "Adds Infected IPCs that Malf AI can convert IPCs into (and, in some cases. even non-IPCs! by way of the factory))"
-  - rscadd: "Borg Factory can now has two modes, and can alternate between producing cyborgs or IPCs"

@@ -1,5 +1,0 @@
-author: "Siro"
-delete-after: True
-changes:
-  - bugfix: "Lone ops will now ignore the antag cap if the weight grows beyond 3."
-  - code_imp: "Reference to loneops in ssgame_mode now has its checks_antag_cap adjusted due to weight."

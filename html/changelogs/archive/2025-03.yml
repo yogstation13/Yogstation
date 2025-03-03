@@ -90,6 +90,25 @@
   - bugfix: Fixed random chat BSOD on Byond 516
   MichiRecRoom:
   - bugfix: The component printer now shows icons for the items in its UI.
+  MissClassyPineapple:
+  - rscadd: Adds the Coffee addiction datum to all alcoholic beverages containing
+      coffee or coffee liqueur. And to Thirteen Loko.
+  Singul0:
+  - rscadd: Adds Infected IPCs that Malf AI can convert IPCs into (and, in some cases.
+      even non-IPCs! by way of the factory))
+  - rscadd: Borg Factory can now has two modes, and can alternate between producing
+      cyborgs or IPCs
+  SirNightKnight:
+  - code_imp: changed the stamina HUD thresholds.
+  - rscadd: added a new variant of lone operative that's less equipped and more guaranteed
+      to spawn if the disk goes unsecured. GET DAT FUKKEN DISK!
+  - rscadd: added a timer to the nuke disk that shows how long it has been unsecured
+      that only ghosts can see.
+  - bugfix: fixed the ablative coat not being able to reflect stuff.
+  Siro:
+  - bugfix: Lone ops will now ignore the antag cap if the weight grows beyond 3.
+  - code_imp: Reference to loneops in ssgame_mode now has its checks_antag_cap adjusted
+      due to weight.
   The-Black-Screen:
   - map: added light switches and wall mounted radios to more areas / fixed a disposal
       pipe junction in engineering storage / modified the hydroponics, northeast solar
@@ -100,3 +119,5 @@
       coin in the loadout menu
   adamsong:
   - rscdel: Removed doubled text from syndicate listening post job description
+  - bugfix: fixed monkecoin being given when it should be removed
+  - rscadd: Added the ability for borgs to pathfind into and through restricted areas.

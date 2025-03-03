@@ -1,6 +1,0 @@
-author: "SirNightKnight"
-delete-after: True
-changes:
-  - rscadd: "added a new variant of lone operative that's less equipped and more guaranteed to spawn if the disk goes unsecured. GET DAT FUKKEN DISK!"
-  - rscadd: "added a timer to the nuke disk that shows how long it has been unsecured that only ghosts can see."
-  - bugfix: "fixed the ablative coat not being able to reflect stuff."
