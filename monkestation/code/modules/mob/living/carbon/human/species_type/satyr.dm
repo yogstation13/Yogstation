@@ -17,7 +17,7 @@
 	meat = /obj/item/food/meat/steak
 	mutanttongue = /obj/item/organ/internal/tongue/satyr
 	mutantliver = /obj/item/organ/internal/liver/satyr
-	maxhealthmod = 0.8
+	maxhealthmod = 1
 	stunmod = 1.2
 	bodypart_overrides = list(
 		BODY_ZONE_HEAD = /obj/item/bodypart/head/satyr,
@@ -61,7 +61,14 @@
 			SPECIES_PERK_DESC = "Satyr's require a constant supply of booze to not become drunk.",
 		)
 	)
-
+	to_add += list(
+		list(
+			SPECIES_PERK_TYPE = SPECIES_NEGATIVE_PERK,
+			SPECIES_PERK_ICON = "fa-book-dead",
+			SPECIES_PERK_NAME = "Fey Ancenstry",
+			SPECIES_PERK_DESC = "Satyr's possess a acute allergy to cold iron.",
+		)
+	)
 	return to_add
 
 /obj/item/organ/internal/tongue/satyr
@@ -91,3 +98,15 @@
 	. = ..()
 	var/datum/component/living_drunk/drunk = organ_owner.GetComponent(/datum/component/living_drunk)
 	qdel(drunk)
+
+/datum/species/satyr/handle_chemical(datum/reagent/chem, mob/living/carbon/human/H, seconds_per_tick, times_fired)
+	if(chem.type == (/datum/reagent/iron))
+		H.adjustToxLoss(3 * REM * seconds_per_tick)
+		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * seconds_per_tick)
+		return TRUE
+	if(chem.type == /datum/reagent/medicine/antihol) //Cures alchol, which they need, to live.
+		to_chat(H, span_danger("You feel your viens constrict as your heads spin"))
+		H.adjustOxyLoss(4 * REM * seconds_per_tick)
+		H.reagents.remove_reagent(chem.type, REAGENTS_METABOLISM * seconds_per_tick)
+		return TRUE
+	return ..()
