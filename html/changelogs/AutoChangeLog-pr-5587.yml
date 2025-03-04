@@ -1,0 +1,5 @@
+author: "Sorenon"
+delete-after: True
+changes:
+  - rscadd: "Gave IPCs and Silicons a character preference for spawning with an MMI or a Posibrain"
+  - image: "Added a posibrain sprite to the AI Core construction steps"
