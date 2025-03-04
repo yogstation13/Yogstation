@@ -121,3 +121,30 @@
   - rscdel: Removed doubled text from syndicate listening post job description
   - bugfix: fixed monkecoin being given when it should be removed
   - rscadd: Added the ability for borgs to pathfind into and through restricted areas.
+2025-03-04:
+  Gw0sty:
+  - balance: Satyr's now are poisoned by Ironand antihol
+  - balance: Satyr's no longer have a 80% Maximum Health
+  - balance: Satyrs get sober faster now, again
+  - balance: Satyrs don't take a few centuries to get drunk again, again
+  - bugfix: Satyrs don't flicker between being drunk and not anymore, again
+  - bugfix: Satyrs drunkenness can no longer go negative, again
+  SirNightKnight:
+  - rscadd: gave back NT rep and Blueshield their CC comms via a special CentCom radio
+      key.
+  - rscadd: Blueshields get a pair of medhud sunglasses instead of sechud sunglasses
+      roundstart.
+  - rscdel: removed the Blueshield security belt and replaced it with a pre-equipped
+      assault belt.
+  - rscdel: removed Blueshield's extra headsets from their locker.
+  - rscdel: removed radios from bitrunning avatars.
+  - rscadd: the mansus blocks radio transmission.
+  - admin: new admin verb for disabling crew CC comms called "Toggle Crew CC Comms."
+  Sorenon:
+  - rscadd: Gave IPCs and Silicons a character preference for spawning with an MMI
+      or a Posibrain
+  - image: Added a posibrain sprite to the AI Core construction steps
+  thedragmeme:
+  - rscadd: Adds two admin offices to the centom z level
+  - bugfix: Makes it so you cant glitch out of the beehives and escape into the centcom
+      z level

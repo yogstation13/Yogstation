@@ -1,5 +1,0 @@
-author: "thedragmeme"
-delete-after: True
-changes:
-  - rscadd: "Adds two admin offices to the centom z level"
-  - bugfix: "Makes it so you cant glitch out of the beehives and escape into the centcom z level"

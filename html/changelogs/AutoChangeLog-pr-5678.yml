@@ -1,9 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - balance: "Satyr's now are poisoned by Ironand antihol"
-  - balance: "Satyr's no longer have a 80% Maximum Health"
-  - balance: "Satyrs get sober faster now, again"
-  - balance: "Satyrs don't take a few centuries to get drunk again, again"
-  - bugfix: "Satyrs don't flicker between being drunk and not anymore, again"
-  - bugfix: "Satyrs drunkenness can no longer go negative, again"
