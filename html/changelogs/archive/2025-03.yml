@@ -122,6 +122,12 @@
   - bugfix: fixed monkecoin being given when it should be removed
   - rscadd: Added the ability for borgs to pathfind into and through restricted areas.
 2025-03-04:
+  Absolucy:
+  - bugfix: (GoldenAlpharex) Chat highlights now escape special RegEx characters from
+      non-RegEx highlights.
+  - bugfix: (GoldenAlpharex) Broken RegEx expressions no longer cause the chat to
+      bluescreen, allowing you to properly fix them.
+  - bugfix: Fixed more advanced regex-based chat highlights not working.
   Gw0sty:
   - balance: Satyr's now are poisoned by Ironand antihol
   - balance: Satyr's no longer have a 80% Maximum Health
