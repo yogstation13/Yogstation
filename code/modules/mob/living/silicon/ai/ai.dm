@@ -439,6 +439,8 @@
 	return TRUE
 
 /mob/living/silicon/ai/proc/make_mmi_drop_and_transfer(obj/item/mmi/the_mmi, the_core)
+	// monkestation edit start
+	/* original
 	var/mmi_type
 	if(posibrain_inside)
 		mmi_type = new/obj/item/mmi/posibrain(src, /* autoping = */ FALSE)
@@ -455,10 +457,22 @@
 	the_mmi.brainmob.name = src.real_name
 	the_mmi.brainmob.real_name = src.real_name
 	the_mmi.brainmob.container = the_mmi
+	*/
+	if (!the_mmi)
+		the_mmi = make_mmi(posibrain_inside)
+	if (hack_software)
+		new/obj/item/malf_upgrade(get_turf(src))
+	// monkestation edit end
 
 	var/has_suicided_trait = HAS_TRAIT(src, TRAIT_SUICIDED)
 	the_mmi.brainmob.set_suicide(has_suicided_trait)
+	// monkestation edit start
+	/* original
 	the_mmi.brain.suicided = has_suicided_trait
+	*/
+	if (the_mmi.brain)
+		the_mmi.brain.suicided = has_suicided_trait
+	// monkestation edit end
 	if(the_core)
 		var/obj/structure/ai_core/core = the_core
 		core.core_mmi = the_mmi

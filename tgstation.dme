@@ -7166,6 +7166,7 @@
 #include "monkestation\code\modules\client\preferences\prude.dm"
 #include "monkestation\code\modules\client\preferences\runechat.dm"
 #include "monkestation\code\modules\client\preferences\show_roundend_credits.dm"
+#include "monkestation\code\modules\client\preferences\silicon_brain.dm"
 #include "monkestation\code\modules\client\preferences\sounds.dm"
 #include "monkestation\code\modules\client\preferences\tunnel_vision.dm"
 #include "monkestation\code\modules\client\preferences\alt_jobs\_job.dm"

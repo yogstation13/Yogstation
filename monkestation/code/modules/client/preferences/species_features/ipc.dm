@@ -93,3 +93,31 @@
 
 /datum/preference/choiced/ipc_screen/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.features["ipc_screen"] = value
+
+
+/datum/preference/choiced/ipc_brain
+	savefile_key = "ipc_brain"
+	savefile_identifier = PREFERENCE_CHARACTER
+	category = PREFERENCE_CATEGORY_SECONDARY_FEATURES
+	priority = PREFERENCE_PRIORITY_BODY_TYPE
+
+/datum/preference/choiced/ipc_brain/init_possible_values()
+	return list("Compact Positronic", "Compact MMI")
+
+/datum/preference/choiced/ipc_brain/create_default_value()
+	return "Compact Positronic"
+
+/datum/preference/choiced/ipc_brain/apply_to_human(mob/living/carbon/human/target, value)
+	if (!istype(target.dna.species, /datum/species/ipc))
+		return
+	if (value == "Compact MMI")
+		var/obj/item/organ/internal/brain/synth/mmi/new_organ = new()
+		var/obj/item/organ/internal/brain/existing_brain = target.get_organ_slot(ORGAN_SLOT_BRAIN)
+		if(istype(existing_brain) && !existing_brain.decoy_override)
+			existing_brain.before_organ_replacement(new_organ)
+			existing_brain.Remove(target, special = TRUE, no_id_transfer = TRUE)
+			qdel(existing_brain)
+		new_organ.Insert(target, special = TRUE, drop_if_replaced = FALSE)
+
+/datum/preference/choiced/ipc_brain/is_accessible(datum/preferences/preferences)
+	return ..() && preferences.read_preference(/datum/preference/choiced/species) == /datum/species/ipc
