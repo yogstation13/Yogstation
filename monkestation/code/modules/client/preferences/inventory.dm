@@ -65,9 +65,10 @@
 				amount *= 3
 
 	amount = round(amount, 1) //make sure whole number
+	var/previous_coins = metacoins
 	metacoins += amount //store the updated metacoins in a variable, but not the actual game-to-game storage mechanism (load_metacoins() pulls from database)
 
-	logger.Log(LOG_CATEGORY_META, "[parent]'s monkecoins were changed by [amount] Reason: [reason]", list("currency_left" = metacoins, "reason" = reason))
+	logger.Log(LOG_CATEGORY_META, "[parent]'s monkecoins were changed by [amount] Reason: [reason]", list("currency_left" = metacoins, "reason" = reason, "previous_coins" = previous_coins ))
 
 	//SQL query - updates the metacoins in the database (this is where the storage actually happens)
 	var/datum/db_query/query_inc_metacoins = SSdbcore.NewQuery(

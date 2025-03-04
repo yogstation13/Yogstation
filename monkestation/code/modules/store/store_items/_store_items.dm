@@ -28,12 +28,10 @@
 
 	if(!one_time_buy)
 		if(finalize_purchase(buyer))
-			buyers_preferences.adjust_metacoins(buyer.ckey, -item_cost, donator_multipler = FALSE)
-		logger.Log(LOG_CATEGORY_META, "[buyer] bought a [name] for [item_cost]", list("currency_left" = buyer.prefs.metacoins))
+			buyers_preferences.adjust_metacoins(buyer.ckey, -item_cost, "[buyer] bought a [name] for [item_cost]", donator_multipler = FALSE)
 		return
 	else
-		buyers_preferences.adjust_metacoins(buyer.ckey, -item_cost, donator_multipler = FALSE)
-	logger.Log(LOG_CATEGORY_META, "[buyer] bought a [name] for [item_cost]", list("currency_left" = buyer.prefs.metacoins))
+		buyers_preferences.adjust_metacoins(buyer.ckey, -item_cost, "[buyer] bought a [name] for [item_cost]", donator_multipler = FALSE)
 	attempt_spawn(buyer)
 
 

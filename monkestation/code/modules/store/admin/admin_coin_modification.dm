@@ -16,7 +16,7 @@
 	if(adjustment_amount + chosen_client.prefs.metacoins < 0)
 		adjustment_amount = -chosen_client.prefs.metacoins
 
-	chosen_client.prefs.adjust_metacoins(chosen_client.ckey, adjustment_amount, null, TRUE, FALSE)
+	chosen_client.prefs.adjust_metacoins(chosen_client.ckey, adjustment_amount, "Admin [ckey] adjusted coins", FALSE, FALSE)
 
 /client/proc/mass_add_metacoins()
 	set category = "Admin.Fun"

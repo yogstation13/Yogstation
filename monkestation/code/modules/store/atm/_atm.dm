@@ -157,7 +157,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/atm, 30)
 	if(!withdraw_amount)
 		return
 	withdraw_amount = clamp(withdraw_amount, 0, current_balance)
-	if(!living_user.client.prefs.adjust_metacoins(living_user.client.ckey, -withdraw_amount, donator_multipler = FALSE))
+	if(!living_user.client.prefs.adjust_metacoins(living_user.client.ckey, -withdraw_amount, "Withdrew from an ATM", donator_multipler = FALSE))
 		return
 
 	var/obj/item/stack/monkecoin/coin_stack = new(living_user.loc)
@@ -179,7 +179,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/atm, 30)
 		to_chat(living_user, span_warning("Not enough monkecoins."))
 		return
 
-	if(!living_user.client.prefs.adjust_metacoins(living_user.client.ckey, -LOOTBOX_COST, donator_multipler = FALSE))
+	if(!living_user.client.prefs.adjust_metacoins(living_user.client.ckey, -LOOTBOX_COST, "Bought a lootbox", donator_multipler = FALSE))
 		return
 
 	var/obj/item/lootbox/box = new(get_turf(living_user))
@@ -196,7 +196,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/atm, 30)
 		return
 	if(istype(attacking_item, /obj/item/stack/monkecoin))
 		var/obj/item/stack/monkecoin/attacked_coins = attacking_item
-		if(!user.client.prefs.adjust_metacoins(user.client.ckey, attacked_coins.amount, donator_multipler = FALSE))
+		if(!user.client.prefs.adjust_metacoins(user.client.ckey, attacked_coins.amount, "Deposited coins to an ATM", donator_multipler = FALSE))
 			say("Error accepting coins, please try again later.")
 			return
 		qdel(attacked_coins)
