@@ -359,13 +359,14 @@
  * Does not set any owner or brain status. Handle that externally.
  * Arguments:
  * metadata - Ideally the output of another chip's get_metadata proc. Assoc list of metadata.
+ * silent - Whether or not an activation message should be shown to the user.
  */
-/obj/item/skillchip/proc/set_metadata(list/metadata)
+/obj/item/skillchip/proc/set_metadata(list/metadata, silent = FALSE) // monkestation edit: add silent arg
 	var/active_msg
 	// Start by trying to activate.
 	active = metadata["active"]
 	if(active)
-		active_msg = try_activate_skillchip(FALSE, TRUE)
+		active_msg = try_activate_skillchip(silent = silent, force = TRUE) // monkestation edit: add silent arg
 
 	// Whether it worked or not, set the rest of the metadata and then return any activate message.
 	chip_cooldown = metadata["chip_cooldown"]

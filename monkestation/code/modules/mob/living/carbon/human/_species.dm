@@ -10,4 +10,4 @@
 		if(organ_holder.implant_skillchip(skillchip, force = TRUE))
 			qdel(skillchip)
 			continue
-		skillchip.set_metadata(chip)
+		skillchip.set_metadata(chip, silent = TRUE)
