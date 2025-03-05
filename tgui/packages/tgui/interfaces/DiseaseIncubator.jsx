@@ -144,8 +144,21 @@ export const DiseaseIncubator = (props) => {
                       ))}
                     </LabeledList>
                   </Collapsible>
+                ) : dish.inserted ? (
+                  dish.contains_disease ? (
+                    Array.isArray(dish.symptom_data) &&
+                    !dish.symptom_data.length > 0 && (
+                      <NoticeBox info>
+                        Disease does not contain any symptoms.
+                      </NoticeBox>
+                    )
+                  ) : (
+                    <NoticeBox warning>
+                      Dish does not contain a viable disease!
+                    </NoticeBox>
+                  )
                 ) : (
-                  <NoticeBox warn>No symptom data available.</NoticeBox>
+                  <NoticeBox danger>Please insert a growth dish!</NoticeBox>
                 )}
               </Section>
             ))}

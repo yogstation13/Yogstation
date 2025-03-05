@@ -253,7 +253,8 @@
 
 		var/list/symptom_data = list()
 		var/obj/item/weapon/virusdish/dish = dish_datum.dish
-		for(var/datum/symptom/symptom in dish.contained_virus.symptoms)
+		dish_ui_datum["contains_disease"] = istype(dish.contained_virus) ? TRUE : FALSE
+		for(var/datum/symptom/symptom in dish.contained_virus?.symptoms)
 			if(!(dish.contained_virus.disease_flags & DISEASE_ANALYZED))
 				symptom_data += list(list("name" = "Unknown", "desc" = "Unknown", "strength" = symptom.multiplier, "max_strength" = symptom.max_multiplier, "chance" = symptom.chance, "max_chance" = symptom.max_chance, "stage" = symptom.stage))
 				continue

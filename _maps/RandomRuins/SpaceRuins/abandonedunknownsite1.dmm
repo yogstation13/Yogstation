@@ -6986,10 +6986,7 @@
 /area/ruin/space/has_grav/abandonedscpsite/ezhall)
 "zQ" = (
 /obj/effect/mapping_helpers/broken_floor,
-/obj/item/ammo_box/magazine/wt550m9{
-	max_ammo = 0;
-	icon_state = "46x30mmt-0"
-	},
+/obj/item/ammo_box/magazine/wt550m9/starts_empty,
 /obj/effect/decal/cleanable/blood/gibs/core,
 /obj/structure/extinguisher_cabinet/directional/east,
 /obj/effect/decal/cleanable/dirt,
@@ -8704,10 +8701,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
-/obj/item/ammo_box/magazine/wt550m9{
-	max_ammo = 0;
-	icon_state = "46x30mmt-0"
-	},
+/obj/item/ammo_box/magazine/wt550m9/starts_empty,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/abandonedscpsite/hczhall)
@@ -10295,10 +10289,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/effect/mapping_helpers/broken_floor,
-/obj/item/ammo_box/magazine/wt550m9{
-	max_ammo = 0;
-	icon_state = "46x30mmt-0"
-	},
+/obj/item/ammo_box/magazine/wt550m9/starts_empty,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/catwalk_floor/iron_dark,
 /area/ruin/space/has_grav/abandonedscpsite/hczhall)

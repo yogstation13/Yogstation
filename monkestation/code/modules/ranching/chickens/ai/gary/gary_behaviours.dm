@@ -192,7 +192,7 @@
 			continue
 		mobs += mob
 
-	controller.blackboard[BB_TRAVEL_DESTINATION] = pick(mobs)
+	controller.blackboard[BB_TRAVEL_DESTINATION] = (length(mobs) > 0) ? pick(mobs) : null //pick() cries if theres nothing in the list.
 	controller.blackboard[BB_GARY_WANDER_COOLDOWN] = world.time + 5 MINUTES
 	. = ..()
 

@@ -19,7 +19,7 @@
 		return
 	if(!stored_machette || QDELETED(stored_machette))
 		stored_machette = new /obj/item/slasher_machette
-		var/datum/antagonist/slasher/slasherdatum = owner.mind.has_antag_datum(/datum/antagonist/slasher)
+		var/datum/antagonist/slasher/slasherdatum = IS_SLASHER(owner)
 		if(!slasherdatum)
 			return
 		slasherdatum.linked_machette = stored_machette
@@ -66,7 +66,7 @@
 /obj/item/slasher_machette/proc/pre_throw(obj/item/source, list/arguments)
 	SIGNAL_HANDLER
 	var/mob/living/thrower = arguments[4]
-	if(!istype(thrower) || !thrower.mind.has_antag_datum(/datum/antagonist/slasher))
+	if(!istype(thrower) || !IS_SLASHER(thrower))
 		// Just in case our thrower isn't actually a slasher (somehow). This shouldn't ever come up,
 		// but if it does, then we just prevent the throw.
 		return COMPONENT_CANCEL_THROW
@@ -102,7 +102,7 @@
 			living_user.adjustBruteLoss(force)
 			to_chat(user, span_warning("You scream out in pain as you hold the [src]!"))
 			return FALSE
-	var/datum/antagonist/slasher/slasherdatum = user.mind?.has_antag_datum(/datum/antagonist/slasher)
+	var/datum/antagonist/slasher/slasherdatum = IS_SLASHER(user)
 	if(slasherdatum?.active_action && istype(slasherdatum.active_action, /datum/action/cooldown/slasher/soul_steal))
 		return FALSE // Blocks the attack
 	return ..() // Proceeds with normal attack if no soul steal is active
@@ -110,19 +110,19 @@
 /obj/item/slasher_machette/attack(mob/living/target_mob, mob/living/user, params)
 	if(isliving(user))
 		var/mob/living/living_user = user
-		if(!user.mind.has_antag_datum(/datum/antagonist/slasher))
+		if(!IS_SLASHER(user))
 			forceMove(get_turf(user))
 			user.emote("scream")
 			living_user.adjustBruteLoss(force)
 			to_chat(user, span_warning("You scream out in pain as you hold the [src]!"))
 			return
-	var/datum/antagonist/slasher/slasherdatum = user.mind?.has_antag_datum(/datum/antagonist/slasher)
+	var/datum/antagonist/slasher/slasherdatum = IS_SLASHER(user)
 	if(slasherdatum?.active_action)
 		return TRUE // Blocks the attack
 	return ..()
 
 /obj/machinery/door/airlock/proc/attack_slasher_machete(atom/target, mob/living/user)
-	if(!user.mind.has_antag_datum(/datum/antagonist/slasher))
+	if(!IS_SLASHER(user))
 		return
 	if(isElectrified() && shock(user, 100)) //Mmm, fried slasher!
 		add_fingerprint(user)

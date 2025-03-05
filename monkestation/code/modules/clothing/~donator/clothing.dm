@@ -410,7 +410,7 @@
 	righthand_file = 'monkestation/icons/donator/mob/inhands/donator_right.dmi'
 
 /obj/item/toy/darksabre/get_belt_overlay()
-	return mutable_appearance('monkestation/icons/donator/obj/custom.dmi', "darksheath-darksabre")
+	return mutable_appearance('monkestation/icons/donator/obj/custom.dmi', "darksheath-sabre")
 
 // Donation reward for inferno707
 /obj/item/storage/belt/sabre/darksabre
@@ -420,6 +420,9 @@
 	worn_icon = 'monkestation/icons/donator/mob/clothing/custom_w.dmi'
 	icon_state = "darksheath"
 	worn_icon_state = "darksheath"
+	inhand_icon_state = "darksheath"
+	lefthand_file = 'monkestation/icons/donator/mob/inhands/donator_left.dmi'
+	righthand_file = 'monkestation/icons/donator/mob/inhands/donator_right.dmi'
 
 /obj/item/storage/belt/sabre/darksabre/Initialize(mapload)
 	. = ..()

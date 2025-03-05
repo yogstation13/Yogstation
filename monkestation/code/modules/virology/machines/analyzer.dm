@@ -113,10 +113,17 @@
 
 	if(do_after(user, 5 SECONDS, src))
 		if(machine_stat & (BROKEN|NOPOWER))
+			processing = FALSE // Make sure to return the machine to normal operation if power outage
+			update_appearance()
+			scanner = null
 			return
 		if(!istype(dish.contained_virus, /datum/disease/acute))
 			QDEL_NULL(dish)
 			say("ERROR:Bad Pathogen detected PURGING")
+			processing = FALSE // Make sure to return the machine to normal operation after purge
+			update_appearance()
+			scanner = null
+			return
 		if (dish.contained_virus.addToDB())
 			say("Added new pathogen to database.")
 		var/datum/data/record/v = GLOB.virusDB["[dish.contained_virus.uniqueID]-[dish.contained_virus.subID]"]

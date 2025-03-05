@@ -6,6 +6,11 @@
 	caliber = CALIBER_46X30MM
 	max_ammo = 20
 
+//MONKESTATION ADDITION START
+/obj/item/ammo_box/magazine/wt550m9/starts_empty
+	start_empty = TRUE
+//MONKESTATION ADDITION END
+
 /obj/item/ammo_box/magazine/wt550m9/update_icon_state()
 	. = ..()
 	icon_state = "[base_icon_state]-[round(ammo_count(), 4)]"
@@ -84,7 +89,14 @@
 
 /obj/item/ammo_box/magazine/smgm45/update_icon_state()
 	. = ..()
-	icon_state = "[base_icon_state]-[round(ammo_count(), 2)]"
+	//monke edit start
+	var/old_ammo = 24 // From the old 24 ammo count.
+	var/icon_steps = 2 // Number of steps each icon changed. If 2 with 24 ammo then 24->22->20 etc
+	var/scaled_ammo = round((ammo_count() / max_ammo) * old_ammo, icon_steps) // Required offest without altering icons.
+	if(ammo_count() > 0 && ammo_count() < 2) // Force last bullet icon till the last bullet is actually used.
+		scaled_ammo = icon_steps // icon_steps is usually also your last icon before 0
+	icon_state = "[base_icon_state]-[scaled_ammo]"
+	//monke edit end
 
 /obj/item/ammo_box/magazine/smgm45/ap
 	name = "SMG magazine (Armour Piercing .45)"
