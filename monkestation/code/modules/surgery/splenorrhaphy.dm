@@ -1,6 +1,5 @@
-/datum/surgery/hepatectomy
+/datum/surgery/splenorrhaphy
 	name = "Splenorrhaphy"
-	surgery_flags = SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
 	organ_to_manipulate = ORGAN_SLOT_SPLEEN
 	possible_locs = list(BODY_ZONE_CHEST)
 	steps = list(
@@ -13,12 +12,13 @@
 		/datum/surgery_step/close,
 	)
 
-/datum/surgery/hepatectomy/can_start(mob/user, mob/living/carbon/target)
+/datum/surgery/splenorrhaphy/can_start(mob/user, mob/living/carbon/target)
 	var/obj/item/organ/internal/spleen/target_spleen = target.get_organ_slot(ORGAN_SLOT_SPLEEN)
 	if(target_spleen)
 		if(target_spleen.damage > 50 && !target_spleen.operated)
 			return TRUE
 	return FALSE
+
 
 ////it fixes the spleen im not a doctor
 //95% chance of success, not 100 because organs are delicate
@@ -61,7 +61,7 @@
 
 /datum/surgery_step/splenorrhaphy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery)
 	var/mob/living/carbon/human/human_target = target
-	human_target.adjustOrganLoss(ORGAN_SLOT_spleen, 15)
+	human_target.adjustOrganLoss(ORGAN_SLOT_SPLEEN, 15)
 	display_results(
 		user,
 		target,

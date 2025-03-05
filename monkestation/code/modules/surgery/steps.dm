@@ -122,3 +122,13 @@
 		"[user] begins to add plating to [target]'s [parse_zone(target_zone)].",
 		"[user] begins to add plating to [target]'s [parse_zone(target_zone)].",
 	)
+
+/datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
+	if(locate(/datum/surgery_step/saw) in surgery.steps)
+		target.heal_bodypart_damage(45,0)
+	if (ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		var/obj/item/bodypart/target_bodypart = human_target.get_bodypart(target_zone)
+		if(target_bodypart)
+			target_bodypart.adjustBleedStacks(-7)
+	return ..()
