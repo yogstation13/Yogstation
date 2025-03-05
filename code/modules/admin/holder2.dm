@@ -110,8 +110,9 @@ GLOBAL_PROTECT(href_token)
 	GLOB.admin_datums -= target
 	QDEL_NULL(plane_debug)
 
-	if(owner)
-		dementor(owner)
+	// MONKESTATION REMOVAL
+	//if(owner)
+	//	dementor(owner)
 	deadmined = TRUE
 
 	var/client/client = owner || GLOB.directory[target]
