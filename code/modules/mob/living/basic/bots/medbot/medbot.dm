@@ -368,6 +368,7 @@
 	medical_mode_flags = MEDBOT_SPEAK_MODE
 	heal_threshold = 0
 	heal_amount = 5
+	maints_access_required = list(ACCESS_MEDICAL, ACCESS_AWAY_SCIENCE, ACCESS_AWAY_GENERAL, ACCESS_AWAY_MEDICAL)
 
 /mob/living/basic/bot/medbot/nukie
 	name = "Oppenheimer"
