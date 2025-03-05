@@ -133,3 +133,24 @@
 	item_path = /obj/item/vibro_weapon/wizard
 	category = "Offensive"
 	cost = 3
+
+/datum/spellbook_entry/item/breakbow
+	name = "Break Bow"
+	desc = "A bladed bow that can be split into two swords which attack simultaneously as well as return to their thrower. Comes with a quiver of unlimited, powerful arrows."
+	item_path = /obj/structure/closet/crate/BreakBow
+	category = "Offensive"
+	cost = 2
+
+/datum/spellbook_entry/magic_arrows
+	name = "Summon Magic Arrows"
+	desc ="A spell that summons a homing arrow in the user's hand, ready to be shot out of a bow that quickly becomes dull after hitting something. Can be quickly casted by pressing the 'quick-equip' key on an empty hand"
+	spell_type = /datum/action/cooldown/spell/conjure_item/arrow/magic
+	category = "Offensive"
+	cost = 1
+
+/datum/spellbook_entry/item/rune_crate
+	name = "Rune Crate"
+	desc = "A wizard specialized in runecrafting, is offering a chest full of runes! The problem is, he mixed them up so you won't know what you will get!"
+	item_path = /obj/structure/closet/crate/magic
+	category = "Offensive"
+	cost = 1
