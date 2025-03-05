@@ -54,6 +54,14 @@ GLOBAL_LIST_INIT(loadout_shoes, generate_loadout_items(/datum/loadout_item/shoes
 	name = "Russian Boots"
 	item_path = /obj/item/clothing/shoes/russian
 
+/datum/loadout_item/shoes/angel_boots
+	name = "Angel Boots"
+	item_path = /obj/item/clothing/shoes/angel
+
+/datum/loadout_item/shoes/devil_boots
+	name = "Devil Boots"
+	item_path = /obj/item/clothing/shoes/devil
+
 /*
 *	COWBOY
 */
@@ -136,6 +144,22 @@ GLOBAL_LIST_INIT(loadout_shoes, generate_loadout_items(/datum/loadout_item/shoes
 /datum/loadout_item/shoes/heels
 	name = "Colorable Heels"
 	item_path = /obj/item/clothing/shoes/heels
+
+/datum/loadout_item/shoes/ball_heels
+	name = "Ball Heels"
+	item_path = /obj/item/clothing/shoes/ballheels
+
+/datum/loadout_item/shoes/gilded_sandals
+	name = "Gilded Sandals"
+	item_path = /obj/item/clothing/shoes/sandal/gilded
+
+/datum/loadout_item/shoes/flowery
+	name = "Perfumed Flats"
+	item_path = /obj/item/clothing/shoes/flowery
+
+/datum/loadout_item/shoes/starry
+	name = "Blue Flats"
+	item_path = /obj/item/clothing/shoes/starry
 
 /*
 *	JOB-RESTRICTED

@@ -75,6 +75,22 @@ GLOBAL_LIST_INIT(loadout_gloves, generate_loadout_items(/datum/loadout_item/glov
 	name = "Maid Arm Covers"
 	item_path = /obj/item/clothing/gloves/maid
 
+/datum/loadout_item/gloves/flowery
+	name = "Perfumed Gloves"
+	item_path = /obj/item/clothing/gloves/flowery
+
+/datum/loadout_item/gloves/starry
+	name = "Faux Leather Gloves"
+	item_path = /obj/item/clothing/gloves/starry
+
+/datum/loadout_item/gloves/butler
+	name = "Butler Gloves"
+	item_path = /obj/item/clothing/gloves/butler
+
+/datum/loadout_item/gloves/wristlets
+	name = "Golden Wristlets"
+	item_path = /obj/item/clothing/gloves/wristlets
+
 /*
 *	RINGS
 */

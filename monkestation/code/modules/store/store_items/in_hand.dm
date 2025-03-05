@@ -66,6 +66,6 @@ GLOBAL_LIST_INIT(store_inhand_items, generate_store_items(/datum/store_item/inha
 	item_cost = 5000
 
 /datum/store_item/inhand/flowerysatchel
-	name = "perfume scented satchel"
+	name = "Perfume Scented Satchel"
 	item_path = /obj/item/storage/backpack/satchel/flowery
 	item_cost = 5000

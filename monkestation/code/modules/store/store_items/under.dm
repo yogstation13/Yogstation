@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(store_miscunders, generate_store_items(/datum/store_item/under/
 	name = "Butler Uniform"
 	item_path = /obj/item/clothing/under/suit/butler
 
-/datum/store_item/under/formal/butler
+/datum/store_item/under/formal/silk_suit
 	name = "Black Silk Suit"
 	item_path = /obj/item/clothing/under/suit/fancysuit
 

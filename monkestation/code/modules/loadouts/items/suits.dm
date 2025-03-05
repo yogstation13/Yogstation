@@ -64,6 +64,10 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 	name = "White Dress"
 	item_path = /obj/item/clothing/suit/costume/whitedress
 
+/datum/loadout_item/suit/flowery
+	name = "Perfumed Dress Cover"
+	item_path = /obj/item/clothing/suit/jacket/gown
+
 /*
 *	LABCOATS
 */
@@ -144,6 +148,14 @@ GLOBAL_LIST_INIT(loadout_exosuits, generate_loadout_items(/datum/loadout_item/su
 /datum/loadout_item/suit/gothcoat
 	name = "Gothic Coat"
 	item_path = /obj/item/clothing/suit/costume/gothcoat
+
+/datum/loadout_item/suit/butler
+	name = "Butler Coat"
+	item_path = /obj/item/clothing/suit/toggle/jacket/butler
+
+/datum/loadout_item/suit/silk
+	name = "Silk Coat"
+	item_path = /obj/item/clothing/suit/jacket/silk
 
 /*
 *	COSTUMES

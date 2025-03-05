@@ -66,3 +66,15 @@ GLOBAL_LIST_INIT(loadout_inhand_items, generate_loadout_items(/datum/loadout_ite
 /datum/loadout_item/inhand/smokingpipe
 	name = "Smoking Pipe"
 	item_path = /obj/item/clothing/mask/cigarette/pipe
+
+/datum/loadout_item/backpack/satchel/flowery
+	name = "perfume scented satchel"
+	item_path = /obj/item/storage/backpack/satchel/flowery
+
+/datum/loadout_item/backpack/satchel/wing
+	name = "Angel Wing Satchel"
+	item_path = /obj/item/storage/backpack/satchel/wing
+
+/datum/loadout_item/backpack/satchel/wing_devil
+	name = "Devil Wing Satchel"
+	item_path = /obj/item/storage/backpack/satchel/wing/alt

@@ -419,6 +419,45 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	name = "White Suit"
 	item_path = /obj/item/clothing/under/suit/white
 
+/datum/loadout_item/under/formal/butler
+	name = "Butler Uniform"
+	item_path = /obj/item/clothing/under/suit/butler
+
+/datum/loadout_item/under/formal/silk_suit
+	name = "Black Silk Suit"
+	item_path = /obj/item/clothing/under/suit/fancysuit
+
+/datum/loadout_item/under/formal/sparkle_dress
+	name = "Sparkly Ribbon Dress"
+	item_path = /obj/item/clothing/under/dress/sparkle
+
+/datum/loadout_item/under/formal/white_dress
+	name = "Gaudy White Dress"
+	item_path = /obj/item/clothing/under/dress/white
+
+/datum/loadout_item/under/formal/angel
+	name = "Lacey Angel Dress"
+	item_path = /obj/item/clothing/under/dress/angel
+
+/datum/loadout_item/under/formal/devil
+	name = "Lacey Devil Dress"
+	item_path = /obj/item/clothing/under/dress/angel/alt
+
+/datum/loadout_item/under/formal/flowery
+	name = "Perfumed Light Dress"
+	item_path = /obj/item/clothing/under/dress/flowery
+
+/datum/loadout_item/under/formal/starry
+	name = "Starry Dress"
+	item_path = /obj/item/clothing/under/dress/starry
+
+/datum/loadout_item/under/formal/formal_ball
+	name = "Regal Ball Gown"
+	item_path = /obj/item/clothing/under/dress/gown
+
+/datum/loadout_item/under/formal/moonlit
+	name = "Regal Ball Gown"
+	item_path = /obj/item/clothing/under/dress/moonlit
 
 /datum/loadout_item/under/formal/trek_command
 	name = "Trekkie Command Uniform"
