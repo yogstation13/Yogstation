@@ -26104,17 +26104,6 @@
 	},
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin)
-"pDk" = (
-/obj/structure/hedge,
-/obj/machinery/light/floor/has_bulb,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/chair/comfy{
-	dir = 8
-	},
-/turf/open/floor/wood/large,
-/area/centcom/central_command_areas/botany)
 "pDD" = (
 /obj/structure/stone_tile/center,
 /obj/structure/stone_tile/surrounding/burnt,
@@ -66721,7 +66710,7 @@ aKu
 agL
 aLK
 avN
-pDk
+aMa
 aXE
 aoe
 aZm

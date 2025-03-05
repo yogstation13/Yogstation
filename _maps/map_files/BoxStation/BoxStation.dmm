@@ -13552,6 +13552,11 @@
 	pixel_y = 5;
 	req_access = list("xenobiology")
 	},
+/obj/machinery/button/ignition{
+	id = "Xenobio";
+	pixel_x = -4;
+	pixel_y = -3
+	},
 /turf/open/floor/iron,
 /area/station/science/xenobiology)
 "erQ" = (
@@ -67685,6 +67690,9 @@
 /area/station/command/heads_quarters/rd)
 "vOG" = (
 /obj/machinery/light/directional/north,
+/obj/machinery/sparker/directional/north{
+	id = "Xenobio"
+	},
 /turf/open/floor/engine,
 /area/station/science/xenobiology)
 "vOP" = (

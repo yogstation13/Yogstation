@@ -1936,7 +1936,6 @@
 	},
 /obj/machinery/camera/autoname/directional/west,
 /obj/machinery/light/directional/west,
-/obj/structure/test_boulder_spawner,
 /turf/open/floor/iron,
 /area/station/construction)
 "pI" = (
@@ -2298,6 +2297,8 @@
 /obj/item/screwdriver{
 	pixel_y = 10
 	},
+/obj/item/storage/box/beakers/variety,
+/obj/item/storage/box/beakers,
 /turf/open/floor/iron,
 /area/station/medical/chemistry)
 "GS" = (
