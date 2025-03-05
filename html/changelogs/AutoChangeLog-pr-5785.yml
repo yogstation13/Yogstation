@@ -1,0 +1,4 @@
+author: "thedragmeme"
+delete-after: True
+changes:
+  - bugfix: "Fixes newly added loadout items, such as the perfumed dress, not being added to the inventory upon purchase"
