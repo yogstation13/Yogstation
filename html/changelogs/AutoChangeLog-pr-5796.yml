@@ -1,5 +1,0 @@
-author: "MichiRecRoom, vinylspiders"
-delete-after: True
-changes:
-  - bugfix: "(vinylspiders) fixed a race condition with mutations"
-  - bugfix: "(MichiRecRoom) Fixes a runtime with the radioactivity mutation when it spawns in a random data disk."

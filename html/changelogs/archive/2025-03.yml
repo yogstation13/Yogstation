@@ -154,3 +154,13 @@
   - rscadd: Adds two admin offices to the centom z level
   - bugfix: Makes it so you cant glitch out of the beehives and escape into the centcom
       z level
+2025-03-05:
+  MichiRecRoom, vinylspiders:
+  - bugfix: (vinylspiders) fixed a race condition with mutations
+  - bugfix: (MichiRecRoom) Fixes a runtime with the radioactivity mutation when it
+      spawns in a random data disk.
+  flleeppyy:
+  - qol: better economy logging
+  thedragmeme:
+  - bugfix: Fixes newly added loadout items, such as the perfumed dress, not being
+      added to the inventory upon purchase
