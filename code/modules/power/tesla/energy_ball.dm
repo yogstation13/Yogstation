@@ -91,7 +91,7 @@
 	pixel_x = 0
 	pixel_y = 0
 
-	tesla_zap(src, zap_range, zap_power, zap_flags)
+	tesla_zap(src, zap_range, zap_power+energy, zap_flags)
 
 	pixel_x = -32
 	pixel_y = -32
@@ -165,6 +165,9 @@
 		return
 
 	var/obj/singularity/energy_ball/EB = new mini_type(loc, 0, TRUE)
+	if(zap_power == TESLA_HYPERCHARGED_POWER)
+		energy *= EB.energy
+
 	var/icon/I = icon(icon,icon_state,dir)
 
 	var/orbitsize = (I.Width() + I.Height()) * pick(0.4, 0.5, 0.6, 0.7, 0.8)
