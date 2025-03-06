@@ -47,7 +47,7 @@
 			name = "Natural " + name
 		if(data["boozepwr"])
 			boozepwr = data["boozepwr"]
-	addiction_types += list(/datum/addiction/alcohol = 0.05 * boozepwr)
+	LAZYSET(addiction_types, /datum/addiction/alcohol, 0.05 * boozepwr) //MONKESTATION EDIT: Don't override the existing list
 	return ..()
 
 /datum/reagent/consumable/ethanol/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
@@ -147,7 +147,7 @@
 	boozepwr = 45
 	ph = 6
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 4)
+	addiction_types = list(/datum/addiction/coffee = 4) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
 	drinker.set_dizzy_if_lower(10 SECONDS * REM * seconds_per_tick)
@@ -197,7 +197,7 @@
 	overdose_threshold = 60
 	taste_description = "jitters and death"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(,/datum/addiction/coffee = 5)
+	addiction_types = list(/datum/addiction/coffee = 5) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
 	drinker.adjust_drowsiness(-14 SECONDS * REM * seconds_per_tick)
@@ -630,7 +630,7 @@
 	glass_price = DRINK_PRICE_EASY
 	metabolized_traits = list(TRAIT_FEARLESS, TRAIT_ANALGESIA)
 	var/tough_text
-	addiction_types = list(/datum/addiction/coffee = 1)
+	addiction_types = list(/datum/addiction/coffee = 1) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/brave_bull/on_mob_metabolize(mob/living/drinker)
 	. = ..()
@@ -795,7 +795,7 @@
 	taste_description = "angry and irish"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	glass_price = DRINK_PRICE_EASY
-	addiction_types = list(/datum/addiction/coffee = 3)
+	addiction_types = list(/datum/addiction/coffee = 3) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/b52/on_mob_metabolize(mob/living/drinker)
 	. = ..()
@@ -809,7 +809,7 @@
 	quality = DRINK_NICE
 	taste_description = "giving up on the day"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 4)
+	addiction_types = list(/datum/addiction/coffee = 4) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/margarita
 	name = "Margarita"
@@ -829,7 +829,7 @@
 	quality = DRINK_NICE
 	taste_description = "bitterness"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 2)
+	addiction_types = list(/datum/addiction/coffee = 2) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/manhattan
 	name = "Manhattan"
@@ -948,7 +948,7 @@
 	taste_description = "bitter iron"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	bypass_restriction = TRUE
-	addiction_types = list(/datum/addiction/coffee = 1)
+	addiction_types = list(/datum/addiction/coffee = 1) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/devilskiss/on_mob_metabolize(mob/living/metabolizer)
 	. = ..()
@@ -1011,7 +1011,7 @@
 	quality = DRINK_GOOD
 	taste_description = "pineapple, coconut, and a hint of coffee"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 1)
+	addiction_types = list(/datum/addiction/coffee = 1) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/singulo
 	name = "Singulo"
@@ -1192,7 +1192,7 @@
 	quality = DRINK_GOOD
 	taste_description = "psychic links"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 2)
+	addiction_types = list(/datum/addiction/coffee = 2) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/erikasurprise
 	name = "Erika Surprise"
@@ -2171,7 +2171,7 @@
 	taste_description = "fiery, with an aftertaste of burnt flesh"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 	bypass_restriction = TRUE
-	addiction_types = list(/datum/addiction/coffee = 1)
+	addiction_types = list(/datum/addiction/coffee = 1) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/mauna_loa/on_mob_life(mob/living/carbon/drinker, seconds_per_tick, times_fired)
 	// Heats the user up while the reagent is in the body. Occasionally makes you burst into flames.
@@ -2295,7 +2295,7 @@
 	quality = DRINK_GOOD
 	taste_description = "strikes and gutters"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 1)
+	addiction_types = list(/datum/addiction/coffee = 1) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/drunken_espatier
 	name = "Drunken Espatier"
@@ -2797,7 +2797,7 @@
 	quality = DRINK_NICE
 	taste_description = "COCONUT"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 1)
+	addiction_types = list(/datum/addiction/coffee = 1) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/maui_sunrise //coconut rum, pineapple juice, yuyake, triple citrus, lemon-lime soda
 	name = "Maui Sunrise"
@@ -2825,7 +2825,7 @@
 	quality = DRINK_NICE
 	taste_description = "coconut coffee"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
-	addiction_types = list(/datum/addiction/coffee = 4)
+	addiction_types = list(/datum/addiction/coffee = 4) //MONKESTATION ADDITION: Add coffee addiction to alcoholic beverages containing coffee or coffee liqueur
 
 /datum/reagent/consumable/ethanol/blue_hawaiian //pineapple juice, lemon juice, coconut rum, blue curacao
 	name = "Blue Hawaiian"
