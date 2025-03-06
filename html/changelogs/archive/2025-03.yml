@@ -164,3 +164,31 @@
   thedragmeme:
   - bugfix: Fixes newly added loadout items, such as the perfumed dress, not being
       added to the inventory upon purchase
+2025-03-06:
+  Absolucy:
+  - bugfix: Adminordrazine (usually from the wizard "Invincibility" event) no longer
+      spams your chat with skillchip messages.
+  Gw0sty:
+  - qol: Abductor organ surgery no longer causes bleed stacks.
+  - balance: Closing surgical incisions will go neutral in bleed stacks.
+  - bugfix: Splenorrhaphy (Spleen surgery) now is functional and operatable
+  - bugfix: While removing implants, you will no longer clamp the bleeders in someone
+      before retracting their skin.
+  Shoddd:
+  - bugfix: fixes several mapping bugs
+  Siro:
+  - qol: 'Dark Sabre Sheath Icons partially restored. fixes #5692'
+  - bugfix: Fixed the pathology incubator and analyzer so they don't break making
+      the machine inoperable
+  - bugfix: magazine/smgm45 icons now display properly in world.
+  - map: Placed proper empty wt550m9 in ezhall and office1 ruin locations
+  - code_imp: IS_SLASHER macro made which also silenced multiple runtimes.
+  - code_imp: Silenced Gary's go to target pick from null list runtime.
+  - code_imp: Silenced map helper for air alarms for null target.
+  - code_imp: Silenced divide by 0 runtime with proper starts_empty proc for the wt550m
+  - code_imp: 'Applied proper ammo offset compensate for ammo changes from: #5212'
+  adamsong:
+  - bugfix: fixed blueshield not having access to their locker
+  flleeppyy:
+  - bugfix: don't dementor admins when deadmining
+  - rscadd: proper panel access for away stations for medibots

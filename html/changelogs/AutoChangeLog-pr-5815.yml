@@ -1,7 +1,0 @@
-author: "Gw0sty"
-delete-after: True
-changes:
-  - qol: "Abductor organ surgery no longer causes bleed stacks."
-  - balance: "Closing surgical incisions will go neutral in bleed stacks."
-  - bugfix: "Splenorrhaphy (Spleen surgery) now is functional and operatable"
-  - bugfix: "While removing implants, you will no longer clamp the bleeders in someone before retracting their skin."

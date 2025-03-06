@@ -1,4 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - bugfix: "Adminordrazine (usually from the wizard \"Invincibility\" event) no longer spams your chat with skillchip messages."
