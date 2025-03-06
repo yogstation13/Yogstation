@@ -11,7 +11,6 @@ GLOBAL_LIST_INIT(modular_persistence_ignored_vars, list(
 	"cached_ref",
 	"weak_reference",
 	"cooldowns",
-	"__auxtools_weakref_id",
 	"tag",
 	"type",
 	"parent_type",

@@ -28,6 +28,11 @@
 /// Takes a datum as input, returns its ref string
 #define text_ref(datum) ref(datum)
 
+// Refs contain a type id within their string that can be used to identify byond types.
+// Custom types that we define don't get a unique id, but this is useful for identifying
+// types that don't normally have a way to run istype() on them.
+#define TYPEID(thing) copytext(REF(thing), 4, 6)
+
 /// A null statement to guard against EmptyBlock lint without necessitating the use of pass()
 /// Used to avoid proc-call overhead. But use sparingly. Probably pointless in most places.
 #define EMPTY_BLOCK_GUARD ;
