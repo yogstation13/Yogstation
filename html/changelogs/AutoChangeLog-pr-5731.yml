@@ -1,0 +1,5 @@
+author: "MichiRecRoom, actioninja, lebedev, KoJIT2009"
+delete-after: True
+changes:
+  - refactor: "TGUI dropdowns have been refactored; please let me know if you spot any broken dropdowns!"
+  - qol: "(lebedev) Made selected elements highlighted in TGUI Dropdowns"
