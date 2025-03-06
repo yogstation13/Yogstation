@@ -1,0 +1,11 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - admin: "(LemonInTheDark) VV for global vars will now load MUCH faster, in exchange lists are now perma contracted in that particular pane."
+  - admin: "(ninjanomnom) Appearance vars in VV now display instead of being left blank."
+  - admin: "(ninjanomnom) VV can now display the contents of special byond lists like filters, or client.images."
+  - admin: "(ninjanomnom) VV on images now displays the image in the header."
+  - admin: "(ninjanomnom) VV can now display filters and includes their type."
+  - code_imp: "(EvilDragonfiend) /appearance type references are now investigatable in vv editor."
+  - code_imp: "(EvilDragonfiend) /image references display a summarised name with its dmi file name and icon_state when it's investigated from a datum where it uses. Format is: \"mob_hud_image = /image (hud.dmi:medical) [0x00000]\""
+  - code_imp: "(EvilDragonfiend) /image types no longer show first image incorrectly when its icon_state is null."
