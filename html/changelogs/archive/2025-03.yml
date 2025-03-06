@@ -168,12 +168,24 @@
   Absolucy:
   - bugfix: Adminordrazine (usually from the wizard "Invincibility" event) no longer
       spams your chat with skillchip messages.
+  - rscadd: (Melbert) Anomalies, portals, and bluespace rifts will now wibble a bit.
+  - qol: (Melbert) There is now a slight animation to entering a portal or teleporter.
+  - qol: (carlarctg) When failing to teleport with the veil shifter it tells you with
+      text and spooky ghost sfx, and doesn't use up a charge or have any unintended
+      vfx.
+  - bugfix: (Sealed101) Cult shifter pulled atom/victim properly teleport with the
+      user again
+  - sound: (grungussuss and Virgilcore) Portals now have a unique sound to them.
   Gw0sty:
   - qol: Abductor organ surgery no longer causes bleed stacks.
   - balance: Closing surgical incisions will go neutral in bleed stacks.
   - bugfix: Splenorrhaphy (Spleen surgery) now is functional and operatable
   - bugfix: While removing implants, you will no longer clamp the bleeders in someone
       before retracting their skin.
+  MichiRecRoom, actioninja, lebedev, KoJIT2009:
+  - refactor: TGUI dropdowns have been refactored; please let me know if you spot
+      any broken dropdowns!
+  - qol: (lebedev) Made selected elements highlighted in TGUI Dropdowns
   Shoddd:
   - bugfix: fixes several mapping bugs
   Siro:

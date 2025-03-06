@@ -1,8 +1,0 @@
-author: "Absolucy"
-delete-after: True
-changes:
-  - rscadd: "(Melbert) Anomalies, portals, and bluespace rifts will now wibble a bit."
-  - qol: "(Melbert) There is now a slight animation to entering a portal or teleporter."
-  - qol: "(carlarctg) When failing to teleport with the veil shifter it tells you with text and spooky ghost sfx, and doesn't use up a charge or have any unintended vfx."
-  - bugfix: "(Sealed101) Cult shifter pulled atom/victim properly teleport with the user again"
-  - sound: "(grungussuss and Virgilcore) Portals now have a unique sound to them."
