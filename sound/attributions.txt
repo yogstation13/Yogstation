@@ -147,3 +147,5 @@ throw.ogg, throwhard.ogg and throwsoft.ogg (Royalty-Free and Copyright-Free) are
 https://uppbeat.io/sfx/whoosh-swift-cut/7727/23617
 https://uppbeat.io/sfx/whoosh-air-punch/114/1168
 https://uppbeat.io/sfx/throwing-item-swing/9430/25267
+
+portal_close, portal_open_1 , portal_open_2 , portal_open_3 , portal_travel made by @virgilcore (discord IGN)
