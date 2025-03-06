@@ -1,0 +1,4 @@
+author: "Draggeru"
+delete-after: True
+changes:
+  - bugfix: "Fixes a misplaced chair and some misplaced color items in the CC z level"
