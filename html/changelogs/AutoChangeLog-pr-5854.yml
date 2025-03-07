@@ -1,0 +1,5 @@
+author: "KnigTheThrasher, McRamon, Alecksohs"
+delete-after: True
+changes:
+  - rscadd: "New smes sprite"
+  - rscdel: "Removed old shitty grimy floor and replaced it with a sick carpet"
