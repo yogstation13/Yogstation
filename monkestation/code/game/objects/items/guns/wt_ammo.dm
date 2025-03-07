@@ -17,7 +17,7 @@
 /obj/projectile/bullet/c46x30mm/rub
 	name = "4.6x30mm rubber bullet"
 	damage = 4
-	stamina = 35
+	stamina = 50
 	embedding = null
 	sharpness = NONE
 
@@ -40,7 +40,7 @@
 /obj/projectile/bullet/c46x30mm/salt
 	name = "4.6x30mm saltshot bullet"
 	damage = 0
-	stamina = 30
+	stamina = 40
 	embedding = null
 	sharpness = NONE
 

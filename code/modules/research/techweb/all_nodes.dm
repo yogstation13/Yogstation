@@ -1649,7 +1649,6 @@
 	design_ids = list(
 		"pin_testing",
 		"tele_shield",
-		"lethal_c35", //monkestation edit: paco sec
 		"mag_autorifle_rub", //monkestation edit: autorifles
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
@@ -1662,6 +1661,7 @@
 	prereq_ids = list("adv_engi", "weaponry")
 	design_ids = list(
 		"pin_loyalty",
+		"lethal_c35", //monkestation edit: paco sec
 		"mag_autorifle", //monkestation edit: autorifles
 		"mag_autorifle_salt", //monkestation edit: autorifles
 	)
