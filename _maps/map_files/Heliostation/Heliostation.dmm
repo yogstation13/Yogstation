@@ -14691,7 +14691,7 @@
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "bqI" = (
-/obj/machinery/vending/modularpc,
+/obj/machinery/vending/autodrobe,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "bqJ" = (
@@ -14700,6 +14700,7 @@
 /area/station/commons/lounge)
 "bqK" = (
 /obj/machinery/light/directional/south,
+/obj/machinery/vending/modularpc,
 /turf/open/floor/iron,
 /area/station/commons/lounge)
 "bqM" = (
@@ -102430,7 +102431,7 @@ cyo
 cyt
 cyo
 cyo
-aaa
+cyo
 mRm
 aak
 aaa
@@ -102686,8 +102687,8 @@ eAG
 cnK
 exf
 xar
+eAG
 cyo
-aaa
 mRm
 aak
 aaa
@@ -102943,8 +102944,8 @@ eAG
 ybf
 czV
 alW
+eAG
 cyo
-aaa
 mRm
 aak
 aaa
@@ -103200,8 +103201,8 @@ eAG
 rBJ
 sDu
 sKD
+eAG
 cyo
-aak
 mRm
 aak
 aak
@@ -103457,8 +103458,8 @@ eAG
 eAG
 ejz
 eAG
+eAG
 cyo
-aaa
 mRm
 aak
 aaa
