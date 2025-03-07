@@ -111,7 +111,7 @@
 /area/ruin/space/has_grav/allamericandiner)
 "ep" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "et" = (
 /obj/machinery/shower/directional/east,
@@ -279,7 +279,7 @@
 	pixel_y = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "nv" = (
 /obj/structure/lattice,
@@ -413,7 +413,7 @@
 /obj/machinery/photocopier/gratis,
 /obj/structure/sign/flag/ssc/directional/north,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "ue" = (
 /obj/structure/table,
@@ -792,7 +792,7 @@
 	pixel_y = 4
 	},
 /obj/item/gun/ballistic/automatic/pistol/m1911,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "HF" = (
 /obj/structure/noticeboard/directional/north{
@@ -1088,7 +1088,7 @@
 /area/ruin/space)
 "TF" = (
 /obj/machinery/light/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "TN" = (
 /obj/structure/table,
@@ -1133,7 +1133,7 @@
 	pixel_x = 9
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "Un" = (
 /obj/effect/turf_decal/trimline/dark_green/filled/line{
@@ -1258,7 +1258,7 @@
 	pixel_y = 1
 	},
 /obj/item/implanter/freedom,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "Yr" = (
 /obj/effect/spawner/structure/electrified_grille,
@@ -1280,7 +1280,7 @@
 /area/ruin/space/has_grav/allamericandiner)
 "YW" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "YX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1304,7 +1304,7 @@
 /area/ruin/space/has_grav/allamericandiner)
 "Zu" = (
 /obj/structure/chair/comfy/brown,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/allamericandiner)
 "Zw" = (
 /obj/effect/turf_decal/trimline/dark_green/filled/line,

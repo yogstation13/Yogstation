@@ -447,7 +447,7 @@
 /obj/item/ammo_box/magazine/m9mm,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "es" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1065,7 +1065,7 @@
 "hN" = (
 /obj/machinery/light/small/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "hO" = (
 /turf/closed/wall/mineral/plastitanium/explosive,
@@ -1073,7 +1073,7 @@
 "hP" = (
 /obj/machinery/light/small/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "hS" = (
 /obj/structure/table/reinforced,
@@ -1362,21 +1362,21 @@
 /obj/structure/table/wood,
 /obj/item/ammo_box/magazine/m9mm,
 /obj/item/ammo_box/magazine/sniper_rounds,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "jB" = (
 /obj/machinery/light/small/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "jC" = (
 /obj/machinery/light/small/directional/west,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "jD" = (
 /obj/structure/cable,
@@ -2188,7 +2188,7 @@
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate/comms{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "oM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/monitored{
@@ -2455,7 +2455,7 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "sH" = (
 /obj/machinery/light/small/directional/north,
@@ -2717,7 +2717,7 @@
 /obj/effect/mob_spawn/ghost_role/human/lavaland_syndicate{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "xn" = (
 /turf/open/floor/engine/n2,
@@ -3184,7 +3184,7 @@
 	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "Eo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -3308,12 +3308,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "FI" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "FP" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4,
@@ -3639,7 +3639,7 @@
 /obj/item/ammo_box/magazine/sniper_rounds,
 /obj/machinery/airalarm/directional/north,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/syndicate_lava_base/dormitories)
 "Ly" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{

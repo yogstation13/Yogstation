@@ -34,7 +34,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "aW" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -109,7 +109,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "ch" = (
 /obj/structure/cable,
@@ -395,14 +395,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "kK" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/paper/fluff/ruins/listeningstation/reports/november,
 /obj/machinery/light/small/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "la" = (
 /obj/structure/table/wood,
@@ -416,7 +416,7 @@
 	pixel_y = 2
 	},
 /obj/item/paper/fluff/ruins/listeningstation/reports/september,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "lE" = (
 /mob/living/basic/mining/goliath/ancient,
@@ -488,7 +488,7 @@
 "nG" = (
 /obj/structure/bookcase/random,
 /obj/machinery/light_switch/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "nM" = (
 /obj/item/reagent_containers/cup/bucket,
@@ -681,7 +681,7 @@
 "tl" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "tr" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -871,7 +871,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/structure/closet/emcloset/wall/directional/north,
 /obj/item/crowbar/red,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "zv" = (
 /obj/effect/turf_decal/sand/plating,
@@ -911,7 +911,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "Ay" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1365,7 +1365,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "Lq" = (
 /obj/effect/turf_decal/tile/red/opposingcorners,
@@ -1408,7 +1408,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "My" = (
 /obj/effect/turf_decal/tile/red/opposingcorners,
@@ -1547,7 +1547,7 @@
 /obj/structure/closet/syndicate,
 /obj/machinery/firealarm/directional/west,
 /obj/item/ammo_box/magazine/m9mm,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "OG" = (
 /obj/structure/tank_frame,
@@ -1589,7 +1589,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "OX" = (
 /obj/machinery/duct,
@@ -1980,7 +1980,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "YR" = (
 /obj/structure/table/wood,
@@ -1991,7 +1991,7 @@
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
 /obj/effect/mapping_helpers/apc/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/listeningstation/dorms)
 "Zi" = (
 /obj/structure/cable,

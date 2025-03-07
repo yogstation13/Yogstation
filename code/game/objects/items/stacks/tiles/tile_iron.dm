@@ -79,7 +79,6 @@
 		/obj/item/stack/tile/iron/showroomfloor,
 		/obj/item/stack/tile/iron/solarpanel,
 		/obj/item/stack/tile/iron/freezer,
-		/obj/item/stack/tile/iron/grimy,
 		/obj/item/stack/tile/iron/sepia,
 	)
 
@@ -604,12 +603,15 @@
 	turf_type = /turf/open/floor/iron/freezer
 	merge_type = /obj/item/stack/tile/iron/freezer
 
+//MONKESTATION REMOVAL
+/*
 /obj/item/stack/tile/iron/grimy
 	name = "grimy floor tile"
 	singular_name = "grimy floor tile"
 	icon_state = "tile_grimy"
 	turf_type = /turf/open/floor/iron/grimy
 	merge_type = /obj/item/stack/tile/iron/grimy
+*/
 
 /obj/item/stack/tile/iron/sepia
 	name = "sepia floor tile"

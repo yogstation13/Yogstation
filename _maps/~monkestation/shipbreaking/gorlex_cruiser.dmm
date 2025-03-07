@@ -38,11 +38,11 @@
 	atmos_chambers = list("gorlex_ship_burner" = "Burn Chamber");
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "bT" = (
 /obj/machinery/vending/boozeomat/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "bU" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
@@ -201,7 +201,7 @@
 "gm" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "gn" = (
 /obj/effect/turf_decal/siding/wood{
@@ -380,7 +380,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "mh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -499,7 +499,7 @@
 /area/template_noop)
 "pC" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "pF" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -649,7 +649,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "un" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible,
@@ -703,7 +703,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/extinguisher_cabinet/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "vq" = (
 /obj/structure/fluff/oldturret{
@@ -733,7 +733,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "wv" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -812,7 +812,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "ye" = (
 /obj/structure/fluff/metalpole{
@@ -1057,7 +1057,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "EM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible,
@@ -1355,7 +1355,7 @@
 	},
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "Nf" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -1426,7 +1426,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "Qc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -1594,7 +1594,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/firealarm/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "XX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1604,7 +1604,7 @@
 	dir = 4;
 	invisibility = 101
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "Yq" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1612,7 +1612,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/airalarm/directional/east,
 /obj/effect/mapping_helpers/airalarm/syndicate_access,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "YP" = (
 /obj/structure/table,
@@ -1625,7 +1625,7 @@
 	pixel_x = 11;
 	pixel_y = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/template_noop)
 "Za" = (
 /obj/structure/closet/crate,

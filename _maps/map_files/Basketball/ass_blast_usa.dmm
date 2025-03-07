@@ -58,7 +58,7 @@
 "eU" = (
 /obj/structure/showcase/machinery/tv/broken,
 /obj/structure/table/wood,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/basketball)
 "fi" = (
 /obj/item/kirbyplants/random,
@@ -206,7 +206,7 @@
 /turf/open/floor/plating,
 /area/centcom/basketball)
 "tX" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/basketball)
 "vb" = (
 /obj/effect/turf_decal/tile/bar{
@@ -324,7 +324,7 @@
 /area/centcom/basketball)
 "CV" = (
 /obj/structure/chair/comfy/brown,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/basketball)
 "Dt" = (
 /turf/open/floor/iron/kitchen_coldroom/freezerfloor,
@@ -431,7 +431,7 @@
 "Ma" = (
 /obj/structure/table/wood,
 /obj/item/clothing/head/costume/foilhat,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/basketball)
 "MW" = (
 /obj/effect/turf_decal/tile/dark_blue/full,

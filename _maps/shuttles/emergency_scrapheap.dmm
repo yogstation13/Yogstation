@@ -258,13 +258,13 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aX" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "aY" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "aZ" = (
 /obj/machinery/door/airlock/titanium{

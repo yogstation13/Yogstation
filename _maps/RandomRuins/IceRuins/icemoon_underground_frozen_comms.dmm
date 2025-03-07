@@ -70,7 +70,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed,
 /obj/item/bedsheet/dorms,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	initial_gas_mix = "ICEMOON_ATMOS"
 	},
 /area/ruin/powered/shuttle)
@@ -262,7 +262,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/dresser,
 /obj/machinery/light/small/broken/directional/west,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	initial_gas_mix = "ICEMOON_ATMOS"
 	},
 /area/ruin/powered/shuttle)
@@ -327,13 +327,13 @@
 	},
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/door/airlock/shuttle,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	initial_gas_mix = "ICEMOON_ATMOS"
 	},
 /area/ruin/powered/shuttle)
 "NO" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	initial_gas_mix = "ICEMOON_ATMOS"
 	},
 /area/ruin/powered/shuttle)

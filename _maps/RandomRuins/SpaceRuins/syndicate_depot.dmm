@@ -481,7 +481,7 @@
 	pixel_y = 9
 	},
 /obj/effect/spawner/random/food_or_drink/donkpockets,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "fF" = (
 /obj/effect/turf_decal/delivery/white,
@@ -1184,7 +1184,7 @@
 "mY" = (
 /obj/machinery/firealarm/directional/west,
 /obj/structure/closet/crate/bin,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "nk" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/layer2{
@@ -1425,7 +1425,7 @@
 "pT" = (
 /obj/machinery/vending/boozeomat/syndicate_access,
 /obj/machinery/light/small/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "qi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -1881,7 +1881,7 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/mapping_helpers/apc/cell_5k,
 /obj/effect/mapping_helpers/apc/cut_AI_wire,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "uq" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/dark/hidden,
@@ -2912,7 +2912,7 @@
 "Gv" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "He" = (
 /obj/machinery/firealarm/directional/north,
@@ -2994,7 +2994,7 @@
 	pixel_x = 3;
 	pixel_y = 6
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "IB" = (
 /turf/open/floor/engine/n2,
@@ -3556,7 +3556,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "OW" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -3712,7 +3712,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "Qx" = (
 /obj/structure/cable,
@@ -3790,7 +3790,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "Rm" = (
 /turf/open/floor/iron/dark,
@@ -3829,7 +3829,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/duct,
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "RH" = (
 /obj/effect/spawner/structure/window/reinforced/plasma/plastitanium,
@@ -3921,7 +3921,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/small/directional/north,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "SO" = (
 /obj/effect/turf_decal/siding/wood{
@@ -4611,7 +4611,7 @@
 /obj/structure/reagent_dispensers/water_cooler{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/space/has_grav/syndicate_depot/crew_quarters)
 "ZW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{

@@ -56,7 +56,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /obj/machinery/computer/slot_machine,
 /obj/effect/decal/cleanable/wrapping,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "er" = (
 /obj/machinery/washing_machine,
@@ -185,7 +185,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "jZ" = (
 /obj/structure/rack,
@@ -235,7 +235,7 @@
 	specialfunctions = 4
 	},
 /obj/effect/decal/cleanable/generic,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "nX" = (
 /obj/machinery/computer/monitor{
@@ -325,7 +325,7 @@
 "qp" = (
 /obj/effect/decal/cleanable/vomit/old,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "rs" = (
 /obj/effect/decal/cleanable/dirt,
@@ -411,7 +411,7 @@
 /area/shuttle/hunter)
 "wm" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "wC" = (
 /obj/effect/decal/cleanable/dirt,
@@ -433,7 +433,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/directional/east,
 /obj/structure/sign/warning/vacuum/external/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "xL" = (
 /obj/item/stack/sheet/mineral/plasma/thirty,
@@ -461,11 +461,11 @@
 /area/shuttle/hunter)
 "zb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "zd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "Ah" = (
 /obj/machinery/suit_storage_unit/pirate,
@@ -488,7 +488,7 @@
 "AM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "AP" = (
 /obj/structure/chair/comfy/carp,
@@ -503,7 +503,7 @@
 /obj/structure/rack,
 /obj/structure/bedsheetbin,
 /obj/machinery/light/dim/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "BX" = (
 /obj/structure/curtain/bounty,
@@ -615,7 +615,7 @@
 /obj/machinery/door/airlock/grunge{
 	name = "Office"
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "GM" = (
 /obj/structure/chair/office/light,
@@ -868,7 +868,7 @@
 	name = "Gear Storage"
 	},
 /obj/effect/mapping_helpers/airlock/cutaiwire,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "Tu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -949,7 +949,7 @@
 /obj/item/storage/pill_bottle,
 /obj/structure/closet/crate/bin,
 /obj/effect/decal/cleanable/plastic,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "Vj" = (
 /obj/machinery/suit_storage_unit/pirate,
@@ -997,7 +997,7 @@
 "Wd" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/hunter)
 "Wf" = (
 /obj/docking_port/stationary{

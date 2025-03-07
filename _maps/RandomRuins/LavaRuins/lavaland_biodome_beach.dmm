@@ -344,7 +344,7 @@
 "kb" = (
 /obj/machinery/light/directional/north,
 /obj/structure/sign/poster/contraband/ambrosia_vulgaris/directional/north,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/powered/beach)
 "kd" = (
 /obj/structure/table/wood,
@@ -579,7 +579,7 @@
 /area/ruin/powered/beach)
 "sV" = (
 /obj/machinery/growing/tray,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/powered/beach)
 "ta" = (
 /obj/structure/curtain,
@@ -598,7 +598,7 @@
 /obj/item/food/grown/ambrosia/vulgaris,
 /obj/item/food/grown/ambrosia/vulgaris,
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/powered/beach)
 "tn" = (
 /obj/structure/chair/sofa/right/brown,
@@ -779,7 +779,7 @@
 /obj/item/shovel/spade,
 /obj/item/reagent_containers/cup/bucket,
 /obj/item/cultivator,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/powered/beach)
 "Bg" = (
 /obj/structure/chair/stool/bar/directional/south,
@@ -849,14 +849,14 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/powered/beach)
 "Dg" = (
 /obj/machinery/growing/tray,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/powered/beach)
 "Ds" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
@@ -1172,7 +1172,7 @@
 /area/ruin/powered/beach)
 "Pr" = (
 /obj/machinery/vending/hydronutrients,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/ruin/powered/beach)
 "PJ" = (
 /obj/structure/chair/stool/directional/south,

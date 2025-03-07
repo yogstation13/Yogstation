@@ -149,13 +149,13 @@
 /area/shuttle/escape)
 "aF" = (
 /obj/structure/musician/piano,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "aG" = (
 /obj/structure/chair/stool/directional/west{
 	can_buckle = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "aH" = (
 /obj/machinery/flasher/directional/west{
@@ -249,7 +249,7 @@
 /area/shuttle/escape)
 "aW" = (
 /obj/structure/chair/wood,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "aX" = (
 /mob/living/basic/drone/snowflake/bardrone,
@@ -265,12 +265,12 @@
 /obj/structure/chair/wood{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "ba" = (
 /obj/structure/table/wood/shuttle_bar,
 /obj/effect/spawner/random/entertainment/gambling,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bc" = (
 /obj/item/kirbyplants{
@@ -278,7 +278,7 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bd" = (
 /obj/structure/table/wood/shuttle_bar{
@@ -404,7 +404,7 @@
 /turf/open/floor/iron,
 /area/shuttle/escape)
 "bH" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bI" = (
 /obj/structure/table/wood/shuttle_bar,
@@ -415,23 +415,23 @@
 "bJ" = (
 /obj/structure/table/wood/shuttle_bar,
 /obj/item/storage/fancy/donut_box,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bK" = (
 /obj/structure/chair/wood{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bL" = (
 /obj/structure/table/wood/shuttle_bar,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bM" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bN" = (
 /obj/structure/table,
@@ -444,7 +444,7 @@
 "bO" = (
 /obj/structure/table/wood/shuttle_bar,
 /obj/item/folder/red,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bP" = (
 /obj/structure/table/wood/shuttle_bar,
@@ -452,13 +452,13 @@
 /obj/item/toy/cards/deck/cas/black{
 	pixel_y = 6
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bQ" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bR" = (
 /obj/structure/extinguisher_cabinet/directional/south,
@@ -502,7 +502,7 @@
 /area/shuttle/escape)
 "bW" = (
 /obj/machinery/light/small/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/shuttle/escape)
 "bX" = (
 /obj/machinery/light/directional/west,

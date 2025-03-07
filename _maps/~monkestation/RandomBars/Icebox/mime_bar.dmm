@@ -373,7 +373,7 @@
 	alpha = 0
 	},
 /obj/structure/bookcase/random/fiction,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "ju" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/east{
@@ -482,7 +482,7 @@
 /obj/structure/chair/sofa/middle/brown{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "mN" = (
 /obj/structure/reagent_dispensers/beerkeg,
@@ -633,7 +633,7 @@
 /obj/structure/chair/sofa/right/brown{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "qG" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/south{
@@ -1906,7 +1906,7 @@
 /obj/structure/chair/sofa/left/brown{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "Vz" = (
 /obj/structure/window/reinforced/plasma/spawner/directional/south{

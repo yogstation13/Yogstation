@@ -553,7 +553,7 @@
 /area/station/engineering/transit_tube)
 "alq" = (
 /obj/effect/mapping_helpers/burnt_floor,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/maintenance/aft/greater)
 "alv" = (
 /obj/machinery/holopad,
@@ -861,7 +861,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "apB" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle{
@@ -1106,7 +1106,7 @@
 /area/station/engineering/atmos/project)
 "asN" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/maintenance/aft/greater)
 "asO" = (
 /obj/structure/chair/stool/directional/north,
@@ -1272,7 +1272,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "auK" = (
 /obj/machinery/portable_atmospherics/scrubber,
@@ -1467,7 +1467,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "axY" = (
 /obj/machinery/duct,
@@ -1587,7 +1587,7 @@
 	pixel_y = 8
 	},
 /obj/machinery/newscaster/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/bar/atrium)
 "aAi" = (
 /obj/structure/window/reinforced/spawner/directional/north,
@@ -2930,7 +2930,7 @@
 /obj/structure/chair/comfy/beige{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "aWY" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -4298,7 +4298,7 @@
 "bro" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "brt" = (
 /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
@@ -5836,7 +5836,7 @@
 	},
 /obj/effect/landmark/start/hangover,
 /obj/machinery/computer/security/telescreen/entertainment/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/bar/atrium)
 "bOy" = (
 /obj/structure/window/reinforced/spawner/directional/north{
@@ -7197,7 +7197,7 @@
 /obj/item/stack/ducts/fifty,
 /obj/item/storage/box/swab,
 /obj/effect/spawner/random/contraband/permabrig_gear,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "cjG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -9762,7 +9762,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "cVq" = (
 /obj/structure/rack,
@@ -9892,7 +9892,7 @@
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
 /obj/machinery/newscaster/directional/north,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "cYi" = (
 /obj/effect/turf_decal/trimline/dark_red/line,
@@ -10812,7 +10812,7 @@
 /obj/item/storage/photo_album/chapel,
 /obj/structure/noticeboard/directional/west,
 /obj/machinery/light/small/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "dlK" = (
 /obj/machinery/computer/security{
@@ -12122,7 +12122,7 @@
 /obj/structure/chair/comfy/beige{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "dHJ" = (
 /obj/structure/cable/multilayer/multiz,
@@ -12447,7 +12447,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "dNC" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13746,7 +13746,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "ejO" = (
 /obj/structure/table/reinforced,
@@ -13766,7 +13766,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/assistant,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "ejX" = (
 /turf/open/floor/plating,
@@ -15712,7 +15712,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "eRJ" = (
 /obj/structure/trash_pile,
@@ -16810,7 +16810,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "fjQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
@@ -17475,7 +17475,7 @@
 /obj/structure/rack,
 /obj/item/storage/box/petridish,
 /obj/machinery/firealarm/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "fvO" = (
 /obj/structure/closet/secure_closet/brig,
@@ -17883,7 +17883,7 @@
 "fCi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/maintenance/aft/greater)
 "fCw" = (
 /obj/machinery/door/morgue{
@@ -18624,7 +18624,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable/layer3,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "fQz" = (
 /obj/effect/landmark/start/hangover,
@@ -20073,7 +20073,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "gpT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -20691,7 +20691,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "gAM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -22356,7 +22356,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/holopad,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "hbT" = (
 /obj/machinery/vending/hydronutrients,
@@ -23689,7 +23689,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "hzL" = (
 /obj/item/radio/intercom/directional/west,
@@ -26169,7 +26169,7 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/airlock/access/all/security/detective,
 /obj/effect/landmark/navigate_destination/det,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "iry" = (
 /obj/structure/grille,
@@ -28443,7 +28443,7 @@
 /area/station/security/prison/rec)
 "jbh" = (
 /obj/structure/chair/comfy/beige,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "jbt" = (
 /obj/machinery/light/directional/north,
@@ -28796,7 +28796,7 @@
 	pixel_y = 2
 	},
 /obj/structure/table,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "jhQ" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -29050,7 +29050,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "jnn" = (
 /obj/machinery/light/small/directional/east,
@@ -29537,7 +29537,7 @@
 "jvs" = (
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "jvw" = (
 /obj/effect/mapping_helpers/broken_floor,
@@ -29902,7 +29902,7 @@
 	},
 /obj/machinery/disposal/bin,
 /obj/machinery/computer/security/telescreen/entertainment/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "jCY" = (
 /obj/structure/extinguisher_cabinet/directional/east,
@@ -30163,7 +30163,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "jHQ" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos/co2{
@@ -30203,7 +30203,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "jIA" = (
 /obj/structure/window/reinforced/spawner/directional/north{
@@ -33795,7 +33795,7 @@
 /turf/open/floor/iron/dark,
 /area/station/maintenance/port/greater)
 "kMM" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "kMN" = (
 /obj/machinery/space_heater,
@@ -34896,7 +34896,7 @@
 	network = list("ss13","prison")
 	},
 /obj/machinery/airalarm/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "ldH" = (
 /turf/closed/wall,
@@ -41147,7 +41147,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "nfk" = (
 /obj/structure/cable,
@@ -43030,7 +43030,7 @@
 /obj/effect/spawner/random/engineering/tracking_beacon,
 /obj/structure/cable/layer3,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "nFm" = (
 /obj/machinery/camera/directional/south{
@@ -43654,7 +43654,7 @@
 	},
 /obj/machinery/firealarm/directional/west,
 /obj/machinery/light/small/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/bar/atrium)
 "nNY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -45526,7 +45526,7 @@
 	},
 /area/station/medical/medbay/central)
 "orK" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "orP" = (
 /obj/effect/landmark/blobstart,
@@ -45823,7 +45823,7 @@
 "oxa" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "oxe" = (
 /obj/machinery/computer/cargo/request,
@@ -46749,7 +46749,7 @@
 /area/station/service/chapel)
 "oLI" = (
 /obj/structure/table/wood,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "oLJ" = (
 /obj/machinery/door/airlock/hatch{
@@ -46803,7 +46803,7 @@
 /area/station/cargo/storage)
 "oMs" = (
 /obj/effect/spawner/random/trash/mess,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/maintenance/aft/greater)
 "oMN" = (
 /obj/machinery/atmospherics/pipe/multiz/supply/visible/layer4{
@@ -47367,7 +47367,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "oVz" = (
 /obj/machinery/porta_turret/ai{
@@ -49758,7 +49758,7 @@
 	dir = 4
 	},
 /obj/machinery/status_display/evac/directional/north,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "pIk" = (
 /obj/machinery/light/directional/west,
@@ -51977,7 +51977,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "quK" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -55213,7 +55213,7 @@
 "ryl" = (
 /obj/machinery/vending/wardrobe/det_wardrobe,
 /obj/machinery/light/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "ryu" = (
 /turf/open/floor/iron/dark/textured,
@@ -55995,7 +55995,7 @@
 "rLb" = (
 /obj/structure/chair/comfy/beige,
 /obj/effect/landmark/start/assistant,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "rLo" = (
 /turf/open/floor/plating,
@@ -56128,7 +56128,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/secondary/entry)
 "rOe" = (
 /obj/structure/closet/toolcloset,
@@ -56667,7 +56667,7 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/sign/poster/random/directional/west,
 /obj/machinery/light/small/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/bar/atrium)
 "rXe" = (
 /obj/machinery/atmospherics/pipe/smart/simple/scrubbers/visible{
@@ -56987,7 +56987,7 @@
 	},
 /obj/machinery/computer/records/security,
 /obj/item/radio/intercom/directional/north,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "scY" = (
 /obj/machinery/light/directional/east,
@@ -59173,7 +59173,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "sMs" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -59530,7 +59530,7 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/table,
 /obj/structure/microscope,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "sUi" = (
 /obj/structure/disposalpipe/segment{
@@ -59939,7 +59939,7 @@
 /turf/open/floor/grass,
 /area/station/service/hydroponics)
 "tbQ" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/maintenance/aft/greater)
 "tbX" = (
 /obj/effect/spawner/structure/window/hollow/reinforced/middle{
@@ -66167,7 +66167,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/prison/work)
 "veh" = (
 /obj/machinery/vending/wardrobe/cargo_wardrobe,
@@ -66825,7 +66825,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "vpc" = (
 /obj/structure/closet,
@@ -66957,7 +66957,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "vrG" = (
 /turf/open/floor/iron,
@@ -69346,7 +69346,7 @@
 	},
 /obj/item/storage/crayons,
 /obj/machinery/newscaster/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "wgG" = (
 /obj/machinery/atmospherics/pipe/smart/simple/orange/visible,
@@ -70529,7 +70529,7 @@
 /obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable,
 /obj/machinery/computer/records/medical,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "wzg" = (
 /obj/structure/rack,
@@ -70571,7 +70571,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "wAx" = (
 /obj/structure/sign/warning/secure_area/directional/north{
@@ -71587,7 +71587,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/security/detectives_office)
 "wPg" = (
 /obj/structure/cable,
@@ -75836,7 +75836,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/cable/layer3,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/ai_monitored/turret_protected/aisat_interior)
 "yhA" = (
 /obj/machinery/station_map/engineering/directional/east,

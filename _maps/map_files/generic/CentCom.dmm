@@ -504,7 +504,7 @@
 /obj/machinery/door/window{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "abo" = (
 /obj/effect/turf_decal/siding/green{
@@ -1789,7 +1789,7 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/briefing)
 "aeF" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/briefing)
 "aeG" = (
 /obj/machinery/light/floor/has_bulb,
@@ -1888,7 +1888,7 @@
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/security_space_law,
 /obj/item/taperecorder,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/briefing)
 "aeW" = (
 /obj/structure/closet/secure_closet,
@@ -2192,7 +2192,7 @@
 /area/space/nearstation)
 "afU" = (
 /obj/machinery/modular_computer/preset/id/centcom,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "afV" = (
 /turf/open/floor/iron/dark/herringbone,
@@ -2250,7 +2250,7 @@
 "agg" = (
 /obj/machinery/light/small/maintenance/directional/east,
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "agh" = (
 /obj/structure/sign/poster/contraband/revolver/directional/south,
@@ -2763,7 +2763,7 @@
 /area/centcom/central_command_areas/adminroom)
 "ahx" = (
 /obj/machinery/photocopier,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/briefing)
 "ahy" = (
 /obj/structure/table/wood,
@@ -2823,7 +2823,7 @@
 /area/centcom/central_command_areas/borbop)
 "ahF" = (
 /obj/structure/sign/poster/official/bless_this_spess/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "ahG" = (
 /obj/structure/chair/sofa/bench/right{
@@ -3264,7 +3264,7 @@
 "aiT" = (
 /obj/machinery/door/window,
 /obj/effect/mapping_helpers/airlock/access/any/admin/captain,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aiU" = (
 /obj/structure/table/wood/fancy/royalblue,
@@ -3348,7 +3348,7 @@
 /obj/effect/spawner/random/trash/garbage{
 	pixel_x = -6
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aje" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
@@ -4208,7 +4208,7 @@
 /obj/effect/spawner/random/trash/bin{
 	name = "treat storage"
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "alo" = (
 /obj/effect/turf_decal/tile/brown/half/contrasted,
@@ -5826,7 +5826,7 @@
 /area/centcom/central_command_areas/adminroom)
 "apM" = (
 /obj/structure/chair/plastic,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "apN" = (
 /obj/effect/turf_decal/siding/wood{
@@ -6971,7 +6971,7 @@
 /obj/structure/chair/plastic{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "asU" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -7555,7 +7555,7 @@
 "auu" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/records/medical/laptop,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "auv" = (
 /obj/structure/chair/office/tactical,
@@ -9249,7 +9249,7 @@
 	pixel_y = 5
 	},
 /obj/structure/window/reinforced/tinted/spawner/directional/north,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "ayP" = (
 /obj/machinery/newscaster{
@@ -11187,7 +11187,7 @@
 /obj/structure/closet/crate/bin{
 	name = "treat storage"
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aEe" = (
 /obj/structure/chair/wood/wings{
@@ -13308,7 +13308,7 @@
 	},
 /obj/structure/window/reinforced/tinted/spawner/directional/west,
 /obj/structure/window/reinforced/tinted/spawner/directional/north,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aJZ" = (
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
@@ -13368,7 +13368,7 @@
 	},
 /obj/item/stamp,
 /obj/structure/table/reinforced,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/briefing)
 "aKf" = (
 /obj/effect/turf_decal/siding/red{
@@ -14007,7 +14007,7 @@
 /area/centcom/central_command_areas/botany)
 "aLL" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aLM" = (
 /obj/docking_port/stationary{
@@ -14489,7 +14489,7 @@
 	dir = 1;
 	name = "gamer chair"
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aNd" = (
 /obj/effect/turf_decal/siding/green,
@@ -14607,7 +14607,7 @@
 /area/centcom/central_command_areas/adminroom)
 "aNs" = (
 /obj/structure/dresser,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aNt" = (
 /obj/effect/turf_decal/siding/wood,
@@ -15539,7 +15539,7 @@
 	pixel_y = 2
 	},
 /obj/item/lighter,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/briefing)
 "aPY" = (
 /obj/effect/turf_decal/siding/wood,
@@ -15898,7 +15898,7 @@
 /turf/open/misc/asteroid/snow/icemoon,
 /area/centcom/syndicate_mothership/control)
 "aQV" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aQW" = (
 /obj/machinery/light/directional/east,
@@ -16964,7 +16964,7 @@
 	color = "#596479";
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/briefing)
 "aTF" = (
 /turf/open/floor/wood/large,
@@ -17703,7 +17703,7 @@
 	dir = 1
 	},
 /obj/effect/mapping_helpers/airlock/access/any/admin/captain,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aVE" = (
 /obj/structure/table/reinforced,
@@ -17739,7 +17739,7 @@
 /obj/machinery/modular_computer/preset/id/centcom{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/briefing)
 "aVM" = (
 /obj/structure/closet/secure_closet/ert_sec,
@@ -18564,7 +18564,7 @@
 /obj/structure/table/wood,
 /obj/machinery/light/small/directional/west,
 /obj/item/toy/plush/lizard_plushie,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aXS" = (
 /obj/structure/flora/tree/dead/style_random,
@@ -18725,7 +18725,7 @@
 "aYp" = (
 /obj/machinery/light/small/maintenance/directional/east,
 /obj/structure/filingcabinet/employment,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "aYq" = (
 /obj/machinery/door/airlock{
@@ -23928,7 +23928,7 @@
 	pixel_y = 9
 	},
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "kjI" = (
 /obj/machinery/light/directional/east{
@@ -24867,7 +24867,7 @@
 "mFZ" = (
 /obj/item/chair/wood,
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "mIn" = (
 /obj/machinery/light/floor/has_bulb,
@@ -26109,7 +26109,7 @@
 /obj/item/trash/energybar,
 /obj/structure/window/reinforced/tinted/spawner/directional/south,
 /obj/structure/window/reinforced/tinted/spawner/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "pCC" = (
 /obj/structure/table/wood,
@@ -29459,7 +29459,7 @@
 "wMv" = (
 /obj/structure/table/wood,
 /obj/item/toy/plush/lizard_plushie,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/centcom/central_command_areas/adminroom)
 "wPp" = (
 /obj/structure/railing/wooden_fence{

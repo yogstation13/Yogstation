@@ -35,7 +35,7 @@
 /turf/open/floor/plating,
 /area/virtual_domain/powered)
 "bd" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/virtual_domain/powered)
 "bf" = (
 /mob/living/basic/crab{
@@ -210,7 +210,7 @@
 /area/virtual_domain/powered)
 "jg" = (
 /obj/machinery/vending/hydronutrients,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/virtual_domain/powered)
 "jl" = (
 /obj/structure/flora/rock/pile/jungle/style_random,
@@ -389,7 +389,7 @@
 /obj/item/shovel/spade,
 /obj/item/reagent_containers/cup/bucket,
 /obj/item/cultivator,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/virtual_domain/powered)
 "uU" = (
 /obj/effect/turf_decal/sand,
@@ -643,7 +643,7 @@
 /area/virtual_domain/powered)
 "Cv" = (
 /obj/machinery/growing/tray,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/virtual_domain/powered)
 "CA" = (
 /obj/structure/window/reinforced/spawner/directional/east,
@@ -790,7 +790,7 @@
 "IM" = (
 /obj/machinery/growing/tray,
 /obj/machinery/light/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/virtual_domain/powered)
 "IP" = (
 /obj/machinery/vending/snack,
@@ -863,7 +863,7 @@
 /obj/item/food/grown/ambrosia/vulgaris,
 /obj/item/food/grown/ambrosia/vulgaris,
 /obj/item/food/grown/ambrosia/vulgaris,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/virtual_domain/powered)
 "NX" = (
 /obj/effect/landmark/bitrunning/loot_signal,

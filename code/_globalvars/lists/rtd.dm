@@ -98,7 +98,6 @@ GLOBAL_LIST_INIT(floor_designs, list(
 			list("name" = "Diagonal Kitchen", "type" = /obj/item/stack/tile/iron/kitchen/diagonal, "tile_cost" = 4),
 			list("name" = "Chapel", "type" = /obj/item/stack/tile/iron/chapel, "tile_cost" = 4),
 			list("name" = "Cafeteria", "type" = /obj/item/stack/tile/iron/cafeteria, "tile_cost" = 4),
-			list("name" = "Grimy", "type" = /obj/item/stack/tile/iron/grimy, "tile_cost" = 5),
 			list("name" = "Sepia", "type" = /obj/item/stack/tile/iron/sepia, "tile_cost" = 5),
 			list("name" = "Herringbone", "type" = /obj/item/stack/tile/iron/kitchen/herringbone, "tile_cost" = 5),
 		),

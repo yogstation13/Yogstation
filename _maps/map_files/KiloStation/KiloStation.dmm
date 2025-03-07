@@ -621,7 +621,7 @@
 /obj/structure/cable,
 /obj/item/pen/fountain,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "agj" = (
 /obj/machinery/camera/directional/north{
@@ -1648,7 +1648,7 @@
 /obj/structure/table/wood,
 /obj/machinery/firealarm/directional/north,
 /obj/structure/statue/bronze/marx,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "awT" = (
 /obj/effect/turf_decal/tile/red{
@@ -11740,7 +11740,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "dIq" = (
 /obj/machinery/door/firedoor,
@@ -14521,7 +14521,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "eCX" = (
 /obj/structure/disposalpipe/segment,
@@ -17370,7 +17370,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "fxd" = (
 /obj/effect/decal/cleanable/dirt,
@@ -23620,7 +23620,7 @@
 /turf/open/floor/iron/dark,
 /area/station/service/hydroponics)
 "hsJ" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "hsO" = (
 /obj/structure/cable,
@@ -23882,7 +23882,7 @@
 /obj/structure/transit_tube,
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "hxg" = (
 /obj/effect/turf_decal/siding/blue{
@@ -24218,7 +24218,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "hCO" = (
 /obj/machinery/light/neon_lining{
@@ -27264,7 +27264,7 @@
 /obj/structure/chair/comfy/black,
 /obj/effect/landmark/start/chaplain,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "itL" = (
 /obj/structure/table/glass,
@@ -28591,7 +28591,7 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/bottle/holywater,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "iLj" = (
 /obj/effect/decal/cleanable/dirt,
@@ -30372,7 +30372,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "jkV" = (
 /obj/structure/table/reinforced,
@@ -30829,7 +30829,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "jsV" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -33266,7 +33266,7 @@
 /turf/open/floor/iron/dark,
 /area/station/security/detectives_office)
 "kmt" = (
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "kmu" = (
 /obj/structure/cable,
@@ -33297,7 +33297,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "knh" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/cyan/visible/layer2,
@@ -40612,7 +40612,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "mDM" = (
 /obj/machinery/portable_atmospherics/pump,
@@ -43220,7 +43220,7 @@
 	dir = 8
 	},
 /obj/machinery/digital_clock/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "nvm" = (
 /obj/item/radio/intercom/directional/north,
@@ -43621,7 +43621,7 @@
 /area/station/engineering/gravity_generator)
 "nCA" = (
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "nCI" = (
 /obj/effect/spawner/random/engineering/tracking_beacon,
@@ -47378,7 +47378,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "oRl" = (
 /obj/effect/landmark/event_spawn,
@@ -50464,7 +50464,7 @@
 "pNA" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/machinery/newscaster/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "pNM" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
@@ -53111,7 +53111,7 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/siding/wood,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "qFb" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -61082,7 +61082,7 @@
 	pixel_x = -3;
 	pixel_y = 2
 	},
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "tfn" = (
 /obj/machinery/door/firedoor,
@@ -66225,7 +66225,7 @@
 /area/station/maintenance/port/greater)
 "uOB" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "uOC" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -74317,7 +74317,7 @@
 "xjz" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/chair/sofa/corp/right,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "xjD" = (
 /turf/closed/wall,
@@ -74685,7 +74685,7 @@
 "xoY" = (
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/chair/sofa/corp,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "xpa" = (
 /obj/machinery/door/firedoor,
@@ -76025,7 +76025,7 @@
 /obj/structure/window/reinforced/spawner/directional/east,
 /obj/structure/window/reinforced/spawner/directional/north,
 /obj/structure/chair/sofa/corp/left,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/hallway/primary/fore)
 "xPO" = (
 /obj/machinery/door/airlock/command/glass{
@@ -76980,7 +76980,7 @@
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/siding/wood/corner,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/service/chapel/office)
 "ydv" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{

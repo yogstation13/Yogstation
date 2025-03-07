@@ -178,7 +178,7 @@
 	},
 /obj/machinery/computer/security/telescreen/entertainment/directional/north,
 /obj/machinery/status_display/evac/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "jT" = (
 /obj/effect/turf_decal/siding/wood,
@@ -234,7 +234,7 @@
 	},
 /obj/effect/landmark/start/hangover,
 /obj/machinery/light/directional/south,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "mN" = (
 /obj/structure/reagent_dispensers/beerkeg,
@@ -300,7 +300,7 @@
 	},
 /obj/machinery/computer/security/telescreen/entertainment/directional/south,
 /obj/machinery/airalarm/directional/east,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "qG" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1035,7 +1035,7 @@
 /obj/effect/spawner/random/entertainment/gambling,
 /obj/machinery/newscaster/directional/south,
 /obj/machinery/status_display/evac/directional/west,
-/turf/open/floor/iron/grimy,
+/turf/open/floor/carpet/grimey,
 /area/station/commons/lounge)
 "Vz" = (
 /obj/structure/chair/sofa/right/brown{

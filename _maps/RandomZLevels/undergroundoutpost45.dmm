@@ -130,7 +130,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/awaystart,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -264,7 +264,7 @@
 /area/awaymission/undergroundoutpost45/central)
 "aT" = (
 /obj/effect/landmark/awaystart,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -282,14 +282,14 @@
 "aV" = (
 /obj/structure/table/wood,
 /obj/item/newspaper,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
 "aW" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/soda_cans/cola,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -298,7 +298,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -325,14 +325,14 @@
 /area/awaymission/undergroundoutpost45/central)
 "ba" = (
 /obj/structure/table/wood,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
 "bb" = (
 /obj/structure/table/wood,
 /obj/item/book/manual/ripley_build_and_repair,
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -340,7 +340,7 @@
 /obj/structure/chair/comfy/beige{
 	dir = 8
 	},
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -365,7 +365,7 @@
 	},
 /area/awaymission/undergroundoutpost45/central)
 "bg" = (
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -411,7 +411,7 @@
 /obj/structure/chair/comfy/beige{
 	dir = 1
 	},
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -421,7 +421,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
@@ -434,7 +434,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/turf/open/floor/iron/grimy{
+/turf/open/floor/carpet/grimey{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/undergroundoutpost45/central)
