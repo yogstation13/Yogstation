@@ -360,7 +360,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	SSticker.force_ending = FORCE_END_ROUND
 
 /proc/bring_doomsday(mob/living/victim, atom/source)
-	if(issilicon(victim))
+	if(issilicon(victim) || !(victim.mob_biotypes & MOB_ORGANIC)) // monkestation edit: ignore non-organic mobs, as the description suggests it would
 		return FALSE
 
 	to_chat(victim, span_userdanger("The blast wave from [source] tears you atom from atom!"))
