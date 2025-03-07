@@ -1,6 +1,0 @@
-author: "Sorenon"
-delete-after: True
-changes:
-  - balance: "Adjusted the amount of quirk points needed / given by the Foreigner and Bilingual quirk"
-  - rscadd: "Added the Outsider quirk which remove's the player's species' language"
-  - rscadd: "Added the Listener quirk which removes the player's ability to speak common"

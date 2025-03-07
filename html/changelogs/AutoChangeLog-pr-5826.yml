@@ -1,7 +1,0 @@
-author: "MichiRecRoom, Jacquerel, mc-oofert, Chubbygummibear, Holoo-1"
-delete-after: True
-changes:
-  - bugfix: "(mc-oofert) Certain weather types that arent supposed to be glowing no longer glow"
-  - bugfix: "(Chubbygummibear) fixed multi-z weather overlays stacking and not hiding overlays above you"
-  - bugfix: "(Holoo-1) fixed shadows on 516"
-  - bugfix: "(Holoo-1) fixed camera consoles, spyglasses etc. client crush on 516"
