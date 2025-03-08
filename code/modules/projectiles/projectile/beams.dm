@@ -123,7 +123,7 @@
 
 /obj/projectile/beam/disabler/weak
 	stamina = 15
-	debilitate_mult = 1.5
+	debilitate_mult = 0.5
 
 /obj/projectile/beam/disabler/smoothbore
 	name = "unfocused disabler beam"
