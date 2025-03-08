@@ -118,9 +118,9 @@
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	light_color = COLOR_SOFT_RED
-	mapped_start_area = /area/ruin/space/has_grav/syndicate_depot/shipbreaking
+	mapped_start_area = /area/shipbreak/syndicate_depot
 
-/area/ruin/space/has_grav/syndicate_depot/shipbreaking
+/area/shipbreak/syndicate_depot
 	name = "Syndicate Depot Shipbreaking Zone"
 
 /obj/item/storage/toolbox/syndicate/shipbreaking
@@ -135,7 +135,7 @@
 	new /obj/item/multitool(src)
 	new /obj/item/extinguisher/mini(src)
 
-/obj/item/weldingtool/electric/hacked_raynewelder //id make it a subtype of the rayne welder but then id have to override shit
+/obj/item/weldingtool/electric/hacked_raynewelder //depot exclusive gamer loot now, not even necessary
 	name = "modified laser welding tool"
 	desc = "A Rayne corp laser cutter and welder. This one seems to have been refitted by the Syndicate for general salvage use, though the removal of its safety measures has slightly reduced its efficiency."
 	icon = 'monkestation/icons/obj/rayne_corp/rayne.dmi'
@@ -151,31 +151,6 @@
 	// We don't use fuel
 	change_icons = FALSE
 	max_fuel = 20
-
-/obj/item/melee/sledgehammer/syndicate_depot //fuck you
-
-/obj/item/melee/sledgehammer/syndicate_depot/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!HAS_TRAIT(src, TRAIT_WIELDED) && user)
-		/// This will already do low damage, so it doesn't need to be intercepted earlier
-		to_chat(user, span_danger("\The [src] is too heavy to attack effectively without being wielded!"))
-		return
-	if(istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/humantarget = target
-		if(!HAS_TRAIT(target, TRAIT_SPLEENLESS_METABOLISM) && humantarget.get_organ_slot(ORGAN_SLOT_SPLEEN) && !isnull(humantarget.dna.species.mutantspleen))
-			var/obj/item/organ/internal/spleen/target_spleen = humantarget.get_organ_slot(ORGAN_SLOT_SPLEEN)
-			target_spleen.apply_organ_damage(5)
-	if(!proximity_flag)
-		return
-
-	if(target.uses_integrity)
-		if(!QDELETED(target))
-			if(istype(get_area(target), /area/ruin/space/has_grav/syndicate_depot/shipbreaking))
-				if(isstructure(target))
-					target.take_damage(force * demolition_mod, BRUTE, MELEE, FALSE, null, 20) // Breaks "structures pretty good"
-				if(ismachinery(target))
-					target.take_damage(force * demolition_mod, BRUTE, MELEE, FALSE, null, 20) // A luddites friend, Sledghammer good at break machine
-			playsound(src, 'sound/effects/bang.ogg', 40, 1)
 
 //UNIQUE CARGO THEFT ITEM: SYNDICATE BLACKBOX
 //syndicate blackboxes contain data that Nanotrasen REALLY wants: can be sold on the cargo shuttle for a hefty sum
