@@ -247,7 +247,7 @@
 /obj/item/storage/lockbox/order/Initialize(mapload, datum/bank_account/_buyer_account)
 	. = ..()
 	buyer_account = _buyer_account
-	ADD_TRAIT(src, TRAIT_NO_MISSING_ITEM_ERROR, TRAIT_GENERIC)
+	add_traits(list(TRAIT_NO_MISSING_ITEM_ERROR, TRAIT_BANNED_FROM_CARGO_SHUTTLE), TRAIT_GENERIC) // monkestation edit: prevent locked goody cases from being sent back
 
 /obj/item/storage/lockbox/order/attackby(obj/item/W, mob/user, params)
 	var/obj/item/card/id/id_card = W.GetID()
@@ -261,6 +261,7 @@
 	if(privacy_lock)
 		atom_storage.locked = STORAGE_NOT_LOCKED
 		icon_state = icon_locked
+		REMOVE_TRAIT(src, TRAIT_BANNED_FROM_CARGO_SHUTTLE, TRAIT_GENERIC) // monkestation edit: prevent locked goody cases from being sent back
 	else
 		atom_storage.locked = STORAGE_FULLY_LOCKED
 		icon_state = icon_closed
