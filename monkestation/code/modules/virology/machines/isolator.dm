@@ -94,7 +94,7 @@
 						dat |= "<li>[G.name]: <A href='byond://?src=\ref[src];isolate=[V.uniqueID]'>Isolate pathogen #[V.uniqueID]</a></li>"
 			if(!passes)
 				dat += "<li><em>No pathogen</em></li>"
-	user << browse("<TITLE>Pathogenic Isolator</TITLE>Isolator menu:<BR><BR>[dat]</ul>", "window=isolator;size=575x400")
+	user << browse(HTML_SKELETON_TITLE("Pathogenic Isolator", dat), "window=isolator;size=575x400")
 	onclose(user, "isolator")
 	return
 
