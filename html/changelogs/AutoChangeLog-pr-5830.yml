@@ -1,0 +1,5 @@
+author: "MichiRecRoom"
+delete-after: True
+changes:
+  - refactor: "The code behind many HUD systems has been refactored slightly. Due to the massive amount of HUD types we have, I only tested monkestation-specific HUDs - so please let me know if you see any broken HUDs!"
+  - refactor: "(JohnFulpWillard) Huds now have their hud owner set in Initialize"
