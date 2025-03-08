@@ -248,11 +248,23 @@
   - bugfix: Fixed some performance issues related to character customization.
   - bugfix: Changing the IPC chassis in preferences now properly updates the preview.
   - qol: Unopened goody cases can no longer be sent back on the cargo shuttle.
+  - code_imp: Spawning the box of materials will no longer try to do ~400 stack merges.
+  Absolucy, Kashargul:
+  - bugfix: Fixed some UIs broken on BYOND 516.
   Absolucy, imedial:
   - bugfix: Fixed nested radios with encryption keys giving free comms.
+  Addust:
+  - bugfix: Depot shipbreaking should work more like normal shipbreaking now
   KnigTheThrasher, McRamon, Alecksohs:
   - rscadd: New smes sprite
   - rscdel: Removed old shitty grimy floor and replaced it with a sick carpet
+  MichiRecRoom:
+  - bugfix: (Ghommie) Taking items from your inventory while flying over lava or a
+      chasm will NOT set them on fire or drop them into chasms ANYMORE
+  - refactor: The code behind many HUD systems has been refactored slightly. Due to
+      the massive amount of HUD types we have, I only tested monkestation-specific
+      HUDs - so please let me know if you see any broken HUDs!
+  - refactor: (JohnFulpWillard) Huds now have their hud owner set in Initialize
   Shoddd:
   - bugfix: fixes some heliostation issues
   - rscdel: mentor cloak no longer cares if you are a mentor

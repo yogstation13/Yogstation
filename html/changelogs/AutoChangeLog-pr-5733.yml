@@ -1,4 +1,0 @@
-author: "Addust"
-delete-after: True
-changes:
-  - bugfix: "Depot shipbreaking should work more like normal shipbreaking now"
