@@ -82,6 +82,10 @@
 		/datum/antagonist/changeling,
 		/datum/antagonist/cult,
 	)
+	/// Traits that don't get removed by Masquerade
+	var/static/list/always_traits = list(
+		TRAIT_NO_MINDSWAP, // mindswapping bloodsuckers is buggy af and I'm too lazy to properly fix it. ~Absolucy
+	)
 	///Default Bloodsucker traits
 	var/static/list/bloodsucker_traits = list(
 		TRAIT_NOBREATH,
@@ -282,8 +286,8 @@
 		new_right_arm.unarmed_damage_high = old_right_arm_unarmed_damage_high
 
 	//Give Bloodsucker Traits
-	old_body?.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
-	new_body.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
+	old_body?.remove_traits(bloodsucker_traits + always_traits, BLOODSUCKER_TRAIT)
+	new_body.add_traits(bloodsucker_traits + always_traits, BLOODSUCKER_TRAIT)
 
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
@@ -437,7 +441,7 @@
 		user_right_arm.unarmed_damage_low += 1 //lowest possible punch damage - 0
 		user_right_arm.unarmed_damage_high += 1 //highest possible punch damage - 9
 	//Give Bloodsucker Traits
-	owner.current.add_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
+	owner.current.add_traits(bloodsucker_traits + always_traits, BLOODSUCKER_TRAIT)
 	//Clear Addictions
 	for(var/addiction_type in subtypesof(/datum/addiction))
 		owner.current.mind.remove_addiction_points(addiction_type, MAX_ADDICTION_POINTS)
@@ -474,7 +478,7 @@
 		var/datum/species/user_species = user.dna.species
 		user_species.inherent_traits -= TRAIT_DRINKS_BLOOD
 	// Remove all bloodsucker traits
-	owner.current.remove_traits(bloodsucker_traits, BLOODSUCKER_TRAIT)
+	owner.current.remove_traits(bloodsucker_traits + always_traits, BLOODSUCKER_TRAIT)
 	// Update Health
 	owner.current.setMaxHealth(initial(owner.current.maxHealth))
 	// Language
