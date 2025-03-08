@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - bugfix: "NPC cats will no longer have kittens with player-controlled cats."
