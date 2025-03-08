@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - rscdel: "mentor cloak no longer cares if you are a mentor"
