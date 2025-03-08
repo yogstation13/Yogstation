@@ -1,0 +1,4 @@
+author: "Shoddd"
+delete-after: True
+changes:
+  - balance: "disabler smgs now have a 0.5 debili mod instead of a 1.5"
