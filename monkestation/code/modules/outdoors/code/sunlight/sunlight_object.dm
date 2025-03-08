@@ -254,7 +254,7 @@ Sunlight System
 
 /turf/proc/apply_weather_effect(datum/source, datum/weather_effect/effect)
 	SIGNAL_HANDLER
-	if(!weather_affectable || !prob(effect.probability))
+	if(/* !weather_affectable || */ !prob(effect.probability)) // weather_affectable isn't set anywhere. uncomment that if it's ever actually used. ~Absolucy
 		return
 
 	effect.effect_affect(src)

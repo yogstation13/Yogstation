@@ -268,8 +268,10 @@
 	// Station blueprints do that too, but only if the wires are not randomized.
 	if(user.is_holding_item_of_type(/obj/item/areaeditor/blueprints) && !randomize)
 		return TRUE
+/*
 	if(revealed_wires)
 		return TRUE
+*/
 	return FALSE
 
 /**

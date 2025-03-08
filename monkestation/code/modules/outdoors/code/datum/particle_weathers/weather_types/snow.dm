@@ -1,8 +1,12 @@
 #define SNOW_STORM_TEMP		CELCIUS_TO_KELVIN(-40 CELCIUS)
 #define SNOW_GENTLE_TEMP	CELCIUS_TO_KELVIN(-12 CELCIUS)
 
+// this var isn't even SET anywhere
+// uncomment this is it ever is used. or even better. find a way that doesn't require a var on base /turf ~Absolucy
+/*
 /turf
 	var/weather_affectable = TRUE
+*/
 
 /datum/particle_weather/snow_gentle
 	name = "Snow"
