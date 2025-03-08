@@ -247,6 +247,7 @@
   - bugfix: '"Fixed" some further bloodsucker jank caused by mindswapping.'
   - bugfix: Fixed some performance issues related to character customization.
   - bugfix: Changing the IPC chassis in preferences now properly updates the preview.
+  - qol: Unopened goody cases can no longer be sent back on the cargo shuttle.
   Absolucy, imedial:
   - bugfix: Fixed nested radios with encryption keys giving free comms.
   KnigTheThrasher, McRamon, Alecksohs:
@@ -254,6 +255,8 @@
   - rscdel: Removed old shitty grimy floor and replaced it with a sick carpet
   Shoddd:
   - bugfix: fixes some heliostation issues
+  - rscdel: mentor cloak no longer cares if you are a mentor
+  - balance: disabler smgs now have a 0.5 debili mod instead of a 1.5
   SirNightKnight:
   - balance: Paco mags are small again.
   - balance: locked lethal Paco ammo behind the "Advanced Weaponry" tech node.
