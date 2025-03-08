@@ -238,6 +238,17 @@
   Absolucy:
   - balance: Doomsday Device no longer affects non-organic life, consistent with its
       description.
+  - refactor: Removed some unused code and rearranged some other code to hopefully
+      reduce server-side memory usage.
+  - bugfix: Fixed some hearing sensitive objects hearing the same thing multiple times,
+      such as the broadcast camera sending everything to the entertainment channel
+      twice.
+  - bugfix: NPC cats will no longer have kittens with player-controlled cats.
+  - bugfix: '"Fixed" some further bloodsucker jank caused by mindswapping.'
+  - bugfix: Fixed some performance issues related to character customization.
+  - bugfix: Changing the IPC chassis in preferences now properly updates the preview.
+  Absolucy, imedial:
+  - bugfix: Fixed nested radios with encryption keys giving free comms.
   KnigTheThrasher, McRamon, Alecksohs:
   - rscadd: New smes sprite
   - rscdel: Removed old shitty grimy floor and replaced it with a sick carpet
