@@ -1,0 +1,4 @@
+author: "Absolucy, imedial"
+delete-after: True
+changes:
+  - bugfix: "Fixed nested radios with encryption keys giving free comms."
