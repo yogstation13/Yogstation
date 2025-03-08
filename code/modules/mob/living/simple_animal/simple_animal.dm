@@ -465,7 +465,7 @@
 	REMOVE_TRAIT(src, TRAIT_UNDENSE, BASIC_MOB_DEATH_TRAIT)
 
 /mob/living/simple_animal/proc/make_babies() // <3 <3 <3
-	if(gender != FEMALE || stat || next_scan_time > world.time || !childtype || !animal_species || !SSticker.IsRoundInProgress())
+	if(gender != FEMALE || stat || next_scan_time > world.time || !childtype || !animal_species || !SSticker.IsRoundInProgress() || mind || key) // monkestation edit: add player check
 		return
 	next_scan_time = world.time + 400
 	var/alone = TRUE
@@ -474,6 +474,10 @@
 	for(var/mob/M in view(7, src))
 		if(M.stat != CONSCIOUS) //Check if it's conscious FIRST.
 			continue
+		// monkestation start: add player check
+		if(M.mind || M.key)
+			continue
+		// monkestation end
 		var/is_child = is_type_in_list(M, childtype)
 		if(is_child) //Check for children SECOND.
 			children++
