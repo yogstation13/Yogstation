@@ -234,3 +234,19 @@
       Bilingual quirk
   - rscadd: Added the Outsider quirk which remove's the player's species' language
   - rscadd: Added the Listener quirk which removes the player's ability to speak common
+2025-03-08:
+  Absolucy:
+  - balance: Doomsday Device no longer affects non-organic life, consistent with its
+      description.
+  KnigTheThrasher, McRamon, Alecksohs:
+  - rscadd: New smes sprite
+  - rscdel: Removed old shitty grimy floor and replaced it with a sick carpet
+  Shoddd:
+  - bugfix: fixes some heliostation issues
+  SirNightKnight:
+  - balance: Paco mags are small again.
+  - balance: locked lethal Paco ammo behind the "Advanced Weaponry" tech node.
+  - balance: split Paco ammo between non-lethal ammo as a security order and lethal
+      ammo as an armoury locked order. added another Paco to the Paco weapon crate.
+  TTNT789:
+  - qol: Prokinetic Crushers can be used as pickaxes now

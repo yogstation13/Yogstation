@@ -1,6 +1,0 @@
-author: "SirNightKnight"
-delete-after: True
-changes:
-  - balance: "Paco mags are small again."
-  - balance: "locked lethal Paco ammo behind the \"Advanced Weaponry\" tech node."
-  - balance: "split Paco ammo between non-lethal ammo as a security order and lethal ammo as an armoury locked order. added another Paco to the Paco weapon crate."
