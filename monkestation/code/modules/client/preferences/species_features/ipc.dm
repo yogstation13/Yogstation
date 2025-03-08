@@ -61,8 +61,13 @@
 	return values
 
 /datum/preference/choiced/ipc_chassis/apply_to_human(mob/living/carbon/human/target, value)
-	target.dna.features["ipc_chassis"] = value
-	target.regenerate_icons()
+	var/list/features = target.dna.features
+	if(features["ipc_chassis"] == value)
+		return
+	features["ipc_chassis"] = value
+	var/datum/species/ipc/ipc = target.dna?.species
+	if(istype(ipc)) // this is awful. i'm sorry.
+		ipc.update_chassis(target)
 
 /datum/preference/choiced/ipc_screen
 	savefile_key = "feature_ipc_screen"

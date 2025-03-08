@@ -160,12 +160,10 @@
 	addtimer(CALLBACK(src, PROC_REF(switch_to_screen), transformer, "Blank"), 5 SECONDS)
 
 
-/datum/species/ipc/on_species_loss(mob/living/carbon/C)
+/datum/species/ipc/on_species_loss(mob/living/carbon/target)
 	. = ..()
-	UnregisterSignal(C, COMSIG_ATOM_EMAG_ACT)
-	if(change_screen)
-		change_screen.Remove(C)
-		UnregisterSignal(C, COMSIG_LIVING_DEATH)
+	UnregisterSignal(target, list(COMSIG_ATOM_EMAG_ACT, COMSIG_LIVING_DEATH))
+	change_screen?.Remove(target)
 
 /datum/species/ipc/proc/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT //beep
@@ -215,21 +213,31 @@
 	H.visible_message(span_notice("[H]'s [change_screen ? "monitor lights up" : "eyes flicker to life"]!"), span_notice("All systems nominal. You're back online!"))
 	return
 
-/datum/species/ipc/replace_body(mob/living/carbon/C, datum/species/new_species)
-	..()
+/datum/species/ipc/replace_body(mob/living/carbon/target, datum/species/new_species)
+	. = ..()
+	update_chassis(target)
 
-	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.ipc_chassis_list[C.dna.features["ipc_chassis"]]
+/datum/species/ipc/proc/update_chassis(mob/living/carbon/target)
+	if(!iscarbon(target) || QDELING(target))
+		return
+	var/list/features = target.dna?.features
+	if(!features)
+		return
+	var/datum/sprite_accessory/ipc_chassis/chassis_of_choice = GLOB.ipc_chassis_list[features["ipc_chassis"]]
 
 	if(!chassis_of_choice)
-		chassis_of_choice = GLOB.ipc_chassis_list[pick(GLOB.ipc_chassis_list)]
-		C.dna.features["ipc_chassis"] = pick(GLOB.ipc_chassis_list)
+		var/random_chassis = pick(GLOB.ipc_chassis_list)
+		chassis_of_choice = GLOB.ipc_chassis_list[random_chassis]
+		features["ipc_chassis"] = random_chassis
 
-	for(var/obj/item/bodypart/BP as() in C.bodyparts) //Override bodypart data as necessary
-		BP.limb_id = chassis_of_choice.icon_state
-		BP.name = "\improper[chassis_of_choice.name] [parse_zone(BP.body_zone)]"
-		BP.update_limb()
+	for(var/obj/item/bodypart/bodypart as anything in target.bodyparts) //Override bodypart data as necessary
+		if(QDELETED(bodypart))
+			return
+		bodypart.limb_id = chassis_of_choice.icon_state
+		bodypart.name = "\improper[chassis_of_choice.name] [parse_zone(bodypart.body_zone)]"
+		bodypart.update_limb()
 		if(chassis_of_choice.palette_key == MUTANT_COLOR)
-			BP.should_draw_greyscale = TRUE
+			bodypart.should_draw_greyscale = TRUE
 
 /datum/species/ipc/proc/on_emag_act(mob/living/carbon/human/owner, mob/user)
 	SIGNAL_HANDLER

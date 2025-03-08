@@ -101,7 +101,7 @@
 			continue
 		item.on_equip_item(preference_source, src, visuals_only)
 
-	regenerate_icons()
+	//regenerate_icons()
 	return TRUE
 
 /*

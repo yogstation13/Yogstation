@@ -12,3 +12,4 @@
 
 /datum/preference/choiced/body_height/apply_to_human(mob/living/carbon/human/target, value)
 	target.dna.body_height = value
+	target.update_mob_height()
