@@ -91,5 +91,5 @@
 ///This determines how many general points that the ruin_tech techweb gets, since they don't utilize servers
 #define RUIN_GENERATION_PER_TICK 70
 
-///This determines how many nanites points that the ruin_tech techweb gets, since they lack research tools.
-#define NANITES_RESEARCH_RUIN_PER_TICK 10
+///This determines how many nanites/AI points that the ruin_tech techweb gets, since they lack research tools.
+#define NANITES_AI_RESEARCH_RUIN_PER_TICK 10
