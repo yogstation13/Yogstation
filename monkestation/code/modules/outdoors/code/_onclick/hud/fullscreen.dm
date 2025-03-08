@@ -13,7 +13,7 @@
 	needs_offsetting = FALSE
 
 
-/atom/movable/screen/fullscreen/lighting_backdrop/sunlight/Initialize()
+/atom/movable/screen/fullscreen/lighting_backdrop/sunlight/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	if(!SSoutdoor_effects.enabled)
 		return

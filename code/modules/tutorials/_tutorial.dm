@@ -106,7 +106,7 @@
 		RegisterSignal(skip_button, COMSIG_SCREEN_ELEMENT_CLICK, PROC_REF(dismiss))
 
 	if (isnull(instruction_screen))
-		instruction_screen = new(null, message, user.client)
+		instruction_screen = new(null, null, message, user.client)
 		user.client?.screen += instruction_screen
 	else
 		instruction_screen.change_message(message)

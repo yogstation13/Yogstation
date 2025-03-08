@@ -86,8 +86,7 @@
 	if(human_who_gained_species.hud_used)
 		var/datum/hud/hud_used = human_who_gained_species.hud_used
 
-		honeydisplay = new /atom/movable/screen/apid/honey()
-		honeydisplay.hud = hud_used
+		honeydisplay = new /atom/movable/screen/apid/honey(null, hud_used)
 		hud_used.infodisplay += honeydisplay
 		adjust_honeycount(0)
 		hud_used.show_hud(hud_used.hud_version)
@@ -120,8 +119,7 @@
 	if(H.hud_used)
 		var/datum/hud/hud_used = H.hud_used
 
-		honeydisplay = new /atom/movable/screen/apid/honey()
-		honeydisplay.hud = hud_used
+		honeydisplay = new /atom/movable/screen/apid/honey(null, hud_used)
 		hud_used.infodisplay += honeydisplay
 		adjust_honeycount(0)
 		hud_used.show_hud(hud_used.hud_version)

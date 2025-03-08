@@ -29,8 +29,7 @@
 /datum/interaction_mode/intents3/procure_hud(mob/M, datum/hud/H)
 	if (!M.hud_used?.has_interaction_ui)
 		return
-	var/atom/movable/screen/act_intent3/AI = new
-	AI.hud = H
+	var/atom/movable/screen/act_intent3/AI = new(null, H)
 	AI.intents = src
 	UI = AI
 	return AI

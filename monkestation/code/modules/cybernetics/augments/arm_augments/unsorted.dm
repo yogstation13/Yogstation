@@ -143,17 +143,15 @@
 			return
 		H.cybernetics_ammo[zone] = null
 
-		counter_ref.hud = null
 		H.infodisplay -= counter_ref
 		H.mymob.client.screen -= counter_ref
 		QDEL_NULL(counter_ref)
 		return
 
 	if(!H.cybernetics_ammo[zone])
-		counter_ref = new()
+		counter_ref = new(null, H)
 		counter_ref.screen_loc =  zone == BODY_ZONE_L_ARM ? ui_hand_position(1,1,9) : ui_hand_position(2,1,9)
 		H.cybernetics_ammo[zone] = counter_ref
-		counter_ref.hud = H
 		H.infodisplay += counter_ref
 		H.mymob.client.screen += counter_ref
 

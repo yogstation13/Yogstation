@@ -136,7 +136,7 @@
 	render_relay_planes = list(RENDER_PLANE_GAME_WORLD)
 	alpha = 0
 
-/atom/movable/screen/plane_master/name_tags/Initialize(mapload)
+/atom/movable/screen/plane_master/name_tags/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	add_filter("vision_cone", 1, alpha_mask_filter(render_source = OFFSET_RENDER_TARGET(NAME_TAG_RENDER_TARGET, offset), flags = MASK_INVERSE))
 

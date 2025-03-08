@@ -1,7 +1,7 @@
 /atom/movable/screen/alert/status_effect/changeling
 	icon = 'icons/mob/actions/actions_changeling.dmi'
 
-/atom/movable/screen/alert/status_effect/changeling/Initialize(mapload)
+/atom/movable/screen/alert/status_effect/changeling/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	underlays += mutable_appearance('icons/mob/actions/backgrounds.dmi', "bg_changeling")
 	add_overlay(mutable_appearance('icons/mob/actions/backgrounds.dmi', "bg_changeling_border"))

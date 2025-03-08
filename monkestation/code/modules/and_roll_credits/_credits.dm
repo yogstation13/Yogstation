@@ -26,7 +26,7 @@
 		if(count && !istype(credit, /atom/movable/screen/map_view/char_preview))
 			sleep(CREDIT_SPAWN_SPEED)
 
-		new /atom/movable/screen/credit(null, credit)
+		new /atom/movable/screen/credit(null, null, credit)
 
 		if(istype(credit, /atom/movable/screen/map_view/char_preview))
 			count++
@@ -63,7 +63,7 @@
 
 	var/matrix/target
 
-/atom/movable/screen/credit/Initialize(mapload, credited)
+/atom/movable/screen/credit/Initialize(mapload, datum/hud/hud_owner, credited)
 	. = ..()
 	icon = CREDITS_PATH
 
