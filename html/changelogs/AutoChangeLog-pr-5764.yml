@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - refactor: "Removed some unused code and rearranged some other code to hopefully reduce server-side memory usage."
