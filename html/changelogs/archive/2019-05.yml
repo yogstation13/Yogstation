@@ -1,0 +1,122 @@
+2019-05-02:
+  '  Altoids':
+  - soundadd: The "Aww shit" roundend sound ought to now play in both ears.
+  - rscadd: Admins are now informed of what percent of the server actually hears their
+      global adminsounds.
+  - bugfix: You should now be able to clear out miasma with dry heat, as intended.
+  ' AnturK':
+  - bugfix: It is now hypothetically possible for a person to be immune to flashes
+      naturally and not literally have no eyes.
+  - bugfix: Certain transforming weapons should now not have their throwspeed change
+      weirdly.
+  ' DaxDupont':
+  - bugfix: Adminspawned Clownmobs now spawn with the proper health
+  ' Mideanon':
+  - bugfix: Adminordrazine now gives blood back
+  ' Partheo':
+  - imageadd: Vents have updated design and animation
+  ' RaveRadbury':
+  - spellcheck: Corrected misspelling in loudness booster.
+  - rscadd: Added "The Tenets of Servicia" to Chaplain religions
+  - rscadd: Added deities "Space Dionysus", "Space Bacchus", "Partying", and "Servicia"
+  - bugfix: pAI HUD appears as it should.
+  ' RaveRadbury, Art by Navi.OS':
+  - rscadd: pAI Newscaster
+  - rscadd: pAI Camera
+  - rscadd: New pAI HUD
+  - imageadd: unique pAI HUD theme
+  ' Vile Beggar':
+  - tweak: The CE's cloak is now fireproof.
+  ' actioninja':
+  - bugfix: ' Darkmode pref saves correctly instead of loading the opposite of your
+      last used theme'
+  - bugfix: Fixed an exploit where incompatible magazine could be tactical reloaded
+      into guns, and then still fire.
+  ' actionninja':
+  - spellcheck: Changed the description on ling augmented eyes to be more accurate
+      to their actual functionality
+  ' bgobandit':
+  - tweak: Examining intercoms/radios shows the frequency they're set to, if you're
+      in range.
+  ' blessedmulligan':
+  - tweak: RPDs can now build on tiles with windows or grilles.
+  ' py01':
+  - bugfix: You can no longer use resist to get out of mechs.
+  ' subject217':
+  - bugfix: Fixed the gulag teleporter not actually being anchored.
+  ' tralezab':
+  - bugfix: 100% embed daggers should now actually embed into things.
+  - rscadd: zombies can eat brains now
+  nichlas0010:
+  - tweak: gang dominators now require the nuclear authentication disk, so only 1
+      gang can dominate at a time, and security can have a more pro-active role in
+      the conflict.
+  - rscadd: gangs can now buy a pinpointer for 3 influence, since they kinda need
+      to find the nuke disk.
+  ynot01:
+  - bugfix: Fixes changeling's Strained Muscles not removing speed buff after turning
+      off
+  yogstation13-bot:
+  - bugfix: fixed the PDA newscaster for Curator and HoP
+  - rscadd: 'New quirk: Empath. Gain a better insight on the state of people around
+      you by examining them.'
+  - rscadd: ' New quirk: Friendly. Your hugs are just the best. Keep yourself in a
+      good mood to give the bestest hugs!'
+2019-05-07:
+  '  Altoids':
+  - bugfix: Tritium fires no longer violate the conservation of mass.
+  - bugfix: Small tritium fires no longer cause negative amounts of Tritium.
+  - tweak: Tritium fires now produce 100x more water vapor.
+  - tweak: Tritium fires may be somewhat more radioactive in some circumstances.
+  - bugfix: Weighted headrole assignment should now actually properly work.
+  - rscadd: Cyborgs can now detonate themselves!
+  - bugfix: Tritium fires should now output the proper amount of energy.
+  - tweak: The probabilistic anomaly now lasts typically 4x longer than it used to.
+  - bugfix: The AI Core and SM Chamber are now absolutely protected against Grid Checks.
+  - bugfix: Photo bags should now actually be able to store photos.
+  - rscadd: Admins can now view how many people are in the server queue, as well as
+      empty the queue to let'em all in.
+  '  Identification':
+  - rscadd: There are new donor items!
+  - tweak: All non-hats from the donor hat section have been moved to items.
+  - rscadd: Adds yogjob hud icons.
+  - bugfix: The disease hud is now fixed, displaying the severity of diseases. Ranging
+      from a straight green face that shows someone has the sniffles while a sad black
+      one shows the person will die in 5 seconds!
+  - bugfix: yogjob huds will now show on sechuds.
+  - bugfix: probably more bugs relating to huds, ie nanites, antaghuds.
+  - tweak: Incarcerated hud is now a more distinct colour and has been changed to
+      an I.
+  ' Time-Green':
+  - tweak: Chromosomes interact with more mutations
+  - tweak: The DNA console printing speed is now affected by better parts
+  - bugfix: Monkeys no longer runtime with transformations
+  ' zeroisthebiggay':
+  - rscadd: Gives Janiborgs the long lost bucket for their mop.
+  - rscadd: Gives Janiborgs a paint remover.
+  - rscadd: Gives Janiborgs a flyswatter to destroy angry bees and moths with.
+  Altoids1:
+  - rscadd: Emitters can now mine rocks!
+  Ihonkification:
+  - rscadd: ADDS BEN SWOLO
+  Putnam3145:
+  - rscadd: 'new spell: cauterize. Heals all brute/burn damage, then adds it back
+      entirely as burn damage over the next 20-60 seconds, depending on spell level.'
+  - rscadd: 'new spell: slip. Makes the floor in an area around the caster slippery,
+      as if lubed, for 30 seconds. First level has cooldown equal duration!'
+  ThatGuyPhil:
+  - soundadd: Lizards now have their own scream!
+  fluffe9911:
+  - tweak: Blood Brothers should now spawn with a random syndicate meme bundle!
+  yogstation13-bot:
+  - rscadd: russian surplus crate, sec ammo crate, meat/veggie/fruit crate, rped crate,  bomb
+      suit crate, bio suit crate, parrot crate, chem crate
+  - tweak: lowered price of some crates which are overpriced for no reason aka the
+      ipod crate and the mech circuits crate, track implant crate has also track .38
+      ammo
+  - bugfix: sectech vendor has the refill pack
+  - bugfix: Mindswapping with a stand instead mindswaps you with that stand's owner,
+      giving you ownership of their stand.
+  - rscadd: Diagnostic HUD eyes, now printable at your local Medical Lathe/Exosuit
+      Fabricator!
+  - rscdel: Removed grandpa from the first name list.
