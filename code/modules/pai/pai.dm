@@ -437,4 +437,4 @@
 	leash.set_distance(new_distance)
 
 /mob/living/silicon/pai/get_access()
-	return list()
+	return list(ACCESS_MAINT_TUNNELS) //MONKESTATION EDIT: Add inherent maints access to pAIs
