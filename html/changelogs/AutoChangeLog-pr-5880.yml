@@ -1,0 +1,4 @@
+author: "michaelyoungin"
+delete-after: True
+changes:
+  - admin: "(del) Removes negative value check for adjusting monkecoins"
