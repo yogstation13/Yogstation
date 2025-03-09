@@ -184,7 +184,7 @@ const SettingsDisplay = (props) => {
           />
         </Tooltip>
       </LabeledControls.Item>
-      {allow_possession && (
+      {!!allow_possession && (
         <LabeledControls.Item label="Personality">
           <Tooltip
             content={
