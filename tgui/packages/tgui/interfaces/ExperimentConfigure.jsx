@@ -121,6 +121,10 @@ export const ExperimentConfigure = (props) => {
     }
   });
 
+  // MONKESTATION NOTE(react): (?) The experiments section was broken on 516 - specifically,
+  // something prevented the scrollbar in the experiment section from appearing, until the
+  // `scrollable` and `fill` attributes were added. When porting to react, see if the UI still works
+  // when removing them.
   return (
     <Window resizable width={600} height={735}>
       <Window.Content>
@@ -143,6 +147,8 @@ export const ExperimentConfigure = (props) => {
               <Section
                 title="Experiments"
                 className="ExperimentConfigure__ExperimentsContainer"
+                scrollable // MONKESTATION ADDITION: See note(react) above
+                fill // MONKESTATION ADDITION: See note(react) above
               >
                 <Flex.Item mb={1}>
                   {(experiments.length &&
