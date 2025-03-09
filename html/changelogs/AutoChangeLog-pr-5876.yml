@@ -1,0 +1,4 @@
+author: "MichiRecRoom"
+delete-after: True
+changes:
+  - bugfix: "The experimental destructive scanner's UI should now show a scrollbar on 516. (Please let me know if any other UIs that show a list of experiments are broken.)"
