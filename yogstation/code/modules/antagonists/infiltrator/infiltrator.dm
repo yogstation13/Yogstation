@@ -10,7 +10,7 @@
 	var/always_new_team = FALSE //If not assigned a team by default ops will try to join existing ones, set this to TRUE to always create new team.
 	var/send_to_spawnpoint = TRUE //Should the user be moved to default spawnpoint.
 	var/dress_up = TRUE
-	preview_outfit = /datum/outfit/infiltrator
+	preview_outfit = /datum/outfit/infiltrator_preview
 
 /datum/antagonist/infiltrator/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current
@@ -24,7 +24,6 @@
 	to_chat(owner, span_notice("You also have an internal radio, for communicating with your team-mates at all times."))
 	to_chat(owner, span_notice("You have a dusting implant, to ensure that Nanotrasen does not get their hands on Syndicate gear. Only activate it, if you are compromised."))
 	to_chat(owner, span_boldnotice(span_italics("Do NOT kill or destroy needlessly, as this defeats the purpose of an 'infiltration'!")))
-	to_chat(owner, span_boldnotice("Once your objectives are complete, return to base, with all living infiltrators, to end the round."))
 	owner.announce_objectives()
 
 /datum/antagonist/infiltrator/on_gain()
