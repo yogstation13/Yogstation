@@ -403,3 +403,13 @@
 			new /mob/living/simple_animal/hostile/retaliate/goat/plunger(loc)
 		if(40)
 			new /mob/living/simple_animal/hostile/retaliate/goat/suspicious(loc)
+
+/obj/structure/closet/crate/BreakBow
+	name = "BreakBow Crate"
+	desc = "This crate contains a break bow and quiver"
+
+
+/obj/structure/closet/crate/BreakBow/PopulateContents()
+
+			new /obj/item/storage/belt/quiver/unlimited(src)
+			new /obj/item/gun/ballistic/bow/break_bow(src)
