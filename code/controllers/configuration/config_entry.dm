@@ -14,7 +14,6 @@
 	var/modified = FALSE	//set to TRUE if the default has been overridden by a config entry
 
 	var/deprecated_by	//the /datum/config_entry type that supercedes this one
-
 	var/protection = NONE
 	var/abstract_type = /datum/config_entry	//do not instantiate if type matches this
 
