@@ -950,7 +950,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Display Initialize(mapload) Log"
 	set desc = "Displays a list of things that didn't handle Initialize(mapload) properly"
 
-	var/datum/browser/browser = new(user, "initlog", "Initialize Log", 500, 500)
+	var/datum/browser/browser = new(usr, "initlog", "Initialize Log", 500, 500)
 	browser.set_content(replacetext(SSatoms.InitLog(), "\n", "<br>"))
 	browser.open()
 

@@ -158,7 +158,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 /datum/hud/proc/client_refresh(datum/source)
 	SIGNAL_HANDLER
 	var/client/client = mymob.canon_client
-		var/new_byond_version = client.byond_version
+	var/new_byond_version = client.byond_version
 #if MIN_COMPILER_VERSION > 515
 	#warn Fully change default relay_loc to "1,1", rather than changing it based on client version
 #endif
