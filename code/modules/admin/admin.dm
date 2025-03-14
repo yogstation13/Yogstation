@@ -447,7 +447,9 @@
 
 	dat += "</BODY></HTML>"
 
-	usr << browse(dat, "window=admin2;size=210x200")
+	var/datum/browser/browser = new(usr, "admin2", "Game Panel", 240, 280)
+	browser.set_content(dat)
+	browser.open()
 	return
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge

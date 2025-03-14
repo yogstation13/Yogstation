@@ -231,6 +231,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	if(byond_version >= 516)
+		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
 
@@ -297,9 +300,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(GLOB.player_details[ckey])
 		player_details = GLOB.player_details[ckey]
 		player_details.byond_version = full_version
+		player_details.byond_version = byond_version
+		player_details.byond_build = byond_build
 	else
 		player_details = new
-		player_details.byond_version = full_version
+		player_details.byond_version = byond_version
+		player_details.byond_build = byond_build
 		GLOB.player_details[ckey] = player_details
 
 	if (prefs.unlock_content & DONOR_YOGS)
@@ -369,7 +375,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			msg += "Required version to remove this message: [cwv] or later<br>"
 			msg += "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
 			msg += "</BODY></HTML>"
-			src << browse(msg, "window=warning_popup")
+			src << browse(HTML_SKELETON(msg), "window=warning_popup")
 		else
 			to_chat(src, span_danger("<b>Your version of byond may be getting out of date:</b>"))
 			to_chat(src, CONFIG_GET(string/client_warn_message))

@@ -7,15 +7,21 @@
 <meta http-equiv="Cache-Control" content="max-age=15; must-revalidate" />
 <link id="goonStyle" rel="stylesheet" type="text/css" href="browserOutput_white.css" media="all" />
 <style>
+	.light:root {
+		--scrollbar-base: #f2f2f2;
+		--scrollbar-thumb: #a7a7a7;
+	}
+
 	body {
 		font-family: Verdana, Geneva, Tahoma, sans-serif;
 		font-size: 12px !important;
 		margin: 0 !important;
 		padding: 0 !important;
+		scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-base);
 	}
 
 	body.dark {
-		background-color: #131313;
+		background-color: #151515;
 		color: #abc6ec;
 	}
 
@@ -120,12 +126,12 @@
 	}
 
 	.dark .button:active, .dark .button.active {
-		background-color: #131313;
+		background-color: #151515;
 		color: white;
 		border-top: 1px solid #343434;
 		border-left: 1px solid #343434;
 		border-right: 1px solid #343434;
-		border-bottom: 1px solid #131313;
+		border-bottom: 1px solid #151515;
 	}
 
 	.grid-container {
@@ -139,6 +145,7 @@
 	}
 
 	.grid-item {
+		height: 100%;
 		color: black;
 		width: 150px;
 		font-size: 11px;
@@ -780,7 +787,7 @@ function draw_mc() {
 		var td2 = document.createElement("td");
 		if(part[2]) {
 			var a = document.createElement("a");
-			a.href = "?_src_=vars;admin_token=" + href_token + ";Vars=" + part[2];
+			a.href = "byond://?_src_=vars;admin_token=" + href_token + ";Vars=" + part[2];
 			a[textContentKey] = part[1];
 			td2.appendChild(a);
 		} else {
@@ -891,7 +898,7 @@ function draw_listedturf() {
 			// rather than every onmousedown getting the "part" of the last entry.
 			return function(e) {
 				e.preventDefault();
-				clickcatcher = "?src=" + part[1] + ";statpanel_item_click=1";
+				clickcatcher = "byond://?src=" + part[1] + ";statpanel_item_click=1";
 				if(e.shiftKey){
 					clickcatcher += ";statpanel_item_shiftclick=1";
 				}
@@ -928,7 +935,7 @@ function draw_sdql2(){
 		var td2 = document.createElement("td");
 		if(part[2]) {
 			var a = document.createElement("a");
-			a.href = "?src=" + part[2] + ";statpanel_item_click=1";
+			a.href = "byond://?src=" + part[2] + ";statpanel_item_click=1";
 			a[textContentKey] = part[1];
 			td2.appendChild(a);
 		} else {
@@ -954,7 +961,7 @@ function draw_spells(cat) {
 		var td2 = document.createElement("td");
 		if(part[3]) {
 			var a = document.createElement("a");
-			a.href = "?src=" + part[3] + ";statpanel_item_click=1";
+			a.href = "byond://?src=" + part[3] + ";statpanel_item_click=1";
 			a[textContentKey] = part[2];
 			td2.appendChild(a);
 		} else {
@@ -1024,9 +1031,11 @@ function draw_verbs(cat){
 function set_theme(which) {
 	if (which == "light") {
 		document.body.className = "";
+		document.documentElement.className = 'light';
 		set_style_sheet("browserOutput_white");
 	} else if (which == "dark") {
 		document.body.className = "dark";
+		document.documentElement.className = 'dark';
 		set_style_sheet("browserOutput");
 	}
 }
