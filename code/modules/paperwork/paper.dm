@@ -174,9 +174,9 @@
 				var/datum/language/paperlang = GLOB.language_datum_instances[X.lang]
 				text += paperlang.scramble_HTML(X.text)
 		else if(links)
-			text += span_paper_field("" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=[i]'>write</A></font>" + "")
+			text += span_paper_field("" + "<font face=\"[PEN_FONT]\"><A href='byond://?src=[REF(src)];write=[i]'>write</A></font>" + "")
 	if(links)
-		text += span_paper_field("" + "<font face=\"[PEN_FONT]\"><A href='?src=[REF(src)];write=end'>write</A></font>" + "")
+		text += span_paper_field("" + "<font face=\"[PEN_FONT]\"><A href='byond://?src=[REF(src)];write=end'>write</A></font>" + "")
 	if(coloroverride)
 		text += "</font>"
 	return text
@@ -278,7 +278,7 @@
 				written += templist
 			else
 				written.Insert(text2num(id),templist) // text2num, otherwise it writes to the hashtable index instead of into the array
-			usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
+			usr << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(usr,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='byond://?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]") // Update the window
 			update_appearance(UPDATE_ICON)
 
 
@@ -293,7 +293,7 @@
 
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		if(user.is_literate())
-			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
+			user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY>[render_body(user,TRUE)]<HR>[stamps]</BODY><div align='right'style='position:fixed;bottom:0;font-style:bold;'><A href='byond://?src=[REF(src)];help=1'>\[?\]</A></div></HTML>", "window=[name]")
 			return
 		else
 			to_chat(user, span_notice("You don't know how to read or write."))

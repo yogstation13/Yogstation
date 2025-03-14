@@ -75,6 +75,11 @@ if grep -P '^\s*(\w+)\s*=\s*(\1)\b\s*$' code/**/*.dm; then
 	echo "ERROR: Variable is assigned to itself"
 	st=1
 fi;
+if $grep "href[\s='\"\\\\]*\?" code/**/*.dm; then
+    echo
+    echo -e "${RED}ERROR: BYOND requires internal href links to begin with \"byond://\".${NC}"
+    st=1
+fi;
 for json in _maps/*.json
 do
     filename="_maps/$(jq -r '.map_path' $json)/$(jq -r '.map_file' $json)"
