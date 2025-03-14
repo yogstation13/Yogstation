@@ -69,7 +69,7 @@
 	enable_text = span_notice("You prepare bluespace induction coils. Click a borg or APC to charge its cell by 33%")
 	disable_text = span_notice("You power down your induction coils.")
 	
-/datum/action/innate/ai/ranged/charge_borg_or_apc/do_ability(mob/living/caller, params, atom/clicked_on)
+/datum/action/innate/ai/ranged/charge_borg_or_apc/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
 	if(!iscyborg(clicked_on) && !istype(clicked_on, /obj/machinery/power/apc))
 		to_chat(owner, span_warning("You can only charge cyborgs or APCs!"))
 		return FALSE

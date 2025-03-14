@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI window with a number input. Returns the user's response as num | null.
  *
- * This proc should be used to create windows for number entry that the caller will wait for a response from.
+ * This proc should be used to create windows for number entry that the caller_but_not_a_byond_built_in_proc will wait for a response from.
  * If tgui fancy chat is turned off: Will return a normal input. If a max or min value is specified, will
  * validate the input inside the UI and ui_act.
  *

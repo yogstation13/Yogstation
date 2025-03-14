@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI alert window and returns the user's response.
  *
- * This proc should be used to create alerts that the caller will wait for a response from.
+ * This proc should be used to create alerts that the caller_but_not_a_byond_built_in_proc will wait for a response from.
  * Arguments:
  * * user - The user to show the alert to.
  * * message - The content of the alert, shown in the body of the TGUI window.

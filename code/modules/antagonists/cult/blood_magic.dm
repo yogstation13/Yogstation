@@ -164,12 +164,12 @@
 	enable_text = span_cult("You prepare to emp a target...")
 	disable_text = span_cult("You dispel the magic...")
 
-/datum/action/innate/cult/blood_spell/emp/do_ability(mob/living/caller, params, atom/target)
-	var/turf/T = get_turf(caller)
+/datum/action/innate/cult/blood_spell/emp/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/target)
+	var/turf/T = get_turf(caller_but_not_a_byond_built_in_proc)
 	if(!isturf(T))
 		return FALSE
 
-	var/mob/living/carbon/user = caller
+	var/mob/living/carbon/user = caller_but_not_a_byond_built_in_proc
 
 	user.visible_message(span_warning("[user]'s hand flashes a bright blue!"), \
 						 span_cultitalic("You speak the cursed words, emitting an EMP blast from your hand."))
@@ -186,7 +186,7 @@
 
 	charges--
 	if(!charges)
-		unset_ranged_ability(caller, span_cult("You have exhausted the spell's power!"))
+		unset_ranged_ability(caller_but_not_a_byond_built_in_proc, span_cult("You have exhausted the spell's power!"))
 		qdel(src)
 
 	return TRUE
@@ -241,12 +241,12 @@
 	enable_text = span_cult("You prepare to horrify a target...")
 	disable_text = span_cult("You dispel the magic...")
 
-/datum/action/innate/cult/blood_spell/horror/InterceptClickOn(mob/living/caller, params, atom/clicked_on)
-	var/turf/caller_turf = get_turf(caller)
+/datum/action/innate/cult/blood_spell/horror/InterceptClickOn(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
+	var/turf/caller_turf = get_turf(caller_but_not_a_byond_built_in_proc)
 	if(!isturf(caller_turf))
 		return FALSE
 
-	if(!ishuman(clicked_on) || get_dist(caller, clicked_on) > 7)
+	if(!ishuman(clicked_on) || get_dist(caller_but_not_a_byond_built_in_proc, clicked_on) > 7)
 		return FALSE
 
 	var/mob/living/carbon/human/human_clicked = clicked_on
@@ -255,21 +255,21 @@
 
 	return ..()
 
-/datum/action/innate/cult/blood_spell/horror/do_ability(mob/living/caller, params, mob/living/carbon/human/clicked_on)
+/datum/action/innate/cult/blood_spell/horror/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, mob/living/carbon/human/clicked_on)
 	clicked_on.set_hallucinations_if_lower(2 MINUTES)
-	SEND_SOUND(caller, sound('sound/effects/ghost.ogg', FALSE, TRUE, 50))
+	SEND_SOUND(caller_but_not_a_byond_built_in_proc, sound('sound/effects/ghost.ogg', FALSE, TRUE, 50))
 	var/image/sparkle_image = image('icons/effects/cult_effects.dmi', clicked_on, "bloodsparkles", ABOVE_MOB_LAYER)
 	clicked_on.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/cult, "cult_apoc", sparkle_image, NONE)
 
 	addtimer(CALLBACK(clicked_on, TYPE_PROC_REF(/atom/, remove_alt_appearance), "cult_apoc", TRUE), 4 MINUTES, TIMER_OVERRIDE|TIMER_UNIQUE)
-	to_chat(caller, span_cultbold("[clicked_on] has been cursed with living nightmares!"))
+	to_chat(caller_but_not_a_byond_built_in_proc, span_cultbold("[clicked_on] has been cursed with living nightmares!"))
 
 	charges--
 	desc = base_desc
 	desc += "<br><b><u>Has [charges] use\s remaining</u></b>."
 	build_all_button_icons()
 	if(charges <= 0)
-		to_chat(caller, span_cult("You have exhausted the spell's power!"))
+		to_chat(caller_but_not_a_byond_built_in_proc, span_cult("You have exhausted the spell's power!"))
 		qdel(src)
 
 	return TRUE

@@ -111,7 +111,7 @@
 	create_parallax(screen_mob)
 	update_parallax(screen_mob)
 
-// This sets which way the current shuttle is moving (returns true if the shuttle has stopped moving so the caller can append their animation)
+// This sets which way the current shuttle is moving (returns true if the shuttle has stopped moving so the caller_but_not_a_byond_built_in_proc can append their animation)
 /datum/hud/proc/set_parallax_movedir(new_parallax_movedir = 0, skip_windups, mob/viewmob)
 	. = FALSE
 	var/mob/screenmob = viewmob || mymob

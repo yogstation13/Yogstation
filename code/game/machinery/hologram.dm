@@ -262,7 +262,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 	for(var/I in holo_calls)
 		var/datum/holocall/HC = I
 		var/list/call_data = list(
-			caller = HC.user,
+			caller_but_not_a_byond_built_in_proc = HC.user,
 			connected = HC.connected_holopad == src ? TRUE : FALSE,
 			ref = REF(HC)
 		)
