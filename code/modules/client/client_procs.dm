@@ -337,8 +337,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(SSinput.initialized)
 		set_macros()
 
-	src << browse(file('html/statbrowser.html'), "window=statbrowser")
-
 	// Initialize tgui panel
 	tgui_panel.Initialize()
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
