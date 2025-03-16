@@ -1064,14 +1064,6 @@ if(!current_tab) {
 	tab_change("Status");
 }
 
-window.onload = function() {
-	NotifyByondOnload();
-	};
-
-function NotifyByondOnload() {
-	window.location.href = "byond://winset?command=Panel-Ready";
-}
-
 function create_debug(){
 	if(!document.getElementById("Debug Stat Panel")) {
 		addPermanentTab("Debug Stat Panel");

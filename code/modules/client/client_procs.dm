@@ -340,8 +340,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// Initialize tgui panel
 	tgui_panel.Initialize()
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
-	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 5 SECONDS)
-
 
 	if(alert_mob_dupe_login)
 		spawn()
@@ -486,6 +484,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		CL.login()
 	else
 		GLOB.connection_logs[ckey] = new/datum/connection_log()
+	
+	statbrowser_ready = TRUE
+	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 5 SECONDS)
 
 //////////////
 //DISCONNECT//
@@ -1101,10 +1102,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	src << output("[url_encode(json_encode(panel_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
 
 /client/proc/check_panel_loaded()
-	if(statbrowser_ready)
-		return
-	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
-	tgui_panel.Initialize()
+	to_chat(src, span_userdanger("If statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
 
 /client/verb/reload_statpanel()
 	set name = "Reload Statpanel"
