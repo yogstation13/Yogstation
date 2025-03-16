@@ -234,6 +234,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(byond_version >= 516)
 		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
 
+	stat_panel = new(src, "statbrowser")
+
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
 
@@ -337,11 +339,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(SSinput.initialized)
 		set_macros()
 
-	// Initialize tgui panel
-	tgui_panel.Initialize()
-	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	stat_panel.Initialize(inline_html = file("html/statbrowser.html"))
 	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 5 SECONDS)
 
+	// Initialize tgui panel
+	tgui_panel.Initialize()
 
 	if(alert_mob_dupe_login)
 		spawn()
