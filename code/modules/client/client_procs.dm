@@ -1102,7 +1102,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	src << output("[url_encode(json_encode(panel_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
 
 /client/proc/check_panel_loaded()
-	to_chat(src, span_userdanger("If statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	to_chat(src, span_userdanger("If statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload it."))
 
 /client/verb/reload_statpanel()
 	set name = "Reload Statpanel"

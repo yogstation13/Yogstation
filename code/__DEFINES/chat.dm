@@ -31,9 +31,6 @@
 /// Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
 #define EXAMINE_BLOCK(str) ("<div class='examine_block'>" + str + "</div>")
 
-/// Max length of chat message in characters
-#define CHAT_MESSAGE_MAX_LENGTH		110
-
 //debug printing macros (for development and testing)
 /// Used for debug messages to the world
 #define debug_world(msg) if (GLOB.Debug2) to_chat(world, \

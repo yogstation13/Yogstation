@@ -26,15 +26,6 @@
 /// The number of z-layer 'slices' usable by the chat message layering
 #define CHAT_LAYER_MAX_Z (CHAT_LAYER_MAX - CHAT_LAYER) / CHAT_LAYER_Z_STEP
 
-///Base layer of chat elements
-#define CHAT_LAYER 1
-///Highest possible layer of chat elements
-#define CHAT_LAYER_MAX 2
-/// Maximum precision of float before rounding errors occur (in this context)
-#define CHAT_LAYER_Z_STEP 0.0001
-/// The number of z-layer 'slices' usable by the chat message layering
-#define CHAT_LAYER_MAX_Z (CHAT_LAYER_MAX - CHAT_LAYER) / CHAT_LAYER_Z_STEP
-
 /**
  * # Chat Message Overlay
  *
@@ -83,8 +74,7 @@
 		stack_trace("/datum/chatmessage created with [isnull(owner) ? "null" : "invalid"] mob owner")
 		qdel(src)
 		return
-	if(!SSlag_switch.measures[DISABLE_RUNECHAT] && !HAS_TRAIT(owner, TRAIT_BYPASS_MEASURES))
-		INVOKE_ASYNC(src, PROC_REF(generate_image), text, target, owner, language, extra_classes, lifespan)
+	INVOKE_ASYNC(src, PROC_REF(generate_image), text, target, owner, language, extra_classes, lifespan)
 
 /datum/chatmessage/Destroy()
 	if (!QDELING(owned_by))
@@ -124,7 +114,7 @@
 
 	// Register client who owns this message
 	owned_by = owner.client
-	RegisterSignal(owned_by, COMSIG_QDELETING, PROC_REF(on_parent_qdel), src)
+	RegisterSignal(owned_by, COMSIG_QDELETING, PROC_REF(on_parent_qdel))
 
 	// Remove spans in the message from things like the recorder
 	var/static/regex/span_check = new(@"<\/?span[^>]*>", "gi")
@@ -185,14 +175,10 @@
 	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
 
 	// Approximate text height
-	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[text]</span>"
-	var/mheight
-	WXH_TO_HEIGHT(owned_by.MeasureText(complete_text, null, CHAT_MESSAGE_WIDTH), mheight)
-	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
+	var/complete_text = "<span style='color: [tgt_color]'><span class='center [extra_classes.Join(" ")]'>[owner.say_emphasis(text)]</span></span>"
 
 	var/mheight
 	WXH_TO_HEIGHT(owned_by.MeasureText(complete_text, null, CHAT_MESSAGE_WIDTH), mheight)
-
 
 	if(!VERB_SHOULD_YIELD)
 		return finish_image_generation(mheight, target, owner, complete_text, lifespan)
@@ -281,15 +267,18 @@
 	// Fade out
 	animate(alpha = 0, time = CHAT_MESSAGE_EOL_FADE)
 
-	// Register with the runechat SS to handle EOL and destruction
-	scheduled_destruction = world.time + (lifespan - CHAT_MESSAGE_EOL_FADE)
-	RegisterSignal(message_loc, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(loc_z_changed))
-	enter_subsystem()
+	// Register with the runechat SS to handle destruction
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), lifespan + CHAT_MESSAGE_GRACE_PERIOD, TIMER_DELETE_ME, SSrunechat)
 
+/datum/chatmessage/proc/get_current_alpha(time_spent)
+	if(time_spent < CHAT_MESSAGE_SPAWN_TIME)
+		return (time_spent / CHAT_MESSAGE_SPAWN_TIME) * 255
 
-/datum/chatmessage/proc/loc_z_changed(datum/source, turf/old_turf, turf/new_turf, same_z_layer)
-	SIGNAL_HANDLER
-	SET_PLANE(message, RUNECHAT_PLANE, new_turf)
+	var/time_before_fade = animate_lifespan - CHAT_MESSAGE_EOL_FADE
+	if(time_spent <= time_before_fade)
+		return 255
+
+	return (1 - ((time_spent - time_before_fade) / CHAT_MESSAGE_EOL_FADE)) * 255
 
 /**
  * Creates a message overlay at a defined location for a given speaker
@@ -325,7 +314,7 @@
 	if(runechat_flags & EMOTE_MESSAGE)
 		new /datum/chatmessage(raw_message, speaker, src, message_language, list("emote", "italics"))
 	else
-		new /datum/chatmessage(raw_message, speaker, src, message_language, spans)
+		new /datum/chatmessage(translate_language(speaker, message_language, raw_message, spans), speaker, src, message_language, spans)
 
 // Tweak these defines to change the available color ranges
 #define CM_COLOR_SAT_MIN 0.6

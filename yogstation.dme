@@ -4026,6 +4026,7 @@
 #include "interface\fonts\spess_font.dm"
 #include "interface\fonts\tiny_unicode.dm"
 #include "interface\fonts\vcr_osd_mono.dm"
+#include "tgui\states\greyscale_menu.dm"
 #include "yogstation\code\__HELPERS\_lists.dm"
 #include "yogstation\code\__HELPERS\_logging.dm"
 #include "yogstation\code\__HELPERS\game.dm"
