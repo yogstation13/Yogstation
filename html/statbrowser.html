@@ -1065,8 +1065,12 @@ if(!current_tab) {
 }
 
 window.onload = function() {
-	Byond.sendMessage("Panel-Ready");
-};
+	NotifyByondOnload();
+	};
+
+function NotifyByondOnload() {
+	window.location.href = "byond://winset?command=Panel-Ready";
+}
 
 function create_debug(){
 	if(!document.getElementById("Debug Stat Panel")) {

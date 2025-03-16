@@ -54,12 +54,11 @@
  * optional fancy bool If TRUE, will hide the window titlebar.
  */
 /datum/tgui_window/proc/Initialize(
-	fancy = FALSE,
-	assets = list(),
-	inline_html = "",
-	inline_js = "",
-	inline_css = "",
-)
+		fancy = FALSE,
+		assets = list(),
+		inline_html = "",
+		inline_js = "",
+		inline_css = "")
 	log_tgui(client,
 		context = "[id]/initialize",
 		window = src)
