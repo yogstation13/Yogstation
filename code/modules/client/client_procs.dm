@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(href_list["reload_tguipanel"])
 		nuke_chat()
 	if(href_list["reload_statbrowser"])
-		src << browse(file('html/statbrowser.html'), "window=statbrowser")
+		stat_panel.reinitialize()
 	// Log all hrefs
 	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
@@ -233,6 +233,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(byond_version >= 516)
 		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+	
+	// Instantiate stat panel
+	stat_panel = new(src, "statbrowser")
+	stat_panel.subscribe(src, PROC_REF(on_stat_panel_message))
 
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
@@ -337,9 +341,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(SSinput.initialized)
 		set_macros()
 
+	// Initialize stat panel
+	stat_panel.initialize(
+		inline_html = file("html/statbrowser.html"),
+		inline_js = file("html/statbrowser.js"),
+		inline_css = file("html/statbrowser.css"),
+	)
+	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
+
 	// Initialize tgui panel
-	tgui_panel.Initialize()
-	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	tgui_panel.initialize()
 
 	if(alert_mob_dupe_login)
 		spawn()
@@ -484,9 +495,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		CL.login()
 	else
 		GLOB.connection_logs[ckey] = new/datum/connection_log()
-	
-	statbrowser_ready = TRUE
-	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 5 SECONDS)
 
 //////////////
 //DISCONNECT//
@@ -1099,16 +1107,21 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			continue
 		panel_tabs |= verb_to_init.category
 		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
-	src << output("[url_encode(json_encode(panel_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
+	src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist))
 
 /client/proc/check_panel_loaded()
+/* //in case the window is "ready" but didn't load properly, we'll always give the button, subject to change.
+	if(stat_panel.is_ready())
+		return
+	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+*/
 	to_chat(src, span_userdanger("If statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload it."))
 
 /client/verb/reload_statpanel()
 	set name = "Reload Statpanel"
 	set category = "OOC"
 
-	usr << browse(file('html/statbrowser.html'), "window=statbrowser")
+	stat_panel.reinitialize()
 
 /client/verb/stop_client_sounds()
 	set name = "Stop Sounds"
@@ -1125,6 +1138,23 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
 	else
 		SSambience.ambience_listening_clients -= src
+
+/**
+ * Handles incoming messages from the stat-panel TGUI.
+ */
+/client/proc/on_stat_panel_message(type, payload)
+	switch(type)
+		if("Update-Verbs")
+			init_verbs()
+		if("Remove-Tabs")
+			panel_tabs -= payload["tab"]
+		if("Send-Tabs")
+			panel_tabs |= payload["tab"]
+		if("Reset-Tabs")
+			panel_tabs = list()
+		if("Set-Tab")
+			stat_tab = payload["tab"]
+			SSstatpanels.immediate_send_stat_data(src)
 
 /client/proc/open_filter_editor(atom/in_atom)
 	if(holder)
