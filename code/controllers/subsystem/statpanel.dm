@@ -186,7 +186,6 @@ SUBSYSTEM_DEF(statpanels)
 		else
 			turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content))
 
-	turfitems = turfitems
 	target.stat_panel.send_message("update_listedturf", turfitems)
 
 /datum/controller/subsystem/statpanels/proc/generate_mc_data()
