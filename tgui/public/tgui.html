@@ -318,7 +318,6 @@
         if (type === 'js') {
           var node = document.createElement('script');
           node.type = 'text/javascript';
-          node.rel = 'stylesheet';
           node.crossOrigin = 'anonymous';
           node.src = url;
           if (sync) {
@@ -346,6 +345,14 @@
           // to ensure it'll fetch without blocking render
           if (!sync) {
             node.media = 'only x';
+          }
+          // 516: On Chromium, SecurityError is thrown when trying to
+          // access 'CSSStyleSheet.rules' if using webroot for asset
+          // delivery and 'crossOrigin' is not set. This problem doesn't
+          // accur on IE, also there is no 'crossOrigin' field in 'link'
+          // node so it would throw an exeption if you try to set.
+          if ('crossOrigin' in node) {
+            node.crossOrigin = 'anonymous';
           }
           var removeNodeAndRetry = function () {
             node.parentNode.removeChild(node);
