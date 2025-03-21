@@ -491,6 +491,10 @@ class ChatRenderer {
   }
 
   saveToDisk() {
+    // Allow only on IE11
+    if (Byond.IS_LTE_IE10) {
+      return;
+    }
     // Compile currently loaded stylesheets as CSS text
     let cssText = '';
     const styleSheets = document.styleSheets;
