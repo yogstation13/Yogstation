@@ -1113,7 +1113,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /* //in case the window is "ready" but didn't load properly, we'll always give the button, subject to change.
 	if(stat_panel.is_ready())
 		return
-	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
 */
 	to_chat(src, span_userdanger("If statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload it."))
 
