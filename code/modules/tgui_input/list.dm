@@ -9,11 +9,11 @@
  * * buttons - The options that can be chosen by the user, each string is assigned a button on the UI.
  * * timeout - The timeout of the input box, after which the input box will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_list(mob/user, message, title = "Select", list/buttons, default, timeout = 0)
+/proc/tgui_input_list(mob/user, message, title = "Select", list/buttons, default, timeout = 0, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if(!length(buttons))
-		return
+		return null
 	if (!istype(user))
 		if (istype(user, /client))
 			var/client/client = user
@@ -27,7 +27,7 @@
 	/// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
 		return input(user, message, title, default) as null|anything in buttons
-	var/datum/tgui_list_input/input = new(user, message, title, buttons, default, timeout)
+	var/datum/tgui_list_input/input = new(user, message, title, buttons, default, timeout, ui_state)
 	if(input.invalid)
 		qdel(input)
 		return
@@ -88,15 +88,18 @@
 	var/timeout
 	/// Boolean field describing if the tgui_list_input was closed by the user.
 	var/closed
+	/// The TGUI UI state that will be returned in ui_state(). Default: always_state
+	var/datum/ui_state/state
 	/// Whether the tgui list input is invalid or not (i.e. due to all list entries being null)
 	var/invalid = FALSE
 
-/datum/tgui_list_input/New(mob/user, message, title, list/buttons, default, timeout)
+/datum/tgui_list_input/New(mob/user, message, title, list/buttons, default, timeout, ui_state)
 	src.title = title
 	src.message = message
 	src.buttons = list()
 	src.buttons_map = list()
 	src.default = default
+	src.state = ui_state
 
 	// Gets rid of illegal characters
 	var/static/regex/whitelistedWords = regex(@{"([^\u0020-\u8000]+)"})
@@ -118,6 +121,7 @@
 
 /datum/tgui_list_input/Destroy(force)
 	SStgui.close_uis(src)
+	state = null
 	QDEL_NULL(buttons)
 	return ..()
 
@@ -140,7 +144,7 @@
 	closed = TRUE
 
 /datum/tgui_list_input/ui_state(mob/user)
-	return GLOB.always_state
+	return state
 
 /datum/tgui_list_input/ui_static_data(mob/user)
 	var/list/data = list()

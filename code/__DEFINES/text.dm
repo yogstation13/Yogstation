@@ -15,6 +15,12 @@
 #define STRIP_HTML_FULL(text, limit) (GLOB.html_tags.Replace(copytext(text, 1, limit), ""))
 
 /**
+ * stuff like `copytext(input, length(input))` will trim the last character of the input,
+ * because DM does it so it copies until the char BEFORE the `end` arg, so we need to bump `end` by 1 in these cases.
+*/
+#define PREVENT_CHARACTER_TRIM_LOSS(integer) (integer + 1)
+
+/**
  * Pixel-perfect scaled fonts for use in the MAP element as defined in skin.dmf
  *
  * Four sizes to choose from, use the sizes as mentioned below.
