@@ -318,6 +318,7 @@
         if (type === 'js') {
           var node = document.createElement('script');
           node.type = 'text/javascript';
+          node.rel = 'stylesheet';
           node.crossOrigin = 'anonymous';
           node.src = url;
           if (sync) {
