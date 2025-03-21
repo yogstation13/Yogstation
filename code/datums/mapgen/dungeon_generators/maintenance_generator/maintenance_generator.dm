@@ -210,7 +210,7 @@
 		
 		//We have to rawdog the Astar pathfinding and skip the wrapper proc because that's made specifically for mobs
 		var/list/cable_path = AStar(
-			caller = our_apc,
+			caller_but_not_a_byond_built_in_proc = our_apc,
 			_end = closest_apc,
 			dist = /turf/proc/Distance_cardinal,
 			maxnodes = 0,

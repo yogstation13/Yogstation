@@ -272,23 +272,23 @@ Doesn't work on other aliens/AI.*/
 // We do this in InterceptClickOn() instead of Activate()
 // because we use the click parameters for aiming the projectile
 // (or something like that)
-/datum/action/cooldown/alien/acid/neurotoxin/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/alien/acid/neurotoxin/InterceptClickOn(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/target)
 	. = ..()
 	if(!.)
-		unset_click_ability(caller, refund_cooldown = FALSE)
+		unset_click_ability(caller_but_not_a_byond_built_in_proc, refund_cooldown = FALSE)
 		return FALSE
 
 //	var/modifiers = params2list(params)
-	caller.visible_message(
-		span_danger("[caller] spits neurotoxin!"),
+	caller_but_not_a_byond_built_in_proc.visible_message(
+		span_danger("[caller_but_not_a_byond_built_in_proc] spits neurotoxin!"),
 		span_alertalien("You spit neurotoxin."),
 	)
 
-	var/obj/projectile/reagent/neurotoxin/neurotoxin = new /obj/projectile/reagent/neurotoxin(caller.loc)
-	neurotoxin.preparePixelProjectile(target, caller, params)
-	neurotoxin.firer = caller
+	var/obj/projectile/reagent/neurotoxin/neurotoxin = new /obj/projectile/reagent/neurotoxin(caller_but_not_a_byond_built_in_proc.loc)
+	neurotoxin.preparePixelProjectile(target, caller_but_not_a_byond_built_in_proc, params)
+	neurotoxin.firer = caller_but_not_a_byond_built_in_proc
 	neurotoxin.fire()
-	caller.newtonian_move(get_dir(target, caller))
+	caller_but_not_a_byond_built_in_proc.newtonian_move(get_dir(target, caller_but_not_a_byond_built_in_proc))
 	return TRUE
 
 // Has to return TRUE, otherwise is skipped.

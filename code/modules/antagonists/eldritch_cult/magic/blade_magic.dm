@@ -64,12 +64,12 @@
 
 	unset_click_ability(source, refund_cooldown = TRUE)
 
-/datum/action/cooldown/spell/pointed/projectile/furious_steel/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/spell/pointed/projectile/furious_steel/InterceptClickOn(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/target)
 	// Let the caster prioritize using items like guns over blade casts
-	if(caller.get_active_held_item())
+	if(caller_but_not_a_byond_built_in_proc.get_active_held_item())
 		return FALSE
 	// Let the caster prioritize melee attacks like punches and shoves over blade casts
-	if(get_dist(caller, target) <= 1)
+	if(get_dist(caller_but_not_a_byond_built_in_proc, target) <= 1)
 		return FALSE
 
 	return ..()

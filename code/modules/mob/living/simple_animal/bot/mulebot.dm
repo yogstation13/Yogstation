@@ -67,9 +67,13 @@
 	suffix = null
 
 /mob/living/simple_animal/bot/mulebot/Destroy()
+	if(!isnull(wires))
+		QDEL_NULL(wires)
 	unload(0)
-	qdel(wires)
-	wires = null
+	return ..()
+
+/mob/living/simple_animal/bot/mulebot/death(gibbed)
+	QDEL_NULL(wires)
 	return ..()
 
 /mob/living/simple_animal/bot/mulebot/proc/set_id(new_id)

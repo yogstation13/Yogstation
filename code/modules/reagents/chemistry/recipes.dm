@@ -26,7 +26,7 @@
 		var/atom/A = holder.my_atom
 		var/turf/T = get_turf(A)
 		var/message = "A [reaction_name] reaction has occurred in [ADMIN_VERBOSEJMP(T)]"
-		message += " (<A HREF='?_src_=vars;[HrefToken()];Vars=[REF(A)]'>VV</A>)"
+		message += " (<A href='byond://?_src_=vars;[HrefToken()];Vars=[REF(A)]'>VV</A>)"
 
 		var/mob/M = get(A, /mob)
 		if(M)

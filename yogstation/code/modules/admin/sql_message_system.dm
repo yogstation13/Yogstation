@@ -274,10 +274,10 @@
 		return
 	var/list/output = list()
 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
-	var/list/navbar = list("<a href='?_src_=holder;[HrefToken()];nonalpha=2'>\[#\]</a>")
+	var/list/navbar = list("<a href='byond://?_src_=holder;[HrefToken()];nonalpha=2'>\[#\]</a>")
 	for(var/letter in GLOB.alphabet)
-		navbar += "|<a href='?_src_=holder;[HrefToken()];showmessages=[letter]'>\[[letter]\]</a>"
-	navbar += "|<a href='?_src_=holder;[HrefToken()];showmemo=1'>\[Memos\]</a>|<a href='?_src_=holder;[HrefToken()];showwatch=1'>\[Watchlist\]</a>"
+		navbar += "|<a href='byond://?_src_=holder;[HrefToken()];showmessages=[letter]'>\[[letter]\]</a>"
+	navbar += "|<a href='byond://?_src_=holder;[HrefToken()];showmemo=1'>\[Memos\]</a>|<a href='byond://?_src_=holder;[HrefToken()];showwatch=1'>\[Watchlist\]</a>"
 	navbar += "<br><form method='GET' name='search' action='?'>\
 	<input type='hidden' name='_src_' value='holder'>\
 	[HrefTokenFormField()]\
@@ -288,14 +288,14 @@
 	if(type == "memo" || type == "watchlist entry")
 		if(type == "memo")
 			output += "<h2><center>Admin memos</h2>"
-			output += "<a href='?_src_=holder;[HrefToken()];addmemo=1'>\[Add memo\]</a></center>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];addmemo=1'>\[Add memo\]</a></center>"
 		else if(type == "watchlist entry")
 			output += "<h2><center>Watchlist entries</h2>"
-			output += "<a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a>"
 			if(filter)
-				output += "|<a href='?_src_=holder;[HrefToken()];showwatch=1'>\[Unfilter clients\]</a></center>"
+				output += "|<a href='byond://?_src_=holder;[HrefToken()];showwatch=1'>\[Unfilter clients\]</a></center>"
 			else
-				output += "|<a href='?_src_=holder;[HrefToken()];showwatchfilter=1'>\[Filter offline clients\]</a></center>"
+				output += "|<a href='byond://?_src_=holder;[HrefToken()];showwatchfilter=1'>\[Filter offline clients\]</a></center>"
 		output += ruler
 		var/datum/DBQuery/query_get_type_messages = SSdbcore.NewQuery("SELECT id, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), text, timestamp, server, (SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), expire_timestamp FROM [format_table_name("messages")] WHERE type = :type AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)", list("type" = type))
 		if(!query_get_type_messages.warn_execute())
@@ -322,11 +322,11 @@
 			if(expire_timestamp)
 				output += " | Expires [expire_timestamp]"
 			output += "</b>"
-			output += " <a href='?_src_=holder;[HrefToken()];editmessageexpiryempty=[id]'>\[Change Expiry Time\]</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];deletemessageempty=[id]'>\[Delete\]</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];editmessageempty=[id]'>\[Edit\]</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];editmessageexpiryempty=[id]'>\[Change Expiry Time\]</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];deletemessageempty=[id]'>\[Delete\]</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];editmessageempty=[id]'>\[Edit\]</a>"
 			if(editor_key)
-				output += " <font size='2'>Last edit by [editor_key] <a href='?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
+				output += " <font size='2'>Last edit by [editor_key] <a href='byond://?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
 			output += "<br>[text]<hr style='background:#000000; border:0; height:1px'>"
 		qdel(query_get_type_messages)
 	if(target_ckey)
@@ -374,23 +374,23 @@
 						skipped = TRUE
 					alphatext = "filter: alpha(opacity=[alpha]); opacity: [alpha/100];"
 			var/list/data = list("<p style='margin:0px;[alphatext]'> <b>[timestamp][playtime] | [server] | [admin_key] | ")
-			data += "Round: #<a href='?_src_=holder;[HrefToken()];viewdemo=[roundnumber]'>[roundnumber]</a>"
+			data += "Round: #<a href='byond://?_src_=holder;[HrefToken()];viewdemo=[roundnumber]'>[roundnumber]</a>"
 			if(expire_timestamp)
 				data += " | Expires [expire_timestamp]"
 			data += "</b>"
 			if(!linkless)
-				data += " <a href='?_src_=holder;[HrefToken()];editmessageexpiry=[id]'>\[Change Expiry Time\]</a>"
-				data += " <a href='?_src_=holder;[HrefToken()];deletemessage=[id]'>\[Delete\]</a>"
+				data += " <a href='byond://?_src_=holder;[HrefToken()];editmessageexpiry=[id]'>\[Change Expiry Time\]</a>"
+				data += " <a href='byond://?_src_=holder;[HrefToken()];deletemessage=[id]'>\[Delete\]</a>"
 				if(type == "note")
-					data += " <a href='?_src_=holder;[HrefToken()];secretmessage=[id]'>[secret ? "<b>\[Secret\]</b>" : "\[Not secret\]"]</a>"
+					data += " <a href='byond://?_src_=holder;[HrefToken()];secretmessage=[id]'>[secret ? "<b>\[Secret\]</b>" : "\[Not secret\]"]</a>"
 				if(type == "message sent")
 					data += " <font size='2'>Message has been sent</font>"
 					if(editor_key)
 						data += "|"
 				else
-					data += " <a href='?_src_=holder;[HrefToken()];editmessage=[id]'>\[Edit\]</a>"
+					data += " <a href='byond://?_src_=holder;[HrefToken()];editmessage=[id]'>\[Edit\]</a>"
 				if(editor_key)
-					data += " <font size='2'>Last edit by [editor_key] <a href='?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
+					data += " <font size='2'>Last edit by [editor_key] <a href='byond://?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
 			data += "<br>[text]</p><hr style='background:#000000; border:0; height:1px; [alphatext]'>"
 			switch(type)
 				if("message")
@@ -412,12 +412,12 @@
 			qdel(query_get_message_key)
 		output += "<h2><center>[target_key]</center></h2><center>"
 		if(!linkless)
-			output += "<a href='?_src_=holder;[HrefToken()];addnote=[target_key]'>\[Add note\]</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];addmessage=[target_key]'>\[Add message\]</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];addwatch=[target_key]'>\[Add to watchlist\]</a>"
-			output += " <a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>\[Refresh page\]</a></center>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];addnote=[target_key]'>\[Add note\]</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];addmessage=[target_key]'>\[Add message\]</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];addwatch=[target_key]'>\[Add to watchlist\]</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>\[Refresh page\]</a></center>"
 		else
-			output += " <a href='?_src_=holder;[HrefToken()];showmessageckeylinkless=[target_ckey]'>\[Refresh page\]</a></center>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];showmessageckeylinkless=[target_ckey]'>\[Refresh page\]</a></center>"
 		output += ruler
 		if(messagedata)
 			output += "<h4>Messages</h4>"
@@ -431,15 +431,15 @@
 			if(!linkless)
 				if (agegate)
 					if (skipped) //the first skipped message is still shown so that we can put this link over it.
-						output += " <center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1' style='position: relative; top: -3em;'>\[Show [skipped] hidden messages\]</center>"
+						output += " <center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1' style='position: relative; top: -3em;'>\[Show [skipped] hidden messages\]</center>"
 					else
-						output += " <center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1'>\[Show All\]</center>"
+						output += " <center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1'>\[Show All\]</center>"
 
 				else
-					output += " <center><a href='?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>\[Hide Old\]</center>"
+					output += " <center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>\[Hide Old\]</center>"
 	if(index)
 		var/search
-		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
+		output += "<center><a href='byond://?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='byond://?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
 		output += ruler
 
 		switch(index)
@@ -470,10 +470,10 @@
 			var/index_key = query_list_messages.item[2]
 			if(!index_key)
 				index_key = index_ckey
-			output += "<a href='?_src_=holder;[HrefToken()];showmessageckey=[index_ckey]'>[index_key]</a><br>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[index_ckey]'>[index_key]</a><br>"
 		qdel(query_list_messages)
 	else if(!type && !target_ckey && !index)
-		output += "<center></a> <a href='?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
+		output += "<center></a> <a href='byond://?_src_=holder;[HrefToken()];addmessageempty=1'>\[Add message\]</a><a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>\[Add watchlist entry\]</a><a href='byond://?_src_=holder;[HrefToken()];addnoteempty=1'>\[Add note\]</a></center>"
 		output += ruler
 	usr << browse({"<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /></head><body>[jointext(output, "")]</body></html>"}, "window=browse_messages;size=900x500")
 
@@ -515,7 +515,7 @@
 			if("memo")
 				output += "<span class='memo'>Memo by [span_prefix("[admin_key]")] on [timestamp]"
 				if(editor_key)
-					output += "<br><span class='memoedit'>Last edit by [editor_key] <A href='?_src_=holder;[HrefToken()];messageedits=[message_id]'>(Click here to see edit log)</A></span>"
+					output += "<br><span class='memoedit'>Last edit by [editor_key] <A href='byond://?_src_=holder;[HrefToken()];messageedits=[message_id]'>(Click here to see edit log)</A></span>"
 				output += "<br>[text]</span><br>"
 	qdel(query_get_message_output)
 	return output

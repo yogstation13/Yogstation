@@ -31,15 +31,15 @@
 	enable_text = span_notice("You mimick and prepare to send one-time code used by robotics consoles. Click an active connected cyborg to unlock them.")
 	disable_text = span_notice("You decide not to send the one-time code.")
 
-/datum/action/innate/ai/ranged/remote_unlock/do_ability(mob/living/caller, params, atom/clicked_on)
+/datum/action/innate/ai/ranged/remote_unlock/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
 	if(!iscyborg(clicked_on))
 		to_chat(owner, span_warning("You can only unlock cyborgs!"))
 		return FALSE
-	if(!isAI(caller))
+	if(!isAI(caller_but_not_a_byond_built_in_proc))
 		CRASH("Non-AI has /remote_unlock ability!")
 
 	var/mob/living/silicon/robot/cyborg = clicked_on
-	var/mob/living/silicon/ai/ai = caller
+	var/mob/living/silicon/ai/ai = caller_but_not_a_byond_built_in_proc
 	if(cyborg.stat == DEAD)
 		to_chat(ai, span_warning("You cannot unlock dead cyborgs!"))
 		return FALSE
@@ -84,15 +84,15 @@
 	enable_text = span_notice("You prepare to upload and run to a special program to a cyborg. Click an active connected cyborg to reset them.")
 	disable_text = span_notice("You decide not to upload the program.")
 
-/datum/action/innate/ai/ranged/remote_reset/do_ability(mob/living/caller, params, atom/clicked_on)
+/datum/action/innate/ai/ranged/remote_reset/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
 	if(!iscyborg(clicked_on))
 		to_chat(owner, span_warning("You can only reset cyborgs!"))
 		return FALSE
-	if(!isAI(caller))
+	if(!isAI(caller_but_not_a_byond_built_in_proc))
 		CRASH("Non-AI has /remote_reset ability!")
 
 	var/mob/living/silicon/robot/cyborg = clicked_on
-	var/mob/living/silicon/ai/ai = caller
+	var/mob/living/silicon/ai/ai = caller_but_not_a_byond_built_in_proc
 	if(cyborg.stat == DEAD)
 		to_chat(ai, span_warning("You cannot reset dead cyborgs!"))
 		return FALSE

@@ -10,15 +10,15 @@
 	name = "Teleport"
 	desc = "Teleport someone to your recieving pad."
 
-/datum/action/cooldown/spell/pointed/guardian/teleport/InterceptClickOn(mob/living/caller, params, atom/movable/target)
+/datum/action/cooldown/spell/pointed/guardian/teleport/InterceptClickOn(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/movable/target)
 	. = ..()
 	if(!.)
 		return FALSE
 	if (!istype(target))
 		return
-	if (!isguardian(caller))
+	if (!isguardian(caller_but_not_a_byond_built_in_proc))
 		return
-	var/mob/living/simple_animal/hostile/guardian/guardian = caller
+	var/mob/living/simple_animal/hostile/guardian/guardian = caller_but_not_a_byond_built_in_proc
 	var/datum/guardian_ability/minor/teleport/ability = guardian.has_ability(/datum/guardian_ability/minor/teleport)
 	if (!guardian.is_deployed())
 		to_chat(guardian, span_bolddanger("You must be manifested to warp a target!"))
