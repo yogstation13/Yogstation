@@ -74,33 +74,33 @@ Actual Adjacent procs :
 	return b.f - a.f
 
 //wrapper that returns an empty list if A* failed to find a path
-/proc/get_path_to(caller, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE, get_best_attempt = FALSE)
-	var/l = SSpathfinder.mobs.getfree(caller)
+/proc/get_path_to(caller_but_not_a_byond_built_in_proc, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE, get_best_attempt = FALSE)
+	var/l = SSpathfinder.mobs.getfree(caller_but_not_a_byond_built_in_proc)
 	while(!l)
 		stoplag(3)
-		l = SSpathfinder.mobs.getfree(caller)
-	var/list/path = AStar(caller, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude, simulated_only, get_best_attempt)
+		l = SSpathfinder.mobs.getfree(caller_but_not_a_byond_built_in_proc)
+	var/list/path = AStar(caller_but_not_a_byond_built_in_proc, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude, simulated_only, get_best_attempt)
 	SSpathfinder.mobs.found(l)
 	if(!path)
 		path = list()
 	return path
 
-/proc/cir_get_path_to(caller, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE)
-	var/l = SSpathfinder.circuits.getfree(caller)
+/proc/cir_get_path_to(caller_but_not_a_byond_built_in_proc, end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE)
+	var/l = SSpathfinder.circuits.getfree(caller_but_not_a_byond_built_in_proc)
 	while(!l)
 		stoplag(3)
-		l = SSpathfinder.circuits.getfree(caller)
-	var/list/path = AStar(caller, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude, simulated_only)
+		l = SSpathfinder.circuits.getfree(caller_but_not_a_byond_built_in_proc)
+	var/list/path = AStar(caller_but_not_a_byond_built_in_proc, end, dist, maxnodes, maxnodedepth, mintargetdist, adjacent,id, exclude, simulated_only)
 	SSpathfinder.circuits.found(l)
 	if(!path)
 		path = list()
 	return path
 
 /// Pathfinding for bots
-/proc/AStar(caller, _end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE, get_best_attempt = FALSE)
+/proc/AStar(caller_but_not_a_byond_built_in_proc, _end, dist, maxnodes, maxnodedepth = 30, mintargetdist, adjacent = /turf/proc/reachableTurftest, id=null, turf/exclude=null, simulated_only = TRUE, get_best_attempt = FALSE)
 	//sanitation
 	var/turf/end = get_turf(_end)
-	var/turf/start = get_turf(caller)
+	var/turf/start = get_turf(caller_but_not_a_byond_built_in_proc)
 	if(!start || !end)
 		stack_trace("Invalid A* start or destination")
 		return FALSE
@@ -150,12 +150,12 @@ Actual Adjacent procs :
 						//is already in open list, check if it's a better way from the current turf
 							CN.bf &= 15^r //we have no closed, so just cut off exceed dir.00001111 ^ reverse_dir.We don't need to expand to checked turf.
 							if((newg < CN.g) )
-								if(call(cur.source,adjacent)(caller, T, id, simulated_only))
+								if(call(cur.source,adjacent)(caller_but_not_a_byond_built_in_proc, T, id, simulated_only))
 									CN.setp(cur,newg,CN.h,cur.nt+1)
 									open.ReSort(CN)//reorder the changed element in the list
 						else
 						//is not already in open list, so add it
-							if(call(cur.source,adjacent)(caller, T, id, simulated_only))
+							if(call(cur.source,adjacent)(caller_but_not_a_byond_built_in_proc, T, id, simulated_only))
 								CN = new(T,cur,newg,call(T,dist)(end),cur.nt+1,15^r)
 								open.Insert(CN)
 								openc[T] = CN
@@ -179,8 +179,8 @@ Actual Adjacent procs :
 //Returns adjacent turfs in cardinal directions that are reachable
 //simulated_only controls whether only simulated turfs are considered or not
 
-/// Returns a list the src/caller can cross into
-/turf/proc/reachableAdjacentTurfs(caller, ID, simulated_only)
+/// Returns a list the src/caller_but_not_a_byond_built_in_proc can cross into
+/turf/proc/reachableAdjacentTurfs(caller_but_not_a_byond_built_in_proc, ID, simulated_only)
 	var/list/L = new()
 	var/turf/T
 	var/static/space_type_cache = typecacheof(/turf/open/space)
@@ -189,12 +189,12 @@ Actual Adjacent procs :
 		T = get_step(src,GLOB.cardinals[k])
 		if(!T || (simulated_only && space_type_cache[T.type]))
 			continue
-		if(!T.density && !LinkBlockedWithAccess(T,caller, ID))
+		if(!T.density && !LinkBlockedWithAccess(T,caller_but_not_a_byond_built_in_proc, ID))
 			L.Add(T)
 	return L
 
-/turf/proc/reachableTurftest(caller, turf/T, ID, simulated_only)
-	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
+/turf/proc/reachableTurftest(caller_but_not_a_byond_built_in_proc, turf/T, ID, simulated_only)
+	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller_but_not_a_byond_built_in_proc, ID))
 		return TRUE
 
 /// Returns adjacent turfs in cardinal directions that are reachable via atmos
@@ -202,7 +202,7 @@ Actual Adjacent procs :
 	return atmos_adjacent_turfs
 
 /// Check if there is a door that needs access in its way
-/turf/proc/LinkBlockedWithAccess(turf/T, caller, ID)
+/turf/proc/LinkBlockedWithAccess(turf/T, caller_but_not_a_byond_built_in_proc, ID)
 	var/adir = get_dir(src, T)
 	var/rdir = ((adir & MASK_ODD)<<1)|((adir & MASK_EVEN)>>1)
 	for(var/obj/structure/window/W in src)
@@ -212,29 +212,29 @@ Actual Adjacent procs :
 		if(!W.CanAStarPass(ID, adir))
 			return TRUE
 	for(var/obj/machinery/M in src)
-		if(!M.CanAStarPass(ID, adir, caller))
+		if(!M.CanAStarPass(ID, adir, caller_but_not_a_byond_built_in_proc))
 			return TRUE
 	for(var/obj/machinery/door/firedoor/border_only/W in src)
-		if(!W.CanAStarPass(ID, adir, caller))
+		if(!W.CanAStarPass(ID, adir, caller_but_not_a_byond_built_in_proc))
 			return TRUE
 	for(var/obj/O in T)
-		if(!O.CanAStarPass(ID, rdir, caller))
+		if(!O.CanAStarPass(ID, rdir, caller_but_not_a_byond_built_in_proc))
 			return TRUE
 
 	return FALSE
 
 //yog procs
-/turf/proc/reachableTurftestPlayer(caller, turf/T, ID, simulated_only)
-	if(T && !T.density && !LinkBlockedWithAccess(T, caller, ID) && !(simulated_only && SSpathfinder.space_type_cache[T.type]))
+/turf/proc/reachableTurftestPlayer(caller_but_not_a_byond_built_in_proc, turf/T, ID, simulated_only)
+	if(T && !T.density && !LinkBlockedWithAccess(T, caller_but_not_a_byond_built_in_proc, ID) && !(simulated_only && SSpathfinder.space_type_cache[T.type]))
 		return TRUE
 
-/turf/proc/reachableTurftestdensity(caller, turf/T, ID, simulated_only) //used for the sake of pathfinding while excluding turfs with dense objects
-	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
+/turf/proc/reachableTurftestdensity(caller_but_not_a_byond_built_in_proc, turf/T, ID, simulated_only) //used for the sake of pathfinding while excluding turfs with dense objects
+	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller_but_not_a_byond_built_in_proc, ID))
 		for(var/obj/D in T)
 			if(!istype(D, /obj/structure/window) && D.density) //had to do it silly like this so rwindows didn't stop it outright
 				return FALSE
 		return TRUE
 
-/turf/proc/wiringTurfTest(caller, turf/T, ID, simulated_only)
+/turf/proc/wiringTurfTest(caller_but_not_a_byond_built_in_proc, turf/T, ID, simulated_only)
 	if(T && !T.density && !istype(T.loc, /area/space))
 		return TRUE

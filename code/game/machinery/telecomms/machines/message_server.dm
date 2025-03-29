@@ -137,7 +137,7 @@
 		pda_msgs += M
 		signal.logged = TRUE
 		var/datum/signal/subspace/current = signal
-		while (current) // Recursively mark logged so we know in the caller proc that it is logged and sent proper
+		while (current) // Recursively mark logged so we know in the caller_but_not_a_byond_built_in_proc proc that it is logged and sent proper
 			current.data["logged"] = TRUE
 			current = current.original
 	else if(istype(signal, /datum/signal/subspace/messaging/rc))

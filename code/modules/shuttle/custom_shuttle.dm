@@ -40,7 +40,7 @@
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "[M ? "Current Location : [M.getStatusText()]" : "Shuttle link required."]<br><br>"
 	if(M)
-		dat += "<A href='?src=[REF(src)];calculate=1'>Run Flight Calculations</A><br>"
+		dat += "<A href='byond://?src=[REF(src)];calculate=1'>Run Flight Calculations</A><br>"
 		dat += "<b>Shuttle Data</b><hr>"
 		dat += "Shuttle Mass: [calculated_mass/10]tons<br>"
 		dat += "Engine Force: [calculated_dforce]kN ([calculated_engine_count] engines)<br>"
@@ -59,12 +59,12 @@
 				break
 			destination_found = TRUE
 			var/dist = round(calculateDistance(S))
-			dat += "<A href='?src=[REF(src)];setloc=[S.shuttle_id]'>Target [S.name] (Dist: [dist] | Fuel Cost: [round(dist * calculated_consumption)] | Time: [round(dist / calculated_speed)])</A><br>"
+			dat += "<A href='byond://?src=[REF(src)];setloc=[S.shuttle_id]'>Target [S.name] (Dist: [dist] | Fuel Cost: [round(dist * calculated_consumption)] | Time: [round(dist / calculated_speed)])</A><br>"
 		if(!destination_found)
 			dat += "<B>No valid destinations</B><br>"
 		dat += "<hr>[targetLocation ? "Target Location : [targetLocation]" : "No Target Location"]"
-		dat += "<hr><A href='?src=[REF(src)];fly=1'>Initate Flight</A><br>"
-	dat += "<A href='?src=[REF(user)];mach_close=computer'>Close</a>"
+		dat += "<hr><A href='byond://?src=[REF(src)];fly=1'>Initate Flight</A><br>"
+	dat += "<A href='byond://?src=[REF(user)];mach_close=computer'>Close</a>"
 
 	popup = new(user, "computer", M ? M.name : "shuttle", 350, 450)
 	popup.set_content("<center>[dat]</center>")

@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI window with a text input. Returns the user's response.
  *
- * This proc should be used to create windows for text entry that the caller will wait for a response from.
+ * This proc should be used to create windows for text entry that the caller_but_not_a_byond_built_in_proc will wait for a response from.
  * If tgui fancy chat is turned off: Will return a normal input. If max_length is specified, will return
  * stripped_multiline_input.
  *
@@ -14,7 +14,7 @@
  * * multiline -  Bool that determines if the input box is much larger. Good for large messages, laws, etc.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_text(mob/user, message = null, title = "Text Input", default = null, max_length = null, multiline = FALSE, timeout = 0)
+/proc/tgui_input_text(mob/user, message = null, title = "Text Input", default = null, max_length, multiline = FALSE, timeout = 0, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -22,17 +22,19 @@
 			var/client/client = user
 			user = client.mob
 		else
-			return
+			return null
+	if(isnull(user.client))
+		return null
 	/// Client does NOT have tgui_fancy on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
 		if(max_length)
 			if(multiline)
-				return stripped_multiline_input(user, message, title, default, max_length)
+				return stripped_multiline_input(user, message, title, default, PREVENT_CHARACTER_TRIM_LOSS(max_length))
 			else
-				return stripped_input(user, message, title, default, max_length)
+				return stripped_input(user, message, title, default, PREVENT_CHARACTER_TRIM_LOSS(max_length))
 		else
 			return input(user, message, title, default)
-	var/datum/tgui_input_text/textbox = new(user, message, title, default, max_length, multiline, timeout)
+	var/datum/tgui_input_text/textbox = new(user, message, title, default, max_length, multiline, timeout, ui_state)
 	textbox.ui_interact(user)
 	textbox.wait()
 	if (textbox)
@@ -90,14 +92,17 @@
 	var/timeout
 	/// The title of the TGUI window
 	var/title
+	/// The TGUI UI state that will be returned in ui_state(). Default: always_state
+	var/datum/ui_state/state
 
 
-/datum/tgui_input_text/New(mob/user, message, title, default, max_length, multiline, timeout)
+/datum/tgui_input_text/New(mob/user, message, title, default, max_length, multiline, timeout, ui_state)
 	src.default = default
 	src.max_length = max_length
 	src.message = message
 	src.multiline = multiline
 	src.title = title
+	src.state = ui_state
 	if (timeout)
 		src.timeout = timeout
 		start_time = world.time
@@ -105,7 +110,8 @@
 
 /datum/tgui_input_text/Destroy(force, ...)
 	SStgui.close_uis(src)
-	. = ..()
+	state = null
+	return ..()
 
 /**
  * Waits for a user's response to the tgui_input_text's prompt before returning. Returns early if
@@ -126,7 +132,7 @@
 	closed = TRUE
 
 /datum/tgui_input_text/ui_state(mob/user)
-	return GLOB.always_state
+	return state
 
 /datum/tgui_input_text/ui_static_data(mob/user)
 	. = list(
@@ -163,7 +169,8 @@
 			return TRUE
 
 /datum/tgui_input_text/proc/set_entry(entry)
-		src.entry = entry
+	if(!isnull(entry))
+		src.entry = max_length ? trim(entry, PREVENT_CHARACTER_TRIM_LOSS(max_length)) : entry
 
 /**
  * # async tgui_input_text

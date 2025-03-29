@@ -41,7 +41,7 @@
 	accesses += "</tr></table>"
 	t1 += "<tt>[accesses]</tt>"
 
-	t1 += "<p><a href='?src=[REF(src)];close=1'>Close</a></p>\n"
+	t1 += "<p><a href='byond://?src=[REF(src)];close=1'>Close</a></p>\n"
 
 	var/datum/browser/popup = new(user, "airlock_scan", "Access Scan", 900, 500)
 	popup.set_content(t1)

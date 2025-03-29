@@ -24,7 +24,7 @@
 					M,
 					span_binarysay("\
 						Robotic Talk, \
-						<a href='?src=[REF(M)];track=[html_encode(name)]'>[span_name("[name] ([designation])")]</a> \
+						<a href='byond://?src=[REF(M)];track=[html_encode(name)]'>[span_name("[name] ([designation])")]</a> \
 						[span_message("[quoted_message]")]\
 					")
 				)

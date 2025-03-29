@@ -32,10 +32,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help_tickets/proc/BrowseTickets(state)
 	var/title
 	var/list/dat = list("<html><head><meta charset='UTF-8'><title>[title]</title></head>")
-	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
+	dat += "<A href='byond://?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
 	for(var/I in tickets_list)
 		var/datum/admin_help/AH = I
-		dat += "<span class='adminnotice'>[span_adminhelp("Ticket #[AH.id]")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+		dat += "<span class='adminnotice'>[span_adminhelp("Ticket #[AH.id]")]: <A href='byond://?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
 
@@ -274,24 +274,24 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/ClosureLinks(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	. = " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJT</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RSLVE</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=wiki'>WIKI</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=bug'>BUG</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=mhelpquestion'>MHELP</a>)"
+	. = " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJT</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RSLVE</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=wiki'>WIKI</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=bug'>BUG</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=mhelpquestion'>MHELP</a>)"
 
 //private
 /datum/admin_help/proc/LinkedReplyName(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	return "<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reply'>[initiator_key_name]</A>"
+	return "<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reply'>[initiator_key_name]</A>"
 
 //private
 /datum/admin_help/proc/TicketHref(msg, ref_src, action = "ticket")
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	return "<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=[action]'>[msg]</A>"
+	return "<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=[action]'>[msg]</A>"
 
 //message from the initiator without a target, all admins will see this
 //won't bug irc
@@ -580,8 +580,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		ui_interact(usr)
 		return
 
-	var/reply_link = "<a href='?_src_=holder;[HrefToken(TRUE)];user=[REF(usr)];ahelp=[REF(src)];ahelp_action=reply'><img border='0' width='16' height='16' class='uiIcon16 icon-comment' /> Reply</a>"
-	var/refresh_link = "<a href='?_src_=holder;[HrefToken(TRUE)];user=[REF(usr)];ahelp=[REF(src)];ahelp_action=ticket'><img border='0' width='16' height='16' class='uiIcon16 icon-refresh' /> Refresh</a>"
+	var/reply_link = "<a href='byond://?_src_=holder;[HrefToken(TRUE)];user=[REF(usr)];ahelp=[REF(src)];ahelp_action=reply'><img border='0' width='16' height='16' class='uiIcon16 icon-comment' /> Reply</a>"
+	var/refresh_link = "<a href='byond://?_src_=holder;[HrefToken(TRUE)];user=[REF(usr)];ahelp=[REF(src)];ahelp_action=ticket'><img border='0' width='16' height='16' class='uiIcon16 icon-refresh' /> Refresh</a>"
 
 	var/content = ""
 	if(usr.client.holder)
@@ -598,19 +598,19 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		if(initiator && initiator.mob)
 			content += {"<p style='margin-top: 5px;'>
-					<a href='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> ?</a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];adminplayeropts=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> PP</a>
-					<a href='?_src_=vars;[HrefToken(TRUE)];Vars=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> VV</a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-mail-closed' /> SM</a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-arrowthick-1-e' /> FLW</a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];secretsadmin=check_antagonist'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> CA</a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=administer' class='admin-button'><img border='0' width='16' height='16' class='uiIcon16 icon-flag' /> <span>Administer</span></a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=mhelpquestion' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>MHelp</span></a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=popup' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[popups_enabled ? "De" : ""]Activate Popups</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> ?</a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayeropts=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> PP</a>
+					<a href='byond://?_src_=vars;[HrefToken(TRUE)];Vars=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> VV</a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-mail-closed' /> SM</a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-arrowthick-1-e' /> FLW</a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];secretsadmin=check_antagonist'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> CA</a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=administer' class='admin-button'><img border='0' width='16' height='16' class='uiIcon16 icon-flag' /> <span>Administer</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=mhelpquestion' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>MHelp</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=popup' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[popups_enabled ? "De" : ""]Activate Popups</span></a>
 				</p>"}
 		if(initiator && initiator.mob)
 			if(initiator.mob.mind && initiator.mob.mind.assigned_role)
@@ -637,8 +637,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(usr.client.holder)
 			content += "<div class='user-bar'>"
 			content += {"<p style='margin-top: 5px;'>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
-					<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=administer' class='admin-button'><img border='0' width='16' height='16' class='uiIcon16 icon-flag' /> <span>Administer</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
+					<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(src)];ahelp_action=administer' class='admin-button'><img border='0' width='16' height='16' class='uiIcon16 icon-flag' /> <span>Administer</span></a>
 				</p>"}
 			content += "</div>"
 
@@ -798,14 +798,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(holder)
 		content += {"<p class='info-bar'>
-			<a href='?_src_=[REF(src)];[HrefToken()];action=refresh_admin_ticket_list;flag=[flag]'>Refresh List</a>
-			<a href='?_src_=[REF(src)];[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=[(flag | TICKET_FLAG_LIST_ALL) & ~TICKET_FLAG_LIST_MINE & ~TICKET_FLAG_LIST_UNCLAIMED]'>All Tickets</a>
+			<a href='byond://?_src_=[REF(src)];[HrefToken()];action=refresh_admin_ticket_list;flag=[flag]'>Refresh List</a>
+			<a href='byond://?_src_=[REF(src)];[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=[(flag | TICKET_FLAG_LIST_ALL) & ~TICKET_FLAG_LIST_MINE & ~TICKET_FLAG_LIST_UNCLAIMED]'>All Tickets</a>
 
-			<a href='?_src_=[REF(src)];[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=
+			<a href='byond://?_src_=[REF(src)];[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=
 				[flag & TICKET_FLAG_LIST_MINE ? "[(flag & ~TICKET_FLAG_LIST_MINE) & ~TICKET_FLAG_LIST_ALL]" : "[(flag | TICKET_FLAG_LIST_MINE) & ~TICKET_FLAG_LIST_ALL]"]
 				'>[flag & TICKET_FLAG_LIST_MINE ? "� " : ""]My Tickets</a>
 
-			<a href='?_src_=[REF(src)];[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=
+			<a href='byond://?_src_=[REF(src)];[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=
 				[flag & TICKET_FLAG_LIST_UNCLAIMED ? "[(flag & ~TICKET_FLAG_LIST_UNCLAIMED) & ~TICKET_FLAG_LIST_ALL]" : "[(flag | TICKET_FLAG_LIST_UNCLAIMED) & ~TICKET_FLAG_LIST_ALL]"]
 				'>[flag & TICKET_FLAG_LIST_UNCLAIMED ? "� " : ""]Unclaimed</a>
 
@@ -863,10 +863,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 						<b>[T.handling_admin_ckey ? "" : "[span_unclaimed("Unclaimed")]!"] [T.name]</b><br />
 						<b>Owner:</b> <b>[T.initiator_ckey] (DC)</b>
 						[T.TicketHref("<img border='0' width='16' height='16' class='uiIcon16 icon-search' /> View")]
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
 						</p>"}
 				else
 					var/ai_found = (T.initiator && isAI(T.initiator_ckey))
@@ -879,19 +879,19 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 						"}
 					if(T.initiator.mob)
 						content += {"
-							<a href='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> ?</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];adminplayeropts=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> PP</a>
-							<a href='?_src_=vars;[HrefToken(TRUE)];Vars=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> VV</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-mail-closed' /> SM</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-arrowthick-1-e' /> FLW</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];check_antagonist=1'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> CA</a>
-							[ai_found ? " <a href='?_src_=holder;[HrefToken(TRUE)];adminchecklaws=[REF(T.initiator.mob)]'><img width='16' height='16' class='uiIcon16 icon-clipboard' /> CL</a>" : ""]
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> ?</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayeropts=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> PP</a>
+							<a href='byond://?_src_=vars;[HrefToken(TRUE)];Vars=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> VV</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-mail-closed' /> SM</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-arrowthick-1-e' /> FLW</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];check_antagonist=1'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> CA</a>
+							[ai_found ? " <a href='byond://?_src_=holder;[HrefToken(TRUE)];adminchecklaws=[REF(T.initiator.mob)]'><img width='16' height='16' class='uiIcon16 icon-clipboard' /> CL</a>" : ""]
 							"}
 					content += {"
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
 						</p>"}
 
 		if(resolved.len > 0)
@@ -904,10 +904,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 						<b>[T.name]</b><br />
 						<b>Owner:</b> <b>[T.initiator_ckey] (DC)</b>
 						[T.TicketHref("<img border='0' width='16' height='16' class='uiIcon16 icon-search' /> View")]
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
 						</p>"}
 				else
 					var/ai_found = (T.initiator && isAI(T.initiator_ckey))
@@ -920,22 +920,22 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 						"}
 					if(T.initiator.mob)
 						content += {"
-							<a href='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> ?</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];adminplayeropts=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> PP</a>
-							<a href='?_src_=vars;[HrefToken(TRUE)];Vars=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> VV</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-mail-closed' /> SM</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-arrowthick-1-e' /> FLW</a>
-							<a href='?_src_=holder;[HrefToken(TRUE)];check_antagonist=1'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> CA</a>
-							[ai_found ? " <a href='?_src_=holder;[HrefToken(TRUE)];adminchecklaws=[REF(T.initiator.mob)]'><img width='16' height='16' class='uiIcon16 icon-clipboard' /> CL</a>" : ""]
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> ?</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayeropts=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> PP</a>
+							<a href='byond://?_src_=vars;[HrefToken(TRUE)];Vars=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> VV</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];subtlemessage=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-mail-closed' /> SM</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(T.initiator.mob)]'><img border='0' width='16' height='16' class='uiIcon16 icon-arrowthick-1-e' /> FLW</a>
+							<a href='byond://?_src_=holder;[HrefToken(TRUE)];check_antagonist=1'><img border='0' width='16' height='16' class='uiIcon16 icon-clipboard' /> CA</a>
+							[ai_found ? " <a href='byond://?_src_=holder;[HrefToken(TRUE)];adminchecklaws=[REF(T.initiator.mob)]'><img width='16' height='16' class='uiIcon16 icon-clipboard' /> CL</a>" : ""]
 								"}
 					content += {"
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
-						<a href='?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=resolve' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>[T.state == AHELP_ACTIVE ? "" : "Un"]Resolve</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=reject' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Reject</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=close' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>Close</span></a>
+						<a href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[REF(T)];ahelp_action=icissue' class='resolve-button'><img border='0' width='16' height='16' class='uiIcon16 icon-check' /> <span>IC</span></a>
 						</p>"}
 	else
-		content += "<p class='info-bar'><a href='?_src_=holder;[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=[flag]'>Refresh List</a></p>"
+		content += "<p class='info-bar'><a href='byond://?_src_=holder;[HrefToken(TRUE)];action=refresh_admin_ticket_list;flag=[flag]'>Refresh List</a></p>"
 
 		if(tickets_list.len == 0)
 			content += "<p class='info-bar emboldened'>There are no tickets in the system</p>"
@@ -945,7 +945,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				if(compare_ckey(T.initiator, usr))
 					content += {"<p class='ticket-bar [T.state == AHELP_ACTIVE ? "unresolved" : "resolved"]'>
 						<b>[T.name]</b>
-						<a href='?src=[REF(T)];user=[REF(src)];action=view_admin_ticket;ticket=[REF(T)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> View</a>
+						<a href='byond://?src=[REF(T)];user=[REF(src)];action=view_admin_ticket;ticket=[REF(T)]'><img border='0' width='16' height='16' class='uiIcon16 icon-search' /> View</a>
 						</p>"}
 
 	var/html = get_html("Admin Tickets", "", "", content)
@@ -1150,7 +1150,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							if(found.mind && found.mind.special_role)
 								is_antag = 1
 							founds += "Name: [found.name]([found.real_name]) Ckey: [found.ckey] [is_antag ? "(Antag)" : null] "
-							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(found)]'>F</A>)</font> "
+							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A href='byond://?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(found)]'>?</A>|<A href='byond://?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(found)]'>F</A>)</font> "
 							continue
 		msg += "[original_word] "
 	if(irc)

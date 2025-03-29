@@ -74,15 +74,15 @@
 		return FALSE
 	return TRUE
 
-/obj/structure/plasticflaps/CanAStarPass(ID, to_dir, caller)
-	if(isliving(caller))
-		if(isbot(caller))
+/obj/structure/plasticflaps/CanAStarPass(ID, to_dir, caller_but_not_a_byond_built_in_proc)
+	if(isliving(caller_but_not_a_byond_built_in_proc))
+		if(isbot(caller_but_not_a_byond_built_in_proc))
 			return TRUE
 
-		var/mob/living/M = caller
+		var/mob/living/M = caller_but_not_a_byond_built_in_proc
 		if(!M.ventcrawler && M.mob_size != MOB_SIZE_TINY)
 			return FALSE
-	var/atom/movable/M = caller
+	var/atom/movable/M = caller_but_not_a_byond_built_in_proc
 	if(M && M.pulling)
 		return CanAStarPass(ID, to_dir, M.pulling)
 	return TRUE //diseases, stings, etc can pass

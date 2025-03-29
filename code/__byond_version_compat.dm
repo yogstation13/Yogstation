@@ -10,8 +10,8 @@
 #endif
 
 //If you update these values, update the message in the #error
-#define MAX_BYOND_MAJOR 515
-#define MAX_BYOND_MINOR 1647
+#define MAX_BYOND_MAJOR 516
+#define MAX_BYOND_MINOR 1658
 #if ((DM_VERSION > MAX_BYOND_MAJOR) || (DM_BUILD > MAX_BYOND_MINOR)) && !defined(SPACEMAN_DMM)
 #error Your version of BYOND is too new to compile this project.
 #error Download version 515.1647 at www.byond.com/download/build/515/515.1642_byond.exe

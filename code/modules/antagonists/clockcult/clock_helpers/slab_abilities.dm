@@ -13,18 +13,18 @@
 /datum/action/innate/slab/IsAvailable(feedback = FALSE)
 	return TRUE
 
-/datum/action/innate/slab/InterceptClickOn(mob/living/caller, params, atom/clicked_on)
+/datum/action/innate/slab/InterceptClickOn(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
 	if(in_progress)
 		return FALSE
-	if(caller.incapacitated() || !slab || !(slab in caller.held_items) || clicked_on == slab)
-		unset_ranged_ability(caller)
+	if(caller_but_not_a_byond_built_in_proc.incapacitated() || !slab || !(slab in caller_but_not_a_byond_built_in_proc.held_items) || clicked_on == slab)
+		unset_ranged_ability(caller_but_not_a_byond_built_in_proc)
 		return FALSE
 
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/i_hate_this = caller || owner || usr
-	i_hate_this?.client?.mouse_override_icon = initial(caller?.client?.mouse_override_icon)
+	var/mob/living/i_hate_this = caller_but_not_a_byond_built_in_proc || owner || usr
+	i_hate_this?.client?.mouse_override_icon = initial(caller_but_not_a_byond_built_in_proc?.client?.mouse_override_icon)
 	i_hate_this?.update_mouse_pointer()
 	i_hate_this?.click_intercept = null
 	finished = TRUE
@@ -34,40 +34,40 @@
 //For the Hateful Manacles scripture; applies replicant handcuffs to the clicked_on.
 /datum/action/innate/slab/hateful_manacles
 
-/datum/action/innate/slab/hateful_manacles/do_ability(mob/living/caller, params, atom/clicked_on)
-	var/turf/T = caller.loc
+/datum/action/innate/slab/hateful_manacles/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
+	var/turf/T = caller_but_not_a_byond_built_in_proc.loc
 	if(!isturf(T))
 		return FALSE
 
-	if(iscarbon(clicked_on) && clicked_on.Adjacent(caller))
+	if(iscarbon(clicked_on) && clicked_on.Adjacent(caller_but_not_a_byond_built_in_proc))
 		var/mob/living/carbon/L = clicked_on
 		if(is_servant_of_ratvar(L))
-			to_chat(caller, span_neovgre("\"[L.p_theyre(TRUE)] a servant.\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_neovgre("\"[L.p_theyre(TRUE)] a servant.\""))
 			return FALSE
 		else if(L.stat)
-			to_chat(caller, span_neovgre("\"There is use in shackling the dead, but for examples.\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_neovgre("\"There is use in shackling the dead, but for examples.\""))
 			return FALSE
 		else if (istype(L.handcuffed, /obj/item/restraints/handcuffs/clockwork))
-			to_chat(caller, span_neovgre("\"[L.p_theyre(TRUE)] already helpless, no?\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_neovgre("\"[L.p_theyre(TRUE)] already helpless, no?\""))
 			return FALSE
 		//yogs start -- shackling people with just one arm is right-out
 		else if(L.get_num_arms(FALSE) < 2 && !L.get_arm_ignore())
-			to_chat(caller, span_neovgre("\"[L.p_theyre(TRUE)] lacking in arms necessary for shackling.\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_neovgre("\"[L.p_theyre(TRUE)] lacking in arms necessary for shackling.\""))
 			return TRUE
 		//yogs end
 		
-		playsound(caller.loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
-		caller.visible_message(span_danger("[caller] begins forming manacles around [L]'s wrists!"), \
+		playsound(caller_but_not_a_byond_built_in_proc.loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
+		caller_but_not_a_byond_built_in_proc.visible_message(span_danger("[caller_but_not_a_byond_built_in_proc] begins forming manacles around [L]'s wrists!"), \
 		"[span_neovgre_small("You begin shaping replicant alloy into manacles around [L]'s wrists...")]")
-		to_chat(L, span_userdanger("[caller] begins forming manacles around your wrists!"))
-		if(do_after(caller, 3 SECONDS, L))
+		to_chat(L, span_userdanger("[caller_but_not_a_byond_built_in_proc] begins forming manacles around your wrists!"))
+		if(do_after(caller_but_not_a_byond_built_in_proc, 3 SECONDS, L))
 			if(!(istype(L.handcuffed,/obj/item/restraints/handcuffs/clockwork)))
 				L.set_handcuffed(new /obj/item/restraints/handcuffs/clockwork(L))
 				L.update_handcuffed()
-				to_chat(caller, "[span_neovgre_small("You shackle [L].")]")
-				log_combat(caller, L, "handcuffed")
+				to_chat(caller_but_not_a_byond_built_in_proc, "[span_neovgre_small("You shackle [L].")]")
+				log_combat(caller_but_not_a_byond_built_in_proc, L, "handcuffed")
 		else
-			to_chat(caller, span_warning("You fail to shackle [L]."))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_warning("You fail to shackle [L]."))
 
 		successful = TRUE
 
@@ -89,18 +89,18 @@
 /datum/action/innate/slab/compromise
 	ranged_mousepointer = 'icons/effects/mouse_pointers/compromise_target.dmi'
 
-/datum/action/innate/slab/compromise/do_ability(mob/living/caller, params, atom/clicked_on)
-	var/turf/T = caller.loc
+/datum/action/innate/slab/compromise/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
+	var/turf/T = caller_but_not_a_byond_built_in_proc.loc
 	if(!isturf(T))
 		return FALSE
 
-	if(isliving(clicked_on) && (clicked_on in view(7, get_turf(caller))))
+	if(isliving(clicked_on) && (clicked_on in view(7, get_turf(caller_but_not_a_byond_built_in_proc))))
 		var/mob/living/L = clicked_on
 		if(!is_servant_of_ratvar(L))
-			to_chat(caller, span_inathneq("\"[L] does not yet serve Ratvar.\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_inathneq("\"[L] does not yet serve Ratvar.\""))
 			return TRUE
 		if(L.stat == DEAD)
-			to_chat(caller, span_inathneq("\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_inathneq("\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\""))
 			return TRUE
 
 		var/brutedamage = L.getBruteLoss()
@@ -108,12 +108,12 @@
 		var/oxydamage = L.getOxyLoss()
 		var/totaldamage = brutedamage + burndamage + oxydamage
 		if(!totaldamage && (!L.reagents || !L.reagents.has_reagent(/datum/reagent/water/holywater)))
-			to_chat(caller, span_inathneq("\"[L] is unhurt and untainted.\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_inathneq("\"[L] is unhurt and untainted.\""))
 			return TRUE
 
 		successful = TRUE
 
-		to_chat(caller, span_brass("You bathe [L == caller ? "yourself":"[L]"] in Inath-neq's power!"))
+		to_chat(caller_but_not_a_byond_built_in_proc, span_brass("You bathe [L == caller_but_not_a_byond_built_in_proc ? "yourself":"[L]"] in Inath-neq's power!"))
 		var/clicked_onturf = get_turf(L)
 		var/has_holy_water = (L.reagents && L.reagents.has_reagent(/datum/reagent/water/holywater))
 		var/healseverity = max(round(totaldamage*0.05, 1), 1) //shows the general severity of the damage you just healed, 1 glow per 20
@@ -124,13 +124,13 @@
 			L.adjustFireLoss(-burndamage, TRUE, FALSE, BODYPART_ANY)
 			L.adjustOxyLoss(-oxydamage)
 			L.adjustToxLoss(totaldamage * 0.5, TRUE, TRUE)
-			clockwork_say(caller, text2ratvar("[has_holy_water ? "Heal tainted" : "Mend wounded"] flesh!"))
-			log_combat(caller, L, "healed with Sentinel's Compromise")
+			clockwork_say(caller_but_not_a_byond_built_in_proc, text2ratvar("[has_holy_water ? "Heal tainted" : "Mend wounded"] flesh!"))
+			log_combat(caller_but_not_a_byond_built_in_proc, L, "healed with Sentinel's Compromise")
 			L.visible_message(span_warning("A blue light washes over [L], [has_holy_water ? "causing [L.p_them()] to briefly glow as it mends" : " mending"] [L.p_their()] bruises and burns!"), \
 			"[span_heavy_brass("You feel Inath-neq's power healing your wounds[has_holy_water ? " and purging the darkness within you" : ""], but a deep nausea overcomes you!")]")
 		else
-			clockwork_say(caller, text2ratvar("Purge foul darkness!"))
-			log_combat(caller, L, "purged of holy water with Sentinel's Compromise")
+			clockwork_say(caller_but_not_a_byond_built_in_proc, text2ratvar("Purge foul darkness!"))
+			log_combat(caller_but_not_a_byond_built_in_proc, L, "purged of holy water with Sentinel's Compromise")
 			L.visible_message(span_warning("A blue light washes over [L], causing [L.p_them()] to briefly glow!"), \
 			"[span_heavy_brass("You feel Inath-neq's power purging the darkness within you!")]")
 		playsound(clicked_onturf, 'sound/magic/staff_healing.ogg', 50, 1)
@@ -144,22 +144,22 @@
 /datum/action/innate/slab/kindle
 	ranged_mousepointer = 'icons/effects/mouse_pointers/volt_target.dmi'
 
-/datum/action/innate/slab/kindle/do_ability(mob/living/caller, params, atom/clicked_on)
-	var/turf/T = caller.loc
+/datum/action/innate/slab/kindle/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
+	var/turf/T = caller_but_not_a_byond_built_in_proc.loc
 	if(!isturf(T))
 		return FALSE
 
-	if(clicked_on in view(7, get_turf(caller)))
+	if(clicked_on in view(7, get_turf(caller_but_not_a_byond_built_in_proc)))
 
 		successful = TRUE
 
 		var/turf/U = get_turf(clicked_on)
-		to_chat(caller, span_brass("You release the light of Ratvar!"))
-		clockwork_say(caller, text2ratvar("Purge all untruths and honor Engine!"))
-		log_combat(caller, U, "fired at with Kindle")
-		playsound(caller, 'sound/magic/blink.ogg', 50, TRUE, frequency = 0.5)
+		to_chat(caller_but_not_a_byond_built_in_proc, span_brass("You release the light of Ratvar!"))
+		clockwork_say(caller_but_not_a_byond_built_in_proc, text2ratvar("Purge all untruths and honor Engine!"))
+		log_combat(caller_but_not_a_byond_built_in_proc, U, "fired at with Kindle")
+		playsound(caller_but_not_a_byond_built_in_proc, 'sound/magic/blink.ogg', 50, TRUE, frequency = 0.5)
 		var/obj/projectile/kindle/A = new(T)
-		A.preparePixelProjectile(clicked_on, caller, params)
+		A.preparePixelProjectile(clicked_on, caller_but_not_a_byond_built_in_proc, params)
 		A.fire()
 
 	return TRUE
@@ -208,37 +208,37 @@
 /datum/action/innate/slab/vanguard
 	ranged_mousepointer = 'icons/effects/mouse_pointers/vanguard_target.dmi'
 
-/datum/action/innate/slab/vanguard/do_ability(mob/living/caller, params, atom/clicked_on)
-	var/turf/T = caller.loc
+/datum/action/innate/slab/vanguard/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
+	var/turf/T = caller_but_not_a_byond_built_in_proc.loc
 	if(!isturf(T))
 		return FALSE
 
-	if(isliving(clicked_on) && (clicked_on in view(7, get_turf(caller))))
+	if(isliving(clicked_on) && (clicked_on in view(7, get_turf(caller_but_not_a_byond_built_in_proc))))
 		var/mob/living/L = clicked_on
 		if(!is_servant_of_ratvar(L))
-			to_chat(caller, span_inathneq("\"[L] does not yet serve Ratvar.\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_inathneq("\"[L] does not yet serve Ratvar.\""))
 			return FALSE
 		if(L.stat == DEAD)
-			to_chat(caller, span_inathneq("\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_inathneq("\"[L.p_theyre(TRUE)] dead. [text2ratvar("Oh, child. To have your life cut short...")]\""))
 			return FALSE
 		if(islist(L.stun_absorption) && L.stun_absorption["vanguard"] && L.stun_absorption["vanguard"]["end_time"] > world.time)
-			to_chat(caller, span_inathneq("\"[L.p_theyre(TRUE)] already shielded by a Vanguard.\""))
+			to_chat(caller_but_not_a_byond_built_in_proc, span_inathneq("\"[L.p_theyre(TRUE)] already shielded by a Vanguard.\""))
 			return FALSE
 
 		successful = TRUE
 
-		if(L == caller)
+		if(L == caller_but_not_a_byond_built_in_proc)
 			for(var/mob/living/LT in spiral_range(7, T))
-				if(LT.stat == DEAD || !is_servant_of_ratvar(LT) || LT == caller || !(LT in view(7, get_turf(caller))) || \
+				if(LT.stat == DEAD || !is_servant_of_ratvar(LT) || LT == caller_but_not_a_byond_built_in_proc || !(LT in view(7, get_turf(caller_but_not_a_byond_built_in_proc))) || \
 				(islist(LT.stun_absorption) && LT.stun_absorption["vanguard"] && LT.stun_absorption["vanguard"]["end_time"] > world.time))
 					continue
 				L = LT
 				break
 
 		L.apply_status_effect(STATUS_EFFECT_VANGUARD)
-		caller.apply_status_effect(STATUS_EFFECT_VANGUARD)
+		caller_but_not_a_byond_built_in_proc.apply_status_effect(STATUS_EFFECT_VANGUARD)
 
-		clockwork_say(caller, text2ratvar("Shield us from darkness!"))
+		clockwork_say(caller_but_not_a_byond_built_in_proc, text2ratvar("Shield us from darkness!"))
 
 	return TRUE
 
@@ -246,19 +246,19 @@
 /datum/action/innate/slab/judicial
 	ranged_mousepointer = 'icons/effects/mouse_pointers/visor_reticule.dmi'
 
-/datum/action/innate/slab/judicial/do_ability(mob/living/caller, params, atom/clicked_on)
-	var/turf/T = caller.loc
+/datum/action/innate/slab/judicial/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/clicked_on)
+	var/turf/T = caller_but_not_a_byond_built_in_proc.loc
 	if(!isturf(T))
 		return FALSE
 
-	if(clicked_on in view(7, get_turf(caller)))
+	if(clicked_on in view(7, get_turf(caller_but_not_a_byond_built_in_proc)))
 		successful = TRUE
 
-		clockwork_say(caller, text2ratvar("Kneel, heathens!"))
-		caller.visible_message(span_warning("[caller]'s eyes fire a stream of energy at [clicked_on], creating a strange mark!"), \
+		clockwork_say(caller_but_not_a_byond_built_in_proc, text2ratvar("Kneel, heathens!"))
+		caller_but_not_a_byond_built_in_proc.visible_message(span_warning("[caller_but_not_a_byond_built_in_proc]'s eyes fire a stream of energy at [clicked_on], creating a strange mark!"), \
 		"[span_heavy_brass("You direct the judicial force to [clicked_on].")]")
 		var/turf/clicked_onturf = get_turf(clicked_on)
-		new/obj/effect/clockwork/judicial_marker(clicked_onturf, caller)
-		log_combat(caller, clicked_onturf, "created a judicial marker")
+		new/obj/effect/clockwork/judicial_marker(clicked_onturf, caller_but_not_a_byond_built_in_proc)
+		log_combat(caller_but_not_a_byond_built_in_proc, clicked_onturf, "created a judicial marker")
 
 	return TRUE
