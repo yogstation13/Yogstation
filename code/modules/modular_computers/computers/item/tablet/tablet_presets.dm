@@ -69,7 +69,7 @@
 	starting_components = list( /obj/item/computer_hardware/processor_unit/small,
 								/obj/item/stock_parts/cell/computer,
 								/obj/item/computer_hardware/hard_drive/small/nukeops,
-								/obj/item/computer_hardware/network_card)
+								/obj/item/computer_hardware/network_card/advanced)
 
 	starting_files = list(new /datum/computer_file/program/radar/fission360)
 	initial_program = /datum/computer_file/program/radar/fission360

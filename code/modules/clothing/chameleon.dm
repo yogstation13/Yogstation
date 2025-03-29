@@ -143,6 +143,89 @@
 	return TRUE
 
 
+/datum/action/cooldown/chameleon_copy
+	name = "Copy person"
+	button_icon = 'yogstation/icons/mob/actions.dmi'
+	button_icon_state = "chameleon_copy"
+	var/target_range = 3
+	var/syndicate = FALSE
+	var/active = FALSE
+	var/copying = FALSE
+	var/in_use = FALSE
+
+/datum/action/cooldown/chameleon_copy/InterceptClickOn(mob/living/caller, params, atom/target)
+	click_with_power(target)
+
+/datum/action/cooldown/chameleon_copy/Grant(mob/M)
+	if(syndicate)
+		owner_has_control = is_syndicate(M)
+	. = ..()
+
+/datum/action/cooldown/chameleon_copy/proc/toggle_button()
+	if(active)
+		active = FALSE
+		background_icon_state = "bg_default"
+		build_all_button_icons()
+		unset_click_ability(owner)
+		return FALSE
+	active = TRUE
+	background_icon_state = "bg_default_on"
+	build_all_button_icons()
+	set_click_ability(owner)
+
+/datum/action/cooldown/chameleon_copy/Trigger(trigger_flags, atom/target)
+	if(active)
+		toggle_button()
+	else
+		to_chat(owner, span_announce("Whom shall your chameleon kit copy?")) //Bad wording, need to improve it
+		toggle_button()
+	
+
+/datum/action/cooldown/chameleon_copy/proc/CheckValidTarget(atom/target)
+	if(target == owner)
+		return FALSE
+	if(!ishuman(target))
+		return FALSE
+	return TRUE
+
+/datum/action/cooldown/chameleon_copy/proc/click_with_power(atom/target_atom)
+	if(in_use || !CheckValidTarget(target_atom))
+		return FALSE
+	in_use = TRUE
+	FireTargetedPower(target_atom)
+	in_use = FALSE
+	return TRUE
+
+/datum/action/cooldown/chameleon_copy/proc/FireTargetedPower(atom/target_atom)
+	var/mob/living/carbon/human/T = target_atom
+	var/datum/outfit/O = new()
+	to_chat(owner, span_notice("Attempting to copy [T]..."))
+	if(!do_after(owner, 10 SECONDS, target_atom))
+		return
+	O.uniform = T.w_uniform
+	O.suit = T.wear_suit
+	O.head = T.head
+	O.shoes = T.shoes
+	O.gloves = T.gloves
+	O.ears = T.ears
+	O.glasses = T.glasses
+	O.mask = T.wear_mask
+	O.back = T.back
+	var/list/types = O.get_chameleon_disguise_info()
+	for(var/Y in types)
+		for(var/V in owner.chameleon_item_actions)
+			var/datum/action/item_action/chameleon/change/A = V
+			var/obj/item/I = Y
+			if(A.chameleon_blacklist[Y] || (initial(I.item_flags) & ABSTRACT || !initial(I.icon_state)))
+				continue
+			if(istype(Y, A.chameleon_type)) //Need to make sure it's the right type, wouldn't want to wear an armour vest on your head.
+				A.update_look(owner, Y)
+				A.copying = TRUE
+				A.copy_target = T
+	to_chat(owner, span_notice("Successfully copied [T]!"))
+	toggle_button()
+
+
 /datum/action/item_action/chameleon/change
 	name = "Chameleon Change"
 	var/list/chameleon_blacklist = list() //This is a typecache
@@ -152,6 +235,8 @@
 	var/emp_timer
 	var/current_disguise = null
 	var/syndicate = FALSE
+	var/copying = FALSE
+	var/mob/living/copy_target
 
 /datum/action/item_action/chameleon/change/Grant(mob/M)
 	if(M && (owner != M))
@@ -160,6 +245,9 @@
 			var/datum/action/chameleon_outfit/O = new /datum/action/chameleon_outfit()
 			O.syndicate = syndicate
 			O.Grant(M)
+			var/datum/action/cooldown/chameleon_copy/C = new /datum/action/cooldown/chameleon_copy()
+			C.syndicate = syndicate
+			C.Grant(M)
 		else
 			M.chameleon_item_actions |= src
 	if(syndicate)
@@ -172,6 +260,8 @@
 		if(!LAZYLEN(M.chameleon_item_actions))
 			var/datum/action/chameleon_outfit/O = locate(/datum/action/chameleon_outfit) in M.actions
 			qdel(O)
+			var/datum/action/cooldown/chameleon_copy/C = locate(/datum/action/cooldown/chameleon_copy) in M.actions
+			qdel(C)
 	return ..()
 
 /datum/action/item_action/chameleon/change/proc/initialize_disguises()
@@ -195,6 +285,7 @@
 	if(!picked_item)
 		return
 	update_look(user, picked_item)
+	copying = FALSE
 
 /datum/action/item_action/chameleon/change/proc/random_look(mob/user)
 	var/picked_name = pick(chameleon_list)
@@ -275,10 +366,16 @@
 	if(istype(atom_target, /obj/item/clothing/suit/space/hardsuit/infiltration)) //YOGS START
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
 		var/obj/item/clothing/suit/space/hardsuit/HS = picked_item
-		var/obj/item/clothing/head/helmet/helmet = initial(HS.helmettype)
+		var/obj/item/clothing/head/helmet/space/hardsuit/helmet = initial(HS.helmettype)
 		I.head_piece.initial_state = initial(helmet.icon_state)
-		update_item(helmet, I.head_piece)
 		I.head_piece.update_appearance(UPDATE_ICON)
+		I.head_piece.current_disguise = picked_item
+		I.head_piece.new_type = helmet.hardsuit_type
+		var/datum/action/A
+		for(var/X in I.actions)
+			A = X
+			A.build_all_button_icons()
+		
 		qdel(helmet)
 		//YOGS END
 
@@ -616,6 +713,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
+	if(!is_syndicate(user)) //Wouldn't want someone to randomly find a switch on a mask, would we?
+		return
 	vchange = !vchange
 	to_chat(user, span_notice("The voice changer is now [vchange ? "on" : "off"]!"))
 	if(vchange)
