@@ -128,7 +128,7 @@
 				var/last_editor = query_memoshow.item[4]
 				output += "<span class='memo'>Mentor memo by [span_prefix("[ckey]")] on [timestamp]"
 				if(last_editor)
-					output += "<br><span class='memoedit'>Last edit by [last_editor] <A href='?_src_=holder;mentormemoeditlist=[ckey];[HrefToken(TRUE)]'>(Click here to see edit log)</A></span>"
+					output += "<br><span class='memoedit'>Last edit by [last_editor] <A href='byond://?_src_=holder;mentormemoeditlist=[ckey];[HrefToken(TRUE)]'>(Click here to see edit log)</A></span>"
 
 				output += "<br>[memotext]</span><br>"
 			qdel(query_memoshow)

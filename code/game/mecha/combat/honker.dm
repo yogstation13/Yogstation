@@ -27,7 +27,7 @@
 						[integrity<30?"<font color='red'><b>DAMAGE LEVEL CRITICAL</b></font><br>":null]
 						[internal_damage&MECHA_INT_TEMP_CONTROL?"<font color='red'><b>CLOWN SUPPORT SYSTEM MALFUNCTION</b></font><br>":null]
 						[internal_damage&MECHA_INT_TANK_BREACH?"<font color='red'><b>GAS TANK HONK</b></font><br>":null]
-						[internal_damage&MECHA_INT_CONTROL_LOST?"<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='?src=[REF(src)];repair_int_control_lost=1'>Recalibrate</a><br>":null]
+						[internal_damage&MECHA_INT_CONTROL_LOST?"<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='byond://?src=[REF(src)];repair_int_control_lost=1'>Recalibrate</a><br>":null]
 						<b>IntegriHONK: </b> [integrity]%<br>
 						<b>PowerHONK charge: </b>[isnull(cell_charge)?"No powercell installed":"[cell.percent()]%"]<br>
 						<b>Air source: </b>[use_internal_tank?"Internal Airtank":"Environment"]<br>
@@ -36,7 +36,7 @@
 						<b>HONK pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
 						<b>HONK temperature: </b> [return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C<br>
 						<b>Lights: </b>[lights?"on":"off"]<br>
-						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":null]
+						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='byond://?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":null]
 					"}
 	return output
 
@@ -99,19 +99,19 @@
 	var/output = {"<div class='wr'>
 						<div class='header'>Sounds of HONK:</div>
 						<div class='links'>
-						<a href='?src=[REF(src)];play_sound=sadtrombone'>Sad Trombone</a>
-						<a href='?src=[REF(src)];play_sound=bikehorn'>Bike Horn</a>
-						<a href='?src=[REF(src)];play_sound=airhorn2'>Air Horn</a>
-						<a href='?src=[REF(src)];play_sound=carhorn'>Car Horn</a>
-						<a href='?src=[REF(src)];play_sound=party_horn'>Party Horn</a>
-						<a href='?src=[REF(src)];play_sound=reee'>Reee</a>
-						<a href='?src=[REF(src)];play_sound=weeoo1'>Siren</a>
-						<a href='?src=[REF(src)];play_sound=hiss1'>Hissing Creature</a>
-						<a href='?src=[REF(src)];play_sound=armbomb'>Armed Grenade</a>
-						<a href='?src=[REF(src)];play_sound=saberon'>Energy Sword</a>
-						<a href='?src=[REF(src)];play_sound=airlock_alien_prying'>Airlock Prying</a>
-						<a href='?src=[REF(src)];play_sound=lightningbolt'>Lightning Bolt</a>
-						<a href='?src=[REF(src)];play_sound=explosionfar'>Distant Explosion</a>
+						<a href='byond://?src=[REF(src)];play_sound=sadtrombone'>Sad Trombone</a>
+						<a href='byond://?src=[REF(src)];play_sound=bikehorn'>Bike Horn</a>
+						<a href='byond://?src=[REF(src)];play_sound=airhorn2'>Air Horn</a>
+						<a href='byond://?src=[REF(src)];play_sound=carhorn'>Car Horn</a>
+						<a href='byond://?src=[REF(src)];play_sound=party_horn'>Party Horn</a>
+						<a href='byond://?src=[REF(src)];play_sound=reee'>Reee</a>
+						<a href='byond://?src=[REF(src)];play_sound=weeoo1'>Siren</a>
+						<a href='byond://?src=[REF(src)];play_sound=hiss1'>Hissing Creature</a>
+						<a href='byond://?src=[REF(src)];play_sound=armbomb'>Armed Grenade</a>
+						<a href='byond://?src=[REF(src)];play_sound=saberon'>Energy Sword</a>
+						<a href='byond://?src=[REF(src)];play_sound=airlock_alien_prying'>Airlock Prying</a>
+						<a href='byond://?src=[REF(src)];play_sound=lightningbolt'>Lightning Bolt</a>
+						<a href='byond://?src=[REF(src)];play_sound=explosionfar'>Distant Explosion</a>
 						</div>
 						</div>
 						"}

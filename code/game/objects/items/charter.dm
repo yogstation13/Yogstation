@@ -70,7 +70,7 @@
 	response_timer_id = addtimer(rename_callback, approval_time, TIMER_STOPPABLE)
 	to_chat(GLOB.permissions.admins,
 		span_adminnotice("<b><font color=orange>CUSTOM STATION RENAME:</font></b>[ADMIN_LOOKUPFLW(user)] proposes to rename the [name_type] to [new_name] (will auto-approve in [DisplayTimeText(approval_time)]).\
-		(<a HREF='?_src_=holder;[HrefToken(TRUE)];accept_custom_name=[REF(src)]'>ACCEPT</a> or <a HREF='?_src_=holder;[HrefToken(TRUE)];reject_custom_name=[REF(src)]'>REJECT</a>) [ADMIN_SMITE(user)] [ADMIN_CENTCOM_REPLY(user)]"))
+		(<a href='byond://?_src_=holder;[HrefToken(TRUE)];accept_custom_name=[REF(src)]'>ACCEPT</a> or <a href='byond://?_src_=holder;[HrefToken(TRUE)];reject_custom_name=[REF(src)]'>REJECT</a>) [ADMIN_SMITE(user)] [ADMIN_CENTCOM_REPLY(user)]"))
 
 /obj/item/station_charter/proc/accept_proposed(user)
 	if(!user)

@@ -224,7 +224,7 @@
 	return PreActivate(user)
 
 /// Intercepts client owner clicks to activate the ability
-/datum/action/cooldown/proc/InterceptClickOn(mob/living/caller, params, atom/target)
+/datum/action/cooldown/proc/InterceptClickOn(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/target)
 	if(!IsAvailable(feedback = TRUE))
 		return FALSE
 	if(!target)
@@ -235,8 +235,8 @@
 
 	// And if we reach here, the action was complete successfully
 	if(unset_after_click)
-		unset_click_ability(caller, refund_cooldown = FALSE)
-	caller.next_click = world.time + click_cd_override
+		unset_click_ability(caller_but_not_a_byond_built_in_proc, refund_cooldown = FALSE)
+	caller_but_not_a_byond_built_in_proc.next_click = world.time + click_cd_override
 
 	return TRUE
 

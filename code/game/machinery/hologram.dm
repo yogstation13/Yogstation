@@ -262,7 +262,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 	for(var/I in holo_calls)
 		var/datum/holocall/HC = I
 		var/list/call_data = list(
-			caller = HC.user,
+			caller_but_not_a_byond_built_in_proc = HC.user,
 			connected = HC.connected_holopad == src ? TRUE : FALSE,
 			ref = REF(HC)
 		)
@@ -285,7 +285,7 @@ obj/machinery/holopad/secure/Initialize(mapload)
 			for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 				if(!AI.client)
 					continue
-				to_chat(AI, span_info("Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [A]</a>."))
+				to_chat(AI, span_info("Your presence is requested at <a href='byond://?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [A]</a>."))
 			return TRUE
 		if("holocall")
 			if(outgoing_call)

@@ -31,7 +31,7 @@
 
 	if(key)
 		//if(include_link)
-			//. += "<a href='?priv_msg=[T ? "ticket;ticket=\ref[T]" : ckey][anchor_params ? ";[anchor_params]" : ""]'>"
+			//. += "<a href='byond://?priv_msg=[T ? "ticket;ticket=\ref[T]" : ckey][anchor_params ? ";[anchor_params]" : ""]'>"
 
 		if(C && C.holder && C.holder.fakekey && !include_name)
 			. += "Administrator"
@@ -125,7 +125,7 @@
 							mobs_found += found
 							if(!ai_found && isAI(found))
 								ai_found = TRUE
-							msg += "<b>[original_word]</b> (<a href='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(found)]'>?</a>)"
+							msg += "<b>[original_word]</b> (<a href='byond://?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(found)]'>?</a>)"
 							continue
 			msg += "[original_word] "
 	return msg

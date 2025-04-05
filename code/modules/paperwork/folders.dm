@@ -57,7 +57,7 @@
 	var/dat = "<HTML><HEAD><meta charset='UTF-8'><title>[name]</title></HEAD><BODY>"
 
 	for(var/obj/item/I in src)
-		dat += "<A href='?src=[REF(src)];remove=[REF(I)]'>Remove</A> - <A href='?src=[REF(src)];read=[REF(I)]'>[I.name]</A><BR>"
+		dat += "<A href='byond://?src=[REF(src)];remove=[REF(I)]'>Remove</A> - <A href='byond://?src=[REF(src)];read=[REF(I)]'>[I.name]</A><BR>"
 	dat += "</BODY></HTML>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")

@@ -228,6 +228,7 @@ export const PersonalCrafting = (props, context) => {
                 <Stack.Item>
                   <Input
                     autoFocus
+                    expensive
                     placeholder={
                       'Search in ' +
                       data.recipes.length +
@@ -291,7 +292,7 @@ export const PersonalCrafting = (props, context) => {
                     </Tabs.Tab>
                   </Tabs>
                 </Stack.Item>
-                <Stack.Item grow m={-1}>
+                <Stack.Item grow m={-1} style={{ overflowY: 'auto' }}>
                   <Box height={'100%'} p={1} style={{ 'overflow-y': 'auto' }}>
                     <Tabs vertical>
                       {tabMode === TABS.foodtype &&

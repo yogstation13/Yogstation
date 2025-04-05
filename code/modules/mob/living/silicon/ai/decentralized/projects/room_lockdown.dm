@@ -48,7 +48,7 @@
 
 
 
-/datum/action/innate/ai/ranged/room_lockdown/do_ability(mob/living/caller, params, atom/target)
+/datum/action/innate/ai/ranged/room_lockdown/do_ability(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/target)
 	var/area/A = get_area(target)
 	if(!A)
 		to_chat(owner, span_warning("No area detected!"))
@@ -61,7 +61,7 @@
 	if(lock_room(A))
 		adjust_uses(-1)
 		to_chat(owner, span_notice("You lock [A]."))
-		unset_ranged_ability(caller)
+		unset_ranged_ability(caller_but_not_a_byond_built_in_proc)
 
 	return TRUE
 

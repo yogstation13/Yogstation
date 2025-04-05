@@ -10,8 +10,8 @@ export const SkillMenu = (props, context) => {
   return (
     <Window
       title="Skills"
-      width={320}
-      height={262}
+      width={225}
+      height={345}
       >
       <Window.Content>
         <Section title={"Points Available: " + (skill_points - allocated_points)}>
@@ -88,7 +88,7 @@ const AdjustSkill = (props, context) => {
         className={classes(['crafting32x32', skill.replace(/ /g, '')])}
       />
       <LabeledList.Item label={name}>
-        <Box textAlign="right" ml={-5} mr={40}>
+        <Box textAlign="right">
           <Tooltip content={tooltip}>
             <Icon name="question-circle" width="12px" mr="6px" />
           </Tooltip>

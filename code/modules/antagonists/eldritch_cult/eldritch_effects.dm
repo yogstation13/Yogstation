@@ -157,9 +157,9 @@
   *
   * Automatically creates more reality smashes
   */
-/datum/reality_smash_tracker/proc/Generate(mob/caller)
-	if(istype(caller))
-		targets += caller
+/datum/reality_smash_tracker/proc/Generate(mob/caller_but_not_a_byond_built_in_proc)
+	if(istype(caller_but_not_a_byond_built_in_proc))
+		targets += caller_but_not_a_byond_built_in_proc
 	var/targ_len = length(targets)
 	var/smash_len = length(smashes)
 	var/number = max(targ_len * (4-(targ_len-1)) - smash_len,1)

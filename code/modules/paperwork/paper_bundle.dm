@@ -90,9 +90,9 @@
 /obj/item/paper_bundle/proc/show_content(mob/user as mob)
 	var/dat
 	var/obj/item/W = src[page]
-	dat += "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>[screen != 0 ? "Previous Page" : ""]</DIV>"
-	dat += "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='?src=\ref[src];remove=1'>[admin_faxed ? "" : "Remove [(istype(W, /obj/item/paper)) ? "paper" : "photo"]"]</A></DIV>"
-	dat += "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>[screen != 2 ? "Next Page" : ""]</A></DIV><BR><HR>"
+	dat += "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='byond://?src=\ref[src];prev_page=1'>[screen != 0 ? "Previous Page" : ""]</DIV>"
+	dat += "<DIV STYLE='float:left; text-align:center; width:33.33333%'><A href='byond://?src=\ref[src];remove=1'>[admin_faxed ? "" : "Remove [(istype(W, /obj/item/paper)) ? "paper" : "photo"]"]</A></DIV>"
+	dat += "<DIV STYLE='float:left; text-align:right; width:33.33333%'><A href='byond://?src=\ref[src];next_page=1'>[screen != 2 ? "Next Page" : ""]</A></DIV><BR><HR>"
 	if(istype(src[page], /obj/item/paper))
 		var/obj/item/paper/P = W
 		var/dist = get_dist(src, user)
