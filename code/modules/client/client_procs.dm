@@ -232,7 +232,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.directory[ckey] = src
 
 	if(byond_version >= 516)
-		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+		winset(src, null, list("browser-options" = "find,refresh,byondstorage,devtools"))
 	
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")
