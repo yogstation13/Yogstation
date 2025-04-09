@@ -167,7 +167,7 @@ jobs:
           key: auxmos-${{ hashFiles('dependencies.sh')}}
 
       - name: Restore Yarn Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('Dockerfile')}}
