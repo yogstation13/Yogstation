@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(backrooms)
 	name = "Backrooms Procedural Generation"
 	init_order = INIT_ORDER_BACKROOMS
-	flags = SS_TICKER | SS_BACKGROUND
+	flags = SS_TICKER | SS_BACKGROUND | SS_NO_FIRE
 
 	var/noNeed = FALSE
 
@@ -31,7 +31,6 @@ SUBSYSTEM_DEF(backrooms)
 		noNeed = TRUE
 	
 	if(noNeed)
-		flags |= SS_NO_FIRE
 		return SS_INIT_NO_NEED
 
 	pick_theme()
@@ -41,7 +40,7 @@ SUBSYSTEM_DEF(backrooms)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/backrooms/stat_entry(msg)
-	if(noNeed)
+	if(noNeed || !CONFIG_GET(flag/backrooms_enabled))
 		msg = "DISABLED"
 	else if(!noNeed && !initialized)
 		msg = "Generating..."
