@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI alert window and returns the user's response.
  *
- * This proc should be used to create alerts that the caller will wait for a response from.
+ * This proc should be used to create alerts that the caller_but_not_a_byond_built_in_proc will wait for a response from.
  * Arguments:
  * * user - The user to show the alert to.
  * * message - The content of the alert, shown in the body of the TGUI window.
@@ -10,7 +10,7 @@
  * * timeout - The timeout of the alert, after which the modal will close and qdel itself. Set to zero for no timeout.
  * * * autofocus - The bool that controls if this alert should grab window focus.
  */
-/proc/tgui_alert(mob/user, message = null, title = null, list/buttons = list("Ok"), timeout = 0, autofocus = TRUE)
+/proc/tgui_alert(mob/user, message = null, title = null, list/buttons = list("Ok"), timeout = 0, autofocus = TRUE, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -18,8 +18,10 @@
 			var/client/client = user
 			user = client.mob
 		else
-			return
-	var/datum/tgui_modal/alert = new(user, message, title, buttons, timeout, autofocus)
+			return null
+	if(isnull(user.client))
+		return null
+	var/datum/tgui_modal/alert = new(user, message, title, buttons, timeout, autofocus, ui_state)
 	alert.ui_interact(user)
 	alert.wait()
 	if (alert)
@@ -74,12 +76,15 @@
 	var/autofocus
 	/// Boolean field describing if the tgui_modal was closed by the user.
 	var/closed
+	/// The TGUI UI state that will be returned in ui_state(). Default: always_state
+	var/datum/ui_state/state
 
-/datum/tgui_modal/New(mob/user, message, title, list/buttons, timeout, autofocus)
+/datum/tgui_modal/New(mob/user, message, title, list/buttons, timeout, autofocus, ui_state)
 	src.title = title
 	src.message = message
 	src.buttons = buttons.Copy()
 	src.autofocus = autofocus
+	src.state = ui_state
 	if (timeout)
 		src.timeout = timeout
 		start_time = world.time
@@ -87,8 +92,9 @@
 
 /datum/tgui_modal/Destroy(force, ...)
 	SStgui.close_uis(src)
+	state = null
 	QDEL_NULL(buttons)
-	. = ..()
+	return ..()
 
 /**
  * Waits for a user's response to the tgui_modal's prompt before returning. Returns early if
@@ -109,7 +115,7 @@
 	closed = TRUE
 
 /datum/tgui_modal/ui_state(mob/user)
-	return GLOB.always_state
+	return state
 
 /datum/tgui_modal/ui_data(mob/user)
 	. = list(

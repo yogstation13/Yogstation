@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI window with a number input. Returns the user's response as num | null.
  *
- * This proc should be used to create windows for number entry that the caller will wait for a response from.
+ * This proc should be used to create windows for number entry that the caller_but_not_a_byond_built_in_proc will wait for a response from.
  * If tgui fancy chat is turned off: Will return a normal input. If a max or min value is specified, will
  * validate the input inside the UI and ui_act.
  *
@@ -15,7 +15,7 @@
  * * timeout - The timeout of the number input, after which the modal will close and qdel itself. Set to zero for no timeout.
  * * round_value - whether the inputted number is rounded down into an integer.
  */
-/proc/tgui_input_number(mob/user, message = null, title = "Number Input", default = null, max_value = null, min_value = 0, timeout = 0)
+/proc/tgui_input_number(mob/user, message = null, title = "Number Input", default = null, max_value = null, min_value = 0, timeout = 0, ui_state = GLOB.always_state)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -23,11 +23,13 @@
 			var/client/client = user
 			user = client.mob
 		else
-			return
+			return null
+	if (isnull(user.client))
+		return null
 	/// Client does NOT have tgui_fancy on: Returns regular input
 	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
 		return input(user, message, title, default) as null | num
-	var/datum/tgui_input_number/numbox = new(user, message, title, default, max_value, min_value, timeout)
+	var/datum/tgui_input_number/numbox = new(user, message, title, default, max_value, min_value, timeout, ui_state)
 	numbox.ui_interact(user)
 	numbox.wait()
 	if (numbox)
@@ -86,14 +88,17 @@
 	var/timeout
 	/// The title of the TGUI window
 	var/title
+	/// The TGUI UI state that will be returned in ui_state(). Default: always_state
+	var/datum/ui_state/state
 
 
-/datum/tgui_input_number/New(mob/user, message, title, default, max_value, min_value, timeout)
+/datum/tgui_input_number/New(mob/user, message, title, default, max_value, min_value, timeout, ui_state)
 	src.default = default
 	src.max_value = max_value
 	src.message = message
 	src.min_value = min_value
 	src.title = title
+	src.state = ui_state
 	if (timeout)
 		src.timeout = timeout
 		start_time = world.time
@@ -101,7 +106,8 @@
 
 /datum/tgui_input_number/Destroy(force, ...)
 	SStgui.close_uis(src)
-	. = ..()
+	state = null
+	return ..()
 
 /**
  * Waits for a user's response to the tgui_input_number's prompt before returning. Returns early if
@@ -122,7 +128,7 @@
 	closed = TRUE
 
 /datum/tgui_input_number/ui_state(mob/user)
-	return GLOB.always_state
+	return state
 
 /datum/tgui_input_number/ui_static_data(mob/user)
 	. = list(
@@ -161,7 +167,7 @@
 			return TRUE
 
 /datum/tgui_input_number/proc/set_entry(entry)
-		src.entry = entry
+	src.entry = entry
 
 /**
  * # async tgui_input_number

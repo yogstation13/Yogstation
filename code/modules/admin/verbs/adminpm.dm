@@ -261,7 +261,7 @@
 
 				//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
 				if(CONFIG_GET(flag/popup_admin_pm) || recipient.current_ticket.popups_enabled) //Yogs (or apparently Apoc I guess) -- ticket popups.
-					spawn()	//so we don't hold the caller proc up
+					spawn()	//so we don't hold the caller_but_not_a_byond_built_in_proc proc up
 						var/sender = src
 						var/sendername = key
 						var/reply = input(recipient, msg,"Admin PM from-[sendername]", "") as message|null	//show message and await a reply
@@ -326,7 +326,7 @@
 		confidential = TRUE)
 	to_chat(initiator,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = span_adminsay("Admin PM from-<b><a href='?priv_msg=$[ckey]'>[ckey]</A></b>: [msg]"),
+		html = span_adminsay("Admin PM from-<b><a href='byond://?priv_msg=$[ckey]'>[ckey]</A></b>: [msg]"),
 		confidential = TRUE) // yogs - Yog Tickets
 	to_chat(initiator,
 		type = MESSAGE_TYPE_ADMINPM,
@@ -426,7 +426,7 @@
 		confidential = TRUE)
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = span_adminsay("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"),
+		html = span_adminsay("Admin PM from-<b><a href='byond://?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"),
 		confidential = TRUE) // yogs - Yog Tickets
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,

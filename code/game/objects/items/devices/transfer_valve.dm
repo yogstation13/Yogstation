@@ -162,7 +162,7 @@
 		var/attachment
 		if(attached_device)
 			if(istype(attached_device, /obj/item/assembly/signaler))
-				attachment = "<A HREF='?_src_=holder;[HrefToken()];secrets=list_signalers'>[attached_device]</A>"
+				attachment = "<A href='byond://?_src_=holder;[HrefToken()];secrets=list_signalers'>[attached_device]</A>"
 			else
 				attachment = attached_device
 

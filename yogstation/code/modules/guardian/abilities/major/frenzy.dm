@@ -55,13 +55,13 @@ GLOBAL_LIST_INIT(guardian_frenzy_speedup, list(
 	desc = "<i>teleports behind you<i> NANI?"
 	button_icon_state = "omae_wa_shinderu"
 
-/datum/action/cooldown/spell/pointed/guardian/frenzy/InterceptClickOn(mob/living/caller, params, atom/movable/target)
+/datum/action/cooldown/spell/pointed/guardian/frenzy/InterceptClickOn(mob/living/caller_but_not_a_byond_built_in_proc, params, atom/movable/target)
 	. = ..()
 	if(!.)
 		return FALSE
-	if (!isguardian(caller))
+	if (!isguardian(caller_but_not_a_byond_built_in_proc))
 		return
-	var/mob/living/simple_animal/hostile/guardian/guardian = caller
+	var/mob/living/simple_animal/hostile/guardian/guardian = caller_but_not_a_byond_built_in_proc
 	if (!guardian.is_deployed())
 		to_chat(guardian, span_italics(span_danger("You are not manifested!")))
 		return

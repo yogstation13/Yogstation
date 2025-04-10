@@ -16,7 +16,7 @@ jobs:
     name: Lints
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Cache SpacemanDMM
         uses: actions/cache@v4
@@ -84,7 +84,7 @@ jobs:
     name: Compile All Maps
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: |
@@ -118,7 +118,7 @@ jobs:
     outputs:
       maps: ${{ steps.map_finder.outputs.maps }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Find Maps
         id: map_finder
         run: |
@@ -145,7 +145,7 @@ jobs:
       group: ci-${{ github.ref }}-${{ matrix.map }}
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: |

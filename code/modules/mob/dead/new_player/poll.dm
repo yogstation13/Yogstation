@@ -24,7 +24,7 @@
 	qdel(query_poll_get)
 	output += "</table></BODY></HTML>"
 	if(!QDELETED(src))
-		src << browse(output,"window=playerpolllist;size=500x300")
+		src << browse(HTML_SKELETON(output),"window=playerpolllist;size=500x300")
 
 /mob/dead/new_player/proc/poll_player(pollid)
 	if(!pollid)
@@ -119,8 +119,8 @@
 			output += "<input type='hidden' name='replytext' value='ABSTAIN'>"
 			output += "<input type='submit' value='Abstain'></form></BODY></HTML>"
 
-			src << browse(null ,"window=playerpolllist")
-			src << browse(output,"window=playerpoll;size=500x500")
+			src << browse(null, "window=playerpolllist")
+			src << browse(HTML_SKELETON(jointext(output, "")), "window=playerpoll;size=500x500")
 		if(POLLTYPE_RATING)
 			var/datum/DBQuery/query_rating_get_votes = SSdbcore.NewQuery("SELECT o.text, v.rating FROM [format_table_name("poll_option")] o, [format_table_name("poll_vote")] v WHERE o.pollid = :pollid AND v.ckey = :ckey AND o.id = v.optionid", list("pollid" = pollid, "ckey" = ckey))
 			if(!query_rating_get_votes.warn_execute())
@@ -177,8 +177,8 @@
 				output += "<p><input type='submit' value='Submit'></form>"
 			output += "</BODY></HTML>"
 			if(!QDELETED(src))
-				src << browse(null ,"window=playerpolllist")
-				src << browse(output,"window=playerpoll;size=500x500")
+				src << browse(null, "window=playerpolllist")
+				src << browse(HTML_SKELETON(jointext(output, "")), "window=playerpoll;size=500x500")
 		if(POLLTYPE_MULTI)
 			var/datum/DBQuery/query_multi_get_votes = SSdbcore.NewQuery("SELECT optionid FROM [format_table_name("poll_vote")] WHERE pollid = :pollid AND ckey = :ckey", list("pollid" = pollid, "ckey" = ckey))
 			if(!query_multi_get_votes.warn_execute())
@@ -229,8 +229,8 @@
 			if(!votedfor.len)
 				output += "<p><input type='submit' value='Vote'></form>"
 			output += "</div></BODY></HTML>"
-			src << browse(null ,"window=playerpolllist")
-			src << browse(output,"window=playerpoll;size=500x250")
+			src << browse(null, "window=playerpolllist")
+			src << browse(HTML_SKELETON(jointext(output, "")), "window=playerpoll;size=500x250")
 		if(POLLTYPE_IRV)
 			var/datum/asset/irv_assets = get_asset_datum(/datum/asset/group/irv)
 			irv_assets.send(src)

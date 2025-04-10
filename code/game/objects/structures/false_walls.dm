@@ -160,11 +160,11 @@
 	. = ..()
 	. += fake_examine_message
 
-/obj/structure/falsewall/CanAStarPass(ID, dir, caller)
+/obj/structure/falsewall/CanAStarPass(ID, dir, caller_but_not_a_byond_built_in_proc)
 	. = ..()
-	if(!isliving(caller))
+	if(!isliving(caller_but_not_a_byond_built_in_proc))
 		return FALSE
-	var/mob/living/passer = caller
+	var/mob/living/passer = caller_but_not_a_byond_built_in_proc
 	if(passer.client)
 		return TRUE
 	
