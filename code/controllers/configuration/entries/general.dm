@@ -555,3 +555,8 @@
 /datum/config_entry/flag/demos_enabled
 
 /datum/config_entry/flag/toast_notification_on_init
+
+/// Whether the backrooms will spawn at roundstart or not. This is a very intensive process that can tack an extra 30+ seconds to roundstart
+/// and creates an extra z-level full of mobs that will add extra load to the server. Only enable this if you're sure you want it. Or optimize it for me.
+/datum/config_entry/flag/backrooms_enabled
+	default = FALSE

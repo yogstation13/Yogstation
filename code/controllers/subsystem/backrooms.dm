@@ -1,7 +1,9 @@
 SUBSYSTEM_DEF(backrooms)
-	name = "Procedural Generation"
+	name = "Backrooms Procedural Generation"
 	init_order = INIT_ORDER_BACKROOMS
-	flags = SS_NO_FIRE
+	flags = SS_TICKER | SS_BACKGROUND | SS_NO_FIRE
+
+	var/noNeed = FALSE
 
 	var/datum/map_generator/dungeon_generator/backrooms_generator
 	var/datum/generator_theme/picked_theme = /datum/generator_theme
@@ -16,8 +18,7 @@ SUBSYSTEM_DEF(backrooms)
 		/obj/item/toy/plush/lizard/azeel = 5000
 	)
 
-/datum/controller/subsystem/backrooms/Initialize(timeofday)
-	var/noNeed = FALSE
+/datum/controller/subsystem/backrooms/PreInit()
 #ifdef LOWMEMORYMODE
 	noNeed = TRUE
 #endif
@@ -25,7 +26,11 @@ SUBSYSTEM_DEF(backrooms)
 	noNeed = TRUE
 #endif
 
-	if(noNeed) //we do it this way so things can pass linter while in low memory mode or unit tests
+/datum/controller/subsystem/backrooms/Initialize(timeofday)
+	if(!CONFIG_GET(flag/backrooms_enabled))
+		noNeed = TRUE
+	
+	if(noNeed)
 		return SS_INIT_NO_NEED
 
 	pick_theme()
@@ -33,6 +38,15 @@ SUBSYSTEM_DEF(backrooms)
 	SEND_GLOBAL_SIGNAL(COMSIG_BACKROOMS_INITIALIZE)
 	spawn_loot()
 	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/backrooms/stat_entry(msg)
+	if(noNeed || !CONFIG_GET(flag/backrooms_enabled))
+		msg = "DISABLED"
+	else if(!noNeed && !initialized)
+		msg = "Generating..."
+	else
+		msg = "Theme: [picked_theme]"
+	return ..()
 
 /datum/controller/subsystem/backrooms/proc/pick_theme()
 	var/list/themes = typesof(/datum/generator_theme)
