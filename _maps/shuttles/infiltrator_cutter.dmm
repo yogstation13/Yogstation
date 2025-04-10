@@ -7,7 +7,7 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_port"
+	id_tag = "bolt_port"
 	},
 /obj/docking_port/mobile{
 	callTime = 150;
@@ -69,7 +69,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_port"
+	id_tag = "bolt_port"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
@@ -204,13 +204,6 @@
 /area/shuttle/yogs/stealthcruiser)
 "aC" = (
 /obj/structure/table,
-/obj/item/circular_saw,
-/obj/item/scalpel{
-	pixel_y = 12
-	},
-/obj/item/cautery{
-	pixel_x = 4
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -312,8 +305,7 @@
 /area/shuttle/yogs/stealthcruiser)
 "aN" = (
 /obj/structure/table,
-/obj/item/retractor,
-/obj/item/hemostat,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/shuttle/yogs/stealthcruiser)
@@ -757,7 +749,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_starboard"
+	id_tag = "bolt_starboard"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,
@@ -780,7 +772,7 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/external{
-	id_tag = "syndicatecutter_bolt_starboard"
+	id_tag = "bolt_starboard"
 	},
 /obj/effect/mapping_helpers/airlock/access/all/syndicate/general,
 /turf/open/floor/plating,

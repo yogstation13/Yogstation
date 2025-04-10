@@ -4,12 +4,47 @@
 	item_state = "eng_helm"
 	armor = list(MELEE = 35, BULLET = 15, LASER = 30,ENERGY = 10, BOMB = 10, BIO = 100, RAD = 50, FIRE = 75, ACID = 75)
 	syndicate = TRUE
+	var/current_disguise = /obj/item/clothing/suit/space/hardsuit/infiltration
+	var/new_type = "engineering"
+	var/static/list/bad_hardsuits = list(
+		/obj/item/clothing/suit/space/hardsuit/darktemplar, 
+		/obj/item/clothing/suit/space/hardsuit/darktemplar/chap, 
+		/obj/item/clothing/suit/space/hardsuit/cult, 
+		/obj/item/clothing/suit/space/hardsuit/syndi, 
+		/obj/item/clothing/suit/space/hardsuit/syndi/elite, 
+		/obj/item/clothing/suit/space/hardsuit/syndi/owl, 
+		/obj/item/clothing/suit/space/hardsuit/syndi/debug, 
+		/obj/item/clothing/suit/space/hardsuit/carp, 
+		/obj/item/clothing/suit/space/hardsuit/carp/dragon, 
+		/obj/item/clothing/suit/space/hardsuit/swat, 
+		/obj/item/clothing/suit/space/hardsuit/swat/captain, 
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal, 
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor, 
+		/obj/item/clothing/suit/space/hardsuit/ert/paranormal/beserker, 
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat, 
+		/obj/item/clothing/suit/space/hardsuit/shielded/swat/honk, 
+		/obj/item/clothing/suit/space/hardsuit/deathsquad
+	)
 
 /obj/item/clothing/head/helmet/space/hardsuit/infiltration/Initialize(mapload)
 	. = ..()
 	if(istype(loc, /obj/item/clothing/suit/space/hardsuit/infiltration))
 		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = loc
 		I.head_piece = src
+
+/obj/item/clothing/head/helmet/space/hardsuit/infiltration/attack_self(mob/user)
+	if(bad_hardsuits.Find(current_disguise))
+		to_chat(user, span_warning("You can't use the hardsuit's helmet light with this current disguise, change to another one!"))
+	else //Copied from original hardsuit attack_self and modified slightly
+		on = !on
+		icon_state = "[basestate][on]-[new_type]"
+		user.update_inv_head()	//so our mob-overlays update
+
+		set_light_on(on)
+
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.build_all_button_icons()
 
 /obj/item/clothing/suit/space/hardsuit/infiltration
 	name = "engineering hardsuit"
