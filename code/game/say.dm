@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/endspanpart = "</span></a>"// Yogs
 
 	//Message
-	var/messagepart = " [span_message("[lang_treat(speaker, message_language, raw_message, spans, message_mods)]")]</span>"
+	var/messagepart = " [span_message("[say_emphasis(lang_treat(speaker, message_language, raw_message, spans, message_mods))]")]</span>"
 
 	var/languageicon = ""
 	var/datum/language/D = GLOB.language_datum_instances[message_language]
@@ -100,6 +100,22 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/spanned = attach_spans(input, spans)
 	return "[say_mod(input, message_mods)], \"[spanned]\""
 
+/// Transforms the speech emphasis mods from [/atom/movable/proc/say_emphasis] into the appropriate HTML tags. Includes escaping.
+#define ENCODE_HTML_EMPHASIS(input, char, html, varname) \
+	var/static/regex/##varname = regex("(?<!\\\\)[char](.+?)(?<!\\\\)[char]", "g");\
+	input = varname.Replace_char(input, "<[html]>$1</[html]>")
+
+/// Scans the input sentence for speech emphasis modifiers, notably |italics|, +bold+, and _underline_ -mothblocks
+/atom/movable/proc/say_emphasis(input)
+	ENCODE_HTML_EMPHASIS(input, "\\|", "i", italics)
+	ENCODE_HTML_EMPHASIS(input, "\\+", "b", bold)
+	ENCODE_HTML_EMPHASIS(input, "_", "u", underline)
+	var/static/regex/remove_escape_backlashes = regex("\\\\(_|\\+|\\|)", "g") // Removes backslashes used to escape text modification.
+	input = remove_escape_backlashes.Replace_char(input, "$1")
+	return input
+
+#undef ENCODE_HTML_EMPHASIS
+
 /atom/movable/proc/lang_treat(atom/movable/speaker, datum/language/language, raw_message, list/spans, list/message_mods = list(), no_quote = FALSE)
 	if(has_language(language))
 		var/atom/movable/AM = speaker.GetSource()
@@ -117,6 +133,17 @@ GLOBAL_LIST_INIT(freqtospan, list(
 			return no_quote ? raw_message : speaker.say_quote(raw_message, spans, message_mods)
 	else
 		return "makes a strange sound."
+
+/// Modifies the message by comparing the languages of the speaker with the languages of the hearer. Called on the hearer.
+/atom/movable/proc/translate_language(atom/movable/speaker, datum/language/language, raw_message, list/spans, list/message_mods)
+	if(!language)
+		return "makes a strange sound."
+
+	if(!has_language(language))
+		var/datum/language/dialect = GLOB.language_datum_instances[language]
+		raw_message = dialect.scramble(raw_message)
+
+	return raw_message
 
 /proc/get_radio_span(freq)
 	var/returntext = GLOB.freqtospan["[freq]"]

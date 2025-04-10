@@ -39,7 +39,7 @@
 	else
 		dat = {"
 <B>Persistent Signal Locator</B><HR>
-<A href='?src=[REF(src)];refresh=1'>Refresh</A>"}
+<A href='byond://?src=[REF(src)];refresh=1'>Refresh</A>"}
 	dat += "</BODY></HTML>"
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")

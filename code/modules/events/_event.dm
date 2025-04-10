@@ -284,12 +284,12 @@ Runs the event
 		if(roundstart)
 			if(!can_run_post_roundstart)
 				return "<a class='linkOff'>Force Now</a><br><a class='linkOff'>Schedule</a>"
-			return "<a href='?src=[REF(src)];action=force_now'>Force Now</a><br><a href='?src=[REF(src)];action=schedule'>Schedule</a>"
+			return "<a href='byond://?src=[REF(src)];action=force_now'>Force Now</a><br><a href='byond://?src=[REF(src)];action=schedule'>Schedule</a>"
 		else
-			return "<a href='?src=[REF(src)];action=force_now'>Force Now</a><br><a href='?src=[REF(src)];action=force_next'>Force Next</a><br><a href='?src=[REF(src)];action=schedule'>Schedule</a>"
+			return "<a href='byond://?src=[REF(src)];action=force_now'>Force Now</a><br><a href='byond://?src=[REF(src)];action=force_next'>Force Next</a><br><a href='byond://?src=[REF(src)];action=schedule'>Schedule</a>"
 	else
 		if(roundstart)
-			return "<a href='?src=[REF(src)];action=force_next'>Force Roundstart</a><br><a href='?src=[REF(src)];action=schedule'>Add Roundstart</a>"
+			return "<a href='byond://?src=[REF(src)];action=force_next'>Force Roundstart</a><br><a href='byond://?src=[REF(src)];action=schedule'>Add Roundstart</a>"
 		else
 			return "<a class='linkOff'>Force Now</a><br><a class='linkOff'>Force Next</a><br><a class='linkOff'>Schedule</a>"
 

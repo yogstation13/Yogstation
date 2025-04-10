@@ -305,9 +305,9 @@
 
 	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
 
-	t += "Starter: [ compressor.starter ? "<A href='?src=[REF(src)];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=[REF(src)];str=1'>On</A>"]"
+	t += "Starter: [ compressor.starter ? "<A href='byond://?src=[REF(src)];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='byond://?src=[REF(src)];str=1'>On</A>"]"
 
-	t += "</PRE><HR><A href='?src=[REF(src)];close=1'>Close</A>"
+	t += "</PRE><HR><A href='byond://?src=[REF(src)];close=1'>Close</A>"
 
 	t += "</TT>"
 	var/datum/browser/popup = new(user, "turbine", name)

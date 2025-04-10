@@ -77,10 +77,10 @@
 /obj/structure/blob/can_atmos_pass(turf/target_turf, vertical = FALSE)
 	return !atmosblock
 
-/obj/structure/blob/CanAStarPass(ID, dir, caller)
+/obj/structure/blob/CanAStarPass(ID, dir, caller_but_not_a_byond_built_in_proc)
 	. = 0
-	if(ismovable(caller))
-		var/atom/movable/mover = caller
+	if(ismovable(caller_but_not_a_byond_built_in_proc))
+		var/atom/movable/mover = caller_but_not_a_byond_built_in_proc
 		. = . || (mover.pass_flags & PASSBLOB)
 
 /obj/structure/blob/update_icon(updates=ALL) //Updates color based on overmind color if we have an overmind.

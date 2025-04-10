@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(voice_announce_list)
 		fdel(base_file)
 
 		log_admin("[key_name(client)] has made a voice announcement via [ip], saved to [base_filename]")
-		message_admins("[key_name_admin(client)] has made a voice announcement. ((<a href='?src=[REF(src)]&stop_announce=1'>CANCEL</a>))")
+		message_admins("[key_name_admin(client)] has made a voice announcement. ((<a href='byond://?src=[REF(src)]&stop_announce=1'>CANCEL</a>))")
 
 		announce(snd)
 	else

@@ -67,11 +67,39 @@ export class AlertModal extends Component {
     const { current } = this.state;
     const focusCurrentButton = () => this.setCurrent(current, false);
 
+    // Stolen wholesale from fontcode
+    const textWidth = (text, font, fontsize) => {
+      // default font height is 12 in tgui
+      font = fontsize + 'x ' + font;
+      const c = document.createElement('canvas');
+      const ctx = c.getContext('2d');
+      ctx.font = font;
+      return ctx.measureText(text).width;
+    };
+
+    // At least one of the buttons has a long text message
+    const isVerbose = buttons.some(
+      (button) =>
+        textWidth(button, '', 12) >
+        windowWidth / buttons.length - paddingMagicNumber,
+    );
+
+    const windowWidth = 345 + (buttons.length > 2 ? 55 : 0);
+
+    // very accurate estimate of padding for each num of buttons
+    const paddingMagicNumber = 67 / buttons.length + 23;
+
+    // Dynamically sets window dimensions
+    const windowHeight =
+      120 +
+      (isVerbose ? 15 * buttons.length : 0) +
+      (message.length > 30 ? Math.ceil(message.length / 4) : 0);
+
     return (
       <Window
         title={title}
-        width={350}
-        height={150}>
+        width={windowWidth}
+        height={windowHeight}>
         {timeout && <Loader value={timeout} />}
         <Window.Content
           onFocus={focusCurrentButton}

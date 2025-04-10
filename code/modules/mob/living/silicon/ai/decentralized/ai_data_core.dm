@@ -107,7 +107,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 					if(!AI.mind && AI.deployed_shell.mind)
 						to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
 					else
-						to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+						to_chat(AI, span_userdanger("<A href=byond://?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
 					AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 
 	if(!(stat & (BROKEN|EMPED)) && has_power() && !disableheat)
@@ -135,7 +135,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 			if(!AI.mind && AI.deployed_shell && AI.deployed_shell.mind)
 				to_chat(AI.deployed_shell, span_userdanger("Warning! Data Core brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 			else
-				to_chat(AI, span_userdanger("Warning! <A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
+				to_chat(AI, span_userdanger("Warning! <A href=byond://?src=[REF(AI)];go_to_machine=[REF(src)]>Data Core</A> brought offline in [get_area(src)]! Please verify that no malicious actions were taken."))
 	
 
 	disconnect_from_ai_network()
@@ -270,7 +270,7 @@ GLOBAL_VAR_INIT(primary_data_core, null)
 					if(!AI.mind && AI.deployed_shell.mind)
 						to_chat(AI.deployed_shell, span_userdanger("Data core in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
 					else
-						to_chat(AI, span_userdanger("<A HREF=?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
+						to_chat(AI, span_userdanger("<A href=byond://?src=[REF(AI)];go_to_machine=[REF(src)]>Data core</A> in [get_area(src)] is on the verge of failing! Immediate action required to prevent failure."))
 					AI.playsound_local(AI, 'sound/machines/engine_alert2.ogg', 30)
 			
 

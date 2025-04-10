@@ -5,6 +5,21 @@
 /// Prepares a text to be used for maptext. Use this so it doesn't look hideous.
 #define MAPTEXT(text) {"<span class='maptext'>[##text]</span>"}
 
+/// Removes characters incompatible with file names.
+#define SANITIZE_FILENAME(text) (GLOB.filename_forbidden_chars.Replace(text, ""))
+
+/// Simply removes the < and > characters, and limits the length of the message.
+#define STRIP_HTML_SIMPLE(text, limit) (GLOB.angular_brackets.Replace(copytext(text, 1, limit), ""))
+
+/// Removes everything enclose in < and > inclusive of the bracket, and limits the length of the message.
+#define STRIP_HTML_FULL(text, limit) (GLOB.html_tags.Replace(copytext(text, 1, limit), ""))
+
+/**
+ * stuff like `copytext(input, length(input))` will trim the last character of the input,
+ * because DM does it so it copies until the char BEFORE the `end` arg, so we need to bump `end` by 1 in these cases.
+*/
+#define PREVENT_CHARACTER_TRIM_LOSS(integer) (integer + 1)
+
 /**
  * Pixel-perfect scaled fonts for use in the MAP element as defined in skin.dmf
  *
@@ -48,15 +63,6 @@
 		var/_measurement = measurement; \
 		return_var = text2num(copytext(_measurement, findtextEx(_measurement, "x") + 1)); \
 	} while(FALSE);
-
-/// Removes characters incompatible with file names.
-#define SANITIZE_FILENAME(text) (GLOB.filename_forbidden_chars.Replace(text, ""))
-
-/// Simply removes the < and > characters, and limits the length of the message.
-#define STRIP_HTML_SIMPLE(text, limit) (GLOB.angular_brackets.Replace(copytext(text, 1, limit), ""))
-
-/// Removes everything enclose in < and > inclusive of the bracket, and limits the length of the message.
-#define STRIP_HTML_FULL(text, limit) (GLOB.html_tags.Replace(copytext(text, 1, limit), ""))
 
 /*
  * Uses MAPTEXT to format antag points into a more appealing format

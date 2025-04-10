@@ -15,10 +15,10 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		var/datum/outfit/varedit/VO = O
 		if(istype(VO))
 			vv = length(VO.vv_values)
-		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='?_src_=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='?_src_=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
+		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='byond://?_src_=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='byond://?_src_=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
 	dat += "</ul>"
-	dat += "<a href='?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
-	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a></BODY></HTML>"
+	dat += "<a href='byond://?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
+	dat += "<a href='byond://?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a></BODY></HTML>"
 	admin << browse(dat.Join(),"window=outfitmanager")
 
 /datum/admins/proc/save_outfit(mob/admin,datum/outfit/O)
